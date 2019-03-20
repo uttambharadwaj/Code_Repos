@@ -1,0 +1,2036 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WeFormObject</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WeFormsObjects</value>
+    </caseValues>
+    <fields>
+        <help><!-- Enter your ABA routing number --></help>
+        <label><!-- ABA Routing Number --></label>
+        <name>ABA_Routing_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- ATM --></label>
+        <name>ATM__c</name>
+    </fields>
+    <fields>
+        <label><!-- Address Line 2: --></label>
+        <name>Address_Line_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual Gross Revenue --></label>
+        <name>Annual_Gross_Revenue__c</name>
+    </fields>
+    <fields>
+        <label><!-- App Req --></label>
+        <name>App_Req__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Number --></label>
+        <name>Application_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Request --></label>
+        <name>Application_Request__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application Status --></label>
+        <name>Application_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Title --></label>
+        <name>Application_Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Authorization --></label>
+        <name>Authorization__c</name>
+    </fields>
+    <fields>
+        <label><!-- Authorization agreement Signature --></label>
+        <name>Authorization_agreement_Signature__c</name>
+    </fields>
+    <fields>
+        <label><!-- Authorize --></label>
+        <name>Authorize__c</name>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Authorized Officer --></label>
+        <name>Authorized_officer__c</name>
+        <picklistValues>
+            <masterLabel>Member</masterLabel>
+            <translation><!-- Member --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Owner</masterLabel>
+            <translation><!-- Owner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>President</masterLabel>
+            <translation><!-- President --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Treasurer</masterLabel>
+            <translation><!-- Treasurer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vice President</masterLabel>
+            <translation><!-- Vice President --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Average Monthly Fuel/Service Expenses --></label>
+        <name>Avg_Monthly_Fuel_Service_Expenses__c</name>
+    </fields>
+    <fields>
+        <label><!-- BOCA Type --></label>
+        <name>BOCA_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Beneficial Owner Information --></label>
+        <name>Beneficial_Owner_Information__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Billing Address Line 2 --></label>
+        <name>Billing_Address_Line_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>Billing_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Contact  First Name --></label>
+        <name>Billing_Contact_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Contact  Last Name --></label>
+        <name>Billing_Contact_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Country --></label>
+        <name>Billing_Country__c</name>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US</masterLabel>
+            <translation><!-- US --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Billing Cycle --></label>
+        <name>Billing_Cycle__c</name>
+        <picklistValues>
+            <masterLabel>Daily - 7-Day Terms</masterLabel>
+            <translation><!-- Daily - 7-Day Terms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prepay</masterLabel>
+            <translation><!-- Prepay --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly -  0 Day Terms</masterLabel>
+            <translation><!-- Weekly -  0 Day Terms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly - 1 Day Terms</masterLabel>
+            <translation><!-- Weekly - 1 Day Terms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly - 2 Day Terms</masterLabel>
+            <translation><!-- Weekly - 2 Day Terms --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Billing Email --></label>
+        <name>Billing_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Fax --></label>
+        <name>Billing_Fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Mobile Phone --></label>
+        <name>Billing_Mobile_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Billing Phone --></label>
+        <name>Billing_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>Billing_State__c</name>
+        <picklistValues>
+            <masterLabel>AK</masterLabel>
+            <translation><!-- AK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL</masterLabel>
+            <translation><!-- AL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR</masterLabel>
+            <translation><!-- AR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZ</masterLabel>
+            <translation><!-- AZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CO</masterLabel>
+            <translation><!-- CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CT</masterLabel>
+            <translation><!-- CT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC</masterLabel>
+            <translation><!-- DC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DE</masterLabel>
+            <translation><!-- DE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FL</masterLabel>
+            <translation><!-- FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA</masterLabel>
+            <translation><!-- GA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HI</masterLabel>
+            <translation><!-- HI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IA</masterLabel>
+            <translation><!-- IA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID</masterLabel>
+            <translation><!-- ID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IL</masterLabel>
+            <translation><!-- IL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IN</masterLabel>
+            <translation><!-- IN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KS</masterLabel>
+            <translation><!-- KS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KY</masterLabel>
+            <translation><!-- KY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation><!-- MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation><!-- MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ME</masterLabel>
+            <translation><!-- ME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MI</masterLabel>
+            <translation><!-- MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MN</masterLabel>
+            <translation><!-- MN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO</masterLabel>
+            <translation><!-- MO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation><!-- MS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT</masterLabel>
+            <translation><!-- MT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NC</masterLabel>
+            <translation><!-- NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ND</masterLabel>
+            <translation><!-- ND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NE</masterLabel>
+            <translation><!-- NE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NH</masterLabel>
+            <translation><!-- NH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NJ</masterLabel>
+            <translation><!-- NJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NM</masterLabel>
+            <translation><!-- NM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NV</masterLabel>
+            <translation><!-- NV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NY</masterLabel>
+            <translation><!-- NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OH</masterLabel>
+            <translation><!-- OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OK</masterLabel>
+            <translation><!-- OK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OR</masterLabel>
+            <translation><!-- OR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA</masterLabel>
+            <translation><!-- PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RI</masterLabel>
+            <translation><!-- RI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC</masterLabel>
+            <translation><!-- SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SD</masterLabel>
+            <translation><!-- SD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN</masterLabel>
+            <translation><!-- TN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX</masterLabel>
+            <translation><!-- TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UT</masterLabel>
+            <translation><!-- UT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA</masterLabel>
+            <translation><!-- VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VT</masterLabel>
+            <translation><!-- VT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA</masterLabel>
+            <translation><!-- WA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WI</masterLabel>
+            <translation><!-- WI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WV</masterLabel>
+            <translation><!-- WV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WY</masterLabel>
+            <translation><!-- WY --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Billing Mailing Address --></label>
+        <name>Billing_Street_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>Billing_Zip_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type Of Business --></label>
+        <name>Business_Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Phone --></label>
+        <name>Business_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Physical Address --></label>
+        <name>Business_Street_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Fax --></label>
+        <name>Business_fax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Campaign Program ID --></label>
+        <name>Campaign_Program_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Card Usage Type --></label>
+        <name>Card_Usage_Type__c</name>
+        <picklistValues>
+            <masterLabel>Fuel, Fluids, Wash Only</masterLabel>
+            <translation><!-- Fuel, Fluids, Wash Only --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unrestricted</masterLabel>
+            <translation><!-- Unrestricted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Enter your checking account number --></help>
+        <label><!-- Checking Account Number --></label>
+        <name>Checking_Account_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language Preference --></label>
+        <name>Communications_Preference__c</name>
+        <picklistValues>
+            <masterLabel>English</masterLabel>
+            <translation><!-- English --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>French</masterLabel>
+            <translation><!-- French --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Company Legal Name --></label>
+        <name>Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Confirmation Contact ID --></label>
+        <name>Confirmation_Contact_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Confirmation Email Sent --></label>
+        <name>Confirmation_Email_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Confirmation Email Template --></label>
+        <name>Confirmation_Email_Template__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>US</masterLabel>
+            <translation><!-- US --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Credit Line Requested --></label>
+        <name>Credit_Line_Requested__c</name>
+    </fields>
+    <fields>
+        <label><!-- DOT # --></label>
+        <name>DOT_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- DUNS Number --></label>
+        <name>DUNS_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date of Birth --></label>
+        <name>Date_of_Birth__c</name>
+    </fields>
+    <fields>
+        <help><!-- Choose you day of payment --></help>
+        <label><!-- Day of  Payment --></label>
+        <name>Day_of_Payment__c</name>
+        <picklistValues>
+            <masterLabel>Friday</masterLabel>
+            <translation><!-- Friday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monday</masterLabel>
+            <translation><!-- Monday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thursday</masterLabel>
+            <translation><!-- Thursday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tuesday</masterLabel>
+            <translation><!-- Tuesday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wednesday</masterLabel>
+            <translation><!-- Wednesday --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Disable Fleet Enrollment --></label>
+        <name>Disable_Fleet_Enrollment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Doing Business As --></label>
+        <name>Doing_Business_As__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Employee Id --></label>
+        <name>Employee_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Estimated Monthly Fuel Volume --></label>
+        <name>Estimated_Monthly_Fuel_Volume_Litres__c</name>
+    </fields>
+    <fields>
+        <label><!-- Estimated Monthly Vehicle Expenses --></label>
+        <name>Estimated_Monthly_Vehicle_Expenses__c</name>
+    </fields>
+    <fields>
+        <label><!-- External_Sales_Id --></label>
+        <name>External_Sales_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- FF # --></label>
+        <name>FF_Number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Enter the name of your financial institution --></help>
+        <label><!-- Financial Institution --></label>
+        <name>Financial_Institution__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Name --></label>
+        <name>First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fiscal Year Starts --></label>
+        <name>Fiscal_Year_Starts__c</name>
+        <picklistValues>
+            <masterLabel>April</masterLabel>
+            <translation><!-- April --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>August</masterLabel>
+            <translation><!-- August --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>December</masterLabel>
+            <translation><!-- December --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>February</masterLabel>
+            <translation><!-- February --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>January</masterLabel>
+            <translation><!-- January --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>July</masterLabel>
+            <translation><!-- July --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>June</masterLabel>
+            <translation><!-- June --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>March</masterLabel>
+            <translation><!-- March --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>May</masterLabel>
+            <translation><!-- May --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>November</masterLabel>
+            <translation><!-- November --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>October</masterLabel>
+            <translation><!-- October --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>September</masterLabel>
+            <translation><!-- September --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Number of Vehicles --></label>
+        <name>Fleet_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- Group Code --></label>
+        <name>Group_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Annual Income --></label>
+        <name>Guarantor_Annual_Income__c</name>
+    </fields>
+    <fields>
+        <label><!-- How did you hear about this offer --></label>
+        <name>How_did_you_hear_about_this_offer__c</name>
+        <picklistValues>
+            <masterLabel>Advertisement</masterLabel>
+            <translation><!-- Advertisement --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Article in Publication</masterLabel>
+            <translation><!-- Article in Publication --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gas Station</masterLabel>
+            <translation><!-- Gas Station --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mail</masterLabel>
+            <translation><!-- Mail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone Call</masterLabel>
+            <translation><!-- Phone Call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Show</masterLabel>
+            <translation><!-- Trade Show --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Web</masterLabel>
+            <translation><!-- Web --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Word of Mouth</masterLabel>
+            <translation><!-- Word of Mouth --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPAddress --></label>
+        <name>IPAddress__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice Delivery Email --></label>
+        <name>Invoice_Delivery_Method_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice Delivery Method --></label>
+        <name>Invoice_Delivery_Method__c</name>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internet</masterLabel>
+            <translation><!-- Internet --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Is business exempt from Motor Fuels Tax? --></label>
+        <name>Is_business_exempt_from_Motor_Fuels_Tax__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Last Name --></label>
+        <name>Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lead --></label>
+        <name>Lead__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Legal Structure --></label>
+        <name>Legal_Structure__c</name>
+        <picklistValues>
+            <masterLabel>Bank/Bank Holding Co/Credit Union</masterLabel>
+            <translation><!-- Bank/Bank Holding Co/Credit Union --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corporation</masterLabel>
+            <translation><!-- Corporation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corporation/Association</masterLabel>
+            <translation><!-- Corporation/Association --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Federal/State/Local Government Agency or Authority</masterLabel>
+            <translation><!-- Federal/State/Local Government Agency or Authority --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insurance Company</masterLabel>
+            <translation><!-- Insurance Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Investment Company/Adviser</masterLabel>
+            <translation><!-- Investment Company/Adviser --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Limited Liability Company</masterLabel>
+            <translation><!-- Limited Liability Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Natural Person</masterLabel>
+            <translation><!-- Natural Person --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Profit</masterLabel>
+            <translation><!-- Non-Profit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Statutory Trust</masterLabel>
+            <translation><!-- Non-Statutory Trust --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partnership</masterLabel>
+            <translation><!-- Partnership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Accounting Firm</masterLabel>
+            <translation><!-- Public Accounting Firm --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Company and Majority Owned Affiliate</masterLabel>
+            <translation><!-- Public Company and Majority Owned Affiliate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sole Proprietorship</masterLabel>
+            <translation><!-- Sole Proprietorship --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unincorporated Association</masterLabel>
+            <translation><!-- Unincorporated Association --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Location Code --></label>
+        <name>Location_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- MC#, FF# or DOT# --></label>
+        <name>MC_FF_or_DOT__c</name>
+    </fields>
+    <fields>
+        <label><!-- MC # --></label>
+        <name>MC_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile Phone --></label>
+        <name>Mobile_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non Standard Negotiated Fees Approved --></label>
+        <name>Non_Std_Neg_Fee__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number Of Drivers --></label>
+        <name>Number_Of_Drivers__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Cards Requested --></label>
+        <name>Number_of_Cards_Requested__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTR Account Type --></label>
+        <name>OTR_Account_Type__c</name>
+        <picklistValues>
+            <masterLabel>Line of Credit</masterLabel>
+            <translation><!-- Line of Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Prepay</masterLabel>
+            <translation><!-- Prepay --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Day Of Payment --></label>
+        <name>OTR_Day_Of_Payment__c</name>
+        <picklistValues>
+            <masterLabel>Friday</masterLabel>
+            <translation><!-- Friday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monday</masterLabel>
+            <translation><!-- Monday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thursday</masterLabel>
+            <translation><!-- Thursday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tuesday</masterLabel>
+            <translation><!-- Tuesday --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wednesday</masterLabel>
+            <translation><!-- Wednesday --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Online Application Offer --></label>
+        <name>Online_Application_Offer__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Online Application Status --></label>
+        <name>Online_Application_Status__c</name>
+        <relationshipLabel><!-- Online Applications --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Online Application --></label>
+        <name>Online_Application__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Opportunity --></label>
+        <name>Opportunity__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- PDF Token --></label>
+        <name>PDF_Token__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile Phone --></label>
+        <name>PG_Mobile_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Residential City --></label>
+        <name>PG_Residential_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- Residential Phone --></label>
+        <name>PG_Residential_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Residential State --></label>
+        <name>PG_Residential_State__c</name>
+        <picklistValues>
+            <masterLabel>AB</masterLabel>
+            <translation><!-- AB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AK</masterLabel>
+            <translation><!-- AK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL</masterLabel>
+            <translation><!-- AL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR</masterLabel>
+            <translation><!-- AR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZ</masterLabel>
+            <translation><!-- AZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BC</masterLabel>
+            <translation><!-- BC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CO</masterLabel>
+            <translation><!-- CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CT</masterLabel>
+            <translation><!-- CT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC</masterLabel>
+            <translation><!-- DC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DE</masterLabel>
+            <translation><!-- DE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FL</masterLabel>
+            <translation><!-- FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA</masterLabel>
+            <translation><!-- GA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HI</masterLabel>
+            <translation><!-- HI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IA</masterLabel>
+            <translation><!-- IA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID</masterLabel>
+            <translation><!-- ID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IL</masterLabel>
+            <translation><!-- IL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IN</masterLabel>
+            <translation><!-- IN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KS</masterLabel>
+            <translation><!-- KS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KY</masterLabel>
+            <translation><!-- KY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation><!-- MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MB</masterLabel>
+            <translation><!-- MB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation><!-- MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ME</masterLabel>
+            <translation><!-- ME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MI</masterLabel>
+            <translation><!-- MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MN</masterLabel>
+            <translation><!-- MN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO</masterLabel>
+            <translation><!-- MO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation><!-- MS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT</masterLabel>
+            <translation><!-- MT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NB</masterLabel>
+            <translation><!-- NB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NC</masterLabel>
+            <translation><!-- NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ND</masterLabel>
+            <translation><!-- ND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NE</masterLabel>
+            <translation><!-- NE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NH</masterLabel>
+            <translation><!-- NH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NJ</masterLabel>
+            <translation><!-- NJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NL</masterLabel>
+            <translation><!-- NL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NM</masterLabel>
+            <translation><!-- NM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NS</masterLabel>
+            <translation><!-- NS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NT</masterLabel>
+            <translation><!-- NT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NU</masterLabel>
+            <translation><!-- NU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NV</masterLabel>
+            <translation><!-- NV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NY</masterLabel>
+            <translation><!-- NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OH</masterLabel>
+            <translation><!-- OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OK</masterLabel>
+            <translation><!-- OK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ON</masterLabel>
+            <translation><!-- ON --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OR</masterLabel>
+            <translation><!-- OR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA</masterLabel>
+            <translation><!-- PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PE</masterLabel>
+            <translation><!-- PE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>QC</masterLabel>
+            <translation><!-- QC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RI</masterLabel>
+            <translation><!-- RI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC</masterLabel>
+            <translation><!-- SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SD</masterLabel>
+            <translation><!-- SD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SK</masterLabel>
+            <translation><!-- SK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN</masterLabel>
+            <translation><!-- TN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX</masterLabel>
+            <translation><!-- TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UT</masterLabel>
+            <translation><!-- UT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA</masterLabel>
+            <translation><!-- VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VT</masterLabel>
+            <translation><!-- VT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA</masterLabel>
+            <translation><!-- WA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WI</masterLabel>
+            <translation><!-- WI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WV</masterLabel>
+            <translation><!-- WV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WY</masterLabel>
+            <translation><!-- WY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>YT</masterLabel>
+            <translation><!-- YT --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Residential Street Address --></label>
+        <name>PG_Residential_Street_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>PG_Residential_Zip__c</name>
+    </fields>
+    <fields>
+        <label><!-- Social Security Number --></label>
+        <name>PG_SSN__c</name>
+    </fields>
+    <fields>
+        <label><!-- Paperless Billing --></label>
+        <name>Paperless_Flag__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Parent Company --></label>
+        <name>Parent_Company__c</name>
+    </fields>
+    <fields>
+        <label><!-- Partner Sales Code --></label>
+        <name>Partner_Sales_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Pick your prefered payment method --></help>
+        <label><!-- Payment Method --></label>
+        <name>Payment_Method__c</name>
+        <picklistValues>
+            <masterLabel>ACH</masterLabel>
+            <translation><!-- ACH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Check</masterLabel>
+            <translation><!-- Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wire</masterLabel>
+            <translation><!-- Wire --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- PlusCheks --></label>
+        <name>PlusCheks__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Type --></label>
+        <name>Product_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Id --></label>
+        <name>Program_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Info --></label>
+        <name>Program_Info__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Promotional Code --></label>
+        <name>Promotional_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- SalesRep --></label>
+        <name>SalesRep__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Sales Id --></label>
+        <name>Sales_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Rep Email --></label>
+        <name>Sales_Rep_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Rep Phone --></label>
+        <name>Sales_Rep_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Same as Company Address --></label>
+        <name>Same_as_Business_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Saved For Later Date --></label>
+        <name>Saved_For_Later_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Saved For Later Key --></label>
+        <name>Saved_For_Later_Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signer&apos;s Email --></label>
+        <name>Signer_s_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signer&apos;s First Name --></label>
+        <name>Signer_s_First_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signer&apos;s Last Name --></label>
+        <name>Signer_s_Last_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signer&apos;s Phone --></label>
+        <name>Signer_s_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>State__c</name>
+        <picklistValues>
+            <masterLabel>AK</masterLabel>
+            <translation><!-- AK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AL</masterLabel>
+            <translation><!-- AL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AR</masterLabel>
+            <translation><!-- AR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>AZ</masterLabel>
+            <translation><!-- AZ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CA</masterLabel>
+            <translation><!-- CA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CO</masterLabel>
+            <translation><!-- CO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CT</masterLabel>
+            <translation><!-- CT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DC</masterLabel>
+            <translation><!-- DC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DE</masterLabel>
+            <translation><!-- DE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FL</masterLabel>
+            <translation><!-- FL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GA</masterLabel>
+            <translation><!-- GA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HI</masterLabel>
+            <translation><!-- HI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IA</masterLabel>
+            <translation><!-- IA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ID</masterLabel>
+            <translation><!-- ID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IL</masterLabel>
+            <translation><!-- IL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IN</masterLabel>
+            <translation><!-- IN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KS</masterLabel>
+            <translation><!-- KS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>KY</masterLabel>
+            <translation><!-- KY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LA</masterLabel>
+            <translation><!-- LA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MA</masterLabel>
+            <translation><!-- MA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MD</masterLabel>
+            <translation><!-- MD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ME</masterLabel>
+            <translation><!-- ME --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MI</masterLabel>
+            <translation><!-- MI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MN</masterLabel>
+            <translation><!-- MN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MO</masterLabel>
+            <translation><!-- MO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MS</masterLabel>
+            <translation><!-- MS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>MT</masterLabel>
+            <translation><!-- MT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NC</masterLabel>
+            <translation><!-- NC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ND</masterLabel>
+            <translation><!-- ND --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NE</masterLabel>
+            <translation><!-- NE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NH</masterLabel>
+            <translation><!-- NH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NJ</masterLabel>
+            <translation><!-- NJ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NM</masterLabel>
+            <translation><!-- NM --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NV</masterLabel>
+            <translation><!-- NV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NY</masterLabel>
+            <translation><!-- NY --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OH</masterLabel>
+            <translation><!-- OH --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OK</masterLabel>
+            <translation><!-- OK --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OR</masterLabel>
+            <translation><!-- OR --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PA</masterLabel>
+            <translation><!-- PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RI</masterLabel>
+            <translation><!-- RI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SC</masterLabel>
+            <translation><!-- SC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SD</masterLabel>
+            <translation><!-- SD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TN</masterLabel>
+            <translation><!-- TN --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TX</masterLabel>
+            <translation><!-- TX --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UT</masterLabel>
+            <translation><!-- UT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VA</masterLabel>
+            <translation><!-- VA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>VT</masterLabel>
+            <translation><!-- VT --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WA</masterLabel>
+            <translation><!-- WA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WI</masterLabel>
+            <translation><!-- WI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WV</masterLabel>
+            <translation><!-- WV --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WY</masterLabel>
+            <translation><!-- WY --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TM Event Type --></label>
+        <name>TM_Event_Type__c</name>
+        <picklistValues>
+            <masterLabel>ACCOUNT_CREATION</masterLabel>
+            <translation><!-- ACCOUNT_CREATION --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TM Session ID Short --></label>
+        <name>TM_Session_ID_Short__c</name>
+    </fields>
+    <fields>
+        <label><!-- TM Session ID --></label>
+        <name>TM_Session_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- TM Update Complete --></label>
+        <name>TM_Update_Complete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Taxpayer ID --></label>
+        <name>Taxpayer_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Team Drivers / Slip Seat --></label>
+        <name>Team_Drivers_Slip_Seat__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+        <picklistValues>
+            <masterLabel>CEO</masterLabel>
+            <translation><!-- CEO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CFO</masterLabel>
+            <translation><!-- CFO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>COO</masterLabel>
+            <translation><!-- COO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Owner</masterLabel>
+            <translation><!-- Owner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>President</masterLabel>
+            <translation><!-- President --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Treasurer</masterLabel>
+            <translation><!-- Treasurer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vice President</masterLabel>
+            <translation><!-- Vice President --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- WeFormObject --></label>
+        <name>WeFormObject__c</name>
+        <relationshipLabel><!-- WeFormsObjects --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Year Established --></label>
+        <name>Year_Established__c</name>
+    </fields>
+    <fields>
+        <label><!-- Years in Business --></label>
+        <name>Years_in_Business__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>100</masterLabel>
+            <translation><!-- 100 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>11</masterLabel>
+            <translation><!-- 11 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>12</masterLabel>
+            <translation><!-- 12 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>13</masterLabel>
+            <translation><!-- 13 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>14</masterLabel>
+            <translation><!-- 14 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation><!-- 15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16</masterLabel>
+            <translation><!-- 16 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>17</masterLabel>
+            <translation><!-- 17 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>18</masterLabel>
+            <translation><!-- 18 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>19</masterLabel>
+            <translation><!-- 19 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation><!-- 20 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21</masterLabel>
+            <translation><!-- 21 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>22</masterLabel>
+            <translation><!-- 22 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>23</masterLabel>
+            <translation><!-- 23 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>24</masterLabel>
+            <translation><!-- 24 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25</masterLabel>
+            <translation><!-- 25 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>26</masterLabel>
+            <translation><!-- 26 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>27</masterLabel>
+            <translation><!-- 27 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>28</masterLabel>
+            <translation><!-- 28 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>29</masterLabel>
+            <translation><!-- 29 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>30</masterLabel>
+            <translation><!-- 30 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>31</masterLabel>
+            <translation><!-- 31 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>32</masterLabel>
+            <translation><!-- 32 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>33</masterLabel>
+            <translation><!-- 33 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>34</masterLabel>
+            <translation><!-- 34 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>35</masterLabel>
+            <translation><!-- 35 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>36</masterLabel>
+            <translation><!-- 36 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>37</masterLabel>
+            <translation><!-- 37 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>38</masterLabel>
+            <translation><!-- 38 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>39</masterLabel>
+            <translation><!-- 39 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40</masterLabel>
+            <translation><!-- 40 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>41</masterLabel>
+            <translation><!-- 41 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>42</masterLabel>
+            <translation><!-- 42 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>43</masterLabel>
+            <translation><!-- 43 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>44</masterLabel>
+            <translation><!-- 44 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>45</masterLabel>
+            <translation><!-- 45 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>46</masterLabel>
+            <translation><!-- 46 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>47</masterLabel>
+            <translation><!-- 47 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>48</masterLabel>
+            <translation><!-- 48 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>49</masterLabel>
+            <translation><!-- 49 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>50</masterLabel>
+            <translation><!-- 50 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>51</masterLabel>
+            <translation><!-- 51 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>52</masterLabel>
+            <translation><!-- 52 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>53</masterLabel>
+            <translation><!-- 53 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>54</masterLabel>
+            <translation><!-- 54 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>55</masterLabel>
+            <translation><!-- 55 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>56</masterLabel>
+            <translation><!-- 56 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>57</masterLabel>
+            <translation><!-- 57 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>58</masterLabel>
+            <translation><!-- 58 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>59</masterLabel>
+            <translation><!-- 59 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>60</masterLabel>
+            <translation><!-- 60 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>61</masterLabel>
+            <translation><!-- 61 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>62</masterLabel>
+            <translation><!-- 62 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>63</masterLabel>
+            <translation><!-- 63 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>64</masterLabel>
+            <translation><!-- 64 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>65</masterLabel>
+            <translation><!-- 65 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>66</masterLabel>
+            <translation><!-- 66 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>67</masterLabel>
+            <translation><!-- 67 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>68</masterLabel>
+            <translation><!-- 68 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>69</masterLabel>
+            <translation><!-- 69 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>70</masterLabel>
+            <translation><!-- 70 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>71</masterLabel>
+            <translation><!-- 71 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>72</masterLabel>
+            <translation><!-- 72 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>73</masterLabel>
+            <translation><!-- 73 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>74</masterLabel>
+            <translation><!-- 74 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75</masterLabel>
+            <translation><!-- 75 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>76</masterLabel>
+            <translation><!-- 76 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>77</masterLabel>
+            <translation><!-- 77 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>78</masterLabel>
+            <translation><!-- 78 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>79</masterLabel>
+            <translation><!-- 79 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>8</masterLabel>
+            <translation><!-- 8 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>80</masterLabel>
+            <translation><!-- 80 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>81</masterLabel>
+            <translation><!-- 81 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>82</masterLabel>
+            <translation><!-- 82 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>83</masterLabel>
+            <translation><!-- 83 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>84</masterLabel>
+            <translation><!-- 84 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>85</masterLabel>
+            <translation><!-- 85 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>86</masterLabel>
+            <translation><!-- 86 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>87</masterLabel>
+            <translation><!-- 87 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>88</masterLabel>
+            <translation><!-- 88 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>89</masterLabel>
+            <translation><!-- 89 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9</masterLabel>
+            <translation><!-- 9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>90</masterLabel>
+            <translation><!-- 90 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>91</masterLabel>
+            <translation><!-- 91 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>92</masterLabel>
+            <translation><!-- 92 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>93</masterLabel>
+            <translation><!-- 93 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>94</masterLabel>
+            <translation><!-- 94 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>95</masterLabel>
+            <translation><!-- 95 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>96</masterLabel>
+            <translation><!-- 96 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>97</masterLabel>
+            <translation><!-- 97 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>98</masterLabel>
+            <translation><!-- 98 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>99</masterLabel>
+            <translation><!-- 99 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Less than 12 months</masterLabel>
+            <translation><!-- Less than 12 months --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Postal Code --></label>
+        <name>Zip_code__c</name>
+    </fields>
+    <fields>
+        <label><!-- isPG --></label>
+        <name>isPG__c</name>
+    </fields>
+    <fields>
+        <label><!-- message --></label>
+        <name>message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signer&apos;s Title --></label>
+        <name>signer_title__c</name>
+    </fields>
+    <fields>
+        <help><!-- Identifier for weForm creation used to stop/allow triggers to run --></help>
+        <label><!-- status --></label>
+        <name>status__c</name>
+        <picklistValues>
+            <masterLabel>complete</masterLabel>
+            <translation><!-- complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>partial</masterLabel>
+            <translation><!-- partial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>test</masterLabel>
+            <translation><!-- test --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Use to toggle the default pg behaviour of the conditional pg BOCA --></help>
+        <label><!-- togglePG --></label>
+        <name>togglePG__c</name>
+    </fields>
+    <layouts>
+        <layout>WeFormObject Layout</layout>
+        <sections>
+            <label><!-- Address Info --></label>
+            <section>Address Info</section>
+        </sections>
+        <sections>
+            <label><!-- BOCA App Detail --></label>
+            <section>BOCA App Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Fleet size should be between 1 and 99999 --></errorMessage>
+        <name>Fleet_size_greater_than_1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Authorize --></errorMessage>
+        <name>No_Select_for_Authorize</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Fiscal Year Starts --></errorMessage>
+        <name>No_Select_for_Fiscal_Year_Starts</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Select Is business exempt from Motor Fuels Tax --></errorMessage>
+        <name>No_Select_for_Is_business_exempt</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Legal Structure --></errorMessage>
+        <name>No_Select_for_Legal_Structure</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the State --></errorMessage>
+        <name>No_Select_for_PGState</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the Billing state --></errorMessage>
+        <name>No_Select_for_State</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the State --></errorMessage>
+        <name>No_Select_for_State2</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select How did you hear about this offer --></errorMessage>
+        <name>No_Select_for_State_for_How_did_you_hear</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select Years in Business --></errorMessage>
+        <name>No_Select_for_Years_in_Business</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Must be valid Zip Code --></errorMessage>
+        <name>Zip_Code_length</name>
+    </validationRules>
+</CustomObjectTranslation>

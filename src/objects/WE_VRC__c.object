@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>All_Account_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>All Account Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>All_Acct_Asset_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>All Account Asset Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>All_Case_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>All Case Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>All_Contact_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>All Contact Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>All_FEP_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>All FEP Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>All_Lead_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>All Lead Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>All_Opportunity_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Validation rules will apply unless Disabled = TRUE</description>
+        <externalId>false</externalId>
+        <label>All Opportunity Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>All_Project_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>All Project Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Non_Fcst_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to mass disable validation rules which haven&apos;t been created to maintain values needed for Opportunity forecasts</description>
+        <externalId>false</externalId>
+        <label>Non Fcst Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Opp_Cur_Dtl_Disabled__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Enables the Currency_Detail_Recorded rule to be disabled</description>
+        <externalId>false</externalId>
+        <label>Opportunity Currency Detail Disabled</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <listViews>
+        <fullName>Setting_Status_All</fullName>
+        <columns>SETUP_OWNER_NAME</columns>
+        <columns>All_Opportunity_Disabled__c</columns>
+        <columns>Non_Fcst_Disabled__c</columns>
+        <columns>Opp_Cur_Dtl_Disabled__c</columns>
+        <columns>All_Lead_Disabled__c</columns>
+        <columns>All_Account_Disabled__c</columns>
+        <columns>SETUP_TYPE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>Setting Status - All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Setting_Status_Profile</fullName>
+        <columns>SETUP_OWNER_NAME</columns>
+        <columns>All_Opportunity_Disabled__c</columns>
+        <columns>Non_Fcst_Disabled__c</columns>
+        <columns>Opp_Cur_Dtl_Disabled__c</columns>
+        <columns>All_Lead_Disabled__c</columns>
+        <columns>All_Account_Disabled__c</columns>
+        <columns>SETUP_TYPE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SETUP_TYPE</field>
+            <operation>equals</operation>
+            <value>Profile</value>
+        </filters>
+        <label>Setting Status - Profile</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Setting_Status_User</fullName>
+        <columns>SETUP_OWNER_NAME</columns>
+        <columns>All_Opportunity_Disabled__c</columns>
+        <columns>Non_Fcst_Disabled__c</columns>
+        <columns>Opp_Cur_Dtl_Disabled__c</columns>
+        <columns>All_Lead_Disabled__c</columns>
+        <columns>All_Account_Disabled__c</columns>
+        <columns>SETUP_TYPE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>SETUP_TYPE</field>
+            <operation>equals</operation>
+            <value>User</value>
+        </filters>
+        <label>Setting Status - User</label>
+        <language>en_US</language>
+    </listViews>
+</CustomObject>

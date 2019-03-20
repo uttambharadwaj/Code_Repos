@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>FEP__c</fullName>
+        <externalId>false</externalId>
+        <label>FEP</label>
+        <referenceTo>Virtual_FEP__c</referenceTo>
+        <relationshipLabel>Spend Details</relationshipLabel>
+        <relationshipName>Spend_Details</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Industry__c</fullName>
+        <description>Controlling field for Spend Type</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The value that&apos;s selected for this field determines which values are available for the Spend Type list</inlineHelpText>
+        <label>Industry</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Agriculture</fullName>
+                    <default>false</default>
+                    <label>Agriculture</label>
+                </value>
+                <value>
+                    <fullName>Ancillary</fullName>
+                    <default>false</default>
+                    <label>Ancillary</label>
+                </value>
+                <value>
+                    <fullName>Apparel</fullName>
+                    <default>false</default>
+                    <label>Apparel</label>
+                </value>
+                <value>
+                    <fullName>Banking</fullName>
+                    <default>false</default>
+                    <label>Banking</label>
+                </value>
+                <value>
+                    <fullName>Biotechnology</fullName>
+                    <default>false</default>
+                    <label>Biotechnology</label>
+                </value>
+                <value>
+                    <fullName>Chemicals</fullName>
+                    <default>false</default>
+                    <label>Chemicals</label>
+                </value>
+                <value>
+                    <fullName>Communications</fullName>
+                    <default>false</default>
+                    <label>Communications</label>
+                </value>
+                <value>
+                    <fullName>Construction</fullName>
+                    <default>false</default>
+                    <label>Construction</label>
+                </value>
+                <value>
+                    <fullName>Consulting</fullName>
+                    <default>false</default>
+                    <label>Consulting</label>
+                </value>
+                <value>
+                    <fullName>Ecommerce</fullName>
+                    <default>false</default>
+                    <label>Ecommerce</label>
+                </value>
+                <value>
+                    <fullName>Education</fullName>
+                    <default>false</default>
+                    <label>Education</label>
+                </value>
+                <value>
+                    <fullName>Electronics</fullName>
+                    <default>false</default>
+                    <label>Electronics</label>
+                </value>
+                <value>
+                    <fullName>Energy</fullName>
+                    <default>false</default>
+                    <label>Energy</label>
+                </value>
+                <value>
+                    <fullName>Engineering</fullName>
+                    <default>false</default>
+                    <label>Engineering</label>
+                </value>
+                <value>
+                    <fullName>Entertainment</fullName>
+                    <default>false</default>
+                    <label>Entertainment</label>
+                </value>
+                <value>
+                    <fullName>Finance</fullName>
+                    <default>false</default>
+                    <label>Finance</label>
+                </value>
+                <value>
+                    <fullName>Food &amp; Beverage</fullName>
+                    <default>false</default>
+                    <label>Food &amp; Beverage</label>
+                </value>
+                <value>
+                    <fullName>Gaming</fullName>
+                    <default>false</default>
+                    <label>Gaming</label>
+                </value>
+                <value>
+                    <fullName>Gift Cards</fullName>
+                    <default>false</default>
+                    <label>Gift Cards</label>
+                </value>
+                <value>
+                    <fullName>Government</fullName>
+                    <default>false</default>
+                    <label>Government</label>
+                </value>
+                <value>
+                    <fullName>Healthcare</fullName>
+                    <default>false</default>
+                    <label>Healthcare</label>
+                </value>
+                <value>
+                    <fullName>Hospitality</fullName>
+                    <default>false</default>
+                    <label>Hospitality</label>
+                </value>
+                <value>
+                    <fullName>Insurance</fullName>
+                    <default>false</default>
+                    <label>Insurance</label>
+                </value>
+                <value>
+                    <fullName>Machinery</fullName>
+                    <default>false</default>
+                    <label>Machinery</label>
+                </value>
+                <value>
+                    <fullName>Manufacturing</fullName>
+                    <default>false</default>
+                    <label>Manufacturing</label>
+                </value>
+                <value>
+                    <fullName>Marketing</fullName>
+                    <default>false</default>
+                    <label>Marketing</label>
+                </value>
+                <value>
+                    <fullName>Media</fullName>
+                    <default>false</default>
+                    <label>Media</label>
+                </value>
+                <value>
+                    <fullName>Not For Profit</fullName>
+                    <default>false</default>
+                    <label>Not For Profit</label>
+                </value>
+                <value>
+                    <fullName>Recreation</fullName>
+                    <default>false</default>
+                    <label>Recreation</label>
+                </value>
+                <value>
+                    <fullName>Retail</fullName>
+                    <default>false</default>
+                    <label>Retail</label>
+                </value>
+                <value>
+                    <fullName>Rewards &amp; Incentives</fullName>
+                    <default>false</default>
+                    <label>Rewards &amp; Incentives</label>
+                </value>
+                <value>
+                    <fullName>Staffing</fullName>
+                    <default>false</default>
+                    <label>Staffing</label>
+                </value>
+                <value>
+                    <fullName>Technology</fullName>
+                    <default>false</default>
+                    <label>Technology</label>
+                </value>
+                <value>
+                    <fullName>Telecommunications</fullName>
+                    <default>false</default>
+                    <label>Telecommunications</label>
+                </value>
+                <value>
+                    <fullName>Transportation</fullName>
+                    <default>false</default>
+                    <label>Transportation</label>
+                </value>
+                <value>
+                    <fullName>Travel</fullName>
+                    <default>false</default>
+                    <label>Travel</label>
+                </value>
+                <value>
+                    <fullName>Utilities</fullName>
+                    <default>false</default>
+                    <label>Utilities</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Of_Addressable_Spend__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+FEP__r.Annual_Addressable_Spend__c &gt; 0,
+Value__c / FEP__r.Annual_Addressable_Spend__c,
+null
+)</formula>
+        <label>% Of Addressable Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Method_Of_Spend_Recorded__c</fullName>
+        <externalId>false</externalId>
+        <formula>Payment_Method_Value_Of_Spend_Recorded__c / Value__c</formula>
+        <label>Payment Method % Of Spend Recorded</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Payment_Method_Value_Of_Spend_Recorded__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Method Value Of Spend Recorded</label>
+        <summarizedField>Payment_Method_Detail__c.Value_Of_Spend__c</summarizedField>
+        <summaryForeignKey>Payment_Method_Detail__c.Spend_Detail__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Spend_Detail_Count__c</fullName>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Spend Detail Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Spend_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Spend Type</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Industry__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Accommodation</fullName>
+                    <default>false</default>
+                    <label>Accommodation</label>
+                </value>
+                <value>
+                    <fullName>Airlines (Low Cost)</fullName>
+                    <default>false</default>
+                    <label>Airlines (Low Cost)</label>
+                </value>
+                <value>
+                    <fullName>Airlines (Scheduled)</fullName>
+                    <default>false</default>
+                    <label>Airlines (Scheduled)</label>
+                </value>
+                <value>
+                    <fullName>Car Rental</fullName>
+                    <default>false</default>
+                    <label>Car Rental</label>
+                </value>
+                <value>
+                    <fullName>Cruise Lines</fullName>
+                    <default>false</default>
+                    <label>Cruise Lines</label>
+                </value>
+                <value>
+                    <fullName>Entertainment</fullName>
+                    <default>false</default>
+                    <label>Entertainment</label>
+                </value>
+                <value>
+                    <fullName>Ferries</fullName>
+                    <default>false</default>
+                    <label>Ferries</label>
+                </value>
+                <value>
+                    <fullName>Food &amp; Beverage</fullName>
+                    <default>false</default>
+                    <label>Food &amp; Beverage</label>
+                </value>
+                <value>
+                    <fullName>Government Services</fullName>
+                    <default>false</default>
+                    <label>Government Services</label>
+                </value>
+                <value>
+                    <fullName>Grocery &amp; Supermarkets</fullName>
+                    <default>false</default>
+                    <label>Grocery &amp; Supermarkets</label>
+                </value>
+                <value>
+                    <fullName>Ground Transportation</fullName>
+                    <default>false</default>
+                    <label>Ground Transportation</label>
+                </value>
+                <value>
+                    <fullName>Hotels - Invoice</fullName>
+                    <default>false</default>
+                    <label>Hotels - Invoice</label>
+                </value>
+                <value>
+                    <fullName>Hotels - Reservation</fullName>
+                    <default>false</default>
+                    <label>Hotels - Reservation</label>
+                </value>
+                <value>
+                    <fullName>Rail (Freight)</fullName>
+                    <default>false</default>
+                    <label>Rail (Freight)</label>
+                </value>
+                <value>
+                    <fullName>Rail (Travel)</fullName>
+                    <default>false</default>
+                    <label>Rail (Travel)</label>
+                </value>
+                <value>
+                    <fullName>Tourist Attractions &amp; Exhibits</fullName>
+                    <default>false</default>
+                    <label>Tourist Attractions &amp; Exhibits</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Hospitality</controllingFieldValue>
+                <controllingFieldValue>Healthcare</controllingFieldValue>
+                <valueName>Accommodation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Hospitality</controllingFieldValue>
+                <controllingFieldValue>Food &amp; Beverage</controllingFieldValue>
+                <controllingFieldValue>Healthcare</controllingFieldValue>
+                <valueName>Food &amp; Beverage</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Airlines (Low Cost)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Airlines (Scheduled)</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Car Rental</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Cruise Lines</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Ground Transportation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Hotels - Invoice</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Hotels - Reservation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Travel</controllingFieldValue>
+                <valueName>Other</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Healthcare</controllingFieldValue>
+                <valueName>Grocery &amp; Supermarkets</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Value__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>The amount that&apos;s being spent on this record&apos;s Spend Type</inlineHelpText>
+        <label>Value Of Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+</CustomObject>

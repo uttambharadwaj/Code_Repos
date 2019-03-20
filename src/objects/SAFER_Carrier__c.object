@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <validationRules>
+        <fullName>Year_Contains_Numbers_Only</fullName>
+        <active>true</active>
+        <description>Year is text field to eliminate showing thousands separator, so we use this to limit input to integers only</description>
+        <errorConditionFormula>AND(NOT(ISBLANK(MCS150_Mileage_Year__c)),
+  NOT(ISNUMBER(MCS150_Mileage_Year__c)))</errorConditionFormula>
+        <errorDisplayField>MCS150_Mileage_Year__c</errorDisplayField>
+        <errorMessage>Please enter an integer value</errorMessage>
+    </validationRules>
+</CustomObject>

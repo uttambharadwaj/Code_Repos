@@ -1,0 +1,1171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Company</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Companies</value>
+    </caseValues>
+    <layouts>
+        <layout>AU Fuel Customer</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Large Fields --></label>
+            <section>Large Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Vehicle Information --></label>
+            <section>Vehicle Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel Merchant</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B --></label>
+            <section>D&amp;B</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel RM/BDM</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address/Business Information --></label>
+            <section>Address/Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Metrics --></label>
+            <section>Business Metrics</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Fuel Card Information --></label>
+            <section>Fuel Card Information</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel/Trade Customer</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Large Fields --></label>
+            <section>Large Fields</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Vehicle Information --></label>
+            <section>Vehicle Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Prepaid Customer</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU VCC</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CM Partner Layout</layout>
+        <sections>
+            <label><!-- Account Background Notes --></label>
+            <section>Account Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product Interest --></label>
+            <section>Product Interest</section>
+        </sections>
+        <sections>
+            <label><!-- iCertis --></label>
+            <section>iCertis</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CP Enterprise Payments</layout>
+        <sections>
+            <label><!-- Account Background Notes --></label>
+            <section>Account Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- ICM --></label>
+            <section>ICM</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CPS Accounts</layout>
+        <sections>
+            <label><!-- Account Background Notes --></label>
+            <section>Account Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- EFS Fields --></label>
+            <section>EFS Fields</section>
+        </sections>
+        <sections>
+            <label><!-- ICM --></label>
+            <section>ICM</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- MHI Global Large Account Management Process (LAMP®) --></label>
+            <section>MHI Global Large Account Management Process (LAMP®)</section>
+        </sections>
+        <sections>
+            <label><!-- Product Interest --></label>
+            <section>Product Interest</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CPS Accounts with LAMP</layout>
+        <sections>
+            <label><!-- Account Background Notes --></label>
+            <section>Account Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- MHI Global Large Account Management Process (LAMP®) --></label>
+            <section>MHI Global Large Account Management Process (LAMP®)</section>
+        </sections>
+        <sections>
+            <label><!-- Product Interest --></label>
+            <section>Product Interest</section>
+        </sections>
+        <sections>
+            <label><!-- Zoominfo Links --></label>
+            <section>Zoominfo Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Page Layout</layout>
+        <sections>
+            <label><!-- Actuals - Settlement YOY Comparison --></label>
+            <section>Actuals - Settlement YOY Comparison</section>
+        </sections>
+        <sections>
+            <label><!-- Contact&apos;s last marketing engagement --></label>
+            <section>Contact&apos;s last marketing engagement</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Company Profile --></label>
+            <section>LinkedIn Company Profile</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay RM Page Layout</layout>
+        <sections>
+            <label><!-- Actuals - Settlement YOY Comparison --></label>
+            <section>Actuals - Settlement YOY Comparison</section>
+        </sections>
+        <sections>
+            <label><!-- Contact&apos;s last marketing engagement --></label>
+            <section>Contact&apos;s last marketing engagement</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EFS MasterCard Account Layout</layout>
+        <sections>
+            <label><!-- Account Background Notes --></label>
+            <section>Account Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Account Team Member Change Requests --></label>
+            <section>Account Team Member Change Requests</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- EFS Fields --></label>
+            <section>EFS Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EMAP Account Layout</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Receivable --></label>
+            <section>Accounts Receivable</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Activity Summary --></label>
+            <section>Credit Activity Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Details --></label>
+            <section>Customer Details</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EMAP Collections Account Layout</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Receivable --></label>
+            <section>Accounts Receivable</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Activity Summary --></label>
+            <section>Credit Activity Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Details --></label>
+            <section>Customer Details</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Account Management Layout</layout>
+        <sections>
+            <label><!-- **This Section Visible to System Admin Only** --></label>
+            <section>**This Section Visible to System Admin Only**</section>
+        </sections>
+        <sections>
+            <label><!-- Active Card Data (imported from Corecard) --></label>
+            <section>Active Card Data (imported from Corecard)</section>
+        </sections>
+        <sections>
+            <label><!-- Gallons Data (summarized from Account Assets) --></label>
+            <section>Gallons Data (summarized from Account Assets)</section>
+        </sections>
+        <sections>
+            <label><!-- Historical Fuel Usage --></label>
+            <section>Historical Fuel Usage</section>
+        </sections>
+        <sections>
+            <label><!-- Key Account Attributes --></label>
+            <section>Key Account Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Card Program Account</layout>
+        <sections>
+            <label><!-- Actual Fuel Usage Data (imported daily) --></label>
+            <section>Actual Fuel Usage Data (imported daily)</section>
+        </sections>
+        <sections>
+            <label><!-- Fleet Information --></label>
+            <section>Fleet Information</section>
+        </sections>
+        <sections>
+            <label><!-- Jigsaw --></label>
+            <section>Jigsaw</section>
+        </sections>
+        <sections>
+            <label><!-- Key Account Attributes --></label>
+            <section>Key Account Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Merchant Related Information --></label>
+            <section>Merchant Related Information</section>
+        </sections>
+        <sections>
+            <label><!-- PROFITS Archive Data (Read Only) --></label>
+            <section>PROFITS Archive Data (Read Only)</section>
+        </sections>
+        <sections>
+            <label><!-- WARNING: Do NOT change this account name! This is a Card Program account. --></label>
+            <section>WARNING: Do NOT change this account name! This is a Card Program account.</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Channel Account Layout</layout>
+        <sections>
+            <label><!-- Bank/ISO Information --></label>
+            <section>Bank/ISO Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Partner Information --></label>
+            <section>Business Partner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Data.com (Jigsaw) --></label>
+            <section>Data.com (Jigsaw)</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label><!-- PROFITS Archive Data (Read Only) --></label>
+            <section>PROFITS Archive Data (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Credit Manager</layout>
+        <sections>
+            <label><!-- Bank Information --></label>
+            <section>Bank Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Profile --></label>
+            <section>Credit Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Quality Trend --></label>
+            <section>Credit Quality Trend</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- On-Boarding and Credit Limit Status --></label>
+            <section>On-Boarding and Credit Limit Status</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Credit Manager 2</layout>
+        <sections>
+            <label><!-- Consumer (Equifax) Credit Profile --></label>
+            <section>Consumer (Equifax) Credit Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Quality Trend --></label>
+            <section>Credit Quality Trend</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Forseva Data --></label>
+            <section>Forseva Data</section>
+        </sections>
+        <sections>
+            <label><!-- On-Boarding and Credit Limit Status --></label>
+            <section>On-Boarding and Credit Limit Status</section>
+        </sections>
+        <sections>
+            <label><!-- Score Summary --></label>
+            <section>Score Summary</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Fleet Account Layout - New</layout>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- ICertis --></label>
+            <section>ICertis</section>
+        </sections>
+        <sections>
+            <label><!-- Key Account Attributes --></label>
+            <section>Key Account Attributes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Merchant Account Layout</layout>
+        <sections>
+            <label><!-- **This Section Visible to System Admin Only** --></label>
+            <section>**This Section Visible to System Admin Only**</section>
+        </sections>
+        <sections>
+            <label><!-- Actual Fuel Usage Data (imported daily) --></label>
+            <section>Actual Fuel Usage Data (imported daily)</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Merchant Details --></label>
+            <section>Merchant Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Merchant Acct Agreemnt Layout</layout>
+        <sections>
+            <label><!-- **This Section Visible to System Admin Only** --></label>
+            <section>**This Section Visible to System Admin Only**</section>
+        </sections>
+        <sections>
+            <label><!-- Actual Fuel Usage Data (imported daily) --></label>
+            <section>Actual Fuel Usage Data (imported daily)</section>
+        </sections>
+        <sections>
+            <label><!-- Key Account Attributes --></label>
+            <section>Key Account Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Merchant Details --></label>
+            <section>Merchant Details</section>
+        </sections>
+        <sections>
+            <label><!-- PROFITS Archive Data (Read Only) --></label>
+            <section>PROFITS Archive Data (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Merchant Location Account</layout>
+        <sections>
+            <label><!-- Actual Fuel Usage Data (imported daily) --></label>
+            <section>Actual Fuel Usage Data (imported daily)</section>
+        </sections>
+        <sections>
+            <label><!-- Gallons by store with services - data --></label>
+            <section>Gallons by store with services - data</section>
+        </sections>
+        <sections>
+            <label><!-- Jigsaw --></label>
+            <section>Jigsaw</section>
+        </sections>
+        <sections>
+            <label><!-- Key Account Attributes --></label>
+            <section>Key Account Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Last Month Merchant Data --></label>
+            <section>Last Month Merchant Data</section>
+        </sections>
+        <sections>
+            <label><!-- Services --></label>
+            <section>Services</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Partner Account Layout</layout>
+        <sections>
+            <label><!-- Fleet Information --></label>
+            <section>Fleet Information</section>
+        </sections>
+        <sections>
+            <label><!-- Key Account Attributes --></label>
+            <section>Key Account Attributes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 User Account Layout</layout>
+        <sections>
+            <label><!-- Fleet Information --></label>
+            <section>Fleet Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>International Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Inormation --></label>
+            <section>Product Inormation</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Mastercard Layout</layout>
+        <sections>
+            <label><!-- Account Background Notes --></label>
+            <section>Account Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Account Team Member Change Requests --></label>
+            <section>Account Team Member Change Requests</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Company Profile --></label>
+            <section>LinkedIn Company Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Product Interest --></label>
+            <section>Product Interest</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Mastercard Layout w LAMP</layout>
+        <sections>
+            <label><!-- Account Background Notes --></label>
+            <section>Account Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Account Team Member Change Requests --></label>
+            <section>Account Team Member Change Requests</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Product Interest --></label>
+            <section>Product Interest</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Service Operations</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Truckers Account Layout</layout>
+        <sections>
+            <label><!-- Account Background Notes --></label>
+            <section>Account Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- EDGE Merchant Info --></label>
+            <section>EDGE Merchant Info</section>
+        </sections>
+        <sections>
+            <label><!-- Fuel Info --></label>
+            <section>Fuel Info</section>
+        </sections>
+        <sections>
+            <label><!-- Member Information --></label>
+            <section>Member Information</section>
+        </sections>
+        <sections>
+            <label><!-- Profile Information --></label>
+            <section>Profile Information</section>
+        </sections>
+        <sections>
+            <label><!-- Savings --></label>
+            <section>Savings</section>
+        </sections>
+        <sections>
+            <label><!-- Tire/Gold Info --></label>
+            <section>Tire/Gold Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Virtual Partner</layout>
+        <sections>
+            <label><!-- Contact&apos;s last marketing engagement --></label>
+            <section>Contact&apos;s last marketing engagement</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Company Profile --></label>
+            <section>LinkedIn Company Profile</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WE Integrator</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES Credit Vetting</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Application Information --></label>
+            <section>Application Information</section>
+        </sections>
+        <sections>
+            <label><!-- Companies House --></label>
+            <section>Companies House</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Utilisation --></label>
+            <section>Credit Utilisation</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Details --></label>
+            <section>Customer Details</section>
+        </sections>
+        <sections>
+            <label><!-- Invoice Information --></label>
+            <section>Invoice Information</section>
+        </sections>
+        <sections>
+            <label><!-- Limits --></label>
+            <section>Limits</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Review --></label>
+            <section>Review</section>
+        </sections>
+        <sections>
+            <label><!-- Scorecard --></label>
+            <section>Scorecard</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Trading Address --></label>
+            <section>Trading Address</section>
+        </sections>
+        <sections>
+            <label><!-- VAT --></label>
+            <section>VAT</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES UK</layout>
+        <sections>
+            <label><!-- Account Summary --></label>
+            <section>Account Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Utilisation --></label>
+            <section>Credit Utilisation</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Details --></label>
+            <section>Customer Details</section>
+        </sections>
+        <sections>
+            <label><!-- Invoice Information --></label>
+            <section>Invoice Information</section>
+        </sections>
+        <sections>
+            <label><!-- Limits --></label>
+            <section>Limits</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Review --></label>
+            <section>Review</section>
+        </sections>
+        <sections>
+            <label><!-- Scorecard --></label>
+            <section>Scorecard</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX F1 Partner Community Layout</layout>
+        <sections>
+            <label><!-- Company Info --></label>
+            <section>Company Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX Partner Community Layout</layout>
+        <sections>
+            <label><!-- Company Info --></label>
+            <section>Company Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Interest --></label>
+            <section>Product Interest</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Log a Call --></label>
+        <name>AULogaCall</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- DD Mandate Hard-copy --></label>
+        <name>DD_Mandate_Hard_copy</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Direct Debit - Phone --></label>
+        <name>Direct_Debit_Pohone</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Event --></label>
+        <name>NewAUEvent</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- New Task --></label>
+        <name>NewAUTask</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Account --></label>
+        <name>Update_Account_CP</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Private Company --></label>
+        <name>WES_Private_Company</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Public Company --></label>
+        <name>WES_Public_Company</name>
+    </quickActions>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please do not leave either the Team Member Name or New Team Member Role field blank, after changing either field. --></errorMessage>
+        <name>Account_Team_Member_Reassignment</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Billing Address must be completed to save this Account --></errorMessage>
+        <name>Billing_Address_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This record has been excluded from automated field updates from Data.com Clean jobs. --></errorMessage>
+        <name>Block_autoupdate_from_Data_com_Clean</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Billing Country cannot be empty. Please enter Billing country. --></errorMessage>
+        <name>EMAP_Billing_Country_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Billing state cannot be empty. Please enter Billing state. --></errorMessage>
+        <name>EMAP_Billing_State_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please remove Billing state, it is not required. --></errorMessage>
+        <name>EMAP_Billing_state_not_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field is mandatory. Please select appropriate value. --></errorMessage>
+        <name>EMAP_Card_Pin_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You have entered wrong Billing Country. Please enter correct Billing country.
+Valid billing countries are: Australia, Guam, Malaysia, New Zealand, Saipan, Singapore --></errorMessage>
+        <name>EMAP_Incorrect_Billing_Country</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You have entered wrong Shipping Country. Please enter correct Shipping country.
+Valid shipping countries are: Australia, Guam, Malaysia, New Zealand, Saipan, Singapore --></errorMessage>
+        <name>EMAP_Incorrect_Shipping_Country</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Shipping Country cannot be empty. Please enter shipping country. --></errorMessage>
+        <name>EMAP_Shipping_Country_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Shipping state cannot be empty. Please enter Shipping state. --></errorMessage>
+        <name>EMAP_Shipping_State_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please remove Shipping state, it is not required. --></errorMessage>
+        <name>EMAP_Shipping_state_not_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Expiry date should be within a month. --></errorMessage>
+        <name>EMAP_Temp_Credit_Limit_Expiry_Date_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter values into all the three Temporary Credit Limit related fields. (Temporary Credit Limit, Credit Reason and Credit Expiry date). --></errorMessage>
+        <name>EMAP_Temporary_Credit_Limit_Validations</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- When Current Fuel Management Program includes &quot;Fleet Card&quot; you are required to select a &quot;Fleet Card Sub Type&quot; --></errorMessage>
+        <name>Fleet_Card_Sub_Type_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please update the Account field &apos;Marketing Approval&apos; --></errorMessage>
+        <name>Marketing_Approval_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Provide a value for this field. --></errorMessage>
+        <name>Other_Competitor_Value</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Provide a value for this field. --></errorMessage>
+        <name>Other_ERP_Value</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A rebate amount is required when Rebate Network equals &quot;Yes&quot; --></errorMessage>
+        <name>Rebate_Amount_Not_Blank</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A valid two-letter state code is required. --></errorMessage>
+        <name>US_State_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A valid two-letter state or province code is required --></errorMessage>
+        <name>Valid_State_Providence_Values</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Account - Please select the Industry or if you are seeing this message while trying to convert a Lead, please select an Industry for the Lead before conversion --></errorMessage>
+        <name>Virtual_Industry</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Account - Please select a Sales Type or if you are seeing this message while trying to convert a Lead, please select a Sales Type for the Lead before conversion --></errorMessage>
+        <name>Virtual_Sales_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Company Registration Number must be 8 characters long for WES Accounts. If less than 8 characters, add a leading zero(s). Ex: 1234567 should be entered as 01234567” --></errorMessage>
+        <name>WES_Company_Reg_Number_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only the Salesforce ETL user can change Company Registration Number once the data is being synced. --></errorMessage>
+        <name>WES_Prevent_Company_Reg_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- VAT numbers should all begin with &quot;GB&quot; and then be no more than 12 numeric characters after this. --></errorMessage>
+        <name>WES_VAT_Number_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Your user account does not have an approval threshold defined. Please contact your system admin for assistance. --></errorMessage>
+        <name>Wes_UserApprovalThreshold</name>
+    </validationRules>
+    <workflowTasks>
+        <name>ECapital_Welcome_Call</name>
+        <subject><!-- E-Capital Welcome Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Edge_Benefits_Call</name>
+        <subject><!-- Edge Benefits Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>FTS_Welcome_Call</name>
+        <subject><!-- FTS Welcome Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Manual_Credit_Review_Needed</name>
+        <subject><!-- Manual Credit Review Needed --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- how about another shot at seeing what we can help with? --></description>
+        <name>Routine_Followup</name>
+        <subject><!-- Routine Followup --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- A WF rule email was just sent to the member. --></description>
+        <name>WF_Rule_Email_Sent</name>
+        <subject><!-- WF Rule Email Sent --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

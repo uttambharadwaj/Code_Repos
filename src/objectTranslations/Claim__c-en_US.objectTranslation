@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Claim</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Claims</value>
+    </caseValues>
+    <layouts>
+        <layout>Application Fraud Claim</layout>
+        <sections>
+            <label><!-- Application Reviews --></label>
+            <section>Application Reviews</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes --></label>
+            <section>Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Resolution --></label>
+            <section>Resolution</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EFS Standard Fraud Claim</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Chargeback &amp; Second Presentment --></label>
+            <section>Chargeback &amp; Second Presentment</section>
+        </sections>
+        <sections>
+            <label><!-- Claim Setup --></label>
+            <section>Claim Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Info --></label>
+            <section>Customer Info</section>
+        </sections>
+        <sections>
+            <label><!-- Notes --></label>
+            <section>Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Provisional Credit --></label>
+            <section>Provisional Credit</section>
+        </sections>
+        <sections>
+            <label><!-- Recovery --></label>
+            <section>Recovery</section>
+        </sections>
+        <sections>
+            <label><!-- Resolution --></label>
+            <section>Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- SAFE Reported --></label>
+            <section>SAFE Reported</section>
+        </sections>
+        <sections>
+            <label><!-- SAR --></label>
+            <section>SAR</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX Fleet Fraud Claim</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Claim Assignment --></label>
+            <section>Claim Assignment</section>
+        </sections>
+        <sections>
+            <label><!-- Claim Investigation Notes --></label>
+            <section>Claim Investigation Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Claim Resolution --></label>
+            <section>Claim Resolution</section>
+        </sections>
+        <sections>
+            <label><!-- Claim Setup &amp; Investigation --></label>
+            <section>Claim Setup &amp; Investigation</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Dispute Form Information --></label>
+            <section>Dispute Form Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add Purchase Devices --></label>
+        <name>Add_Purchase_Devices</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

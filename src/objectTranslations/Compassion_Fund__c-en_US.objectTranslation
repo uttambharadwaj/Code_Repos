@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Compassion Fund</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Compassion Funds</value>
+    </caseValues>
+    <layouts>
+        <layout>Compassion Fund Layout - Submitter</layout>
+        <sections>
+            <label><!-- Applicant Information --></label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Application Information --></label>
+            <section>Application Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grant Information --></label>
+            <section>Grant Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Compassion Fund Layout - WEX</layout>
+        <sections>
+            <label><!-- Applicant Information --></label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Application Information --></label>
+            <section>Application Information</section>
+        </sections>
+        <sections>
+            <label><!-- Comments --></label>
+            <section>Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Grant Information --></label>
+            <section>Grant Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

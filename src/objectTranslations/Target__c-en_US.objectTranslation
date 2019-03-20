@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Target</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Targets</value>
+    </caseValues>
+    <fields>
+        <help><!-- Target remaining after today, if the Target record Month End Date is in this month --></help>
+        <label><!-- CM Remaining Target --></label>
+        <name>CM_Remaining_Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- CY Remaining Target --></label>
+        <name>CY_Remaining_Target__c</name>
+    </fields>
+    <fields>
+        <help><!-- Close Date value is sales target. Created Date value is pipeline target. --></help>
+        <label><!-- Date Type --></label>
+        <name>Date_Type__c</name>
+        <picklistValues>
+            <masterLabel>Close Date</masterLabel>
+            <translation><!-- Close Date --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Created Date</masterLabel>
+            <translation><!-- Created Date --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Identifier --></label>
+        <name>Identifier__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month End Date --></label>
+        <name>Month_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Month --></label>
+        <name>Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Notes --></label>
+        <name>Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Salesperson --></label>
+        <name>Salesperson__c</name>
+        <relationshipLabel><!-- Targets --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Target --></label>
+        <name>Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- Team Leader --></label>
+        <name>Team_Leader__c</name>
+    </fields>
+    <fields>
+        <label><!-- Team MT Identifier --></label>
+        <name>Team_MT_Identifier__c</name>
+    </fields>
+    <fields>
+        <help><!-- Calculate by code, will be overwritten whenever a record&apos;s Target field is changed --></help>
+        <label><!-- Team Target --></label>
+        <name>Team_Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- Team --></label>
+        <name>Team__c</name>
+        <picklistValues>
+            <masterLabel>Virtual New Verticals EU</masterLabel>
+            <translation><!-- Virtual New Verticals EU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual Partnerships EU</masterLabel>
+            <translation><!-- Virtual Partnerships EU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual RM EU</masterLabel>
+            <translation><!-- Virtual RM EU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual RM NA</masterLabel>
+            <translation><!-- Virtual RM NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual Sales EU</masterLabel>
+            <translation><!-- Virtual Sales EU --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual Sales NA</masterLabel>
+            <translation><!-- Virtual Sales NA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Virtual Travel Sales EU</masterLabel>
+            <translation><!-- Virtual Travel Sales EU --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 90 Day Target --></label>
+        <name>X90_Day_Target__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year End Date --></label>
+        <name>Year_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Year --></label>
+        <name>Year__c</name>
+    </fields>
+    <layouts>
+        <layout>Target Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes --></label>
+            <section>Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Target - CHECK WITH YOUR SYSTEM ADMINISTRATOR BEFORE CHANGING DATE --></label>
+            <section>Target - CHECK WITH YOUR SYSTEM ADMINISTRATOR BEFORE CHANGING DATE</section>
+        </sections>
+        <sections>
+            <label><!-- Team Target --></label>
+            <section>Team Target</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

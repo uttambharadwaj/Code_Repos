@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <listViews>
+        <fullName>AU_Auto_Approved_Queue_AU_Application_Request</fullName>
+        <columns>Account__c</columns>
+        <columns>Opportunity__c</columns>
+        <filterScope>Queue</filterScope>
+        <label>AU Auto Approved Queue</label>
+        <language>en_US</language>
+        <queue>AU_Auto_Approved_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AU_Central_Services_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Can_Send_To_Genesis__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <label>AU Central Services Queue</label>
+        <queue>AU_Central_Services_Queue</queue>
+        <sharedTo>
+            <group>AU_Internal_Users</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AU_Credit_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>Application_decision_date__c</columns>
+        <columns>Application_Final_Date__c</columns>
+        <columns>Assess_Start_Time__c</columns>
+        <columns>AU_Application_Decline_Reason__c</columns>
+        <columns>Final_Status_Date__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.AU_Application_Request</value>
+        </filters>
+        <label>AU Credit Queue</label>
+        <language>en_US</language>
+        <queue>AU_Credit_Queue</queue>
+        <sharedTo>
+            <group>AU_Internal_Users</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AU_Customer_Care_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Can_Send_To_Genesis__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <label>AU Customer Care Queue</label>
+        <queue>AU_Customer_Care</queue>
+        <sharedTo>
+            <group>AU_Internal_Users</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AU_Key_Accounts_Queue</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Can_Send_To_Genesis__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <label>AU Key Accounts Queue</label>
+        <queue>AU_Key_Accounts</queue>
+        <sharedTo>
+            <group>AU_Internal_Users</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Notes_to_Credit__c</columns>
+        <columns>Approval_Notes__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>BEEVO_REDWOOD</fullName>
+        <booleanFilter>(1 OR 2 )AND 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Application_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Opportunity_Sales_Channel__c</field>
+            <operation>equals</operation>
+            <value>BEEVO</value>
+        </filters>
+        <filters>
+            <field>Opportunity_Sales_Channel__c</field>
+            <operation>equals</operation>
+            <value>REDWOOD</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2018 12:00 AM</value>
+        </filters>
+        <label>BEEVO/REDWOOD</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>Head_of_Inside_Sales</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Approved</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Approved</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Cancelled</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Cancelled</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Cancelled</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Created_in_IFCS</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Created in IFCS</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Created in IFCS</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Credit_Assessment</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Credit Assessment</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Credit Assessment</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Declined</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Declined</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Declined</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Fulfilled</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Fulfilled</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Fulfilled</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Incomplete</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Incomplete</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Incomplete</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_On_Hold</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Hold</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP On Hold</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Pending_CVS</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending CVS</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Pending – CVS</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Pending_Customer</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Customer</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Pending – Customer</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Pending_EMTC</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending EMTC</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Pending – EMTC</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_RPS_Pending</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>RPS Pending</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP RPS Pending</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Re_Assessment</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Re-assessment</value>
+        </filters>
+        <label>EMAP Re-Assessment</label>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Sent_to_IFCS</fullName>
+        <columns>NAME</columns>
+        <columns>Client_Name__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>Sent To IFCS</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>AU_Application_Request__c.EMAP_Application_Request</value>
+        </filters>
+        <label>EMAP Sent to IFCS</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Application_Requests</fullName>
+        <columns>NAME</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Account__c</columns>
+        <columns>Credit_Limit__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Can_Send_To_Genesis__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Application Requests</label>
+    </listViews>
+    <validationRules>
+        <fullName>Account_must_be_Opportunity_Account</fullName>
+        <active>true</active>
+        <description>It is an error if the chosen Account differs from the Opportunity&apos;s Account</description>
+        <errorConditionFormula>AND( 
+RecordType.Name &lt;&gt; &apos;EMAP Application Request&apos;, 
+Opportunity__r.Account.Id &lt;&gt; Account__c 
+)</errorConditionFormula>
+        <errorDisplayField>Account__c</errorDisplayField>
+        <errorMessage>Account must equal Opportunity&apos;s Account</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_AU_App_Decline_reason_mandate</fullName>
+        <active>true</active>
+        <description>Decline reason is required, if Application status is Declined or Cancelled</description>
+        <errorConditionFormula>AND( 
+RecordType.Name == &apos;EMAP Application Request&apos;,
+ISPICKVAL( AU_Application_Decline_Reason__c  , &apos;&apos;), 
+OR( 
+ISPICKVAL( Application_Status__c , &apos;Declined&apos;), 
+ISPICKVAL( Application_Status__c , &apos;Cancelled&apos;) 
+) 
+)</errorConditionFormula>
+        <errorDisplayField>AU_Application_Decline_Reason__c</errorDisplayField>
+        <errorMessage>Please specify decline reason, if Application status is Declined or cancelled.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Billing_State_mandatory</fullName>
+        <active>true</active>
+        <description>For countries that have states (i.e. State != Country), then State should be not null when Country is not null</description>
+        <errorConditionFormula>AND( 
+RecordType.Name == &apos;EMAP Application Request&apos;,
+ISBLANK( TEXT(Account_Billing_State__c)), 
+OR( 
+ISPICKVAL(Account_Billing_Country__c, &quot;Australia&quot;),
+ISPICKVAL(Account_Billing_Country__c, &quot;Malaysia&quot;)
+) 
+)</errorConditionFormula>
+        <errorDisplayField>Account_Billing_State__c</errorDisplayField>
+        <errorMessage>Billing state cannot be empty. Please enter Billing state.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_HK_Card_Pin_Validation</fullName>
+        <active>true</active>
+        <description>Field is Mandatory for all SG &amp; HK applications</description>
+        <errorConditionFormula>AND(
+ISNEW(),
+RecordType.Name == &apos;EMAP Application Request&apos;, 
+ISPICKVAL(Card_Pin__c, &apos;&apos;), 
+ISPICKVAL(Client_Name__c, &apos;ExxonMobil Hong Kong&apos;) 
+)</errorConditionFormula>
+        <errorDisplayField>Card_Pin__c</errorDisplayField>
+        <errorMessage>This field is mandatory. Please select appropriate value.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Hold_Expiration_Date_required</fullName>
+        <active>true</active>
+        <description>Hold expiration date is required if Application status is &apos;Hold&apos;</description>
+        <errorConditionFormula>AND ( 
+  RecordType.Name == &apos;EMAP Application Request&apos;,
+ ISPICKVAL(Application_Status__c , &apos;Hold&apos;),
+ ISBLANK( Hold_Expiration_Date__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Hold_Expiration_Date__c</errorDisplayField>
+        <errorMessage>Please enter hold expiration date, if Application status is Hold.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_SG_Card_Pin_Validation</fullName>
+        <active>true</active>
+        <description>Field is Mandatory for all SG &amp; HK applications</description>
+        <errorConditionFormula>AND(
+RecordType.Name == &apos;EMAP Application Request&apos;, 
+ISPICKVAL(Client_Name__c, &apos;ExxonMobil Singapore&apos;),
+OR(
+ISPICKVAL(Card_Pin__c, &apos;&apos;),
+ISPICKVAL(Card_Pin__c, &apos;N&apos;)
+)
+)</errorConditionFormula>
+        <errorDisplayField>Card_Pin__c</errorDisplayField>
+        <errorMessage>This field is mandatory. And it should always be &apos;Y&apos;.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Shipping_State_mandatory</fullName>
+        <active>true</active>
+        <description>For countries that have states (i.e. State != Country), then State should be not null when Country is not null.</description>
+        <errorConditionFormula>AND( 
+RecordType.Name == &apos;EMAP Application Request&apos;,
+ISBLANK(TEXT( Account_Shipping_State__c )), 
+OR(
+ ISPICKVAL( Account_Shipping_Country__c , &quot;Australia&quot;),
+ ISPICKVAL( Account_Shipping_Country__c , &quot;Malaysia&quot;)
+) 
+)</errorConditionFormula>
+        <errorDisplayField>Account_Shipping_State__c</errorDisplayField>
+        <errorMessage>Shipping state cannot be empty. Please enter Shipping state.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opportunity_Pricing_Must_Be_Approved</fullName>
+        <active>true</active>
+        <description>It is an error if the parent Opportunity&apos;s Pricing Approval Recieved is false</description>
+        <errorConditionFormula>AND( 
+RecordType.Name == &apos;EMAP Application Request&apos;, 
+NOT(Opportunity__r.Pricing_Approval_Received__c) 
+)</errorConditionFormula>
+        <errorMessage>Opportunity must have Pricing Approval!</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Opportunity_Will_Supply_Credit_Docs</fullName>
+        <active>true</active>
+        <description>It is an error if Opportunity &quot;Will Supply Credit Documents has not been entered</description>
+        <errorConditionFormula>AND( 
+RecordType.Name &lt;&gt; &apos;EMAP Application Request&apos;, 
+ISBLANK(TEXT(Opportunity__r.AU_Will_supply_credit_documents__c)) 
+)</errorConditionFormula>
+        <errorMessage>Opportunity &quot;Will Supply Credit Documents?&quot; must be entered</errorMessage>
+    </validationRules>
+</CustomObject>

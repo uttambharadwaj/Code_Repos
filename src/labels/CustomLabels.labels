@@ -1,0 +1,2529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ATMAccessHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ATMAccessHelp</shortDescription>
+        <value>The ATM Access value must be the same for each driver.</value>
+    </labels>
+    <labels>
+        <fullName>AcceptanceLowerCase</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AcceptanceLowerCase</shortDescription>
+        <value>acceptance</value>
+    </labels>
+    <labels>
+        <fullName>AccountPreferences</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccountPreferences</shortDescription>
+        <value>Account Preferences</value>
+    </labels>
+    <labels>
+        <fullName>AccountSetup</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AccountSetup</shortDescription>
+        <value>Account Setup</value>
+    </labels>
+    <labels>
+        <fullName>AccountTermsAndConditions</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AccountTermsAndConditions</shortDescription>
+        <value>Account Terms and Conditions</value>
+    </labels>
+    <labels>
+        <fullName>Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Action</shortDescription>
+        <value>Action</value>
+    </labels>
+    <labels>
+        <fullName>AddAdditionalCard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AddAdditionalCard</shortDescription>
+        <value>Add Additional Card</value>
+    </labels>
+    <labels>
+        <fullName>AddAdditionalContact</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AddAdditionalContact</shortDescription>
+        <value>Add Additional Contact</value>
+    </labels>
+    <labels>
+        <fullName>AddAdditionalDriver</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AddAdditionalDriver</shortDescription>
+        <value>Add Additional Driver</value>
+    </labels>
+    <labels>
+        <fullName>AddAdditionalUnitNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AddAdditionalUnitNumber</shortDescription>
+        <value>Add Additional Unit Number</value>
+    </labels>
+    <labels>
+        <fullName>AddAdditionalVehicle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AddAdditionalVehicle</shortDescription>
+        <value>Add Additional Vehicle</value>
+    </labels>
+    <labels>
+        <fullName>AddAuthorizedPersons</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AddAuthorizedPersons</shortDescription>
+        <value>Add authorized persons to access and manage the account.</value>
+    </labels>
+    <labels>
+        <fullName>AddUnitNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AddUnitNumber</shortDescription>
+        <value>Add Unit Number</value>
+    </labels>
+    <labels>
+        <fullName>AdditionalPrompts</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AdditionalPrompts</shortDescription>
+        <value>Additional Prompts</value>
+    </labels>
+    <labels>
+        <fullName>AdditionalPromptsAndServices</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AdditionalPromptsAndServices</shortDescription>
+        <value>Additional Prompts and Services</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationCannotBeDeleted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicationCannotBeDeleted</shortDescription>
+        <value>This application is not available for deletion. Contact your Salesforce administrator for assistance.</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationNotAccessibleAbandoned</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ApplicationNotAccessibleAbandoned</shortDescription>
+        <value>This application is no longer accessible as you did not complete it in the allowed time frame.  Please go to the Fleet One web site to complete a new application.</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationNotAccessibleComplete</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ApplicationNotAccessibleComplete</shortDescription>
+        <value>Since you have completed and submitted this application, it is no longer available for modifications.</value>
+    </labels>
+    <labels>
+        <fullName>ApplicationSetupInstructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ApplicationSetupInstructions</shortDescription>
+        <value>Please Set Up the Application</value>
+    </labels>
+    <labels>
+        <fullName>AssignBtn</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AssignBtn</shortDescription>
+        <value>Assign</value>
+    </labels>
+    <labels>
+        <fullName>AssignSuccessSummary</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AssignSuccessSummary</shortDescription>
+        <value>The opportunities you selected and their attached open activities have successfully been reassigned.</value>
+    </labels>
+    <labels>
+        <fullName>AssignSuccessTitle</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AssignSuccessTitle</shortDescription>
+        <value>Reassignment successfully completed!</value>
+    </labels>
+    <labels>
+        <fullName>AssignToBtn</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AssignToBtn</shortDescription>
+        <value>Assign to:</value>
+    </labels>
+    <labels>
+        <fullName>AssigningBtn</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AssigningBtn</shortDescription>
+        <value>In progress ...</value>
+    </labels>
+    <labels>
+        <fullName>Attn</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Attn</shortDescription>
+        <value>Attn:</value>
+    </labels>
+    <labels>
+        <fullName>AuthorizedContacts</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AuthorizedContacts</shortDescription>
+        <value>Authorized Contacts</value>
+    </labels>
+    <labels>
+        <fullName>AuthorizedRepresentative</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AuthorizedRepresentative</shortDescription>
+        <value>Authorized Representative &amp; Guarantor of Customer</value>
+    </labels>
+    <labels>
+        <fullName>AuthorizingOfficer</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>AuthorizingOfficer</shortDescription>
+        <value>Authorizing Officer</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Account_Guarantor</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Account Guarantor</shortDescription>
+        <value>Account Guarantor</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Acknowledge_Disclaimer</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Acknowledge Disclaimer</shortDescription>
+        <value>Please check the box in the Authorized Signer section below</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Additional_Information</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Additional Information</shortDescription>
+        <value>Additional Information</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Applicant_Information</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Applicant Information</shortDescription>
+        <value>Applicant Information</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Applicant_Information_Breadcrumb</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Applicant Information Breadcrumb</shortDescription>
+        <value>Applicant Information</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Application_Errors</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Application Errors</shortDescription>
+        <value>Your application has errors. Please fix the highlighted fields.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Application_Status</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Application Status</shortDescription>
+        <value>Your application status is:</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Application_Submitted</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Application Submitted</shortDescription>
+        <value>Your application has been submitted.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Approval_Confirmation</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Approval Confirmation</shortDescription>
+        <value>Your application has been approved with a credit line of</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Authorized_Signer</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Authorized Signer</shortDescription>
+        <value>Authorized Signer</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Billing_Address</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Billing Information</shortDescription>
+        <value>Billing Information</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Billing_Address_Same</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Billing Address Same</shortDescription>
+        <value>My contact and billing information are the same</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Business_Information</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Business Information</shortDescription>
+        <value>Business Information</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Business_Information_Breadcrumb</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Business Information Breadcrumb</shortDescription>
+        <value>Business Information</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Button_Continue</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Button Continue</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Button_Submit</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Button Submit</shortDescription>
+        <value>Submit Application</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_CASL_Disclaimer</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA CASL Disclaimer</shortDescription>
+        <value>By clicking continue above, you agree that your email address may be used to communicate with you about your application, our card programs and, if approved, your account. Each email you receive will include the ability to unsubscribe from future communications.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Call</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Call</shortDescription>
+        <value>Call Us</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Configuration_Error</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Configuration Error</shortDescription>
+        <value>This application does not exist or is not configured correctly.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Confirmation_Congratulations</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Confirmation Congratulations</shortDescription>
+        <value>Congratulations!</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Confirmation_Number</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Confirmation Number</shortDescription>
+        <value>Your confirmation number is</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Confirmation_Thank_You</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Confirmation Thank You</shortDescription>
+        <value>Thank you!</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Credit_Application</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Credit Application</shortDescription>
+        <value>Credit Application</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Disclaimer_Acknowledge</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Disclaimer Acknowledge</shortDescription>
+        <value>Please acknowledge the authorized signer disclaimer before submitting.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Done_In_Minutes</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Done In Minutes</shortDescription>
+        <value>Done In Minutes!</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Error</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Credit Application Error</shortDescription>
+        <value>Credit Application Error</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_External_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA External URL</shortDescription>
+        <value>dgilbert-onlineservices.cs24.force.com</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Fleet_Enrollment</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Fleet Enrollment</shortDescription>
+        <value>Please provide your account setup information while your application is being processed.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Fleet_Enrollment_Button</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Fleet Enrollment Button</shortDescription>
+        <value>Get Started</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Fleet_Enrollment_Header</fullName>
+        <categories>BOCA Fleet Enrollment</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Fleet Enrollment Header</shortDescription>
+        <value>What&apos;s next?</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_General_Error</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA General Error</shortDescription>
+        <value>An error occurred while submitting your application. Please try again later.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_Amount</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid Amount</shortDescription>
+        <value>Invalid Amount</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_DUNS</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid DUNS</shortDescription>
+        <value>Invalid DUNS Number (9-digits)</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_Date</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid Date</shortDescription>
+        <value>Invalid Date (MM/DD/YYYY)</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_Email</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid Email</shortDescription>
+        <value>Invalid Email</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_Number</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid Number</shortDescription>
+        <value>Invalid Number (1-999999)</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_Phone</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid Phone</shortDescription>
+        <value>Invalid Phone</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_Postal_Code</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid Postal Code</shortDescription>
+        <value>Invalid Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_SSN</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid SSN</shortDescription>
+        <value>Invalid SSN</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Invalid_Tax_ID</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Invalid Tax ID</shortDescription>
+        <value>Invalid Taxpayer ID (9-digits)</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Optional</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Optional</shortDescription>
+        <value>optional</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_PG_Information</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA PG Information</shortDescription>
+        <value>Tell Us About Yourself</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_PO_Box_Warning</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA PO Box Warning</shortDescription>
+        <value>PO Box Not Allowed</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Picklist_Choose_One</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Picklist Choose One</shortDescription>
+        <value>-- Choose One --</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Picklist_No</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Picklist No</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Picklist_None</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Picklist None</shortDescription>
+        <value>-- None --</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Picklist_Yes</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Picklist Yes</shortDescription>
+        <value>Yes</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_Company_Name</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder Company Name</shortDescription>
+        <value>Legal Business Name</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_DOB</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder DOB</shortDescription>
+        <value>MM/DD/YYYY</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_Doing_Business_As</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder Doing Business As</shortDescription>
+        <value>Business Name on Card</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_Estimated_Monthly_Litres</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder Estimated Monthly Litres</shortDescription>
+        <value>Estimated Monthly Litres</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_Monthly_Expenses</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder Monthly Expenses</shortDescription>
+        <value>Estimated Monthly Spending on the Cards</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_Phone</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder Phone</shortDescription>
+        <value>###-###-####</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_Physical_Address</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder Physical Address</shortDescription>
+        <value>No PO Boxes Please</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_Postal_Code</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder Postal Code</shortDescription>
+        <value>##### or #####-####</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_SSN</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder SSN</shortDescription>
+        <value>###-##-####</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Placeholder_Taxpayer_ID</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Placeholder Taxpayer ID</shortDescription>
+        <value>######### (no dashes)</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Prospect_Error</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Prospect Error</shortDescription>
+        <value>An error occurred retrieving your application. Please try again later.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Rather_Talk</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Rather Talk</shortDescription>
+        <value>Rather Talk?</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Required</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Required</shortDescription>
+        <value>Required</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Review_Confirmation</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Review Confirmation</shortDescription>
+        <value>Your application is being reviewed.</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Sales_Agent</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Sales Agent</shortDescription>
+        <value>Your Sales Agent</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Sales_Agent_Email</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Sales Agent Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Sales_Agent_Fax</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Sales Agent Fax</shortDescription>
+        <value>Fax</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Sales_Agent_Phone</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Sales Agent Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Terms_Of_Use_Link</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Terms Of Use Link</shortDescription>
+        <value>Terms of Use &amp; Privacy Policy</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_Thank_You_For_Interest</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA Thank You For Interest</shortDescription>
+        <value>Thank You For Your Interest In</value>
+    </labels>
+    <labels>
+        <fullName>BOCA_TnC</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCA TnC</shortDescription>
+        <value>Terms &amp; Conditions</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Add_Owner</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Add Owner</shortDescription>
+        <value>Add Owner</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Address_Line_1</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Address Line 1</shortDescription>
+        <value>Residential Address (no P.O. Boxes)</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Address_Line_2</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Address Line 2</shortDescription>
+        <value>Address Line 2 (optional)</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Apply_Now</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Apply Now</shortDescription>
+        <value>Apply Now</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Apply_Now_Post</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Apply Now Post</shortDescription>
+        <value>to drive savings and efficiency for your business.</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Apply_Now_Pre</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Apply Now Pre</shortDescription>
+        <value>Don’t let this slow you down — just open a new application. The sooner you apply and get approved, the sooner you can use the</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Beneficial_Owner</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Beneficial Owner</shortDescription>
+        <value>Beneficial Owner</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Call_Us</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Call Us</shortDescription>
+        <value>CLICK HERE TO GIVE US A CALL</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Certification_Language</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Certification Language</shortDescription>
+        <value>I hereby certify, to the best of my knowledge, that the information provided above is complete and correct.</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Certified_Agreed_To</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Certified Agreed To</shortDescription>
+        <value>Certified/Agreed To</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_City</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Continue</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Continue</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Control_Person</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Control Person Owners NA</shortDescription>
+        <value>&lt;b&gt;This information is still required if no beneficial owners are listed above.&lt;/b&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Control_Person_Header</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Control Person Header</shortDescription>
+        <value>Person With Control</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Control_Person_Instructions</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Control Person Instructions</shortDescription>
+        <value>Identify one individual with significant responsibility for managing this business — for example, an executive officer, senior manager, or any other person who regularly performs similar functions.</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Control_Title</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Control Title</shortDescription>
+        <value>Title</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Country_of_Residence</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Country of Residence</shortDescription>
+        <value>Country of Residence</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Date_Of_Birth</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Date Of Birth</shortDescription>
+        <value>Date of Birth</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_First_Name</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Form_Unavailable_Body</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Form Unavailable Body</shortDescription>
+        <value>The application you saved has expired. For your security, incomplete applications are deleted after 30 days.</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Form_Unavailable_Header</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Form Unavailable Header</shortDescription>
+        <value>This form is no longer available.</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Individual_Is_Controller</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Individual Is Controller</shortDescription>
+        <value>This individual is also the person with control.</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Introduction</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Introduction</shortDescription>
+        <value>&lt;p&gt;Federal regulations now require &lt;b&gt;all banks&lt;/b&gt; to verify the ownership of certain business types when opening a new account.&lt;/p&gt;
+
+&lt;p&gt;You will be asked to identify any beneficial owners of this business, plus one person with significant managing control. The required information includes Name, Address, Date of Birth, and Social Security Number (or Passport Number, in the case of foreign persons).&lt;/p&gt;
+
+&lt;p&gt;The Bank may also ask to see a copy of a driver&apos;s license or other identifying document for each person listed on this form.&lt;/p&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Introduction_Link</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Introduction Link</shortDescription>
+        <value>&lt;p&gt;&lt;a target=&quot;_blank&quot; href=&quot;/creditapplication/BOCertificationFAQ&quot;&gt;Learn more about this Federal requirement.&lt;/a&gt;&lt;/p&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Introduction_Note</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Introduction Note</shortDescription>
+        <value>&lt;p&gt;&lt;b&gt;PLEASE NOTE: The information provided on this form is for validation or consumer verification only, and will not affect personal credit or imply liability.&lt;/b&gt;&lt;/p&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Introduction_Subtitle</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Introduction Subtitle</shortDescription>
+        <value>What is the form?</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Issuing_Country</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Issuing Country</shortDescription>
+        <value>Issuing Country</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Last_Name</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Last Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Modal_Back</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Modal Back</shortDescription>
+        <value>Back to Application</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Modal_Body</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Modal Body</shortDescription>
+        <value>&lt;p&gt;
+										We’ll send you an email with a link that makes it easy to finish your application.
+									&lt;/p&gt;
+									&lt;p&gt;
+										&lt;b&gt;For your security, the following entries will not be saved:&lt;/b&gt; Social Security Number, Date of Birth, and Passport/Other Government ID#.
+									&lt;/p&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Modal_Header</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Modal Header</shortDescription>
+        <value>Want to save and return later?</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Modal_Save</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Modal Save</shortDescription>
+        <value>Save and Return Later</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Name_of_Person_Opening_Account</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Name of Person Opening Account</shortDescription>
+        <value>Name of Person Opening Account</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Owner_Label</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Owner Label</shortDescription>
+        <value>Beneficial Owner Information</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Owner_Not_Applicable</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Owner Not Applicable</shortDescription>
+        <value>Beneficial Owner Not Applicable</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Owners_Header</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Owners Header</shortDescription>
+        <value>Identify &lt;b&gt;up to four&lt;/b&gt; beneficial owners of this business — individuals who own, directly or indirectly, 25 percent or more of the equity
+interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Beneficial Owner Not Applicable&lt;/b&gt;” below and skip this section.&lt;/b&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Ownership_Info</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Ownership Info</shortDescription>
+        <value>Ownership Info</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Passport_Other_Government_ID</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Passport/Other Government ID #</shortDescription>
+        <value>Passport/Other Government ID #</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Postal_Code</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Remove_Owner</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Remove Owner</shortDescription>
+        <value>Remove Owner</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Save_For_Later_Box_Text</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Save For Later Box Text</shortDescription>
+        <value>Save your progress so far, and we’ll send you a secure link to come back and finish your application.</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Save_For_Later_Box_Title</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Save For Later Box Title</shortDescription>
+        <value>Need more time?</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Save_Return</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Save &amp; Return</shortDescription>
+        <value>SAVE &amp; RETURN</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Social_Security</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Social Security #</shortDescription>
+        <value>Social Security #</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_State</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD State</shortDescription>
+        <value>State/Province</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Thank_You_Body</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Thank You Body</shortDescription>
+        <value>Check your inbox for an email with a link that makes it easy to finish your application.</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Thank_You_Header</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Thank You Header</shortDescription>
+        <value>Thank You!</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Thank_You_Post</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Thank You Post</shortDescription>
+        <value>to drive savings and efficiency for your business!</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Thank_You_Pre</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Thank You Pre</shortDescription>
+        <value>Don’t wait — the sooner you apply and get approved, the sooner you can use the</value>
+    </labels>
+    <labels>
+        <fullName>BOCDD_Title</fullName>
+        <categories>BOCDD</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BOCDD Title</shortDescription>
+        <value>Certification of Beneficial Ownership</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Account_Information</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Account Information</shortDescription>
+        <value>Account Information</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Account_Name</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Account Name</shortDescription>
+        <value>Account Name</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Account_Number</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Account Number</shortDescription>
+        <value>Account Number</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Acknowledgement</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Certify</shortDescription>
+        <value>By signing below, I represent and warrant that the information contained herein
+                                            is correct and accurate and that I am duly authorized to provide this
+                                            information and submit on behalf of the Company.</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Address_Line_1</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Address Line 1</shortDescription>
+        <value>Line 1</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Address_Line_2</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Address Line 2</shortDescription>
+        <value>Line 2</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Address_Same</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Address Same</shortDescription>
+        <value>Company Mailing Address is the same as Physical Address</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Business_Information</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Business Information</shortDescription>
+        <value>Business Information</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Business_Number</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Business Number</shortDescription>
+        <value>Taxpayer ID Number</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Business_Physical_Address</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Business Physical Address</shortDescription>
+        <value>Business Physical Address</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Business_Physical_Address_Help</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Business Physical Address Help</shortDescription>
+        <value>Please provide the address in which your business is physically located. If you do not have a business address, please provide your physical home address. A PO BOX is not acceptable for verification purposes.</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Choose_File</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Choose File</shortDescription>
+        <value>Choose File</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_City</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Company_Mailing_Address</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Company Mailing Address</shortDescription>
+        <value>Company Mailing Address</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Confirmation_Number</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Confirmation Number</shortDescription>
+        <value>Your confirmation number is</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Contact_Information</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Contact Information</shortDescription>
+        <value>Contact Information</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Documentation_Help</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Documentation Help</shortDescription>
+        <value>&lt;h4&gt;Documentation for Physical Address Verification&lt;/h4&gt;&lt;br/&gt;
+                                                &lt;p&gt;Please upload one of the following files as proof of business address:
+                                                &lt;ul&gt;
+                                                    &lt;li&gt;Business license&lt;/li&gt;
+                                                    &lt;li&gt;Lease agreement&lt;/li&gt;
+                                                    &lt;li&gt;Utility invoice&lt;/li&gt;
+                                                    &lt;li&gt;Government issued document&lt;/li&gt;
+                                                    &lt;li&gt;Bank account statement that includes the physical address&lt;/li&gt;
+                                                &lt;/ul&gt;
+                                                &lt;/p&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Email_Address</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Email Address</shortDescription>
+        <value>Email Address</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Email_Address_Verification</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Email Address Verification</shortDescription>
+        <value>Email Address Verification</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Email_Documents_To</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Email Documents To</shortDescription>
+        <value>Please email verification documents to</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Evidence_Reference</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Evidence Reference</shortDescription>
+        <value>Please reference your account number.</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Fax_Address_Verification</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Fax Address Verification</shortDescription>
+        <value>Fax Address Verification</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Fax_To</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Fax To</shortDescription>
+        <value>Please fax verification documents to</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_First_Name</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV First Name</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_For_Questions_Call</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV For Questions Call</shortDescription>
+        <value>For questions, &lt;b&gt;call&lt;/b&gt;</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Last_Name</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Last Name</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Name</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Next</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Optional</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Optional</shortDescription>
+        <value>optional</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Phone_Number</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Phone Number</shortDescription>
+        <value>Phone Number</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Postal_Code</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Postal Code</shortDescription>
+        <value>Postal Code</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Powered_By</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Powered By</shortDescription>
+        <value>POWERED BY</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_State_Province</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV State Province</shortDescription>
+        <value>State</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Step</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Step</shortDescription>
+        <value>Step</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Submit</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_TIN</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV TIN</shortDescription>
+        <value>(TIN)</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_TIN_Help</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV TIN Help</shortDescription>
+        <value>Due to our program update, your account is now funded by our new partner, WEX Bank.  Because WEX is a FDIC Insured Bank, and you are technically a new customer of WEX, we must comply with banking laws that require us to confirm your business Tax ID number.</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Thank_You</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Thank You</shortDescription>
+        <value>Thank You!</value>
+    </labels>
+    <labels>
+        <fullName>BPAV_Upload_Address_Verification</fullName>
+        <categories>BPAV</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BPAV Upload Address Verification</shortDescription>
+        <value>Upload Address Verification</value>
+    </labels>
+    <labels>
+        <fullName>Back</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>BankAccountSetup</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>BankAccountSetup</shortDescription>
+        <value>Bank Account Setup</value>
+    </labels>
+    <labels>
+        <fullName>BypassCardSetup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BypassCardSetup</shortDescription>
+        <value>Please contact me later to set up my company cards</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CardFieldsRequired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CardFieldsRequired</shortDescription>
+        <value>You must enter a Card Type and Cardholder Name for all card setups below.</value>
+    </labels>
+    <labels>
+        <fullName>CardSetups</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CardSetups</shortDescription>
+        <value>Card Setups</value>
+    </labels>
+    <labels>
+        <fullName>Cardholder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cardholder</shortDescription>
+        <value>Cardholder</value>
+    </labels>
+    <labels>
+        <fullName>CashP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CashP</shortDescription>
+        <value>Cash (%)</value>
+    </labels>
+    <labels>
+        <fullName>ChangesSaved</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ChangesSaved</shortDescription>
+        <value>Changes saved.</value>
+    </labels>
+    <labels>
+        <fullName>CloseDateCriteriaLabel</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CloseDateCriteriaLabel</shortDescription>
+        <value>Closed Date</value>
+    </labels>
+    <labels>
+        <fullName>CompleteLaterEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CompleteLaterEmail</shortDescription>
+        <value>Thank you for your interest in Fleet One. To complete your application please click here within 10 days of receiving this email message.</value>
+    </labels>
+    <labels>
+        <fullName>Contact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>CreateAndEdit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CreateAndEdit</shortDescription>
+        <value>Create and Edit</value>
+    </labels>
+    <labels>
+        <fullName>CreateBSA</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CreateBSA</shortDescription>
+        <value>Create BSA</value>
+    </labels>
+    <labels>
+        <fullName>CreateLead</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CreateLead</shortDescription>
+        <value>Create Lead</value>
+    </labels>
+    <labels>
+        <fullName>CreatedDateCriteriaLabel</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CreatedDateCriteriaLabel</shortDescription>
+        <value>Created date:</value>
+    </labels>
+    <labels>
+        <fullName>CreditLimit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CreditLimit</shortDescription>
+        <value>Credit Limit</value>
+    </labels>
+    <labels>
+        <fullName>CriteriaSearchSection</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CriteriaSearchSection</shortDescription>
+        <value>Search with a search criteria</value>
+    </labels>
+    <labels>
+        <fullName>CustomerInformation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CustomerInformation</shortDescription>
+        <value>Customer Information</value>
+    </labels>
+    <labels>
+        <fullName>DailyMerchantSpendingLimits</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DailyMerchantSpendingLimits</shortDescription>
+        <value>Daily Merchant Spending Limits</value>
+    </labels>
+    <labels>
+        <fullName>DailySpendingLimits</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DailySpendingLimits</shortDescription>
+        <value>Daily Spending Limits ($)</value>
+    </labels>
+    <labels>
+        <fullName>Disclosure</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Disclosure</shortDescription>
+        <value>Disclosure</value>
+    </labels>
+    <labels>
+        <fullName>DisplayViewLabel</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DisplayViewLabel</shortDescription>
+        <value>Display:</value>
+    </labels>
+    <labels>
+        <fullName>Driver</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Driver</shortDescription>
+        <value>Driver</value>
+    </labels>
+    <labels>
+        <fullName>DriverID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DriverID</shortDescription>
+        <value>Driver ID</value>
+    </labels>
+    <labels>
+        <fullName>DriverSetups</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DriverSetups</shortDescription>
+        <value>Driver Setups</value>
+    </labels>
+    <labels>
+        <fullName>ESignatureEquivalency</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ESignatureEquivalency</shortDescription>
+        <value>This electronic signature has the legal equivalency to a physical signature.</value>
+    </labels>
+    <labels>
+        <fullName>EchoSignConfirmation</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EchoSignConfirmation</shortDescription>
+        <value>Thanks.  Please click the &quot;Next&quot; button at the bottom of the page to continue.</value>
+    </labels>
+    <labels>
+        <fullName>Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Edit</shortDescription>
+        <value>Edit</value>
+    </labels>
+    <labels>
+        <fullName>EditTheDriverEntries</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EditTheDriverEntries</shortDescription>
+        <value>Edit the Driver entries below to reflect your employees.  Your employees will be prompted to enter the assigned Driver ID at the time of purchase.</value>
+    </labels>
+    <labels>
+        <fullName>EditTheEntriesBelow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EditTheEntriesBelow</shortDescription>
+        <value>Edit the entries below to reflect your Company, Drivers, and desired card purchase limits.</value>
+    </labels>
+    <labels>
+        <fullName>EditVehicleDescription</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EditVehicleDescription</shortDescription>
+        <value>Edit the Vehicle Description entries below to reflect your fleet. Drivers will be prompted for Vehicle ID and Odometer when purchasing fuel.</value>
+    </labels>
+    <labels>
+        <fullName>EmailAlternateText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailAlternateText</shortDescription>
+        <value>The email that you prefer to receive account notifications.</value>
+    </labels>
+    <labels>
+        <fullName>EmailTemplate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmailTemplate</shortDescription>
+        <value>Email Template</value>
+    </labels>
+    <labels>
+        <fullName>EmbossingLine2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EmbossingLine2</shortDescription>
+        <value>Embossing Line 2</value>
+    </labels>
+    <labels>
+        <fullName>EnterCardSetup</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EnterCardSetup</shortDescription>
+        <value>Enter card setup and controls information.</value>
+    </labels>
+    <labels>
+        <fullName>EnterCompanyInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EnterCompanyInfo</shortDescription>
+        <value>Please enter your customer information below.</value>
+    </labels>
+    <labels>
+        <fullName>EnterYourBanking</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>EnterYourBanking</shortDescription>
+        <value>Enter your banking and payment information below.</value>
+    </labels>
+    <labels>
+        <fullName>EstablishYourAccountPreferences</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EstablishYourAccountPreferences</shortDescription>
+        <value>Establish your account preferences and payment terms.</value>
+    </labels>
+    <labels>
+        <fullName>ExistingApprovedCreditInsurance</fullName>
+        <categories>WESCredit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ExistingApprovedCreditInsurance</shortDescription>
+        <value>There is already approved credit insurance for this account</value>
+    </labels>
+    <labels>
+        <fullName>External_Instance_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>External Instance URL</shortDescription>
+        <value>onlineservices.secure.force.com</value>
+    </labels>
+    <labels>
+        <fullName>GenericErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>GenericErrorMessage</shortDescription>
+        <value>We are sorry.  We had a little problem with your last request.  Could you please try again?</value>
+    </labels>
+    <labels>
+        <fullName>GeoApiKey</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GeoApiKey</shortDescription>
+        <value>ABQIAAAAqq4Yrhqqa0SAtt0UUzUN-xSNrYs6_w2ysMAxFIa3GdEPjdEk2xTTQwFT6KwGAO8R8LUOGzOtgkYAdQ</value>
+    </labels>
+    <labels>
+        <fullName>HeaderText</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>HeaderText</shortDescription>
+        <value>Mass reassign opportunities</value>
+    </labels>
+    <labels>
+        <fullName>IHaveReadAndAgreeTo</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>IHaveReadAndAgreeTo</shortDescription>
+        <value>I have read and agree to the terms and conditions set forth in the application terms and disclosures.</value>
+    </labels>
+    <labels>
+        <fullName>IOnBehalfOfMyself</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IOnBehalfOfMyself</shortDescription>
+        <value>I, on behalf of myself and the Customer, agree to these terms and conditions.</value>
+    </labels>
+    <labels>
+        <fullName>ISOSAS</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ISOSAS</shortDescription>
+        <value>ISO27001 certified security, SAS70 Type II certification</value>
+    </labels>
+    <labels>
+        <fullName>Instance_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Instance URL</shortDescription>
+        <value>https://na5.salesforce.com/</value>
+    </labels>
+    <labels>
+        <fullName>MailedStatementWarning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MailedStatementWarning</shortDescription>
+        <value>Mailed statements are not available with Weekly and Bi-Weekly billing cycle.</value>
+    </labels>
+    <labels>
+        <fullName>MasterCardConfirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MasterCardConfirm</shortDescription>
+        <value>Please ensure the entries above reflect your cardholders and vehicles as applicable.  Click &quot;Next&quot; to continue.</value>
+    </labels>
+    <labels>
+        <fullName>MethodOfPayment</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>MethodOfPayment</shortDescription>
+        <value>Method of Payment</value>
+    </labels>
+    <labels>
+        <fullName>Monthly</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Monthly</shortDescription>
+        <value>Monthly</value>
+    </labels>
+    <labels>
+        <fullName>NewViewLinkLabel</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NewViewLinkLabel</shortDescription>
+        <value>Create new view</value>
+    </labels>
+    <labels>
+        <fullName>Newline</fullName>
+        <categories>Text formatting</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Newline</shortDescription>
+        <value>&lt;
+&gt;</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>NoAccountOnResend</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoAccountOnResend</shortDescription>
+        <value>You cannot resend an application that is not associated with an account and contact.</value>
+    </labels>
+    <labels>
+        <fullName>NoResultSummary</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoResultSummary</shortDescription>
+        <value>Please modify your search criteria</value>
+    </labels>
+    <labels>
+        <fullName>NoResultTitle</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoResultTitle</shortDescription>
+        <value>No results</value>
+    </labels>
+    <labels>
+        <fullName>NoViewSelection</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>NoViewSelection</shortDescription>
+        <value>- None -</value>
+    </labels>
+    <labels>
+        <fullName>None</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>None</shortDescription>
+        <value>None</value>
+    </labels>
+    <labels>
+        <fullName>OTRSetup_Account_Preferences</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRSetup Account Preferences</shortDescription>
+        <value>Account Preferences</value>
+    </labels>
+    <labels>
+        <fullName>OTRSetup_Card_Address</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRSetup Card Address</shortDescription>
+        <value>Card Shipping Address</value>
+    </labels>
+    <labels>
+        <fullName>OTRSetup_Card_Address_Correct</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRSetup Card Address Correct</shortDescription>
+        <value>Is this the correct address to mail cards?</value>
+    </labels>
+    <labels>
+        <fullName>OTRSetup_Card_Information</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRSetup Card Information</shortDescription>
+        <value>Card Information</value>
+    </labels>
+    <labels>
+        <fullName>OTRSetup_Contact_Info</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRSetup Contact Info</shortDescription>
+        <value>Contact &amp; Authorizated Contact Information</value>
+    </labels>
+    <labels>
+        <fullName>OTRSetup_Driver_Information</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRSetup Driver Information</shortDescription>
+        <value>Driver Information</value>
+    </labels>
+    <labels>
+        <fullName>OTRSetup_First_Contact</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRSetup First Contact</shortDescription>
+        <value>First Authorized Contact</value>
+    </labels>
+    <labels>
+        <fullName>OTRSetup_Second_Contact</fullName>
+        <categories>BOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRSetup Second Contact</shortDescription>
+        <value>Second Authorized Contact</value>
+    </labels>
+    <labels>
+        <fullName>Offer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Offer</shortDescription>
+        <value>Offer</value>
+    </labels>
+    <labels>
+        <fullName>OfferFieldValidation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OfferFieldValidation</shortDescription>
+        <value>You cannot create an application without an offer, and you cannot change the offer for an existing application.</value>
+    </labels>
+    <labels>
+        <fullName>PleaseEnterDOB</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PleaseEnterDOB</shortDescription>
+        <value>Please enter a valid date of birth in MM/DD/YYYY format.</value>
+    </labels>
+    <labels>
+        <fullName>PleaseNoteDriverName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PleaseNoteDriverName</shortDescription>
+        <value>Please note: Your drivers will be required to enter the ID you assign at purchase.</value>
+    </labels>
+    <labels>
+        <fullName>PleaseSignApplication</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PleaseSignApplication</shortDescription>
+        <value>Please follow the instructions at the bottom of this page to sign your application.  This electronic signature has the legal equivalency to a physical signature.</value>
+    </labels>
+    <labels>
+        <fullName>PleaseWait</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PleaseWait</shortDescription>
+        <value>Please wait...</value>
+    </labels>
+    <labels>
+        <fullName>Prepay</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Prepay</shortDescription>
+        <value>Prepay</value>
+    </labels>
+    <labels>
+        <fullName>PrintACopy</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PrintACopy</shortDescription>
+        <value>Print a Copy for Your Records</value>
+    </labels>
+    <labels>
+        <fullName>PrintTermsAndConditions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PrintTermsAndConditions</shortDescription>
+        <value>Print Terms and Conditions</value>
+    </labels>
+    <labels>
+        <fullName>ProprietorPartner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ProprietorPartner</shortDescription>
+        <value>Proprietor, Partner, or Corporate Officer</value>
+    </labels>
+    <labels>
+        <fullName>Pymt_behaviour</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Payment Behaviour</shortDescription>
+        <value>000000000000000000000000</value>
+    </labels>
+    <labels>
+        <fullName>Remove</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove</shortDescription>
+        <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>RemoveContact</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RemoveContact</shortDescription>
+        <value>Remove Contact</value>
+    </labels>
+    <labels>
+        <fullName>RemoveDriver</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RemoveDriver</shortDescription>
+        <value>Remove Driver</value>
+    </labels>
+    <labels>
+        <fullName>RemoveVehicle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RemoveVehicle</shortDescription>
+        <value>Remove Vehicle</value>
+    </labels>
+    <labels>
+        <fullName>RequiredField</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RequiredField</shortDescription>
+        <value>Required Field</value>
+    </labels>
+    <labels>
+        <fullName>ResendToCustomer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ResendToCustomer</shortDescription>
+        <value>Resend to Customer</value>
+    </labels>
+    <labels>
+        <fullName>ResultBlockTitle</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ResultBlockTitle</shortDescription>
+        <value>Results</value>
+    </labels>
+    <labels>
+        <fullName>RetainACopy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RetainACopy</shortDescription>
+        <value>Retain a copy of the security code(s) for future use.</value>
+    </labels>
+    <labels>
+        <fullName>ReviewAndEditCardSetup</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ReviewAndEditCardSetup</shortDescription>
+        <value>Review and edit the entries below to reflect the needs of your fleet.  Please note: The &quot;Vehicle Description&quot; will be embossed on each card and requires reissuance to change.</value>
+    </labels>
+    <labels>
+        <fullName>ReviewAndEditLocal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReviewAndEditLocal</shortDescription>
+        <value>Review and edit the entries below to reflect the needs of your fleet. Please note: The &quot;Vehicle Description&quot; will be embossed on each card and requires reissuance to change.</value>
+    </labels>
+    <labels>
+        <fullName>ReviewAndEditOTR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReviewAndEditOTR</shortDescription>
+        <value>Review and edit the entries below to complete account setup.</value>
+    </labels>
+    <labels>
+        <fullName>ReviewInstructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReviewInstructions</shortDescription>
+        <value>Click on the link below to review the Account Terms and conditions and check the box to indicate your acceptance and agreement.  Press the &quot;Sign and Submit&quot; button to electronically create and sign your application with EchoSign®.  Follow the EchoSign instructions to complete your signature.  You can review and edit any of your previous entries (below) prior to signing.</value>
+    </labels>
+    <labels>
+        <fullName>ReviewInstructions1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReviewInstructions1</shortDescription>
+        <value>(1) Review the Account Terms and Conditions and check the box to indicate your acceptance and agreement.</value>
+    </labels>
+    <labels>
+        <fullName>ReviewInstructions2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReviewInstructions2</shortDescription>
+        <value>(2) Press the &quot;Sign and Submit&quot; button to electronically create and sign your application with EchoSign®.</value>
+    </labels>
+    <labels>
+        <fullName>ReviewInstructions3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReviewInstructions3</shortDescription>
+        <value>(3) Follow the EchoSign instructions to complete your signature.</value>
+    </labels>
+    <labels>
+        <fullName>ReviewInstructionsEdit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ReviewInstructionsEdit</shortDescription>
+        <value>You can review and edit any of your previous entries (below) prior to signing.</value>
+    </labels>
+    <labels>
+        <fullName>SampleCard</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SampleCard</shortDescription>
+        <value>Sample Card</value>
+    </labels>
+    <labels>
+        <fullName>SampleCheck</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SampleCheck</shortDescription>
+        <value>Sample Check</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndCompleteLater</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SaveAndCompleteLater</shortDescription>
+        <value>Save and Complete Later</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndCompleteLater1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SaveAndCompleteLater1</shortDescription>
+        <value>Thank you for your interest in Fleet One. To complete your application please</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndCompleteLater2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SaveAndCompleteLater2</shortDescription>
+        <value>click here</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndCompleteLater3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SaveAndCompleteLater3</shortDescription>
+        <value>within 10 days of receiving this email message.</value>
+    </labels>
+    <labels>
+        <fullName>SaveAndCreateEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SaveAndCreateEmail</shortDescription>
+        <value>Save and Create Email</value>
+    </labels>
+    <labels>
+        <fullName>SaveChanges</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SaveChanges</shortDescription>
+        <value>Save Changes</value>
+    </labels>
+    <labels>
+        <fullName>SavedOnlineApplicationEmailSubject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SavedOnlineApplicationEmailSubject</shortDescription>
+        <value>Online Application Instructions</value>
+    </labels>
+    <labels>
+        <fullName>SearchBlockTitle</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SearchBlockTitle</shortDescription>
+        <value>Search opportunities</value>
+    </labels>
+    <labels>
+        <fullName>SearchBtn</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SearchBtn</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>SearchingBtn</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SearchingBtn</shortDescription>
+        <value>Searching ...</value>
+    </labels>
+    <labels>
+        <fullName>SecurityCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SecurityCode</shortDescription>
+        <value>Security Code</value>
+    </labels>
+    <labels>
+        <fullName>SecurityCodeAlternateText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SecurityCodeAlternateText</shortDescription>
+        <value>The security code is used to validate you or your assignees as an authorized account administrator.  Retain these numbers for future use.</value>
+    </labels>
+    <labels>
+        <fullName>SelectATemplate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SelectATemplate</shortDescription>
+        <value>Select a Template</value>
+    </labels>
+    <labels>
+        <fullName>SelectAnOffer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SelectAnOffer</shortDescription>
+        <value>Select an Offer</value>
+    </labels>
+    <labels>
+        <fullName>SelectTheAdditionalPrompts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SelectTheAdditionalPrompts</shortDescription>
+        <value>Select the additional prompts you want drivers to enter at the time of purchase.</value>
+    </labels>
+    <labels>
+        <fullName>SignAndSubmit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SignAndSubmit</shortDescription>
+        <value>Sign and Submit</value>
+    </labels>
+    <labels>
+        <fullName>SignAndSubmitInstructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SignAndSubmitInstructions</shortDescription>
+        <value>You must check the box above indicating your acceptance of the Account Terms and Conditions before proceeding.</value>
+    </labels>
+    <labels>
+        <fullName>StatementDelivery</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>StatementDelivery</shortDescription>
+        <value>Statement Delivery</value>
+    </labels>
+    <labels>
+        <fullName>StatementNotificationEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>StatementNotificationEmail</shortDescription>
+        <value>Statement Notification Email</value>
+    </labels>
+    <labels>
+        <fullName>Submit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>TellUsWhoWillBe</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TellUsWhoWillBe</shortDescription>
+        <value>Tell us who will be financially responsible for the account.</value>
+    </labels>
+    <labels>
+        <fullName>TellUsWhoWillBePermitted</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TellUsWhoWillBePermitted</shortDescription>
+        <value>Tell us who will be permitted access to account information.</value>
+    </labels>
+    <labels>
+        <fullName>TermsAndConditionsAcceptance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TermsAndConditionsAcceptance</shortDescription>
+        <value>Terms and Conditions Acceptance</value>
+    </labels>
+    <labels>
+        <fullName>TooManyRowsError</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TooManyRowsError</shortDescription>
+        <value>The total number of open activities on the opportunities you selected is greater than the system can handle. Please reduce the number of opportunities to reassign</value>
+    </labels>
+    <labels>
+        <fullName>TooManyRowsSummary</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TooManyRowsSummary</shortDescription>
+        <value>The view you selected returned more than 1000 rows. Only the 1000 first ones will be displayed</value>
+    </labels>
+    <labels>
+        <fullName>TooManyRowsTitle</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TooManyRowsTitle</shortDescription>
+        <value>Too many rows returned</value>
+    </labels>
+    <labels>
+        <fullName>TotalFooterLabel</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>TotalFooterLabel</shortDescription>
+        <value>Number</value>
+    </labels>
+    <labels>
+        <fullName>UnitNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnitNumber</shortDescription>
+        <value>Unit Number</value>
+    </labels>
+    <labels>
+        <fullName>UnitNumberHover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnitNumberHover</shortDescription>
+        <value>Numbers only, 4 to 8 digits.</value>
+    </labels>
+    <labels>
+        <fullName>UnitNumberPrompt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnitNumberPrompt</shortDescription>
+        <value>Please enter valid unit numbers below.  Your driver will be required to enter one of these unit numbers at the time of purchase.</value>
+    </labels>
+    <labels>
+        <fullName>UnitNumbers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UnitNumbers</shortDescription>
+        <value>Unit Numbers</value>
+    </labels>
+    <labels>
+        <fullName>Vehicle</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Vehicle</shortDescription>
+        <value>Vehicle</value>
+    </labels>
+    <labels>
+        <fullName>VehicleDescriptionMasterCard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VehicleDescriptionMasterCard</shortDescription>
+        <value>The vehicle description will appear in reporting, use a description that you will recognize.</value>
+    </labels>
+    <labels>
+        <fullName>VehicleDriverConfirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VehicleDriverConfirm</shortDescription>
+        <value>Please edit the entries above to reflect your drivers and vehicles.  Click &quot;Next&quot; to continue.</value>
+    </labels>
+    <labels>
+        <fullName>VehicleSetups</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>VehicleSetups</shortDescription>
+        <value>Vehicle Setups</value>
+    </labels>
+    <labels>
+        <fullName>ViewSearchSection</fullName>
+        <categories>Opty Reassign Page</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>ViewSearchSection</shortDescription>
+        <value>Search with a view</value>
+    </labels>
+    <labels>
+        <fullName>Wes_UK_DnBCredit_policy</fullName>
+        <categories>WES UK</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Wes UK DnBCredit policy</shortDescription>
+        <value>Dun And Bradstreet Europe</value>
+    </labels>
+    <labels>
+        <fullName>Wes_UK_Equifax_Credit_policy</fullName>
+        <categories>WES UK</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Wes UK Equifax Credit policy</shortDescription>
+        <value>Equifax UK</value>
+    </labels>
+    <labels>
+        <fullName>WhoWillBeFinancially</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>WhoWillBeFinancially</shortDescription>
+        <value>Who will be financially responsible for the account.</value>
+    </labels>
+    <labels>
+        <fullName>YouMustClickAndView</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>YouMustClickAndView</shortDescription>
+        <value>You must click and view the Account Terms and Conditions before proceeding.</value>
+    </labels>
+    <labels>
+        <fullName>YouMustSelectATemplate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>YouMustSelectATemplate</shortDescription>
+        <value>You must select a template.</value>
+    </labels>
+    <labels>
+        <fullName>YouMustSelectAnOffer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>YouMustSelectAnOffer</shortDescription>
+        <value>You must select an Offer.</value>
+    </labels>
+    <labels>
+        <fullName>YourApplicationIs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>YourApplicationIs</shortDescription>
+        <value>Your application is being prepared for signature.  Please wait a few moments for the next page.</value>
+    </labels>
+    <labels>
+        <fullName>YourDriversWillBePrompted</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>YourDriversWillBePrompted</shortDescription>
+        <value>Your drivers will be prompted for a 4-digit ID.  Please assign below.</value>
+    </labels>
+    <labels>
+        <fullName>Z_ShippingLocationRequired</fullName>
+        <categories>Zuora</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Z_ShippingLocationRequired</shortDescription>
+        <value>No shipping locations have been provided.  Please add a shipping location.</value>
+    </labels>
+    <labels>
+        <fullName>Z_TelematicsVendorRequired</fullName>
+        <categories>Zuora</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Z_TelematicsVendorRequired</shortDescription>
+        <value>Telematics Vendor is a required field.</value>
+    </labels>
+    <labels>
+        <fullName>Z_UseSeparateAccountQQ</fullName>
+        <categories>Zuora</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Z_UseSeparateAccountQQ</shortDescription>
+        <value>Do you want Service billed to a separate account?</value>
+    </labels>
+</CustomLabels>

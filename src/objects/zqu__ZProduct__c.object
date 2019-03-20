@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <fields>
+        <fullName>IsShipping__c</fullName>
+        <externalId>false</externalId>
+        <label>IsShipping</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>ProductCategory__c</fullName>
+        <externalId>false</externalId>
+        <label>Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Antenna</fullName>
+                    <default>false</default>
+                    <label>Antenna</label>
+                </value>
+                <value>
+                    <fullName>Connectors, Cables, Switches</fullName>
+                    <default>false</default>
+                    <label>Connectors, Cables, Switches</label>
+                </value>
+                <value>
+                    <fullName>Data Sevices</fullName>
+                    <default>false</default>
+                    <label>Data Sevices</label>
+                </value>
+                <value>
+                    <fullName>Hardware Bundle</fullName>
+                    <default>false</default>
+                    <label>Hardware Bundle</label>
+                </value>
+                <value>
+                    <fullName>Hardware Bundle (CDMA)</fullName>
+                    <default>false</default>
+                    <label>Hardware Bundle (CDMA)</label>
+                </value>
+                <value>
+                    <fullName>Hardware Installation</fullName>
+                    <default>false</default>
+                    <label>Hardware Installation</label>
+                </value>
+                <value>
+                    <fullName>Hardware Rental</fullName>
+                    <default>false</default>
+                    <label>Hardware Rental</label>
+                </value>
+                <value>
+                    <fullName>Hardware Rental w/ Service</fullName>
+                    <default>false</default>
+                    <label>Hardware Rental w/ Service</label>
+                </value>
+                <value>
+                    <fullName>Harnesses</fullName>
+                    <default>false</default>
+                    <label>Harnesses</label>
+                </value>
+                <value>
+                    <fullName>Insurance and Warranties - Nonrecurring</fullName>
+                    <default>false</default>
+                    <label>Insurance and Warranties - Nonrecurring</label>
+                </value>
+                <value>
+                    <fullName>Insurance and Warranties - Recurring</fullName>
+                    <default>false</default>
+                    <label>Insurance and Warranties - Recurring</label>
+                </value>
+                <value>
+                    <fullName>Misc Parts and Kits</fullName>
+                    <default>false</default>
+                    <label>Misc Parts and Kits</label>
+                </value>
+                <value>
+                    <fullName>Misc. Hardware</fullName>
+                    <default>false</default>
+                    <label>Misc. Hardware</label>
+                </value>
+                <value>
+                    <fullName>Monthly AddOn Service</fullName>
+                    <default>false</default>
+                    <label>Monthly AddOn Service</label>
+                </value>
+                <value>
+                    <fullName>Monthly HOS Addon Srvc</fullName>
+                    <default>false</default>
+                    <label>Monthly HOS Addon Srvc</label>
+                </value>
+                <value>
+                    <fullName>Monthly Service</fullName>
+                    <default>false</default>
+                    <label>Monthly Service</label>
+                </value>
+                <value>
+                    <fullName>Software - Retail</fullName>
+                    <default>false</default>
+                    <label>Software - Retail</label>
+                </value>
+                <value>
+                    <fullName>Telematics Hardware</fullName>
+                    <default>false</default>
+                    <label>Telematics Hardware</label>
+                </value>
+                <value>
+                    <fullName>Training</fullName>
+                    <default>false</default>
+                    <label>Training</label>
+                </value>
+                <value>
+                    <fullName>Transfer and Admin Fees</fullName>
+                    <default>false</default>
+                    <label>Transfer and Admin Fees</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Vendor__c</fullName>
+        <description>The vendor that supplies the ordered product.</description>
+        <externalId>false</externalId>
+        <label>Vendor</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Networkfleet</fullName>
+                    <default>false</default>
+                    <label>Networkfleet</label>
+                </value>
+                <value>
+                    <fullName>BSM Wireless</fullName>
+                    <default>false</default>
+                    <label>BSM Wireless</label>
+                </value>
+                <value>
+                    <fullName>GPS Insight</fullName>
+                    <default>false</default>
+                    <label>GPS Insight</label>
+                </value>
+                <value>
+                    <fullName>Geotab</fullName>
+                    <default>false</default>
+                    <label>Geotab</label>
+                </value>
+                <value>
+                    <fullName>WEX</fullName>
+                    <default>false</default>
+                    <label>WEX</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>WEXProductCategory__c</fullName>
+        <externalId>false</externalId>
+        <label>WEX Product Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>To Be Determined</fullName>
+                    <default>true</default>
+                    <label>To Be Determined</label>
+                </value>
+                <value>
+                    <fullName>Not Applicable</fullName>
+                    <default>false</default>
+                    <label>Not Applicable</label>
+                </value>
+                <value>
+                    <fullName>ELD / HOS Software</fullName>
+                    <default>false</default>
+                    <label>ELD / HOS Software</label>
+                </value>
+                <value>
+                    <fullName>GPS BUNDLE</fullName>
+                    <default>false</default>
+                    <label>GPS BUNDLE</label>
+                </value>
+                <value>
+                    <fullName>GPS FINANCE CHRG</fullName>
+                    <default>false</default>
+                    <label>GPS FINANCE CHRG</label>
+                </value>
+                <value>
+                    <fullName>GPS RENTAL</fullName>
+                    <default>false</default>
+                    <label>GPS RENTAL</label>
+                </value>
+                <value>
+                    <fullName>Harnesses &amp; Cables</fullName>
+                    <default>false</default>
+                    <label>Harnesses &amp; Cables</label>
+                </value>
+                <value>
+                    <fullName>Installation</fullName>
+                    <default>false</default>
+                    <label>Installation</label>
+                </value>
+                <value>
+                    <fullName>Misc Hardware</fullName>
+                    <default>false</default>
+                    <label>Misc Hardware</label>
+                </value>
+                <value>
+                    <fullName>Misc Service</fullName>
+                    <default>false</default>
+                    <label>Misc Service</label>
+                </value>
+                <value>
+                    <fullName>Monthly Service</fullName>
+                    <default>false</default>
+                    <label>Monthly Service</label>
+                </value>
+                <value>
+                    <fullName>Shipping</fullName>
+                    <default>false</default>
+                    <label>Shipping</label>
+                </value>
+                <value>
+                    <fullName>Telematics Hardware</fullName>
+                    <default>false</default>
+                    <label>Telematics Hardware</label>
+                </value>
+                <value>
+                    <fullName>Transfer and Admin Fees</fullName>
+                    <default>false</default>
+                    <label>Transfer and Admin Fees</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+</CustomObject>

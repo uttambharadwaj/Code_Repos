@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Default_DM_Flex_Code__c</columns>
+        <columns>Default_DM_Fuel_Code__c</columns>
+        <columns>External_Sales_Code__c</columns>
+        <columns>Partner_Key__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+</CustomObject>

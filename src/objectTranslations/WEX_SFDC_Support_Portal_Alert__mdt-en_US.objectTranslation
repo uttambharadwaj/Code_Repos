@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WEX SFDC Support Portal Alert</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WEX SFDC Support Portal Alerts</value>
+    </caseValues>
+    <fields>
+        <label><!-- Body --></label>
+        <name>Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enabled --></label>
+        <name>Enabled__c</name>
+    </fields>
+    <fields>
+        <help><!-- When to stop displaying the alert. --></help>
+        <label><!-- End Time --></label>
+        <name>End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Message Type --></label>
+        <name>Message_Type__c</name>
+        <picklistValues>
+            <masterLabel>Informational</masterLabel>
+            <translation><!-- Informational --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System Alert</masterLabel>
+            <translation><!-- System Alert --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- When to start displaying the alert. --></help>
+        <label><!-- Start Time --></label>
+        <name>Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

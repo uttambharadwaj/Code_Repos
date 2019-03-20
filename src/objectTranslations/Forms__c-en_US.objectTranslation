@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Form</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Forms</value>
+    </caseValues>
+    <layouts>
+        <layout>Fuel Card Closed Lost Survey</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Feedback --></label>
+            <section>Customer Feedback</section>
+        </sections>
+        <sections>
+            <label><!-- Feedback on Sales Person --></label>
+            <section>Feedback on Sales Person</section>
+        </sections>
+        <sections>
+            <label><!-- Product Rating --></label>
+            <section>Product Rating</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

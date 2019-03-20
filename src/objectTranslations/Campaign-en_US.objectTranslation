@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Campaign Background Notes</value>
+        </caseValues>
+        <name>description_campaign</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <layouts>
+        <layout>AU Campaign Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Offer Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Campaign Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Planning --></label>
+            <section>Planning</section>
+        </sections>
+        <sections>
+            <label><!-- Results --></label>
+            <section>Results</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Marketing</layout>
+        <sections>
+            <label><!-- Campaign Performance --></label>
+            <section>Campaign Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Planning --></label>
+            <section>Planning</section>
+        </sections>
+        <sections>
+            <label><!-- Planning In Hierarchy --></label>
+            <section>Planning In Hierarchy</section>
+        </sections>
+        <sections>
+            <label><!-- Results --></label>
+            <section>Results</section>
+        </sections>
+        <sections>
+            <label><!-- Results In Hierarchy --></label>
+            <section>Results In Hierarchy</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Marketing Events Master</layout>
+        <sections>
+            <label><!-- Campaign Performance --></label>
+            <section>Campaign Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Events Calender --></label>
+            <section>Events Calender</section>
+        </sections>
+        <sections>
+            <label><!-- Planning --></label>
+            <section>Planning</section>
+        </sections>
+        <sections>
+            <label><!-- Results --></label>
+            <section>Results</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Marketing Parent</layout>
+        <sections>
+            <label><!-- Campaign Performance --></label>
+            <section>Campaign Performance</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Planning In Hierarchy --></label>
+            <section>Planning In Hierarchy</section>
+        </sections>
+        <sections>
+            <label><!-- Results (Parent) --></label>
+            <section>Results (Parent)</section>
+        </sections>
+        <sections>
+            <label><!-- Results In Hierarchy --></label>
+            <section>Results In Hierarchy</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Inside Sales-Marketing</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Planning --></label>
+            <section>Planning</section>
+        </sections>
+        <sections>
+            <label><!-- Results --></label>
+            <section>Results</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES Campaign Layout</layout>
+        <sections>
+            <label><!-- Costs --></label>
+            <section>Costs</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

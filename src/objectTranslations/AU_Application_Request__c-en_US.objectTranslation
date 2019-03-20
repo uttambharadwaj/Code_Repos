@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>AU Application Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>AU Application Requests</value>
+    </caseValues>
+    <layouts>
+        <layout>AU Application Request Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Integration Error Information --></label>
+            <section>Integration Error Information</section>
+        </sections>
+        <sections>
+            <label><!-- Large Text Fields --></label>
+            <section>Large Text Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Related Information --></label>
+            <section>Related Information</section>
+        </sections>
+        <sections>
+            <label><!-- Third Level Approval Requirements --></label>
+            <section>Third Level Approval Requirements</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Application Request Layout Central Service</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Integration Error Information --></label>
+            <section>Integration Error Information</section>
+        </sections>
+        <sections>
+            <label><!-- Large Text Fields --></label>
+            <section>Large Text Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Related Information --></label>
+            <section>Related Information</section>
+        </sections>
+        <sections>
+            <label><!-- Third Level Approval Requirements --></label>
+            <section>Third Level Approval Requirements</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Application Request Partner Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Integration Error Information --></label>
+            <section>Integration Error Information</section>
+        </sections>
+        <sections>
+            <label><!-- Large Text Fields --></label>
+            <section>Large Text Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Related Information --></label>
+            <section>Related Information</section>
+        </sections>
+        <sections>
+            <label><!-- Third Level Approval Requirements --></label>
+            <section>Third Level Approval Requirements</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EMAP Application Request Page Layout</layout>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Reference --></label>
+            <section>Bank Reference</section>
+        </sections>
+        <sections>
+            <label><!-- Contact --></label>
+            <section>Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Document Checklist --></label>
+            <section>Document Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Large Text Fields --></label>
+            <section>Large Text Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Trade Reference --></label>
+            <section>Trade Reference</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Account must equal Opportunity&apos;s Account --></errorMessage>
+        <name>Account_must_be_Opportunity_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please specify decline reason, if Application status is Declined or cancelled. --></errorMessage>
+        <name>EMAP_AU_App_Decline_reason_mandate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Billing state cannot be empty. Please enter Billing state. --></errorMessage>
+        <name>EMAP_Billing_State_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field is mandatory. Please select appropriate value. --></errorMessage>
+        <name>EMAP_HK_Card_Pin_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter hold expiration date, if Application status is Hold. --></errorMessage>
+        <name>EMAP_Hold_Expiration_Date_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This field is mandatory. And it should always be &apos;Y&apos;. --></errorMessage>
+        <name>EMAP_SG_Card_Pin_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Shipping state cannot be empty. Please enter Shipping state. --></errorMessage>
+        <name>EMAP_Shipping_State_mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunity must have Pricing Approval! --></errorMessage>
+        <name>Opportunity_Pricing_Must_Be_Approved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Opportunity &quot;Will Supply Credit Documents?&quot; must be entered --></errorMessage>
+        <name>Opportunity_Will_Supply_Credit_Docs</name>
+    </validationRules>
+</CustomObjectTranslation>

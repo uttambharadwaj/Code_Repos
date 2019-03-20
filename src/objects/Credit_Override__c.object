@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>The credit override objects to be attached to an Account.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Credit Overrides</relationshipLabel>
+        <relationshipName>Credit_Overrides</relationshipName>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approver_Level__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Approver Level</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approver__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Approver</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Credit_Overrides_As_Approver</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Comment__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Comment</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Effective_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Effective Date</label>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Expiry_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Expiry Date</label>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Justification__c</fullName>
+        <externalId>false</externalId>
+        <label>Justification</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Override_Type__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Urgent customer request</fullName>
+                    <default>false</default>
+                    <label>Urgent customer request</label>
+                </value>
+                <value>
+                    <fullName>High priority customer</fullName>
+                    <default>false</default>
+                    <label>High priority customer</label>
+                </value>
+                <value>
+                    <fullName>Good will gesture</fullName>
+                    <default>false</default>
+                    <label>Good will gesture</label>
+                </value>
+                <value>
+                    <fullName>Customer payment delays</fullName>
+                    <default>false</default>
+                    <label>Customer payment delays</label>
+                </value>
+                <value>
+                    <fullName>WEX payment processing delay</fullName>
+                    <default>false</default>
+                    <label>WEX payment processing delay</label>
+                </value>
+                <value>
+                    <fullName>Customer accounting error</fullName>
+                    <default>false</default>
+                    <label>Customer accounting error</label>
+                </value>
+                <value>
+                    <fullName>Invoice not received</fullName>
+                    <default>false</default>
+                    <label>Invoice not received</label>
+                </value>
+                <value>
+                    <fullName>Security exception</fullName>
+                    <default>false</default>
+                    <label>Security exception</label>
+                </value>
+                <value>
+                    <fullName>Security not provided; weak payment grade</fullName>
+                    <default>false</default>
+                    <label>Security not provided; weak payment grade</label>
+                </value>
+                <value>
+                    <fullName>Security not provided; litigation</fullName>
+                    <default>false</default>
+                    <label>Security not provided; litigation</label>
+                </value>
+                <value>
+                    <fullName>Security not provided; business &lt; 1 year old</fullName>
+                    <default>false</default>
+                    <label>Security not provided; business &lt; 1 year old</label>
+                </value>
+                <value>
+                    <fullName>Dishonoured payment</fullName>
+                    <default>false</default>
+                    <label>Dishonoured payment</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>Credit Limit (TCL) Override</controllingFieldValue>
+                <controllingFieldValue>Overdue (AOT) Override</controllingFieldValue>
+                <valueName>Urgent customer request</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Credit Limit (TCL) Override</controllingFieldValue>
+                <controllingFieldValue>Overdue (AOT) Override</controllingFieldValue>
+                <valueName>High priority customer</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Credit Limit (TCL) Override</controllingFieldValue>
+                <controllingFieldValue>Overdue (AOT) Override</controllingFieldValue>
+                <valueName>Good will gesture</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Overdue (AOT) Override</controllingFieldValue>
+                <valueName>Customer payment delays</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Overdue (AOT) Override</controllingFieldValue>
+                <valueName>WEX payment processing delay</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Overdue (AOT) Override</controllingFieldValue>
+                <valueName>Customer accounting error</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Overdue (AOT) Override</controllingFieldValue>
+                <valueName>Invoice not received</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Security Exception</controllingFieldValue>
+                <valueName>Security exception</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Security Exception</controllingFieldValue>
+                <valueName>Security not provided; weak payment grade</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Security Exception</controllingFieldValue>
+                <valueName>Security not provided; litigation</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Security Exception</controllingFieldValue>
+                <valueName>Security not provided; business &lt; 1 year old</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Dishonoured Payment Override</controllingFieldValue>
+                <valueName>Dishonoured payment</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Override_Date__c</fullName>
+        <description>credit override date</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Override Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Override_Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Override Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Active</fullName>
+                    <default>true</default>
+                    <label>Active</label>
+                </value>
+                <value>
+                    <fullName>Expired</fullName>
+                    <default>false</default>
+                    <label>Expired</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Override_Type__c</fullName>
+        <description>Override type for the Account</description>
+        <externalId>false</externalId>
+        <label>Override Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Credit Limit (TCL) Override</fullName>
+                    <default>false</default>
+                    <label>Credit Limit (TCL) Override</label>
+                </value>
+                <value>
+                    <fullName>Overdue (AOT) Override</fullName>
+                    <default>false</default>
+                    <label>Overdue (AOT) Override</label>
+                </value>
+                <value>
+                    <fullName>Security Exception</fullName>
+                    <default>false</default>
+                    <label>Security Exception</label>
+                </value>
+                <value>
+                    <fullName>Dishonoured Payment Override</fullName>
+                    <default>false</default>
+                    <label>Dishonoured Payment Override</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Requested_By__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Requested By</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Credit_Overrides</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Territory__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Territory</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Credit Override</label>
+    <nameField>
+        <displayFormat>CO-{00000}</displayFormat>
+        <label>Credit Override Id</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Credit Overrides</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

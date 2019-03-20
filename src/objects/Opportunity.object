@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <businessProcesses>
+        <fullName>AU Partner Process</fullName>
+        <isActive>true</isActive>
+        <values>
+            <fullName>5%29 Signed</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>CorporatePay Sales Process</fullName>
+        <isActive>true</isActive>
+        <values>
+            <fullName>1%29 Qualified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%29 Engaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%29 Evaluating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%29 Negotiating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%29 Signed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed%2FDisqualified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed%2FLost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stalled</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>WES Sales Process</fullName>
+        <isActive>true</isActive>
+        <values>
+            <fullName>1%29 Qualified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%29 Engaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%29 Evaluating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%29 Negotiating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%29 Signed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed%2FLost</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+    <businessProcesses>
+        <fullName>Wright Express Sales Process</fullName>
+        <isActive>true</isActive>
+        <values>
+            <fullName>1%29 Qualified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%29 Engaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%29 Evaluating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%29 Negotiating</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%29 Signed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed%2FDisqualified</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed%2FLost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stalled</fullName>
+            <default>false</default>
+        </values>
+    </businessProcesses>
+</CustomObject>

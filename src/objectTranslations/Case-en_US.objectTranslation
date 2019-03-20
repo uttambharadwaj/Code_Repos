@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Description (Visible to customer)</value>
+        </caseValues>
+        <name>description_case</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Internal Comments (Not visible to customer)</value>
+        </caseValues>
+        <name>internal_comments_case</name>
+        <startsWith>Vowel</startsWith>
+    </fields>
+    <layouts>
+        <layout>Case Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Close CorporatePay Implementation</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Close Customer Success Layout</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Close Facilities Request Layout</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Close Field Support Layout</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Close WEX Salesforce Support Layout</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Corporate Payments_Feed</layout>
+        <sections>
+            <label><!-- Case Milestones --></label>
+            <section>Case Milestones</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay</layout>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- CorporatePay Cases --></label>
+            <section>CorporatePay Cases</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Implementation</layout>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- External Contact&apos;s Details --></label>
+            <section>External Contact&apos;s Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Customer Success Layout</layout>
+        <sections>
+            <label><!-- Case Description --></label>
+            <section>Case Description</section>
+        </sections>
+        <sections>
+            <label><!-- Case Requestor --></label>
+            <section>Case Requestor</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Development Case</layout>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Reports --></label>
+            <section>Reports</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Account Management Layout</layout>
+        <sections>
+            <label><!-- Details from WEB --></label>
+            <section>Details from WEB</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Facilities Case Layout</layout>
+        <sections>
+            <label><!-- Case Assignment --></label>
+            <section>Case Assignment</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Field Support Case Layout</layout>
+        <sections>
+            <label><!-- Case Description --></label>
+            <section>Case Description</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Field Support Use --></label>
+            <section>Field Support Use</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Fleet Implementation Case Layout</layout>
+        <sections>
+            <label><!-- Case Data --></label>
+            <section>Case Data</section>
+        </sections>
+        <sections>
+            <label><!-- Case Description --></label>
+            <section>Case Description</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Implementation Team --></label>
+            <section>Implementation Team</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Global Sales Op&apos;s &amp; Support Close Layout</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>MasterCard Case Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Merchant Case Layout</layout>
+        <sections>
+            <label><!-- Email to Case Fields --></label>
+            <section>Email to Case Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OTR Customer Support</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Default --></label>
+            <section>Default</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Partner Processing Case Layout</layout>
+        <sections>
+            <label><!-- Email to Case Fields --></label>
+            <section>Email to Case Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Sales Operations &amp; Support</layout>
+        <sections>
+            <label><!-- Case Requestor --></label>
+            <section>Case Requestor</section>
+        </sections>
+        <sections>
+            <label><!-- Case or Content Description --></label>
+            <section>Case or Content Description</section>
+        </sections>
+        <sections>
+            <label><!-- Class Information --></label>
+            <section>Class Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Service Operations</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Service Operations</layout>
+        <sections>
+            <label><!-- Account &amp; Contact Information --></label>
+            <section>Account &amp; Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Audit --></label>
+            <section>Audit</section>
+        </sections>
+        <sections>
+            <label><!-- Case Description --></label>
+            <section>Case Description</section>
+        </sections>
+        <sections>
+            <label><!-- Case Milestones --></label>
+            <section>Case Milestones</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Next Steps --></label>
+            <section>Next Steps</section>
+        </sections>
+        <sections>
+            <label><!-- Subject --></label>
+            <section>Subject</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Telematics Service Case Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Virtual AU AM</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Virtual CS - Case Feed</layout>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- SLA --></label>
+            <section>SLA</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Virtual Implementation Case</layout>
+        <sections>
+            <label><!-- Case Description --></label>
+            <section>Case Description</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Important Dates --></label>
+            <section>Important Dates</section>
+        </sections>
+        <sections>
+            <label><!-- System Info --></label>
+            <section>System Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Virtual Payments Case Layout</layout>
+        <sections>
+            <label><!-- Case Description --></label>
+            <section>Case Description</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Important Dates --></label>
+            <section>Important Dates</section>
+        </sections>
+        <sections>
+            <label><!-- System Info --></label>
+            <section>System Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Virtual SE Case Layout</layout>
+        <sections>
+            <label><!-- Case Description --></label>
+            <section>Case Description</section>
+        </sections>
+        <sections>
+            <label><!-- Case Details --></label>
+            <section>Case Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Important Dates --></label>
+            <section>Important Dates</section>
+        </sections>
+        <sections>
+            <label><!-- System Info --></label>
+            <section>System Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WE Application</layout>
+        <sections>
+            <label><!-- Account Configuration --></label>
+            <section>Account Configuration</section>
+        </sections>
+        <sections>
+            <label><!-- Approval --></label>
+            <section>Approval</section>
+        </sections>
+        <sections>
+            <label><!-- Automated Emails --></label>
+            <section>Automated Emails</section>
+        </sections>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Checklist --></label>
+            <section>Checklist</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Information --></label>
+            <section>Opportunity Information</section>
+        </sections>
+        <sections>
+            <label><!-- SLA --></label>
+            <section>SLA</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WE Application - Feed</layout>
+        <sections>
+            <label><!-- Approval --></label>
+            <section>Approval</section>
+        </sections>
+        <sections>
+            <label><!-- Automated Emails --></label>
+            <section>Automated Emails</section>
+        </sections>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Information --></label>
+            <section>Opportunity Information</section>
+        </sections>
+        <sections>
+            <label><!-- SLA --></label>
+            <section>SLA</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Verification --></label>
+            <section>Verification</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WE Application Close</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Account Configuration --></label>
+            <section>Account Configuration</section>
+        </sections>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Information --></label>
+            <section>Opportunity Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WE Escalation</layout>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- DO NOT USE --></label>
+            <section>DO NOT USE</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Reports --></label>
+            <section>Reports</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WE Escalation Close</layout>
+        <layoutType>CaseClose</layoutType>
+        <sections>
+            <label><!-- Case Information --></label>
+            <section>Case Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX Salesforce Support Layout</layout>
+        <sections>
+            <label><!-- Case Description --></label>
+            <section>Case Description</section>
+        </sections>
+        <sections>
+            <label><!-- Case Requestor --></label>
+            <section>Case Requestor</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Auto-Responses --></label>
+        <name>Auto_Responses</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Client Reports --></label>
+        <name>Client_Reports</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log/Close Case --></label>
+        <name>Close_Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Close Case --></label>
+        <name>Close_Case_Sales_Ops</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Email --></label>
+        <name>Email_CP</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Load Confirmations --></label>
+        <name>Load_Confirmations</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Log Call --></label>
+        <name>Log_Call</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewChildCase --></label>
+        <name>NewChildCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Email --></label>
+        <name>Send_Case_Email</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Case --></label>
+        <name>Update_Case</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Case --></label>
+        <name>Update_Case_CP</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Please select a case reason. --></errorMessage>
+        <name>Case_Reason_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You cannot edit this case until it is assigned to a user. --></errorMessage>
+        <name>Cases_owned_by_Virtual_Queue</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cases with this record type may only be closed by the Customer Services Delivery Manager --></errorMessage>
+        <name>Close_Case_Applications</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Cards must be filled in before you can close the case --></errorMessage>
+        <name>Need_Cards_value_before_closing_case</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Secondary Reason Other is only required when the Secondary Reason Other is selected. --></errorMessage>
+        <name>Not_Require_Secondary_Reason_on_Serv_Ops</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter reason why the application has been rejected, before ticking this box (these notes will be sent to the Business Requestor). --></errorMessage>
+        <name>Reason_Rejected_Notes</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Detailed Reason Other value --></errorMessage>
+        <name>Require_Detail_Reason_on_Serv_Ops</name>
+    </validationRules>
+</CustomObjectTranslation>

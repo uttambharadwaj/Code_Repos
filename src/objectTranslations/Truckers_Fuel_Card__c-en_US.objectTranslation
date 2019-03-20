@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Truckers Fuel Card</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Truckers Fuel Cards</value>
+    </caseValues>
+    <fields>
+        <help><!-- The account who owns the fuel card --></help>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Truckers Fuel Cards --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fuel Card Account --></label>
+        <name>Fuel_Card_Account__c</name>
+    </fields>
+    <fields>
+        <help><!-- The vendor who owns the fuel account --></help>
+        <label><!-- Fuel Card Type --></label>
+        <name>Fuel_Card_Vendor__c</name>
+        <picklistValues>
+            <masterLabel>Comdata</masterLabel>
+            <translation><!-- Comdata --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EFS</masterLabel>
+            <translation><!-- EFS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EFS EDGE</masterLabel>
+            <translation><!-- EFS EDGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FTS EDGE</masterLabel>
+            <translation><!-- FTS EDGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FleetOne</masterLabel>
+            <translation><!-- FleetOne --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FleetOne EDGE</masterLabel>
+            <translation><!-- FleetOne EDGE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Old EFS</masterLabel>
+            <translation><!-- Old EFS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>T-Chek</masterLabel>
+            <translation><!-- T-Chek --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WEX EDGE</masterLabel>
+            <translation><!-- WEX EDGE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Is the fuel card active currently? --></help>
+        <label><!-- Is Active --></label>
+        <name>Is_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- PFJ Approved Date --></label>
+        <name>PFJ_Approved_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- PFJ Denied Date --></label>
+        <name>PFJ_Denied_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- PFJ Tier --></label>
+        <name>PFJ_Tier__c</name>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation><!-- 15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation><!-- 20 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Send To PFJ --></label>
+        <name>Send_To_PFJ__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send To TA --></label>
+        <name>Send_To_TA__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TA Approved Date --></label>
+        <name>TA_Approved_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TA Denied Date --></label>
+        <name>TA_Denied_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- TA Tier --></label>
+        <name>TA_Tier__c</name>
+        <picklistValues>
+            <masterLabel>10</masterLabel>
+            <translation><!-- 10 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation><!-- 15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20</masterLabel>
+            <translation><!-- 20 --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Truckers Fuel Card Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

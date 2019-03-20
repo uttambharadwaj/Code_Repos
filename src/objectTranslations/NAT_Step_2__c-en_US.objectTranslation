@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>NAT Step 2</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>NAT Step 2</value>
+    </caseValues>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Equifax Credit Scores must be in a range of 370-820 --></errorMessage>
+        <name>Equifax_Credit_Score_Range</name>
+    </validationRules>
+</CustomObjectTranslation>

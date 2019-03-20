@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldSets>
+        <label><!-- Geopointe Lead --></label>
+        <name>Geopointe_Lead</name>
+    </fieldSets>
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Lead Background Notes</value>
+        </caseValues>
+        <name>description_lead</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <layouts>
+        <layout>AU Fuel</layout>
+        <sections>
+            <label><!-- Accident Assist Profile --></label>
+            <section>Accident Assist Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Background Notes Large Section --></label>
+            <section>Background Notes Large Section</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fuel Opportunity Profile --></label>
+            <section>Fuel Opportunity Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel Business Application</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Confirmation Information --></label>
+            <section>Confirmation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Profile --></label>
+            <section>Opportunity Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel Individual Application</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Confirmation Information --></label>
+            <section>Confirmation Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- Payment Information --></label>
+            <section>Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel Merchant</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel Partner Page</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Background Notes Large Section --></label>
+            <section>Background Notes Large Section</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Profile --></label>
+            <section>Opportunity Profile</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel Prepaid</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Card Details --></label>
+            <section>Card Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU Fuel with CONVERT</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- Opportunity Profile --></label>
+            <section>Opportunity Profile</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>AU VCC</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Admin Lead Layout</layout>
+        <sections>
+            <label><!-- All Other Fields --></label>
+            <section>All Other Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Response Info --></label>
+            <section>Marketing Response Info</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Information --></label>
+            <section>Referral Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Conversion Calls Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Lead Administrator</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Prospect&apos;s Website Activity --></label>
+            <section>Prospect&apos;s Website Activity</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Lead Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Prospect&apos;s Website Activity --></label>
+            <section>Prospect&apos;s Website Activity</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Online Application Form</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Prospect&apos;s Website Activity --></label>
+            <section>Prospect&apos;s Website Activity</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePayments Lead</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Prospect&apos;s Website Activity --></label>
+            <section>Prospect&apos;s Website Activity</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePayments Lead Administrator</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Prospect&apos;s Website Activity --></label>
+            <section>Prospect&apos;s Website Activity</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Channel Lead Layout</layout>
+        <sections>
+            <label><!-- Business Partner Information --></label>
+            <section>Business Partner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Key Qualification Questions - GPS --></label>
+            <section>Key Qualification Questions - GPS</section>
+        </sections>
+        <sections>
+            <label><!-- Key Qualification Questions - Government --></label>
+            <section>Key Qualification Questions - Government</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Info --></label>
+            <section>Marketing Info</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Comments --></label>
+            <section>Web Form Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Factoring Lead Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Key Qualification Questions --></label>
+            <section>Key Qualification Questions</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Info --></label>
+            <section>Marketing Info</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Referrer information --></label>
+            <section>Referrer information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Comments --></label>
+            <section>Web Form Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Fleet Lead Layout</layout>
+        <sections>
+            <label><!-- **This Section Visible to Sys Admin &amp; Marketing Only** --></label>
+            <section>**This Section Visible to Sys Admin &amp; Marketing Only**</section>
+        </sections>
+        <sections>
+            <label><!-- Call Information --></label>
+            <section>Call Information</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- EFS Fields --></label>
+            <section>EFS Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Key Lead Attributes --></label>
+            <section>Key Lead Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Fleet Lead Layout Marketing</layout>
+        <sections>
+            <label><!-- Act-On Activity History --></label>
+            <section>Act-On Activity History</section>
+        </sections>
+        <sections>
+            <label><!-- Call Information --></label>
+            <section>Call Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Qualification --></label>
+            <section>Qualification</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Visible to Sys Admin Only --></label>
+            <section>Visible to Sys Admin Only</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Marketing Inside Sales Lead Layout</layout>
+        <sections>
+            <label><!-- Competitor Information --></label>
+            <section>Competitor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fueling Information --></label>
+            <section>Fueling Information</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Program Information --></label>
+            <section>Program Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Merchant Lead Layout</layout>
+        <sections>
+            <label><!-- ** These fields visible to Sys Admin and Marketing Only ** --></label>
+            <section>** These fields visible to Sys Admin and Marketing Only **</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Edge Merchant Details --></label>
+            <section>Edge Merchant Details</section>
+        </sections>
+        <sections>
+            <label><!-- Key Qualification Questions - Merchant --></label>
+            <section>Key Qualification Questions - Merchant</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Info --></label>
+            <section>Marketing Info</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Comments --></label>
+            <section>Web Form Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Partner Factoring Lead Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Key Qualification Questions --></label>
+            <section>Key Qualification Questions</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Info --></label>
+            <section>Marketing Info</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Comments --></label>
+            <section>Web Form Comments</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Partner Fleet Lead Layout</layout>
+        <sections>
+            <label><!-- Call Information --></label>
+            <section>Call Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Qualification --></label>
+            <section>Qualification</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Fuel Advisors Lead Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Site Information --></label>
+            <section>Site Information</section>
+        </sections>
+        <sections>
+            <label><!-- Web-To-Lead Generated Information --></label>
+            <section>Web-To-Lead Generated Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Inside Sales Lead Console Layout</layout>
+        <sections>
+            <label><!-- Competitor Information --></label>
+            <section>Competitor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Data.com --></label>
+            <section>Data.com</section>
+        </sections>
+        <sections>
+            <label><!-- Fueling Information --></label>
+            <section>Fueling Information</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Program Information --></label>
+            <section>Program Information</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Information --></label>
+            <section>Referral Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Inside Sales Lead Layout</layout>
+        <sections>
+            <label><!-- Competitor Information --></label>
+            <section>Competitor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Data.com --></label>
+            <section>Data.com</section>
+        </sections>
+        <sections>
+            <label><!-- Fueling Information --></label>
+            <section>Fueling Information</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Program Information --></label>
+            <section>Program Information</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Information --></label>
+            <section>Referral Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Lead Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Information --></label>
+            <section>Referral Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Mastercard Lead Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Company Profile --></label>
+            <section>LinkedIn Company Profile</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Member Profile --></label>
+            <section>LinkedIn Member Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Prospect&apos;s Website Activity --></label>
+            <section>Prospect&apos;s Website Activity</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>OTR - Merchant Lead Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background Notes --></label>
+            <section>Lead Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Opportunities --></label>
+            <section>Marketing Opportunities</section>
+        </sections>
+        <sections>
+            <label><!-- Merchant Site Information --></label>
+            <section>Merchant Site Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Parent Lead Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description --></label>
+            <section>Description</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Response Info --></label>
+            <section>Marketing Response Info</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Permits Lead Layout</layout>
+        <sections>
+            <label><!-- **This Section Visible to Sys Admin &amp; Marketing Only** --></label>
+            <section>**This Section Visible to Sys Admin &amp; Marketing Only**</section>
+        </sections>
+        <sections>
+            <label><!-- Call Information --></label>
+            <section>Call Information</section>
+        </sections>
+        <sections>
+            <label><!-- Key Lead Attributes --></label>
+            <section>Key Lead Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Truckers Lead Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Edge Merchant Information --></label>
+            <section>Edge Merchant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Data --></label>
+            <section>Pardot Data</section>
+        </sections>
+        <sections>
+            <label><!-- Profile Information --></label>
+            <section>Profile Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Virtual Partner</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Industry Information --></label>
+            <section>Industry Information</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Background --></label>
+            <section>Lead Background</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Company Profile --></label>
+            <section>LinkedIn Company Profile</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Member Profile --></label>
+            <section>LinkedIn Member Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Product Information --></label>
+            <section>Product Information</section>
+        </sections>
+        <sections>
+            <label><!-- Prospect&apos;s Website Activity --></label>
+            <section>Prospect&apos;s Website Activity</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES Marketing Lead Layout</layout>
+        <sections>
+            <label><!-- Call Outcome Info --></label>
+            <section>Call Outcome Info</section>
+        </sections>
+        <sections>
+            <label><!-- Company Address --></label>
+            <section>Company Address</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Contact Preferences --></label>
+            <section>Marketing Contact Preferences</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Info --></label>
+            <section>Pardot Info</section>
+        </sections>
+        <sections>
+            <label><!-- Qualification Information --></label>
+            <section>Qualification Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES Sales Lead Layout</layout>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Lead Information --></label>
+            <section>Lead Information</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Info --></label>
+            <section>Pardot Info</section>
+        </sections>
+        <sections>
+            <label><!-- Qualification Information --></label>
+            <section>Qualification Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX F1 Partner Community Layout</layout>
+        <sections>
+            <label><!-- Call Information --></label>
+            <section>Call Information</section>
+        </sections>
+        <sections>
+            <label><!-- Campaign Info (to be hidden) --></label>
+            <section>Campaign Info (to be hidden)</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Information (to be hidden) --></label>
+            <section>Referral Information (to be hidden)</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX Partner Community Layout</layout>
+        <sections>
+            <label><!-- Campaign Info (to be hidden) --></label>
+            <section>Campaign Info (to be hidden)</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fueling Information --></label>
+            <section>Fueling Information</section>
+        </sections>
+        <sections>
+            <label><!-- Partner Information --></label>
+            <section>Partner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Information (to be hidden) --></label>
+            <section>Referral Information (to be hidden)</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Convert --></label>
+        <name>ConvertLEX</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Duplicate Check --></label>
+        <name>Duplicate_Check</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Log Call Outcome --></label>
+        <name>Update_Call_Outcome</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Company Details --></label>
+        <name>WES_Company_Details</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Contact Details --></label>
+        <name>WES_Contact_Details</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Conversion Fields --></label>
+        <name>WES_Conversion_Fields</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Marketing Details --></label>
+        <name>WES_Marketing_Details</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Qualification --></label>
+        <name>WES_Qualification</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- ABN must be numbers only --></errorMessage>
+        <name>AU_ABN_Numbers</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- ACN must be numbers only --></errorMessage>
+        <name>AU_ACN_Numbers</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Financial Institution Account Number must be numbers only --></errorMessage>
+        <name>AU_Account_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Street should have field maximum length of 35 characters --></errorMessage>
+        <name>AU_Address_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- BSB must be numbers only --></errorMessage>
+        <name>AU_BSB_Numbers</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- City should have field maximum length of 26 characters --></errorMessage>
+        <name>AU_City_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Email should have field maximum length of 40 characters --></errorMessage>
+        <name>AU_Email_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- City should have field maximum length of 26 characters --></errorMessage>
+        <name>AU_FI_City_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- First Name should have field maximum length of 20 --></errorMessage>
+        <name>AU_First_Name_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- First Name is required --></errorMessage>
+        <name>AU_First_Name_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Last Name should not exceed  20 characters. --></errorMessage>
+        <name>AU_Last_Name_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Mobile Phone must be 10 digits. --></errorMessage>
+        <name>AU_Mobile_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone number field must be 10 digits. --></errorMessage>
+        <name>AU_Phone_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Postcode should have field maximum length of 4 characters --></errorMessage>
+        <name>AU_Postcode_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- State should have field maximum length of 3 characters --></errorMessage>
+        <name>AU_State_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Call Stage must be &quot;1st Call, 2nd Call, etc.&quot; before you can enter a Call Outcome. --></errorMessage>
+        <name>Call_Outcome_Requires_Call_Stage</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the child campaign (it&apos;s the name of the event or partner + an extra description) --></errorMessage>
+        <name>Campaign_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A valid two-letter province code is required. --></errorMessage>
+        <name>Canadian_State_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a Channel Partner. --></errorMessage>
+        <name>Channel_Partner_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide Details if the Lead Source is &quot;Other&quot; or &quot;Self Generated Source.&quot; --></errorMessage>
+        <name>Detail_Required_for_Other_or_Self_Gen</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the prospect&apos;s email address. This enables us to market to the Contact &amp; prevent duplicate records from being created. --></errorMessage>
+        <name>Email_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a lead source or the Partner Referrer (from separate field) --></errorMessage>
+        <name>Lead_Source_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a Primary Campaign. --></errorMessage>
+        <name>Must_have_Campaign</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a Campaign Response Method. --></errorMessage>
+        <name>Must_have_Campaign_Response_Methods</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a reason disqualified if the Lead is Disqualified. --></errorMessage>
+        <name>Must_have_reason_disqualified</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select &apos;Corporate&apos; &amp; the Industry, rather than this value if you are not a Partnerships user --></errorMessage>
+        <name>Partner_Sales_Group_Values</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add notes explaining the reason disqualified --></errorMessage>
+        <name>Reason_Disqualified_Other</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a Reason Code when disqualifying this Lead --></errorMessage>
+        <name>Reason_Disqualified_Virtual</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a Reason the Lead is Disqualified or Stalled. --></errorMessage>
+        <name>Reason_Disqualified_or_Stalled</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Referred by Internal field is already set and cannot be changed. --></errorMessage>
+        <name>Referred_By_Internal_Cannot_be_Modified</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Card Program must be Fleet One OTR if Card Product is OTR. --></errorMessage>
+        <name>Require_Card_Program_for_OTR</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the Industry --></errorMessage>
+        <name>Sales_Group_Industry</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a Sales Type --></errorMessage>
+        <name>Sales_Group_Sales_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select either Business Travel or Leisure Travel --></errorMessage>
+        <name>Sales_Group_Travel</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A valid two-letter state code is required. --></errorMessage>
+        <name>US_State_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A valid two-letter state or province code is required --></errorMessage>
+        <name>Valid_State_Providence_Values</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A program is required for PARTNER campaign. Please select a program. --></errorMessage>
+        <name>Virtual_Partner_Program_for_Campaign</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t convert this lead because some required fields are missing data. Please go back and fill out the data before you convert.
+
+Annual Revenue-
+Product Interest-
+Address --></errorMessage>
+        <name>Virtual_Required_to_Convert_Fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a Vertical --></errorMessage>
+        <name>Virtual_Vertical</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Callback Time in the future must be provided if the Call Outcome is Callback. --></errorMessage>
+        <name>WES_Callback_must_have_Callback_Time</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must select a WES Queue for WES Leads. --></errorMessage>
+        <name>WES_Can_only_assign_to_WES_queues</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Company Section must be complete to convert a lead. --></errorMessage>
+        <name>WES_Company_Section_Complete_Qualfiy</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Title and First Name must be captured to convert a qualified lead. --></errorMessage>
+        <name>WES_First_Name_Required_to_convert</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The International/National Customer field must be selected to convert a qualified lead. --></errorMessage>
+        <name>WES_International_National</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select an International country. --></errorMessage>
+        <name>WES_International_must_select_country</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Enquiry Source and Primary Campaign must be set to convert a qualified lead. --></errorMessage>
+        <name>WES_Marketing_Information</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide a Call Outcome comment when selecting a call outcome. --></errorMessage>
+        <name>WES_Must_Provide_Call_Outcome_Comment</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You lack permissions to change ownership of this lead. Please contact your supervisor for assistance. --></errorMessage>
+        <name>WES_Prevent_Lead_Ownership_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must complete the qualification questions to convert a qualified lead. --></errorMessage>
+        <name>WES_Qualification_Fields</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A Role within Company must be selected to convert a qualified lead. --></errorMessage>
+        <name>WES_Role_Selected</name>
+    </validationRules>
+    <workflowTasks>
+        <description><!-- Please reach out immediately on this new Gold lead from EFS ISR. --></description>
+        <name>Call</name>
+        <subject><!-- Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Follow_Up_Call_After_Email_Campaign_Action</name>
+        <subject><!-- Follow Up Call After Email Campaign Action --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Lead Disqualified --></description>
+        <name>Lead_Disqualified</name>
+        <subject><!-- Lead Disqualified --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- You have been assigned a new Short App Lead. --></description>
+        <name>New_Short_App_Lead</name>
+        <subject><!-- New Short App Lead --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place</name>
+        <subject><!-- Place 5th Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_1st_Call</name>
+        <subject><!-- Place 1st Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_1st_Call2</name>
+        <subject><!-- Place 1st Call (New Cycle) --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_2nd_Call</name>
+        <subject><!-- Place 2nd Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_3rd_Call</name>
+        <subject><!-- Place 3rd Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_4th_Call</name>
+        <subject><!-- Place 4th Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_6th_Call</name>
+        <subject><!-- Place 6th Call --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

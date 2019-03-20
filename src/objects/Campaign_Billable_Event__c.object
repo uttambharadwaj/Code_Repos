@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Billable_Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Cost__c + ( Cost__c * Margin__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Billable Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Billing Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Internal Transfer</fullName>
+                    <default>false</default>
+                    <label>Internal Transfer</label>
+                </value>
+                <value>
+                    <fullName>Sponsor</fullName>
+                    <default>false</default>
+                    <label>Sponsor</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Campaign_Coupon_Code__c</fullName>
+        <externalId>false</externalId>
+        <formula>Campaign__r.Coupon_Code__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Campaign Coupon Code</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign__c</fullName>
+        <externalId>false</externalId>
+        <label>Campaign</label>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Campaign Billable Events</relationshipLabel>
+        <relationshipName>Campaign_Billable_Events</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Cost_Center__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Cost Center</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cost_Piece__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost/Piece</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Cost__c</fullName>
+        <externalId>false</externalId>
+        <formula>Quantity__c * Cost_Piece__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>32000</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Margin__c</fullName>
+        <externalId>false</externalId>
+        <label>Margin %</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Quantity__c</fullName>
+        <externalId>false</externalId>
+        <label>Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>App Brochure</fullName>
+                    <default>false</default>
+                    <label>App Brochure</label>
+                </value>
+                <value>
+                    <fullName>Collateral Design</fullName>
+                    <default>false</default>
+                    <label>Collateral Design</label>
+                </value>
+                <value>
+                    <fullName>Collateral Production</fullName>
+                    <default>false</default>
+                    <label>Collateral Production</label>
+                </value>
+                <value>
+                    <fullName>Customer Communications</fullName>
+                    <default>false</default>
+                    <label>Customer Communications</label>
+                </value>
+                <value>
+                    <fullName>Data Analysis</fullName>
+                    <default>false</default>
+                    <label>Data Analysis</label>
+                </value>
+                <value>
+                    <fullName>Data Records</fullName>
+                    <default>false</default>
+                    <label>Data Records</label>
+                </value>
+                <value>
+                    <fullName>Demos</fullName>
+                    <default>false</default>
+                    <label>Demos</label>
+                </value>
+                <value>
+                    <fullName>Direct Mail</fullName>
+                    <default>false</default>
+                    <label>Direct Mail</label>
+                </value>
+                <value>
+                    <fullName>Driver Videos</fullName>
+                    <default>false</default>
+                    <label>Driver Videos</label>
+                </value>
+                <value>
+                    <fullName>Drivers Guides</fullName>
+                    <default>false</default>
+                    <label>Drivers Guides</label>
+                </value>
+                <value>
+                    <fullName>Envelopes</fullName>
+                    <default>false</default>
+                    <label>Envelopes</label>
+                </value>
+                <value>
+                    <fullName>Fulfillment Collateral</fullName>
+                    <default>false</default>
+                    <label>Fulfillment Collateral</label>
+                </value>
+                <value>
+                    <fullName>Graphic Design</fullName>
+                    <default>false</default>
+                    <label>Graphic Design</label>
+                </value>
+                <value>
+                    <fullName>Inserts</fullName>
+                    <default>false</default>
+                    <label>Inserts</label>
+                </value>
+                <value>
+                    <fullName>Lead handling</fullName>
+                    <default>false</default>
+                    <label>Lead handling</label>
+                </value>
+                <value>
+                    <fullName>Letterhead</fullName>
+                    <default>false</default>
+                    <label>Letterhead</label>
+                </value>
+                <value>
+                    <fullName>List Modeling</fullName>
+                    <default>false</default>
+                    <label>List Modeling</label>
+                </value>
+                <value>
+                    <fullName>Logos</fullName>
+                    <default>false</default>
+                    <label>Logos</label>
+                </value>
+                <value>
+                    <fullName>Miscellaneous</fullName>
+                    <default>false</default>
+                    <label>Miscellaneous</label>
+                </value>
+                <value>
+                    <fullName>Newsletters</fullName>
+                    <default>false</default>
+                    <label>Newsletters</label>
+                </value>
+                <value>
+                    <fullName>Plastic</fullName>
+                    <default>false</default>
+                    <label>Plastic</label>
+                </value>
+                <value>
+                    <fullName>Plastic Design</fullName>
+                    <default>false</default>
+                    <label>Plastic Design</label>
+                </value>
+                <value>
+                    <fullName>Plastic Production</fullName>
+                    <default>false</default>
+                    <label>Plastic Production</label>
+                </value>
+                <value>
+                    <fullName>Press Releases</fullName>
+                    <default>false</default>
+                    <label>Press Releases</label>
+                </value>
+                <value>
+                    <fullName>Printing</fullName>
+                    <default>false</default>
+                    <label>Printing</label>
+                </value>
+                <value>
+                    <fullName>Product Collateral</fullName>
+                    <default>false</default>
+                    <label>Product Collateral</label>
+                </value>
+                <value>
+                    <fullName>Reporting</fullName>
+                    <default>false</default>
+                    <label>Reporting</label>
+                </value>
+                <value>
+                    <fullName>Retention</fullName>
+                    <default>false</default>
+                    <label>Retention</label>
+                </value>
+                <value>
+                    <fullName>Sales Sheets</fullName>
+                    <default>false</default>
+                    <label>Sales Sheets</label>
+                </value>
+                <value>
+                    <fullName>Services</fullName>
+                    <default>false</default>
+                    <label>Services</label>
+                </value>
+                <value>
+                    <fullName>Signs</fullName>
+                    <default>false</default>
+                    <label>Signs</label>
+                </value>
+                <value>
+                    <fullName>Site Directory</fullName>
+                    <default>false</default>
+                    <label>Site Directory</label>
+                </value>
+                <value>
+                    <fullName>Trade Shows</fullName>
+                    <default>false</default>
+                    <label>Trade Shows</label>
+                </value>
+                <value>
+                    <fullName>Web</fullName>
+                    <default>false</default>
+                    <label>Web</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Campaign Billable Event</label>
+    <nameField>
+        <displayFormat>CBE{00000000}</displayFormat>
+        <label>Campaign Billable Events Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Campaign Billable Events</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>
