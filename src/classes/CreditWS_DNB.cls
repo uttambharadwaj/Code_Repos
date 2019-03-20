@@ -1,0 +1,1578 @@
+/*
+*
+* Credit Decisioning Process
+* Module: Lexis/Nexis
+* Author: Derek Gilbert
+* Initial Date: 3/5/2018
+*
+*/
+public class CreditWS_DNB {
+
+    public final static String APPLICATION_NAME = 'Credit Decision Engine - DNB Integration';
+
+    public static Credit_Decision_Engine_Endpoints__mdt dnbSettings {
+        get {
+
+            try {
+
+                Credit_Decision_Engine_Endpoints__mdt dnbSettings = [SELECT Id, Username__c, Password__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'DNB_Toolkit'];
+
+                return dnbSettings;
+
+            }
+            catch(Exception e) {
+
+                System.debug('### ERROR: Error getting DNB Toolkit connection settings.');
+
+            }
+
+            return null;
+
+        }
+    }
+
+    public static Credit_Decision_Engine_Endpoints__mdt dnbCustomModelSettings {
+        get {
+
+            try {
+
+                Credit_Decision_Engine_Endpoints__mdt dnbSettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'DNB_Custom_Model'];
+
+                return dnbSettings;
+
+            }
+            catch(Exception e) {
+
+                System.debug('### ERROR: Error getting DNB Custom Model connection settings.');
+
+            }
+
+            return null;
+
+        }
+    }
+
+    public static Credit_Decision_Engine_Endpoints__mdt dnbCACustomModelSettings {
+        get {
+
+            try {
+
+                Credit_Decision_Engine_Endpoints__mdt dnbSettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'CA_DNB_Custom_Model'];
+
+                return dnbSettings;
+
+            }
+            catch(Exception e) {
+
+                System.debug('### ERROR: Error getting DNB CA Custom Model connection settings.');
+
+            }
+
+            return null;
+
+        }
+    }
+
+    //TODO DELTE ME WHEN CA CUSTOM MODEL IS RELEASED
+    public static Credit_Decision_Engine_Endpoints__mdt dnbCCSSettings {
+        get {
+
+            try {
+
+                Credit_Decision_Engine_Endpoints__mdt dnbSettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'DNB_CCS_Score'];
+
+                return dnbSettings;
+
+            }
+            catch(Exception e) {
+
+                System.debug('### ERROR: Error getting DNB Custom Model connection settings.');
+
+            }
+
+            return null;
+
+        }
+    }
+
+    public static Credit_Decision_Engine_Endpoints__mdt dnbDirectSettings {
+        get {
+
+            try {
+
+                Credit_Decision_Engine_Endpoints__mdt dnbSettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'DNB_Direct_2_0'];
+
+                return dnbSettings;
+
+            }
+            catch(Exception e) {
+
+                System.debug('### ERROR: Error getting DNB Direct 2.0 connection settings.');
+
+            }
+
+            return null;
+
+        }
+    }
+
+    public class dnbCalloutException extends Exception {}
+
+    public CreditWS_DNB() {
+
+    }
+
+    public static String dnbDirectAuthentication() {
+
+        try {
+
+            if (dnbDirectSettings != null) {
+
+                HttpRequest authenticationRequest = new HttpRequest();
+
+                authenticationRequest.setMethod('POST');
+                authenticationRequest.setHeader('Content-Type', 'application/json');
+                authenticationRequest.setHeader('x-dnb-user', dnbDirectSettings.Username__c);
+                authenticationRequest.setHeader('x-dnb-pwd', dnbDirectSettings.Password__c);
+
+                authenticationRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/Authentication/V2.0/');
+
+                authenticationRequest.setBody('{\'TransactionDetail\': {\'ApplicationTransactionID\': \'1\',\'ServiceTransactionID\': \'1\',\'TransactionTimestamp\': \'2001-12-17T09:30:47Z\'}}');
+
+                Http authenticationCallout = new Http();
+
+                HTTPResponse authenticationResponse = authenticationCallout.send(authenticationRequest);
+
+                CreditWSUtil_DNBDirect_Auth parsedAuthenticationResponse = CreditWSUtil_DNBDirect_Auth.parse(authenticationResponse.getBody());
+
+                if((parsedAuthenticationResponse.TransactionResult.ResultText).equalsIgnoreCase('SUCCESS')) {
+                    return parsedAuthenticationResponse.AuthenticationDetail.Token;
+                }
+                else {
+                    throw new dnbCalloutException('### Error: Unable to log into DNB: ' + authenticationResponse.getBody());
+                }
+
+            }
+
+        }
+        catch(Exception e) {
+            System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
+        }
+
+        return null;
+
+    }
+
+    public static DNBDirect_MatchResponse dnbDirectClenseAndMatch(DNBDirect_MatchRequest dnbDirectMatchRequest) {
+
+        DNBDirect_MatchResponse dnbDirectMatchResponse = new DNBDirect_MatchResponse();
+
+        try {
+
+            String authorizationToken = CreditWS_DNB.dnbDirectAuthentication();
+            if(TestUtils.isRunningTest()) {
+                authorizationToken = 'TESTTOKEN';
+            }
+
+            if (authorizationToken != null && dnbDirectMatchRequest != null) {
+
+                HttpRequest clenseAndMatchRequest = new HttpRequest();
+
+                clenseAndMatchRequest.setMethod('GET');
+                clenseAndMatchRequest.setHeader('Authorization', authorizationToken);
+
+                Map<String, String> parameterStrings = new Map<String, String>();
+
+                parameterStrings.put('CountryISOAlpha2Code', dnbDirectMatchRequest.CountryISOAlpha2Code);
+
+                parameterStrings.put('DUNSNumber', dnbDirectMatchRequest.DUNSNumber);
+                parameterStrings.put('SubjectName', dnbDirectMatchRequest.SubjectName);
+                parameterStrings.put('StreetAddressLine-1', dnbDirectMatchRequest.StreetAddressLine1);
+                parameterStrings.put('StreetAddressLine-2', dnbDirectMatchRequest.StreetAddressLine2);
+                parameterStrings.put('PrimaryTownName', dnbDirectMatchRequest.PrimaryTownName);
+                parameterStrings.put('TerritoryName', dnbDirectMatchRequest.TerritoryName);
+                parameterStrings.put('FullPostalCode', dnbDirectMatchRequest.FullPostalCode);
+
+                if(dnbDirectMatchRequest.SingleResolution == true) {
+                    parameterStrings.put('CandidateMaximumQuantity', '1');
+                }
+
+                parameterStrings.put('cleansematch', 'true');
+
+                clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/V6.0/organizations?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
+
+                Http clenseAndMatchCallout = new Http();
+
+                HTTPResponse cleanseAndMatchResponse = clenseAndMatchCallout.send(clenseAndMatchRequest);
+
+                // Dear DNB - why did you send a $ as a variable name?
+                String jsonResponse = cleanseAndMatchResponse.getBody();
+                jsonResponse = jsonResponse.replaceAll('"\\$":', '"value":');
+
+                System.debug('### ' + jsonResponse);
+
+                CreditWSUtil_DNBDirect_Match cleanseAndMatchResult = CreditWSUtil_DNBDirect_Match.parse(jsonResponse);
+
+                System.debug('### ' + cleanseAndMatchResult);
+
+                if(cleanseAndMatchResult != null) {
+
+                    if (cleanseAndMatchResult.GetCleanseMatchResponse.TransactionResult.ResultID != null && (cleanseAndMatchResult.GetCleanseMatchResponse.TransactionResult.ResultID).equalsIgnoreCase('CM000')) {
+
+                        if(cleanseAndMatchResult.GetCleanseMatchResponse.GetCleanseMatchResponseDetail.MatchResponseDetail.MatchDataCriteriaText != null &&
+                                (cleanseAndMatchResult.GetCleanseMatchResponse.GetCleanseMatchResponseDetail.MatchResponseDetail.MatchDataCriteriaText.value).equalsIgnoreCase('DUNS Number Lookup')) {
+
+                            dnbDirectMatchResponse.exactDUNSMatch = true;
+
+                        }
+
+                        for(CreditWSUtil_DNBDirect_Match.MatchCandidate result : cleanseAndMatchResult.GetCleanseMatchResponse.GetCleanseMatchResponseDetail.MatchResponseDetail.MatchCandidate) {
+
+                            DNBDirect_MatchCandidate matchCandidate = new DNBDirect_MatchCandidate();
+
+                            List<JaroWinklerDistance.StringPair> matchComparison = new List<JaroWinklerDistance.StringPair>();
+
+                            if(result.DUNSNumber != null) matchCandidate.DUNSNumber = result.DUNSNumber;
+                            if(result.OrganizationPrimaryName.OrganizationName.value != null) matchCandidate.OrganizationName = result.OrganizationPrimaryName.OrganizationName.value; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.SubjectName, matchCandidate.OrganizationName));
+                            if(result.PrimaryAddress.StreetAddressLine != null && result.PrimaryAddress.StreetAddressLine.size() > 0) matchCandidate.StreetAddressLine = result.PrimaryAddress.StreetAddressLine[0].LineText; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.StreetAddressLine1, matchCandidate.StreetAddressLine));
+                            if(result.PrimaryAddress.PrimaryTownName != null) matchCandidate.PrimaryTownName = result.PrimaryAddress.PrimaryTownName; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.PrimaryTownName, matchCandidate.PrimaryTownName));
+                            if(result.PrimaryAddress.PostalCode != null) matchCandidate.PostalCode = result.PrimaryAddress.PostalCode; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.FullPostalCode, matchCandidate.PostalCode));
+                            if(result.PrimaryAddress.TerritoryAbbreviatedName != null) matchCandidate.TerritoryAbbreviatedName = result.PrimaryAddress.TerritoryAbbreviatedName; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.TerritoryName, matchCandidate.TerritoryAbbreviatedName));
+                            if(result.PrimaryAddress.CountryISOAlpha2Code != null) matchCandidate.CountryISOAlpha2Code = result.PrimaryAddress.CountryISOAlpha2Code;
+                            if(result.MatchQualityInformation.ConfidenceCodeValue != null) matchCandidate.ConfidenceCodeValue = result.MatchQualityInformation.ConfidenceCodeValue;
+                            if(result.MatchQualityInformation.MatchGradeText != null) matchCandidate.MatchGradeText = result.MatchQualityInformation.MatchGradeText;
+
+                            matchCandidate.WEXMatchScore = JaroWinklerDistance.getAverageScoreOfList(matchComparison);
+                            System.debug('### WEX MATCH SCORE: ' + matchCandidate.WEXMatchScore);
+
+                            for(CreditWSUtil_DNBDirect_Match.MatchGradeComponent matchGradeComponent : result.MatchQualityInformation.MatchGradeComponent) {
+
+                                if((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Name')) {
+                                    matchCandidate.NameMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                }
+
+                            }
+
+                            if(result.MatchQualityInformation.MatchDataProfileComponent != null) {
+
+                                for (CreditWSUtil_DNBDirect_Match.MatchDataProfileComponent matchDataProfileComponent : result.MatchQualityInformation.MatchDataProfileComponent) {
+
+                                    if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('Name')) {
+                                        matchCandidate.NameMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                    }
+                                    if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('Street Number')) {
+                                        matchCandidate.StreetNumberMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                    }
+                                    if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('Street Name')) {
+                                        matchCandidate.StreetNameMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                    }
+                                    if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('City')) {
+                                        matchCandidate.CityMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                    }
+                                    if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('State')) {
+                                        matchCandidate.StateMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                    }
+                                    if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('Postal Code')) {
+                                        matchCandidate.PostalCodeMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                    }
+
+                                }
+
+                            }
+
+                            dnbDirectMatchResponse.matchCandidates.add(matchCandidate);
+
+                        }
+
+                    }
+                    else {
+
+                        throw new dnbCalloutException('### Error: Unable to get DNB result: ' + cleanseAndMatchResponse.getBody());
+
+                    }
+
+                }
+
+            }
+
+        }
+        catch(Exception e) {
+            System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
+        }
+
+        return dnbDirectMatchResponse;
+
+    }
+
+    //TODO DELETE ME AFTER CA NEW MODEL RELEASED
+    // This method takes in a DNB SBRI request, with a DUNS number,
+    // and performs the call-out
+    public static DNBSBRIResponse getSBRIScore(DNBSBRIRequest dnbSBRIRequest) {
+
+        try {
+
+            DNBSBRIResponse dnbSBRIResponse = new DNBSBRIResponse();
+
+            CreditWSUtil_DNBSBRI.prodOrderRequest_2 dnbSBRICalloutRequest = new CreditWSUtil_DNBSBRI.prodOrderRequest_2();
+
+            // TODO - Move to custom setting
+            dnbSBRICalloutRequest.UserId = dnbSBRIRequest.UserId;
+            dnbSBRICalloutRequest.Password = dnbSBRIRequest.Password;
+
+            // Create an order request for the SBRI product with the associated DUNS
+            dnbSBRICalloutRequest.Orders = new CreditWSUtil_DNBSBRI.Orders();
+
+            dnbSBRICalloutRequest.Orders.DnB_DUNS_Number = dnbSBRIRequest.DnB_DUNS_Number;
+            dnbSBRICalloutRequest.Orders.Product = dnbSBRIRequest.Product;
+            dnbSBRICalloutRequest.Orders.Product_Type = dnbSBRIRequest.Product_Type;
+
+            // This is weird, because it lets you get the results by mail, like an ordering
+            // system - so you need to tell it to give you a response directly back
+            dnbSBRICalloutRequest.Immediate_Delivery = new CreditWSUtil_DNBSBRI.Immediate_Delivery();
+
+            dnbSBRICalloutRequest.Immediate_Delivery.Mode = dnbSBRIRequest.Mode;
+            dnbSBRICalloutRequest.Immediate_Delivery.Format = dnbSBRIRequest.Format;
+
+            CreditWSUtil_DNBSBRI.DNB_WebServices_Providers_OrderAndInvestigations_OtherProducts_wsp_SBRI_V6_Port dnbSBRICallout = new CreditWSUtil_DNBSBRI.DNB_WebServices_Providers_OrderAndInvestigations_OtherProducts_wsp_SBRI_V6_Port();
+
+            if(!TestUtils.isRunningTest()) {
+                CreditWSUtil_DNBSBRI.customProduct8_Response dnbSBRICalloutResponse = dnbSBRICallout.ws_CustomProduct8(dnbSBRICalloutRequest);
+
+                System.debug('----------- ' + dnbSBRICalloutResponse);
+
+                if (dnbSBRICalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PWRD_SCR_CRD != null) {
+                    dnbSBRIResponse.SBRIScore = Integer.valueOf(dnbSBRICalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PWRD_SCR_CRD);
+                }
+                if (dnbSBRICalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_HI_CR_AMT != null) {
+                    dnbSBRIResponse.HighCreditLimit = Decimal.valueOf(dnbSBRICalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_HI_CR_AMT);
+                }
+            }
+            return dnbSBRIResponse;
+
+        }
+        catch(Exception e) {
+
+            System.debug('### ERROR: Unable to retrieve SBRI score');
+
+        }
+
+        return null;
+
+    }
+
+    public static DNBCAModelResponse getCAScore(DNBCAModelRequest dnbcaModelRequest) {
+
+        try {
+
+            DNBCAModelResponse dnbCAModelResponse = new DNBCAModelResponse();
+
+            CreditWSUtil_DNBCustomModel.prodOrderRequest_3 dnbCustomModelCalloutRequest = new CreditWSUtil_DNBCustomModel.prodOrderRequest_3();
+
+            dnbCustomModelCalloutRequest.UserId = dnbcaModelRequest.UserId;
+            dnbCustomModelCalloutRequest.Password = dnbcaModelRequest.Password;
+
+            // Create an order request for the SBRI product with the associated DUNS
+            dnbCustomModelCalloutRequest.Orders = new CreditWSUtil_DNBCustomModel.Orders();
+
+            dnbCustomModelCalloutRequest.Orders.DnB_DUNS_Number = dnbcaModelRequest.DnB_DUNS_Number;
+            dnbCustomModelCalloutRequest.Orders.Product = dnbcaModelRequest.Product;
+            dnbCustomModelCalloutRequest.Orders.Product_Type = dnbcaModelRequest.Product_Type;
+
+
+            dnbCustomModelCalloutRequest.Immediate_Delivery = new CreditWSUtil_DNBCustomModel.Immediate_Delivery();
+
+            dnbCustomModelCalloutRequest.Immediate_Delivery.Mode = dnbcaModelRequest.Mode;
+            dnbCustomModelCalloutRequest.Immediate_Delivery.Format = dnbcaModelRequest.Format;
+
+            CreditWSUtil_DNBCustomModel.ArrayOfAdditionalFields additionalFieldsArray = new CreditWSUtil_DNBCustomModel.ArrayOfAdditionalFields();
+
+            additionalFieldsArray.Input_Id = dnbcaModelRequest.InputID;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem = new CreditWSUtil_DNBCustomModel.AdditionalFields[]{};
+
+            CreditWSUtil_DNBCustomModel.AdditionalFields requestedCreditLine = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+            requestedCreditLine.FieldName = 'req_cr_lmt';
+            requestedCreditLine.FieldValue = dnbcaModelRequest.RequestedCreditLimit;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(requestedCreditLine);
+
+            CreditWSUtil_DNBCustomModel.AdditionalFields platforms = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+            platforms.FieldName = 'Platforms';
+            platforms.FieldValue = dnbCAModelRequest.Platforms;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(platforms);
+
+            if (dnbcaModelRequest.Platforms.equalsIgnoreCase('OTR')) {
+
+                CreditWSUtil_DNBCustomModel.AdditionalFields numberOfTrucks = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+                numberOfTrucks.FieldName = 'number_of_trucks';
+                numberOfTrucks.FieldValue = dnbCAModelRequest.NumberOfTrucks;
+
+                additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(numberOfTrucks);
+
+                CreditWSUtil_DNBCustomModel.AdditionalFields teamDriverOrSlipSeat = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+                teamDriverOrSlipSeat.FieldName = 'team_drivers_slip_seat';
+                teamDriverOrSlipSeat.FieldValue = dnbCAModelRequest.TeamDriversSlipSeat;
+
+                additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(teamDriverOrSlipSeat);
+            }
+
+            if (dnbcaModelRequest.Platforms.equalsIgnoreCase('FLEET')) {
+
+                CreditWSUtil_DNBCustomModel.AdditionalFields bocaType = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+                bocaType.FieldName = 'boca_type';
+                bocaType.FieldValue = String.valueOf(dnbcaModelRequest.BOCAType);
+
+                additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(bocaType);
+            }
+
+            dnbCustomModelCalloutRequest.AdditionalFields = additionalFieldsArray;
+
+            CreditWSUtil_DNBCustomModel.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd12_wsp_CustomProducts12_Port dnbCustomModelCallOut = new CreditWSUtil_DNBCustomModel.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd12_wsp_CustomProducts12_Port();
+
+            dnbCustomModelCallOut.endpoint_x = String.valueOf(dnbCACustomModelSettings.Endpoint_URL__c);
+            dnbCustomModelCallOut.timeout_x = 60000;
+
+            if(!TestUtils.isRunningTest()) {
+
+                System.debug('TEMP DNB full request' + dnbCustomModelCalloutRequest);
+                CreditWSUtil_DNBCustomModel.customProducts12_Response dnbCustomModelCalloutResponse = dnbCustomModelCallOut.ws_CustomProducts12(dnbCustomModelCalloutRequest);
+
+                if(dnbCustomModelCalloutResponse != null) {
+
+                    System.debug('DNB Custom Model Callout Response is not null.');
+
+                    dnbCAModelResponse.ModelUsed = dnbCAModelRequest.BOCAType;
+
+                    if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS != null) {
+
+                        // These integers are "implied decimals", hence the division by 10..
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_NEGV_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperienceNegative = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_NEGV_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperienceNegative != null) {
+                                dnbCAModelResponse.NumberPaymentExperiencesNegative = (numberPaymentExperienceNegative / 10);
+                            }
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SATY_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperiencesSatisfactory = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SATY_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperiencesSatisfactory != null) {
+                                dnbCAModelResponse.NumberPaymentExperiencesSatisfactory = (numberPaymentExperiencesSatisfactory / 10);
+                            }
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SLOW_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperiencesSlow = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SLOW_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperiencesSlow != null) {
+                                dnbCAModelResponse.NumberPaymentExperiencesSlow = (numberPaymentExperiencesSlow / 10);
+                            }
+                        }
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR != null && dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem != null && dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem[0] != null) {
+                            dnbCAModelResponse.FeinTaxID = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem[0].USDS_TAX_ID.ArrayOfstringItem[0];
+                        }
+                        dnbCAModelResponse.DunsNumber = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.DUNS_NBR;
+                        dnbCAModelResponse.PrimaryName = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_NME;
+                        dnbCAModelResponse.AddressLine = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.ADR_LINE.ArrayOfstringItem[0];
+                        dnbCAModelResponse.PostalTown = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.POST_TOWN;
+                        dnbCAModelResponse.PrimaryGeographicArea = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_GEO_AREA;
+                        dnbCAModelResponse.PostalCode = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.POST_CODE;
+                        dnbCAModelResponse.CountryCode = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CTRY_CD;
+                        dnbCAModelResponse.GlobalUltimateDUNS = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.GBL_ULT_PNT_DUNS;
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PAYD_SCR != null) {
+                            dnbCAModelResponse.Paydex = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PAYD_SCR);
+                        }
+                        dnbCAModelResponse.PrimarySIC = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_SIC;
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_CURR_CNTL_YR != null) {
+                            dnbCAModelResponse.ControlYear = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_CURR_CNTL_YR);
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_STRT_YR != null) {
+                            dnbCAModelResponse.YearStarted = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_STRT_YR);
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.TOT_PMT != null) {
+                            dnbCAModelResponse.NumberOfTrades = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.TOT_PMT);
+                        }
+
+                        // TODO - Add USDS_BKCY_FILG_DT for Bankruptcy
+
+                        if(null != dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore) {
+
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore != null) {
+                                dnbCAModelResponse.RawScore = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore);
+                            }
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount != null) {
+                                System.debug(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0]);
+                                dnbCAModelResponse.RecommendedCreditLimitAmount = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount);
+                            }
+
+                            dnbCAModelResponse.ReasonCodes = new String[]{};
+
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary != null) {
+
+                                for(CreditWSUtil_DNBCustomModel.ScoreCommentary scoreCommentary : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary) {
+
+                                    if(scoreCommentary.CommentaryText.DNBCodeValue != null) {
+                                        List<DNB_Custom_Model_Reason_Code__mdt> dnbCustomModelReasonCodes = [SELECT Reason_Code_Description__c FROM DNB_Custom_Model_Reason_Code__mdt WHERE Reason_Code__c =: scoreCommentary.CommentaryText.DNBCodeValue];
+
+                                        if(dnbCustomModelReasonCodes.size() == 1) {
+
+                                            dnbCAModelResponse.ReasonCodes.add(String.valueOf(scoreCommentary.CommentaryText.DNBCodeValue) + ': ' + dnbCustomModelReasonCodes[0].Reason_Code_Description__c);
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes != null) {
+
+                            for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
+
+                                if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
+                                    dnbCAModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                }
+                                if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
+                                    dnbCAModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                }
+                                if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
+                                    dnbCAModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            return dnbCAModelResponse;
+
+        }
+        catch(Exception e) {
+
+            System.debug('### Error while reading response from DNB for CA: ' + e + ' Line Number: ' + e.getLineNumber());
+
+        }
+
+        return null;
+    }
+
+
+    //TODO DELETE ME AFTER CA NEW MODEL RELEASED
+    // This method takes in a DNB SBRI request, with a DUNS number,
+    // and performs the call-out
+    public static DNBCCSScoreResponse getCCSScore(DNBCCSScoreRequest dnbccsScoreRequest) {
+
+        try {
+
+            DNBCCSScoreResponse dnbccsScoreResponse = new DNBCCSScoreResponse();
+
+            CreditWSUtil_DNBCCS.prodOrderRequest_3 dnbCCSCalloutRequest = new CreditWSUtil_DNBCCS.prodOrderRequest_3();
+
+            // TODO - Move to custom setting
+            dnbCCSCalloutRequest.UserId = dnbccsScoreRequest.UserId;
+            dnbCCSCalloutRequest.Password = dnbccsScoreRequest.Password;
+
+            // Create an order request for the SBRI product with the associated DUNS
+            dnbCCSCalloutRequest.Orders = new CreditWSUtil_DNBCCS.Orders();
+
+            dnbCCSCalloutRequest.Orders.DnB_DUNS_Number = dnbccsScoreRequest.DnB_DUNS_Number;
+            dnbCCSCalloutRequest.Orders.Product = dnbccsScoreRequest.Product;
+            dnbCCSCalloutRequest.Orders.Product_Type = dnbccsScoreRequest.Product_Type;
+
+            // This is weird, because it lets you get the results by mail, like an ordering
+            // system - so you need to tell it to give you a response directly back
+            dnbCCSCalloutRequest.Immediate_Delivery = new CreditWSUtil_DNBCCS.Immediate_Delivery();
+
+            dnbCCSCalloutRequest.Immediate_Delivery.Mode = dnbccsScoreRequest.Mode;
+            dnbCCSCalloutRequest.Immediate_Delivery.Format = dnbccsScoreRequest.Format;
+
+            CreditWSUtil_DNBCCS.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd1_5_V12_wsp_CustomProducts1_5_V13_Port dnbCCSCallout = new CreditWSUtil_DNBCCS.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd1_5_V12_wsp_CustomProducts1_5_V13_Port();
+
+            if(!TestUtils.isRunningTest()) {
+
+                CreditWSUtil_DNBCCS.customProducts1_5_Response dnbCCSCalloutResponse = dnbCCSCallout.ws_CustomProducts1_5(dnbCCSCalloutRequest);
+
+                if(dnbCCSCalloutResponse != null) {
+
+                    if(dnbCCSCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.DELQ_SCR_ENTR.SCR_GRP.SCR != null) {
+                        dnbccsScoreResponse.RawScore = Integer.valueOf(dnbCCSCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.DELQ_SCR_ENTR.SCR_GRP.SCR);
+                    }
+
+                    if(dnbCCSCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.HIGH_CR != null) {
+                        dnbccsScoreResponse.HighCreditAmount = Integer.valueOf(dnbCCSCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.HIGH_CR);
+                    }
+
+                }
+
+
+            }
+            return dnbccsScoreResponse;
+
+        }
+        catch(Exception e) {
+
+            System.debug('### ERROR: Unable to retrieve SBRI score');
+
+            String errorCode = WEXDEVErrorReporting.reportInternalError(APPLICATION_NAME, ApexPages.currentPage().getUrl(), UserInfo.getUserId(), e);
+
+        }
+
+        return null;
+
+    }
+
+    public static DNBNAFleetModelResponse getNAFleetScore(DNBNAFleetModelRequest dnbNAFleetModelRequest) {
+
+        try {
+
+            DNBNAFleetModelResponse dnbNAFleetModelResponse = new DNBNAFleetModelResponse();
+
+            CreditWSUtil_DNBCustomModel.prodOrderRequest_3 dnbCustomModelCalloutRequest = new CreditWSUtil_DNBCustomModel.prodOrderRequest_3();
+
+            dnbCustomModelCalloutRequest.UserId = dnbNAFleetModelRequest.UserId;
+            dnbCustomModelCalloutRequest.Password = dnbNAFleetModelRequest.Password;
+
+            // Create an order request for the SBRI product with the associated DUNS
+            dnbCustomModelCalloutRequest.Orders = new CreditWSUtil_DNBCustomModel.Orders();
+
+            dnbCustomModelCalloutRequest.Orders.DnB_DUNS_Number = dnbNAFleetModelRequest.DnB_DUNS_Number;
+            dnbCustomModelCalloutRequest.Orders.Product = dnbNAFleetModelRequest.Product;
+            dnbCustomModelCalloutRequest.Orders.Product_Type = dnbNAFleetModelRequest.Product_Type;
+
+
+            dnbCustomModelCalloutRequest.Immediate_Delivery = new CreditWSUtil_DNBCustomModel.Immediate_Delivery();
+
+            dnbCustomModelCalloutRequest.Immediate_Delivery.Mode = dnbNAFleetModelRequest.Mode;
+            dnbCustomModelCalloutRequest.Immediate_Delivery.Format = dnbNAFleetModelRequest.Format;
+
+            CreditWSUtil_DNBCustomModel.ArrayOfAdditionalFields additionalFieldsArray = new CreditWSUtil_DNBCustomModel.ArrayOfAdditionalFields();
+
+            additionalFieldsArray.Input_Id = dnbNAFleetModelRequest.InputID;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem = new CreditWSUtil_DNBCustomModel.AdditionalFields[]{};
+
+            CreditWSUtil_DNBCustomModel.AdditionalFields requestedCreditLine = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+            requestedCreditLine.FieldName = 'req_cr_lmt';
+            requestedCreditLine.FieldValue = dnbNAFleetModelRequest.RequestedCreditLimit;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(requestedCreditLine);
+
+            CreditWSUtil_DNBCustomModel.AdditionalFields bocaType = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+            bocaType.FieldName = 'boca_type';
+            bocaType.FieldValue = String.valueOf(dnbNAFleetModelRequest.BOCAType);
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(bocaType);
+
+            dnbCustomModelCalloutRequest.AdditionalFields = additionalFieldsArray;
+
+            CreditWSUtil_DNBCustomModel.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd12_wsp_CustomProducts12_Port dnbCustomModelCallOut = new CreditWSUtil_DNBCustomModel.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd12_wsp_CustomProducts12_Port();
+
+            dnbCustomModelCallOut.endpoint_x = String.valueOf(dnbCustomModelSettings.Endpoint_URL__c);
+            dnbCustomModelCallOut.timeout_x = 60000;
+
+            if(!TestUtils.isRunningTest()) {
+                CreditWSUtil_DNBCustomModel.customProducts12_Response dnbCustomModelCalloutResponse = dnbCustomModelCallOut.ws_CustomProducts12(dnbCustomModelCalloutRequest);
+
+                if(dnbCustomModelCalloutResponse != null) {
+
+                    System.debug('DNB Custom Model Callout Response is not null.');
+                    
+                    dnbNAFleetModelResponse.ModelUsed = dnbNAFleetModelRequest.BOCAType;
+
+                    if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS != null) {
+
+                        // These integers are "implied decimals", hence the division by 10..
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_NEGV_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperienceNegative = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_NEGV_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperienceNegative != null) {
+                                dnbNAFleetModelResponse.NumberPaymentExperiencesNegative = (numberPaymentExperienceNegative / 10);
+                            }
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SATY_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperiencesSatisfactory = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SATY_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperiencesSatisfactory != null) {
+                                dnbNAFleetModelResponse.NumberPaymentExperiencesSatisfactory = (numberPaymentExperiencesSatisfactory / 10);
+                            }
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SLOW_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperiencesSlow = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SLOW_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperiencesSlow != null) {
+                                dnbNAFleetModelResponse.NumberPaymentExperiencesSlow = (numberPaymentExperiencesSlow / 10);
+                            }
+                        }
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR != null && dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem != null && dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem[0] != null) {
+                            dnbNAFleetModelResponse.FeinTaxID = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem[0].USDS_TAX_ID.ArrayOfstringItem[0];
+                        }
+                        dnbNAFleetModelResponse.DunsNumber = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.DUNS_NBR;
+                        dnbNAFleetModelResponse.PrimaryName = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_NME;
+                        dnbNAFleetModelResponse.AddressLine = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.ADR_LINE.ArrayOfstringItem[0];
+                        dnbNAFleetModelResponse.PostalTown = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.POST_TOWN;
+                        dnbNAFleetModelResponse.PrimaryGeographicArea = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_GEO_AREA;
+                        dnbNAFleetModelResponse.PostalCode = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.POST_CODE;
+                        dnbNAFleetModelResponse.CountryCode = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CTRY_CD;
+                        dnbNAFleetModelResponse.GlobalUltimateDUNS = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.GBL_ULT_PNT_DUNS;
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PAYD_SCR != null) {
+                            dnbNAFleetModelResponse.Paydex = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PAYD_SCR);
+                        }
+                        dnbNAFleetModelResponse.PrimarySIC = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_SIC;
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_CURR_CNTL_YR != null) {
+                            dnbNAFleetModelResponse.ControlYear = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_CURR_CNTL_YR);
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_STRT_YR != null) {
+                            dnbNAFleetModelResponse.YearStarted = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_STRT_YR);
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.TOT_PMT != null) {
+                            dnbNAFleetModelResponse.NumberOfTrades = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.TOT_PMT);
+                        }
+
+                        // TODO - Add USDS_BKCY_FILG_DT for Bankruptcy
+
+                        if(null != dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore) {                           
+
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore != null) {
+                                dnbNAFleetModelResponse.RawScore = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore);
+                            }
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount != null) {
+                                System.debug(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0]);
+                                dnbNAFleetModelResponse.RecommendedCreditLimitAmount = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount);
+                            }
+
+                            dnbNAFleetModelResponse.ReasonCodes = new String[]{};
+
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary != null) {
+               
+                                for(CreditWSUtil_DNBCustomModel.ScoreCommentary scoreCommentary : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary) {
+
+                                    if(scoreCommentary.CommentaryText.DNBCodeValue != null) {
+                                        List<DNB_Custom_Model_Reason_Code__mdt> dnbCustomModelReasonCodes = [SELECT Reason_Code_Description__c FROM DNB_Custom_Model_Reason_Code__mdt WHERE Reason_Code__c =: scoreCommentary.CommentaryText.DNBCodeValue];
+
+                                        if(dnbCustomModelReasonCodes.size() == 1) {
+
+                                            dnbNAFleetModelResponse.ReasonCodes.add(String.valueOf(scoreCommentary.CommentaryText.DNBCodeValue) + ': ' + dnbCustomModelReasonCodes[0].Reason_Code_Description__c);
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                        }
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes != null) {
+
+                            for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
+
+                                if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
+                                    dnbNAFleetModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                }
+                                if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
+                                    dnbNAFleetModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                }
+                                if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
+                                    dnbNAFleetModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+
+            return dnbNAFleetModelResponse;
+
+        }
+        catch(Exception e) {
+
+            System.debug('### Error while reading response from DNB: ' + e + ' Line Number: ' + e.getLineNumber());
+
+        }
+
+        return null;
+
+    }
+
+    public static DNBOTRModelResponse getOTRScore(DNBOTRModelRequest dnbOTRModelRequest) {
+
+        try {
+
+            DNBOTRModelResponse dnbOTRModelResponse = new DNBOTRModelResponse();
+
+            CreditWSUtil_DNBCustomModel.prodOrderRequest_3 dnbCustomModelCalloutRequest = new CreditWSUtil_DNBCustomModel.prodOrderRequest_3();
+
+            dnbCustomModelCalloutRequest.UserId = dnbOTRModelRequest.UserId;
+            dnbCustomModelCalloutRequest.Password = dnbOTRModelRequest.Password;
+
+            // Create an order request for the SBRI product with the associated DUNS
+            dnbCustomModelCalloutRequest.Orders = new CreditWSUtil_DNBCustomModel.Orders();
+
+            dnbCustomModelCalloutRequest.Orders.DnB_DUNS_Number = dnbOTRModelRequest.DnB_DUNS_Number;
+            dnbCustomModelCalloutRequest.Orders.Product = dnbOTRModelRequest.Product;
+            dnbCustomModelCalloutRequest.Orders.Product_Type = dnbOTRModelRequest.Product_Type;
+
+
+            dnbCustomModelCalloutRequest.Immediate_Delivery = new CreditWSUtil_DNBCustomModel.Immediate_Delivery();
+
+            dnbCustomModelCalloutRequest.Immediate_Delivery.Mode = dnbOTRModelRequest.Mode;
+            dnbCustomModelCalloutRequest.Immediate_Delivery.Format = dnbOTRModelRequest.Format;
+
+            CreditWSUtil_DNBCustomModel.ArrayOfAdditionalFields additionalFieldsArray = new CreditWSUtil_DNBCustomModel.ArrayOfAdditionalFields();
+
+            additionalFieldsArray.Input_Id = dnbOTRModelRequest.InputID;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem = new CreditWSUtil_DNBCustomModel.AdditionalFields[]{};
+
+            CreditWSUtil_DNBCustomModel.AdditionalFields requestedCreditLine = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+            requestedCreditLine.FieldName = 'req_cr_lmt';
+            requestedCreditLine.FieldValue = dnbOTRModelRequest.RequestedCreditLimit;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(requestedCreditLine);
+
+            CreditWSUtil_DNBCustomModel.AdditionalFields numberOfTrucks = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+            numberOfTrucks.FieldName = 'number_of_trucks';
+            numberOfTrucks.FieldValue = dnbOTRModelRequest.NumberOfTrucks;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(numberOfTrucks);
+
+            CreditWSUtil_DNBCustomModel.AdditionalFields teamDriverOrSlipSeat = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+            teamDriverOrSlipSeat.FieldName = 'team_drivers_slip_seat';
+            teamDriverOrSlipSeat.FieldValue = dnbOTRModelRequest.TeamDriversSlipSeat;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(teamDriverOrSlipSeat);
+
+            dnbCustomModelCalloutRequest.AdditionalFields = additionalFieldsArray;
+
+            CreditWSUtil_DNBCustomModel.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd12_wsp_CustomProducts12_Port dnbCustomModelCallOut = new CreditWSUtil_DNBCustomModel.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd12_wsp_CustomProducts12_Port();
+
+            dnbCustomModelCallOut.endpoint_x = String.valueOf(dnbCustomModelSettings.Endpoint_URL__c);
+            dnbCustomModelCallOut.timeout_x = 60000;
+
+            if(!TestUtils.isRunningTest()) {
+                CreditWSUtil_DNBCustomModel.customProducts12_Response dnbCustomModelCalloutResponse = dnbCustomModelCallOut.ws_CustomProducts12(dnbCustomModelCalloutRequest);
+
+                if(dnbCustomModelCalloutResponse != null) {
+
+                    if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS != null) {
+
+                        // These integers are "implied decimals", hence the division by 10..
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_NEGV_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperienceNegative = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_NEGV_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperienceNegative != null) {
+                                dnbOTRModelResponse.NumberPaymentExperiencesNegative = (numberPaymentExperienceNegative / 10);
+                            }
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SATY_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperiencesSatisfactory = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SATY_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperiencesSatisfactory != null) {
+                                dnbOTRModelResponse.NumberPaymentExperiencesSatisfactory = (numberPaymentExperiencesSatisfactory / 10);
+                            }
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SLOW_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperiencesSlow = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SLOW_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperiencesSlow != null) {
+                                dnbOTRModelResponse.NumberPaymentExperiencesSlow = (numberPaymentExperiencesSlow / 10);
+                            }
+                        }
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR != null && dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem != null && dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem[0] != null) {
+                            dnbOTRModelResponse.FeinTaxID = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem[0].USDS_TAX_ID.ArrayOfstringItem[0];
+                        }
+                        dnbOTRModelResponse.DunsNumber = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.DUNS_NBR;
+                        dnbOTRModelResponse.PrimaryName = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_NME;
+                        dnbOTRModelResponse.AddressLine = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.ADR_LINE.ArrayOfstringItem[0];
+                        dnbOTRModelResponse.PostalTown = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.POST_TOWN;
+                        dnbOTRModelResponse.PrimaryGeographicArea = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_GEO_AREA;
+                        dnbOTRModelResponse.PostalCode = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.POST_CODE;
+                        dnbOTRModelResponse.CountryCode = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CTRY_CD;
+                        dnbOTRModelResponse.GlobalUltimateDUNS = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.GBL_ULT_PNT_DUNS;
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PAYD_SCR != null) {
+                            dnbOTRModelResponse.Paydex = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PAYD_SCR);
+                        }
+                        dnbOTRModelResponse.PrimarySIC = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_SIC;
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_CURR_CNTL_YR != null) {
+                            dnbOTRModelResponse.ControlYear = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_CURR_CNTL_YR);
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_STRT_YR != null) {
+                            dnbOTRModelResponse.YearStarted = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_STRT_YR);
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.TOT_PMT != null) {
+                            dnbOTRModelResponse.NumberOfTrades = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.TOT_PMT);
+                        }
+
+                        // TODO - Add USDS_BKCY_FILG_DT for Bankruptcy
+                        if (dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment == null) {
+							System.debug('DNB Assessment from the response is null!');
+                        }
+                        else {
+                        
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore != null) {
+    
+                                if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore != null) {
+                                    dnbOTRModelResponse.RawScore = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore);
+                                }
+                                if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount != null) {
+                                    System.debug(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0]);
+                                    dnbOTRModelResponse.RecommendedCreditLimitAmount = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount);
+                                }
+    
+                                dnbOTRModelResponse.ReasonCodes = new String[]{};
+    
+                                if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary != null) {
+    
+                                    for(CreditWSUtil_DNBCustomModel.ScoreCommentary scoreCommentary : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary) {
+    
+                                        if(scoreCommentary.CommentaryText.DNBCodeValue != null) {
+                                            List<DNB_Custom_Model_Reason_Code__mdt> dnbCustomModelReasonCodes = [SELECT Reason_Code_Description__c FROM DNB_Custom_Model_Reason_Code__mdt WHERE Reason_Code__c =: scoreCommentary.CommentaryText.DNBCodeValue];
+    
+                                            if(dnbCustomModelReasonCodes.size() == 1) {
+    
+                                                dnbOTRModelResponse.ReasonCodes.add(String.valueOf(scoreCommentary.CommentaryText.DNBCodeValue) + ': ' + dnbCustomModelReasonCodes[0].Reason_Code_Description__c);
+    
+                                            }
+    
+                                        }
+    
+                                    }
+    
+                                }
+                            }
+                        
+
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes != null) {
+    
+                                for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
+    
+                                    if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
+                                        dnbOTRModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                    }
+                                    if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
+                                        dnbOTRModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                    }
+                                    if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
+                                        dnbOTRModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
+                                    }
+    
+                                }
+    
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            return dnbOTRModelResponse;
+
+        }
+        catch(Exception e) {
+
+            System.debug('### Error while reading response from DNB: ' + e + ' Line Number: ' + e.getLineNumber());
+
+        }
+
+        return null;
+
+    }
+
+    public static DNBCPModelResponse getCPScore(DNBCPModelRequest dnbCPModelRequest) {
+
+        try {
+
+            DNBCPModelResponse dnbCPModelResponse = new DNBCPModelResponse();
+
+            CreditWSUtil_DNBCustomModel.prodOrderRequest_3 dnbCustomModelCalloutRequest = new CreditWSUtil_DNBCustomModel.prodOrderRequest_3();
+
+            dnbCustomModelCalloutRequest.UserId = dnbCPModelRequest.UserId;
+            dnbCustomModelCalloutRequest.Password = dnbCPModelRequest.Password;
+
+            // Create an order request for the SBRI product with the associated DUNS
+            dnbCustomModelCalloutRequest.Orders = new CreditWSUtil_DNBCustomModel.Orders();
+
+            dnbCustomModelCalloutRequest.Orders.DnB_DUNS_Number = dnbCPModelRequest.DnB_DUNS_Number;
+            dnbCustomModelCalloutRequest.Orders.Product = dnbCPModelRequest.Product;
+            dnbCustomModelCalloutRequest.Orders.Product_Type = dnbCPModelRequest.Product_Type;
+
+
+            dnbCustomModelCalloutRequest.Immediate_Delivery = new CreditWSUtil_DNBCustomModel.Immediate_Delivery();
+
+            dnbCustomModelCalloutRequest.Immediate_Delivery.Mode = dnbCPModelRequest.Mode;
+            dnbCustomModelCalloutRequest.Immediate_Delivery.Format = dnbCPModelRequest.Format;
+
+            CreditWSUtil_DNBCustomModel.ArrayOfAdditionalFields additionalFieldsArray = new CreditWSUtil_DNBCustomModel.ArrayOfAdditionalFields();
+
+            additionalFieldsArray.Input_Id = dnbCPModelRequest.InputID;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem = new CreditWSUtil_DNBCustomModel.AdditionalFields[]{};
+
+            CreditWSUtil_DNBCustomModel.AdditionalFields requestedCreditLine = new CreditWSUtil_DNBCustomModel.AdditionalFields();
+            requestedCreditLine.FieldName = 'req_cr_lmt';
+            requestedCreditLine.FieldValue = dnbCPModelRequest.RequestedCreditLimit;
+
+            additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(requestedCreditLine);
+
+            dnbCustomModelCalloutRequest.AdditionalFields = additionalFieldsArray;
+
+            CreditWSUtil_DNBCustomModel.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd12_wsp_CustomProducts12_Port dnbCustomModelCallOut = new CreditWSUtil_DNBCustomModel.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd12_wsp_CustomProducts12_Port();
+
+            dnbCustomModelCallOut.endpoint_x = String.valueOf(dnbCustomModelSettings.Endpoint_URL__c);
+
+            if(!TestUtils.isRunningTest()) {
+                CreditWSUtil_DNBCustomModel.customProducts12_Response dnbCustomModelCalloutResponse = dnbCustomModelCallOut.ws_CustomProducts12(dnbCustomModelCalloutRequest);
+
+                if(dnbCustomModelCalloutResponse != null) {
+
+                    if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS != null) {
+
+                        // These integers are "implied decimals", hence the division by 10..
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_NEGV_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperienceNegative = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_NEGV_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperienceNegative != null) {
+                                dnbCPModelResponse.NumberPaymentExperiencesNegative = (numberPaymentExperienceNegative / 10);
+                            }
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SATY_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperiencesSatisfactory = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SATY_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperiencesSatisfactory != null) {
+                                dnbCPModelResponse.NumberPaymentExperiencesSatisfactory = (numberPaymentExperiencesSatisfactory / 10);
+                            }
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SLOW_PMT_EXPR_CNT != null) {
+                            Integer numberPaymentExperiencesSlow = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_SLOW_PMT_EXPR_CNT);
+
+                            if(numberPaymentExperiencesSlow != null) {
+                                dnbCPModelResponse.NumberPaymentExperiencesSlow = (numberPaymentExperiencesSlow / 10);
+                            }
+                        }
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR != null && dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem != null && dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem[0] != null) {
+                            dnbCPModelResponse.FeinTaxID = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_FEIN_CTR.ArrayOfUSDS_FEIN_CTRItem[0].USDS_TAX_ID.ArrayOfstringItem[0];
+                        }
+                        dnbCPModelResponse.DunsNumber = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.DUNS_NBR;
+                        dnbCPModelResponse.PrimaryName = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_NME;
+                        dnbCPModelResponse.AddressLine = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.ADR_LINE.ArrayOfstringItem[0];
+                        dnbCPModelResponse.PostalTown = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.POST_TOWN;
+                        dnbCPModelResponse.PrimaryGeographicArea = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_GEO_AREA;
+                        dnbCPModelResponse.PostalCode = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.POST_CODE;
+                        dnbCPModelResponse.CountryCode = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CTRY_CD;
+                        dnbCPModelResponse.GlobalUltimateDUNS = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.GBL_ULT_PNT_DUNS;
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PAYD_SCR != null) {
+                            dnbCPModelResponse.Paydex = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PAYD_SCR);
+                        }
+                        dnbCPModelResponse.PrimarySIC = dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.PRIM_SIC;
+
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_CURR_CNTL_YR != null) {
+                            dnbCPModelResponse.ControlYear = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_CURR_CNTL_YR);
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_STRT_YR != null) {
+                            dnbCPModelResponse.YearStarted = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.USDS_STRT_YR);
+                        }
+                        if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.TOT_PMT != null) {
+                            dnbCPModelResponse.NumberOfTrades = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.TOT_PMT);
+                        }
+
+                        // TODO - Add USDS_BKCY_FILG_DT for Bankruptcy
+                        if (dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment == null) {
+                            System.debug('DNB Assessment from the response is null!');
+                        }
+                        else {
+
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore != null) {
+
+                                if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore != null) {
+                                    dnbCPModelResponse.RawScore = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore);
+                                }
+                                if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount != null) {
+                                    System.debug(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0]);
+                                    dnbCPModelResponse.RecommendedCreditLimitAmount = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount);
+                                }
+
+                                dnbCPModelResponse.ReasonCodes = new String[]{};
+
+                                if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary != null) {
+
+                                    for(CreditWSUtil_DNBCustomModel.ScoreCommentary scoreCommentary : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary) {
+
+                                        if(scoreCommentary.CommentaryText.DNBCodeValue != null) {
+                                            List<DNB_Custom_Model_Reason_Code__mdt> dnbCustomModelReasonCodes = [SELECT Reason_Code_Description__c FROM DNB_Custom_Model_Reason_Code__mdt WHERE Reason_Code__c =: scoreCommentary.CommentaryText.DNBCodeValue];
+
+                                            if(dnbCustomModelReasonCodes.size() == 1) {
+
+                                                dnbCPModelResponse.ReasonCodes.add(String.valueOf(scoreCommentary.CommentaryText.DNBCodeValue) + ': ' + dnbCustomModelReasonCodes[0].Reason_Code_Description__c);
+
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+                            }
+
+
+                            if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes != null) {
+
+                                for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
+
+                                    if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
+                                        dnbCPModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                    }
+                                    if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
+                                        dnbCPModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                    }
+                                    if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
+                                        dnbCPModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            return dnbCPModelResponse;
+
+        }
+        catch(Exception e) {
+
+            System.debug('### Error while reading response from DNB: ' + e + ' Line Number: ' + e.getLineNumber());
+
+        }
+
+        return null;
+
+    }
+
+    //TODO DELETE ME AFTER CA NEW MODEL RELEASED
+    public class DNBSBRIRequest {
+
+        public String UserId { get; set; }
+        public String Password { get; set; }
+
+        public String DnB_DUNS_Number { get; set; }
+        public String Product { get; set; }
+        public String Product_Type { get; set; }
+        public String Mode { get; set; }
+        public String Format { get; set; }
+
+        public DNBSBRIRequest() {
+
+            this.UserId = dnbSettings.Username__c;
+            this.Password = dnbSettings.Password__c;
+
+            // These are the defaults retrieved from the
+            // DNB Toolkit site
+            this.Product = 'GACustomProduct8';
+            this.Product_Type = 'D';
+            this.Mode = 'DIRECT';
+            this.Format = 'XML';
+
+        }
+
+    }
+
+    //TODO DELETE ME AFTER CA NEW MODEL RELEASED
+    public class DNBSBRIResponse {
+
+        public Integer SBRIScore { get; set; }
+        public Decimal HighCreditLimit { get; set; }
+
+        public DNBSBRIResponse() {
+
+            this.SBRIScore = 0;
+            this.HighCreditLimit = 0.00;
+
+        }
+
+    }
+
+    public class DNBNAFleetModelRequest {
+
+        public String UserId { get; set; }
+        public String Password { get; set; }
+
+        public String DnB_DUNS_Number { get; set; }
+
+        public String Product { get; set; }
+        public String Product_Type { get; set; }
+        public String Mode { get; set; }
+        public String Format { get; set; }
+
+        public Integer BOCAType { get; set; }
+        public String InputID { get; set; }
+        public String RequestedCreditLimit { get; set; }
+
+        public DNBNAFleetModelRequest() {
+
+            // Always the value we send for the NA Fleet model
+            this.BOCAType = 1;
+            this.InputID = 'WEX_FLT_01';
+
+            this.UserId = dnbCustomModelSettings.Username__c;
+            this.Password = dnbCustomModelSettings.Password__c;
+
+            // These are the defaults retrieved from the
+            // DNB Toolkit site
+            this.Product = 'gacustomproduct12';
+            this.Product_Type = 'D';
+            this.Mode = 'DIRECT';
+            this.Format = 'XML';
+
+        }
+
+    }
+
+    public class DNBNAFleetModelResponse {
+
+        public Integer RawScore { get; set; }
+        public Integer RecommendedCreditLimitAmount { get; set; }
+        public String[] ReasonCodes { get; set; }
+        public Integer NumberOfTrades { get; set; }
+        public Integer ModelUsed { get; set; }
+        public String PrimarySIC { get; set; }
+        public String DunsNumber { get; set; }
+        public String GlobalUltimateDUNS { get; set; }
+        public String PrimaryName { get; set; }
+        public String AddressLine { get; set; }
+        public String PostalTown { get; set; }
+        public String PrimaryGeographicArea { get; set; }
+        public String PostalCode { get; set; }
+        public String CountryCode { get; set; }
+        public Integer SBFEHighCredit { get; set; }
+        public Integer CSADHighCredit { get; set; }
+        public Integer SBRICardScore { get; set; }
+        public Integer BankruptcyDateOfFiling { get; set; }
+        public String FeinTaxID { get; set; }
+        public Integer Paydex { get; set; }
+        public Integer ControlYear { get; set; }
+        public Integer YearStarted { get; set; }
+        public Integer NumberPaymentExperiencesNegative { get; set; }
+        public Integer NumberPaymentExperiencesSlow { get; set; }
+        public Integer NumberPaymentExperiencesSatisfactory { get; set; }
+
+    }
+
+    public class DNBOTRModelRequest {
+
+        public String UserId { get; set; }
+        public String Password { get; set; }
+
+        public String DnB_DUNS_Number { get; set; }
+
+        public String Product { get; set; }
+        public String Product_Type { get; set; }
+        public String Mode { get; set; }
+        public String Format { get; set; }
+
+        public String InputID { get; set; }
+
+        public String NumberOfTrucks { get; set; }
+        public String TeamDriversSlipSeat { get; set; }
+        public String RequestedCreditLimit { get; set; }
+
+        public DNBOTRModelRequest() {
+
+            // Always the value we send for the NA Fleet model
+            this.InputID = 'WEX_OTR_01';
+
+            this.UserId = dnbCustomModelSettings.Username__c;
+            this.Password = dnbCustomModelSettings.Password__c;
+
+            // These are the defaults retrieved from the
+            // DNB Toolkit site
+            this.Product = 'gacustomproduct12';
+            this.Product_Type = 'D';
+            this.Mode = 'DIRECT';
+            this.Format = 'XML';
+
+        }
+
+    }
+
+    public class DNBOTRModelResponse {
+
+        public Integer RawScore { get; set; }
+        public Integer RecommendedCreditLimitAmount { get; set; }
+        public String[] ReasonCodes { get; set; }
+        public Integer NumberOfTrades { get; set; }
+        public String PrimarySIC { get; set; }
+        public String DunsNumber { get; set; }
+        public String GlobalUltimateDUNS { get; set; }
+        public String PrimaryName { get; set; }
+        public String AddressLine { get; set; }
+        public String PostalTown { get; set; }
+        public String PrimaryGeographicArea { get; set; }
+        public String PostalCode { get; set; }
+        public String CountryCode { get; set; }
+        public Integer SBFEHighCredit { get; set; }
+        public Integer CSADHighCredit { get; set; }
+        public Integer SBRICardScore { get; set; }
+        public String FeinTaxID { get; set; }
+        public Integer Paydex { get; set; }
+        public Integer ControlYear { get; set; }
+        public Integer YearStarted { get; set; }
+        public Integer NumberPaymentExperiencesNegative { get; set; }
+        public Integer NumberPaymentExperiencesSlow { get; set; }
+        public Integer NumberPaymentExperiencesSatisfactory { get; set; }
+
+    }
+
+    public class DNBCPModelRequest {
+
+        public String UserId { get; set; }
+        public String Password { get; set; }
+
+        public String DnB_DUNS_Number { get; set; }
+
+        public String Product { get; set; }
+        public String Product_Type { get; set; }
+        public String Mode { get; set; }
+        public String Format { get; set; }
+
+        public String InputID { get; set; }
+        public String RequestedCreditLimit { get; set; }
+
+        public DNBCPModelRequest() {
+
+            // Always the value we send for the NA Fleet model
+            this.InputID = 'WEX_MCD_01';
+
+            this.UserId = dnbCustomModelSettings.Username__c;
+            this.Password = dnbCustomModelSettings.Password__c;
+
+            // These are the defaults retrieved from the
+            // DNB Toolkit site
+            this.Product = 'gacustomproduct12';
+            this.Product_Type = 'D';
+            this.Mode = 'DIRECT';
+            this.Format = 'XML';
+
+        }
+
+    }
+
+    public class DNBCPModelResponse {
+
+        public Integer RawScore { get; set; }
+        public Integer RecommendedCreditLimitAmount { get; set; }
+        public String[] ReasonCodes { get; set; }
+        public Integer NumberOfTrades { get; set; }
+        public String PrimarySIC { get; set; }
+        public String DunsNumber { get; set; }
+        public String GlobalUltimateDUNS { get; set; }
+        public String PrimaryName { get; set; }
+        public String AddressLine { get; set; }
+        public String PostalTown { get; set; }
+        public String PrimaryGeographicArea { get; set; }
+        public String PostalCode { get; set; }
+        public String CountryCode { get; set; }
+        public Integer SBFEHighCredit { get; set; }
+        public Integer CSADHighCredit { get; set; }
+        public Integer SBRICardScore { get; set; }
+        public String FeinTaxID { get; set; }
+        public Integer Paydex { get; set; }
+        public Integer ControlYear { get; set; }
+        public Integer YearStarted { get; set; }
+        public Integer NumberPaymentExperiencesNegative { get; set; }
+        public Integer NumberPaymentExperiencesSlow { get; set; }
+        public Integer NumberPaymentExperiencesSatisfactory { get; set; }
+
+    }
+
+    // Canadian DNB
+    public class DNBCAModelRequest {
+
+        public String UserId { get; set; }
+        public String Password { get; set; }
+
+        public String DnB_DUNS_Number { get; set; }
+
+        public String Product { get; set; }
+        public String Product_Type { get; set; }
+        public String Mode { get; set; }
+        public String Format { get; set; }
+        public String Platforms { get; set; }
+
+        public Integer BOCAType { get; set; }
+        public String InputID { get; set; }
+        public String RequestedCreditLimit { get; set; }
+        public String Country { get; set; }
+        public String NumberOfTrucks { get; set; }
+        public String TeamDriversSlipSeat { get; set; }
+
+        public DNBCAModelRequest() {
+
+            this.InputID = 'WEX_CAN_01';
+            this.Country = 'CA';
+
+            this.UserId = dnbCACustomModelSettings.Username__c;
+            this.Password = dnbCACustomModelSettings.Password__c;
+
+            // These are the defaults retrieved from the
+            // DNB Toolkit site
+            this.Product = 'gacustomproduct12';
+            this.Product_Type = 'D';
+            this.Mode = 'DIRECT';
+            this.Format = 'XML';
+        }
+
+    }
+
+    public class DNBCAModelResponse {
+
+        public Integer RawScore { get; set; }
+        public Integer RecommendedCreditLimitAmount { get; set; }
+        public String[] ReasonCodes { get; set; }
+        public Integer NumberOfTrades { get; set; }
+        public Integer ModelUsed { get; set; }
+        public String PrimarySIC { get; set; }
+        public String DunsNumber { get; set; }
+        public String GlobalUltimateDUNS { get; set; }
+        public String PrimaryName { get; set; }
+        public String AddressLine { get; set; }
+        public String PostalTown { get; set; }
+        public String PrimaryGeographicArea { get; set; }
+        public String PostalCode { get; set; }
+        public String CountryCode { get; set; }
+        public Integer SBFEHighCredit { get; set; }
+        public Integer CSADHighCredit { get; set; }
+        public Integer SBRICardScore { get; set; }
+        public Integer BankruptcyDateOfFiling { get; set; }
+        public String FeinTaxID { get; set; }
+        public Integer Paydex { get; set; }
+        public Integer ControlYear { get; set; }
+        public Integer YearStarted { get; set; }
+        public Integer NumberPaymentExperiencesNegative { get; set; }
+        public Integer NumberPaymentExperiencesSlow { get; set; }
+        public Integer NumberPaymentExperiencesSatisfactory { get; set; }
+    }
+
+    //TODO DELETE ME AFTER CA NEW MODEL RELEASED
+    public class DNBCCSScoreRequest {
+
+        public String UserId { get; set; }
+        public String Password { get; set; }
+
+        public String DnB_DUNS_Number { get; set; }
+        public String Country_Code { get; set; }
+
+        public String Product { get; set; }
+        public String Product_Type { get; set; }
+        public String Mode { get; set; }
+        public String Format { get; set; }
+
+        public DNBCCSScoreRequest() {
+
+            this.UserId = dnbCCSSettings.Username__c;
+            this.Password = dnbCCSSettings.Password__c;
+
+            // These are the defaults retrieved from the
+            // DNB Toolkit site
+            this.Product = 'GACustomProduct2';
+            this.Product_Type = 'D';
+            this.Mode = 'DIRECT';
+            this.Format = 'XML';
+
+            this.Country_Code = 'CA';
+
+        }
+
+    }
+
+    //TODO DELETE ME AFTER CA NEW MODEL RELEASED
+    public class DNBCCSScoreResponse {
+
+        public Integer RawScore { get; set; }
+        public Integer HighCreditAmount { get; set; }
+
+    }
+
+    public class DNBDirect_MatchRequest {
+
+        public Boolean SingleResolution { get; set; }
+
+        public String DUNSNumber { get; set; }
+        public String SubjectName { get; set; }
+        public String StreetAddressLine1 { get; set; }
+        public String StreetAddressLine2 { get; set; }
+        public String PrimaryTownName { get; set; }
+        public String TerritoryName { get; set; }
+        public String FullPostalCode { get; set; }
+        public String CountryISOAlpha2Code { get; set; }
+
+        public DNBDirect_MatchRequest() {
+
+            this.SingleResolution = false;
+
+        }
+
+    }
+
+    public class DNBDirect_MatchResponse {
+
+        public Boolean exactDUNSMatch { get; set; }
+
+        public List<DNBDirect_MatchCandidate> matchCandidates { get; set; }
+
+        public DNBDirect_MatchResponse() {
+
+            this.matchCandidates = new List<DNBDirect_MatchCandidate>();
+
+            this.exactDUNSMatch = false;
+
+        }
+
+    }
+
+    public class DNBDirect_MatchCandidate {
+
+        public String OrganizationName { get; set; }
+        public String DUNSNumber { get; set; }
+        public String StreetAddressLine { get; set; }
+        public String PrimaryTownName { get; set; }
+        public String TerritoryAbbreviatedName { get; set; }
+        public String PostalCode { get; set; }
+        public String CountryISOAlpha2Code { get; set; }
+
+        public Integer ConfidenceCodeValue { get; set; }
+        public String MatchGradeText { get; set; }
+
+        public String NameMatchGradeString { get; set; }
+        public String NameMatchDataProfile { get; set; }
+        public String StreetNumberMatchDataProfile { get; set; }
+        public String StreetNameMatchDataProfile { get; set; }
+        public String CityMatchDataProfile { get; set; }
+        public String StateMatchDataProfile { get; set; }
+        public String PostalCodeMatchDataProfile { get; set; }
+
+        public Double WEXMatchScore { get; set; }
+
+    }
+
+}

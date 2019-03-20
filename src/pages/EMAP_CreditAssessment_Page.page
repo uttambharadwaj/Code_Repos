@@ -1,0 +1,67 @@
+<!-- This VF page is used to auto populate fields from related Account -->
+<!-- And latest Approved Credit Assessment in that Account. -->
+<apex:page standardController="Credit_Assessment__c" extensions="EMAP_Credit_Assessment_Controller">
+  <apex:sectionHeader title="Credit Assessment"  subtitle="{!Credit_Assessment__c.name}"/>
+  <apex:form >
+  <apex:pageblock title="Credit Assessment Edit"  mode="edit">
+      <apex:pageblockSection title="Account Information" collapsible="false">
+          <apex:inputField value="{!credAssess.Account__c}"/>
+          <apex:inputField value="{!credAssess.Approval_Status__c}"/>
+      </apex:pageblockSection>
+      
+      <apex:pageblockSection title=".">
+          <apex:inputField value="{!credAssess.Date_Commenced__c}"/>
+          <apex:inputField value="{!credAssess.Final_Judgement__c}"/>
+          <apex:inputField value="{!credAssess.Approved_By__c}"/>
+          <apex:inputField value="{!credAssess.Credit_Assessment_Decline_Reason__c}"/>
+          <apex:inputField value="{!credAssess.Approved_Date__c}"/>
+          <apex:outputField value="{!credAssess.OwnerId}"/>
+      </apex:pageblockSection>
+      
+      <apex:pageBlockSection title="Assessment Details">
+          <apex:inputField value="{!credAssess.Assessment_Status__c}"/>
+          <apex:outputField value="{!credAssess.Payment_Days__c}"/>
+          <apex:inputField value="{!credAssess.Assessment_Sub_Status__c}"/>
+          <apex:outputField value="{!credAssess.Payment_Method__c}"/>
+          <apex:inputField value="{!credAssess.Hold_Expiration_Date__c}"/>
+          <apex:outputField value="{!credAssess.Common_Account_Check__c}"/>
+          <apex:inputField value="{!credAssess.Revert_To_Status__c}"/>
+          <apex:inputField value="{!credAssess.RPS_Outcome__c}" required="true"/>
+          <apex:outputField value="{!credAssess.Security_Value__c}"/>
+          <apex:inputField value="{!credAssess.RPS_Match_Details__c}"/>
+          <apex:inputField value="{!credAssess.Credit_Limit_Requested__c}"/>
+          <apex:inputField value="{!credAssess.Credit_Override__c}"/>
+      </apex:pageBlockSection>
+      
+      <apex:pageBlockSection title="Credit Redi Results">
+          <apex:inputField value="{!credAssess.Credit_Limit_Lcy__c}"/>
+          <apex:inputField value="{!credAssess.Approved_Credit_Limit_USD__c}"/>
+          <apex:inputField value="{!credAssess.Total_Exposure_Limit_LCY__c}"/>
+          <apex:inputField value="{!credAssess.Total_Exposure_Limit_USD__c}"/>
+          <apex:inputField value="{!credAssess.Aggregated_TEL_LCY__c}"/>
+          <apex:inputField value="{!credAssess.Aggregated_Tel_USD__c}"/>
+          <apex:inputField value="{!credAssess.Risk_Level__c}"/>
+          <apex:inputField value="{!credAssess.Full_Assmt_Weighted_Score__c}"/>
+          <apex:inputField value="{!credAssess.Nird__c}"/>
+          <apex:inputField value="{!credAssess.Full_Assmt_Final_Score__c}"/>
+      </apex:pageBlockSection>
+      
+      <apex:pageblockSection title="BUREAU RESULTS" columns="1">
+          <apex:inputField value="{!credAssess.Bureau_Name__c}"/>
+          <apex:inputField value="{!credAssess.Bureau_Score__c}"/>
+          <apex:inputField value="{!credAssess.Bureau_Score_Translated__c}"/>
+          <apex:inputField value="{!credAssess.Bureau_Comments__c}"/>
+      </apex:pageblockSection>
+      
+      <apex:pageblockSection title="System Information">
+          <apex:inputField value="{!credAssess.CurrencyIsoCode}"/>
+      </apex:pageblockSection>
+      
+      <apex:pageblockButtons >
+          <apex:commandButton id="saveBtn" value="Save" action="{!save}"/>
+          <apex:commandButton id="saveNewBtn" value="Save & New" action="{!SaveAndNew}"/>
+          <apex:commandButton id="cancelBtn" value="Cancel" action="{!cancel}" />
+      </apex:pageblockButtons>
+  </apex:pageblock>
+  </apex:form>
+</apex:page>

@@ -1,0 +1,196 @@
+<apex:page showHeader="false" sidebar="false" standardController="Opportunity" extensions="ShippingAddressSearchController">
+    <script>
+    window.onload = new function() 
+    { 
+        // bring popup window to front
+        window.focus(); 
+        var ele=document.getElementById('{!$Component.form.block.section.query}');
+        if (ele)
+        {
+            ele.focus();
+        }
+    }
+    
+    // function CloseMySelf(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email) {
+    //     try {
+    //         window.opener.ProcessAccountPopupResult(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email);
+    //         window.opener.ProcessShippingPopupResult(name, '', phone, email, address1, address2, city, state, zip);
+    //     }
+    //     catch (err) {}
+    //     window.close();
+    //     return false;
+    // }
+    
+    function getQueryParam(param) {
+        location.search.substr(1)
+            .split("&")
+            .some(function(item) { // returns first occurence and stops
+                return item.split("=")[0] == param && (param = item.split("=")[1])
+            })
+        return param
+    }
+
+    function chooseAccount(){
+        //alert('Attempting to choose account..');
+        if(selected){
+            try {
+                //alert('Number='+number+';Name='+name+';Source='+source);
+
+                //window.opener.ProcessAccountPopupResult(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email, getQueryParam('formSource'));
+                window.opener.ProcessAccountPopupResult(number, name, source, limit, address1, address2, city, state, zip, contact, phone, email, getQueryParam('formSource'), sponsor, fuelTaxExempt);
+                window.opener.ProcessShippingPopupResult(contact, '', phone, email, address1, address2, city, state, zip);
+            }
+            catch (err) {
+                alert('Exception caught when processing window action...');
+                alert('err: ' + err);
+            }
+            window.close();            
+        }else{
+            alert('No account is selected');
+        }
+        return false;
+    }
+
+    var number,name,source,limit,address1,address2,city,state,zip,contact;
+    var sponsor, fuelTaxExempt;
+    var selected = false;
+    //function selectAccount(number_p, name_p, source_p, limit_p, address1_p, address2_p, city_p, state_p, zip_p, contact_p, phone_p, email_p){
+    //    number = number_p;
+    //    name = name_p;
+    //    source = source_p;
+    //    limit = limit_p;
+    //    address1 = address1_p;
+    //    address2 = address2_p;
+    //    city = city_p;
+    //    state = state_p;
+    //    zip = zip_p;
+    //    contact = contact_p;
+    //    
+    //    phone = phone_p;
+    //    email = email_p;
+    //
+    //    selected = true;
+    //    
+    //    //alert('Selected account, ' + name);
+    //}
+    
+    function selectAccount(number_p, name_p, source_p, limit_p, address1_p, address2_p, city_p, state_p, zip_p, contact_p, phone_p, email_p, sponsor_p, fuelTaxExempt_p){
+        number = number_p;
+        name = name_p;
+        source = source_p;
+        limit = limit_p;
+        address1 = address1_p;
+        address2 = address2_p;
+        city = city_p;
+        state = state_p;
+        zip = zip_p;
+        contact = contact_p;
+        
+        phone = phone_p;
+        email = email_p;
+
+        selected = true;
+
+        sponsor = sponsor_p;
+        fuelTaxExempt = fuelTaxExempt_p;
+        // if (fuelTaxExempt_p == 'true') {
+        //     fuelTaxExempt = true;
+        // } else {
+        //     fuelTaxExempt = false;
+        // }
+        
+        //alert('Selected account, ' + name);
+    }
+    
+    function closeWindow()
+    {
+        var winMain=window.opener;
+        if (null==winMain)
+        {
+            winMain=window.parent.opener;
+        }
+        winMain.closeLookupPopup();
+    }
+
+    var chosenSearchCriteria = 'Name';
+    function searchAccountInJavascript(){
+        var searchText = document.getElementById("searchText");
+        searchAccount(searchText.value,chosenSearchCriteria);
+
+        selected = false;
+    }
+
+    function chosenSearchCriteriaChanged(criteria){
+        chosenSearchCriteria = criteria.value;
+    }
+    </script>
+    <apex:form >
+        <!-- Define the JavaScript function searchAccout-->
+        <apex:actionFunction name="searchAccount" action="{!searchAccount}" rerender="searchResults"
+                           immediate="true" status="searchingStatus">
+            <apex:param assignTo="{!searchText}" value="" name="searchQuery" />
+            <apex:param assignTo="{!chosenSearchCriteria}" value="" name="chosenSearchCriteria" />
+        </apex:actionFunction>
+
+        <apex:pageBlock title="WEX Account Search">
+            <apex:pageBlockSection columns="1">
+                <apex:outputLabel value="{!sfdcAccount.AccountNumber} {!sfdcAccount.Name}" style="font-weight:bold"/>
+
+                <input type="text" id="searchText" style="width: 250px;" />
+                <input type="button" id="searchButton" value="GO" class="btn" style="width: 70px;" 
+                onclick="searchAccountInJavascript()"/>
+
+                <apex:selectRadio layout="block" value="{!chosenSearchCriteria}" onchange="chosenSearchCriteriaChanged(this)">
+                    <apex:selectOption itemLabel="Account Name" itemValue="Name"></apex:selectOption>
+                    <apex:selectOption itemLabel="Customer Account No" itemValue="Number"></apex:selectOption>
+                    <apex:selectOption itemLabel="Contact First Name" itemValue="ContactFirst"></apex:selectOption>
+                    <apex:selectOption itemLabel="Contact Last Name" itemValue="ContactLast"></apex:selectOption>
+                    <apex:selectOption itemLabel="Program Account No" itemValue="Sponsor"></apex:selectOption>
+                    <apex:selectOption itemLabel="Contact Phone" itemValue="Phone"></apex:selectOption>
+                    <apex:selectOption itemLabel="Contact Email" itemValue="Email"></apex:selectOption>
+                </apex:selectRadio>
+
+            </apex:pageBlockSection>
+
+            <fieldset><legend>Search Results</legend>
+            <apex:panelGrid columns="1" width="100%" title="Search Results"  id="searchResults">
+                <apex:pageBlockTable value="{!accountsList}" var="account" footerClass="headerRow">
+                    <apex:column headerValue="Select" rendered="{!account.AccountStatus == 'Terminated'}">
+                        <input type="radio" disabled="true" />
+                    </apex:column>
+                    <apex:column headerValue="Select" rendered="{!account.AccountStatus != 'Terminated'}">
+                        <!--//TODO: If Status is not something do not allow select-->
+                      <!-- <apex:outputLink value="#" onclick="CloseMySelf('{!account.BillingAccountNumber}', '{!account.BillingAccountName}', '{!account.AccountSource}', '{!account.CreditLimit}', '{!account.BillingAddress.AddressLine1}', '{!account.BillingAddress.AddressLine2}', '{!account.BillingAddress.City}', '{!account.BillingAddress.State}', '{!account.BillingAddress.PostalCode}', '{!account.BillingContact.FirstName} {!account.BillingContact.LastName}', '{!account.BillingContact.Phone}', '{!account.BillingContact.Email}')">Select</apex:outputLink> -->
+                      <!--<input type="radio" name="Accounts" onclick="selectAccount('{!account.BillingAccountNumber}', '{!JSENCODE(account.BillingAccountName)}', '{!JSENCODE(account.AccountSource)}', '{!account.CreditLimit}', '{!JSENCODE(account.BillingAddress.AddressLine1)}', '{!JSENCODE(account.BillingAddress.AddressLine2)}', '{!JSENCODE(account.BillingAddress.City)}', '{!JSENCODE(account.BillingAddress.State)}', '{!account.BillingAddress.PostalCode}', '{!JSENCODE(account.BillingContact.FirstName)} {!JSENCODE(account.BillingContact.LastName)}', '{!account.BillingContact.Phone}', '{!account.BillingContact.Email}')" />-->
+                      <input type="radio" name="Accounts" onclick="selectAccount('{!account.BillingAccountNumber}', '{!JSENCODE(account.BillingAccountName)}', '{!JSENCODE(account.AccountSource)}', '{!account.CreditLimit}', '{!JSENCODE(account.BillingAddress.AddressLine1)}', '{!JSENCODE(account.BillingAddress.AddressLine2)}', '{!JSENCODE(account.BillingAddress.City)}', '{!JSENCODE(account.BillingAddress.State)}', '{!account.BillingAddress.PostalCode}', '{!JSENCODE(account.BillingContact.FirstName)} {!JSENCODE(account.BillingContact.LastName)}', '{!account.BillingContact.Phone}', '{!account.BillingContact.Email}', '{!account.Sponsor}', '{!account.TaxExemptionStatus}')" />
+                    </apex:column>
+                    <apex:column value="{!account.OrderingAccountNumber}" headerValue="Customer Acct No"/>
+                    <apex:column value="{!account.OrderingAccountName}" headerValue="Account Name"/>
+                    <apex:column value="{!account.AccountStatus}" headerValue="Status"/>
+                    <apex:column value="{!account.AccountSource}" headerValue="Source"/>
+                    <apex:column value="{!account.Sponsor}" headerValue="Program Acct No"/>
+                    <!-- <apex:column value="{!account.CreditLimit}" headerValue="Credit Limit"/> -->
+                    <apex:column value="{!account.BillingAddress.AddressLine1}" headerValue="Address Line 1"/>
+                    <apex:column value="{!account.BillingAddress.AddressLine2}" headerValue="Address Line 2"/>
+                    <apex:column value="{!account.BillingAddress.City}" headerValue="City"/>
+                    <apex:column value="{!account.BillingAddress.State}" headerValue="State"/>
+                    <apex:column value="{!account.BillingAddress.PostalCode}" headerValue="Zip Code"/>
+                    <apex:column value="{!account.BillingContact.FirstName}" headerValue="Contact First Name"/>
+                    <apex:column value="{!account.BillingContact.LastName}" headerValue="Contact Last Name"/>
+                    <apex:column value="{!account.BillingContact.Phone}" headerValue="Contact Phone"/>
+                    <apex:column value="{!account.BillingContact.Email}" headerValue="Contact Email"/>
+                    <apex:facet name="footer">
+                        <apex:outputPanel rendered="{!listEmpty == true}">No results found.</apex:outputPanel>
+                    </apex:facet>
+                </apex:pageBlockTable>
+                <apex:actionStatus startText="Searching..." id="searchingStatus" />
+            </apex:panelGrid>
+            <br />
+            <input type="button" onclick="chooseAccount();" value="Add" class="btn" style="width: 70px;" />
+            &nbsp;&nbsp;
+            <input type="button" onclick="closeWindow();" value="Cancel" class="btn" style="width: 70px;" />
+            </fieldset>
+        </apex:pageBlock>
+        
+    </apex:form>
+</apex:page>

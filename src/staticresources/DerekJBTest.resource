@@ -1,0 +1,1 @@
+SELECT Id, Carrier_ID_Added_MM_DD_YYYY__c FROM OnlineApplication__c WHERE Carrier_ID_Number__c in ('325568', '325569', '325576', '325582', '325602', '325645', '325986', '325988', '325991', '325997')

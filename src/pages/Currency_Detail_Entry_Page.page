@@ -1,0 +1,5 @@
+<apex:page standardController="Currency_Detail__c" recordSetVar="Currency_Details">
+    <flow:interview name="Create_Currency_Detail_Records" finishLocation="{!URLFOR('/home/home.jsp')}"> 
+    <apex:param name="OppId" value="{!$CurrentPage.parameters.oppId}"/>
+    </flow:interview>
+</apex:page>

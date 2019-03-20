@@ -1,0 +1,844 @@
+<apex:page controller="OnlineApplicationControllerExtension" action="{!verifyUrl}" sidebar="{!isPrefillMode}" showHeader="{!isPrefillMode}" cache="false"> 
+    
+    <apex:stylesheet value="{!$Resource.ApplicationStyles}"/>
+    <apex:includeScript value="{!$Resource.TabbingJavascript}"/>
+    
+    <div style="{!IF(isFrameless,'width:900px;margin:0 auto;','')}">
+    <apex:image url="{!headerImageUrl}" width="850px" rendered="{!AND(isFrameless,!isOnReviewPage)}" style="display:block;margin-left:auto;margin-right:auto;"/>
+    <apex:form >    
+        
+        <!-- ******************** IMPORTANT READ ME ************************************************************** -->
+        <!-- ******************** IMPORTANT READ ME ************************************************************** -->
+        <!-- ******************** IMPORTANT READ ME ************************************************************** -->
+        <!-- ******************** IMPORTANT READ ME ************************************************************** -->
+        
+        <!-- We copy the page block for Local/OTR/MasterCard as the layouts are different enough to require this. -->
+        <!-- Make sure you update ALL THREE page blocks when you make changes. -->
+
+
+        
+        
+        <apex:pageBlock rendered="{!isLocal}">        
+            <div class="headerBox">
+                <apex:image value="{!IF(isFiveStepProcess,$Resource.CompanyInformationSmallFleet,$Resource.CompanyInformationLargeFleet)}" 
+                            styleClass="headerImage" rendered="{!!isOnReviewPage}"/>           
+                <apex:pageMessages rendered="{!!isOnReviewPage}"/>   
+            </div>
+        
+            <apex:pageBlockSection showHeader="false" columns="2" id="topStaticSection">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="{!$Label.EnterCompanyInfo}" styleClass="largeInstructions"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="({!$Label.RequiredField})"/>
+                    <apex:panelGroup >
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>                    
+                            <apex:outputText value="&nbsp;" escape="false"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+
+                <!-- one or the other is rendered -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.inlineHelpText}" rendered="{!isPromotionalCodeNull}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}"/>
+                    <apex:inputField id="tabIndex100" value="{!appl.Promotional_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <!-- one or the other is rendered -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.inlineHelpText}" rendered="{!!isPromotionalCodeNull}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}"/>
+                    <apex:outputField value="{!appl.Promotional_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem />
+                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.label}"/>
+                    <apex:inputField id="tabIndex102" value="{!appl.Legal_Business_Name__c}" required="true"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.label}"/>
+                    <apex:inputField value="{!appl.Type_of_Business__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.label}"/>
+                    <apex:inputField id="tabIndex104" value="{!appl.Trade_Name__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.label}"/>
+                    <apex:inputField value="{!appl.Federal_Tax_ID__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label}"/>
+                    <apex:inputField id="tabIndex106" value="{!appl.Business_Street_Address__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.label}"/>
+                    <apex:inputField value="{!appl.Year_Established__c}"
+                                     style="background-image:url('{!$Resource.YYYY}');background-repeat:no-repeat;background-position:left center;"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.City__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.City__c.label}"/>
+                    <apex:inputField id="tabIndex108" value="{!appl.City__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.label}"/>
+                    <apex:inputField value="{!appl.Name_of_Parent_Company__c}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.State__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.State__c.label}"/>
+                    <apex:inputField id="tabIndex110" value="{!appl.State__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <!-- AJAX effect -->                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:inputField value="{!appl.Business_Description__c}">
+                            <apex:actionSupport event="onchange" rerender="businessOtherSection" status="typeOfBusinessStatus" focus="dunsField"/>
+                        </apex:inputField>
+                        <apex:actionStatus id="typeOfBusinessStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>                       
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+            <!-- invisible "row" unless "Other" Type of Business selected -->            
+            <apex:pageBlockSection showHeader="false" columns="2" id="businessOtherSection">
+
+                <apex:pageBlockSectionItem rendered="{!isOtherTypeOfBusiness}"/>
+                <apex:pageBlockSectionItem rendered="{!isOtherTypeOfBusiness}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business_Other__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business_Other__c.label}"/>
+                    <apex:inputField value="{!appl.Type_of_Business_Other__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+                        
+            <apex:pageBlockSection showHeader="false" columns="2" id="bottomStaticSection">
+            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.label}"/>
+                    <apex:inputField id="tabIndex112" value="{!appl.Zip_Code__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.DUNS__c.inlineHelpText}" > 
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.DUNS__c.label}"/>
+                    <apex:inputField value="{!appl.DUNS__c}" required="false" id="dunsField"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Contact_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Contact_Name__c.label}"/>
+                    <apex:inputField id="tabIndex113" value="{!appl.Contact_Name__c}" required="true"
+                                     style="background-image:url('{!$Resource.FIRST_LAST}');background-repeat:no-repeat;background-position:left center;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Vehicles__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Vehicles__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Vehicles__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Email__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Email__c.label}"/>
+                    <apex:inputField id="tabIndex116" value="{!appl.Email__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Drivers__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:actionRegion >
+            <apex:pageBlockSection showHeader="false" columns="2" id="bottomDynamicSection">
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.label}"/>
+                    <apex:inputField id="tabIndex118" value="{!appl.Phone_Number__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+
+                <!-- AJAX effect; only one of the next two pbsi's are rendered>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.inlineHelpText}" rendered="{!!offerHasLeadSource}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.label}"/>
+                    <apex:inputField value="{!appl.How_Did_You_Hear_About_Us__c}" required="{!!isPrefillMode}">
+                        <apex:actionSupport event="onchange" rerender="bottomDynamicSection" status="leadStatus"
+                                            oncomplete="fixAll();" focus="subtypeField"/>
+                        <apex:actionStatus id="leadStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+                    </apex:inputField>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.inlineHelpText}" rendered="{!offerHasLeadSource}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.label}"/>
+                    <apex:outputField value="{!appl.How_Did_You_Hear_About_Us__c}"/>
+                </apex:pageBlockSectionItem-->
+
+                <!--Added by Trekbin regarding Case :00022569 Start-->
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.label}"/>
+                    <apex:inputField value="{!appl.Team_Drivers_Slip_Seat__c}" />
+                </apex:pageBlockSectionItem>
+                
+                <!--Added by Trekbin regarding Case :00022569 End-->
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.label}"/>
+                    <apex:inputField id="tabIndex120" value="{!appl.Fax_Number__c}"/>
+                </apex:pageBlockSectionItem>
+
+                <!-- only one of the next two items visible -->
+                <apex:pageBlockSectionItem rendered="{!isLeadSourceSubtypeVisible}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Lead_Source_Subtype__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Lead_Source_Subtype__c.label}"/>
+                    <apex:inputField value="{!appl.Lead_Source_Subtype__c}" id="subtypeField"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!!isLeadSourceSubtypeVisible}"/>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.label}"/>
+                    <apex:inputField id="tabIndex122" value="{!appl.Cell_Number__c}"/>
+                </apex:pageBlockSectionItem>
+                  
+                
+                <!--  hack to support field dependencies based on Local versus OTR Product_Type__c -->
+                <apex:pageBlockSectionItem > 
+                    <apex:inputField value="{!appl.Product_Type__c}" style="display:none;"/>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            </apex:actionRegion>
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:outputText value="{!$Label.ISOSAS}" styleClass="isoBlurb" rendered="{!!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.Next}" action="{!goNext}" rendered="{!!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.SaveAndCreateEmail}" action="{!saveAndCreateEmail}" rendered="{!isPrefillMode}"/>                
+                <apex:commandButton value="{!$Label.SaveChanges}" action="{!saveReviewPageChanges}" rendered="{!isOnReviewPage}"/>
+            </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+
+
+
+
+
+
+
+
+
+
+        <apex:pageBlock rendered="{!isOTR}">        
+            <div class="headerBox">
+                <apex:image value="{!IF(isLargeFleet,$Resource.CompanyInformationLargeFleet,$Resource.CompanyInformationSmallFleet)}" 
+                            styleClass="headerImage" rendered="{!!isOnReviewPage}"/>           
+                <apex:pageMessages rendered="{!!isOnReviewPage}"/>   
+            </div>
+        
+            <apex:pageBlockSection showHeader="false" columns="2" id="topStaticSection">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="{!$Label.EnterCompanyInfo}" styleClass="largeInstructions"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="({!$Label.RequiredField})"/>
+                    <apex:panelGroup >
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>                    
+                            <apex:outputText value="&nbsp;" escape="false"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+
+                <!-- one or the other is rendered -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.inlineHelpText}" rendered="{!isPromotionalCodeNull}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}"/>
+                    <apex:inputField id="tabIndex100" value="{!appl.Promotional_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <!-- one or the other is rendered -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.inlineHelpText}" rendered="{!!isPromotionalCodeNull}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}"/>
+                    <apex:outputField value="{!appl.Promotional_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem />  
+                                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.label}"/>
+                    <apex:inputField id="tabIndex102" value="{!appl.Legal_Business_Name__c}" required="true"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.label}"/>
+                    <apex:inputField value="{!appl.Type_of_Business__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.label}"/>
+                    <apex:inputField id="tabIndex104" value="{!appl.Trade_Name__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.label}"/>
+                    <apex:inputField value="{!appl.Federal_Tax_ID__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label}"/>
+                    <apex:inputField id="tabIndex106" value="{!appl.Business_Street_Address__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.MC_FF_or_DOT__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.MC_FF_or_DOT__c.label}"/>
+                    <apex:inputField value="{!appl.MC_FF_or_DOT__c}" required="false"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.City__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.City__c.label}"/>
+                    <apex:inputField id="tabIndex108" value="{!appl.City__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.label}"/>
+                    <apex:inputField value="{!appl.Year_Established__c}"
+                                     style="background-image:url('{!$Resource.YYYY}');background-repeat:no-repeat;background-position:left center;"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.State__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.State__c.label}"/>
+                    <apex:inputField id="tabIndex110" value="{!appl.State__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.label}"/>
+                    <apex:inputField value="{!appl.Name_of_Parent_Company__c}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.label}"/>
+                    <apex:inputField id="tabIndex112" value="{!appl.Zip_Code__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <!-- AJAX effect -->                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:inputField value="{!appl.Business_Description__c}">
+                            <apex:actionSupport event="onchange" rerender="businessOtherSection" status="typeOfBusinessStatus" focus="dunsField"/>
+                        </apex:inputField>
+                        <apex:actionStatus id="typeOfBusinessStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>                       
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+            <!-- invisible "row" unless "Other" Type of Business selected -->            
+            <apex:pageBlockSection showHeader="false" columns="2" id="businessOtherSection">
+
+                <apex:pageBlockSectionItem rendered="{!isOtherTypeOfBusiness}"/>
+                <apex:pageBlockSectionItem rendered="{!isOtherTypeOfBusiness}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business_Other__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business_Other__c.label}"/>
+                    <apex:inputField value="{!appl.Type_of_Business_Other__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+                        
+            <apex:pageBlockSection showHeader="false" columns="2" id="bottomStaticSection">
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Contact_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Contact_Name__c.label}"/>
+                    <apex:inputField id="tabIndex113" value="{!appl.Contact_Name__c}" required="true"
+                                     style="background-image:url('{!$Resource.FIRST_LAST}');background-repeat:no-repeat;background-position:left center;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.DUNS__c.inlineHelpText}" > 
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.DUNS__c.label}"/>
+                    <apex:inputField id="dunsField" value="{!appl.DUNS__c}" required="false"/>
+                </apex:pageBlockSectionItem>
+            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Email__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Email__c.label}"/>
+                    <apex:inputField id="tabIndex116" value="{!appl.Email__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isOTR}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Trucks__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Trucks__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Trucks__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.label}"/>
+                    <apex:inputField id="tabIndex118" value="{!appl.Phone_Number__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isOTR}"
+                                           dataTitle="">
+                    <apex:outputLabel value="# of Other Vehicles"/>
+                    <apex:inputField value="{!appl.Number_of_Vehicles__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.label}"/>
+                    <apex:inputField id="tabIndex120" value="{!appl.Fax_Number__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Drivers__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                 
+            </apex:pageBlockSection>
+
+            <apex:actionRegion >
+            <apex:pageBlockSection showHeader="false" columns="2" id="bottomDynamicSection">
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.label}"/>
+                    <apex:inputField id="tabIndex122" value="{!appl.Cell_Number__c}"/>
+                </apex:pageBlockSectionItem>
+                <!-- Added by Trekbin regarding Case :00022569 Start-->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.label}"/>
+                    <apex:inputField value="{!appl.Team_Drivers_Slip_Seat__c}" />
+                </apex:pageBlockSectionItem>
+
+                <!--Added by Trekbin regarding Case :00022569 End-->
+
+                <!-- AJAX effect; only one of the next two pbsi's are rendered>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.inlineHelpText}" rendered="{!!offerHasLeadSource}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.label}"/>
+                    <apex:inputField value="{!appl.How_Did_You_Hear_About_Us__c}" required="{!!isPrefillMode}">
+                        <apex:actionSupport event="onchange" rerender="bottomDynamicSection" status="leadStatus"
+                                            oncomplete="fixAll();" focus="subtypeField"/>
+                        <apex:actionStatus id="leadStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+                    </apex:inputField>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.inlineHelpText}" rendered="{!offerHasLeadSource}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.label}"/>
+                    <apex:outputField value="{!appl.How_Did_You_Hear_About_Us__c}"/>
+                </apex:pageBlockSectionItem-->
+                <apex:pageBlockSectionItem />
+
+                <!--  hack to support field dependencies based on Local versus OTR Product_Type__c -->
+                <apex:pageBlockSectionItem > 
+                    <apex:inputField value="{!appl.Product_Type__c}" style="display:none;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isLeadSourceSubtypeVisible}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Lead_Source_Subtype__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Lead_Source_Subtype__c.label}"/>
+                    <apex:inputField value="{!appl.Lead_Source_Subtype__c}" id="subtypeField"/>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            </apex:actionRegion>
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:outputText value="{!$Label.ISOSAS}" styleClass="isoBlurb" rendered="{!!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.SaveChanges}" action="{!saveReviewPageChanges}" rendered="{!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.SaveAndCreateEmail}" action="{!saveAndCreateEmail}" rendered="{!isPrefillMode}"/>
+                <apex:commandButton value="{!$Label.Next}" action="{!goNext}" rendered="{!!isOnReviewPage}"/>
+            </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+
+
+
+
+
+
+        <apex:pageBlock rendered="{!isMasterCard}">        
+            <div class="headerBox">
+                <apex:image value="{!IF(isFiveStepProcess,$Resource.CompanyInformationSmallFleet,$Resource.CompanyInformationLargeFleet)}" 
+                            styleClass="headerImage" rendered="{!!isOnReviewPage}"/>           
+                <apex:pageMessages rendered="{!!isOnReviewPage}"/>   
+            </div>
+        
+            <apex:pageBlockSection showHeader="false" columns="2" id="topStaticSection">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="{!$Label.EnterCompanyInfo}" styleClass="largeInstructions"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="({!$Label.RequiredField})"/>
+                    <apex:panelGroup >
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>                    
+                            <apex:outputText value="&nbsp;" escape="false"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+
+                <!-- one or the other is rendered -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.inlineHelpText}" rendered="{!isPromotionalCodeNull}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}"/>
+                    <apex:inputField id="tabIndex100" value="{!appl.Promotional_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <!-- one or the other is rendered -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.inlineHelpText}" rendered="{!!isPromotionalCodeNull}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}"/>
+                    <apex:outputField value="{!appl.Promotional_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem />
+                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.label}"/>
+                    <apex:inputField id="tabIndex102" value="{!appl.Legal_Business_Name__c}" required="true"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.label}"/>
+                    <apex:inputField value="{!appl.Type_of_Business__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.label}"/>
+                    <apex:inputField id="tabIndex104" value="{!appl.Trade_Name__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.label}"/>
+                    <apex:inputField value="{!appl.Federal_Tax_ID__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label}"/>
+                    <apex:inputField id="tabIndex106" value="{!appl.Business_Street_Address__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.label}"/>
+                    <apex:inputField value="{!appl.Year_Established__c}"
+                                     style="background-image:url('{!$Resource.YYYY}');background-repeat:no-repeat;background-position:left center;"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.City__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.City__c.label}"/>
+                    <apex:inputField id="tabIndex108" value="{!appl.City__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.label}"/>
+                    <apex:inputField value="{!appl.Name_of_Parent_Company__c}"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.State__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.State__c.label}"/>
+                    <apex:inputField id="tabIndex110" value="{!appl.State__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <!-- AJAX effect -->                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:inputField value="{!appl.Business_Description__c}">
+                            <apex:actionSupport event="onchange" rerender="businessOtherSection" status="typeOfBusinessStatus" focus="dunsField"/>
+                        </apex:inputField>
+                        <apex:actionStatus id="typeOfBusinessStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>                       
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+            <!-- invisible "row" unless "Other" Type of Business selected -->            
+            <apex:pageBlockSection showHeader="false" columns="2" id="businessOtherSection">
+
+                <apex:pageBlockSectionItem rendered="{!isOtherTypeOfBusiness}"/>
+                <apex:pageBlockSectionItem rendered="{!isOtherTypeOfBusiness}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business_Other__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business_Other__c.label}"/>
+                    <apex:inputField value="{!appl.Type_of_Business_Other__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+                        
+            <apex:pageBlockSection showHeader="false" columns="2" id="bottomStaticSection">
+            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.label}"/>
+                    <apex:inputField id="tabIndex112" value="{!appl.Zip_Code__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.DUNS__c.inlineHelpText}" > 
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.DUNS__c.label}"/>
+                    <apex:inputField value="{!appl.DUNS__c}" required="false" id="dunsField"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Contact_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Contact_Name__c.label}"/>
+                    <apex:inputField id="tabIndex113" value="{!appl.Contact_Name__c}" required="true"
+                                     style="background-image:url('{!$Resource.FIRST_LAST}');background-repeat:no-repeat;background-position:left center;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Employees__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Employees__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Employees__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Email__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Email__c.label}"/>
+                    <apex:inputField id="tabIndex116" value="{!appl.Email__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Drivers__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.label}"/>
+                    <apex:inputField id="tabIndex118" value="{!appl.Phone_Number__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Cards_Needed__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Cards_Needed__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Cards_Needed__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:actionRegion >
+            <apex:pageBlockSection showHeader="false" columns="2" id="bottomDynamicSection">
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.label}"/>
+                    <apex:inputField id="tabIndex120" value="{!appl.Fax_Number__c}"/>
+                </apex:pageBlockSectionItem>
+                <!-- AJAX effect; only one of the next two pbsi's are rendered>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.inlineHelpText}" rendered="{!!offerHasLeadSource}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.label}"/>
+                    <apex:inputField value="{!appl.How_Did_You_Hear_About_Us__c}" required="{!!isPrefillMode}">
+                        <apex:actionSupport event="onchange" rerender="bottomDynamicSection" status="leadStatus"
+                                            oncomplete="fixAll();" focus="subtypeField"/>
+                        <apex:actionStatus id="leadStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+                    </apex:inputField>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.inlineHelpText}" rendered="{!offerHasLeadSource}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.label}"/>
+                    <apex:outputField value="{!appl.How_Did_You_Hear_About_Us__c}"/>
+                </apex:pageBlockSectionItem-->
+                
+                 <!-- Added by Trekbin regarding Case :00022569 Start-->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.label}"/>
+                    <apex:inputField value="{!appl.Team_Drivers_Slip_Seat__c}" />
+                </apex:pageBlockSectionItem>
+
+                <!--Added by Trekbin regarding Case :00022569 End-->
+ 
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.label}"/>
+                    <apex:inputField id="tabIndex122" value="{!appl.Cell_Number__c}"/>
+                </apex:pageBlockSectionItem>
+
+                <!-- only one of the next two items visible -->
+                <apex:pageBlockSectionItem rendered="{!isLeadSourceSubtypeVisible}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Lead_Source_Subtype__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Lead_Source_Subtype__c.label}"/>
+                    <apex:inputField value="{!appl.Lead_Source_Subtype__c}" id="subtypeField"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!!isLeadSourceSubtypeVisible}"/>
+
+                <!--  hack to support field dependencies based on Local versus OTR Product_Type__c -->
+                <apex:pageBlockSectionItem > 
+                    <apex:inputField value="{!appl.Product_Type__c}" style="display:none;"/>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            </apex:actionRegion>
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:outputText value="{!$Label.ISOSAS}" styleClass="isoBlurb" rendered="{!!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.SaveChanges}" action="{!saveReviewPageChanges}" rendered="{!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.SaveAndCreateEmail}" action="{!saveAndCreateEmail}" rendered="{!isPrefillMode}"/>
+                <apex:commandButton value="{!$Label.Next}" action="{!goNext}" rendered="{!!isOnReviewPage}"/>
+            </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+
+         <apex:pageBlock rendered="{!isTradeCredit}">     
+             <div class="headerBox">
+                <apex:image value="{!IF(isLargeFleet,$Resource.CompanyInformationLargeFleet,$Resource.CompanyInformationSmallFleet)}" 
+                            styleClass="headerImage" rendered="{!!isOnReviewPage}"/>           
+                <apex:pageMessages rendered="{!!isOnReviewPage}"/>   
+            </div>
+        
+            <apex:pageBlockSection showHeader="false" columns="2" id="topStaticSection">
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="{!$Label.EnterCompanyInfo}" styleClass="largeInstructions"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputText value="({!$Label.RequiredField})"/>
+                    <apex:panelGroup >
+                        <div class="requiredInput">
+                            <div class="requiredBlock"></div>                    
+                            <apex:outputText value="&nbsp;" escape="false"/>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+
+                <!-- one or the other is rendered -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.inlineHelpText}" rendered="{!isPromotionalCodeNull}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}"/>
+                    <apex:inputField id="tabIndex100" value="{!appl.Promotional_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <!-- one or the other is rendered -->
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.inlineHelpText}" rendered="{!!isPromotionalCodeNull}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}"/>
+                    <apex:outputField value="{!appl.Promotional_Code__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem />  
+                                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.label}"/>
+                    <apex:inputField id="tabIndex102" value="{!appl.Legal_Business_Name__c}" required="true"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.label}"/>
+                    <apex:inputField value="{!appl.Type_of_Business__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.label}"/>
+                    <apex:inputField id="tabIndex104" value="{!appl.Trade_Name__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.label}"/>
+                    <apex:inputField value="{!appl.Federal_Tax_ID__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label}"/>
+                    <apex:inputField id="tabIndex106" value="{!appl.Business_Street_Address__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.MC_FF_or_DOT__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.MC_FF_or_DOT__c.label}"/>
+                    <apex:inputField value="{!appl.MC_FF_or_DOT__c}" required="false"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.City__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.City__c.label}"/>
+                    <apex:inputField id="tabIndex108" value="{!appl.City__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.label}"/>
+                    <apex:inputField value="{!appl.Year_Established__c}"
+                                     style="background-image:url('{!$Resource.YYYY}');background-repeat:no-repeat;background-position:left center;"/>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.State__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.State__c.label}"/>
+                    <apex:inputField id="tabIndex110" value="{!appl.State__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.label}"/>
+                    <apex:inputField value="{!appl.Name_of_Parent_Company__c}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.label}"/>
+                    <apex:inputField id="tabIndex112" value="{!appl.Zip_Code__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <!-- AJAX effect -->                
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:inputField value="{!appl.Business_Description__c}">
+                            <apex:actionSupport event="onchange" rerender="businessOtherSection" status="typeOfBusinessStatus" focus="dunsField"/>
+                        </apex:inputField>
+                        <apex:actionStatus id="typeOfBusinessStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>                       
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+
+            <!-- invisible "row" unless "Other" Type of Business selected -->            
+            <apex:pageBlockSection showHeader="false" columns="2" id="businessOtherSection">
+
+                <apex:pageBlockSectionItem rendered="{!isOtherTypeOfBusiness}"/>
+                <apex:pageBlockSectionItem rendered="{!isOtherTypeOfBusiness}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business_Other__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Type_of_Business_Other__c.label}"/>
+                    <apex:inputField value="{!appl.Type_of_Business_Other__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+            </apex:pageBlockSection>
+                        
+            <apex:pageBlockSection showHeader="false" columns="2" id="bottomStaticSection">
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Contact_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Contact_Name__c.label}"/>
+                    <apex:inputField id="tabIndex113" value="{!appl.Contact_Name__c}" required="true"
+                                     style="background-image:url('{!$Resource.FIRST_LAST}');background-repeat:no-repeat;background-position:left center;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.DUNS__c.inlineHelpText}" > 
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.DUNS__c.label}"/>
+                    <apex:inputField id="dunsField" value="{!appl.DUNS__c}" required="false"/>
+                </apex:pageBlockSectionItem>
+            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Email__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Email__c.label}"/>
+                    <apex:inputField id="tabIndex116" value="{!appl.Email__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isOTR}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Trucks__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Trucks__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Trucks__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.label}"/>
+                    <apex:inputField id="tabIndex118" value="{!appl.Phone_Number__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isOTR}"
+                                           dataTitle="">
+                    <apex:outputLabel value="# of Other Vehicles"/>
+                    <apex:inputField value="{!appl.Number_of_Vehicles__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.label}"/>
+                    <apex:inputField id="tabIndex120" value="{!appl.Fax_Number__c}"/>
+                </apex:pageBlockSectionItem>
+              <!--  <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.label}"/>
+                    <apex:inputField value="{!appl.Number_of_Drivers__c}" required="{!!isPrefillMode}"/>
+                </apex:pageBlockSectionItem> -->
+                 
+            </apex:pageBlockSection>
+
+            <apex:actionRegion >
+            <apex:pageBlockSection showHeader="false" columns="2" id="bottomDynamicSection">
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.label}"/>
+                    <apex:inputField id="tabIndex122" value="{!appl.Cell_Number__c}"/>
+                </apex:pageBlockSectionItem>
+                <!-- Added by Trekbin regarding Case :00022569 Start-->
+               <!-- <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.label}"/>
+                    <apex:inputField value="{!appl.Team_Drivers_Slip_Seat__c}" />
+                </apex:pageBlockSectionItem> -->
+
+                <!--Added by Trekbin regarding Case :00022569 End-->
+
+                <!-- AJAX effect; only one of the next two pbsi's are rendered>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.inlineHelpText}" rendered="{!!offerHasLeadSource}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.label}"/>
+                    <apex:inputField value="{!appl.How_Did_You_Hear_About_Us__c}" required="{!!isPrefillMode}">
+                        <apex:actionSupport event="onchange" rerender="bottomDynamicSection" status="leadStatus"
+                                            oncomplete="fixAll();" focus="subtypeField"/>
+                        <apex:actionStatus id="leadStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+                    </apex:inputField>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.inlineHelpText}" rendered="{!offerHasLeadSource}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.How_Did_You_Hear_About_Us__c.label}"/>
+                    <apex:outputField value="{!appl.How_Did_You_Hear_About_Us__c}"/>
+                </apex:pageBlockSectionItem-->
+                <apex:pageBlockSectionItem />
+
+                <!--  hack to support field dependencies based on Local versus OTR Product_Type__c -->
+                <apex:pageBlockSectionItem > 
+                    <apex:inputField value="{!appl.Product_Type__c}" style="display:none;"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem rendered="{!isLeadSourceSubtypeVisible}"
+                                           dataTitle="{!$ObjectType.OnlineApplication__c.fields.Lead_Source_Subtype__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Lead_Source_Subtype__c.label}"/>
+                    <apex:inputField value="{!appl.Lead_Source_Subtype__c}" id="subtypeField"/>
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            </apex:actionRegion>
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:outputText value="{!$Label.ISOSAS}" styleClass="isoBlurb" rendered="{!!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.SaveChanges}" action="{!saveReviewPageChanges}" rendered="{!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.SaveAndCreateEmail}" action="{!saveAndCreateEmail}" rendered="{!isPrefillMode}"/>
+                <apex:commandButton value="{!$Label.Next}" action="{!goNext}" rendered="{!!isOnReviewPage}"/>
+            </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+
+    </apex:form>
+    </div>
+           
+</apex:page>

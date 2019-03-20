@@ -1,0 +1,314 @@
+<!--
+ - Created by dgilbert on 5/29/2018.
+ -->
+<apex:page controller="DNBAdvancedLookupController" showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false" action="{!init}">
+
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>DNB Advanced Lookup</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
+
+        <!-- Script -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js" />
+
+        <!-- Import the Design System style sheet -->
+        <apex:slds />
+
+        <style>
+            .warningMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 20px;
+                background: #fbb439;
+            }
+
+            .confirmMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 20px;
+                background: #32af5c;
+            }
+
+            .errorMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 20px;
+                background: #e9696e;
+            }
+
+            .infoMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 20px;
+                background: #3c97dd;
+            }
+
+            .warningMessage h4,
+            .confirmMessage h4,
+            .errorMessage h4,
+            .infoMessage h4 {
+                font-weight: bold;
+                padding-right: 4px;
+            }
+
+            .slds-spinner_container { display: none; min-height: 100vh !important; }
+
+            .nullValue {
+                border: 1px solid #c74047 !important;
+                background: #fdc0c3 !important;
+            }
+        </style>
+
+        <script>
+            var $j = jQuery.noConflict();
+
+            $j(document).ready(function() {
+
+                pageRerenderFunctions();
+
+            });
+
+            function pageRerenderFunctions() {
+                overridePageMessages();
+            }
+
+            function overridePageMessages() {
+                var textureEffect = '';
+
+                $j('.warningM3').addClass('warningMessage');
+                $j('.confirmM3').addClass('confirmMessage');
+                $j('.errorM3').addClass('errorMessage');
+                $j('.infoM3').addClass('infoMessage');
+
+                $j('.errorM3').removeClass('errorM3');
+                $j('.confirmM3').removeClass('confirmM3');
+                $j('.infoM3').removeClass('infoM3');
+                $j('.warningM3').removeClass('warningM3');
+            }
+
+            function toggleDetails(index, element) {
+
+                console.log(index);
+
+                console.log($j('[id$=dnbAdvancedLookupForm]').find('[data-details-index=' + index + ']').length);
+
+                $j('[id$=dnbAdvancedLookupForm]').find('[data-details-index=' + index + ']').each(function() {
+                    if($j(this).css('display') === 'none') {
+                        $j(this).css('display', 'table-row');
+                        $j(element).html('Hide Details');
+                    }
+                    else {
+                        $j(this).css('display', 'none');
+                        $j(element).html('Show Details');
+                    }
+                });
+
+            }
+        </script>
+
+    </head>
+    <body onload="moveTo(0,0); resizeTo(600,725);">
+    <apex:form id="dnbAdvancedLookupForm">
+
+        <apex:outputPanel id="formContainer">
+            <div id="content" class="slds-scope slds-is-relative">
+                <!-- HEADER -->
+                <div class="slds-page-header">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/doctype-sprite/svg/symbols.svg#library_folder')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body">
+                                    <p class="slds-text-title--caps slds-line-height--reset">DNB Lookup</p>
+                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="SLDS Inc.">
+                                        <apex:outputText value="DUNS Resolution" escape="false" />
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <apex:outputPanel >
+                    <apex:pageMessages id="pageMessages" escape="false"></apex:pageMessages>
+                </apex:outputPanel>
+                <apex:outputPanel id="formPanel">
+                    <article class="slds-card">
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-form slds-form_compound">
+                                            <fieldset class="slds-form-element">
+                                                <div class="slds-form-element__group">
+                                                    <div class="slds-form-element__row">
+                                                        <div class="slds-form-element slds-size_1-of-2">
+                                                            <label class="slds-form-element__label" for="input-01">Legal Company Name</label>
+                                                            <apex:inputText styleClass="slds-input {!IF(applicationInformation.companyName == null, 'nullValue', '')}" disabled="true" value="{!applicationInformation.companyName}" />
+                                                        </div>
+                                                        <div class="slds-form-element slds-size_1-of-2">
+                                                            <label class="slds-form-element__label" for="input-02">DUNS Number</label>
+                                                            <apex:inputText styleClass="slds-input {!IF(applicationInformation.dunsNumber == null, 'nullValue', '')}" disabled="true" value="{!applicationInformation.dunsNumber}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element__row">
+                                                        <div class="slds-form-element slds-size_1-of-1">
+                                                            <label class="slds-form-element__label" for="input-01">Address</label>
+                                                            <apex:inputText styleClass="slds-input {!IF(applicationInformation.addressLine1 == null, 'nullValue', '')}" disabled="true" value="{!applicationInformation.addressLine1}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element__row">
+                                                        <div class="slds-form-element slds-size_1-of-3">
+                                                            <label class="slds-form-element__label" for="input-01">City</label>
+                                                            <apex:inputText styleClass="slds-input {!IF(applicationInformation.city == null, 'nullValue', '')}" disabled="true" value="{!applicationInformation.city}" />
+                                                        </div>
+                                                        <div class="slds-form-element slds-size_1-of-3">
+                                                            <label class="slds-form-element__label" for="input-02">State</label>
+                                                            <apex:inputText styleClass="slds-input {!IF(applicationInformation.state == null, 'nullValue', '')}" disabled="true" value="{!applicationInformation.state}" />
+                                                        </div>
+                                                        <div class="slds-form-element slds-size_1-of-3">
+                                                            <label class="slds-form-element__label" for="input-02">Postal Code</label>
+                                                            <apex:inputText styleClass="slds-input {!IF(applicationInformation.postalCode == null, 'nullValue', '')}" disabled="true" value="{!applicationInformation.postalCode}" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="slds-card">
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                            <thead>
+                                            <tr class="slds-text-title_caps">
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="Action">Action</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="Company Name">Company Name</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="DUNS Number">DUNS Number</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="Address">Address</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="City">City</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="State">State</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="Postal Code">Postal Code</div>
+                                                </th>
+                                                <th scope="col">
+
+                                                </th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <apex:variable var="index" value="0" />
+                                            <apex:repeat value="{!lookupResults}" var="result">
+                                            <tr class="dnb-result">
+                                                <th scope="row" data-label="Action">
+                                                    <div class="slds-truncate" title="">
+                                                        <apex:commandButton styleClass="slds-button" action="{!populateDUNS}" value="Select" title="Select" rerender="pageMessages,formPanel" oncomplete="pageRerenderFunctions();">
+                                                            <apex:param name="selectedDunsNumber" value="{!result.DUNSNumber}" assignTo="{!selectedDunsNumber}"/>
+                                                            <apex:param name="selectedIndex" value="{!VALUE(index)}" assignTo="{!selectedIndex}"/>
+                                                        </apex:commandButton>
+                                                        &nbsp;|&nbsp;<a onClick="toggleDetails({!index}, this);" class="slds-button">Show Details</a>
+                                                    </div>
+                                                </th>
+                                                <td data-label="Company Name">
+                                                    <div class="slds-truncate" title="">{!result.OrganizationName}</div>
+                                                </td>
+                                                <td data-label="DUNS Number">
+                                                    <div class="slds-truncate" title="">{!result.DUNSNumber}</div>
+                                                </td>
+                                                <td data-label="Address">
+                                                    <div class="slds-truncate" title="">{!result.StreetAddressLine}</div>
+                                                </td>
+                                                <td data-label="City">
+                                                    <div class="slds-truncate" title="">{!result.PrimaryTownName}</div>
+                                                </td>
+                                                <td data-label="State">
+                                                    <div class="slds-truncate" title="">{!result.TerritoryAbbreviatedName}</div>
+                                                </td>
+                                                <td data-label="Postal Code">
+                                                    <div class="slds-truncate" title="">{!result.PostalCode}</div>
+                                                </td>
+                                                <td data-label="Postal Code">
+                                                    <span style='color: #33cc33;'>
+                                                        <apex:outputText escape="false" rendered="{!result.DUNSNumber == applicationInformation.dunsNumber}" value="&#10004;" />
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr class="dnb-details" data-details-index="{!index}" style="background: #fafafa; display: none;">
+                                                <td colspan="8" style="padding: 20px;">
+                                                    <div class="slds-text-title_caps">Matching Details</div><br/>
+                                                    <b>Match Grade: </b> {!result.MatchGradeText}<br/>
+                                                    <b>Confidence Code: </b> {!result.ConfidenceCodeValue}<br/>
+                                                </td>
+                                            </tr>
+                                            <tr class="dnb-details" data-details-index="{!index}" style="background: #fafafa; display: none;">
+                                                <td colspan="8" style="padding: 20px;">
+                                                    <div class="slds-text-title_caps">Match Data Profile</div><br/>
+                                                    <b>Company Name (Grade):</b> {!result.NameMatchGradeString}<br/>
+                                                    <b>Company Name:</b> {!result.NameMatchDataProfile}<br/>
+                                                    <b>Street Number:</b> {!result.StreetNumberMatchDataProfile}<br/>
+                                                    <b>Street Name:</b> {!result.StreetNameMatchDataProfile}<br/>
+                                                    <b>City:</b> {!result.CityMatchDataProfile}<br/>
+                                                    <b>State:</b> {!result.StateMatchDataProfile}<br/>
+                                                    <b>Postal Code:</b> {!result.PostalCodeMatchDataProfile}<br/>
+                                                </td>
+                                            </tr>
+                                            <apex:variable var="index" value="{!VALUE(index) + 1}" />
+                                            </apex:repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <div class="slds-spinner_container" id="spinner">
+                        <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+    </body>
+    </html>
+
+</apex:page>

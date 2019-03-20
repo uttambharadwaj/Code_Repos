@@ -1,0 +1,19 @@
+<apex:page controller="OnlineApplicationControllerExtension" action="{!echoSignSubmissionComplete}" sidebar="false" showHeader="false" cache="false">
+           
+    <apex:stylesheet value="{!$Resource.ApplicationStyles}"/>           
+    <apex:form >    
+    
+        <apex:pageBlock id="pageBlock1">        
+
+            <div style="height:100px"/>
+
+            <div class="headerBox">
+                <apex:pageMessages />   
+                <apex:outputText value="{!finishedMessage}" styleClass="largeInstructions"/>
+            </div>
+
+        </apex:pageBlock>
+
+    </apex:form>
+           
+</apex:page>

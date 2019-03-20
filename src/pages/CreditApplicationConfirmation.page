@@ -1,0 +1,143 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" language="en-US" applyHTMLTag="false" controller="CreditApplicationController" action="{!initBrandCheck}">
+    <html lang="en">
+        <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, user-scalable=no"/>
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+               <!----Bootstrap Files--->
+			
+             <apex:includeScript value="{!URLFOR($Resource.bootstrap, 'dist/js/bootstrap.min.js')}"></apex:includeScript>
+             <link href="{!URLFOR($Resource.Bootstrap, 'dist/css/bootstrap.min.css')}" rel="stylesheet" />
+                        
+            <!---end bootstrap--->
+            <apex:stylesheet value="{!URLFOR($Resource.BOCAbase)}"/>
+              <!--[if lt IE 9]>
+<apex:includeScript value="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"/>
+<apex:includeScript value="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"/>
+<link href="//netdna.bootstrapcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy">
+  
+<apex:includeScript value="{!URLFOR($Resource.respond)}"/>
+<link href="{!URLFOR($Resource.proxy)}" id="respond-redirect" rel="respond-redirect">
+    <![endif]-->
+            <!---<apex:stylesheet value="{!URLFOR($Resource.boca, 'css/fieldvalidation.css')}"/>--->
+            <!---<apex:stylesheet value="{!URLFOR($Resource.boca, 'css/print.css')}"/>--->
+            <apex:stylesheet value="{!URLFOR($Resource.BOCAbase)}"/>
+            <!---Branding Styles Loaded Dynamically here--->
+
+            <!---End Branding Styles---->
+            <style type="text/css">.container{margin: 0px 0px 0px 0px; padding:5% 0px 0px 0px;}body{font-family:Arial; background-color: transparent;} td, th{padding:0% 0% 2% 1%;}
+                .btn-custom{{!brand2};}#branding{background-image:url({!URLFOR($Action.Attachment.Download, cardURL)}); background-repeat: no-repeat;}h1,h2,h3,h4{ font: bold Arial; color: #494949;}
+                .panel-heading{{!brand1};}.panel-title{ color:#fff;}.panel{border: none;} .row{margin:0 auto;}  #col-2{padding-top: 1%;}</style>
+         <apex:outputText value="{!googleAnalyticsHeadBlock}" id="headBlock" escape="false"/>
+        </head>
+            <!--[if gte IE 9]
+<style type="text/css">
+.gradient {
+filter: none;
+}
+</style>
+<![endif]-->
+        <body class="radial">     
+
+            <header class="page-header affix">
+                <!-- Insert Include Here -->
+                
+                
+                <!-- Begin :: Header -->
+                <script type="text/javascript">
+                if (typeof(lpUnit)=='undefined')	var lpUnit='sales';	
+                if (typeof(lpLanguage)=='undefined') var lpLanguage='english';
+                </script>
+                
+                <script src="https://www.essofleetoffers.com/secure/mtagconfig.js" type="text/Javascript"></script>
+                
+                <h1 class="logo"><apex:image value="{!URLFOR($Action.Attachment.Download, logoURL)}" width="114" height="98"/>  {!BrandLongName}</h1>
+                <div class="ui-contact-details">
+                    <p class="text-bold">HAVE QUESTIONS?</p>
+                    <p class="text-light">Call <apex:outputText value="{!inSales}"/></p> 
+      <p class="text-light">
+                        <!-- BEGIN LivePerson Button Code -->
+                            <apex:outputText value="{!liveperson}" escape="false"/>
+                                    <!-- END LivePerson Button code -->
+                                        </p>                  
+                                    </div>
+                                    </header>
+                                    <!-- End :: Header -->
+                                        <div class="container" id="container">
+                                            <div class="row">
+                                                <!-- Begin :: Side Panel -->
+                                                    <div id="col-1" class="col-xs-12 col-sm-4 col-lg-5">
+                                                    
+                                                            <!-- Branded Img here -->
+                                                                <div id="branding"></div>
+                                                             <apex:sectionHeader title="{!brandTitle}" subtitle="{!brandTagline}" id="brandText"/>
+                                                       
+                                                                                            
+                                                                </div>
+                                                                                                            <div id="col-2" class="col-xs-12 col-sm-8 col-lg-7">
+                                        
+                                                                             
+                                                                                                            
+                                                                                                            <div class="panel panel-default">
+                                                                                                            <div class="panel-heading gradient">
+                                                                                                            <h2 class="panel-title">Confirmation</h2>
+                                                                                                            </div>
+                                                                                                            <div class="panel-body">
+                                                                                                          	<h3>
+                                                                                                                Thank You For Your Application. </h3>
+                                                                                                                <h4>Your Confirmation Number Is:</h4>
+                                                                                                                <apex:outputText value="{!confirmation}"/>
+                                                                                                                     <apex:outputText value="{!oppNum}"/>
+                                                                                                            </div>
+                                                                                                            </div><!-----panel end--->
+
+                                                                                     
+                                                                                                           
+                                                                                                           
+                                                                                                            
+                                                                                                            </div>
+                                                                                                            </div>
+                                                                                                            
+                                                                                                            <!-- Do not remove div #mask, because you'll need it to fill the whole screen -->
+                                                                                                            <div id="mask">
+                                                                                                            
+                                                                                                            
+                                                                                                            </div>  
+                                                                                                            </div><!---end container--->
+                                                                                                            
+                                                                                                            <script>
+                                                                                                            var $j = jQuery.noConflict();
+                                                                                                           
+                																									//allow the panels to collapse if we have js
+                																								
+                																									$j('div[class$=toggle]').removeClass('in');
+                																								  function populate(){
+                                                                                                                      var check = $j('input[id$=check]').is(':checked');
+                                                                                                                      	console.log('working' + check);
+                                                                                                                      	if(check){
+                                                                                                                       		var street = $j('input[id$=bizStreet]').val();
+                                                                                                                            var city = $j('input[id$=bizCity]').val();
+                                                                                                                            var state = $j('input[id$=bizState]').val();
+                                                                                                                            var zip = $j('input[id$=bizZip]').val();
+                                                                                                                      		jQuery('input[id$=bStreet]').val(street);
+                                                                                                                            jQuery('input[id$=bCity]').val(city);
+                                                                                                                            jQuery('input[id$=bState]').val(state);
+                                                                                                                            jQuery('input[id$=bZip]').val(zip);
+                                                                                                                        }
+                                                                                                                      	else{
+                                                                                                                            jQuery('input[id$=bStreet]').val('');
+                                                                                                                            jQuery('input[id$=bCity]').val('');
+                                                                                                                            jQuery('input[id$=bState]').val('');
+                                                                                                                            jQuery('input[id$=bZip]').val('');
+                                                                                                                            }
+                                                                                                                        }
+                																							</script>
+                
+                
+                     <apex:outputText value="{!googleAnalyticsBodyBlock}" id="bodyBlock" escape="false"/>
+            </body>
+        </html>
+    </apex:page>

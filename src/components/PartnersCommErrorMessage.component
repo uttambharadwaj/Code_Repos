@@ -1,0 +1,28 @@
+<apex:component layout="none">
+	<apex:attribute name="width" description="The width of the content container" required="false" default="320" type="Integer"/>
+
+	<style>
+		.message 
+		{
+			margin: 4px;
+			-moz-border-radius: 4px;
+			-webkit-border-radius: 4px;
+			border-radius: 4px;
+			background-color: #fff;
+			border-style: solid;
+			border-width: 1px;
+			color: #000;
+			padding: 6px 8px 6px 6px;			
+			border-color: #f00;
+			width: {!width}px;
+			color: #6F6F6F;
+			font-family: 'Rokkitt', serif;
+		}	
+		
+		.messageCell h4
+		{
+			display: none;
+		}
+	</style>
+	<apex:pageMessages escape="false" />
+</apex:component>

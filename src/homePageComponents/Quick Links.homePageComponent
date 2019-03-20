@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <body>&lt;a href=&quot;/partners/resource/QuickLinkIcons/LeadIconII.png&quot;&gt;&lt;img alt=&quot;User-added image&quot; src=&quot;/partners/resource/QuickLinkIcons/LeadIconII.png&quot;&gt;&lt;/img&gt;&lt;/a&gt;  &lt;a href=&quot;https://wexinc.force.com/partners/00Q/e?retURL=%2Fpartners%2F00Q%2Fo&quot;&gt;Create a Lead&lt;/a&gt;&lt;br&gt;&lt;br&gt; </body>
+    <pageComponentType>htmlArea</pageComponentType>
+    <width>narrow</width>
+</HomePageComponent>

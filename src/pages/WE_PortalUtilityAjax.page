@@ -1,0 +1,1 @@
+<apex:page controller="OCMS_WEPortalUtility" action="{!loadResponse}" showHeader="false" sidebar="false" contentType="text/plain">{!JSONResponse}</apex:page>

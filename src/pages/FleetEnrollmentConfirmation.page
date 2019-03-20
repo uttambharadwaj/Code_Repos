@@ -1,0 +1,344 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentConfirmationController">
+<html>
+<head>
+    <!-- Meta! -->
+    <meta name="viewport" content="width=device-width" />
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.Skeleton, 'css/normalize.css')}" />
+    <link rel="stylesheet" href="{!URLFOR($Resource.Skeleton, 'css/skeleton.css')}" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous" />
+    
+    <style>
+        /* Mobile First! */
+
+        /* Site-wide Styles - START */
+        *, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', serif;
+            font-size: 13px;
+        }
+        /* Site-wide Styles - END */
+
+        /* Header Section - START */
+        #header {
+            width: 100%;
+            {!program.Brand_Color_1__c}
+            min-height: 50px;
+            border-top: 3px solid #FEC524;
+            color: #fff;
+            line-height: 50px;
+        }
+
+        #programName {
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        #contactUs {
+            text-transform: uppercase;
+            text-align: center;
+            font-size: 14px;
+        }
+        /* Header Section - END */
+
+        /* Subheader Section - START */
+        #subheader {
+            width: 100%;
+            background: #eee;
+            max-height: 194px;
+        	padding-bottom: 0;
+        	display: none;
+        }
+        
+        #pageImage {
+        		display: none;
+        		background: #fff;
+        		height: 220px;
+        }
+        
+        #welcomeMessage {
+        	text-align: center;
+            display: none;
+        }
+        
+        #welcomeMessage h2 {
+        	font-size: 24px;
+        }
+        /* Subheader Section - END */
+
+        /* Card Image/Steps Section - START */
+        #steps {
+            width: 100%; 
+            background: #eee;
+            height: 100px;
+        	display: none;
+        }
+        /* Card Image/Steps Section - END */
+
+        /* Content Section - START */
+        #content {
+            width: 100%;
+        }
+
+        #content #leftBar {
+            display: none;
+        }
+
+        #content #mobileMessages {
+            display: block;
+        }
+        
+        .styledInput, .styledSelect { border: 1px solid #ccc; padding: 8px 10px; width: 100%; border-radius: 0 !important; }
+        .styledVehicleInput, .styledVehicleSelect { border: 1px solid #ccc; padding: 8px 10px; width: 87%; border-radius: 0 !important; }
+        .styledCheckbox { border: 1px solid #333; border-radius: 0 !important; }
+        .styledSelect { border-radius: 0 !important; color: #aaa; }
+        .styledSelect option:first-child { color: #aaa; }
+        .styledSelect option { color: #333; }
+        
+        .sectionHeader { {!program.Brand_Color_1__c} padding: 10px 20px; font-size: 16px; color: #fff; text-transform: uppercase; }
+        .fullNextButton { background: #fec524 !important; width: 100%; padding: 10px 0 10px 15px; font-size: 14px; text-transform: uppercase; color: #333; border: 0 !important; text-align: center; }
+        .partialNextButton { background: #fec524 !important; width: 100%; padding: 10px 0 10px 15px; font-size: 14px; text-transform: uppercase; color: #333; bborder: 0 !important; border-radius: 0 !important; text-align: center; }
+		.partialPreviousButton { background: #eee !important; width: 100%; padding: 10px 0 10px 15px; font-size: 14px; text-transform: uppercase; color: #333; border: 0 !important; border-radius: 0 !important; text-align: center; }
+        
+        .stepErrors { background: #f2dede; border: 1px solid #ebccd1; margin-bottom: 20px; color: #a94442; padding: 20px 0 0 40px; line-height: 15px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+        .erroredInput { border: 1px solid #ebccd1 !important; background: #f2dede !important; }
+        
+       	.checkbox-label { display: block; padding-left: 15px; text-indent: -15px; font-weight: normal !important; }
+		.checkbox { width: 13px; height: 13px; padding: 0; margin:0; vertical-align: bottom; position: relative; top: -2px; *overflow: hidden; }
+        
+        .addButton { display: block; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-plus.png')}) no-repeat; height: 32px; padding-left: 32px; line-height: 32px; color: #333; text-decoration: none; }
+        
+        .helpIcon { padding-left: 6px; margin-top: -2px; }
+        .vehicleHelpIcon { margin-left: 4px; }
+        
+        .vehicleTable, .driverTable { width: 100%; border: 1px solid #ccc; }
+		.vehicleTable th,  .driverTable th { background: #eee; color: #777; padding: 3px 0 3px 8px; border-right: 1px solid #ccc; }
+		.vehicleTable td,  .driverTable td { width: 20% !important; padding: 4px 5px 4px 8px; border-right: 1px solid #ccc; }
+        
+        .confirmEdit { float: right; font-size: 12px; padding-right: 10px; line-height: 22px; text-transform: lowercase; } 
+		.confirmEdit a { color: #eee; text-decoration: underline; }
+        
+       	.fleetVehicleItem { border-bottom: 1px solid #eee; }
+        .fleetVehicleItem:last-child { border-bottom: 0; }
+        
+        .radioSelect { width: 13px; height: 13px; padding: 0; margin:0 6px 0 0; vertical-align: bottom; position: relative; top: -2px; *overflow: hidden; }
+        .radioSelectDiv { margin-left: 6px; float: left; width: 150px;}
+        .radioSelectLabel { font-weight: normal !important; }
+        
+        .movingCardImage { position: fixed; padding-left: 20px; width: 260px; }
+        .movingCardImage img { width: 260px; margin: 0 auto; }
+		#card-company-name{ position:absolute; top:128px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
+		#card-description{ position:absolute; top:142px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
+       
+        /* Content Section - END */
+
+        /* Bigger than a phablet */
+        @media (min-width: 1200px) {
+
+            /* Header Section - START */
+            #programName {
+                font-size: 1.5em !important;
+                text-align: left;
+            }
+
+            #contactUs {
+                font-size: 1.5em !important;
+                text-align: right;
+            }
+            /* Header Section - END */
+
+            /* Subheader Section - START */
+        	#subheader { 
+        		display: block;
+        	}
+        
+        	#pageImage {
+        		background: #fff;
+        		height: 220px;
+        		display: block;
+        	}
+            #welcomeMessage {
+        		padding-top: 30px;
+        		text-align: center;
+                display: block;
+            }	
+        
+        	#welcomeMessage h2 {
+        		margin-bottom: 8px;
+        	}
+        
+        	#welcomeMessage p {
+        		line-height: 20px;
+        		margin: 8px 0;
+        	}
+            /* Subheader Section - END */
+
+            /* Card Image/Steps Section - START */
+        	#steps { height: 86px; display: block; }
+        
+        	#cardImage { text-align: center; width: 100%; margin: 60px auto 0 auto; overflow: visible; height: 20px; }
+        	#cardImage img { max-width: 220px; position: relative; z-index: 100; pointer-events: none; }
+        
+        	.step { margin: 6px 6px 0 0; height: 54px; float: left; width: 118px; background: #eee; line-height: 5px; }
+        	.stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
+        	.stepDescription { float: left; font-size: 12px; line-height: 5px; font-size: 12px; letter-spacing: -0.07em; margin-top: 17px; width: 80px; }
+        	.stepDescription p { margin: 0 0 8px 1px; }
+        	.step:first-child { margin-left: 6px; }
+			.step:last-child { margin-right: 0px; }
+            /* Card Image/Steps Section - END */
+            
+            .container h3 { font-size: 20px; margin-top: 30px; }
+		}
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div id="programName" class="six columns">{!program.Brand_Long_Name__c}</div>
+                <div id="contactUs" class="six columns">
+					<apex:outputText rendered="{!fleetEnrollment.Credit_Line_Amount__c != null}">
+                        Questions? Call {!program.Implementation_Team_Number__c}
+                    </apex:outputText>
+				</div>
+            </div>
+        </div>
+    </div>
+    <div id="subheader">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    <div id="welcomeMessage">
+                        <apex:outputText rendered="{!fleetEnrollment.Credit_Approved__c == true}">
+							<h2>Congratulations!</h2>
+        	    			<p>You've been approved</p>
+    	        			<p>Credit line: <apex:outputText value="{0, number, $###,###,###}">
+	    									<apex:param value="{!fleetEnrollment.Credit_Line_Amount__c}"/>
+										</apex:outputText>
+							</p>			
+						</apex:outputText>
+						<apex:outputText rendered="{!fleetEnrollment.Credit_Approved__c == false}">
+            	    		<h2 style="margin-top: 20px;">Thank you for applying!</h2>
+                            <p>&nbsp;</p>
+                            <p>&nbsp;</p>
+						</apex:outputText>
+                        <apex:outputPanel id="staticCardImage">
+							<div id="cardImage">
+	                        	<img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+							</div>
+						</apex:outputPanel>
+                    </div>
+                </div>
+                <div class="eight columns" id="pageImage">
+                	<apex:outputPanel id="subHeaderImage">
+						<apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}" />
+					</apex:outputPanel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="steps">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                	&nbsp;
+                </div>
+                <div class="eight columns" style="background: #fff;">
+                	<apex:outputPanel id="stepDisplay">
+                    	<div>
+                            <div class="step">
+                               	<div class="stepIndicatorComplete"></div>
+                               	<div class="stepDescription">
+                               		<p>Step 1:</p><p><b>your company</b></p>
+                               	</div>
+                            </div>
+                            <div class="step">
+                               	<div class="stepIndicatorComplete"></div>
+                               	<div class="stepDescription">
+                               		<p>Step 2:</p><p><b>embossing</b></p>
+                               	</div>
+                            </div>
+                            <div class="step">
+                               	<div class="stepIndicatorComplete"></div>
+                               	<div class="stepDescription">
+                               		<p>Step 3:</p><p><b>vehicle details</b></p>
+                               	</div>
+                            </div>
+                            <div class="step">
+                               	<div class="stepIndicatorComplete"></div>
+                               	<div class="stepDescription">
+                               		<p>Step 4:</p><p><b>driver details</b></p>
+                               	</div>
+                            </div>
+                            <div class="step">
+                                <div class="stepIndicatorComplete"></div>
+                                <div class="stepDescription">
+                                	<p>Step 5:</p><p><b>summary</b></p>
+                            	</div>
+                        	</div>
+						</div>
+					</apex:outputPanel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="four columns">
+                    &nbsp;
+                </div>
+                <div class="eight columns" style="padding-top: 20px;">
+						<apex:outputPanel rendered="{!fleetEnrollment.Credit_Approved__c == true}">
+                        	<div class="twelve columns clearfix">
+                        		<h3>
+	                            	Thank you for submitting your information.
+    	                	   	</h3>
+                    	    </div>
+                	        <div class="twelve columns clearfix">
+            	            	Your confirmation number is: {!fleetEnrollment.Confirmation_Number__c} 
+                                [<a href="javascript:window.open('/FleetEnrollment/FleetEnrollmentPrint?id={!applicantId}&token={!printToken}', '_blank', 'location=yes,height=800,width=600,scrollbars=yes');">Print Confirmation</a>]<br/><br/>  
+        	                </div>
+    	                    <div class="twelve columns clearfix">
+	                        	Your cards will arrive by mail in {!program.Fleet_Data_Capture_Form_Delivery__c} days. Your cards will be active and ready for use when they arrive.<br/><br/>  
+                            </div>
+                            <div class="twelve columns clearfix">
+                               	Over the next 2 weeks, we'll send you 4 important emails about your card program:<br/><br/>
+                                <b>Email 1</b> will confirm your driver IDs<br/>
+								<b>Email 2</b> will provide details on your card account's features and benefits<br/>
+								<b>Email 3</b> will walk you through online registration and downloading our mobile app<br/>
+                	            <b>Email 4</b> will provide details on your invoice and reports
+            	            </div>
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!fleetEnrollment.Credit_Approved__c == false}">
+	                    	<div class="twelve columns clearfix">
+								<h3>
+	                        	   	Thank you for submitting your information.
+    	                		</h3>
+                    	    </div>
+                	        <div class="twelve columns clearfix">
+            	                Your confirmation number is: {!fleetEnrollment.Confirmation_Number__c}
+                            	[<a href="javascript:window.open('/FleetEnrollment/FleetEnrollmentPrint?id={!applicantId}&token={!printToken}', '_blank', 'location=yes,height=800,width=600,scrollbars=yes');">Print Confirmation</a>]<br/><br/>  
+        	                </div>
+    	    	            <div class="twelve columns clearfix">
+	            	    	    Your application is being reviewed and we will update you by email within 5 business days.
+                	      	</div>
+						</apex:outputPanel>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+</apex:page>

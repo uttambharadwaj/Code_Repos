@@ -1,0 +1,88 @@
+<apex:component controller="CPQQuoteApprovalEmailController" access="global">
+    <apex:attribute name="pramquoteId" description="Id of the quote" type="Id" required="false" assignto="{!quoteId}" />
+    
+    Customer : {!quote.SBQQ__BillingName__c}<br/>
+    Address : {!quote.SBQQ__BillingStreet__c}, {!quote.SBQQ__BillingCity__c}, {!quote.SBQQ__BillingState__c}, {!quote.SBQQ__BillingPostalCode__c}<br/>
+    Opportunity Name :
+    <a href="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+quote.SBQQ__Opportunity2__c}">
+        {!quote.SBQQ__Opportunity2__r.Name}
+    </a><br/>
+    Quote # : 
+    <a href="{!LEFT($Api.Partner_Server_URL_140,FIND('.com',$Api.Partner_Server_URL_140)+4)+quote.Id}">
+        {!quote.Name}
+    </a><br/>
+    Sales Rep : {!quote.SBQQ__SalesRep__r.Name}<br/>
+    Approval Notes : {!quote.Approval_Notes__c}<br/>
+    <br/><br/>
+    <table border="1">
+        <tr>
+            <th>Program</th><th>Fleet Size</th><th>Vehicle Type</th><th>Monthly Gallons</th><th>% Diesel</th><th>% Unleaded</th><th>% Tier 1</th>
+        </tr>
+            <tr>
+                <td>{!quote.Program_Name__c}</td>
+                <td>{!quote.Fleet_Size__c}</td>
+                <td>{!quote.Vehicle_Type__c}</td>
+                <td>{!quote.Monthly_Gallons__c}</td>
+                <td>{!quote.Diesel__c}</td>
+                <td>{!quote.Unleaded__c}</td>
+                <td>{!quote.Tier_1__c }</td>
+
+            </tr>
+    </table>
+    <br/><br/>
+     <table border="1">
+        <tr>
+            <th>Fees</th><th>Standard Price</th><th>Requested Price</th><th>Discount Amount</th><th>Discount %</th>
+        </tr>
+        <apex:repeat var="lineItem" value="{!quote.SBQQ__LineItems__r}">
+            <apex:outputPanel rendered="{!if(contains(lineItem.SBQQ__Product__r.Name,'Fee'),'true','false')}">
+                <tr>
+                    <td>{!lineItem.SBQQ__Product__r.Name}</td>
+                    <td>{!lineItem.SBQQ__ListPrice__c}</td>
+                    <td>{!lineItem.Requested_Price__c}</td>
+                    <td>{!lineItem.Discount_Amount__c}</td>
+                    <td>{!lineItem.Discount_percent__c}</td>
+                </tr>
+            </apex:outputPanel>
+        </apex:repeat>  
+              
+    </table>
+    <br/><br/>
+    
+    <apex:outputPanel rendered="{!IF( (quote.From_1__c != null || quote.To_1__c != null || quote.Rebate_Factor_1__c != null || quote.From_2__c != null || quote.To_2__c != null || quote.Rebate_Factor_2__c != null || quote.From_3__c != null || quote.To_3__c != null || quote.Rebate_Factor_3__c != null || quote.From_4__c != null || quote.To_4__c != null || quote.Rebate_Factor_4__c != null ) , true , false)}">
+        <table border="1">
+            <tr>
+                <th>From (gallons)</th><th>To (gallons)</th><th>Rebate Factor</th>
+            </tr>
+            <apex:outputPanel rendered="{!if( (quote.From_1__c !=  null || quote.To_1__c !=  null || quote.Rebate_Factor_1__c !=  null) , true , false)}">
+                <tr>
+                    <td>{!quote.From_1__c}</td>
+                    <td>{!quote.To_1__c}</td>
+                    <td>{!quote.Rebate_Factor_1__c}</td>
+                </tr>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!if( (quote.From_2__c !=  null || quote.To_2__c !=  null || quote.Rebate_Factor_2__c !=  null) , true , false)}">
+                <tr>
+                    <td>{!quote.From_2__c}</td>
+                    <td>{!quote.To_2__c}</td>
+                    <td>{!quote.Rebate_Factor_2__c}</td>
+                </tr>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!if( (quote.From_3__c !=  null || quote.To_3__c !=  null || quote.Rebate_Factor_3__c !=  null) , true , false)}">
+                <tr>
+                    <td>{!quote.From_3__c}</td>
+                    <td>{!quote.To_3__c}</td>
+                    <td>{!quote.Rebate_Factor_3__c}</td>
+                </tr>
+            </apex:outputPanel>
+            <apex:outputPanel rendered="{!if( (quote.From_4__c !=  null || quote.To_4__c !=  null || quote.Rebate_Factor_4__c !=  null) , true , false)}">
+                <tr>
+                    <td>{!quote.From_4__c}</td>
+                    <td>{!quote.To_4__c}</td>
+                    <td>{!quote.Rebate_Factor_4__c}</td>
+                </tr>
+            </apex:outputPanel>
+                                 
+        </table>
+    </apex:outputPanel>
+</apex:component>

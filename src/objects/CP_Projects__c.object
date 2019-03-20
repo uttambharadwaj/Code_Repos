@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>LAST_ACTIVITY</columns>
+        <columns>Handover_Kickoff__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Handover_Actual__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_CP_Projects</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <label>My CP Projects</label>
+    </listViews>
+    <listViews>
+        <fullName>Non_OBM_Projects</fullName>
+        <columns>Opportunity__c</columns>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Current_Milestone__c</columns>
+        <columns>Stage__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>CP_Projects__c.Non_OBM_Projects</value>
+        </filters>
+        <label>Non-OBM Projects</label>
+    </listViews>
+    <listViews>
+        <fullName>OBM_Projects</fullName>
+        <columns>Opportunity__c</columns>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Current_Milestone__c</columns>
+        <columns>Stage__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>CP_Projects__c.OBM_Projects</value>
+        </filters>
+        <label>OBM Projects</label>
+    </listViews>
+    <validationRules>
+        <fullName>Billing_Cycle_Success_Reqd_Stage_CP6</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;),
+
+ISBLANK( Billing_Cycles_Successfully_Complete__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Billing_Cycles_Successfully_Complete__c</errorDisplayField>
+        <errorMessage>Billing Cycles must be filled in before moving to Stage CP6 or beyond</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Customer_Readiness_Required_Stage_CP5</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK(  Customer_Readiness_Complete__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Customer_Readiness_Complete__c</errorDisplayField>
+        <errorMessage>Customer Readiness Complete must be filled in before moving to Stage CP5 or beyond</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Implementation_Complete_Reqd_Stage_CP4</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK( Implementation_Complete__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Implementation_Complete__c</errorDisplayField>
+        <errorMessage>Implementation Complete must be filled in before moving to Stage CP4 or beyond</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Inception_Complete_Required_Stage_CP2</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP2: Discovery&quot;), 
+ISPICKVAL(Stage__c, &quot;CP3: Implementation&quot;), 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK(Inception_Complete__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Inception_Complete__c</errorDisplayField>
+        <errorMessage>Inception Complete must be filled in before moving to Stage CP2 or beyond</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Ready_Implementation_Required_Stage_CP3</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP3: Implementation&quot;), 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK( Ready_To_Move_Into_Implementation__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Ready_To_Move_Into_Implementation__c</errorDisplayField>
+        <errorMessage>Ready to Move Into Implementation must be filled in before moving to Stage CP3 or beyond</errorMessage>
+    </validationRules>
+</CustomObject>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Virtual Validation Rules Controller</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WE Validation Rules Controller</value>
+    </caseValues>
+    <fields>
+        <label><!-- All Account Disabled --></label>
+        <name>All_Account_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Account Asset Disabled --></label>
+        <name>All_Acct_Asset_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Case Disabled --></label>
+        <name>All_Case_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Contact Disabled --></label>
+        <name>All_Contact_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- All FEP Disabled --></label>
+        <name>All_FEP_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Lead Disabled --></label>
+        <name>All_Lead_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Opportunity Disabled --></label>
+        <name>All_Opportunity_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- All Project Disabled --></label>
+        <name>All_Project_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Non Fcst Disabled --></label>
+        <name>Non_Fcst_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Currency Detail Disabled --></label>
+        <name>Opp_Cur_Dtl_Disabled__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

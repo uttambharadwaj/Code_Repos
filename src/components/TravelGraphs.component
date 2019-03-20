@@ -1,0 +1,26 @@
+<apex:component >
+    <br/>
+    <apex:sectionHeader subtitle="arrival and departure travel charts"/>
+    <h3>
+        Arriving Attendees
+    </h3>
+    <div id="tableTwo" /> <br/>
+    <h3>
+        Departing Attendees
+    </h3>
+    <div id="tableThree"/>
+    
+    <div id="arrCol" />
+    
+    
+    <div id="arrChart"/>               
+    
+    
+    <div id="depCol"/>
+    
+    
+    <div id="depChart"/>                
+    
+    
+
+</apex:component>

@@ -1,0 +1,77 @@
+<apex:page standardController="BOCA_To_Prospect__c" extensions="BOCAemailUtility" docType="html-5.0" standardStylesheets="false">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <style>
+    #header { 
+        font-family: 'Arial' !important; 
+	    margin-top: 10px;
+		line-height: 22px; 
+	}
+
+	#header .title { 
+		font-size: 14px; 
+		color: #e51937; 
+		font-weight: bold; 
+	}
+
+	#header h1 { 
+		font-size: 20px; 
+		font-weight: bold; 
+	}
+    </style>
+    <div class="bPageTitle">
+    	<div class="ptBody">
+        	<div class="content">
+                <img src="/img/icon/mail32.png" alt=""  class="pageTitleIcon" title=""/>
+        	    <h1 style="margin: 0 0 0 0;" class="pageType">BOCA To Prospect<span  class="titleSeparatingColon">:</span></h1>
+    	        <h2 style="margin: 0 0 0 0;" class="pageDescription">{!weFormObject.Opportunity__r.Name}</h2>
+	            <div class="blank">&nbsp;</div>
+        	</div>
+    	</div>
+    	<div class="ptBreadcrumb">&nbsp;«&nbsp;<a href="/{!weFormObject.Opportunity__c}">Back to Opportunity: {!weFormObject.Opportunity__r.Name}</a></div>
+    </div><br/>
+    <apex:outputPanel id="reminderForm">
+        <apex:outputPanel rendered="{!weFormObject != null && messageSent == false && messageStatus == null}">
+    		<apex:pageBlock mode="mainDetail">
+    	    	<apex:pageBlockSection id="prospectInfromation" title="Prospect Information" columns="2" collapsible="false">
+	        	    <apex:pageBlockSection columns="1">
+    	        		<apex:outputField label="Contact First Name" value="{!weFormObject.Signer_s_First_Name__c}" />
+	            	    <apex:outputField label="Contact Last Name" value="{!weFormObject.Signer_s_Last_Name__c}" />
+            		    <apex:outputField label="Contact E-mail" value="{!weFormObject.Signer_s_Email__c}" />
+        		    </apex:pageBlockSection>
+    		        <apex:pageBlockSection columns="1">
+	
+		            </apex:pageBlockSection>
+  				</apex:pageBlockSection>
+        		<apex:pageBlockSection id="reminderMessage" title="Reminder Message" columns="2" collapsible="false">
+        		    <apex:pageBlockSection columns="1">
+    		        	<apex:form >    
+		        			<apex:inputTextarea label="Message" cols="80" rows="6" value="{!reminderMessage}"/><p/>
+	        				<apex:commandButton value="Send Reminder" action="{!SendReminder}" rerender="reminderForm,title,reminderStatus" />
+    					</apex:form>
+        		    </apex:pageBlockSection>
+    		        <apex:pageBlockSection columns="1">
+
+		            </apex:pageBlockSection>
+	  			</apex:pageBlockSection>
+    		</apex:pageBlock>
+        </apex:outputPanel>
+	</apex:outputPanel>
+    <apex:outputPanel id="reminderStatus">
+        <apex:outputPanel rendered="{!messageSent == true}">
+        	<h2 style="font-size: 16px;">
+                Success!
+            </h2>
+            <p>
+                Your reminder has successfully been sent!
+            </p>
+		</apex:outputPanel>
+        <apex:outputPanel rendered="{!messageSent == false && messageStatus != null}">
+        	<p>
+                There was an error sending the e-mail
+            </p>
+            <p>
+                {!messageStatus}
+            </p>
+		</apex:outputPanel>
+    </apex:outputPanel>
+</apex:page>

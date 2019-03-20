@@ -1,0 +1,529 @@
+/**
+ * Created by lhowland on 8/8/2018.
+ */
+
+@isTest
+public class CreditWS_Test {
+
+    static testMethod void testLexisNexisBridgerPasswordReset() {
+
+        Test.startTest();
+
+        TestUtils.enable_isRunningTest = true;
+
+        Integer daysUntilPasswordReset = CreditWS_LexisNexisBridger.checkPasswordExpiration();
+
+        System.assert(daysUntilPasswordReset == -1);
+
+        Test.stopTest();
+
+    }
+
+    static testMethod void testLexisNexisBridgerWSUtil() {
+
+        Test.startTest();
+
+        new CreditWSUtil_LexisNexisBridger.AddAttachment_element();
+        new CreditWSUtil_LexisNexisBridger.AddAttachmentResponse_element();
+        new CreditWSUtil_LexisNexisBridger.AddList_element();
+        new CreditWSUtil_LexisNexisBridger.AddListResponse_element();
+        new CreditWSUtil_LexisNexisBridger.AddRecordResult();
+        new CreditWSUtil_LexisNexisBridger.AddRecords_element();
+        new CreditWSUtil_LexisNexisBridger.AddRecordsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.AddResultRecord_element();
+        new CreditWSUtil_LexisNexisBridger.AddResultRecordResponse_element();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfAddRecordResult();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfAuditItem();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfCountryAKA();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfCountryLocation();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfDataFileInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfEntityAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfEntityAddress();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfEntityAKA();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfEntityID();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfEntityMatchInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfEntityPhone();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfFPRedFlag();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfFPResultCriteriaRedFlag();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfFPRiskIndicator();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDAddressHistory();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDAlternateName();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDFEINMatch();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDIDataSource();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDIDataSourceVerification();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDIException_x();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDIRiskIndicator();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDIVerificationResult();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDRedFlag();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDResultCriteriaRedFlag();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfIIDRiskIndicator();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfInputAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfInputAddress();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfInputID();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfInputPhone();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfInputRecord();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfInt();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfListInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfListRecord();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfLong();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfOFACInstitutionInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedACHAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedACHAddress();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedACHField();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedACHID();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedACHNote();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedACHParty();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedFedwireAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedFedwireAddress();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedFedwireField();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedFedwireID();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedFedwireNote();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedFedwireParty();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedFedwirePhone();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedISO20022AdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedISO20022Address();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedISO20022Field();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedISO20022ID();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedISO20022Note();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedISO20022Party();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedISO20022Phone();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedSWIFTAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedSWIFTAddress();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedSWIFTField();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedSWIFTID();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedSWIFTNote();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfParsedSWIFTParty();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfResultError();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfResultRecord();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfRunInfo();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfString();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWatchlistDataFile();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWatchlistMatchState();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWLAddressMatch();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWLCitizenshipMatch();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWLDOBMatch();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWLIDMatch();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWLMatch();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWLMatchSummaryItem();
+        new CreditWSUtil_LexisNexisBridger.ArrayOfWLPhoneMatch();
+        new CreditWSUtil_LexisNexisBridger.AssignmentInfo();
+        new CreditWSUtil_LexisNexisBridger.Attachment();
+        new CreditWSUtil_LexisNexisBridger.AuditItem();
+        new CreditWSUtil_LexisNexisBridger.BasicHttpBinding_IAccount();
+        new CreditWSUtil_LexisNexisBridger.BasicHttpBinding_IListMaintenance();
+        new CreditWSUtil_LexisNexisBridger.BasicHttpBinding_IResults();
+        new CreditWSUtil_LexisNexisBridger.BasicHttpBinding_ISearch();
+        new CreditWSUtil_LexisNexisBridger.ChangePassword_element();
+        new CreditWSUtil_LexisNexisBridger.ChangePasswordResponse_element();
+        new CreditWSUtil_LexisNexisBridger.ClientContext();
+        new CreditWSUtil_LexisNexisBridger.CountryAKA();
+        new CreditWSUtil_LexisNexisBridger.CountryCriteria();
+        new CreditWSUtil_LexisNexisBridger.CountryInfo();
+        new CreditWSUtil_LexisNexisBridger.CountryLocation();
+        new CreditWSUtil_LexisNexisBridger.DataFileInfo();
+        new CreditWSUtil_LexisNexisBridger.Date_x();
+        new CreditWSUtil_LexisNexisBridger.DeleteAttachment_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteAttachmentResponse_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteList_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteListResponse_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteRecords_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteRecordsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteResultRecords_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteResultRecordsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteRuns_element();
+        new CreditWSUtil_LexisNexisBridger.DeleteRunsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.EntityAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.EntityAddress();
+        new CreditWSUtil_LexisNexisBridger.EntityAKA();
+        new CreditWSUtil_LexisNexisBridger.EntityCriteria();
+        new CreditWSUtil_LexisNexisBridger.EntityCriteriaAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.EntityCriteriaAddress();
+        new CreditWSUtil_LexisNexisBridger.EntityCriteriaID();
+        new CreditWSUtil_LexisNexisBridger.EntityID();
+        new CreditWSUtil_LexisNexisBridger.EntityInfo();
+        new CreditWSUtil_LexisNexisBridger.EntityMatchInfo();
+        new CreditWSUtil_LexisNexisBridger.EntityName();
+        new CreditWSUtil_LexisNexisBridger.EntityPhone();
+        new CreditWSUtil_LexisNexisBridger.FPAddress();
+        new CreditWSUtil_LexisNexisBridger.FPInput();
+        new CreditWSUtil_LexisNexisBridger.FPRedFlag();
+        new CreditWSUtil_LexisNexisBridger.FPResultCriteriaRedFlag();
+        new CreditWSUtil_LexisNexisBridger.FPRiskIndicator();
+        new CreditWSUtil_LexisNexisBridger.FraudPointConfiguration();
+        new CreditWSUtil_LexisNexisBridger.FraudPointResultCriteria();
+        new CreditWSUtil_LexisNexisBridger.FraudPointResults();
+        new CreditWSUtil_LexisNexisBridger.GetAttachment_element();
+        new CreditWSUtil_LexisNexisBridger.GetAttachmentResponse_element();
+        new CreditWSUtil_LexisNexisBridger.GetDataFileList_element();
+        new CreditWSUtil_LexisNexisBridger.GetDataFileListResponse_element();
+        new CreditWSUtil_LexisNexisBridger.GetDaysUntilPasswordExpires_element();
+        new CreditWSUtil_LexisNexisBridger.GetDaysUntilPasswordExpiresResponse_element();
+        new CreditWSUtil_LexisNexisBridger.GetList_element();
+        new CreditWSUtil_LexisNexisBridger.GetListResponse_element();
+        new CreditWSUtil_LexisNexisBridger.GetRecords_element();
+        new CreditWSUtil_LexisNexisBridger.GetRecordsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.GetResultRecords_element();
+        new CreditWSUtil_LexisNexisBridger.GetResultRecordsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.GetRunInfo_element();
+        new CreditWSUtil_LexisNexisBridger.GetRunInfoResponse_element();
+        new CreditWSUtil_LexisNexisBridger.IIDAddress();
+        new CreditWSUtil_LexisNexisBridger.IIDAddressHistory();
+        new CreditWSUtil_LexisNexisBridger.IIDAlternateName();
+        new CreditWSUtil_LexisNexisBridger.IIDFEINMatch();
+        new CreditWSUtil_LexisNexisBridger.IIDFiling();
+        new CreditWSUtil_LexisNexisBridger.IIDIAddress();
+        new CreditWSUtil_LexisNexisBridger.IIDIDataSource();
+        new CreditWSUtil_LexisNexisBridger.IIDIDataSourceVerification();
+        new CreditWSUtil_LexisNexisBridger.IIDIDate();
+        new CreditWSUtil_LexisNexisBridger.IIDIException_x();
+        new CreditWSUtil_LexisNexisBridger.IIDIHeader();
+        new CreditWSUtil_LexisNexisBridger.IIDIIdentification();
+        new CreditWSUtil_LexisNexisBridger.IIDIInput();
+        new CreditWSUtil_LexisNexisBridger.IIDInput();
+        new CreditWSUtil_LexisNexisBridger.IIDIPassport();
+        new CreditWSUtil_LexisNexisBridger.IIDIResult();
+        new CreditWSUtil_LexisNexisBridger.IIDIResultCriteriaIndividual();
+        new CreditWSUtil_LexisNexisBridger.IIDIRiskIndicator();
+        new CreditWSUtil_LexisNexisBridger.IIDIVerificationIndex();
+        new CreditWSUtil_LexisNexisBridger.IIDIVerificationResult();
+        new CreditWSUtil_LexisNexisBridger.IIDRedFlag();
+        new CreditWSUtil_LexisNexisBridger.IIDResultCriteriaBusiness();
+        new CreditWSUtil_LexisNexisBridger.IIDResultCriteriaIndividual();
+        new CreditWSUtil_LexisNexisBridger.IIDResultCriteriaRedFlag();
+        new CreditWSUtil_LexisNexisBridger.IIDReversePhone();
+        new CreditWSUtil_LexisNexisBridger.IIDRiskIndicator();
+        new CreditWSUtil_LexisNexisBridger.IIDSSNInfo();
+        new CreditWSUtil_LexisNexisBridger.IIDVerificationIndicators();
+        new CreditWSUtil_LexisNexisBridger.IIDWatchlist();
+        new CreditWSUtil_LexisNexisBridger.IndexList_element();
+        new CreditWSUtil_LexisNexisBridger.IndexListResponse_element();
+        new CreditWSUtil_LexisNexisBridger.InputAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.InputAddress();
+        new CreditWSUtil_LexisNexisBridger.InputBasicID();
+        new CreditWSUtil_LexisNexisBridger.InputEFT();
+        new CreditWSUtil_LexisNexisBridger.InputEntity();
+        new CreditWSUtil_LexisNexisBridger.InputID();
+        new CreditWSUtil_LexisNexisBridger.InputName();
+        new CreditWSUtil_LexisNexisBridger.InputPhone();
+        new CreditWSUtil_LexisNexisBridger.InputRecord();
+        new CreditWSUtil_LexisNexisBridger.InputText();
+        new CreditWSUtil_LexisNexisBridger.InstantIDBusinessResults();
+        new CreditWSUtil_LexisNexisBridger.InstantIDConfiguration();
+        new CreditWSUtil_LexisNexisBridger.InstantIDIndividualResults();
+        new CreditWSUtil_LexisNexisBridger.InstantIDIntlConfiguration();
+        new CreditWSUtil_LexisNexisBridger.InstantIDIntlIndividualResults();
+        new CreditWSUtil_LexisNexisBridger.InstantIDIntlResultCriteria();
+        new CreditWSUtil_LexisNexisBridger.InstantIDResultCriteria();
+        new CreditWSUtil_LexisNexisBridger.ListCriteria();
+        new CreditWSUtil_LexisNexisBridger.ListInfo();
+        new CreditWSUtil_LexisNexisBridger.ListRecord();
+        new CreditWSUtil_LexisNexisBridger.ListRecordCriteria();
+        new CreditWSUtil_LexisNexisBridger.MergeDuplicates_element();
+        new CreditWSUtil_LexisNexisBridger.MergeDuplicatesResponse_element();
+        new CreditWSUtil_LexisNexisBridger.OFACInstitutionInfo();
+        new CreditWSUtil_LexisNexisBridger.OFACReportInfo();
+        new CreditWSUtil_LexisNexisBridger.ParsedACH();
+        new CreditWSUtil_LexisNexisBridger.ParsedACHAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ParsedACHAddress();
+        new CreditWSUtil_LexisNexisBridger.ParsedACHField();
+        new CreditWSUtil_LexisNexisBridger.ParsedACHID();
+        new CreditWSUtil_LexisNexisBridger.ParsedACHNote();
+        new CreditWSUtil_LexisNexisBridger.ParsedACHParty();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwire();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwireAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwireAddress();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwireAmount();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwireField();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwireID();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwireNote();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwireParty();
+        new CreditWSUtil_LexisNexisBridger.ParsedFedwirePhone();
+        new CreditWSUtil_LexisNexisBridger.ParsedISO20022();
+        new CreditWSUtil_LexisNexisBridger.ParsedISO20022AdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ParsedISO20022Address();
+        new CreditWSUtil_LexisNexisBridger.ParsedISO20022Field();
+        new CreditWSUtil_LexisNexisBridger.ParsedISO20022ID();
+        new CreditWSUtil_LexisNexisBridger.ParsedISO20022Note();
+        new CreditWSUtil_LexisNexisBridger.ParsedISO20022Party();
+        new CreditWSUtil_LexisNexisBridger.ParsedISO20022Phone();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFT();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFTAdditionalInfo();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFTAddress();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFTAmount();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFTField();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFTID();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFTNote();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFTOriginalMessage();
+        new CreditWSUtil_LexisNexisBridger.ParsedSWIFTParty();
+        new CreditWSUtil_LexisNexisBridger.RecordState();
+        new CreditWSUtil_LexisNexisBridger.ResultCriteriaAccount();
+        new CreditWSUtil_LexisNexisBridger.ResultCriteriaEFT();
+        new CreditWSUtil_LexisNexisBridger.ResultCriteriaRecordState();
+        new CreditWSUtil_LexisNexisBridger.ResultError();
+        new CreditWSUtil_LexisNexisBridger.ResultInfo();
+        new CreditWSUtil_LexisNexisBridger.ResultRecord();
+        new CreditWSUtil_LexisNexisBridger.ResultRecordDetails();
+        new CreditWSUtil_LexisNexisBridger.ResultsCriteria();
+        new CreditWSUtil_LexisNexisBridger.RunInfo();
+        new CreditWSUtil_LexisNexisBridger.RunsCriteria();
+        new CreditWSUtil_LexisNexisBridger.Search_x_element();
+        new CreditWSUtil_LexisNexisBridger.SearchConfiguration();
+        new CreditWSUtil_LexisNexisBridger.SearchInput();
+        new CreditWSUtil_LexisNexisBridger.SearchListRecords_element();
+        new CreditWSUtil_LexisNexisBridger.SearchListRecordsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.SearchLists_element();
+        new CreditWSUtil_LexisNexisBridger.SearchListsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.SearchRecordResults();
+        new CreditWSUtil_LexisNexisBridger.SearchResponse_element();
+        new CreditWSUtil_LexisNexisBridger.SearchResultRecords_element();
+        new CreditWSUtil_LexisNexisBridger.SearchResultRecordsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.SearchResults();
+        new CreditWSUtil_LexisNexisBridger.SearchRuns_element();
+        new CreditWSUtil_LexisNexisBridger.SearchRunsResponse_element();
+        new CreditWSUtil_LexisNexisBridger.ServiceFault();
+        new CreditWSUtil_LexisNexisBridger.SetRecordState_element();
+        new CreditWSUtil_LexisNexisBridger.SetRecordStateResponse_element();
+        new CreditWSUtil_LexisNexisBridger.Time_x();
+        new CreditWSUtil_LexisNexisBridger.UpdateList_element();
+        new CreditWSUtil_LexisNexisBridger.UpdateListResponse_element();
+        new CreditWSUtil_LexisNexisBridger.UpdateRecord_element();
+        new CreditWSUtil_LexisNexisBridger.UpdateRecordResponse_element();
+        new CreditWSUtil_LexisNexisBridger.WatchlistAutomaticFalsePositiveRules();
+        new CreditWSUtil_LexisNexisBridger.WatchlistConfiguration();
+        new CreditWSUtil_LexisNexisBridger.WatchlistDataFile();
+        new CreditWSUtil_LexisNexisBridger.WatchlistEFTMatchOptions();
+        new CreditWSUtil_LexisNexisBridger.WatchlistGeneralOptions();
+        new CreditWSUtil_LexisNexisBridger.WatchlistMatchDispositionRules();
+        new CreditWSUtil_LexisNexisBridger.WatchlistMatchOptions();
+        new CreditWSUtil_LexisNexisBridger.WatchlistMatchState();
+        new CreditWSUtil_LexisNexisBridger.WatchlistPaymentScreeningOptions();
+        new CreditWSUtil_LexisNexisBridger.WatchlistResultCriteria();
+        new CreditWSUtil_LexisNexisBridger.WatchlistResults();
+        new CreditWSUtil_LexisNexisBridger.WLAddressMatch();
+        new CreditWSUtil_LexisNexisBridger.WLCitizenshipMatch();
+        new CreditWSUtil_LexisNexisBridger.WLCountryDetails();
+        new CreditWSUtil_LexisNexisBridger.WLDOBMatch();
+        new CreditWSUtil_LexisNexisBridger.WLEntityDetails();
+        new CreditWSUtil_LexisNexisBridger.WLIDMatch();
+        new CreditWSUtil_LexisNexisBridger.WLMatch();
+        new CreditWSUtil_LexisNexisBridger.WLMatchConflicts();
+        new CreditWSUtil_LexisNexisBridger.WLMatchFile();
+        new CreditWSUtil_LexisNexisBridger.WLMatchSummary();
+        new CreditWSUtil_LexisNexisBridger.WLMatchSummaryItem();
+        new CreditWSUtil_LexisNexisBridger.WLPhoneMatch();
+
+        Test.stopTest();
+
+    }
+
+    static testMethod void testForteCallout() {
+
+        Test.startTest();
+
+        TestUtils.enable_isRunningTest = true;
+
+        Test.setMock(HttpCalloutMock.class, new ForteCalloutMock());
+
+        CreditWS_Forte.ForteRequest request = new CreditWS_Forte.ForteRequest();
+
+        request.action = 'verify';
+        request.authorization_amount = 1;
+        request.echeck = new CreditWS_Forte.ForteECheck();
+        request.echeck.account_number = '11111111';
+        request.echeck.routing_number = '222222222';
+
+        CreditWS_Forte.ForteResponse response = CreditWS_Forte.verifyBankAccount(request);
+
+        System.assert((response.transaction_id).equalsIgnoreCase('trn_520ed196-e275-4a93-ab6a-3e601c4bf35f'));
+        System.assert((response.location_id).equalsIgnoreCase('loc_167635'));
+        System.assert(response.authorization_amount == 1);
+        System.assert((response.entered_by).equalsIgnoreCase('c28e0b656a521c2f17f559618d85f1be'));
+
+        System.assert((response.echeck.masked_account_number).equalsIgnoreCase('****1111'));
+        System.assert((response.echeck.last_4_account_number).equalsIgnoreCase('1111'));
+        System.assert((response.echeck.routing_number).equalsIgnoreCase('222222222'));
+
+        System.assert((response.response.environment).equalsIgnoreCase('sandbox'));
+        System.assert((response.response.response_type).equalsIgnoreCase('D'));
+        System.assert((response.response.response_code).equalsIgnoreCase('U19'));
+        System.assert((response.response.response_desc).equalsIgnoreCase('INVALID TRN'));
+
+        Test.stopTest();
+
+    }
+
+    static testMethod void testDNBSBRIWSDL() {
+
+        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORNAMEGRP();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_TOTALS();
+        new CreditWSUtil_DNBSBRI.SBRIResponse();
+        new CreditWSUtil_DNBSBRI.USDS_FEIN_CTR();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORACCTGRP2();
+        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_SIC_NAICS_SECT();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTSUMM2();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHIST2();
+        new CreditWSUtil_DNBSBRI.customProduct8_Response();
+        new CreditWSUtil_DNBSBRI.SBRI_MISC();
+        new CreditWSUtil_DNBSBRI.SECTION2();
+        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_SCDY_SIC_GRP();
+        new CreditWSUtil_DNBSBRI.SBRI_GUARANTOR2();
+        new CreditWSUtil_DNBSBRI.USDS_SIC_NAICS_SECT();
+        new CreditWSUtil_DNBSBRI.DGX();
+        new CreditWSUtil_DNBSBRI.SBRI_TOTALS();
+        new CreditWSUtil_DNBSBRI.STATUS4();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILTOTGRP();
+        new CreditWSUtil_DNBSBRI.STATUS3();
+        new CreditWSUtil_DNBSBRI.STATUS2();
+        new CreditWSUtil_DNBSBRI.Immediate_Delivery();
+        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORACCTGRP2();
+        new CreditWSUtil_DNBSBRI.SBRI_PMTSUMM2();
+        new CreditWSUtil_DNBSBRI.Orders();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHISTTOT2();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORACCTGRP();
+        new CreditWSUtil_DNBSBRI.SBRI_MISCGRP();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILTOTGRP2();
+        new CreditWSUtil_DNBSBRI.prodOrderRequest_2();
+        new CreditWSUtil_DNBSBRI.SBRI_PMTEXPR2();
+        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILTOTGRP2();
+        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILS();
+        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILS2();
+        new CreditWSUtil_DNBSBRI.SBRI_PMTHISTTOT();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHISTTOT();
+        new CreditWSUtil_DNBSBRI.SBRI_PMTHIST();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_TOTALS2();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_MISCGRP2();
+        new CreditWSUtil_DNBSBRI.AdditionalFields();
+        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTGRP2();
+        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_PAYD_NORM_QRTL_GRP();
+        new CreditWSUtil_DNBSBRI.ArrayOfstring();
+        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOT2();
+        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTTOTGRP2();
+        new CreditWSUtil_DNBSBRI.Investigation();
+        new CreditWSUtil_DNBSBRI.socCode();
+        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTGRP();
+        new CreditWSUtil_DNBSBRI.SONRS2();
+        new CreditWSUtil_DNBSBRI.SBRI_IDENTIFICATION2();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTGRP();
+        new CreditWSUtil_DNBSBRI.DGX2();
+        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORNAMEGRP2();
+        new CreditWSUtil_DNBSBRI.SONRS();
+        new CreditWSUtil_DNBSBRI.SBRI_SBRIDATA();
+        new CreditWSUtil_DNBSBRI.ArrayOfAdditionalFields();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORNAMEGRP2();
+        new CreditWSUtil_DNBSBRI.CREDITMSGSRSV22();
+        new CreditWSUtil_DNBSBRI.STATUS();
+        new CreditWSUtil_DNBSBRI.DATATRNRS2();
+        new CreditWSUtil_DNBSBRI.SBRI_GUARANTOR();
+        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOT();
+        new CreditWSUtil_DNBSBRI.SBRI_PMTHISTTOT2();
+        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTTOTGRP();
+        new CreditWSUtil_DNBSBRI.SBRI_TOTALS2();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTGRP2();
+        new CreditWSUtil_DNBSBRI.DATARS();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHIST();
+        new CreditWSUtil_DNBSBRI.SBRI_PMTEXPR();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTSUMM();
+        new CreditWSUtil_DNBSBRI.SBRI_MISC2();
+        new CreditWSUtil_DNBSBRI.USDS_PAYD_GRP();
+        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_FEIN_CTR();
+        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORACCTGRP();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTTOTGRP2();
+        new CreditWSUtil_DNBSBRI.ws_SBRIResponse();
+        new CreditWSUtil_DNBSBRI.USDS_PAYD_NORM_QRTL_GRP();
+        new CreditWSUtil_DNBSBRI.SBRI_PMTSUMM();
+        new CreditWSUtil_DNBSBRI.SBRI_IDENTIFICATION();
+        new CreditWSUtil_DNBSBRI.USDS_SCDY_SIC_GRP();
+        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILSGRP();
+        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILTOTGRP();
+        new CreditWSUtil_DNBSBRI.ws_CustomProduct8();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTTOTGRP();
+        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_PAYD_GRP();
+        new CreditWSUtil_DNBSBRI.CREDITMSGSRSV2();
+        new CreditWSUtil_DNBSBRI.SIGNONMSGSRSV12();
+        new CreditWSUtil_DNBSBRI.NotificationDelivery();
+        new CreditWSUtil_DNBSBRI.SBRI_MISCGRP2();
+        new CreditWSUtil_DNBSBRI.ws_SBRI();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILSGRP();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILSGRP2();
+        new CreditWSUtil_DNBSBRI.DATATRNRS();
+        new CreditWSUtil_DNBSBRI.SBRI_SBRIDATA2();
+        new CreditWSUtil_DNBSBRI.InvestigationDelivery();
+        new CreditWSUtil_DNBSBRI.SIGNONMSGSRSV1();
+        new CreditWSUtil_DNBSBRI.DATARS2();
+        new CreditWSUtil_DNBSBRI.ws_CustomProduct8Response();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORNAMEGRP();
+        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_MISCGRP();
+        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILSGRP2();
+        new CreditWSUtil_DNBSBRI.SECTION();
+        new CreditWSUtil_DNBSBRI.SBRI_PMTHIST2();
+        new CreditWSUtil_DNBSBRI.DNB_WebServices_Providers_OrderAndInvestigations_OtherProducts_wsp_SBRI_V6_Port();
+
+    }
+
+    static testMethod void testDNBDirectAuth() {
+
+        Test.startTest();
+
+        TestUtils.enable_isRunningTest = true;
+
+        Test.setMock(HttpCalloutMock.class, new DNBDirectAuthCalloutMock());
+
+        CreditWS_DNB.dnbDirectAuthentication();
+
+        Test.stopTest();
+
+    }
+
+    static testMethod void testDNBDirectMatch() {
+
+        Test.startTest();
+
+        TestUtils.enable_isRunningTest = true;
+
+        Test.setMock(HttpCalloutMock.class, new DNBDirectMatchCalloutMock());
+
+        CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
+
+        dnbDirectMatchRequest.SingleResolution = true;
+        dnbDirectMatchRequest.SubjectName = 'APEX DEVELOPING LLC';
+        dnbDirectMatchRequest.StreetAddressLine1 = '7089 W BURLEIGH BLVD';
+        dnbDirectMatchRequest.PrimaryTownName = 'TAVARES';
+        dnbDirectMatchRequest.TerritoryName = 'FL';
+        dnbDirectMatchRequest.FullPostalCode = '32778';
+        dnbDirectMatchRequest.CountryISOAlpha2Code = 'US';
+        dnbDirectMatchRequest.DUNSNumber = '015691399';
+
+        CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
+
+        Test.stopTest();
+
+    }
+
+    public class ForteCalloutMock implements HttpCalloutMock {
+        public HTTPResponse respond(HTTPRequest req) {
+            HTTPResponse retVal = new HTTPResponse();
+            retVal.setStatusCode(200);
+            retVal.setBody('{"transaction_id":"trn_520ed196-e275-4a93-ab6a-3e601c4bf35f","location_id":"loc_167635","action":"verify","authorization_amount":1.00,"entered_by":"c28e0b656a521c2f17f559618d85f1be","echeck":{"masked_account_number":"****1111","last_4_account_number":"1111","routing_number":"222222222"},"response":{"environment":"sandbox","response_type":"D","response_code":"U19","response_desc":"INVALID TRN"}}');
+            return retVal;
+        }
+    }
+
+    public class DNBDirectAuthCalloutMock implements HttpCalloutMock {
+        public HTTPResponse respond(HTTPRequest req) {
+            HTTPResponse retVal = new HTTPResponse();
+            retVal.setStatusCode(200);
+            retVal.setBody('{ "TransactionDetail": { "ServiceTransactionID": "Id-afded95b2e25979af164495c", "TransactionTimestamp": "2018-10-31T12:56:15.666", "ApplicationTransactionID": "" }, "TransactionResult": { "SeverityText": "Information", "ResultID": "CM000", "ResultText": "Success", "ResultMessage": { "ResultDescription": "Success" } }, "AuthenticationDetail": { "Token": "BmavuHyBVprxcIxkRgzLSDLyHyFr8zNlXTTJloRKRZxVuZgKKVgiJQxYgbq7682Ot755taWKfqa" } }');
+            return retVal;
+        }
+    }
+
+    public class DNBDirectMatchCalloutMock implements HttpCalloutMock {
+        public HTTPResponse respond(HTTPRequest req) {
+            HTTPResponse retVal = new HTTPResponse();
+            retVal.setStatusCode(200);
+            retVal.setBody('{ "GetCleanseMatchResponse": { "TransactionDetail": { "ServiceTransactionID": "Id-bcded95b0eaced282bf8272c-2", "TransactionTimestamp": "2018-10-31T12:56:28" }, "TransactionResult": { "SeverityText": "Information", "ResultID": "CM000", "ResultText": "Success" }, "GetCleanseMatchResponseDetail": { "InquiryDetail": { "DUNSNumber": "15691399", "Address": { "CountryISOAlpha2Code": "US" } }, "MatchResponseDetail": { "MatchDataCriteriaText": { "$": "DUNS Number Lookup" }, "CandidateMatchedQuantity": 1, "MatchCandidate": [ { "DUNSNumber": "015691399", "OrganizationPrimaryName": { "OrganizationName": { "$": "APEX DEVELOPING LLC" } }, "PrimaryAddress": { "StreetAddressLine": [ { "LineText": "7089 W BURLEIGH BLVD" } ], "PrimaryTownName": "TAVARES", "CountryISOAlpha2Code": "US", "PostalCode": "32778", "TerritoryAbbreviatedName": "FL", "UndeliverableIndicator": true }, "MailingAddress": { "CountryISOAlpha2Code": "US", "UndeliverableIndicator": true }, "OperatingStatusText": { "$": "Active" }, "StandaloneOrganizationIndicator": true, "MatchQualityInformation": { "ConfidenceCodeValue": 10, "MatchGradeText": "AAAAAAAAAAA", "MatchGradeComponentCount": 11, "MatchGradeComponent": [ { "MatchGradeComponentTypeText": { "$": "Name" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "Street Number" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "Street Name" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "City" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "State" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "PO Box" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "Phone" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "Postal Code" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "Density" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "Uniqueness" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 }, { "MatchGradeComponentTypeText": { "$": "Sic" }, "MatchGradeComponentRating": "A", "MatchGradeComponentScore": 0 } ], "MatchDataProfileComponentCount": 0 }, "DisplaySequence": 1 } ] } } } }');
+            return retVal;
+        }
+    }
+
+}

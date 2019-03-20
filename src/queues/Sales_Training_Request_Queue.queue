@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <email>sales_training@q-2fvmuking3uhm7xx7v4u6xhlwpial8qrjxs6bipsju9397pyvu.7-9eoiea2.7.case.salesforce.com</email>
+    <name>Sales Training Request Queue</name>
+    <queueMembers>
+        <roles>
+            <role>LearningandDevelopmentA</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

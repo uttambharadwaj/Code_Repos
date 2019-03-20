@@ -1,0 +1,14 @@
+<apex:component layout="none" controller="CommonReportsController">
+	<c:ComponentContainer title="{!comptitle}" height="{!compheight}" width="{!compwidth}" displayBorder="true">
+		<apex:variable var="count" value="{!0}"/>
+		<apex:repeat value="{!reports}" var="r">
+			<apex:variable var="count" value="{!count+1}"/>
+			<apex:outputPanel layout="block" style="padding:5px 10px 5px 10px;">
+				{!count} &nbsp;&nbsp;
+				<apex:outputLink value="{!r.reportURL}" target="_top">
+					{!r.reportname}
+				</apex:outputLink>
+			</apex:outputPanel>
+		</apex:repeat>
+	</c:ComponentContainer>
+</apex:component>

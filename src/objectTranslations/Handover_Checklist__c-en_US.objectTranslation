@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Handover Checklist</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Handover Checklists</value>
+    </caseValues>
+    <layouts>
+        <layout>Handover Checklist Layout</layout>
+        <sections>
+            <label><!-- Configuration Overview --></label>
+            <section>Configuration Overview</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Development Requests --></label>
+            <section>Development Requests</section>
+        </sections>
+        <sections>
+            <label><!-- Product Overview --></label>
+            <section>Product Overview</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please confirm that T2 Data has been attached to the Handover Checklist --></errorMessage>
+        <name>T2_Tracker_Data_Required</name>
+    </validationRules>
+</CustomObjectTranslation>

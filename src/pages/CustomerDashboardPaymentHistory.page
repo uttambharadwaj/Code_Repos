@@ -1,0 +1,336 @@
+<apex:page controller="CustomerDashboardController" docType="html-5.0" showHeader="false" sidebar="false" action="{!initPaymentHistory}">
+    
+    <!-- Icons -->
+    <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    
+    <!-- CSS -->
+	<link rel="stylesheet" href="{!URLFOR($Resource.CustomerDashboardBaseCSS)}"/>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"/>
+    
+    <!-- Extended CSS -->
+    <style>
+        body { 
+        	margin: 0; padding: 0;
+        	background: #fff !important;
+        }
+        #header { margin-bottom: 20px; margin-top: -20px; }
+    	#content { padding: 40px; }
+        
+        .cycleAgingChart { width: 870px; height: 500px; padding: 4px; }
+        .paymentHistoryChart { width: 1000px; height: 500px; padding: 4px; }
+	</style>
+    
+    <!-- Scripts -->
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js" />
+        
+    <!-- Extended Scripts -->
+    <script>
+    	$j = jQuery.noConflict();
+
+    	$j(document).ready(function() {
+        	pageRerenderFunctions();
+        });
+    
+    	function pageRerenderFunctions() {
+            $j('[id$=content]').find('.collapsible').find('.pbSubheader').on('click', function() {
+            	twistSection(document.getElementById($j(this).parent('.collapsible').attr('id')).getElementsByTagName('img')[0]);
+        	}); 
+        }
+    
+    	// Labels for the NSF/Late Payments
+    	var lateNSFLabels = (function() {
+            var labels = new Array();
+            
+            for(var i = 0; i < 12; i++) {
+                var currentMonth = moment().subtract(i, 'month');
+            	labels.push(currentMonth.format('MMM YYYY'));   
+            }
+
+            return labels;
+        })();
+        
+    	var cycleAgingData = (function() {
+        
+            var retrievedCycleAgingData = {!cycleAgingData};
+            
+            var cycleAgingData = new Array();
+            
+            for(var i = 0; i <= Object.keys(retrievedCycleAgingData).length; i++) {
+                if(retrievedCycleAgingData[i] != null) {
+            		cycleAgingData.push(retrievedCycleAgingData[i]);   
+                }
+            }
+            
+            return cycleAgingData;
+            
+        })();
+    
+        var cycleAgingDates = (function() {
+
+            var retrievedCycleAgingLabels = {!cycleAgingDates};
+            
+            var cycleAgingDates = new Array();
+            
+            for(var i = 0; i <= Object.keys(retrievedCycleAgingLabels).length; i++) {
+                if(retrievedCycleAgingLabels[i] != null) {
+                    var date = moment(retrievedCycleAgingLabels[i]).add(1, 'day');
+                    if(cycleAgingData.length === 12) {
+            			cycleAgingDates.push(date.format('MMM YYYY'));   
+                  	}
+                    else {
+                        cycleAgingDates.push(date.format('MMM DD, YYYY'));     
+                    }
+                }
+            }
+            
+            return cycleAgingDates;
+            
+        })();
+    
+    	var cycleAgingTitle = (function() {
+           
+            if("{!agingHistory.cyclePeriod}".toLowerCase() === 'm') {
+             	return "Monthly Billing Cycle (Cycle {!agingHistory.cycleCd})";   
+            }
+            
+            if("{!agingHistory.cyclePeriod}".toLowerCase() === 'd') {
+             	return "Weekly Billing Cycle (Cycle {!agingHistory.cycleCd})";   
+            }
+            
+            if("{!agingHistory.cyclePeriod}".toLowerCase() === 'b') {
+             	return "Bi-Weekly Billing Cycle (Cycle {!agingHistory.cycleCd})";   
+            }
+            
+            if("{!agingHistory.cyclePeriod}".toLowerCase() === 'd') {
+             	return "Daily Billing Cycle (Cycle {!agingHistory.cycleCd})";   
+            }
+            
+        })();
+	</script>
+
+    <div id="content">
+        <div id="header">
+	        <img src="/img/icon/invoices32.png" alt="" class="pageTitleIcon" title=""/>
+    	    <span class="title">Payment History</span><br/>
+        	<apex:outputPanel id="pageName">
+	            <apex:outputPanel rendered="{!agingHistory.accountNm != null}">
+                    <h1>{!agingHistory.accountId} -&nbsp;<apex:outputText value="{!agingHistory.accountNm}" escape="false" /></h1>
+        	    </apex:outputPanel>
+    	    </apex:outputPanel>
+		</div>
+    	<apex:pageMessages id="errorMessage"></apex:pageMessages>
+		<apex:pageBlock mode="maindetail" id="paymentHistory">
+            <apex:pageBlockSection columns="1" collapsible="true" id="details" title="Details" html-class="collapsible"> 
+                <apex:outputPanel >
+				<table class="detailTable" cellspacing="0">
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Effective Date:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!agingHistory.hrcFeeEffDt}" />
+							</apex:outputText>
+                        </td>
+                        
+						<td class="detailFieldLabel">Expiration Date:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!agingHistory.hrcFeeExpnDt}" />
+							</apex:outputText>
+                        </td>
+						
+						<td class="detailFieldLabel">Fee Amount:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}">
+								<apex:param value="{!agingHistory.hrcFeeAmt}" />
+							</apex:outputText>
+                        </td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+					<tr class="detailRowBorder">
+						<td class="detailFieldLabel">Waived Through Date:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!agingHistory.hrcFeeWaiveEndDt}" />
+							</apex:outputText>
+                        </td>
+                        
+                        <td class="detailFieldLabel">Number Of Days Late Of Late Payments:</td>
+                        <td class="detailFieldValue">
+                            {!agingHistory.daysLatePastDueCnt}
+                        </td>
+                        
+                        <apex:outputPanel rendered="{!hrflg == true}">
+							<td class="detailFieldLabel">WEX Risk Grade:</td>
+	                        <td class="detailFieldValue">
+								{!agingHistory.riskCode}
+                        	</td>
+						</apex:outputPanel>
+                        
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+					<tr class="detailRowBorder">
+						<apex:outputPanel rendered="{!hrflg == true}">
+							<td class="detailFieldLabel">External Credit Bureau Reporting:</td>
+                        	<td class="detailFieldValue">
+								{!agingHistory.dnbViabilityRate}
+                        	</td>
+                        </apex:outputPanel>
+                        
+						<td class="detailFieldLabel"></td>
+                        <td class="detailFieldValue"></td>
+						
+						<td class="detailFieldLabel"></td>
+                        <td class="detailFieldValue"></td>
+					</tr>
+                </table>
+                </apex:outputPanel>
+            </apex:pageBlockSection><br/>
+            <apex:pageBlockSection columns="1" collapsible="true" title="Billing Cycle Aging" html-class="collapsible" rendered="{!hrflg == true}"><br/>  
+			<div class="cycleAgingChart">
+	            <canvas id="cycleAging" width="200" height="200"></canvas>
+    	    </div>
+			<script>
+        		var ticks = [120, 90, 60, 30, 15, 10, 0];
+				var ctx = document.getElementById("cycleAging");
+			var cycleAging = new Chart(ctx, {
+    			type: 'bar',
+    			data: {
+        			labels: cycleAgingDates,
+        			datasets: [{
+            			label: '# Days Past Due Date',
+            			data: cycleAgingData,
+            			backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            			borderColor: 'rgba(255,99,132,1)',
+            			borderWidth: 1
+        			}]
+    			},
+    			options: {
+        			scales: {
+            			yAxes: [{
+                			ticks: {
+                    			beginAtZero:true,
+                                autoSkip: false,
+          						min: 0,
+          						max: 120
+        					},
+        					afterBuildTicks: function(scale) {
+                                scale.ticks = ticks;
+          						return;
+        					},
+        					beforeUpdate: function(oScale) {
+          						return;
+        					}, 
+                            scaleLabel: {
+        						display: true,
+        						labelString: 'Days Past Due Date',
+                                fontSize: 14,
+                                fontStyle: "bold"
+      						}
+            			}],
+                        xAxes: [{
+                        	scaleLabel: {
+        						display: true,
+        						labelString: cycleAgingTitle,
+                                fontSize: 14,
+                                fontStyle: "bold"
+      						}
+                        }],
+        			}, 
+                    maintainAspectRatio: false,
+    				responsive: true, 
+                    legend: {
+            			display: false
+         			}
+    			}
+			});
+		</script>
+		</apex:pageBlockSection><br/>
+            <apex:pageBlockSection columns="1" collapsible="true" title="Late / NSF Payments" html-class="collapsible" rendered="{!hrflg == true}"><br/>   
+        <div class="paymentHistoryChart">
+            <canvas id="paymentHistory" width="200" height="200"></canvas>
+        </div>
+		<script>
+			var ctx = document.getElementById("paymentHistory");
+			var paymentHistory = new Chart(ctx, {
+    			type: 'bar',
+    			data: {
+        			labels: lateNSFLabels,
+        			datasets: [
+                        {
+                            label: '# Late Payments',
+            				data: [
+                                   {!agingHistory.lateFeeCnt00}, 
+                                   {!agingHistory.lateFeeCnt01}, 
+                                   {!agingHistory.lateFeeCnt02}, 
+                                   {!agingHistory.lateFeeCnt03}, 
+                                   {!agingHistory.lateFeeCnt04}, 
+                                   {!agingHistory.lateFeeCnt05}, 
+                                   {!agingHistory.lateFeeCnt06}, 
+                                   {!agingHistory.lateFeeCnt07}, 
+                                   {!agingHistory.lateFeeCnt08}, 
+                                   {!agingHistory.lateFeeCnt09}, 
+                                   {!agingHistory.lateFeeCnt10}, 
+                                   {!agingHistory.lateFeeCnt11}
+                                  ],
+            				backgroundColor: 'rgba(255, 159, 64, 0.2)',
+            				borderColor: 'rgba(255, 159, 64, 1)',
+            				borderWidth: 1
+        				},
+                        {
+                            label: '# NSF Payments',
+            				data: [
+                                   {!agingHistory.nsfCnt00}, 
+                                   {!agingHistory.nsfCnt01}, 
+                                   {!agingHistory.nsfCnt02}, 
+                                   {!agingHistory.nsfCnt03}, 
+                                   {!agingHistory.nsfCnt04}, 
+                                   {!agingHistory.nsfCnt05}, 
+                                   {!agingHistory.nsfCnt06}, 
+                                   {!agingHistory.nsfCnt07}, 
+                                   {!agingHistory.nsfCnt08}, 
+                                   {!agingHistory.nsfCnt09}, 
+                                   {!agingHistory.nsfCnt10}, 
+                                   {!agingHistory.nsfCnt11}
+                                  ],
+            				backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            				borderColor: 'rgba(255, 99, 132, 1)',
+            				borderWidth: 1
+        				}
+                    ]
+    			},
+    			options: {
+        			scales: {
+            			yAxes: [{
+                			ticks: {
+                    			beginAtZero:true,
+                                stepSize: 1, 
+        					},
+                            scaleLabel: {
+        						display: true,
+                                labelString: 'Number of Late / NSF Payments',
+                                fontSize: 14,
+                                fontStyle: "bold"
+      						}
+            			}],
+        			}, 
+                    maintainAspectRatio: false,
+    				responsive: true, 
+                    legend: {
+                        position: "right"   
+                    }
+    			}
+			});
+		</script>
+        </apex:pageBlockSection>
+        </apex:pageBlock>
+	</div>
+</apex:page>

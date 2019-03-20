@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>CSI_Global_Fleet_Offer</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CSI Global Fleet Offer</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CSIEnterprisesIncPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>CSI Global</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CarsArrive</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CarsArrive</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CarsArriveNetworkPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>CarsArrive</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>D_S_Fuel_Card_Offer</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>D&amp;S Fuel Card Offer</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>DSFuelCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>D and S Fuel Card</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>D_S_factors</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>D&amp;S factors</label>
+        <sharedTo>
+            <group>D_S_Factors_Partner</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>IT - D and S Factors - OTR</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Discount_Diesel_Offer_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Discount Diesel Offer Sharing</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>DiscountDieselPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>Discount Diesel</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>England_Logistics_Offer</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>England Logistics Offer</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>EnglandLogisticsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>England Logistics</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FleetPro_Services</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>FleetPro Services</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FleetProServicesLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>FleetPro Services</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Fuelbook</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Fuelbook</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TruckMonkIncFormaPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>Fuelbook</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>GE_Partner</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>GE Partner</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GECapitalTransportationFinancePartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>GE</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>InTouch_GPS_Card_Program</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>InTouch GPS</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>InTouchGPSPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>InTouch GPS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NASTC1</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>NASTC</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>NASTCPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>NASTC</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Online_offer_TransAlliance</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Online offer TransAlliance</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TransAlliancePartnerUser1</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>Trans-Alliance</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Online_offer_WilcoHess</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Online offer WilcoHess</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>WilcoHessIncPartnerExecutive1</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>WilcoHess</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Partner_RTS</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Partner RTS</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>RTSCarrierServicesPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>RTS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Pavestone_Offer</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Pavestone Offer</label>
+        <sharedTo>
+            <group>Partner_User_Sky_Pavestone</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>IT - Pavestone Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Prepass</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Prepass</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>PrepassPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>Prepass</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Single_Point_Fuel_Card_Offer</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Single Point Fuel Card Offer</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SinglePointCapitalPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>Single</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sky_Capital</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Offers for Roady&apos;s D&amp;S</description>
+        <label>Sky Capital</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SkyCapitalPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>IT</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Summar</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Summar</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SummarFinancialLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>SUMMAR</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Truckers_B2B_Online_Application_Offer_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Truckers B2B Online Application Offer Sharing</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TruckersB2BPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Truckers B2B</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Trulos</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Trulos</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TrulosTransportationPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>startsWith</operation>
+            <value>Trulos</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>All_F1_Internal_usrs</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>All F1 Internal usrs</label>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>All_F1_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>share_with_forseva_user</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>share with forseva user</label>
+        <sharedTo>
+            <group>ForsevaApplGuestUser</group>
+        </sharedTo>
+        <sharedFrom>
+            <allInternalUsers></allInternalUsers>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

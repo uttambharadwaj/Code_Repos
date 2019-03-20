@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Line_Of_Business__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Line Of Business</label>
+        <required>false</required>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>NA Fleet</fullName>
+                    <default>true</default>
+                    <label>NA Fleet</label>
+                </value>
+                <value>
+                    <fullName>CorporatePayments</fullName>
+                    <default>false</default>
+                    <label>CorporatePayments</label>
+                </value>
+                <value>
+                    <fullName>OTR</fullName>
+                    <default>false</default>
+                    <label>OTR</label>
+                </value>
+                <value>
+                    <fullName>Factoring</fullName>
+                    <default>false</default>
+                    <label>Factoring</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Queue_Name__c</fullName>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Queue Name</label>
+        <length>255</length>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Implementation Automation Setting</label>
+    <pluralLabel>Implementation Automation Settings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

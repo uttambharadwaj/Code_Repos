@@ -1,0 +1,185 @@
+<apex:page sidebar="false" cache="false" expires="0" controller="i2iSearchController">
+
+<style>
+    
+    .selectedCount {
+        color: #666;
+        font-size: 10px;
+    }
+    
+    .sortLink {
+        color: #015ba7;
+    }
+    
+    .sortLink:hover {
+        /*color: #015ba7;*/
+        text-decoration: underline;
+    }
+
+</style>
+
+<!-- <apex:includescript value="{!URLFOR($Resource.jquery_files,'jquery.maskedinput.js')}"/>
+<apex:includescript value="{!URLFOR($Resource.jquery_files,'jquery-1.10.2.min.js')}"/>-->
+
+<apex:includeScript value="{!$Resource.latestJqueryFiles}"/>
+
+<script type="text/javascript"> 
+
+    function stopRKey(evt) { 
+      
+      var evt = (evt) ? evt : ((event) ? event : null);   
+      var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+      if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
+    } 
+    
+    
+    document.onkeypress = stopRKey; 
+    
+    // Added by Trekbin to fire the commandButton onclick event, as per the case requirement : 00022611
+    function convertChildLead(elem){
+        
+        $(elem).next().click(); 
+    }
+    
+    
+</script>
+
+<apex:sectionHeader title="Recent Campaign Search"/><!-- subtitle="subtitle"/>-->
+ 
+<apex:form id="frm">
+<apex:pagemessages id="pgMsg"/>
+<apex:pageBlock title="Search Filters" id="srchfilters">
+    <table cellpadding="5">
+        <tr>
+            <td>Product/Program: </td> <!-- this will need to be required -->
+            <td>
+                <!-- <c:RequiredInputComponent > -->
+                <apex:selectList multiselect="false" size="1" value="{!programSelected}" tabindex="0">
+                    <apex:selectoptions value="{!programValues}"/>
+                </apex:selectList>
+                <!-- </c:RequiredInputComponent> -->
+            </td>
+            <td>Company: </td>
+            <td><apex:inputtext value="{!company}" onkeydown="if (event.keyCode == 13) frmsubmit()"/></td>
+        </tr>
+
+        <tr>
+            <td>Phone #: </td>
+            <td><apex:inputtext id="phone" value="{!phoneNumber}" onkeydown="if (event.keyCode == 13) frmsubmit()"/></td> <!-- styleclass="phone-mask"/></td>-->
+            <td>Zip Code: </td>
+            <td><apex:inputtext value="{!zipcode}" onkeydown="if (event.keyCode == 13) frmsubmit()" /></td>
+        </tr>
+        <tr>
+            <td>Promotional Code: </td>
+            <td><apex:inputtext value="{!promocode}" onkeydown="if (event.keyCode == 13) frmsubmit()" /></td>
+            <td>Email:</td>
+            <td><apex:inputText value="{!email}" onkeydown="if (event.keyCode == 13) frmsubmit()" /></td>
+        </tr>
+    </table>
+    <br/>
+    <outputpanel>
+    <apex:commandbutton action="{!searchi2i}" value="Search" rerender="frm" status="actionSubmitted" tabindex="5"/>&nbsp;&nbsp;&nbsp;
+    <apex:commandbutton action="{!clearForm}" value="Clear" rerender="frm" status="actionSubmitted" tabindex="6"/>
+    &nbsp;
+    <apex:actionFunction name="frmsubmit" action="{!searchi2i}" rerender="frm" status="actionSubmitted"/>
+    <apex:actionStatus id="actionSubmitted" stopText="" startText="">
+        <apex:facet name="start">
+            <apex:image value="/img/loading.gif"  style="height:18px;width:20px"/>                         
+        </apex:facet>
+    </apex:actionStatus>
+    </outputpanel>
+</apex:pageBlock>
+<apex:pageBlock title="Campaign Table Results" id="resultsblock">
+    
+    <h1>Leads Matching Campaign Table</h1>
+    <apex:pageblocktable value="{!leadwrappers}" var="l">
+        <apex:column headervalue="Select" style="width:100px;">
+            <apex:commandbutton value="Open" action="{!l.openlead}" immediate="true"/>&nbsp;
+            <apex:commandbutton value="Create Opportunity" action="{!l.convertlead}" immediate="true"/>
+        </apex:column>
+        <apex:column value="{!l.returndatarecord.firstname} {!l.returndatarecord.lastname}" headervalue="Name"/>
+        <apex:column value="{!l.returndatarecord.company}" headervalue="Company"/>
+        <apex:column value="{!l.returndatarecord.state}" headervalue="State"/>
+        <apex:column value="{!l.returndatarecord.city}" headervalue="City"/>
+        <apex:column value="{!l.campaignmemberrecord.campaign.name}" headervalue="Campaign"/>
+        <!-- <apex:column value="{!l.campaignmemberrecord.lead.Coupon_Code_2__c}" headervalue="Coupon Code"/> -->
+        <!-- <apex:column value="{!programselected}" headervalue="Program"/>-->
+        <apex:column value="{!l.returndatarecord.couponcode}" headervalue="Coupon Code"/>
+        <apex:column value="{!l.programname}" headervalue="Program"/>
+        <apex:column value="{!l.campaignmemberrecord.campaign.Marketing_Offer__c}" headervalue="Offer"/>
+        <apex:column value="{!l.returndatarecord.maildate}" headervalue="Mail Date"/>
+        <apex:column value="{!l.campaignmemberrecord.lead.owner.name}" headervalue="Owner"/>
+        <apex:column value="{!l.campaignmemberrecord.lead.status}" headervalue="Status"/>
+        <!-- <apex:column value="{!l.campaignmemberrecord.lead.Product_Interest__c}" headervalue="Product Interest"/>-->
+    </apex:pageblocktable>
+    <br/>
+    <h1>Opportunities Matching Campaign Table</h1>
+    <apex:pageblocktable value="{!contactwrappers}" var="c">
+        <apex:column headervalue="Select" style="width:100px;">
+            <!-- <apex:commandbutton value="Open" action="{!c.opencontact}" />&nbsp; -->
+            <apex:commandbutton value="Open" action="{!c.openopportunity}" /> &nbsp;
+        </apex:column>
+        <apex:column value="{!c.returndatarecord.firstname} {!c.returndatarecord.lastname}" headervalue="Name"/>
+        <apex:column value="{!c.returndatarecord.company}" headervalue="Company"/>
+        <apex:column value="{!c.returndatarecord.state}" headervalue="State"/>
+        <apex:column value="{!c.returndatarecord.city}" headervalue="City"/>  
+        <apex:column value="{!c.campaignmemberrecord.campaign.name}" headervalue="Campaign"/>
+        <!-- <apex:column value="{!c.opportunitycontactrecord.opportunity.Coupon_Code2__c}" headervalue="Coupon Code"/> -->
+        <!-- <apex:column value="{!programselected}" headervalue="Program"/>-->
+        <apex:column value="{!c.returndatarecord.couponcode}" headervalue="Coupon Code"/>
+        <apex:column value="{!c.programname}" headerValue="Program"/>
+        <apex:column value="{!c.campaignmemberrecord.campaign.Marketing_Offer__c}" headervalue="Offer"/>
+        <apex:column value="{!c.returndatarecord.maildate}" headervalue="Mail Date"/>
+        <apex:column value="{!c.campaignmemberrecord.contact.owner.name}" headervalue="Owner"/>
+        <apex:column value="{!c.opportunitycontactrecord.opportunity.stagename}" headervalue="Stage"/>
+        <!-- <apex:column value="{!c.opportunitycontactrecord.opportunity.Product_Interest__c}" headervalue="Product Interest"/>-->
+    </apex:pageblocktable>
+    <br/> 
+    <h1>Recent Campaign Matches</h1>
+    
+     
+     <apex:pageblocktable value="{!nomatchrecordwrappers}" var="nomatch">
+   
+        <apex:column headervalue="Select" style="width:100px;">
+         
+            <apex:commandbutton value="Create Lead" action="{!nomatch.createLeadRedirect}" immediate="true"/>&nbsp;
+            <apex:commandbutton value="Create Opportunity" action="{!nomatch.convertLead}" immediate="true" oncomplete="convertChildLead(this);" rerender="demo" status="actionSubmitted"/>
+            <!-- Added by Trekbin, to split the DML and Callout into two different transactions -->
+            <apex:commandButton action="{!nomatch.convertChildLead}" value="convertChildLead" id="outputPnlConvert" style="display:none;" rerender="pgMsg" status="actionSubmitted"/>
+           </apex:column>       
+          
+        <apex:column value="{!nomatch.nomatchi2irecord.firstname} {!nomatch.nomatchi2irecord.lastname}" headervalue="Name"/>
+        <apex:column value="{!nomatch.nomatchi2irecord.company}" headerValue="Company"/>
+        <apex:column value="{!nomatch.nomatchi2irecord.state}" headervalue="State"/>
+        <apex:column value="{!nomatch.nomatchi2irecord.city}" headervalue="City"/>
+        <apex:column value="{!nomatch.nomatchi2irecord.couponcode}" headervalue="Coupon Code"/>
+        <apex:column value="{!nomatch.programname}" headervalue="Program"/>
+        <apex:column value="{!nomatch.nomatchi2irecord.offer}" headervalue="Offer"/>
+        <apex:column value="{!nomatch.nomatchi2irecord.maildate}" headervalue="Mail Date"/>
+        
+        
+    </apex:pageblocktable>
+    <br/>
+    <br/>
+    API Process Time: {!mSecondsToExecute} miliseconds
+    <br/>
+    Total from Submission: {!totalmsecondstoexecute} miliseconds
+    
+    <!-- <br/><br/>
+    testing: {!testingvalue}-->
+   <!-- <br/><br/>
+    iframeurl: {!iframeurl}-->
+</apex:pageBlock>
+<apex:pageblock title="Salesforce Results">
+    <apex:iframe src="{!iframeurl}" scrolling="true" id="theIframe" width="100%" rendered="{!iframeurlhit}" frameborder="true"/>
+</apex:pageblock>
+
+</apex:form>
+<!--  Need to declare j$ probably 
+<script>
+$(document).ready(function() {
+   $(".phone-mask").mask("(999) 999-9999");
+});
+</script>
+-->
+</apex:page>

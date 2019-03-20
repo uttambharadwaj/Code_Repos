@@ -1,0 +1,46 @@
+<apex:component layout="none" controller="MyApplicationsController">
+    <apex:attribute name="title" type="String" default="My Applications" description="Page block title" />
+    <apex:attribute name="width" type="Integer" required="false" default="400" description="Width of the container" />
+    <apex:attribute name="height" type="Integer" required="false" default="400" description="Height of the container" />
+    <apex:attribute name="iconImagePath" type="String" required="false" description="The path to the icon image. For example, /resource/SupportCommunityResources/images/icon.png" />
+    
+    <apex:form >
+        <apex:pageBlock title="{!title}"><!-- tabStyle="Application_Request__c">-->
+            <apex:pageBlockButtons location="top">
+                <!--<apex:commandButton action="{!URLFOR($Action.Case.NewCase)}" value="New Case" />-->
+                <!--<apex:outputLink title="Create a new Application Request" value="/a0V/e?retURL=%2Fa0V%2Fo" target="_parent" styleclass="btn" style="text-decoration:none">
+                        Create New
+                </apex:outputLink>-->
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection columns="1">
+                <apex:outputText value="No records to display" rendered="{!records.size == 0}" />
+                <apex:pageBlockTable value="{!Records}" var="record" rendered="{!records.size > 0}">
+                    <apex:column headerValue="Application Request Name">
+                        <apex:outputLink value="/{!record.Id}">
+                            {!record.Name}
+                        </apex:outputLink>                      
+                    </apex:column>
+                    <apex:column value="{!record.Opportunity__c}"/> 
+                    <apex:column value="{!record.App_Submitted_Date__c}"/>
+                    <apex:column value="{!record.Program__c}"/>
+                    <apex:column value="{!record.CreatedDate}"/>
+                    <apex:column value="{!record.Sales_Stage__c}"/>
+                </apex:pageBlockTable>                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    
+    <!-- <c : ComponentContainer title="{!title}" width="{!width}" height="{!height}" iconImagePath="{!iconImagePath}">
+        <apex : repeat value="{!Records}" var="a">
+            <apex : outputPanel layout="block" style="padding:5px 10px 5px 10px;">
+                <apex : outputText value="{0, date, MM'/'dd'/'yyyy}">
+                    <apex : param value="{!a.Publish_Date__c}" />
+                </apex : outputText><br />
+                { ! a.Announcement__c}&nbsp;<a href="{ ! a.Hyperlink_Location__c}" target="_blank">{ ! a.Hyperlink_Text__c}</a><br />
+                <br />
+            </apex : outputPanel>
+        </apex : repeat>
+    </c : ComponentContainer> -->
+
+</apex:component>

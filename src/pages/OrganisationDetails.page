@@ -1,0 +1,596 @@
+<apex:page controller="Ctrl_MotorpassForm" standardStylesheets="false" cache="false" id="thePage" showHeader="false">
+
+    <head>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="{!IF(brand == 'Motorpass','https://www.motorpass.com.au/media/1346970/motorpass.ico','http://www.motorcharge.com.au/media/1346975/motorcharge.ico')}" />
+    
+    <title>{!IF(brand == 'Motorpass','Motorpass', 'Motorcharge')}</title>
+        
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-1.4.3.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-ui-1.8.5.custom.min.js')}" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js" />
+        <apex:includeScript value="{!URLFOR($Resource.JSCalendar,'calendar.js')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.JSCalendar,'calendar_blue.css')}" />
+        
+        <style type="text/css">
+        
+           input[type="text"] { width:160px; padding: 3px; display:block; background-color: #FFF; }
+        
+            .button { display:inline-block; font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 50px; height: 17px; font-family: arial; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }
+            .smlbutton { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 150px; height: 36px; font-family: arial; font-size: 14px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-radius: 6px; background-color: #E31837; }
+            
+            input[type=text] { border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; }
+            
+            select { padding-top: 5px; padding-bottom: 5px; }
+            
+            h2 { font-family: arial; font-size: 14px; font-weight: bold; color: #666; }
+            
+            #tabs ul {
+            margin-bottom: 0px;
+            height: 29px;
+            background: url(https://wss.motorpass.com.au/Images/pay-bg-active2.gif) repeat-x top right;
+            overflow: hidden;
+            zoom: 1;
+            list-style-type: none;
+            }
+            
+            #tabs ul li {
+            background: url(https://wss.motorpass.com.au/Images/pay-bg.gif) repeat-x top left;
+            height: 29px;
+            line-height: 29px;
+            float: left;
+            margin-left: -1px;
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 0px 14px 0px 13px;
+            display: block;
+            float: left;
+            width: 17%;
+            }
+            
+            #tabs ul li.selected {
+            background: none;
+            color: #FFF;
+            }
+            
+            .dateFormat{display:none;visibility:hidden;}
+            
+            .datepick
+            {
+                width:200px !important;
+            }
+            .datepick-month
+            {
+                width:99%;
+            }
+            .datepick-month-header
+            {
+                height:2.5em !important;
+            }
+            .datepick-month-header select, .datepick-month-header input
+            {
+                height:2em !important;
+            }
+        
+            
+            #contactLink
+            {               
+               display:block;
+               cursor:pointer;               
+               float:left;
+               right:0px;
+               position:absolute;
+               width:100px;
+               height:50px;
+               border:1px solid #666;
+            }
+            
+            
+            #contactForm
+            {
+               height:623px;
+               width:440px;              
+               display:none;
+            }
+            
+            #contactFormContainer
+            {
+               position:absolute;
+               right:0px;
+               top:50px;
+            }
+            .box
+            {
+                float:right;
+            }
+            
+            #transparentDiv
+            {
+                background-color:red;
+                opacity:0.2;
+            }
+            
+            #mainDiv
+            {
+                width: 80%;
+            }
+            
+            .requiredBlock
+            {
+                display : none;
+            }
+            
+            .vfHelpText a            {position:relative;}
+            .vfHelpText a span       {display: none;}
+            .vfHelpText a:hover span {display: block;
+                                      position:absolute;
+                                      top:1.25em;
+                                      padding:2px 5px;
+                                      left:-15em; width:15em;
+                                      z-index:100;
+                                      border:1px solid orange;
+                                      background-color:#FEFDB9;
+                                      color:black;
+                                     }
+            
+            .vfHelpText img
+            {
+                border:0;
+            }
+                                         
+            .helpOrb {
+                background-image: url("/img/help/helpOrbs.gif");
+                background-position: 0 0;
+                height: 15px;
+                width: 20px;
+                    }
+        </style>
+        
+    </head>
+    
+    <body style="margin: 0px; font-family: arial; font-size: 13px; color: #666;">
+    
+    <div style="margin-left: auto; margin-right: auto; width: 960px;">
+    
+    <div id="rdHead" style="display:{!IF(brand == 'Motorpass','block','none')}; background-image: url(http://www.motorpass.com.au/media/2241736/mp_website_header.jpg);background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+        
+    <div id="rdHead" style="display:{!IF(brand == 'Motorcharge','block','none')}; background-image: url({!$Resource.MCBanner});background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+    
+    <div style="height: 1250px; margin-left: auto; margin-right: auto; width: 960px; clear: both; padding: 0px; background: url({!$Resource.AUBodybg}) repeat-y 0px 0px; overflow: hidden; vertical-align: baseline;">
+        
+            <div align="center" style="padding-left: 10px; padding-right: 10px; padding-top: 0px; margin-top: -13px;">
+            
+            <div id="tabs">
+                <ul>
+                    <li>Getting Started</li>
+                    <li class="selected">Your Details</li>
+                    <li>Card Details</li>
+                    <li>Payment Options</li>
+                    <li>Confirmation</li>
+                </ul>
+            </div>
+            
+            <br/>
+            
+            <div style="padding-left: 20px;">
+    
+            <apex:form id="theForm">
+            
+                <apex:actionFunction name="callComponent" action="{!invokeComponent}" rerender="compId"/>
+            
+                <apex:pageMessages />
+                
+                <apex:pageBlock id="pgBlk">
+                
+                <div style="padding-right:15px;" align="right"><span style="color:red;">*</span> Required information</div>
+                
+                <table width="100%" border="0" cellspacing="0" cellpadding="2">
+                  <tr>
+                    <td align="left"><h2>Contact Information</h2></td>
+                    <td align="left"></td>
+                    <td align="left">&nbsp;</td>
+                    <td align="left">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="left">First name<span style="color:red;">* </span></td>
+                    <td align="left"><apex:inputField value="{!theLead.Salutation}" style="width:35%;float:left; margin-right: 10px;"/><apex:inputField value="{!theLead.Firstname}" style="width:30%" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,20);"/></td>
+                    <td align="left">Last name<span style="color:red;">* </span></td>
+                    <td align="left"><apex:inputText value="{!theLead.Lastname}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,20);" style="float:left;" id="lname"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">Telephone<span style="color:red;">* </span></td>
+                    <td align="left"><apex:inputField value="{!theLead.Phone}" id="phone" onkeypress="return checkFieldLength(event,this.id,10); return numbersonly(event, false)" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.Phone.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span> 
+                    </td>
+                    <td align="left">Mobile</td>
+                    <td align="left"><apex:inputField value="{!theLead.MobilePhone}" id="mobile" onkeypress="return checkFieldLength(event,this.id,10); return numbersonly(event, false)" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.MobilePhone.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">Email<span style="color:red;">* </span></td>
+                    <td align="left"><apex:inputField value="{!theLead.Email}" style="float:left;" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,40);"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.Email.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span></td>
+                    <td align="left">&nbsp;</td>
+                    <td align="left">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="left"><h2>Business Details</h2></td>
+                    <td align="left"></td>
+                    <td align="left">&nbsp;</td>
+                    <td align="left">&nbsp;</td>
+                  </tr>
+                  <tr>
+                  <td align="left">Legal entity name<span style="color:red;">* </span></td>
+                     <td align="left"><apex:inputField value="{!theLead.AU_Account_Name__c}" style="float:left;"/>
+                        <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_Account_Name__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                        </span>
+                    </td>
+                     <td align="left"><span style="font-size: 13px;">Business trading name</span></td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Trading_Name__c}"/></td>
+                    
+                  </tr>
+                  <tr>
+                    <td align="left">Trustee (if applicable)</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Trustee__c}"/></td>
+                    <td align="left">Industry</td>
+                    <td align="left"><apex:inputField style="font-size: 13px; padding 3px; border: 1px solid #666; border-radius: 3px;" value="{!theLead.Industry}"/></td>
+                  </tr>
+                  <tr>
+                    <td align="left">ABN</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_ABN__c}" id="ABN" onkeypress="return checkFieldLength(event,this.id,11); return numbersonly(event, false)" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_ABN__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span> </td>
+                    <td align="left">Years in business</td>
+                    <td align="left"><apex:inputField value="{!theLead.Years_in_Business__c}" style="float:left;" />
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.Years_in_Business__c.inlineHelpText}</span>
+                        </apex:outputLink></span></td>
+                  </tr>
+                  <tr>
+                    <td align="left">ACN</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_ACN__c}" id="ACN" onkeypress="return checkFieldLength(event,this.id,9); return numbersonly(event, false)" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_ACN__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span></td>
+                    <td align="left"></td>
+                    <td align="left"></td>
+                  </tr>
+                  <tr>
+                    <td align="left"><h2>Business Address</h2></td>
+                    <td align="left"></td>
+                    <td align="left"><h2>Postal Address</h2></td>
+                    <td align="left"><span style="font-size: 12px;" >Same as Business</span>
+                    <apex:inputCheckBox value="{!copyAddress}" onclick="copyAddr();" id="asAbove"/></td>
+                  </tr>
+                  <tr>
+                    <td align="left">Address</td>
+                    <td align="left"><apex:inputText value="{!theLead.Street}" onblur="copyAddr();" id="street" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,35);"/></td>
+                    <td align="left">Address</td>
+                    <td align="left"><apex:inputText value="{!theLead.AU_Postal_Address__c}" id="street2" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,35);"/></td>
+                  </tr>
+                  <tr>
+                    <td align="left">Suburb</td>
+                    <td align="left"><apex:inputText value="{!theLead.city}" onblur="copyAddr();" id="city" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,26);"/></td>
+                    <td align="left">Suburb</td>
+                    <td align="left"><apex:inputText value="{!theLead.AU_Postal_City__c}" id="city2" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,26);"/></td>
+                  </tr>
+                  <tr>
+                    <td align="left">State</td>
+                    <td align="left">
+                        <apex:selectList value="{!theLead.State}" size="1" onchange="copyAddr();" id="state">
+                            <apex:selectOptions value="{!StatesList}"/>
+                        </apex:selectList>
+                    </td>
+                    <td align="left">State</td>
+                    <td align="left">
+                        <apex:selectList value="{!theLead.AU_Postal_State__c}" size="1" id="state2">
+                            <apex:selectOptions value="{!StatesList}"/>
+                        </apex:selectList>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">Postcode</td>
+                    <td align="left"><apex:inputText value="{!theLead.Postalcode}" onblur="copyAddr();" id="postcode" onkeypress="return checkFieldLength(event,this.id,4);"/></td>
+                    <td align="left">Postcode</td>
+                    <td align="left"><apex:inputText value="{!theLead.AU_Postal_Postcode__c}" id="postcode2" onkeypress="return checkFieldLength(event,this.id,4);"/></td>
+                  </tr>
+                  <tr>
+                    <td align="left"><h2>Additional Information</h2></td>
+                    <td align="left"></td>
+                    <td align="left">&nbsp;</td>
+                    <td align="left">&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td align="left">Number of cards</td>
+                    <td align="left">
+                        <apex:selectList value="{!numberOfCards}" size="1" id="cardNumbers">
+                            <apex:selectOptions value="{!NumberOfCardsList}"/>
+                        </apex:selectList>
+                    </td>
+                    <td align="left">Credit limit ($)</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Credit_Limit__c}" onkeypress="return checkFieldLength(event,this.id,11);" style="float: left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_Credit_Limit__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span></td>
+                  </tr>
+                  <tr>
+                    <td align="left">Accountant name</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Accountants_Name__c}" style="float;left;" />
+                    </td>
+                    <td align="left">Accountant telephone</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Accountants_Number__c}" onkeypress="return checkFieldLength(event,this.id,10); return numbersonly(event, true)" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_Accountants_Number__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">Trade reference</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Referee__c}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,50);" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_Referee__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span></td>
+                    <td align="left">Trade reference telephone</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Referee_No__c}" onkeypress="return checkFieldLength(event,this.id,10); return numbersonly(event, false)" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_Referee_No__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left">Trade reference</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Referee_2__c}" onkeypress="return checkFieldLength_NoCharCheck(event,this.id,50);" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_Referee_2__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span></td>
+                    <td align="left">Trade reference telephone</td>
+                    <td align="left"><apex:inputField value="{!theLead.AU_Referee_No_2__c}" onkeypress="return checkFieldLength(event,this.id,10); return numbersonly(event, false)" style="float:left;"/>
+                    <span class="vfHelpText">
+                        <apex:outputLink value="javascript:return false;">
+                            <img src="/s.gif" alt="" class="helpOrb" />
+                            <span>{!$ObjectType.Lead.Fields.AU_Referee_No_2__c.inlineHelpText}</span>
+                        </apex:outputLink>
+                    </span> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><br/><br/><br/></td>
+                    <td><br/><br/><br/></td>
+                    <td><br/><br/><br/></td>
+                    <td><br/><br/><br/></td>
+                  </tr>
+                 
+                </table>
+                 <div style="width:100%;padding-top: 5%;">
+                    <span  style="padding:10px;">
+                        <apex:commandLink styleclass="button" value="Back" action="{!gotoStartPage}">
+                        </apex:commandLink>
+                    </span>
+                    <span  style="padding:10px;">
+                        <apex:commandLink styleclass="button" value="Submit" action="{!validateLeadFields}" onclick="allowFieldMappings();">
+                            <apex:param name="saveForm" value="yes" assignTo="{!saveForm}" />
+                            <apex:param name="redirectedFrom" value="OrganisationDetails" assignTo="{!redirectedFrom}" />
+                        </apex:commandLink>
+                     </span>
+                     <span style="padding:10px;">   
+                       <apex:commandLink styleclass="button"  value="Next" action="{!validateLeadFields}" onclick="allowFieldMappings();">
+                            <apex:param name="saveForm" value="no" assignTo="{!saveForm}" />
+                        </apex:commandLink>
+                      </span>  
+                    </div>
+                </apex:pageBlock>
+                    
+            </apex:form>
+            
+        </div>
+        
+        </div>
+        
+        <div class="box">
+        
+            <div id="contactFormContainer">
+        
+                <div id="contactLink" style="border: 0px;">
+        
+                    <div class="container-callbacktab" style="font-family: arial;font-size: 14px;color: #FFF; width: 80px; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border: 1px solid #666; border-radius: 6px; background-color: #E31837;">
+                        <b>Request a call back</b>
+                    </div>
+        
+                </div>
+        
+                <div id="contactForm">
+                    <c:CallBackForm objController="{!this}" id="compId"/>
+                </div>
+        
+               </div>
+               
+            </div>
+        
+        </div>
+        
+        </div>
+        
+        
+        
+        <script>
+            
+        function allowFieldMappings()
+        {
+            document.getElementById('{!$Component.theForm.pgBlk.street2}').disabled = false;
+            document.getElementById('{!$Component.theForm.pgBlk.city2}').disabled = false;
+            document.getElementById('{!$Component.theForm.pgBlk.state2}').disabled = false;
+            document.getElementById('{!$Component.theForm.pgBlk.postcode2}').disabled = false;
+        }
+        
+        function copyAddr()
+        {
+            var selected = document.getElementById('{!$Component.theForm.pgBlk.asAbove}').checked;
+            
+            if(selected == true)
+            {
+                document.getElementById('{!$Component.theForm.pgBlk.street2}').value = document.getElementById('{!$Component.theForm.pgBlk.street}').value;
+                document.getElementById('{!$Component.theForm.pgBlk.city2}').value = document.getElementById('{!$Component.theForm.pgBlk.city}').value;
+                document.getElementById('{!$Component.theForm.pgBlk.state2}').value = document.getElementById('{!$Component.theForm.pgBlk.state}').value;
+                document.getElementById('{!$Component.theForm.pgBlk.postcode2}').value = document.getElementById('{!$Component.theForm.pgBlk.postcode}').value;
+                
+                document.getElementById('{!$Component.theForm.pgBlk.street2}').disabled = true;
+                document.getElementById('{!$Component.theForm.pgBlk.city2}').disabled = true;
+                document.getElementById('{!$Component.theForm.pgBlk.state2}').disabled = true;
+                document.getElementById('{!$Component.theForm.pgBlk.postcode2}').disabled = true;
+                
+            }
+            else
+            {
+                document.getElementById('{!$Component.theForm.pgBlk.street2}').disabled = false;
+                document.getElementById('{!$Component.theForm.pgBlk.city2}').disabled = false;
+                document.getElementById('{!$Component.theForm.pgBlk.state2}').disabled = false;
+                document.getElementById('{!$Component.theForm.pgBlk.postcode2}').disabled = false;
+            }
+        }
+        
+        
+        function checkFieldLength(evt, eltId, maxlen)
+        {
+            var elt = document.getElementById(eltId);      
+            
+            var charCode = (evt.which) ? evt.which : event.keyCode;     
+            if(charCode == 8)
+                return true;         
+            if(charCode >= 48 && charCode <= 57)
+            {    
+                if(elt.value.length < maxlen)
+                    return true;
+            }
+            return false;
+        }
+        
+        function checkFieldLength_NoCharCheck(evt, eltId, maxlen)
+        {        
+            var elt = document.getElementById(eltId);      
+            
+            var charCode = (evt.which) ? evt.which : event.keyCode;     
+            if(charCode == 8)
+                return true;                
+            if(elt.value.length < maxlen)
+                return true;
+            return false;
+        }
+        
+        copyAddr();
+        
+        
+        $(document).ready(function(){
+             $("#contactLink").click(function(){
+                 if ($("#contactForm").is(":hidden")){
+                    callComponent();
+                     $("#contactForm").show('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "440px" }, 1000);
+                     pos = $("#mainDiv").position();
+                 }
+                 else{
+                     $("#contactForm").hide('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "0px" }, 1000);
+                 }
+             });
+             
+             
+         });
+         
+         
+         function fnSetDateFormat(oDateFormat)
+        {
+         oDateFormat['FullYear'];  //Example = 2007
+         oDateFormat['Year'];   //Example = 07
+         oDateFormat['FullMonthName']; //Example = January
+         oDateFormat['MonthName'];  //Example = Jan
+         oDateFormat['Month'];   //Example = 01
+         oDateFormat['Date'];   //Example = 01
+         oDateFormat['FullDay'];   //Example = Sunday
+         oDateFormat['Day'];    //Example = Sun
+         oDateFormat['Hours'];   //Example = 01
+         oDateFormat['Minutes'];   //Example = 01
+         oDateFormat['Seconds'];   //Example = 01
+          
+         var sDateString;
+          
+         // Use dd/mm/yyyy format
+         sDateString = oDateFormat['Date'] +"/"+ oDateFormat['Month'] +"/"+ oDateFormat['FullYear'];
+         return sDateString;
+        }
+        
+        function initialiseCalendar(obj, eleId)
+        {
+         var element=document.getElementById(eleId);
+         var params='close=true';
+         if (null!=element)
+         {
+          if (element.value.length>0)
+          {
+           // date is formatted dd/mm/yyyy - pull out the month and year
+           var month=element.value.substr(3,2);
+           var year=element.value.substr(6,4);
+           params+=',month='+month;
+           params+=',year='+year;
+          }
+         }
+         fnInitCalendar(obj, eleId, params);
+        }
+        
+        document.getElementById('{!$Component.theForm.pgBlk.dob}').setAttribute('autocomplete', 'off');
+         
+    </script>
+    
+    <site:googleAnalyticsTracking />
+    
+    </body>
+    
+    
+</apex:page>

@@ -1,0 +1,356 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" language="en-US" applyHTMLTag="false" >
+    
+
+
+<p>
+<html>
+<head>
+    <title>
+        Terms of Use and Privacy Policy
+    </title>
+</head>
+<body>
+<div class="button_top_backed_4">
+    <ul>
+        <li><a href="#TC">Terms of Use</a> &nbsp; </li>
+        <li><a href="#PP">Privacy Policy</a> &nbsp; </li>
+    </ul>
+</div>
+<!-- end button_top_backed_3 -->
+<a name="TC"></a>
+
+<div align="center">
+    <h4>TERMS OF USE</h4>
+    <h5>Please read these terms carefully before using this site.</h5>
+</div>
+<ol>
+    <li>
+        <strong>General</strong><br/>
+        WEX Inc.&reg; (&quot;we,&quot; &quot;us&quot; and &quot;our&quot;) provides this web site
+        subject to the following terms of use ("Terms"). WEX Inc. owns and operates this site. Our
+        Business Charge Accounts, including those established in conjunction with program sponsors,
+        are issued by WEX Bank Your continued use of this website constitutes your acceptance of these Terms.
+        If you have any questions, please call our Customer Service department.
+    </li>
+
+    <li>
+        <strong>Purpose of the Website</strong><br/>
+        The goal of this web site is to provide you with access to information about our products and services. Do not
+        use this web site if you do not agree with these terms. Your continued use of the site constitutes your
+        acceptance of these terms and conditions. If you have any questions, please call Customer Service at
+        1-800-492-0669.
+    </li>
+    <li>
+        <strong>Trademarks, Service Marks and Copyrighted Materials</strong><br/>
+
+        We control and operate this website. All content on this website, including, but not limited to, text,
+        photographs, images, illustrations, audio clips, and video clips, is protected by copyrights, trademarks,
+        service marks, and/or other intellectual property rights (which are governed by United States and worldwide
+        copyright laws and treaty provisions, privacy and publicity laws, and communication regulations and statutes).
+        The content is owned and controlled by us, our affiliates, or by third party content providers, merchants,
+        sponsors and licensors (collectively the "Providers") that have licensed their content or the right to market
+        their products and/or services to you using this site. You agree to abide by all additional copyright notices,
+        information, or restrictions contained in any content that is presented on this site.<br/>
+        <br/>
+        You may not use any registered or unregistered trademarks, service marks or copyrighted materials appearing on
+        this website, including but not limited to any logos or characters, without the express written consent of the
+        owner of the mark or copyright. You may not frame, deep link, or otherwise incorporate into another website any
+        of the content or other materials on this website without our express prior written consent.<br/>
+        <br/>
+        Violation of trademark and copyright laws may result in significant civil liability or criminal penalties under
+        United States and/or worldwide copyright and trademark laws. You recognize that any reproduction or use of
+        content, except as authorized by these Terms, is considered intentional infringement.
+    </li>
+    <li>
+
+        <strong>Use of the Site</strong><br/>
+        You are accessing this site using the Internet and your Internet service provider. Security cannot be
+        guaranteed. We hereby disclaim all liability for any security breaches of online communications or for any
+        electronic, computer or other system failures. We shall not be liable to any person for loss, liability or
+        damages, including consequential or special damages, arising as a result of any security breaches or system
+        failures or any other defect of the electronic online communication procedures, including, without limitation,
+        loss due to data modification or destruction.<br/>
+        <br/>
+        You agree not to use this site for any purpose except access to descriptions of our products and services. In
+        using this site, you agree not to disrupt or interfere with the site, its services, system resources, nor to
+        upload, post or otherwise transmit any viruses or other harmful, disruptive, inappropriate, illegal or
+        destructive files. You also agree not to use, attempt to use, or access other accounts, or create or use a false
+        identity on the site.<br/>
+        <br/>
+        You agree to indemnify and hold us, and our parents and affiliates, harmless for any loss or damage caused by
+        your access, attempted access to or manipulation of any account or data of any third party and/or any defect in
+        your system that causes damage to our hardware, software or data. We reserve the right to terminate or suspend
+        access to wexinc.com, in whole or in part, at any time, without notice.<br/>
+        <br/>
+
+        This site and the information provided on this site is provided &quot;AS IS&quot; without any representation or
+        warranty, express or implied, of any kind, including, but not limited to, warranties of merchantability,
+        noninfringement, or fitness for a particular purpose. WEX Inc., its subsidiaries and
+        affiliates, make no warranty that use of the site or the materials will be uninterrupted, timely, secure, or
+        error free or that defects, if any will be corrected and we assume no responsibility for any damages that may be
+        suffered by you, including, but not limited to, losses from delays, nondelivery of content or any
+        communications, errors, system down time, network or system outages, file corruption or service interruptions.
+    </li>
+    <li>
+        <strong>Governing Law, Severability</strong><br/>
+        We operate this website (excluding linked sites) from our offices within the state of Maine. The website can be
+        accessed from all 50 states, as well as from other countries around the world. As each of these places has laws
+        that may differ from those of Maine, by accessing this website, you agree that these Terms and your use of the
+        web site shall be governed in all respects by federal law and the internal substantive laws of the State of
+        Maine, without regard to conflict of laws provisions and shall not be governed by the United Nations Convention
+        on the International Sale of Goods. You further submit to exclusive jurisdiction and venue in the state and
+        federal courts located in the State of Maine for all disputes, cases and controversies regarding this website,
+        your use of this web site, and your relationship with us. We make no representation that materials on this web
+        site are appropriate or available for use in other locations, and accessing them from territories where the
+        content is illegal is prohibited. Customers who choose to access this web site from other locations do so at
+        their own risk and are responsible for compliance with local laws, including laws regarding the transmission of
+        technical data exported from the United States or the country in which you reside. If any provision of these
+        terms is prohibited by or rendered invalid by applicable law, such provision shall be ineffective only to the
+        extent of such prohibition or invalidity, without invalidating the remainder of such provision or the remaining
+        provisions of these Terms.
+    </li>
+    <li>
+        <strong>Questions</strong><br/>
+        For questions concerning these terms or the products described online please call the following number:
+        1-800-492-0669, or send inquiries to: WEX Inc., P.O. Box 639, Portland, ME 04104. Be sure to
+        include your account number with all inquiries.<br/>
+    </li>
+</ol>
+<br/>
+<br/>
+
+<p align="center"><a href="#TC"><img src="images/arrowup.gif" alt="Return to top" border="0"/> <strong>Return to top of
+    page.</strong></a></p>
+<br/>
+<br/>
+<a name="PP"></a>
+
+<div align="center">
+    <h4>Privacy Policy</h4>
+</div>
+
+<br/>
+
+<p>WEX Inc. and WEX Bank (hereinafter collectively referred to as &quot;WEX&quot;) recognize the importance of protecting your
+    privacy and safeguarding the confidentiality of your sensitive information. Because of this, WEX&reg; offers the
+    following statement of our joint commitment to privacy protection. This policy relates specifically to your use of
+    this site.</p>
+
+<p>Information privacy is important to you. Protecting your information privacy is critical to us. Therefore, we commit
+    to:</p>
+
+<ul>
+    <li>Adhere to our privacy policies</li>
+    <li>Give you clear notice of what information we ask you to divulge and what information we collect from you</li>
+    <li>Clearly explain how we will use the information that you provide to us</li>
+    <li>Share your information only with whom and in such manner as is described in this policy</li>
+    <li>Implement and utilize safe and secure physical and information systems to protect private information.</li>
+</ul>
+
+<h5>Information That We Collect and Use</h5>
+
+<p>WEX collects information: 1) from you and from certain third parties when you submit a WEX Inc. Commercial
+    Credit Application; 2) in the form of transaction data when you use your WEX Inc. card; 3) when you submit a
+    request for information about WEX Inc. programs via e-mail; 4) through the use of web tracking software; and
+    5) from third parties to help us identify products and services which may be useful to you.</p>
+
+<ol>
+    <li>Transaction Data</li>
+    <ul>
+        <li>When a cardholder uses their Commercial Card we collect transaction data which may be viewed via your online
+            account. Such data typically includes the following information:
+        </li>
+        <ul>
+            <li>Name of cardholder</li>
+
+            <li>Transaction date</li>
+            <li>Card/account number</li>
+            <li>Total dollar amount of transaction</li>
+            <li>Vehicle number, if any</li>
+            <li>Driver identification number, if any</li>
+            <li>Vehicle odometer reading, if any, as entered by cardholder</li>
+
+            <li>Amount of fuel purchased, if any</li>
+            <li>Price per gallon of fuel purchased, if any</li>
+            <li>Non-fuel items purchased, if any</li>
+            <li>User-established product restrictions, if any</li>
+            <li>Merchant at which the transaction occurred</li>
+            <li>For certain programs, cardholder contact information</li>
+
+        </ul>
+    </ul>
+    <ul>
+        <li>WEX uses transaction data gathered when you use your WEX Commercial Card for the purpose of processing the
+            transactions as well as for other lawful commercial purposes. The transaction data is critical to our
+            ability to provide billing, electronic bill paying and presentment products ("EBPP") and reporting to you.
+        </li>
+        <li>For some WEX commercial card programs, transaction data is collected by a third-party processor and
+            transmitted to WEX. Please refer to Section C(2) below for additional information about information sharing
+            with third parties.
+        </li>
+    </ul>
+    <li>Web Tracking Software:</li>
+
+    <ul>
+        <li>WEX utilizes web tracking software that allows us to collect and store information such as the name of the
+            domain from which you access the Internet, the date and time that you access our site, the Internet address
+            of the website from which you linked to our site, and the pages that you visited while on our web site.
+        </li>
+        <li>WEX uses the information collected as a result of our web tracking software to help diagnose problems with
+            our server, to track user traffic patterns, and to administer our website. This information allows us to
+            determine which areas are of most interest and use to our visitors, which avenues of site promotion are most
+            effective and at what time we can expect peak usage.
+        </li>
+    </ul>
+    <li>Supplemental Information</li>
+    <ul>
+        <li>WEX may supplement the information that you provide with additional information we receive from third
+            parties, including service providers, credit bureaus and industry trade groups. We treat any supplemental
+            information we receive from third parties as carefully as the information that you provide to us directly.
+        </li>
+
+        <li>WEX may use aggregated application information or transaction data for internal and external analytical
+            purposes. Further, WEX may utilize aggregated information or data for marketing purposes. However,
+            aggregated information and data will not be identified with any particular applicant, individual customer or
+            individual cardholder.
+        </li>
+    </ul>
+</ol>
+
+<h5>With Whom We Share the Information We Collect</h5>
+
+<ol>
+    <li>Within Our Company:</li>
+    <ul>
+
+        <li>Certain employees of WEX have access to the information that we collect from you. All employees of WEX are
+            required to maintain and keep all such information confidential and to abide by the terms of this policy as
+            well as the Joint Privacy Policy for WEX Inc. and WEX Bank.
+        </li>
+        <li>WEX may use the personally identifiable information that you provide, such as your postal address and/or
+            e-mail address to send promotions or solicitations for products or services.
+        </li>
+    </ul>
+    <li>With Third Parties:</li>
+    <ul>
+        <li>WEX may from time to time retain the services of third-party technical service providers and consultants.
+            These third parties are only allowed access to the information that we collect to the extent that is
+            required for them to perform the tasks for which they were retained. These third parties are contractually
+            obligated to maintain confidentiality and further must agree to be bound by WEX's privacy policies and
+            applicable confidentiality agreements.
+        </li>
+        <li>If a customer uses a Co-Branded or Private Label card, the Co-Brand or Private Label partner is given
+            limited access to transaction data that allows them to determine what products are purchased by the customer
+            and to tailor their services accordingly.
+        </li>
+
+        <li>Certain Co-Brand or Private Label partners may be provided with aggregated customer information to be used
+            for internal and external analytical purposes. WEX may also sell aggregated customer information to third
+            parties for marketing or other purposes. Such aggregated customer information does not identify any
+            particular applicant, individual customer or individual cardholder.
+        </li>
+        <li>WEX also shares limited transaction information with merchants who accept our cards. The information that is
+            provided to merchants is limited to transaction exceptions that provide justifications to the merchant when
+            we will not reimburse them for a transaction (e.g. Invalid Fleet or Invalid Vehicle). Such information
+            sharing serves the additional purpose of assisting WEX and the merchant in identifying and correcting
+            processing errors to make our products easier and more convenient to use.
+        </li>
+        <li>Subject to applicable legal restrictions, WEX may sell the personally identifiable information that we have
+            collected about certain of our commercial customers to third parties for marketing purposes if we reasonably
+            believe that such third parties can offer products or services that would be beneficial to those customers.
+        </li>
+        <li>WEX may disclose or exchange with third parties any information that you have provided to us if we believe
+            in good faith that the law requires us to do so or if it is necessary to protect the rights or property of
+            WEX or our users. Additionally, as we continue to grow as a business, we may acquire or be acquired by
+            another company. In such a transaction, customer information will most likely be one of the transferred
+            assets.
+        </li>
+    </ul>
+</ol>
+
+
+<h5>Additional Privacy Issues</h5>
+
+<ol>
+    <li>Consumer Privacy Rules:</li>
+    <ul>
+        <li>The objective of this Privacy Policy is to provide you with a clear, concise and accurate statement of how
+            WEX handles customer information. Please note that our products and services are intended to be used only
+            for commercial and business purposes. As our products and services are not intended to be used for personal,
+            family or household purposes, consumer privacy protection laws and regulations, including (without
+            limitation) the federal Gramm-Leach-Bliley Act, do not apply to our information handling practices. This
+            Privacy Policy is not a statement of intent to be bound by or comply with such laws and regulations.
+        </li>
+    </ul>
+    <li>Security:</li>
+
+    <ul>
+        <li>WEX recognizes the importance of secure online interaction, and we utilize a number of methods to safeguard
+            your transmissions. Our website is hosted on secure servers with firewall protection. We maintain Secure
+            Site status that is verified by security industry leader VeriSign, Inc. All information gathered on our
+            website is encrypted during transmission with 128-bit SSL RSA-encryption and stored within secure databases
+            protected by multiple firewalls. As effective as current encryption technology is, however, no security
+            system is impenetrable. We cannot guarantee the security of our databases, nor can we guarantee that the
+            information provided via our website will not be intercepted while being transmitted to us over the
+            Internet.
+        </li>
+    </ul>
+    <li>Children:</li>
+    <ul>
+        <li>WEX provides only business services and does not intend to collect or knowingly collect any information from
+            or about children. It is possible that a child may impersonate a company representative and attempt to
+            access or use this site and, in so doing, provide the child's name, address, phone number, fax number, email
+            address and other identifying information. When such information is received and WEX is aware that the
+            individual providing the information is a child, the information is used only to reject the child's
+            application and is immediately deleted by WEX. Such information is never shared with third parties. WEX
+            cannot always determine if a visitor to its website or the sender of an email is a child.
+        </li>
+    </ul>
+
+    <li>Cookies:</li>
+    <ul>
+        <li>Our website makes use of a standard feature of browser software called a "cookie" to assign each visitor a
+            unique, random number. A cookie is a file that identifies a computer as a unique user. Cookies may be used
+            to facilitate your use of our website, to maintain site security and to improve our website. Most browsers
+            are initially set up to accept cookies. You may be able to reset your browser to refuse all cookies or to
+            indicate when a cookie is being sent. If cookies are disabled, however, our website (and other websites) may
+            be harder to use. A cookie can not read data stored on the hard drive of a computer.
+        </li>
+    </ul>
+    <li>Links to Other Sites:</li>
+    <ul>
+        <li>Our website contains links to other sites whose information practices may be different than ours. If you
+            click on a banner or other hyperlink, you may be transferred off of this site. Our inclusion of hyperlinks
+            to these web sites does not imply any endorsement of the material on such web sites or associations with the
+            operators of the websites. Our privacy policy does not extend to these sites or the internet. You should
+            consult the other sites' privacy notices as WEX has no control over information that is submitted to, or
+            collected by, these third parties and how that information is used.
+        </li>
+
+    </ul>
+</ol>
+
+<h5>Privacy Policy Changes</h5>
+
+<ul>
+    <li>WEX reserves the right to change our policies (including this Privacy Policy) at any time. If we decide to
+        change this Privacy Policy, we will post such changes to our website so that you may be aware of our actions.
+        Any change to this Privacy Policy will become effective thirty (30) days after it is initially posted on our
+        website.
+    </li>
+</ul>
+<br/>
+<br/>
+
+<p align="center"><a href="#TC"><img src="images/arrowup.gif" alt="Return to top" border="0"/> <strong>Return to top of
+    page.</strong></a></p>
+
+<br/>
+<br/>
+
+</body>
+</html></p>
+
+
+    
+</apex:page>

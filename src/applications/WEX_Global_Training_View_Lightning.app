@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>Used for Global training</description>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
+    <label>WEX Global Training View Lightning</label>
+    <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Sales_and_Service_Training_Team</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Global Training</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Sales_and_Service_Training_Team</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Service Operations Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Sales_and_Service_Training_Team</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Service Operations Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Training_Class_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Training_Class__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Global Training</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Training_Class_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Training_Class__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Service Operations Agent</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Training_Class_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Training_Class__c</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Service Operations Manager</profile>
+    </profileActionOverrides>
+    <setupExperience>all</setupExperience>
+    <tabs>standard-home</tabs>
+    <tabs>standard-Case</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>Training_Class__c</tabs>
+    <tabs>Training_Event__c</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>standard-Feed</tabs>
+    <tabs>WEX_Support_Portal</tabs>
+    <tabs>mea__Activities_Tab</tabs>
+    <tabs>mea__Mass_Edit_Activities</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>WEX_Global_Training_View_Lightning_UtilityBar</utilityBar>
+</CustomApplication>

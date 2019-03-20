@@ -1,0 +1,722 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="BOCAController"
+           action="{!initBrandCheck}" language="{!lang}" extensions="BOCALangExtension" name="{!BrandLongName}">
+<html lang="{!lang}">
+
+<head>
+    <title>
+        <apex:outputText value="{!brandlongName}"/>
+    </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"/>
+    <script>
+        // Added to make the Jquery accordion work
+        jQuery(function($) {
+            $( "#accordion" ).accordion({ heightStyle: 'content', collapsible: true });
+        });
+    </script>
+    <apex:includeScript value="{!URLFOR($Resource.jqueryMask)}"/>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <!----Bootstrap Files--->
+
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap, 'dist/js/bootstrap.min.js')}"></apex:includeScript>
+    <link href="{!URLFOR($Resource.bootstrap, 'dist/css/bootstrap.min.css')}" rel="stylesheet"/>
+
+    <!---end bootstrap--->
+    <apex:stylesheet value="{!URLFOR($Resource.BOCAbase)}"/>
+    <!--[if lt IE 9]>
+    <apex:includeScript value="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"/>
+    <apex:includeScript value="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"/>
+    <link href="//netdna.bootstrapcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy">
+
+    <apex:includeScript value="{!URLFOR($Resource.respond)}"/>
+    <link href="{!URLFOR($Resource.proxy)}" id="respond-redirect" rel="respond-redirect">
+    <![endif]-->
+    <!---<apex:stylesheet value="{!URLFOR($Resource.boca, 'css/fieldvalidation.css')}"/>--->
+    <!----<apex:stylesheet value="{!URLFOR($Resource.boca, 'css/print.css')}"/>---->
+
+    <!---Branding Styles Loaded Dynamically here--->
+
+    <!---End Branding Styles---->
+    <style type="text/css">
+        label {
+        display: block;
+        width: 100%;
+        font-weight: 300;
+    }
+
+    .container {
+        margin: 0px 0px 0px 0px;
+        padding: 5% 0px 0px 0px;
+    }
+
+    body {
+        font-family: Arial;
+        background-color: transparent;
+    }
+
+    td, th {
+        padding: 0%;
+    }
+
+    .btn-custom {
+    {!brand2};
+    }
+    .logoDiv {
+        background-image: url({!URLFOR($Action.Attachment.Download, logoURL)});
+        background-repeat: no-repeat;
+
+    }
+    #branding {
+        background-image: url({!URLFOR($Action.Attachment.Download, cardURL)});
+        background-repeat: no-repeat;
+        width: fit-content;
+        height: fit-content;
+    }
+        
+    #branding-text { 
+        text-align: center; 
+        min-width:250px; 
+        width: 100%; 
+        margin: 15px 0 25px 0;
+    }
+        
+    .sidebar{
+
+      list-style-type: none;
+      background-image: linear-gradient(to bottom, #e3dde3, #f5f5f5);
+      padding: 0px 5px 10px 5px;
+    }
+   .sidebar-nav-fixed h1{
+        text-align: center;
+        
+            }
+   .sidebar li{
+        padding: 10px 0px 0px 10px;     
+            
+    }
+   h1, h2, h3, h4 {
+        font: bold Arial;
+    }
+
+    .panel-heading {
+    {!brand1};
+    }
+    .panel-title {
+        color: #fff;
+    }
+
+    .panel {
+        border: none;
+    }
+
+    .row {
+        margin: 0 auto;
+    }
+
+    input .form-control {
+        padding: 0;
+    }
+        @media only screen and (max-width: 768px)
+    {
+        .logoDiv{
+            float: none;
+            margin: 0 auto;
+            background-position: center; 
+        }
+        .pageHeader{
+            padding-right:0px;
+            padding-top:5%;
+        }
+        }
+        @media only screen and (max-width: 768px) and (min-width: 200px){
+            header.page-header.affix{
+                min-height:150px;
+                padding: 20px 0px 0px 0px;
+        
+            }
+        }
+
+    </style>
+
+
+    <apex:outputText value="{!googleAnalyticsHeadBlock}" id="headBlock" escape="false"/>
+</head>
+<!--[if gte IE 9]
+<style type="text/css">
+.gradient {
+filter: none;
+}
+body{
+background:-webkit-gradient(linear, 11% 28%, 11% 91%, from(#B9B7BA), to(#70828C));
+}
+</style>
+<![endif]-->
+<!--[if IE]>
+<style type="text/css">
+    body {
+        background: -webkit-gradient(linear, 11% 28%, 11% 91%, from(#B9B7BA), to(#70828C));
+    }
+</style>
+<![endif]-->
+<body class="radial">
+ <script id="tdr_3srJf" type="text/javascript" src="https://h.online-metrix.net/fp/check.js?org_id=bkwau9ws&session={!$Api.Session_ID}"></script>
+    <img id="tdr_6IIEo" style="display:none" src="https://bkwau9ws-8a69bc0ab2ee96e97f45f425f60a04e571228253-sac.d.aa.online-metrix.net/fp/clear.png?org_id=bkwau9ws&session={!$Api.Session_ID};di=yes"/>
+        <img id="tdr_95nWt" style="display:none" src="https://h.online-metrix.net/fp/clear.png"/>
+            <header class="page-header affix">
+                <!-- Insert Include Here -->
+
+                <!-- Begin :: Header -->
+                <script type="text/javascript">
+                if (typeof(lpUnit)=='undefined')    var lpUnit='sales'; 
+                if (typeof(lpLanguage)=='undefined') var lpLanguage='english';
+                </script>
+           
+    <script src="https://www.essofleetoffers.com/secure/mtagconfig.js" type="text/Javascript"></script>
+    <div class="logoDiv"></div>
+    <apex:outputtext styleClass="logo" value="{!DisplayName}" escape="false"></apex:outputtext>
+    
+    <div class="ui-contact-details">
+       <p class="text-bold">{!call[0]}</p>
+       
+       <p class="text-light">{!call[1]}
+       <apex:outputText value="{!inSales}"/>
+           </p>
+       <p class="text-light">
+           
+           <apex:outputText value="{!liveperson}" escape="false"/>
+               
+               </p>
+           </div> 
+           
+</header><!-- End :: Header -->
+   
+<div class="container" id="container" style="width:inherit;">
+
+<div class="row">
+
+
+<!-- Begin :: Side Panel -->
+<div id="col-1" class="col-xs-12 col-sm-6 col-lg-3">
+    <div class="sidebar-nav-fixed">
+        <!-- Branded Img here -->
+        <div id="branding"></div>
+ 
+       <div id="branding-text">
+        <apex:outputtext value="{!heading}" escape="false"></apex:outputtext>
+        <apex:outputtext value="{!tagline}" escape="false"></apex:outputtext>
+       </div>
+     
+       <apex:outputPanel rendered="{!IF(salesRep != null,true,false)}">
+                   <!-- Featured Content (header & paragraph) -->
+
+        <div class="panel-group">
+            <div class="panel-heading gradient">
+                    <h2 class="panel-title">
+                    <apex:outputText value="Your Sales Agent: {!salesRep.name}"/>
+                    </h2>
+                    </div>
+                    <!---end branding--->
+                    <div class="accordian" id="accordian">
+                    <ul class="sidebar"> 
+                    <li><apex:outputText value="Email: {!salesRep.email}"/></li> 
+                    <li><apex:outputText value="Phone: {!salesRep.phone}"/></li> 
+                    <li><apex:outputText value="Fax: {!salesRep.fax}"/></li> 
+
+                    </ul>
+                   </div>
+                 </div>
+                 
+               </apex:outputPanel>
+            <apex:outputPanel rendered="{!IF(langExt.sideBar != null && salesRep == null,true,false)}">
+        <div class="panel-group">
+            <div class="panel-heading gradient">
+                    <h2 class="panel-title">
+                    <apex:outputText value="{!SidebarTitle}"/>
+                    </h2>
+                    </div>
+                    <!---end branding--->
+                    <div class="accordian" id="accordian">
+                    <apex:outputText value="{!sidebar}" escape="false"/>
+                      </div>
+                 </div>
+                    
+            </apex:outputPanel>
+          </div>
+
+    </div>
+
+<div id="col-2" class="col-xs-12 col-sm-7 col-lg-7">
+
+<apex:form html-role="form" id="form">
+    
+<div class="alert  error" role="alert" style="visibility:hidden;"><apex:outputText value="{!errors}" id="pageError" /></div>
+<apex:inputHidden value="{!LocationCode}" html-class="LOC"/>
+<apex:inputHidden value="{!errors}" html-class="pageErrors"/>
+<apex:inputHidden value="{!revFlag}" html-class="rev" />
+<apex:inputHidden value="{!isPG}" html-class="pg" />
+
+    
+<div class="panel panel-default">
+    <div class="panel-heading gradient">
+        <h2 class="panel-title" > <span data-toggle="collapse" data-target="#collapseOne" href="#collapseOne ">
+                    <apex:outputText value="{!sections['Tell Us About Your Business']}"/><span class="caret">
+                        </span></span></h2>
+    </div><!----heading--->
+
+    <div id="collapseOne" class="panel-collapse collapse in no-transition">
+        <div class="panel-body">
+            <apex:PageBlock >
+
+                <apex:pageBlockSection columns="1" html-class="col3" >
+
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Company_Name__c.label} " html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Company_Name__c}" />
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Doing_Business_As__c.label} " />
+                    <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Doing_Business_As__c}" />
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Business_Street_Address__c.label} {!BOCAtext['helptext4']}" html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" html-maxlength="40" value="{!creditApp.Business_Street_Address__c}" id="bizStreet"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.City__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control"  label="" value="{!creditApp.City__c}" id="bizCity"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.State__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.State__c}" id="bizState"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Zip_code__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Zip_code__c}" id="bizZip"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Business_Phone__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" />
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Business_fax__c.label}" />
+                    <apex:InputField styleClass="form-control" html-class="phone" label="" value="{!creditApp.Business_fax__c}" />
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection columns="1"  html-class="col4">
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Taxpayer_ID__c.label} {!BOCAtext['helptext3']}" html-class="req help" html-data-tooltip="{!BOCAtext['helptext2']}"/>
+                    <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Taxpayer_ID__c}" />
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Years_in_Business__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Years_in_Business__c}" />
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Legal_Structure__c.label}"  html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Legal_Structure__c}" />
+                        
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.DUNS_Number__c.label}"/>
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.DUNS_Number__c}"   html-maxlength="9"  />
+                        
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Annual_Gross_Revenue__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Annual_Gross_Revenue__c}"  html-class="money"  html-maxlength="15" />
+                        
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Fleet_Size__c.label}" html-class="req" /> 
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Fleet_Size__c}" />
+                    
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Estimated_Monthly_Vehicle_Expenses__c.label}" html-class="req help" html-data-tooltip="{!BOCAtext['helptext1']}"/>
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Estimated_Monthly_Vehicle_Expenses__c}" html-maxlength="8"/>
+                        
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Is_business_exempt_from_Motor_Fuels_Tax__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Is_business_exempt_from_Motor_Fuels_Tax__c}" />
+
+
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </div><!---panel body--->
+    </div><!----panel---->
+</div><!----collapse---->
+<div class="panel panel-default">
+    <div class="panel-heading gradient">
+        <h2 class="panel-title"><span data-toggle="collapse" data-target="#collapseTwo" href="#collapseTwo ">  
+                         <apex:outputText value="{!sections['Billing Contact Information']}"/><span class="caret">
+                            </span></span></h2>
+    </div>
+
+    <div id="collapseTwo" class="panel-collapse collapse in no-transition">
+        <div class="panel-body">
+            <apex:PageBlock >
+                <apex:pageBlockSection columns="1" html-class="col3">
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_Contact_First_Name__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Billing_Contact_First_Name__c}" />
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_Contact_Last_Name__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Billing_Contact_Last_Name__c}" />
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_Email__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Billing_Email__c}" type="text"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_Phone__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control"   html-class="phone" label="" value="{!creditApp.Billing_Phone__c}" type="tel"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_Mobile_Phone__c.label}"/>
+                    <apex:InputField styleClass="form-control"  html-class="phone" label="" value="{!creditApp.Billing_Mobile_Phone__c}" />
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_Fax__c.label}"/>
+                    <apex:InputField styleClass="form-control"  html-class="phone" label="" value="{!creditApp.Billing_Fax__c}" />
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection columns="1"  html-class="col4">
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Same_as_Business_Address__c.label}" />
+                    <apex:InputCheckbox id="check" label="" onChange="populate()" value="{!creditApp.Same_as_Business_Address__c}" selected="false"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_Street_Address__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" html-maxlength="40" value="{!creditApp.Billing_Street_Address__c}" id="bStreet"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_City__c.label}" html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Billing_City__c}" id="bCity"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_State__c.label}"  html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Billing_State__c}" id="bState"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Billing_Zip_Code__c.label}"  html-class="req" />
+                    <apex:InputField styleClass="form-control" label="" value="{!creditApp.Billing_Zip_Code__c}" id="bZip"/>
+
+
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+        </div><!---panel body--->
+    </div><!----panel---->
+</div><!----collapse--->                    
+    <div class="panel panel-default">
+    <div class="panel-heading gradient">
+          <h2 class="panel-title"><span data-toggle="collapse" data-target="#collapseTwo" href="#collapseTwo">
+            {!sections['Tell Us About Yourself']}<span class="caret"></span></span></h2>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse in no-transition">
+            <div class="panel-body">
+            <apex:PageBlock >
+            <apex:pageBlockSection columns="1" html-class="col3">                   
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.First_Name__c.label}" html-class="req" /> 
+            <apex:InputField styleClass="form-control" label="" value="{!creditApp.First_Name__c}"  html-maxlength="25" />
+                
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Last_Name__c.label}" html-class="req" />
+            <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Last_Name__c}"  html-maxlength="25"/>
+                
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Email__c.label}" html-class="req" />
+            <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Email__c}" type="text"/>
+                
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.PG_Residential_Phone__c.label}" html-class="req" />
+            <apex:InputField styleClass="form-control"  html-class="phone" label="" value="{!creditApp.PG_Residential_Phone__c}" />
+                
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Mobile_Phone__c.label}"  html-class="req"  />
+            <apex:InputField styleClass="form-control"  html-class="phone" label="" value="{!creditApp.Mobile_Phone__c}" />
+                
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.PG_Residential_Street_Address__c.label}{!BOCAtext['helptext4']}" html-class="req" /> 
+            <apex:InputField styleClass="form-control"  label=""  html-maxlength="40" value="{!creditApp.PG_Residential_Street_Address__c}" /> 
+                
+  
+             </apex:pageBlockSection>
+                                                                                                            
+              <apex:pageBlockSection columns="1"  html-class="col4">
+
+             <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.PG_Residential_City__c.label}"  html-class="req" />
+             <apex:InputField styleClass="form-control"  label="" value="{!creditApp.PG_Residential_City__c}" />
+             <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.PG_Residential_State__c.label}" html-class="req" />
+             <apex:InputField styleClass="form-control" label="" value="{!creditApp.PG_Residential_State__c}" />
+             <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.PG_Residential_Zip__c.label}" html-class="req" />
+             <apex:InputField styleClass="form-control"  label="" value="{!creditApp.PG_Residential_Zip__c}" />  
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.PG_SSN__c.label}" html-class="req help" html-data-tooltip="Enter your SSN (###-##-####)"/>
+            <apex:InputField styleClass="form-control" html-class="ssn" html-maxlength="11" label="" value="{!creditApp.PG_SSN__c}" />
+                
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Date_of_Birth__c.label}" html-class="req" />
+            <apex:InputField styleClass="form-control"   html-class="date" label="" value="{!creditApp.Date_of_Birth__c}" />
+                
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Guarantor_Annual_Income__c.label}" html-class="req" />
+            <div class="input-append"><apex:InputField styleClass="form-control"  label="" value="{!creditApp.Guarantor_Annual_Income__c}" html-class="money" html-maxlength="16"/>
+            <span class="add-on"><i id="emailHelp" class="icon-info-sign"></i></span>
+            </div>          
+        
+        </apex:pageBlockSection>
+        </apex:pageBlock> 
+        </div><!---panel body--->
+        </div><!----panel---->
+        </div><!-----collapse---->
+
+<div class="panel panel-default">
+    <div class="panel-heading gradient">
+        <h2 class="panel-title"><span data-toggle="collapse" data-target="#collapseThree" href="#collapseThree">
+            <apex:outputText value="{!sections['Promotional Information']}"/><span class="caret"></span></span>
+        </h2>
+    </div>
+
+    <div id="collapseThree" class="panel-collapse collapse in no-transition">
+        <div class="panel-body">
+        <apex:PageBlock >
+                <apex:pageBlockSection columns="1" html-class="col3">
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Promotional_Code__c.label}"/>
+
+                    <input type="text" class="form-control" id="couponCode" disabled="disabled" 
+                           placeholder="{!creditApp.Promotional_Code__c}"/>
+
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection columns="1" html-class="col4">
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.How_did_you_hear_about_this_offer__c.label}" html-class="req"/>
+                    <apex:InputField styleClass="form-control" label=""
+                                     value="{!creditApp.How_did_you_hear_about_this_offer__c}"/>
+
+                </apex:pageBlockSection>
+                                     </apex:PageBlock>
+        </div>
+        <!---panel body--->
+    </div>
+    <!----panel---->
+</div>
+<!----collapse--->
+                                                                                                         
+<div class="panel panel-default">
+<div class="panel-heading gradient">
+<h2 class="panel-title"><span data-toggle="collapse" data-target="#collapseFour" href="#collapseFour">
+Statement and Report Delivery<span class="caret"></span></span></h2>
+</div>
+                
+<div id="collapseFour" class="panel-collapse collapse in no-transition">
+    <div class="panel-body">
+        <apex:PageBlock >
+            <apex:pageBlockSection columns="1" html-class="col3">
+            <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Paperless_Flag__c.label}" html-class="req"/>
+            <apex:InputField styleClass="form-control"  label="" value="{!creditApp.Paperless_Flag__c}" />                                                    
+                        
+         </apex:pageBlockSection>
+         <apex:pageBlockSection columns="1" html-class="col5 well well-sm">
+         <p class="text-left">
+             <br/>
+             Select “Yes” for online only view.   <br/>
+                 <br/>
+                 Select “No” for both online view and paper delivery   <br/>
+                 (for more information on paper delivery costs, please refer to the Terms and Conditions below).
+                 </p>                                   
+                 
+                 </apex:pageBlockSection>
+                 </apex:pageBlock> 
+                 </div><!---panel body--->
+                 </div><!----panel---->                    
+                 </div><!----collapse--->
+
+<div class="panel panel-default">
+    <div class="panel-heading gradient">
+        <h2 class="panel-title"><span data-toggle="collapse" data-target="#collapseSix" href="#collapseSix">
+                     <apex:outputText value="{!sections['Authorized Signer']}"/><span class="caret"></span></span></h2>
+    </div>
+ 
+    <div id="collapseSix" class="panel-collapse collapse in no-transition">
+        <div class="panel-body">
+            <apex:PageBlock >
+                <div class="well">
+                    <p class="text-left">
+                        <apex:outputText value="{!BOCAText['html1']}" escape="false"/>
+                    </p>
+                </div>
+                <apex:pageBlockSection columns="1" html-class="col3">
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.signer_title__c.label}"
+                                      html-class="req"/>
+                    <apex:InputField styleClass="form-control" label=""
+                                     value="{!creditApp.signer_title__c}"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Signer_s_First_Name__c.label}"
+                                      html-class="req"/>
+                    <apex:InputField styleClass="form-control" label=""
+                                     value="{!creditApp.Signer_s_First_Name__c}"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Signer_s_Last_Name__c.label}"
+                                      html-class="req"/>
+                    <apex:InputField styleClass="form-control" label=""
+                                     value="{!creditApp.Signer_s_Last_Name__c}"/>
+                </apex:pageBlockSection>
+
+                <apex:pageBlockSection columns="1" html-class="col4">
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Signer_s_Phone__c.label}"
+                                      html-class="req"/>
+                    <apex:InputField styleClass="form-control" label="" html-class="phone"
+                                     value="{!creditApp.Signer_s_Phone__c}"/>
+                    <apex:outputLabel value="{!$ObjectType.WeFormObject__c.fields.Signer_s_Email__c.label}"
+                                      html-class="req"/>
+                    <apex:InputField styleClass="form-control" label=""
+                                     value="{!creditApp.Signer_s_Email__c}" type="text"/>
+                </apex:pageBlockSection>
+         </apex:pageblock>
+         </div>
+        <!---panel body--->
+    </div>
+    <!----panel---->
+</div>
+<!----collapse--->
+
+<apex:commandLink id="submit"  styleClass="btn-custom" value="{!BOCAText['button1']}"
+action="{!SubmitCreditApplication}" onclick="disableOnSubmit(this);" >
+                        <apex:param name="session" id="sId" value="{!$Api.Session_ID}" assignTo="{!creditApp.TM_Session_ID__c}"/>
+                        <apex:param name="pg" id="pgID" value="true" assignTo="{!isPG}"/>
+                        <apex:param name="rev" id="revF" value="true" assignTo="{!revFlag}"/>
+    </apex:commandLink>
+
+     
+</apex:form>
+
+<div class="terms panel panel-default">
+    <div class="panel-heading gradient termHead">
+        <h2 class="panel-title">
+            <apex:outputText value="{!sections['Terms & Conditions']}"/>
+        </h2>
+    </div>
+    <div class="panel-body">
+ <apex:PageBlock >
+            <apex:pageBlockSection columns="2">
+                <!---begin dynamic pricing--->
+
+                <apex:repeat value="{!FieldList}" var="key">
+                    <apex:repeat value="{!FieldList[key]}" var="keyvalue">
+                        <apex:pageBlockSectionItem html-class="pricing">
+                            <apex:outputText value="{!key}"/>
+
+                        </apex:pageBlockSectionItem>
+                        <apex:pageBlockSectionItem >
+                            <apex:outputText value="{!keyvalue}"/>
+                        </apex:pageBlockSectionItem>
+                    </apex:repeat>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            </apex:PageBlock>                
+    
+    <span id="terms" class="tAndc">
+        
+        <apex:outputText value="{!cp_terms}" escape="false"/><br/>
+           
+                </span>
+            <span id="disc" class="tAndc">
+                  <apex:outputText value="{!staticTNC}" escape="false"/>
+                    
+                    </span>
+
+    </div>
+</div>
+                
+                
+
+</div>
+</div>
+
+
+</div>
+
+<!---end container--->
+<div id="footer">
+    <a href="//onlineservices.secure.force.com/creditapplication/creditApp_TermsAndConditions"
+       title="terms of use" target="_blank">
+        Terms of Use &amp; Privacy Policy <span class="glyphicon glyphicon-lock"></span></a>
+</div>
+
+<script>
+    var $j = jQuery.noConflict();
+    
+    function callAction(){
+        setVars();
+    }
+    (function (j$) {
+        $j.support.placeholder = ('placeholder' in document.createElement('input'));
+    })(jQuery);
+
+
+    //fix for IE7 and IE8
+    $j(function () {
+        if (!$j.support.placeholder) {
+            $j("[placeholder]").focus(function () {
+                if ($j(this).val() == $j(this).attr("placeholder")) $j(this).val("");
+            }).blur(function () {
+                if ($j(this).val() == "") $j(this).val($j(this).attr("placeholder"));
+            }).blur();
+
+            $j("[placeholder]").parents("form").submit(function () {
+                $j(this).find('[placeholder]').each(function () {
+                    if ($j(this).val() == $j(this).attr("placeholder")) {
+                        $j(this).val("");
+                    }
+                });
+            });
+        }
+    });
+
+    $j('div[class$=toggle]').removeClass('in');
+    function populate() {
+        var check = $j('input[id$=check]').is(':checked');
+        console.log('working' + check);
+        if (check) {
+            var street = $j('input[id$=bizStreet]').val();
+            var street2 = $j('input[id$=bizStreet2]').val();
+            var city = $j('input[id$=bizCity]').val();
+            var state = $j('select[id$=bizState]').val();
+            var zip = $j('input[id$=bizZip]').val();
+            jQuery('input[id$=bStreet]').val(street);
+            jQuery('input[id$=bStreet2]').val(street2);
+            jQuery('input[id$=bCity]').val(city);
+            jQuery('select[id$=bState]').val(state);
+            jQuery('input[id$=bZip]').val(zip);
+        }
+        else {
+            jQuery('input[id$=bStreet]').val('');
+            jQuery('input[id$=bStreet2]').val('');
+            jQuery('input[id$=bCity]').val('');
+            jQuery('select[id$=bState]').val('');
+            jQuery('input[id$=bZip]').val('');
+        }
+    }
+
+    function disableOnSubmit(input) {
+        setTimeout('disableAfterTimeout(\'' + input.id + '\');', 50);
+                
+    }
+      function disableAfterTimeout(id) {
+        
+        $j('#container :input').attr('disabled', true);
+        var toDisable = document.getElementById(id);
+        toDisable.disabled = 'btn-custom disabled';
+        // Use the Salesforce CSS style to make the button appear disabled
+        toDisable.className = 'btn-custom btnDisabled';
+        toDisable.value = "{!BOCAtext['message1']}";
+    }
+    function disableElements() {
+        $j("#form :input").prop("disabled", true);
+    }
+    $j(".error").focus(function () {
+
+        var value = $j(this).val();
+        console.log("error" + value);
+        $j(this).val('');
+        $j(this).removeClass("error");
+
+
+    });
+    $j(function () {
+        $j(".errorMsg").each(function () {
+            var val = $j(this).text().substr(7);
+            $j(".alert").css("visibility", "visible") 
+            console.log('text' + val);
+            $j(this).text(val);
+        });
+    });
+    //Pretty validation with graceful degrade for nojs
+    //Disabling this 
+    // $j(function(){
+    //   var value = []
+    //  $j(".errorMsg").each(function(){
+    //    value.push($j(this).text());
+    //   $j(this).css('display','none');
+    //   });
+    //  console.log(value);
+    //   var i = 0;
+
+    //  $j(".error").each(function(){ 
+
+    //    $j(this).prop("placeholder", value[i].substr(6));
+    //       i++;
+    //    });
+    //      });
+
+
+    $j(function () {
+
+        $j('.phone').mask('999-999-9999');
+        $j('.ssn').mask('###-##-####');
+        $j('.street').mask('');
+        $j('.date').mask('##/##/####');
+
+        $j('.cpf').mask('999.999.999-99', {reverse: true});
+        $j('.money').mask('000,000,000,000.00', {reverse: true});
+
+
+    });
+
+        
+</script>
+
+<apex:outputText value="{!googleAnalyticsBodyBlock}" id="bodyBlock" escape="false"/>
+<iframe id="tdr_lWBO2" width="0" height="0" style="color:rgba(0,0,0,0); float:left; position:absolute; top:-200; left:-200; border:0px"
+        src="https://h.online-metrix.net/fp/ls_fp.html?org_id=bkwau9ws&amp;session_id={!$Api.Session_ID}"></iframe>
+</body>
+</html>
+</apex:page>

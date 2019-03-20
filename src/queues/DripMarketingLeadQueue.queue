@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Drip Marketing Lead Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Marketing1743636</publicGroup>
+        </publicGroups>
+        <roleAndSubordinatesInternal>
+            <roleAndSubordinateInternal>F1_Director_Marketing</roleAndSubordinateInternal>
+        </roleAndSubordinatesInternal>
+        <roles>
+            <role>AquarientSalesManagerA</role>
+            <role>AquarientSalesRepA</role>
+            <role>AquarientSalesTLA</role>
+            <role>Customer_Success_Specialist</role>
+            <role>ISSalesRepA</role>
+            <role>ISTeamLeaderA</role>
+            <role>Lead_Development_Role</role>
+            <role>TelematicsDataAdministratorA</role>
+        </roles>
+        <users>
+            <user>jeannie.verrando@wexinc.com</user>
+            <user>jennifer.corkum@wexinc.com</user>
+            <user>kristine.martinez@wexinc.com</user>
+            <user>scott.perkins@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <attributeName>SFDC_USERNAME</attributeName>
+    <errorUrl>https://webservices.wrightexpress.com/wex/samlsso</errorUrl>
+    <identityLocation>Attribute</identityLocation>
+    <identityMapping>Username</identityMapping>
+    <issuer>https://myapps.wexinc.com</issuer>
+    <loginUrl>https://identity-sso.wexinc.com/sso/SSORedirect/metaAlias/wexinc/idp</loginUrl>
+    <name>Migrated SAML Config</name>
+    <oauthTokenEndpoint>https://wexinc--MetaData.cs53.my.salesforce.com/services/oauth2/token?so=00D0j0000008oOc</oauthTokenEndpoint>
+    <redirectBinding>false</redirectBinding>
+    <requestSigningCertId>0P10g00000000MJ</requestSigningCertId>
+    <salesforceLoginUrl>https://wexinc--MetaData.cs53.my.salesforce.com?so=00D0j0000008oOc</salesforceLoginUrl>
+    <samlEntityId>https://saml.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <userProvisioning>false</userProvisioning>
+    <validationCert>MIIDPjCCAiagAwIBAgIEHpV1WTANBgkqhkiG9w0BAQUFADBhMQswCQYDVQQGEwJVUzEOMAwGA1UECBMFVGV4YXMxDzANBgNVBAcTBkF1c3RpbjESMBAGA1UEChMJU2FpbFBvaW50MR0wGwYDVQQDExRwcmQwMS11c2Vhc3QxLXdleGluYzAeFw0xNTA5MjgxNzM0MjNaFw0yNTA5MjUxNzM0MjNaMGExCzAJBgNVBAYTAlVTMQ4wDAYDVQQIEwVUZXhhczEPMA0GA1UEBxMGQXVzdGluMRIwEAYDVQQKEwlTYWlsUG9pbnQxHTAbBgNVBAMTFHByZDAxLXVzZWFzdDEtd2V4aW5jMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkBhMBiHPIK5OY2Mzm5QJhX0qKbJHFaU9AYbMmlLemEDno37k2FDwagL6BGnhL/GBJlNF7wg2mjatY8Y7x8aMdPOOI8uPVJ2Emh8dQiAAd1ySS2lu4kmF0s/JWVoq5qtW/NMMU8Uik6fgPQ3Pj6WkoPxU5wAqLIXAX0mQFnAhNRneifa6OcGKkikhdYqCwYzIqqQ0BqGdLsQ35DTR83NAxWeWx+sFmoC8/jlU/BRzonZCefOg6AosiHv54rteirK94IY5LWqQEPOcZo1GIzInEEdoUNKt/mt98rpEuqFnEheLWlbc5QwaTQXz4JbM4tNRxV92s5UfOwvga9SbQhOKNQIDAQABMA0GCSqGSIb3DQEBBQUAA4IBAQBUYTcB9589Tz4tLU4Yt6J7nFhz/t7VfRXcNVoPrSZVkrIsCqfz4rKOSkvr5GG7D65Zak51O050xpvwKYOYQRAqXEuonk7xzcOdcPppkygpca/3UMi5b6NNICZDJtCWz+WGGHfrGzgpd+6BdA748FIwL+oE2u3Frw3V5eR+lgsOVu0NZJBH1jMgV25o8otQQ/CFaUGSIA6VgvxYUGWw45NCULTvrbY+HFVTp08XmvNNRYbvEV+f7bfwzpOLT9NjnnstbX8KAmFaVO10lff9/q2hIqTM2bl/8PxOvGFAZTVLor0aSqkQYZ1/e9oO5GphuXoVi/felelOYe6TQZgqVvMt</validationCert>
+</SamlSsoConfig>

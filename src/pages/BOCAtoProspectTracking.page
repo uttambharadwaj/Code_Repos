@@ -1,0 +1,3 @@
+<apex:page controller="BOCAtoProspectTrackingController" contentType="img/gif;charset=binary;" action="{!logVisit}">
+
+</apex:page>

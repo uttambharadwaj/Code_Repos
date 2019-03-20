@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <compactLayouts>
+        <fullName>Contact_Role_Compact</fullName>
+        <fields>Name</fields>
+        <fields>Title</fields>
+        <fields>AccountId</fields>
+        <fields>Phone</fields>
+        <fields>MobilePhone</fields>
+        <fields>Email</fields>
+        <fields>OwnerId</fields>
+        <label>Contact Role Compact</label>
+    </compactLayouts>
+    <compactLayouts>
+        <fullName>Revolver_Compact</fullName>
+        <fields>Name</fields>
+        <fields>Title</fields>
+        <fields>AccountId</fields>
+        <fields>SSN__c</fields>
+        <fields>MailingAddress</fields>
+        <fields>Phone</fields>
+        <fields>MobilePhone</fields>
+        <fields>Email</fields>
+        <fields>OwnerId</fields>
+        <label>Revolver Compact</label>
+    </compactLayouts>
+    <compactLayouts>
+        <fullName>WES_Contact</fullName>
+        <fields>Name</fields>
+        <fields>AccountId</fields>
+        <fields>WES_Role__c</fields>
+        <fields>WES_Application_Partner__c</fields>
+        <fields>Date_Of_Birth__c</fields>
+        <fields>OwnerId</fields>
+        <label>WES Contact</label>
+    </compactLayouts>
+    <listViews>
+        <fullName>APA2013_GGL</fullName>
+        <booleanFilter>1 or 2 or 3</booleanFilter>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.ADDRESS2_ZIP</field>
+            <operation>startsWith</operation>
+            <value>315,316,317,320,321,322,323,324,325,326,327,328,329,330,331,333,334,335,336</value>
+        </filters>
+        <filters>
+            <field>CONTACT.ADDRESS2_ZIP</field>
+            <operation>startsWith</operation>
+            <value>337,338,339,341,342,344,346,347,349,350,351,352,354,355,356,357,358,359,360,361</value>
+        </filters>
+        <filters>
+            <field>CONTACT.ADDRESS2_ZIP</field>
+            <operation>startsWith</operation>
+            <value>362,363,364,365,366,367,368,369,387,388,389,390,391,392,393,394,395,396,397</value>
+        </filters>
+        <label>GGL-APA2013-contacts-4/7-14</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AllContacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FULL_NAME</field>
+            <operation>contains</operation>
+            <value>REFERRER</value>
+        </filters>
+        <label>All Contacts</label>
+    </listViews>
+    <listViews>
+        <fullName>Contact_ownership_cleanup</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.WEX_User_Contact</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>beattie</value>
+        </filters>
+        <label>Contact ownership cleanup</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>EU_Travel_France_ABM</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>EU Travel France - ABM</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Wex_Europe</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MSM_APA_Chapter_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <label>MSM APA Chapter Contacts</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MSM_Nashville_Prospects</fullName>
+        <columns>CONTACT.TITLE</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>FULL_NAME</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CONTACT.ADDRESS2_CITY</field>
+            <operation>equals</operation>
+            <value>Nashville,Franklin,Brentwood</value>
+        </filters>
+        <label>MSM Nashville Prospects</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MSM_RAP_19</fullName>
+        <booleanFilter>1 or 2 or 3 or 4</booleanFilter>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.ADDRESS2_ZIP</field>
+            <operation>startsWith</operation>
+            <value>289,300,301,302,303,304,305,306,307,308,309,310,312,313,314,318</value>
+        </filters>
+        <filters>
+            <field>CONTACT.ADDRESS2_ZIP</field>
+            <operation>startsWith</operation>
+            <value>319,370,371,372,373,374,376,377,378,379,380,381,382,383</value>
+        </filters>
+        <filters>
+            <field>CONTACT.ADDRESS2_ZIP</field>
+            <operation>startsWith</operation>
+            <value>384,385,386,400,401,402,403,404,405,406,407,408,409,410,411</value>
+        </filters>
+        <filters>
+            <field>CONTACT.ADDRESS2_ZIP</field>
+            <operation>startsWith</operation>
+            <value>412,413,414,415,416,417,418,420,421,422,423,424,425,426,427,723</value>
+        </filters>
+        <label>MSM 2013 APA Congress &quot;Contact Attendees</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MSM_Territory_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <label>MSM Territory Contacts</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Contact_Call_Scheduler_Template</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Level_of_Influence__c</columns>
+        <columns>Call_Stage__c</columns>
+        <columns>F1_Account_Status__c</columns>
+        <columns>CONTACT.LAST_ACTIVITY</columns>
+        <columns>Card_Product__c</columns>
+        <columns>Number_of_Vehicles_Range__c</columns>
+        <columns>CONTACT.ADDRESS2_STATE</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>Time_Zone__c</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.F1_Contact</value>
+        </filters>
+        <filters>
+            <field>Call_Stage__c</field>
+            <operation>notEqual</operation>
+            <value>1st Call,2nd Call,3rd Call,4th Call,5th Call,6th Call</value>
+        </filters>
+        <filters>
+            <field>F1_Account_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Customer</value>
+        </filters>
+        <filters>
+            <field>CONTACT.PHONE1</field>
+            <operation>startsWith</operation>
+            <value>(952),(763)</value>
+        </filters>
+        <filters>
+            <field>Card_Product__c</field>
+            <operation>equals</operation>
+            <value>local</value>
+        </filters>
+        <label>My Contact Call Scheduler (Template)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Contacts</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Contacts_Corporate_Payments</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.Corporate_Payments</value>
+        </filters>
+        <label>CP -My Contacts - Corporate Payments</label>
+        <sharedTo>
+            <role>Corporate_Payments_Relationship_Management_NA</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>NewThisWeek</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>New This Week</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Overdue_Contacts_in_call_cycle</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>Call_Stage__c</columns>
+        <columns>Next_Contact__c</columns>
+        <columns>Call_Stage_Alerts__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Call_Stage_Alerts__c</field>
+            <operation>equals</operation>
+            <value>OVERDUE</value>
+        </filters>
+        <label>Overdue Contacts (in call cycle)</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Pac_Pride_Contacts</fullName>
+        <booleanFilter>1</booleanFilter>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Pollard,Cole,Patterson,Rolewicz,Nygard</value>
+        </filters>
+        <label>Pac Pride Contacts</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>Training_Contacts_w_o_emails</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.REPORTS_TO.NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.EMAIL</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.WEX_User_Contact</value>
+        </filters>
+        <label>*Training Contacts w/o emails</label>
+        <sharedTo>
+            <role>LearningandDevelopment</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Truckers_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.Truckers_Contacts</value>
+        </filters>
+        <label>Truckers Contacts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>SystemAdmins</group>
+            <group>TruckersB2B</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_All_Leads</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.WES_Contacts</value>
+        </filters>
+        <label>WES - All Contacts</label>
+    </listViews>
+    <listViews>
+        <fullName>WEX_User_Contact</fullName>
+        <columns>CONTACT.SALUTATION</columns>
+        <columns>CONTACT.FIRST_NAME</columns>
+        <columns>CONTACT.LAST_NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.DEPARTMENT</columns>
+        <columns>Business_Unit__c</columns>
+        <columns>Location_Name__c</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.REPORTS_TO.NAME</columns>
+        <columns>SVP__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.WEX_User_Contact</value>
+        </filters>
+        <label>WEX User Contact</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Global_Training_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WEX_User_Contacts_Records</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CONTACT.FIRST_NAME</columns>
+        <columns>CONTACT.LAST_NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CONTACT.REPORTS_TO.NAME</columns>
+        <columns>Hire_Start_Date__c</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.WEX_User_Contact</value>
+        </filters>
+        <label>WEX User Contacts Records</label>
+        <sharedTo>
+            <group>Global_Training_Group</group>
+            <group>Sales_Training</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Wex_Europe_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.Corporate_Pay</value>
+        </filters>
+        <label>Wex Europe Contacts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>CorporatePay_Customer_Services</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scvDummy_Contacts</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>X18_Character_Contact_ID__c</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <columns>CONTACT.EMAIL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Dummy</value>
+        </filters>
+        <label>scv Dummy Contacts</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scv_Contact_Addresses_To_Fix</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CONTACT.ADDRESS2_STREET</columns>
+        <columns>CONTACT.ADDRESS2_CITY</columns>
+        <columns>CONTACT.ADDRESS2_STATE</columns>
+        <columns>CONTACT.ADDRESS2_ZIP</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CONTACT.ADDRESS2_STREET</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.ADDRESS2_CITY</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.ADDRESS2_STATE</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CONTACT.ADDRESS2_ZIP</field>
+            <operation>equals</operation>
+        </filters>
+        <label>scv Contact Addresses To Fix</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scv_Fleet_One_Users</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CONTACT.TITLE</columns>
+        <columns>CONTACT.PHONE1</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.NAME</field>
+            <operation>equals</operation>
+            <value>Fleet One SFDC Users</value>
+        </filters>
+        <filters>
+            <field>CONTACT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Contact.F1_SFDC_User_Contact</value>
+        </filters>
+        <label>scv Fleet One Users</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scv_contact_temp_view</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CONTACT.FIRST_NAME</columns>
+        <columns>CONTACT.LAST_NAME</columns>
+        <columns>Inactive__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Inactive__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>scv contact temp view</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scvmycontactsmisingstate</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CONTACT.ADDRESS2_STATE</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CONTACT.ADDRESS2_STATE</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.NAME</field>
+            <operation>notEqual</operation>
+            <value>fleet one sfdc users</value>
+        </filters>
+        <label>scv My contacts missing state</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <validationRules>
+        <fullName>Canadian_State_Code</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND (
+OR(MailingCountry = &quot;CA&quot;, MailingCountry=&quot;CAN&quot;, MailingCountry=&quot;Canada&quot;,
+LEN(MailingCountry )=0),
+OR(
+LEN(MailingState) &lt; 2,
+NOT(
+CONTAINS(&quot;AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT&quot;, MailingState)
+)))</errorConditionFormula>
+        <errorMessage>A valid two-letter province code is required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Contact_Call_Outcome_Requires_Call_Stage</fullName>
+        <active>true</active>
+        <description>Call Outcome must be blank if Call Stage = Legacy or is blank.</description>
+        <errorConditionFormula>AND( 
+
+OR( 
+ISPICKVAL(Call_Stage__c , &quot;Legacy&quot;), 
+ISPICKVAL(Call_Stage__c , &quot;&quot;) 
+), 
+
+OR( 
+ISPICKVAL(Call_Outcome__c , &quot;No Answer (F/U Task)&quot;), 
+ISPICKVAL(Call_Outcome__c , &quot;Left Voicemail (F/U Task &amp; EM)&quot;) 
+) 
+
+)</errorConditionFormula>
+        <errorDisplayField>Call_Outcome__c</errorDisplayField>
+        <errorMessage>Call Stage must be &quot;1st Call, 2nd Call, etc.&quot; before you can enter a Call Outcome.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Email_Required</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+  /*
+  custom setting - enables rule to be disabled for user, profile or org
+  */ 
+  $Setup.WE_VRC__c.All_Contact_Disabled__c = FALSE, 
+
+  /* EU records only */
+  RecordType.DeveloperName = &apos;CorporatePay&apos;,
+  ISBLANK(Email)
+)</errorConditionFormula>
+        <errorDisplayField>Email</errorDisplayField>
+        <errorMessage>Please enter the Contact&apos;s email address. This enables us to market to the Contact &amp; prevent duplicate records from being created.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Lead_Source_Required</fullName>
+        <active>true</active>
+        <description>Used instead of a page layout while rule should only apply to UK users.</description>
+        <errorConditionFormula>AND(
+  /* custom setting - enables rule to be disabled for user, profile or org */
+  $Setup.WE_VRC__c.All_Contact_Disabled__c = FALSE,
+  RecordType.DeveloperName = &apos;CorporatePay&apos;,
+  $RecordType.Name = &apos;MasterCard&apos;, 
+  $Setup.VProfileId__c.Virtual_EU_NA_Sales_RM__c = True, 
+  OR( 
+    ISBLANK(TEXT(LeadSource)), 
+    TEXT(LeadSource) = &quot;Partner&quot; 
+  ), 
+  ISBLANK(Partner_Referrer__c) 
+)</errorConditionFormula>
+        <errorDisplayField>LeadSource</errorDisplayField>
+        <errorMessage>Please enter a Lead Source or the Partner Referrer (from separate field) in the field of the Contact which you are creating this Opportunity from</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Phone_Number_Validation</fullName>
+        <active>false</active>
+        <description>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</description>
+        <errorConditionFormula>NOT(REGEX(Phone, &quot;\\D*?(\\d\\D*?){10}&quot;))</errorConditionFormula>
+        <errorDisplayField>Phone</errorDisplayField>
+        <errorMessage>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Phone_Number_Validation_Asst</fullName>
+        <active>false</active>
+        <description>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</description>
+        <errorConditionFormula>NOT(REGEX(Phone, &quot;\\D*?(\\d\\D*?){10}&quot;))</errorConditionFormula>
+        <errorDisplayField>AssistantPhone</errorDisplayField>
+        <errorMessage>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Phone_Number_Validation_Fax</fullName>
+        <active>false</active>
+        <description>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</description>
+        <errorConditionFormula>NOT(REGEX(Phone, &quot;\\D*?(\\d\\D*?){10}&quot;))</errorConditionFormula>
+        <errorDisplayField>Fax</errorDisplayField>
+        <errorMessage>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Phone_Number_Validation_Home</fullName>
+        <active>false</active>
+        <description>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</description>
+        <errorConditionFormula>NOT(REGEX(Phone, &quot;\\D*?(\\d\\D*?){10}&quot;))</errorConditionFormula>
+        <errorDisplayField>HomePhone</errorDisplayField>
+        <errorMessage>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Phone_Number_Validation_Other</fullName>
+        <active>false</active>
+        <description>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</description>
+        <errorConditionFormula>NOT(REGEX(Phone, &quot;\\D*?(\\d\\D*?){10}&quot;))</errorConditionFormula>
+        <errorDisplayField>OtherPhone</errorDisplayField>
+        <errorMessage>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Phone_Number_Validation_mobile</fullName>
+        <active>false</active>
+        <description>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</description>
+        <errorConditionFormula>NOT(REGEX(Phone, &quot;\\D*?(\\d\\D*?){10}&quot;))</errorConditionFormula>
+        <errorDisplayField>MobilePhone</errorDisplayField>
+        <errorMessage>Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Phone_number_must_be_20_digits</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( ISCHANGED(Phone) ,
+(LEN( Phone )&gt;=20),
+(ISBLANK(RecordTypeId)),
+ $User.ProfileId  &lt;&gt; &apos;00e70000000x9ot&apos; )</errorConditionFormula>
+        <errorDisplayField>Phone</errorDisplayField>
+        <errorMessage>Phone Number must be 20 digits or less</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Referred_By_Internal_Cannot_be_Modified</fullName>
+        <active>true</active>
+        <description>Referred By Internal Cannot be Modified</description>
+        <errorConditionFormula>AND( 
+PRIORVALUE(Referred_by_Internal__c)!= NULL, 
+ISCHANGED(Referred_by_Internal__c) 
+)</errorConditionFormula>
+        <errorMessage>Referred by Internal field is already set and cannot be changed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>US_State_Code</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND (
+OR( MailingCountry  = &quot;US&quot;, MailingCountry =&quot;USA&quot;, MailingCountry=&quot;United States&quot;, 
+LEN(MailingCountry )=0),
+OR(
+LEN(MailingState ) &lt; 2,
+NOT(
+CONTAINS(&quot;AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:&quot; &amp;
+&quot;IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:&quot; &amp;
+&quot;NJ:NM:NY:NC:ND:OH:OK:OR:PA:RI:SC:SD:TN:TX:UT:VT:VA:&quot; &amp;
+&quot;WA:WV:WI:WY&quot;, MailingState)
+)))</errorConditionFormula>
+        <errorMessage>A valid two-letter state code is required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valid_State_Providence_Values</fullName>
+        <active>false</active>
+        <errorConditionFormula>NOT( 
+CONTAINS(&quot;AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT&quot; &amp; &quot;AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:&quot; &amp; 
+&quot;IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:&quot; &amp; 
+&quot;NJ:NM:NY:NC:ND:OH:OK:OR:PA:RI:SC:SD:TN:TX:UT:VT:VA:&quot; &amp; 
+&quot;WA:WV:WI:WY&quot;, MailingState) 
+)</errorConditionFormula>
+        <errorMessage>A valid two-letter state or province code is required</errorMessage>
+    </validationRules>
+</CustomObject>

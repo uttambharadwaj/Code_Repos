@@ -1,0 +1,36 @@
+<!-- 
+    Controller Name : UOnlineApplicationHomePgComp
+    Description : Display the Online Applications owned by logged in user
+-->
+
+<apex:page controller="UOnlineApplicationHomePgComp" tabStyle="OnlineApplication__c" sidebar="false" showHeader="false">
+    <apex:form >
+        <apex:pageBlock title="My Online Applications">
+            	<apex:pageBlockSection columns="1">
+                    <apex:pageBlockSectionItem >
+            			   <apex:selectList value="{!applicationFilter}" id="applicationFilter" size="1">
+                    			<apex:selectOption itemLabel="Completed Applications" itemValue="completed"></apex:selectOption>
+                    			<apex:selectOption itemLabel="Incomplete Applications" itemValue="incomplete"></apex:selectOption>
+                                <apex:actionSupport event="onchange" action="{!getApplications}" rerender="applications"/>
+                    	   </apex:selectList>
+                   	</apex:pageBlockSectionItem>
+            	</apex:pageBlockSection>
+            	<apex:pageBlockSection columns="1" id="applications">
+                	<apex:pageBlockTable value="{!lstOnlineApplication}" var="objOnlineAppln" rendered="{!lstOnlineApplication.size > 0}">
+	                    <apex:column headerValue="Name">
+    	                    <apex:outputLink value="/{!objOnlineAppln.Id}" target="_blank">
+        	                    {!objOnlineAppln.Name}
+            	            </apex:outputLink>                      
+                	    </apex:column>
+                    	<apex:column headerValue="Legal business Name" value="{!objOnlineAppln.Legal_Business_Name__c}"/> 
+                    	<apex:column headerValue="Application Title" value="{!objOnlineAppln.Application_Title__c}"/>
+                    	<apex:column headerValue="Status" value="{!objOnlineAppln.Status__c}"/>
+                    	<apex:column headerValue="eSignature Status" value="{!objOnlineAppln.eSignature_Status__c}"/>
+        	       	</apex:pageBlockTable>
+            	   	<apex:outputPanel rendered="{!lstOnlineApplication.size < 1}" >
+	                   No records to display.
+    	           </apex:outputPanel>
+            	</apex:pageBlockSection>
+        </apex:pageBlock>
+        </apex:form>
+</apex:page>

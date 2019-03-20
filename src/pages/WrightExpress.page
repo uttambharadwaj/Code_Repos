@@ -1,0 +1,155 @@
+<apex:page cache="false" controller="Ctrl_MotorpassForm" showHeader="false" standardStylesheets="false">
+    
+    <head>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="{!IF(brand == 'Motorpass','https://www.motorpass.com.au/media/1346970/motorpass.ico','http://www.motorcharge.com.au/media/1346975/motorcharge.ico')}" />
+    
+    <title>{!IF(brand == 'Motorpass','Motorpass', 'Motorcharge')}</title>
+    
+    <style type="text/css">
+    .button {  font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 250px; height: 50px; font-family: Arial, 'Liberation Sans' ,FreeSans, sans-serif; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #ed1b24; }
+    .button3 { display:inline-block; font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 50px; height: 17px; font-family: Arial, 'Liberation Sans' ,FreeSans, sans-serif; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #ed1b24; }
+    
+    .button2 { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 250px; height: 50px; font-family: Arial, 'Liberation Sans' ,FreeSans, sans-serif; font-size: 14px; padding-left: 70px; padding-right: 70px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #ed1b24; }
+            
+    input[type=text] { border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; }
+            
+    h2 { font-family: Arial, 'Liberation Sans' ,FreeSans, sans-serif; font-size: 14px; font-weight: bold; color: #666; }
+     
+     
+    #tabs ul {
+    margin-bottom: 0px;
+    height: 29px;
+    background: url(https://www.motorpass.com.au/Images/pay-bg-active2.gif) repeat-x top right;
+    overflow: hidden;
+    zoom: 1;
+    list-style-type: none;
+    }
+    
+    #tabs ul li {
+    background: url(https://www.motorpass.com.au/Images/pay-bg.gif) repeat-x top left;
+    height: 29px;
+    line-height: 29px;
+    float: left;
+    margin-left: -1px;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 14px 0px 13px;
+    display: block;
+    float: left;
+    width: 17%;
+    }
+    
+    #tabs ul li.selected {
+    background: none;
+    color: #FFF;
+    } 
+            
+    </style>
+    
+    </head>
+    
+    <body style="margin: 0px; font-size: 12px; font-family: Arial, 'Liberation Sans' ,FreeSans, sans-serif;">
+    
+        <apex:form >
+    
+        <div id="rdHead" style="display:{!IF(brand == 'Motorpass','block','none')}; margin-left: auto; margin-right: auto; background-image: url(https://www.motorpass.com.au/media/3646/mp_website_header.jpg);background-color: transparent; background-repeat: no-repeat; height: 188px; width: 960px;"></div>
+        
+        <div id="rdHead" style="display:{!IF(brand == 'Motorcharge','block','none')}; margin-left: auto; margin-right: auto; background-image: url({!$Resource.MCBanner});background-color: transparent; background-repeat: no-repeat; height: 188px; width: 960px;"></div>
+        
+        <div style="height: 1000px; margin-left: auto; margin-right: auto; width: 960px; clear: both; padding: 0px; background: url({!$Resource.AUBodybg}) repeat-y 0px 0px; overflow: hidden; vertical-align: baseline;">
+            
+            <apex:pageBlock id="pgBlk">
+            
+            <div align="center" style="padding-left: 10px; padding-right: 10px; padding-top: 0px; margin-top: -13px;">
+            
+            <div id="tabs">
+                <ul>
+                    <li class="selected">Getting Started</li>
+                    <li>Your Details</li>
+                    <li>Card Details</li>
+                    <li>Payment Options</li>
+                    <li>Confirmation</li>
+                </ul>
+            </div>
+            
+            <br/>
+                
+                 <apex:outputPanel rendered="{!NOT(showFields)}">
+                   
+               <table>
+                        <tr>
+                            <td align="right" style="padding: 20px; margin: float;width:50%;">
+                                <apex:commandLink styleclass="button" value="  Business  " action="{!showMotorpass}">
+                                    <apex:param name="opt1" value="Organisation" assignTo="{!opt1}" />
+                                </apex:commandLink>
+                            </td>
+                            <td align="left" style="padding: 20px;width:50%;">
+                                <apex:commandLink styleClass="button" action="{!showMotorpass}" value="Individual">
+                                    <apex:param name="opt1" value="Individual" assignTo="{!opt1}" />
+                                </apex:commandLink>
+                            </td>
+                        </tr>
+                    <tr>
+                        <td align="right" style="padding: 20px;">If you are applying on behalf of a registered Australian business.</td>
+                        <td align="left" style="padding: 20px; margin: float;">If you pay your car expenses via a novated lease or salary packaging arrangement.</td>
+                    </tr>  
+                    </table>
+                </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{!showFields}" >
+                
+                 <table width="100%">
+                    <tr>
+               <td align="{!IF(brand == 'Motorpass','right','center')}" style="padding-top: 20px;"><blockquote style="border: 2px solid #666; padding: 10px; background-color: #ccc; width: 450px; height: 230px; text-align: justify; margin-left:auto; margin-right:auto; border-radius: 6px;">
+                       <P align="center"><b>Motorpass</B></p>
+                       <p>Motorpass is more than just a fuel card. It’s the most widely accepted fuel card in the Australian market. Over 90% of fuel stations accept Motorpass and our major partners include: Caltex Woolworths, Coles Express, Shell, BP, 7-Eleven, United and Liberty. </p>
+                        <p>Motorpass account holders are offered access to additional savings on tyres, services, repairs and maintenance, car parking, rental cars, accommodation, taxis and much more.</p>
+                        <P align="center"><b>Motorpass Diesel</B></p>
+                        <p>In addition to the many benefits of Motorpass, Diesel account holders are offered additional discounts on diesel purchases at Golden Network sites.</p> 
+                    
+                </blockquote>
+               </td>
+               </tr>
+               </table>
+                <table>  
+                     
+                        <tr>
+                            <td align="{!IF(brand == 'Motorpass','right','center')}" style="padding-top: 20px;">
+                                <apex:commandLink styleclass="button2" value="{!IF(brand == 'Motorpass',' Motorpass ',' Motorcharge ')}" action="{!redirectToForm}" >
+                                    <apex:param name="opt2" value="{!IF(brand == 'Motorpass','Motorpass','Motorcharge')}" assignTo="{!opt2}" />
+                                </apex:commandLink>
+                            </td>
+                    
+                            <td align="left" style="padding-top: 20px; padding-left: 40px;display:{!IF(brand == 'Motorpass','block table','none')}">
+                                <apex:commandLink styleclass="button" value="Motorpass Diesel" action="{!redirectToForm}" >
+                                    <apex:param name="opt2" value="Motorpass Diesel" assignTo="{!opt2}" />
+                                </apex:commandLink>
+                            </td>
+                        </tr>
+                           
+                    </table>
+                   
+                </apex:outputPanel>
+                
+               <br/>
+                  <div align="center" style="padding:20px;">
+                        <apex:commandLink styleclass="button3"  value="Back" action="{!resetForm}" rerender="pgBlk" rendered="{!showFields}">
+                        </apex:commandLink>
+                     </div> 
+                     
+                </div>
+                
+            </apex:pageBlock>
+            
+            </div>
+            
+        </apex:form>
+        
+        <site:googleAnalyticsTracking />
+        
+    </body>
+    
+</apex:page>

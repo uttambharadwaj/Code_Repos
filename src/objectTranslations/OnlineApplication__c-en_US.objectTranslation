@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Online Application</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Online Applications</value>
+    </caseValues>
+    <layouts>
+        <layout>Online App Layout - Compliance Analyst</layout>
+        <sections>
+            <label><!-- App Manager Integration --></label>
+            <section>App Manager Integration</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance Decisioning --></label>
+            <section>Compliance Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decisioning --></label>
+            <section>Credit Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B SBRI Details --></label>
+            <section>D&amp;B SBRI Details</section>
+        </sections>
+        <sections>
+            <label><!-- Existing Exposure Details --></label>
+            <section>Existing Exposure Details</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Details --></label>
+            <section>Forte Details</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Decisioning --></label>
+            <section>Fraud Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- LexisNexis Details --></label>
+            <section>LexisNexis Details</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- ThreatMetrix Details --></label>
+            <section>ThreatMetrix Details</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online App Layout - Credit Analyst</layout>
+        <sections>
+            <label><!-- App Manager Integration --></label>
+            <section>App Manager Integration</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Credit Details --></label>
+            <section>Commercial Credit Details</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance Decisioning --></label>
+            <section>Compliance Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decisioning --></label>
+            <section>Credit Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Existing Exposure Details --></label>
+            <section>Existing Exposure Details</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Details --></label>
+            <section>Forte Details</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Decisioning --></label>
+            <section>Fraud Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- LexisNexis Details --></label>
+            <section>LexisNexis Details</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Personal Guarantee Data --></label>
+            <section>Personal Guarantee Data</section>
+        </sections>
+        <sections>
+            <label><!-- Personal Guarantee Experian Premier Attributes --></label>
+            <section>Personal Guarantee Experian Premier Attributes</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- ThreatMetrix Details --></label>
+            <section>ThreatMetrix Details</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online App Layout - Edit All</layout>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online App Layout - Edit All Plus</layout>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online App Layout - Fraud Analyst</layout>
+        <sections>
+            <label><!-- App Manager Integration --></label>
+            <section>App Manager Integration</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance Decisioning --></label>
+            <section>Compliance Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decisioning --></label>
+            <section>Credit Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B SBRI Details --></label>
+            <section>D&amp;B SBRI Details</section>
+        </sections>
+        <sections>
+            <label><!-- Existing Exposure Details --></label>
+            <section>Existing Exposure Details</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Details --></label>
+            <section>Forte Details</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Decisioning --></label>
+            <section>Fraud Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- LexisNexis Details --></label>
+            <section>LexisNexis Details</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- ThreatMetrix Details --></label>
+            <section>ThreatMetrix Details</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online App Layout - Read Only</layout>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online App Layout - Status Edit</layout>
+        <sections>
+            <label><!-- App Manager Integration --></label>
+            <section>App Manager Integration</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- EFS Fields --></label>
+            <section>EFS Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online App Layout - Status Plus 3 Edit</layout>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Details --></label>
+            <section>Forte Details</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online App Layout - Status Plus Edit</layout>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Details --></label>
+            <section>Forte Details</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Online Application Layout</layout>
+        <sections>
+            <label><!-- Bank Account Setup --></label>
+            <section>Bank Account Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Card Setup --></label>
+            <section>Card Setup</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Details --></label>
+            <section>Forte Details</section>
+        </sections>
+        <sections>
+            <label><!-- Method of Payment --></label>
+            <section>Method of Payment</section>
+        </sections>
+        <sections>
+            <label><!-- Proprietor, Partner, or Corporate Officer --></label>
+            <section>Proprietor, Partner, or Corporate Officer</section>
+        </sections>
+        <sections>
+            <label><!-- Security --></label>
+            <section>Security</section>
+        </sections>
+        <sections>
+            <label><!-- Status --></label>
+            <section>Status</section>
+        </sections>
+        <sections>
+            <label><!-- Workflow Dates --></label>
+            <section>Workflow Dates</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Your ABA Routing Number does not match the confirmation field --></errorMessage>
+        <name>ABA_Confirm</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter your 9-digit ABA Routing Number --></errorMessage>
+        <name>ABA_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid, numeric, ABA Routing number. --></errorMessage>
+        <name>ABA_Numeric</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must include a first and last name. --></errorMessage>
+        <name>AO_Name_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An Adverse Action code is required. --></errorMessage>
+        <name>Adverse_Action_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must be at least 18 years old to apply for a fleet card --></errorMessage>
+        <name>Birth_Date</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Your checking account number does not match the confirmation field --></errorMessage>
+        <name>Checking_Account_Confirm</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid checking account number --></errorMessage>
+        <name>Checking_Account_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid, numeric, checking account number. --></errorMessage>
+        <name>Checking_Account_Numeric</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must include a first and last name. --></errorMessage>
+        <name>Contact_Name_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Credit Line Must Not exceed $1500 --></errorMessage>
+        <name>Credit_line_cant_be_more_than_1500</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- NASTC/QPN Directory # can ONLY be edited with a status of Pending Setup --></errorMessage>
+        <name>Editing_NASTC_QPN_Directory_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- # of Cards Needed can ONLY be edited with a status of Pending Setup Data --></errorMessage>
+        <name>Editing_Number_of_Cards_Needed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Plus Chek can ONLY be edited with a status of Pending Setup --></errorMessage>
+        <name>Editing_Plus_Chek_Number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An F1 Account Number is required if the setup is complete.. --></errorMessage>
+        <name>F1_Account_Number_is_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- NASTC/QPN Directory # is required for Setup Complete --></errorMessage>
+        <name>NASTC_QPN_Directory_Number_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- # of Card Needed is Required to move to the a Pending Setup status --></errorMessage>
+        <name>Number_Cards_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only Credit Analysts can set the status to Decisioned. --></errorMessage>
+        <name>Only_Credit_Analysts_can_Decisioned</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please type in the Other Risk Grade Source --></errorMessage>
+        <name>Other_Risk_Grade_Source</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- PlusChek # is required for Setup Complete --></errorMessage>
+        <name>PlusChek_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- An Adverse Action Code is needed if the Credit Decision is Declined or Declined-Prepay/Secured Only or if the Status is &quot;Credit-Incomplete&quot; --></errorMessage>
+        <name>Require_Adverse_Action_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Your Social Security Number does not match the confirmation field --></errorMessage>
+        <name>SSN_Confirm</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter your 9-digit Social Security Number --></errorMessage>
+        <name>SSN_Length</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter 9 digits, or a valid tax Id format, such as 12-3456789 or 123-45-6789. --></errorMessage>
+        <name>Tax_Id_Format</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Status must be Decisioned before adding or editing the Credit Decision. --></errorMessage>
+        <name>Update_Credit_Decision</name>
+    </validationRules>
+</CustomObjectTranslation>

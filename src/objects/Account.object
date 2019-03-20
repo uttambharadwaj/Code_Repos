@@ -1,0 +1,1835 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <compactLayouts>
+        <fullName>AU_Sales</fullName>
+        <fields>Name</fields>
+        <fields>Account_Tier__c</fields>
+        <fields>Status__c</fields>
+        <fields>RecordTypeId</fields>
+        <fields>OwnerId</fields>
+        <label>AU Sales</label>
+    </compactLayouts>
+    <compactLayouts>
+        <fullName>Corporate_Payments_Layout</fullName>
+        <fields>Name</fields>
+        <fields>OwnerId</fields>
+        <fields>Account_Manager__c</fields>
+        <fields>YTD_Spend__c</fields>
+        <fields>Account_Type__c</fields>
+        <fields>Sales_Group__c</fields>
+        <label>Corporate Payments Layout</label>
+    </compactLayouts>
+    <compactLayouts>
+        <fullName>Service_Operations</fullName>
+        <fields>Name</fields>
+        <fields>Account_Status__c</fields>
+        <fields>Wex_Account__c</fields>
+        <fields>Sponsor_Acct__c</fields>
+        <fields>Platform__c</fields>
+        <fields>Program__c</fields>
+        <fields>Online_Application_URL__c</fields>
+        <label>Service Operations</label>
+    </compactLayouts>
+    <compactLayouts>
+        <fullName>WES_Account_Compact</fullName>
+        <fields>Name</fields>
+        <fields>OwnerId</fields>
+        <fields>BillingAddress</fields>
+        <fields>WES_Business_Entity_Type__c</fields>
+        <fields>Business_Type__c</fields>
+        <fields>Company_registration_number__c</fields>
+        <label>WES Account Compact</label>
+    </compactLayouts>
+    <listViews>
+        <fullName>AU_My_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>Status__c</columns>
+        <columns>ACCOUNT.LAST_ACTIVITY</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <filterScope>Mine</filterScope>
+        <label>AU - All my Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>AU_Roles_Except_VCC</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AU_My_channel_partners</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>Status__c</columns>
+        <columns>ACCOUNT.LAST_ACTIVITY</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.AU_Partner</value>
+        </filters>
+        <label>AU - My channel partners</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>AU_Roles_Except_VCC</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AU_My_direct_accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>ACCOUNT.INDUSTRY</columns>
+        <columns>ACCOUNT.LAST_ACTIVITY</columns>
+        <columns>Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.AU_Fuel_Customer</value>
+        </filters>
+        <label>AU - My direct accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>AU_Roles_Except_VCC</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>AllAccounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.ADDRESS2_STATE</field>
+            <operation>equals</operation>
+            <value>NC,SC,VA,WV</value>
+        </filters>
+        <label>MWR All Accounts</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>All_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Accounts</label>
+        <sharedTo>
+            <allPartnerUsers></allPartnerUsers>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_RM_Owned_Accounts_Virtual_NA</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Corporate_Payments</value>
+        </filters>
+        <label>All RM Owned Accounts</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>VP_Virtual_Payments_NA</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>All_Virtual_NA_Customer_Accounts</fullName>
+        <booleanFilter>(1 AND 2 AND 3) OR 4</booleanFilter>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>AU_Business_Trading_Name__c</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Virtual</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.TYPE</field>
+            <operation>equals</operation>
+            <value>Customer</value>
+        </filters>
+        <filters>
+            <field>Account_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Strategic Relationship Manager Virtual NA</value>
+        </filters>
+        <filters>
+            <field>Virtual_Customer__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>All Virtual NA Customer Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>VP_Virtual_Payments_NA</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CP_All_My_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <filterScope>Mine</filterScope>
+        <label>CP- All My Accounts</label>
+        <sharedTo>
+            <role>Corporate_Payments_Relationship_Management_NA</role>
+            <role>Corporate_Payments_Strategic_Accounts_Managers</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Card_Program_Accounts</fullName>
+        <columns>Card_Program__c</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Card_Program</value>
+        </filters>
+        <label>Card Program Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Channel_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>F1_Account_Sub_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Channel_Account</value>
+        </filters>
+        <label>Channel Accounts</label>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Clients</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.INDUSTRY</field>
+            <operation>equals</operation>
+            <value>Healthcare</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.TYPE</field>
+            <operation>equals</operation>
+            <value>Customer</value>
+        </filters>
+        <label>Health Care Clients</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>Copy_of_ABM_My_Accounts</fullName>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.ADDRESS1_COUNTRY</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Account_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Corporate Payments Relationship Management EU</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.TYPE</field>
+            <operation>notEqual</operation>
+            <value>Ex-Customer,Investor,Partner,Prospect</value>
+        </filters>
+        <label>*My EMEA Accounts</label>
+        <sharedTo>
+            <role>Corporate_Payments_Relationship_Management_EU</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CorporatePay_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Customer_Category__c</columns>
+        <columns>ACCOUNT.INDUSTRY</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <columns>ACCOUNT.LAST_ACTIVITY</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.CorporatePay_Accounts</value>
+        </filters>
+        <label>Wex Europe Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CorporatePay2</group>
+            <group>Wex_Europe</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Dakota_schools_GGL_1_10_13</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>1/10/2013 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>labanca</value>
+        </filters>
+        <label>Dakota schools-GGL-1-10-13</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Active_Account</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>IFCS__c</columns>
+        <columns>Status__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>1 - Active</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.EMAP_Fuel_Accounts</value>
+        </filters>
+        <label>EMAP Active Account</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>EMAP_Contact_Users</group>
+            <group>EMAP_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Closed_Account</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>4 - Closed</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.EMAP_Fuel_Accounts</value>
+        </filters>
+        <label>EMAP Closed Account</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>EMAP_Contact_Users</group>
+            <group>EMAP_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Parent_Controlled_Lock</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Parent Controlled Lockout</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.EMAP_Fuel_Accounts</value>
+        </filters>
+        <label>EMAP Parent Controlled Lock</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>EMAP_Contact_Users</group>
+            <group>EMAP_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Stopped_Account</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>3 - Stopped (blocked)</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.EMAP_Fuel_Accounts</value>
+        </filters>
+        <label>EMAP Stopped Account</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>EMAP_Contact_Users</group>
+            <group>EMAP_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Temp_Locked_Account</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Status__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>9 - Temporary Locked</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.EMAP_Fuel_Accounts</value>
+        </filters>
+        <label>EMAP Temp Locked Account</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>EMAP_Contact_Users</group>
+            <group>EMAP_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EMAP_Writeoff_Account</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Closed_On__c</columns>
+        <columns>Account_Sub_Status__c</columns>
+        <columns>Client_Name__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>5 - Write Off</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.EMAP_Fuel_Accounts</value>
+        </filters>
+        <label>EMAP Writeoff Account</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>EMAP_Contact_Users</group>
+            <group>EMAP_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>High_Priority_Marketers</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.URL</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>High Priority Marketers</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>JAW_500_employee_count_targets</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.EMPLOYEES</columns>
+        <columns>ACCOUNT.URL</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.EMPLOYEES</field>
+            <operation>greaterThan</operation>
+            <value>500</value>
+        </filters>
+        <label>JAW 500+ employee count targets</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>KLW_Co_and_UT_leads</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_STATE</field>
+            <operation>equals</operation>
+            <value>UT,CO</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.EMPLOYEES</field>
+            <operation>greaterOrEqual</operation>
+            <value>500</value>
+        </filters>
+        <label>KLW Co and UT leads</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>Kari_Grubisch_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>AU_Business_Trading_Name__c</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Grubisch</value>
+        </filters>
+        <label>Kari&apos;s Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>Director_Global_Strategic_Accounts</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>MarketingReporting</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Merchant_Locations</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Store_Number__c</columns>
+        <columns>Merchant_Number__c</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>Gas__c</columns>
+        <columns>DSL__c</columns>
+        <columns>F1_Cards_Accepted__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Merchant_Location</value>
+        </filters>
+        <label>Merchant Locations</label>
+        <sharedTo>
+            <group>F1_Fleet_Sales</group>
+            <group>F1_Marketing</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Merchant_Locations_by_brand</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Store_Number__c</columns>
+        <columns>Merchant_Number__c</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>Gas__c</columns>
+        <columns>DSL__c</columns>
+        <columns>F1_Cards_Accepted__c</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.IS_PARNTER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Merchant_Location</value>
+        </filters>
+        <label>Merchant Locations By Brand</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>F1_Fleet_Sales</group>
+            <group>F1_Marketing</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Account_Addresses_to_Fix</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STREET</columns>
+        <columns>ACCOUNT.ADDRESS1_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.ADDRESS1_ZIP</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_STREET</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_CITY</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_STATE</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_ZIP</field>
+            <operation>equals</operation>
+        </filters>
+        <label>My Account Addresses to Fix</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Accounts_OTR</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Accounts - OTR</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>AccountManager</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>DirectorAccountManagement</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>DirectorDirectOTRSales</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Account_Manager</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Field_Sales_West</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_IS_Sales_Inbound_West</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_IS_Sales_Manager_West</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_IS_Sales_Outbound_West</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_IS_Sales_Partner_East</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_IS_Sales_Partner_West</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_IS_Sales_Retention_West</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Implementation</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Implementation_Manager</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_National_Sales</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_New_Account_Onboarding</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_New_Account_Onboarding_TL</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Outbound_Channel_2</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Outbound_Channel_Sales</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Outbound_Channel_Sales_TL</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_East</roleAndSubordinatesInternal>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_West</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Accounts_Virtual_NA</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.ADDRESS1_COUNTRY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Account_Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Corporate Payments Relationship Management EU</value>
+        </filters>
+        <label>My Accounts</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Active_Prospects</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>Number_of_Vehicles_Range__c</columns>
+        <columns>Number_of_Vehicles__c</columns>
+        <columns>F1_Account_Status__c</columns>
+        <columns>F1_Account_Type__c</columns>
+        <columns>F1_Account_Sub_Type__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>F1_Account_Status__c</field>
+            <operation>equals</operation>
+            <value>Active Prospect</value>
+        </filters>
+        <label>1. My Active Prospects</label>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Customer_Accounts_Virtual_NA</fullName>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>AU_Business_Trading_Name__c</columns>
+        <columns>PARENT_NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Virtual</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.TYPE</field>
+            <operation>equals</operation>
+            <value>Customer</value>
+        </filters>
+        <filters>
+            <field>Virtual_Customer__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>My Customer Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>VP_Virtual_Payments_NA</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>NAE_East_View</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_STATE</field>
+            <operation>equals</operation>
+            <value>NJ,MA,VA,ME</value>
+        </filters>
+        <filters>
+            <field>F1_Account_Number__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Number_of_Vehicles_Range__c</field>
+            <operation>equals</operation>
+            <value>26-50,51-75,76-500</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.LAST_ACTIVITY</field>
+            <operation>lessOrEqual</operation>
+            <value>11/1/2011</value>
+        </filters>
+        <filters>
+            <field>PROFITS_Type__c</field>
+            <operation>equals</operation>
+            <value>PO</value>
+        </filters>
+        <label>NAE East View</label>
+        <sharedTo>
+            <role>Field_Sales</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Needed_Fields_to_Be_Updated</fullName>
+        <booleanFilter>(1 OR 2 OR 3 OR 4) AND 5</booleanFilter>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>Number_of_Vehicles_Range__c</columns>
+        <columns>Card_Product_del__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_STATE</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.PHONE1</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Number_of_Vehicles_Range__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Card_Product_del__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>1/1/2012 12:00 AM</value>
+        </filters>
+        <label>Needed Fields to Be Updated</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>NewThisWeek</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Is_Vendor__c</columns>
+        <columns>Vendor_Name__c</columns>
+        <columns>Order__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>ACCOUNT.CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>New This Week</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Pac_Pride_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STREET</columns>
+        <columns>ACCOUNT.ADDRESS1_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Pacific_Pride</value>
+        </filters>
+        <label>Pac Pride Accounts</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>Profits_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <label>Profits Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>RM_West_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>Fallo,Hunn,Schoppe,Werrell,Caine,Mish,Baumguard,Biever,Quigley,Cullar</value>
+        </filters>
+        <label>RM West Accounts</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>Shell_All_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.ADDRESS1_STREET</columns>
+        <columns>ACCOUNT.ADDRESS1_CITY</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.ADDRESS1_ZIP</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>Shell- All Accounts</label>
+        <language>en_US</language>
+        <sharedTo>
+            <roleAndSubordinatesInternal>Director_Shell_Sales</roleAndSubordinatesInternal>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Software_Update</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>June_Gallons_CY__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>F1_Account_Type__c</field>
+            <operation>equals</operation>
+            <value>Fleet</value>
+        </filters>
+        <filters>
+            <field>F1_Account_Number__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>June_Gallons_CY__c</field>
+            <operation>greaterThan</operation>
+            <value>50000</value>
+        </filters>
+        <filters>
+            <field>Software_Company__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>F1_Account_Number__c</field>
+            <operation>startsWith</operation>
+            <value>1,9</value>
+        </filters>
+        <label>Software Update</label>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TB2B_Ready_for_Membership</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Truckers_Accounts</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Ready for Membership</value>
+        </filters>
+        <label>TB2B Ready for Membership</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>TruckersB2B</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>TSPRGRS</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>F1_Account_Type__c</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>PROFITS_LeadSrc__c</field>
+            <operation>equals</operation>
+            <value>TSPRGRS</value>
+        </filters>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>notEqual</operation>
+            <value>Account.Merchant_Account</value>
+        </filters>
+        <label>TSPRGRS</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_Internal_Users_Non_Virtual</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Truckers_Account1</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>TB2B_Indentifiers__c</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Truckers_Accounts</value>
+        </filters>
+        <label>Truckers Account</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>SystemAdmins</group>
+            <group>TruckersB2B</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Account_Review_Assignment</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Assigned_to__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Credit_Limit_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Assigned_to__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Auth_Node_Indicator__c</field>
+            <operation>equals</operation>
+            <value>Y</value>
+        </filters>
+        <label>WES Account Review Assignment</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.ADDRESS1_COUNTRY</columns>
+        <columns>Status__c</columns>
+        <columns>Company_registration_number__c</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <label>WES Accounts</label>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Accounts_From_Radius</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Company_registration_number__c</columns>
+        <columns>Physical_Street_Address__c</columns>
+        <columns>Physical_City__c</columns>
+        <columns>Physical_State__c</columns>
+        <columns>Physical_Zip_Postal_Code__c</columns>
+        <columns>WES_ISO_Country_Code__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>From_Radius__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <label>WES Accounts - From Radius</label>
+        <sharedTo>
+            <group>WES_All_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Approved</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Assigned_to__c</columns>
+        <columns>Wes_Review_Id__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Credit_Limit_Status__c</columns>
+        <columns>Credit_Utilization__c</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <label>WES - Approved</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Auto_Approved</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Auto approved</value>
+        </filters>
+        <label>WES - Auto Approved</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Closed</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </filters>
+        <label>WES - Closed</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Continue_Without_Change</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Continue without change</value>
+        </filters>
+        <label>WES - Continue Without Change</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Declined</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Declined</value>
+        </filters>
+        <label>WES - Declined</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Pending_Activity</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Account_Id__c</columns>
+        <columns>Wes_Review_Id__c</columns>
+        <columns>Review_Type__c</columns>
+        <columns>Credit_Limit_Status__c</columns>
+        <columns>Credit_Utilization__c</columns>
+        <columns>Overall_Credit_limit_WES__c</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Activity</value>
+        </filters>
+        <label>WES - Pending Activity</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Pending_Cancellation</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending cancellation</value>
+        </filters>
+        <label>WES - Pending Cancellation</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Pending_Decision</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Decision</value>
+        </filters>
+        <label>WES - Pending Decision</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Referred_To_High_Authority</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Referred to higher authority</value>
+        </filters>
+        <label>WES - Referred To High Authority</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WES_Withdrawn</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>ACCOUNT.TYPE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.WES_Accounts</value>
+        </filters>
+        <filters>
+            <field>Credit_Limit_Status__c</field>
+            <operation>equals</operation>
+            <value>Withdrawn</value>
+        </filters>
+        <label>WES - Withdrawn</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WES_Credit</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scv_Dummy_Test_Accounts</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Number_of_Vehicles_Range__c</columns>
+        <columns>ACCOUNT.ADDRESS1_STREET</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <columns>ACCOUNT.CREATED_DATE</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <columns>CREATEDBY_USER.ALIAS</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.NAME</field>
+            <operation>startsWith</operation>
+            <value>dummy,test</value>
+        </filters>
+        <label>scv Dummy Test Accounts</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scv_Geocoded_FL_sample</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>ACCOUNT.ADDRESS1_STATE</columns>
+        <columns>ACCOUNT.PHONE1</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>geopointe__Geocode__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.ADDRESS1_STATE</field>
+            <operation>equals</operation>
+            <value>FL</value>
+        </filters>
+        <label>scv Geocoded - FL sample</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scv_Lookup_F1_Account_Number</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.SITE</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>F1_Account_Number__c</field>
+            <operation>equals</operation>
+            <value>100578</value>
+        </filters>
+        <label>scv Lookup F1 Account Number</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scv_Software_Company_update</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>Software_Company__c</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Software_Company__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account.Fleet_Account</value>
+        </filters>
+        <label>scv Software Company update - temp</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>scv_temp_acct_view</fullName>
+        <columns>ACCOUNT.NAME</columns>
+        <columns>ACCOUNT.RECORDTYPE</columns>
+        <columns>CORE.USERS.FIRST_NAME</columns>
+        <columns>CORE.USERS.LAST_NAME</columns>
+        <columns>ACCOUNT.LAST_ACTIVITY</columns>
+        <columns>ACCOUNT.LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>ACCOUNT.RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>012700000005p5e</value>
+        </filters>
+        <label>scv temp acct view</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <validationRules>
+        <fullName>Account_Team_Member_Reassignment</fullName>
+        <active>true</active>
+        <description>New Team Member Role &amp; Team Member Name fields are only visible to MasterCard Operations Profile</description>
+        <errorConditionFormula>AND(
+  OR(
+    ISCHANGED(Team_Member_Name__c),
+    ISCHANGED(New_Team_Member_Role__c)
+  ),
+  OR(
+    ISBLANK(Team_Member_Name__c),
+    ISBLANK(TEXT(New_Team_Member_Role__c))
+  ),
+  AND(
+    /* allow Process Builder to clear fields */
+    ISBLANK(PRIORVALUE(Team_Member_Name__c)),
+    ISBLANK(PRIORVALUE(New_Team_Member_Role__c))
+  )
+)</errorConditionFormula>
+        <errorMessage>Please do not leave either the Team Member Name or New Team Member Role field blank, after changing either field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Billing_Address_Required</fullName>
+        <active>false</active>
+        <description>Billing address is required for Corporate Payments</description>
+        <errorConditionFormula>AND( 
+ISBLANK(BillingAddress), 
+OR( 
+$RecordType.DeveloperName = &apos;ASIA Corporate Payments&apos;, 
+$RecordType.DeveloperName = &apos;AU Corporate Payments&apos;, 
+$RecordType.DeveloperName = &apos;EU Corporate Payments&apos;, 
+$RecordType.DeveloperName = &apos;NA Corporate Payments&apos; 
+))</errorConditionFormula>
+        <errorMessage>Billing Address must be completed to save this Account</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Block_autoupdate_from_Data_com_Clean</fullName>
+        <active>false</active>
+        <description>Record-level prevention of automated Clean jobs from automatically updating field values.</description>
+        <errorConditionFormula>(
+  (RecordType.Name = &apos;EMAP Fuel Accounts&apos;) ||
+  /* please contact virtual Salesforce administrator before adding Latitude, Longitude or Accuracy fields to the below list of fields */
+  (RecordType.Name = &apos;CorporatePay Accounts&apos;) ||
+  (RecordType.Name = &apos;Virtual&apos;)
+) &amp;&amp;
+($User.Alias = &quot;autocln&quot;) &amp;&amp;
+(
+  ISCHANGED(NumberOfEmployees) ||
+  ISCHANGED(AnnualRevenue) ||
+  ISCHANGED(TickerSymbol) ||
+  ISCHANGED(Website) ||
+  ISCHANGED(Industry) ||
+  ISCHANGED(Ownership) ||
+  ISCHANGED(BillingCity) ||
+  ISCHANGED(BillingCountry) ||
+  ISCHANGED(BillingState) ||
+  ISCHANGED(BillingStreet) ||
+  ISCHANGED(BillingPostalCode) ||
+  ISCHANGED(Phone) ||
+  ISCHANGED(Fax) ||
+  ISCHANGED(Site) ||
+  ISCHANGED(Sic) ||
+  ISCHANGED(SicDesc) ||
+  ISCHANGED(Description)
+)</errorConditionFormula>
+        <errorMessage>This record has been excluded from automated field updates from Data.com Clean jobs.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Billing_Country_Mandatory</fullName>
+        <active>true</active>
+        <description>Billing country is required, if Billing State is not null.</description>
+        <errorConditionFormula>AND(
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ NOT(ISBLANK( BillingState )),
+ ISBLANK( BillingCountry )
+)</errorConditionFormula>
+        <errorDisplayField>BillingCountry</errorDisplayField>
+        <errorMessage>Billing Country cannot be empty. Please enter Billing country.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Billing_State_mandatory</fullName>
+        <active>true</active>
+        <description>For countries that have states (i.e. State != Country), then State should be not null when Country is not null.</description>
+        <errorConditionFormula>AND(
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ ISBLANK( BillingState ),
+OR(
+(BillingCountry = &quot;Australia&quot;),
+(BillingCountry = &quot;Malaysia&quot;)
+)
+)</errorConditionFormula>
+        <errorDisplayField>BillingState</errorDisplayField>
+        <errorMessage>Billing state cannot be empty. Please enter Billing state.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Billing_state_not_mandatory</fullName>
+        <active>false</active>
+        <description>For countries that have state (i.e. State = Country), then State should be null.</description>
+        <errorConditionFormula>AND(
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ NOT(ISBLANK(BillingState)),
+OR(
+(BillingCountry = &quot;Guam&quot;),
+(BillingCountry = &quot;New Zealand&quot;),
+(BillingCountry = &quot;Saipan&quot;),
+(BillingCountry = &quot;Singapore&quot;)
+)
+)</errorConditionFormula>
+        <errorDisplayField>BillingState</errorDisplayField>
+        <errorMessage>Please remove Billing state, it is not required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Card_Pin_Validation</fullName>
+        <active>true</active>
+        <description>Field is Mandatory for all SG &amp; HK applications</description>
+        <errorConditionFormula>AND(
+ ISNEW(),
+ CreatedBy.Profile.Name &lt;&gt; &apos;IFCS Connector&apos;,
+ NOT( ISBLANK( AU_Application_Request__c ) ),
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ ISPICKVAL(Card_Pin__c, &apos;&apos;),
+OR(
+ ISPICKVAL(Client_Name__c, &apos;ExxonMobil Singapore&apos;),
+ ISPICKVAL(Client_Name__c, &apos;ExxonMobil Hong Kong&apos;)
+)
+)</errorConditionFormula>
+        <errorDisplayField>Card_Pin__c</errorDisplayField>
+        <errorMessage>This field is mandatory. Please select appropriate value.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Incorrect_Billing_Country</fullName>
+        <active>true</active>
+        <description>Valid billing countries are: Australia, Guam, Malaysia, New Zealand, Saipan, Singapore</description>
+        <errorConditionFormula>AND( 
+RecordType.Name == &apos;EMAP Fuel Accounts&apos;, 
+NOT(ISBLANK( BillingState )),
+(BillingCountry  &lt;&gt;  &quot;Australia&quot;),
+(BillingCountry  &lt;&gt;  &quot;Guam&quot;),
+(BillingCountry  &lt;&gt;  &quot;Malaysia&quot;),
+(BillingCountry  &lt;&gt;  &quot;New Zealand&quot;),
+(BillingCountry  &lt;&gt;  &quot;Saipan&quot;),
+(BillingCountry  &lt;&gt;  &quot;Singapore&quot;)
+)</errorConditionFormula>
+        <errorMessage>You have entered wrong Billing Country. Please enter correct Billing country.
+Valid billing countries are: Australia, Guam, Malaysia, New Zealand, Saipan, Singapore</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Incorrect_Shipping_Country</fullName>
+        <active>true</active>
+        <description>Valid shipping countries are: Australia, Guam, Malaysia, New Zealand, Saipan, Singapore</description>
+        <errorConditionFormula>AND(
+RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+NOT(ISBLANK( ShippingState )), 
+(ShippingCountry &lt;&gt; &quot;Australia&quot;), 
+(ShippingCountry &lt;&gt; &quot;Guam&quot;), 
+(ShippingCountry &lt;&gt; &quot;Malaysia&quot;), 
+(ShippingCountry &lt;&gt; &quot;New Zealand&quot;), 
+(ShippingCountry &lt;&gt; &quot;Saipan&quot;), 
+(ShippingCountry &lt;&gt; &quot;Singapore&quot;) 
+)</errorConditionFormula>
+        <errorMessage>You have entered wrong Shipping Country. Please enter correct Shipping country.
+Valid shipping countries are: Australia, Guam, Malaysia, New Zealand, Saipan, Singapore</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Shipping_Country_Mandatory</fullName>
+        <active>true</active>
+        <description>Shipping country required, if shipping state is not null.</description>
+        <errorConditionFormula>AND(
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ NOT( ISBLANK( ShippingState ) ),
+ ISBLANK( ShippingCountry ) 
+)</errorConditionFormula>
+        <errorDisplayField>ShippingCountry</errorDisplayField>
+        <errorMessage>Shipping Country cannot be empty. Please enter shipping country.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Shipping_State_mandatory</fullName>
+        <active>true</active>
+        <description>For countries that have states (i.e. State != Country), then State should not be null when Country is not null.</description>
+        <errorConditionFormula>AND( 
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ ISBLANK(ShippingState), 
+OR( 
+(ShippingCountry = &quot;Australia&quot;), 
+(ShippingCountry = &quot;Malaysia&quot;) 
+) 
+)</errorConditionFormula>
+        <errorDisplayField>ShippingState</errorDisplayField>
+        <errorMessage>Shipping state cannot be empty. Please enter Shipping state.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Shipping_state_not_mandatory</fullName>
+        <active>false</active>
+        <description>For countries that have state (i.e. State = Country), then State should be null.</description>
+        <errorConditionFormula>AND(
+ RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+ NOT(ISBLANK( ShippingState )), 
+OR( 
+(ShippingCountry = &quot;Guam&quot;), 
+(ShippingCountry = &quot;New Zealand&quot;), 
+(ShippingCountry = &quot;Saipan&quot;), 
+(ShippingCountry = &quot;Singapore&quot;) 
+) 
+)</errorConditionFormula>
+        <errorDisplayField>ShippingState</errorDisplayField>
+        <errorMessage>Please remove Shipping state, it is not required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Temp_Credit_Limit_Expiry_Date_Check</fullName>
+        <active>true</active>
+        <description>User should not be able to select date &gt; 1 month for the Temporary Credit Limit expiry date.</description>
+        <errorConditionFormula>AND( 
+RecordType.Name &lt;&gt; &apos;WES Accounts&apos;, Temporary_Credit_Expire_Date__c &gt; TODAY() + 30)</errorConditionFormula>
+        <errorDisplayField>Temporary_Credit_Expire_Date__c</errorDisplayField>
+        <errorMessage>Expiry date should be within a month.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>EMAP_Temporary_Credit_Limit_Validations</fullName>
+        <active>true</active>
+        <description>If a value is entered into ANY of the three TCL related fields then it should be mandatory to enter values into the other TCL fields (ie. Values should be in all 3 fields or none of the three fields)</description>
+        <errorConditionFormula>AND(
+RecordType.Name == &apos;EMAP Fuel Accounts&apos;,
+NOT(
+AND(
+ ISBLANK( Temporary_Credit_Limit__c ),
+ ISPICKVAL( Temporary_Credit_Reason__c, &apos;&apos; ),
+ ISBLANK( Temporary_Credit_Expire_Date__c )
+)),
+OR(
+ ISBLANK( Temporary_Credit_Limit__c ),
+ ISPICKVAL( Temporary_Credit_Reason__c, &apos;&apos; ),
+ ISBLANK( Temporary_Credit_Expire_Date__c )
+)
+)</errorConditionFormula>
+        <errorMessage>Please enter values into all the three Temporary Credit Limit related fields. (Temporary Credit Limit, Credit Reason and Credit Expiry date).</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Fleet_Card_Sub_Type_Required</fullName>
+        <active>false</active>
+        <description>A Fleet Card Sub Type is required when Current Fuel Management Program contains &quot;Fleet Card&quot;</description>
+        <errorConditionFormula>AND( INCLUDES( Current_Provider__c , &quot;Fleet Card&quot;), ( ISBLANK(  Fleet_Card_Sub_Type__c  )))</errorConditionFormula>
+        <errorMessage>When Current Fuel Management Program includes &quot;Fleet Card&quot; you are required to select a &quot;Fleet Card Sub Type&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Marketing_Approval_Required</fullName>
+        <active>true</active>
+        <description>When an Opportunity is closed won, this field needs to be updated by the salesperson to indicate whether the client gave approval for our use of their name, brand etc. for marketing or not</description>
+        <errorConditionFormula>AND( 
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_Account_Disabled__c = FALSE, 
+
+  RecordType.DeveloperName = &apos;CorporatePay_Accounts&apos;,
+
+  ISCHANGED(Number_of_Won_Opportunities__c),
+  Number_of_Won_Opportunities__c &gt; 0,
+
+  ISBLANK(TEXT(Marketing_Approval__c))
+)</errorConditionFormula>
+        <errorDisplayField>Marketing_Approval__c</errorDisplayField>
+        <errorMessage>Please update the Account field &apos;Marketing Approval&apos;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Other_Competitor_Value</fullName>
+        <active>true</active>
+        <errorConditionFormula>Ispickval(  Competitor__c ,&quot;Other&quot;)</errorConditionFormula>
+        <errorMessage>Please Provide a value for this field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Other_ERP_Value</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(
+Ispickval(  ERP__c ,&quot;Other&quot;),
+isblank ( Other_ERP_System__c ))</errorConditionFormula>
+        <errorMessage>Please Provide a value for this field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Rebate_Amount_Not_Blank</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND (
+OR (
+ISPICKVAL( Rebate_Network__c , &quot;YES&quot;)),
+ISBLANK( Rebate_Amount__c )
+)</errorConditionFormula>
+        <errorDisplayField>Rebate_Amount__c</errorDisplayField>
+        <errorMessage>A rebate amount is required when Rebate Network equals &quot;Yes&quot;</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>US_State_Code</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND (
+OR(BillingCountry = &quot;US&quot;, BillingCountry=&quot;USA&quot;, BillingCountry=&quot;United States&quot;,
+LEN(BillingCountry)=0),
+OR(
+LEN(BillingState) &lt; 2,
+NOT(
+CONTAINS(&quot;AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:&quot; &amp;
+&quot;IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:&quot; &amp;
+&quot;NJ:NM:NY:NC:ND:OH:OK:OR:PA:RI:SC:SD:TN:TX:UT:VT:VA:&quot; &amp;
+&quot;WA:WV:WI:WY&quot;, BillingState)
+)))</errorConditionFormula>
+        <errorDisplayField>Number_of_Accounts_Members__c</errorDisplayField>
+        <errorMessage>A valid two-letter state code is required.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Valid_State_Providence_Values</fullName>
+        <active>false</active>
+        <errorConditionFormula>NOT( 
+CONTAINS(&quot;AB:BC:MB:NB:NL:NT:NS:NU:ON:PC:QC:SK:YT&quot; &amp; &quot;AL:AK:AZ:AR:CA:CO:CT:DE:DC:FL:GA:HI:ID:&quot; &amp; 
+&quot;IL:IN:IA:KS:KY:LA:ME:MD:MA:MI:MN:MS:MO:MT:NE:NV:NH:&quot; &amp; 
+&quot;NJ:NM:NY:NC:ND:OH:OK:OR:PA:RI:SC:SD:TN:TX:UT:VT:VA:&quot; &amp; 
+&quot;WA:WV:WI:WY&quot;, BillingState) 
+)</errorConditionFormula>
+        <errorMessage>A valid two-letter state or province code is required</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Virtual_Industry</fullName>
+        <active>true</active>
+        <description>Wex Europe record types only</description>
+        <errorConditionFormula>AND(
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_Account_Disabled__c = FALSE,
+
+  RecordType.DeveloperName = &apos;CorporatePay_Accounts&apos;,
+  TEXT(Sales_Group__c) = &apos;Corporate&apos;,
+  ISBLANK(TEXT(Industry)) 
+)
+
+/* &quot;Account -&quot; is included in the error message, in case this validation rule has been triggered when a change to an Opportunity Roll-Up field has triggered a Field Update which has been blocked by this rule */</errorConditionFormula>
+        <errorDisplayField>Industry</errorDisplayField>
+        <errorMessage>Account - Please select the Industry or if you are seeing this message while trying to convert a Lead, please select an Industry for the Lead before conversion</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Virtual_Sales_Type</fullName>
+        <active>false</active>
+        <description>Wex Europe record types only</description>
+        <errorConditionFormula>AND(
+
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_Account_Disabled__c = FALSE,
+
+  /*
+  Custom Setting - Virtual Profile IDs - prevents rule being applied to Partnership users, for Lead conversion (could be avoided by setting default Record Type but only once Partnership users have a dedicated profile
+  */
+   $Setup.VProfileId__c.WE_Partnerships__c = FALSE,
+
+  RecordType.DeveloperName = &apos;CorporatePay_Accounts&apos;, 
+  OR( 
+    TEXT(Sales_Group__c) = &apos;Business Travel&apos;, 
+    TEXT(Sales_Group__c) = &apos;Leisure Travel&apos; 
+    ), 
+  ISBLANK(TEXT(Sales_Type__c)),
+
+/* allow for the deletion of old opportunities (linked to accounts with no Sales Type)
+*/
+  NOT(
+    AND(
+      Number_of_Opportunities__c = 0,
+      PRIORVALUE(Number_of_Opportunities__c) &gt; 0
+      )
+    )
+)
+
+/* &quot;Account record -&quot; is included in the error message, in case this validation rule has been triggered when a change to an Opportunity Roll-Up field has triggered a Field Update which has been blocked by this rule */</errorConditionFormula>
+        <errorDisplayField>Sales_Type__c</errorDisplayField>
+        <errorMessage>Account - Please select a Sales Type or if you are seeing this message while trying to convert a Lead, please select a Sales Type for the Lead before conversion</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>WES_Company_Reg_Number_Length</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+RecordType.DeveloperName = &quot;WES_Accounts&quot;,
+NOT(ISBLANK(Company_registration_number__c)),
+ISNEW() || ISCHANGED(Company_registration_number__c),
+LEN(Company_registration_number__c) &lt;&gt; 8,
+BEGINS($UserRole.DeveloperName, &quot;WES_&quot;)
+)</errorConditionFormula>
+        <errorDisplayField>Company_registration_number__c</errorDisplayField>
+        <errorMessage>The Company Registration Number must be 8 characters long for WES Accounts. If less than 8 characters, add a leading zero(s). Ex: 1234567 should be entered as 01234567”</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>WES_Prevent_Company_Reg_Change</fullName>
+        <active>true</active>
+        <description>Once WES account data is set by informatica, prevent users from changing company registration number. Only the Salesforce ETL user can change that field once populating.</description>
+        <errorConditionFormula>AND( 
+RecordType.DeveloperName = &quot;WES_Accounts&quot;, 
+NOT(ISBLANK(Account_Number__c)),
+ISCHANGED(Company_registration_number__c), 
+LastModifiedById &lt;&gt; &quot;00570000001t3Ek&quot;
+)</errorConditionFormula>
+        <errorDisplayField>Company_registration_number__c</errorDisplayField>
+        <errorMessage>Only the Salesforce ETL user can change Company Registration Number once the data is being synced.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>WES_VAT_Number_Format</fullName>
+        <active>false</active>
+        <description>VAT numbers should all begin with &quot;GB&quot; and then be no more than 12 numeric characters after this.</description>
+        <errorConditionFormula>AND(
+RecordType.DeveloperName = &quot;WES_Accounts&quot;,
+OR(				
+LEN(WES_VAT_Reg_Num__c) &gt; 14,
+NOT(BEGINS(WES_VAT_Reg_Num__c,&quot;GB&quot;)) 
+))</errorConditionFormula>
+        <errorDisplayField>WES_VAT_Reg_Num__c</errorDisplayField>
+        <errorMessage>VAT numbers should all begin with &quot;GB&quot; and then be no more than 12 numeric characters after this.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Wes_UserApprovalThreshold</fullName>
+        <active>true</active>
+        <description>If user does not have approval authority defined for his/her user account, and if he/she attempts to set Review Status to approved, and if analyst recommended limit does NOT = credit authorised limit, then throw error message.</description>
+        <errorConditionFormula>IF( AND ( AND($Profile.Name != &apos;System Administrator&apos;, $Profile.Name != &apos;Integration User&apos;) , RecordType.Name = &apos;WES Accounts&apos;, Recommended_credit_limit__c &lt;&gt; Credit_authorised_limit__c) , ISBLANK($User.WES_Approval_Threshold__c) ,False )</errorConditionFormula>
+        <errorMessage>Your user account does not have an approval threshold defined. Please contact your system admin for assistance.</errorMessage>
+    </validationRules>
+</CustomObject>

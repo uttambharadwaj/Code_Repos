@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Common_Reports_Height__c</fullName>
+        <description>Height number in pixels for the Common Reports component for community homepage.</description>
+        <externalId>false</externalId>
+        <label>Common Reports Height</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Common_Reports_Title__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Common Reports Title</label>
+        <length>150</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Common_Reports_Width__c</fullName>
+        <description>Width number in percentage for the Common Reports component for community homepage.</description>
+        <externalId>false</externalId>
+        <label>Common Reports Width</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Top_Opportunities_Height__c</fullName>
+        <description>Height number in pixels for the Common Reports component for community homepage.</description>
+        <externalId>false</externalId>
+        <label>Top Opportunities Height</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Top_Opportunities_Title__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Top Opportunities Title</label>
+        <length>150</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Top_Opportunities_Width__c</fullName>
+        <description>Width number in percent for the Top Opportunities component for community homepage.</description>
+        <externalId>false</externalId>
+        <label>Top Opportunities Width</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <label>CommHomePageSettings</label>
+    <visibility>Public</visibility>
+</CustomObject>

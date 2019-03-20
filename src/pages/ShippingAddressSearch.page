@@ -1,0 +1,127 @@
+<apex:page showHeader="false" sidebar="false" standardController="Opportunity" extensions="ShippingAddressSearchController">
+    <script>
+    window.onload = new function() 
+    { 
+        // bring popup window to front
+        window.focus(); 
+        var ele=document.getElementById('{!$Component.form.block.section.query}');
+        if (ele)
+        {
+            ele.focus();
+        }
+    }
+    
+    function chooseAccount(){
+        if(selected){
+            try {
+                window.opener.ProcessShippingPopupResult(firstName, lastName, phone, email, address1, address2, city, state, zip);
+            }
+            catch (err) {}
+            window.close();            
+        }else{
+            alert('No shipping address is selected');
+        }
+        return false;
+    }
+
+    var firstName, lastName, phone, email, address1, address2, city, state, zip;
+    var selected = false;
+    function selectAccount(firstName_p, lastName_p, phone_p, email_p, address1_p, address2_p, city_p, state_p, zip_p){
+        firstName = firstName_p;
+        lastName = lastName_p;
+        phone = phone_p;
+        email = email_p;
+        address1 = address1_p;
+        address2 = address2_p;
+        city = city_p;
+        state = state_p;
+        zip = zip_p;
+
+        selected = true;
+    }
+    
+    function closeWindow()
+    {
+        var winMain=window.opener;
+        if (null==winMain)
+        {
+            winMain=window.parent.opener;
+        }
+        winMain.closeLookupPopup();
+    }
+
+    var chosenSearchCriteria = 'Name';
+    function searchAccountInJavascript(){
+        var searchText = document.getElementById("searchText");
+        searchAccount(searchText.value,chosenSearchCriteria);
+
+        selected = false;
+    }
+
+    function chosenSearchCriteriaChanged(criteria){
+        chosenSearchCriteria = criteria.value;
+    }
+    </script>
+    <apex:form >
+        <!-- Define the JavaScript function searchAccout-->
+        <apex:actionFunction name="searchAccount" action="{!searchShippingAccount}" rerender="searchResults"
+                           immediate="true" status="searchingStatus">
+            <apex:param assignTo="{!searchText}" value="" name="searchQuery" />
+            <apex:param assignTo="{!chosenSearchCriteria}" value="" name="chosenSearchCriteria" />
+        </apex:actionFunction>
+
+        <apex:pageBlock title="WEX Shipping Address Search">
+            <apex:pageBlockSection columns="1">
+                <apex:outputLabel value="{!sfdcAccount.AccountNumber} {!sfdcAccount.Name}" style="font-weight:bold"/>
+            </apex:pageBlockSection>
+
+            <input type="text" id="searchText" style="width: 250px;" />
+            <input type="button" id="searchButton" value="GO" class="btn" style="width: 70px;" 
+            onclick="searchAccountInJavascript()"/>
+
+                <apex:selectRadio layout="block" value="{!chosenSearchCriteria}" onchange="chosenSearchCriteriaChanged(this)">
+                    <apex:selectOption itemLabel="Account Name" itemValue="Name"></apex:selectOption>
+                    <apex:selectOption itemLabel="Customer Account No" itemValue="Number"></apex:selectOption>
+                    <apex:selectOption itemLabel="Contact First Name" itemValue="ContactFirst"></apex:selectOption>
+                    <apex:selectOption itemLabel="Contact Last Name" itemValue="ContactLast"></apex:selectOption>
+                    <apex:selectOption itemLabel="Program Account No" itemValue="Sponsor"></apex:selectOption>
+                    <apex:selectOption itemLabel="Contact Phone" itemValue="Phone"></apex:selectOption>
+                    <apex:selectOption itemLabel="Contact Email" itemValue="Email"></apex:selectOption>
+                </apex:selectRadio>
+
+            <fieldset><legend>Search Results</legend>
+            <apex:panelGrid columns="1" width="100%" title="Search Results">
+                <apex:pageBlockTable value="{!shippingAccountsList}" var="account" id="searchResults">
+                    <apex:column headerValue="Select" rendered="{!account.AccountStatus == 'Terminated'}">
+                        <input type="radio" disabled="true" />
+                    </apex:column>
+                    <apex:column headerValue="Select" rendered="{!account.AccountStatus != 'Terminated'}">
+                      <!-- <apex:outputLink value="#" onclick="CloseMySelf('{!account.ShippingContact.FirstName}', '{!account.ShippingContact.LastName}', '{!account.ShippingContact.Phone}', '{!account.ShippingContact.Email}', '{!account.ShippingAddress.AddressLine1}', '{!account.ShippingAddress.AddressLine2}', '{!account.ShippingAddress.City}', '{!account.ShippingAddress.State}', '{!account.ShippingAddress.PostalCode}')">Select</apex:outputLink> -->
+                      <input type="radio" onclick="selectAccount('{!JSENCODE(account.ShippingContact.FirstName)}', '{!JSENCODE(account.ShippingContact.LastName)}', '{!account.ShippingContact.Phone}', '{!account.ShippingContact.Email}', '{!JSENCODE(account.ShippingAddress.AddressLine1)}', '{!JSENCODE(account.ShippingAddress.AddressLine2)}', '{!JSENCODE(account.ShippingAddress.City)}', '{!JSENCODE(account.ShippingAddress.State)}', '{!account.ShippingAddress.PostalCode}')" />
+                    </apex:column>
+                    <apex:column value="{!account.AccountNumber}" headerValue="Customer Acct No"/>
+                    <apex:column value="{!account.AccountName}" headerValue="Account Name"/>
+                    <apex:column value="{!account.AccountStatus}" headerValue="Status"/>
+                    <apex:column value="{!account.AccountSource}" headerValue="Source"/>
+                    <apex:column value="{!account.Sponsor}" headerValue="Program Acct No"/>
+                    <apex:column value="{!account.ShippingAddress.AddressLine1}" headerValue="Address Line 1"/>
+                    <apex:column value="{!account.ShippingAddress.AddressLine2}" headerValue="Address Line 2"/>
+                    <apex:column value="{!account.ShippingAddress.City}" headerValue="City"/>
+                    <apex:column value="{!account.ShippingAddress.State}" headerValue="State"/>
+                    <apex:column value="{!account.ShippingAddress.PostalCode}" headerValue="Zip Code"/>
+                    <apex:column value="{!account.ShippingContact.FirstName}" headerValue="Contact First Name"/>
+                    <apex:column value="{!account.ShippingContact.LastName}" headerValue="Contact Last Name"/>
+                    <apex:column value="{!account.ShippingContact.Phone}" headerValue="Contact Phone"/>
+                    <apex:column value="{!account.ShippingContact.Email}" headerValue="Contact Email"/>
+                </apex:pageBlockTable>
+                <apex:actionStatus startText="Searching..." id="searchingStatus" />
+                <apex:outputPanel rendered="{!listEmpty == true}">No results found.</apex:outputPanel>
+            </apex:panelGrid>
+            <br />
+            <input type="button" onclick="chooseAccount();" value="Add" class="btn" style="width: 70px;" />
+            &nbsp;&nbsp;
+            <input type="button" onclick="closeWindow();" value="Cancel" class="btn" style="width: 70px;" />
+            </fieldset>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

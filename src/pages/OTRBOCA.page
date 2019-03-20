@@ -1,0 +1,697 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAController" action="{!init}" language="{!languageCode}">
+	<html lang="{!languageCode}">
+	<head>
+		<!-- Title -->
+		<title>{!program.Brand_Long_Name__c} {!$Label.BOCA_Credit_Application}</title>
+
+		<meta http-equiv="Access-Control-Allow-Origin" content="https://*.d14.co"/>
+
+		<!-- Meta -->
+		<meta charset="utf-8" />
+		<meta content="width=device-width, user-scalable=no" name="viewport" />
+
+		<!-- Imported Styles -->
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+		<link rel="stylesheet" href="{!URLFOR($Resource.FontAwesome + '/font-awesome-4.7.0/css/font-awesome.min.css')}"/>
+		<link rel="stylesheet" href="{!URLFOR($Resource.OTRBOCABaseCSS)}"/>
+
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" />
+
+		<!-- Imported Scripts -->
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js" />
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" />
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+
+		<!-- Additional Scripts -->
+		<script>
+            var coupon_code = "{!campaign.Coupon_Code__c}";
+            var location_code = "{!locationCode}";
+            var page_name = "App-Page1";
+            var card_program = "{!programParameter}";
+            document.cookie = "debug_logs=debug_logs;domain=.force.com";
+
+            $j = jQuery.noConflict();
+
+            // Any labels need to be defined in this bridge in order
+            // for the JS to pick them up
+            window.$Label = window.$Label || {};
+            $Label.BOCA_Invalid_Amount = '{!JSENCODE($Label.BOCA_Invalid_Amount)}';
+            $Label.BOCA_Invalid_Date = '{!JSENCODE($Label.BOCA_Invalid_Date)}';
+            $Label.BOCA_Invalid_Email = '{!JSENCODE($Label.BOCA_Invalid_Email)}';
+            $Label.BOCA_Invalid_Number = '{!JSENCODE($Label.BOCA_Invalid_Number)}';
+            $Label.BOCA_Invalid_Phone = '{!JSENCODE($Label.BOCA_Invalid_Phone)}';
+            $Label.BOCA_Invalid_Postal_Code = '{!JSENCODE($Label.BOCA_Invalid_Postal_Code)}';
+            $Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
+            $Label.BOCA_Invalid_Tax_ID = '{!JSENCODE($Label.BOCA_Invalid_Tax_ID)}';
+            $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
+            $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
+            $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
+            $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
+            $Label.Check_Sample = '{!JSENCODE($Resource.SampleCheck)}';
+
+            window.boca_language_code = '{!languageCode}';
+
+            console.log('{!tmSessionId}');
+
+            <!-- 3/5/19 MFarrell
+            function addDayOfPayment() {
+                $j("[id$=dayOfPayment] option:selected").remove().appendTo("[id$=selectedDaysOfPayment]");
+
+                $j("[id$=selectedDaysOfPaymentValue]").val($j("[id$=selectedDaysOfPayment]").val().join(";"));
+
+                console.log($j("[id$=selectedDaysOfPaymentValue]").val());
+            }
+
+            function removeDayOfPayment() {
+                $j("[id$=selectedDaysOfPayment] option:selected").remove().appendTo("[id$=dayOfPayment]");
+
+                $j("[id$=selectedDaysOfPaymentValue]").val($j("[id$=selectedDaysOfPayment]").val().join(";"));
+
+                console.log($j("[id$=selectedDaysOfPaymentValue]").val());
+            }
+			-->
+		</script>
+
+		<script type="text/javascript" src="{!URLFOR($Resource.OTRBOCABaseJS)}" />
+
+		<!-- Local Styles -->
+		<style>
+			.section-header {
+			{!program.Brand_Color_1__c}
+			}
+
+			.sidebar-section-header {
+			{!program.Brand_Color_1__c}
+			}
+
+			.panel-heading {
+			{!program.Brand_Color_1__c}
+			}
+
+			.step-button {
+			{!program.Brand_Color_2__c}
+			}
+
+			#mobile-footer-call {
+			{!program.Brand_Color_1__c}
+			}
+
+			.disabled-button {
+				background: #e9e9e9 !important;
+				pointer-events: none;
+				color: #ccc !important;
+				border: 1px solid #ccc !important;
+			}
+		</style>
+
+		<apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false"/>
+	</head>
+	<body>
+	<div class="page-wrap clearfix">
+		<apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false"/>
+		<!-- Live Person -->
+		<script type="text/javascript">
+            if (typeof(lpUnit) == 'undefined')    var lpUnit = 'sales';
+            if (typeof(lpLanguage) == 'undefined') var lpLanguage = 'english';
+		</script>
+
+		<script id="tdr_3srJf" type="text/javascript" src="https://h.online-metrix.net/fp/check.js?org_id=bkwau9ws&session={!tmSessionId}"></script>
+		<img id="tdr_6IIEo" style="display:none" src="https://bkwau9ws-8a69bc0ab2ee96e97f45f425f60a04e571228253-sac.d.aa.online-metrix.net/fp/clear.png?org_id=bkwau9ws&session={!tmSessionId};di=yes"/>
+		<img id="tdr_95nWt" style="display:none" src="https://h.online-metrix.net/fp/clear.png"/>
+
+		<div id="header" class="clearfix">
+			<div class="container">
+				<div class="row">
+					<div class="nine columns clearfix">
+						<div id="branding">
+							<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+							<h1 class="program-name header-large">{!program.Brand_Long_Name__c}</h1>
+						</div>
+					</div>
+					<div class="three columns">
+						<apex:outputPanel rendered="{!program.Inside_Sales_Phone_Number__c != null}">
+							<div id="contactUs">
+								<span class="header-small">{!$Label.BOCA_Rather_Talk}</span><br/>
+                                {!$Label.BOCA_Call} {!program.Inside_Sales_Phone_Number__c}<br/>
+								<apex:outputText value="{!program.Live_Person_Code__c}" escape="false" />
+							</div>
+						</apex:outputPanel>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="container">
+				<div class="row">
+					<div class="twelve columns">
+						&nbsp;
+					</div>
+				</div>
+				<div class="row">
+					<div class="four columns sidebar">
+						<!-- Left Column -->
+						<div class="twelve columns clearfix">
+							&nbsp;
+						</div>
+						<div class="twelve columns clearfix">
+							<img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+						</div>
+						<apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
+							<div class="twelve columns clearfix">
+								&nbsp;
+							</div>
+							<div class="twelve columns clearfix brand-text">
+								<apex:outputtext value="{!brandingUtility.Brand_Heading__c}" escape="false"></apex:outputtext>
+							</div>
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!brandingUtility.Brand_Tagline__c != null}">
+							<apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c == null}">
+								<div class="twelve columns clearfix ">
+									&nbsp;
+								</div>
+							</apex:outputPanel>
+							<div class="twelve columns clearfix brand-text">
+								<apex:outputtext value="{!brandingUtility.Brand_Tagline__c}" escape="false"></apex:outputtext>
+							</div>
+						</apex:outputPanel>
+						<div class="twelve columns clearfix">
+							&nbsp;
+						</div>
+						<apex:outputPanel rendered="{!salesRep != null}">
+							<div class="twelve columns clearfix salesRep">
+								<div class="sidebar-section-header">
+                                    {!$Label.BOCA_Sales_Agent}
+								</div>
+								<div class="sidebar-section-static-content">
+									<span style="font-size: 18px;">{!salesRep.Name}</span><br/>
+                                    {!$Label.BOCA_Sales_Agent_Email}: {!salesRep.Email}<br/>
+                                    {!$Label.BOCA_Sales_Agent_Phone}: {!salesRep.Phone}<br/>
+                                    {!$Label.BOCA_Sales_Agent_Fax}: {!salesRep.Fax}
+								</div>
+							</div>
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!brandingUtility.Side_Panel_Title__c != ''}">
+							<div class="twelve columns clearfix">
+								<div class="sidebar-section-header">
+                                    {!brandingUtility.Side_Panel_Title__c}
+								</div>
+								<div class="sidebar-section-dynamic-content">
+									<apex:outputText value="{!brandingUtility.SideBar__c}" escape="false"/>
+								</div>
+							</div>
+						</apex:outputPanel>
+					</div>
+					<div class="eight columns form">
+						<!-- Right Column -->
+						<div class="twelve columns clearfix">
+							&nbsp;
+						</div>
+						<div class="twelve columns clearfix">
+							<div id="errors" class="stepErrors">
+                                {!$Label.BOCA_Application_Errors}
+							</div>
+						</div>
+						<apex:form id="bocaForm">
+							<input type="hidden" value="{!isPG}" id="isPG" />
+							<apex:actionFunction name="submitApplication" action="{!submitApplication}" rerender="" />
+							<apex:actionFunction name="saveApplication" action="{!saveApplication}" rerender="" />
+							<apex:outputPanel >
+								<div class="twelve columns clearfix">
+									<div class="section-header">
+                                        {!$Label.BOCA_Applicant_Information}
+									</div>
+								</div>
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+								<div class="twelve columns clearfix">
+									<div class="six columns clearfix">
+										<div class="twelve columns clearfix form-field" data-row="0">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Company Legal Name', $ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Company_Name}" styleClass="styled-input required" html-tabindex="1" id="companyName" label="" value="{!onlineApplication.Legal_Business_Name__c}" html-maxlength="30" html-autocomplete="off">
+												<apex:actionSupport event="onchange" action="{!doNothing}" rerender="none" />
+											</apex:InputField>
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="1">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Doing Business As', $ObjectType.OnlineApplication__c.fields.Trade_Name__c.label)}</label>
+											<apex:InputField styleClass="styled-input" html-tabindex="2" label="" id="doingBusinessAs" value="{!onlineApplication.Trade_Name__c}" html-maxlength="50" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="2">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Business Phone', $ObjectType.OnlineApplication__c.fields.Phone_Number__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" tabindex="3" id="phone" label="" value="{!onlineApplication.Phone_Number__c}" maxlength="20" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="2">
+											<label class="styled-label">Business Fax</label>
+											<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="4" id="fax" label="" value="{!onlineApplication.Fax_Number__c}" maxlength="20" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="3">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'First Name', $ObjectType.OnlineApplication__c.fields.Contact_First_Name__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required" html-tabindex="5" id="firstName" label="" value="{!onlineApplication.Contact_First_Name__c}" html-maxlength="40" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="4">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Last Name', $ObjectType.OnlineApplication__c.fields.Contact_Last_Name__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required" html-tabindex="6" id="lastName" label="" value="{!onlineApplication.Contact_Last_Name__c}" html-maxlength="40" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="5">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Title', $ObjectType.OnlineApplication__c.fields.AO_Title__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required" html-tabindex="7" id="title" label="" value="{!onlineApplication.AO_Title__c}" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="6">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Email Address', $ObjectType.OnlineApplication__c.fields.Email__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required email" html-tabindex="8" id="emailAddress" label="" value="{!onlineApplication.Email__c}" html-autocomplete="off" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="7">
+											<label class="styled-label">Mobile Phone</label>
+											<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="9" id="mobilePhone" label="" value="{!onlineApplication.Cell_Number__c}" maxlength="20" />
+										</div>
+									</div>
+									<div class="six columns clearfix">
+										<div class="twelve columns clearfix form-field" data-row="0">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Business Physical Address', $ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" html-tabindex="10" id="physicalAddress" html-maxlength="40" value="{!onlineApplication.Business_Street_Address__c}" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="1">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Address Line 2', $ObjectType.OnlineApplication__c.fields.Business_Address_Line_2__c.label)}</label>
+											<apex:InputField styleClass="styled-input" html-tabindex="11" id="physicalAddressLine2" html-maxlength="40" value="{!onlineApplication.Business_Address_Line_2__c}" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="2">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'City', $ObjectType.OnlineApplication__c.fields.City__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required" html-tabindex="12" id="city" label="" value="{!onlineApplication.City__c}" html-maxlength="40" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="3">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'State', $ObjectType.OnlineApplication__c.fields.State__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required"  html-tabindex="13" id="state" label="" value="{!onlineApplication.State__c}" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="4">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Postal Code', $ObjectType.OnlineApplication__c.fields.Zip_Code__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required" html-tabindex="13" html-class="{!IF(onlineApplication.Country__c == null || onlineApplication.Country__c = 'US', 'postal', 'postalCanada')}" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />
+										</div>
+                                        <div class="twelve columns clearfix form-field" data-row="5">
+                                            <label class="styled-label">{!IF(languageCode == 'en_us', 'Country', $ObjectType.OnlineApplication__c.fields.Country__c.label)} <span class="styled-label-required">*</span></label>
+                                            <apex:InputField styleClass="styled-input required"  html-tabindex="14" id="country" label="" value="{!onlineApplication.Country__c}">
+                                                <apex:actionSupport event="onchange" rerender="postalCode" oncomplete="pageLoadFunctions()"/>
+                                            </apex:InputField>
+                                        </div>
+										<div class="twelve columns clearfix form-field" data-row="6">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Number of Trucks', $ObjectType.OnlineApplication__c.fields.Number_of_Trucks__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required" html-tabindex="15" id="fleetSize" label="" value="{!onlineApplication.Number_of_Trucks__c}" html-maxlength="6">
+												<apex:actionSupport event="onchange" action="{!setCreditLineRequested}" rerender="creditLineRequested" />
+											</apex:InputField>
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="7">
+											<div class="six columns clearfix form-field">
+												<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.label} <span class="styled-label-required">*</span></label>
+												<apex:InputField styleClass="styled-input required" html-tabindex="16" id="numberOfDrivers" label="" value="{!onlineApplication.Number_of_Drivers__c}" html-maxlength="6" />
+											</div>
+											<div class="six columns clearfix form-field">
+												<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.label}</label>
+												<center>
+													<apex:InputField styleClass="required" style="margin: 12px 0;" html-tabindex="17" id="slipSeat" label="" value="{!onlineApplication.Team_Drivers_Slip_Seat__c}" html-maxlength="6">
+														<apex:actionSupport event="onchange" action="{!setCreditLineRequested}" rerender="creditLineRequested" />
+													</apex:InputField>
+												</center>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+							</apex:outputPanel>
+							<apex:outputPanel >
+								<div class="twelve columns clearfix">
+									<div class="section-header">
+                                        {!$Label.BOCA_Business_Information}
+									</div>
+								</div>
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+								<div class="twelve columns clearfix">
+									<div class="six columns clearfix">
+										<div class="twelve columns clearfix form-field" data-row="7">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Legal Structure', $ObjectType.OnlineApplication__c.fields.Type_of_Business__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-select-full required" html-tabindex="18" id="legalStructure" label="" value="{!onlineApplication.Type_of_Business__c}">
+												<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="accountGuarantor,disclaimer" oncomplete="pageLoadFunctions()" />
+											</apex:InputField>
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="8">
+											<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.label} <span class="styled-label-required">*</span></label>
+											<apex:selectList size="1" styleClass="styled-select-full required" tabIndex="19" id="businessDescription" value="{!onlineApplication.Business_Description__c}">
+												<apex:selectOptions value="{!businessDescriptionOptions}" />
+											</apex:selectList>
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="9">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Year Established', $ObjectType.OnlineApplication__c.fields.Year_Established__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required" html-tabindex="20" id="yearsInBusiness" label="" value="{!onlineApplication.Year_Established__c}">
+												<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="accountGuarantor,disclaimer" oncomplete="pageLoadFunctions()" />
+											</apex:InputField>
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="10">
+											<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.label}</label>
+											<apex:InputField styleClass="styled-input" html-tabindex="21" id="parentCompany" value="{!onlineApplication.Name_of_Parent_Company__c}" />
+										</div>
+										<div class="twelve columns clearfix form-field" style="display: {!IF(onlineApplicationOffer.Enable_Promotional_Code__c == true, 'block', 'none')};" data-row="11">
+											<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c.label}</label>
+											<apex:InputField styleClass="styled-input" html-tabindex="22" id="promoCode" label="" value="{!onlineApplication.Promotional_Code__c}" />
+										</div>
+									</div>
+									<div class="six columns clearfix">
+										<div class="twelve columns clearfix form-field" data-row="7">
+											<label class="styled-label">{!IF(languageCode == 'en_us', 'Taxpayer ID', $ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.label)} <span class="styled-label-required">*</span></label>
+											<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Taxpayer_ID}" styleClass="styled-input taxpayerId required" html-tabindex="23" id="taxpayerId" label="" value="{!onlineApplication.Federal_Tax_ID__c}" html-maxlength="9" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="8">
+											<label class="styled-label">Please Select An Identifier (MC, FF, or DOT #) <span class="styled-label-required">*</span></label>
+											<apex:selectList styleClass="styled-input required" value="{!fleetIdentifier}" size="1" tabIndex="25">
+												<apex:selectOption itemValue="#" itemLabel="--Choose One--"/>
+												<apex:selectOption itemValue="MC" itemLabel="MC #"/>
+												<apex:selectOption itemValue="FF" itemLabel="FF #"/>
+												<apex:selectOption itemValue="DOT" itemLabel="DOT #"/>
+												<apex:selectOption itemValue="No assigned number" itemLabel="No assigned number" rendered="{!onlineApplicationOffer.Always_Require_DOT_FF_MC__c == false}"/>
+												<apex:actionSupport event="onchange" action="{!doNothing}" rerender="fleetIdentifierPanel" oncomplete="pageLoadFunctions()" />
+											</apex:selectList>
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="10">
+											<apex:outputPanel id="fleetIdentifierPanel">
+												<apex:outputPanel rendered="{!fleetIdentifier == 'MC'}">
+													<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.MC_Number__c.label} <span class="styled-label-required">*</span></label>
+													<apex:InputField html-placeholder="Do not enter dashes" styleClass="styled-input required mcFFDOTNumber" html-tabindex="26" id="mc" value="{!onlineApplication.MC_Number__c}"  html-maxlength="8"/>
+												</apex:outputPanel>
+												<apex:outputPanel rendered="{!fleetIdentifier == 'FF'}">
+													<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.FF_Number__c.label} <span class="styled-label-required">*</span></label>
+													<apex:InputField html-placeholder="Do not enter dashes" styleClass="styled-input required mcFFDOTNumber" html-tabindex="27" id="ff" value="{!onlineApplication.FF_Number__c}"  html-maxlength="8"/>
+												</apex:outputPanel>
+												<apex:outputPanel rendered="{!fleetIdentifier == 'DOT'}">
+													<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.DOT_Number__c.label} <span class="styled-label-required">*</span></label>
+													<apex:InputField html-placeholder="Do not enter dashes" styleClass="styled-input required mcFFDOTNumber" html-tabindex="28" id="dot" value="{!onlineApplication.DOT_Number__c}"  html-maxlength="8"/>
+												</apex:outputPanel>
+											</apex:outputPanel>
+										</div>
+									</div>
+								</div>
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+							</apex:outputPanel>
+							<apex:outputPanel rendered="{!onlineApplicationOffer.Funding__c != 'Parent Funded'}">
+								<div class="twelve columns clearfix">
+									<div class="section-header">
+										Payment Information
+									</div>
+								</div>
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+								<div class="twelve columns clearfix">
+									<div class="six columns clearfix">
+										<div class="twelve columns clearfix form-field" data-row="12">
+											<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Account_Type__c.label} <span class="styled-label-required">*</span></label>
+											<apex:InputField id="accountType" styleClass="styled-input required" html-tabIndex="29" label="" value="{!onlineApplication.Account_Type__c}">
+                      						<apex:actionSupport event="onchange" rerender="creditLine,paymentMethodContainer,dayOfPaymentGroup" />
+                      						</apex:InputField>
+										</div>
+										<apex:outputPanel id="creditLine">
+											<apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplication.Account_Type__c != 'Prepay'), true, false)}">
+												<div class="twelve columns clearfix form-field" data-row="13">
+													<label class="styled-label">{!IF(languageCode == 'en_us', 'Credit Line Requested', $ObjectType.OnlineApplication__c.fields.Credit_Line_Requested__c.label)} <span class="styled-label-required">*</span></label>
+													<apex:InputField styleClass="styled-input required" html-tabindex="30" html-class="money" id="creditLineRequested" value="{!onlineApplication.Credit_Line_Requested__c}"  html-maxlength="8"/>
+												</div>
+											</apex:outputPanel>
+										</apex:outputPanel>
+									</div>
+									<div class="six columns clearfix">
+										<apex:outputPanel id="paymentMethodContainer">
+											<div class="twelve columns clearfix form-field" data-row="12">
+												<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Payment_Method__c.label} <span class="styled-label-required">*</span>
+													<i class="fa fa-question-circle help-circle helpIcon" aria-hidden="true" title="Auto Draft: Payments are drawn from your bank account automatically for usage on your account.  Payments are drawn based on the day(s) you selected. || Internet Pay: You initiate payments via our online portal.  || Wire: You initiate payment from your bank with a bank wire. || Customer Initiated ACH: You initiate payment from your bank with an ACH/Electronic Funds Transfer."></i>
+												</label>
+												<apex:selectList size="1" id="paymentMethod" styleClass="styled-input required" tabIndex="31" label="" value="{!onlineApplication.Payment_Method__c}">
+													<apex:selectOptions value="{!paymentMethodOptions}" />
+													<apex:actionSupport event="onchange" rerender="paymentMethodFeeDisclosure" />
+												</apex:selectList>
+											</div>
+										</apex:outputPanel>
+										<apex:outputPanel id="dayOfPaymentGroup">
+											<apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplication.Account_Type__c != 'Prepay'), true, false)}">
+												<div class="twelve columns clearfix form-field" data-row="13">
+													<label class="styled-label">Day(s) Of Payment <span class="styled-label-required">*</span>
+														<i class="fa fa-question-circle help-circle helpIcon" aria-hidden="true" title="The day(s) selected will be the day(s) your payments are due weekly or the day(s) we will Auto Draft your account if you selected Auto Draft for method of payment. Each billing cycle will cut off two days before the due date. || Ex: If Friday is selected for day of payment, the amount due each Friday would be for the transactions ran from the previous Thursday-Wednesday.  || Important: If Monday is selected for day of payment with Auto draft, the billing cycle will cut off on Thursday. We will send the draft notice to your bank on Saturday to ensure that they have it Monday morning. Most banks will wait until Monday to pull the funds, but would be best to confirm with your bank if choosing this option."></i>
+													</label>
+													<apex:InputField id="dayOfPayment" styleClass="styled-input required" html-tabIndex="32" label="" value="{!onlineApplication.Days_Of_Payment__c}" />
+												</div>
+											</apex:outputPanel>
+										</apex:outputPanel>
+									</div>
+									<!-- 3/5/19 MFarrell
+									<div class="six columns clearfix">
+									<apex:outputPanel id="dayOfPaymentGroup">
+										<apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplication.Account_Type__c != 'Prepay'), true, false)}">
+												<div class="twelve columns clearfix form-field" data-row="15">
+													<label class="styled-label">Day(s) Of Payment <span class="styled-label-required">*</span>
+														<i class="fa fa-question-circle help-circle helpIcon" aria-hidden="true" title="The day(s) selected will be the day(s) your payments are due weekly or the day(s) we will Auto Draft your account if you selected Auto Draft for method of payment. Each billing cycle will cut off two days before the due date. || Ex: If Friday is selected for day of payment, the amount due each Friday would be for the transactions ran from the previous Thursday-Wednesday.  || Important: If Monday is selected for day of payment with Auto draft, the billing cycle will cut off on Thursday. We will send the draft notice to your bank on Saturday to ensure that they have it Monday morning. Most banks will wait until Monday to pull the funds, but would be best to confirm with your bank if choosing this option."></i>
+													</label>
+												</div>
+												<div class="twelve columns clearfix form-field" data-row="15">
+													<div class="five columns clearfix form-field">
+														<select size="7" multiple="multiple" class="styled-multi-select" id="dayOfPayment" tabIndex="32" style="height: 120px !important;">
+															<apex:repeat value="{!dayOfPaymentOptions}" var="dayOfPayment">
+																<option value="{!dayOfPayment}">{!dayOfPayment}</option>
+															</apex:repeat>
+														</select>
+													</div>
+													<div class="two columns clearfix form-field" style="padding-top: 30px;">
+														<div class="action-button" onclick="javascript:addDayOfPayment();" style="padding: 0;">
+															<i class="fa fa-arrow-right" aria-hidden="true"></i><br/>
+														</div><br/>
+														<div class="action-button" onclick="javascript:removeDayOfPayment();" style="padding: 0;">
+															<i class="fa fa-arrow-left" aria-hidden="true"></i><br/>
+														</div>
+													</div>
+													<div class="five columns clearfix form-field">
+														<apex:inputHidden value="{!selectedDaysOfPayment}" id="selectedDaysOfPaymentValue" />
+														<select size="7" multiple="multiple" class="styled-multi-select required" id="selectedDaysOfPayment" tabIndex="33" style="height: 120px !important;">
+														</select>
+														<script>
+															if("{!selectedDaysOfPayment}" !== "") {
+																var daysOfPayment = ("{!selectedDaysOfPayment}").split(";");
+																for(i = 0; i < daysOfPayment.length; i++) {
+																	$j('[id$=selectedDaysOfPayment]').append('<option value="' + daysOfPayment[i] + '">' + daysOfPayment[i] + '</option>');
+																	$j('[id$=dayOfPayment] option[value="' + daysOfPayment[i] + '"]').remove();
+																}
+															}
+														</script>
+													</div>
+												</div>
+											</apex:outputPanel>
+										</apex:outputPanel>
+									</div> -->
+								</div>
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+							</apex:outputPanel>
+							<apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c == 'Parent Funded', onlineApplicationOffer.Enable_Parent_Funded_Banking_Information__c != true), false, true)}">
+								<div class="twelve columns clearfix">
+									<div class="section-header">
+										Bank Information
+									</div>
+								</div>
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+								<div class="twelve columns clearfix">
+									<div class="six columns clearfix">
+										<div class="twelve columns clearfix form-field" data-row="17">
+											<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Financial_Institution__c.label} <span class="styled-label-required">*</span></label>
+											<apex:InputField styleClass="styled-input required" label="" html-tabindex="36" value="{!onlineApplication.Financial_Institution__c}" html-maxlength="25" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="18">
+											<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Checking_Account_Number__c.label} <span class="styled-label-required">*</span> <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+											<apex:InputText styleClass="styled-input required numbers" id="checkingAccountNumber" tabindex="37" label="" value="{!additionalAttributes.checkingAccountNumber}" maxlength="14"/>
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="19">
+											<label class="styled-label">Confirm {!$ObjectType.OnlineApplication__c.fields.Checking_Account_Number__c.label} <span class="styled-label-required">*</span> <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+											<input type="text" class="styled-input required numbers" id="verifyCheckingAccountNumber" tabindex="38" maxlength="14" />
+										</div>
+									</div>
+									<div class="six columns clearfix">
+										<div class="twelve columns clearfix form-field" data-row="17">
+											<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.ABA_Routing_Number__c.label} <span class="styled-label-required">*</span> <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+											<apex:InputText styleClass="styled-input required numbers" id="abaRoutingNumber" tabindex="39" label="" value="{!additionalAttributes.abaRoutingNumber}" maxlength="9"/>
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="18">
+											<label class="styled-label">Confirm {!$ObjectType.OnlineApplication__c.fields.ABA_Routing_Number__c.label} <span class="styled-label-required">*</span> <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+											<input type="text" class="styled-input required numbers" id="verifyAbaRoutingNumber" maxlength="9" tabindex="40" />
+										</div>
+										<div class="twelve columns clearfix form-field" data-row="19">
+
+										</div>
+									</div>
+								</div>
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+							</apex:outputPanel>
+							<apex:outputPanel id="accountGuarantor">
+								<apex:outputPanel rendered="{!onlineApplicationOffer.Funding__c != 'Parent Funded'}">
+									<div class="twelve columns clearfix">
+										<div class="section-header">
+                                            {!$Label.BOCA_Account_Guarantor}
+										</div>
+									</div>
+									<div class="twelve columns clearfix">
+										&nbsp;
+									</div>
+									<div class="twelve columns clearfix">
+										<div class="six columns clearfix">
+											<div class="twelve columns clearfix form-field" data-row="20">
+												<label class="styled-label">{!IF(languageCode == 'en_us', 'Your Residential Address', $ObjectType.OnlineApplication__c.fields.AO_Address__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+												<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input {!IF(isPG, 'required', '')}" html-tabindex="41" id="pgAddress" value="{!onlineApplication.AO_Address__c}" html-maxlength="100" >
+													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
+												</apex:inputField>
+											</div>
+											<div class="twelve columns clearfix form-field" data-row="21">
+												<label class="styled-label">{!IF(languageCode == 'en_us', 'Your Residential City', $ObjectType.OnlineApplication__c.fields.AO_City__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+												<apex:InputField styleClass="styled-input {!IF(isPG, 'required', '')}" html-tabindex="42" id="pgCity" value="{!onlineApplication.AO_City__c}" html-maxlength="40" >
+													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
+												</apex:inputField>
+											</div>
+											<div class="twelve columns clearfix form-field" data-row="22">
+												<label class="styled-label">{!IF(languageCode == 'en_us', 'Your Residential State', $ObjectType.OnlineApplication__c.fields.AO_State__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+                                                <apex:InputField styleClass="styled-input {!IF(isPG, 'required', '')}" html-tabindex="42" id="pgState" value="{!onlineApplication.AO_State__c}" html-maxlength="40" >
+													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
+												</apex:InputField>
+											</div>
+											<div class="twelve columns clearfix form-field" data-row="23">
+												<label class="styled-label">{!IF(languageCode == 'en_us', 'Your Residential Postal Code', $ObjectType.OnlineApplication__c.fields.AO_Zip_Code__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+												<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input {!IF(isPG, 'required', '')} {!IF(onlineApplication.AO_Country__c == null || onlineApplication.AO_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="44" id="pgPostalCode" value="{!onlineApplication.AO_Zip_Code__c}" html-maxlength="10" >
+													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
+												</apex:inputField>
+											</div>
+											<div class="twelve columns clearfix form-field" data-row="24">
+												<label class="styled-label">{!IF(languageCode == 'en_us', 'Your Residential Country', $ObjectType.OnlineApplication__c.fields.AO_Country__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+												<apex:InputField styleClass="styled-input {!IF(isPG, 'required', '')}" html-tabindex="44" id="pgCountry" value="{!onlineApplication.AO_Country__c}">
+                                                    <apex:actionSupport event="onchange" rerender="pgPostalCode, pgState, disclaimer" action="{!recalculatePG}" oncomplete="pageLoadFunctions()"/>
+                                                    <!--<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />-->
+												</apex:inputField>
+											</div>
+										</div>
+										<div class="six columns clearfix">
+											<div class="twelve columns clearfix form-field" data-row="20">
+												<label class="styled-label">{!IF(languageCode == 'en_us', 'Social Security Number', $ObjectType.OnlineApplication__c.fields.AO_Social_Security_Number__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+												<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_SSN}" styleClass="styled-input {!IF(isPG, 'required', '')} ssn" tabindex="45" id="pgSSN" maxlength="11" html-class="ssn" value="{!additionalAttributes.ssn}" >
+													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
+												</apex:InputText>
+											</div>
+											<div class="twelve columns clearfix form-field" data-row="21">
+												<label class="styled-label">Confirm {!IF(languageCode == 'en_us', 'Social Security Number', $ObjectType.OnlineApplication__c.fields.AO_Social_Security_Number__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+												<input type="text" placeholder="{!$Label.BOCA_Placeholder_SSN}" class="styled-input {!IF(isPG, 'required', '')} ssn" tabindex="46" id="verifyPgSSN" />
+											</div>
+											<div class="twelve columns clearfix form-field" data-row="22">
+												<label class="styled-label">{!IF(languageCode == 'en_us', 'Date of Birth', $ObjectType.OnlineApplication__c.fields.AO_Date_of_Birth__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+												<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input {!IF(isPG, 'required', '')} date" tabindex="47" id="pgDateOfBirth" html-class="date" value="{!onlineApplication.AO_Date_of_Birth__c}" maxlength="10" >
+													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
+												</apex:inputText>
+											</div>
+											<div class="twelve columns clearfix form-field" data-row="23">
+												<label class="styled-label">{!IF(languageCode == 'en_us', 'Residential Phone', $ObjectType.OnlineApplication__c.fields.AO_Home_Phone_Number__c.label)} <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" /></label>
+												<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input {!IF(isPG, 'required', '')} phone" tabindex="48" html-class="phone" id="pgPhone" value="{!onlineApplication.AO_Home_Phone_Number__c}" maxlength="20" >
+													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
+												</apex:InputText>
+											</div>
+											<div class="twelve columns clearfix form-field" data-row="24">
+												<label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.AO_Mobile_Number__c.label} </label>
+												<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="49" html-class="phone" id="pgMobile" value="{!onlineApplication.AO_Mobile_Number__c}" maxlength="20" >
+													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
+												</apex:InputText>
+											</div>
+										</div>
+									</div>
+									<div class="twelve columns clearfix">
+										&nbsp;
+									</div>
+								</apex:outputPanel>
+							</apex:outputPanel>
+							<apex:outputPanel id="paymentMethodFeeDisclosure">
+								<apex:outputPanel rendered="{!IF(OR(onlineApplication.Payment_Method__c == 'Western Union', onlineApplication.Payment_Method__c == 'Wire'), true, false)}">
+									<div class="twelve columns clearfix">
+										<div class="section-header">
+											Payment Method Fee Disclosure
+										</div>
+										<div class="terms-container" style="padding: 20px;">
+											<apex:outputText escape="false" value="{!onlineApplicationOffer.Western_Union_Fee_Disclosure__c}" rendered="{!onlineApplication.Payment_Method__c == 'Western Union'}" />
+											<apex:outputText escape="false" value="{!onlineApplicationOffer.Wire_Fee_Disclosure__c}" rendered="{!onlineApplication.Payment_Method__c == 'Wire'}" />
+										</div>
+									</div>
+								</apex:outputPanel>
+							</apex:outputPanel>
+							<div class="twelve columns clearfix">
+								&nbsp;
+							</div>
+							<div class="twelve columns clearfix">
+								<div class="section-header">
+                                    {!$Label.BOCA_TnC}
+								</div>
+								<div class="terms-container">
+									<iframe id="exploreIFrame" src="/creditapplication/OTRTermsAndConditions?attachmentId={!termsAndConditionsId}" width="620px" height="100%" style="border: none;"></iframe>
+								</div>
+							</div>
+							<div class="twelve columns clearfix">
+								&nbsp;
+							</div>
+							<div class="twelve columns clearfix">
+								<div id="disclaimerErrors" class="stepErrors">
+                                    {!$Label.BOCA_Acknowledge_Disclaimer}
+								</div>
+							</div>
+							<div id="authorizedSigner" class="twelve columns clearfix">
+								<div class="section-header">
+                                    {!$Label.BOCA_Authorized_Signer}
+								</div>
+								<div id="authorizedSignerBody" class="disclaimer-container clearfix">
+									<div class="disclaimer-checkbox">
+										<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox" />
+									</div>
+									<div class="disclaimer-text">
+										<apex:outputPanel id="disclaimer">
+											<apex:outputText value="{!onlineApplicationOffer.Authorized_Signer_Disclosure__c}" escape="false" rendered="{!IF(AND(forcePG == false, isPg == false), true, false)}"/>
+											<apex:outputText value="{!onlineApplicationOffer.PG_Disclosure__c}" escape="false" rendered="{!IF(OR(forcePG == true, isPg == true), true, false)}"/>
+										</apex:outputPanel>
+									</div>
+								</div>
+							</div>
+							<div class="twelve columns clearfix">
+								&nbsp;
+							</div>
+							<div class="twelve columns clearfix">
+								<div class="clearfix">
+									<input tabindex="51" type="button" id="submitButton" class="step-button ge-click-appsubmit" onClick="validateBOCA();" value="Next"/>
+									<input tabindex="52" type="button" id="saveButton" class="step-button-gray ge-click-appsubmit" style="margin-right: 10px;" onClick="validateAndSaveBOCA();" value="Save For Later"/>
+									<img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
+								</div>
+							</div>
+						</apex:form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
+		<div class="line1">CLICK HERE TO GIVE US A CALL</div>
+		<div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
+	</a>
+	<div id="footer">
+		<a href="//onlineservices.secure.force.com/creditapplication/creditApp_TermsAndConditions" title="terms of use" target="_blank"> {!$Label.BOCA_Terms_Of_Use_Link} <span class="glyphicon glyphicon-lock"></span></a>
+	</div>
+	<iframe id="tdr_lWBO2" width="0" height="0" style="color:rgba(0,0,0,0); float:left; position:absolute; top:-200; left:-200; border:0px" src="https://h.online-metrix.net/fp/ls_fp.html?org_id=bkwau9ws&amp;session_id={!tmSessionId}"></iframe>
+	<script>
+
+	</script>
+	</body>
+	</html>
+</apex:page>

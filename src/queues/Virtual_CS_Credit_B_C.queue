@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Virtual CS Credit - B &amp; C</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Virtual_CS</publicGroup>
+        </publicGroups>
+    </queueMembers>
+    <queueRoutingConfig>Virtual_CS_Credit_B_C</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

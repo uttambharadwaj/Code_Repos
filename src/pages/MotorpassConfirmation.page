@@ -1,0 +1,255 @@
+<apex:page controller="Ctrl_MotorpassForm" cache="false" id="thePage" standardStylesheets="false" showHeader="false">
+    
+    <head>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="{!IF(brand == 'Motorpass','https://www.motorpass.com.au/media/1346970/motorpass.ico','http://www.motorcharge.com.au/media/1346975/motorcharge.ico')}" />
+    
+    <title>{!IF(brand == 'Motorpass','Motorpass', 'Motorcharge')}</title>
+    
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-1.4.3.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-ui-1.8.5.custom.min.js')}" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js" />
+    
+    <style type="text/css">
+    
+    /**.button { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 180px; height: 50px; font-family: arial; font-size: 14px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }**/
+    .button { display:inline-block; font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 50px; height: 17px; font-family: arial; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }
+    
+    .smlbutton { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 150px; height: 36px; font-family: arial; font-size: 14px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-radius: 6px; background-color: #E31837; }
+            
+    input[type=text] { border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; }
+            
+    h2 { font-family: arial; font-size: 14px; font-weight: bold; color: #666; }
+    
+    #tabs ul {
+    margin-bottom: 0px;
+    height: 29px;
+    background: url(https://wss.motorpass.com.au/Images/pay-bg-active2.gif) repeat-x top right;
+    overflow: hidden;
+    zoom: 1;
+    list-style-type: none;
+    }
+    
+    #tabs ul li {
+    background: url(https://wss.motorpass.com.au/Images/pay-bg.gif) repeat-x top left;
+    height: 29px;
+    line-height: 29px;
+    float: left;
+    margin-left: -1px;
+    color: #333;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 14px 0px 13px;
+    display: block;
+    float: left;
+    width: 17%;
+    }
+    
+    #tabs ul li.selected {
+    background: none;
+    color: #FFF;
+    }
+    
+    #contactLink
+    {               
+       display:block;
+       cursor:pointer;               
+       float:left;
+       right:0px;
+       position:absolute;
+       width:100px;
+       height:50px;
+       border:1px solid #666;
+    }
+    
+    
+    #contactForm
+    {
+       height:623px;
+       width:440px;              
+       display:none;
+    }
+    
+    #contactFormContainer
+    {
+       position:absolute;
+       right:0px;
+       top:50px;
+    }
+    .box
+    {
+        float:right;
+    }
+            
+    </style>
+    
+    </head>
+    
+    <body style="margin: 0px; font-family: arial; font-size: 13px; color: #666;">
+    
+    <div style="margin-left: auto; margin-right: auto; width: 960px;">
+    
+    <div id="rdHead" style="display:{!IF(brand == 'Motorpass','block','none')}; background-image: url(http://www.motorpass.com.au/media/2241736/mp_website_header.jpg);background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+        
+        <div id="rdHead" style="display:{!IF(brand == 'Motorcharge','block','none')}; background-image: url({!$Resource.MCBanner});background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+    
+        <div style="height: 1000px; margin-left: auto; margin-right: auto; width: 960px; clear: both; padding: 0px; background: url({!$Resource.AUBodybg}) repeat-y 0px 0px; overflow: hidden; vertical-align: baseline;">
+        
+            <div align="center" style="padding-left: 10px; padding-right: 10px; padding-top: 0px; margin-top: -13px;">
+            
+            <div id="tabs">
+                <ul>
+                    <li>Getting Started</li>
+                    <li>Your Details</li>
+                    <li>Card Details</li>
+                    <li>Payment Options</li>
+                    <li class="selected">Confirmation</li>
+                </ul>
+            </div>
+            
+            <br/>
+            
+            <div align="left" style="padding-left: 20px; padding-right: 20px;">
+    
+            <apex:form id="theForm">
+        
+            <apex:actionFunction name="callComponent" action="{!invokeComponent}" rerender="compId"/>
+            
+            <apex:pageBlock >
+            
+            <apex:pageMessages />
+            
+  
+            
+            <p>We market our business across multiple channels so knowing where you found us helps to understand which are most effective.</p>
+            
+            <apex:outputLabel value="How did you hear about us ? "/>
+            
+            <apex:inputField id="dropDown" styleclass="checkDropDown" style="font-size: 13px; font-family: arial; border: 1px solid #666; border-radius: 3px;" value="{!theLead.LeadSource}"/> 
+            
+            <br/>
+            
+            <h2>Legal Statement</h2>
+            
+            <h2><apex:inputCheckBox selected="false" value="{!theLead.AU_Privacy__c}" required="true"/> Information Privacy</h2>
+            
+            <p>Our collection and use of information via this application form is governed by our <a target="_blank" href="{!IF(brand == 'Motorpass','http://motorpass.com.au/privacy-policy','http://www.motorcharge.com.au/privacy-policy.aspx')}">Privacy Policy.</a></p>
+                                
+            <h2><apex:inputCheckBox selected="false" value="{!theLead.AU_Purpose_of_Credit__c}" required="true"/> Purpose of Credit</h2>
+            
+            <p>This credit must only be used wholly or predominantly for business purposes. Please note that business credit is not subject to consumer protection under the National Credit Code. </p>
+                        
+            <h2><apex:inputCheckBox selected="false" value="{!theLead.AU_Legal_Relationship__c}" required="true"/> Legal relationship</h2>
+            
+            <p>By completing and submitting this Application Form for a {!brand} account, you acknowledge that you are applying for 
+            commercial credit and requesting us to issue you with one or more {!brand} cards. If we open a {!brand} account for you, 
+            monthly account fees will apply. Your account will be opened on the <a target="_blank" href="{!IF(brand == 'Motorpass',IF(motorpass =='Motorpass','http://www.motorpass.com.au/media/2241810/wex-mp_terms-and-conditions.pdf','http://www.motorpass.com.au/media/2241810/wex-mp_terms-and-conditions.pdf'),'http://www.motorcharge.com.au/media/1265799/mc_t&c.pdf')}">{!brand} Terms and Conditions</a>. By submitting this 
+            Application Form, you agree to be bound by the {!brand} Terms and Conditions. Please call us on {!IF(brand == 'Motorpass','1300 366 109','1300 130 062')} if you have 
+            any questions about this.</p>
+
+            <p>If you do not wish to receive marketing information, call {!IF(brand == 'Motorpass','1300 366 109','1300 130 062')}.</p>            
+            
+            
+            <table width="100%">
+                 <tr width="100%">
+                     <td class="labelCol">
+                          To help us avoid spam, please type in the words you see in the image below.
+                     </td>
+
+                 </tr>
+                <tr>
+                    <td align="left">
+                        <apex:outputPanel >
+                            <apex:outputLabel value="{!captchaError}" style="color:red"/>                
+                        </apex:outputPanel>
+                    </td>
+                </tr>             
+                 <tr width="100%" >
+                     <td >
+                         <c:reCaptcha ctrl="{!this}"/>
+                     </td>
+                 </tr>
+             </table> 
+             
+            <div align="center">
+            <apex:commandLink styleClass="button" value="Back" action="{!gotoRedirectedPage}" />&nbsp;&nbsp;
+            <apex:commandLink styleClass="button" value="Submit" action="{!submit}" onclick="captureResponse(this);"/>
+            </div>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+    </div>
+    
+    <div class="box">
+    
+        <div id="contactFormContainer">
+        
+                <div id="contactLink" style="border: 0px;">
+        
+                    <div class="container-callbacktab" style="font-family: arial;font-size: 14px;color: #FFF; width: 80px; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border: 1px solid #666; border-radius: 6px; background-color: #E31837;">
+                        <b>Request a call back</b>
+                    </div>
+        
+                </div>
+        
+                <div id="contactForm">
+                    <c:CallBackForm objController="{!this}" id="compId"/>
+                </div>
+        
+               </div>
+               
+            </div>
+            
+    </div>
+    
+    </div>
+    
+    
+    </div>
+    
+    <script>
+        $(document).ready(function(){
+             $("#contactLink").click(function(){
+                 if ($("#contactForm").is(":hidden")){
+                    callComponent();
+                     $("#contactForm").show('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "440px" }, 1000);
+                     pos = $("#mainDiv").position();
+                 }
+                 else{
+                     $("#contactForm").hide('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "0px" }, 1000);
+                 }
+             });
+             
+             //Hide the dropdown elements based on brand selected
+             var brand='{!brand}';
+                    
+                   
+                    
+                    if(brand=="Motorpass")
+                        {
+                           $(".checkDropDown option[value='Existing Motorcharge customer']").remove();  
+                           $(".checkDropDown option[value='Former Motorcharge customer']").remove();
+                        }
+                
+                    else if(brand=="Motorcharge")
+                        {
+                            $(".checkDropDown option[value='Existing Motorpass customer']").remove();  
+                            $(".checkDropDown option[value='Former Motorpass customer']").remove();
+                        }
+                 
+                    
+             
+         });
+    </script>
+    
+    <site:googleAnalyticsTracking />
+    
+    </body>
+    
+</apex:page>

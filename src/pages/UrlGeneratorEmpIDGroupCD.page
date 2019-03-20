@@ -1,0 +1,381 @@
+<apex:page controller="URLGeneratorController" showHeader="false" standardStylesheets="false">
+
+<head>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1"/>
+    <apex:stylesheet value="{!URLFOR($Resource.URLGenAssets, '/css/base.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.URLGenAssets, '/css/branding.css')}"/>
+    
+    <title>Credit App URL Generator</title> 
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+     <apex:includeScript value="{!URLFOR($Resource.URLGenAssets, '/js/jquery-1.8.2.min.js')}"  />
+     <apex:includeScript value="{!URLFOR($Resource.URLGenAssets, '/js/jquery.maskedinput-1.3.min.js')}"  />
+     
+     <style>
+         .error-inline { display: block;  float: right; }
+     </style>
+     
+     <script language="javascript">
+
+        var programNamesArray = new Array();
+        <apex:repeat value="{!programNames}" var="pgmName">
+            programNamesArray.push('{!pgmName}');
+        </apex:repeat>
+             
+        <apex:includeScript value="/soap/ajax/24.0/connection.js"/>
+        <apex:includeScript value="/soap/ajax/24.0/apex.js"/>
+         
+        var j$ = jQuery.noConflict();
+     
+        j$(function(){                  
+            
+            // clear the form fields
+            j$("#email").val('');
+           /* j$("#officegrpcd").val('');
+            j$("#empId").val('');
+            j$("#emailAddr").val(''); */
+            j$("#couponCode").val('');
+           /* $('#negFees').find(':checked').each(function() {
+               $(this).removeAttr('checked');
+            }); */
+            
+            $('input:checkbox').prop('checked', false);
+            
+            
+            $("#phone").mask("(999)999-9999"); 
+            
+            
+            j$('form').submit(function() {    
+                var hasError = false;
+                    
+                    emailReg        = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
+                    programVal      = j$("#program").val(),                    
+                    officegrpcdVal  = j$("#officegrpcd").val(),
+                    empidVal        = j$("#empId").val(),
+                    emailaddressVal = j$("#email").val(),
+                    phoneVal        = j$("#phone").val(),
+                    negFeesVal      = j$("#negFees").val(),
+                    emailAddrVal    = j$("#emailAddr").val(),
+                    couponCodeVal   = j$("#couponCode").val(),                    
+                    n = empidVal.length;
+                
+                //Validate Employee Id
+                if(empidVal == ''){
+                    j$("#empId").addClass('input-error');
+                    j$("#empId+ span").text('Employee Id is required.');
+                    hasError = true;
+                }
+                
+                else if(n != 3){
+                    j$("#empId").addClass('input-error');
+                    j$("#empId+ span").text('Employee Id is not valid');
+                    hasError = true;
+                }
+               
+                else{
+                    j$('#empId').removeClass('input-error');
+                    j$('#empId+ .error-inline').text("");  
+                }
+                      
+                
+                
+                
+                
+                //Validate Office Group Code
+                if(officegrpcdVal == '') {
+                    j$("#officegrpcd").addClass('input-error');
+                    j$("#officegrpcd + span").text('Office Group Code is required.');
+                    hasError = true;
+                }
+         
+                else {
+                    /**** Query the server for a valid ID ****/
+                    
+                    sforce.connection.sessionId = "{!$Api.Session_ID}"; 
+                    var idCheck = sforce.apex.execute("URLGeneratorService","isValidOfficeGrpCd",{OfficeGrpCd:j$('#officegrpcd').val(), ProgramName:j$('#program').val()});  
+                           
+                  
+                   
+                   if (idCheck == 'false'){
+                   j$('#officegrpcd').addClass('input-error');
+                        j$('#officegrpcd + .error-inline').text("Office Group Code entered does not exist for the program.");  
+                        hasError = true; 
+                   
+                       
+                        
+                    } else {
+                        j$('#officegrpcd').removeClass('input-error');
+                       j$('#officegrpcd + .error-inline').text("");                           
+                    }
+                    
+                  
+                 
+                }
+                
+                //Validate Coupon Code
+                if(couponCodeVal == '') {
+                    j$("#couponCode").addClass('input-error');
+                    j$("#couponCode + span").text('Coupon Code is required.');
+                    hasError = true;
+                }
+         
+                else {
+                    /**** Query the server for a valid ID ****/
+                    
+                    sforce.connection.sessionId = "{!$Api.Session_ID}"; 
+                    var idCheck = sforce.apex.execute("URLGeneratorService","isValidCouponCd",{couponCode:j$('#couponCode').val(), ProgramName:j$('#program').val()});  
+                           
+                  
+                   
+                   if (idCheck == 'false'){
+                       j$('#couponCode').addClass('input-error');
+                       j$('#couponCode+ .error-inline').text("Coupon Code entered does not exist for the program.");  
+                       hasError = true; 
+                            
+                    } else {
+                       j$('#couponCode').removeClass('input-error');
+                       j$('#couponCode + .error-inline').text("");                           
+                    }
+                }
+            
+                
+                //Validate Email Address
+                if(emailaddressVal == '') {
+                    j$("#email").addClass('input-error');
+                    j$("#email + span").text('Email Address is required.');
+                    hasError = true;
+                }
+         
+                else if(!emailReg.test(emailaddressVal)) {
+                    j$("#email").addClass('input-error');
+                    j$("#email + span").text('Email Address is not a valid email format.');
+                    hasError = true;
+                } else {
+                      j$("#email").removeClass('input-error');
+                      j$('#email + .error-inline').text("");         
+                }
+              
+               //Validate Phone Number
+                if(phoneVal == '') {
+                    j$("#phone").addClass('input-error');
+                    j$("#phone+ span").text('Phone Number is required.');
+                    hasError = true;
+                }else if (phoneVal.length < 13) {
+                    j$("#phone").addClass('input-error');
+                    j$("#phone+ span").text('Sales Phone Number is not a valid phone number.');
+                    hasError = true;
+                } else {
+                      j$("#phone").removeClass('input-error');
+                      j$('#phone+ .error-inline').text("");            
+              }
+              
+               //Validate Sales Rep Email Address
+              /*  if(emailAddrVal == '') {
+                    j$("#emailAddr").addClass('input-error');
+                    j$("#emailAddr+ span").text('Email Address is required.');
+                    hasError = true;
+               } */ 
+               
+               if(!emailReg.test(emailAddrVal)) {
+                    j$("#emailAddr").addClass('input-error');
+                    j$("#emailAddr+ span").text('Email Address is not a valid email format.');
+                    hasError = true;
+                } else {
+                      j$("#emailAddr").removeClass('input-error');
+                      j$('#emailAddr + .error-inline').text("");         
+              }
+              
+              //Validate Program
+              
+              
+              if(j$("#program").val() == "") {
+              
+                  j$("#program").addClass('input-error');
+                    j$("#program + span").text('Program Name is required.');
+                  hasError = true;
+              } else {
+                  j$("#program").removeClass('input-error');
+                  j$('#program + .error-inline').text("");
+              }
+              
+                  
+         
+                if(hasError == true) { return false; } else { return true; }
+            });
+             
+            var $officegrpcd = j$("#officegrpcd"),
+                $program     = j$("#program"),
+                $empId       = j$("#empId"),
+                $account     = j$('#account'),
+                $couponCode  = j$('#couponCode');
+
+
+            if(programNamesArray.length==1){
+                var optnVal = "<option  selected='selected' value=\'"+ programNamesArray[0]+ "\'>" + programNamesArray[0] + "</option>";
+                $program.append(optnVal); 
+                getAccount();
+            }
+            else {
+               // var optnVal = "<option  selected='selected' value=''><-- Select --></option>";
+               // $program.append(optnVal);             
+          
+                // get Enterprise to be the first one in the list.
+                for (var i=0;i<programNamesArray.length;i++){
+                    if (programNamesArray[i] == 'Enterprise'){
+                     var optnVal = "<option selected='selected' value=\'"+ programNamesArray[i]+ "\'>" + programNamesArray[i] + "</option>";               
+                     $program.append(optnVal);
+                    }
+                }    
+              
+                for (var i=0;i<programNamesArray.length;i++){
+                    if (programNamesArray[i] != 'Enterprise'){
+                        var optnVal = "<option value=\'"+ programNamesArray[i]+ "\'>" + programNamesArray[i] + "</option>";               
+                        $program.append(optnVal);
+                    }
+                }   
+            }
+                                   
+           /****Check Server for Valid Office Group Code ****/
+          
+           function ValidateOfficeGrpCd() {
+           
+              sforce.connection.sessionId = "{!$Api.Session_ID}";             
+              var is_valid = sforce.apex.execute("URLGeneratorService","isValidOfficeGrpCd",{OfficeGrpCd:$officegrpcd.val(), ProgramName:$program.val()});  
+              if (is_valid == 'false'){                 
+                $officegrpcd.addClass('input-error');
+                j$('#officegrpcd + .error-inline').text("Office Group Code entered does not exist for the program.");                
+              } 
+              else {                  
+                  $officegrpcd.removeClass('input-error');
+                  j$('#officegrpcd + .error-inline').text("");              
+              }
+              
+           } 
+           
+           function ValidateCouponCd() {
+           
+              sforce.connection.sessionId = "{!$Api.Session_ID}";             
+              var is_valid = sforce.apex.execute("URLGeneratorService","isValidCouponCd",{couponCode:$couponCode.val(), ProgramName:$program.val()});  
+              if (is_valid == 'false'){                 
+                $couponCode.addClass('input-error');
+                j$('#couponCode + .error-inline').text("Coupon Code entered does not exist for the program.");                
+              } 
+              else {                  
+                  $couponCode.removeClass('input-error');
+                  j$('#couponCode + .error-inline').text("");              
+              }
+              
+           } 
+           $couponCode.blur(ValidateCouponCd);
+           $officegrpcd.blur(ValidateOfficeGrpCd); 
+           
+           /********** Get ACCOUNT INFO based on PROGRAM VALUE ***********/
+            
+           function getAccount(){
+                sforce.connection.sessionId = "{!$Api.Session_ID}"; 
+                var accounts = sforce.apex.execute("URLGeneratorService","getL1Accounts",{ ProgramName:$program.val() });
+                populateAccountBox(accounts);
+            }
+            
+            function populateAccountBox(accounts) {
+                console.log('populateAccountBox', $account, accounts);
+                $account
+                    .empty()
+                    .attr('disabled', accounts.length < 1);
+                j$.each(accounts, function(i, account) { 
+                    var $option = "<option value='account.AccountNumber_"+i+"'>account.Name "+i+"</option>";
+                    $account.append($option);
+                });
+            }
+            
+            $program.change(getAccount)
+               
+     
+     }); 
+    </script>
+ 
+     
+</head>
+<p>
+<h2>The URL Generator</h2>
+</p>
+    <hr></hr>
+
+
+<div id="page-wrap">
+    <h3>Credit App URL  Generator</h3>
+    <p>Create a URL for your customer to use when filling out their online credit application. Remember to enter your customer's email address so they will receive notification emails.</p>
+    <div id="message-wrap"></div>
+    <apex:form id="urlGen">
+        <fieldset>
+            <ul>  
+                <li> 
+                    <label for="program">Program Name:<span class="required">*</span></label>
+                    
+                    <select name="program" id="program">
+                        <option></option> 
+                    </select>
+                    <span class="error-inline"></span>
+                </li> 
+               
+                
+                <li>
+                    
+                    <label for="officegrpcd">Office Group Code:<span class="required">*</span></label>
+                    <input type="text" name="officegrpcd" id="officegrpcd"/>
+                    <span class="error-inline"></span>
+                </li>
+                <li>
+                    
+                    <label for="empId">Employee ID:<span class="required">*</span></label>
+                    <input type="text" name="empId" id="empId"/>
+                    <span class="error-inline"></span>
+                </li>
+                                         
+                <li>
+                    <label for="couponCode">Coupon Code:<span class="required">*</span></label>
+                    <input type="text" name="couponCode" id="couponCode"/>
+                    <span class="error-inline"></span>
+                </li>
+                
+                <li>
+                    <label for="emailAddress">Customer Email Address:<span class="required">*</span></label>
+                    <input type="text" name="email" id="email"/>
+                    <span class="error-inline"></span>
+                </li>
+                <li>
+                    <label for="phone">Sales Phone Number:<span class="required">*</span></label>
+                    <input type="text" name="phone" id="phone"/>
+                    <span class="error-inline"></span>
+                </li>
+                <li>
+                    <label for="emailAddr">Sales Email Address:</label>
+                    <input type="text" name="emailAddr" id="emailAddr"/>
+                    <span class="error-inline"></span>
+                </li>
+                <li>
+                    <label for="negfee">Non-Standard Negotiated Fees Approved:</label>
+                    <input type="checkbox" name="negFees" id="negFees"/>
+                </li>
+            </ul>
+        </fieldset>
+        <div class="ui-form-controls pull-right">
+            <apex:commandButton action="{!SendEmail}" value="Submit" styleClass="btn-mobile" />
+        </div>
+   </apex:form>
+</div>
+
+     <!--
+    <apex:pageblock >
+ 
+            <apex:pageBlockSection title="Ajax Console">
+                <h2 id='foo'>Status</h2>
+                <pre id="status" style="font-size: 16px" />
+                     
+                <h2> JSON Response </h2>
+                <div id="response" style="font-size: 16px;width: 300px;font-family: monospace; font-stretch: expanded" />
+        </apex:pageBlocksection>
+    </apex:pageblock>
+    -->
+</apex:page>

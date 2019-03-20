@@ -1,0 +1,204 @@
+<apex:page controller="URLgenAttachmentLookupController" showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+        <head>
+            
+            <meta charset="utf-8" />
+            <meta http-equiv="x-ua-compatible" content="ie=edge" />
+            <title>BOCA To Prospect - Add Attachment</title>
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            
+            <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
+            
+            <!-- Script -->	
+            <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+            <script src="{!URLFOR($Resource.AppiphonyJS, 'appiphony-lightning-js-master/dist/jquery.aljs-all-with-moment.min.js')}"></script>
+            
+            <!-- Import the Design System style sheet -->
+            <apex:slds />
+            
+            <script>
+            var $j = jQuery.noConflict();
+            
+            var assetsLoc = '{!URLFOR($Asset.SLDS)}';
+            
+            $j.aljsInit({
+                assetsLocation: assetsLoc, 
+                scoped: true
+            });
+            
+            $j(document).ready(function() {
+                
+                $j('[data-aljs="tabs"]').tabs();
+                
+                $j('[data-aljs="popover"]').popover();
+                
+                $j('.slds-tabs--default__link').click(function() {
+                    $j('[id$=folderSelector]').val('#');
+                    $j('[id$=searchTerm]').val('');
+                    clearSearch(); 
+                });
+                
+            });
+            
+            function pageRerenderFunctions() {        
+                $j('[data-aljs="popover"]').popover();
+            }
+            
+            function attachFile(fileName, fileId) {
+                
+                var attachmentsList = window.opener.document.getElementsByClassName("attachment")
+                
+                for(var i = 0; i < attachmentsList.length; i++) {
+                    if(attachmentsList[i].getAttribute("data-attachment-id") === fileId) {
+                        alert('"' + fileName + '" has already been added as an attachment');
+                        return false;
+                    }
+                }
+                
+                var attachment = document.createElement('div');
+                attachment.innerHTML = "<div class='attachment' title='Click to remove attachment' onClick='removeAttachment(this); return false;' data-attachment-id='" + fileId + "'><span class='s1utility s1utility-close' style='font-size: 12px;'></span> " + fileName + "</div>";
+                
+                window.opener.document.getElementById("attachments").appendChild(attachment);
+                window.close();
+            }
+            </script>
+            
+        </head>
+        <body>
+            
+            <div class="slds-scope">
+                
+                <!-- HEADER -->
+                <div class="slds-page-header">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/doctype-sprite/svg/symbols.svg#attachment')}"></use>
+                                    </svg>
+                                </div>
+                                
+                                <div class="slds-media__body">
+                                    <p class="slds-text-title--caps slds-line-height--reset">BOCA To Prospect</p>
+                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="SLDS Inc.">
+                                        <apex:outputText value="Attachments" escape="false" />
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+                <br/>                
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+                                    <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#process')}"></use>
+                                </svg>
+                            </div>
+                            <div class="slds-media__body slds-truncate">
+                                <a href="javascript:void(0);" class="slds-text-link--reset">
+                                    <span class="slds-text-heading--small">Filter</span>
+                                </a>
+                            </div>
+                        </header>
+                    </div>
+                    <!-- CARD BODY = TABLE -->
+                    <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                        <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                <div class="slds-media__body"> 
+                                    <apex:form >
+                                        <apex:actionFunction name="clearSearch" action="{!clearSearch}" rerender="documentList" />
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="text-input-01">Select Folder</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:selectList size="1" value="{!selectedFolder}" styleClass="slds-select" id="folderSelector">
+                                                    <apex:selectOptions value="{!folders}" />
+                                                    <apex:actionSupport event="onchange" action="{!displayDocuments}" rerender="documentList" oncomplete="pageRerenderFunctions();"/>
+                                                </apex:selectList>
+                                            </div>
+                                        </div><br/>
+                                        <apex:actionFunction name="doSearch" action="{!displayDocuments}" rerender="documentList" />
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="text-input-01">Search Term</label>
+                                            <div class="slds-form-element__control">
+                                                <apex:inputText value="{!searchTerm}" onkeydown="if(event.keyCode==13){this.blur();doSearch();}" styleClass="slds-input" id="searchTerm" />
+                                            </div>
+                                        </div>
+                                    </apex:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+                                    <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#file')}"></use>
+                                </svg>
+                            </div>
+                            <div class="slds-media__body slds-truncate">
+                                <a href="javascript:void(0);" class="slds-text-link--reset">
+                                    <span class="slds-text-heading--small">Files</span>
+                                </a>
+                            </div>
+                        </header>
+                    </div>
+                    <!-- CARD BODY = TABLE -->
+                    <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                        <apex:outputPanel id="documentList">
+                            <table class="slds-table slds-table--bordered slds-table--striped">
+                                <thead>
+                                    <tr class="slds-text-title--caps">
+                                        <th scope="col" class="slds-cell-shrink">
+                                            <span title="Action">Action</span>
+                                        </th>
+                                        <th scope="col">
+                                            <span class="slds-truncate" title="Name">Name</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:variable value="0" var="recordCounter" />
+                                    <apex:repeat value="{!documents}" var="document">
+                                        <tr>
+                                            <th scope="row" data-label="Action" class="slds-cell-shrink">
+                                                <div class="slds-truncate" title="Action">
+                                                    <a href="javascript:attachFile('{!document.Name}','{!document.Id}');">Attach</a>
+                                                </div>
+                                            </th>
+                                            <td data-label="Name">
+                                                <div class="slds-truncate" title="{!document.Name}">
+                                                    <span class="slds-show--inline-block slds-p-around--x-small" tabindex="1" data-aljs="popover" data-aljs-placement="top" title="{!document.description}">
+                                                        <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                                    </span>{!document.Name}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <apex:variable value="{!VALUE(recordCounter) + 1}" var="recordCounter" />
+                                    </apex:repeat>
+                                    <tr style="display: {!IF(VALUE(recordCounter) == 0, 'table-row', 'none')};">
+                                        <td colspan="2">No Results Found!</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </apex:outputPanel>
+                    </div>
+                    
+                </article>
+                
+                
+            </div>
+            
+        </body>
+    </html>
+</apex:page>

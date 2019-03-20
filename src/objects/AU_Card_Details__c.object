@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <listViews>
+        <fullName>All_cards</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Account__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Card_Number__c</columns>
+        <columns>Card_Type__c</columns>
+        <columns>AU_Card_Type__c</columns>
+        <columns>Express_Delivery__c</columns>
+        <columns>Integration_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All cards</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Cards</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Opportunity__c</columns>
+        <columns>Application_Status__c</columns>
+        <columns>Card_Number__c</columns>
+        <columns>Card_Type__c</columns>
+        <columns>AU_Card_Type__c</columns>
+        <columns>Express_Delivery__c</columns>
+        <columns>Integration_Status__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Cards</label>
+    </listViews>
+    <validationRules>
+        <fullName>Account_must_be_Opportunity_Account</fullName>
+        <active>true</active>
+        <description>It is an error if the chosen Account differs from the Opportunity&apos;s Account</description>
+        <errorConditionFormula>Opportunity__r.Account.Id &lt;&gt; Account__c</errorConditionFormula>
+        <errorDisplayField>Account__c</errorDisplayField>
+        <errorMessage>Account must equal Opportunity&apos;s Account</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cardholder_Email</fullName>
+        <active>true</active>
+        <description>Error when Cardholders email&apos;s address is blank and card type control = Trade</description>
+        <errorConditionFormula>AND
+ (
+ ISBLANK( AU_Card_Holder_email_address__c),
+ ISPICKVAL(AU_Card_Type__c, &apos;Trade&apos;)
+ )</errorConditionFormula>
+        <errorMessage>Cardholder&apos;s email address must be completed for Trade cards</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cardholder_Phone</fullName>
+        <active>true</active>
+        <description>Error when cardholder&apos;s mobile phone number field is blank and card type (control) = Trade</description>
+        <errorConditionFormula>and (
+ ISPICKVAL( AU_Card_Type__c , &apos;Trade&apos;),
+ isblank  ( AU_Cardholder_Mobile_Phone_Number__c )
+
+)</errorConditionFormula>
+        <errorMessage>Cardholder&apos;s mobile phone number must be completed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Driver_Name_Required</fullName>
+        <active>true</active>
+        <description>It is an error if Card Type (Control) is either &quot;Driver &amp; Vehicle&quot; , &quot;Driver Only&quot; or &quot;Trade&quot;
+AND Driver Name is empty</description>
+        <errorConditionFormula>AND(
+ ISBLANK(AU_Drivers_Name__c),
+ OR(
+  ISPICKVAL(AU_Card_Type__c, &apos;Driver Only&apos;),
+  ISPICKVAL(AU_Card_Type__c, &apos;Driver &amp; Vehicle&apos;),
+  ISPICKVAL(AU_Card_Type__c, &apos;Trade&apos;)
+ )
+)</errorConditionFormula>
+        <errorDisplayField>AU_Drivers_Name__c</errorDisplayField>
+        <errorMessage>Driver Name must be entered if Driver chosen in Card Type (Control)</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Product_Name_Required</fullName>
+        <active>false</active>
+        <description>If the Application Status is Read for Export the Product Name is required</description>
+        <errorConditionFormula>AND(
+ISPICKVAL( Opportunity__r.Application_Status__c , &apos;Ready for Export&apos;),
+ISPICKVAL(Product_Name__c, &apos;&apos;)
+)</errorConditionFormula>
+        <errorDisplayField>Product_Name__c</errorDisplayField>
+        <errorMessage>If the Application Status is Read for Export the Product Name is required</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Vehicle_Registration_Required</fullName>
+        <active>true</active>
+        <description>It is an error if Card Type (Control) is either &quot;Driver &amp; Vehicle&quot; or &quot;Vehicle Only&quot;
+AND Vehicle Registration is empty</description>
+        <errorConditionFormula>AND(
+ ISBLANK(AU_Vehicle_Registration__c),
+ OR(
+  ISPICKVAL(AU_Card_Type__c, &apos;Vehicle Only&apos;),
+  ISPICKVAL(AU_Card_Type__c, &apos;Driver &amp; Vehicle&apos;)
+ )
+)</errorConditionFormula>
+        <errorDisplayField>AU_Vehicle_Registration__c</errorDisplayField>
+        <errorMessage>Vehicle Registration must be entered if Vehicle chosen in Card Type (Control)</errorMessage>
+    </validationRules>
+</CustomObject>

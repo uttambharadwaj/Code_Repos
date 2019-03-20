@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Fraud_Claims_at_3k</fullName>
+        <ccEmails>jessica.turner@wexinc.com</ccEmails>
+        <ccEmails>kristen.spears@wexinc.com</ccEmails>
+        <description>Fraud Claims at $3k+</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>brian.lapointe@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>david.daye@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>freddy.ramirez@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jason.sandell@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kara.gillespie@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>liliane.ruvakubusa@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>tara.johnson@wexinc.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Fraud/Auto_Email_3k_Case</template>
+    </alerts>
+    <rules>
+        <fullName>Fraud - Claim %243k%2B</fullName>
+        <actions>
+            <name>Fraud_Claims_at_3k</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Claim__c.Allowable_Dispute_Dollars__c</field>
+            <operation>greaterOrEqual</operation>
+            <value>3000.00</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

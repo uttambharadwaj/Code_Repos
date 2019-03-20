@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Telematics Program</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Telematics Programs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Monthly Subscription/Unit --></label>
+        <name>Monthly_Subscription_Unit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Units --></label>
+        <name>Number_of_Units__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Expiration --></label>
+        <name>Program_Expiration__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+        <relationshipLabel><!-- Telematics Programs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Programs --></label>
+        <name>Programs__c</name>
+        <picklistValues>
+            <masterLabel>AirIQ</masterLabel>
+            <translation><!-- AirIQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DCS (Darby Corporate Solutions)</masterLabel>
+            <translation><!-- DCS (Darby Corporate Solutions) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Discrete Wireless</masterLabel>
+            <translation><!-- Discrete Wireless --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fleet Hawk</masterLabel>
+            <translation><!-- Fleet Hawk --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fleetilla</masterLabel>
+            <translation><!-- Fleetilla --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fleetmatics</masterLabel>
+            <translation><!-- Fleetmatics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPS Insight</masterLabel>
+            <translation><!-- GPS Insight --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GeoLogic Solutions</masterLabel>
+            <translation><!-- GeoLogic Solutions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Geotab</masterLabel>
+            <translation><!-- Geotab --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Navtrak</masterLabel>
+            <translation><!-- Navtrak --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>SageQuest</masterLabel>
+            <translation><!-- SageQuest --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Teletrac</masterLabel>
+            <translation><!-- Teletrac --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telogis</masterLabel>
+            <translation><!-- Telogis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trimble/@Road</masterLabel>
+            <translation><!-- Trimble/@Road --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Vericom</masterLabel>
+            <translation><!-- Vericom --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Webtech Wireless</masterLabel>
+            <translation><!-- Webtech Wireless --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

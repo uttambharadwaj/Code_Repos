@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Factoring Underwriting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Factoring Underwriting</value>
+    </caseValues>
+    <layouts>
+        <layout>Factoring Underwriting Non-Recourse Layout</layout>
+        <sections>
+            <label><!-- Assessment --></label>
+            <section>Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Assessment Comments --></label>
+            <section>Assessment Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Client Information --></label>
+            <section>Client Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Factoring Underwriting Recourse Layout</layout>
+        <sections>
+            <label><!-- Accounts Receivable Aging --></label>
+            <section>Accounts Receivable Aging</section>
+        </sections>
+        <sections>
+            <label><!-- Accounts Receivable Aging Comments --></label>
+            <section>Accounts Receivable Aging Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Assessment --></label>
+            <section>Assessment</section>
+        </sections>
+        <sections>
+            <label><!-- Client Information --></label>
+            <section>Client Information</section>
+        </sections>
+        <sections>
+            <label><!-- Core Client Metrics --></label>
+            <section>Core Client Metrics</section>
+        </sections>
+        <sections>
+            <label><!-- Current Lenders/UCC Filings --></label>
+            <section>Current Lenders/UCC Filings</section>
+        </sections>
+        <sections>
+            <label><!-- Current Lenders/UCC Flings Comments --></label>
+            <section>Current Lenders/UCC Flings Comments</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Facility Structure --></label>
+            <section>Facility Structure</section>
+        </sections>
+        <sections>
+            <label><!-- Submission and Approvals --></label>
+            <section>Submission and Approvals</section>
+        </sections>
+        <sections>
+            <label><!-- The Client --></label>
+            <section>The Client</section>
+        </sections>
+        <sections>
+            <label><!-- The Client Additional Info --></label>
+            <section>The Client Additional Info</section>
+        </sections>
+        <sections>
+            <label><!-- Top Five Debtors Comments --></label>
+            <section>Top Five Debtors Comments</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Contract Sent Date and Contract Received Date are essential for marking the Credit Decision as &quot;Approved&quot;. --></errorMessage>
+        <name>Dates_For_Factoring_Recourse_Approved</name>
+    </validationRules>
+</CustomObjectTranslation>

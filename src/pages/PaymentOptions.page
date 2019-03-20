@@ -1,0 +1,258 @@
+<apex:page controller="Ctrl_MotorpassForm" cache="false" id="thePage" showHeader="false" standardStylesheets="false">
+    
+    <head>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="{!IF(brand == 'Motorpass','https://www.motorpass.com.au/media/1346970/motorpass.ico','http://www.motorcharge.com.au/media/1346975/motorcharge.ico')}" />
+    
+    <title>{!IF(brand == 'Motorpass','Motorpass', 'Motorcharge')}</title>
+    
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-1.4.3.min.js')}" />
+        <apex:includeScript value="{!URLFOR($Resource.jQueryUI, '/core/jquery-ui-1.8.5.custom.min.js')}" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js" />
+        <apex:includeScript value="https://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js" />
+        
+        <style type="text/css">
+        
+            /*button { cursor: pointer; font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 250px; height: 50px; font-family: arial; font-size: 14px; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }*/
+            .button {  font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 250px; height: 50px; font-family: arial; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }
+            .button1 { display:inline-block; font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 50px; height: 17px; font-family: arial; font-size: 14px; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 10px; border-radius: 6px; background-color: #E31837; }
+            .smlbutton { font-weight: bold; text-decoration: none; color: #FFF; border: 1px solid #666; width: 150px; height: 36px; font-family: arial; font-size: 14px; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; border-radius: 6px; background-color: #E31837; }
+            
+            input[type=text] { border-radius: 3px; border: 1px solid #666; font-size: 13px; padding: 5px; }
+            
+            h2 { font-family: arial; font-size: 14px; font-weight: bold; color: #666; }
+            
+            #contactLink
+            {               
+               display:block;
+               cursor:pointer;               
+               float:left;
+               right:0px;
+               position:absolute;
+               width:100px;
+               height:50px;
+               border:1px solid #666;
+            }
+            
+            
+            #contactForm
+            {
+               height:623px;
+               width:440px;              
+               display:none;
+            }
+            
+            #contactFormContainer
+            {
+               position:absolute;
+               right:0px;
+               top:50px;
+            }
+            .box
+            {
+                float:right;
+            }
+            
+            #transparentDiv
+            {
+                background-color:red;
+                opacity:0.2;
+            }
+            
+            #mainDiv
+            {
+                width: 80%;
+            }
+            #tabs ul {
+            margin-bottom: 0px;
+            height: 29px;
+            background: url(https://wss.motorpass.com.au/Images/pay-bg-active2.gif) repeat-x top right;
+            overflow: hidden;
+            zoom: 1;
+            list-style-type: none;
+            }
+            
+            #tabs ul li {
+            background: url(https://wss.motorpass.com.au/Images/pay-bg.gif) repeat-x top left;
+            height: 29px;
+            line-height: 29px;
+            float: left;
+            margin-left: -1px;
+            color: #333;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 0px 14px 0px 13px;
+            display: block;
+            float: left;
+            width: 17%;
+            }
+            
+            #tabs ul li.selected {
+            background: none;
+            color: #FFF;
+            }
+        </style>
+        
+    </head>
+    
+    <body style="margin: 0px; font-family: arial;font-size: 13px; color: #666;">
+    
+    <div style="margin-left: auto; margin-right: auto; width: 960px;">
+    
+    <div id="rdHead" style="display:{!IF(brand == 'Motorpass','block','none')}; background-image: url(http://www.motorpass.com.au/media/2241736/mp_website_header.jpg);background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+        
+        <div id="rdHead" style="display:{!IF(brand == 'Motorcharge','block','none')}; background-image: url({!$Resource.MCBanner});background-color: transparent; background-repeat: no-repeat; height: 188px; margin: 0px; width: 960px;" ></div>
+    
+    <div style="height: 1000px; margin-left: auto; margin-right: auto; width: 960px; clear: both; padding: 0px; background: url({!$Resource.AUBodybg}) repeat-y 0px 0px; overflow: hidden; vertical-align: baseline;">
+        
+            <div align="center" style="padding-left: 10px; padding-right: 10px; padding-top: 0px; margin-top: -13px;">
+            
+            <div id="tabs">
+                <ul>
+                    <li>Getting Started</li>
+                    <li>Your Details</li>
+                    <li>Card Details</li>
+                    <li class="selected">Payment Options</li>
+                    <li>Confirmation</li>
+                </ul>
+            </div>
+            
+            <br/><br/><br/>
+            
+            <apex:form id="theForm">
+            
+            <div style="padding-left: 20px;">
+        
+                <apex:actionFunction name="callComponent" action="{!invokeComponent}" rerender="compId"/>
+            
+                <apex:pageBlock >
+                <div style="width:100%;">
+                    <span style="float: left; padding-left: 15%; padding-right: 4%;">
+                    <apex:commandLink styleClass="button" value="Direct Debit" action="{!redirectToDirectDebit}">
+                        <apex:param name="paymentOption" value="Direct Debit" assignTo="{!theLead.AU_Payment_Option__c}"/>
+                    </apex:commandLink>
+                   </span>
+                   <span style="float: left; padding-right: 4%;">
+                    <apex:commandLink styleClass="button" value="Credit Card" action="{!redirectToConfirmation}">
+                        <apex:param name="paymentOption" value="Credit Card Payment" assignTo="{!theLead.AU_Payment_Option__c}"/>
+                        <apex:param name="redirectedFrom" value="PaymentOptions" assignTo="{!redirectedFrom}" />
+                    </apex:commandLink>
+                   </span>
+                   <span style="float:left;">
+                    <apex:commandLink styleClass="button" value="Statement" action="{!redirectToConfirmation}">
+                        <apex:param name="paymentOption" value="Statement" assignTo="{!theLead.AU_Payment_Option__c}"/>
+                        <apex:param name="redirectedFrom" value="PaymentOptions" assignTo="{!redirectedFrom}" />
+                    </apex:commandLink>
+                    </span>
+                </div>
+                </apex:pageBlock>
+                
+
+            </div>
+       <table>
+            <tr><br><br></br></br>
+            <tr><td width="19%"></td>
+               <td><blockquote style="border: 2px solid #666; padding: 10px; background-color: #ccc; width: 175px; height: 415px; text-align: center; color: #000000; margin-left:auto; margin-right:auto; border-radius: 6px;"> <b>Direct Debit</b><br></br>
+                   Select the Direct Debit option to pay your account by direct debit. 
+                    <br></br>
+                    <br></br>
+                    You will receive a regular statement and payment will automatically be deducted via direct debit 14 days after the statement date.
+                    <br></br>
+                    <br></br>
+                    You need to provide your  financial institution and account details to set this up.</blockquote>
+               </td><td width="1%"></td>
+               <td><blockquote style="border: 2px solid #666; padding: 10px; background-color: #ccc; width: 180px; text-align: center; color: #000000; height: 415px;  margin-left:auto; margin-right:auto; border-radius: 6px;"> <b>Credit Card</b><br></br>
+                    Select the Credit Card option to pay your account by credit card.  We accept VISA, MasterCard and American Express. A payment processing fee* will apply for each payment. 
+                    <br></br>
+                    <br></br>
+                    You will receive a regular statement and payment will automatically be deducted by  us via credit card 14 days after the statement date. 
+                    <br></br>
+                    <br></br> 
+                    If you select this payment option, you will need to provide credit card details when we finalise your account set up over the telephone.
+                    <br></br>
+                    <br></br> 
+                    * VISA and MasterCard - 1.3% of the payment amount, exc GST. American Express - 2.1% of the payment amount, exc GST. 
+                    </blockquote>
+               </td><td width="1%"></td>
+               <td><blockquote style="border: 2px solid #666; padding: 10px; background-color: #ccc; width: 180px; height: 415px; text-align: center; color: #000000;  margin-left:auto; margin-right:auto; border-radius: 6px;"> <b>Statement</b><br></br> 
+                Select the Statement option to pay your account by BPAY, credit card, electronic transfer or cheque*. 
+                <br></br>
+                <br></br>
+                You will receive a regular statement and you’ll need to pay your account using your preferred payment method.
+                <br></br>
+                <br></br>
+                * A $1.10  cheque processing fee applies.
+                </blockquote>
+                </td><td width="18%"></td>
+            </tr>
+            </tr>  
+        </table>
+        
+        <br/><br/>
+        
+        <apex:commandLink styleclass="button1" value="Back" action="{!gotoCardOptions}">
+        </apex:commandLink>
+        &nbsp;&nbsp;
+         <apex:commandLink styleclass="button1" value="Submit" action="{!redirectToConfirmation}">
+             <apex:param name="saveForm" value="yes" assignTo="{!saveForm}"/>
+             <apex:param name="redirectedFrom" value="PaymentOptions" assignTo="{!redirectedFrom}" />
+         </apex:commandLink>
+         &nbsp;&nbsp;
+        <apex:commandLink styleclass="button1" value="Next" action="{!redirectToConfirmation}">
+             <apex:param name="saveForm" value="yes" assignTo="{!saveForm}"/>
+             <apex:param name="redirectedFrom" value="PaymentOptions" assignTo="{!redirectedFrom}" />
+         </apex:commandLink>
+         
+         
+         </apex:form>   
+        </div>
+    
+    <div class="box">
+    
+        <div id="contactFormContainer">
+        
+                <div id="contactLink" style="border: 0px;">
+        
+                    <div class="container-callbacktab" style="font-family: arial;font-size: 14px;color: #FFF; width: 80px; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; border: 1px solid #666; border-radius: 6px; background-color: #E31837;">
+                        <b>Request a call back</b>
+                    </div>
+        
+                </div>
+        
+                <div id="contactForm">
+                    <c:CallBackForm objController="{!this}" id="compId"/>
+                </div>
+        
+               </div>
+           
+    </div>
+    
+    </div>
+    
+    </div>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+             $("#contactLink").click(function(){
+                callComponent();
+                 if ($("#contactForm").is(":hidden")){
+                     $("#contactForm").show('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "440px" }, 1000);
+                     pos = $("#mainDiv").position();
+                 }
+                 else{
+                     $("#contactForm").hide('slide', {direction: 'right'}, 1000);
+                     $("#contactLink").animate({ "right": "0px" }, 1000);
+                 }
+             });
+             
+             
+         });
+    </script>
+    
+    <site:googleAnalyticsTracking />
+    
+    </body>
+    
+</apex:page>

@@ -1,0 +1,77 @@
+<apex:page controller="CreditExistingExposureController" readOnly="true" action="{!init}">
+    <div class="bPageTitle">
+        <div class="ptBody">
+            <div class="content">
+                <img src="/s.gif" alt=""  class="pageTitleIcon" title=""/>
+                <h1 style="margin: 0 0 0 0;" class="pageType">Existing Exposure<span  class="titleSeparatingColon">:</span></h1>
+                <h2 style="margin: 0 0 0 0;" class="pageDescription">{!originalRequest.applicationName}</h2>
+                <div class="blank">&nbsp;</div>
+            </div>
+        </div>
+        <div class="ptBreadcrumb">&nbsp;«&nbsp;<a href="/{!originalRequest.applicationId}">Back to Application: {!originalRequest.applicationName}</a></div>
+    </div><br/>
+    <apex:pageBlock mode="mainDetail" >
+        <apex:pageBlockSection title="Application Information" columns="2">
+            <apex:pageBlockSection columns="1">
+                <apex:outputText value="{!originalRequest.legalBusinessName}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1">
+                <apex:outputText value="{!originalRequest.addressLine1}" />
+                <apex:outputText value="{!originalRequest.city}" />
+                <apex:outputText value="{!originalRequest.state}" />
+                <apex:outputText value="{!originalRequest.postalCode}" />
+            </apex:pageBlockSection>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:pageBlock id="onlineAppBlock" title="Possible Duplicate Applications"><br/>
+        <apex:pageBlockTable id="resultTable" value="{!duplicateApplications}" var="duplicate" rendered="{!(duplicateApplications.size != 0)}">
+            <apex:column headerValue="Application ID" width="10%">
+                <a href="/{!duplicate.applicationId}" target="_blank">{!duplicate.applicationName}</a>
+            </apex:column>
+            <apex:column headerValue="Status">{!duplicate.applicationStatus}</apex:column>
+            <apex:column headerValue="Submitted to Credit">{!duplicate.applicationCreatedDate}</apex:column>
+            <apex:column headerValue="Date Decisioned">{!duplicate.applicationDecisionedDate}</apex:column>
+            <apex:column headerValue="Credit Decision">{!duplicate.creditDecision}</apex:column>
+            <apex:column headerValue="Credit Line Requested">{!duplicate.creditLineRequested}</apex:column>
+            <apex:column headerValue="Credit Line Approved">{!duplicate.creditLineApproved}</apex:column>
+            <apex:column headerValue="Legal Business Name">{!duplicate.legalBusinessName}</apex:column>
+            <apex:column headerValue="Address">{!duplicate.addressLine1}</apex:column>
+            <apex:column headerValue="City">{!duplicate.city}</apex:column>
+            <apex:column headerValue="State">{!duplicate.state}</apex:column>
+            <apex:column headerValue="Postal Code">{!duplicate.postalCode}</apex:column>
+            <apex:column headerValue="Program">{!duplicate.program}</apex:column>
+            <apex:column headerValue="Fraud Flag">{!duplicate.fraudFlag}</apex:column>
+            <apex:column headerValue="Tax ID">{!duplicate.taxId}</apex:column>
+            <apex:column headerValue="PG SSN">{!duplicate.pgSSN}</apex:column>
+        </apex:pageBlockTable><br/>
+        <apex:outputPanel id="errorDisplay">
+            <apex:outputPanel rendered="{!duplicateApplications.size = 0}">
+                <ul>
+                    <b>No results to display!</b>
+                </ul><br/>
+            </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:pageBlock>
+    <apex:pageBlock id="accountBlock" title="Possible Duplicate Accounts"><br/>
+        <apex:pageBlockTable id="accountResultTable" value="{!duplicateAccounts}" var="duplicate" rendered="{!(duplicateAccounts.size != 0)}">
+            <apex:column headerValue="Application ID" width="10%">
+                <a href="/{!duplicate.fscExistingExposureId}" target="_blank">{!duplicate.fscExistingExposureName}</a>
+            </apex:column>
+            <apex:column headerValue="Legal Business Name">{!duplicate.legalBusinessName}</apex:column>
+            <apex:column headerValue="Address">{!duplicate.addressLine1}</apex:column>
+            <apex:column headerValue="City">{!duplicate.city}</apex:column>
+            <apex:column headerValue="State">{!duplicate.state}</apex:column>
+            <apex:column headerValue="Postal Code">{!duplicate.postalCode}</apex:column>
+            <apex:column headerValue="National ID">{!duplicate.nationalId}</apex:column>
+            <apex:column headerValue="Credit Line">${!duplicate.creditLine}</apex:column>
+            <apex:column headerValue="Status">{!duplicate.accountStatus}</apex:column>
+        </apex:pageBlockTable><br/>
+        <apex:outputPanel id="accountErrorDisplay">
+            <apex:outputPanel rendered="{!duplicateAccounts.size = 0}">
+                <ul>
+                    <b>No results to display!</b>
+                </ul><br/>
+            </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:pageBlock>
+</apex:page>

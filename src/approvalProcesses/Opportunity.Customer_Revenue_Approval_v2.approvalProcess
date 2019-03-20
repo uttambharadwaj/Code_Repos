@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>false</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Record_Type_Name__c</field>
+        <field>Owner</field>
+        <field>Annual_Settlement_Value__c</field>
+        <field>Net_Full_Service_Revenue__c</field>
+        <field>Interchange_Rate_Revenue_as_a_percentag__c</field>
+        <field>Rebate__c</field>
+        <field>Credit_Limit__c</field>
+        <field>Payment_Terms_Days__c</field>
+        <field>Billing_Cycle__c</field>
+        <field>Ramp_Profile__c</field>
+        <field>Implementation_Revenue__c</field>
+        <field>Forecast_Full_Service_Revenue_Date__c</field>
+        <field>Implementation_Revenue_as_a_of_FSR__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <label>Sales Director Revenue Approval</label>
+        <name>Sales_Director_Revenue_Approval</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>clare.murphy@wexeurope.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>RM Team Manager confirms that they approve the revenue values entered on the opportunity</description>
+        <label>RM Revenue Approval</label>
+        <name>RM_Revenue_Approval</name>
+        <rejectBehavior>
+            <type>BackToPrevious</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>For Sales Director &amp; RM Team Manager to confirm that they agree with the revenue projections from the customer &amp; salesperson</description>
+    <emailTemplate>Virtual_EU_Templates/CorporatePay_Revenue_Approval_Request</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>/* Entry criteria is irrelevant as approval process will be triggered by Process Builder */
+
+TEXT(Approval_Process_Stage__c) = &quot;Revenue Approval Requested&quot;</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Capture_Original_1st_Contract_Year_Rev</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Capture_Revenue_In_Year</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Opportunity_Revenue_Approved</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>Revenue_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Opportunity_Revenue_Rejected</name>
+            <type>Alert</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Revenue_Approval_Requested</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Customer Revenue Approval</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

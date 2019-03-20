@@ -1,0 +1,585 @@
+<apex:page controller="CustomerDashboardController" docType="html-5.0" standardStylesheets="false" action="{!initCustomerDashboard}">
+    
+    <!-- Icons -->
+    <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
+    
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    
+    <!-- CSS -->
+	<link rel="stylesheet" href="{!URLFOR($Resource.CustomerDashboardBaseCSS)}" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+    <!-- Script -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+    <script type="text/javascript" src="//code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+    
+    <!-- Local JS -->
+    <script>
+    	$j = jQuery.noConflict();
+
+    	$j(document).ready(function() {
+        	pageRerenderFunctions();
+        });
+    
+    	// Referenced on all re-renders
+    	function pageRerenderFunctions() {
+            
+            $j('[id$=content]').tooltip({
+          		content: function () {
+              		return $j(this).prop('title');
+          		}
+      		});
+            
+            // Add a listener to the collapsible header text
+         	$j('[id$=content]').find('.collapsible').find('.pbSubheader').on('click', function() {
+               twistSection(document.getElementById($j(this).parent('.collapsible').attr('id')).getElementsByTagName('img')[0]);
+            }); 
+            
+            // Remove any disabled classes added to the search elements
+            $j('[id$=goButton]').removeClass('disabled-form-element');
+            $j('[id$=recentAccounts]').removeClass('disabled-form-element');
+            $j('[id$=search]').find('input[type=radio]').removeClass('disabled-form-element');
+            $j('[id$=search]').find('.loader-gif').css('visibility', 'hidden');
+            
+            // Remove/add in greyed out fields
+            $j('[id$=content]').find('.detailFieldValue, .dataCell, .detailFieldSplitValue, .detailFieldSplitValueIndicator').each(function() {
+                // Remove the grey-out first
+            	$j(this).removeClass('no-data');
+                
+                // Add the grey-out back to empty fields
+                if($j(this).text().trim() === "") {
+                 	$j(this).addClass('no-data');   
+                }
+           	});
+            
+            $j('[id$=accountNumberBox]').mask('0#');
+            
+            $j('[id$=recentAccounts]').on('change', function() {
+            	 disableSearch();
+            });
+        }
+    
+    	function openPopup(page){
+    		window.open(page, '_blank', 'toolbar=yes, scrollbars=yes, resizable=yes, top=500, left=500, width=1200, height=768')
+		}
+    
+    	// Disables search functions when a search is being performed
+    	function disableSearch() {
+            $j('[id$=goButton]').addClass('disabled-form-element');
+            $j('[id$=recentAccounts]').addClass('disabled-form-element');
+            $j('[id$=search]').find('input[type=radio]').add('disabled-form-element');
+        	$j('[id$=loader-gif]').css('visibility', 'visible');   
+        }
+    </script>
+    
+    <div id="header">
+        <img src="/img/icon/perAccounts32.png" alt="" class="pageTitleIcon" title=""/>
+        <span class="title">Customer Dashboard</span><br/>
+        <apex:outputPanel id="pageName">
+            <apex:outputPanel rendered="{!customerDetails.accountNm == null}">
+    			<h1>Home</h1>
+            </apex:outputPanel>
+        	<apex:outputPanel rendered="{!customerDetails.accountNm != null}">
+                <h1><apex:outputText value="{!customerDetails.accountNm}" escape="false" /></h1>
+        	</apex:outputPanel>
+        </apex:outputPanel>
+	</div>
+    <div id="search">
+        <apex:form >
+            <div class="searchTop clearfix">
+                <apex:inputText maxlength="20" id="accountNumberBox" styleClass="searchBox" value="{!accountNumber}" html-placeholder="Account Number"></apex:inputText>&nbsp;
+        	    <apex:commandButton id="goButton" styleClass="goButton" onclick="disableSearch()" oncomplete="pageRerenderFunctions()" action="{!viewAccount}" rerender="customerDetails,recentAccounts,errorMessage,pageName" value="Go"/>
+	            <img id="loader-gif" class="loader-gif" style="" src="{!URLFOR($Resource.CustomerDashboardAssets, 'WexBOCAAssets/img/loading.gif')}" />
+        	    <apex:selectList id="recentAccounts" styleClass="recentAccounts" multiselect="false" size="1" value="{!selectedRecentAccount}">
+    	            <apex:actionSupport oncomplete="pageRerenderFunctions()" event="onchange" action="{!viewRecentAccount}" reRender="accountNumberBox,customerDetails,recentAccounts,errorMessage,accountNumberTypeSelect,pageName"/>
+	            	<apex:selectOptions value="{!recentAccounts}"/>
+            	</apex:selectList>
+            </div><br/>
+            <div class="searchBottom">
+    	        <apex:selectRadio id="accountNumberTypeSelect" styleClass="searchType" value="{!accountNumberType}">
+	                <apex:selectOptions value="{!accountTypeOptions}"/>
+            	</apex:selectRadio>     
+            </div>    
+		</apex:form>
+        <apex:pageMessages id="errorMessage" escape="false"></apex:pageMessages>
+    </div>
+    <div id="content">
+        <apex:pageBlock mode="maindetail" id="customerDetails">
+			<apex:pageBlockSection columns="1" collapsible="true" title="Account Information" html-class="collapsible">   
+                <div class="ratingContainer" style="display: {!IF(customerDetails != null, 'block', 'none')};">
+                    <div class="rating" title="The segmentation refers to the overall health of the relationship, including any additional accounts associated to the contract. <br/><br/> <b>Servicing Rules:</b> <br/><br/> {!customerDetails.servicingRules}">
+						<span class="{!IF(AND(customerDetails.CustomerSegmentation != null, customerDetails.CustomerSegmentation >= 1), 'starActive', 'starInactive')}"></span>
+                       	<span class="{!IF(AND(customerDetails.CustomerSegmentation != null, customerDetails.CustomerSegmentation >= 2), 'starActive', 'starInactive')}"></span>
+                       	<span class="{!IF(AND(customerDetails.CustomerSegmentation != null, customerDetails.CustomerSegmentation >= 3), 'starActive', 'starInactive')}"></span>
+                       	<span class="{!IF(AND(customerDetails.CustomerSegmentation != null, customerDetails.CustomerSegmentation >= 4), 'starActive', 'starInactive')}"></span>
+                   		<span class="{!IF(AND(customerDetails.CustomerSegmentation != null, customerDetails.CustomerSegmentation >= 5), 'starActive', 'starInactive')}"></span>
+                   </div>
+                </div>
+                <div class="platformProgramIndicatorContainer" style="display: {!IF(customerDetails != null, 'block', 'none')};">
+                    	<span class="platformProgramIndicator"><i>{!customerDetails.programNm} - {!customerDetails.sourceSys} - {!customerDetails.NnlineApplication}</i></span>
+                </div>
+                <apex:outputPanel >
+				<table class="detailTable" cellspacing="0">
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Customer Since:</td>
+                        <td class="detailFieldValue">
+                        	<apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!customerDetails.customerSinceDt}" />
+							</apex:outputText>
+                        </td>
+                        
+						<td class="detailFieldLabel">Account Status:</td>
+                        <td class="detailFieldValue">
+                        	<apex:outputText rendered="{!customerDetails.accountSts == 'A'}">
+                            	<span style="color: #669933 !important; font-weight: bold;">Active</span>
+                            </apex:outputText>
+                            <apex:outputText rendered="{!customerDetails.accountSts == 'S'}">
+                            	<span style="color: #999933 !important; font-weight: bold;">Suspended</span>
+                            </apex:outputText>
+                            <apex:outputText rendered="{!customerDetails.accountSts == 'T'}">
+                            	<span style="color: #990000 !important; font-weight: bold;">Terminated</span>
+                            </apex:outputText>
+                        </td>
+                        
+                        <td colspan="2" class="detailFieldLabel" style="color: #0066ff !important;">
+                            <a style="{!IF(customerDetails != null, '', 'visibility: hidden;')} cursor: pointer;" onClick="openPopup('/apex/CustomerDashboardPaymentHistory?accountNumber={!AccountNumber}&accountNumberType={!AccountNumberType}&hrflg={!customerDetails.HighCreditRiskFeeIndicator}'); return false;">
+                                <i style="font-family: 'FontAwesome' !important;" class="fa fa-bar-chart" aria-hidden="true"></i> Payment History
+                            </a>
+                        </td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">
+                            Contract Name:
+                           	&nbsp;<i style="color: #1798c1; cursor: pointer; font-family: 'FontAwesome' !important;" class="fa fa-info-circle" aria-hidden="true" title="The legal name of the contract holder for the relationship." />
+                        </td>
+                        <td class="detailFieldValue">
+                            <span class="valueSpan">
+                            	{!customerDetails.ContractNm}
+                            </span>
+                        </td>
+                        
+						<td class="detailFieldLabel">Account Status Date:</td>
+                        <td class="detailFieldValue">
+                        	<apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!customerDetails.accountStsDt}" />
+							</apex:outputText>
+                        </td>
+                                           
+						<td class="detailFieldLabel">Last Waive Date:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!customerDetails.lastPaymentDt}" />
+							</apex:outputText>
+                        </td>
+						
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Bill to Account Name:</td>
+                        <td class="detailFieldValue"><apex:outputText value="{!customerDetails.billtoAccountNm}" escape="false" /></td>
+                        
+						<td class="detailFieldLabel">Internal Account Number:</td>
+                        <td class="detailFieldValue">{!customerDetails.wexAccountNbr}</td>
+                        
+                        <td class="detailFieldLabel">IOL Customer Number:</td>
+                        <td class="detailFieldValue">{!customerDetails.iolCustomerNbr}</td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr>
+                        <td class="detailFieldLabel">Account Name:</td>
+                        <td class="detailFieldValue"><apex:outputText value="{!customerDetails.accountNm}" escape="false" /></td>
+                        
+						<td class="detailFieldLabel">External Account Number:</td>
+                        <td class="detailFieldValue">{!customerDetails.spnrAccountNbr}</td>
+                        
+                        <td class="detailFieldLabel">IOL Fleet Account Number:</td>
+                        <td class="detailFieldValue">{!customerDetails.iolFleetNbr}</td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr>
+						<td class="detailFieldLabel">PFS Rep Code &amp; Name:</td>
+                        <td class="detailFieldValue">
+                            {!customerDetails.pfsRepNm}
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                </table>
+                </apex:outputPanel>
+                <table class="productTable" cellspacing="20">
+                    <tr>
+                        <td class="{!IF(AND(customerDetails != null, customerDetails.WEXFleetCustomer == true), 'active', '')}">WEX</td>
+                        <td></td>
+                        <td class="{!IF(AND(customerDetails != null, customerDetails.partnerFleetCustomer == true), 'active', '')}">Partner</td>
+                        <td></td>
+                        <td class="{!IF(AND(customerDetails != null, customerDetails.fleetOneCustomer == true), 'active', '')}">Fleet One</td>
+                        <td></td>
+                        <td class="{!IF(AND(customerDetails != null, customerDetails.flexCardCustomer == true), 'active', '')}">FlexCard</td>
+                        <td></td>
+                        <td class="{!IF(AND(customerDetails != null, customerDetails.clearViewCustomer == true), 'active', '')}">ClearView</td>
+                        <td></td>
+                        <td class="{!IF(AND(customerDetails != null, customerDetails.telematicsCustomer == true), 'active', '')}">Telematics</td>
+                        <td></td>
+                        <td class="{!IF(AND(customerDetails != null, customerDetails.wrightRewardsCustomer == true), 'active', '')}">WEX Rewards</td>
+                    </tr>
+                </table>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection columns="1" collapsible="true" title="Invoice Summary" html-class="collapsible"> 
+                <apex:outputPanel >
+				<table class="detailTable" cellspacing="0">
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Billing Cycle:</td>
+                        <td class="detailFieldValue">
+                            {!customerDetails.BillingCycleDesc}
+                        </td>
+                        
+						<td class="detailFieldLabel">Credit Limit:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.creditLmt != null}">
+								<apex:param value="{!customerDetails.creditLmt}" />
+							</apex:outputText>
+                        </td>
+                        
+						<td class="detailFieldLabel">Available Credit: &nbsp;<i style="color: #1798c1; cursor: pointer; font-family: 'FontAwesome' !important;" class="fa fa-info-circle" aria-hidden="true" title="The open to buy amount for the account. This is calculated by total credit line less billed, unbilled and pending transactions." /></td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.availableCreditLmt != null}">
+								<apex:param value="{!customerDetails.availableCreditLmt}" />
+							</apex:outputText>
+                        </td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Closing Dating:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!customerDetails.currentInvoiceClosingDt}" />
+							</apex:outputText>
+                        </td>
+                        
+						<td class="detailFieldLabel">Billed Amount: &nbsp;<i style="color: #1798c1; cursor: pointer; font-family: 'FontAwesome' !important;" class="fa fa-info-circle" aria-hidden="true" title="The total amount billed to the customer. This amount may not yet be due." /></td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.lastInvoiceBilledAmt != null}">
+								<apex:param value="{!customerDetails.lastInvoiceBilledAmt}" />
+							</apex:outputText>
+                        </td>
+                        
+						<td class="detailFieldLabel">Last Payment Date:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!customerDetails.lastPaymentDt}" />
+							</apex:outputText>
+                        </td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Days to Pay:</td>
+                        <td class="detailFieldValue">
+                            {!customerDetails.daysToPay}
+                        </td>
+                        
+						<td class="detailFieldLabel">Unbilled Amount: &nbsp;<i style="color: #1798c1; cursor: pointer; font-family: 'FontAwesome' !important;" class="fa fa-info-circle" aria-hidden="true" title="The amount of transactions that have been completed but not billed for the period." /></td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.unbilledAmt != null}">
+								<apex:param value="{!customerDetails.unbilledAmt}" />
+							</apex:outputText>
+                        </td>
+                        
+						<td class="detailFieldLabel">Credit Score: &nbsp;<i style="color: #1798c1; cursor: pointer; font-family: 'FontAwesome' !important;" class="fa fa-info-circle" aria-hidden="true" title="This is the score reported by the credit bureaus. WEX does not calculate this value." /></td>
+                        <td class="detailFieldValue">
+                            {!customerDetails.creditScore}
+                        </td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr>
+						<td class="detailFieldLabel">Invoice Due Date:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!customerDetails.currentInvoiceDueDt}" />
+							</apex:outputText>
+                        </td>
+                        
+						<td class="detailFieldLabel">Pending Trans:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.pendingTxns != null}">
+								<apex:param value="{!customerDetails.pendingTxns}" />
+							</apex:outputText>
+                        </td>
+                        
+                        <td class="detailFieldLabel">Cash Enabled:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputPanel rendered="{!customerDetails.wexAccountNbr != null}">
+                            	{!IF(customerDetails.cashEnabledIndicator == true, 'Yes', 'No')}
+                            </apex:outputPanel>
+                        </td>
+					</tr>
+                </table>
+            	</apex:outputPanel>
+			</apex:pageBlockSection>    
+			<apex:pageBlockSection columns="1" collapsible="true" title="Contract Information" html-class="collapsible">   
+                <apex:outputPanel >
+				<table class="detailTable" cellspacing="0">
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Contract Number:</td>
+                        <td class="detailFieldValue">
+                            {!customerDetails.contractNbr}
+                        </td>
+                        
+						<td class="detailFieldLabel">Evergreen Indicator:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputPanel rendered="{!customerDetails.wexAccountNbr != null}">
+                            	{!IF(customerDetails.evergreenIndicator == true, 'Yes', 'No')}
+                            </apex:outputPanel>
+                        </td>
+                        
+						<td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Contract Name:</td>
+                        <td class="detailFieldValue">
+                            {!customerDetails.contractNm}
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Contract Start Date:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!customerDetails.contractStartDt}" />
+							</apex:outputText>
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr>
+						<td class="detailFieldLabel">Contract End Date:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}" styleClass="dataCell">
+    							<apex:param value="{!customerDetails.contractEndDt}" />
+							</apex:outputText>
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                </table>
+                </apex:outputPanel>
+			</apex:pageBlockSection>    
+			<apex:pageBlockSection columns="1" collapsible="true" title="Pricing Structure" html-class="collapsible">    
+                <apex:outputPanel >
+				<table class="detailTable" cellspacing="0">
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Paper Delivery Fee:</td>
+                        <td class="detailFieldSplitValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.paperDeliveryFee != null}">
+								<apex:param value="{!customerDetails.paperDeliveryFee}" />
+							</apex:outputText>
+                        </td>
+                        <td class="detailFieldSplitValueIndicator">
+                            {!IF(AND(customerDetails.paperWithFeeWaived == 'Y', customerDetails.paperless = 'N'), 'Waived', '')}
+							{!IF(AND(customerDetails.paperWithFeeWaived == 'N', customerDetails.paperless = 'Y'), 'Paperless', '')}
+                        </td>
+                        
+						<td class="detailFieldLabel">Finance Charge Rate:</td>
+                        <td class="detailFieldSplitValue">
+                            <apex:outputText value="{0, number, ##0.00}%" rendered="{!customerDetails.periodicFinanceChargeRte != null}">
+								<apex:param value="{!customerDetails.periodicFinanceChargeRte}" />
+							</apex:outputText>
+                        </td>
+                        <td class="detailFieldSplitValueIndicator">
+                            {!customerDetails.financeChargeRteType}
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="8"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Out of Network Fee:</td>
+                        <td class="detailFieldSplitValue">
+							<apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.outOfNetworkPerTxnFee != null}">
+								<apex:param value="{!customerDetails.outOfNetworkPerTxnFee}" />
+							</apex:outputText>
+                        </td>
+                        <td class="detailFieldSplitValueIndicator">
+                            <apex:outputText value="{0, number, ##0.00}%" rendered="{!customerDetails.outOfNetworkProgramOrAccountRte != null}">
+								<apex:param value="{!customerDetails.outOfNetworkProgramOrAccountRte}" />
+							</apex:outputText>
+                        </td>
+                        
+                        <td class="detailFieldLabel">FlexCard Interest Rate:</td>
+                        <td class="detailFieldSplitValue">
+                            <apex:outputText value="{0, number, ##0.00}%" rendered="{!customerDetails.flexCardApplicableRte != null}">
+								<apex:param value="{!customerDetails.flexCardApplicableRte}" />
+							</apex:outputText>
+                        </td>
+                        <td class="detailFieldSplitValueIndicator">
+                            {!customerDetails.flexCardPenaltyPricingIndicator}
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="8"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Monthly Card Fee:</td>
+                        <td class="detailFieldSplitValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.monthlyCardFee != null}">
+								<apex:param value="{!customerDetails.monthlyCardFee}" />
+							</apex:outputText>
+                        </td>
+                        <td class="detailFieldSplitValueIndicator">
+                            {!customerDetails.monthlyCardFeeDescription}
+                        </td>
+                        
+                        <td class="detailFieldLabel">Program Maintenance Charge:</td>
+                        <td class="detailFieldSplitValue" colspan="2">
+							{!customerDetails.programMaintenanceCharge}
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="8"></td>
+                    </tr>
+                    <tr>
+						<td class="detailFieldLabel">Truck Stop Fee:</td>
+                        <td class="detailFieldSplitValue">
+                            <apex:outputText value="${0, number, ###,###,##0.00}" rendered="{!customerDetails.truckStopFee != null}">
+								<apex:param value="{!customerDetails.truckStopFee}" />
+							</apex:outputText>
+                        </td>
+                        <td class="detailFieldSplitValueIndicator">
+                            {!customerDetails.truckStopFeeDescription}
+                        </td>
+                        
+                        <td class="detailFieldLabel">High Risk Credit Charge:</td>
+                        <td class="detailFieldSplitValue">
+                            {!customerDetails.highRiskPercentageRte}
+                        </td>
+                        <td class="detailFieldSplitValue">
+                            <apex:outputText value="{0, date, MMMM d','  yyyy}">
+    							<apex:param value="{!customerDetails.highRiskCureDt}" />
+							</apex:outputText>
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                </table>
+				</apex:outputPanel>
+			</apex:pageBlockSection>    
+			<apex:pageBlockSection columns="1" collapsible="true" title="Rebates/Discounts" html-class="collapsible">   
+                <apex:outputPanel >
+				<table class="detailTable" cellspacing="0">
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">WEX Funded Rebate:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputPanel rendered="{!customerDetails != null}">
+                            	{!IF(customerDetails.wexRebateIndicator == true, 'Yes', 'No')}                                
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!IF(AND(customerDetails.wexRebateIndicator != null, customerDetails.wexRebateIndicator == true), 'true', 'false')}">
+        	                	<span class='tooltipRegion'>
+    	                           	&nbsp;<i style="color: #1798c1; cursor: pointer; font-family: 'FontAwesome' !important;" class="fa fa-info-circle" aria-hidden="true" />
+	                               	<span class="hover"><b>Content TBD</b></span>
+								</span>
+							</apex:outputPanel>
+                        </td>
+                        
+						<td class="detailFieldLabel">Cost Plus:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputPanel rendered="{!customerDetails.wexAccountNbr != null}">
+                            	{!IF(customerDetails.costPlusIndicator == true, 'Yes', 'No')}
+                            </apex:outputPanel>
+                        </td>
+                        
+						<td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Partner Funded Rebate:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputPanel rendered="{!customerDetails.wexAccountNbr != null}">
+                            	{!IF(customerDetails.partnerRebateIndicator == true, 'Yes', 'No')}
+                            </apex:outputPanel>
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                    <tr class="detailRowBorder">
+                    	<td class="seperator" colspan="6"></td>
+                    </tr>
+                    <tr class="detailRowBorder">
+						<td class="detailFieldLabel">Discounts:</td>
+                        <td class="detailFieldValue">
+                            <apex:outputPanel rendered="{!customerDetails.wexAccountNbr != null}">
+                            	{!IF(customerDetails.discountIndicator == true, 'Yes', 'No')}
+                            </apex:outputPanel>
+                        </td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+                        
+                        <td class="detailFieldLabel"></td>
+                        <td class="detailFieldFiller"></td>
+					</tr>
+                </table>
+				</apex:outputPanel>
+			</apex:pageBlockSection> 
+		</apex:pageBlock>
+    </div>
+</apex:page>

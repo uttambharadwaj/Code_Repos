@@ -1,0 +1,550 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="CPBOCAController" action="{!init}" language="{!languageCode}">
+<html lang="{!languageCode}">
+<head>
+    <!-- Title -->
+    <title>{!program.Brand_Long_Name__c} {!$Label.BOCA_Credit_Application}</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8" />
+    <meta content="width=device-width, user-scalable=no" name="viewport" />
+    
+    <!-- Imported Styles -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="{!URLFOR($Resource.CPBOCABaseCSS)}"/>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous" />
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet" />
+
+    <!-- Imported Scripts -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+
+    <!-- Additional Scripts -->
+    <script>
+        var coupon_code = "{!campaign.Coupon_Code__c}";
+        var location_code = "{!locationCode}";
+        var page_name = "App-Page1";
+        var card_program = "{!programParameter}";
+        document.cookie = "debug_logs=debug_logs;domain=.force.com";
+    
+        $j = jQuery.noConflict();
+    
+        // Any labels need to be defined in this bridge in order
+        // for the JS to pick them up
+        window.$Label = window.$Label || {};
+        $Label.BOCA_Invalid_Amount = '{!JSENCODE($Label.BOCA_Invalid_Amount)}';
+        $Label.BOCA_Invalid_Date = '{!JSENCODE($Label.BOCA_Invalid_Date)}';
+        $Label.BOCA_Invalid_Email = '{!JSENCODE($Label.BOCA_Invalid_Email)}';
+        $Label.BOCA_Invalid_Number = '{!JSENCODE($Label.BOCA_Invalid_Number)}';
+        $Label.BOCA_Invalid_Phone = '{!JSENCODE($Label.BOCA_Invalid_Phone)}';
+        $Label.BOCA_Invalid_Postal_Code = '{!JSENCODE($Label.BOCA_Invalid_Postal_Code)}';
+        $Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
+        $Label.BOCA_Invalid_Tax_ID = '{!JSENCODE($Label.BOCA_Invalid_Tax_ID)}';
+        $Label.BOCA_Invalid_DUNS = '{!JSENCODE($Label.BOCA_Invalid_DUNS)}';
+        $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
+        $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
+        $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
+        $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
+        $Label.Check_Sample = '{!JSENCODE($Resource.SampleCheck)}';
+    
+        window.boca_language_code = '{!languageCode}';
+        window.card_program_name = '{!programParameter}';
+    
+        console.log('{!tmSessionId}');
+
+    </script>
+    
+    <script type="text/javascript" src="{!URLFOR($Resource.CPBOCABaseJS)}" />
+
+    <!-- Local Styles -->
+    <style>
+        .section-header { 
+            {!program.Brand_Color_1__c}
+        }
+
+        .sidebar-section-header { 
+            {!program.Brand_Color_1__c} 
+        }
+
+        .panel-heading {
+            {!program.Brand_Color_1__c} 
+        }
+
+        .step-button {
+            {!program.Brand_Color_2__c}
+        }
+    
+        #mobile-footer-call {
+            {!program.Brand_Color_1__c}
+        }
+    
+        .disabled-button { 
+            background: #e9e9e9 !important; 
+            pointer-events: none; 
+            color: #ccc !important; 
+            border: 1px solid #ccc !important;
+        }
+    </style>
+    
+    <apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false"/>
+</head>
+<body>
+<div class="page-wrap clearfix">
+    <apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false"/>
+    <!-- Live Person -->
+    <script type="text/javascript">
+        if (typeof(lpUnit) == 'undefined')    var lpUnit = 'sales';
+        if (typeof(lpLanguage) == 'undefined') var lpLanguage = 'english';
+    </script>
+    
+    <script id="tdr_3srJf" type="text/javascript" src="https://h.online-metrix.net/fp/check.js?org_id=bkwau9ws&session={!tmSessionId}"></script>
+    <img id="tdr_6IIEo" style="display:none" src="https://bkwau9ws-8a69bc0ab2ee96e97f45f425f60a04e571228253-sac.d.aa.online-metrix.net/fp/clear.png?org_id=bkwau9ws&session={!tmSessionId};di=yes"/>
+    <img id="tdr_95nWt" style="display:none" src="https://h.online-metrix.net/fp/clear.png"/>
+    
+    <div id="header" class="clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="nine columns clearfix">
+                    <div id="branding">
+                        <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+                            <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>    
+                    </div>
+                </div>
+                <div class="three columns">
+                    <div id="contactUs" style="display: {!IF(userSessionId == null, 'block', 'none')};">
+                        <span style="font-size: 15px; letter-spacing: 0.8px; color: #666;"><i class="fas fa-phone" style="color: #e74c3c; font-size: 16px;"></i>&nbsp;{!program.Inside_Sales_Phone_Number__c}</span><br/> 
+                        <span style="font-size: 14px; letter-spacing: 0.8px; color: #666;"><i class="fas fa-comments"></i>&nbsp;LIVE CHAT</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <div class="four columns sidebar">
+                    <!-- Left Column -->
+                    <div class="twelve columns clearfix">
+                        <img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                    </div>
+                    <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
+                        <div class="twelve columns clearfix">
+                            &nbsp;    
+                        </div>  
+                        <div class="twelve columns clearfix brand-text">
+                            <apex:outputtext value="{!brandingUtility.Brand_Heading__c}" escape="false"></apex:outputtext>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!brandingUtility.Brand_Tagline__c != null}">
+                        <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c == null}">
+                            <div class="twelve columns clearfix ">
+                                &nbsp;    
+                            </div>
+                        </apex:outputPanel>
+                        <div class="twelve columns clearfix brand-text">
+                            <apex:outputtext value="{!brandingUtility.Brand_Tagline__c}" escape="false"></apex:outputtext>  
+                        </div>
+                    </apex:outputPanel>
+                    <div class="twelve columns clearfix">
+                        &nbsp;    
+                    </div>
+                    <apex:outputPanel rendered="{!salesRep != null && salesCode != null}">
+                        <div class="twelve columns clearfix salesRep">
+                            <div class="sidebar-section-header">
+                                {!$Label.BOCA_Sales_Agent} 
+                            </div>
+                            <div class="sidebar-section-static-content">
+                                <span style="font-size: 18px;">{!salesRep.Name}</span><br/>
+                                {!$Label.BOCA_Sales_Agent_Email}: {!salesRep.Email}<br/>
+                                {!$Label.BOCA_Sales_Agent_Phone}: {!salesRep.Phone}<br/>
+                                {!$Label.BOCA_Sales_Agent_Fax}: {!salesRep.Fax}
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!brandingUtility.Side_Panel_Title__c != ''}">
+                        <div class="twelve columns clearfix">
+                            <div class="sidebar-section-header">
+                                {!brandingUtility.Side_Panel_Title__c}    
+                            </div>
+                            <div class="sidebar-section-dynamic-content">
+                                <apex:outputText value="{!brandingUtility.SideBar__c}" escape="false"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+                <div class="eight columns form">
+                    <!-- Right Column -->
+
+                    <div class="twelve columns clearfix">
+                        &nbsp;
+                    </div>
+                    <div class="twelve columns clearfix">
+                        <div id="errors" class="stepErrors">
+                            {!$Label.BOCA_Application_Errors}
+                        </div>
+                    </div>
+                    <apex:form id="creditForm">
+                        <input type="hidden" value="{!isPGRequired}" id="isPGRequired" />
+                        <input type="hidden" value="{!isBankInfoNeeded}" id="isBankInfoNeeded" />
+                        <input type="hidden" id="country" name="country" value="US" />
+                        <apex:actionFunction name="submitApplication" action="{!submitApplication}" rerender="" />
+                            <div class="twelve columns clearfix">
+                                <div class="section-header">
+                                    <i class="far fa-user-circle"></i>&nbsp;&nbsp;Applicant Information
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Email__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="1" id="email" value="{!creditApp.Email__c}" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.First_Name__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="2" id="firstName" label="" value="{!creditApp.First_Name__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Last_Name__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="3" id="lastName" label="" value="{!creditApp.Last_Name__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="3">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Business_Phone__c.label} </Label>
+                                        <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="4" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20"/>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="4">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Number_of_Cards__c.label} (optional) </Label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="5" id="numberOfCards" html-maxlength="100" value="{!creditApp.Number_of_Cards__c}" />
+                                    </div>
+                                </div>
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Company_Legal_Name__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="6" id="companyName" label="" value="{!creditApp.Company_Legal_Name__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Doing_Business_As__c.label} (optional) </Label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="7" label="" id="doingBusinessAs" value="{!creditApp.Doing_Business_As__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Years_in_Business__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="8" id="yearsInBusiness" value="{!creditApp.Years_in_Business__c}" >
+                                            <apex:actionSupport event="onchange" rerender="pgInformation" oncomplete="pageLoadFunctions()"/>
+                                        </apex:InputField>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="3">
+                                        <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Title__c.label} (optional) </Label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="9" id="title" label="" value="{!creditApp.Title__c}" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="4">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} </Label>
+                                        <apex:InputField html-placeholder="$" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" />
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <div class="twelve columns clearfix">
+                                <div class="section-header">
+                                    <i class="far fa-building"></i>&nbsp;&nbsp;Business Information
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_1__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="11" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_2__c.label} (optional)</label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="12" id="physicalAddressLine2" label="" value="{!creditApp.Physical_Address_Line_2__c}" html-maxlength="100" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_City__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="13" id="physicalCity" value="{!creditApp.Physical_City__c}" html-maxlength="50"/>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="3">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_State__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="14" id="physicalState" value="{!creditApp.Physical_State__c}" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="4">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_Postal_Code__c.label} </Label>
+                                        <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required postal" html-tabindex="15" id="physicalPostalCode" label="" value="{!creditApp.Physical_Postal_Code__c}" html-maxlength="10" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="5">
+                                        <label class="styled-label">Mailing address and physical address are the same</label>
+                                        <apex:selectList id="addressOptions" value="{!billingAddressSame}" size="1" styleClass="styled-input required" tabIndex="16">
+                                            <apex:selectOption itemValue="true" itemLabel="{!$Label.BOCA_Picklist_Yes}"/>
+                                            <apex:selectOption itemValue="false" itemLabel="{!$Label.BOCA_Picklist_No}"/>
+                                            <apex:actionSupport event="onchange" rerender="billingAddress" oncomplete="pageRerenderFunctions()" />
+                                        </apex:selectList>
+                                    </div>
+                                </div>
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Legal_Structure__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="17" id="legalStructure" value="{!creditApp.Legal_Structure__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Taxpayer_ID__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required taxPayerId" html-tabindex="18" id="taxpayerID" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="10" />
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <apex:outputPanel id="billingAddress">
+                            <apex:outputPanel rendered="{!billingAddressSame == false}">
+                                <div class="twelve columns clearfix">
+                                    <div class="section-header">
+                                        <i class="fa fa-address-card"></i>&nbsp;&nbsp;Mailing Address
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix form-field" data-row="0">
+                                            <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_Address_Line_1__c.label}</label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="20" id="mailingAddress1" value="{!creditApp.Mailing_Address_Line_1__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="1">
+                                            <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_Address_Line_2__c.label} (optional)</label>
+                                            <apex:InputField styleClass="styled-input" html-tabindex="21" id="mailingAddress2" value="{!creditApp.Mailing_Address_Line_2__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="2">
+                                            <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_City__c.label} </label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="22" id="mailingCity" value="{!creditApp.Mailing_City__c}" />
+                                        </div>
+                                    </div>
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix form-field" data-row="0">
+                                            <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_State__c.label} </label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="23" id="mailingState" value="{!creditApp.Mailing_State__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="1">
+                                            <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_Postal_Code__c.label} </label>
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required postal" html-tabindex="24" id="mailingPostalCode" value="{!creditApp.Mailing_Postal_Code__c}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        <div class="twelve columns clearfix">
+                            <div class="section-header">
+                                <i class="fa fa-money-bill"></i>&nbsp;&nbsp;Payment Information
+                            </div>
+                        </div>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <div class="twelve columns clearfix">
+                            <div class="six columns clearfix">
+                                <div class="twelve columns clearfix form-field" data-row="0">
+                                    <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Billing_Cycle__c.label} </Label>
+                                    <apex:InputField styleClass="styled-input required" html-tabindex="25" id="billingCycle" value="{!creditApp.Billing_Cycle__c}" >
+                                        <apex:actionSupport event="onchange" action="{!setPaymentDefaults}" rerender="paymentDueDate,paymentType,bankInformation" oncomplete="pageLoadFunctions()"/>
+                                    </apex:InputField>
+                                </div>
+                                <div class="twelve columns clearfix form-field" data-row="1">
+                                    <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Payment_Due_Date__c.label} </Label>
+                                    <apex:InputField styleClass="styled-input" html-tabindex="26" id="paymentDueDate" label="" value="{!creditApp.Payment_Due_Date__c}"/>
+                                </div>
+                            </div>
+                            <div class="six columns clearfix">
+                                <div class="twelve columns clearfix form-field" data-row="2">
+                                    <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Payment_Type__c.label} </Label>
+                                    <apex:InputField styleClass="styled-input required" html-tabindex="27" id="paymentType" label="" value="{!creditApp.Payment_Type__c}">
+                                        <apex:actionSupport event="onchange" rerender="bankInformation" oncomplete="pageLoadFunctions()"/>
+                                    </apex:InputField>
+                                </div>
+                            </div>
+                        </div>
+                        <apex:outputPanel id="bankInformation">
+                        <apex:outputPanel rendered="{!isBankInfoNeeded == true}">
+                            <div class="twelve columns clearfix">
+                                <div class="section-header">
+                                    <i class="fa fa-university"></i>&nbsp;&nbsp;Bank Information
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Financial_Institution__c.label} </label>
+                                        <apex:InputField styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Financial_Institution__c}" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Checking_Account_Number__c.label} <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+                                        <apex:InputField styleClass="styled-input numbers" id="checkingAccountNumber" html-tabindex="29" label="" value="{!creditApp.Checking_Account_Number__c}" html-maxlength="14"/>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="3">
+                                        <label class="styled-label">Confirm {!$ObjectType.CP_Application_Request__c.fields.Checking_Account_Number__c.label} <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+                                        <input type="text" class="styled-input required numbers" id="verifyCheckingAccountNumber" tabindex="30" maxlength="14" />
+                                    </div>
+                                </div>
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.ABA_Routing_Number__c.label} <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+                                        <apex:InputField styleClass="styled-input required numbers" id="abaRoutingNumber" html-tabindex="31" label="" value="{!creditApp.ABA_Routing_Number__c}" html-maxlength="9"/>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <label class="styled-label">Confirm {!$ObjectType.CP_Application_Request__c.fields.ABA_Routing_Number__c.label} <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+                                        <input type="text" class="styled-input required numbers" id="verifyAbaRoutingNumber" maxlength="9" tabindex="32" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                        </apex:outputPanel>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="pgInformation">
+                            <apex:outputPanel rendered="{!isPGRequired == true}">
+                                <div class="twelve columns clearfix">
+                                    <div class="section-header">
+                                        <i class="fas fa-home"></i>&nbsp;&nbsp;Account Guarantor
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix form-field" data-row="0">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_First_Name__c.label} </Label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="33" id="guarantorFirstName" value="{!creditApp.Guarantor_First_Name__c}" html-maxlength="40"/>
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="1">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Last_Name__c.label} </Label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="34" id="guarantorLastName" value="{!creditApp.Guarantor_Last_Name__c}" html-maxlength="40"/>
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="2">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Social_Security_Number__c.label} </Label>
+                                            <apex:InputField html-placeholder="###-##-####" styleClass="styled-input required ssn" html-tabindex="34" id="guarantorSSN" value="{!creditApp.Guarantor_Social_Security_Number__c}" html-maxlength="11" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="3">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Date_of_Birth__c.label} </Label>
+                                            <apex:InputText html-placeholder="MM/DD/YYYY" styleClass="styled-input required date" tabindex="35" id="guarantorDOB" value="{!creditApp.Guarantor_Date_of_Birth__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="4">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Phone__c.label} </Label>
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="36" id="guarantorPhone" html-class="phone" label="" value="{!creditApp.Guarantor_Residential_Phone__c}" html-maxlength="20"/>
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="5">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Mobile_Phone__c.label} </Label>
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="37" id="guarantorMobilePhone" html-class="phone" label="" value="{!creditApp.Guarantor_Mobile_Phone__c}" html-maxlength="20"/>
+                                        </div>
+                                    </div>
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix form-field" data-row="0">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Address__c.label} </Label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="38" id="guarantorAddress" label="" value="{!creditApp.Guarantor_Residential_Address__c}" html-maxlength="100" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="1">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Country__c.label} </Label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="39" id="guarantorCountry" value="{!creditApp.Guarantor_Residential_Country__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="2">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_City__c.label} </Label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="40" id="guarantorCity" label="" value="{!creditApp.Guarantor_Residential_City__c}" html-maxlength="50" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="3">
+                                            <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_State__c.label} </Label>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="41" id="guarantorState" value="{!creditApp.Guarantor_Residential_State__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="4">
+                                            <label class="styled-label">Postal Code</label>
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required postal" html-tabindex="42" id="guarantorPostalCode" label="" value="{!creditApp.Guarantor_Residential_Postal_Code__c}" html-maxlength="10" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!userSessionId == null}">
+                            <div class="twelve columns clearfix">
+                                <div class="section-header">
+                                    <i class="far fa-file-alt"></i>&nbsp;&nbsp;{!$Label.BOCA_TnC}
+                                </div>
+                                <div class="terms-container">
+                                    <apex:outputText value="{!pricingTermsAndConditionsHeader}" escape="false" rendered="{!IF(AND(pricingTermsAndConditionsHeader != null, pricingTermsAndConditionsFooter != null), true, false)}" />
+                                    <apex:outputText value="{!pricingTermsAndConditions}" escape="false" rendered="{!IF(OR(pricingTermsAndConditionsHeader == null, pricingTermsAndConditionsFooter == null), true, false)}" />
+                                    <apex:outputText value="{!pricingTermsAndConditions}" escape="false" rendered="{!IF(OR(pricingTermsAndConditionsHeader == null, pricingTermsAndConditionsFooter == null), true, false)}" />
+                                    <apex:outputText value="{!termsAndConditions}" escape="false" />
+                                    <apex:outputText value="{!pricingTermsAndConditionsFooter}" escape="false" rendered="{!IF(AND(pricingTermsAndConditionsHeader != null, pricingTermsAndConditionsFooter != null), true, false)}" />
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div id="disclaimerErrors" class="stepErrors">
+                                    {!$Label.BOCA_Acknowledge_Disclaimer}
+                                </div>
+                            </div>
+                            <div id="authorizedSigner" class="twelve columns clearfix">
+                                <div class="section-header">
+                                    <i class="far fa-edit"></i>&nbsp;&nbsp;{!$Label.BOCA_Authorized_Signer}
+                                </div>
+                                <div id="authorizedSignerBody" class="disclaimer-container clearfix">
+                                    <div class="disclaimer-checkbox">
+                                        <input id="acknowledgeDisclaimer" type="checkbox" />
+                                    </div>
+                                    <div class="disclaimer-text">
+                                        <apex:outputText value="{!disclaimer}" escape="false" />
+                                    </div>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <div class="twelve columns clearfix">
+                            <div class="clearfix">
+                                <input type="button" class="step-button ge-click-appsubmit" onClick="validate({!currentStep});" value="{!$Label.BOCA_Button_Submit}"/>
+                                <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
+                            </div>
+                        </div>
+                    </apex:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
+    <div class="line1">CLICK HERE TO GIVE US A CALL</div>
+    <div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
+</a>
+<div id="footer">
+    <a href="//onlineservices.secure.force.com/creditapplication/creditApp_TermsAndConditions" title="terms of use" target="_blank"> {!$Label.BOCA_Terms_Of_Use_Link} <span class="glyphicon glyphicon-lock"></span></a>   
+</div>
+</body>
+</html>
+</apex:page>

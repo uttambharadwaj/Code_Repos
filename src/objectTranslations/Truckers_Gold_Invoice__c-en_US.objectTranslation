@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Truckers Gold Invoice</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Truckers Gold Invoices</value>
+    </caseValues>
+    <fields>
+        <label><!-- Customer Status --></label>
+        <name>Customer_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- DR Number --></label>
+        <name>DR_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Dealer --></label>
+        <name>Dealer__c</name>
+    </fields>
+    <fields>
+        <label><!-- Issue Date --></label>
+        <name>Issue_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- The member who made the purchase --></help>
+        <label><!-- Member --></label>
+        <name>Member__c</name>
+        <relationshipLabel><!-- Gold Invoices --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- New Tires Count --></label>
+        <name>New_Tires_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Date --></label>
+        <name>PO_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- PO Number --></label>
+        <name>PO_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payable Amount --></label>
+        <name>Payable_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payable Tax --></label>
+        <name>Payable_Tax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Discount --></label>
+        <name>Payment_Discount__c</name>
+    </fields>
+    <fields>
+        <help><!-- The type of payment method used on the invoice --></help>
+        <label><!-- Payment Method --></label>
+        <name>Payment_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receivable Amount --></label>
+        <name>Receivable_Amount__c</name>
+    </fields>
+    <fields>
+        <label><!-- Receivable Tax --></label>
+        <name>Receivable_Tax__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retread Tire Count --></label>
+        <name>Retread_Tire_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tire Count --></label>
+        <name>Tire_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Tire Specialist --></label>
+        <name>Tire_Specialist__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Invoice Date --></label>
+        <name>Vendor_Invoice_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor Invoice Number --></label>
+        <name>Vendor_Invoice_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vendor --></label>
+        <name>Vendor__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

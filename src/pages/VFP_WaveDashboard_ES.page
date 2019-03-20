@@ -1,0 +1,13 @@
+<apex:page >
+    <wave:dashboard dashboardId="0FK0g000000kAfVGAU" 
+        showTitle="true" 
+        height="850px" 
+        openLinksInNewWindow="true" 
+        />
+  <wave:dashboard dashboardId="0FK0g000000kAfaGAE" 
+        showTitle="true" 
+        height="950px" 
+        openLinksInNewWindow="true" 
+        />
+   
+</apex:page>

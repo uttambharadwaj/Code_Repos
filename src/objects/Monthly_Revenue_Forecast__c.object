@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Monthly Revenue Forecasts</relationshipLabel>
+        <relationshipName>Monthly_Revenue_Forecasts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Budget__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Budget</label>
+        <referenceTo>Budget__c</referenceTo>
+        <relationshipLabel>Monthly Revenue Forecasts</relationshipLabel>
+        <relationshipName>Monthly_Revenue_Forecasts</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Card_issue_fee_per_card__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <externalId>false</externalId>
+        <label>Card issue fee per card</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Close_Date_1_Year__c</fullName>
+        <description>Used to check whether the MRF record&apos;s Revenue Date is less than 12 months after the Close Date for 1st Contract Year Revenue calculation</description>
+        <externalId>false</externalId>
+        <formula>IF(
+  AND(
+    Month(Opportunity__r.CloseDate) = 2,
+    Day(Opportunity__r.CloseDate) = 29
+  ),
+  DATE(
+    YEAR(Opportunity__r.CloseDate) + 1,
+    Month(Opportunity__r.CloseDate),
+    Day(Opportunity__r.CloseDate) - 1
+  ),
+  DATE(
+    YEAR(Opportunity__r.CloseDate) + 1,
+    Month(Opportunity__r.CloseDate),
+    Day(Opportunity__r.CloseDate)
+  )
+)</formula>
+        <label>Close Date + 1 Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FX_on_Spend_Fee__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>FX on Spend Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Implementation_Fee__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Implementation Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Initial_Load_onto_Card__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Initial Load onto Card</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Interchange_Rate_Revenue_as_percentage__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <externalId>false</externalId>
+        <label>Interchange Rate (Revenue as percentage)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Load_Revenue__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <externalId>false</externalId>
+        <label>Load Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Card_Management_Revenue__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Monthly Card Management Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Monthly Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Revenue_converted__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Monthly Revenue (converted)</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Monthly_Settlement1__c</fullName>
+        <externalId>false</externalId>
+        <label>Monthly Settlement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Settlement__c</fullName>
+        <externalId>false</externalId>
+        <formula>Settlement_ATM__c + Settlement_POS__c</formula>
+        <label>Monthly Settlement</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Transaction_Fee_ATM__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Monthly Transaction Fee ATM</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Monthly_Transaction_Fee_POS__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <externalId>false</externalId>
+        <label>Monthly Transaction Fee POS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Net_Monthly_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+
+/* Check Virtual Prepaid VE or All In One 
+*/
+OR( 
+Opportunity__r.RecordTypeId = &apos;012700000005qig&apos;, 
+Opportunity__r.RecordTypeId = &apos;012700000005xWw&apos; 
+),
+
+Transaction_Revenue__c
++
+/* Takes the place of Settlement * (Interchange - Rebate)
+*/
+(Transactions__c * 0.67),
+
+IF(
+/* Check Virtual Debit MC
+*/
+Opportunity__r.RecordTypeId = &apos;012700000005wUG&apos;, 
+
+Transaction_Revenue__c 
++ 
+(Monthly_Settlement1__c  * (Opportunity__r.Interchange_Rate_Revenue_as_a_percentag__c - Opportunity__r.Rebate__c)), 
+
+IF( 
+/* Check all Expense, apart from Transport &amp; Haulage
+*/ 
+
+OR( 
+Opportunity__r.RecordTypeId = &apos;012700000005qic&apos;, 
+Opportunity__r.RecordTypeId = &apos;012700000005rA9&apos;, 
+Opportunity__r.RecordTypeId = &apos;012700000005rAA&apos;, 
+Opportunity__r.RecordTypeId = &apos;012700000005rAB&apos;, 
+Opportunity__r.RecordTypeId = &apos;012700000005qzo&apos;, 
+Opportunity__r.RecordTypeId = &apos;012700000005rAC&apos;, 
+Opportunity__r.RecordTypeId = &apos;012700000005r0N&apos;, 
+Opportunity__r.RecordTypeId = &apos;012700000005qzt&apos; 
+), 
+
+(Monthly_Settlement1__c * Opportunity__r.Interchange_Rate_Revenue_as_a_percentag__c) 
++ 
+((Opportunity__r.Number_of_Cards__c / 12) * Opportunity__r.Card_Issue_Revenue__c) 
++ 
+((Opportunity__r.Number_of_Cards__c / 12) * Opportunity__r.Monthly_Card_Revenue__c), 
+
+IF(
+Opportunity__r.Record_Type_Name__c = &apos;MasterCard&apos;,
+Monthly_Settlement1__c * 0.01,
+
+/* All other record types 
+*/ 
+
+Monthly_Settlement1__c * (Opportunity__r.Interchange_Rate_Revenue_as_a_percentag__c - Opportunity__r.Rebate__c) 
+
+))))</formula>
+        <label>Net Monthly Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Cards__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Number of Cards</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Close_Date_Year__c</fullName>
+        <description>Used by Rollup Helper app.</description>
+        <externalId>false</externalId>
+        <formula>TEXT(YEAR( Opportunity__r.CloseDate))</formula>
+        <label>Opportunity Close Date - Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>Monthly Revenue Forecasts</relationshipLabel>
+        <relationshipName>Monthly_Revenue_Forecasts</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Ramp_up_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>AND(
+  Revenue_Date__c &gt;= Opportunity__r.Implementation_Revenue__c,
+  Revenue_Date__c &lt;= Opportunity__r.Forecast_Full_Service_Revenue_Date__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Ramp-up Flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Rebate__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Rebate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Reload_onto_Card__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Reload onto Card</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Revenue_Date_Close_Date_1_Year__c</fullName>
+        <description>Used to identify MRF records whose Net Monthly Revenue should be included in 1st Contract Year Revenue total</description>
+        <externalId>false</externalId>
+        <formula>IF(
+  Revenue_Date__c &lt;= Close_Date_1_Year__c,
+  TRUE,
+  FALSE
+)</formula>
+        <label>Revenue Date &lt;= Close Date + 1 Year</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Revenue_Date_Year__c</fullName>
+        <description>Used by Rollup Helper app</description>
+        <externalId>false</externalId>
+        <formula>TEXT(YEAR( Revenue_Date__c ))</formula>
+        <label>Revenue Date - Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Revenue_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Revenue Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Revenue_Year_Matches_Close_Year__c</fullName>
+        <description>Used by Rollup Helper app</description>
+        <externalId>false</externalId>
+        <formula>Revenue_Date_Year__c = Opportunity_Close_Date_Year__c</formula>
+        <label>Revenue Year Matches Close Year</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Settlement_ATM__c</fullName>
+        <defaultValue>0.00</defaultValue>
+        <externalId>false</externalId>
+        <label>Settlement ATM</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Settlement_POS__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Settlement POS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Transaction_ATM__c</fullName>
+        <defaultValue>0.0</defaultValue>
+        <externalId>false</externalId>
+        <label>Transaction ATM</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transaction_POS__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Transaction POS</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transaction_Revenue__c</fullName>
+        <description>Populated by code</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Calculation is [MRF] Transactions x [Opportunity] Fees Per Txn Pos</inlineHelpText>
+        <label>Net Transaction Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Transactions__c</fullName>
+        <externalId>false</externalId>
+        <label>Transactions</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unique_Count__c</fullName>
+        <description>Power of One formula for reporting</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unique Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Weighted_Net_Monthly_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <formula>Net_Monthly_Revenue__c * Opportunity__r.Probability</formula>
+        <label>Weighted Net Monthly Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Monthly Revenue Forecast</label>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Monthly Revenue Forecast</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Monthly Revenue Forecasts</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>CP_Disbursement</fullName>
+        <active>true</active>
+        <description>This is a Record type for disbursement product type</description>
+        <label>CP Disbursement</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CP_Non_Disbursement</fullName>
+        <active>true</active>
+        <description>This is a Record type is for non disbursement products</description>
+        <label>CP Non Disbursement</label>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Generate_Forecast</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Generate Forecast</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/10.0/apex.js&quot;)}
+
+if(&apos;{!Opportunity.Record_Type_Name__c}&apos; == &apos;CP_Disbursement&apos;){
+ 
+var result =  sforce.apex.execute(&quot;CP_MonthlyRevenueForecastDisbursement&quot;,&quot;createMonthlyForecastRecordsDisbursement&quot;,{opportunityId:&apos;{!Opportunity.Id}&apos;});
+	if(result == &apos;Success&apos;){
+		window.location.href=window.location.href;
+	}
+	else{
+		alert(result);
+	}
+}else{
+
+var result = sforce.apex.execute(&quot;CP_MonthlyRevenueForecastController&quot;,&quot;createMonthlyForecastRecords&quot;,{opportunityId:&apos;{!Opportunity.Id}&apos;});
+	if(result == &apos;Success&apos;){
+		window.location.href=window.location.href;
+	}
+	else{
+		alert(result);
+	}
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Monthly_Revenue_Forecast</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New Monthly Revenue Forecast</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>https://na5.salesforce.com/a0P/e?
+CF00N70000002OUZU={!Opportunity.Name}
+&amp;CF00N70000002OUZU_lkid={!Opportunity.Id}
+&amp;CF00N70000002OUZn_lkid={!Opportunity.AccountId}
+&amp;CF00N70000002OUZn={!Opportunity.Account}
+&amp;retURL={!Opportunity.Id}</url>
+    </webLinks>
+</CustomObject>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Truckers Fuel</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Truckers Fuel</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Truckers Fuel --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Fuel Month --></label>
+        <name>Fuel_Month__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loves Gallons --></label>
+        <name>Loves_Gallons__c</name>
+    </fields>
+    <fields>
+        <label><!-- Loves Savings --></label>
+        <name>Loves_Savings__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others Gallons --></label>
+        <name>Others_Gallons__c</name>
+    </fields>
+    <fields>
+        <label><!-- Others Savings --></label>
+        <name>Others_Savings__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pilot Gallons --></label>
+        <name>Pilot_Gallons__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pilot Percentage --></label>
+        <name>Pilot_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Pilot Savings --></label>
+        <name>Pilot_Savings__c</name>
+    </fields>
+    <fields>
+        <label><!-- TA Gallons --></label>
+        <name>TA_Gallons__c</name>
+    </fields>
+    <fields>
+        <label><!-- TA Percentage --></label>
+        <name>TA_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- TA Savings --></label>
+        <name>TA_Savings__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Gallons --></label>
+        <name>Total_Gallons__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Savings Gallons --></label>
+        <name>Total_Savings_Gallons__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Savings --></label>
+        <name>Total_Savings__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,595 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="BOCertificationController" action="{!init}" language="{!languageCode}">
+    <html lang="{!languageCode}">
+    <head>
+        <!-- Title -->
+        <title>WEX - Beneficial Owner Certification</title>
+
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta content="width=device-width, user-scalable=no" name="viewport" />
+
+        <!-- Imported Styles -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.BOCertificationCSS)}"/>
+
+        <!-- Fonts -->
+        <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+        <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" />
+
+        <!-- Imported Scripts -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+
+        <!-- jQuery Modal -->
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+        <!-- Additional Scripts -->
+        <script>
+            var page_name = "BOCDD-Page1";
+            var coupon_code = "{!couponCode}";
+            var location_code = "{!locationCode}";
+            var card_program = "{!programParameter}";
+            document.cookie = "debug_logs=debug_logs;domain=.force.com";
+
+            $j = jQuery.noConflict();
+
+            // Any labels need to be defined in this bridge in order
+            // for the JS to pick them up
+            window.$Label = window.$Label || {};
+            $Label.BOCA_Invalid_Date = '{!JSENCODE($Label.BOCA_Invalid_Date)}';
+            $Label.BOCA_Invalid_Email = '{!JSENCODE($Label.BOCA_Invalid_Email)}';
+            $Label.BOCA_Invalid_Number = '{!JSENCODE($Label.BOCA_Invalid_Number)}';
+            $Label.BOCA_Invalid_Phone = '{!JSENCODE($Label.BOCA_Invalid_Phone)}';
+            $Label.BOCA_Invalid_Postal_Code = '{!JSENCODE($Label.BOCA_Invalid_Postal_Code)}';
+            $Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
+            $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
+            $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
+            $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
+            $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
+            $Label.BOCA_Acknowledge_Disclaimer = '{!JSENCODE($Label.BOCA_Acknowledge_Disclaimer)}';
+            $Label.BOCA_Application_Errors = '{!JSENCODE($Label.BOCA_Application_Errors)}';
+
+            window.$Session = window.$Session || {};
+            $Session.Language_Code = '{!JSENCODE(languageCode)}';
+
+            //window.addEventListener( "pageshow", function ( event ) {
+            //var detectedBackButton = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
+            //	if ( detectedBackButton ) {
+            //		window.location.reload();
+            //	}
+            //});
+        </script>
+
+        <script type="text/javascript" src="{!URLFOR($Resource.BOCertificationJS)}" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+        <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.slim.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js" />
+
+        <!-- Local Styles -->
+        <style>
+            {!overrideCSS}
+
+            .section-header {
+            {!program.Brand_Color_1__c}
+            }
+
+            .sidebar-section-header {
+            {!program.Brand_Color_1__c}
+            }
+
+            .panel-heading {
+            {!program.Brand_Color_1__c}
+            }
+
+            .step-button {
+            {!program.Brand_Color_2__c}
+                padding: .5em 2em .55em;
+            }
+
+            #mobile-footer-call {
+            {!program.Brand_Color_1__c}
+            }
+
+            .disabled-button {
+                background: #e9e9e9 !important;
+                pointer-events: none;
+                color: #ccc !important;
+                border: 1px solid #ccc !important;
+            }
+        </style>
+
+        <apex:outputText value="{!program.Analytics_Body_Block__c}" id="headBlock" escape="false"/>
+    </head>
+    <body style="{!IF(eappId != null, 'background: #fff;', '')}">
+    <div class="page-wrap clearfix">
+        <apex:outputPanel rendered="{!eappId == null}">
+            <div id="header" class="clearfix">
+                <div class="container">
+                    <div class="row">
+                        <div class="nine columns clearfix">
+                            <div id="branding">
+                                <apex:image styleClass="logo" value="{!URLFOR($Action.Attachment.Download, brandingLogo)}" rendered="{!brandingLogo != null}" />
+                                <apex:image styleClass="logo" value="{!URLFOR($Resource.WEXLogo)}" rendered="{!brandingLogo == null}" />
+                                <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>
+                            </div>
+                        </div>
+                        <div class="three columns">
+                            <div id="contactUs" style="display: {!IF(AND(program != null, program.Inside_Sales_Phone_Number__c != null), 'block', 'none')};">
+                                <span class="header-small">{!$Label.BOCA_Rather_Talk}</span><br/>
+                                {!$Label.BOCA_Call} {!program.Inside_Sales_Phone_Number__c}<br/>
+                                <apex:outputText value="{!program.Live_Person_Code__c}" escape="false" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!eappId != null}">
+            <apex:image url="{!onlineApplicationOffer.EchoSign_Header_Image__c}" width="850px" style="display:block;margin-left:auto;margin-right:auto;"/><br/>
+        </apex:outputPanel>
+        <div id="content">
+            <div class="container" style="{!IF(eappId != null, 'background: #f1f1f1; padding: 20px 20px; border-radius: 4px !important; border: 1px solid #e1e1e1; border-top: 2px solid #414143;', '')}">
+                <apex:outputPanel rendered="{!eappId != null}">
+                    <div class="row">
+                        <apex:image value="{!$Resource.ReviewSmallFleet}" styleClass="headerImage" style="display:block;margin-left:auto;margin-right:auto;"/>
+                    </div>
+                </apex:outputPanel>
+                <div class="row" style="display: {!IF(program != null, 'block', 'none')};">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="four columns sidebar" style="display: {!IF(AND(program != null, brandingCard != null), 'block', 'none')};">
+                        <!-- Left Column -->
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <div class="twelve columns clearfix">
+                            <apex:image styleClass="cardImage" style="max-width: 200px;" value="{!URLFOR($Action.Attachment.Download, brandingCard)}" rendered="{!brandingCard != null}" />
+                        </div>
+                        <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix brand-text" style="padding: 10px;">
+                                <apex:outputtext value="{!brandingUtility.Brand_Heading__c}" escape="false"></apex:outputtext>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!brandingUtility.Brand_Tagline__c != null}">
+                            <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c == null}">
+                                <div class="twelve columns clearfix ">
+                                    &nbsp;
+                                </div>
+                            </apex:outputPanel>
+                            <div class="twelve columns clearfix brand-text" style="padding: 10px;">
+                                <apex:outputtext value="{!brandingUtility.Brand_Tagline__c}" escape="false"></apex:outputtext>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <apex:outputPanel rendered="{!salesRep != null && salesCode != null}">
+                            <div class="twelve columns clearfix salesRep">
+                                <div class="sidebar-section-header">
+                                    {!$Label.BOCA_Sales_Agent}
+                                </div>
+                                <div class="sidebar-section-static-content">
+                                    <span style="font-size: 18px;">{!salesRep.Name}</span><br/>
+                                    {!$Label.BOCA_Sales_Agent_Email}: {!salesRep.Email}<br/>
+                                    {!$Label.BOCA_Sales_Agent_Phone}: {!salesRep.Phone}<br/>
+                                    {!$Label.BOCA_Sales_Agent_Fax}: {!salesRep.Fax}
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                    </div>
+                    <apex:outputPanel rendered="{!IF(AND(hasError == true, confirmationId == null), true, false)}">
+                        <div class="{!IF(AND(program != null, brandingCard != null), 'eight', 'twelve')} columns form">
+                            &nbsp;
+                        </div>
+                        <div class="{!IF(AND(program != null, brandingCard != null), 'eight', 'twelve')} columns form">
+                            <div class="row">
+                                <h2>An error occured.</h2>
+                            </div><br/>
+                            <apex:outputText escape="false" value="{!errorMessage}" />
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(AND(hasError == false, confirmationId != null), true, false)}">
+                        <div class="{!IF(AND(program != null, brandingCard != null), 'eight', 'twelve')} columns form">
+                            <div class="row spacer-lg">
+                                &nbsp;
+                            </div>
+                            <div class="row">
+                                <h2>{!$Label.BOCA_Confirmation_Thank_You}</h2>
+                            </div>
+                            <div class="row spacer-sm">
+                                <p><br/>
+                                    {!$Label.BOCA_Confirmation_Number}: {!confirmationId}
+                                </p>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(AND(hasError == false, saved != null), true, false)}">
+                        <div class="{!IF(AND(program != null, brandingCard != null), 'eight', 'twelve')} columns form">
+                            <div class="row spacer-lg">
+                                &nbsp;
+                            </div>
+                            <div class="row">
+                                <h2>{!$Label.BOCDD_Thank_You_Header}</h2>
+                            </div>
+                            <div class="row spacer-sm">
+                                <p><br/>
+                                    {!$Label.BOCDD_Thank_You_Body}
+                                </p>
+                            </div>
+                            <apex:outputPanel rendered="{!program != null}">
+                                <div class="row spacer-sm">
+                                    <p>
+                                        {!$Label.BOCDD_Thank_You_Pre} {!brandingUtility.Program_Name__c} {!$Label.BOCDD_Thank_You_Post}
+                                    </p>
+                                </div>
+                            </apex:outputPanel>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(formKeyExpired == true, true, false)}">
+                        <div class="{!IF(AND(program != null, brandingCard != null), 'eight', 'twelve')} columns form">
+                            <div class="row spacer-lg">
+                                &nbsp;
+                            </div>
+                            <div class="row">
+                                <h2>{!$Label.BOCDD_Form_Unavailable_Header}</h2>
+                            </div>
+                            <div class="row spacer-sm">
+                                <p><br/>
+                                    <b>{!$Label.BOCDD_Form_Unavailable_Body}</b>
+                                </p>
+                            </div>
+                            <apex:outputPanel rendered="{!program != null}">
+                                <div class="row spacer-sm">
+                                    <p>
+                                        {!$Label.BOCDD_Apply_Now_Pre} {!brandingUtility.Program_Name__c} {!$Label.BOCDD_Apply_Now_Post}
+                                    </p><br/>
+                                    <a href="https://{!$Label.External_Instance_URL}/creditapplication/{!program.Form_Template__c}?pgm={!program.Brand_Short_Name__c}&lang={!languageCode}">
+                                        <input type="button" id="submit-button" class="step-button ge-click-appsubmit" style="float: left;" value="{!$Label.BOCDD_Apply_Now}" />
+                                    </a>
+                                </div>
+                            </apex:outputPanel>
+                        </div>
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!IF(AND(hasError == false, confirmationId == null, saved == null, formKeyExpired == false), true, false)}">
+                        <div class="{!IF(AND(program != null, brandingCard != null), 'eight', 'twelve')} columns form">
+                            <!-- Right Column -->
+                            <div class="twelve columns clearfix" style="display: {!IF(AND(program != null, program.BOCA_Type__c != 'OTR', brandingCard != null), 'block', 'none')};">
+                                <apex:outputPanel id="indicator">
+                                    <div class="step-indicator clearfix">
+                                        <div class="step">{!$Label.BOCA_Applicant_Information_Breadcrumb}</div>
+                                        <div class="step">{!$Label.BOCA_Business_Information_Breadcrumb}</div>
+                                        <div class="step step-active">{!$Label.BOCDD_Ownership_Info}</div>
+                                        <div class="step step-last">{!$Label.BOCA_Done_In_Minutes}</div>
+                                    </div>
+                                </apex:outputPanel>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <apex:messages />
+                                <div id="errors" class="stepErrors">
+                                    {!$Label.BOCA_Application_Errors}
+                                </div>
+                            </div>
+                            <apex:form id="boForm">
+                                <apex:actionFunction name="rerenderBeneficialOwners" action="{!doNothing}" rerender="beneficialOwners" oncomplete="pageLoadFunctions()" />
+
+                                <apex:actionFunction name="submitForm" action="{!submitForm}" rerender="" oncomplete="submitCreditApp()" />
+                                <apex:actionFunction name="submitCreditApp" action="{!submitCreditApp}" rerender="" />
+
+                                <div class="twelve columns clearfix">
+                                    <div class="section-header">
+                                        {!$Label.BOCDD_Title}
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <div class="{!IF(boEntityId != null, 'twelve', 'seven')} columns clearfix" style="font-size: 13px;">
+                                        <h3>{!$Label.BOCDD_Introduction_Subtitle}</h3><br/>
+                                        <apex:outputText escape="false" value="{!$Label.BOCDD_Introduction}" />
+                                        <apex:outputText escape="false" value="{!$Label.BOCDD_Introduction_Note}" />
+                                        <apex:outputText escape="false" value="{!$Label.BOCDD_Introduction_Link}" />
+                                    </div>
+                                    <div class="five columns clearfix" style="display: {!IF(boEntityId == null, 'block', 'none')};">
+                                        <div style="text-align: center; background: #fff; border: 1px solid #ccc; font-size: 13px; padding: 10px 20px;">
+                                            <h3>{!$Label.BOCDD_Save_For_Later_Box_Title}</h3>
+                                            <p>
+                                                {!$Label.BOCDD_Save_For_Later_Box_Text}
+                                            </p>
+                                            <a href="#ex1" rel="modal:open" style="text-decoration: none;"><div class="step-link">{!$Label.BOCDD_Save_Return}</div></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <apex:outputPanel id="beneficialOwnersSection">
+                                    <apex:outputPanel rendered="{!exemptFromOwnerProngs == false}">
+                                        <div class="twelve columns clearfix">
+                                            <h2>{!$Label.BOCDD_Owner_Label}</h2><br/>
+                                            <p>
+                                                <apex:outputText escape="false" value="{!$Label.BOCDD_Owners_Header}" />
+                                            </p>
+                                        </div>
+                                        <div class="twelve columns clearfix">
+                                            <label class="styled-label">
+                                                <apex:inputCheckbox id="noBeneficialOwners" value="{!ownersNotApplicable}">
+                                                    <apex:actionSupport event="onchange" action="{!removeOwners}" rerender="boOwnerRecords" />
+                                                </apex:inputCheckbox>
+                                                &nbsp;{!$Label.BOCDD_Owner_Not_Applicable}</label>
+                                        </div>
+                                        <apex:outputPanel id="beneficialOwners">
+                                            <apex:outputPanel rendered="{!noOwnerProngs == false}">
+                                                <apex:variable value="0" var="index"/>
+                                                <apex:variable value="1" var="ownerNumber"/>
+                                                <apex:outputPanel id="boOwnerRecords">
+                                                    <apex:outputPanel rendered="{!ownersNotApplicable == false}">
+                                                        <apex:repeat value="{!boOwners}" var="boOwner">
+                                                            <div class="twelve columns clearfix">
+                                                                &nbsp;
+                                                            </div>
+                                                            <div class="twelve columns clearfix">
+                                                                <h3>{!$Label.BOCDD_Beneficial_Owner} {!VALUE(ownerNumber)}</h3>
+                                                                <apex:outputPanel rendered="{!VALUE(index) != 0}">
+                                                                    (<apex:commandLink action="{!removeOwner}" oncomplete="pageLoadFunctions()" rerender="beneficialOwners">
+                                                                        {!$Label.BOCDD_Remove_Owner}
+                                                                        <apex:param name="selectedBoOwnerIndex" value="{!VALUE(index)}" assignTo="{!selectedBoOwnerIndex}" />
+                                                                    </apex:commandLink>)<br/><br/>
+                                                                </apex:outputPanel>
+                                                            </div>
+                                                            <div class="twelve columns clearfix beneficial-owner">
+                                                                <div class="six columns clearfix">
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}1">
+                                                                        <label class="styled-label">{!$Label.BOCDD_First_Name}</label>
+                                                                        <apex:inputText styleClass="styled-input required" value="{!boOwner.firstName}" maxlength="50" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}2">
+                                                                        <label class="styled-label">{!$Label.BOCDD_Last_Name}</label>
+                                                                        <apex:inputText styleClass="styled-input required" value="{!boOwner.lastName}" maxlength="50" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}3">
+                                                                        <label class="styled-label">{!$Label.BOCDD_Date_Of_Birth}</label>
+                                                                        <apex:inputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boOwner.dateOfBirth}" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" style="display: {!IF(boOwner.countryOfResidence == 'United States', 'block', 'none')};" data-row="{!VALUE(index)}4">
+                                                                        <label class="styled-label">{!$Label.BOCDD_Social_Security}</label>
+                                                                        <apex:inputText html-placeholder="###-##-####" styleClass="styled-input required ssn" value="{!boOwner.socialSecurityNumber}" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" style="display: {!IF(boOwner.countryOfResidence == 'United States', 'none', 'block')};" data-row="{!VALUE(index)}5">
+                                                                        <label class="styled-label"><apex:outputText value="{!$Label.BOCDD_Passport_Other_Government_ID}" escape="false" /></label>
+                                                                        <apex:inputText styleClass="styled-input required" value="{!boOwner.passportNumber}" maxlength="50" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" style="display: {!IF(boOwner.countryOfResidence == 'United States', 'none', 'block')};" data-row="{!VALUE(index)}6">
+                                                                        <label class="styled-label">{!$Label.BOCDD_Issuing_Country}</label>
+                                                                        <apex:selectList size="1" styleClass="styled-select-full required" value="{!boOwner.countryOfIssue}">
+                                                                            <apex:selectOptions value="{!countriesList}" />
+                                                                            <apex:actionSupport event="onchange" rerender="beneficialOwners" oncomplete="pageLoadFunctions()" />
+                                                                        </apex:selectList>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="six columns clearfix">
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}1">
+                                                                        <label class="styled-label">{!$Label.BOCDD_Address_Line_1}</label>
+                                                                        <apex:inputText styleClass="styled-input required country-controlled" value="{!boOwner.addressLine1}" maxlength="100" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}2">
+                                                                        <label class="styled-label">{!$Label.BOCDD_Address_Line_2}</label>
+                                                                        <apex:inputText styleClass="styled-input country-controlled" value="{!boOwner.addressLine2}" maxlength="100" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}3">
+                                                                        <label class="styled-label">{!$Label.BOCDD_City}</label>
+                                                                        <apex:inputText styleClass="styled-input required country-controlled" value="{!boOwner.city}" maxlength="40" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}4">
+                                                                        <label class="styled-label">{!$Label.BOCDD_State}</label>
+                                                                        <apex:selectList size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!boOwner.countryOfResidence == 'United States'}">
+                                                                            <apex:selectOptions value="{!stateList}"/>
+                                                                        </apex:selectList>
+                                                                        <apex:selectList size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!boOwner.countryOfResidence == 'Canada'}">
+                                                                            <apex:selectOptions value="{!provinceList}"/>
+                                                                        </apex:selectList>
+                                                                        <apex:inputText size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!IF(AND(boOwner.countryOfResidence != 'United States', boOwner.countryOfResidence != 'Canada'), true, false)}" />
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}5">
+                                                                        <label class="styled-label">{!$Label.BOCDD_Country_of_Residence}</label>
+                                                                        <apex:selectList size="1" styleClass="styled-select-full required country" value="{!boOwner.countryOfResidence}">
+                                                                            <apex:selectOptions value="{!countriesList}" />
+                                                                            <apex:actionSupport action="{!clearAddressFieldsOnCountryChange}" event="onchange" rerender="beneficialOwners" oncomplete="pageLoadFunctions()">
+                                                                                <apex:param name="selectedBoOwnerIndex" value="{!VALUE(index)}" assignTo="{!selectedBoOwnerIndex}" />
+                                                                            </apex:actionSupport>
+                                                                        </apex:selectList>
+                                                                    </div>
+                                                                    <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}6">
+                                                                        <label class="styled-label">{!$Label.BOCDD_Postal_Code}</label>
+                                                                        <apex:inputText styleClass="styled-input country-controlled required {!IF(boOwner.countryOfResidence == 'United States', 'postal', IF(boOwner.countryOfResidence == 'Canada', 'postalCanada', ''))}" value="{!boOwner.postalCode}" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="twelve columns clearfix" style="display: {!IF(OR(boOwner.isController == true, isOwnerAController == false), 'block', 'none')};">
+                                                                <label class="styled-label" style="line-height: 22px; margin-top: -2px;">
+                                                                    <apex:inputCheckbox styleClass="isAlsoController" style="margin-top: 8px;" value="{!boOwner.isController}" label="">
+                                                                        <apex:actionSupport action="{!setOwnerSameAsController}" event="onchange" rerender="beneficialOwners,beneficialController" oncomplete="pageLoadFunctions()">
+                                                                            <apex:param name="selectedBoOwnerIndex" value="{!VALUE(index)}" assignTo="{!selectedBoOwnerIndex}" />
+                                                                        </apex:actionSupport>
+                                                                    </apex:inputCheckbox>&nbsp;{!$Label.BOCDD_Individual_Is_Controller}</label>
+
+                                                            </div>
+                                                            <apex:variable var="index" value="{!VALUE(index) + 1}"/>
+                                                            <apex:variable var="ownerNumber" value="{!VALUE(ownerNumber) + 1}"/>
+                                                        </apex:repeat>
+                                                        <div class="twelve columns clearfix" style="display: {!IF(VALUE(index) == 4, 'none', 'block')};">
+                                                            &nbsp;
+                                                        </div>
+                                                        <div class="twelve columns clearfix" style="display: {!IF(VALUE(index) == 4, 'none', 'block')};">
+                                                            <apex:commandLink styleClass="step-button" value="{!$Label.BOCDD_Add_Owner}" style="float: none; background: #cf202f !important; color: #fff !important;" action="{!addOwner}" oncomplete="pageLoadFunctions()" rerender="beneficialOwners" rendered="{!ownersNotApplicable == false}"></apex:commandLink>
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
+                                    <script> pageLoadFunctions(); </script>
+                                </apex:outputPanel>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <apex:outputPanel id="beneficialController">
+                                    <div class="twelve columns clearfix">
+                                        <h2>{!$Label.BOCDD_Control_Person_Header}</h2><br/>
+                                        <p>
+                                            {!$Label.BOCDD_Control_Person_Instructions}&nbsp;<apex:outputText value="{!$Label.BOCDD_Control_Person}" escape="false" rendered="{!ownersNotApplicable == false}" />
+                                        </p>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="91">
+                                                <label class="styled-label">{!$Label.BOCDD_First_Name}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.firstName}" maxlength="50" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="92">
+                                                <label class="styled-label">{!$Label.BOCDD_Last_Name}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.lastName}" maxlength="50" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="93">
+                                                <label class="styled-label">{!$Label.BOCDD_Control_Title}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.title}" maxlength="50" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="94">
+                                                <label class="styled-label">{!$Label.BOCDD_Date_Of_Birth}</label>
+                                                <apex:inputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boController.dateOfBirth}" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" style="display: {!IF(boController.countryOfResidence == 'United States', 'block', 'none')};" data-row="95">
+                                                <label class="styled-label">{!$Label.BOCDD_Social_Security}</label>
+                                                <apex:inputText html-placeholder="###-##-####" styleClass="styled-input required ssn" value="{!boController.socialSecurityNumber}" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" style="display: {!IF(boController.countryOfResidence == 'United States', 'none', 'block')};" data-row="95">
+                                                <label class="styled-label"><apex:outputText value="{!$Label.BOCDD_Passport_Other_Government_ID}" escape="false" /></label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.passportNumber}" maxlength="50" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" style="display: {!IF(boController.countryOfResidence == 'United States', 'none', 'block')};" data-row="96">
+                                                <label class="styled-label">{!$Label.BOCDD_Issuing_Country}</label>
+                                                <apex:selectList size="1" styleClass="styled-select-full required" value="{!boController.countryOfIssue}">
+                                                    <apex:selectOptions value="{!countriesList}" />
+                                                    <apex:actionSupport event="onchange" rerender="beneficialController" oncomplete="pageLoadFunctions()" />
+                                                </apex:selectList>
+                                            </div>
+                                        </div>
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="91">
+                                                <label class="styled-label">{!$Label.BOCDD_Address_Line_1}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.addressLine1}" maxlength="100" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="92">
+                                                <label class="styled-label">{!$Label.BOCDD_Address_Line_2}</label>
+                                                <apex:inputText styleClass="styled-input" value="{!boController.addressLine2}" maxlength="100" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="93">
+                                                <label class="styled-label">{!$Label.BOCDD_City}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.city}" maxlength="40" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="94">
+                                                <label class="styled-label">{!$Label.BOCDD_State}</label>
+                                                <apex:selectList size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!boController.countryOfResidence == 'United States'}">
+                                                    <apex:selectOptions value="{!stateList}"/>
+                                                </apex:selectList>
+                                                <apex:selectList size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!boController.countryOfResidence == 'Canada'}">
+                                                    <apex:selectOptions value="{!provinceList}"/>
+                                                </apex:selectList>
+                                                <apex:inputText size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!IF(AND(boController.countryOfResidence != 'United States', boController.countryOfResidence != 'Canada'), true, false)}" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="95">
+                                                <label class="styled-label">{!$Label.BOCDD_Country_of_Residence}</label>
+                                                <apex:selectList size="1" styleClass="styled-select-full required" value="{!boController.countryOfResidence}">
+                                                    <apex:selectOptions value="{!countriesList}" />
+                                                    <apex:actionSupport action="{!clearAddressFieldsOnCountryChange}" event="onchange" rerender="beneficialController" oncomplete="pageLoadFunctions()">
+                                                        <apex:param name="selectedBoOwnerIndex" value="-1" assignTo="{!selectedBoOwnerIndex}" />
+                                                    </apex:actionSupport>
+                                                </apex:selectList>
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="96">
+                                                <label class="styled-label">{!$Label.BOCDD_Postal_Code}</label>
+                                                <apex:inputText styleClass="styled-input required {!IF(boController.countryOfResidence == 'United States', 'postal', IF(boController.countryOfResidence == 'Canada', 'postalCanada', ''))}" value="{!boController.postalCode}" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                </apex:outputPanel>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <h2>{!$Label.BOCDD_Certified_Agreed_To}</h2>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix">
+                                            <label class="styled-label">{!$Label.BOCDD_Name_of_Person_Opening_Account}</label>
+                                            <apex:inputText styleClass="styled-input required" value="{!boEntity.Certified_By__c}" />
+                                        </div>
+                                    </div>
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix">
+                                            <label class="styled-label">Date</label>
+                                            <apex:inputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boEntity.Certified_Date__c}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <input id="acknowledgement" type="checkbox" />&nbsp;{!$Label.BOCDD_Certification_Language}
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <input type="button" id="submit-button" class="step-button ge-click-appsubmit" value="{!$Label.BOCDD_Continue}" onclick="validateForm()" />
+                                    <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
+                                </div>
+                                <apex:inputHidden value="{!noOwnerProngs}" id="noOwnerprongs" />
+                                <div id="ex1" class="modal" style="width: 800px !important;">
+                                    <h2>
+                                        {!$Label.BOCDD_Modal_Header}
+                                    </h2><br/>
+                                    <apex:outputText escape="false" value="{!$Label.BOCDD_Modal_Body}" /><br/>
+                                    <a href="#" rel="modal:close" style="text-decoration: none;"><div class="secondary-link" style="float: right;">{!$Label.BOCDD_Modal_Back}</div></a>
+                                    <apex:commandLink action="{!submitForm}">
+                                        <div class="step-link" style="float: right; margin-right: 10px;">{!$Label.BOCDD_Modal_Save}</div>
+                                        <apex:param value="true" assignTo="{!saveForLater}" />
+                                    </apex:commandLink>&nbsp;&nbsp;
+                                </div>
+                            </apex:form>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
+        <div class="line1">{!$Label.BOCDD_Call_Us}</div>
+        <div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
+    </a>
+    </body>
+    </html>
+</apex:page>

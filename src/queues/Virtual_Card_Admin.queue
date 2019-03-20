@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <email>diane.simpsonpye@wexinc.com</email>
+    <name>Virtual Card Admin</name>
+    <queueMembers>
+        <roleAndSubordinatesInternal>
+            <roleAndSubordinateInternal>Account_Management_TL_Virtual_NA</roleAndSubordinateInternal>
+        </roleAndSubordinatesInternal>
+        <users>
+            <user>timothy.bruce@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

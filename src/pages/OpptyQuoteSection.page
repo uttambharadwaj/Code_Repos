@@ -1,0 +1,64 @@
+<apex:page standardController="Opportunity" showHeader="true" sidebar="true" standardStylesheets="true" extensions="OpptyQuoteSectionController">
+ <apex:includeScript value="{!URLFOR($Resource.URLGenAssets, '/js/jquery-1.8.2.min.js')}"  />
+    <style>
+    	.bPageBlock {
+        	border-top: 5px solid #00b2aa !important;
+        }
+        .aBetterInputBox {
+        	border: 1px solid #e1e1e1;
+        	-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+        	padding-top: 3px;
+        	padding-bottom: 3px;
+        	padding-left: 4px;
+        	padding-right: 4px;
+        }
+    </style>
+    <br />
+        
+        <apex:pageBlock title="Telematics Quotes" id="quoteBlock"><br/>
+            <apex:form >
+                <apex:actionFunction name="rerenderQuoteBlock" rerender="quoteBlock" />
+                <apex:commandButton style="margin-top: -4px;" value="New Quote" onClick="openIntegration('/apex/PrepareNewQuote?scontrolCaching=1&id={!selectedOpportunity}', 'height=600,location=no,resizable=yes,toolbar=no,status=no,menubar=no,scrollbars=1', 1); return false;"/>
+                <br/><br/>
+            </apex:form>
+            <apex:form >
+				<apex:pageBlockTable id="quoteTable" value="{!quotes}" var="quote" rendered="{!(quotes.size != 0)}">
+					<apex:column style="width: 8%;" headerValue="Action">
+                		<apex:outputPanel rendered="{!quote.zqu__Status__c == 'New'}">
+                            <apex:commandLink value="Edit" id="Edit" onClick="openIntegration('/apex/PrepareNewQuote?scontrolCaching=1&id={!selectedOpportunity}&quoteid={!quote.Id}', 'height=600,location=no,resizable=yes,toolbar=no,status=no,menubar=no,scrollbars=1', 1); return false;" /> |&nbsp; 
+	                    	<apex:commandLink value="Delete" id="Delete" action="{!deleteQuote}" rerender="quoteTable,quoteRecordsDisplay,errorDisplay,previousButton,nextButton" onclick="if(!confirm('Are you sure?')) return false;">
+	                        	<apex:param name="idToDelete" value="{!quote.Id}" assignTo="{!selectedQuoteId}" />
+                    		</apex:commandLink>
+						</apex:outputpanel>
+            		</apex:column>
+            		<apex:column style="width: 12%;" headerValue="Quote Number">
+                		<a target="_blank" href="/{!quote.Name}">{!quote.QuoteNumber__c}</a>
+            		</apex:column>
+					<apex:column style="width: 25%;" headerValue="Account Name">
+                        {!quote.PrimaryAccountName__c}
+                    </apex:column>
+					<apex:column style="width: 15%;" headerValue="Status" value="{!quote.zqu__Status__c}"/>
+					<apex:column style="width: 20%;" headerValue="Created">
+                		<apex:outputField value="{!quote.CreatedBy.Name}"/>,&nbsp;<apex:outputField value="{!quote.CreatedDate}"/> 
+            		</apex:column>
+					<apex:column style="width: 20%;" headerValue="Last Modified">
+                		<apex:outputField value="{!quote.LastModifiedBy.Name}"/>,&nbsp;<apex:outputField value="{!quote.LastModifiedDate}" />
+					</apex:column>
+            	</apex:pageBlockTable><br/>
+                <apex:outputPanel id="errorDisplay">
+					<apex:outputPanel rendered="{!hasNoRecords == true}">
+	                		<ul>
+                             	<b>No quotes to display!</b>   
+                        	</ul><br/>
+    	        	</apex:outputPanel>
+                </apex:outputPanel>
+                <apex:commandButton id="previousButton" value="Previous Records" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton" action="{!paginationPrevious}" disabled="{!previousPage}" rendered="{!(quotes.size != 0)}"/>&nbsp;&nbsp;
+				<apex:commandButton id="nextButton" value="Next Records" rerender="quoteTable,quoteRecordsDisplay,previousButton,nextButton" action="{!paginationNext}" disabled="{!nextPage}" rendered="{!(quotes.size != 0)}"/>
+            	<apex:outputPanel id="quoteRecordsDisplay" style="float: right;">
+                	 {!recordPosition}
+                </apex:outputPanel>
+        	</apex:form>
+		</apex:pageBlock>
+</apex:page>

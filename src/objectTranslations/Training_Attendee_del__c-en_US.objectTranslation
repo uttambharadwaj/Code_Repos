@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Training Attendee</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Training Attendees</value>
+    </caseValues>
+    <fields>
+        <label><!-- Additional Notes --></label>
+        <name>Additional_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Attended --></label>
+        <name>Attended__c</name>
+    </fields>
+    <fields>
+        <label><!-- Confirmed Attending --></label>
+        <name>Confirmed_Attending__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact --></label>
+        <name>Contact__c</name>
+        <relationshipLabel><!-- Trainings --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Training Date --></label>
+        <name>Training_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Training Name --></label>
+        <name>Training_Name__c</name>
+        <relationshipLabel><!-- Training Attendees --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Training Attendee Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Notes --></label>
+            <section>Notes</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

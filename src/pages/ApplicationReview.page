@@ -1,0 +1,101 @@
+<apex:page controller="OnlineApplicationControllerExtension" action="{!verifyUrl}" sidebar="false" showHeader="false" cache="false">
+
+    <script>
+        function unhideWaitMessage() {
+            var item = document.getElementById('wait1');
+            item.className = 'unhiddenWait';
+            item = document.getElementById('wait2');
+            item.className = 'unhiddenWait';        
+            return true;
+        }
+    </script>
+
+    <apex:stylesheet value="{!$Resource.ApplicationStyles}"/>
+
+    <div style="{!IF(isFrameless,'width:900px;margin:0 auto;','')}">
+    <apex:image url="{!headerImageUrl}" width="850px" rendered="{!isFrameless}" style="display:block;margin-left:auto;margin-right:auto;"/>
+    <apex:form >
+    
+        <apex:pageBlock id="block1">
+
+            <div class="headerBox">
+                <apex:image value="{!IF(isFiveStepProcess,$Resource.ReviewSmallFleet,$Resource.ReviewLargeFleet)}" 
+                            styleClass="headerImage"/>                      
+                <apex:pageMessages />   
+                <apex:outputText value="{!$Label.ReviewInstructions1} " styleClass="largeInstructions"/>        
+                <apex:outputText value="{!$Label.ReviewInstructions2} " styleClass="largeInstructions"/>
+                <apex:outputText value="{!$Label.ReviewInstructions3}" styleClass="largeInstructions"/>
+                <br/><br/>
+            </div>
+
+            <apex:outputText value="{!$Label.AccountTermsAndConditions}" styleClass="largeInstructions"/>
+            <apex:iframe src="{!termsAndConditionsUrl}" width="100%" height="150px" scrolling="true" frameborder="true" 
+                         title="{!$Label.AccountTermsAndConditions}"/>
+
+            <div class="importantBox">            
+                <apex:actionRegion >                
+                    <apex:inputCheckbox value="{!appl.I_Have_Read_and_Agree__c}">
+                        <apex:actionSupport event="onclick" rerender="block1,block2" status="checkBoxStatus"/>
+                    </apex:inputCheckbox>                    
+                </apex:actionRegion>
+                <apex:outputLabel value="{!$Label.IOnBehalfOfMyself}" style="margin-right:20px;"/>
+                
+                <apex:outputLink value="{!termsAndConditionsUrlPrint}" target="_blank">
+                    <apex:outputText value="{!$Label.PrintTermsAndConditions}" styleClass="generalLink"/>                        
+                </apex:outputLink>
+                
+                <apex:actionStatus id="checkBoxStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>                
+            </div>
+
+            <apex:outputText escape="false" value="{!disclosure}" styleClass="disclosureText"/>
+
+            <apex:pageBlockButtons location="bottom">             
+                <apex:commandButton value="{!$Label.Next}" action="{!goNext}" style="font-size:18px;" disabled="{!!areTermsChecked}"
+                                    onclick="unhideWaitMessage();" title="{!$Label.SignAndSubmitInstructions}"/>
+                <span id="wait1" class="hiddenWait">{!$Label.YourApplicationIs}</span>
+            </apex:pageBlockButtons>
+
+        </apex:pageBlock>
+
+    </apex:form>
+
+    <div class="headerBox">
+        <apex:outputText value="{!$Label.ReviewInstructionsEdit}" styleClass="largeInstructions"/>
+    </div>
+                      
+    <apex:composition template="ApplicationCompanyInformation"/>
+    <apex:composition template="ApplicationAccountSetup"/>
+    <apex:outputPanel rendered="{!AND(isFiveStepProcess,NOT(wasCardSetupBypassedForMC))}">
+        <apex:composition template="ApplicationCardSetup"/>
+    </apex:outputPanel>    
+
+    <apex:form >    
+        <apex:pageBlock id="block2">
+            <apex:pageBlockButtons location="bottom"> 
+                <span id="wait2" class="hiddenWait">{!$Label.YourApplicationIs}</span>            
+                <apex:commandButton value="{!$Label.Next}" action="{!goNext}" style="font-size:18px;" disabled="{!!areTermsChecked}"
+                                    onclick="unhideWaitMessage();" title="{!$Label.SignAndSubmitInstructions}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+    </div>
+
+    <!-- THREATMETRIX TAGS START -->
+    <div style="background:url(https://h.online-metrix.net/fp/clear.png?org_id={!threatMetrixOrgId}&session_id={!threatMetrixSessionId}&m=1)">
+    </div>
+
+    <img src="https://h.online-metrix.net/fp/clear.png?org_id={!threatMetrixOrgId}&session_id={!threatMetrixSessionId}&m=2"/>
+
+    <script src="https://h.online-metrix.net/fp/check.js?org_id={!threatMetrixOrgId}&session_id={!threatMetrixSessionId}">
+    </script>
+
+    <object type="application/x-shockwave-flash" 
+            data="https://h.online-metrix.net/fp/fp.swf?org_id={!threatMetrixOrgId}&session_id={!threatMetrixSessionId}" width="1" height="1">
+        <param name="movie" value="https://h.online-metrix.net/fp/fp.swf?org_id={!threatMetrixOrgId}&session_id={!threatMetrixSessionId}" />
+        <param name="wmode" value="transparent" />
+    <div></div>
+    </object>    
+    <!-- THREATMETRIX TAGS END -->
+
+
+</apex:page>

@@ -1,0 +1,27 @@
+<apex:page sidebar="false" showChat="false" showHeader="false" standardStylesheets="false" title="{!$Label.site.file_not_found}" cache="false" controller="PartnersCommFileNotFoundController">
+	<apex:composition template="{!$Site.Template}">
+		<apex:define name="body">
+			<center>
+				<div style="padding: 100px;">					
+					<apex:panelGrid bgcolor="white" columns="1">						
+						<apex:panelGrid width="{!Settings.Component_Width__c}" cellpadding="0" cellspacing="0" bgcolor="white" columns="1" styleClass="topPanelContainer">							
+							<apex:outputPanel layout="block" styleClass="topPanel">
+								<apex:panelGrid width="{!Settings.Component_Width__c}" cellpadding="0" cellspacing="0" bgcolor="white" columns="1">								
+									<c:PartnersContentContainer width="500" height="100">
+										<apex:panelGroup >
+											<br />
+											Page not found: {!$Site.OriginalUrl}											
+											<br />
+											<br />
+											{!$Label.site.stay_tuned} Please <a href="mailto:{!$Site.AdminEmailAddress}">{!$Label.site.email_us}</a> if you need to get in touch.												
+										</apex:panelGroup>
+									</c:PartnersContentContainer>
+								</apex:panelGrid>
+							</apex:outputPanel>
+						</apex:panelGrid>
+					</apex:panelGrid>					
+				</div>
+			</center>			
+		</apex:define>
+	</apex:composition>			
+</apex:page>

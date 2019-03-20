@@ -1,0 +1,9 @@
+<apex:page controller="OnlineApplicationControllerExtension" sidebar="false" showHeader="false" cache="false">
+                      
+    <apex:outputText escape="false" value="{!termsAndConditionsContent}"/>
+    
+    <script>
+        {!printJavascript}
+    </script>
+    
+</apex:page>

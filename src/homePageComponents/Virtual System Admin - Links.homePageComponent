@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <links>Setup</links>
+    <links>Users_Login</links>
+    <links>Inbound_Change_Sets</links>
+    <links>Virtual_Custom_Settings</links>
+    <links>Setup_Audit_Trail</links>
+    <links>User_Guides_Evernote</links>
+    <links>Support</links>
+    <links>Edit_Links</links>
+    <pageComponentType>links</pageComponentType>
+</HomePageComponent>

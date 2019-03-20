@@ -1,0 +1,433 @@
+<apex:page controller="BrandingController" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0">
+    <html>
+    <head>
+        <!-- Title -->
+        <title>WEX - Comprendre la certification de propriété effective - FAQ</title>
+
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta content="width=device-width, user-scalable=no" name="viewport" />
+
+        <!-- Imported Styles -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.BOCertificationCSS)}"/>
+
+        <!-- Fonts -->
+        <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+        <link href="//fonts.googleapis.com/css?family=Droid+Sans:400,700" rel="stylesheet" />
+
+        <!-- Imported Scripts -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+
+        <!-- Additional Scripts -->
+        <script>
+            var page_name = "BOCDD-FAQ";
+            document.cookie = "debug_logs=debug_logs;domain=.force.com";
+
+            $j = jQuery.noConflict();
+
+        </script>
+
+        <!-- Google Tag Manager --> 
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-M2VQ3N" 
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> 
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': 
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], 
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src= 
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f); 
+})(window,document,'script','dataLayer','GTM-M2VQ3N');</script> 
+<!-- End Google Tag Manager -->
+        
+        <script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.slim.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" />
+
+        <!-- Local Styles -->
+        <style>
+            .section-header {
+            {!program.Brand_Color_1__c}
+            }
+
+            .sidebar-section-header {
+            {!program.Brand_Color_1__c}
+            }
+
+            .panel-heading {
+            {!program.Brand_Color_1__c}
+            }
+
+            .step-button {
+            {!program.Brand_Color_2__c}
+            }
+
+            #mobile-footer-call {
+            {!program.Brand_Color_1__c}
+            }
+
+            .disabled-button {
+                background: #e9e9e9 !important;
+                pointer-events: none;
+                color: #ccc !important;
+                border: 1px solid #ccc !important;
+            }
+
+            ul { list-style-type: disc; padding-left: 4px; }
+
+            ul li {
+                /*
+                 * We want the bullets outside of the list,
+                 * so the text is aligned. Now the actual bullet
+                 * is outside of the list’s container
+                 */
+                list-style-position: outside;
+
+                /*
+                 * Because the bullet is outside of the list’s
+                 * container, indent the list entirely
+                 */
+                margin-left: 1em;
+            }
+
+            p {
+                font-size: 15px !important;
+            }
+
+            h3 { margin-bottom: 8px !important;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="page-wrap clearfix">
+        <div id="header" class="clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="nine columns clearfix">
+                        <div id="branding">
+                            <apex:image styleClass="logo" value="{!URLFOR($Action.Attachment.Download, brandingLogo)}" rendered="{!brandingLogo != null}" />
+                            <apex:image styleClass="logo" value="{!URLFOR($Resource.WEXLogo)}" rendered="{!brandingLogo == null}" />
+                            <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>
+                        </div>
+                    </div>
+                    <div class="three columns">
+                        &nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div class="container" style="font-size: 15px !important;">
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns form">
+                        <h2>Comprendre la certification de propriété effective</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p style="font-size: 15px !important;">
+                            À compter du 11 mai 2018, la législation américaine exigera que <b>toutes les banques</b> vérifient la propriété de certains types d’entreprises à l’ouverture d’un nouveau compte et consignent l’information obtenue.
+                        </p>
+                        <p style="font-size: 15px !important;">
+                            Il faut savoir que les entités juridiques peuvent servir de façade pour camoufler le financement d’activités terroristes, le blanchiment d’argent, l’évasion fiscale, la corruption, la fraude et autres crimes de nature financière. La divulgation de l’identité des personnes qui détiennent ou contrôlent une entité juridique, c’est-à-dire les propriétaires effectifs, permet aux forces publiques d’enquêter et de poursuivre en justice les auteurs de tels crimes.
+                        </p>
+                        <p style="font-size: 15px !important;">
+                            Cette foire aux questions vous aidera à mieux comprendre ces nouvelles exigences.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3>FAQs</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns" style="line-height: 28px;">
+                        1.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#1">Quels sont les renseignements demandés?</a><br/>
+                        2.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#2">Qui est responsable de fournir ces renseignements?</a><br/>
+                        3.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#3">Qu’entend-on par « entité juridique »?</a><br/>
+                        4.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#4">Quelles entités ne sont pas assujetties à ces exigences?</a><br/>
+                        5.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#5">Les organismes sans but lucratif sont-ils également exemptés?</a><br/>
+                        6.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#6">Qu’est-ce qu’un propriétaire effectif?</a><br/>
+                        7.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#7">Qu’entend-on par « personne exerçant un contrôle »?</a><br/>
+                        8.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#8">Ma demande peut-elle être approuvée sans ces renseignements?</a><br/>
+                        9.&nbsp;&nbsp;&nbsp;&nbsp;<a href="#9">Que faire s’il manque une partie des renseignements au moment de remplir la demande?</a><br/>
+                        10.&nbsp;&nbsp;<a href="#10">Que faire si une même personne est à la fois le propriétaire effectif et la personne exerçant un contrôle?</a><br/>
+                        11.&nbsp;&nbsp;<a href="#11">Les entités qui détiennent déjà un compte sont-elles aussi tenues de fournir ces renseignements?</a><br/>
+                        12.&nbsp;&nbsp;<a href="#12">Pouvez-vous donner des exemples de propriétaires effectifs?</a><br/>
+                        13.&nbsp;&nbsp;<a href="#13">Où puis-je trouver le règlement officiel entourant ces exigences?</a><br/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="1"></a>1. Quels sont les renseignements demandés?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>En remplissant votre demande, vous serez tenu d’identifier jusqu’à quatre propriétaires effectifs de votre entreprise, ainsi qu’une autre personne fortement impliquée dans la gestion de cette entreprise.</p>
+                        <p><b>Les personnes américaines</b> doivent fournir les renseignements suivants :</p>
+                        <ul>
+                            <li>Nom</li>
+                            <li>Adresse résidentielle (pas de boîte postale)</li>
+                            <li>Date de naissance</li>
+                            <li>Numéro de sécurité sociale </li>
+                        </ul>
+                        <p>Tous les citoyens américains et tous les étrangers résidant aux États-Unis sont considérés comme des personnes américaines.</p>
+
+                        <p><b>Les Canadiens et autres personnes à l’étranger </b>, doivent fournir les renseignements suivants :</p>
+                        <ul>
+                            <li>Nom</li>
+                            <li>Adresse du domicile (pas de boîte postale)</li>
+                            <li>Date de naissance</li>
+                            <li>Numéro de passeport et pays d’émission (sont également acceptés : certificat d’inscription au registre des étrangers émis par le gouvernement américain, toute autre pièce d’identité émise par un gouvernement étranger affichant la nationalité ou le statut de résident ainsi qu’une photographie ou une autre mesure de protection semblable.)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="2"></a>2. Qui est responsable de fournir ces renseignements?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Ces renseignements doivent être fournis par la personne qui demande l’ouverture d’un nouveau compte pour une entité juridique.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="3"></a>3. Qu’entend-on par « entité juridique »?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Il s’agit d’une personne morale. Les entités juridiques suivantes sont tenues de fournir le formulaire :</p>
+                        <ul>
+                            <li>Entreprises</li>
+                            <li>Sociétés à responsabilité limitée (ou autre entité créée après le dépôt d’un document auprès d’un secrétariat d’État ou d’un bureau semblable)</li>
+                            <li>Sociétés en nom collectif</li>
+                            <li>Toute autre entité semblable établie aux États-Unis ou à l’étranger</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="4"></a>4. Quelles entités ne sont pas assujetties à cette exigence?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Les entités juridiques suivantes ne sont pas tenues de soumettre le formulaire :</p>
+                        <ul>
+                            <li>Trusts discrétionnaires</li>
+                            <li>Banques, sociétés de portefeuille bancaires ou coopératives de crédit</li>
+                            <li>Organismes publics fédéraux, provinciaux ou locaux</li>
+                            <li>Sociétés ouvertes ou filiales à participation majoritaire</li>
+                            <li>Sociétés de placement ou conseillers en placement</li>
+                            <li>Cabinets comptables</li>
+                            <li>Compagnies d’assurance</li>
+                        </ul>
+                        <p>REMARQUE : Les entités suivantes ne sont pas considérées comme des entités juridiques et n’ont donc pas à fournir ces renseignements:</p>
+                        <ul>
+                            <li>Personnes physiques</li>
+                            <li>Entreprises à propriétaire unique</li>
+                            <li>Associations sans personnalité morale</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="5"></a>5. Les organismes sans but lucratif sont-ils également exemptés?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Les organismes sans but lucratif bénéficient d’une exemption partielle. Ils sont uniquement tenus d’identifier une personne exerçant un contrôle.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="6"></a>6. Qu’est-ce qu’un propriétaire effectif?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Un propriétaire effectif désigne toute personne qui détient, directement ou non, au moins 25 % des parts de l’entité juridique.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="7"></a>7. Qu’entend-on par « personne exerçant un contrôle »?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Il s’agit d’une personne qui joue un rôle important dans la gestion de l’entreprise (cadre dirigeant, directeur principal ou toute autre personne qui exerce régulièrement des fonctions similaires).</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="8"></a>8. Ma demande peut-elle être approuvée sans ces renseignements?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Non. WEX Bank ne peut ni examiner ni approuver une demande avant la réception et la vérification des renseignements sur le propriétaire effectif.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="9"></a>9. Que faire s’il manque une partie des renseignements au moment de remplir la demande?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Si vous avez besoin de plus de temps pour recueillir l’information requise, vous pouvez sauvegarder vos renseignements en cours de route. Vous recevrez un lien sécurisé qui vous permettra de retourner au formulaire en ligne, d’ajouter les renseignements manquants et de soumettre votre demande. Ce lien restera actif pendant une durée de 30 jours, après quoi vous devrez remplir une nouvelle demande.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="10"></a>10. Que faire si une même personne est à la fois le propriétaire effectif et la personne exerçant un contrôle?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Dans un tel cas, vous devrez entrer l’information dans les deux sections.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="11"></a>11. Les entités qui détiennent déjà un compte sont-elles aussi tenues de fournir ces renseignements?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>Les entités juridiques qui ont ouvert un compte WEX Bank avant le 11 mai 2018 ne sont pas tenues de fournir ces renseignements. Toutefois, si la même entité juridique ouvre un nouveau compte ou fait l’objet d’un changement de structure de propriété après cette date, les renseignements en question devront être fournis.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="12"></a>12. Pouvez-vous donner des exemples de propriétaires effectifs?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p><b>Exemple 1:</b>M. et Mme Paré détiennent chacun 50 % des parts de leur entreprise Môman et Pôpa, une société à responsabilité limitée dont M. Paré est le président et Mme Paré la vice-présidente. </p>
+                        <p>Ils devront donc identifier de deux à trois personnes :</p>
+                        <ul>
+                            <li>M. Paré et Mme Paré, chacun en tant que propriétaire effectif;</li>
+                            <li>l’un ou l’autre des deux, ou une autre personne fortement impliquée dans la gestion de cette entreprise, en tant que personne exerçant un contrôle.</li>
+                        </ul>
+
+                        <p><b>Exemple 2:</b>La Joie du Bonheur, inc. est une société fermée dont Jean L’Heureux détient 35 % des parts et dont aucun autre actionnaire ne détient à lui seul plus de 24 % des parts. Sa femme Béatrice Sanschagrin est la PDG de l’entreprise.</p>
+                        <p>La Joie du Bonheur, inc. devra identifier deux personnes :</p>
+                        <ul>
+                            <li>Jean L’Heureux en tant que propriétaire effectif;</li>
+                            <li>Béatrice Sanschagrin (ou une autre personne fortement impliquée dans la gestion de l’entreprise) en tant que personne exerçant un contrôle.</li>
+                        </ul>
+
+                        <p><b>Exemple 3:</b>La Joie du Bonheur, inc. est une société fermée dont Jean L’Heureux détient 35 % des parts et dont aucun autre actionnaire ne détient à lui seul plus de 24 % des parts. Sa femme Béatrice Sanschagrin est la PDG de l’entreprise.</p>
+                        <p>Quentin et Frères, inc. sera tenue d’identifier une seule personne :</p>
+                        <ul>
+                            <li>Benjamin Quentin en tant que personne exerçant un contrôle;</li>
+                            <li>aucun propriétaire effectif requis puisqu’aucun des frères ne détient 25 % ou plus des parts de l’entreprise.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <h3><a id="13"></a>13. Où puis-je trouver le règlement officiel entourant ces exigences?</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="twelve columns">
+                        <p>
+                            Ces exigences ont été formulées par le FinCEN, un bureau du département du Trésor des États-Unis, dans la nouvelle réglementation entourant le secret bancaire (Bank Secrecy Act). Vous pouvez consulter la version finale du règlement <a href="https://www.federalregister.gov/documents/2016/05/11/2016-10567/customer-due-diligence-requirements-for-financial-institutions" target="_blank">ici</a> (publié en anglais seulement).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+    </html>
+</apex:page>

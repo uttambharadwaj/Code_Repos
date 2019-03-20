@@ -1,0 +1,383 @@
+<apex:page showHeader="true" sidebar="true" standardController="Opportunity" extensions="newQuoteCustomController" >
+    
+    <script>
+    function taxExemptPopUp(result) {
+    alert("A Tax Certificate Id must be set if the account is set as Tax Exempt.  Please enter a Tax Certificate Id.");
+    }
+    
+    function popupCancelCheck(){
+     var result=confirm("Are you sure you want to cancel this quote?  (This will delete the current quote)");
+        if(result){
+            return true;
+        }
+        return false;
+    }
+    </script>
+    <apex:form id="everything">
+        <apex:outputPanel id="errorMessage">
+            <zqu:Notification options="{!notificationOptions}" id="taxNotification"/>
+            <apex:actionFunction name="stayOnCurrentPage" action="{!confirmError}" immediate="true"/>
+        </apex:outputPanel>
+        <apex:pageBlock title="Quote Page Two" id="quotePage2">
+            <apex:pageBlockSection id="productSelect">
+                <apex:outputText value="{!vendor}" label="Vendor"/>
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Product Category</apex:outputLabel>
+                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:selectList size="1" value="{!chosenCategory}">
+                            <apex:actionSupport event="onchange" action="{!panelRefresh}" reRender="productSelect,quotePage2,everything">
+                                <apex:param name="priceUpdateParam" assignto="{!priceUpdateParam}" value="adjustProductCategory"/>
+                            </apex:actionSupport>
+                            <apex:selectOptions value="{!productCategories}"/>
+                        </apex:selectList>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Quantity</apex:outputLabel>
+                    <apex:outputpanel layout="block" styleClass="requiredInput" style="margin-left:6px;">
+                        
+                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:inputText value="{!quantity}" label="Quantity" id="quantity">
+                            <apex:actionSupport event="onchange" action="{!panelRefresh}"  reRender="productSelect,shippingSelect2">
+                                <apex:param name="priceUpdateParam" assignto="{!priceUpdateParam}" value="adjustQuantity"/>
+                            </apex:actionSupport>
+                        </apex:inputText>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Product Name</apex:outputLabel>
+                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:selectList size="1" value="{!chosenProduct}">
+                            <apex:actionSupport event="onchange" action="{!panelRefresh}" reRender="productSelect">
+                                <apex:param name="priceUpdateParam" assignto="{!priceUpdateParam}" value="adjustProduct"/>
+                            </apex:actionSupport>
+                            <apex:selectOptions value="{!products}"/>
+                        </apex:selectList>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <apex:outputText value="{0, Number, Currency}" label="List Unit Cost">
+                    <apex:param value="{!listUnitCost}"/>
+                </apex:outputText>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Product Rate Plan</apex:outputLabel> 
+                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:selectList size="1" value="{!chosenProdRatePlan}">
+                            <apex:selectOptions value="{!prodRatePlan}"/>
+                            <apex:actionSupport event="onchange" action="{!defaultValues}" rerender="productSelect, shippingSelect, shippingSelect2, quotePage2">
+                                <apex:param name="priceUpdateParam" assignto="{!priceUpdateParam}" value="adjustProductRatePlan"/>
+                            </apex:actionSupport>
+                        </apex:selectList>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Adjusted Unit Cost</apex:outputLabel> 
+                    <apex:outputpanel layout="block" style="padding-left:5px">
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputText value="$"/>
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                            <apex:inputText value="{!adjustedUnitCost}" label="Adjusted Unit Cost" id="AJC">
+                                <apex:actionSupport event="onchange" action="{!panelRefresh}" rerender="productSelect">
+                                    <apex:param name="priceUpdateParam" assignto="{!priceUpdateParam}" value="adjustUnit"/>
+                                </apex:actionSupport>
+                            </apex:inputText>
+                        </apex:outputpanel>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <apex:outputText value="{!paymentTerm}" label="Payment Term"/>
+                                 
+                <apex:outputText value="{0, Number, Currency}" label="Total Price" id="totalPrice" style="border-left:3px solid #c00;padding-left:1px">
+                    <apex:param value="{!totalPrice}"/>
+                    <apex:actionSupport event="onchange" action="{!panelRefresh}"  reRender="productSelect"/>
+                </apex:outputText>
+                
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Discount %</apex:outputLabel> 
+                    <apex:outputpanel layout="block" style="margin-left:6px;">
+                         <apex:inputText value="{!discount}" label="Discount %" id="discount">
+                            <apex:actionSupport event="onchange" action="{!refreshUnitCost}"  reRender="productSelect"/>
+                        </apex:inputText>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Total MO Payment</apex:outputLabel> 
+                    <apex:outputpanel layout="block">
+                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:outputText value="$"/>
+                        <apex:inputText value="{!TotalMoPayment}" label="Total MO Payment" id="TotalMoP">
+                            <apex:actionSupport event="onchange" action="{!panelRefresh}" reRender="productSelect">
+                                <apex:param name="priceUpdateParam" assignto="{!priceUpdateParam}" value="{!monthlyPayment}"/>
+                            </apex:actionSupport>
+                        </apex:inputText>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+                <!--<apex:outputText value="{0, Number, Currency}" label="Total MO Payment Each Unit" id="TMPEU">
+                    <apex:param value="{!TotalMoPaymentEachUnit}"/>
+                </apex:outputText>-->
+            </apex:pageBlockSection>
+            <br />
+            <apex:pageBlockSection columns="2" id="shippingSelect"> 
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Shipping Location</apex:outputLabel>
+                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:selectList size="1" value="{!chosenShipping}">
+                            <apex:selectOptions value="{!ShippingLocations}"/>
+                        </apex:selectList>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem ></apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2" id="shippingSelect2" rendered="{!shippingProductChosen = true}"> 
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Shipping Carrier</apex:outputLabel> 
+                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:selectList size="1" value="{!chosencourier}">
+                            <apex:selectOptions value="{!courier}"/>
+                             <apex:actionSupport event="onchange" rerender="shippingSelect2"/>
+                        </apex:selectList>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <apex:outputText value="{0, Number, Currency}"  label="List Shipping Cost">
+                    <apex:param value="{!listShippingCost}"/>
+                </apex:outputText>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Shipping Service</apex:outputLabel>  
+                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                        <apex:selectList size="1" value="{!chosenShippingService}">
+                            <apex:selectOptions value="{!shippingService}"/>
+                            <apex:actionSupport event="onchange" action="{!setShippingServiceName}" rerender="shippingSelect2"/>
+                        </apex:selectList>
+                    </apex:outputpanel>
+                </apex:pageBlockSectionItem>
+                <!--<apex:pageBlockSectionItem >
+                    <apex:outputLabel >Shipping Cost</apex:outputLabel>
+                    <apex:outputpanel layout="block">
+                        <apex:outputpanel layout="block" styleClass="requiredInput">
+                            <apex:outputText value="$"/>
+                            <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                            <apex:inputText value="{!ShippingCost}"  label="Shipping Cost"/>
+                        </apex:outputpanel>
+                     </apex:outputpanel> 
+                </apex:pageBlockSectionItem>-->
+            </apex:pageBlockSection>
+            <div align="center">
+                <apex:commandButton value="Add Item" action="{!addProduct}" rerender="everything" rendered="{!isEditingProduct==false}" />
+                <apex:commandButton value="Save Changes" action="{!addProduct}" rerender="everything" rendered="{!isEditingProduct}" />
+                <apex:commandButton value="Clear" action="{!clear}"/>
+             </div>
+            <br/>
+            <br/>
+            <apex:pageBlock title="Shipping Locations" rendered="{!productMapSize}" id="productListSection">
+                <apex:pageBlockSection columns="1">
+                    <!-- Shipment Address -->
+                    <apex:repeat value="{!productsForEachShipment}" var="shipId">
+                        <apex:pageBlockSection columns="2" id="thisSaveButtonSection">
+                            <apex:outputText value="{!productsForEachShipment[shipId][0].ShipContactMail}" style="padding-right:15px;" label="" rendered="{!productsForEachShipment[shipId][0].shipmentEdit = false}">
+                                <apex:outputText value="{!productsForEachShipment[shipId][0].ShipContactPhone}" style="padding-right:15px;" label="">
+                                    <apex:outputText value="{!productsForEachShipment[shipId][0].ShipContact}" style="padding-right:15px;" label=""></apex:outputText>
+                                </apex:outputText>
+                            </apex:outputText>
+                            
+                            <apex:commandButton value="Edit" action="{!editShipment}" rendered="{!productsForEachShipment[shipId][0].shipmentEdit = false}" rerender="thisSaveButtonSection,errorMessage">
+                                <apex:param name="shipmentEdit" assignTo="{!editShipmentId}" value="{!shipId}"/>
+                            </apex:commandButton>
+                            
+                            <apex:outputText value="{!productsForEachShipment[shipId][0].ShipZip}" style="padding-right:15px;" label="" rendered="{!productsForEachShipment[shipId][0].shipmentEdit = false}">
+                                <apex:outputText value="{!productsForEachShipment[shipId][0].ShipState}" style="padding-right:15px;" label="">
+                                    <apex:outputText value="{!productsForEachShipment[shipId][0].ShipCity}" style="padding-right:15px;" label="">
+                                        <apex:outputText value="{!productsForEachShipment[shipId][0].ShipAdressLine1}" style="padding-right:15px;" label=""></apex:outputText>
+                                    </apex:outputText>
+                                </apex:outputText>
+                            </apex:outputText>
+                         
+                            <apex:pageBlockSection rendered="{!productsForEachShipment[shipId][0].shipmentEdit = true}">
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Contact</apex:outputLabel>  
+                                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                        <apex:inputText value="{!productsForEachShipment[shipId][0].ShipContact}"  label="Contact"/>
+                                    </apex:outputpanel>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Contact Email</apex:outputLabel>  
+                                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                        <apex:inputText value="{!productsForEachShipment[shipId][0].ShipContactMail}"  label="Contact Email"/>
+                                    </apex:outputpanel>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Contact Phone</apex:outputLabel>  
+                                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                        <apex:inputText value="{!productsForEachShipment[shipId][0].ShipContactPhone}"  label="Contact Phone"/>
+                                    </apex:outputpanel>
+                                </apex:pageBlockSectionItem>
+                                
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Street Address</apex:outputLabel>  
+                                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                        <apex:inputText value="{!productsForEachShipment[shipId][0].ShipAdressLine1}"  label="Street Address"/>
+                                    </apex:outputpanel>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >City</apex:outputLabel>  
+                                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                        <apex:inputText value="{!productsForEachShipment[shipId][0].ShipCity}"  label="City"/>
+                                    </apex:outputpanel>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >State</apex:outputLabel>  
+                                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                        <apex:inputText value="{!productsForEachShipment[shipId][0].ShipState}"  label="State"/>
+                                    </apex:outputpanel>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:outputLabel >Zip Code</apex:outputLabel>  
+                                    <apex:outputpanel layout="block" styleClass="requiredInput">
+                                        <apex:outputpanel layout="block" styleClass="requiredBlock"></apex:outputpanel>
+                                        <apex:inputText value="{!productsForEachShipment[shipId][0].ShipZip}"  label="Zip Code"/>
+                                    </apex:outputpanel>
+                                </apex:pageBlockSectionItem>
+                                <apex:pageBlockSectionItem >
+                                    <apex:commandButton value="Save & Validate" action="{!editShipment}" style="margin-left:15px" rerender="thisSaveButtonSection,errorMessage">
+                                        <apex:param name="shipmentUpdate" value="{!shipId}" assignTo="{!editShipmentId}"/>
+                                    </apex:commandButton>
+                                    <apex:commandButton value="Cancel" action="{!cancelEditShipment}" rerender="thisSaveButtonSection,errorMessage" >
+                                        <apex:param name="shipmentCancel" value="{!shipId}" assignTo="{!editShipmentId}"/>
+                                    </apex:commandButton>
+                                </apex:pageBlockSectionItem>
+                            </apex:pageBlockSection>
+                                        
+                            
+                        </apex:pageBlockSection>
+
+                            <!--Products per shipping -->
+                            <apex:pageBlockTable value="{!productsForEachShipment[shipId]}" var="prod1">
+                                <apex:column headerValue="Action">
+                                    <apex:panelGrid columns="2">
+                                        <apex:commandLink value="edit" action="{!editProductOnShipping}" reRender="everything">
+                                            <apex:param assignTo="{!shipmentId}" name="shipmentId" value="{!shipId}"/>
+                                            <apex:param assignTo="{!localChargeId}" name="productId" value="{!prod1.localId}"/>
+                                        </apex:commandLink>
+                                        <apex:commandLink value="delete" action="{!deleteProductCheck}" reRender="everything">
+                                            <apex:param assignTo="{!shipmentToDeleteId}" name="shipmentToDeleteId" value="{!shipId}"/>
+                                            <apex:param assignTo="{!localChargeIdToDelete}" name="productToDeleteId" value="{!prod1.localId}"/>
+                                        </apex:commandLink>
+                                    </apex:panelGrid>
+                                </apex:column>
+                                <apex:column value="{!prod1.Product}" headerValue="Product Name"/>
+                                <apex:column value="{!prod1.ProdRatePlan}" headerValue="Product Rate Plan"/>
+                                <apex:column value="{!prod1.PaymentTerm}" headerValue="Payment Term"/>
+                                <apex:column value="{!prod1.Quantity}" headerValue="Quantity"/>
+                                <apex:column headerValue="List Unit Cost">
+                                    <apex:outputText value="{0,Number,Currency}">
+                                        <apex:param value="{!prod1.ListUnitCost}" />
+                                    </apex:outputText>
+                                </apex:column>
+                                <apex:column value="{!prod1.Discount}" headerValue="Discount %"/>
+                                <apex:column headerValue="Adjusted Unit Cost">
+                                    <apex:outputText value="{0,Number,Currency}">
+                                        <apex:param value="{!prod1.AdjustedUnitCost}" />
+                                    </apex:outputText>
+                                </apex:column>
+                                <apex:column headerValue="Monthly Payment">
+                                    <apex:outputText value="{0,Number,Currency}">
+                                        <apex:param value="{!prod1.AdjustedUnitCost}" />
+                                    </apex:outputText>
+                                </apex:column>
+                                <apex:column headerValue="Total Price">
+                                     <apex:outputText value="{0,Number,Currency}">
+                                        <apex:param value="{!prod1.TotalPrice}" />
+                                    </apex:outputText>
+                                </apex:column>
+                                <apex:column headerValue="Shipping Costs">
+                                    <apex:outputText value="{0,Number,Currency}">
+                                        <apex:param value="{!prod1.ShipCost}" />
+                                    </apex:outputText>
+                                </apex:column>
+                            </apex:pageBlockTable>
+                            
+                            <apex:pageBlockSection columns="4" >
+                                <apex:outputPanel ></apex:outputPanel>
+                                <apex:outputPanel ></apex:outputPanel>
+                                <apex:outputPanel style="float:right;margin-right:170px" >
+                                    <apex:outputLabel value="Shipping & Handling:" style="font-weight:bold;"/>
+                                </apex:outputPanel>
+                                <apex:outputPanel style="float:right;padding-right:55px;">
+                                    <apex:outputText value="{0, Number, Currency}" label="Shipping & Handling:">
+                                        <apex:param value="{!shipmentMetrics[shipId][0]}"/>
+                                    </apex:outputText>
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel ></apex:outputPanel>
+                                <apex:outputPanel ></apex:outputPanel>
+                                <apex:outputPanel style="float:right;margin-right:170px" >
+                                    <apex:outputLabel value="Recurring Monthly Expense:" style="font-weight:bold;"/>
+                                </apex:outputPanel>
+                                <apex:outputPanel style="float:right;padding-right:55px;">
+                                    <apex:outputText value="{0, Number, Currency}" label="Recurring Monthly Expense:" >
+                                        <apex:param value="{!shipmentMetrics[shipId][2]}"/>
+                                    </apex:outputText>
+                                </apex:outputPanel>
+                                
+                                <apex:outputPanel ></apex:outputPanel>
+                                <apex:outputPanel ></apex:outputPanel>
+                                <apex:outputPanel style="float:right;margin-right:170px" >
+                                    <apex:outputLabel value="Applicable One-Time Expense:" style="font-weight:bold;"/>
+                                </apex:outputPanel>
+                                <apex:outputPanel style="float:right;padding-right:55px;">
+                                     <apex:outputText value="{0, Number, Currency}" label="Applicable One-Time Expense:">
+                                        <apex:param value="{!shipmentMetrics[shipId][1]}"/>
+                                    </apex:outputText>
+                                </apex:outputPanel>
+                            </apex:pageBlockSection>
+                    </apex:repeat>
+                    <!-- Delete Continue Action -->
+                    <apex:actionFunction name="continueProductDeletion" action="{!deleteProductOnShipping}" immediate="true" reRender="everything" />
+                    
+                    <br/>
+                    <br/>
+                    <apex:pageBlockSection columns="2"> 
+                        <apex:outputText value="{0, Number, Currency}" style="padding-left:10%" label="Quote Total Shipping & Handling:">
+                            <apex:param value="{!QuoteshippingHandling}"/>
+                        </apex:outputText>
+                        <apex:outputText value="{0, Number, Currency}" style="padding-left:10%" label="Quote Total Recurring Monthly Expense:">
+                            <apex:param value="{!QuoterecurringMonthlyExpense}"/>
+                        </apex:outputText>
+                        <apex:outputText value="{0, Number, Currency}" style="padding-left:10%" label="Quote Total Applicable One-Time Expense:">
+                            <apex:param value="{!QuoteoneTimeExpense}"/>
+                        </apex:outputText>
+                    </apex:pageBlockSection> 
+                        
+                    <apex:actionFunction name="takeCorrectedAddress" action="{!takeCorrectedAddress}" immediate="true" reRender="errorMessage,thisSaveButtonSection,shippingSelect" />
+                    
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <apex:pageBlockButtons style="padding-left:14%;"> 
+                <apex:commandButton value="Back" action="{!back}"/>
+                <apex:commandButton value="Save" action="{!saveQuote}"/>
+                <apex:commandButton value="Submit" action="{!checkHardwareServiceonSubmit}" />
+                <apex:commandButton value="Cancel" action="{!cancelConfirm}" />
+                
+                <apex:actionFunction name="backConfirmed" action="{!returnToPreQuote}" immediate="true" />
+                <apex:actionFunction name="continueToCheckProductMatching" action="{!preSubmitCheck}" immediate="true" />
+                <apex:actionFunction name="continueToSubmitPage" action="{!submitQuote}" immediate="true" />
+                <apex:actionFunction name="continueToCancelPage" action="{!cancelQuote}" immediate="true" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

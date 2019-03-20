@@ -1,0 +1,1062 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Account_ID__c</fullName>
+        <description>Used to populate lookup field for Reporting Snapshot</description>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.Id</formula>
+        <label>Account ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Name__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account Name</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Account_Overviews</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account_Overview_Owner_ID__c</fullName>
+        <description>Used to populate owner lookup field for Reporting Snapshot</description>
+        <externalId>false</externalId>
+        <formula>OwnerId</formula>
+        <label>Account Overview Owner ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Account_Type__c</fullName>
+        <description>To be used in FEP report filter criteria &amp; to increase visibility of this field for RMs</description>
+        <externalId>false</externalId>
+        <formula>TEXT(Account_Name__r.Type)</formula>
+        <inlineHelpText>Account Type from the related customer&apos;s Account record</inlineHelpText>
+        <label>Account Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Annual_Addressable_Spend_Recorded__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+ Annual_Addressable_Spend__c &gt; 0,
+ TRUE,
+ FALSE
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Annual Addressable Spend Recorded</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Annual_Addressable_Spend__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Spend which can typically be processed using one or more of our products</inlineHelpText>
+        <label>Annual Addressable Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>true</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Assigned_AM__c</fullName>
+        <description>Increase the visibility of this field for RM users working in the FEP</description>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.Assigned_Account_Manager__r.FirstName + &quot; &quot; + Account_Name__r.Assigned_Account_Manager__r.LastName</formula>
+        <inlineHelpText>The Assigned AM from the related Account</inlineHelpText>
+        <label>Assigned AM</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Behavior_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Behavior (Notes)</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Charter_Statement__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>See LAMP Concept sheet in Gold Sheet spreadsheet for more info</inlineHelpText>
+        <label>Charter Statement</label>
+        <length>450</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Competitor_Share_Of_Spend_Recorded__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>From Competitor Detail records - should be 100%</inlineHelpText>
+        <label>% Competitor Share Of Spend Recorded</label>
+        <summarizedField>AOxCompetitor__c.Of_Addressable_Spend__c</summarizedField>
+        <summaryForeignKey>AOxCompetitor__c.FEP__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Contract_Expiry_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date when the customer&apos;s current contract expires</inlineHelpText>
+        <label>Contract Expiry Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Currencies_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Currencies (Notes)</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Customer_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Account_Name__r.Customer_Category__c)</formula>
+        <label>Customer Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Broad description of company&apos;s history, products / services and other information which doesn&apos;t have a dedicated field</inlineHelpText>
+        <label>Description</label>
+        <length>32000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>ERP_System__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Account_Name__r.ERP__c)</formula>
+        <inlineHelpText>Set on the Account record</inlineHelpText>
+        <label>ERP System</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Evergreen_Account__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Customers contract does not have a fixed expiry date</inlineHelpText>
+        <label>Evergreen Account</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FEP_Count__c</fullName>
+        <description>Power Of One</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <label>FEP Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FOP_View_1_Yr__c</fullName>
+        <externalId>false</externalId>
+        <label>FOP View 1 Yr</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FOP_View_3_Yr__c</fullName>
+        <externalId>false</externalId>
+        <label>FOP View 3 Yr</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FOP_View_Last_Yr__c</fullName>
+        <externalId>false</externalId>
+        <label>FOP View Last Yr</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FOP_View_Now__c</fullName>
+        <externalId>false</externalId>
+        <label>FOP View Now</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Field_Of_Play_s_Trends__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>See LAMP Concept sheet in Gold Sheet spreadsheet for more info</inlineHelpText>
+        <label>Field Of Play&apos;s Trends</label>
+        <length>450</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Forecast_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Forecast (Notes)</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Group_Turnover__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Company&apos;s turnover or if part of a group, group turnover</inlineHelpText>
+        <label>(Group) Turnover</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>true</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Guide__c</fullName>
+        <externalId>false</externalId>
+        <formula>&quot;Evernote - Virtual FEP - http://bit.ly/1JboMU5&quot;</formula>
+        <label>Guide</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_AP_File_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The last time WEX received an updated AP file for vendor analysis</inlineHelpText>
+        <label>Last AP File Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Legal_Entity_Locations__c</fullName>
+        <description>Can be replicated at the Account level using Parent &amp; Child Account records. It wouldn&apos;t make sense to have to complete field for each Child Account. Used to identify potential for reduced cross-border fees, when issuing from other countries.</description>
+        <externalId>false</externalId>
+        <label>Legal Entity Locations</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>APAC</fullName>
+                    <default>false</default>
+                    <label>APAC</label>
+                </value>
+                <value>
+                    <fullName>Europe</fullName>
+                    <default>false</default>
+                    <label>Europe</label>
+                </value>
+                <value>
+                    <fullName>LATAM</fullName>
+                    <default>false</default>
+                    <label>LATAM</label>
+                </value>
+                <value>
+                    <fullName>UK</fullName>
+                    <default>false</default>
+                    <label>UK</label>
+                </value>
+                <value>
+                    <fullName>US</fullName>
+                    <default>false</default>
+                    <label>US</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Notes</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Opportunities__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Opportunities to increase the value of our solution &amp; our revenue</inlineHelpText>
+        <label>Opportunities</label>
+        <length>450</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Our_View_1_Yr__c</fullName>
+        <externalId>false</externalId>
+        <label>Our View 1 Yr</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Our_View_3_Yr__c</fullName>
+        <externalId>false</externalId>
+        <label>Our View 3 Yr</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Our_View_Now__c</fullName>
+        <externalId>false</externalId>
+        <label>Our View Now</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Our_View__c</fullName>
+        <externalId>false</externalId>
+        <label>Our View Last Yr</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Owner_Role__c</fullName>
+        <description>To be used for List View &amp; Report filters</description>
+        <externalId>false</externalId>
+        <formula>Owner:User.Role_Name__c</formula>
+        <label>Owner Role</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Account_Selected__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Has the parent account been selected for the company&apos;s account record?</inlineHelpText>
+        <label>Parent Account Selected</label>
+        <required>false</required>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Not Reviewed</fullName>
+                    <default>true</default>
+                    <label>Not Reviewed</label>
+                </value>
+                <value>
+                    <fullName>Parent Account Selected</fullName>
+                    <default>false</default>
+                    <label>Parent Account Selected</label>
+                </value>
+                <value>
+                    <fullName>No Parent</fullName>
+                    <default>false</default>
+                    <label>No Parent</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Relationship_Manager__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+
+Owner:User.Role_Name__c = &apos;CorporatePay Relationship Manager&apos;,
+null,
+
+IF(
+
+Account_Name__r.Owner.Role_Name__c = &apos;CorporatePay Relationship Manager&apos;, 
+Account_Name__r.Owner.FirstName &amp;&quot; &quot;&amp; Account_Name__r.Owner.LastName, 
+
+IF( 
+
+NOT(
+ISBLANK(Account_Name__r.Assigned_Relationship_Manager__c)
+), 
+Account_Name__r.Assigned_Relationship_Manager__r.FirstName &amp;&quot; &quot;&amp; Account_Name__r.Assigned_Relationship_Manager__r.LastName,
+
+null 
+
+)))</formula>
+        <label>Relationship Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Saved_News__c</fullName>
+        <description>Field for RM to store Headlines &amp; URLs for related company news</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the date - story title - URL on the same line, with each article on a separate line</inlineHelpText>
+        <label>Saved News</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Share_Of_Spend_Symbol__c</fullName>
+        <description>Created to make % symbol visible in related lists</description>
+        <externalId>false</externalId>
+        <formula>TEXT( ROUND(WE_Share_Of_Spend__c*100,2)) &amp; &quot;%&quot;</formula>
+        <label>Share Of Spend</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Spend_Type_Of_Spend_Recorded__c</fullName>
+        <externalId>false</externalId>
+        <formula>Spend_Type_Value_Of_Spend_Recorded__c / Annual_Addressable_Spend__c</formula>
+        <inlineHelpText>Should be 100%</inlineHelpText>
+        <label>Spend Type % Of Spend Recorded</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Spend_Type_Value_Of_Spend_Recorded__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>From Spend Detail records - should be equal to Annual Addressable Spend</inlineHelpText>
+        <label>Spend Type Value Of Spend Recorded</label>
+        <summarizedField>Spend_Detail__c.Value__c</summarizedField>
+        <summaryForeignKey>Spend_Detail__c.FEP__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Start_Of_Fiscal_Year__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the date when the customer&apos;s next fiscal year will begin. Updated financials are typically available on this date.</inlineHelpText>
+        <label>Start Of Fiscal Year</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Strengths__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>See LAMP Concept sheet in Gold Sheet spreadsheet for more info</inlineHelpText>
+        <label>Strengths</label>
+        <length>450</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Threats__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Threats to our goal of retaining client and increasing revenue</inlineHelpText>
+        <label>Threats</label>
+        <length>450</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Total_Addressable_Spend_Known__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Has the client confirmed that they have told you their total addressable spend, of all methods &amp; types?
+If this tickbox is not ticked then this FEP may be excluded from trend reports.</inlineHelpText>
+        <label>Total Addressable Spend Known</label>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Treasury_Bank__c</fullName>
+        <description>Created to increase the visibility of this field for RMs</description>
+        <externalId>false</externalId>
+        <formula>Account_Name__r.Current_Treasury_Bank__c</formula>
+        <inlineHelpText>Displays the value from the Account&apos;s Current Treasury Bank field</inlineHelpText>
+        <label>Treasury Bank</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unknown_Competitor_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Unknown Competitor Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Bank</fullName>
+                    <default>false</default>
+                    <label>Bank</label>
+                </value>
+                <value>
+                    <fullName>Payments Solution Provider</fullName>
+                    <default>false</default>
+                    <label>Payments Solution Provider</label>
+                </value>
+                <value>
+                    <fullName>Unknown</fullName>
+                    <default>false</default>
+                    <label>Unknown</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Use_Case__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Why does the customer need our solution, how to do they intend to use it?</inlineHelpText>
+        <label>Use Case</label>
+        <length>1000</length>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Value_Of_WE_Spend__c</fullName>
+        <externalId>false</externalId>
+        <label>Value Of Wex Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>true</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Verticals_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Verticals (Notes)</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>WE_Share_Of_Spend_Recorded__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+ WE_Share_Of_Spend__c &gt; 0, 
+ TRUE, 
+ FALSE 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Wex Share Of Spend Recorded</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>WE_Share_Of_Spend__c</fullName>
+        <externalId>false</externalId>
+        <formula>Value_Of_WE_Spend__c / Annual_Addressable_Spend__c</formula>
+        <label>Wex Share Of Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Weaknesses__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Or &apos;critical vulnerabilities&apos; - see LAMP Concept sheet in Gold Sheet spreadsheet for more info</inlineHelpText>
+        <label>Weaknesses</label>
+        <length>450</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Account_Name__c</columns>
+        <columns>Customer_Category__c</columns>
+        <columns>Group_Turnover__c</columns>
+        <columns>Annual_Addressable_Spend__c</columns>
+        <columns>Value_Of_WE_Spend__c</columns>
+        <columns>Total_Addressable_Spend_Known__c</columns>
+        <columns>WE_Share_Of_Spend__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CP_EU_Virtual_FEPs_EMEA</fullName>
+        <columns>NAME</columns>
+        <columns>Group_Turnover__c</columns>
+        <columns>Annual_Addressable_Spend__c</columns>
+        <columns>Value_Of_WE_Spend__c</columns>
+        <columns>Contract_Expiry_Date__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Opportunities__c</columns>
+        <columns>Description__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Corporate Payments Relationship Management EU</value>
+        </filters>
+        <label>*CP- EU My Virtual FEPs EMEA</label>
+        <sharedTo>
+            <role>Corporate_Payments_Relationship_Management_EU</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CP_RM_NA_Virtual_FEPs_EMEA</fullName>
+        <columns>NAME</columns>
+        <columns>Group_Turnover__c</columns>
+        <columns>Annual_Addressable_Spend__c</columns>
+        <columns>Value_Of_WE_Spend__c</columns>
+        <columns>Contract_Expiry_Date__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Opportunities__c</columns>
+        <columns>Description__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Corporate Payments Relationship Management NA</value>
+        </filters>
+        <label>*CP RM NA - Virtual FEPs EMEA</label>
+        <sharedTo>
+            <role>Corporate_Payments_Relationship_Management_NA</role>
+            <role>Corporate_Payments_Sales</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>NA_Virtual_FEPs</fullName>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>Total_Addressable_Spend_Known__c</columns>
+        <columns>Annual_Addressable_Spend__c</columns>
+        <columns>WE_Share_Of_Spend__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Owner_Role__c</field>
+            <operation>equals</operation>
+            <value>Strategic Relationship Manager Virtual NA,Director Global Strategic Accounts</value>
+        </filters>
+        <label>NA Virtual FEPs</label>
+    </listViews>
+    <validationRules>
+        <fullName>Contract_Expiry_Or_Evergreen_Account_Req</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+  /* 
+  Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+  */ 
+  $Setup.WE_VRC__c.All_FEP_Disabled__c = FALSE,
+  /*
+  Custom Setting - rule should apply to virtual US users only
+  */
+  $Setup.VProfileId__c.NA_Virtual_User__c = TRUE,
+  /*
+  Rule should not apply to NA Sales users who&apos;re creating an FEP from the Opportunity, using the New_FEP_UK button, which inserts the record before it can be edited
+  */
+  OR(
+    AND(
+      $Setup.VProfileId__c.Virtual_NA_Sales__c = TRUE,
+      NOT(ISNEW())
+    ),
+    $Setup.VProfileId__c.Virtual_NA_Sales__c = FALSE
+  ),
+  Evergreen_Account__c = FALSE,
+  ISBLANK(Contract_Expiry_Date__c)
+)</errorConditionFormula>
+        <errorMessage>Please enter the customer&apos;s Contract Expiry Date or if their contract is not due to expiry on a set date, check the Evergreen Account checkbox</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Detail_Records_Required</fullName>
+        <active>false</active>
+        <description>At least one Spend Detail record needs to be added by the salesperson</description>
+        <errorConditionFormula>AND(
+
+/* Allow the FEP to be created without these records(they can&apos;t be completed on the edit page)
+*/
+NOT(
+ISNEW()),
+
+/* Allow the FEP to be edited, while Addressable Annual Spend is not recorded
+*/
+NOT(
+ISBLANK(Annual_Addressable_Spend__c)),
+
+/* Allow Addressable Annual Spend to be added
+*/
+NOT(
+AND(
+ISCHANGED(Annual_Addressable_Spend__c),
+OR(
+ISBLANK(PRIORVALUE(Annual_Addressable_Spend__c)),
+PRIORVALUE(Annual_Addressable_Spend__c) = 0
+))),
+
+/* Salesperson may not know all Spend Types but should know some
+*/
+Spend_Type_Of_Spend_Recorded__c  &lt; 0.01
+
+)</errorConditionFormula>
+        <errorMessage>Please add at least one Spend Type &amp; Payment Method with a share of spend that is greater than 0%</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Start_Of_Fiscal_Year_In_Past</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(
+  AND(
+    ISNEW(),
+    NOT(ISBLANK(Start_Of_Fiscal_Year__c)),
+    Start_Of_Fiscal_Year__c &lt; TODAY()
+    ),
+  AND(
+    ISCHANGED(Start_Of_Fiscal_Year__c),
+    NOT(ISBLANK(Start_Of_Fiscal_Year__c)),
+    Start_Of_Fiscal_Year__c &lt; TODAY()
+    )
+)</errorConditionFormula>
+        <errorDisplayField>Start_Of_Fiscal_Year__c</errorDisplayField>
+        <errorMessage>Please enter the date when the customer&apos;s Next fiscal year will begin, this date cannot be in the past</errorMessage>
+    </validationRules>
+</CustomObject>

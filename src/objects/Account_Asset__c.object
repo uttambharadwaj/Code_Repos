@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <listViews>
+        <fullName>CorporatePay_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Client_Account_Number__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account_Asset__c.CorporatePay</value>
+        </filters>
+        <label>Wex Europe Assets</label>
+        <sharedTo>
+            <group>CorporatePay2</group>
+            <group>Wex_Europe</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>of_Cards__c</columns>
+        <columns>Contract_Start_Date__c</columns>
+        <columns>Contract_End_Date__c</columns>
+        <columns>Gallons_per_Month__c</columns>
+        <columns>Additional_Business_Type__c</columns>
+        <columns>Rebate__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Assets</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>My_At_Risk_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Active_Cards__c</columns>
+        <columns>Total_Cards__c</columns>
+        <columns>Risk_Type__c</columns>
+        <columns>Risk_Grade__c</columns>
+        <columns>Risk_Description__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Risk_Type__c</field>
+            <operation>equals</operation>
+            <value>At Risk</value>
+        </filters>
+        <label>My At Risk Assets</label>
+    </listViews>
+    <listViews>
+        <fullName>Pac_Pride_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>Billing_Address__c</columns>
+        <columns>Contract_End_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account_Asset__c.Franchise</value>
+        </filters>
+        <label>Pac Pride Assets - Franchise</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>Paycard_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account_Asset__c.PayCard</value>
+        </filters>
+        <label>Paycard Assets</label>
+        <sharedTo/>
+    </listViews>
+    <listViews>
+        <fullName>Stopped_Pumping</fullName>
+        <columns>NAME</columns>
+        <columns>F1_Account__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Stopped_Pumping__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>LAST_YEAR</value>
+        </filters>
+        <label>Stopped Pumping</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>scv_Fuel_Card_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Account_Asset__c.Fuel_Card</value>
+        </filters>
+        <label>scv Fuel Card Assets</label>
+        <sharedTo>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <validationRules>
+        <fullName>At_Risk_Grade</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( Text(Risk_Type__c) =&quot;At Risk&quot;,  Text(Risk_Grade__c) =&quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>Risk_Grade__c</errorDisplayField>
+        <errorMessage>Please provide a grade for this at risk asset.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Client_Account_Number</fullName>
+        <active>true</active>
+        <description>Client Account Number must be 8 diggits</description>
+        <errorConditionFormula>AND
+(
+NOT(ISNUMBER( Client_Account_Number__c )),
+AND(ISNUMBER(Client_Account_Number__c), LEN(Client_Account_Number__c) &lt;&gt;8),
+AND
+(
+RecordTypeId =(&quot;01I700000003DnF&quot;)
+
+)
+
+)</errorConditionFormula>
+        <errorMessage>Client Account Number must be 8 Digits</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Credit_Prepaid_Required_Fields</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+
+  /* Custom Setting - enables validation rule to be disabled at the User, Profile or Org level */
+  $Setup.WE_VRC__c.All_Acct_Asset_Disabled__c = FALSE,
+
+  RecordType.DeveloperName = &apos;CorporatePay&apos;,
+
+  IF(
+    AND(
+      /* prepaid Wex accounts */
+      NOT(ISBLANK(Client_Account_Number__c)),
+      OR(
+        ISBLANK(Account_Name__c),
+        ISBLANK(TEXT(Account_1_API__c)),
+        ISBLANK(TEXT(Account_1_Currency__c))
+      )
+    ),
+    TRUE,
+    IF(
+      AND(
+        /* credit Wex accounts */
+        NOT(ISBLANK(BankCompanyNo__c)),
+        ISBLANK(Account_Name__c)
+      ),
+      TRUE,
+      IF(
+        AND(
+          /* Account Assets must have one of the below */
+          ISBLANK(BankCompanyNo__c),
+          ISBLANK(Client_Account_Number__c)
+        ),
+        TRUE,
+        FALSE
+      )
+    )
+  )
+)</errorConditionFormula>
+        <errorMessage>Please enter the Portal Account Name, API Name &amp; Account Currency if a prepaid Wex account. Enter the Portal Account  Name if a credit Wex Account. All Account Assets must have a Client Account Number or BankCompany Number.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Error_on_Host_Number_Change</fullName>
+        <active>false</active>
+        <description>Errors on legal name change if not in the PacPride Financial Profile</description>
+        <errorConditionFormula>AND(RecordTypeId=&quot;012700000005g0l&quot;, ISCHANGED( Host_Number__c), $User.ProfileId&lt;&gt;&quot;00e70000000x9bp&quot;)</errorConditionFormula>
+        <errorDisplayField>Host_Number__c</errorDisplayField>
+        <errorMessage>You do not have permissions to change the Host Number of the Account Asset</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Error_on_Legal_Name_Change</fullName>
+        <active>false</active>
+        <description>Errors on legal name change if not in the PacPride Financial Profile</description>
+        <errorConditionFormula>AND(RecordTypeId=&quot;012700000005g0l&quot;, ISCHANGED(Legal_Name__c),  $User.ProfileId&lt;&gt;&quot;00e70000000x9bp&quot;)</errorConditionFormula>
+        <errorDisplayField>Legal_Name__c</errorDisplayField>
+        <errorMessage>You do not have permissions to change the Legal Name of the Account Asset</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Error_on_Marketer_Type_Change</fullName>
+        <active>false</active>
+        <description>Errors on legal name change if not in the PacPride Financial Profile</description>
+        <errorConditionFormula>AND(RecordTypeId=&quot;012700000005g0l&quot;, ISCHANGED( Marketer_Type__c), $User.ProfileId&lt;&gt;&quot;00e70000000x9bp&quot;)</errorConditionFormula>
+        <errorDisplayField>Marketer_Type__c</errorDisplayField>
+        <errorMessage>You do not have permissions to change the Marketer Type of the Account Asset</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Error_on_StatusDate_Change</fullName>
+        <active>false</active>
+        <description>Errors on legal name change if not in the PacPride Financial Profile</description>
+        <errorConditionFormula>AND(RecordTypeId=&quot;012700000005g0l&quot;, ISCHANGED( Status_Effective_Date__c ), $User.ProfileId&lt;&gt;&quot;00e70000000x9bp&quot;)</errorConditionFormula>
+        <errorDisplayField>Status_Effective_Date__c</errorDisplayField>
+        <errorMessage>You do not have permissions to change the Status Effective Date of the Account Asset</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Error_on_Status_Change</fullName>
+        <active>false</active>
+        <description>Errors on legal name change if not in the PacPride Financial Profile</description>
+        <errorConditionFormula>AND(RecordTypeId=&quot;012700000005g0l&quot;, ISCHANGED(Status_N__c), $User.ProfileId&lt;&gt;&quot;00e70000000x9bp&quot;)</errorConditionFormula>
+        <errorDisplayField>Status_N__c</errorDisplayField>
+        <errorMessage>You do not have permissions to change the Status of the Account Asset</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Error_on_Tax_ID_Change</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(RecordTypeId=&quot;012700000005g0l&quot;, ISCHANGED( Tax_ID_Number__c ), $User.ProfileId&lt;&gt;&quot;00e70000000x9bp&quot;)</errorConditionFormula>
+        <errorDisplayField>Tax_ID_Number__c</errorDisplayField>
+        <errorMessage>You do not have permissions to change the Tax ID of the Account Asset</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Error_on_W9_Change</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(RecordTypeId=&quot;012700000005g0l&quot;, ISCHANGED( W_9_1099__c ), $User.ProfileId&lt;&gt;&quot;00e70000000x9bp&quot;)</errorConditionFormula>
+        <errorDisplayField>W_9_1099__c</errorDisplayField>
+        <errorMessage>You do not have permissions to change the W9 of the Account Asset</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Verified_num_of_Paper_Checks</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(RecordTypeId=&quot;012700000005juY&quot;, $Profile.Id&lt;&gt; &quot;00e70000000x9jP&quot;, ISCHANGED( Verified_of_Checks__c) )</errorConditionFormula>
+        <errorMessage>Only the Marketing Coordinator can enter the Verified # of Checks.</errorMessage>
+    </validationRules>
+</CustomObject>

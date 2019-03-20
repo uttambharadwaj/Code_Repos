@@ -1,0 +1,726 @@
+public class FleetEnrollmentController {
+
+    // Defining the main form object
+    public FleetEnrollment__c fleetEnrollment { get; set; }
+
+    public String confirmationNumber { get; set; }
+    public String printToken { get; set; }
+
+    // URL Parameters to fetch
+    public String opportunityParameter {
+        get {
+            return ApexPages.currentPage().getParameters().get('opty');
+        }
+    }
+
+    public String currentPage {
+        get {
+            return ApexPages.currentPage().getParameters().get('currentPage');
+        }
+    }
+
+    public String programParameter {
+        get {
+            return ApexPages.currentPage().getParameters().get('program');
+        }
+    }
+
+    public String applicationRequestParameter {
+        get {
+            return ApexPages.currentPage().getParameters().get('appId');
+        }
+    }
+
+    public Integer creditLineAmount {
+        get {
+            String creditLineAmountParameter = ApexPages.currentPage().getParameters().get('crd');
+            if(creditLineAmountParameter != null && creditLineAmountParameter.isNumeric()) {
+                return Integer.valueOf(creditLineAmountParameter);
+            }
+            return null;
+        }
+    }
+
+    public String emailVersionTracking {
+        get {
+            return ApexPages.currentPage().getParameters().get('ver');
+        }
+    }
+
+    // Branding - Elements from the specified program
+    public Program__c program {
+        get {
+            List<Program__c> programs = [SELECT Id, Publish_Fleet_Data_Capture_Form__c, Fleet_Data_Capture_Email_Template__c,
+                    Fleet_Data_Capture_Form_Delivery__c, Brand_Long_Name__c, Implementation_Team_Number__c,
+                    Brand_Color_1__c, Fleet_Enrollment_Enable_Fuel_Oil__c, Fleet_Enrollment_Enable_Prompt_Options__c,
+                    Fleet_Enrollment_Enable_Universal_PL__c, Fleet_Enrollment_Disable_Driver_Page__c, DID_Length__c, Available_Card_Controls__c 
+            FROM Program__c WHERE Brand_Short_Name__c = :programParameter];
+
+            if(programs.size() > 0) {
+                return programs[0];
+            }
+            return null;
+        }
+    }
+
+    public String configuredDIDLength {
+        get {
+            if(program != null && program.DID_Length__c != null) {
+                return program.DID_Length__c;
+            }
+            return '4';
+        }
+    }
+
+    public String selectedDIDLength {
+        get {
+            if(selectedDIDLength == null && configuredDIDLength != '4 OR 6') {
+                return configuredDIDLength;
+            }
+            else if(selectedDIDLength == null && configuredDIDLength == '4 OR 6') {
+                return '4';
+            }
+            return selectedDIDLength;
+        }
+        set;
+    }
+
+    // Branding - Card image from the chosen program
+    public Id brandingCard {
+        get {
+            transient Attachment card = [SELECT Id, Name, Body FROM Attachment where ParentId = : program.Id AND Name=:'ui-credit-card.png'];
+            return card.Id;
+        }
+    }
+
+    // Dynamic Card Image
+    public Id dynamicCard {
+        get {
+            transient Attachment card = [SELECT Id, Name, Body FROM Attachment where ParentId = : program.Id AND Name=:'ui-credit-card-no-text.png'];
+            return card.Id;
+        }
+    }
+
+    // Local picklists
+    public List<SelectOption> embossingOptions {
+        get {
+            List<SelectOption> embossingOptions = new List<SelectOption>();
+            embossingOptions.add(new SelectOption('#', 'Optional printing', true));
+            embossingOptions.add(new SelectOption('None', 'No Printing'));
+            embossingOptions.add(new SelectOption('License Plate', 'License Plate'));
+            embossingOptions.add(new SelectOption('Vehicle Description', 'Vehicle Description'));
+            embossingOptions.add(new SelectOption('Company Vehicle ID', 'Company Vehicle ID'));
+
+            return embossingOptions;
+        }
+    }
+
+    public String selectedEmbossingOption { get; set; }
+
+    public List<SelectOption> acceptanceOptions {
+        get {
+            List<SelectOption> acceptanceOptions = new List<SelectOption>();
+            acceptanceOptions.add(new SelectOption('#', 'Acceptance', true));
+            acceptanceOptions.add(new SelectOption('Private Label', 'Private Label'));
+            acceptanceOptions.add(new SelectOption('Universal', 'Universal'));
+
+            return acceptanceOptions;
+        }
+    }
+
+    public List<SelectOption> cardControlOptions {
+        get {
+            List<SelectOption> cardControlOptions = new List<SelectOption>();
+            cardControlOptions.add(new SelectOption('#', 'Card Controls', true));
+
+            if(program != null && program.Available_Card_Controls__c !=  null) {
+
+                String[] availableOptions = program.Available_Card_Controls__c.split(';');
+
+                for (String option : availableOptions) {
+
+                    cardControlOptions.add(new SelectOption(option, option));
+
+                }
+
+            }
+            else {
+
+                cardControlOptions.add(new SelectOption('Custom Controls', 'Custom Controls'));
+
+                if (program.Fleet_Enrollment_Enable_Fuel_Oil__c) {
+                    cardControlOptions.add(new SelectOption('Fuel and Oil', 'Fuel and Oil'));
+                }
+
+                cardControlOptions.add(new SelectOption('Fuel Only', 'Fuel Only'));
+
+            }
+
+            return cardControlOptions;
+        }
+    }
+
+    public List<SelectOption> promptOptions {
+        get {
+            List<SelectOption> promptOptions = new List<SelectOption>();
+            promptOptions.add(new SelectOption('#', 'Prompt Options', true));
+            promptOptions.add(new SelectOption('Driver ID & Odometer', 'Driver ID & Odometer'));
+            promptOptions.add(new SelectOption('Driver ID Only', 'Driver ID Only'));
+
+            return promptOptions;
+        }
+    }
+
+    public List<SelectOption> driverIdOptions {
+        get {
+            List<SelectOption> driverIdOptions = new List<SelectOption>();
+            driverIdOptions.add(new SelectOption('custom', 'Custom Driver IDs'));
+            driverIdOptions.add(new SelectOption('random', 'Randomly Generated IDs'));
+            return driverIdOptions;
+        }
+    }
+
+    // Local FleetContact object
+    public class FleetContact {
+        public Integer Id { get; set; }
+        public String FullName { get; set; }
+        public String Email { get; set; }
+        public String Phone { get; set; }
+        public Boolean isNotRemovable { get; set; }
+    }
+
+    // List of FleetContact objects
+    public List<FleetContact> fleetContacts { get; set; }
+
+    // Various variables used for maintaining
+    // the FleetContact collection
+    public Integer selectedFleetContact { get; set; }
+    public Integer nextFleetContactId { get; set; }
+
+    // Local FleetVehicle object
+    public class FleetVehicle {
+        public Integer Id { get; set; }
+        public String companyVehicleId { get; set; }
+        public String selectedCardControlOption;
+        public String selectedPromptOption { get; set; }
+        public String selectedAcceptanceOption { get; set; }
+        public String vehicleDepartment { get; set; }
+        public String vehicleDescription { get; set; }
+        public String licensePlate { get; set; }
+        public Boolean isNotRemovable { get; set; }
+
+
+        public String getSelectedCardControlOption() {
+            return selectedCardControlOption;
+        }
+
+        public void setSelectedCardControlOption(String selectedCardControlOption) {
+            this.selectedCardControlOption = selectedCardControlOption;
+        }
+
+        public FleetVehicle() {
+            selectedCardControlOption = '#';
+            selectedPromptOption = '#';
+            selectedAcceptanceOption = '#';
+        }
+
+    }
+
+    // Various variables used for maintaining
+    // the FleetVehicle collection
+    public List<FleetVehicle> fleetVehicles { get; set; }
+    public Integer selectedFleetVehicle { get; set; }
+    public Integer nextFleetVehicleId { get; set; }
+
+    // Local FleetDriver object
+    public class FleetDriver {
+        public Integer Id { get; set; }
+        public String firstName { get; set; }
+        public String lastName { get; set; }
+        public String driverId { get; set; }
+        public Boolean isNotRemovable { get; set; }
+    }
+
+    // Various variables used for maintaining
+    // the FleetDriver collection
+    public String selectedDriverIdOption { get; set; }
+    public List<FleetDriver> fleetDrivers { get; set; }
+    public Integer selectedFleetDriver { get; set; }
+    public Integer nextFleetDriverId { get; set; }
+
+    // Pagination variables for tracking the steps
+    public Integer currentStep { get; set; }
+    public Integer minStep  { get; set; }
+    public Integer maxStep  { get; set; }
+
+    // Determines if the "Previous/Back" button is rendered
+    public boolean previousStep {
+        get {
+            if(currentStep > minStep) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    // Determines if the "Next" button is rendered
+    public boolean nextStep {
+        get {
+            if(currentStep < maxStep) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    // Controller constructor
+    public FleetEnrollmentController() {
+
+        // Setup for the pagination
+        minStep = 1;
+        maxStep = 5;
+        currentStep = 1;
+
+        if(currentPage != null) {
+            currentStep = Integer.valueOf(currentPage);
+        }
+
+        // Initialize the FleetEnrollment__c record
+        fleetEnrollment = new FleetEnrollment__c();
+
+        // Default to custom Drive ID's
+        selectedDriverIdOption = 'custom';
+
+        // Set the default embossing option
+        fleetEnrollment.Embossing_Second_Line__c = '#';
+
+        // Initialize the local FleetContacts collection
+        fleetContacts = new List<FleetContact>();
+        nextFleetContactId = 0;
+
+        for(Integer i = 0; i < 1; i++) {
+            addNewContact();
+        }
+
+        // Initialize the local FleetVehicles collection
+        fleetVehicles = new List<FleetVehicle>();
+        nextFleetVehicleId = 0;
+
+        // Initialize the local FleetDrivers collection
+        fleetDrivers = new List<FleetDriver>();
+        nextFleetDriverId = 0;
+
+        for(Integer i = 0; i < 2; i++) {
+            addNewFleetDriver();
+        }
+
+        // Remove after testing page 3
+        //fleetEnrollment.Number_Of_Vehicles__c = 3;
+        //fleetEnrollment.Report_LicensePlt__c = true;
+        //fleetEnrollment.Report_VehicleDesc__c = true;
+        // fleetEnrollment.Report_VehicleId__c = true;
+        //fleetEnrollment.Reporting_Dept__c = false;
+        // fleetEnrollment.Embossing_Second_Line__c = 'None';
+        // setupFleetVehicles();
+
+    }
+
+    // Initialization of the form
+    public PageReference init() {
+
+        PageReference redirect = null;
+
+        if(program == null || program.Publish_Fleet_Data_Capture_Form__c == false) {
+            redirect = new PageReference('/apex/FleetEnrollmentError?errorCode=1');
+            redirect.setRedirect(true);
+            return redirect;
+        }
+
+        if(!String.isEmpty(applicationRequestParameter)) {
+            List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter];
+
+            if(fleetEnrollments.size() > 0) {
+                redirect = new PageReference('/apex/FleetEnrollmentError?errorCode=2');
+                redirect.setRedirect(true);
+                return redirect;
+            }
+        }
+
+        if(!String.isEmpty(opportunityParameter)) {
+            List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity_Number__c =: opportunityParameter];
+
+            if(fleetEnrollments.size() > 0) {
+                redirect = new PageReference('/apex/FleetEnrollmentError?errorCode=2');
+                redirect.setRedirect(true);
+                return redirect;
+            }
+        }
+
+        return null;
+
+    }
+
+    // Add a new contact to FleetContacts collection
+    public void addNewContact() {
+        FleetContact fleetContact = new FleetContact();
+        fleetContact.Id = nextFleetContactId;
+        fleetContacts.add(fleetContact);
+        nextFleetContactId++;
+    }
+
+    // Remove a contact from the FleetContacts collection
+    public void removeContact() {
+        for(Integer i = 0; i < fleetContacts.size(); i++) {
+            if(fleetContacts.get(i).Id == selectedFleetContact) {
+                fleetContacts.remove(i);
+            }
+        }
+    }
+
+    // Initialize the FleetVehicles collection to
+    // be the size of the fleet noted on page 2
+    public void setupFleetVehicles() {
+        Integer numberOfVehiclesToAdd = Integer.valueOf(fleetEnrollment.Number_Of_Vehicles__c);
+
+        for(Integer i = fleetVehicles.size(); i < numberOfVehiclesToAdd; i++) {
+            addNewFleetVehicle();
+        }
+    }
+
+    // Add a new vehicle to FleetVehicles collection
+    public void addNewFleetVehicle() {
+        FleetVehicle fleetVehicle = new FleetVehicle();
+
+        fleetVehicle.Id = nextFleetVehicleId;
+        if(fleetVehicles.size() > 0) {
+            fleetVehicle.selectedCardControlOption = fleetVehicles.get(0).selectedCardControlOption;
+        }
+
+        fleetVehicles.add(fleetVehicle);
+
+        nextFleetVehicleId++;
+
+        if(fleetVehicles.size() == 1) {
+            fleetVehicles.get(0).isNotRemovable = true;
+        }
+        else {
+            fleetVehicles.get(0).isNotRemovable = false;
+        }
+
+        fleetEnrollment.Number_Of_Vehicles__c = fleetVehicles.size();
+    }
+
+    // Remove a vehicle from the FleetVehicles collection
+    public void removeFleetVehicle() {
+        for(Integer i = 0; i < fleetVehicles.size(); i++) {
+            if(fleetVehicles.get(i).Id == selectedFleetVehicle) {
+                fleetVehicles.remove(i);
+            }
+        }
+
+        if(fleetVehicles.size() == 1) {
+            fleetVehicles.get(0).isNotRemovable = true;
+        }
+
+        fleetEnrollment.Number_Of_Vehicles__c = fleetVehicles.size();
+    }
+
+    // If the first vehicle changes its card control option, change it for the rest
+    public void changeSelectedCardControlOption() {
+        for(Integer i = 1; i < fleetVehicles.size(); i++) {
+            if(fleetVehicles.get(i).selectedCardControlOption == '#') {
+                fleetVehicles.get(i).selectedCardControlOption = fleetVehicles.get(0).selectedCardControlOption;
+            }
+        }
+    }
+
+    // Add a new Driver to FleetDrivers collection
+    public void addNewFleetDriver() {
+        FleetDriver fleetDriver = new FleetDriver();
+        fleetDriver.Id = nextFleetDriverId;
+        fleetDrivers.add(fleetDriver);
+        nextFleetDriverId++;
+
+        if(fleetDrivers.size() > 1) {
+            fleetDrivers.get(0).isNotRemovable = false;
+        }
+    }
+
+    // Remove a Driver from the FleetDrivers collection
+    public void removeFleetDriver() {
+        for(Integer i = 0; i < fleetDrivers.size(); i++) {
+            if(fleetDrivers.get(i).Id == selectedFleetDriver) {
+                fleetDrivers.remove(i);
+            }
+        }
+
+        if(fleetDrivers.size() == 1) {
+            fleetDrivers.get(0).isNotRemovable = true;
+        }
+    }
+
+    // Set the driver ID option for each driver in
+    // the collection when it is changed
+    public void changeDriverIdOption() {
+        for(Integer i = 0; i < fleetDrivers.size(); i++) {
+            if(selectedDriverIdOption == 'random') {
+                fleetDrivers.get(i).driverId = 'Random';
+            } else {
+                fleetDrivers.get(i).driverId = null;
+            }
+        }
+    }
+
+    public PageReference setDIDLength() {
+
+        System.debug('### DID Length: ' + selectedDIDLength);
+        
+        return null;
+
+    }
+
+    // Step functions
+    public void previousStep() {
+        currentStep = currentStep - 1;
+    }
+
+    public void nextStep() {
+        if(currentStep == 3 && program.Fleet_Enrollment_Disable_Driver_Page__c == true) {
+            currentStep = currentStep + 2;
+        }
+        else {
+            currentStep = currentStep + 1;
+        }
+
+        if(currentStep == 3) {
+            setupFleetVehicles();
+        }
+    }
+
+    // Exactly.
+    public void doNothing() {
+
+    }
+
+    public PageReference submitApplication() {
+
+        PageReference applicationRedirect = null;
+
+        try {
+
+            fleetEnrollment.Status__c = 'New';
+
+            // Set some fields for the FleetEnrollment record
+            fleetEnrollment.Program__c = program.Id;
+
+            if(creditLineAmount != null) {
+                fleetEnrollment.Credit_Approved__c = true;
+                fleetEnrollment.Credit_Line_Amount__c = creditLineAmount;
+            }
+
+            if(!String.isEmpty(emailVersionTracking)) {
+                fleetEnrollment.Email_Version__c = emailVersionTracking;
+            }
+
+            String key = EncodingUtil.convertToHex(crypto.generateAesKey(128));
+            fleetEnrollment.Print_Token__c = key.substring(0, 25);
+
+            if(!String.isEmpty(opportunityParameter)) {
+                fleetEnrollment.Opportunity_Number__c = opportunityParameter;
+                fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
+            }
+
+            if(selectedDriverIdOption.equalsIgnoreCase('random')) {
+                fleetEnrollment.Driver_ID_Random__c = true;
+            }
+
+            if(!String.isEmpty(applicationRequestParameter)) {
+                fleetEnrollment.Application_Request__c = applicationRequestParameter;
+                fleetEnrollment.Debug_Application_Parameter__c = applicationRequestParameter;
+            }
+
+            insert fleetEnrollment;
+
+            // Insert contacts
+
+            // The first contact is always the billing contact
+            FleetEnrollment_Contact__c primaryFleetContact = new FleetEnrollment_Contact__c();
+
+            primaryFleetContact.Fleet_Enrollment__c = fleetEnrollment.Id;
+            primaryFleetContact.Full_Name__c = fleetEnrollment.Billing_Full_Name__c;
+            primaryFleetContact.Email__c = fleetEnrollment.Billing_Email__c;
+            primaryFleetContact.Phone__c = fleetEnrollment.Billing_Phone__c;
+
+            insert primaryFleetContact;
+
+            // Add additional contacts
+            if(fleetContacts.size() > 0) {
+
+                for(Integer i = 0; i < fleetContacts.size(); i++) {
+
+                    // Only insert contacts that have all the information
+                    if(!String.isEmpty(fleetContacts.get(i).FullName) && !String.isEmpty(fleetContacts.get(i).Email) && !String.isEmpty(fleetContacts.get(i).Phone)) {
+
+                        FleetEnrollment_Contact__c newFleetContact = new FleetEnrollment_Contact__c();
+
+                        newFleetContact.Fleet_Enrollment__c = fleetEnrollment.Id;
+                        newFleetContact.Full_Name__c = fleetContacts.get(i).FullName;
+                        newFleetContact.Email__c = fleetContacts.get(i).Email;
+                        newFleetContact.Phone__c = fleetContacts.get(i).Phone;
+
+                        insert newFleetContact;
+
+                    }
+
+                }
+
+            }
+
+            // Insert vehicles
+            if(fleetVehicles.size() > 0) {
+
+                for(Integer i = 0; i < fleetVehicles.size(); i++) {
+
+                    FleetEnrollment_Vehicle__c newFleetVehicle = new FleetEnrollment_Vehicle__c();
+
+                    newFleetVehicle.Fleet_Enrollment__c = fleetEnrollment.Id;
+                    newFleetVehicle.Customer_Vehicle_ID__c = fleetVehicles.get(i).companyVehicleId;
+                    newFleetVehicle.Card_Control_Type__c = fleetVehicles.get(i).selectedCardControlOption;
+                    newFleetVehicle.Department__c = fleetVehicles.get(i).vehicleDepartment;
+                    newFleetVehicle.Vehicle_Description__c = fleetVehicles.get(i).vehicleDescription;
+                    newFleetVehicle.License_Plate__c = fleetVehicles.get(i).licensePlate;
+
+                    if(program.Fleet_Enrollment_Enable_Prompt_Options__c == true && fleetVehicles.get(i).selectedPromptOption != '#') {
+                        newFleetVehicle.Prompt_Options__c = fleetVehicles.get(i).selectedPromptOption;
+                    }
+
+                    if(program.Fleet_Enrollment_Enable_Universal_PL__c == true && fleetVehicles.get(i).selectedAcceptanceOption != '#') {
+                        newFleetVehicle.Acceptance__c = fleetVehicles.get(i).selectedAcceptanceOption;
+                    }
+
+                    insert newFleetVehicle;
+
+                }
+
+            }
+
+            if(program.Fleet_Enrollment_Disable_Driver_Page__c == false) {
+
+                // Insert drivers
+                if(fleetDrivers.size() > 0) {
+
+                    for(Integer i = 0; i < fleetDrivers.size(); i++) {
+
+                        if(!String.isEmpty(fleetDrivers.get(i).firstName) && !String.isEmpty(fleetDrivers.get(i).lastName)) {
+
+                            FleetEnrollment_Driver__c newFleetDriver = new FleetEnrollment_Driver__c();
+
+                            newFleetDriver.Fleet_Enrollment__c = fleetEnrollment.Id;
+                            newFleetDriver.First_Name__c = fleetDrivers.get(i).firstName;
+                            newFleetDriver.Last_Name__c = fleetDrivers.get(i).lastName;
+                            newFleetDriver.Driver_ID__c = fleetDrivers.get(i).driverId;
+
+                            insert newFleetDriver;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            // Get the confirmation number
+            FleetEnrollment__c fleetEnrollmentConfirmed = [SELECT Id, Confirmation_Number__c, Print_Token__c FROM FleetEnrollment__c WHERE Id = :fleetEnrollment.Id];
+
+            confirmationNumber = fleetEnrollmentConfirmed.Confirmation_Number__c;
+            printToken = fleetEnrollmentConfirmed.Print_Token__c;
+
+
+            sendEmail();
+
+            applicationRedirect = Page.FleetEnrollmentConfirmation;
+            applicationRedirect.getParameters().put('applicant', fleetEnrollmentConfirmed.Id);
+            applicationRedirect.getParameters().put('token', fleetEnrollmentConfirmed.Print_Token__c);
+            applicationRedirect.setRedirect(true);
+            return applicationRedirect;
+
+        }
+        catch (Exception e) {
+            String errorNumber = logError(e);
+
+            applicationRedirect = Page.FleetEnrollmentError;
+            applicationRedirect.getParameters().put('errorCode', '2');
+            applicationRedirect.getParameters().put('errorReferenceNumber', errorNumber);
+            applicationRedirect.getParameters().put('program', programParameter);
+            applicationRedirect.setRedirect(true);
+            return applicationRedirect;
+        }
+
+    }
+
+    public void sendEmail(){
+
+        List<RecordType> contactRecordTypes = [select Id from RecordType where sObjectType = 'Contact' and DeveloperName IN ('F1_Contact')];
+
+        Contact temporaryContact = new Contact();
+
+        temporaryContact.FirstName = fleetEnrollment.Billing_Full_Name__c;
+        temporaryContact.LastName = fleetEnrollment.Billing_Full_Name__c;
+        temporaryContact.Email = fleetEnrollment.Billing_Email__c;
+        temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
+
+        insert temporaryContact;
+
+        Messaging.reserveSingleEmailCapacity(1);
+        Messaging.SingleEmailMessage confirmation = new Messaging.SingleEmailMessage();
+
+        confirmation.setTemplateId(program.Fleet_Data_Capture_Email_Template__c);
+        confirmation.setWhatId(fleetEnrollment.Id);
+        confirmation.setTargetObjectId(temporaryContact.id);
+        confirmation.setSaveAsActivity(false);
+        confirmation.setReplyTo('noreply@wexinc.com');
+
+        for(OrgWideEmailAddress owa : [select id, Address, DisplayName from OrgWideEmailAddress])
+        {
+            if(owa.Address.contains('noreply@wexinc.com')) {
+                confirmation.setOrgWideEmailAddressId(owa.id);
+            }
+        }
+
+        if(!Test.isRunningTest()){
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[] {confirmation});
+        }
+
+        delete temporaryContact;
+
+    }
+
+    public String logError(Exception e) {
+        try {
+            External_Application_Error__c error = new External_Application_Error__c();
+
+            error.Error_Message__c = String.valueOf(e);
+            error.Error_Location__c = String.valueOf(e.getStackTraceString());
+            error.Application__c = 'Fleet Data Capture Form';
+
+            insert error;
+
+            List<External_Application_Error__c> errors = [SELECT Id, Name FROM External_Application_Error__c WHERE Id = :error.Id];
+
+            if(!errors.isEmpty()) {
+                return errors[0].Name;
+            }
+            else {
+                return '';
+            }
+        }
+        catch(Exception f) {
+            System.debug('Error logging exception.. Skipping..');
+
+            return '';
+        }
+    }
+
+}

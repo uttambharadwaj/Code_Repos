@@ -1,0 +1,495 @@
+<apex:page controller="OnlineApplicationControllerExtension" action="{!verifyUrl}" sidebar="{!isPrefillMode}" showHeader="{!isPrefillMode}" cache="false">
+
+    <script>
+        var editMade = false;        
+        function doEdit() {
+            editMade = true;
+        }
+        function doEditCheck() {
+            if(editMade == true) {
+                var item = document.getElementById('edit1');
+                item.className = 'hiddenWait';
+                return true;
+            }
+            else {
+                var item = document.getElementById('edit1');
+                item.className = 'unhiddenWait';
+                editMade = true;
+                return false;
+            }
+        }
+    </script>
+           
+    <apex:stylesheet value="{!$Resource.ApplicationStyles}"/>           
+    
+    <div style="{!IF(isFrameless,'width:900px;margin:0 auto;','')}">
+    <apex:image url="{!headerImageUrl}" width="850px" rendered="{!AND(isFrameless,!isOnReviewPage)}" style="display:block;margin-left:auto;margin-right:auto;"/>    
+    <apex:form >    
+        
+        <apex:pageBlock id="block1">        
+
+            <div class="headerBox">
+                <apex:image value="{!$Resource.CardSetupSmallFleet}" styleClass="headerImage" rendered="{!!isOnReviewPage}"/>           
+                <apex:pageMessages rendered="{!!isOnReviewPage}"/>   
+            </div>
+
+            <apex:outputText value="{!$Label.EditTheEntriesBelow}" styleClass="largeInstructions"/>
+            <br/><br/>            
+
+            <apex:pageBlockSection showHeader="false" columns="2" id="cardDetails1">
+
+                <!-- AJAX effect -->            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Embossing_Line_1_Company_Name__c.inlineHelpText}">
+                    <apex:outputLabel value="{!IF(isMasterCard,
+                                                  $Label.EmbossingLine2,
+                                                  $ObjectType.OnlineApplication__c.fields.Embossing_Line_1_Company_Name__c.label)}"/>
+                    <apex:actionRegion >
+                        <apex:inputField value="{!appl.Embossing_Line_1_Company_Name__c}" required="false" taborderhint="1">
+                            <apex:actionSupport event="onfocus" action="{!showCardImage}" rerender="cardImageSection" status="viewCardStatus" immediate="true"/>
+                            <apex:actionSupport event="onblur" action="{!hideCardImage}" rerender="cardImageSection" status="viewCardStatus" immediate="true"/>
+                        </apex:inputField>
+                        <apex:actionStatus id="viewCardStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>                        
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                                                                    
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection showHeader="false" columns="1" id="cardImageSection">
+
+                <apex:pageBlockSectionItem rendered="{!isCardImageVisible}">
+                    <apex:panelGroup >
+                        <apex:image value="{!$Resource.SampleCardLocal}" rendered="{!isLocal}"/>
+                        <apex:image value="{!$Resource.SampleCardOTR}" rendered="{!isOTR}"/>
+                        <apex:image value="{!$Resource.SampleCardMasterCard}" rendered="{!isMasterCard}"/>
+                    </apex:panelGroup>
+                </apex:pageBlockSectionItem>
+                        
+            </apex:pageBlockSection>
+
+            <br/>
+            <apex:commandButton value="{!$Label.BypassCardSetup}" action="{!bypassCardSetupMC}" immediate="true" rendered="{!showBypassButtonForMC}"/>               
+
+
+            <apex:outputPanel id="vehicleSetups" rendered="{!isLocal}">
+            <apex:actionRegion >                        
+            
+                <apex:pageBlockTable value="{!vehicleSetups}" var="v" captionStyle="font-weight:bold;text-align:right;margin-right:120px;">
+                    <apex:facet name="caption">
+                        <apex:outputText value="{!$Label.DailySpendingLimits}"/>
+                    </apex:facet>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Vehicle_Description__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Vehicle_Description__c.inlineHelpText}"> 
+                        <apex:inputField value="{!v.Vehicle_Description__c}" required="false" onchange="doEdit();"/>
+                    </apex:column>
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Vehicle_Type__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Vehicle_Type__c.inlineHelpText}"> 
+                        <apex:inputField value="{!v.Vehicle_Type__c}" required="false">
+                            <apex:actionSupport event="onchange" action="{!changeVehicleDefaults}" rerender="vehicleSetups" status="vehicleStatus">
+                                <apex:param value="{!v.Vehicle_Description__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                            </apex:actionSupport>                    
+                        </apex:inputField>
+                    </apex:column>
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Fuel_Grade__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Fuel_Grade__c.inlineHelpText}">
+                        <apex:selectList value="{!v.Fuel_Grade__c}" multiselect="false" size="1">
+                            <apex:selectOptions value="{!localFuelChoices}"/>
+                            <!-- apex:actionSupport event="onchange" action="{!changeVehicleFuelGrade}" rerender="vehicleSetups" status="vehicleStatus"-->
+                                <!-- apex:param value="{!v.Vehicle_Description__c}" name="rowToProcess" assignTo="{!rowToProcess}"/-->
+                            <!-- /apex:actionSupport-->                    
+                        </apex:selectList>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Fuel__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Fuel__c.inlineHelpText}">
+                        <apex:inputField value="{!v.Fuel__c}" required="false" style="width:60px;"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Maintenance__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Maintenance__c.inlineHelpText}">
+                        <apex:inputField value="{!v.Maintenance__c}" required="false" style="width:60px;"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Additives__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Additives__c.inlineHelpText}">
+                        <apex:inputField value="{!v.Additives__c}" required="false" style="width:60px;"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Miscellaneous__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Miscellaneous__c.inlineHelpText}">
+                        <apex:inputField value="{!v.Miscellaneous__c}" required="false" style="width:60px;"/>
+                    </apex:column>
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$Label.Action}">
+                        <apex:commandLink value="{!$Label.Remove}" action="{!removeVehicle}" status="vehicleStatus" 
+                                          rerender="vehicleSetups" styleClass="removeItemLink">
+                            <apex:param value="{!v.Vehicle_Description__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                        </apex:commandLink>                
+                    </apex:column>
+                </apex:pageBlockTable>
+
+                <!-- AJAX -->
+                <apex:commandLink value="{!$Label.AddAdditionalVehicle}" action="{!addVehicle}" status="vehicleStatus" 
+                                  rerender="vehicleSetups" styleClass="addItemLink"/>
+                <apex:actionStatus id="vehicleStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+
+            </apex:actionRegion>            
+            </apex:outputPanel>
+            <br/><br/>
+
+
+
+
+
+
+
+
+
+
+
+
+            <apex:outputPanel id="cardSetups" rendered="{!isMasterCard}">
+            <apex:actionRegion >
+            
+                <apex:pageBlockTable value="{!cardSetups}" var="cs" captionStyle="font-weight:bold;text-align:right;margin-right:70px;">
+                
+                    <apex:facet name="caption">
+                        <apex:outputText value="{!$Label.DailyMerchantSpendingLimits}"/>
+                    </apex:facet>
+                    
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Card_Type__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Card_Type__c.inlineHelpText}"> 
+                        <apex:inputField value="{!cs.Card_Type__c}" required="false">
+                            <apex:actionSupport event="onchange" action="{!changeCardDefaults}" rerender="cardSetups" status="cardStatus">
+                                <apex:param value="{!cs.Security_Code_Driver_ID__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                            </apex:actionSupport>
+                        </apex:inputField>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Cardholder_Name__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Cardholder_Name__c.inlineHelpText}"> 
+                        <apex:inputField value="{!cs.Cardholder_Name__c}" required="false" style="width:120px;"/>
+                    </apex:column>
+                    
+                    <apex:column title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Security_Code_Driver_ID__c.inlineHelpText}">                    
+                        <apex:facet name="header">
+                            <apex:outputText escape="false" value="{!$Label.SecurityCode}/ <br/> {!$Label.DriverID}"/>
+                        </apex:facet>  
+                        <apex:inputField value="{!cs.Security_Code_Driver_ID__c}" required="false" style="width:70px;"/>
+                    </apex:column>
+                    
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Card_Restrictions__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Card_Restrictions__c.inlineHelpText}"> 
+                        <apex:inputField value="{!cs.Card_Restrictions__c}" required="false">
+                            <apex:actionSupport event="onchange" action="{!changeCardDefaults}" rerender="cardSetups" status="cardStatus">
+                                <apex:param value="{!cs.Security_Code_Driver_ID__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                            </apex:actionSupport>
+                        </apex:inputField>
+                    </apex:column>
+                    
+                    <apex:column title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Credit_Limit__c.inlineHelpText}">
+                        <apex:facet name="header">
+                            <apex:outputText escape="false" value="{!$Label.Monthly} <br/> {!$Label.CreditLimit}"/>
+                        </apex:facet> 
+                        <apex:inputField value="{!cs.Credit_Limit__c}" required="false" style="width:60px;"/>
+                    </apex:column>
+                    
+                    <apex:column title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Cash__c.inlineHelpText}"> 
+                        <apex:facet name="header">
+                            <apex:outputText escape="false" value="{!$Label.Monthly} <br/> {!$Label.CashP}"/>
+                        </apex:facet> 
+                        <apex:inputField value="{!cs.Cash__c}" required="false" style="width:50px;" 
+                                         rendered="{!IF(cs.Card_Restrictions__c != 'Fuel Only', 'true', 'false')}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationCardSetup__c.fields.All_Merchants__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.All_Merchants__c.inlineHelpText}"> 
+                        <apex:inputField value="{!cs.All_Merchants__c}" required="false" style="width:60px;"
+                                         rendered="{!IF(OR(cs.Card_Restrictions__c == 'All Merchants',cs.Card_Restrictions__c == null) , 'true', 'false')}"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Fuel__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Fuel__c.inlineHelpText}"> 
+                        <apex:inputField value="{!cs.Fuel__c}" required="false" style="width:50px;"/>
+                    </apex:column>
+                    
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Maint__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationCardSetup__c.fields.Maint__c.inlineHelpText}"> 
+                        <apex:inputField value="{!cs.Maint__c}" required="false" style="width:50px;"
+                                         rendered="{!IF(cs.Card_Restrictions__c != 'Fuel Only', 'true', 'false')}"/>                        
+                    </apex:column>
+
+                    <!-- AJAX FIX-->
+                    <apex:column headerValue="{!$Label.Action}">
+                        <apex:commandLink value="{!$Label.Remove}" action="{!removeCard}" status="cardStatus" 
+                                          rerender="cardSetups" styleClass="removeItemLink">
+                            <apex:param value="{!cs.Cardholder_Name__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                        </apex:commandLink>                
+                    </apex:column>
+                
+                </apex:pageBlockTable>
+
+                <!-- AJAX FIX-->
+                <apex:commandLink value="{!$Label.AddAdditionalCard}" action="{!addCard}" status="cardStatus" 
+                                  rerender="cardSetups" styleClass="addItemLink"/>
+                <apex:actionStatus id="cardStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+            
+            </apex:actionRegion>
+            <br/><br/>
+            </apex:outputPanel>
+
+
+
+
+
+
+
+
+
+            <apex:outputText rendered="{!isMasterCard}" value="{!$Label.EditVehicleDescription}" styleClass="largeInstructions"/>
+            <apex:outputPanel id="mcVehicleSetups" rendered="{!isMasterCard}">
+            <apex:actionRegion >                        
+
+                <apex:pageBlockTable value="{!vehicleSetups}" var="v">
+
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Vehicle_Description__c.label}"
+                                 title="{!$Label.VehicleDescriptionMasterCard}"> 
+                        <apex:inputField value="{!v.Vehicle_Description__c}" required="false"/>
+                    </apex:column>
+
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Vehicle_Id__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationVehicleSetup__c.fields.Vehicle_Id__c.inlineHelpText}"> 
+                        <apex:inputField value="{!v.Vehicle_Id__c}" required="false"/>
+                    </apex:column>
+
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$Label.Action}">
+                        <apex:commandLink value="{!$Label.Remove}" action="{!removeVehicle}" status="mcVehicleStatus" 
+                                          rerender="mcVehicleSetups" styleClass="removeItemLink">
+                            <apex:param value="{!v.Vehicle_Description__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                        </apex:commandLink>                
+                    </apex:column>
+                
+                </apex:pageBlockTable>
+
+                <!-- AJAX -->
+                <apex:commandLink value="{!$Label.AddAdditionalVehicle}" action="{!addVehicleMasterCard}" status="mcVehicleStatus" 
+                                  rerender="mcVehicleSetups" styleClass="addItemLink"/>
+                <apex:actionStatus id="mcVehicleStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+
+            </apex:actionRegion>
+            <br/><br/>
+            </apex:outputPanel>
+
+
+
+
+
+
+
+
+
+
+
+            <apex:outputText rendered="{!isLocal}" value="{!$Label.EditTheDriverEntries}" styleClass="largeInstructions"/>
+            <apex:outputText rendered="{!isOTR}" value="{!$Label.PleaseNoteDriverName}" styleClass="largeInstructions"/>
+
+            <apex:outputPanel id="driverSetups" rendered="{!!isMasterCard}">
+            <apex:actionRegion >                
+                    
+                <apex:pageBlockTable value="{!driverSetups}" var="d" captionStyle="font-weight:bold;text-align:right;margin-right:100px;">
+                    <apex:facet name="caption">
+                        <apex:outputText value="{!$Label.DailySpendingLimits}" rendered="{!isOTR}"/>
+                    </apex:facet>            
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Driver_Name__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Driver_Name__c.inlineHelpText}"> 
+                        <apex:inputField value="{!d.Driver_Name__c}" required="false" onchange="doEdit();"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Driver_ID__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Driver_ID__c.inlineHelpText}"> 
+                        <apex:inputField value="{!d.Driver_ID__c}" required="false" html-maxlength="4" />
+                    </apex:column>
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.ATM_Access__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.ATM_Access__c.inlineHelpText}"                
+                                 rendered="{!isOTR}">
+                        <apex:inputField value="{!d.ATM_Access__c}" required="false">                                      
+                            <apex:actionSupport event="onchange" action="{!changeDriverATMAccess}" 
+                                                rerender="driverSetups" status="driverSetupStatus">
+                                <apex:param value="{!d.Driver_Name__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                            </apex:actionSupport>                    
+                        </apex:inputField>
+                    </apex:column>
+                    <!-- AJAX -->                    
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Fuel_Grade__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Fuel_Grade__c.inlineHelpText}"                
+                                 rendered="{!isOTR}"> 
+                        <apex:selectList value="{!d.Fuel_Grade__c}" multiselect="false" size="1">
+                            <apex:selectOptions value="{!otrFuelChoices}"/>
+                            <apex:actionSupport event="onchange" action="{!changeDriverFuelGrade}" 
+                                                rerender="driverSetups" status="driverSetupStatus">
+                                <apex:param value="{!d.Driver_Name__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                            </apex:actionSupport>                    
+                        </apex:selectList>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Fuel_Limit__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Fuel_Limit__c.inlineHelpText}"                
+                                 rendered="{!isOTR}"> 
+                        <apex:inputField value="{!d.Fuel_Limit__c}" required="false" style="width:60px;"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Cash_Limit__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Cash_Limit__c.inlineHelpText}"                
+                                 rendered="{!isOTR}"> 
+                        <apex:inputField value="{!d.Cash_Limit__c}" required="false" style="width:60px;"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Misc_Limit__c.label}"
+                                 title="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Misc_Limit__c.inlineHelpText}"                
+                                 rendered="{!isOTR}"> 
+                        <apex:inputField value="{!d.Misc_Limit__c}" required="false" style="width:60px;"/>
+                    </apex:column>
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$Label.Action}">
+                        <apex:commandLink value="{!$Label.Remove}" action="{!removeDriver}" status="driverSetupStatus" 
+                                          rerender="driverSetups" styleClass="removeItemLink">
+                            <apex:param value="{!d.Driver_Name__c}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                        </apex:commandLink>                
+                    </apex:column>
+                </apex:pageBlockTable>
+
+                <!-- AJAX -->
+                <apex:commandLink value="{!$Label.AddAdditionalDriver}" action="{!addDriver}" status="driverSetupStatus" 
+                                  rerender="driverSetups" styleClass="addItemLink"/>
+                <apex:actionStatus id="driverSetupStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+
+            </apex:actionRegion>            
+            </apex:outputPanel>
+            <br/><br/>
+
+
+            <apex:outputText value="{!$Label.SelectTheAdditionalPrompts}" styleClass="largeInstructions" rendered="{!isOTR}"/>
+            <apex:pageBlockSection showHeader="false" columns="2" id="additionalPrompts" rendered="{!isOTR}">                        
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Odometer__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Odometer__c.label}"/>
+                    <apex:inputField value="{!appl.Odometer__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Trip__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Trip__c.label}"/>
+                    <apex:inputField value="{!appl.Trip__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Unit__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Unit__c.label}"/>
+                <!-- AJAX -->
+                <apex:actionRegion >
+                    <apex:inputField value="{!appl.Unit__c}">
+                        <apex:actionSupport event="onclick" action="{!initializeUnitNumbers}" rerender="unitPanel" status="unitStatus1"/>
+                    </apex:inputField>
+                </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+                                                                
+            </apex:pageBlockSection>
+            <apex:actionStatus id="unitStatus1" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+
+
+
+
+            <apex:outputPanel id="unitPanel">
+            <apex:outputText value="{!$Label.UnitNumberPrompt}" styleClass="largeInstructions" rendered="{!renderUnitNumbers}"/>
+            <apex:actionRegion >
+                
+                <div style="width:50%">
+                <apex:pageBlockTable value="{!unitNumbers}" var="u" rendered="{!renderUnitNumbers}">
+                    <apex:column headerValue="{!$ObjectType.OnlineApplicationUnitNumber__c.fields.Name.label}"
+                                 title="{!$Label.UnitNumberHover}"> 
+                        <apex:inputField value="{!u.Name}" required="false"/>
+                    </apex:column>
+                    <!-- AJAX -->
+                    <apex:column headerValue="{!$Label.Action}">
+                        <apex:commandLink value="{!$Label.Remove}" action="{!removeUnitNumber}" status="unitStatus2" 
+                                          rerender="unitPanel" styleClass="removeItemLink">
+                            <apex:param value="{!u.Name}" name="rowToProcess" assignTo="{!rowToProcess}"/>
+                        </apex:commandLink>
+                    </apex:column>                    
+                </apex:pageBlockTable>
+                </div>
+
+                <!-- AJAX -->
+                <apex:commandLink value="{!$Label.AddAdditionalUnitNumber}" action="{!addUnitNumber}" status="unitStatus2" 
+                                  rerender="unitPanel" styleClass="addItemLink" rendered="{!renderUnitNumbers}"/>
+                <apex:actionStatus id="unitStatus2" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>
+                
+            </apex:actionRegion>
+            </apex:outputPanel>
+
+
+            
+
+
+
+
+
+            <apex:outputPanel id="otherServicesPanel">
+            <apex:actionRegion >
+            <apex:panelGrid columns="3" id="otherServices" rendered="{!isOTR}" captionStyle="font-weight:bold;text-align:left;">
+                <apex:facet name="caption">
+                    <apex:outputText value="Other Services"/>
+                </apex:facet>            
+                <apex:selectList value="{!otherServicesAvailableSelected}" multiselect="true" size="7">
+                    <apex:selectOptions value="{!otherServicesAvailableList}"/>
+                </apex:selectList>
+                <apex:panelGroup >
+                    <apex:commandButton value=">"  action="{!addOtherServices}"     reRender="otherServicesPanel"/>  <br/>
+                    <apex:commandButton value="<"  action="{!removeOtherServices}"  reRender="otherServicesPanel"/>
+                </apex:panelGroup>
+                <apex:selectList value="{!otherServicesChosenSelected}" multiselect="true" size="7">
+                    <apex:selectOptions value="{!otherServicesChosenList}"/>
+                </apex:selectList>
+            </apex:panelGrid>
+            </apex:actionRegion>
+            </apex:outputPanel>
+
+
+
+
+
+
+
+            <apex:pageBlockSection showHeader="false" columns="2" id="shipTo">
+
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Ship_Cards_To__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Ship_Cards_To__c.label}"/>
+                    <apex:outputText value="{!shipToAddress}" escape="false"/>
+                </apex:pageBlockSectionItem>
+                <!-- AJAX effect -->            
+                <apex:pageBlockSectionItem dataTitle="{!$ObjectType.OnlineApplication__c.fields.Change_to_Authorizing_Officer_Address__c.inlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.OnlineApplication__c.fields.Change_to_Authorizing_Officer_Address__c.label}"/>
+                    <apex:actionRegion >
+                        <apex:inputField value="{!appl.Change_to_Authorizing_Officer_Address__c}">
+                            <apex:actionSupport event="onclick" action="{!updateShipTo}" rerender="shipTo" status="shipToStatus"/>
+                        </apex:inputField>
+                        <apex:actionStatus id="shipToStatus" startText="{!$Label.PleaseWait}" startStyleClass="ajaxStatus"/>                       
+                    </apex:actionRegion>
+                </apex:pageBlockSectionItem>
+            
+            </apex:pageBlockSection>
+
+            <span id="edit1" class="hiddenWait">{!IF(isMasterCard, $Label.MasterCardConfirm, $Label.VehicleDriverConfirm)}</span>
+            
+            <apex:pageBlockButtons location="bottom"> 
+
+                <!--Modified by Trekbin regarding Case :00022569 Start-->
+
+            	<apex:commandButton value="{!$Label.Back}" action="{!goBack}" rendered="{!!isOnReviewPage}"/>            
+                <apex:commandButton value="{!$Label.SaveAndCompleteLater}" action="{!saveAndCompleteLater}" rendered="{!AND(!isOnReviewPage,!isPrefillMode)}"/>
+                <apex:commandButton value="{!$Label.SaveAndCreateEmail}" action="{!saveAndCreateEmail}" rendered="{!isPrefillMode}"/>
+                <apex:commandButton value="{!$Label.SaveChanges}" action="{!saveReviewPageChanges}" rendered="{!isOnReviewPage}"/>
+                <apex:commandButton value="{!$Label.Next}" action="{!goNext}" rendered="{!AND(!isOnReviewPage,!isPrefillMode)}" onclick="return doEditCheck();"/>
+
+                <!--Modified by Trekbin regarding Case :00022569 End-->
+            </apex:pageBlockButtons>
+
+        </apex:pageBlock>
+
+    </apex:form>
+    </div>
+           
+</apex:page>

@@ -1,0 +1,132 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAErrorController" language="{!languageCode}">
+<html lang="{!languageCode}">
+<head>
+    <!-- Title -->
+    <title>{!$Label.BOCA_Error}</title>
+    
+    <!-- Meta -->
+    <meta name="viewport" content="width=device-width" />
+    
+    <!-- Imported Styles -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.Skeleton, 'css/normalize.css')}" />
+    <link rel="stylesheet" href="{!URLFOR($Resource.Skeleton, 'css/skeleton.css')}" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+
+    <!-- Fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+    <!-- Imported Scripts -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous" />
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.js" />
+        
+    <script>
+    	var card_program = "{!programParameter}";    
+    
+		var page_name = "App-Error";
+    </script> 
+        
+    <!-- This will move to be the base BOCA CSS -->
+	<style>
+        /* Mobile First! */
+
+        /* Site-wide Styles - START */
+        *, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', serif;
+            font-size: 13px;
+        }
+    	body { 
+        	background: #f9f9f9;     
+		}
+    	
+    	.container {
+        	border: 1px solid #aaa;
+            background: #ffffff;
+        	padding: 0; 
+        }
+    
+    	.container-header {
+         	background: #963634;
+            color: #fff;
+            -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+            padding: 10px 0 0 20px;
+            {!program.Brand_Color_1__c}
+        }
+    
+    	.errorMessage {
+            -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+            padding: 10px 30px;
+        }
+    
+    	.container-header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            padding-top: 10px;
+        	width: 100%;
+        }
+    
+    	.wrapper { 
+        	width: 300px; 
+        	margin: 60px auto;
+        }
+    
+        /* Site-wide Styles - END */
+        
+        .clearfix:after {
+     		visibility: hidden;
+     		display: block;
+     		font-size: 0;
+     		content: " ";
+     		clear: both;
+     		height: 0;
+     	}
+		.clearfix { display: inline-block; }
+		/* start commented backslash hack \*/
+		* html .clearfix { height: 1%; }
+		.clearfix { display: block; }
+		/* close commented backslash hack */
+        
+        /* Bigger than a phablet */
+        @media only screen and (min-width: 960px)  {
+	    	.wrapper { width: 100%; }
+		}
+	</style>  
+    
+    <apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false"/>
+</head>   
+<body>
+<apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false"/>
+<div class="wrapper">
+	<div class="container">
+        <div class="row">
+            <div class="twelve columns container-header">
+                <h1>{!$Label.BOCA_Error}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns errorMessage">
+                <p>
+                	<apex:outputText value="{!$Label.BOCA_Configuration_Error}" rendered="{!errorCode == '1'}" />
+                    <apex:outputText value="{!$Label.BOCA_General_Error}" rendered="{!errorCode == '2'}" />
+					<apex:outputText value="{!$Label.BOCA_Prospect_Error}" rendered="{!errorCode == '3'}" />
+            	</p>
+                <apex:outputPanel rendered="{!errorReferenceNumber != null}">
+                	<p>
+                    	Error Reference Number: {!errorReferenceNumber}
+                    </p>
+				</apex:outputPanel>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+</apex:page>

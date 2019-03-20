@@ -1,0 +1,244 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="BOCAController"
+           action="{!initBrandCheck}" language="{!lang}" extensions="BOCALangExtension" name="{!BrandLongName}">
+<html lang="{!lang}">
+
+<head>
+    <title>
+        <apex:outputText value="{!brandlongName}"/>
+    </title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no"/>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+    <apex:includeScript value="{!URLFOR($Resource.jqueryMask)}"/>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <!----Bootstrap Files--->
+
+    <apex:includeScript value="{!URLFOR($Resource.bootstrap, 'dist/js/bootstrap.min.js')}"></apex:includeScript>
+    <link href="{!URLFOR($Resource.bootstrap, 'dist/css/bootstrap.min.css')}" rel="stylesheet"/>
+
+    <!---end bootstrap--->
+    <apex:stylesheet value="{!URLFOR($Resource.BOCAbase)}"/>
+    <!--[if lt IE 9]>
+    <apex:includeScript value="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"/>
+    <apex:includeScript value="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"/>
+    <link href="//netdna.bootstrapcdn.com/respond-proxy.html" id="respond-proxy" rel="respond-proxy">
+
+    <apex:includeScript value="{!URLFOR($Resource.respond)}"/>
+    <link href="{!URLFOR($Resource.proxy)}" id="respond-redirect" rel="respond-redirect">
+    <![endif]-->
+    <!---<apex:stylesheet value="{!URLFOR($Resource.boca, 'css/fieldvalidation.css')}"/>--->
+    <!----<apex:stylesheet value="{!URLFOR($Resource.boca, 'css/print.css')}"/>---->
+
+    <!---Branding Styles Loaded Dynamically here--->
+
+    <!---End Branding Styles---->
+    <style type="text/css">label {
+        display: block;
+        width: 100%;
+        font-weight: 300;
+    }
+
+    .container {
+        margin: 0px 0px 0px 0px;
+        padding: 5% 0px 0px 0px;
+    }
+
+    body {
+        font-family: Arial;
+        background-color: transparent;
+    }
+
+    td, th {
+        padding: 0%;
+    }
+
+    .btn-custom {
+    {!brand2};
+    }
+    .logoDiv {
+        background-image: url({!URLFOR($Action.Attachment.Download, logoURL)});
+        background-repeat: no-repeat;
+        margin-left: 5%;
+
+    }
+    #branding {
+        background-image: url({!URLFOR($Action.Attachment.Download, cardURL)});
+        background-repeat: no-repeat;
+        width: fit-content;
+        height: fit-content;
+    }
+        
+    #branding-text { 
+        text-align: center; 
+        min-width:250px; 
+        width: 100%; 
+        margin: 15px 0 25px 0;
+    }
+        
+    .sidebar{
+
+      list-style-type: none;
+      background-image: linear-gradient(to bottom, #e3dde3, #f5f5f5);
+      padding: 0px 5px 10px 5px;
+    }
+   .sidebar-nav-fixed h1, .sidebar-nav-fixed h2{
+        text-align: center;
+        
+            }
+   .sidebar li{
+        padding: 10px 0px 0px 10px;     
+            
+    }
+   h1, h2, h3, h4 {
+        font: bold Arial;
+    }
+
+    .panel-heading {
+    {!brand1};
+    }
+    .panel-title {
+        color: #fff;
+    }
+
+    .panel {
+        border: none;
+    }
+
+    .row {
+        margin: 0 auto;
+    }
+
+    input .form-control {
+        padding: 0;
+    }
+        @media only screen and (max-width: 767px)
+    {
+        .logoDiv{
+            float: none;
+            margin: 0 auto;
+            background-position: center; 
+        }
+        .pageHeader{
+            padding-right:0px;
+            padding-top:5%;
+        }
+        }
+        @media only screen and (max-width: 768px) and (min-width: 200px){
+            header.page-header.affix{
+                min-height:150px;
+                padding: 20px 0px 0px 0px;
+        
+            }
+        }
+
+    </style>
+
+
+    <apex:outputText value="{!googleAnalyticsHeadBlock}" id="headBlock" escape="false"/>
+</head>
+<!--[if gte IE 9]
+<style type="text/css">
+.gradient {
+filter: none;
+}
+body{
+background:-webkit-gradient(linear, 11% 28%, 11% 91%, from(#B9B7BA), to(#70828C));
+}
+</style>
+<![endif]-->
+<!--[if IE]>
+<style type="text/css">
+    body {
+        background: -webkit-gradient(linear, 11% 28%, 11% 91%, from(#B9B7BA), to(#70828C));
+    }
+</style>
+<![endif]-->
+<body class="radial">
+ <script id="tdr_3srJf" type="text/javascript" src="https://h.online-metrix.net/fp/clear.png?org_id=bkwau9ws&amp;session={!creditApp.TM_Session_ID__c}"></script>
+    <img id="tdr_6IIEo" style="display:none" src="https://bkwau9ws-8a69bc0ab2ee96e97f45f425f60a04e571228253-sac.d.aa.online-metrix.net/fp/clear.png?org_id=bkwau9ws&amp;session={!creditApp.TM_Session_ID__c};di=yes"/>
+        <img id="tdr_95nWt" style="display:none" src="https://h.online-metrix.net/fp/clear.png"/>
+<header class="page-header affix">
+    <!-- Insert Include Here -->
+
+
+    <!-- Begin :: Header -->
+    <script type="text/javascript">
+        if (typeof(lpUnit) == 'undefined')    var lpUnit = 'sales';
+        if (typeof(lpLanguage) == 'undefined') var lpLanguage = 'english';
+    </script>
+
+    <script src="https://www.essofleetoffers.com/secure/mtagconfig.js" type="text/Javascript"></script>
+
+    <div class="logoDiv" ></div>
+    <apex:outputtext styleClass="logo" value="{!DisplayName}" escape="false"></apex:outputtext>
+    <!----
+        <div class="ui-contact-details">
+            <p class="text-bold">{!call[0]}</p>
+            
+            <p class="text-light">{!call[1]}
+            <apex:outputText value="{!inSales}"/>
+                </p>
+            <p class="text-light">
+                
+                <apex:outputText value="{!liveperson}" escape="false"/>
+                    
+                    </p>
+                </div> -->
+</header>
+
+<!-- End :: Header -->
+<div class="container" id="container">
+
+                                        
+                                        <div class="row">
+                                            <!-- Begin :: Side Panel -->
+                                                <div id="col-1" class="col-xs-12 col-sm-6 col-lg-3">
+                                                    <div class="sidebar-nav-fixed affix">
+                                                        <!-- Branded Img here -->
+                                                            <div id="branding"></div>
+                                                            
+                                                            <div id="branding-text">
+        														<apex:outputtext value="{!heading}" escape="false"></apex:outputtext>
+        														<apex:outputtext value="{!tagline}" escape="false"></apex:outputtext>
+       														</div>
+                                                      
+                                                                                        </div>
+                                                                                        
+                                                                                        </div>
+                                                                                        <!--end side panel--->
+                                                                                            <div id="col-2" class="col-xs-12 col-sm-7 col-lg-7">
+                                                                                                
+                                                                                                <apex:PageBlock >
+                                                                                                    <div class="panel panel-default">
+                                                                                                        <div class="panel-heading gradient">
+                                                                                                            <h2 class="panel-title">Application Status</h2>
+                                                                                                            </div>
+                                                                                                            <div class="panel-body">
+                                                                                                                <ul style="margin: 0 0 20px -10px;">
+                                                                                                                <h3 style="margin-bottom: 20px;">Thank You For Your Interest in the {!BrandLongName}</h3>
+                                                                                                                <p><b>Your Application Status Is:</b></p>
+                                                                                                                
+                                                                                                                <p><apex:outputText value="{!appStatus}"/>
+                                                                                                                    <apex:outputText value="{!statusInfo}"/></p>
+                                                                                                                        </ul>
+                                                                                                                        </div>
+                                                                                                                    </div><!-----panel end--->
+                                                                                                                    </apex:PageBlock>
+                                                                                                                    
+                                                                                                                    
+                                                                                                                    
+                                                                                                                    </div>
+                                                                                                                    </div>
+                                                                                                                    
+                                                                                                                    
+                                                                                                                    </div>
+                                                                                                                    <!---end container--->
+                                                                                                                        
+                                                                                                                        
+                                                                                                                        <apex:outputText value="{!googleAnalyticsBodyBlock}" id="bodyBlock" escape="false"/>
+                                                                                                                            </body>
+                                                                                                                        </html>
+                                                                                                                        </apex:page>
