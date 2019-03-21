@@ -14,7 +14,6 @@ src/authproviders
 src/autoResponseRules
 src/callCenters
 src/communities
-src/components
 src/connectedApps
 src/datacategorygroups
 src/emailservices
