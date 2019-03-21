@@ -1,0 +1,15 @@
+<aura:component controller="TakeOwnershipController" implements="flexipage:availableForRecordHome,force:hasRecordId">
+    <aura:attribute name="spinner" type="boolean" default="false" />
+
+    <form class="slds-m-around_small slds-form_stacked slds-grid slds-wrap slds-grid_pull-padded">
+        <div class="slds-p-horizontal_small slds-size_1-of-1 slds-align-bottom slds-float_left">
+            <div class="slds-form-element">
+                <ui:button label="Take Ownership" class="slds-button slds-button_brand" labelClass="label" press="{!c.changeOwner}" />
+            </div>
+        </div>
+    </form>
+
+    <aura:if isTrue="{!v.spinner}">
+        <lightning:spinner variant="brand" size="medium" alternativeText="Processing.." />
+    </aura:if>
+</aura:component>

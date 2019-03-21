@@ -1,0 +1,17 @@
+.THIS .bodyContent { 
+	font-family: 'Open Sans', sans-serif !important;
+    font-size: 110%;
+}
+
+.THIS .link {    
+    color: #ff0000;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 13px;
+    font-weight: bold !important;
+}
+
+.THIS .noteText {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 9px;
+    font-style: italic;
+}

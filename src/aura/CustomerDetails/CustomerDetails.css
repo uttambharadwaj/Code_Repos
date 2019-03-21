@@ -1,0 +1,204 @@
+.THIS .slds-tile {
+    padding-bottom: 20px;
+}
+
+.THIS .slds-page-header__title {
+    font-size: 16px !important;
+}
+
+.THIS .slds-text-heading--label {
+    color: #a1a9b5 !important;
+    text-transform: capitalize !important;
+}
+
+.THIS .bold-black {
+    color: #000 !important;
+    font-weight: bold !important;
+}
+
+.THIS .topalign {
+    vertical-align: top;
+}
+
+.THIS .slds-text-heading--priority_value {
+    color: blue !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    text-transform: capitalize !important;
+}
+
+.THIS .slds-tabs_scoped__link {
+    text-transform: uppercase;
+    outline: none;
+    border-left: 0 !important;
+}
+
+.THIS .slds-text-heading--small {
+    font-size: 16px !important;
+}
+
+.THIS a, .THIS a:hover, .THIS a:active, .THIS a:visited, .THIS a:focus {
+    text-decoration: none !important;
+    outline: 0 !important;
+}
+
+.THIS .slds-tabs_scoped__item {
+    font-weight: bold !important;
+}
+
+.THIS .slds-tabs_scoped__item.slds-is-active {
+    background: #fff;
+}
+
+.THIS .slds-tabs_scoped__item.slds-is-active:not(:first-child) {
+    border-left: 1px solid #d8dde6;
+}
+
+.THIS .slds-tabs_scoped__item:hover:not(:first-child) {
+    border-left: 1px solid #d8dde6;
+}
+
+.THIS .cycleAgingChart {
+    width: 100%;
+    height: 500px;
+    padding: 4px;
+}
+
+.THIS .paymentHistoryChart {
+    width: 100%;
+    height: 500px;
+    padding: 4px;
+}
+
+.THIS #case-lookup-modal {
+    display: none;
+}
+
+.THIS .rating .servicingRules {
+    visibility: hidden;
+    width: 220px;
+    background-color: #555 !important;
+    color: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    font-size: 14px;
+}
+
+.THIS .rating:hover .servicingRules:not(:empty) {
+    visibility: visible;
+    cursor: text;
+}
+
+.THIS .rating:hover {
+    cursor: pointer;
+}
+
+.THIS .customerDetails { margin-top: 20px !important; }
+
+.THIS .slds-card__tile { padding: 10px 0; }
+
+.THIS .slds-page-header__title { font-size: 16px !important; }
+
+.THIS .slds-text-title { color: #a1a9b5 !important; text-transform: capitalize !important; }
+
+.THIS .slds-tabs--default__item { text-transform: uppercase; }
+
+.THIS .slds-text-body--regular { font-size: 16px !important; }
+
+.THIS a, .THIS a:hover { text-decoration: none !important; }
+
+.THIS a:hover { color: #aaa !important; }
+
+.THIS .slds-tabs_scoped__item .refresh-tab {
+    display: none;
+}
+
+.THIS .slds-tabs_scoped__item.slds-is-active .refresh-tab {
+    float: left;
+    font-size: 18px;
+    margin: 11px -6px 0 11px;
+    color: #ccc;
+    cursor: pointer;
+    display: block;
+}
+
+.THIS .slds-tabs_scoped__item.slds-is-active .refresh-tab:hover {
+    color: #999;
+}
+
+.THIS .slds-tabs_scoped__item.slds-is-active:not(:first-child) {
+    border-left: 1px solid rgb(217, 219, 221) !important;
+}
+
+.THIS .account-status-active {
+    color: #669933 !important;
+    font-weight: bold;
+}
+
+.THIS .account-status-terminated {
+    color: #999933 !important;
+    font-weight: bold;
+}
+
+.THIS .account-status-suspended {
+    color: #990000 !important;
+    font-weight: bold;
+}
+
+.THIS .tabset {
+    margin-top: 20px !important;
+}
+
+.THIS .slds-tabs_scoped__item .refresh-button {
+    display: none;
+}
+
+.THIS .slds-tabs_scoped__item.slds-active .refresh-button {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.THIS .tab-loading-spinner {
+    margin-top: 10px;
+}
+
+.THIS .page-header-icon {
+    float: left;
+    margin-right: 14px;
+}
+
+.THIS .star {
+    margin-right: 4px;
+    margin-top: 1px;
+    width: 24px;
+}
+
+.THIS .star-active {
+    background: #f2cf5b;
+}
+
+.THIS .star-inactive {
+    background: #cccccc;
+}
+
+.THIS .slds-tabs_scoped__content {
+    padding: 10px 40px;
+}
+
+.THIS .pricing-structure-indicator {
+    color: #cc9900;
+    font-style: italic;
+}
+
+.THIS .slds-page-header {
+    margin-top: 20px;
+}
+
+.THIS .special-instructions {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #999999 !important;
+    color: #fff;
+}

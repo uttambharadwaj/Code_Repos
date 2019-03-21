@@ -1,0 +1,1931 @@
+<aura:component controller="CustomerDetailsController" access="global" implements="force:appHostable,flexipage:availableForRecordHome,force:hasRecordId,lightning:isUrlAddressable">
+    
+    <!-- Parameters -->
+    <aura:attribute name="caseId" type="String" />
+    <aura:attribute name="accountNumber" type="String" />
+    <aura:attribute name="contactRowId" type="String" />
+    <aura:attribute name="isDummyContact" type="String" default="false" />
+    <aura:attribute name="appMode" type="String" />
+    <aura:attribute name="recordId" type="String" />
+    
+    <!-- Returns from controller -->
+    <aura:attribute name="accountId" type="String" />
+    <aura:attribute name="contactId" type="String" />
+    <aura:attribute name="numberOfCasesToday" type="String" />
+    <aura:attribute name="existingCases" type="Map" />
+    
+    <aura:attribute name="dummyDriverContactId" type="String" />
+    <aura:attribute name="dummyMerchantContactId" type="String" />
+    <aura:attribute name="dummyAltBillingContactId" type="String" />
+    <aura:attribute name="dummyOnlineUserContactId" type="String" />
+    <aura:attribute name="dummySalesRepContactId" type="String" />
+
+    <aura:attribute name="priorityLevelServicingRule" type="String" />
+    
+    <aura:attribute name="customerDetails" type="Map" />
+    <aura:attribute name="customerContacts" type="Map" />
+    <aura:attribute name="customerPrimaryContact" type="Map" />
+    <aura:attribute name="customerPaymentHistory" type="Map" />
+    <aura:attribute name="declinedTransactions" type="Map" />
+    <aura:attribute name="invoices" type="Map" />
+
+
+    <aura:attribute name="filteredExistingCases" type="Map" />
+    <aura:attribute name="frontPageExistingCases" type="Map" />
+    <aura:attribute name="filteredCustomerContacts" type="Map" />
+    <aura:attribute name="filteredDeclinedTransactions" type="Map" />
+    <aura:attribute name="dataTableTransactions" type="Map" />
+    <aura:attribute name="filteredDataTableTransactions" type="Map" />
+    <aura:attribute name="declinedTransactionsColumnList" type="List" />
+    
+    <aura:attribute name="paymentsBulk" type="Map" />
+    <aura:attribute name="paymentDetails" type="Map" />
+    <aura:attribute name="paymentHistory" type="Map" />
+    <aura:attribute name="pendingPayments" type="Map" />
+    <aura:attribute name="paymentDetailsColumnList" type="List" />
+    <aura:attribute name="paymentHistoryColumnList" type="List" />
+    <aura:attribute name="pendingPaymentsColumnList" type="List" />
+    
+    <aura:attribute name="selectedTabId" type="string" default="customerDetailsTab" />
+    <aura:attribute name="selectedPaymentsTabId" type="string" default="paymentDetailsTab" />
+    <aura:attribute name="txnSortedBy" type="string" default="Id" />
+    <aura:attribute name="txnSortOrder" type="String" default="asc" />
+
+    <aura:attribute name="caseHistory" type="Map" />
+    <aura:attribute name="caseHistoryColumnList" type="List" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <ltng:require styles="{!$Resource.FontAwesome + '/font-awesome-4.7.0/css/font-awesome.min.css'}" />
+    <ltng:require scripts="{!$Resource.ChartJS}" />
+    <ltng:require scripts="{!$Resource.MomentJS}" />
+    <ltng:require scripts="{!$Resource.LodashJS}"/>
+    <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:spinner aura:id="loadingSpinner" class="full-height"/>
+    
+    <aura:if isTrue="{!v.recordId == null}">
+        <div class="slds-page-header" style="margin-bottom: 10px;">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media slds-no-space slds-grow">
+                        <div class="slds-media__body">
+                            <lightning:icon iconName="standard:account" class="page-header-icon" />
+                            <h2 style="margin-bottom: 0px !important; font-size: 18px; font-weight: bold; float: left; display: block; line-height: 32px;">
+                                {!v.customerDetails.accountNm}
+                            </h2>
+                            <p class="slds-text-body--regular slds-truncate rating" style="padding-top: 0px; margin-top: -7px; margin-left: 8px; float: left;">
+                                <span class="slds-show--inline-block slds-p-around--x-small" tabindex="1" data-aljs="popover" data-aljs-placement="right" title="The segmentation refers to the overall health of the relationship, including any additional accounts associated to the contract.">
+                                    <aura:if isTrue="{!v.customerDetails.customerSegmentation >= 1}">
+                                        <lightning:icon size="small" iconName="custom:custom11" class="star star-active" />
+                                        <aura:set attribute="else">
+                                            <lightning:icon size="small" iconName="custom:custom11" class="star star-inactive" />
+                                        </aura:set>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.customerSegmentation >= 2}">
+                                        <lightning:icon size="small" iconName="custom:custom11" class="star star-active" />
+                                        <aura:set attribute="else">
+                                            <lightning:icon size="small" iconName="custom:custom11" class="star star-inactive" />
+                                        </aura:set>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.customerSegmentation >= 3}">
+                                        <lightning:icon size="small" iconName="custom:custom11" class="star star-active" />
+                                        <aura:set attribute="else">
+                                            <lightning:icon size="small" iconName="custom:custom11" class="star star-inactive" />
+                                        </aura:set>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.customerSegmentation >= 4}">
+                                        <lightning:icon size="small" iconName="custom:custom11" class="star star-active" />
+                                        <aura:set attribute="else">
+                                            <lightning:icon size="small" iconName="custom:custom11" class="star star-inactive" />
+                                        </aura:set>
+                                    </aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.customerSegmentation >= 5}">
+                                        <lightning:icon size="small" iconName="custom:custom11" class="star star-active" />
+                                        <aura:set attribute="else">
+                                            <lightning:icon size="small" iconName="custom:custom11" class="star star-inactive" />
+                                        </aura:set>
+                                    </aura:if>
+                                </span>
+                            </p>
+
+                            <aura:if isTrue="{!v.customerDetails.priorityLevel != null}">
+                                <p class="slds-text-body--regular slds-truncate" style="float: left; line-height: 29px; margin-left: 12px;">
+                                    <span class="slds-text-heading--label bold-black"><lightning:icon iconName="utility:info" size="xx-small" title="{!v.priorityLevelServicingRule}" class="topalign" variant="warning"/> Priority Level: </span>
+                                    <span class="slds-text-heading--priority_value">{!v.customerDetails.priorityLevel}</span>
+                                </p>
+                            </aura:if>
+
+                            <p class="slds-text-body--regular slds-truncate" style="float: left; line-height: 29px; margin-left: 12px;">
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'A'}">
+                                    <span class="account-status-active">Active</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'T'}">
+                                    <span class="account-status-terminated">Terminated</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'S'}">
+                                    <span class="account-status-suspended">Suspended</span>
+                                </aura:if>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ul class="slds-grid slds-page-header__detail-row" style="background: inherit !important; margin-top: 4px;">
+                <li class="slds-page-header__detail-block">
+                    <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">External Account Number</p>
+                    <p class="slds-text-body--regular slds-truncate">{!v.customerDetails.spnrAccountNbr}</p>
+                </li>
+                <li class="slds-page-header__detail-block">
+                    <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Internal Account Number</p>
+                    <p class="slds-text-body--regular slds-truncate">{!v.customerDetails.wexAccountNbr}</p>
+                </li>
+                <li class="slds-page-header__detail-block">
+                    <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Primary Contact</p>
+                    <p class="slds-text-body--regular slds-truncate">{!v.customerPrimaryContact.firstNm}&nbsp;{!v.customerPrimaryContact.lastNm}</p>
+                </li>
+                <li class="slds-page-header__detail-block">
+                    <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Main Phone #</p>
+                    <p class="slds-text-body--regular slds-truncate">{!v.customerPrimaryContact.phoneNbr}</p>
+                </li>
+                <li class="slds-page-header__detail-block">
+                    <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Platform</p>
+                    <p class="slds-text-body--regular slds-truncate">{!v.customerDetails.sourceSys}</p>
+                </li>
+                <li class="slds-page-header__detail-block">
+                    <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Program</p>
+                    <p class="slds-text-body--regular slds-truncate">{!v.customerDetails.programNm}</p>
+                </li>
+                <li class="slds-page-header__detail-block">
+                    <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Online Application</p>
+                    <p class="slds-text-body--regular slds-truncate"><a target="_blank" href="{!v.customerDetails.onlineApplication}">{!v.customerDetails.onlineApplication}</a></p>
+                </li>
+            </ul>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.customerDetails.specialInstructions != null}">
+        <div class="special-instructions" style="background: #999 !important; padding: 10px 20px; border-radius: 5px; color: #fff; margin-bottom: 10px;">
+            <h2 class="slds-text-heading_small"><b><i class="fa fa-info-circle" aria-hidden="true"></i> Special Instructions</b></h2><br/>
+            <p style="background: #999 !important;"><aura:unescapedHtml value="{!v.customerDetails.specialInstructions}" /></p>
+        </div>
+    </aura:if>
+    <lightning:tabset variant="scoped" class="tabset" selectedTabId="{!v.selectedTabId}">
+        <lightning:tab id="customerDetailsTab">
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
+                </div>
+                Customer Overview
+            </aura:set>
+            <div class="slds-card__body">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Account Setup Date</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <lightning:formattedDateTime value="{!v.customerDetails.accountSinceDt}" />
+                                    <aura:if isTrue="{!v.customerDetails.accountSinceDt == null}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Account Status Date</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <lightning:formattedDateTime value="{!v.customerDetails.accountStsDt}" />
+                                    <aura:if isTrue="{!v.customerDetails.accountStsDt == null}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Account Status Reason</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.accountStatusReason}
+                                    <aura:if isTrue="{!v.customerDetails.accountStatusReason == null}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Bill to Account Name</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.billtoAccountNm}
+                                    <aura:if isTrue="{!v.customerDetails.billtoAccountNm == null}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label"># Of Cases Today</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.numberOfCasesToday}
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label"># Of Active Drivers</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.driverCount}
+                                    <aura:if isTrue="{!v.customerDetails.driverCount == null}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">DID Length</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.dIDLength}
+                                    <aura:if isTrue="{!v.customerDetails.dIDLength == null}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label"># of Active Vehicles</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.vehicleCount}
+                                    <aura:if isTrue="{!v.customerDetails.vehicleCount == null}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Sales Rep</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.salesRepCode}
+                                    <aura:if isTrue="{!v.customerDetails.salesRepCode == null}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">PFS Rep</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.pfsRepNm}
+                                    <aura:if isTrue="{!v.customerDetails.pfsRepNm == null || v.customerDetails.pfsRepNm == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">SRS Rep</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.srsCodeAndName}
+                                    <aura:if isTrue="{!v.customerDetails.srsCodeAndName == null|| v.customerDetails.srsCodeAndName == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <aura:if isTrue="{!v.frontPageExistingCases != null}">
+                <aura:if isTrue="{!v.frontPageExistingCases.length > 0}">
+                    <div class="slds-card__body">
+                        <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                <div class="slds-page-header">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:case" variant="error" size="small" />
+                        </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Active Cases</h1>
+                        </div>
+                    </div>
+                </div><br/>
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Date">Last Update Date</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Case Number">Case Number</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Origin">Origin</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Contact">Contact</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Subject">Subject</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Owner">Owner</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Department">Department</div>
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <aura:iteration items="{!v.frontPageExistingCases}" var="xcase">
+                        <tr class="contactRow">
+                            <td scope="row" data-label="LastModifiedDate">
+                                <div class="slds-truncate">
+                                    <lightning:formattedDateTime value="{!xcase.LastModifiedDate}" />
+                                </div>
+                            </td>
+                            <td data-label="CaseNumber">
+                                <div class="slds-truncate">
+                                    <a data-caseId="{!xcase.Id}" onclick="{!c.popToFrontPageCase}">{!xcase.CaseNumber}</a>
+                                </div>
+                            </td>
+                            <td data-label="Status">
+                                <div class="slds-truncate">{!xcase.Status}</div>
+                            </td>
+                            <td data-label="Origin">
+                                <div class="slds-truncate">{!xcase.Origin}</div>
+                            </td>
+                            <td data-label="Contact">
+                                <div class="slds-truncate">{!xcase.Contact.Name}</div>
+                            </td>
+                            <td data-label="Subject">
+                                <div class="slds-truncate">{!xcase.Subject}</div>
+                            </td>
+                            <td data-label="Owner">
+                                <div class="slds-truncate">{!xcase.Owner.Name}</div>
+                            </td>
+                            <td data-label="Department">
+                                <div class="slds-truncate">{!xcase.Department__c}</div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+            </aura:if>
+            </aura:if>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:product_item" variant="error" size="small" />  
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Product Information</h1>
+                    </div>
+                </div>
+            </div><br/>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Product Name">Product Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Effective Date">Effective Date</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Expiration Date">Expiration Date</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:if isTrue="{!v.customerDetails.wrightRewardsCustomer == true}">
+                        <tr>
+                            <td data-label="Product Name">Wright Rewards</td>                    	
+                            <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.wrightRewardsCustomerStartDt}" /></td>
+                            <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.wrightRewardsCustomerEndDt}" /></td>
+                        </tr>
+                    </aura:if>
+                    <aura:if isTrue="{!v.customerDetails.telematicsCustomer == true}">
+                        <tr>
+                            <td data-label="Product Name">Telematics</td>                    	
+                            <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.telematicsCustomerStartDt}" /></td>
+                            <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.telematicsCustomerEndDt}" /></td>
+                        </tr>
+                    </aura:if>
+                    <aura:if isTrue="{!v.customerDetails.clearViewCustomer == true}">
+                        <tr>
+                            <td data-label="Product Name">ClearView</td>                    	
+                            <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.clearViewCustomerStartDt}" /></td>
+                            <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.clearViewCustomerEndDt}" /></td>
+                        </tr>
+                    </aura:if>
+                    <aura:if isTrue="{!v.customerDetails.wrightRewardsCustomer == false &amp;&amp; v.customerDetails.telematicsCustomer == false &amp;&amp; v.customerDetails.clearViewCustomer == false}">
+                        <tr class="no-results">
+                            <td colspan="3">
+                                No Products
+                            </td>
+                        </tr>
+                    </aura:if>
+                </tbody>
+            </table><br/>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:account" variant="error" size="small" />  
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Address Information</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Primary Physical Address</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.primaryAddress != null}">
+                                        <aura:if isTrue="{!v.customerDetails.primaryAddress.addr1 != null &amp;&amp; v.customerDetails.primaryAddress.addr1 != ' '}"><p>{!v.customerDetails.primaryAddress.addr1}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.primaryAddress.addr2 != null &amp;&amp; v.customerDetails.primaryAddress.addr2 != ' '}"><p>{!v.customerDetails.primaryAddress.addr2}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.primaryAddress.addr3 != null &amp;&amp; v.customerDetails.primaryAddress.addr3 != ' '}"><p>{!v.customerDetails.primaryAddress.addr3}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.primaryAddress.addr4 != null &amp;&amp; v.customerDetails.primaryAddress.addr4 != ' '}"><p>{!v.customerDetails.primaryAddress.addr4}</p></aura:if>
+                                        <p>
+                                            <aura:if isTrue="{!v.customerDetails.primaryAddress.city != null &amp;&amp; v.customerDetails.primaryAddress.city != ' '}">{!v.customerDetails.primaryAddress.city}</aura:if>
+                                            <aura:if isTrue="{!v.customerDetails.primaryAddress.state != null &amp;&amp; v.customerDetails.primaryAddress.state != ' '}">, {!v.customerDetails.primaryAddress.state}</aura:if>
+                                        </p>
+                                        <aura:if isTrue="{!v.customerDetails.primaryAddress.postalCode != null &amp;&amp; v.customerDetails.primaryAddress.postalCode != ' '}"><p>{!v.customerDetails.primaryAddress.postalCode}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.primaryAddress.country != null &amp;&amp; v.customerDetails.primaryAddress.country != ' '}"><p>{!v.customerDetails.primaryAddress.country}</p></aura:if>
+                                        <aura:set attribute="else">
+                                            N/A
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Billing Address</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.billingAddress != null}">
+                                        <aura:if isTrue="{!v.customerDetails.billingAddress.addr1 != null &amp;&amp; v.customerDetails.billingAddress.addr1 != ' '}"><p>{!v.customerDetails.billingAddress.addr1}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.billingAddress.addr2 != null &amp;&amp; v.customerDetails.billingAddress.addr2 != ' '}"><p>{!v.customerDetails.billingAddress.addr2}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.billingAddress.addr3 != null &amp;&amp; v.customerDetails.billingAddress.addr3 != ' '}"><p>{!v.customerDetails.billingAddress.addr3}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.billingAddress.addr4 != null &amp;&amp; v.customerDetails.billingAddress.addr4 != ' '}"><p>{!v.customerDetails.billingAddress.addr4}</p></aura:if>
+                                        <p>
+                                            <aura:if isTrue="{!v.customerDetails.billingAddress.city != null &amp;&amp; v.customerDetails.billingAddress.city != ' '}">{!v.customerDetails.billingAddress.city}</aura:if>
+                                            <aura:if isTrue="{!v.customerDetails.billingAddress.state != null &amp;&amp; v.customerDetails.billingAddress.state != ' '}">, {!v.customerDetails.billingAddress.state}</aura:if>
+                                        </p>
+                                        <aura:if isTrue="{!v.customerDetails.billingAddress.postalCode != null &amp;&amp; v.customerDetails.billingAddress.postalCode != ' '}"><p>{!v.customerDetails.billingAddress.postalCode}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.billingAddress.country != null &amp;&amp; v.customerDetails.billingAddress.country != ' '}"><p>{!v.customerDetails.billingAddress.country}</p></aura:if>
+                                        <aura:set attribute="else">
+                                            N/A
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Card Shipping Address</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.shippingAddress != null}">
+                                        <aura:if isTrue="{!v.customerDetails.shippingAddress.addr1 != null &amp;&amp; v.customerDetails.shippingAddress.addr1 != ' '}"><p>{!v.customerDetails.shippingAddress.addr1}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.shippingAddress.addr2 != null &amp;&amp; v.customerDetails.shippingAddress.addr2 != ' '}"><p>{!v.customerDetails.shippingAddress.addr2}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.shippingAddress.addr3 != null &amp;&amp; v.customerDetails.shippingAddress.addr3 != ' '}"><p>{!v.customerDetails.shippingAddress.addr3}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.shippingAddress.addr4 != null &amp;&amp; v.customerDetails.shippingAddress.addr4 != ' '}"><p>{!v.customerDetails.shippingAddress.addr4}</p></aura:if>
+                                        <p>
+                                            <aura:if isTrue="{!v.customerDetails.shippingAddress.city != null &amp;&amp; v.customerDetails.shippingAddress.city != ' '}">{!v.customerDetails.shippingAddress.city}</aura:if>
+                                            <aura:if isTrue="{!v.customerDetails.shippingAddress.state != null &amp;&amp; v.customerDetails.shippingAddress.state != ' '}">, {!v.customerDetails.shippingAddress.state}</aura:if>
+                                        </p>
+                                        <aura:if isTrue="{!v.customerDetails.shippingAddress.postalCode != null &amp;&amp; v.customerDetails.shippingAddress.postalCode != ' '}"><p>{!v.customerDetails.shippingAddress.postalCode}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.shippingAddress.country != null &amp;&amp; v.customerDetails.shippingAddress.country != ' '}"><p>{!v.customerDetails.shippingAddress.country}</p></aura:if>
+                                        <aura:set attribute="else">
+                                            N/A
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Alternate Shipping Address</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.alternateAddress != null}">
+                                        <aura:if isTrue="{!v.customerDetails.alternateAddress.addr1 != null &amp;&amp; v.customerDetails.alternateAddress.addr1 != ' '}"><p>{!v.customerDetails.alternateAddress.addr1}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.alternateAddress.addr2 != null &amp;&amp; v.customerDetails.alternateAddress.addr2 != ' '}"><p>{!v.customerDetails.alternateAddress.addr2}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.alternateAddress.addr3 != null &amp;&amp; v.customerDetails.alternateAddress.addr3 != ' '}"><p>{!v.customerDetails.alternateAddress.addr3}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.alternateAddress.addr4 != null &amp;&amp; v.customerDetails.alternateAddress.addr4 != ' '}"><p>{!v.customerDetails.alternateAddress.addr4}</p></aura:if>
+                                        <p>
+                                            <aura:if isTrue="{!v.customerDetails.alternateAddress.city != null &amp;&amp; v.customerDetails.alternateAddress.city != ' '}">{!v.customerDetails.alternateAddress.city}</aura:if>
+                                            <aura:if isTrue="{!v.customerDetails.alternateAddress.state != null &amp;&amp; v.customerDetails.alternateAddress.state != ' '}">, {!v.customerDetails.alternateAddress.state}</aura:if>
+                                        </p>
+                                        <aura:if isTrue="{!v.customerDetails.alternateAddress.postalCode != null &amp;&amp; v.customerDetails.alternateAddress.postalCode != ' '}"><p>{!v.customerDetails.alternateAddress.postalCode}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.alternateAddress.country != null &amp;&amp; v.customerDetails.alternateAddress.country != ' '}"><p>{!v.customerDetails.alternateAddress.country}</p></aura:if>
+                                        <aura:set attribute="else">
+                                            N/A
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-3 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Mailing Address</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.mailingAddress != null}">
+                                        <aura:if isTrue="{!v.customerDetails.mailingAddress.addr1 != null &amp;&amp; v.customerDetails.mailingAddress.addr1 != ' '}"><p>{!v.customerDetails.mailingAddress.addr1}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.mailingAddress.addr2 != null &amp;&amp; v.customerDetails.mailingAddress.addr2 != ' '}"><p>{!v.customerDetails.mailingAddress.addr2}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.mailingAddress.addr3 != null &amp;&amp; v.customerDetails.mailingAddress.addr3 != ' '}"><p>{!v.customerDetails.mailingAddress.addr3}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.mailingAddress.addr4 != null &amp;&amp; v.customerDetails.mailingAddress.addr4 != ' '}"><p>{!v.customerDetails.mailingAddress.addr4}</p></aura:if>
+                                        <p>
+                                            <aura:if isTrue="{!v.customerDetails.mailingAddress.city != null &amp;&amp; v.customerDetails.mailingAddress.city != ' '}">{!v.customerDetails.mailingAddress.city}</aura:if>
+                                            <aura:if isTrue="{!v.customerDetails.mailingAddress.state != null &amp;&amp; v.customerDetails.mailingAddress.state != ' '}">, {!v.customerDetails.mailingAddress.state}</aura:if>
+                                        </p>
+                                        <aura:if isTrue="{!v.customerDetails.mailingAddress.postalCode != null &amp;&amp; v.customerDetails.mailingAddress.postalCode != ' '}"><p>{!v.customerDetails.mailingAddress.postalCode}</p></aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.mailingAddress.country != null &amp;&amp; v.customerDetails.mailingAddress.country != ' '}"><p>{!v.customerDetails.mailingAddress.country}</p></aura:if>
+                                        <aura:set attribute="else">
+                                            N/A
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </lightning:tab>
+        <lightning:tab id="customerContactsTab" onactive="{!c.lazyLoadCustomerContacts}">
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerContacts}"></i>
+                </div>
+                Contacts
+            </aura:set>
+            <lightning:spinner aura:id="customerContactsLoadingSpinner" /><br/>
+            <div class="slds-size--2-of-12">
+                <div class="slds-form-element">
+                    <label class="slds-form-element__label">FILTER</label>
+                    <div class="slds-form-element__control">
+                        <ui:inputText aura:id="contactTableFilter" class="slds-input" />
+                    </div>
+                </div>
+            </div><br/>
+            <div class="slds-size--4-of-12">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <button class="slds-button slds-button_brand" onclick="{!c.filterContacts}">Filter</button>&nbsp;
+                        <button class="slds-button slds-button_neutral" onclick="{!c.resetContactsFilter}">Clear</button>
+                    </div>
+                </div>
+            </div><br/><br/>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer" id="contactTable">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Contact Name">Contact Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Address">Address</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Phone">Phone</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Fax">Fax</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Email">Email</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Type">Type</div>
+                        </th>
+                        <aura:if isTrue="{!or(v.appMode != 'subtab', v.recordId != null)}">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Action">Action</div>
+                            </th>
+                        </aura:if>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Other Contact -->
+					<tr class="contactRow">
+                            <td scope="row" data-label="Contact Name">
+                                <div class="slds-truncate">
+                                    Other Contact
+                                </div>
+                            </td>
+                            <td data-label="Address">
+                            </td>
+                            <td data-label="Phone">
+                            </td>
+                            <td data-label="Fax">
+                            </td>
+                            <td data-label="Email">
+                            </td>
+                            <td data-label="Contact Type">
+								<div class="slds-truncate">
+                                	CONTACT
+                                </div>
+                            </td>
+                            <aura:if isTrue="{!v.appMode != 'subtab'}">
+                                <td data-label="Actions">
+                                    <div class="slds-truncate">
+                                        <div class="slds-button-group" role="group">
+                                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="UnknownContact" onclick="{!c.popToCase}">New Case</button>
+                                            </aura:if>
+                                            <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                                <!-- This is the update for a specific case that is passed in -->
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="UnknownContact" onclick="{!c.popToCase}">Update Case</button>
+                                            </aura:if>
+                                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                                <!-- This will open the modal-->
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="UnknownContact" onclick="{!c.openCaseModal}">Update Case</button>
+                                            </aura:if>
+                                        </div>
+                                    </div>
+                                </td>
+                            </aura:if>
+                        </tr>
+                    <!-- Driver -->
+                <tr class="contactRow">
+                    <td scope="row" data-label="Contact Name">
+                        <div class="slds-truncate">
+                            Driver
+                        </div>
+                    </td>
+                    <td data-label="Address">
+                    </td>
+                    <td data-label="Phone">
+                    </td>
+                    <td data-label="Fax">
+                    </td>
+                    <td data-label="Email">
+                    </td>
+                    <td data-label="Contact Type">
+                        <div class="slds-truncate">
+                            CONTACT
+                        </div>
+                    </td>
+                    <aura:if isTrue="{!v.appMode != 'subtab'}">
+                        <td data-label="Actions">
+                            <div class="slds-truncate">
+                                <div class="slds-button-group" role="group">
+                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">New Case</button>
+                                    </aura:if>
+                                    <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                        <!-- This is the update for a specific case that is passed in -->
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">Update Case</button>
+                                    </aura:if>
+                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                        <!-- This will open the modal-->
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </td>
+                    </aura:if>
+                </tr>
+                <!-- Merchant -->
+                <tr class="contactRow">
+                    <td scope="row" data-label="Contact Name">
+                        <div class="slds-truncate">
+                            Merchant
+                        </div>
+                    </td>
+                    <td data-label="Address">
+                    </td>
+                    <td data-label="Phone">
+                    </td>
+                    <td data-label="Fax">
+                    </td>
+                    <td data-label="Email">
+                    </td>
+                    <td data-label="Contact Type">
+                        <div class="slds-truncate">
+                            CONTACT
+                        </div>
+                    </td>
+                    <aura:if isTrue="{!v.appMode != 'subtab'}">
+                        <td data-label="Actions">
+                            <div class="slds-truncate">
+                                <div class="slds-button-group" role="group">
+                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">New Case</button>
+                                    </aura:if>
+                                    <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                        <!-- This is the update for a specific case that is passed in -->
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">Update Case</button>
+                                    </aura:if>
+                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                        <!-- This will open the modal-->
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </td>
+                    </aura:if>
+                </tr>
+                <!-- Unlisted billing contact -->
+                <tr class="contactRow">
+                    <td scope="row" data-label="Contact Name">
+                        <div class="slds-truncate">
+                            Alternate Billing Contact
+                        </div>
+                    </td>
+                    <td data-label="Address">
+                    </td>
+                    <td data-label="Phone">
+                    </td>
+                    <td data-label="Fax">
+                    </td>
+                    <td data-label="Email">
+                    </td>
+                    <td data-label="Contact Type">
+                        <div class="slds-truncate">
+                            CONTACT
+                        </div>
+                    </td>
+                    <aura:if isTrue="{!v.appMode != 'subtab'}">
+                        <td data-label="Actions">
+                            <div class="slds-truncate">
+                                <div class="slds-button-group" role="group">
+                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">New Case</button>
+                                    </aura:if>
+                                    <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                        <!-- This is the update for a specific case that is passed in -->
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">Update Case</button>
+                                    </aura:if>
+                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                        <!-- This will open the modal-->
+                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </td>
+                    </aura:if>
+                </tr>
+                    <!-- Dummy Online User -->
+                    <tr class="contactRow">
+                        <td scope="row" data-label="Contact Name">
+                            <div class="slds-truncate">
+                                Online User
+                            </div>
+                        </td>
+                        <td data-label="Address">
+                        </td>
+                        <td data-label="Phone">
+                        </td>
+                        <td data-label="Fax">
+                        </td>
+                        <td data-label="Email">
+                        </td>
+                        <td data-label="Contact Type">
+                            <div class="slds-truncate">
+                                CONTACT
+                            </div>
+                        </td>
+                        <aura:if isTrue="{!v.appMode != 'subtab'}">
+                            <td data-label="Actions">
+                                <div class="slds-truncate">
+                                    <div class="slds-button-group" role="group">
+                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyOnlineUserContactId}" onclick="{!c.popToCase}">New Case</button>
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                            <!-- This is the update for a specific case that is passed in -->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyOnlineUserContactId}" onclick="{!c.popToCase}">Update Case</button>
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                            <!-- This will open the modal-->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyOnlineUserContactId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </td>
+                        </aura:if>
+                    </tr>
+                    <!-- Dummy Sales Rep -->
+                    <tr class="contactRow">
+                        <td scope="row" data-label="Contact Name">
+                            <div class="slds-truncate">
+                                Sales Rep
+                            </div>
+                        </td>
+                        <td data-label="Address">
+                        </td>
+                        <td data-label="Phone">
+                        </td>
+                        <td data-label="Fax">
+                        </td>
+                        <td data-label="Email">
+                        </td>
+                        <td data-label="Contact Type">
+                            <div class="slds-truncate">
+                                CONTACT
+                            </div>
+                        </td>
+                        <aura:if isTrue="{!v.appMode != 'subtab'}">
+                            <td data-label="Actions">
+                                <div class="slds-truncate">
+                                    <div class="slds-button-group" role="group">
+                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummySalesRepContactId}" onclick="{!c.popToCase}">New Case</button>
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                            <!-- This is the update for a specific case that is passed in -->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummySalesRepContactId}" onclick="{!c.popToCase}">Update Case</button>
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                            <!-- This will open the modal-->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummySalesRepContactId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </td>
+                        </aura:if>
+                    </tr>
+                    <aura:iteration items="{!v.filteredCustomerContacts}" var="contact">
+                        <tr class="contactRow">
+                            <td scope="row" data-label="Contact Name">
+                                <div class="slds-truncate">
+                                    {!contact.firstNm}
+                                    &nbsp;{!contact.lastNm}
+                                </div>
+                            </td>
+                            <td data-label="Address">
+                                <div class="slds-truncate">
+                                        <aura:if isTrue="{!contact.address.addr1 != null &amp;&amp; contact.address.addr1 != ' '}"><p>{!contact.address.addr1}</p></aura:if>
+                                        <aura:if isTrue="{!contact.address.addr2 != null &amp;&amp; contact.address.addr2 != ' '}"><p>{!contact.address.addr2}</p></aura:if>
+                                        <aura:if isTrue="{!contact.address.addr3 != null &amp;&amp; contact.address.addr3 != ' '}"><p>{!contact.address.addr3}</p></aura:if>
+                                        <aura:if isTrue="{!contact.address.addr4 != null &amp;&amp; contact.address.addr4 != ' '}"><p>{!contact.address.addr4}</p></aura:if>
+                                        <p>
+                                            <aura:if isTrue="{!contact.address.city != null &amp;&amp; contact.address.city != ' '}">{!contact.address.city}</aura:if>
+                                            <aura:if isTrue="{!contact.address.state != null &amp;&amp; contact.address.state != ' '}">, {!contact.address.state}</aura:if>
+                                        </p>
+                                        <aura:if isTrue="{!contact.address.postalCode != null &amp;&amp; contact.address.postalCode != ' '}"><p>{!contact.address.postalCode}</p></aura:if>
+                                        <aura:if isTrue="{!contact.address.country != null &amp;&amp; contact.address.country != ' '}"><p>{!contact.address.country}</p></aura:if>
+                                </div>
+                            </td>
+                            <td data-label="Phone">
+                                <div class="slds-truncate">{!contact.phoneNbr}</div>
+                            </td>
+                            <td data-label="Fax">
+                                <div class="slds-truncate">{!contact.faxNbr}</div>
+                            </td>
+                            <td data-label="Email">
+                                <div class="slds-truncate">{!contact.emailAddr}</div>
+                            </td>
+                            <td data-label="Contact Type">
+                                <div class="slds-truncate">{!contact.contactType}</div>
+                            </td>
+                            <aura:if isTrue="{!v.appMode != 'subtab'}">
+                                <td data-label="Actions">
+                                    <div class="slds-truncate">
+                                        <div class="slds-button-group" role="group">
+                                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.contactType + '#' + contact.rowId}" onclick="{!c.popToCase}">New Case</button>
+                                            </aura:if>
+                                            <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                                <!-- This is the update for a specific case that is passed in -->
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.contactType + '#' + contact.rowId}" onclick="{!c.popToCase}">Update Case</button>
+                                            </aura:if>
+                                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                                <!-- This will open the modal-->
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.contactType + '#' + contact.rowId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                            </aura:if>
+                                        </div>
+                                    </div>
+                                </td>
+                            </aura:if>
+                        </tr>
+                    </aura:iteration>
+                    <aura:if isTrue="{!v.filteredCustomerContacts == null}">
+                        <tr class="no-results">
+                            <td colspan="7">
+                                No Contacts Found
+                            </td>
+                        </tr>
+                    </aura:if>
+                </tbody>
+            </table><br/>
+            <div class="slds-modal slds-modal_large" style="max-height: 600px !important;" aura:id="caseModalBox">
+                <div class="slds-modal__container" style="margin-top: 100px !important;">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Select Existing Case</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <p>Select an existing case below to attach to.</p><br/>
+                        <div class="slds-size--2-of-12">
+                			<div class="slds-form-element">
+                    			<label class="slds-form-element__label">FILTER</label>
+                    			<div class="slds-form-element__control">
+                        			<ui:inputText aura:id="caseTableFilter" class="slds-input" />
+                    			</div>
+                			</div>
+            			</div><br/>
+            			<div class="slds-size--4-of-12">
+                			<div class="slds-form-element">
+                    			<div class="slds-form-element__control">
+                        			<button class="slds-button slds-button_brand" onclick="{!c.filterCases}">Filter</button>&nbsp;
+                        			<button class="slds-button slds-button_neutral" onclick="{!c.resetCasesFilter}">Clear</button>
+                    			</div>
+                			</div>
+            			</div><br/><br/>
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col">
+                                        <div class="slds-truncate">Case Number</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Subject</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Contact</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Status</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Last Modified</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Owner</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate">Action</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <aura:iteration items="{!v.filteredExistingCases}" var="case">
+                                    <tr>
+                                        <td data-label="Case Number">
+                                            <div class="slds-truncate">{!case.CaseNumber}</div>
+                                        </td>
+                                        <td data-label="Subject">
+                                            <div class="slds-truncate">{!case.Subject}</div>
+                                        </td>
+                                        <td data-label="Contact">
+                                            <div class="slds-truncate">{!case.Contact.Name}</div>
+                                        </td>
+                                        <td data-label="Status">
+                                            <div class="slds-truncate">{!case.Status}</div>
+                                        </td>
+                                        <td data-label="Last Modified">
+                                            <div class="slds-truncate">
+                                                <lightning:formattedDateTime value="{!case.LastModifiedDate}" />
+                                            </div>
+                                        </td>
+                                        <td data-label="Owner">
+                                            <div class="slds-truncate">{!case.Owner.Name}</div>
+                                        </td>
+                                        <td data-label="Action">
+                                            <div class="slds-truncate">
+                                                <div class="slds-button-group" role="group">
+                                                    <button class="slds-button slds-button_neutral" data-caseId="{!case.Id}" onclick="{!c.popToExistingCase}">Update Case</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </aura:iteration>
+                                <aura:if isTrue="{!v.existingCases == null}">
+                                    <tr>
+                                        <td colspan="7">
+                                            No Results
+                                        </td>
+                                    </tr>
+                                </aura:if>
+                            </tbody>
+                        </table>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick="{!c.closeCaseModal}">Cancel</button>
+                    </footer>
+                </div>
+            </div>
+        </lightning:tab>
+        <lightning:tab>
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
+                </div>
+                Invoice &amp; Billing
+            </aura:set>
+            <!-- <lightning:spinner aura:id="invoicesLoadingSpinner" alternativeText="Waiting for data..." /><br/> -->
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:contract_line_item" variant="error" size="small" />  
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Invoice Information</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Billing Account Number</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.billingAccountId}
+                                    <aura:if isTrue="{!v.customerDetails.billingAccountId == null || v.customerDetails.billingAccountId == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Billing Cycle</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.billingCycleDesc}
+                                    <aura:if isTrue="{!v.customerDetails.billingCycleDesc == null || v.customerDetails.billingCycleDesc == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Days To Pay</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.daysToPay}
+                                    <aura:if isTrue="{!v.customerDetails.daysToPay == null || v.customerDetails.daysToPay == ' '}">N/A</aura:if>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+					<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Debit Cycle</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.debitCycle}
+                                    <aura:if isTrue="{!v.customerDetails.debitCycle == null || v.customerDetails.debitCycle == ' '}">N/A</aura:if>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Closing Date</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <lightning:formattedDateTime value="{!v.customerDetails.currentInvoiceClosingDt}" />
+                                    <aura:if isTrue="{!v.customerDetails.currentInvoiceClosingDt == null || v.customerDetails.currentInvoiceClosingDt == ' '}">N/A</aura:if>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Invoice Due Date</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <lightning:formattedDateTime value="{!v.customerDetails.currentInvoiceDueDt}" />
+                                    <aura:if isTrue="{!v.customerDetails.currentInvoiceDueDt == null || v.customerDetails.currentInvoiceDueDt == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Last Payment Date</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <lightning:formattedDateTime value="{!v.customerDetails.lastPaymentDt}" />
+                                    <aura:if isTrue="{!v.customerDetails.lastPaymentDt == null || v.customerDetails.lastPaymentDt == ' '}">N/A</aura:if>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Last Payment Amount</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.lastPaymentAmount}"/>
+                                    <aura:if isTrue="{!v.customerDetails.lastPaymentAmount == null || v.customerDetails.lastPaymentAmount == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Last Payment Method</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.lastPaymentMethod}
+                                    <aura:if isTrue="{!v.customerDetails.lastPaymentMethod == null || v.customerDetails.lastPaymentMethod == ' '}">N/A</aura:if>
+                                </div>
+                            </div>   
+                        </div>
+                    </div><br/>
+                </div>
+            </div>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:work_type" variant="error" size="small" />  
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Billing Information</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Credit Limit </div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.creditLmt}"/>
+                                    <aura:if isTrue="{!v.customerDetails.creditLmt == null || v.customerDetails.creditLmt == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Pending Transactions</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.pendingTxns}"/>
+                                    <aura:if isTrue="{!v.customerDetails.pendingTxns == null || v.customerDetails.pendingTxns == ' '}">N/A</aura:if>
+                                </div>
+                            </div>   
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Billed Amount</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.lastInvoiceBilledAmt}"/>
+                                    <aura:if isTrue="{!v.customerDetails.lastInvoiceBilledAmt == null || v.customerDetails.lastInvoiceBilledAmt == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Unbilled Amount</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.unbilledAmt}"/>
+                                    <aura:if isTrue="{!v.customerDetails.unbilledAmt == null || v.customerDetails.unbilledAmt == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Available Credit</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.availableCreditLmt}"/>
+                                    <aura:if isTrue="{!v.customerDetails.availableCreditLmt == null || v.customerDetails.availableCreditLmt == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Credit Score</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.creditScore}
+                                    <aura:if isTrue="{!v.customerDetails.creditScore == null || v.customerDetails.creditScore == ' '}">N/A</aura:if>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Cash Enabled</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.cashEnabledIndicator == true}">
+                                        Yes
+                                        <aura:set attribute="else">
+                                            <aura:if isTrue="{!v.customerDetails.cashEnabledIndicator == null || v.customerDetails.cashEnabledIndicator == ' '}">
+                                                N/A
+                                            	<aura:set attribute="else">
+                                            		No
+                                            	</aura:set>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+                                    
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="custom:custom17" variant="error" size="small" />
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Last 3 Invoices</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <table>
+                        <thead>
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate" title="Period Ending">Period Ending</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate" title="View Invoice">View Invoice</div>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <aura:iteration items="{!v.invoices.invoices}" var="xinvoice">
+                            <tr class="contactRow">
+                                <td data-label="Billing Period">
+                                    <div class="slds-truncate">
+                                        <aura:if isTrue="{!xinvoice.closingDt == null}">N/A
+                                            <aura:set attribute="else">
+                                                <lightning:formattedDateTime value="{!xinvoice.closingDt}"/>
+                                            </aura:set>
+                                        </aura:if>
+                                    </div>
+                                </td>
+                                <td data-label="Url">
+                                    <div class="slds-truncate">
+                                        <aura:if isTrue="{!xinvoice.invoiceUrl == null}">N/A
+                                            <aura:set attribute="else"><lightning:formattedUrl value="{!xinvoice.invoiceUrl}" label="View Invoice"/></aura:set>
+                                        </aura:if>
+                                    </div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </lightning:tab>
+        <lightning:tab >
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
+                </div>
+				Fees
+            </aura:set>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:pricebook" variant="error" size="small" />  
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Fee Structure</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Paper Delivery Fee</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.paperDeliveryFee}" />
+                                    <aura:if isTrue="{!v.customerDetails.paperDeliveryFee == null || v.customerDetails.paperDeliveryFee == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator">
+                                        <aura:if isTrue="{!v.customerDetails.paperWithFeeWaived == 'Y' &amp;&amp; v.customerDetails.paperless == 'N'}">
+                                            Waived
+                                        </aura:if>
+                                        <aura:if isTrue="{!v.customerDetails.paperWithFeeWaived == 'N' &amp;&amp; v.customerDetails.paperless == 'Y'}">
+                                            Paperless
+                                        </aura:if>
+                                    </span>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Monthly Card Fee</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.monthlyCardFee}" />
+                                    <aura:if isTrue="{!v.customerDetails.monthlyCardFee == null ||v.customerDetails.monthlyCardFee == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator">{!v.customerDetails.monthlyCardFeeDescription}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Accounting Fee</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.accountingFee}" />
+                                    <aura:if isTrue="{!v.customerDetails.accountingFee == null ||v.customerDetails.accountingFee == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator">{!v.customerDetails.accountingFeeDescription}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Reactivation Fee will go here -->
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Finance Charge Rate</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputNumber value="{!v.customerDetails.periodicFinanceChargeRte}" /><aura:if isTrue="{!v.customerDetails.periodicFinanceChargeRte != null &amp;&amp; v.customerDetails.periodicFinanceChargeRte != ' '}">%</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.periodicFinanceChargeRte == null ||v.customerDetails.periodicFinanceChargeRte == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator">{!v.customerDetails.financeChargeRteType}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">High Risk Credit Charge</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputNumber value="{!v.customerDetails.highRiskPercentageRte}" /><aura:if isTrue="{!v.customerDetails.highRiskPercentageRte != null &amp;&amp; v.customerDetails.highRiskPercentageRte != ' '}">%</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.highRiskPercentageRte == null || v.customerDetails.highRiskPercentageRte == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator"><aura:if isTrue="{!v.customerDetails.highCreditRiskFeeIndicator != null &amp;&amp; v.customerDetails.highCreditRiskFeeIndicator != ' ' &amp;&amp;  v.customerDetails.highCreditRiskFeeIndicator==true}">High Risk Indicator: Y<aura:set attribute="else">High Risk Indicator: N</aura:set></aura:if><br/></span>
+                                    <span class="pricing-structure-indicator"><aura:if isTrue="{!v.customerDetails.highRiskCureDt != null &amp;&amp; v.customerDetails.highRiskCureDt != ' '}">Cure Date: <lightning:formattedDateTime value="{!v.customerDetails.highRiskCureDt}" /></aura:if></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">FlexCard Interest Rate</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputNumber value="{!v.customerDetails.flexCardApplicableRte}" /><aura:if isTrue="{!v.customerDetails.flexCardApplicableRte != null &amp;&amp; v.customerDetails.flexCardApplicableRte != ' '}">%</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.flexCardApplicableRte == null || v.customerDetails.flexCardApplicableRte == ' '}">N/A</aura:if>
+                                </div>
+                            </div> 	
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator"><aura:if isTrue="{!v.customerDetails.flexCardPenaltyPricingIndicator != null &amp;&amp; v.customerDetails.flexCardPenaltyPricingIndicator == 'Y'}">FlexCard Penalty Pricing: {!v.customerDetails.flexCardPenaltyPricingIndicator}<aura:set attribute="else">No Penalty</aura:set></aura:if></span>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Program Maintenance Charge</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.programMaintenanceCharge}
+                                    <aura:if isTrue="{!v.customerDetails.programMaintenanceCharge == null || v.customerDetails.programMaintenanceCharge == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator">{!v.customerDetails.programMaintenanceChargeDescription}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Truck Stop Fee</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.truckStopFee}" />
+                                    <aura:if isTrue="{!v.customerDetails.truckStopFee == null || v.customerDetails.truckStopFee == ' '}">N/A</aura:if>
+                                </div>
+                            </div> 
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator">{!v.customerDetails.truckStopFeeDescription}</span>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Out Of Network Fee</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <ui:outputCurrency value="{!v.customerDetails.outOfNetworkPerTxnFee}" />
+                                    <aura:if isTrue="{!v.customerDetails.outOfNetworkPerTxnFee == null || v.customerDetails.outOfNetworkPerTxnFee == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <span class="pricing-structure-indicator">{!v.customerDetails.outOfNetworkProgramOrAccountRte}</span>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <!-- Returned Payment Fee will go here -->
+                    
+                    <!-- OCL Fee will go here -->
+                </div>
+            </div>
+        </lightning:tab>
+        <lightning:tab >
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
+                </div>
+                Contract
+            </aura:set>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:contract" variant="error" size="small" />  
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Contract Information</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Contract Number</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.contractNbr}
+                                    <aura:if isTrue="{!v.customerDetails.contractNbr == null || v.customerDetails.contractNbr == ' '}">N/A</aura:if>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+					<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Contract Name</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.contractNm}
+                                    <aura:if isTrue="{!v.customerDetails.contractNm == null || v.customerDetails.contractNm == ' '}">N/A</aura:if>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+					<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Contract Start Date</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <lightning:formattedDateTime value="{!v.customerDetails.contractStartDt}" />
+                                    <aura:if isTrue="{!v.customerDetails.contractStartDt == null || v.customerDetails.contractStartDt == ' '}">N/A</aura:if>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+					<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Contract End Date</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <lightning:formattedDateTime value="{!v.customerDetails.contractEndDt}" />
+                                    <aura:if isTrue="{!v.customerDetails.contractEndDt == null || v.customerDetails.contractEndDt == ' '}">N/A</aura:if>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+					<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Evergreen</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.evergreenIndicator == true}">
+                                        Yes
+                                        <aura:set attribute="else">
+                                            <aura:if isTrue="{!v.customerDetails.evergreenIndicator == null  || v.customerDetails.evergreenIndicator == ' '}">
+                                                N/A
+                                            	<aura:set attribute="else">
+                                            		No
+                                        		</aura:set>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>                                    
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </lightning:tab>
+		<lightning:tab >
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
+                </div>
+				Discounts &amp; Rebates
+            </aura:set>
+                        <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:quotes" variant="error" size="small" />  
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Discounts &amp; Rebates</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">WEX Funded Rebate</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.wexRebateIndicator == true}">
+                                        Yes
+                                        <aura:set attribute="else">
+                                            <aura:if isTrue="{!v.customerDetails.wexRebateIndicator == null  || v.customerDetails.wexRebateIndicator == ' '}">
+                                                N/A
+                                            	<aura:set attribute="else">
+                                            		No
+                                        		</aura:set>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Partner Funded Rebate</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.partnerRebateIndicator == true}">
+                                        Yes
+                                        <aura:set attribute="else">
+                                            <aura:if isTrue="{!v.customerDetails.partnerRebateIndicator == null  || v.customerDetails.partnerRebateIndicator == ' '}">
+                                                N/A
+                                            	<aura:set attribute="else">
+                                            		No
+                                        		</aura:set>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>  
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Cost Plus</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.costPlusIndicator == true}">
+                                        Yes
+                                        <aura:set attribute="else">
+                                            <aura:if isTrue="{!v.customerDetails.costPlusIndicator == null  || v.customerDetails.costPlusIndicator == ' '}">
+                                                N/A
+                                            	<aura:set attribute="else">
+                                            		No
+                                        		</aura:set>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Discounts</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.discountIndicator == true}">
+                                        Yes
+                                        <aura:set attribute="else">
+                                            <aura:if isTrue="{!v.customerDetails.discountIndicator == null  || v.customerDetails.discountIndicator == ' '}">
+                                                N/A
+                                            	<aura:set attribute="else">
+                                            		No
+                                        		</aura:set>
+                                            </aura:if>
+                                        </aura:set>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </lightning:tab>
+        <lightning:tab id="declinedTransactionsTab" onactive="{!c.lazyLoadDeclinedTransactions}">
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshDeclinedTransactions}"></i>
+                </div>
+                Declined Transactions
+            </aura:set>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container" title="Declined Transactions">
+                            <lightning:icon iconName="custom:custom91" size="small" />
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Declined Transactions</h1>
+                    </div>
+                </div>
+            </div>
+            <lightning:spinner aura:id="declinedTransactionsLoadingSpinner" alternativeText="Waiting for data..." /><br/>
+            <div class="slds-size--2-of-12">
+                <div class="slds-form-element__control">
+                   <lightning:input aura:id="transactionTableFilter" required="true" label="FILTER" messageWhenValueMissing="Enter a filter!"/>
+                </div>
+            </div><br/>
+            <div class="slds-size--4-of-12">
+                <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                        <button class="slds-button slds-button_brand" onclick="{!c.filterTransactions}">Filter</button>&nbsp;
+                        <button class="slds-button slds-button_neutral" onclick="{!c.resetTransactionsFilter}">Clear</button>
+                    </div>
+                </div>
+            </div><br/><br/>
+            <lightning:datatable aura:id="declinedTransactionsTable"
+                                 data="{!v.filteredDataTableTransactions}"
+	        				columns="{!v.declinedTransactionsColumnList}"
+                            keyField="Id"
+	        				hideCheckboxColumn="true"
+                            onsort="{!c.handleTxnSort}"
+                                 />
+        </lightning:tab>
+        <lightning:tab id="paymentsTab" onactive="{!c.lazyLoadPayments}">
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshPayments}"></i>
+                </div>
+                Payments
+            </aura:set>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container" title="Payments">
+                            <lightning:icon iconName="custom:custom41" size="small" />
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Payments</h1>
+                    </div>
+                </div>
+            </div>
+            <lightning:spinner aura:id="paymentsLoadingSpinner" alternativeText="Waiting for data..." /><br/>
+			<lightning:tabset variant="scoped" class="tabset" selectedTabId="{!v.selectedPaymentsTabId}">
+                <lightning:tab id="paymentDetailsTab">
+                    <aura:set attribute="label">
+		                Payment Details
+            		</aura:set>
+            		<lightning:datatable aura:id="paymentDetailsTable"
+                                 data="{!v.paymentDetails}"
+	        				columns="{!v.paymentDetailsColumnList}"             
+                            keyField="Id"
+	        				hideCheckboxColumn="true"
+                            onsort="{!c.handlePaymentDetailsSort}"
+                            sortedBy="accountingDt"
+                            sortedDirection="desc"
+                     />
+                </lightning:tab>
+                <lightning:tab id="paymentHistoryTab">
+                    <aura:set attribute="label">
+		                Payment History
+            		</aura:set>
+            		        <lightning:datatable aura:id="paymentHistoryTable"
+                                 data="{!v.paymentHistory}"
+	        				    columns="{!v.paymentHistoryColumnList}"
+                                keyField="Id"
+	        				    hideCheckboxColumn="true"
+                                onsort="{!c.handlePaymentHistorySort}"
+                                sortedBy="cycleEndDt"
+                                sortedDirection="desc"
+                             />
+                </lightning:tab>
+                <lightning:tab id="pendingPaymentsTab">
+                    <aura:set attribute="label">
+                        Pending Payments
+                    </aura:set>
+                    <lightning:datatable aura:id="pendingPaymentsTable"
+                                         data="{!v.pendingPayments}"
+                                         columns="{!v.pendingPaymentsColumnList}"
+                                         keyField="Id"
+                                         hideCheckboxColumn="true"
+                                         onsort="{!c.handlePendingPaymentsSort}"
+                                         sortedBy="scheduledDate"
+                                         sortedDirection="desc"
+                    />
+                </lightning:tab>
+        </lightning:tabset></lightning:tab>
+        <lightning:tab id="casesTab" onactive="{!c.lazyLoadCases}">
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCases}"></i>
+                </div>
+                Case History
+            </aura:set>
+            <div class="slds-page-header">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container" title="Description of icon when needed">
+                            <lightning:icon iconName="standard:case" size="small" />
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Case History</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                <div class="slds-card__body--inner slds-wrap">
+            <lightning:spinner aura:id="casesLoadingSpinner" alternativeText="Waiting for data..." /><br/>
+            <span aura:id="noCasesFoundLabel" class="slds-hide">No results found!</span>
+                    <lightning:datatable aura:id="casesTable"
+                                         data="{!v.caseHistory}"
+                                         columns="{!v.caseHistoryColumnList}"
+                                         keyField="Id"
+                                         hideCheckboxColumn="true"
+                                         onsort="{!c.handleCaseSort}"
+                                         sortedBy="lastModified"
+                                         sortedDirection="desc"
+                                         class="slds-hide"
+                    />
+                </div>
+            </div>
+        </lightning:tab>
+    </lightning:tabset><br/><br/>
+    <div class="slds-backdrop" aura:id="modalBackdrop"></div>
+</aura:component>
