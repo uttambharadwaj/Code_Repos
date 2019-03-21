@@ -250,13 +250,6 @@
         <relatedList>RelatedTeamMemberList</relatedList>
     </relatedLists>
     <relatedLists>
-        <fields>SOLUTION.ISSUE</fields>
-        <fields>SHORT_SOLUTION_NOTE</fields>
-        <fields>ADDED_BY.CREATED_DATE</fields>
-        <fields>ADDED_BY.FIRST_NAME</fields>
-        <relatedList>RelatedSolutionList</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>

@@ -1,0 +1,78 @@
+<aura:component controller="AccountSearchController" access="global" implements="force:appHostable,lightning:isUrlAddressable">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="caseId" type="String" />
+    <aura:attribute name="results" type="Object" />
+    <aura:attribute name="fields" type="Object" />
+    <aura:attribute name="spinner" type="boolean" default="false" />
+    <aura:attribute name="errorMessage" type="String" />
+    <aura:attribute name="keyword" type="String" />
+    <aura:attribute name="upperTypes" type="String[]" />
+
+    <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:card iconName="standard:account" title="Account Search">
+        <div class="slds-p-horizontal_medium">
+            <aura:if isTrue="{!v.spinner}">
+                <lightning:spinner variant="brand" size="medium" alternativeText="Loading" />
+            </aura:if>
+            <div class="slds-m-around--large slds-has-error">
+                <ui:outputText value="{!v.errorMessage}" class="slds-form-element__help" />
+            </div>
+            <form action="javascript:void(0)" class="slds-m-around--small slds-form--stacked slds-grid slds-wrap slds-grid--pull-padded"
+                onkeyup="{!c.checkKey}">
+                <div class="slds-m-around--small slds-size--3-of-12">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">SEARCH TYPE</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputSelect aura:id="searchType" class="slds-select" change="{!c.checkUpper}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-m-around--small slds-size--4-of-12">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label">
+                            <ui:outputText value="" />
+                        </label>
+                        <div class="slds-form-element__control">
+                            <ui:inputtext aura:id="searchKeyword" class="slds-input" value="{!v.keyword}" updateOn="keyup,input" keyup="{!c.checkUpper}" />
+                            <ui:outputText value="{!(v.keyword.length > 0) ? v.keyword.length + ' characters' : ''}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-p-horizontal--small slds-size--1-of-1 slds-align-bottom slds-float--left">
+                    <div class="slds-form-element">
+                        <ui:button aura:id="searchButton" label="Search" class="slds-button slds-button--brand" labelClass="label" press="{!c.search}"
+                        />
+                        <ui:button aura:id="newTabButton" label="Open New Tab" class="slds-button slds-button--brand" labelClass="label" press="{!c.openNewTab}"
+                        />
+                    </div>
+                </div>
+            </form>
+            <div class="slds-p-vertical_medium slds-size--1-of-1">
+                <ui:scrollerWrapper class="scrollerSize">
+                    <table class="{! 'slds-table slds-table--bordered ' + (v.results.length == 0 ? 'slds-hide': 'slds-show')}" role="grid">
+                        <thead>
+                            <tr>
+                                <aura:iteration items="{!v.fields}" var="f">
+                                    <th class="slds-text-title--caps" scope="col">
+                                        <span class="slds-cell-wrap" id="{!f.Name}" title="{!f.Label}">{!f.Label}</span>
+                                    </th>
+                                </aura:iteration>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.results}" var="result">
+                                <tr>
+                                    <aura:iteration items="{!v.fields}" var="f">
+                                        <td role="gridcell">
+                                            <c:AccountSearchResultsField result="{!result.resultColumns}" fieldName="{!f.Name}" caseId="{!v.caseId}" />
+                                        </td>
+                                    </aura:iteration>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </ui:scrollerWrapper>
+            </div>
+        </div>
+    </lightning:card>
+</aura:component>

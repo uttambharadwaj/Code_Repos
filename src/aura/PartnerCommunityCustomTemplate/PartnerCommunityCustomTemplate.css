@@ -1,0 +1,69 @@
+.THIS {
+    position: relative;
+    z-index: 1;
+}
+.THIS .searchRegion {min-width: auto;}
+.THIS .slds-global-header__item--search {min-width: auto;}
+.THIS .cCenterPanel{max-width:1140px;margin-left:auto;margin-right:auto}
+.THIS .cCenterPanel:focus{outline:none}
+
+.THIS .divCenter
+		{
+			text-align: center;
+			width: 100%;
+			display: inline;
+			float: left;
+			position: relative;
+			margin-left: 4px;
+			margin-right: 4px;
+			padding-top: 15px;
+		}
+		.THIS .divElementWidth
+		{
+			width: 100%;
+		}
+
+ .THIS .wex-push-RightDown
+  {
+    text-align: right;
+    padding-top: 15px;
+  }
+  .THIS .wex-apply-Background
+  {
+    background-color: #FFFFFF !important;
+    /*max-height: 80px !important;*/
+  }
+  .THIS .wex-img-Padding
+  {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 16px;
+  }
+  .THIS .wex-headerOuterGrid
+  {
+    width: 100% !important;
+  }
+  .THIS .wex-InnerImageGrid
+  {
+    width: 55% !important;
+  }
+  .THIS .wex-InnerSearchGrid
+  {
+    width: 40% !important;
+  }
+  .THIS .wex-SearchFrom
+  {
+    /*float: left !important; Changed below to put right align above logout link */
+    float: none !important;
+    width: 100% !important;
+  }
+  .THIS .wex-LogoutDiv
+  {
+    float: right;
+    margin-top: 10px;
+    /*margin-top: 5px;  Removed to put logout underneath*/
+  }
+  .THIS .wex-regionInnerOverride
+  {
+    min-height: 50px !important;
+  }

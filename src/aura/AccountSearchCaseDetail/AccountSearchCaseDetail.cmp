@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId">
+	<lightning:workspaceAPI aura:id="workspace"/>
+    <form class="slds-m-around--small slds-form--stacked slds-grid slds-wrap slds-grid--pull-padded">
+        <div class="slds-p-horizontal--small slds-size--1-of-1 slds-align-bottom slds-float--left">
+            <div class="slds-form-element">
+                <ui:button aura:id="searchButton" label="Account Search" class="slds-button slds-button--brand" labelClass="label" press="{!c.openSearchTab}" />
+            </div>
+        </div>
+    </form>
+</aura:component>

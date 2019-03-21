@@ -1,0 +1,32 @@
+<aura:component controller="QuickLinksController" implements="force:hasRecordId,flexipage:availableForAllPageTypes" access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="quickLinks" type="Object" />
+    <aura:attribute name="expandSection" type="Boolean" default="false" />
+    <lightning:workspaceAPI aura:id="workspace" />
+    <div class="{!'slds-section' + (v.expandSection == true ? ' slds-is-open': '')}">
+        <h3 class="slds-section__title">
+    <button class="slds-button slds-section__title-action" onclick="{!c.toggleExpand}">
+      <c:SVG class="{!(v.expandSection == false ? 'slds-section__title-action-icon': '') + ' slds-button__icon slds-button__icon_left'}" xlinkHref="{!$Resource.SLDS090 + '/assets/icons/utility-sprite/svg/symbols.svg#switch'}" ariaHidden="true" />
+      <span class="slds-truncate" title="Quick Links">Quick Links</span>
+    </button>
+  </h3>
+        <div class="slds-section__content">
+            <table class="{!'slds-table slds-table--bordered' + (v.quickLinks.length == 0 ? ' slds-hide': '')}" role="grid">
+                <tbody>
+                    <aura:iteration items="{!v.quickLinks}" var="link">
+                        <tr>
+                            <td role="gridcell">
+                                <div class="slds-cell-wrap">
+                                  <!--   <a href="javascript:void(0);">
+                                            <span class="slds-cell-wrap" data-url="{!link.url}" onclick="{!c.openLink}" title="{!link.label}">{!link.label}</span>
+                                        </a> -->
+                                        <a href="{!link.url}" title="{!link.label}" target="{!(link.target ? link.target : '_blank')}">{!link.label}</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</aura:component>
