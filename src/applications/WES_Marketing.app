@@ -48,46 +48,6 @@
     <navType>Standard</navType>
     <profileActionOverrides>
         <actionName>Tab</actionName>
-        <content>EFS_Inside_Sales_Home_Page_Fleet_Record</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>WEX EFS OTR Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Sales</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Marketing EU</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Sales</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Relationship Management EU</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Sales</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Relationship Management NA</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Sales</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Sales ASIA</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
         <content>Corporate_Payments_Sales</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
@@ -132,79 +92,109 @@
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>
+        <profile>CP Sales ASIA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
         <profile>CP Sales NA</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>WES_Contact_Lighting_Page</content>
+        <content>WES_Historical_Layout_Basic</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.WES_Contacts</recordType>
-        <type>Flexipage</type>
-        <profile>WES System Administrator Original</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Contact_Lighting_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.WES_Contacts</recordType>
-        <type>Flexipage</type>
-        <profile>WES Sales Manager</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Contact_Lighting_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.WES_Contacts</recordType>
-        <type>Flexipage</type>
-        <profile>WES Marketing</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Contact_Lighting_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.WES_Contacts</recordType>
-        <type>Flexipage</type>
-        <profile>WES Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Contact_Lighting_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.WES_Contacts</recordType>
-        <type>Flexipage</type>
-        <profile>WES Credit Manager</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Contact_Lighting_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.WES_Contacts</recordType>
-        <type>Flexipage</type>
-        <profile>WES Credit Analyst</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Contact_Lighting_Page</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>Contact</pageOrSobjectType>
-        <recordType>Contact.WES_Contacts</recordType>
+        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
+        <recordType>WES_Application_Request__c.Historical</recordType>
         <type>Flexipage</type>
         <profile>WES Credit Vetting</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
-        <content>WES_Opp_Lightning_Page</content>
+        <content>WES_Historical_Layout_Basic</content>
         <formFactor>Large</formFactor>
-        <pageOrSobjectType>Opportunity</pageOrSobjectType>
-        <recordType>Opportunity.WES_Opportunity</recordType>
+        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
+        <recordType>WES_Application_Request__c.Historical</recordType>
+        <type>Flexipage</type>
+        <profile>WES Marketing</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Historical_Layout_Basic</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
+        <recordType>WES_Application_Request__c.Historical</recordType>
+        <type>Flexipage</type>
+        <profile>WES Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Historical_Layout_Basic</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
+        <recordType>WES_Application_Request__c.Historical</recordType>
         <type>Flexipage</type>
         <profile>WES Sales Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Historical_Layout_Basic</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
+        <recordType>WES_Application_Request__c.Historical</recordType>
+        <type>Flexipage</type>
+        <profile>WES System Administrator Original</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Historical_Layout_Basic</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
+        <recordType>WES_Application_Request__c.Historical</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Account Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Customer Service EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>Corporate Payment - Global</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
@@ -261,100 +251,6 @@
         <profile>System Administrator - Gears</profile>
     </profileActionOverrides>
     <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Historical_Layout_Basic</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
-        <recordType>WES_Application_Request__c.Historical</recordType>
-        <type>Flexipage</type>
-        <profile>WES Credit Vetting</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Historical_Layout_Basic</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
-        <recordType>WES_Application_Request__c.Historical</recordType>
-        <type>Flexipage</type>
-        <profile>WES Marketing</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Historical_Layout_Basic</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
-        <recordType>WES_Application_Request__c.Historical</recordType>
-        <type>Flexipage</type>
-        <profile>WES Sales</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Historical_Layout_Basic</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
-        <recordType>WES_Application_Request__c.Historical</recordType>
-        <type>Flexipage</type>
-        <profile>WES Sales Manager</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Historical_Layout_Basic</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
-        <recordType>WES_Application_Request__c.Historical</recordType>
-        <type>Flexipage</type>
-        <profile>WES System Administrator Original</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>View</actionName>
-        <content>WES_Historical_Layout_Basic</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>WES_Application_Request__c</pageOrSobjectType>
-        <recordType>WES_Application_Request__c.Historical</recordType>
-        <type>Flexipage</type>
-        <profile>Admin</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>AUHomePage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>AU Fuel Indirect User</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Account Management NA</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Account Management EU</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Corporate Payment - Global</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Customer Service EU</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
         <actionName>Tab</actionName>
         <content>Corporate_Payments_Implementations</content>
         <formFactor>Large</formFactor>
@@ -369,6 +265,110 @@
         <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>
         <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Contact_Lighting_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.WES_Contacts</recordType>
+        <type>Flexipage</type>
+        <profile>WES System Administrator Original</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Contact_Lighting_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.WES_Contacts</recordType>
+        <type>Flexipage</type>
+        <profile>WES Sales Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Contact_Lighting_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.WES_Contacts</recordType>
+        <type>Flexipage</type>
+        <profile>WES Marketing</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Contact_Lighting_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.WES_Contacts</recordType>
+        <type>Flexipage</type>
+        <profile>WES Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Contact_Lighting_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.WES_Contacts</recordType>
+        <type>Flexipage</type>
+        <profile>WES Credit Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Contact_Lighting_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.WES_Contacts</recordType>
+        <type>Flexipage</type>
+        <profile>WES Credit Analyst</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Contact_Lighting_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.WES_Contacts</recordType>
+        <type>Flexipage</type>
+        <profile>WES Credit Vetting</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>WES_Opp_Lightning_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.WES_Opportunity</recordType>
+        <type>Flexipage</type>
+        <profile>WES Sales Manager</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>AUHomePage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>AU Fuel Indirect User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>EFS_Inside_Sales_Home_Page_Fleet_Record</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>WEX EFS OTR Sales</profile>
     </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>standard-Lead</tabs>

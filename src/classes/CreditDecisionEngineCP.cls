@@ -24,20 +24,18 @@ global class CreditDecisionEngineCP {
 
         List<CP_Application_Request__c> cpApplications = [
                 SELECT Id, Name, Company_Legal_Name__c, Forte_Response_Code__c, Application_Stage__c, ThreatMetrix_Request_ID__c,
-                        ThreatMetrix_Result__c, Sanctions_Business_Check__c, Sanctions_Individual_Check__c, PG_Required__c,
-                        Physical_Address_Line_1__c, Physical_City__c, Physical_State__c, Physical_Postal_Code__c, Sanctions_Individual_Result_ID__c,
+                        ThreatMetrix_Result__c, Sanctions_Business_Check__c, Sanctions_Individual_Check__c, //PG_Required__c,
+                        Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Country__c, Physical_Postal_Code__c, Sanctions_Individual_Result_ID__c,
                         First_Name__c, Last_Name__c, Taxpayer_ID__c, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Date_of_Birth__c,
-                        Guarantor_Residential_Address__c, Guarantor_Residential_City__c, Guarantor_Residential_State__c, Guarantor_Residential_Country__c,
+                        Guarantor_Residential_Address__c, Guarantor_Residential_City__c, Guarantor_State_Province__c, Guarantor_Country__c,
                         Guarantor_Residential_Postal_Code__c, Guarantor_Residential_Phone__c, Guarantor_Social_Security_Number__c,
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
-                        Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c
+                        Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
         ];
 
         if (cpApplications.size() > 0) {
-            
-            System.debug('TEMP made it in here');
 
             CP_Application_Request__c cpApplication = cpApplications[0];
 
@@ -50,10 +48,10 @@ global class CreditDecisionEngineCP {
             existingExposureRequest.legalBusinessName = cpApplication.Company_Legal_Name__c;
             existingExposureRequest.addressLine1 = cpApplication.Physical_Address_Line_1__c;
             existingExposureRequest.city = cpApplication.Physical_City__c;
-            existingExposureRequest.state = cpApplication.Physical_State__c;
+            existingExposureRequest.state = cpApplication.Physical_State_Province__c;
             existingExposureRequest.postalCode = cpApplication.Physical_Postal_Code__c;
             existingExposureRequest.fraudFlag = cpApplication.Fraud_Flag__c;
-            
+
             cpApplication.Number_of_Existing_Applications__c = (CreditUtil_ExistingExposure.getApplications(existingExposureRequest)).size();
             cpApplication.Number_of_Existing_Accounts__c = (CreditUtil_ExistingExposure.getAccounts(existingExposureRequest)).size();
 
@@ -66,7 +64,7 @@ global class CreditDecisionEngineCP {
                 lexisNexisRequest.lastName = cpApplication.Guarantor_Last_Name__c;
                 lexisNexisRequest.addressLine1 = cpApplication.Guarantor_Residential_Address__c;
                 lexisNexisRequest.city = cpApplication.Guarantor_Residential_City__c;
-                lexisNexisRequest.state = cpApplication.Guarantor_Residential_State__c;
+                lexisNexisRequest.state = cpApplication.Guarantor_State_Province__c;
                 lexisNexisRequest.postalCode = cpApplication.Guarantor_Residential_Postal_Code__c;
                 lexisNexisRequest.dateOfBirth = cpApplication.Guarantor_Date_of_Birth__c;
                 lexisNexisRequest.socialSecurityNumber = cpApplication.Guarantor_Social_Security_Number__c;
@@ -94,7 +92,7 @@ global class CreditDecisionEngineCP {
                 lexisNexisBridgerIndividualRequest.lastName = cpApplication.Guarantor_Last_Name__c;
                 lexisNexisBridgerIndividualRequest.addressLine1 = cpApplication.Guarantor_Residential_Address__c;
                 lexisNexisBridgerIndividualRequest.city = cpApplication.Guarantor_Residential_City__c;
-                lexisNexisBridgerIndividualRequest.state = cpApplication.Guarantor_Residential_State__c;
+                lexisNexisBridgerIndividualRequest.state = cpApplication.Guarantor_State_Province__c;
                 lexisNexisBridgerIndividualRequest.postalCode = cpApplication.Guarantor_Residential_Postal_Code__c;
                 lexisNexisBridgerIndividualRequest.dateOfBirth = cpApplication.Guarantor_Date_of_Birth__c;
                 lexisNexisBridgerIndividualRequest.socialSecurityNumber = cpApplication.Guarantor_Social_Security_Number__c;
@@ -129,7 +127,7 @@ global class CreditDecisionEngineCP {
             lexisNexisBridgerBusinessRequest.companyName = cpApplication.Company_Legal_Name__c;
             lexisNexisBridgerBusinessRequest.addressLine1 = cpApplication.Physical_Address_Line_1__c;
             lexisNexisBridgerBusinessRequest.city = cpApplication.Physical_City__c;
-            lexisNexisBridgerBusinessRequest.state = cpApplication.Physical_State__c;
+            lexisNexisBridgerBusinessRequest.state = cpApplication.Physical_State_Province__c;
             lexisNexisBridgerBusinessRequest.postalCode = cpApplication.Physical_Postal_Code__c;
 
             CreditWS_LexisNexisBridger.LexisNexisBridgerBusinessResponse lexisNexisBridgerBusinessResponse = CreditWS_LexisNexisBridger.bridgerSearchBusiness(lexisNexisBridgerBusinessRequest);
@@ -156,9 +154,9 @@ global class CreditDecisionEngineCP {
             dnbDirectMatchRequest.SubjectName = cpApplication.Company_Legal_Name__c;
             dnbDirectMatchRequest.StreetAddressLine1 = cpApplication.Physical_Address_Line_1__c;
             dnbDirectMatchRequest.PrimaryTownName = cpApplication.Physical_City__c;
-            dnbDirectMatchRequest.TerritoryName = cpApplication.Physical_State__c;
+            dnbDirectMatchRequest.TerritoryName = cpApplication.Physical_State_Province__c;
             dnbDirectMatchRequest.FullPostalCode = cpApplication.Physical_Postal_Code__c;
-            dnbDirectMatchRequest.CountryISOAlpha2Code = 'US';
+            dnbDirectMatchRequest.CountryISOAlpha2Code = cpApplication.Physical_Country__c;
             dnbDirectMatchRequest.DUNSNumber = cpApplication.DUNS_Number__c;
 
             CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
@@ -174,6 +172,10 @@ global class CreditDecisionEngineCP {
                 cpApplication.DNB_State_Match_Data_Profile__c  = dnbDirectMatchResponse.matchCandidates[0].StateMatchDataProfile;
                 cpApplication.DNB_Postal_Code_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchDataProfile;
                 cpApplication.DNB_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].MatchGradeText;
+                cpApplication.WEX_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].WEXMatchScore;
+                if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
+                    cpApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
+                }
 
                 // Execute BREeze for pre-processing
                 BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('CPCreditDecisioningDNBMatch', new List<SObject>{cpApplication});
@@ -210,13 +212,19 @@ global class CreditDecisionEngineCP {
                             cpApplication.DNB_SBRI_Card_Score__c = dnbCPModelResponse.SBRICardScore;
                             cpApplication.Bureau_Tax_ID__c = dnbCPModelResponse.FeinTaxID;
                             cpApplication.Paydex__c = dnbCPModelResponse.Paydex;
-                            cpApplication.Control_Year__c = String.valueOf(dnbCPModelResponse.ControlYear);
-                            cpApplication.Year_Started__c = String.valueOf(dnbCPModelResponse.YearStarted);
+                            if (dnbCPModelResponse.ControlYear != null) {
+                                cpApplication.Control_Year__c = String.valueOf(dnbCPModelResponse.ControlYear);
+                            }
+                            if (dnbCPModelResponse.YearStarted != null) {
+                                cpApplication.Year_Started__c = String.valueOf(dnbCPModelResponse.YearStarted);
+                            }
                             cpApplication.Number_of_Payments_Negative__c = dnbCPModelResponse.NumberPaymentExperiencesNegative;
                             cpApplication.Number_of_Payments_Slow__c = dnbCPModelResponse.NumberPaymentExperiencesSlow;
                             cpApplication.Satisfactory_Trades__c = dnbCPModelResponse.NumberPaymentExperiencesSatisfactory;
                             cpApplication.DNB_Trade_Lines__c = dnbCPModelResponse.NumberOfTrades;
-                            cpApplication.DNB_Reason_Code__c = String.join(dnbCPModelResponse.ReasonCodes, ', ');
+                            if (dnbCPModelResponse.ReasonCodes != null) {
+                                cpApplication.DNB_Reason_Code__c = String.join(dnbCPModelResponse.ReasonCodes, ', ');
+                            }
 
                         }
                         else {
@@ -225,7 +233,51 @@ global class CreditDecisionEngineCP {
 
                     } else if (cpApplication.Physical_Country__c != null && (cpApplication.Physical_Country__c).equalsIgnoreCase('CA')) {
 
-                        // TODO implement CA custom model
+                        CreditWS_DNB.DNBCAModelRequest dnbCAModelRequest = new CreditWS_DNB.DNBCAModelRequest();
+
+                        dnbCAModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
+                        dnbCAModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(cpApplication.Credit_Line_Requested__c));
+                        dnbCAModelRequest.Platforms = 'Wex_MC';
+
+                        CreditWS_DNB.DNBCAModelResponse dnbCAModelResponse = CreditWS_DNB.getCAScore(dnbCAModelRequest);
+
+                        if (dnbCAModelResponse != null) {
+
+                            cpApplication.DNB_Score__c = dnbCAModelResponse.RawScore;
+                            cpApplication.DNB_Credit_Line_Recommendation__c = dnbCAModelResponse.RecommendedCreditLimitAmount;
+                            cpApplication.SIC_Code__c = dnbCAModelResponse.PrimarySIC;
+                            cpApplication.DNB_Resolved_DUNS__c = dnbCAModelResponse.DunsNumber;
+                            cpApplication.DUNS_Number__c = dnbCAModelResponse.DunsNumber;
+                            cpApplication.Global_Ultimate_DUNS__c = dnbCAModelResponse.GlobalUltimateDUNS;
+                            cpApplication.DNB_Resolved_Name__c = dnbCAModelResponse.PrimaryName;
+                            cpApplication.DNB_Resolved_Address__c = dnbCAModelResponse.AddressLine;
+                            cpApplication.DNB_Resolved_City__c = dnbCAModelResponse.PostalTown;
+                            cpApplication.DNB_Resolved_State__c = dnbCAModelResponse.PrimaryGeographicArea;
+                            cpApplication.DNB_Resolved_Postal_Code__c = dnbCAModelResponse.PostalCode;
+                            cpApplication.DNB_Resolved_Country__c = dnbCAModelResponse.CountryCode;
+                            cpApplication.DNB_SBFE_High_Credit__c = dnbCAModelResponse.SBFEHighCredit;
+                            cpApplication.DNB_CSAD_High_Credit__c = dnbCAModelResponse.CSADHighCredit;
+                            cpApplication.DNB_SBRI_Card_Score__c = dnbCAModelResponse.SBRICardScore;
+                            cpApplication.Bureau_Tax_ID__c = dnbCAModelResponse.FeinTaxID;
+                            cpApplication.Paydex__c = dnbCAModelResponse.Paydex;
+                            if (dnbCAModelResponse.ControlYear != null) {
+                                cpApplication.Control_Year__c = String.valueOf(dnbCAModelResponse.ControlYear);
+                            }
+                            if (dnbCAModelResponse.YearStarted != null) {
+                                cpApplication.Year_Started__c = String.valueOf(dnbCAModelResponse.YearStarted);
+                            }
+                            cpApplication.Number_of_Payments_Negative__c = dnbCAModelResponse.NumberPaymentExperiencesNegative;
+                            cpApplication.Number_of_Payments_Slow__c = dnbCAModelResponse.NumberPaymentExperiencesSlow;
+                            cpApplication.Satisfactory_Trades__c = dnbCAModelResponse.NumberPaymentExperiencesSatisfactory;
+                            cpApplication.DNB_Trade_Lines__c = dnbCAModelResponse.NumberOfTrades;
+                            if (dnbCAModelResponse.ReasonCodes != null) {
+                                cpApplication.DNB_Reason_Code__c = String.join(dnbCAModelResponse.ReasonCodes, ', ');
+                            }
+
+                        }
+                        else {
+                            cpApplication.DNB_Score__c = 0;
+                        }
 
                     }
 
@@ -291,16 +343,22 @@ global class CreditDecisionEngineCP {
                 upsert cpApplication;
             }
 
-            // Run counter-offer processes
-            cpApplications = [SELECT Id, PG_Required__c, Guarantor_Residential_Country__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];
+//             Run counter-offer processes
+            cpApplications = [SELECT Id, PG_Required__c, Guarantor_Country__c, Opportunity__r.Pull_PG_Credit__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];
 
             if (cpApplications.size() > 0 && !TestUtils.isRunningTest()) {
 
-                if(cpApplications[0].Guarantor_Residential_Country__c != null && (cpApplications[0].Guarantor_Residential_Country__c).equalsIgnoreCase('US')) {
-                    CreditDecisionEngineQueueable.runExperianPGChecks(cpApplications[0].Id);
-                }
-                else if(cpApplications[0].Guarantor_Residential_Country__c != null && (cpApplications[0].Guarantor_Residential_Country__c).equalsIgnoreCase('CA')) {
-                    CreditDecisionEngineQueueable.runEquifaxPGChecks(cpApplications[0].Id);
+                CP_Application_Request__c cpApp = cpApplications[0];
+
+                if (cpApp.PG_Required__c == true
+                        && (cpApp.Opportunity__r.Pull_PG_Credit__c == null || cpApp.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))) {
+
+                    if (cpApp.Guarantor_Country__c == null || (cpApp.Guarantor_Country__c).equalsIgnoreCase('US')) {
+                        CreditDecisionEngineQueueable.runExperianPGChecks(cpApp.Id);
+
+                    } else if (cpApp.Guarantor_Country__c != null && (cpApp.Guarantor_Country__c).equalsIgnoreCase('CA')) {
+                        CreditDecisionEngineQueueable.runEquifaxPGChecks(cpApp.Id);
+                    }
                 }
             }
 

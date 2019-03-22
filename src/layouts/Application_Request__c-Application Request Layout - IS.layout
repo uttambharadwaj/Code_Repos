@@ -96,7 +96,7 @@
                 <field>SF_Opp__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Sales_Person__c</field>
             </layoutItems>
             <layoutItems>

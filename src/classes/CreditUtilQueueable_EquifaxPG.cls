@@ -88,7 +88,7 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
 
             List<CP_Application_Request__c> cpApplications = [
                     SELECT Id, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c, Guarantor_Residential_City__c,
-                            Guarantor_Residential_State__c, Guarantor_Residential_Postal_Code__c, Guarantor_Date_of_Birth__c, Guarantor_Social_Security_Number__c, Guarantor_Residential_Phone__c,
+                            Guarantor_State_Province__c, Guarantor_Residential_Postal_Code__c, Guarantor_Date_of_Birth__c, Guarantor_Social_Security_Number__c, Guarantor_Residential_Phone__c,
                             Running_Credit_Decisioning__c, PG_Required__c, Legal_Structure__c, PG_FICO_Score__c, PG_High_Credit_Amount__c, PG_Data__c
                     FROM CP_Application_Request__c
                     WHERE Id = :applicationId
@@ -109,7 +109,7 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                     equifaxRequest.lastName = cpApplicant.Guarantor_Last_Name__c;
                     equifaxRequest.address = cpApplicant.Guarantor_Residential_Address__c;
                     equifaxRequest.city = cpApplicant.Guarantor_Residential_City__c;
-                    equifaxRequest.province = cpApplicant.Guarantor_Residential_State__c;
+                    equifaxRequest.province = cpApplicant.Guarantor_State_Province__c;
                     equifaxRequest.postalCode = cpApplicant.Guarantor_Residential_Postal_Code__c;
                     equifaxRequest.phone = cpApplicant.Guarantor_Residential_Phone__c;
                     equifaxRequest.dateOfBirthMonth = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');

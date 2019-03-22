@@ -1,48 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <validationRules>
-        <fullName>EMAP_CA_Decline_reason_mandate</fullName>
-        <active>true</active>
-        <description>Decline reason is required, if final judgement is Declined or Cancelled.</description>
-        <errorConditionFormula>AND(
- ISPICKVAL( Credit_Assessment_Decline_Reason__c , &apos;&apos;),
-OR(
-  ISPICKVAL( Final_Judgement__c , &apos;Declined&apos;),
-  ISPICKVAL( Final_Judgement__c , &apos;Cancelled&apos;) 
-)
-)</errorConditionFormula>
-        <errorDisplayField>Credit_Assessment_Decline_Reason__c</errorDisplayField>
-        <errorMessage>Please specify decline reason, if final judgement is Declined or cancelled.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>EMAP_Hold_Expiration_Date_required</fullName>
-        <active>true</active>
-        <description>Hold expiration date is required if Assessment Sub Status is &apos;Hold&apos;</description>
-        <errorConditionFormula>AND ( 
-ISPICKVAL( Assessment_Sub_Status__c , &apos;Hold&apos;), 
-ISBLANK( Hold_Expiration_Date__c ) 
-)</errorConditionFormula>
-        <errorDisplayField>Hold_Expiration_Date__c</errorDisplayField>
-        <errorMessage>Please enter hold expiration date, if Assessment Sub Status is Hold.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>EMAP_RPS_Match_Details_Required</fullName>
-        <active>true</active>
-        <description>It should only accept details where the RPS Outcome field is set to ‘Match’</description>
-        <errorConditionFormula>AND(
- ISPICKVAL( RPS_Outcome__c , &apos;Match&apos;),
- ISBLANK( RPS_Match_Details__c ) 
-)</errorConditionFormula>
-        <errorDisplayField>RPS_Match_Details__c</errorDisplayField>
-        <errorMessage>Please enter RPS Match details, if RPS outcome is Match.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>EMAP_Restrict_change_in_Final_judgement</fullName>
-        <active>true</active>
-        <errorConditionFormula>AND($Profile.Name &lt;&gt; &apos;AU System Administrator&apos;,IF(AND(OR(ISPICKVAL(PRIORVALUE(Final_Judgement__c), &apos;&apos;),ISPICKVAL(PRIORVALUE(Final_Judgement__c), &apos;Cancelled&apos;),
-ISPICKVAL(Final_Judgement__c, &apos;Approved&apos;)) , 
-ISPICKVAL(Final_Judgement__c, &apos;Approved&apos;)),true,false))</errorConditionFormula>
-        <errorDisplayField>Account__c</errorDisplayField>
-        <errorMessage>You are not allowed to change Final Judgement value. Please submit the record for approval.</errorMessage>
-    </validationRules>
+    <fields>
+        <fullName>Payment_Days__c</fullName>
+        <externalId>false</externalId>
+        <label>Payment Days</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>0</fullName>
+                    <default>false</default>
+                    <label>0</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>15</fullName>
+                    <default>false</default>
+                    <label>15</label>
+                </value>
+                <value>
+                    <fullName>16</fullName>
+                    <default>false</default>
+                    <label>16</label>
+                </value>
+                <value>
+                    <fullName>30</fullName>
+                    <default>false</default>
+                    <label>30</label>
+                </value>
+                <value>
+                    <fullName>31</fullName>
+                    <default>false</default>
+                    <label>31</label>
+                </value>
+                <value>
+                    <fullName>45</fullName>
+                    <default>false</default>
+                    <label>45</label>
+                </value>
+                <value>
+                    <fullName>62</fullName>
+                    <default>false</default>
+                    <label>62</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>90</fullName>
+                    <default>false</default>
+                    <label>90</label>
+                </value>
+                <value>
+                    <fullName>60</fullName>
+                    <default>false</default>
+                    <label>60</label>
+                </value>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>46</fullName>
+                    <default>false</default>
+                    <label>46</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
 </CustomObject>

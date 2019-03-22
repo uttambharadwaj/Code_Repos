@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>Advanced Commercial Credit - Co-Branded OTR Fuel card Partner Manager</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
-    <parentRole>VPMerchantandChannelPartner</parentRole>
+    <parentRole>Manager_Partner_and_Channel</parentRole>
 </Role>

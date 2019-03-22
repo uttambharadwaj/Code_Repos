@@ -336,7 +336,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Alex_Kelis</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Alex Kelis</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -355,7 +354,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Amanda_Keller</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Amanda Keller</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -364,7 +362,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Ashley_Wendorff</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Ashley Wendorff</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -383,7 +380,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Bert_Goo</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Bert Goo</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -392,7 +388,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Bonnie_Castillo</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Bonnie Castillo</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -401,7 +396,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Brenda_Pinon</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Brenda Pinon</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -410,7 +404,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Bryan_Doty</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Bryan Doty</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -419,7 +412,6 @@
     <fieldUpdates>
         <fullName>Assign_to_CHIP_WILEY</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to CHIP WILEY</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -428,7 +420,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Christina_Kordik</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Christina Kordik</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -447,7 +438,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Chuck_Miller</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Chuck Miller</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -456,7 +446,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Cody_Barwig</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Cody Barwig</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -475,7 +464,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Daniel_Pesek</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Daniel Pesek</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -504,7 +492,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Debbie_Kimberland</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Debbie Kimberland</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -513,7 +500,6 @@
     <fieldUpdates>
         <fullName>Assign_to_England_Sales_Team</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to England Sales Team</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -532,7 +518,6 @@
     <fieldUpdates>
         <fullName>Assign_to_Ernane_Iung</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Ernane Iung</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -551,9 +536,16 @@ Moved to Sam Carper until new person hired</description>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Assign_to_JARED_SEEMAN</fullName>
+        <field>OwnerId</field>
+        <name>Assign to JARED SEEMAN</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Assign_to_JEFFREY_COLBURN</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to JEFFREY COLBURN</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -562,7 +554,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_JUAN_ESTRADA</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to JUAN ESTRADA</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -571,7 +562,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_James_Ladner</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to James Ladner</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -580,7 +570,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Jason_Mullican</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Jason Mullican</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -589,7 +578,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Jay_Larson</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Jay Larson</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -598,7 +586,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Jessi_Saker</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Jessi Saker</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -657,7 +644,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Julie_Murphy</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Julie Murphy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -686,8 +672,15 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Justin_Heim</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Justin Heim</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Assign_to_Karen_Tulloss</fullName>
+        <field>OwnerId</field>
+        <name>Assign to Karen Tulloss</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
@@ -695,7 +688,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Karla_Revilla</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Karla Revilla</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -714,7 +706,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Kyle_Klatzkin</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Kyle Klatzkin</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -723,7 +714,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Leslye_Campos</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Leslye Campos</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -732,7 +722,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Matt_Miller</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Matt Miller</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -741,7 +730,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Matt_Nulle</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Matt Nulle</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -760,7 +748,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Michael_Lingman</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Michael Lingman</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -779,8 +766,15 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Patti_Mielke</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Patti Mielke</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Assign_to_RON_GABBAI</fullName>
+        <field>OwnerId</field>
+        <name>Assign to RON GABBAI</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
@@ -788,7 +782,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Raj_Parikh</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Raj Parikh</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -797,7 +790,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Raul_Pena</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Raul Pena</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -816,7 +808,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Rich_Templeton</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Rich Templeton</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -825,7 +816,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Rob_Timmons</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Rob Timmons</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -834,7 +824,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Robert_Beard</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Robert Beard</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -843,7 +832,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Robert_Marker</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Robert Marker</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -873,7 +861,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Sarah_Williams</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Sarah Williams</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -882,7 +869,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Sheri_Breedlove</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Sheri Breedlove</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -891,7 +877,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Steven_Newman</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Steven Newman</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -900,7 +885,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_TRENT_MURPHY</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to TRENT MURPHY</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -920,7 +904,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Trey_Heath</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Trey Heath</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -950,7 +933,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Willie_Andruss</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Willie Andruss</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -979,7 +961,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assign_to_Zachwall</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assign to Zach</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
@@ -988,7 +969,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assing_to_Jerry_Van_Wyk</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assing to Jerry Van Wyk</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -997,7 +977,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Assing_to_Larry_Cuddy</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Assing to Larry Cuddy</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1006,7 +985,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Brady_Dransfield</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>John Aalders</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1015,7 +993,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>CarsArrive</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>CarsArrive</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1055,7 +1032,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>Owner</fullName>
         <description>Change Online Application Owner to partner user D&amp;S Support.</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner D&amp;S Support</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1064,7 +1040,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_BSNF_Fuel_Card_Jared_Williams</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner - BSNF Fuel Card (Jared Williams)</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1073,7 +1048,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_Changed_to_Dennis_Woods</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Changed to Dennis Woods</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1082,7 +1056,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_Changed_to_WILLIE_ANDRUSS</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Changed to WILLIE ANDRUSS</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1101,7 +1074,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_D_S_Fuel_Card_Candy_Hill</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner - D&amp;S Fuel Card (Candy Hill)</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1110,7 +1082,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_Dave_Swan</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Dave Swan</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1120,7 +1091,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>Owner_Discount_Diesel_Fuel_Card</fullName>
         <description>Set the owner to George Williams for Discount Diesel Fuel Card Apps</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner - Discount Diesel Fuel Card</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1139,7 +1109,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_England_Logistics_TL</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner England Logistics- TL1</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1148,7 +1117,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_Fleet_Savings</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner - Fleet Savings (Michele VanCleve)</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1158,7 +1126,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>Owner_Jessie_Singh</fullName>
         <description>Change owner of Online App from Guest User to Jessie Singh, based on the Application Title.</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Jessie Singh</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1178,7 +1145,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_Josh_Norris</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Josh Norris</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1188,7 +1154,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>Owner_Martha_Ibarra</fullName>
         <description>Set owner to Martha Ibarra if PrePass A, B, or C</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Martha Ibarra</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1197,7 +1162,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Owner_Milos_Pavlovic</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Milos Pavlovic</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1207,7 +1171,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>Owner_Pavestone_Capital</fullName>
         <description>Change Online Application Owner to partner user Pavestone Capital.</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Pavestone Capital</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1227,7 +1190,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>Owner_Roady_s_Card</fullName>
         <description>Change Online Application Owner to partner user Roady&apos;s Card.</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner Roady&apos;s Card</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1237,7 +1199,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>Owner_STC</fullName>
         <description>When Application starts with STC assign to STC partner</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner - STC</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1258,7 +1219,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>Owner_Single_Point_Fuel_Card</fullName>
         <description>Set the owner to Becki Tarver for Single Point Fuel Card Apps</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner - Single Point Fuel Card</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1298,7 +1258,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>Set_Michael_Lingman_as_owner</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Set Michael Lingman as owner</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1416,7 +1375,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>eApp_Owner_CSI_Global_Fleet</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>Owner - CSI Global-Fleet</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1447,7 +1405,6 @@ Moved to Sam Carper until new person hired</description>
         <fullName>eApp_Owner_Kyle_Cox_Quality_Companies</fullName>
         <description>Assign the Quality Companies eApps to Kyle Cox (Partner User)</description>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>eApp Owner - Kyle Cox -Quality Companies</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1494,7 +1451,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>set_Owner_to_CarsArrive</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>set Owner to CarsArrive</name>
         <notifyAssignee>true</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1503,7 +1459,6 @@ Moved to Sam Carper until new person hired</description>
     <fieldUpdates>
         <fullName>set_Owner_to_Tom_Moreland</fullName>
         <field>OwnerId</field>
-        <lookupValueType>User</lookupValueType>
         <name>set Owner to Tom Moreland</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -1529,6 +1484,26 @@ Moved to Sam Carper until new person hired</description>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
+    <rules>
+        <fullName>App Owner - ASSIST FINANCIAL SERVICES</fullName>
+        <actions>
+            <name>Assign_to_Karen_Tulloss</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Assist Financial</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to Karen Tulloss, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>App Owner - CenterFire</fullName>
         <actions>
@@ -2414,6 +2389,26 @@ Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
+        <fullName>eApp Owner - Century</fullName>
+        <actions>
+            <name>Assign_to_JARED_SEEMAN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Century</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to JARED SEEMAN, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
         <fullName>eApp Owner - Christine Jennings</fullName>
         <actions>
             <name>Assign_to_Christine</name>
@@ -3040,6 +3035,26 @@ Offer__r.Name = &apos;Fleet One Edge Over The Road&apos;)</formula>
         </criteriaItems>
         <description>Change owner of Online App from Guest User to Joni Crockarell, based on the Application Title.</description>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>eApp Owner - G SQUARED</fullName>
+        <actions>
+            <name>Assign_to_RON_GABBAI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>OnlineApplication__c.Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>G SQUARED</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OnlineApplication__c.CreatedById</field>
+            <operation>equals</operation>
+            <value>CreditApplication Site Guest User</value>
+        </criteriaItems>
+        <description>Change owner of Online App from Guest User to RON GABBAI, based on the Offer Name WF TXT.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
         <fullName>eApp Owner - G%2EH%2E Factor</fullName>

@@ -18,12 +18,12 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
 
     public void execute(QueueableContext context) {
 
-        String objectType = (Id.valueOf(applicationId)).getSobjectType().getDescribe().getName();  //is this the right id?
+        String objectType = (Id.valueOf(applicationId)).getSobjectType().getDescribe().getName(); 
 
         if (objectType != null && (objectType).equalsIgnoreCase('OnlineApplication__c')) {
 
             List<OnlineApplication__c> onlineApplications = [
-                    SELECT Id, Contact_First_Name__c, Contact_Last_Name__c, AO_Address__c, AO_City__c,
+                    SELECT Id, Contact_First_Name__c, Contact_Last_Name__c, AO_Name__c, AO_First_Name__c, AO_Last_Name__c, AO_Address__c, AO_City__c,
                             AO_State__c, AO_Zip_Code__c, AO_Date_of_Birth__c, AO_Social_Security_Number__c, AO_Home_Phone_Number__c,
                             Running_Credit_Decisioning__c, PG_Required__c, Type_of_Business__c, PG_Score__c, PG_Data__c, PG_High_Credit_Amount__c,
                             Inquiry_Address_High_Risk__c, Security_Statement_on_Report__c, On_File_Address_High_Risk__c
@@ -54,14 +54,15 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                     }
 
                     experianRequest.socialSecurityNumber = onlineApplication.AO_Social_Security_Number__c;
-                    if(null == onlineApplication.Contact_First_Name__c && null == onlineApplication.Contact_Last_Name__c && null != onlineApplication.Contact_Name__c) {
-                        experianRequest.contactFirstName = (onlineApplication.Contact_Name__c).split(' ')[0];
-                        experianRequest.contactLastName = (onlineApplication.Contact_Name__c).split(' ')[1];
+                    if(null == onlineApplication.AO_First_Name__c && null == onlineApplication.AO_Last_Name__c && null != onlineApplication.AO_Name__c) {
+                        experianRequest.contactFirstName = (onlineApplication.AO_Name__c).split(' ')[0];
+                        experianRequest.contactLastName = (onlineApplication.AO_Name__c).split(' ')[1];
                     }
                     else {
-                        experianRequest.contactFirstName = onlineApplication.Contact_First_Name__c;
-                        experianRequest.contactLastName = onlineApplication.Contact_Last_Name__c;
+                        experianRequest.contactFirstName = onlineApplication.AO_First_Name__c;
+                        experianRequest.contactLastName = onlineApplication.AO_Last_Name__c;
                     }
+                    System.debug('TEMP contact first name = ' + experianRequest.contactFirstName + ' contact last name: ' + experianRequest.contactLastName);
                     experianRequest.address = onlineApplication.AO_Address__c;
                     experianRequest.city = onlineApplication.AO_City__c;
                     experianRequest.state = onlineApplication.AO_State__c;
@@ -105,7 +106,7 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
 
             List<CP_Application_Request__c> cpApplications = [
                     SELECT Id, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c, Guarantor_Residential_City__c,
-                            Guarantor_Residential_State__c, Guarantor_Residential_Postal_Code__c, Guarantor_Date_of_Birth__c, Guarantor_Social_Security_Number__c, Guarantor_Residential_Phone__c,
+                            Guarantor_State_Province__c, Guarantor_Residential_Postal_Code__c, Guarantor_Date_of_Birth__c, Guarantor_Social_Security_Number__c, Guarantor_Residential_Phone__c,
                             Running_Credit_Decisioning__c, PG_Required__c, Legal_Structure__c, PG_FICO_Score__c, PG_Data__c, PG_High_Credit_Amount__c, Experian_Premier_Attributes__c,
                             Inquiry_Address_High_Risk__c, Security_Statement_on_Report__c, On_File_Address_High_Risk__c
                     FROM CP_Application_Request__c
@@ -139,7 +140,7 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                     experianRequest.contactLastName = cpApplicant.Guarantor_Last_Name__c;
                     experianRequest.address = cpApplicant.Guarantor_Residential_Address__c;
                     experianRequest.city = cpApplicant.Guarantor_Residential_City__c;
-                    experianRequest.state = cpApplicant.Guarantor_Residential_State__c;
+                    experianRequest.state = cpApplicant.Guarantor_State_Province__c;
                     experianRequest.zipCode = cpApplicant.Guarantor_Residential_Postal_Code__c;
                     experianRequest.phone = cpApplicant.Guarantor_Residential_Phone__c;
                     experianRequest.dateOfBirthMonth = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
@@ -195,8 +196,6 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
 
                 if (naApplicant.PG_Required__c) {
 
-                    // if (naApplicant.Physical_Country__c = 'US') {
-
                     CreditWS_Experian.ExperianRequest experianRequest = new CreditWS_Experian.ExperianRequest();
 
                     /** Permissible Purpose Type Code (aka Account Purpose Type Code) denotes the loan purpose type and amount.
@@ -239,10 +238,6 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                         System.debug('Experian callout failed. Response: ' + experianResponse);
                     }
                 }
-//                else if (naApplicant.Physical_Country__c = 'CA') {
-//
-//                    callout to Equifax
-//                }
 
                 upsert naApplicant;
 

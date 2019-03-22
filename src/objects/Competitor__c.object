@@ -8,6 +8,131 @@
         <label>AUCompetitor</label>
     </compactLayouts>
     <enableEnhancedLookup>true</enableEnhancedLookup>
+    <fields>
+        <fullName>Company_Name__c</fullName>
+        <description>Used to identify the name of the main company the competitor uses</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The main company name of the competitor</inlineHelpText>
+        <label>Company Name</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Competitor_Logo__c</fullName>
+        <description>Include the competitor&apos;s brand logo here</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Competitor Logo</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Country__c</fullName>
+        <description>The country in which this information is applicable. NOT the country of operation.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The country in which this information is applicable. NOT the country of operation.</inlineHelpText>
+        <label>Country</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Australia</fullName>
+                    <default>false</default>
+                    <label>Australia</label>
+                </value>
+                <value>
+                    <fullName>New Zealand</fullName>
+                    <default>false</default>
+                    <label>New Zealand</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Est_of_customers__c</fullName>
+        <description>This field stores the estimated number of customers this competitor has</description>
+        <externalId>false</externalId>
+        <inlineHelpText>How many customers does this competitor have?</inlineHelpText>
+        <label># of customers</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>High_Level_Sales_Strategy__c</fullName>
+        <description>Used to detail the sales strategy when competing against this company</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Keep this in mind when competing against this company</inlineHelpText>
+        <label>High Level Sales Strategy</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Our_Advantages__c</fullName>
+        <description>This competitors Product or Service strengths</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>This competitors product or service strengths</inlineHelpText>
+        <label>Strengths</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Our_Weaknesses__c</fullName>
+        <description>This competitors weaknesses</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>This competitors weaknesses</inlineHelpText>
+        <label>Weaknesses</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Ownership_Structure__c</fullName>
+        <description>Who owns the company? e.g. Subsidiary, public company</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Who owns the company? e.g. Subsidiary, public company</inlineHelpText>
+        <label>Ownership Structure</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
     <listViews>
         <fullName>AU_Competitors</fullName>
         <columns>NAME</columns>
@@ -35,69 +160,38 @@
         </filters>
         <label>All</label>
     </listViews>
-    <listViews>
-        <fullName>AllCompetitors</fullName>
-        <columns>NAME</columns>
-        <columns>Strength_1__c</columns>
-        <columns>Strength_2__c</columns>
-        <columns>Strength_3__c</columns>
-        <columns>Weakness_1__c</columns>
-        <columns>Weakness_2__c</columns>
-        <columns>Weakness_3__c</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <label>All Competitors</label>
-    </listViews>
-    <listViews>
-        <fullName>Comdata</fullName>
-        <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
-        <label>Comdata</label>
-    </listViews>
-    <listViews>
-        <fullName>CorporatePay_Competitors</fullName>
-        <columns>NAME</columns>
-        <columns>Competitor_Industry__c</columns>
-        <columns>Competitor_Products__c</columns>
-        <columns>Competitor_Pricing__c</columns>
-        <columns>Annual_Revenue__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CREATEDBY_USER.ALIAS</field>
-            <operation>equals</operation>
-            <value>Dare</value>
-        </filters>
-        <label>CorporatePay Competitors</label>
-        <sharedTo>
-            <group>CorporatePay2</group>
-            <group>Wex_Europe</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>NA_Fleet</fullName>
-        <columns>NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>UPDATEDBY_USER</field>
-            <operation>equals</operation>
-            <value>Adam Gagne</value>
-        </filters>
-        <label>NA Fleet</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Wex_Europe_Competitors</fullName>
-        <columns>NAME</columns>
-        <columns>Website__c</columns>
-        <columns>Competitor_Industry__c</columns>
-        <columns>Competitor_Products__c</columns>
-        <columns>LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Competitor__c.WexEurope_Competitors</value>
-        </filters>
-        <label>Wex Europe Competitors</label>
-    </listViews>
+    <recordTypes>
+        <fullName>AUCompetitor</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>AUCompetitor</compactLayoutAssignment>
+        <description>Record used for AU Fuel, Trade &amp; WAA competitors</description>
+        <label>AUCompetitor</label>
+        <picklistValues>
+            <picklist>Country__c</picklist>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>WexEurope_Competitors</fullName>
+        <active>true</active>
+        <label>WexEurope Competitors</label>
+        <picklistValues>
+            <picklist>Country__c</picklist>
+            <values>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
 </CustomObject>

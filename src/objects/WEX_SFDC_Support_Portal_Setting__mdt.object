@@ -71,4 +71,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>WEX SFDC Support Portal Setting</label>
+    <pluralLabel>WEX SFDC Support Portal Settings</pluralLabel>
+    <visibility>Public</visibility>
 </CustomObject>

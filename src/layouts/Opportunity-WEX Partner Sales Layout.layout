@@ -122,6 +122,10 @@
                 <behavior>Edit</behavior>
                 <field>Partner_Code__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Pull_PG_Credit__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

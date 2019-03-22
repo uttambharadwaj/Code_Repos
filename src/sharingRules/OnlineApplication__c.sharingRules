@@ -27,6 +27,19 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
+        <fullName>ASSIST_FINANCIAL_SERVICES</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>ASSIST FINANCIAL SERVICES</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>ASSISTFINANCIALSERVICESPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>ASSIST FINANCIAL</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
         <fullName>Aable_iFleet</fullName>
         <accessLevel>Read</accessLevel>
         <label>Aable iFleet</label>
@@ -155,6 +168,19 @@
             <field>Application_Title__c</field>
             <operation>startsWith</operation>
             <value>CenterFire</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Century</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Century</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CenturyFinanceLLCCoBrandedOTRFuelCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Century</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
@@ -461,6 +487,19 @@
             <field>Application_Title__c</field>
             <operation>startsWith</operation>
             <value>GE</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>G_SQUARED</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>G SQUARED</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GSQUAREDFUNDINGPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>G SQUARED</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>

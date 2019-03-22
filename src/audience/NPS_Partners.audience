@@ -4,14 +4,23 @@
     <container>WEX Community</container>
     <criterion>
         <criterionValue>
-            <profile>circlek partners</profile>
+            <entityField>EmployeeNumber</entityField>
+            <entityType>User</entityType>
+            <fieldValue>426577</fieldValue>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>FieldBased</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>marathon partners</profile>
         </criterionValue>
         <operator>Equal</operator>
         <type>Profile</type>
     </criterion>
     <criterion>
         <criterionValue>
-            <profile>marathon partners</profile>
+            <profile>exxonmobil partners</profile>
         </criterionValue>
         <operator>Equal</operator>
         <type>Profile</type>
@@ -29,15 +38,6 @@
         </criterionValue>
         <operator>Equal</operator>
         <type>Profile</type>
-    </criterion>
-    <criterion>
-        <criterionValue>
-            <entityField>EmployeeNumber</entityField>
-            <entityType>User</entityType>
-            <fieldValue>426577</fieldValue>
-        </criterionValue>
-        <operator>Equal</operator>
-        <type>FieldBased</type>
     </criterion>
     <criterion>
         <criterionValue>
@@ -104,7 +104,7 @@
     </criterion>
     <criterion>
         <criterionValue>
-            <profile>exxonmobil partners</profile>
+            <profile>circlek partners</profile>
         </criterionValue>
         <operator>Equal</operator>
         <type>Profile</type>

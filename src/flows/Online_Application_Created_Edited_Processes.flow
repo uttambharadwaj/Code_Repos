@@ -1134,135 +1134,12 @@
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_32</name>
-            <conditionLogic>(1 and 2 and 3) or (1 and 3 and 4)</conditionLogic>
+            <conditionLogic>and</conditionLogic>
             <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideReferenceTo</name>
-                    <value>
-                        <stringValue>Program__c</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>ID</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Program__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Days_Of_Payment__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Payment_Method__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Account_Type__c</leftValueReference>
+                <leftValueReference>formula_myRule_32</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Prepay</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -2898,7 +2775,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_9_A1_7987626195</name>
+        <name>formula_11_myRule_9_A1_4831609580</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2909,7 +2786,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_14_myRule_13_A2_2601402955</name>
+        <name>formula_14_myRule_13_A2_8043412561</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -2920,7 +2797,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_19_myRule_18_A2_9942025917</name>
+        <name>formula_19_myRule_18_A2_8494429840</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -2931,7 +2808,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_22_myRule_21_A2_9150531201</name>
+        <name>formula_22_myRule_21_A2_3005747970</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -2942,7 +2819,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_35_myRule_34_A1_8722210746</name>
+        <name>formula_35_myRule_34_A1_6328942320</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -2953,7 +2830,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_38_myRule_37_A1_7085480586</name>
+        <name>formula_38_myRule_37_A1_1047959619</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -2964,7 +2841,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_0057881702</name>
+        <name>formula_3_myRule_1_A1_1771229543</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -2975,7 +2852,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_41_myRule_40_A1_2425190330</name>
+        <name>formula_41_myRule_40_A1_2023582320</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -2986,7 +2863,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_44_myRule_43_A1_1240830018</name>
+        <name>formula_44_myRule_43_A1_3856776006</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -2997,7 +2874,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_47_myRule_46_A1_4390532495</name>
+        <name>formula_47_myRule_46_A1_8100138783</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -3008,7 +2885,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_50_myRule_49_A1_3120799395</name>
+        <name>formula_50_myRule_49_A1_1369837665</name>
         <dataType>Date</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -3019,7 +2896,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_A1_1707445926</name>
+        <name>formula_7_myRule_5_A1_6640907701</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -3093,7 +2970,58 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
 
 )</expression>
     </formulas>
-    <interviewLabel>Online_Application_Created_Edited_Processes-5_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND(
+
+  OR(
+    ISCHANGED([OnlineApplication__c].Days_Of_Payment__c),
+      AND(
+        ISNEW(),
+        NOT(ISBLANK(TEXT([OnlineApplication__c].Days_Of_Payment__c)))
+      )
+  ),
+
+  OR(
+    ISCHANGED([OnlineApplication__c].Payment_Method__c),
+      AND(
+        ISNEW(),
+        NOT(ISBLANK(TEXT([OnlineApplication__c].Payment_Method__c)))
+      )
+  ),
+  
+NOT(ISBLANK([OnlineApplication__c].Program__c))
+
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_32</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+
+  OR(
+    ISCHANGED({!myVariable_current.Days_Of_Payment__c}),
+      AND(
+        ISNEW(),
+        NOT(ISBLANK(TEXT({!myVariable_current.Days_Of_Payment__c})))
+      )
+  ),
+
+  OR(
+    ISCHANGED({!myVariable_current.Payment_Method__c}),
+      AND(
+        ISNEW(),
+        NOT(ISBLANK(TEXT({!myVariable_current.Payment_Method__c})))
+      )
+  ),
+  
+NOT(ISBLANK({!myVariable_current.Program__c}))
+
+)</expression>
+    </formulas>
+    <interviewLabel>Online_Application_Created_Edited_Processes-11_InterviewLabel</interviewLabel>
     <label>Online Application - Created &amp; Edited Processes</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -3281,7 +3209,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Date_Decisioned__c</field>
             <value>
-                <elementReference>formula_14_myRule_13_A2_2601402955</elementReference>
+                <elementReference>formula_14_myRule_13_A2_8043412561</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -3530,7 +3458,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Submitted_to_Credit__c</field>
             <value>
-                <elementReference>formula_19_myRule_18_A2_9942025917</elementReference>
+                <elementReference>formula_19_myRule_18_A2_8494429840</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -3613,7 +3541,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Credit_Analyst__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_0057881702</elementReference>
+                <elementReference>formula_3_myRule_1_A1_1771229543</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -3779,7 +3707,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Returned_to_Sales_for_Credit_Follow_up__c</field>
             <value>
-                <elementReference>formula_22_myRule_21_A2_9150531201</elementReference>
+                <elementReference>formula_22_myRule_21_A2_3005747970</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -4108,7 +4036,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Submitted_to_Sales_for_Review__c</field>
             <value>
-                <elementReference>formula_35_myRule_34_A1_8722210746</elementReference>
+                <elementReference>formula_35_myRule_34_A1_6328942320</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -4188,7 +4116,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Submitted_to_Production__c</field>
             <value>
-                <elementReference>formula_38_myRule_37_A1_7085480586</elementReference>
+                <elementReference>formula_38_myRule_37_A1_1047959619</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -4268,7 +4196,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Submitted_to_Audit__c</field>
             <value>
-                <elementReference>formula_41_myRule_40_A1_2425190330</elementReference>
+                <elementReference>formula_41_myRule_40_A1_2023582320</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -4348,7 +4276,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Submitted_to_Card_Services__c</field>
             <value>
-                <elementReference>formula_44_myRule_43_A1_1240830018</elementReference>
+                <elementReference>formula_44_myRule_43_A1_3856776006</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -4428,7 +4356,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Date_Decisioned__c</field>
             <value>
-                <elementReference>formula_47_myRule_46_A1_4390532495</elementReference>
+                <elementReference>formula_47_myRule_46_A1_8100138783</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -4508,7 +4436,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>F1_Account_Created__c</field>
             <value>
-                <elementReference>formula_50_myRule_49_A1_3120799395</elementReference>
+                <elementReference>formula_50_myRule_49_A1_1369837665</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -4591,7 +4519,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Fraud_Analyst__c</field>
             <value>
-                <elementReference>formula_7_myRule_5_A1_1707445926</elementReference>
+                <elementReference>formula_7_myRule_5_A1_6640907701</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
@@ -4674,7 +4602,7 @@ ISBLANK(PRIORVALUE( {!myVariable_current.AR_ID_Number__c}  ))
             </processMetadataValues>
             <field>Compliance_Analyst__c</field>
             <value>
-                <elementReference>formula_11_myRule_9_A1_7987626195</elementReference>
+                <elementReference>formula_11_myRule_9_A1_4831609580</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>

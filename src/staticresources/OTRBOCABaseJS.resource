@@ -399,6 +399,7 @@ function validateAndSaveBOCA() {
            	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Email + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
              hasErrors = true;
+            console.log('# HIT');
          }
    	});
     
@@ -407,6 +408,7 @@ function validateAndSaveBOCA() {
            	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Phone + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
              hasErrors = true;
+            console.log('# HIT');
          }
    	});
     
@@ -415,6 +417,7 @@ function validateAndSaveBOCA() {
            	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Tax_ID + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
              hasErrors = true;
+            console.log('# HIT');
          }
    	});
     
@@ -423,6 +426,7 @@ function validateAndSaveBOCA() {
            	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Postal_Code + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
              hasErrors = true;
+            console.log('# HIT');
          }
    	});
     
@@ -431,6 +435,7 @@ function validateAndSaveBOCA() {
            	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_SSN + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
              hasErrors = true;
+            console.log('# HIT');
          }
    	});
     
@@ -439,6 +444,7 @@ function validateAndSaveBOCA() {
            	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Date + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
              hasErrors = true;
+            console.log('# HIT');
          }
    	});
     
@@ -447,25 +453,29 @@ function validateAndSaveBOCA() {
            	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_PO_Box_Warning + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
              hasErrors = true;
+            console.log('# HIT');
          }
    	});
     
-    if($j('[id$=email]').val() == null || $j('[id$=email]').val() === '') {
-       $j('[id$=email]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Required + '</div>');
-       $j('[id$=email]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
+    if($j('[id$=emailAddress]').val() == null || $j('[id$=emailAddress]').val() === '') {
+       $j('[id$=emailAddress]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Required + '</div>');
+       $j('[id$=emailAddress]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
        hasErrors = true; 
+        console.log('# HIT');
     }
     
     if($j('[id$=firstName]').val() == null || $j('[id$=firstName]').val() === '') {
        $j('[id$=firstName]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Required + '</div>');
        $j('[id$=firstName]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
        hasErrors = true; 
+        console.log('# HIT');
     }
     
     if($j('[id$=lastName]').val() == null || $j('[id$=lastName]').val() === '') {
        $j('[id$=lastName]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Required + '</div>');
        $j('[id$=lastName]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
        hasErrors = true; 
+        console.log('# HIT');
     }
     
     console.log('###' + $j('[id$=checkingAccountNumber]').val() + ' ' + $j('[id$=verifyCheckingAccountNumber]').val());
@@ -474,6 +484,7 @@ function validateAndSaveBOCA() {
         $j('[id$=verifyCheckingAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">Value does not match checking account number.</div>');
        	$j('[id$=verifyCheckingAccountNumber]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); }); 
     	hasErrors = true;
+        console.log('# HIT');
     }
     
    	console.log('###' + $j('[id$=abaRoutingNumber]').val() + ' ' + $j('[id$=verifyAbaRoutingNumber]').val());
@@ -482,6 +493,7 @@ function validateAndSaveBOCA() {
     	$j('[id$=verifyAbaRoutingNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">Value does not match routing number.</div>');
        	$j('[id$=verifyAbaRoutingNumber]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); }); 
         hasErrors = true;
+        console.log('# HIT');
     }
     
     if(hasErrors) {

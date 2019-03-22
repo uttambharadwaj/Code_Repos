@@ -58,6 +58,8 @@ function pageLoadFunctions() {
     $j("[id$=billingState] option").eq('').text($Label.BOCA_Picklist_Choose_One);
     $j("[id$=exemptFromMotorFuelsTax] option").eq('').text($Label.BOCA_Picklist_Choose_One);
     $j("[id$=legalStructure] option").eq('').text($Label.BOCA_Picklist_Choose_One);
+    $j("[id$=physicalCounty] option").eq('').text($Label.BOCA_Picklist_Choose_One);
+    $j("[id$=mailingCounty] option").eq('').text($Label.BOCA_Picklist_Choose_One);
     $j("[id$=fiscalYearStarts] option[value='']").remove();
     $j("[id$=communicationPreference] option[value='']").remove();
     $j("[id$=cardUsageType] option[value='']").remove();
@@ -319,6 +321,14 @@ function validate(currentStep) {
              hasErrors = true;
          }
    	});
+
+    $j('[id$=creditForm]').find('.postalCanada').each(function() {
+        if($j(this).val() != null && !validateCanadianPostalCode($j(this).val())) {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Postal_Code + '</div>');
+            $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
+            hasErrors = true;
+        }
+    });
     
     $j('[id$=creditForm]').find('.ssn').each(function() {
     	if($j(this).val() != null && !validateSSN($j(this).val())) {

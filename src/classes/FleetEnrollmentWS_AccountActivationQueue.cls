@@ -98,6 +98,34 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
         }
     }
 
+    global static Implementation_Automation_Setting__mdt callQueueSettings {
+        get {
+
+            List<Implementation_Automation_Setting__mdt> callQueueSettings = [SELECT Id, Queue_Name__c FROM Implementation_Automation_Setting__mdt WHERE DeveloperName = 'NA_Fleet_Call_Queue'];
+
+            if (callQueueSettings.size() > 0) {
+                return callQueueSettings[0];
+            }
+
+            return null;
+
+        }
+    }
+
+    global static Id callQueueId {
+        get {
+
+            List<QueueSobject> queueSobjects = [SELECT QueueId FROM QueueSobject WHERE Queue.DeveloperName = :callQueueSettings.Queue_Name__c];
+
+            if (queueSobjects.size() > 0) {
+                return queueSobjects[0].QueueId;
+            }
+
+            return null;
+
+        }
+    }
+
     @HttpGet
     global static void getQueueCases() {
 
@@ -191,22 +219,47 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
                 upsert cases;
 
-                Case implementationCallCase = new Case();
+                if(cases[0].Fleet_Enrollment__c != null) {
 
-                implementationCallCase.ParentId = cases[0].ParentId;
-                implementationCallCase.Subject = 'Data Entry';
-                implementationCallCase.Type = 'Data Entry';
-                implementationCallCase.Status = 'New';
-                implementationCallCase.OwnerId = dataEntryQueueId;
-                implementationCallCase.AccountId = cases[0].AccountId;
-                implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
-                implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+                    Case implementationCallCase = new Case();
 
-                if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
-                    implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
+                    implementationCallCase.ParentId = cases[0].ParentId;
+                    implementationCallCase.Subject = 'Data Entry';
+                    implementationCallCase.Type = 'Data Entry';
+                    implementationCallCase.Status = 'New';
+                    implementationCallCase.OwnerId = dataEntryQueueId;
+                    implementationCallCase.AccountId = cases[0].AccountId;
+                    implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
+                    implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+
+                    if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
+                        implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
+                    }
+
+                    insert implementationCallCase;
+
+                }
+                else {
+
+                    Case implementationCallCase = new Case();
+
+                    implementationCallCase.ParentId = cases[0].ParentId;
+                    implementationCallCase.Subject = 'Implementation Call';
+                    implementationCallCase.Type = 'Implementation Call';
+                    implementationCallCase.Status = 'New';
+                    implementationCallCase.OwnerId = callQueueId;
+                    implementationCallCase.AccountId = cases[0].AccountId;
+                    implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
+                    implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+
+                    if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
+                        implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
+                    }
+
+                    insert implementationCallCase;
+
                 }
 
-                insert implementationCallCase;
             }
 
         } catch (Exception e) {

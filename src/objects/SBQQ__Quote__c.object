@@ -1,20 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <enableEnhancedLookup>false</enableEnhancedLookup>
-    <validationRules>
-        <fullName>Active_Card_Bonus</fullName>
-        <active>true</active>
-        <description>If Active Card Bonus is checked, amount is required</description>
-        <errorConditionFormula>And( Offering_Active_Card_Bonus__c   = TRUE,
-ISBLANK( AC_Requested_Amount__c ))</errorConditionFormula>
-        <errorMessage>You must enter an Active Card Bonus Requested amount.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Signing_Incentive</fullName>
-        <active>true</active>
-        <description>If Signing Incentive is checked, require amount</description>
-        <errorConditionFormula>And(Offering_Signing_Incentive__c  = TRUE,
-ISBLANK(SI_Requested_Amount__c))</errorConditionFormula>
-        <errorMessage>You must enter a Signing Incentive Requested Amount</errorMessage>
-    </validationRules>
+    <fields>
+        <fullName>Chevron_Texaco_Custom_Rebate_Incentive__c</fullName>
+        <externalId>false</externalId>
+        <formula>Program_Name__c = &quot;Chevron and Texaco Business Access&quot; &amp;&amp; 
+Offering_Custom_Rebate_Incentive__c = TRUE &amp;&amp;
+OverrideProgramRebate__c = FALSE</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Chevron Texaco Custom Rebate Incentive</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Factor_1_Percent__c</fullName>
+        <externalId>false</externalId>
+        <formula>Rebate_Factor_1__c/10000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Rebate Factor 1 Percent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Factor_2_Percent__c</fullName>
+        <externalId>false</externalId>
+        <formula>Rebate_Factor_2__c/10000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Rebate Factor 2 Percent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Factor_3_Percent__c</fullName>
+        <externalId>false</externalId>
+        <formula>Rebate_Factor_3__c/10000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Rebate Factor 3 Percent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Factor_4_Percent__c</fullName>
+        <externalId>false</externalId>
+        <formula>Rebate_Factor_4__c/10000</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Rebate Factor 4 Percent</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Rebate_Incentive_Custom__c</fullName>
+        <externalId>false</externalId>
+        <formula>Offering_Custom_Rebate_Incentive__c = TRUE &amp;&amp;
+(OverrideProgramRebate__c = TRUE ||
+AND(
+Citgo_Custom_Rebate_Incentive__c = FALSE,
+Gulf_Custom_Rebate_Incentive__c = FALSE,
+Marathon_Custom_Rebate_Incentive__c = FALSE,
+Sheetz_Custom_Rebate_Incentive__c = FALSE,
+PhillipsConoco76_Custom_Rebate_Incentive__c = FALSE,
+Sunoco_Custom_Rebate_Incentive__c = FALSE,
+ExxonMobil_Custom_Rebate_Incentive__c = FALSE,
+Chevron_Texaco_Custom_Rebate_Incentive__c = FALSE
+))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Rebate Incentive Custom</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
 </CustomObject>

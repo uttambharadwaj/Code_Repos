@@ -4,7 +4,7 @@
     <label>EMC Leads App</label>
     <oauthConfig>
         <callbackUrl>https://emc-dev.com/salesforce/callback</callbackUrl>
-        <consumerKey>3MVG9srSPoex34FXtIAd.Jwaj1Ks.ETY40RxsZ1XxT8IPIZy3sY04iwRkLEJjsrAQOdnDuGSZ2UHRbRbNUq0d</consumerKey>
+        <consumerKey>3MVG90D5vR7Utjboc8b3nxgWl_Z_rPMm9Ji2IzzUjI7__p43a8XTfo7xFYRNb3yw5Y.I1SGb6r3yWa1eFmcrO</consumerKey>
         <scopes>Full</scopes>
         <scopes>RefreshToken</scopes>
     </oauthConfig>

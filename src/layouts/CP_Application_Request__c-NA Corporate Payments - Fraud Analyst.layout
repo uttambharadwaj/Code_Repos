@@ -214,7 +214,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Physical_State__c</field>
+                <field>Physical_State_Province__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -241,11 +241,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Mailing_State__c</field>
+                <field>Mailing_State_Province__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Mailing_Postal_Code__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Mailing_Country__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -342,7 +346,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Guarantor_Residential_State__c</field>
+                <field>Guarantor_State_Province__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -350,7 +354,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Guarantor_Residential_Country__c</field>
+                <field>Guarantor_Country__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -562,6 +566,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>WEX_Match_Score__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DNB_Match_Grade__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DNB_Confidence_Code__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

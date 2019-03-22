@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>WES_Fuel_Card_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>WES_Custom_Fuel_Card</compactLayoutAssignment>
     <compactLayouts>
         <fullName>WES_Custom_Fuel_Card</fullName>
         <fields>Name</fields>
@@ -9,6 +55,17 @@
         <fields>VRN_Driver__c</fields>
         <label>WES Custom Fuel Card</label>
     </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Additional_Embossed_Line__c</fullName>
         <externalId>false</externalId>
@@ -697,11 +754,693 @@ NULL)</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>WES Fuel Card</label>
     <listViews>
         <fullName>All</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <nameField>
+        <displayFormat>WES-FC-{0000}</displayFormat>
+        <label>WES Fuel Card #</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>WES Fuel Cards</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>EDC</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>WES_Custom_Fuel_Card</compactLayoutAssignment>
+        <label>EDC</label>
+        <picklistValues>
+            <picklist>CardHolderType__c</picklist>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Card_Type__c</picklist>
+            <values>
+                <fullName>EDC</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>National_International__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Other_Networks__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PIN_Creation_Method__c</picklist>
+            <values>
+                <fullName>System generated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User defined</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PIN_Type__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>POS_Prompt__c</picklist>
+            <values>
+                <fullName>200</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>220</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>230</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>250</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Fuel__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Products__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Services__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Toll_Usage__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Truck_Fleet__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Velocity_Control_Profiler__c</picklist>
+            <values>
+                <fullName>Fleet 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 1 %2B day limitations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 2 %2B day limitations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 3 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small truck 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 2 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 3 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Esso</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>WES_Custom_Fuel_Card</compactLayoutAssignment>
+        <label>Esso</label>
+        <picklistValues>
+            <picklist>CardHolderType__c</picklist>
+            <values>
+                <fullName>Driver</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Card_Type__c</picklist>
+            <values>
+                <fullName>Esso</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>National_International__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Other_Networks__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PIN_Creation_Method__c</picklist>
+            <values>
+                <fullName>System generated</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>User defined</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PIN_Type__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>POS_Prompt__c</picklist>
+            <values>
+                <fullName>200</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>220</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>230</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>250</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Fuel__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>8</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Products__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Services__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Toll_Usage__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Truck_Fleet__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Velocity_Control_Profiler__c</picklist>
+            <values>
+                <fullName>Fleet 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 1 %2B day limitations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 2 %2B day limitations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 3 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small truck 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 2 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 3 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>UK_Fuels</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>WES_Custom_Fuel_Card</compactLayoutAssignment>
+        <label>UK Fuels</label>
+        <picklistValues>
+            <picklist>CardHolderType__c</picklist>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Card_Type__c</picklist>
+            <values>
+                <fullName>UK Fuels</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>National_International__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Other_Networks__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PIN_Creation_Method__c</picklist>
+            <values>
+                <fullName>System generated</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>User defined</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PIN_Type__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>POS_Prompt__c</picklist>
+            <values>
+                <fullName>200</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>220</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>230</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>250</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Fuel__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Products__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Purchase_Option_Services__c</picklist>
+            <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Toll_Usage__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Truck_Fleet__c</picklist>
+            <values>
+                <fullName>N</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Y</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Velocity_Control_Profiler__c</picklist>
+            <values>
+                <fullName>Fleet 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 1 %2B day limitations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 2 %2B day limitations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 3 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Small truck 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 1</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 2 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truck 3 %2B Higher Vel%2E Freq%2E</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>PIN_Validation_4_Digit_Number</fullName>
         <active>true</active>
@@ -774,4 +1513,5 @@ ISBLANK(PIN__c)
         <errorDisplayField>PIN__c</errorDisplayField>
         <errorMessage>You must enter a PIN if Fleet PIN and User defined are selected</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

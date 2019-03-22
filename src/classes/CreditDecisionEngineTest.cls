@@ -912,7 +912,7 @@ public class CreditDecisionEngineTest {
 
         Test.stopTest();
 
-	}
+    }
 
     static testMethod void testDNBCustomModelCallout() {
 
@@ -957,137 +957,137 @@ public class CreditDecisionEngineTest {
     }
 
     //TODO DELETE ME WHEN CA CUSTOM MODEL RELEASED
-    static testMethod void testDNBSBRICallout() {
-
-        List<OnlineApplication__c> onlineApplications = [
-                SELECT Id, DUNS__c, Legal_Business_Name__c,Business_Street_Address__c, City__c, State__c, Zip_code__c
-                FROM OnlineApplication__c
-        ];
-
-        if (onlineApplications.size() > 0) {
-
-            Test.startTest();
-
-            TestUtils.enable_isRunningTest = true;
-
-            CreditWS_DNB.DNBSBRIRequest dnbSBRIRequest = new CreditWS_DNB.DNBSBRIRequest();
-            dnbSBRIRequest.DnB_DUNS_Number = onlineApplications[0].DUNS__c;
-
-            CreditWS_DNB.DNBSBRIResponse dnbSBRIResponse = CreditWS_DNB.getSBRIScore(dnbSBRIRequest);
-
-            Test.stopTest();
-
-        }
-
-    }
+//    static testMethod void testDNBSBRICallout() {
+//
+//        List<OnlineApplication__c> onlineApplications = [
+//                SELECT Id, DUNS__c, Legal_Business_Name__c,Business_Street_Address__c, City__c, State__c, Zip_code__c
+//                FROM OnlineApplication__c
+//        ];
+//
+//        if (onlineApplications.size() > 0) {
+//
+//            Test.startTest();
+//
+//            TestUtils.enable_isRunningTest = true;
+//
+//            CreditWS_DNB.DNBSBRIRequest dnbSBRIRequest = new CreditWS_DNB.DNBSBRIRequest();
+//            dnbSBRIRequest.DnB_DUNS_Number = onlineApplications[0].DUNS__c;
+//
+//            CreditWS_DNB.DNBSBRIResponse dnbSBRIResponse = CreditWS_DNB.getSBRIScore(dnbSBRIRequest);
+//
+//            Test.stopTest();
+//
+//        }
+//
+//    }
     //TODO DELETE ME WHEN CA CUSTOM MODEL RELEASED
-    static testMethod void testDNBSBRIWSDL() {
-
-        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORNAMEGRP();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_TOTALS();
-        new CreditWSUtil_DNBSBRI.SBRIResponse();
-        new CreditWSUtil_DNBSBRI.USDS_FEIN_CTR();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORACCTGRP2();
-        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_SIC_NAICS_SECT();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTSUMM2();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHIST2();
-        new CreditWSUtil_DNBSBRI.customProduct8_Response();
-        new CreditWSUtil_DNBSBRI.SBRI_MISC();
-        new CreditWSUtil_DNBSBRI.SECTION2();
-        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_SCDY_SIC_GRP();
-        new CreditWSUtil_DNBSBRI.SBRI_GUARANTOR2();
-        new CreditWSUtil_DNBSBRI.USDS_SIC_NAICS_SECT();
-        new CreditWSUtil_DNBSBRI.DGX();
-        new CreditWSUtil_DNBSBRI.SBRI_TOTALS();
-        new CreditWSUtil_DNBSBRI.STATUS4();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILTOTGRP();
-        new CreditWSUtil_DNBSBRI.STATUS3();
-        new CreditWSUtil_DNBSBRI.STATUS2();
-        new CreditWSUtil_DNBSBRI.Immediate_Delivery();
-        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORACCTGRP2();
-        new CreditWSUtil_DNBSBRI.SBRI_PMTSUMM2();
-        new CreditWSUtil_DNBSBRI.Orders();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHISTTOT2();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORACCTGRP();
-        new CreditWSUtil_DNBSBRI.SBRI_MISCGRP();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILTOTGRP2();
-        new CreditWSUtil_DNBSBRI.prodOrderRequest_2();
-        new CreditWSUtil_DNBSBRI.SBRI_PMTEXPR2();
-        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILTOTGRP2();
-        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILS();
-        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILS2();
-        new CreditWSUtil_DNBSBRI.SBRI_PMTHISTTOT();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHISTTOT();
-        new CreditWSUtil_DNBSBRI.SBRI_PMTHIST();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_TOTALS2();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_MISCGRP2();
-        new CreditWSUtil_DNBSBRI.AdditionalFields();
-        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTGRP2();
-        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_PAYD_NORM_QRTL_GRP();
-        new CreditWSUtil_DNBSBRI.ArrayOfstring();
-        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOT2();
-        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTTOTGRP2();
-        new CreditWSUtil_DNBSBRI.Investigation();
-        new CreditWSUtil_DNBSBRI.socCode();
-        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTGRP();
-        new CreditWSUtil_DNBSBRI.SONRS2();
-        new CreditWSUtil_DNBSBRI.SBRI_IDENTIFICATION2();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTGRP();
-        new CreditWSUtil_DNBSBRI.DGX2();
-        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORNAMEGRP2();
-        new CreditWSUtil_DNBSBRI.SONRS();
-        new CreditWSUtil_DNBSBRI.SBRI_SBRIDATA();
-        new CreditWSUtil_DNBSBRI.ArrayOfAdditionalFields();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORNAMEGRP2();
-        new CreditWSUtil_DNBSBRI.CREDITMSGSRSV22();
-        new CreditWSUtil_DNBSBRI.STATUS();
-        new CreditWSUtil_DNBSBRI.DATATRNRS2();
-        new CreditWSUtil_DNBSBRI.SBRI_GUARANTOR();
-        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOT();
-        new CreditWSUtil_DNBSBRI.SBRI_PMTHISTTOT2();
-        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTTOTGRP();
-        new CreditWSUtil_DNBSBRI.SBRI_TOTALS2();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTGRP2();
-        new CreditWSUtil_DNBSBRI.DATARS();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHIST();
-        new CreditWSUtil_DNBSBRI.SBRI_PMTEXPR();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTSUMM();
-        new CreditWSUtil_DNBSBRI.SBRI_MISC2();
-        new CreditWSUtil_DNBSBRI.USDS_PAYD_GRP();
-        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_FEIN_CTR();
-        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORACCTGRP();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTTOTGRP2();
-        new CreditWSUtil_DNBSBRI.ws_SBRIResponse();
-        new CreditWSUtil_DNBSBRI.USDS_PAYD_NORM_QRTL_GRP();
-        new CreditWSUtil_DNBSBRI.SBRI_PMTSUMM();
-        new CreditWSUtil_DNBSBRI.SBRI_IDENTIFICATION();
-        new CreditWSUtil_DNBSBRI.USDS_SCDY_SIC_GRP();
-        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILSGRP();
-        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILTOTGRP();
-        new CreditWSUtil_DNBSBRI.ws_CustomProduct8();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTTOTGRP();
-        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_PAYD_GRP();
-        new CreditWSUtil_DNBSBRI.CREDITMSGSRSV2();
-        new CreditWSUtil_DNBSBRI.SIGNONMSGSRSV12();
-        new CreditWSUtil_DNBSBRI.NotificationDelivery();
-        new CreditWSUtil_DNBSBRI.SBRI_MISCGRP2();
-        new CreditWSUtil_DNBSBRI.ws_SBRI();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILSGRP();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILSGRP2();
-        new CreditWSUtil_DNBSBRI.DATATRNRS();
-        new CreditWSUtil_DNBSBRI.SBRI_SBRIDATA2();
-        new CreditWSUtil_DNBSBRI.InvestigationDelivery();
-        new CreditWSUtil_DNBSBRI.SIGNONMSGSRSV1();
-        new CreditWSUtil_DNBSBRI.DATARS2();
-        new CreditWSUtil_DNBSBRI.ws_CustomProduct8Response();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORNAMEGRP();
-        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_MISCGRP();
-        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILSGRP2();
-        new CreditWSUtil_DNBSBRI.SECTION();
-        new CreditWSUtil_DNBSBRI.SBRI_PMTHIST2();
-        new CreditWSUtil_DNBSBRI.DNB_WebServices_Providers_OrderAndInvestigations_OtherProducts_wsp_SBRI_V6_Port();
-
-    }
+//    static testMethod void testDNBSBRIWSDL() {
+//
+//        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORNAMEGRP();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_TOTALS();
+//        new CreditWSUtil_DNBSBRI.SBRIResponse();
+//        new CreditWSUtil_DNBSBRI.USDS_FEIN_CTR();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORACCTGRP2();
+//        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_SIC_NAICS_SECT();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTSUMM2();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHIST2();
+//        new CreditWSUtil_DNBSBRI.customProduct8_Response();
+//        new CreditWSUtil_DNBSBRI.SBRI_MISC();
+//        new CreditWSUtil_DNBSBRI.SECTION2();
+//        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_SCDY_SIC_GRP();
+//        new CreditWSUtil_DNBSBRI.SBRI_GUARANTOR2();
+//        new CreditWSUtil_DNBSBRI.USDS_SIC_NAICS_SECT();
+//        new CreditWSUtil_DNBSBRI.DGX();
+//        new CreditWSUtil_DNBSBRI.SBRI_TOTALS();
+//        new CreditWSUtil_DNBSBRI.STATUS4();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILTOTGRP();
+//        new CreditWSUtil_DNBSBRI.STATUS3();
+//        new CreditWSUtil_DNBSBRI.STATUS2();
+//        new CreditWSUtil_DNBSBRI.Immediate_Delivery();
+//        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORACCTGRP2();
+//        new CreditWSUtil_DNBSBRI.SBRI_PMTSUMM2();
+//        new CreditWSUtil_DNBSBRI.Orders();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHISTTOT2();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORACCTGRP();
+//        new CreditWSUtil_DNBSBRI.SBRI_MISCGRP();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILTOTGRP2();
+//        new CreditWSUtil_DNBSBRI.prodOrderRequest_2();
+//        new CreditWSUtil_DNBSBRI.SBRI_PMTEXPR2();
+//        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILTOTGRP2();
+//        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILS();
+//        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILS2();
+//        new CreditWSUtil_DNBSBRI.SBRI_PMTHISTTOT();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHISTTOT();
+//        new CreditWSUtil_DNBSBRI.SBRI_PMTHIST();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_TOTALS2();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_MISCGRP2();
+//        new CreditWSUtil_DNBSBRI.AdditionalFields();
+//        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTGRP2();
+//        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_PAYD_NORM_QRTL_GRP();
+//        new CreditWSUtil_DNBSBRI.ArrayOfstring();
+//        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOT2();
+//        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTTOTGRP2();
+//        new CreditWSUtil_DNBSBRI.Investigation();
+//        new CreditWSUtil_DNBSBRI.socCode();
+//        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTGRP();
+//        new CreditWSUtil_DNBSBRI.SONRS2();
+//        new CreditWSUtil_DNBSBRI.SBRI_IDENTIFICATION2();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTGRP();
+//        new CreditWSUtil_DNBSBRI.DGX2();
+//        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORNAMEGRP2();
+//        new CreditWSUtil_DNBSBRI.SONRS();
+//        new CreditWSUtil_DNBSBRI.SBRI_SBRIDATA();
+//        new CreditWSUtil_DNBSBRI.ArrayOfAdditionalFields();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORNAMEGRP2();
+//        new CreditWSUtil_DNBSBRI.CREDITMSGSRSV22();
+//        new CreditWSUtil_DNBSBRI.STATUS();
+//        new CreditWSUtil_DNBSBRI.DATATRNRS2();
+//        new CreditWSUtil_DNBSBRI.SBRI_GUARANTOR();
+//        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOT();
+//        new CreditWSUtil_DNBSBRI.SBRI_PMTHISTTOT2();
+//        new CreditWSUtil_DNBSBRI.SBRI_CURRSNAPSHOTTOTGRP();
+//        new CreditWSUtil_DNBSBRI.SBRI_TOTALS2();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTGRP2();
+//        new CreditWSUtil_DNBSBRI.DATARS();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTHIST();
+//        new CreditWSUtil_DNBSBRI.SBRI_PMTEXPR();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_PMTSUMM();
+//        new CreditWSUtil_DNBSBRI.SBRI_MISC2();
+//        new CreditWSUtil_DNBSBRI.USDS_PAYD_GRP();
+//        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_FEIN_CTR();
+//        new CreditWSUtil_DNBSBRI.SBRI_GUARANTORACCTGRP();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTTOTGRP2();
+//        new CreditWSUtil_DNBSBRI.ws_SBRIResponse();
+//        new CreditWSUtil_DNBSBRI.USDS_PAYD_NORM_QRTL_GRP();
+//        new CreditWSUtil_DNBSBRI.SBRI_PMTSUMM();
+//        new CreditWSUtil_DNBSBRI.SBRI_IDENTIFICATION();
+//        new CreditWSUtil_DNBSBRI.USDS_SCDY_SIC_GRP();
+//        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILSGRP();
+//        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILTOTGRP();
+//        new CreditWSUtil_DNBSBRI.ws_CustomProduct8();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_CURRSNAPSHOTTOTGRP();
+//        new CreditWSUtil_DNBSBRI.ArrayOfUSDS_PAYD_GRP();
+//        new CreditWSUtil_DNBSBRI.CREDITMSGSRSV2();
+//        new CreditWSUtil_DNBSBRI.SIGNONMSGSRSV12();
+//        new CreditWSUtil_DNBSBRI.NotificationDelivery();
+//        new CreditWSUtil_DNBSBRI.SBRI_MISCGRP2();
+//        new CreditWSUtil_DNBSBRI.ws_SBRI();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILSGRP();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_ACCTDETAILSGRP2();
+//        new CreditWSUtil_DNBSBRI.DATATRNRS();
+//        new CreditWSUtil_DNBSBRI.SBRI_SBRIDATA2();
+//        new CreditWSUtil_DNBSBRI.InvestigationDelivery();
+//        new CreditWSUtil_DNBSBRI.SIGNONMSGSRSV1();
+//        new CreditWSUtil_DNBSBRI.DATARS2();
+//        new CreditWSUtil_DNBSBRI.ws_CustomProduct8Response();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_GUARANTORNAMEGRP();
+//        new CreditWSUtil_DNBSBRI.ArrayOfSBRI_MISCGRP();
+//        new CreditWSUtil_DNBSBRI.SBRI_ACCTDETAILSGRP2();
+//        new CreditWSUtil_DNBSBRI.SECTION();
+//        new CreditWSUtil_DNBSBRI.SBRI_PMTHIST2();
+//        new CreditWSUtil_DNBSBRI.DNB_WebServices_Providers_OrderAndInvestigations_OtherProducts_wsp_SBRI_V6_Port();
+//
+//    }
 
     static testMethod void testExperianCallout() {
 

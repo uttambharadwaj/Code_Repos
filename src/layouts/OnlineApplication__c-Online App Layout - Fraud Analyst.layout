@@ -398,6 +398,10 @@
                 <behavior>Edit</behavior>
                 <field>Number_of_Trailers__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SAFER_Carrier__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

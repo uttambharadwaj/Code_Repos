@@ -425,27 +425,28 @@ public with sharing class CreditDecisionEngineNATest {
         }
 
     }
+    //TODO DELETE ME
 
-    static testMethod void testDNBCCSCallout() {
-
-        List<Application_Request__c> applicationRequests = [SELECT Id, DUNS_Number__c FROM Application_Request__c LIMIT 1];
-
-        if (applicationRequests.size() == 1) {
-
-            Test.startTest();
-
-            TestUtils.enable_isRunningTest = true;
-
-            CreditWS_DNB.DNBCCSScoreRequest dnbCCSScoreRequest = new CreditWS_DNB.DNBCCSScoreRequest();
-            dnbCCSScoreRequest.DnB_DUNS_Number = applicationRequests[0].DUNS_Number__c;
-
-            CreditWS_DNB.DNBCCSScoreResponse dnbccsScoreResponse = CreditWS_DNB.getCCSScore(dnbCCSScoreRequest);
-
-            Test.stopTest();
-
-        }
-
-    }
+//    static testMethod void testDNBCCSCallout() {
+//
+//        List<Application_Request__c> applicationRequests = [SELECT Id, DUNS_Number__c FROM Application_Request__c LIMIT 1];
+//
+//        if (applicationRequests.size() == 1) {
+//
+//            Test.startTest();
+//
+//            TestUtils.enable_isRunningTest = true;
+//
+//            CreditWS_DNB.DNBCCSScoreRequest dnbCCSScoreRequest = new CreditWS_DNB.DNBCCSScoreRequest();
+//            dnbCCSScoreRequest.DnB_DUNS_Number = applicationRequests[0].DUNS_Number__c;
+//
+//            CreditWS_DNB.DNBCCSScoreResponse dnbccsScoreResponse = CreditWS_DNB.getCCSScore(dnbCCSScoreRequest);
+//
+//            Test.stopTest();
+//
+//        }
+//
+//    }
 
     static testMethod void testCreditWSUtil_DNBCustomModel() {
 
@@ -589,6 +590,8 @@ public with sharing class CreditDecisionEngineNATest {
 
     }
 
+
+    //TODO DELETE ME
     static testMethod void testCreditWSUtil_DNBCCS() {
 
         new CreditWSUtil_DNBCCS.ArrayOfADDL_SIC_GRP();

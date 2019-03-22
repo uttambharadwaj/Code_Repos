@@ -1,13 +1,3750 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <compactLayouts>
-        <fullName>WEX_Compact_Layout</fullName>
-        <fields>Type</fields>
-        <fields>ActivityDate</fields>
-        <fields>Subject</fields>
-        <fields>WhatId</fields>
-        <label>WEX Compact Layout</label>
-    </compactLayouts>
+    <recordTypes>
+        <fullName>AU_Task_Record_Type</fullName>
+        <active>true</active>
+        <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+        <description>Task object used by AU</description>
+        <label>AU Task Record Type</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Account Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Settings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Card Ordering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirm Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Admendment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Document</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>InMail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Needed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CorporatePay</fullName>
+        <active>true</active>
+        <label>CorporatePay</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>2-High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Medium</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>4-Low</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Account Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Settings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjudication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjustments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bugs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Card Ordering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chargeback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Admendment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Committee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Line Increase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Plastic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Decline Inquiries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Docs%2FForms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Encompass Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Codes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hierarchy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotstamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MC Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reallocation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rewards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSYS Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Access</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Account Set Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BO Info Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>InMail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Meeting</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FleetOne_Task</fullName>
+        <active>true</active>
+        <label>FleetOne Task</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analysis for Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirm Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit decision notification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up on Info Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up on eApp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funded Gallons Opportunity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Network Update</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 1st Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 2nd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 3rd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 4th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 5th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 6th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Analysis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revenue Down</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WexOnline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>App Forwarded to Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BO Info Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANVASS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FYI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Needed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Solicited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Up Account</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solicited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tailored Fee Schedule</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Upgrade Notice</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>General</fullName>
+        <active>true</active>
+        <label>General</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>2-High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Medium</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>4-Low</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analysis for Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirm Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Network Update</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 1st Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 2nd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 3rd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 4th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 5th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 6th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Analysis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WexOnline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Account Set Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>App Forwarded to Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BO Info Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANVASS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Declined Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Distribution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FYI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IOL Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Needed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Solicited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Up Account</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solicited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tailored Fee Schedule</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Implementation_Project</fullName>
+        <active>true</active>
+        <description>Use this record type for Implementation Project tasks.</description>
+        <label>Implementation Project</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>2-High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Medium</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>4-Low</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Account Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Settings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjudication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjustments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bugs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Card Ordering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chargeback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Admendment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Committee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Line Increase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Plastic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Decline Inquiries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Docs%2FForms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Encompass Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Codes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hierarchy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotstamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MC Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reallocation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rewards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSYS Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Access</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>PayCard</fullName>
+        <active>true</active>
+        <label>PayCard</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>2-High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Medium</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>4-Low</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enrollment Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 1st Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 2nd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 3rd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 4th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 5th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 6th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Presentation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearslide Live Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearslide email Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Attempt</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Phone Conversation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>WES_Sales_Tasks</fullName>
+        <active>true</active>
+        <description>Used for WES team</description>
+        <label>WES Tasks</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Account Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Settings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjudication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjustments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analysis for Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bugs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Card Ordering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chargeback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirm Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Admendment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Committee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Line Increase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit decision notification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Plastic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Decline Inquiries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Docs%2FForms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Encompass Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enrollment Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Field Visit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Codes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up on Info Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up on eApp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funded Gallons Opportunity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hierarchy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotstamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MC Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Network Update</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 1st Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 2nd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 3rd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 4th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 5th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 6th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reallocation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rebate Analysis</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revenue Down</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rewards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSYS Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Access</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WexOnline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>0-Standard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1-Daily</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2-Tri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Weekly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4-5th</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5-Dep%2FLoc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6-Financials Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7-PG Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Set Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>App Forwarded to Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANVASS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Call - Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call - Outbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Card Production Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Change Record Owner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearslide Live Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearslide email Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Converted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Distribution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Document</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email - Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email - Outbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FYI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IOL Discount</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>InMail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Needed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introduction Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Message</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Tax Docs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Non Solicited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oregon Fuel Document</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Attempt</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Conversation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Precard Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remine Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Review Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rewards Signup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rework</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Up Account</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Share Account</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Solicited</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tailored Fee Schedule</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telematics Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Salem</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training network Cards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training on Site</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WESN Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WebEx Demo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>WEX_Development_Tasks</fullName>
+        <active>true</active>
+        <description>Tasks for WEX Dev</description>
+        <label>WEX Development Tasks</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>2-High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Medium</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4-Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4-Medium</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Low</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Normal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Account Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Settings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjudication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjustments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Analysis for Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bugs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Card Ordering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chargeback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cold Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Admendment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Committee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Line Increase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit decision notification</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Plastic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Decline Inquiries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Docs%2FForms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Drop In</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Encompass Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enrollment Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Event</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Codes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up on Info Sent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Follow Up on eApp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Funded Gallons Opportunity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hierarchy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotstamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Issue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MC Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Network Update</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operations</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 1st Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 2nd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 3rd Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 4th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 5th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Place 6th Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pricing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reallocation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Revenue Down</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rewards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSYS Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Access</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Presentation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webex</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WexOnline</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>0-Standard</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>1-Daily</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>2-Tri</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Weekly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4-5th</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5-Dep%2FLoc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>6-Financials Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>7-PG Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Set Up</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>App Forwarded to Credit</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Approved Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Call - Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call - Outbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Card Production Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Change Record Owner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearslide Live Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Clearslide email Pitch</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Converted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Declined Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Distribution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Document</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email - Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email - Outbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FYI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Incomplete App</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Needed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Info Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Introduction Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Left Message</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New Tax Docs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oregon Fuel Document</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Attempt</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Phone Conversation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Precard Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Remine Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Review Application</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rewards Signup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Quote</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Set Up Account</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Share Account</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tailored Fee Schedule</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telematics Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Salem</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training network Cards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training on Site</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WESN Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WebEx Demo</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>WE_Implementation_Task</fullName>
+        <active>true</active>
+        <description>For use by Wex Europe Implementation team when logging project updates</description>
+        <label>WE Implementation Task</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Priority</picklist>
+            <values>
+                <fullName>2-High</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3-Medium</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>4-Low</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deferred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Waiting on someone else</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Account Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Reconciliation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Account Settings</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjudication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Adjustments</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bugs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Card Ordering</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chargeback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Admendment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contract Request</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Committee</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Credit Line Increase</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Custom Plastic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Decline Inquiries</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Docs%2FForms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Education</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Encompass Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fees</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial Codes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fraud</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hierarchy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hotstamp</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MC Registration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PCI</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Payment</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reallocation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reporting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rewards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSYS Setup</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Access</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>BO Info Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <validationRules>
         <fullName>CALL_Completed_Attempt_or_Conversation</fullName>
         <active>true</active>
@@ -49,17 +3786,6 @@ ISPICKVAL(CallOutcome__c, &quot;&quot;)
 )</errorConditionFormula>
         <errorDisplayField>CallOutcome__c</errorDisplayField>
         <errorMessage>Please Select A Call Outcome</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Siebel_Activities_only_allow_150_char</fullName>
-        <active>true</active>
-        <description>Siebel Activities only allow 150 characters. When a rep manually creates a Task with &quot;App Forwarded to Credit&quot;, &quot;FYI&quot; or &quot;Info Returned&quot; Type, this rule need to limit them to type more than 150 char</description>
-        <errorConditionFormula>AND((LEN( Description )&gt;=150 || ISBLANK(Description)),
-ISPICKVAL(Type, &apos;App Forwarded to Credit&apos;)||
-ISPICKVAL(Type, &apos;FYI&apos;)||
-ISPICKVAL(Type, &apos;Info Returned&apos;))</errorConditionFormula>
-        <errorDisplayField>Description</errorDisplayField>
-        <errorMessage>Comments must be between 1 and 149 characters</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Subject_less_than_100_Characters</fullName>

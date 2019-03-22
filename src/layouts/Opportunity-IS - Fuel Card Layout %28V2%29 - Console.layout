@@ -81,6 +81,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Pull_PG_Credit__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>BOCA_PG_Completed__c</field>
             </layoutItems>
             <layoutItems>

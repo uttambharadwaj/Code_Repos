@@ -114,6 +114,10 @@
                 <behavior>Edit</behavior>
                 <field>Disable_Instant_Decisioning__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Pull_PG_Credit__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -346,6 +346,7 @@ public class OTRBOCAToProspectController {
                 onlineApplication.Business_Street_Address__c = opportunity.Account.ShippingStreet;
                 onlineApplication.Business_Address_Line_2__c = (opportunity.Account != null && opportunity.Account.ShippingStreet != null && (opportunity.Account.ShippingStreet).contains(',')) ? (opportunity.Account.ShippingStreet).substringAfter(',') : '';
                 onlineApplication.City__c = opportunity.Physical_City__c;
+                onlineApplication.Country__c = 'US'; // hard coded country until CA address available on BOCAs
                 onlineApplication.State__c = opportunity.Physical_State__c;
                 onlineApplication.Zip_code__c = opportunity.Physical_Zip_Postal_Code__c;
                 onlineApplication.Federal_Tax_ID__c = opportunity.Tax_Payer_ID__c;
@@ -361,6 +362,7 @@ public class OTRBOCAToProspectController {
                 onlineApplication.AO_Last_Name__c = opportunity.Guarantor_Last_Name__c;
                 onlineApplication.AO_Address__c = opportunity.Guarantor_address_line_1__c;
                 onlineApplication.AO_City__c = opportunity.Guarantor_City__c;
+                onlineApplication.AO_Country__c = 'US'; // hard coded country until CA address available on BOCAs
                 onlineApplication.AO_State__c = opportunity.Guarantor_State__c;
                 onlineApplication.AO_Zip_Code__c = opportunity.Guarantor_Zip_code__c;
                 onlineApplication.AO_Home_Phone_Number__c = opportunity.Guarantor_home_phone__c;
@@ -391,6 +393,8 @@ public class OTRBOCAToProspectController {
                 bocaToProspect.Sent__c = Date.today();
                 bocaToProspect.Custom_Message__c = customMessage;
                 bocaToProspect.Online_Application_Offer__c = selectedOffer;
+                
+                System.debug('TEMP boca to prospect online app: ' + onlineApplication.Id);
 
                 insert bocaToProspect;
 
@@ -500,9 +504,9 @@ public class OTRBOCAToProspectController {
                 }
 
                 // Set the application URL, for ease of picking up in the e-mail
-                if (onlineApplications[0].External_Application_URL__c == null) {
+                //if (onlineApplications[0].External_Application_URL__c == null) {
                     onlineApplications[0].External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + onlineApplications[0].Program__r.Form_Template__c + '?pgm=' + onlineApplications[0].Program__r.Brand_Short_Name__c + '&offer=' + onlineApplications[0].Offer__c + '&customer=' + onlineApplications[0].Id + '&key=' + onlineApplications[0].Application_Key__c;
-                }
+                //}
 
                 // Kick the stage back to "Application/App-Incomplete"
                 onlineApplications[0].Application_Stage__c = 'Application';

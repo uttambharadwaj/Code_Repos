@@ -1,5 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Training_Class_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>BAU__c</fullName>
         <defaultValue>false</defaultValue>
@@ -841,6 +898,7 @@
             </valueSetDefinition>
         </valueSet>
     </fields>
+    <label>Training Class</label>
     <listViews>
         <fullName>All_Sales_Training_Classes</fullName>
         <columns>Case__c</columns>
@@ -1103,6 +1161,104 @@
         <label>*My Sales Training Classes last week</label>
         <language>en_US</language>
     </listViews>
+    <listViews>
+        <fullName>Sales_Onboadring_Classes</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Class_Name__c</columns>
+        <columns>Date__c</columns>
+        <columns>Facilitator__c</columns>
+        <columns>Length__c</columns>
+        <columns>Direct_Costs__c</columns>
+        <columns>Direct_Cost_Comments__c</columns>
+        <columns>Total_Number_of_Attendees__c</columns>
+        <columns>Price_Per_Seat__c</columns>
+        <columns>Total_Cost_of_Class__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Course__c</columns>
+        <columns>Case__c</columns>
+        <columns>Type__c</columns>
+        <columns>Line_of_Business__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Facilitator__c</field>
+            <operation>equals</operation>
+            <value>Alex Fagone,Jennifer Roney,Kathryn Connolly</value>
+        </filters>
+        <filters>
+            <field>Date__c</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2019</value>
+        </filters>
+        <filters>
+            <field>Date__c</field>
+            <operation>lessOrEqual</operation>
+            <value>3/31/2019</value>
+        </filters>
+        <label>Sales Training Classes Q1</label>
+        <sharedTo>
+            <role>LearningandDevelopment</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Service_Training_ClassesQ1</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>NAME</columns>
+        <columns>Class_Name__c</columns>
+        <columns>Date__c</columns>
+        <columns>Facilitator__c</columns>
+        <columns>Length__c</columns>
+        <columns>Direct_Costs__c</columns>
+        <columns>Direct_Cost_Comments__c</columns>
+        <columns>Total_Number_of_Attendees__c</columns>
+        <columns>Total_Cost_of_Class__c</columns>
+        <columns>Price_Per_Seat__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>Course__c</columns>
+        <columns>Case__c</columns>
+        <columns>Type__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Facilitator__c</field>
+            <operation>equals</operation>
+            <value>Bryan Luciano,Elaine Corriveau,Marissa Prashaw,Sara Greenhalgh</value>
+        </filters>
+        <filters>
+            <field>Date__c</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2019</value>
+        </filters>
+        <filters>
+            <field>Date__c</field>
+            <operation>lessOrEqual</operation>
+            <value>3/31/2019</value>
+        </filters>
+        <label>Service Training ClassesQ1</label>
+        <sharedTo>
+            <role>Contact_Center</role>
+            <role>LearningandDevelopment</role>
+            <role>Support_Operations</role>
+        </sharedTo>
+    </listViews>
+    <nameField>
+        <displayFormat>Class-{0000}</displayFormat>
+        <label>Class Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Training Classes</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Class_Name__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Location__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Type__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Case__c</customTabListAdditionalFields>
+        <searchResultsAdditionalFields>Class_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Location__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Case__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Require_Course_Other_Field</fullName>
         <active>true</active>
@@ -1125,4 +1281,5 @@ ISBLANK(  Other_Facilitator__c  )
         <errorDisplayField>Other_Facilitator__c</errorDisplayField>
         <errorMessage>If Facilitator equals &quot;Other&quot;, Other Facilitator field is required.</errorMessage>
     </validationRules>
+    <visibility>Public</visibility>
 </CustomObject>

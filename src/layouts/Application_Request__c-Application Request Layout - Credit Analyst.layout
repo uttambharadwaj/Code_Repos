@@ -489,6 +489,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
+                <field>Personal_Guarantor_Mailing_Country__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
                 <field>Personal_Guarantor_DOB__c</field>
             </layoutItems>
             <layoutItems>
@@ -690,7 +694,7 @@
                 <field>Opportunity__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Sales_Person__c</field>
             </layoutItems>
             <layoutItems>

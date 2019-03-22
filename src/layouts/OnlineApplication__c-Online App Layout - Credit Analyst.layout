@@ -438,6 +438,10 @@
                 <behavior>Readonly</behavior>
                 <field>UPS_Tracking_URL__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SAFER_Carrier__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

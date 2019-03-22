@@ -512,6 +512,107 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
+        <name>myRule_22_A10</name>
+        <label>Run BPAV Check</label>
+        <locationX>2200</locationX>
+        <locationY>1100</locationY>
+        <actionName>BREeze__ProcessRulesInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myDecision23</targetReference>
+        </connector>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>ruleName</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>ruleName</name>
+            <value>
+                <stringValue>CPCreditDecisioningBPAVMatch</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>sObjectId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>sObjectId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>BREeze - Execute Standard Rule</stringValue>
+            </value>
+        </processMetadataValues>
         <name>myRule_22_A2</name>
         <label>Run Existing Exposure Rules</label>
         <locationX>2200</locationX>
@@ -614,7 +715,7 @@
             </value>
         </processMetadataValues>
         <name>myRule_22_A3</name>
-        <label>Run Risk ScoreCalculation</label>
+        <label>Run US Risk Score Calculation</label>
         <locationX>2200</locationX>
         <locationY>400</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
@@ -661,7 +762,7 @@
             </processMetadataValues>
             <name>ruleName</name>
             <value>
-                <stringValue>CPCreditDecisioningRiskGradeCalculation</stringValue>
+                <stringValue>CPCreditDecisioningRiskGradeCalculationUS</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -715,13 +816,114 @@
             </value>
         </processMetadataValues>
         <name>myRule_22_A4</name>
-        <label>Run Lexis Nexis Rules</label>
+        <label>Run CA Risk Score Calculation</label>
         <locationX>2200</locationX>
         <locationY>500</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>myRule_22_A5</targetReference>
+        </connector>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>ruleName</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>ruleName</name>
+            <value>
+                <stringValue>CPCreditDecisioningRiskGradeCalculationCA</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>sObjectId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>sObjectId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>BREeze - Execute Standard Rule</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_22_A5</name>
+        <label>Run Lexis Nexis Rules</label>
+        <locationX>2200</locationX>
+        <locationY>600</locationY>
+        <actionName>BREeze__ProcessRulesInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_22_A6</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -815,14 +1017,14 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_22_A5</name>
+        <name>myRule_22_A6</name>
         <label>Run DNB SBRI Flag Calculation</label>
         <locationX>2200</locationX>
-        <locationY>600</locationY>
+        <locationY>700</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_22_A6</targetReference>
+            <targetReference>myRule_22_A7</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -916,14 +1118,14 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_22_A6</name>
+        <name>myRule_22_A7</name>
         <label>Run PG Required</label>
         <locationX>2200</locationX>
-        <locationY>700</locationY>
+        <locationY>800</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_22_A7</targetReference>
+            <targetReference>myRule_22_A8</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1017,14 +1219,14 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_22_A7</name>
+        <name>myRule_22_A8</name>
         <label>Run Experian Risk Grade Calculation</label>
         <locationX>2200</locationX>
-        <locationY>800</locationY>
+        <locationY>900</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_22_A8</targetReference>
+            <targetReference>myRule_22_A9</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1118,14 +1320,14 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_22_A8</name>
+        <name>myRule_22_A9</name>
         <label>Run Equifax Risk Grade Calculation</label>
         <locationX>2200</locationX>
-        <locationY>900</locationY>
+        <locationY>1000</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_22_A9</targetReference>
+            <targetReference>myRule_22_A10</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1167,107 +1369,6 @@
             <name>ruleName</name>
             <value>
                 <stringValue>CPCreditDecisioningEquifaxCAPGRiskGradeCalculation</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>sObjectId</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue></stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>sObjectId</name>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
-            <name>apexSelection</name>
-            <value>
-                <stringValue>BREeze - Execute Standard Rule</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_22_A9</name>
-        <label>Run BPAV Check</label>
-        <locationX>2200</locationX>
-        <locationY>1000</locationY>
-        <actionName>BREeze__ProcessRulesInvocable</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>myDecision23</targetReference>
-        </connector>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>ruleName</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue></stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>ruleName</name>
-            <value>
-                <stringValue>CPCreditDecisioningBPAVMatch</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -3087,7 +3188,7 @@
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
-    <description>CDJ - Combining two other CP App Request PB&apos;s into this one (Audit Decisioning and Created &amp; Edited)</description>
+    <description>LH - added CA DNB Risk Grade Calculation to Credit Rules</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -3095,7 +3196,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_11_myRule_9_A1_1293816899</name>
+        <name>formula_11_myRule_9_A1_6401756104</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -3107,7 +3208,7 @@
   [CP_Application_Request__c].Program__c.Partner__c.Partner_Email__c, &quot;&quot;)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_16_myRule_15_A1_7774505717</name>
+        <name>formula_16_myRule_15_A1_1655824969</name>
         <dataType>String</dataType>
         <expression>IF(NOT(ISBLANK({!myVariable_current.Program__c})),
   {!myVariable_current.Program__r.Partner__r.Partner_Email__c}, &quot;&quot;)</expression>
@@ -3119,7 +3220,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_4590604455</name>
+        <name>formula_3_myRule_1_A1_9853556643</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -3130,7 +3231,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_A1_7217388436</name>
+        <name>formula_7_myRule_5_A1_3441652977</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -3147,7 +3248,7 @@
         <expression>OR(ISNEW(),
   ISCHANGED({!myVariable_current.Program__c}))</expression>
     </formulas>
-    <interviewLabel>BREeze_CP_Decisioning-6_InterviewLabel</interviewLabel>
+    <interviewLabel>BREeze_CP_Decisioning-7_InterviewLabel</interviewLabel>
     <label>BREeze CP Decisioning</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -3335,7 +3436,7 @@
             </processMetadataValues>
             <field>Partner_Email__c</field>
             <value>
-                <elementReference>formula_16_myRule_15_A1_7774505717</elementReference>
+                <elementReference>formula_16_myRule_15_A1_1655824969</elementReference>
             </value>
         </inputAssignments>
         <object>CP_Application_Request__c</object>
@@ -3418,7 +3519,7 @@
             </processMetadataValues>
             <field>Credit_Analyst__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_4590604455</elementReference>
+                <elementReference>formula_3_myRule_1_A1_9853556643</elementReference>
             </value>
         </inputAssignments>
         <object>CP_Application_Request__c</object>
@@ -3501,7 +3602,7 @@
             </processMetadataValues>
             <field>Credit_Analyst__c</field>
             <value>
-                <elementReference>formula_7_myRule_5_A1_7217388436</elementReference>
+                <elementReference>formula_7_myRule_5_A1_3441652977</elementReference>
             </value>
         </inputAssignments>
         <object>CP_Application_Request__c</object>
@@ -3584,7 +3685,7 @@
             </processMetadataValues>
             <field>Compliance_Analyst__c</field>
             <value>
-                <elementReference>formula_11_myRule_9_A1_1293816899</elementReference>
+                <elementReference>formula_11_myRule_9_A1_6401756104</elementReference>
             </value>
         </inputAssignments>
         <object>CP_Application_Request__c</object>

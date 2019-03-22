@@ -317,9 +317,9 @@ public class UCase
         {
             if (isUpdate
                 && c.RecordTypeId == recordTypeId
-                && c.Cards__c != null
+                && c.Cards__c > 0
                 && c.Opportunity__c != null
-                && (c.Type == 'PreCard Call' || c.Type == 'Setup' || c.Type == 'Standard' || c.Type == 'Expedited')
+                && (c.Type == 'Data Entry' || c.Type == 'Expedited' || c.Type == 'PreCard Call' || c.Type == 'Standard')
                 && (c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed))
             {
                 toProcess.add(c.Id);
@@ -350,32 +350,57 @@ public class UCase
             emails.add(email);
         }
 
-        Messaging.reserveSingleEmailCapacity(emails.size());
-        List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails);
-
-        for (Messaging.SendEmailResult res : results)
-        {
-            for (Messaging.SendEmailError err : res.getErrors())
+        try {
+            Messaging.reserveSingleEmailCapacity(emails.size());
+            List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails);
+            
+            for (Messaging.SendEmailResult res : results)
             {
-                System.debug('UCase.sendCaseCloseEmailToOpportunityOwner send mail error: ' + err.getMessage());
+                for (Messaging.SendEmailError err : res.getErrors())
+                {
+                    System.debug('UCase.sendCaseCloseEmailToOpportunityOwner send mail error: ' + err.getMessage());
+                }
             }
         }
+        catch (Exception e) {
+            System.debug('Unable to send email');
+        }
     }
-
-
+    
+    // Set default entitlement for Service Operations
     public static void setDefaultEntitlement(List<Case> records, Map<Id, Case> oldMap)
     {
+        Set<Id> queueBypassIds = new Set<Id>();
+        
+        ///List<Service_Operations_Entitlement_Bypass__mdt> bypassEntries = [SELECT Id, Queue_Id__c FROM Service_Operations_Entitlement_Bypass__mdt];
+        //for(Service_Operations_Entitlement_Bypass__mdt bypassEntry : bypassEntries) {
+        //    queueBypassIds.add(bypassEntry.Queue_Id__c);
+        //}
+
         Boolean isUpdate = oldMap != null;
 
         List<Case> toUpdate = new List<Case> ();
         List<Case> toProcess = new List<Case> ();
         Set<Id> accountIds = new Set<Id> ();
+        
+        Id serviceOperationsRecordType = null;
 
+        // Add Record Type Check
+        if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Service Operations') != null) {
+        	serviceOperationsRecordType = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+	   }
+        
         Support_Operation_Settings__c sos = Support_Operation_Settings__c.getOrgDefaults();
 
         for (Case c : records)
         {
-            if (!isUpdate || c.AccountId != oldMap.get(c.Id).AccountId)
+            // We only want this to run for Service Operations.. 
+            if((serviceOperationsRecordType != null && c.RecordTypeId != serviceOperationsRecordType) || queueBypassIds.contains(c.OwnerId)) {
+                continue;
+            }
+            
+            // Added check to ensure Entitlement isn't already set.. DDG 3/18/2019
+            if ((!isUpdate || c.AccountId != oldMap.get(c.Id).AccountId))
             {
                 if (c.AccountId == null)
                 {

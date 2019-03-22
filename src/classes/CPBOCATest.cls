@@ -195,7 +195,7 @@ public with sharing class CPBOCATest {
             cpbocaController.creditApp.Physical_Address_Line_1__c = '123 Darling Ave';
             cpbocaController.creditApp.Physical_Address_Line_2__c = 'Suite 2';
             cpbocaController.creditApp.Physical_City__c = 'South Portland';
-            cpbocaController.creditApp.Physical_State__c = 'ME';
+            cpbocaController.creditApp.Physical_State_Province__c = 'ME';
             cpbocaController.creditApp.Physical_Postal_Code__c = '04106';
 
             cpbocaController.creditApp.Legal_Structure__c = 'Corporation';
@@ -206,8 +206,9 @@ public with sharing class CPBOCATest {
             cpbocaController.creditApp.Guarantor_Residential_Phone__c = '2075555555';
             cpbocaController.creditApp.Guarantor_Residential_Address__c = '123 Darling Ave';
             cpbocaController.creditApp.Guarantor_Residential_City__c = 'South Portand';
-            cpbocaController.creditApp.Guarantor_Residential_State__c = 'ME';
+            cpbocaController.creditApp.Guarantor_State_Province__c = 'ME';
             cpbocaController.creditApp.Guarantor_Residential_Postal_Code__c = '04106';
+            cpbocaController.creditApp.Guarantor_Country__c = 'US';
 
             cpbocaController.submitApplication();
 

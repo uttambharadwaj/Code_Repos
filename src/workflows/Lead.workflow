@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
-        <fullName>AU_Lead_Sales_Notification</fullName>
-        <description>AU Lead Sales Notification</description>
-        <protected>false</protected>
-        <recipients>
-            <type>owner</type>
-        </recipients>
-        <senderAddress>sales@wrightexpress.com.au</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>AU_Email_Templates/AU_Lead_Sales_Notification</template>
-    </alerts>
-    <alerts>
         <fullName>AU_MVF_Intro_Email</fullName>
         <description>AU MVF Intro Email</description>
         <protected>false</protected>
@@ -23,127 +12,6 @@
         <senderType>OrgWideEmailAddress</senderType>
         <template>AU_Email_Templates/AU_MVF_Right_prom</template>
     </alerts>
-    <alerts>
-        <fullName>AU_Motorcharge_Company_Confirmation</fullName>
-        <description>AU Motorcharge - Company Confirmation</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <senderAddress>sales@wrightexpress.com.au</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>AU_Email_Templates/AUMotorcharge_Company_Confirmation</template>
-    </alerts>
-    <alerts>
-        <fullName>AU_Motorcharge_Individual_Confirmation</fullName>
-        <description>AU Motorcharge – Individual Confirmation</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <senderAddress>sales@wrightexpress.com.au</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>AU_Email_Templates/AUMotorcharge_Individual_Confirmation</template>
-    </alerts>
-    <alerts>
-        <fullName>AU_Motorpass_Company_Confirmation</fullName>
-        <description>AU Motorpass - Company Confirmation</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <senderAddress>sales@wrightexpress.com.au</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>AU_Email_Templates/AU_Motorpass_Company_Confirmation</template>
-    </alerts>
-    <alerts>
-        <fullName>AU_Motorpass_Individual_Confirmation</fullName>
-        <description>AU Motorpass - Individual Confirmation</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <senderAddress>sales@wrightexpress.com.au</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>AU_Email_Templates/AU_Motorpass_Individual_Confirmation</template>
-    </alerts>
-    <alerts>
-        <fullName>Community_Notify_partner_community_user_that_submitted_lead_has_been_recieved</fullName>
-        <description>Community: Notify partner community user that submitted lead has been recieved</description>
-        <protected>false</protected>
-        <recipients>
-            <type>creator</type>
-        </recipients>
-        <senderAddress>noreply@wexinc.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>WEX_Partner_Community_Templates/Communities_Lead_Received_Notification</template>
-    </alerts>
-    <alerts>
-        <fullName>Email_sent_to_Contact_for_MMVF</fullName>
-        <description>Email sent to Contact for MVF Leads</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <senderAddress>noreply@wexinc.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>Inside_Sales/MVF_HTML</template>
-    </alerts>
-    <alerts>
-        <fullName>Enterprise_Truck_Rental_Lead_Email</fullName>
-        <description>Enterprise Truck Rental Lead Email</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <recipients>
-            <field>Referrer_Email__c</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Enterprise_Auto_Generated_Email</template>
-    </alerts>
-    <alerts>
-        <fullName>Lead_voice_mail_follow_up_email</fullName>
-        <description>Lead: voice mail follow up email</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>Sales_and_Marketing/Voicemail_Follow_Up_Message_1</template>
-    </alerts>
-    <alerts>
-        <fullName>Trigger_an_email_from_SF_upon_receipt_of_web_to_lead_form_from_MVF</fullName>
-        <description>Trigger an email from SF upon receipt of web to lead form from MVF</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <senderAddress>noreply@wexinc.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>BOCA/MVF_QBW_Q7E_Generic_Series_1</template>
-    </alerts>
-    <alerts>
-        <fullName>Trigger_an_email_from_SF_upon_receipt_of_web_to_lead_form_from_WQM</fullName>
-        <description>Trigger an email from SF upon receipt of web to lead form from WQM</description>
-        <protected>false</protected>
-        <recipients>
-            <field>Email</field>
-            <type>email</type>
-        </recipients>
-        <senderAddress>noreply@wexinc.com</senderAddress>
-        <senderType>OrgWideEmailAddress</senderType>
-        <template>BOCA/MVF_WQM_Generic_Series_1</template>
-    </alerts>
     <fieldUpdates>
         <fullName>AURecType</fullName>
         <description>Changes the record type to AU Fuel</description>
@@ -151,453 +19,6 @@
         <lookupValue>AU_Fuel</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>AURecType</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Application_Status_Credit_Queue</fullName>
-        <field>AU_Application_Status__c</field>
-        <literalValue>Ready for Assessment</literalValue>
-        <name>AU Application Status - Credit Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Application_Status_Follow_Up</fullName>
-        <field>AU_Application_Status__c</field>
-        <literalValue>Follow up</literalValue>
-        <name>AU Application Status: Follow Up</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Lead_Assign_to_Credit_Queue</fullName>
-        <field>OwnerId</field>
-        <lookupValue>AU_Credit_Queue</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>AU Lead: Assign to Credit Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Lead_Assign_to_Sales_Queue</fullName>
-        <description>Assigns Owner to AU Sales Queue</description>
-        <field>OwnerId</field>
-        <lookupValue>AU_Fuel_Card_Applications</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>AU Lead: Assign to Sales Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Lead_Follow_Up_Status</fullName>
-        <field>AU_Application_Status__c</field>
-        <literalValue>Follow up</literalValue>
-        <name>AU Lead: Follow Up Status</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Lead_In_progress_update</fullName>
-        <field>Status</field>
-        <literalValue>In Progress</literalValue>
-        <name>AU Lead: In progress update</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Lead_Ready_for_Assessment_Status</fullName>
-        <description>Sets the Application Status to &quot;Ready for Assessment&quot;</description>
-        <field>AU_Application_Status__c</field>
-        <literalValue>Ready for Assessment</literalValue>
-        <name>AU Lead: Ready for Assessment Status</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Lead_Unactioned_Status</fullName>
-        <field>AU_Application_Status__c</field>
-        <literalValue>Unactioned</literalValue>
-        <name>AU Lead: Unactioned Status</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>AU_Update_Business_trading_name</fullName>
-        <field>AU_Business_Trading_Name__c</field>
-        <formula>AU_Account_Name__c</formula>
-        <name>AU Update Business trading name</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Affinity_Channel_Update</fullName>
-        <field>Affinity_Cobrand_Channel_Opps__c</field>
-        <formula>Text( Affinity_Cobrand_Sub_Interest__c )</formula>
-        <name>Affinity Channel Update</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Application_Status</fullName>
-        <field>AU_Application_Status__c</field>
-        <literalValue>Follow up</literalValue>
-        <name>Application Status</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Application_Status_Credit_Queue</fullName>
-        <field>AU_Application_Status__c</field>
-        <literalValue>Ready for Assessment</literalValue>
-        <name>Application Status - Credit Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Assign_Decision_Maker</fullName>
-        <description>For online application form</description>
-        <field>Decision_Maker__c</field>
-        <literalValue>1</literalValue>
-        <name>Assign Decision Maker</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Assign_to_Fleet_Outbound_Sales_Q</fullName>
-        <field>OwnerId</field>
-        <lookupValue>W2L_Fleet_Outbound_Sales</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>Assign to W2L Fleet Outbound Sales Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Assign_to_Fleet_Outbound_Sales_Queue</fullName>
-        <field>OwnerId</field>
-        <lookupValue>W2L_Fleet_Outbound_Sales</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>Assign to Fleet Outbound Sales Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>C_Wright_Lead_Campaign_ID</fullName>
-        <description>https://na5.salesforce.com/70170000000ifX9?srPos=0&amp;srKp=701</description>
-        <field>Text_Primary_Campaign__c</field>
-        <formula>&quot;70170000000ifX9&quot;</formula>
-        <name>C-Wright Lead Campaign ID</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Call_Cycle_NULL</fullName>
-        <field>Call_Stage__c</field>
-        <name>Call Cycle:  NULL</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Call_Stage_Place_1st_Call</fullName>
-        <description>Change Call Stage to Place 1st Call</description>
-        <field>Call_Stage__c</field>
-        <literalValue>1st Call</literalValue>
-        <name>Call Stage - Place 1st Call</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Card_Program_ID_Local</fullName>
-        <description>If the Product/Service Type is Fleet Card - Direct Local, then Card Program ID is  0017000000un4U3</description>
-        <field>Card_Program_ID__c</field>
-        <formula>&quot;0017000000un4U3&quot;</formula>
-        <name>Card Program ID Local</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Card_Program_ID_OTR</fullName>
-        <description>If the Product/Service Type is Fleet Card - Direct OTR then Card Program ID is 0017000000un4U1.</description>
-        <field>Card_Program_ID__c</field>
-        <formula>&quot;0017000000un4U1&quot;</formula>
-        <name>Card Program ID OTR</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Change_Call_Stage</fullName>
-        <description>Change the Lead Call Stage to &quot;1st Call.&quot;</description>
-        <field>Call_Stage__c</field>
-        <literalValue>1st Call</literalValue>
-        <name>Change Call Stage</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Change_Owner_To_Pardot_Queue</fullName>
-        <field>OwnerId</field>
-        <lookupValue>Pardot_Queue</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>Change Owner To Pardot Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Clear_OBTM_Lead_Owner_from_Parent_Leads</fullName>
-        <field>OBTM_Lead__c</field>
-        <name>Clear OBTM_Lead Owner from Parent Leads</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Null</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Created_by_Partner_England_Logistics</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;England Logistics&quot;</formula>
-        <name>Tag Partner England Logistics</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Express_Truck_Tax</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;Express Truck Tax&apos;</formula>
-        <name>Express Truck Tax</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Fleet_Channel_Update</fullName>
-        <field>Fleet_Card_Channel_Opps__c</field>
-        <formula>Text(Fleet_Sub_Interest__c)</formula>
-        <name>Fleet Channel Update</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Lead_Background_Notes_to_Opportunity</fullName>
-        <field>Lead_Background_Notes_to_Opportunity__c</field>
-        <formula>Description</formula>
-        <name>Lead Background Notes to Opportunity</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Lead_Disqualified_Date</fullName>
-        <field>Lead_Disqualified_Date__c</field>
-        <formula>TODAY()</formula>
-        <name>Lead Disqualified Date</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Lead_Owner_Update</fullName>
-        <field>OwnerId</field>
-        <lookupValue>IS_Leads_Queue</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>Lead Owner Update</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Lead_Status_Contacting</fullName>
-        <field>Status</field>
-        <literalValue>Contacting</literalValue>
-        <name>Lead Status - Contacting</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Lead_Update_Status_Working</fullName>
-        <description>Updates the status of the lead to working when that first call is made.</description>
-        <field>Status</field>
-        <literalValue>Working</literalValue>
-        <name>Lead_Update_Status_Working</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Name_Co_List_ID_Camp_Program_CC</fullName>
-        <field>Name_Coupon_Code__c</field>
-        <formula>FirstName &amp;&quot; &quot; &amp; LastName  &amp;&quot; &quot;&amp;  Company &amp;&quot; &quot;&amp;  List_ID__c &amp;&quot; &quot;&amp; Campaign_Program__r.Name &amp;&quot; &quot;&amp; Coupon_Code_2__c&amp;&quot; &quot;&amp; Prospect_ID__c</formula>
-        <name>Name, Co, List ID, Camp Program &amp; CC</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Next_Contact</fullName>
-        <field>Next_Contact__c</field>
-        <formula>Today()</formula>
-        <name>Next Contact</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Next_Contact_100_Days</fullName>
-        <field>Next_Contact__c</field>
-        <formula>Today() + 100</formula>
-        <name>Next Contact + 100 Days</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Next_Contact_Blank</fullName>
-        <field>Next_Contact__c</field>
-        <name>Next Contact = Blank</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Null</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Opportunity_Product_Interest_Update</fullName>
-        <field>Opportunity_Product_Interest__c</field>
-        <formula>TEXT( Product_Interest__c )</formula>
-        <name>Opportunity Product Interest Update</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Partner_Tag_Trulos</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Trulos&quot;</formula>
-        <name>Tag Partner Tag Trulos</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Populate_Card_Program_WF_TXT_Lead</fullName>
-        <description>When there&apos;s a value in the Card Program field, copy it to Card Program WF TXT.</description>
-        <field>Card_Program_WF_TXT__c</field>
-        <formula>Card_Program__r.Name</formula>
-        <name>Populate Card Program WF TXT Lead</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Product_Service_Type_Local</fullName>
-        <description>For web to lead Leads, if Card Product is &quot;Local&quot; make Product/Service Type = Fleet Card - Direct Local.</description>
-        <field>Product_Service_Type__c</field>
-        <literalValue>Fleet Card - Direct Local</literalValue>
-        <name>Product Service Type Local</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Product_Service_Type_OTR</fullName>
-        <description>For leads coming from website, if Card Product is OTR, make Product/Service Type = Fleet Card - Direct OTR.</description>
-        <field>Product_Service_Type__c</field>
-        <literalValue>Fleet Card - Direct OTR</literalValue>
-        <name>Product Service Type - OTR</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Prospect_Id_Manual</fullName>
-        <field>Prospect_ID__c</field>
-        <formula>&quot;Manual&quot;</formula>
-        <name>Prospect Id = Manual</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Prospect_Id_to_Opp</fullName>
-        <field>Prospect_ID_to_Opp1__c</field>
-        <formula>Prospect_ID__c</formula>
-        <name>Prospect Id to Opp</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Provider_Source_Manual</fullName>
-        <field>Provider_Source__c</field>
-        <formula>&quot;Manual&quot;</formula>
-        <name>Provider Source = Manual</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Provider_Source_to_Opp</fullName>
-        <field>Provider_Source_to_Opp__c</field>
-        <formula>Provider_Source__c</formula>
-        <name>Provider Source to Opp</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Reassign_to_LDR_Queue</fullName>
-        <field>OwnerId</field>
-        <lookupValue>LDR_Lead_Queue</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>Reassign to LDR Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Record_Owner_Marketing_Queue</fullName>
-        <field>OwnerId</field>
-        <lookupValue>MarketingQueue</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>Record Owner = Marketing Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Record_Type_Wright_Lead</fullName>
-        <field>RecordTypeId</field>
-        <lookupValue>Wright_Leads</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Record Type Wright Lead</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
         <protected>false</protected>
@@ -612,119 +33,19 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Set_created_by_3MD_parner_tag</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;3MD Solutions&apos;</formula>
-        <name>Set created by 3MD parner tag</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Set_created_by_FleetPro_Partner_Tag</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;FleetPro Services&quot;</formula>
-        <name>Set created by FleetPro Partner Tag</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Set_created_by_Fleet_Savings_Partner_Tag</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;Fleet Savings&apos;</formula>
-        <name>Set created by Fleet Savings Partner Tag</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Status_Dead</fullName>
-        <field>Status</field>
-        <literalValue>Dead</literalValue>
-        <name>Status = Dead</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_AAble_iFleet</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;AAble iFleet&apos;</formula>
-        <name>Tag Partner AAble iFleet</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_AU_Partner_Salmat</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Salmat&quot;</formula>
-        <name>Tag AU Partner Salmat</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Beevo</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Beevo&quot;</formula>
-        <name>Tag AU Partner Beevo</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_CenterFire</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;CenterFire&apos;</formula>
-        <name>Tag CenterFire</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_GE_Capital_Leads</fullName>
-        <description>For tagging partner GE Capital createdby partner tag</description>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;GE Capital&quot;</formula>
-        <name>Tag Partner GE Capital Leads</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Knight_Logistics_Leads</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;Knight Logistics&apos;</formula>
-        <name>Tag Knight Logistics Leads</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Mansfield_Oil_Company_Leads</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;Mansfield Oil Company&apos;</formula>
-        <name>Tag Mansfield Oil Company Leads</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_PTP_Stop_NATSN</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;PTP Stop NATSN&apos;</formula>
-        <name>Tag PTP Stop NATSN</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Tag_Partner_123Loadboard</fullName>
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;123Loadboard&quot;</formula>
         <name>Tag Partner 123Loadboard</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Tag_Partner_ASSIST_FINANCIAL_SERVICES</fullName>
+        <field>Created_by_Partner_Tag__c</field>
+        <formula>&quot;ASSIST FINANCIAL SERVICES&quot;</formula>
+        <name>Tag Partner ASSIST FINANCIAL SERVICES</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -748,28 +69,19 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Tag_Partner_Ambest</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;AMBEST&apos;</formula>
-        <name>Tag Partner Ambest</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_BSNF</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;BSNF&quot;</formula>
-        <name>Tag Partner BSNF</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Tag_Partner_CJM_Financial</fullName>
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;CJM Financial&quot;</formula>
         <name>Tag Partner CJM Financial</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Tag_Partner_Century</fullName>
+        <field>Created_by_Partner_Tag__c</field>
+        <formula>&quot;Century&quot;</formula>
+        <name>Tag Partner Century</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -797,35 +109,6 @@
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;DAT&quot;</formula>
         <name>Tag Partner DAT</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_D_S_Fuel_Card</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;D&amp;S Fuel Card&quot;</formula>
-        <name>Tag Partner D&amp;S Fuel Card</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_D_S_Supoort</fullName>
-        <description>F1 Partner Portal</description>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;D&amp;S Support&quot;</formula>
-        <name>Tag Partner D&amp;S Supoort</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_Discount_Diesel</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Discount Diesel&quot;</formula>
-        <name>Tag Partner Discount Diesel</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -922,6 +205,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Tag_Partner_G_SQUARED</fullName>
+        <field>Created_by_Partner_Tag__c</field>
+        <formula>&quot;G SQUARED&quot;</formula>
+        <name>Tag Partner G SQUARED</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Tag_Partner_Great_Plains</fullName>
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;Great Plains&quot;</formula>
@@ -958,15 +250,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Tag_Partner_Intouch_GPS</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;InTouch GPS&quot;</formula>
-        <name>Tag Partner Intouch GPS</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Tag_Partner_JB_Hunt</fullName>
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;JB Hunt&quot;</formula>
@@ -989,25 +272,6 @@
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;Liquid Capital&quot;</formula>
         <name>Tag Partner Liquid Capital</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_Mike_Gordon</fullName>
-        <description>Populate the &quot;Created by Partner Tag&quot; text field with the name &quot;Mike Gordon&quot;</description>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Mike Gordon&quot;</formula>
-        <name>Tag Partner Mike Gordon</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_NASTC</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;NASTC&quot;</formula>
-        <name>Tag Partner NASTC</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -1040,16 +304,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Tag_Partner_Pavestone_Capital</fullName>
-        <description>F1 Partner Portal</description>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Pavestone Capital&quot;</formula>
-        <name>Tag Partner Pavestone Capital</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Tag_Partner_Pay4Freight</fullName>
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;Pay4Freight&quot;</formula>
@@ -1068,47 +322,10 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Tag_Partner_PrePass</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;PrePass&quot;</formula>
-        <name>Tag Partner PrePass</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_Quality_Companies</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Quality Companies&quot;</formula>
-        <name>Tag Partner Quality Companies</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Tag_Partner_Quick_Pay_Funding</fullName>
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;Quick Pay Funding&quot;</formula>
         <name>Tag Partner Quick Pay Funding</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_RTS</fullName>
-        <description>Populate the &quot;Created by Partner Tag&quot; text field with the name &quot;RTS&quot;</description>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;RTS&quot;</formula>
-        <name>Tag Partner RTS</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_STC</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;STC&quot;</formula>
-        <name>Tag Partner STC</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -1119,15 +336,6 @@
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;SUMMAR&quot;</formula>
         <name>Tag Partner SUMMAR</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_Single_Point</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Single Point&quot;</formula>
-        <name>Tag Partner Single Point</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -1188,25 +396,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Tag_Partner_Trans_Alliance</fullName>
-        <description>Populate the &quot;Created by Partner Tag&quot; text field with the name &quot;Trans-Alliance&quot;</description>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Trans-Alliance&quot;</formula>
-        <name>Tag Partner Trans-Alliance</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_Truckers_B2B</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Truckers B2B&quot;</formula>
-        <name>Tag Partner Truckers B2B</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>Tag_Partner_Truckers_Solutions</fullName>
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;Truckers Solutions&quot;</formula>
@@ -1220,15 +409,6 @@
         <field>Created_by_Partner_Tag__c</field>
         <formula>&quot;Vero Business Capital&quot;</formula>
         <name>Tag Partner Vero Business Capital</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_Vessix</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Vessix&quot;</formula>
-        <name>Tag Partner Vessix</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
@@ -1249,161 +429,6 @@
         <name>Tag Partner iThrive Funding</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Partner_to_Roady_s_Card</fullName>
-        <description>F1 Partner Portal</description>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Roady&apos;s Card&quot;</formula>
-        <name>Tag Partner to Roady&apos;s Card</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_Patriot_Fleet_Systems</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;Patriot Fleet Systems&apos;</formula>
-        <name>Tag Patriot Fleet Systems</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_TBS_Factoring_Service</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;TBS Factoring Service&apos;</formula>
-        <name>Tag TBS Factoring Service</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Tag_XPO_Logistics</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&apos;XPO Logistics&apos;</formula>
-        <name>Tag XPO Logistics</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_3rd_call</fullName>
-        <field>Call_Stage__c</field>
-        <literalValue>3rd Call</literalValue>
-        <name>Update 3rd call</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_4th_Call</fullName>
-        <field>Call_Stage__c</field>
-        <literalValue>4th Call</literalValue>
-        <name>Update 4th Call</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_5th_Call</fullName>
-        <field>Call_Stage__c</field>
-        <literalValue>5th Call</literalValue>
-        <name>Update 5th Call</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Call_Cycle_2</fullName>
-        <field>Call_Stage__c</field>
-        <literalValue>2nd Call</literalValue>
-        <name>Update Call Cycle 2</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Call_Stage_6</fullName>
-        <field>Call_Stage__c</field>
-        <literalValue>6th Call</literalValue>
-        <name>Update Call Stage 6</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Call_Stage_Null</fullName>
-        <field>Call_Stage__c</field>
-        <name>Update Call Stage:  Null</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Coupon_Code_Text_from_Coupon_Code</fullName>
-        <field>Coupon_Code__c</field>
-        <formula>Coupon_Code_2__c</formula>
-        <name>Update Coupon Code Text from Coupon Code</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Last_Contact</fullName>
-        <field>Last_Contact__c</field>
-        <formula>Today()</formula>
-        <name>Update Last Contact</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Next_Contact_7_days</fullName>
-        <field>Next_Contact__c</field>
-        <formula>Last_Contact__c +7</formula>
-        <name>Update Next Contact +7 days</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Outcome</fullName>
-        <field>Call_Outcome__c</field>
-        <name>Update Outcome</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Owner_to_MVF_Queue</fullName>
-        <field>OwnerId</field>
-        <lookupValue>MVF_Leads_Queue</lookupValue>
-        <lookupValueType>Queue</lookupValueType>
-        <name>Update Owner to MVF Queue</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_RT_to_Truckers</fullName>
-        <description>Update the lead record type to the Truckers record type</description>
-        <field>RecordTypeId</field>
-        <lookupValue>Truckers_Leads</lookupValue>
-        <lookupValueType>RecordType</lookupValueType>
-        <name>Update RT to Truckers</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>LookupValue</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_Status_Unqualified</fullName>
-        <field>Status</field>
-        <literalValue>Unqualified</literalValue>
-        <name>Update Status:  Unqualified</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -1695,43 +720,6 @@ WES_Address_Line3__c</formula>
         <operation>LookupValue</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>WEX_Universal_Program</fullName>
-        <description>https://na5.salesforce.com/a0Z70000001uyUB?srPos=0&amp;srKp=a0Z</description>
-        <field>Text_Program__c</field>
-        <formula>&quot;a0Z70000001uyUB&quot;</formula>
-        <name>WEX Universal Program</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>set_Created_by_CarsArrive</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;CarsArrive&quot;</formula>
-        <name>set Created by CarsArrive</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>set_Created_by_to_Fuelbook</fullName>
-        <field>Created_by_Partner_Tag__c</field>
-        <formula>&quot;Fuelbook&quot;</formula>
-        <name>set Created by to Fuelbook</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>set_Lead_Source_Website_Oppt</fullName>
-        <field>Lead_Source_Website_Oppt__c</field>
-        <formula>Lead_Source_Website_Oppt__c</formula>
-        <name>set Lead Source Website - Oppt</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>AU %3A Application status sales queue</fullName>
         <actions>
@@ -1773,64 +761,6 @@ WES_Address_Line3__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>AU Business Trading Name</fullName>
-        <actions>
-            <name>AU_Update_Business_trading_name</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.AU_Business_Trading_Name__c</field>
-            <operation>equals</operation>
-            <value>Null</value>
-        </criteriaItems>
-        <description>If Business trading name is null populate with Legal Entity Name</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>AU Lead%3A Assign to Sales Queue</fullName>
-        <actions>
-            <name>AU_Lead_Sales_Notification</name>
-            <type>Alert</type>
-        </actions>
-        <actions>
-            <name>AU_Lead_Assign_to_Sales_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>AU Fuel Application Individual,AU Fuel Application Business</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>notEqual</operation>
-            <value>Glenna Wilder</value>
-        </criteriaItems>
-        <description>Changes Owner to Sales Queue [if Details Complete = False]</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>AU Lead%3A Follow Up Status</fullName>
-        <actions>
-            <name>AU_Lead_Follow_Up_Status</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.AU_Application_Status__c</field>
-            <operation>equals</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Details_Complete__c</field>
-            <operation>equals</operation>
-            <value>False</value>
-        </criteriaItems>
-        <description>Sets the Application Status to Follow Up if blank and Details Complete = False and Lead Status = In Progress</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
         <fullName>AU Lead%3A In progress update</fullName>
         <actions>
             <name>AU_Lead_In_progress_update</name>
@@ -1852,141 +782,6 @@ WES_Address_Line3__c</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
-        <fullName>AU Lead%3A Motorcharge Business Response</fullName>
-        <actions>
-            <name>AU_Motorcharge_Company_Confirmation</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>AU Fuel Application Business</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Product_Name__c</field>
-            <operation>equals</operation>
-            <value>MC</value>
-        </criteriaItems>
-        <description>AU Lead: Motorcharge Business Response</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>AU Lead%3A Motorcharge Individual Response</fullName>
-        <actions>
-            <name>AU_Motorcharge_Individual_Confirmation</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>AU Fuel Application Individual</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Product_Name__c</field>
-            <operation>equals</operation>
-            <value>MC</value>
-        </criteriaItems>
-        <description>AU Lead: Motorcharge Individual Response</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>AU Lead%3A Motorpass Business Response</fullName>
-        <actions>
-            <name>AU_Motorpass_Company_Confirmation</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>AU Fuel Application Business</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Product_Name__c</field>
-            <operation>equals</operation>
-            <value>SM</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Product_Name__c</field>
-            <operation>equals</operation>
-            <value>DC</value>
-        </criteriaItems>
-        <description>AU Lead: Motorpass Business Response</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>AU Lead%3A Motorpass Individual Response</fullName>
-        <actions>
-            <name>AU_Motorpass_Individual_Confirmation</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>AU Fuel Application Individual</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Product_Name__c</field>
-            <operation>equals</operation>
-            <value>SM</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Product_Name__c</field>
-            <operation>equals</operation>
-            <value>DC</value>
-        </criteriaItems>
-        <description>AU Lead: Motorpass Individual Response</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>AU Lead%3A Ready for Assessment Status</fullName>
-        <actions>
-            <name>AU_Lead_Ready_for_Assessment_Status</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.AU_Application_Status__c</field>
-            <operation>equals</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Details_Complete__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <description>Sets the Application Status to Ready for Assessment if blank</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>AU Lead%3A Unactioned Status</fullName>
-        <actions>
-            <name>AU_Lead_Unactioned_Status</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.AU_Application_Status__c</field>
-            <operation>equals</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Details_Complete__c</field>
-            <operation>equals</operation>
-            <value>False</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Status</field>
-            <operation>equals</operation>
-            <value>Untouched</value>
-        </criteriaItems>
-        <description>Sets the Application Status to Unactioned if blank and Details Complete = False and Lead Status = Untouched</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>AU MVF Rule</fullName>
         <actions>
             <name>AU_MVF_Intro_Email</name>
@@ -2006,34 +801,6 @@ WES_Address_Line3__c</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
-        <fullName>AU Tag Beevo Leads</fullName>
-        <actions>
-            <name>Tag_Beevo</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Adi Polugari</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>AU Tag Salmat Leads</fullName>
-        <actions>
-            <name>Tag_AU_Partner_Salmat</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>equals</operation>
-            <value>Nitesh Basudkar</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>AU_TEMP_MVF_RecTypeToAUFuel</fullName>
         <active>false</active>
         <criteriaItems>
@@ -2043,729 +810,6 @@ WES_Address_Line3__c</formula>
         </criteriaItems>
         <description>Changes the record type to AU fuel when the lead source is 2018-MP-EXPERTMARKET</description>
         <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Act On Lead Activity</fullName>
-        <actions>
-            <name>Follow_Up_Call_After_Email_Campaign_Action</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Act_On_Behavior_Score__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>150</value>
-        </criteriaItems>
-        <description>If Act On Behavior Score reaches 150&gt;= then create an open task for the sales person to contact the record.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Assign Decision Maker</fullName>
-        <actions>
-            <name>Assign_Decision_Maker</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <description>If the lead has come from an online application form submission</description>
-        <formula>Text(LeadSource) = &quot;Online Application Form&quot;</formula>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Assign Lead to Marketing Queue</fullName>
-        <actions>
-            <name>Record_Owner_Marketing_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Provider_Source__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Provider_Source__c</field>
-            <operation>notEqual</operation>
-            <value>Manual</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Assign_to_Rep__c</field>
-            <operation>equals</operation>
-            <value>False</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>Assigns list loaded Leads to the Marketing Queue; excluded Parent Leads 3/19</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Card Program Text Field Lead</fullName>
-        <actions>
-            <name>Populate_Card_Program_WF_TXT_Lead</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Card_Program_TXT__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <description>Need to populate a text version of the Card Program lookup field for use in sharing rules. (can&apos;t use lookup field or formula field.)</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Channel Update</fullName>
-        <actions>
-            <name>Affinity_Channel_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Fleet_Channel_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Company</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Clear OBTM_Lead from Parent Leads</fullName>
-        <actions>
-            <name>Clear_OBTM_Lead_Owner_from_Parent_Leads</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.OBTM_Lead__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>Clears the value of OBTM_Lead checkbox so subsequent child leads are not created with the OBTM checkbox populated.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Community%3A notify lead creator that submission recieved</fullName>
-        <actions>
-            <name>Community_Notify_partner_community_user_that_submitted_lead_has_been_recieved</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>User.ProfileId</field>
-            <operation>equals</operation>
-            <value>Generic Partner Profile,QuikTrip Partners,Alon Partners,Enterprise Partners,Phillips 66 Partners</value>
-        </criteriaItems>
-        <description>5/29/15 - PUT ON HOLD FOR NOW PER ERICA.  Workflow will fire an email alert to the partner community user that submits a lead to say we have received their lead</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Coupon Code Update</fullName>
-        <actions>
-            <name>Update_Coupon_Code_Text_from_Coupon_Code</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <formula>OR(Coupon_Code_2__c &lt;&gt; null, AND(ISCHANGED(Coupon_Code_2__c),PRIORVALUE(Coupon_Code_2__c)&lt;&gt;null))</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Dummy-ms-sample New_Lead_Begin_Cycle</fullName>
-        <active>true</active>
-        <booleanFilter>(1 AND 2 AND 3)</booleanFilter>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>notEqual</operation>
-            <value>1st Call,Legacy</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>notContain</operation>
-            <value>Queue</value>
-        </criteriaItems>
-        <description>For newly created Fleet Leads, that are not Legacy imports, and not assigned to a queue, defaults first call stage task and updates next call date.</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Email to Mastercard Manager</fullName>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.LeadSource</field>
-            <operation>equals</operation>
-            <value>Fleet One</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Product_Interest__c</field>
-            <operation>equals</operation>
-            <value>MC</value>
-        </criteriaItems>
-        <description>This workflow will send an e-mail to Monica Fallow when a referral comes in from Fleet One</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>First Activity Change Status to Working</fullName>
-        <active>false</active>
-        <description>Factoring Leads Only, change status to &apos;Working&apos; if contact has been made.</description>
-        <formula>AND(
-
-RecordTypeId = &apos;012700000005p5v&apos;,
-NOT(ISBLANK(LastActivityDate))
-
-)</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>First Activity Logged</fullName>
-        <actions>
-            <name>Lead_Status_Contacting</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>Wex Europe record types only</description>
-        <formula>AND(
-
-RecordTypeId = &apos;012700000005oZv&apos;,
-
-NOT(ISBLANK(LastActivityDate))
-
-)</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Flip TB2B program Lead to TB2B record type</fullName>
-        <actions>
-            <name>Update_RT_to_Truckers</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.i2i_Coupon_Code_Pass__c</field>
-            <operation>equals</operation>
-            <value>TB2BW,TB2BELD,FTSELD,TB2BGP,TB2BGPSweeper,TB2BGold,EFSELD,EDGEGold,FTSGold</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead,Truckers - Leads</value>
-        </criteriaItems>
-        <description>this will flip the record type of an inserted child lead to the Truckers record type if the i2i pass value is TB2B</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Gold Internal W2L</fullName>
-        <actions>
-            <name>Call</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Truckers - Leads</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.LeadSource</field>
-            <operation>equals</operation>
-            <value>Web to Lead</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Hearsource__c</field>
-            <operation>equals</operation>
-            <value>EFS</value>
-        </criteriaItems>
-        <description>Gold Internal W2L from Truckers</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>LDR Lead Queue Assignment</fullName>
-        <actions>
-            <name>Reassign_to_LDR_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 OR (2 OR 3)</booleanFilter>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>David Goodwin</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Coupon_Code_2__c</field>
-            <operation>contains</operation>
-            <value>EAT,T49,QWK,RYW,RJM,N4J,D3T,EG3,M9Q</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.i2i_Coupon_Code_Pass__c</field>
-            <operation>contains</operation>
-            <value>EAT,T49,QWK,RYW,RJM,N4J,D3T,EG3,M9Q</value>
-        </criteriaItems>
-        <description>Any lead that is loaded with David Goodwin&apos;s name, assign to LDR Queue</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead Background Notes to Opportunity</fullName>
-        <actions>
-            <name>Lead_Background_Notes_to_Opportunity</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.CreatedDate</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead Disqualified Date</fullName>
-        <actions>
-            <name>Lead_Disqualified_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Status</field>
-            <operation>equals</operation>
-            <value>Disqualified</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead Email After VM</fullName>
-        <actions>
-            <name>Lead_voice_mail_follow_up_email</name>
-            <type>Alert</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>Left Voicemail</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.HasOptedOutOfEmail</field>
-            <operation>equals</operation>
-            <value>False</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Card_Program_TXT__c</field>
-            <operation>notContain</operation>
-            <value>Hess</value>
-        </criteriaItems>
-        <description>Auto sends an intro email when Call Outcome = Left message.</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead Name%2C Company%2C Program%2C and Coupon Code</fullName>
-        <actions>
-            <name>Name_Co_List_ID_Camp_Program_CC</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.CreatedDate</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead Reached Decision Maker</fullName>
-        <actions>
-            <name>Next_Contact_Blank</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Last_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <booleanFilter>1</booleanFilter>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>Reached Decision Maker</value>
-        </criteriaItems>
-        <description>Updates Last Contact date and deletes Next Contact date when Call Outcome = Reached Decision Maker.</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead Status %3D Working</fullName>
-        <active>false</active>
-        <formula>AND( OR(Datevalue(CreatedDate)&lt;&gt;LastActivityDate,CreatedDate&lt;&gt; LastModifiedDate), NOT(ISPICKVAL( Status ,&quot;Working&quot;))  )</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead%3A Fleet One Source</fullName>
-        <actions>
-            <name>C_Wright_Lead_Campaign_ID</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>WEX_Universal_Program</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.LeadSource</field>
-            <operation>equals</operation>
-            <value>Fleet One</value>
-        </criteriaItems>
-        <description>If lead source = Fleet One update Text_Primary_Campaign__c with C-Wright Lead Record ID and Text_Program__c with wex universal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_1st_Call_Stage</fullName>
-        <actions>
-            <name>Next_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Place_1st_Call</name>
-            <type>Task</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>1st Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>notContain</operation>
-            <value>Queue</value>
-        </criteriaItems>
-        <description>When Call Stage is changed to 1st Call, for Fleet Lead Rec Type only, rule creates open task, and updates Next Contact field. Excludes leads owned by Queues.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_2nd_Call_Stage</fullName>
-        <actions>
-            <name>Update_Call_Cycle_2</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Last_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Next_Contact_7_days</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Outcome</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Place_2nd_Call</name>
-            <type>Task</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>1st Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>Left Voicemail,No Answer</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <description>Creates tasks and updates to begin lead qualification process</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_3rd_Call_Stage</fullName>
-        <actions>
-            <name>Update_3rd_call</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Last_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Next_Contact_7_days</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Outcome</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Place_3rd_Call</name>
-            <type>Task</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>2nd Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>Left Voicemail,No Answer</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <description>Creates tasks and updates to begin lead qualification process</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_4th_Call_Stage</fullName>
-        <actions>
-            <name>Update_4th_Call</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Last_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Next_Contact_7_days</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Outcome</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Place_4th_Call</name>
-            <type>Task</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>3rd Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>Left Voicemail,No Answer</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <description>Creates tasks and updates to begin lead qualification process</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_5th_Call_Stage</fullName>
-        <actions>
-            <name>Update_5th_Call</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Last_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Next_Contact_7_days</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Outcome</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Place</name>
-            <type>Task</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>4th Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>Left Voicemail,No Answer</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <description>Creates tasks and updates to begin lead qualification process</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_6th_Call_Stage</fullName>
-        <actions>
-            <name>Update_Call_Stage_6</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Last_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Next_Contact_7_days</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Outcome</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Place_6th_Call</name>
-            <type>Task</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>5th Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>Left Voicemail,No Answer</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <description>Creates tasks and updates to begin lead qualification process</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_DONOTCALL</fullName>
-        <actions>
-            <name>Call_Cycle_NULL</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Next_Contact_Blank</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Status_Dead</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Outcome</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.DoNotCall</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <description>Update owner to queue and kill lead, when prospect doens&apos;t want a call back</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_End_Call_Stages</fullName>
-        <actions>
-            <name>Next_Contact_100_Days</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Call_Stage_Null</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Last_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Outcome</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Update_Status_Unqualified</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Place_1st_Call2</name>
-            <type>Task</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>6th Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>Left Voicemail,No Answer</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <description>Creates tasks and updates to begin lead qualification process</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Lead_Update_Stage_Working</fullName>
-        <actions>
-            <name>Lead_Update_Status_Working</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>1st Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Status</field>
-            <operation>notEqual</operation>
-            <value>Dead,Not Ready To Buy</value>
-        </criteriaItems>
-        <description>Updates status to &quot;working&quot;</description>
-        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>MVF Email to Contact</fullName>
@@ -2783,523 +827,6 @@ NOT(ISBLANK(LastActivityDate))
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
-        <fullName>MVF Leads to Queue</fullName>
-        <actions>
-            <name>Update_Owner_to_MVF_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>(1 OR 2) AND 3</booleanFilter>
-        <criteriaItems>
-            <field>Lead.Coupon_Code_2__c</field>
-            <operation>equals</operation>
-            <value>QBW,Q7E</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.i2i_Coupon_Code_Pass__c</field>
-            <operation>equals</operation>
-            <value>QBW,Q7E</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>Route MVF leads to Queue for Omni</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Mobile Lead Assignment</fullName>
-        <actions>
-            <name>Lead_Owner_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Coupon_Code_2__c</field>
-            <operation>equals</operation>
-            <value>OCT</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.LeadSource</field>
-            <operation>equals</operation>
-            <value>Mobile</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>New_Lead_Begin_Cycle</fullName>
-        <actions>
-            <name>Call_Stage_Place_1st_Call</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Next_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Place_1st_Call</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>7 AND (1 AND 2 AND 3 AND 4 AND 5) OR (6 AND 2 AND 3)</booleanFilter>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>notEqual</operation>
-            <value>1st Call,Legacy,Import</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>equals</operation>
-            <value>Fleet Lead,Asia Corporate Payments Lead,AU Corporate Payments Lead,EU Corporate Payments Lead,NA Corporate Payments Lead,WEX Payables,WEX Payables</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>notContain</operation>
-            <value>Queue</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Product_Service_Type__c</field>
-            <operation>notEqual</operation>
-            <value>Permits</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.LeadSource</field>
-            <operation>notEqual</operation>
-            <value>Existing SFDC Record</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Call_Stage__c</field>
-            <operation>equals</operation>
-            <value>1st Call</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>notContain</operation>
-            <value>RTS Partners - F1</value>
-        </criteriaItems>
-        <description>For newly created Fleet Leads, that are not Legacy imports, and not assigned to a queue, and not a Permit lead, defaults first call stage task and updates next call date. Filter out Call Stage = &quot;Import&quot; for mass imports.</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed Prepass Partner</fullName>
-        <actions>
-            <name>Tag_Partner_PrePass</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Travis Lehew</value>
-        </criteriaItems>
-        <description>F1 Partner Portal - PrePass</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to BSNF Fuel Card</fullName>
-        <actions>
-            <name>Tag_Partner_BSNF</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>BSNF</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to D%26S Fuel Card</fullName>
-        <actions>
-            <name>Tag_Partner_D_S_Fuel_Card</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>D&amp;S Fuel Card</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to D%26S Support</fullName>
-        <actions>
-            <name>Tag_Partner_D_S_Supoort</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>D&amp;S Support</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to Discount Diesel Fuel Card</fullName>
-        <actions>
-            <name>Tag_Partner_Discount_Diesel</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>Discount Diesel</value>
-        </criteriaItems>
-        <description>Discount Diesel F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to England Logistics</fullName>
-        <actions>
-            <name>Created_by_Partner_England_Logistics</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 OR 2 OR 3</booleanFilter>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Kevin Ellis</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Steven Mouritsen</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Alex Weiche</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to GE Capital</fullName>
-        <actions>
-            <name>Tag_GE_Capital_Leads</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <booleanFilter>1 OR 2</booleanFilter>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>John Conkin</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Kristin Larimore</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to NASTC</fullName>
-        <actions>
-            <name>Tag_Partner_NASTC</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>NASTC</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to Pavestone Capital</fullName>
-        <actions>
-            <name>Tag_Partner_Pavestone_Capital</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Pavestone Capital</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to Quality Companies</fullName>
-        <actions>
-            <name>Tag_Partner_Quality_Companies</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>Quality Companies</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to RTS</fullName>
-        <actions>
-            <name>Tag_Partner_RTS</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Rick Albright</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to Roady%27s Card</fullName>
-        <actions>
-            <name>Tag_Partner_to_Roady_s_Card</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Roady&apos;s Card</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to STC Fuel Card</fullName>
-        <actions>
-            <name>Tag_Partner_STC</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>STC</value>
-        </criteriaItems>
-        <description>STC F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to Single Point Fuel Card</fullName>
-        <actions>
-            <name>Tag_Partner_Single_Point</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>Single</value>
-        </criteriaItems>
-        <description>Single Point F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to Trans-Alliance</fullName>
-        <actions>
-            <name>Tag_Partner_Trans_Alliance</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Jessie Singh</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to Trulos</fullName>
-        <actions>
-            <name>Partner_Tag_Trulos</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Winfield Rinkle</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to Vessix Fuel Card</fullName>
-        <actions>
-            <name>Tag_Partner_Vessix</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>Vessix</value>
-        </criteriaItems>
-        <description>Vessix F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Owner Changed to WilcoHess</fullName>
-        <actions>
-            <name>Tag_Partner_Mike_Gordon</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.OwnerId</field>
-            <operation>equals</operation>
-            <value>Mike Gordon</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Pardot Form Completed</fullName>
-        <actions>
-            <name>Change_Owner_To_Pardot_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <formula>AND(
-  OR(
-    RecordType.DeveloperName = &apos;CorporatePay&apos;,
-    RecordType.DeveloperName = &apos;Virtual&apos;
-  ),
-OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
-    Owner:User.UserRoleId = &apos;00E70000001T0f4EAC&apos;
-),
-  Owner:User.IsActive = FALSE,
-   ISCHANGED(Last_Form_Completion_Date__c),
-  /*
-  Rule should only be triggered if this is the first time it&apos;s been triggered in the past 90 days
-  */
-  NOT(PRIORVALUE(Last_Form_Completion_Date__c) &gt;= TODAY() - 90),
-  Last_Form_Completion_Date__c &gt;= TODAY() - 90
-)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Populate Card Program ID Local</fullName>
-        <actions>
-            <name>Card_Program_ID_Local</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Populate_Card_Program_WF_TXT_Lead</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Product_Service_Type__c</field>
-            <operation>equals</operation>
-            <value>Fleet Card - Direct Local</value>
-        </criteriaItems>
-        <description>If the Product/Service Type is Fleet Card - Direct Local, then Card Program ID is 0017000000un4U3.</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Populate Card Program ID OTR</fullName>
-        <actions>
-            <name>Card_Program_ID_OTR</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Populate_Card_Program_WF_TXT_Lead</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Product_Service_Type__c</field>
-            <operation>equals</operation>
-            <value>Fleet Card - Direct OTR</value>
-        </criteriaItems>
-        <description>If the Product/Service Type is Fleet Card - Direct OTR then Card Program ID is 0017000000un4U1.</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Product Interest Update</fullName>
-        <actions>
-            <name>Opportunity_Product_Interest_Update</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Product_Interest__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Prospect ID %26 Source %3D Manual</fullName>
-        <actions>
-            <name>Prospect_Id_Manual</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Provider_Source_Manual</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Coupon_Code_2__c</field>
-            <operation>equals</operation>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Rapid email alert for new web leads</fullName>
-        <active>false</active>
-        <criteriaItems>
-            <field>Lead.qRouting__c</field>
-            <operation>equals</operation>
-            <value>WEBPAYCARDQ</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Send Activity to New Lead Owner</fullName>
-        <actions>
-            <name>New_Short_App_Lead</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <description>This workflow will send an activity to the new lead owner for leads in the &apos;Short App&apos; Queue.</description>
-        <formula>AND( ISCHANGED(OwnerId), PRIORVALUE(OwnerId) =  &quot;00G70000001uAcF&quot;)</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Set Total Vehicle Count</fullName>
-        <active>false</active>
-        <booleanFilter>1 or 2</booleanFilter>
-        <criteriaItems>
-            <field>Lead.Number_of_Tractors__c</field>
-            <operation>greaterThan</operation>
-            <value>0</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Number_of_Other_Fuel_Vehicles__c</field>
-            <operation>greaterThan</operation>
-            <value>0</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag 123Loadboard Leads</fullName>
         <actions>
             <name>Tag_Partner_123Loadboard</name>
@@ -3315,62 +842,18 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag 3MD Solutions Leads</fullName>
+        <fullName>Tag ASSIST FINANCIAL SERVICES Leads</fullName>
         <actions>
-            <name>Set_created_by_3MD_parner_tag</name>
+            <name>Tag_Partner_ASSIST_FINANCIAL_SERVICES</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>contains</operation>
-            <value>3MD</value>
+            <field>Lead.CreatedById</field>
+            <operation>equals</operation>
+            <value>Karen Tulloss</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag AAble iFleet Leads</fullName>
-        <actions>
-            <name>Tag_AAble_iFleet</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>Aable</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If AAble iFleet  partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag AMBEST Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Ambest</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>AMBEST</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If AMBEST partner user creates a lead</description>
+        <description>If ASSIST FINANCIAL SERVICES Partner User Karen Tulloss creates a lead.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -3404,26 +887,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag BSNF Fuel Card Leads</fullName>
-        <actions>
-            <name>Tag_Partner_BSNF</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>Bridgestone</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If BSNF Fuel Card partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag CJM Financial Leads</fullName>
         <actions>
             <name>Tag_Partner_CJM_Financial</name>
@@ -3439,43 +902,18 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag CarsArrive Leads</fullName>
+        <fullName>Tag Century Leads</fullName>
         <actions>
-            <name>set_Created_by_CarsArrive</name>
+            <name>Tag_Partner_Century</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>
             <field>Lead.CreatedById</field>
             <operation>equals</operation>
-            <value>CarsArrive Fuel Card</value>
+            <value>JARED SEEMAN</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If CarsArrive partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag CenterFire Leads</fullName>
-        <actions>
-            <name>Tag_CenterFire</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>equals</operation>
-            <value>Justin Heim</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If CenterFire partner user creates a lead</description>
+        <description>If Century Partner User JARED SEEMAN creates a lead.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -3509,26 +947,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag D%26S Fuel Card Leads</fullName>
-        <actions>
-            <name>Tag_Partner_D_S_Fuel_Card</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>D&amp;S Fuel Card</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If D&amp;S Fuel Card partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag DAT Leads</fullName>
         <actions>
             <name>Tag_Partner_DAT</name>
@@ -3541,26 +959,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
             <value>Bert Goo</value>
         </criteriaItems>
         <description>If DAT User Bert Goo creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag Discount Diesel Fuel Card Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Discount_Diesel</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>Discount Diesel</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If Discount Diesel Fuel Card partner user creates a lead</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -3577,26 +975,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         </criteriaItems>
         <description>If ECAPITAL Partner User  Raul Pena creates a lead.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag England Logistics Leads</fullName>
-        <actions>
-            <name>Created_by_Partner_England_Logistics</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>England Logistics</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If England Logistics partner user creates a lead</description>
-        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>Tag Engs Commercial Capital Leads</fullName>
@@ -3641,26 +1019,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
             <value>Bryan Doty</value>
         </criteriaItems>
         <description>If Express Freight Partner User Bryan Doty creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag Express Truck Tax Leads</fullName>
-        <actions>
-            <name>Express_Truck_Tax</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>SPAN</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If Express Truck Tax partner user creates a lead</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -3709,45 +1067,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag Fleet Savings Leads</fullName>
-        <actions>
-            <name>Set_created_by_Fleet_Savings_Partner_Tag</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>contains</operation>
-            <value>Fleet Savings</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag FleetPro Services Leads</fullName>
-        <actions>
-            <name>Set_created_by_FleetPro_Partner_Tag</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Owner_Profile__c</field>
-            <operation>startsWith</operation>
-            <value>FleetPro Services</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If FleetPro Services partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag Foley Carrier Services Leads</fullName>
         <actions>
             <name>Tag_Partner_Foley_Carrier_Services</name>
@@ -3778,23 +1097,18 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag Fuelbook Leads</fullName>
+        <fullName>Tag G SQUARED Leads</fullName>
         <actions>
-            <name>set_Created_by_to_Fuelbook</name>
+            <name>Tag_Partner_G_SQUARED</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>
             <field>Lead.CreatedById</field>
             <operation>equals</operation>
-            <value>Tom Moreland</value>
+            <value>RON GABBAI</value>
         </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If Fuelbook partner user creates a lead</description>
+        <description>If G SQUARED Partner User RON GABBAI creates a lead.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -3813,32 +1127,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag GE Capital Leads</fullName>
-        <actions>
-            <name>Tag_GE_Capital_Leads</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>(1 OR 2) and 3</booleanFilter>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>equals</operation>
-            <value>John Conkin</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>equals</operation>
-            <value>Kristin Larimore</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If GE Capital partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag Great Plains Leads</fullName>
         <actions>
             <name>Tag_Partner_Great_Plains</name>
@@ -3851,26 +1139,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
             <value>Jerry Van Wyk</value>
         </criteriaItems>
         <description>If Great Plains Partner User Jerry Van Wyk creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag InTouch GPS Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Intouch_GPS</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>InTouch GPS</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If InTouch GPS partner user creates a lead</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -3949,46 +1217,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag Jessie Singh Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Trans_Alliance</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>equals</operation>
-            <value>Jessie Singh</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If Trans-Alliance Partner User Jessie Singh creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag Knight Logistics Leads</fullName>
-        <actions>
-            <name>Tag_Knight_Logistics_Leads</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>contains</operation>
-            <value>Knight Logistics</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>Tag Knight Logistics Leads</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag Liquid Capital Leads</fullName>
         <actions>
             <name>Tag_Partner_Liquid_Capital</name>
@@ -4004,60 +1232,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag Mansfield Oil Company Leads</fullName>
-        <actions>
-            <name>Tag_Mansfield_Oil_Company_Leads</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>contains</operation>
-            <value>Mansfield</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag Mike Gordon Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Mike_Gordon</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>equals</operation>
-            <value>Mike Gordon</value>
-        </criteriaItems>
-        <description>If WilcoHess partner Mike Gordon creates a lead.</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag NASTC Leads</fullName>
-        <actions>
-            <name>Tag_Partner_NASTC</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>NASTC</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag OTR Capital Leads</fullName>
         <actions>
             <name>Tag_Partner_OTR_Capital</name>
@@ -4070,26 +1244,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
             <value>Cody Barwig</value>
         </criteriaItems>
         <description>If OTR Capital Partner User Cody Barwig creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag PTP Stop NATSN Leads</fullName>
-        <actions>
-            <name>Tag_PTP_Stop_NATSN</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>contains</operation>
-            <value>PTP Stop NATSN</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>Tag PTP Stop NATSN Leads</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -4123,26 +1277,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag Patriot Fleet Solutions Leads</fullName>
-        <actions>
-            <name>Tag_Patriot_Fleet_Systems</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>contains</operation>
-            <value>Peoplease</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>Tag Patriot Fleet Solutions Partner</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag Pay4Freight Leads</fullName>
         <actions>
             <name>Tag_Partner_Pay4Freight</name>
@@ -4173,41 +1307,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag PrePass Leads</fullName>
-        <actions>
-            <name>Tag_Partner_PrePass</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>equals</operation>
-            <value>Travis Lehew</value>
-        </criteriaItems>
-        <description>If RTS Partner User Travis creates a lead.</description>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag Quality Companies Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Quality_Companies</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>Quality Companies</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If Quality Companies partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag Quick Pay Funding Leads</fullName>
         <actions>
             <name>Tag_Partner_Quick_Pay_Funding</name>
@@ -4223,26 +1322,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag STC Fuel Card Leads</fullName>
-        <actions>
-            <name>Tag_Partner_STC</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>STC</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If STC Fuel Card partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag SUMMAR Leads</fullName>
         <actions>
             <name>Tag_Partner_SUMMAR</name>
@@ -4255,26 +1334,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
             <value>Jessi Saker</value>
         </criteriaItems>
         <description>If SUMMAR Partner User Jessi Saker creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag Single Point Fuel Card Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Single_Point</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>Single</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If Single Point Fuel Card partner user creates a lead</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -4320,26 +1379,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
             <value>Debbie Kimberland</value>
         </criteriaItems>
         <description>If Sunbelt Partner User Debbie Kimberland creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag TBS Factoring Service Leads</fullName>
-        <actions>
-            <name>Tag_TBS_Factoring_Service</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>contains</operation>
-            <value>TBS Factoring Service</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>Tag TBS Factoring Service</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -4394,26 +1433,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag Truckers B2B Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Truckers_B2B</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>Truckers B2B</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag Truckers Solutions Leads</fullName>
         <actions>
             <name>Tag_Partner_Truckers_Solutions</name>
@@ -4429,26 +1448,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
-        <fullName>Tag Trulos Leads</fullName>
-        <actions>
-            <name>Partner_Tag_Trulos</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>equals</operation>
-            <value>Winfield Rinkle</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If Trulos partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
         <fullName>Tag Vero Business Capital Leads</fullName>
         <actions>
             <name>Tag_Partner_Vero_Business_Capital</name>
@@ -4461,46 +1460,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
             <value>Trey Heath</value>
         </criteriaItems>
         <description>If Vero Business Capital Partner User Trey Heath creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag Vessix Fuel Card Leads</fullName>
-        <actions>
-            <name>Tag_Partner_Vessix</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>Vessix</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>If Vessix Fuel Card partner user creates a lead</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Tag XPO Logistics Leads</fullName>
-        <actions>
-            <name>Tag_XPO_Logistics</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>User.Role_Name__c</field>
-            <operation>startsWith</operation>
-            <value>XPO Logistics</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <description>F1 Partner Portal</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -4531,130 +1490,6 @@ OR( Owner:User.UserRoleId  = &apos;00E70000001T1T4EAK&apos;,
             <value>Robert Marker</value>
         </criteriaItems>
         <description>If iThrive Funding Partner User Robert Marker creates a lead.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Task Created when Lead Disqualified</fullName>
-        <actions>
-            <name>Lead_Disqualified</name>
-            <type>Task</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Status</field>
-            <operation>equals</operation>
-            <value>Disqualified</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>User.ProfileId</field>
-            <operation>equals</operation>
-            <value>Aquarient Sales,System Administrator</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Update Last Contact</fullName>
-        <actions>
-            <name>Update_Last_Contact</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Call_Outcome__c</field>
-            <operation>startsWith</operation>
-            <value>No Answer,Left Voicemail</value>
-        </criteriaItems>
-        <description>Updates last contact when user inputs the outcome of the existing call attempt.</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>Updated hidden Prospect Id and Provider Source</fullName>
-        <actions>
-            <name>Prospect_Id_to_Opp</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>Provider_Source_to_Opp</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.CreatedById</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <description>So those values can be sent to the Opportunity on Lead Conversion</description>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <rules>
-        <fullName>WEBISSQ for NFIB S4M Group Nashville</fullName>
-        <actions>
-            <name>Assign_to_Fleet_Outbound_Sales_Queue</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <booleanFilter>1 AND 2 and 3 and 4 and 5</booleanFilter>
-        <criteriaItems>
-            <field>Lead.qRouting__c</field>
-            <operation>equals</operation>
-            <value>WEBISSQ</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.i2i_Coupon_Code_Pass__c</field>
-            <operation>notContain</operation>
-            <value>EQR</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Status</field>
-            <operation>equals</operation>
-            <value>Untouched</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Description</field>
-            <operation>contains</operation>
-            <value>National Federation of Independent Business</value>
-        </criteriaItems>
-        <description>Route NFIB leads to Nashville team through Omni</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>WEBOBSQ Leads to W2L Fleet Outbound Sales Queue</fullName>
-        <actions>
-            <name>Assign_to_Fleet_Outbound_Sales_Q</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <booleanFilter>1 and (2 and 3 and 4 and 5)</booleanFilter>
-        <criteriaItems>
-            <field>Lead.qRouting__c</field>
-            <operation>equals</operation>
-            <value>WEBOBSQ</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.i2i_Coupon_Code_Pass__c</field>
-            <operation>notContain</operation>
-            <value>EQR,QBW,Q7E,WQM</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Status</field>
-            <operation>equals</operation>
-            <value>Untouched</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.RecordTypeId</field>
-            <operation>notEqual</operation>
-            <value>Parent Lead</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Lead.Coupon_Code_2__c</field>
-            <operation>notEqual</operation>
-            <value>LB1,LB2,LB3,LB4,LB5,LB6,LB7,LB8,LB9</value>
-        </criteriaItems>
-        <description>Leads that come in the qRouting WEBOBSQ need to go to Nashville Team Queue for Omni Channel Routing. This is a workaround for Lead Assignment rule that is not firing (investigating)</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
@@ -4900,163 +1735,4 @@ NOT(ISCHANGED(WES_Petrol_used_per_month_Litres__c))
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
-    <rules>
-        <fullName>Wright Lead Record Type</fullName>
-        <actions>
-            <name>Record_Type_Wright_Lead</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.LeadSource</field>
-            <operation>equals</operation>
-            <value>Gulf OBS Queue,Conoco OBS Queue,Sunoco OBS Queue</value>
-        </criteriaItems>
-        <description>When the Lead Source equals Conoco OBS Queue,Gulf OBS Queue,Sunoco OBS Queue change the record type to Wright Leads</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>set Card Product - Local</fullName>
-        <active>false</active>
-        <description>If “# of 18 Wheelers” is less than “# of Other Fuel Vehicles” 
-then “Card Product” = Local</description>
-        <formula>Number_of_Tractors__c &lt; Number_of_Other_Fuel_Vehicles__c</formula>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>set Card Product - OTR</fullName>
-        <active>false</active>
-        <description>If “# of 18 Wheelers” is greater than or equal to “# of Other Fuel Vehicles” 
-then “Card Product” = OTR</description>
-        <formula>Number_of_Tractors__c &gt;=  Number_of_Other_Fuel_Vehicles__c</formula>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
-    <rules>
-        <fullName>set Lead Source Website - Oppt</fullName>
-        <actions>
-            <name>set_Lead_Source_Website_Oppt</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>Lead.Lead_Source_Website__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
-    <tasks>
-        <fullName>Call</fullName>
-        <assignedToType>owner</assignedToType>
-        <description>Please reach out immediately on this new Gold lead from EFS ISR.</description>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>Lead.CreatedDate</offsetFromField>
-        <priority>2-High</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Call</subject>
-    </tasks>
-    <tasks>
-        <fullName>Follow_Up_Call_After_Email_Campaign_Action</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>1</dueDateOffset>
-        <notifyAssignee>true</notifyAssignee>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Follow Up Call After Email Campaign Action</subject>
-    </tasks>
-    <tasks>
-        <fullName>Lead_Disqualified</fullName>
-        <assignedToType>owner</assignedToType>
-        <description>Lead Disqualified</description>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <offsetFromField>Lead.Lead_Disqualified_Date__c</offsetFromField>
-        <priority>2-High</priority>
-        <protected>false</protected>
-        <status>Completed</status>
-        <subject>Lead Disqualified</subject>
-    </tasks>
-    <tasks>
-        <fullName>New_Short_App_Lead</fullName>
-        <assignedToType>owner</assignedToType>
-        <description>You have been assigned a new Short App Lead.</description>
-        <dueDateOffset>1</dueDateOffset>
-        <notifyAssignee>true</notifyAssignee>
-        <priority>2-High</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>New Short App Lead</subject>
-    </tasks>
-    <tasks>
-        <fullName>Place</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>7</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Place 5th Call</subject>
-    </tasks>
-    <tasks>
-        <fullName>Place_1st_Call</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>0</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Place 1st Call</subject>
-    </tasks>
-    <tasks>
-        <fullName>Place_1st_Call2</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>100</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Place 1st Call (New Cycle)</subject>
-    </tasks>
-    <tasks>
-        <fullName>Place_2nd_Call</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>7</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Place 2nd Call</subject>
-    </tasks>
-    <tasks>
-        <fullName>Place_3rd_Call</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>7</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Place 3rd Call</subject>
-    </tasks>
-    <tasks>
-        <fullName>Place_4th_Call</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>7</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Place 4th Call</subject>
-    </tasks>
-    <tasks>
-        <fullName>Place_6th_Call</fullName>
-        <assignedToType>owner</assignedToType>
-        <dueDateOffset>7</dueDateOffset>
-        <notifyAssignee>false</notifyAssignee>
-        <priority>Normal</priority>
-        <protected>false</protected>
-        <status>Not Started</status>
-        <subject>Place 6th Call</subject>
-    </tasks>
 </Workflow>

@@ -149,16 +149,6 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>OPPORTUNITY.NAME</fields>
-        <fields>OPPORTUNITY.STAGE_NAME</fields>
-        <fields>ACCOUNT.NAME</fields>
-        <fields>CORE.USERS.FULL_NAME</fields>
-        <fields>Campaign_Program__c</fields>
-        <fields>OPPORTUNITY.RECORDTYPE</fields>
-        <fields>TB2B_Product_Interest__c</fields>
-        <relatedList>Opportunity.Account_Goal__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <fields>TASK.SUBJECT</fields>
         <fields>TASK.WHO_NAME</fields>
         <fields>ACTIVITY.TASK</fields>

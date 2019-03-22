@@ -28,4 +28,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>eApp Redirect</label>
+    <pluralLabel>eApp Redirects</pluralLabel>
+    <visibility>Public</visibility>
 </CustomObject>

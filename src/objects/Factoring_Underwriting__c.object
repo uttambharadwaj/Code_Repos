@@ -1,26 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <listViews>
-        <fullName>Factoring_Underwriting_Factoring_Underwriting</fullName>
-        <columns>NAME</columns>
-        <columns>Opportunity__c</columns>
-        <filterScope>Queue</filterScope>
-        <label>Factoring Underwriting</label>
-        <language>en_US</language>
-        <queue>Factoring_Underwriting</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <validationRules>
-        <fullName>Dates_For_Factoring_Recourse_Approved</fullName>
+    <fields>
+        <fullName>Beneficial_Owner_Entity__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(Opportunity__r.Beneficial_Owner_Entity__c, Opportunity__r.Beneficial_Owner_Entity__r.Name)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Beneficial Owner Entity</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Beneficial_Owner_Information__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Beneficial Owner Information</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Beneficial_Owner_Entity__c.Opportunity__c</field>
+                <operation>equals</operation>
+                <valueField>$Source.Opportunity__c</valueField>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Beneficial_Owner_Entity__c</referenceTo>
+        <relationshipLabel>Factoring Underwriting</relationshipLabel>
+        <relationshipName>Factoring_Underwriting</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>MC__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>MC#</label>
+        <length>25</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <recordTypes>
+        <fullName>Non_Recourse</fullName>
         <active>true</active>
-        <description>Contract Sent Date and Contract Received Date for Recourse Facility Type are required when changing the Credit Decision to Approved</description>
-        <errorConditionFormula>AND(ISPICKVAL(Credit_Decision__c,&quot;Approved&quot;), 
-   RecordType.DeveloperName =&quot;Recourse&quot;,
-OR(ISBLANK( Contract_Received_Date__c), 
-ISBLANK( Contract_Sent_Date__c)))</errorConditionFormula>
-        <errorDisplayField>Contract_Received_Date__c</errorDisplayField>
-        <errorMessage>Contract Sent Date and Contract Received Date are essential for marking the Credit Decision as &quot;Approved&quot;.</errorMessage>
-    </validationRules>
+        <label>Non-Recourse</label>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Recourse</fullName>
+        <active>true</active>
+        <label>Recourse</label>
+    </recordTypes>
 </CustomObject>

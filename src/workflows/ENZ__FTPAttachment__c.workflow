@@ -19,18 +19,4 @@
         <protected>false</protected>
         <useDeadLetterQueue>false</useDeadLetterQueue>
     </outboundMessages>
-    <rules>
-        <fullName>INTEGRATION - Attachment Message to WOL NP</fullName>
-        <actions>
-            <name>Attachment_Message_Sent_to_WOL_NP</name>
-            <type>OutboundMessage</type>
-        </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>ENZ__FTPAttachment__c.ENZ__Bytes__c</field>
-            <operation>greaterThan</operation>
-            <value>0</value>
-        </criteriaItems>
-        <triggerType>onCreateOnly</triggerType>
-    </rules>
 </Workflow>

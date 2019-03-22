@@ -3,6 +3,11 @@
     <doesSendEmailToMembers>false</doesSendEmailToMembers>
     <email>corporate@wexaustralia.com</email>
     <name>AU Key Accounts</name>
+    <queueMembers>
+        <roles>
+            <role>AU_Customer_Care_Team</role>
+        </roles>
+    </queueMembers>
     <queueSobject>
         <sobjectType>AU_Application_Request__c</sobjectType>
     </queueSobject>

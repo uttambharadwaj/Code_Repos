@@ -1,5 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Actual_Participation_Hours__c</fullName>
         <externalId>false</externalId>
@@ -214,6 +267,7 @@
         <type>MasterDetail</type>
         <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
+    <label>Training Event</label>
     <listViews>
         <fullName>All</fullName>
         <columns>Training_Class_Number__c</columns>
@@ -316,6 +370,27 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Learning_Plan_Phase_I_No_Score</fullName>
+        <columns>Training_Class_Name__c</columns>
+        <columns>Attendee__c</columns>
+        <columns>Level_2_Learning__c</columns>
+        <columns>Score__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Training_Class_Name__c</field>
+            <operation>equals</operation>
+            <value>Learning Plan Phase I - General Audience</value>
+        </filters>
+        <filters>
+            <field>Score__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>Learning Plan - Phase I No Score</label>
+        <sharedTo>
+            <role>LearningandDevelopment</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>March_2019_Sales_Onboarding_Events</fullName>
         <columns>NAME</columns>
         <columns>Attendee__c</columns>
@@ -355,7 +430,64 @@
         <columns>Level_3_Application__c</columns>
         <columns>Level_4_Business_Impact__c</columns>
         <filterScope>Mine</filterScope>
-        <label>My Training Events</label>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>My Training Events created this week</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>CSI_Global_Fleet_Partner_Group</group>
+            <group>Global_Sales_Operations</group>
+            <group>Global_Training_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Training_Events_Created_today</fullName>
+        <columns>NAME</columns>
+        <columns>Attendee__c</columns>
+        <columns>Actual_Participation_Hours__c</columns>
+        <columns>Training_Class_Name__c</columns>
+        <columns>Training_Class_Number__c</columns>
+        <columns>Participation_Type__c</columns>
+        <columns>Score__c</columns>
+        <columns>Level_1_Reaction__c</columns>
+        <columns>Level_2_Learning__c</columns>
+        <columns>Level_3_Application__c</columns>
+        <columns>Level_4_Business_Impact__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </filters>
+        <label>My Training Events Created Today</label>
+        <sharedTo>
+            <role>LearningandDevelopment</role>
+            <role>Support_Operations</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>My_Training_Events_to_modify_add_class</fullName>
+        <columns>NAME</columns>
+        <columns>Attendee__c</columns>
+        <columns>Actual_Participation_Hours__c</columns>
+        <columns>Training_Class_Name__c</columns>
+        <columns>Training_Class_Number__c</columns>
+        <columns>Participation_Type__c</columns>
+        <columns>Score__c</columns>
+        <columns>Level_1_Reaction__c</columns>
+        <columns>Level_2_Learning__c</columns>
+        <columns>Level_3_Application__c</columns>
+        <columns>Level_4_Business_Impact__c</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Training_Class_Name__c</field>
+            <operation>contains</operation>
+            <value>Integrity Coaching</value>
+        </filters>
+        <label>My Training Events to modify (add class)</label>
         <sharedTo>
             <group>CSI_Global_Fleet_Partner_Group</group>
             <group>Global_Sales_Operations</group>
@@ -379,4 +511,13 @@
             <role>LearningandDevelopment</role>
         </sharedTo>
     </listViews>
+    <nameField>
+        <displayFormat>TE-{0000000}</displayFormat>
+        <label>Training Event Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Training Events</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>

@@ -10,7 +10,7 @@
     <label>ICM</label>
     <oauthConfig>
         <callbackUrl>https://localhost443</callbackUrl>
-        <consumerKey>3MVG9srSPoex34FXtIAd.Jwaj1Ks.ETY40Rxs6zi5JgPkEUw0OAkpAhaNS1dq0jpDADrg7f_9Cjr2AetgUovs</consumerKey>
+        <consumerKey>3MVG90D5vR7Utjboc8b3nxgWl_Z_rPMm9Ji2Iahc2bEt_heEJgbiPcUQx12h3HFH9siJmzh3tddzrmaEV_jzf</consumerKey>
         <scopes>Full</scopes>
     </oauthConfig>
 </ConnectedApp>

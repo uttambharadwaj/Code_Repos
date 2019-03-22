@@ -1,42 +1,988 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <validationRules>
-        <fullName>Campaign_Type</fullName>
+    <recordTypes>
+        <fullName>AU_Event</fullName>
         <active>true</active>
-        <description>Ensure that the event is not linked to a parent campaign.</description>
-        <errorConditionFormula>AND(
-
-OR(
-Event_Conference_Name__r.RecordType.Name = &apos;CorporatePay&apos;,
-Event_Conference_Name__r.RecordType.Name = &apos;CorporatePay Marketing Events Master&apos;,
-Event_Conference_Name__r.RecordType.Name = &apos;CorporatePay Parent&apos;),
-
-NOT(TEXT(Event_Conference_Name__r.Type) = &apos;Parent&apos;),
-NOT(TEXT(Event_Conference_Name__r.Type) = &apos;Trade Show&apos;)
-
-)</errorConditionFormula>
-        <errorDisplayField>Event_Conference_Name__c</errorDisplayField>
-        <errorMessage>Please search for the parent campaign (it&apos;s name is the name of the event or partner only)</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Event_Conference_Name</fullName>
+        <description>Used by AU Fuel</description>
+        <label>AU Event</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>In Person Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting - Conf Call</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>In Person Meeting</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Meeting - Conf Call</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CorporatePay_RM_Event</fullName>
         <active>true</active>
-        <description>Requires user to select name of event / conference, if this meeting type has been selected</description>
-        <errorConditionFormula>AND(
-
-RecordType.Id = &apos;012700000005wVs&apos;,
-ISPICKVAL(Type,&quot;Events / Conferences&quot;),
-ISBLANK( Event_Conference_Name__c )
-
-)</errorConditionFormula>
-        <errorDisplayField>Event_Conference_Name__c</errorDisplayField>
-        <errorMessage>Please select the name of the event / conference.</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Meeting_Location</fullName>
-        <active>false</active>
-        <errorConditionFormula>AND(OR( Text(Activity_Type__c )=&quot;Sales Meeting&quot;, Text(Activity_Type__c)=&quot;Service Meeting&quot;), Location =&quot;&quot;)</errorConditionFormula>
-        <errorDisplayField>Location</errorDisplayField>
-        <errorMessage>Please provide a location for this meeting.</errorMessage>
-    </validationRules>
+        <description>For Relationship Management team</description>
+        <label>CorporatePay RM Event</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter%2FQuote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Director Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Events %2F Conferences</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Financial</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Operational</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Review Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sales Handover</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>F1_Event</fullName>
+        <active>true</active>
+        <description>Used by F1 users</description>
+        <label>F1 Event</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter%2FQuote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>General_Event</fullName>
+        <active>true</active>
+        <label>General Event</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter%2FQuote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Virtual_Event</fullName>
+        <active>true</active>
+        <label>Virtual Event</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Send Letter%2FQuote</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>rPayCard</fullName>
+        <active>true</active>
+        <label>rapid PayCard</label>
+        <picklistValues>
+            <picklist>CallOutcome__c</picklist>
+            <values>
+                <fullName>Account Activation Issues</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Can%27t Reach Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cards Not Received</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Existing Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Found Other Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Interested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Ready To Use</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OOB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Qualified</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Unanswered</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>ReasonDisqualified__c</picklist>
+            <values>
+                <fullName>B- Bulk</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Barred</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FI - Future Interest</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Invalid Number</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LS - Low Spend</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N- Network</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NCV - No Company Vehicles</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O - Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OP - Other Provider</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>P - Price</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RES - Reseller Customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UTR - Unable to Reach after multiple attempts</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WES - Direct WES Customer</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Subject</picklist>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enrollment Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Person Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Meeting - Conf Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>RFP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Presentation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Cycle Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Enrollment Demo</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Person Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting - Conf Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Meeting Attempt</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Prospecting Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Web Presentation</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
 </CustomObject>

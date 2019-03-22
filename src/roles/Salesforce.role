@@ -4,7 +4,7 @@
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>Service operations Agent</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
-    <name>Contact Center</name>
+    <name>eServices</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
     <parentRole>eServices_Team_Leader</parentRole>
 </Role>

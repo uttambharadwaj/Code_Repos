@@ -61,6 +61,11 @@ public class OTRBOCAController {
 
             String pg = ApexPages.currentPage().getParameters().get('pg');
 
+            Boolean prepay = false;
+            if (onlineApplication.Account_Type__c != null && onlineApplication.Account_Type__c.equalsIgnoreCase('Prepay')) {
+                prepay = true;
+            }
+
             if ((pg != null && pg == 'n') || (onlineApplicationOffer.Funding__c).equalsIgnoreCase('Parent Funded')) {
                 return false;
             } else if (pg != null && pg == 'a') {
@@ -69,17 +74,15 @@ public class OTRBOCAController {
                 Date rightNow = Date.today();
 
                 if (onlineApplication.Year_Established__c != null && ((rightNow.year()) - Integer.valueOf(onlineApplication.Year_Established__c)) <= 1) {
-
                     return true;
-                } else if (onlineApplication.Type_of_Business__c != null && ((onlineApplication.Type_of_Business__c).equalsIgnoreCase('Sole Proprietorship')
+
+                } else if (!prepay && onlineApplication.Type_of_Business__c != null && ((onlineApplication.Type_of_Business__c).equalsIgnoreCase('Sole Proprietorship')
                         || (onlineApplication.Type_of_Business__c).equalsIgnoreCase('Proprietorship')
                         || (onlineApplication.Type_of_Business__c).equalsIgnoreCase('Partnership'))) {
                     return true;
                 }
             }
-
             return false;
-
         }
     }
 
@@ -227,7 +230,7 @@ public class OTRBOCAController {
                 }
 
             }
-            
+
             if (onlineApplication != null && onlineApplication.Account_Type__c == 'Prepay' && onlineApplicationOffer != null && onlineApplicationOffer.Available_Prepay_Payment_Methods__c != null) {
 
                 for (String option : onlineApplicationOffer.Available_Prepay_Payment_Methods__c.split(';')) {
@@ -235,7 +238,7 @@ public class OTRBOCAController {
                 }
 
             }
- 
+
             return picklistValues;
 
         }
@@ -331,11 +334,11 @@ public class OTRBOCAController {
                             List<OnlineApplication__c> partialOnlineApplications = [
                                     SELECT Id, Opportunity__r.Beneficial_Owner_Entity__c, AO_Address__c, AO_City__c, AO_Home_Phone_Number__c,
                                             AO_Mobile_Number__c, AO_State__c, AO_Title__c, AO_Zip_Code__c, AO_Country__c, Account__c, Business_Address_Line_2__c, Business_Description__c,
-                                            Business_Street_Address__c, Cell_Number__c, City__c, Contact_First_Name__c, Contact_Last_Name__c, Credit_Line_Requested__c,
+                                            Business_Street_Address__c, Cell_Number__c, City__c, Country__c, Contact_First_Name__c, Contact_Last_Name__c, Credit_Line_Requested__c,
                                             DOT_Number__c, Day_of_Payment__c, Email__c, FF_Number__c, Fax_Number__c, Financial_Institution__c, Legal_Business_Name__c,
                                             MC_FF_or_DOT__c, MC_Number__c, Name_of_Parent_Company__c, Number_Of_Drivers__c, Number_of_Cards_Needed__c, Number_of_Trucks__c,
                                             Payment_Method__c, Phone_Number__c, Promotional_Code__c, State__c, Trade_Name__c, Type_of_Business__c, Year_Established__c, Zip_code__c, Account_Type__c,
-                                            Mobile_Number__c
+                                            Mobile_Number__c, Application_Key__c, External_Application_URL__c
                                     FROM OnlineApplication__c
                                     WHERE Id = :partialCustomer and Application_Stage__c = 'Application' and Status__c = 'App-Incomplete' and Application_Key__c = :applicationKey
                             ];
@@ -360,7 +363,7 @@ public class OTRBOCAController {
                             List<WeFormObject__c> partialOnlineApplications = [
                                     SELECT Id, Company_Name__c, Doing_Business_As__c, Business_Phone__c, Mobile_Phone__c,
                                             Business_fax__c, First_Name__c, DUNS_Number__c, Parent_Company__c,
-                                            Business_Street_Address__c, Address_Line_2__c, City__c, State__c, Zip_code__c, Fleet_Size__c,
+                                            Business_Street_Address__c, Address_Line_2__c, City__c, State__c, Country__c, Zip_code__c, Fleet_Size__c,
                                             Number_Of_Drivers__c, Team_Drivers_Slip_Seat__c, Taxpayer_ID__c, Years_in_Business__c, Year_Established__c,
                                             Business_Description__c, Legal_Structure__c, Title__c, Last_Name__c, Email__c, PG_Residential_Street_Address__c,
                                             PG_Residential_City__c, PG_Residential_State__c, PG_Residential_Zip__c, PG_Residential_Phone__c
@@ -434,6 +437,8 @@ public class OTRBOCAController {
             }
 
         } catch (Exception e) {
+
+            System.debug(e);
 
             String errorNumber = WEXDEVErrorReporting.reportExternalError(APPLICATION_NAME, ApexPages.currentPage(), e, true);
 
@@ -573,6 +578,7 @@ public class OTRBOCAController {
             primaryContact.MailingCity = onlineApplication.City__c;
             primaryContact.MailingState = onlineApplication.State__c;
             primaryContact.MailingPostalCode = onlineApplication.Zip_code__c;
+            primaryContact.MailingCountry = onlineApplication.Country__c;
 
             insert primaryContact;
 
@@ -661,6 +667,7 @@ public class OTRBOCAController {
 
             opportunity.Billing_Street__c = onlineApplication.Business_Street_Address__c;
             opportunity.Billing_City__c = onlineApplication.City__c;
+            opportunity.Billing_Country__c = onlineApplication.Country__c;
             opportunity.Billing_State__c = onlineApplication.State__c;
             opportunity.Billing_Zip_Postal_Code__c = onlineApplication.Zip_code__c;
 
@@ -809,6 +816,9 @@ public class OTRBOCAController {
 
             if (String.isEmpty(onlineApplication.MC_Number__c) && String.isEmpty(onlineApplication.FF_Number__c) && String.isEmpty(onlineApplication.DOT_Number__c)) {
                 onlineApplication.MC_FF_or_DOT__c = 'No assigned number';
+            }
+            else {
+                onlineApplication.MC_FF_or_DOT__c = fleetIdentifier;
             }
 
             if (!String.isEmpty(additionalAttributes.ssn)) {

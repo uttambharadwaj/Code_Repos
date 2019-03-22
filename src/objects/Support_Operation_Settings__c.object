@@ -59,78 +59,11 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>DefaultEntitlementID__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>DefaultEntitlementID</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>JunkEmailQueueID__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>JunkEmailQueueID</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>MilestoneFirstResponseID__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>MilestoneFirstResponseID</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>PilotAccountRecordTypeID__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <inlineHelpText>Temporary to store the account record type ID</inlineHelpText>
-        <label>PilotAccountRecordTypeID</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>PilotContactRecordTypeID2__c</fullName>
         <description>Corporate Payments record type for contact</description>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>PilotContactRecordTypeID2</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>PilotContactRecordTypeID__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>PilotContactRecordTypeID</label>
-        <length>18</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ServiceOperationsCaseRecordTypeID__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>ServiceOperationsCaseRecordTypeID</label>
         <length>18</length>
         <required>false</required>
         <trackTrending>false</trackTrending>

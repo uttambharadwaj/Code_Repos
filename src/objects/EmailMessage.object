@@ -1,39 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <validationRules>
-        <fullName>Email_Sent_From_Personal_Address</fullName>
-        <active>true</active>
-        <description>Prevents users sending emails from their personal email address &amp; prompts them to send it from a shared mailbox instead.</description>
-        <errorConditionFormula>AND(
-
-  /* Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed */
-   
-  $Setup.WE_VRC__c.All_Case_Disabled__c = FALSE,
-
-  OR(
-    AND(
-      Parent.RecordType.DeveloperName = &apos;Virtual_Business_Support_CS&apos;,
-      NOT(FromAddress = &apos;business.support@wexeurope.com&apos;)
-    ),
-    AND(
-      Parent.RecordType.DeveloperName = &apos;Virtual_Credit_CS&apos;,
-      NOT(FromAddress = &apos;vcsupport@wexeurope.com&apos;)
-    ),
-    AND(
-      Parent.RecordType.DeveloperName = &apos;Virtual_Prepaid_CS&apos;,
-      NOT(FromAddress = &apos;customer.services@wexeurope.com&apos;)
-    )
-  ),
-
-  /* rule shouldn&apos;t apply to Integration User - just in case */
-  NOT($Profile.Id = &apos;00e70000000x9ty&apos;),
-  /* rule doesn&apos;t apply to Bonnie MacArthur so that she can forward emails to DeskPro */
-  NOT(FromAddress = &apos;bonnie.macarthur@wexeurope.com&apos;),
-  /* rule doesn&apos;t apply to Anja Asghar so that she can forward emails to DeskPro, until 28/10/2016 */
-  NOT(FromAddress = &apos;anja.asghar@wexeurope.com&apos;)
-
-)</errorConditionFormula>
-        <errorDisplayField>FromAddress</errorDisplayField>
-        <errorMessage>Please send this email from your team&apos;s shared mailbox, rather than your personal email address</errorMessage>
-    </validationRules>
+    <fields>
+        <fullName>Discard_Formula__c</fullName>
+        <externalId>false</externalId>
+        <formula>OR(
+CONTAINS(lower(Subject), &quot;undeliverable&quot;),
+CONTAINS(lower(Subject), &quot;returned mail&quot;), 
+CONTAINS(lower(Subject), &quot;out of the office&quot;),
+CONTAINS(lower(Subject), &quot;delivery failure&quot;),
+CONTAINS(lower(Subject), &quot;undelivered mail returned to sender&quot;),
+CONTAINS(lower(Subject), &quot;vacation&quot;),
+CONTAINS(lower(Subject), &quot;failure notice&quot;),
+CONTAINS(lower(Subject), &quot;mail delivery failed&quot;),
+CONTAINS(lower(Subject), &quot;mailer daemon&quot;),
+CONTAINS(lower(Subject), &quot;auto-reply&quot;),
+CONTAINS(lower(Subject), &quot;auto response&quot;),
+CONTAINS(lower(Subject), &quot;delivery status notification (failure)&quot;),
+CONTAINS(lower(Subject), &quot;automatic reply&quot;),
+CONTAINS(lower(Subject), &quot;away from work&quot;),
+CONTAINS(lower(Subject), &quot;out of office&quot;),
+CONTAINS(lower(Subject), &quot;maître de poste&quot;),
+CONTAINS(lower(Subject), &quot;démon de messagerie&quot;),
+CONTAINS(lower(Subject), &quot;sous-système de distributeur de courriel&quot;),
+CONTAINS(lower(Subject), &quot;hors du bureau&quot;),
+CONTAINS(lower(Subject), &quot;réponse automatique&quot;),
+CONTAINS(lower(Subject), &quot;vacances&quot;),
+CONTAINS(lower(Subject), &quot;jour férié&quot;),
+CONTAINS(lower(Subject), &quot;mailer-daemon&quot;),
+CONTAINS(lower(Subject), &quot;courriel àéchoué&quot;),
+CONTAINS(lower(Subject), &quot;purchase controls error&quot;),
+CONTAINS(lower(Subject), &quot;em.cycle.end.invoice.exception.report&quot;),
+CONTAINS(lower(Subject), &quot;cycle.end.invoice.exception.report&quot;),
+CONTAINS(lower(Subject), &quot;imperial Payments through eipp/dd&quot;),
+CONTAINS(lower(Subject), &quot;ebest.wexlink.reports.errors.prod&quot;),
+CONTAINS(lower(Subject), &quot;cardproduction&quot;),
+CONTAINS(lower(Subject), &quot;cardrenewal job status&quot;),
+CONTAINS(lower(Subject), &quot;urgent fraud notification: fleet fraud has initiated a call campaign&quot;)
+) &amp;&amp; Incoming</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Used for inbound service emails</inlineHelpText>
+        <label>Discard Formula</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Discard__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Automatically checked &quot;True&quot; if record contains any terms found in the Email Discarded Term CMDT.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Automatically checked &quot;True&quot; if record contains any terms found in the Email Discarded Term CMDT.</inlineHelpText>
+        <label>Discard</label>
+        <type>Checkbox</type>
+    </fields>
 </CustomObject>

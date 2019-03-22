@@ -127,7 +127,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
 
 
         } catch (Exception e) {
-            WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+            WEXDEVErrorReporting.reportInternalError('RPA Data Entry Queue', '', UserInfo.getUserId(), e);
 
             RestContext.response.addHeader('Content-Type', 'application/json');
             RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new GETResponse(false, e.getMessage())));
@@ -169,7 +169,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
             }
 
         } catch (Exception e) {
-            WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+            WEXDEVErrorReporting.reportInternalError('RPA Data Entry Queue', '', UserInfo.getUserId(), e);
 
             RestContext.response.addHeader('Content-Type', 'application/json');
             RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new POSTResponse(id, false, e.getMessage())));
@@ -182,7 +182,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
 
         try {
 
-            List<Case> cases = [SELECT Id, ParentId, Data_Entry_Completed__c, No_Cards__c, AccountId, Opportunity__c, App_Request_This_Case__c, Subject, Description, OwnerId FROM Case WHERE Id = :caseId LIMIT 1];
+            List<Case> cases = [SELECT Id, ParentId, Data_Entry_Completed__c, Cards__c, No_Cards__c, AccountId, Opportunity__c, App_Request_This_Case__c, Subject, Description, OwnerId FROM Case WHERE Id = :caseId LIMIT 1];
 
             if (cases.size() > 0) {
 
@@ -190,6 +190,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
 
                 cases[0].Data_Entry_Completed__c = true;
                 if (numberOfCards != null) {
+                    cases[0].Cards__c = Integer.valueOf(numberOfCards);
                     cases[0].No_Cards__c = Integer.valueOf(numberOfCards);
                 }
                 cases[0].Status = 'Closed';
@@ -228,7 +229,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
             }
 
         } catch (Exception e) {
-            WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+            WEXDEVErrorReporting.reportInternalError('RPA Data Entry Queue', '', UserInfo.getUserId(), e);
         }
     }
 
@@ -255,7 +256,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
                 upsert cases;
             }
             catch(Exception e) {
-                WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+                WEXDEVErrorReporting.reportInternalError('RPA Data Entry Queue', '', UserInfo.getUserId(), e);
             }
 
         }

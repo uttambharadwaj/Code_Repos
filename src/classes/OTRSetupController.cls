@@ -218,7 +218,7 @@ public without sharing class OTRSetupController {
                     }
 
                     if(applicationKey != null) {
-                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete'];
+                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete'];
 
                         if(onlineApplicationAuthorizedContacts.size() > 0) {
                             onlineApplicationAuthorizedContact = onlineApplicationAuthorizedContacts[0];
@@ -361,10 +361,12 @@ public without sharing class OTRSetupController {
 
             upsert onlineApplication;
 
-            onlineApplicationAuthorizedContact.Online_Application__c = onlineApplication.Id;
+            if(onlineApplicationAuthorizedContact.Online_Application__c == null) {
+            	onlineApplicationAuthorizedContact.Online_Application__c = onlineApplication.Id;
+            }
 
             try {
-                insert onlineApplicationAuthorizedContact;
+                upsert onlineApplicationAuthorizedContact;
             } catch (Exception e) {
                 WEXDEVErrorReporting.reportExternalError(APPLICATION_NAME, ApexPages.currentPage(), e, true);
             }

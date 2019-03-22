@@ -5,7 +5,7 @@
     <oauthConfig>
         <callbackUrl>https://wex.wexfleetcards.com/salesforce/callback
 https://wexn.local/salesforce/callback</callbackUrl>
-        <consumerKey>3MVG9srSPoex34FXtIAd.Jwaj1Ks.ETY40RxsCKwPnyzc9LKAC8kUifFGgJFytXcajfSNgXZmbdwR7GISqRZQ</consumerKey>
+        <consumerKey>3MVG90D5vR7Utjboc8b3nxgWl_Z_rPMm9Ji2In9mfaXbpk.4QvLPnheeSCrocDcL_ovqqMfjzgrU_mA1CQps4</consumerKey>
         <scopes>Full</scopes>
         <scopes>CustomApplications</scopes>
         <scopes>RefreshToken</scopes>

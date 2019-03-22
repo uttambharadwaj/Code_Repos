@@ -142,7 +142,7 @@ public class CreditDecisionEngineCPTest {
             cpApplication.Physical_Address_Line_1__c = '';
             cpApplication.Physical_Address_Line_2__c = '';
             cpApplication.Physical_City__c = '';
-            cpApplication.Physical_State__c = '';
+            cpApplication.Physical_State_Province__c = '';
             cpApplication.Physical_Postal_Code__c = '';
             cpApplication.Legal_Structure__c = '';
             cpApplication.Taxpayer_ID__c = '123456789';
@@ -157,8 +157,8 @@ public class CreditDecisionEngineCPTest {
             cpApplication.Guarantor_Last_Name__c = 'Smiley';
             cpApplication.Guarantor_Residential_Address__c = '100 N. State';
             cpApplication.Guarantor_Residential_City__c = 'Chicago';
-            cpApplication.Guarantor_Residential_State__c = 'IL';
-            cpApplication.Guarantor_Residential_Country__c = 'United States';
+            cpApplication.Guarantor_State_Province__c = 'IL';
+            cpApplication.Guarantor_Country__c = 'US';
             cpApplication.Guarantor_Residential_Postal_Code__c = '60603';
             cpApplication.Guarantor_Social_Security_Number__c = '123456789';
             cpApplication.Credit_Line_Requested__c = 5000;
@@ -210,7 +210,7 @@ public class CreditDecisionEngineCPTest {
             CreditUtil_CalculateCreditLine cuccl = new CreditUtil_CalculateCreditLine();
 
             /** TEST: SBRI Risk Grade 1 and 2 */
-                // test credit line requested is less than 25k
+            // test credit line requested is less than 25k
             cpApplications[0].Risk_Grade__c = '1';
             cpApplications[0].Credit_Line_Requested__c = 24000;
             upsert cpApplications[0];
@@ -218,7 +218,7 @@ public class CreditDecisionEngineCPTest {
             Decimal cp = (Decimal) cuccl.getFunctionValue(null, new CP_Application_Request__c(Id = cpApplications[0].Id), 'String', 'String', 'String', cpApplications[0].Id);
             System.assertEquals(24000, cp);
 
-                // test credit line requested exceeds 25k but the high credit amount covers the amount requested
+            // test credit line requested exceeds 25k but the high credit amount covers the amount requested
             cpApplications[0].Credit_Line_Requested__c = 30000;
             cpApplications[0].PG_Required__c = false;
             cpApplications[0].DNB_CSAD_High_Credit__c = 35000;
@@ -336,7 +336,8 @@ public class CreditDecisionEngineCPTest {
 
     static testMethod void testLexisNexisBridgerBusinessCallout() {
 
-        List<CP_Application_Request__c> cpApplications = [SELECT Id, Taxpayer_ID__c, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State__c, Physical_Postal_Code__c FROM CP_Application_Request__c];
+        List<CP_Application_Request__c> cpApplications = [SELECT Id, Taxpayer_ID__c, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c
+        FROM CP_Application_Request__c];
 
         if (cpApplications.size() > 0) {
 
@@ -350,7 +351,7 @@ public class CreditDecisionEngineCPTest {
 
             request.addressLine1 = cpApplications[0].Physical_Address_Line_1__c;
             request.city = cpApplications[0].Physical_City__c;
-            request.state = cpApplications[0].Physical_State__c;
+            request.state = cpApplications[0].Physical_State_Province__c;
             request.postalCode = cpApplications[0].Physical_Postal_Code__c;
 
             request.ein = cpApplications[0].Taxpayer_ID__c;
@@ -365,7 +366,8 @@ public class CreditDecisionEngineCPTest {
 
     static testMethod void testLexisNexisBridgerIndividualCallout() {
 
-        List<CP_Application_Request__c> cpApplications = [SELECT Id, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c, Guarantor_Residential_City__c, Guarantor_Residential_State__c, Guarantor_Residential_Postal_Code__c, Guarantor_Date_of_Birth__c, Guarantor_Social_Security_Number__c FROM CP_Application_Request__c];
+        List<CP_Application_Request__c> cpApplications = [SELECT Id, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c, Guarantor_Residential_City__c, Guarantor_State_Province__c, Guarantor_Residential_Postal_Code__c, Guarantor_Date_of_Birth__c, Guarantor_Social_Security_Number__c
+        FROM CP_Application_Request__c];
 
         if (cpApplications.size() > 0) {
 
@@ -379,7 +381,7 @@ public class CreditDecisionEngineCPTest {
             request.lastName = cpApplications[0].Guarantor_Last_Name__c;
             request.addressLine1 = cpApplications[0].Guarantor_Residential_Address__c;
             request.city = cpApplications[0].Guarantor_Residential_City__c;
-            request.state = cpApplications[0].Guarantor_Residential_State__c;
+            request.state = cpApplications[0].Guarantor_State_Province__c;
             request.postalCode = cpApplications[0].Guarantor_Residential_Postal_Code__c;
             request.dateOfBirth = cpApplications[0].Guarantor_Date_of_Birth__c;
             request.socialSecurityNumber = cpApplications[0].Guarantor_Social_Security_Number__c;

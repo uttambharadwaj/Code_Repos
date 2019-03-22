@@ -213,6 +213,10 @@
                 <behavior>Edit</behavior>
                 <field>Station_Card_Available__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Available_Card_Shipping_Options__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>AMBEST Partner Manager</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
-    <parentRole>EFS_Partner_Sales_Role</parentRole>
+    <parentRole>VPMerchantandChannelPartner</parentRole>
 </Role>

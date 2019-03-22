@@ -1,5 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Allow_Monthly_Accounting_Fee_Waiver__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Allow Monthly Accounting Fee Waiver</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CostExternalDataProvider__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost – External Data Provider</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CostLeadInvestigation__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost – Lead Investigation</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CostProspectingActions__c</fullName>
+        <externalId>false</externalId>
+        <label>Cost – Prospecting Actions</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Disable_Instant_Adjudication__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disable Instant Adjudication</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Checkbox</type>
+    </fields>
     <listViews>
         <fullName>AU_Campaigns</fullName>
         <columns>CAMPAIGN.NAME</columns>
@@ -18,28 +64,6 @@
         <sharedTo>
             <group>AU_Roles_Except_VCC</group>
             <role>DirectorInsideSales</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>AU_Partner_Shared_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.BUDGETED_COST</columns>
-        <columns>CAMPAIGN.ACTUAL_COST</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>AU_Partner_Access__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>AU_Partner_Access__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>AU Partner Shared Campaigns</label>
-        <sharedTo>
-            <group>SystemAdmins</group>
-            <group>WEXAdmin</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -78,131 +102,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>All_Inactive_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.CREATED_DATE</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>Coupon_Code__c</columns>
-        <columns>CAMPAIGN.ACTIVE</columns>
-        <columns>CAMPAIGN.NUM_LEADS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CAMPAIGN.ACTIVE</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>All Inactive Campaigns</label>
-        <language>en_US</language>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>All_Parent_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>CAMPAIGN.CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CAMPAIGN.CAMPAIGN_TYPE</field>
-            <operation>equals</operation>
-            <value>Parent</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.NAME</field>
-            <operation>startsWith</operation>
-            <value>C-</value>
-        </filters>
-        <label>All Parent Campaigns</label>
-        <sharedTo>
-            <group>Marketing1743636</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>All_Parent_Campaigns_really</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>CAMPAIGN.CREATED_DATE</columns>
-        <columns>Coupon_Code__c</columns>
-        <columns>Program__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Drop_Date__c</field>
-            <operation>greaterOrEqual</operation>
-            <value>1/1/2016</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.NAME</field>
-            <operation>contains</operation>
-            <value>WEX</value>
-        </filters>
-        <label>WEX Direct Jan</label>
-        <language>en_US</language>
-        <sharedTo>
-            <group>Marketing1743636</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>C_Brian</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.BUDGETED_COST</columns>
-        <columns>CAMPAIGN.ACTUAL_COST</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CAMPAIGN.NAME</field>
-            <operation>equals</operation>
-            <value>C-OTR O/O Rigdig EM 092015</value>
-        </filters>
-        <label>C-OTR O/O Rigdig EM 092015</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Danielle_s_ExxonMobil_Campaigns</fullName>
-        <columns>Coupon_Code__c</columns>
-        <columns>Drop_Date__c</columns>
-        <columns>Program__c</columns>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.NUM_LEADS</columns>
-        <columns>CAMPAIGN.NUM_CONVERTED_LEADS</columns>
-        <columns>CAMPAIGN.NUM_OPPORTUNITIES</columns>
-        <columns>CAMPAIGN.NUM_WON_OPPORTUNITIES</columns>
-        <columns>CORE.USERS.LAST_NAME</columns>
-        <columns>of_Members__c</columns>
-        <columns>Actual_Number_Of_Prospects__c</columns>
-        <columns>Campaign_Focus__c</columns>
-        <columns>Channel__c</columns>
-        <columns>Offer__c</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CAMPAIGN.CAMPAIGN_TYPE</field>
-            <operation>equals</operation>
-            <value>Call Program</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.CREATED_DATE</field>
-            <operation>greaterThan</operation>
-            <value>8/1/2013 12:00 AM</value>
-        </filters>
-        <label>Danielle&apos;s OBTM Campaigns</label>
-        <sharedTo>
-            <group>ExxonTeam</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>Engagement_Marketing_Campaigns</fullName>
         <booleanFilter>1 OR 2</booleanFilter>
         <columns>CAMPAIGN.NAME</columns>
@@ -229,128 +128,6 @@
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>ExxonMobil_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>Coupon_Code__c</columns>
-        <columns>Program__c</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>CAMPAIGN.ACTIVE</columns>
-        <columns>CAMPAIGN.NUM_LEADS</columns>
-        <columns>CAMPAIGN.NUM_CONVERTED_LEADS</columns>
-        <columns>CAMPAIGN.NUM_CONTACTS</columns>
-        <columns>CAMPAIGN.NUM_OPPORTUNITIES</columns>
-        <columns>CAMPAIGN.NUM_WON_OPPORTUNITIES</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Coupon_Code__c</field>
-            <operation>equals</operation>
-            <value>AB1,AB7,DR5,EN3,EX1,UDF,MY1,FR2,XDB,XGN</value>
-        </filters>
-        <label>ExxonMobil Campaigns for Woody</label>
-        <sharedTo>
-            <group>ExxonTeam</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>F1_AllActiveCampaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>PARENT_NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>Coupon_Code__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CAMPAIGN.ACTIVE</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>F1 All Active Campaigns</label>
-        <language>en_US</language>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>F1_All_Active_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>PARENT_NAME</columns>
-        <columns>Coupon_Code__c</columns>
-        <columns>of_Members__c</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CAMPAIGN.ACTIVE</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.NAME</field>
-            <operation>startsWith</operation>
-            <value>C-</value>
-        </filters>
-        <label>F1 All Active Campaigns</label>
-        <language>en_US</language>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>F1_AllinActiveCampaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>PARENT_NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CAMPAIGN.ACTIVE</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>Melissa,sbrig,ajame,badmi,drewe,kdavi,svinc</value>
-        </filters>
-        <label>F1 All Inactive Campaigns</label>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Katelyn_s_Active_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>Coupon_Code__c</columns>
-        <columns>Program__c</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>CAMPAIGN.ACTIVE</columns>
-        <columns>CAMPAIGN.NUM_LEADS</columns>
-        <columns>CAMPAIGN.NUM_CONVERTED_LEADS</columns>
-        <columns>CAMPAIGN.NUM_CONTACTS</columns>
-        <columns>CAMPAIGN.NUM_OPPORTUNITIES</columns>
-        <columns>CAMPAIGN.NUM_WON_OPPORTUNITIES</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CAMPAIGN.NAME</field>
-            <operation>contains</operation>
-            <value>XOM</value>
-        </filters>
-        <label>ExxonMobil Campaigns</label>
-        <sharedTo>
-            <group>ExxonTeam</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>MyActiveCampaigns</fullName>
         <columns>CAMPAIGN.NAME</columns>
         <columns>CAMPAIGN.START_DATE</columns>
@@ -370,157 +147,6 @@
             <value>Campaign.CorporatePay,Campaign.CorporatePay_Events_Master,Campaign.CorporatePay_Parent</value>
         </filters>
         <label>My Active Campaigns</label>
-    </listViews>
-    <listViews>
-        <fullName>My_Inactive_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.ACTIVE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>CAMPAIGN.ACTIVE</field>
-            <operation>equals</operation>
-            <value>0</value>
-        </filters>
-        <label>My Inactive Campaigns</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>UK_Virtual_Child_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>Paid_Campaign__c</columns>
-        <columns>CAMPAIGN.BUDGETED_COST</columns>
-        <columns>CAMPAIGN.ACTUAL_COST</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>CAMPAIGN.CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>equals</operation>
-            <value>Sherwood</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Campaign.CorporatePay</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.ACTIVE</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>UK Virtual Child Campaigns</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>Virtual_Marketing_EU</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>UK_Virtual_Event_Campaigns</fullName>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.BUDGETED_COST</columns>
-        <columns>CAMPAIGN.ACTUAL_COST</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>CAMPAIGN.CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>equals</operation>
-            <value>Sherwood</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Campaign.CorporatePay_Events_Master</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.ACTIVE</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>UK Virtual Event Campaigns</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>Virtual_Marketing_EU</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>VIRTUAL_CAMPAIGNS_2016</fullName>
-        <columns>CORE.USERS.LAST_NAME</columns>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>PARENT_NAME</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>CAMPAIGN.RECORDTYPE</columns>
-        <columns>CAMPAIGN.ACTIVE</columns>
-        <columns>CAMPAIGN.BUDGETED_COST</columns>
-        <columns>CAMPAIGN.ACTUAL_COST</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>CAMPAIGN.NUM_LEADS</columns>
-        <columns>CAMPAIGN.NUM_CONTACTS</columns>
-        <columns>CAMPAIGN.NUM_OPPORTUNITIES</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Channel__c</field>
-            <operation>equals</operation>
-            <value>Virtual</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.END_DATE</field>
-            <operation>lessOrEqual</operation>
-            <value>12/31/2017</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.END_DATE</field>
-            <operation>greaterOrEqual</operation>
-            <value>1/1/2017</value>
-        </filters>
-        <label>NA VIRTUAL CAMPAIGNS 2017</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Virtual_Campaigns</fullName>
-        <columns>CAMPAIGN.ID</columns>
-        <columns>CAMPAIGN.NAME</columns>
-        <columns>Coupon_Code__c</columns>
-        <columns>CAMPAIGN.START_DATE</columns>
-        <columns>CAMPAIGN.END_DATE</columns>
-        <columns>Channel__c</columns>
-        <columns>CAMPAIGN.BUDGETED_COST</columns>
-        <columns>CAMPAIGN.ACTUAL_COST</columns>
-        <columns>CAMPAIGN.CAMPAIGN_TYPE</columns>
-        <columns>CAMPAIGN.STATUS</columns>
-        <columns>CAMPAIGN.NUM_LEADS</columns>
-        <columns>CAMPAIGN.NUM_RESPONSES</columns>
-        <columns>CAMPAIGN.CREATED_DATE</columns>
-        <columns>CORE.USERS.LAST_NAME</columns>
-        <columns>CAMPAIGN.NUM_OPPORTUNITIES</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Channel__c</field>
-            <operation>equals</operation>
-            <value>Virtual</value>
-        </filters>
-        <filters>
-            <field>CAMPAIGN.RECORDTYPE</field>
-            <operation>equals</operation>
-            <value>Campaign.CorporatePay</value>
-        </filters>
-        <label>Virtual Campaigns</label>
-        <language>en_US</language>
-        <sharedTo>
-            <roleAndSubordinatesInternal>VP_Virtual_Payments_NA</roleAndSubordinatesInternal>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>WES_Active_Campaigns</fullName>
@@ -562,4 +188,507 @@
         </filters>
         <label>WES - All Campaigns</label>
     </listViews>
+    <recordTypes>
+        <fullName>CorporatePay</fullName>
+        <active>true</active>
+        <label>Virtual</label>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Ad Words</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alliance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conference</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self Sourced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win Back</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>CorporatePay_Parent</fullName>
+        <active>true</active>
+        <description>Roll up campaign records</description>
+        <label>Virtual Parent</label>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Acquire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acquirent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ad Words</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alliance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Application%2FBrochure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Ads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conference</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conversion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CorporatePay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo Mailer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail Partner Managed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email Blast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax Blaster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Generic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Publication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lead Sheet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referral Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self Sourced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telemarketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tradeshow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win Back</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>WES_Campaign</fullName>
+        <active>true</active>
+        <description>Used for WES Campaigns</description>
+        <label>WES Campaign</label>
+        <picklistValues>
+            <picklist>Status</picklist>
+            <values>
+                <fullName>Aborted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Progress</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Planned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Planning</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Type</picklist>
+            <values>
+                <fullName>Acquire</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Acquirent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ad Words</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Administration</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Alliance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Application%2FBrochure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Ads</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner Advertisement</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conference</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Conversion</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CorporatePay</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Demo Mailer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct Mail Partner Managed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Email Blast</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fax Blaster</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Generic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Industry Publication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Lead Sheet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Advertising</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Online Form</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Parent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partners</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Partnership</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referral</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Referral Program</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self Sourced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Social</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Telemarketing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Trade Show</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Tradeshow</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Win Back</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
 </CustomObject>

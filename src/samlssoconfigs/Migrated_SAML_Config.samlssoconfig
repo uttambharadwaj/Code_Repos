@@ -7,10 +7,10 @@
     <issuer>https://myapps.wexinc.com</issuer>
     <loginUrl>https://identity-sso.wexinc.com/sso/SSORedirect/metaAlias/wexinc/idp</loginUrl>
     <name>Migrated SAML Config</name>
-    <oauthTokenEndpoint>https://wexinc--MetaData.cs53.my.salesforce.com/services/oauth2/token?so=00D0j0000008oOc</oauthTokenEndpoint>
+    <oauthTokenEndpoint>https://wexinc--MetaData.cs23.my.salesforce.com/services/oauth2/token?so=00D180000008wt4</oauthTokenEndpoint>
     <redirectBinding>false</redirectBinding>
     <requestSigningCertId>0P10g00000000MJ</requestSigningCertId>
-    <salesforceLoginUrl>https://wexinc--MetaData.cs53.my.salesforce.com?so=00D0j0000008oOc</salesforceLoginUrl>
+    <salesforceLoginUrl>https://wexinc--MetaData.cs23.my.salesforce.com?so=00D180000008wt4</salesforceLoginUrl>
     <samlEntityId>https://saml.salesforce.com</samlEntityId>
     <samlVersion>SAML2_0</samlVersion>
     <userProvisioning>false</userProvisioning>

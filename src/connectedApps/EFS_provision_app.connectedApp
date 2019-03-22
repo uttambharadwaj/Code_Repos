@@ -4,7 +4,7 @@
     <label>EFS_provision_app</label>
     <oauthConfig>
         <callbackUrl>https://dev.efsllc.com/security/logon.jsp</callbackUrl>
-        <consumerKey>3MVG9srSPoex34FXtIAd.Jwaj1Ks.ETY40RxsnwKRNyQlSYiUd5NniVlGwgnYHXAiqVLQgW.L97gun3oUeIl1</consumerKey>
+        <consumerKey>3MVG90D5vR7Utjboc8b3nxgWl_Z_rPMm9Ji2IRVoRZa1TfhS629aWN4833j9NHltj3ym6kAyFJaTH2FWHO92A</consumerKey>
         <scopes>Basic</scopes>
         <scopes>Api</scopes>
         <scopes>Web</scopes>

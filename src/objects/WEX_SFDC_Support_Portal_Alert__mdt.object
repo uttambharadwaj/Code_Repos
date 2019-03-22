@@ -69,4 +69,7 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>WEX SFDC Support Portal Alert</label>
+    <pluralLabel>WEX SFDC Support Portal Alerts</pluralLabel>
+    <visibility>Public</visibility>
 </CustomObject>

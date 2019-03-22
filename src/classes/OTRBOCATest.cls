@@ -338,7 +338,7 @@ public class OTRBOCATest {
                 otrBOCAController.onlineApplication.Confirm_Checking_Account_Number__c = '1234567890123';
                 otrBOCAController.onlineApplication.Credit_Line_Requested__c = 10000;
                 otrBOCAController.onlineApplication.Data_Entry_Stage__c = null;
-                otrBOCAController.onlineApplication.Day_of_Payment__c = 'Monday';
+                otrBOCAController.onlineApplication.Days_of_Payment__c = 'Monday';
                 otrBOCAController.onlineApplication.DUNS__c = '123456789';
                 otrBOCAController.onlineApplication.Email__c = 'dcraigmile@forseva.com';
                 otrBOCAController.onlineApplication.Embossing_Line_1_Company_Name__c = 'Forseva Trucking';
@@ -373,7 +373,7 @@ public class OTRBOCATest {
                 otrBOCAController.onlineApplication.Year_Established__c = '1980';
                 otrBOCAController.onlineApplication.Zip_Code__c = '60606';
                 otrBOCAController.onlineApplication.OwnerId = UserInfo.getUserId();
-                otrBOCAController.onlineApplication.Day_of_Payment__c = 'Monday;Tuesday';
+                otrBOCAController.onlineApplication.Days_of_Payment__c = 'Monday / Tuesday';
                 otrBOCAController.onlineApplication.Payment_Method__c = 'Auto Draft';
                 
                 otrBOCAController.onlineApplication.AO_Title__c = 'President';
@@ -383,6 +383,7 @@ public class OTRBOCATest {
                 otrBOCAController.onlineApplication.AO_City__c = 'South Portland';
                 otrBOCAController.onlineApplication.AO_State__c = 'ME';
                 otrBOCAController.onlineApplication.AO_Zip_Code__c = '04106';
+                otrBOCAController.onlineApplication.AO_Country__c = 'US';
                 otrBOCAController.onlineApplication.AO_Home_Phone_Number__c = '555-555-5555';
                 
                 otrBOCAController.recalculatePG();

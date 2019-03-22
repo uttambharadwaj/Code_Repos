@@ -51,7 +51,7 @@ global with sharing class FleetEnrollmentWS_FleetData {
             }
 
         } catch (Exception e) {
-            WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+            WEXDEVErrorReporting.reportInternalError('RPA Fleet Data Service', '', UserInfo.getUserId(), e);
 
             RestContext.response.addHeader('Content-Type', 'application/json');
             RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new GETResponse(fleetEnrollmentId, false, e.getMessage())));
@@ -86,7 +86,7 @@ global with sharing class FleetEnrollmentWS_FleetData {
             }
 
         } catch (Exception e) {
-            WEXDEVErrorReporting.reportInternalError('RPA Account Activation Queue', '', UserInfo.getUserId(), e);
+            WEXDEVErrorReporting.reportInternalError('RPA Fleet Data Service', '', UserInfo.getUserId(), e);
 
             RestContext.response.addHeader('Content-Type', 'application/json');
             RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new POSTResponse(id, false, e.getMessage())));

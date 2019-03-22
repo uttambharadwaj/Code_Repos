@@ -5,7 +5,7 @@
     <label>RPA Implementation Queue</label>
     <oauthConfig>
         <callbackUrl>https://www.wexinc.com</callbackUrl>
-        <consumerKey>3MVG9srSPoex34FXtIAd.Jwaj1Ks.ETY40RxsHtZgVsQLhS2Bujm_gljdL3am.jPw6rm2ZdzcOuAbUpXuj6C3</consumerKey>
+        <consumerKey>3MVG90D5vR7Utjboc8b3nxgWl_Z_rPMm9Ji2IN3FWtGXmEnjx144LUGafKDOiC92uuu6yi6u3B2P95X9WBhPJ</consumerKey>
         <scopes>Basic</scopes>
         <scopes>Api</scopes>
         <scopes>Web</scopes>

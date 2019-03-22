@@ -714,6 +714,107 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
+        <name>myRule_5_A10</name>
+        <label>Run BPAV Check</label>
+        <locationX>500</locationX>
+        <locationY>1100</locationY>
+        <actionName>BREeze__ProcessRulesInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myDecision6</targetReference>
+        </connector>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>ruleName</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>ruleName</name>
+            <value>
+                <stringValue>OTRCreditDecisioningBPAVMatch</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>sObjectId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>sObjectId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>BREeze - Execute Standard Rule</stringValue>
+            </value>
+        </processMetadataValues>
         <name>myRule_5_A2</name>
         <label>Run Existing Exposure Rules</label>
         <locationX>500</locationX>
@@ -816,7 +917,7 @@
             </value>
         </processMetadataValues>
         <name>myRule_5_A3</name>
-        <label>Run Risk Score Calculation</label>
+        <label>Run US Risk Score Calculation</label>
         <locationX>500</locationX>
         <locationY>400</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
@@ -863,7 +964,7 @@
             </processMetadataValues>
             <name>ruleName</name>
             <value>
-                <stringValue>OTRCreditDecisioningRiskGradeCalculation</stringValue>
+                <stringValue>OTRCreditDecisioningRiskGradeCalculationUS</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -917,13 +1018,114 @@
             </value>
         </processMetadataValues>
         <name>myRule_5_A4</name>
-        <label>Run Lexis Nexis Rules</label>
+        <label>Run CA Risk Grade Calculation</label>
         <locationX>500</locationX>
         <locationY>500</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>myRule_5_A5</targetReference>
+        </connector>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>ruleName</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>ruleName</name>
+            <value>
+                <stringValue>OTRCreditDecisioningRiskGradeCalculationCA</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>sObjectId</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>maxOccurs</name>
+                <value>
+                    <numberValue>0.0</numberValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>objectType</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <name>sObjectId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>apexSelection</name>
+            <value>
+                <stringValue>BREeze - Execute Standard Rule</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_5_A5</name>
+        <label>Run Lexis Nexis Rules</label>
+        <locationX>500</locationX>
+        <locationY>600</locationY>
+        <actionName>BREeze__ProcessRulesInvocable</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>myRule_5_A6</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1017,14 +1219,14 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_5_A5</name>
+        <name>myRule_5_A6</name>
         <label>Run DNB SBRI Flag Calculation</label>
         <locationX>500</locationX>
-        <locationY>600</locationY>
+        <locationY>700</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_5_A6</targetReference>
+            <targetReference>myRule_5_A7</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1118,14 +1320,14 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_5_A6</name>
+        <name>myRule_5_A7</name>
         <label>Run PG Required</label>
         <locationX>500</locationX>
-        <locationY>700</locationY>
+        <locationY>800</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_5_A7</targetReference>
+            <targetReference>myRule_5_A8</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1219,14 +1421,14 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_5_A7</name>
+        <name>myRule_5_A8</name>
         <label>Run Experian Risk Grade Calculation</label>
         <locationX>500</locationX>
-        <locationY>800</locationY>
+        <locationY>900</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_5_A8</targetReference>
+            <targetReference>myRule_5_A9</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1320,14 +1522,14 @@
                 <stringValue>BREeze - Execute Standard Rule</stringValue>
             </value>
         </processMetadataValues>
-        <name>myRule_5_A8</name>
+        <name>myRule_5_A9</name>
         <label>Run Equifax Risk Grade Calculation</label>
         <locationX>500</locationX>
-        <locationY>900</locationY>
+        <locationY>1000</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
         <connector>
-            <targetReference>myRule_5_A9</targetReference>
+            <targetReference>myRule_5_A10</targetReference>
         </connector>
         <inputParameters>
             <processMetadataValues>
@@ -1369,107 +1571,6 @@
             <name>ruleName</name>
             <value>
                 <stringValue>OTRCreditDecisioningEquifaxCAPGRiskGradeCalculation</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>sObjectId</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue></stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>sObjectId</name>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
-            <name>apexSelection</name>
-            <value>
-                <stringValue>BREeze - Execute Standard Rule</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_5_A9</name>
-        <label>Run BPAV Check</label>
-        <locationX>500</locationX>
-        <locationY>1000</locationY>
-        <actionName>BREeze__ProcessRulesInvocable</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>myDecision6</targetReference>
-        </connector>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>ruleName</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue></stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>ruleName</name>
-            <value>
-                <stringValue>OTRCreditDecisioningBPAVMatch</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -2444,7 +2545,7 @@
             <label>Final Decision</label>
         </rules>
     </decisions>
-    <interviewLabel>BREeze_OTR_Decisioning-12_InterviewLabel</interviewLabel>
+    <interviewLabel>BREeze_OTR_Decisioning-14_InterviewLabel</interviewLabel>
     <label>BREeze OTR Decisioning</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -2472,7 +2573,7 @@
     </processMetadataValues>
     <processType>Workflow</processType>
     <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>myVariable_current</name>
         <dataType>SObject</dataType>
