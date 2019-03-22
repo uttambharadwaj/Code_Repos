@@ -340,7 +340,7 @@ public class OTRBOCAController {
                                             Payment_Method__c, Phone_Number__c, Promotional_Code__c, State__c, Trade_Name__c, Type_of_Business__c, Year_Established__c, Zip_code__c, Account_Type__c,
                                             Mobile_Number__c, Application_Key__c, External_Application_URL__c
                                     FROM OnlineApplication__c
-                                    WHERE Id = :partialCustomer and Application_Stage__c = 'Application' and Status__c = 'App-Incomplete' and Application_Key__c = :applicationKey
+                                    WHERE Id = :partialCustomer and Application_Stage__c = 'Application' and Status__c in ('App-Incomplete', 'Saved-Incomplete') and Application_Key__c = :applicationKey
                             ];
 
                             if (partialOnlineApplications.size() > 0) {
@@ -480,13 +480,38 @@ public class OTRBOCAController {
 
         try {
 
-            onlineApplication.Application_Stage__c = 'Application';
-            onlineApplication.Status__c = 'Saved-Incomplete';
+            // Set this initial status so we don't trigger workflows
+            onlineApplication.Program__c = program.Id;
+            onlineApplication.Offer__c = onlineApplicationOffer.Id;
+            onlineApplication.Product_Type__c = 'OTR';
+            onlineApplication.Application_Title__c = onlineApplicationOffer.Name;
 
             Database.upsertResult result = Database.upsert(onlineApplication, false);
             if (!result.isSuccess()) {
                 throw new creditApplicationException('Critical error inserting the Online Application: ' + result.getErrors());
             }
+
+            // Once we get the ID, we need to generate the external URL and upsert.
+            if (onlineApplication.Application_Key__c == null) {
+
+                Datetime dt = Datetime.now();
+                Long l = dt.getTime();
+
+                String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+
+                onlineApplication.Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
+            }
+
+            // Set the application URL, for ease of picking up in the e-mail
+            if (onlineApplication.External_Application_URL__c == null) {
+                onlineApplication.External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&offer=' + onlineApplicationOffer.Id + '&customer=' + onlineApplication.Id + '&key=' + onlineApplication.Application_Key__c;
+            }
+
+            // Set this status to trigger the Save For Later email
+            onlineApplication.Application_Stage__c = 'Application';
+            onlineApplication.Status__c = 'Saved-Incomplete';
+
+            upsert onlineApplication;
 
             PageReference redirect = Page.OTRBOCAConfirmation;
             redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
