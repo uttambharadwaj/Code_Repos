@@ -190,8 +190,9 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
 
                 cases[0].Data_Entry_Completed__c = true;
                 if (numberOfCards != null) {
-                    cases[0].Cards__c = Integer.valueOf(numberOfCards);
+                    // TODO - Redundancy, but need future effort to determine use of these fields as there are a lot of FE processes using both
                     cases[0].No_Cards__c = Integer.valueOf(numberOfCards);
+                    cases[0].Cards__c = Integer.valueOf(numberOfCards);
                 }
                 cases[0].Status = 'Closed';
                 if (caseNotes.length() > 255) {
