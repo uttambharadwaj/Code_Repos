@@ -170,6 +170,9 @@ public class CreditWS_DNB {
                 parameterStrings.put('PrimaryTownName', dnbDirectMatchRequest.PrimaryTownName);
                 parameterStrings.put('TerritoryName', dnbDirectMatchRequest.TerritoryName);
                 parameterStrings.put('FullPostalCode', dnbDirectMatchRequest.FullPostalCode);
+                if(!String.isEmpty(dnbDirectMatchRequest.TelephoneNumber)) {
+                    parameterStrings.put('TelephoneNumber', dnbDirectMatchRequest.TelephoneNumber);
+                }
 
                 if(dnbDirectMatchRequest.SingleResolution == true) {
                     parameterStrings.put('CandidateMaximumQuantity', '1');
@@ -212,6 +215,8 @@ public class CreditWS_DNB {
 
                             if(result.DUNSNumber != null) matchCandidate.DUNSNumber = result.DUNSNumber;
                             if(result.OrganizationPrimaryName.OrganizationName.value != null) matchCandidate.OrganizationName = result.OrganizationPrimaryName.OrganizationName.value; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.SubjectName, matchCandidate.OrganizationName));
+                            // There is no separate trade style name for DNB - so we'll compare the organization name with the trade style name
+                            if(result.OrganizationPrimaryName.OrganizationName.value != null && dnbDirectMatchRequest.TradeStyleName != null) matchCandidate.OrganizationName = result.OrganizationPrimaryName.OrganizationName.value; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.TradeStyleName, matchCandidate.OrganizationName));
                             if(result.PrimaryAddress.StreetAddressLine != null && result.PrimaryAddress.StreetAddressLine.size() > 0) matchCandidate.StreetAddressLine = result.PrimaryAddress.StreetAddressLine[0].LineText; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.StreetAddressLine1, matchCandidate.StreetAddressLine));
                             if(result.PrimaryAddress.PrimaryTownName != null) matchCandidate.PrimaryTownName = result.PrimaryAddress.PrimaryTownName; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.PrimaryTownName, matchCandidate.PrimaryTownName));
                             if(result.PrimaryAddress.PostalCode != null) matchCandidate.PostalCode = result.PrimaryAddress.PostalCode; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.FullPostalCode, matchCandidate.PostalCode));
@@ -219,6 +224,8 @@ public class CreditWS_DNB {
                             if(result.PrimaryAddress.CountryISOAlpha2Code != null) matchCandidate.CountryISOAlpha2Code = result.PrimaryAddress.CountryISOAlpha2Code;
                             if(result.MatchQualityInformation.ConfidenceCodeValue != null) matchCandidate.ConfidenceCodeValue = result.MatchQualityInformation.ConfidenceCodeValue;
                             if(result.MatchQualityInformation.MatchGradeText != null) matchCandidate.MatchGradeText = result.MatchQualityInformation.MatchGradeText;
+                            if(result.TelephoneNumber.TelecommunicationNumber != null) matchCandidate.TelephoneNumber = result.TelephoneNumber.TelecommunicationNumber;
+                            if(result.OperatingStatusText.value != null) matchCandidate.OperatingStatus = result.OperatingStatusText.value;
 
                             matchCandidate.WEXMatchScore = JaroWinklerDistance.getAverageScoreOfList(matchComparison);
                             System.debug('### WEX MATCH SCORE: ' + matchCandidate.WEXMatchScore);
@@ -1392,6 +1399,8 @@ public class CreditWS_DNB {
         public String TerritoryName { get; set; }
         public String FullPostalCode { get; set; }
         public String CountryISOAlpha2Code { get; set; }
+        public String TelephoneNumber { get; set; }
+        public String TradeStyleName { get; set; }
 
         public DNBDirect_MatchRequest() {
 
@@ -1426,6 +1435,8 @@ public class CreditWS_DNB {
         public String TerritoryAbbreviatedName { get; set; }
         public String PostalCode { get; set; }
         public String CountryISOAlpha2Code { get; set; }
+        public String OperatingStatus { get; set; }
+        public String TelephoneNumber { get; set; }
 
         public Integer ConfidenceCodeValue { get; set; }
         public String MatchGradeText { get; set; }
