@@ -125,53 +125,63 @@ public class CreditDecisionEngineCPTest {
         postalCode.Postcode__c = '4106';
         insert postalCode;
 
-        List<CP_Application_Request__c> cpApplications = new List<CP_Application_Request__c>();
+        User integrationUser = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
+        System.runAs(integrationUser) {
 
-        for (Integer i = 0; i < 2; i++) {
+            Opportunity opportunity = new Opportunity(name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'BOCA');
+            opportunity.Fueling_Methos__c = 'BP';
 
-            CP_Application_Request__c cpApplication = new CP_Application_Request__c();
-            cpApplication.Email__c = 'dcraigmile@forseva.com';
-            cpApplication.Company_Legal_Name__c = '';
-            cpApplication.First_Name__c = 'Testy';
-            cpApplication.Last_Name__c = 'McTesterson';
-            cpApplication.Years_in_Business__c = '5';
-            cpApplication.Business_Phone__c = '3123339999';
-            cpApplication.Title__c = 'CEO';
-            cpApplication.Projected_Monthly_Spend__c = 5000;
-            cpApplication.Number_of_Cards__c = 20;
-            cpApplication.Physical_Address_Line_1__c = '';
-            cpApplication.Physical_Address_Line_2__c = '';
-            cpApplication.Physical_City__c = '';
-            cpApplication.Physical_State_Province__c = '';
-            cpApplication.Physical_Postal_Code__c = '';
-            cpApplication.Legal_Structure__c = '';
-            cpApplication.Taxpayer_ID__c = '123456789';
-            cpApplication.DUNS_Number__c = '123456789';
-            cpApplication.Billing_Cycle__c = 'Weekly';
-            cpApplication.Payment_Due_Date__c = 'Monday';
-            cpApplication.Payment_Type__c = 'ET';
-            cpApplication.Financial_Institution__c = 'Chase Bank';
-            cpApplication.Checking_Account_Number__c = '';
-            cpApplication.ABA_Routing_Number__c = '123456789';
-            cpApplication.Guarantor_First_Name__c = 'George';
-            cpApplication.Guarantor_Last_Name__c = 'Smiley';
-            cpApplication.Guarantor_Residential_Address__c = '100 N. State';
-            cpApplication.Guarantor_Residential_City__c = 'Chicago';
-            cpApplication.Guarantor_State_Province__c = 'IL';
-            cpApplication.Guarantor_Country__c = 'US';
-            cpApplication.Guarantor_Residential_Postal_Code__c = '60603';
-            cpApplication.Guarantor_Social_Security_Number__c = '123456789';
-            cpApplication.Credit_Line_Requested__c = 5000;
-            cpApplication.PG_Required__c = true;
-            cpApplication.Application_Stage__c = 'Application';
-            cpApplication.Status__c = 'Application Incomplete';
-            cpApplication.OwnerId = UserInfo.getUserId();
-            cpApplication.ThreatMetrix_Request_ID__c = '123456789';
+            insert opportunity;
 
-            cpApplications.add(cpApplication);
+            List<CP_Application_Request__c> cpApplications = new List<CP_Application_Request__c>();
+
+            for (Integer i = 0; i < 2; i++) {
+
+                CP_Application_Request__c cpApplication = new CP_Application_Request__c();
+                cpApplication.Opportunity__c = opportunity.Id;
+                cpApplication.Email__c = 'dcraigmile@forseva.com';
+                cpApplication.Company_Legal_Name__c = '';
+                cpApplication.First_Name__c = 'Testy';
+                cpApplication.Last_Name__c = 'McTesterson';
+                cpApplication.Years_in_Business__c = '5';
+                cpApplication.Business_Phone__c = '3123339999';
+                cpApplication.Title__c = 'CEO';
+                cpApplication.Projected_Monthly_Spend__c = 5000;
+                cpApplication.Number_of_Cards__c = 20;
+                cpApplication.Physical_Address_Line_1__c = '';
+                cpApplication.Physical_Address_Line_2__c = '';
+                cpApplication.Physical_City__c = '';
+                cpApplication.Physical_State_Province__c = '';
+                cpApplication.Physical_Postal_Code__c = '';
+                cpApplication.Legal_Structure__c = '';
+                cpApplication.Taxpayer_ID__c = '123456789';
+                cpApplication.DUNS_Number__c = '123456789';
+                cpApplication.Billing_Cycle__c = 'Weekly';
+                cpApplication.Payment_Due_Date__c = 'Monday';
+                cpApplication.Payment_Type__c = 'ET';
+                cpApplication.Financial_Institution__c = 'Chase Bank';
+                cpApplication.Checking_Account_Number__c = '';
+                cpApplication.ABA_Routing_Number__c = '123456789';
+                cpApplication.Guarantor_First_Name__c = 'George';
+                cpApplication.Guarantor_Last_Name__c = 'Smiley';
+                cpApplication.Guarantor_Residential_Address__c = '100 N. State';
+                cpApplication.Guarantor_Residential_City__c = 'Chicago';
+                cpApplication.Guarantor_State_Province__c = 'IL';
+                cpApplication.Guarantor_Country__c = 'US';
+                cpApplication.Guarantor_Residential_Postal_Code__c = '60603';
+                cpApplication.Guarantor_Social_Security_Number__c = '123456789';
+                cpApplication.Credit_Line_Requested__c = 5000;
+                cpApplication.PG_Required__c = true;
+                cpApplication.Application_Stage__c = 'Application';
+                cpApplication.Status__c = 'Application Incomplete';
+                cpApplication.OwnerId = UserInfo.getUserId();
+                cpApplication.ThreatMetrix_Request_ID__c = '123456789';
+
+                cpApplications.add(cpApplication);
+            }
+
+            insert cpApplications;
         }
-
-        insert cpApplications;
 
     }
 

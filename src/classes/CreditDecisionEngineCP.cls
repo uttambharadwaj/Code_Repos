@@ -28,9 +28,10 @@ global class CreditDecisionEngineCP {
                         Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Country__c, Physical_Postal_Code__c, Sanctions_Individual_Result_ID__c,
                         First_Name__c, Last_Name__c, Taxpayer_ID__c, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Date_of_Birth__c,
                         Guarantor_Residential_Address__c, Guarantor_Residential_City__c, Guarantor_State_Province__c, Guarantor_Country__c,
-                        Guarantor_Residential_Postal_Code__c, Guarantor_Residential_Phone__c, Guarantor_Social_Security_Number__c,
+                        Guarantor_Residential_Postal_Code__c, Guarantor_Residential_Phone__c, Guarantor_Social_Security_Number__c, Opportunity__r.SourceSystem__c,
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
-                        Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c
+                        Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c,
+                        Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
         ];
@@ -40,6 +41,61 @@ global class CreditDecisionEngineCP {
             CP_Application_Request__c cpApplication = cpApplications[0];
 
             cpApplication.Running_Credit_Decisioning__c = true;
+
+            // ThreatMetrix
+            if ((cpApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {
+
+                // If the application hasn't yet been integrated
+                if(cpApplication.ThreatMetrix_Request_ID__c == null) {
+
+                    CreditWS_ThreatMetrix.ThreatMetrixSessionQueryRequest threatMetrixSessionQueryRequest = new CreditWS_ThreatMetrix.ThreatMetrixSessionQueryRequest();
+
+                    threatMetrixSessionQueryRequest.sessionId = cpApplication.ThreatMetrix_Session_ID__c;
+                    threatMetrixSessionQueryRequest.transactionId = cpApplication.Id;
+                    threatMetrixSessionQueryRequest.accountName = cpApplication.Account__r.Name;
+                    threatMetrixSessionQueryRequest.dbaName = cpApplication.Doing_Business_As__c;
+                    threatMetrixSessionQueryRequest.federalTaxId = cpApplication.Taxpayer_ID__c;
+
+                    threatMetrixSessionQueryRequest.physicalAddressLine1 = cpApplication.Physical_Address_Line_1__c;
+                    threatMetrixSessionQueryRequest.physicalCity = cpApplication.Physical_City__c;
+                    threatMetrixSessionQueryRequest.physicalState = cpApplication.Physical_State_Province__c;
+                    threatMetrixSessionQueryRequest.physicalPostalCode = cpApplication.Physical_Postal_Code__c;
+
+                    threatMetrixSessionQueryRequest.mailingAddressLine1 = cpApplication.Mailing_Address_Line_1__c;
+                    threatMetrixSessionQueryRequest.mailingCity = cpApplication.Mailing_City__c;
+                    threatMetrixSessionQueryRequest.mailingState = cpApplication.Mailing_State__c;
+                    threatMetrixSessionQueryRequest.mailingPostalCode = cpApplication.Mailing_Postal_Code__c;
+
+                    threatMetrixSessionQueryRequest.guarantorName = cpApplication.Guarantor_First_Name__c + ' ' + cpApplication.Guarantor_Last_Name__c;
+                    threatMetrixSessionQueryRequest.guarantorEmail = cpApplication.Email__c;
+
+                    threatMetrixSessionQueryRequest.emailAddress = cpApplication.Email__c;
+                    threatMetrixSessionQueryRequest.phoneNumber = cpApplication.Business_Phone__c;
+
+                    threatMetrixSessionQueryRequest.ipAddress = cpApplication.Application_Signer_IP_Address__c;
+
+                    CreditWS_ThreatMetrix.ThreatMetrixSessionQueryResponse threatMetrixSessionQueryResponse = CreditWS_ThreatMetrix.integrateCreditApp(threatMetrixSessionQueryRequest);
+
+                    if (threatMetrixSessionQueryResponse != null) {
+                        cpApplication.ThreatMetrix_Request_ID__c = threatMetrixSessionQueryResponse.threatMetrixRequestId;
+                        cpApplication.ThreatMetrix_Result__c = (threatMetrixSessionQueryResponse.threatMetrixReviewStatus).capitalize();
+                    }
+
+                }
+                else {
+
+                    // Query an already integrated application
+                    CreditWS_ThreatMetrix.ThreatMetrixQueryRequest threatMetrixQueryRequest = new CreditWS_ThreatMetrix.ThreatMetrixQueryRequest();
+                    threatMetrixQueryRequest.threatMetrixRequestId = cpApplication.ThreatMetrix_Request_ID__c;
+                    CreditWS_ThreatMetrix.ThreatMetrixQueryResponse threatMetrixQueryResponse = CreditWS_ThreatMetrix.getThreatMetrixScore(threatMetrixQueryRequest);
+
+                    if(threatMetrixQueryResponse != null && threatMetrixQueryResponse.reviewStatus != null) cpApplication.ThreatMetrix_Result__c = (threatMetrixQueryResponse.reviewStatus).capitalize();
+
+                }
+
+            } else {
+                cpApplication.ThreatMetrix_Result__c = 'Pass';
+            }
 
             // Existing Exposure - Application/Account Exposure
             CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
