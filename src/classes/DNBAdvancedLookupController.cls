@@ -82,7 +82,7 @@ public with sharing class DNBAdvancedLookupController {
 
             List<CP_Application_Request__c> cpApplicationRequests = [
                     SELECT Id, DUNS_Number__c, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c,
-                            Physical_State__c, Physical_Postal_Code__c, Business_Phone__c, Doing_Business_As__c
+                            Physical_State_Province__c, Physical_Postal_Code__c, Business_Phone__c, Doing_Business_As__c
                     FROM CP_Application_Request__c
                     WHERE Id = :applicationId
             ];
@@ -92,7 +92,7 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.companyName = cpApplicationRequests[0].Company_Legal_Name__c;
                 applicationInformation.addressLine1 = cpApplicationRequests[0].Physical_Address_Line_1__c;
                 applicationInformation.city = cpApplicationRequests[0].Physical_City__c;
-                applicationInformation.state = cpApplicationRequests[0].Physical_State__c;
+                applicationInformation.state = cpApplicationRequests[0].Physical_State_Province__c;
                 applicationInformation.postalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 applicationInformation.dunsNumber = cpApplicationRequests[0].DUNS_Number__c;
                 applicationInformation.phoneNumber = cpApplicationRequests[0].Business_Phone__c;
@@ -103,7 +103,7 @@ public with sharing class DNBAdvancedLookupController {
                 dnbDirectMatchRequest.SubjectName = cpApplicationRequests[0].Company_Legal_Name__c;
                 dnbDirectMatchRequest.StreetAddressLine1 = cpApplicationRequests[0].Physical_Address_Line_1__c;
                 dnbDirectMatchRequest.PrimaryTownName = cpApplicationRequests[0].Physical_City__c;
-                dnbDirectMatchRequest.TerritoryName = cpApplicationRequests[0].Physical_State__c;
+                dnbDirectMatchRequest.TerritoryName = cpApplicationRequests[0].Physical_State_Province__c;
                 dnbDirectMatchRequest.FullPostalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 dnbDirectMatchRequest.CountryISOAlpha2Code = 'US';
                 dnbDirectMatchRequest.DUNSNumber = cpApplicationRequests[0].DUNS_Number__c;
