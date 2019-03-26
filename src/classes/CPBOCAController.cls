@@ -721,9 +721,9 @@ public class CPBOCAController {
                 System.debug('Credit App Id: ' + creditAppId);
 
                 // Queue job to send the application to ThreatMetrix only if external
-                if(UserInfo.getSessionId() == null) {
-                    System.enqueueJob(new CreditUtilQueueable_ThreatMetrix(creditAppId));
-                }
+//                if(UserInfo.getSessionId() == null) {
+//                    System.enqueueJob(new CreditUtilQueueable_ThreatMetrix(creditAppId));
+//                }
 
                 // Send the confirmation email
                 //sendEmail(creditApp);
