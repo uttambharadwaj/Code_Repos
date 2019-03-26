@@ -24,14 +24,14 @@ global class CreditDecisionEngineCP {
 
         List<CP_Application_Request__c> cpApplications = [
                 SELECT Id, Name, Company_Legal_Name__c, Forte_Response_Code__c, Application_Stage__c, ThreatMetrix_Request_ID__c,
-                        ThreatMetrix_Result__c, Sanctions_Business_Check__c, Sanctions_Individual_Check__c, //PG_Required__c,
+                        ThreatMetrix_Result__c, Sanctions_Business_Check__c, Sanctions_Individual_Check__c,
                         Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Country__c, Physical_Postal_Code__c, Sanctions_Individual_Result_ID__c,
                         First_Name__c, Last_Name__c, Taxpayer_ID__c, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Date_of_Birth__c,
                         Guarantor_Residential_Address__c, Guarantor_Residential_City__c, Guarantor_State_Province__c, Guarantor_Country__c,
                         Guarantor_Residential_Postal_Code__c, Guarantor_Residential_Phone__c, Guarantor_Social_Security_Number__c, Opportunity__r.SourceSystem__c,
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
                         Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c,
-                        Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c
+                        Doing_Business_As__c, Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
         ];
@@ -214,10 +214,12 @@ global class CreditDecisionEngineCP {
             dnbDirectMatchRequest.FullPostalCode = cpApplication.Physical_Postal_Code__c;
             dnbDirectMatchRequest.CountryISOAlpha2Code = cpApplication.Physical_Country__c;
             dnbDirectMatchRequest.DUNSNumber = cpApplication.DUNS_Number__c;
+            dnbDirectMatchRequest.TelephoneNumber = cpApplication.Business_Phone__c;
+            dnbDirectMatchRequest.TradeStyleName = cpApplication.Doing_Business_As__c;
 
             CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
-            if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1) {
+            if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1 && dnbDirectMatchResponse.matchCandidates[0].OperatingStatus != null && (dnbDirectMatchResponse.matchCandidates[0].OperatingStatus).equalsIgnoreCase('Active')) {
 
                 cpApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
                 cpApplication.DNB_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchGradeString;
