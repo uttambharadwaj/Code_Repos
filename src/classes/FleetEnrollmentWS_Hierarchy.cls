@@ -212,7 +212,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
         try {
 
-            List<Case> cases = [SELECT Id, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, Opportunity__r.Owner.Alias, Fleet_Enrollment__c FROM Case WHERE Id = :caseId LIMIT 1];
+            List<Case> cases = [SELECT Id, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c FROM Case WHERE Id = :caseId LIMIT 1];
 
             if (cases.size() > 0) {
                 cases[0].Hierarchy_Setup_Completed__c = true;
@@ -231,7 +231,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 upsert cases;
 
-                if (cases[0].Opportunity__r.SourceSystem__c != null && (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') && cases[0].Opportunity__r.Owner.Alias != null && (cases[0].Opportunity__r.Owner.Alias).equalsIgnoreCase('sinte')) {
+                if (cases[0].Opportunity__r.SourceSystem__c != null && (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') && cases[0].App_Request_This_Case__r.Sales_Person__r.Alias != null && (cases[0].App_Request_This_Case__r.Sales_Person__r.Alias).equalsIgnoreCase('sinte')) {
 
                     Case implementationCallCase = new Case();
 
