@@ -186,15 +186,15 @@ public class CreditWS_DNB {
 
                 HTTPResponse cleanseAndMatchResponse = clenseAndMatchCallout.send(clenseAndMatchRequest);
 
+                System.debug('### Cleanse And Match Request: ' + clenseAndMatchRequest);
+
                 // Dear DNB - why did you send a $ as a variable name?
                 String jsonResponse = cleanseAndMatchResponse.getBody();
                 jsonResponse = jsonResponse.replaceAll('"\\$":', '"value":');
 
-                System.debug('### ' + jsonResponse);
+                System.debug('### Cleanse And Match Response: ' + jsonResponse);
 
                 CreditWSUtil_DNBDirect_Match cleanseAndMatchResult = CreditWSUtil_DNBDirect_Match.parse(jsonResponse);
-
-                System.debug('### ' + cleanseAndMatchResult);
 
                 if(cleanseAndMatchResult != null) {
 
