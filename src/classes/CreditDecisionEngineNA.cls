@@ -226,10 +226,12 @@ global class CreditDecisionEngineNA {
             dnbDirectMatchRequest.FullPostalCode = naApplication.Physical_Zip_Postal_Code__c;
             dnbDirectMatchRequest.CountryISOAlpha2Code = naApplication.Physical_Country__c;
             dnbDirectMatchRequest.DUNSNumber = naApplication.DUNS_Number__c;
+            dnbDirectMatchRequest.TradeStyleName = naApplication.Doing_Business_As__c;
+            dnbDirectMatchRequest.TelephoneNumber = naApplication.Business_Phone_Number__c;
 
             CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
-            if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1) {
+            if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1 && dnbDirectMatchResponse.matchCandidates[0].OperatingStatus != null && (dnbDirectMatchResponse.matchCandidates[0].OperatingStatus).equalsIgnoreCase('Active')) {
 
                 naApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
                 naApplication.DNB_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchGradeString;
