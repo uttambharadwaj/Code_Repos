@@ -104,6 +104,34 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
         }
     }
 
+    global static Implementation_Automation_Setting__mdt callQueueSettings {
+        get {
+
+            List<Implementation_Automation_Setting__mdt> callQueueSettings = [SELECT Id, Queue_Name__c FROM Implementation_Automation_Setting__mdt WHERE DeveloperName = 'NA_Fleet_Call_Queue'];
+
+            if (callQueueSettings.size() > 0) {
+                return callQueueSettings[0];
+            }
+
+            return null;
+
+        }
+    }
+
+    global static Id callQueueId {
+        get {
+
+            List<QueueSobject> queueSobjects = [SELECT QueueId FROM QueueSobject WHERE Queue.DeveloperName = :callQueueSettings.Queue_Name__c];
+
+            if (queueSobjects.size() > 0) {
+                return queueSobjects[0].QueueId;
+            }
+
+            return null;
+
+        }
+    }
+
     @HttpGet
     global static void getQueueCases() {
 
@@ -115,7 +143,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                 gResponse.result = true;
                 gResponse.message = 'Case Queue successfully retrieved!';
 
-                gResponse.availableImplementationCases = [SELECT Id, Siebel_Oppty__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Default_Hierarchy_Level__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Parent_Account_Number__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Ultimate_Parent_Account_Number__c FROM Case WHERE Status = 'New' and OwnerId = :hierarchyQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate DESC LIMIT 10];
+                gResponse.availableImplementationCases = [SELECT Id, Siebel_Oppty__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Default_Hierarchy_Level__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Parent_Account_Number__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Ultimate_Parent_Account_Number__c FROM Case WHERE Status = 'New' and OwnerId = :hierarchyQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate ASC LIMIT 10];
 
                 RestContext.response.addHeader('Content-Type', 'application/json');
                 RestContext.response.responseBody = Blob.valueOf(JSON.serialize(gResponse));
@@ -184,7 +212,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
         try {
 
-            List<Case> cases = [SELECT Id, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c FROM Case WHERE Id = :caseId LIMIT 1];
+            List<Case> cases = [SELECT Id, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c FROM Case WHERE Id = :caseId LIMIT 1];
 
             if (cases.size() > 0) {
                 cases[0].Hierarchy_Setup_Completed__c = true;
@@ -203,22 +231,45 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 upsert cases;
 
-                Case implementationCallCase = new Case();
+                if (cases[0].Opportunity__r.SourceSystem__c != null && (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') && cases[0].App_Request_This_Case__r.Sales_Person__r.Alias != null && (cases[0].App_Request_This_Case__r.Sales_Person__r.Alias).equalsIgnoreCase('sinte')) {
 
-                implementationCallCase.ParentId = cases[0].Id;
-                implementationCallCase.Subject = 'Account Activation';
-                implementationCallCase.Type = 'Account Activation';
-                implementationCallCase.Status = 'New';
-                implementationCallCase.OwnerId = activationQueueId;
-                implementationCallCase.AccountId = cases[0].AccountId;
-                implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
-                implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+                    Case implementationCallCase = new Case();
 
-                if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
-                    implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
+                    implementationCallCase.ParentId = cases[0].Id;
+                    implementationCallCase.Subject = 'Account Activation';
+                    implementationCallCase.Type = 'Account Activation';
+                    implementationCallCase.Status = 'New';
+                    implementationCallCase.OwnerId = activationQueueId;
+                    implementationCallCase.AccountId = cases[0].AccountId;
+                    implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
+                    implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+
+                    if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
+                        implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
+                    }
+
+                    insert implementationCallCase;
+
+                } else {
+
+                    Case implementationCallCase = new Case();
+
+                    implementationCallCase.ParentId = cases[0].ParentId;
+                    implementationCallCase.Subject = 'Implementation Call';
+                    implementationCallCase.Type = 'Implementation Call';
+                    implementationCallCase.Status = 'New';
+                    implementationCallCase.OwnerId = callQueueId;
+                    implementationCallCase.AccountId = cases[0].AccountId;
+                    implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
+                    implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+
+                    if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
+                        implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
+                    }
+
+                    insert implementationCallCase;
+
                 }
-
-                insert implementationCallCase;
             }
 
         } catch (Exception e) {
@@ -232,37 +283,44 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
         if (cases.size() > 0) {
             cases[0].OwnerId = queueId;
-            if(caseNotes.length() > 255) {
+            if (caseNotes.length() > 255) {
                 cases[0].Subject = (caseNotes).substring(0, 255);
-            }
-            else {
+            } else {
                 cases[0].Subject = caseNotes;
             }
-            if(cases[0].Description != null) {
+            if (cases[0].Description != null) {
                 cases[0].Description = cases[0].Description + '\n\n' + caseNotes;
-            }
-            else {
+            } else {
                 cases[0].Description = caseNotes;
             }
 
             try {
                 upsert cases;
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 WEXDEVErrorReporting.reportInternalError('RPA Hierarchy Queue', '', UserInfo.getUserId(), e);
             }
 
         }
     }
 
-    public class fleetEnrollmentWSQueueException extends Exception {}
+    public class fleetEnrollmentWSQueueException extends Exception {
+    }
 
     public class GETResponse {
 
-        public Boolean result { get; set; }
-        public String message { get; set; }
+        public Boolean result {
+            get;
+            set;
+        }
+        public String message {
+            get;
+            set;
+        }
 
-        public List<Case> availableImplementationCases { get; set; }
+        public List<Case> availableImplementationCases {
+            get;
+            set;
+        }
 
         public GETResponse() {
 
@@ -277,9 +335,18 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
     public class POSTResponse {
 
-        public String id { get; set; }
-        public Boolean result { get; set; }
-        public String message { get; set; }
+        public String id {
+            get;
+            set;
+        }
+        public Boolean result {
+            get;
+            set;
+        }
+        public String message {
+            get;
+            set;
+        }
 
         public POSTResponse(String caseId, Boolean result, String message) {
 
