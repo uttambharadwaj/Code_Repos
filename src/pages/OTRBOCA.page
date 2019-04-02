@@ -1,3 +1,7 @@
+<!--
+Description:        OTRBOCA VF Page (Page 1 of Online Application for OTRBOCA)
+Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
+-->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAController" action="{!init}" language="{!languageCode}">
 	<html lang="{!languageCode}">
 	<head>
@@ -673,6 +677,9 @@
 								<div class="clearfix">
 									<input tabindex="51" type="button" id="submitButton" class="step-button ge-click-appsubmit" onClick="validateBOCA();" value="Next"/>
 									<input tabindex="52" type="button" id="saveButton" class="step-button-gray ge-click-appsubmit" style="margin-right: 10px;" onClick="validateAndSaveBOCA();" value="Save For Later"/>
+									<!--IADJUDICAT-929 add pdf on save for later; use actionfunctions to allow dml to finish before redirect (app is requeried and must be committed)-->
+									<apex:actionFunction name="saveApplication" action="{!saveApplication}" oncomplete="generatePDF()" rerender="" />
+									<apex:actionFunction name="generatePDF" action="{!generatePDF}" rerender="" />
 									<img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
 								</div>
 							</div>
