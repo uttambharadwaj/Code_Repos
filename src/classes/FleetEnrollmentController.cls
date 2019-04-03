@@ -3,6 +3,8 @@ public class FleetEnrollmentController {
     // Defining the main form object
     public FleetEnrollment__c fleetEnrollment { get; set; }
 
+    public final static String APPLICATION_NAME = 'FleetEnrollment';
+
     public String confirmationNumber { get; set; }
     public String printToken { get; set; }
 
@@ -48,20 +50,9 @@ public class FleetEnrollmentController {
     }
 
     // Branding - Elements from the specified program
-    public Program__c program {
-        get {
-            List<Program__c> programs = [SELECT Id, Publish_Fleet_Data_Capture_Form__c, Fleet_Data_Capture_Email_Template__c,
-                    Fleet_Data_Capture_Form_Delivery__c, Brand_Long_Name__c, Implementation_Team_Number__c,
-                    Brand_Color_1__c, Fleet_Enrollment_Enable_Fuel_Oil__c, Fleet_Enrollment_Enable_Prompt_Options__c,
-                    Fleet_Enrollment_Enable_Universal_PL__c, Fleet_Enrollment_Disable_Driver_Page__c, DID_Length__c, Available_Card_Controls__c 
-            FROM Program__c WHERE Brand_Short_Name__c = :programParameter];
+    public Program__c program { get; set; }
 
-            if(programs.size() > 0) {
-                return programs[0];
-            }
-            return null;
-        }
-    }
+    public Program_Template_Account__c programTemplateAccount { get; set; }
 
     public String configuredDIDLength {
         get {
@@ -86,18 +77,23 @@ public class FleetEnrollmentController {
     }
 
     // Branding - Card image from the chosen program
-    public Id brandingCard {
-        get {
-            transient Attachment card = [SELECT Id, Name, Body FROM Attachment where ParentId = : program.Id AND Name=:'ui-credit-card.png'];
-            return card.Id;
-        }
-    }
+    public Id brandingCard { get; set; }
 
     // Dynamic Card Image
-    public Id dynamicCard {
+    public Id dynamicCard { get; set; }
+
+    public Boolean cardShippingSameAsBillingAddress { get; set; }
+
+    public List<SelectOption> availableStateSelectOptions {
         get {
-            transient Attachment card = [SELECT Id, Name, Body FROM Attachment where ParentId = : program.Id AND Name=:'ui-credit-card-no-text.png'];
-            return card.Id;
+            List<SelectOption> picklistValues = new List<SelectOption>();
+            picklistValues.add(new SelectOption('#', 'Billing State'));
+            Schema.DescribeFieldResult billingState = WeFormObject__c.Billing_State__c.getDescribe();
+            List<Schema.PicklistEntry> picklistEntries = billingState.getPicklistValues();
+            for( Schema.PicklistEntry picklistValue : picklistEntries) {
+                picklistValues.add(new SelectOption(picklistValue.getLabel(), picklistValue.getLabel()));
+            }
+            return picklistValues;
         }
     }
 
@@ -148,7 +144,7 @@ public class FleetEnrollmentController {
 
                 cardControlOptions.add(new SelectOption('Custom Controls', 'Custom Controls'));
 
-                if (program.Fleet_Enrollment_Enable_Fuel_Oil__c) {
+                if (program != null && program.Fleet_Enrollment_Enable_Fuel_Oil__c) {
                     cardControlOptions.add(new SelectOption('Fuel and Oil', 'Fuel and Oil'));
                 }
 
@@ -183,7 +179,8 @@ public class FleetEnrollmentController {
     // Local FleetContact object
     public class FleetContact {
         public Integer Id { get; set; }
-        public String FullName { get; set; }
+        public String FirstName { get; set; }
+        public String LastName { get; set; }
         public String Email { get; set; }
         public String Phone { get; set; }
         public Boolean isNotRemovable { get; set; }
@@ -191,6 +188,12 @@ public class FleetEnrollmentController {
 
     // List of FleetContact objects
     public List<FleetContact> fleetContacts { get; set; }
+
+    public Integer sizeOfFleetContacts {
+        get {
+            return fleetContacts.size();
+        }
+    }
 
     // Various variables used for maintaining
     // the FleetContact collection
@@ -275,6 +278,8 @@ public class FleetEnrollmentController {
         }
     }
 
+    public class fleetEnrollmentException extends Exception {}
+
     // Controller constructor
     public FleetEnrollmentController() {
 
@@ -282,6 +287,8 @@ public class FleetEnrollmentController {
         minStep = 1;
         maxStep = 5;
         currentStep = 1;
+
+        cardShippingSameAsBillingAddress = true;
 
         if(currentPage != null) {
             currentStep = Integer.valueOf(currentPage);
@@ -316,15 +323,6 @@ public class FleetEnrollmentController {
             addNewFleetDriver();
         }
 
-        // Remove after testing page 3
-        //fleetEnrollment.Number_Of_Vehicles__c = 3;
-        //fleetEnrollment.Report_LicensePlt__c = true;
-        //fleetEnrollment.Report_VehicleDesc__c = true;
-        // fleetEnrollment.Report_VehicleId__c = true;
-        //fleetEnrollment.Reporting_Dept__c = false;
-        // fleetEnrollment.Embossing_Second_Line__c = 'None';
-        // setupFleetVehicles();
-
     }
 
     // Initialization of the form
@@ -332,35 +330,106 @@ public class FleetEnrollmentController {
 
         PageReference redirect = null;
 
-        if(program == null || program.Publish_Fleet_Data_Capture_Form__c == false) {
-            redirect = new PageReference('/apex/FleetEnrollmentError?errorCode=1');
-            redirect.setRedirect(true);
+        try {
+
+            if (!String.isEmpty(applicationRequestParameter)) {
+                List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c = :applicationRequestParameter and CreatedBy.Alias = 'guest'];
+
+                if (fleetEnrollments.size() > 0) {
+                    throw new FleetEnrollmentException('Your information has already been submitted.');
+                }
+
+                // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
+                // but not pre-filling any of the existing information!
+                fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter and CreatedBy.Alias != 'guest'];
+
+                if(fleetEnrollments.size() > 0) {
+
+                    fleetEnrollment.Id = fleetEnrollments[0].Id;
+
+                }
+            }
+
+            if (!String.isEmpty(opportunityParameter)) {
+                List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity_Number__c = :opportunityParameter and CreatedBy.Alias = 'guest'];
+
+                if (fleetEnrollments.size() > 0) {
+                    throw new FleetEnrollmentException('Your information has already been submitted.');
+                }
+
+                // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
+                // but not pre-filling any of the existing information!
+                fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity_Number__c =: opportunityParameter and CreatedBy.Alias != 'guest'];
+
+                if(fleetEnrollments.size() > 0) {
+
+                    fleetEnrollment.Id = fleetEnrollments[0].Id;
+
+                }
+            }
+
+            Id programId = WexBrandingController.getProgramIdByBrandShortName(programParameter);
+
+            System.debug('### ' + programId);
+
+            if(programId != null) {
+
+                program = WexBrandingController.getProgram(programId);
+
+                System.debug('### ' + program);
+
+                if(program != null && program.Publish_Fleet_Data_Capture_Form__c != false) {
+
+                    brandingCard = WexBrandingController.getCreditCardImageId(program.Id);
+
+                    dynamicCard = WexBrandingController.getCreditCardNotTextImageId(program.Id);
+
+                    programTemplateAccount = WexBrandingController.getProgramTemplateAccount(WexBrandingController.getDefaultAccountTemplateByProgram(program.Id));
+
+                }
+                else {
+                    throw new fleetEnrollmentException('Program not configured for Fleet Enrollment (Program: ' + programParameter + ')');
+                }
+
+            }
+            else {
+                throw new fleetEnrollmentException('Cannot find Program: ' + programParameter);
+            }
+
+        }
+        catch(Exception e) {
+            String errorCode = WEXDEVErrorReporting.reportExternalError(APPLICATION_NAME, ApexPages.currentPage(), e, true);
+
+            redirect = Page.ExternalApplicationError;
+            redirect.getParameters().put('errorCode', errorCode);
+            redirect.getParameters().put('pgm', programParameter);
             return redirect;
-        }
 
-        if(!String.isEmpty(applicationRequestParameter)) {
-            List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter];
-
-            if(fleetEnrollments.size() > 0) {
-                redirect = new PageReference('/apex/FleetEnrollmentError?errorCode=2');
-                redirect.setRedirect(true);
-                return redirect;
-            }
-        }
-
-        if(!String.isEmpty(opportunityParameter)) {
-            List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity_Number__c =: opportunityParameter];
-
-            if(fleetEnrollments.size() > 0) {
-                redirect = new PageReference('/apex/FleetEnrollmentError?errorCode=2');
-                redirect.setRedirect(true);
-                return redirect;
-            }
         }
 
         return null;
 
     }
+
+    public void setCardShippingSame() {
+
+        if(cardShippingSameAsBillingAddress) {
+            fleetEnrollment.Card_Shipping_Address_Line_1__c = fleetEnrollment.Billing_Address_Line_1__c;
+            fleetEnrollment.Card_Shipping_Address_Line_2__c = fleetEnrollment.Billing_Address_Line_2__c;
+            fleetEnrollment.Card_Shipping_City__c = fleetEnrollment.Billing_City__c;
+            fleetEnrollment.Card_Shipping_State__c = fleetEnrollment.Billing_State__c;
+            fleetEnrollment.Card_Shipping_Postal_Code__c = fleetEnrollment.Billing_Postal_Code__c;
+        }
+        else {
+            fleetEnrollment.Card_Shipping_Address_Line_1__c = '';
+            fleetEnrollment.Card_Shipping_Address_Line_2__c = '';
+            fleetEnrollment.Card_Shipping_City__c = '';
+            fleetEnrollment.Card_Shipping_State__c = '';
+            fleetEnrollment.Card_Shipping_Postal_Code__c = '';
+        }
+
+    }
+
 
     // Add a new contact to FleetContacts collection
     public void addNewContact() {
@@ -476,7 +545,7 @@ public class FleetEnrollmentController {
     public PageReference setDIDLength() {
 
         System.debug('### DID Length: ' + selectedDIDLength);
-        
+
         return null;
 
     }
@@ -487,6 +556,11 @@ public class FleetEnrollmentController {
     }
 
     public void nextStep() {
+
+        if(currentStep == 1) {
+            setCardShippingSame();
+        }
+
         if(currentStep == 3 && program.Fleet_Enrollment_Disable_Driver_Page__c == true) {
             currentStep = currentStep + 2;
         }
@@ -497,6 +571,7 @@ public class FleetEnrollmentController {
         if(currentStep == 3) {
             setupFleetVehicles();
         }
+
     }
 
     // Exactly.
@@ -512,8 +587,15 @@ public class FleetEnrollmentController {
 
             fleetEnrollment.Status__c = 'New';
 
+            if (programTemplateAccount != null) {
+                fleetEnrollment.Program_Template_Account__c = programTemplateAccount.Id;
+                fleetEnrollment.Billing_Cycle__c = programTemplateAccount.Billing_Cycle__c;
+            }
+
             // Set some fields for the FleetEnrollment record
-            fleetEnrollment.Program__c = program.Id;
+            if(program != null) {
+                fleetEnrollment.Program__c = program.Id;
+            }
 
             if(creditLineAmount != null) {
                 fleetEnrollment.Credit_Approved__c = true;
@@ -541,7 +623,7 @@ public class FleetEnrollmentController {
                 fleetEnrollment.Debug_Application_Parameter__c = applicationRequestParameter;
             }
 
-            insert fleetEnrollment;
+            upsert fleetEnrollment;
 
             // Insert contacts
 
@@ -549,7 +631,8 @@ public class FleetEnrollmentController {
             FleetEnrollment_Contact__c primaryFleetContact = new FleetEnrollment_Contact__c();
 
             primaryFleetContact.Fleet_Enrollment__c = fleetEnrollment.Id;
-            primaryFleetContact.Full_Name__c = fleetEnrollment.Billing_Full_Name__c;
+            primaryFleetContact.First_Name__c = fleetEnrollment.Billing_Contact_First_Name__c;
+            primaryFleetContact.Last_Name__c = fleetEnrollment.Billing_Contact_Last_Name__c;
             primaryFleetContact.Email__c = fleetEnrollment.Billing_Email__c;
             primaryFleetContact.Phone__c = fleetEnrollment.Billing_Phone__c;
 
@@ -561,12 +644,13 @@ public class FleetEnrollmentController {
                 for(Integer i = 0; i < fleetContacts.size(); i++) {
 
                     // Only insert contacts that have all the information
-                    if(!String.isEmpty(fleetContacts.get(i).FullName) && !String.isEmpty(fleetContacts.get(i).Email) && !String.isEmpty(fleetContacts.get(i).Phone)) {
+                    if(!String.isEmpty(fleetContacts.get(i).FirstName) && !String.isEmpty(fleetContacts.get(i).LastName) && !String.isEmpty(fleetContacts.get(i).Email) && !String.isEmpty(fleetContacts.get(i).Phone)) {
 
                         FleetEnrollment_Contact__c newFleetContact = new FleetEnrollment_Contact__c();
 
                         newFleetContact.Fleet_Enrollment__c = fleetEnrollment.Id;
-                        newFleetContact.Full_Name__c = fleetContacts.get(i).FullName;
+                        newFleetContact.First_Name__c = fleetContacts.get(i).FirstName;
+                        newFleetContact.Last_Name__c = fleetContacts.get(i).LastName;
                         newFleetContact.Email__c = fleetContacts.get(i).Email;
                         newFleetContact.Phone__c = fleetContacts.get(i).Phone;
 
@@ -622,6 +706,10 @@ public class FleetEnrollmentController {
                             newFleetDriver.Last_Name__c = fleetDrivers.get(i).lastName;
                             newFleetDriver.Driver_ID__c = fleetDrivers.get(i).driverId;
 
+                            if(fleetEnrollment.Driver_ID_Random__c == true) {
+                                newFleetDriver.Driver_ID__c = 'Random';
+                            }
+
                             insert newFleetDriver;
                         }
 
@@ -648,14 +736,12 @@ public class FleetEnrollmentController {
 
         }
         catch (Exception e) {
-            String errorNumber = logError(e);
+            String errorNumber = WEXDEVErrorReporting.reportExternalError(APPLICATION_NAME, ApexPages.currentPage().getUrl(), e);
 
-            applicationRedirect = Page.FleetEnrollmentError;
-            applicationRedirect.getParameters().put('errorCode', '2');
-            applicationRedirect.getParameters().put('errorReferenceNumber', errorNumber);
-            applicationRedirect.getParameters().put('program', programParameter);
-            applicationRedirect.setRedirect(true);
-            return applicationRedirect;
+            PageReference errorPage = Page.ExternalApplicationError;
+            errorPage.getParameters().put('errorCode', errorNumber);
+            errorPage.getParameters().put('pgm', programParameter);
+            return errorPage;
         }
 
     }
@@ -666,8 +752,8 @@ public class FleetEnrollmentController {
 
         Contact temporaryContact = new Contact();
 
-        temporaryContact.FirstName = fleetEnrollment.Billing_Full_Name__c;
-        temporaryContact.LastName = fleetEnrollment.Billing_Full_Name__c;
+        temporaryContact.FirstName = fleetEnrollment.Billing_Contact_First_Name__c;
+        temporaryContact.LastName = fleetEnrollment.Billing_Contact_Last_Name__c;
         temporaryContact.Email = fleetEnrollment.Billing_Email__c;
         temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
 
@@ -695,32 +781,6 @@ public class FleetEnrollmentController {
 
         delete temporaryContact;
 
-    }
-
-    public String logError(Exception e) {
-        try {
-            External_Application_Error__c error = new External_Application_Error__c();
-
-            error.Error_Message__c = String.valueOf(e);
-            error.Error_Location__c = String.valueOf(e.getStackTraceString());
-            error.Application__c = 'Fleet Data Capture Form';
-
-            insert error;
-
-            List<External_Application_Error__c> errors = [SELECT Id, Name FROM External_Application_Error__c WHERE Id = :error.Id];
-
-            if(!errors.isEmpty()) {
-                return errors[0].Name;
-            }
-            else {
-                return '';
-            }
-        }
-        catch(Exception f) {
-            System.debug('Error logging exception.. Skipping..');
-
-            return '';
-        }
     }
 
 }

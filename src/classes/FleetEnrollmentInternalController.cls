@@ -228,37 +228,28 @@ public with sharing class FleetEnrollmentInternalController {
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, errorCodeDescription + '  <br><br>The support organization has been notified. Your error tracking number is: ' + errorCode));
                 }
             } else {
+
                 if (opportunityId != null) {
 
-                    List<Opportunity> opportunities = [SELECT Id, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name FROM Opportunity WHERE Id = :opportunityId];
+                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name FROM Opportunity WHERE Id = :opportunityId];
 
                     if (opportunities.size() == 1) {
 
+                        fleetEnrollmentInformation = new FleetEnrollmentInformation();
+
                         opportunity = opportunities[0];
 
-                        List<Application_Request__c> applicationRequests = [SELECT Id, Opportunity_Name_Text__c, Siebel_Oppty__c, Physical_Country__c, Opportunity__r.Campaign_Program__r.Program__c, Opportunity__r.Campaign.Name, Billing_Contact__r.FirstName, Billing_Contact__r.LastName, Billing_Contact__r.MailingStreet, Billing_Contact__r.MailingCity, Billing_Contact__r.MailingState, Billing_Contact__r.MailingPostalCode, Billing_Contact__r.Email, Billing_Contact__r.Phone FROM Application_Request__c WHERE Opportunity__c = :opportunityId];
+                        fleetEnrollment = new FleetEnrollment__c();
 
-                        if (applicationRequests.size() == 1) {
+                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id];
 
-                            applicationRequest = applicationRequests[0];
+                        if(fleetEnrollments.size() > 0) {
+                            fleetEnrollment.Id = fleetEnrollments[0].Id;
+                        }
 
-                            fleetEnrollment = new FleetEnrollment__c();
+                        if (opportunity.Campaign_Program__r.Program__c != null) {
 
-                            List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id];
-
-                            if(fleetEnrollments.size() > 0) {
-                                fleetEnrollment.Id = fleetEnrollments[0].Id;
-                            }
-
-                            fleetEnrollment.Application_Request__c = applicationRequest.Id;
-
-                            if (applicationRequest.Opportunity__r.Campaign_Program__r.Program__c != null) {
-
-                                program = WexBrandingController.getProgram(applicationRequest.Opportunity__r.Campaign_Program__r.Program__c);
-
-                            }
-
-                            fleetEnrollmentInformation = new FleetEnrollmentInformation();
+                            program = WexBrandingController.getProgram(opportunity.Campaign_Program__r.Program__c);
 
                             if(program.Allow_Partner_Billed_Overnight_Cards__c) {
                                 fleetEnrollmentInformation.expeditedCardShipping = true;
@@ -266,8 +257,16 @@ public with sharing class FleetEnrollmentInternalController {
                                 fleetEnrollmentInformation.selectedCardShippingOption = 'Overnight';
                             }
 
-                        } else {
-                            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'No Application Requests found on Opportunity!'));
+                        }
+
+                        List<Application_Request__c> applicationRequests = [SELECT Id, Siebel_Oppty__c FROM Application_Request__c WHERE Opportunity__c = :opportunityId];
+
+                        if (applicationRequests.size() == 1) {
+
+                            applicationRequest = applicationRequests[0];
+
+                            fleetEnrollment.Application_Request__c = applicationRequest.Id;
+
                         }
 
                     } else {
@@ -323,7 +322,6 @@ public with sharing class FleetEnrollmentInternalController {
 
         try {
 
-
             fleetEnrollment.Status__c = 'New';
 
             fleetEnrollment.RecordTypeId = internalRecordType;
@@ -371,15 +369,15 @@ public with sharing class FleetEnrollmentInternalController {
 
             fleetEnrollment.Station_Card__c = fleetEnrollmentInformation.stationCard;
 
-            fleetEnrollment.Embossing_Company_Name__c = applicationRequest.Opportunity_Name_Text__c;
+            fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
 
-            fleetEnrollment.Billing_Full_Name__c = applicationRequest.Billing_Contact__r.FirstName + ' ' + applicationRequest.Billing_Contact__r.LastName;
-            fleetEnrollment.Billing_Email__c = applicationRequest.Billing_Contact__r.Email;
-            fleetEnrollment.Billing_Phone__c = applicationRequest.Billing_Contact__r.Phone;
-            fleetEnrollment.Billing_Address_Line_1__c = applicationRequest.Billing_Contact__r.MailingStreet;
-            fleetEnrollment.Billing_City__c = applicationRequest.Billing_Contact__r.MailingCity;
-            fleetEnrollment.Billing_State__c = applicationRequest.Billing_Contact__r.MailingState;
-            fleetEnrollment.Billing_Postal_Code__c = applicationRequest.Billing_Contact__r.MailingPostalCode;
+            fleetEnrollment.Billing_Full_Name__c = opportunity.Billing_Contact_First_Name__c + ' ' + opportunity.Billing_Contact_Last_Name__c;
+            fleetEnrollment.Billing_Email__c = opportunity.Billing_Contact_Email__c;
+            fleetEnrollment.Billing_Phone__c = opportunity.Billing_Contact_Phone__c;
+            fleetEnrollment.Billing_Address_Line_1__c = opportunity.Billing_Street__c;
+            fleetEnrollment.Billing_City__c = opportunity.Billing_City__c;
+            fleetEnrollment.Billing_State__c = opportunity.Billing_State__c;
+            fleetEnrollment.Billing_Postal_Code__c = opportunity.Billing_Zip_Postal_Code__c;
 
             if (fleetEnrollmentInformation.alternateCardShippingAddress) {
                 fleetEnrollment.Card_Shipping_Attention__c = fleetEnrollmentInformation.cardShippingAttention;
@@ -389,11 +387,11 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Card_Shipping_State__c = fleetEnrollmentInformation.cardShippingState;
                 fleetEnrollment.Card_Shipping_Postal_Code__c = fleetEnrollmentInformation.cardShippingPostalCode;
             } else {
-                fleetEnrollment.Card_Shipping_Attention__c = applicationRequest.Billing_Contact__r.FirstName + ' ' + applicationRequest.Billing_Contact__r.LastName;
-                fleetEnrollment.Card_Shipping_Address_Line_1__c = applicationRequest.Billing_Contact__r.MailingStreet;
-                fleetEnrollment.Card_Shipping_City__c = applicationRequest.Billing_Contact__r.MailingCity;
-                fleetEnrollment.Card_Shipping_State__c = applicationRequest.Billing_Contact__r.MailingState;
-                fleetEnrollment.Card_Shipping_Postal_Code__c = applicationRequest.Billing_Contact__r.MailingPostalCode;
+                fleetEnrollment.Card_Shipping_Attention__c = opportunity.Billing_Contact_First_Name__c + ' ' + opportunity.Billing_Contact_Last_Name__c;
+                fleetEnrollment.Card_Shipping_Address_Line_1__c = opportunity.Billing_Street__c;
+                fleetEnrollment.Card_Shipping_City__c = opportunity.Billing_City__c;
+                fleetEnrollment.Card_Shipping_State__c = opportunity.Billing_State__c;
+                fleetEnrollment.Card_Shipping_Postal_Code__c = opportunity.Billing_Zip_Postal_Code__c;
             }
 
             if(fleetEnrollmentInformation.specialShippingAddress) {
@@ -442,7 +440,12 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.overnightCardsFileBody != null) {
                     Attachment managerApproval = new Attachment();
-                    managerApproval.Name = applicationRequest.Siebel_Oppty__c + '_OvernightCardApproval_' + fleetEnrollmentInformation.overnightCardsFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    if(applicationRequest.Siebel_Oppty__c != null) {
+                        managerApproval.Name = applicationRequest.Siebel_Oppty__c + '_OvernightCardApproval_' + fleetEnrollmentInformation.overnightCardsFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    else {
+                        managerApproval.Name = opportunity.Opportunity_Number__c + '_OvernightCardApproval_' + fleetEnrollmentInformation.overnightCardsFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
                     managerApproval.Body = fleetEnrollmentInformation.overnightCardsFileBody;
                     managerApproval.ParentId = fleetEnrollment.Id;
                     insert managerApproval;
@@ -450,7 +453,12 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.feeWaiversTFSFileBody != null) {
                     Attachment tfsSchedule = new Attachment();
-                    tfsSchedule.Name = applicationRequest.Siebel_Oppty__c + '_TFS_' + fleetEnrollmentInformation.feeWaiversTFSFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    if(applicationRequest.Siebel_Oppty__c != null) {
+                        tfsSchedule.Name = applicationRequest.Siebel_Oppty__c + '_TFS_' + fleetEnrollmentInformation.feeWaiversTFSFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    else {
+                        tfsSchedule.Name = opportunity.Opportunity_Number__c + '_TFS_' + fleetEnrollmentInformation.feeWaiversTFSFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
                     tfsSchedule.Body = fleetEnrollmentInformation.feeWaiversTFSFileBody;
                     tfsSchedule.ParentId = fleetEnrollment.Id;
                     insert tfsSchedule;
@@ -458,7 +466,12 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.fleetDataFileBody != null) {
                     Attachment fleetEnrollmentData = new Attachment();
-                    fleetEnrollmentData.Name = applicationRequest.Siebel_Oppty__c + '_FleetData_' + fleetEnrollmentInformation.fleetDataFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    if(applicationRequest.Siebel_Oppty__c != null) {
+                        fleetEnrollmentData.Name = applicationRequest.Siebel_Oppty__c + '_FleetData_' + fleetEnrollmentInformation.fleetDataFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    else {
+                        fleetEnrollmentData.Name = opportunity.Opportunity_Number__c + '_FleetData_' + fleetEnrollmentInformation.fleetDataFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
                     fleetEnrollmentData.Body = fleetEnrollmentInformation.fleetDataFileBody;
                     fleetEnrollmentData.ParentId = fleetEnrollment.Id;
                     insert fleetEnrollmentData;
@@ -466,7 +479,12 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.directDebitFileBody != null) {
                     Attachment directDebitData = new Attachment();
-                    directDebitData.Name = applicationRequest.Siebel_Oppty__c + '_DirectDebit_' + fleetEnrollmentInformation.directDebitFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    if(applicationRequest.Siebel_Oppty__c != null) {
+                        directDebitData.Name = applicationRequest.Siebel_Oppty__c + '_DirectDebit_' + fleetEnrollmentInformation.directDebitFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    else {
+                        directDebitData.Name = opportunity.Opportunity_Number__c + '_DirectDebit_' + fleetEnrollmentInformation.directDebitFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
                     directDebitData.Body = fleetEnrollmentInformation.directDebitFileBody;
                     directDebitData.ParentId = fleetEnrollment.Id;
                     insert directDebitData;
