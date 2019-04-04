@@ -4,14 +4,24 @@
     <name>Serv Ops - Shell Correspondence</name>
     <queueMembers>
         <users>
+            <user>adam.deangelis@wexinc.com</user>
             <user>alexander.smith-petersen@wexinc.com</user>
+            <user>amy.billings@wexinc.com</user>
             <user>andrew.dean@wexinc.com</user>
+            <user>benjamin.dunham-kapaldo@wexinc.com</user>
+            <user>claude.muhindarwakagwa@wexinc.com</user>
+            <user>derek.castle@wexinc.com</user>
+            <user>emily.stevenson@wexinc.com</user>
+            <user>jaime.whitney@wexinc.com</user>
+            <user>jessica.snow@wexinc.com</user>
             <user>matthew.mcdonald@wexinc.com</user>
             <user>nana.bilonda@wexinc.com</user>
             <user>nancy.frie@wexinc.com</user>
             <user>rhett.boutin@wexinc.com</user>
             <user>robin.lepage@wexinc.com</user>
             <user>ryan.moholland@wexinc.com</user>
+            <user>sarah.hudson@wexinc.com</user>
+            <user>timothy.derbyshire@wexinc.com</user>
         </users>
     </queueMembers>
     <queueRoutingConfig>Shell_Email</queueRoutingConfig>
