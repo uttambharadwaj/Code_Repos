@@ -6,6 +6,7 @@
     <customButtons>geopointe__Map_newWindow</customButtons>
     <customButtons>Create_Field_Support_Case</customButtons>
     <customButtons>BOCA_To_Prospect</customButtons>
+    <customButtons>Submit_Fleet_Data</customButtons>
     <customConsoleComponents>
         <primaryTabComponents>
             <containers>
