@@ -5,6 +5,7 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Global Training View</label>
+    <tabs>standard-Chatter</tabs>
     <tabs>standard-Case</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>Training_Class__c</tabs>
@@ -12,4 +13,5 @@
     <tabs>standard-File</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
+    <tabs>mea__Activities_Tab</tabs>
 </CustomApplication>
