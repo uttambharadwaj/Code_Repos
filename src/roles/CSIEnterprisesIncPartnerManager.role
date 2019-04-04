@@ -6,5 +6,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>C.S.I. Enterprises, Inc. Partner Manager</name>
     <opportunityAccessLevel>None</opportunityAccessLevel>
-    <parentRole>ChannelSales</parentRole>
+    <parentRole>Manager_Partner_and_Channel</parentRole>
 </Role>
