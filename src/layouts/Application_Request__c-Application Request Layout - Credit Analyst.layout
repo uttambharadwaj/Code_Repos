@@ -146,10 +146,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Credit_Line_Recommendation__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Credit_Decision__c</field>
             </layoutItems>
             <layoutItems>
@@ -371,6 +367,10 @@
                 <field>DNB_SBFE_High_Credit__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Credit_Line_Recommendation__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>SIC_Code__c</field>
             </layoutItems>
@@ -437,10 +437,6 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>DNB_Resolved_Country__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>DNB_Credit_Line_Recommendation__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -707,6 +703,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Siebel_Oppty__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>WEX_Account_Nbr__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
