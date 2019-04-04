@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>pi__Send_to_Prospect_Insight</customButtons>
+    <customButtons>Send_WEX_EDGE_Registraiton</customButtons>
     <excludeButtons>ChangeOwnerOne</excludeButtons>
     <excludeButtons>Clone</excludeButtons>
     <excludeButtons>DisableCustomerPortal</excludeButtons>
