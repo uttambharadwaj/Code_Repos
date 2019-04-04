@@ -611,10 +611,6 @@
                 <behavior>Edit</behavior>
                 <field>DNB_Reason_Code__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>DNB_Credit_Line_Recommendation__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

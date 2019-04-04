@@ -627,10 +627,6 @@
                 <behavior>Edit</behavior>
                 <field>Number_of_Payments_Slow__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>DNB_Credit_Line_Recommendation__c</field>
-            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
