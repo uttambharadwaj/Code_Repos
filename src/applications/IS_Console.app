@@ -2,9 +2,11 @@
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
     <brand>
         <headerColor>#EB180E</headerColor>
+        <logo>images</logo>
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
+    <description>Lightning Console for IS</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
@@ -12,27 +14,27 @@
     <navType>Console</navType>
     <profileActionOverrides>
         <actionName>Tab</actionName>
-        <content>EFS_Inside_Sales_Home_Page_Fleet_Record</content>
+        <content>Corporate_Payments_Implementations</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>
-        <profile>WEX EFS OTR Sales</profile>
+        <profile>CP Account Management EU</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>Tab</actionName>
-        <content>Corporate_Payments_Sales</content>
+        <content>Corporate_Payments_Implementations</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>
-        <profile>CP Marketing EU</profile>
+        <profile>Corporate Payment - Global</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>Tab</actionName>
-        <content>Corporate_Payments_Sales</content>
+        <content>Corporate_Payments_Implementations</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
         <type>Flexipage</type>
-        <profile>CP Relationship Management EU</profile>
+        <profile>CP Customer Service EU</profile>
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>Tab</actionName>
@@ -68,6 +70,62 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>Tab</actionName>
+        <content>AUHomePage</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>AU Fuel Indirect User</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Account Management NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>EFS_Inside_Sales_Home_Page_Fleet_Record</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>WEX EFS OTR Sales</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Marketing EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Implementations</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Onboarding NA</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
+        <content>Corporate_Payments_Sales</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>standard-home</pageOrSobjectType>
+        <type>Flexipage</type>
+        <profile>CP Relationship Management EU</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>Tab</actionName>
         <content>Corporate_Payments_Sales</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>standard-home</pageOrSobjectType>
@@ -98,72 +156,24 @@
         <type>Flexipage</type>
         <profile>CP Sales NA</profile>
     </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>AUHomePage</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>AU Fuel Indirect User</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Account Management NA</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Account Management EU</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>Corporate Payment - Global</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Customer Service EU</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Onboarding EU</profile>
-    </profileActionOverrides>
-    <profileActionOverrides>
-        <actionName>Tab</actionName>
-        <content>Corporate_Payments_Implementations</content>
-        <formFactor>Large</formFactor>
-        <pageOrSobjectType>standard-home</pageOrSobjectType>
-        <type>Flexipage</type>
-        <profile>CP Onboarding NA</profile>
-    </profileActionOverrides>
-    <tabs>standard-Lead</tabs>
-    <tabs>standard-Opportunity</tabs>
+    <tabs>standard-home</tabs>
     <tabs>mea__Activities_Tab</tabs>
+    <tabs>standard-Task</tabs>
+    <tabs>standard-Lead</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Opportunity</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Case</tabs>
+    <tabs>standard-Campaign</tabs>
     <tabs>standard-report</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>CP_Projects__c</tabs>
     <tabs>FSC_Existing_Exposure__c</tabs>
     <tabs>SAP_Commissions</tabs>
+    <tabs>standard-Feed</tabs>
+    <tabs>standard-CollaborationGroup</tabs>
+    <tabs>standard-LiveChatTranscript</tabs>
+    <tabs>standard-OmniSupervisorLightning</tabs>
     <tabs>WEX_Support_Portal</tabs>
     <uiType>Lightning</uiType>
     <utilityBar>Inside_Sales_Console_UtilityBar</utilityBar>
@@ -187,16 +197,40 @@
             <tab>standard-Account</tab>
         </mappings>
         <mappings>
+            <tab>standard-Campaign</tab>
+        </mappings>
+        <mappings>
             <tab>standard-Case</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-CollaborationGroup</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Contact</tab>
         </mappings>
         <mappings>
             <tab>standard-Dashboard</tab>
         </mappings>
         <mappings>
+            <tab>standard-Feed</tab>
+        </mappings>
+        <mappings>
             <tab>standard-Lead</tab>
         </mappings>
         <mappings>
+            <tab>standard-LiveChatTranscript</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-OmniSupervisorLightning</tab>
+        </mappings>
+        <mappings>
             <tab>standard-Opportunity</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-Task</tab>
+        </mappings>
+        <mappings>
+            <tab>standard-home</tab>
         </mappings>
         <mappings>
             <tab>standard-report</tab>
