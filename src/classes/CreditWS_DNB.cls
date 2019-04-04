@@ -457,10 +457,10 @@ public class CreditWS_DNB {
                             for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
 
                                 if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
-                                    dnbCAModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                    dnbCAModelResponse.CSADHighCredit = Long.valueOf(predictiveAttribute.value);
                                 }
                                 if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
-                                    dnbCAModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                    dnbCAModelResponse.SBFEHighCredit = Long.valueOf(predictiveAttribute.value);
                                 }
                                 if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
                                     dnbCAModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
@@ -701,10 +701,10 @@ public class CreditWS_DNB {
                             for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
 
                                 if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
-                                    dnbNAFleetModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                    dnbNAFleetModelResponse.CSADHighCredit = Long.valueOf(predictiveAttribute.value);
                                 }
                                 if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
-                                    dnbNAFleetModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                    dnbNAFleetModelResponse.SBFEHighCredit = Long.valueOf(predictiveAttribute.value);
                                 }
                                 if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
                                     dnbNAFleetModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
@@ -887,10 +887,10 @@ public class CreditWS_DNB {
                                 for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
     
                                     if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
-                                        dnbOTRModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                        dnbOTRModelResponse.CSADHighCredit = Long.valueOf(predictiveAttribute.value);
                                     }
                                     if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
-                                        dnbOTRModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                        dnbOTRModelResponse.SBFEHighCredit = Long.valueOf(predictiveAttribute.value);
                                     }
                                     if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
                                         dnbOTRModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
@@ -1060,10 +1060,10 @@ public class CreditWS_DNB {
                                 for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
 
                                     if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
-                                        dnbCPModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                        dnbCPModelResponse.CSADHighCredit = Long.valueOf(predictiveAttribute.value);
                                     }
                                     if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
-                                        dnbCPModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
+                                        dnbCPModelResponse.SBFEHighCredit = Long.valueOf(predictiveAttribute.value);
                                     }
                                     if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
                                         dnbCPModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
@@ -1171,8 +1171,8 @@ public class CreditWS_DNB {
         public String PrimaryGeographicArea { get; set; }
         public String PostalCode { get; set; }
         public String CountryCode { get; set; }
-        public Integer SBFEHighCredit { get; set; }
-        public Integer CSADHighCredit { get; set; }
+        public Long SBFEHighCredit { get; set; }
+        public Long CSADHighCredit { get; set; }
         public Integer SBRICardScore { get; set; }
         public Integer BankruptcyDateOfFiling { get; set; }
         public String FeinTaxID { get; set; }
@@ -1237,8 +1237,8 @@ public class CreditWS_DNB {
         public String PrimaryGeographicArea { get; set; }
         public String PostalCode { get; set; }
         public String CountryCode { get; set; }
-        public Integer SBFEHighCredit { get; set; }
-        public Integer CSADHighCredit { get; set; }
+        public Long SBFEHighCredit { get; set; }
+        public Long CSADHighCredit { get; set; }
         public Integer SBRICardScore { get; set; }
         public String FeinTaxID { get; set; }
         public Integer Paydex { get; set; }
@@ -1299,8 +1299,8 @@ public class CreditWS_DNB {
         public String PrimaryGeographicArea { get; set; }
         public String PostalCode { get; set; }
         public String CountryCode { get; set; }
-        public Integer SBFEHighCredit { get; set; }
-        public Integer CSADHighCredit { get; set; }
+        public Long SBFEHighCredit { get; set; }
+        public Long CSADHighCredit { get; set; }
         public Integer SBRICardScore { get; set; }
         public String FeinTaxID { get; set; }
         public Integer Paydex { get; set; }
@@ -1367,8 +1367,8 @@ public class CreditWS_DNB {
         public String PrimaryGeographicArea { get; set; }
         public String PostalCode { get; set; }
         public String CountryCode { get; set; }
-        public Integer SBFEHighCredit { get; set; }
-        public Integer CSADHighCredit { get; set; }
+        public Long SBFEHighCredit { get; set; }
+        public Long CSADHighCredit { get; set; }
         public Integer SBRICardScore { get; set; }
         public Integer BankruptcyDateOfFiling { get; set; }
         public String FeinTaxID { get; set; }
