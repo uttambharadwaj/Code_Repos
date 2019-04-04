@@ -846,10 +846,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>PAC_Pride_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>PayCard__c</field>
             </layoutItems>
             <layoutItems>

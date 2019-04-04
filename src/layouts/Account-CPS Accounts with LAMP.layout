@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>geopointe__Map_newWindow</customButtons>
-    <excludeButtons>DataDotComClean</excludeButtons>
-    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
+    <excludeButtons>DataDotComAccountInsights</excludeButtons>
     <excludeButtons>JigsawSearch</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -308,22 +307,6 @@
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>false</editHeading>
-        <label>MHI Global Large Account Management Process (LAMP®)</label>
-        <layoutColumns>
-            <layoutItems>
-                <height>200</height>
-                <page>Gold_Sheet</page>
-                <showLabel>false</showLabel>
-                <showScrollbars>false</showScrollbars>
-                <width>100%</width>
-            </layoutItems>
-        </layoutColumns>
-        <style>OneColumn</style>
-    </layoutSections>
     <miniLayout>
         <fields>Name</fields>
         <fields>ParentId</fields>
@@ -336,16 +319,6 @@
             <relatedList>RelatedContactList</relatedList>
         </relatedLists>
     </miniLayout>
-    <relatedLists>
-        <fields>NAME</fields>
-        <fields>From_Date__c</fields>
-        <fields>To_Date__c</fields>
-        <fields>Low__c</fields>
-        <fields>Realistic__c</fields>
-        <fields>High__c</fields>
-        <fields>Currency__c</fields>
-        <relatedList>Revenue_Target__c.Account__c</relatedList>
-    </relatedLists>
     <relatedLists>
         <fields>FULL_NAME</fields>
         <fields>Key_Contact__c</fields>
