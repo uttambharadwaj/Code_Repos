@@ -100,6 +100,7 @@ global class CreditDecisionEngineOTR {
             }
 
             // Existing Exposure - Application/Account Exposure
+            System.debug('Running Existing Exposure...');
             CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
 
             existingExposureRequest.applicationId = onlineApplication.Id;
@@ -110,6 +111,10 @@ global class CreditDecisionEngineOTR {
             existingExposureRequest.state = onlineApplication.State__c;
             existingExposureRequest.postalCode = onlineApplication.Zip_Code__c;
             existingExposureRequest.fraudFlag = onlineApplication.Fraud_Flag__c;
+            existingExposureRequest.duns = onlineApplication.DUNS__c;
+            existingExposureRequest.taxID = onlineApplication.Federal_Tax_ID__c;
+            existingExposureRequest.phone = onlineApplication.Phone_Number__c;
+            existingExposureRequest.pgSSN = onlineApplication.AO_Social_Security_Number__c;
 
             List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
             onlineApplication.Application_Exposure_Hits__c = existingExposureApplications.size();

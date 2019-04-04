@@ -32,6 +32,7 @@
             <apex:column headerValue="Submitted to Credit">{!duplicate.applicationCreatedDate}</apex:column>
             <apex:column headerValue="Date Decisioned">{!duplicate.applicationDecisionedDate}</apex:column>
             <apex:column headerValue="Credit Decision">{!duplicate.creditDecision}</apex:column>
+            <apex:column headerValue="Fraud Flag">{!duplicate.fraudFlag}</apex:column>
             <apex:column headerValue="Credit Line Requested">{!duplicate.creditLineRequested}</apex:column>
             <apex:column headerValue="Credit Line Approved">{!duplicate.creditLineApproved}</apex:column>
             <apex:column headerValue="Legal Business Name">{!duplicate.legalBusinessName}</apex:column>
@@ -39,10 +40,11 @@
             <apex:column headerValue="City">{!duplicate.city}</apex:column>
             <apex:column headerValue="State">{!duplicate.state}</apex:column>
             <apex:column headerValue="Postal Code">{!duplicate.postalCode}</apex:column>
+            <apex:column headerValue="Phone">{!duplicate.phone}</apex:column>
             <apex:column headerValue="Program">{!duplicate.program}</apex:column>
-            <apex:column headerValue="Fraud Flag">{!duplicate.fraudFlag}</apex:column>
             <apex:column headerValue="Tax ID">{!duplicate.taxId}</apex:column>
             <apex:column headerValue="PG SSN">{!duplicate.pgSSN}</apex:column>
+            <apex:column headerValue="DUNS Number">{!duplicate.duns}</apex:column>
         </apex:pageBlockTable><br/>
         <apex:outputPanel id="errorDisplay">
             <apex:outputPanel rendered="{!duplicateApplications.size = 0}">
@@ -65,6 +67,7 @@
             <apex:column headerValue="National ID">{!duplicate.nationalId}</apex:column>
             <apex:column headerValue="Credit Line">${!duplicate.creditLine}</apex:column>
             <apex:column headerValue="Status">{!duplicate.accountStatus}</apex:column>
+            <apex:column headerValue="DUNS Number">{!duplicate.duns}</apex:column>
         </apex:pageBlockTable><br/>
         <apex:outputPanel id="accountErrorDisplay">
             <apex:outputPanel rendered="{!duplicateAccounts.size = 0}">
