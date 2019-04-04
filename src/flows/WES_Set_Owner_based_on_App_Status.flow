@@ -155,9 +155,9 @@
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.Owner_User_Role_Name__c</leftValueReference>
-                <operator>EqualTo</operator>
+                <operator>StartsWith</operator>
                 <rightValue>
-                    <stringValue>WES Credit Vetting Analyst</stringValue>
+                    <stringValue>WES Credit Vetting</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
@@ -614,7 +614,7 @@
         </rules>
     </decisions>
     <description>The Application owner is determined by the application status which is relevant to either the assigned Sales or Marketing Agent</description>
-    <interviewLabel>WES_Set_Owner_based_on_App_Status-15_InterviewLabel</interviewLabel>
+    <interviewLabel>WES_Set_Owner_based_on_App_Status-16_InterviewLabel</interviewLabel>
     <label>WES - Set Owner based on App Status</label>
     <processMetadataValues>
         <name>ObjectType</name>

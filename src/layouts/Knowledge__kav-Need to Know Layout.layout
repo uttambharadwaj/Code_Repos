@@ -144,4 +144,8 @@
     <relatedLists>
         <relatedList>KnowledgeArticleVersionFilesRelatedList</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>Query</fields>
+        <relatedList>KavSearchPromotionRuleRelatedList</relatedList>
+    </relatedLists>
 </Layout>
