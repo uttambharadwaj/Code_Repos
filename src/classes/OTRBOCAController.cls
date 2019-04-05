@@ -539,13 +539,13 @@ public class OTRBOCAController {
     }
 
     /*
-    IADJUDICAT-929  add pdf attachment when page 1 is saved for later
+    IADJUDICAT-929  add pdf attachment when page 1 is saved
     description:    turns OnlineApplication into pdf form. inserts and redirects to confirmation
     known usage:    called via page actionFunction, after saveApplication completes
     test method:    OTRBOCATest.testGeneratePDFMethod
      */
     public PageReference generatePDF(){
-        Attachment pdfAttachment = OTRSetupController.generatePDF(onlineApplication, '(Partial)'); //if second parameter is changed, transient fromSFLString must also be changed in OTRSetupController
+        Attachment pdfAttachment = OTRSetupController.generatePDF(onlineApplication, '(Partial)'); //if second parameter is changed, fromSFLString must also be changed in OTRSetupController
         insert pdfAttachment;
 
         PageReference redirect = Page.OTRBOCAConfirmation;
@@ -907,6 +907,12 @@ public class OTRBOCAController {
             if (onlineApplication.External_Application_URL__c == null) {
                 onlineApplication.External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&offer=' + onlineApplicationOffer.Id + '&customer=' + onlineApplication.Id + '&key=' + onlineApplication.Application_Key__c;
             }
+
+            //IADJUDICAT-929 to save this when moving to page two, we need pdf token
+            String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(256));
+            Long l = DateTime.now().getTime();
+            onlineApplication.PDF_Token__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + onlineApplication.Application_Signer_IP__c + salt)));
+
 
             result = Database.upsert(onlineApplication, false);
             if (!result.isSuccess()) {
