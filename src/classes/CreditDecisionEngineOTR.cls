@@ -32,7 +32,7 @@ global class CreditDecisionEngineOTR {
                         DUNS__c, PG_Required__c, Type_of_Business__c, AO_Home_Phone_Number__c, Program__c, CreatedBy.Alias, Fraud_Flag__c, Previous_Fraud__c, Opportunity__c,
                         Opportunity__r.SourceSystem__c, Account__r.Name, Trade_Name__c, Federal_Tax_ID__c, Card_Shipping_Address_Line_1__c, Card_Shipping_City__c, Card_Shipping_State__c,
                         Card_Shipping_Postal_Code__c, Email__c, Phone_Number__c, IP_Address__c, Credit_Line_Requested__c, Application_Signer_IP__c, DNB_Credit_Line_Recommendation__c,
-                        DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DNB_Resolution_Check__c, DOT_Number__c
+                        DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DNB_Resolution_Check__c, DOT_Number__c, DNB_Resolved_DUNS__c
                 FROM OnlineApplication__c
                 WHERE Id = :onlineApplicationId
         ];
@@ -97,33 +97,6 @@ global class CreditDecisionEngineOTR {
 
             } else {
                 onlineApplication.ThreatMetrix_Result__c = 'Pass';
-            }
-
-            // Existing Exposure - Application/Account Exposure
-            System.debug('Running Existing Exposure...');
-            CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
-
-            existingExposureRequest.applicationId = onlineApplication.Id;
-            existingExposureRequest.applicationName = onlineApplication.Name;
-            existingExposureRequest.legalBusinessName = onlineApplication.Legal_Business_Name__c;
-            existingExposureRequest.addressLine1 = onlineApplication.Business_Street_Address__c;
-            existingExposureRequest.city = onlineApplication.City__c;
-            existingExposureRequest.state = onlineApplication.State__c;
-            existingExposureRequest.postalCode = onlineApplication.Zip_Code__c;
-            existingExposureRequest.fraudFlag = onlineApplication.Fraud_Flag__c;
-            existingExposureRequest.duns = onlineApplication.DUNS__c;
-            existingExposureRequest.taxID = onlineApplication.Federal_Tax_ID__c;
-            existingExposureRequest.phone = onlineApplication.Phone_Number__c;
-            existingExposureRequest.pgSSN = onlineApplication.AO_Social_Security_Number__c;
-
-            List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
-            onlineApplication.Application_Exposure_Hits__c = existingExposureApplications.size();
-            onlineApplication.Existing_Account_Exposure_Hits__c = (CreditUtil_ExistingExposure.getAccounts(existingExposureRequest)).size();
-
-            for (CreditUtil_ExistingExposure.ExistingExposureApplications existingExposureApplication : existingExposureApplications) {
-                if (existingExposureApplication.fraudFlag) {
-                    onlineApplication.Previous_Fraud__c = true;
-                }
             }
 
             if (onlineApplication.AO_Social_Security_Number__c != null) {
@@ -389,6 +362,32 @@ global class CreditDecisionEngineOTR {
                 }
             }
 
+            // Existing Exposure - Application/Account Exposure
+            System.debug('Running Existing Exposure...');
+            CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
+
+            existingExposureRequest.applicationId = onlineApplication.Id;
+            existingExposureRequest.applicationName = onlineApplication.Name;
+            existingExposureRequest.legalBusinessName = onlineApplication.Legal_Business_Name__c;
+            existingExposureRequest.addressLine1 = onlineApplication.Business_Street_Address__c;
+            existingExposureRequest.city = onlineApplication.City__c;
+            existingExposureRequest.state = onlineApplication.State__c;
+            existingExposureRequest.postalCode = onlineApplication.Zip_Code__c;
+            existingExposureRequest.fraudFlag = onlineApplication.Fraud_Flag__c;
+            existingExposureRequest.duns = onlineApplication.DNB_Resolved_DUNS__c;
+            existingExposureRequest.taxID = onlineApplication.Federal_Tax_ID__c;
+            existingExposureRequest.phone = onlineApplication.Phone_Number__c;
+            existingExposureRequest.pgSSN = onlineApplication.AO_Social_Security_Number__c;
+
+            List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
+            List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
+
+            for (CreditUtil_ExistingExposure.ExistingExposureApplications existingExposureApplication : existingExposureApplications) {
+                if (existingExposureApplication.fraudFlag) {
+                    onlineApplication.Previous_Fraud__c = true;
+                }
+            }
+
             // Forte
             System.debug('Running Forte...');
             CreditWS_Forte.ForteRequest forteRequest = new CreditWS_Forte.ForteRequest();
@@ -452,6 +451,8 @@ global class CreditDecisionEngineOTR {
 
             // Upsert and execute BREeze
             upsert onlineApplication;
+            onlineApplication.Application_Exposure_Hits__c = existingExposureApplications.size();
+            onlineApplication.Existing_Account_Exposure_Hits__c = existingExposureAccounts.size();
 
             // Make a safe copy so we don't overwrite any fields
             onlineApplications = [SELECT Id, Running_Credit_Decisioning__c FROM OnlineApplication__c WHERE Id = :onlineApplicationId LIMIT 1];

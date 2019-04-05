@@ -52,7 +52,7 @@ public with sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.pgSSN = existingApplication.AO_Social_Security_Number__c;
                     duplicateApplication.program = existingApplication.Program__c;
                     duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
-                    duplicateApplication.duns = existingApplication.DUNS__c;
+                    duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
                     duplicateApplication.phone = existingApplication.Phone_Number__c;
                     duplicateApplication.ipAddress = existingApplication.IP_Address__c;
                     if (null != existingApplication.Submitted_to_Credit__c) {
@@ -174,7 +174,7 @@ public with sharing class CreditUtil_ExistingExposure {
 
         String databaseQuery = 'SELECT Id, CreatedDate, Name, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c,' +
                 'Credit_Decision__c, Status__c, Federal_Tax_ID__c, AO_Social_Security_Number__c, Program__c, Fraud_Flag__c, Submitted_to_Credit__c, Credit_Line_Requested__c,' +
-                'Credit_Line_Approved__c, Date_Decisioned__c, DUNS__c, Phone_Number__c, IP_Address__c' +
+                'Credit_Line_Approved__c, Date_Decisioned__c, DNB_Resolved_DUNS__c, Phone_Number__c, IP_Address__c' +
                 ' FROM OnlineApplication__c' + whereClause;
 
         try {
