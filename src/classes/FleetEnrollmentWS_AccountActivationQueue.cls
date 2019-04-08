@@ -138,7 +138,19 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
                 gResponse.result = true;
                 gResponse.message = 'Case Queue successfully retrieved!';
 
-                gResponse.availableImplementationCases = [SELECT Id, Siebel_Oppty__c, Fleet_Enrollment__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate DESC LIMIT 10];
+                gResponse.availableImplementationCases = new List<Case>();
+
+                // Add cases with no Fleet Data, and add in the template
+                for(Case fleetEnrollmentCase : [SELECT Id, Siebel_Oppty__c, Fleet_Enrollment__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c != null ORDER BY CreatedDate DESC LIMIT 10]) {
+                    gResponse.availableImplementationCases.add(fleetEnrollmentCase);
+                }
+
+                // Add cases with no Fleet Data, and add in the template
+                for(Case nonFleetEnrollmentCase : [SELECT Id, Siebel_Oppty__c, Program_Template_Account__r.Program__r.Brand_Long_Name__c, Program_Template_Account__r.Name, Program_Template_Account__r.Usage_Type__c, Program_Template_Account__r.Friendly_Billing_Cycle__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c = null ORDER BY CreatedDate DESC LIMIT 10]) {
+                    gResponse.availableImplementationCases.add(nonFleetEnrollmentCase);
+                }
+
+                System.debug(gResponse);
 
                 RestContext.response.addHeader('Content-Type', 'application/json');
                 RestContext.response.responseBody = Blob.valueOf(JSON.serialize(gResponse));

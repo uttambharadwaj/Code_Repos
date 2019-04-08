@@ -212,7 +212,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
         try {
 
-            List<Case> cases = [SELECT Id, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c FROM Case WHERE Id = :caseId LIMIT 1];
+            List<Case> cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c, Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c, Opportunity__r.Campaign_Program__r.Program__c FROM Case WHERE Id = :caseId LIMIT 1];
 
             if (cases.size() > 0) {
                 cases[0].Hierarchy_Setup_Completed__c = true;
@@ -243,6 +243,20 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     implementationCallCase.AccountId = cases[0].AccountId;
                     implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
                     implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
+
+                    // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
+                    // least need a Program Template Account associated for das bots.
+                    if(cases[0].Fleet_Enrollment__c == null && cases[0].Program_Template_Account__c == null) {
+
+                        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Program_Default__c = true and Program__c =: cases[0].Opportunity__r.Campaign_Program__r.Program__c LIMIT 1];
+
+                        if(programTemplateAccounts.size() > 0) {
+
+                            implementationCallCase.Program_Template_Account__c = programTemplateAccounts[0].Id;
+
+                        }
+
+                    }
 
                     if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
                         implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
