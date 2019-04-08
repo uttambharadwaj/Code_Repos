@@ -186,15 +186,15 @@ public class CreditWS_DNB {
 
                 HTTPResponse cleanseAndMatchResponse = clenseAndMatchCallout.send(clenseAndMatchRequest);
 
+                System.debug('### Cleanse And Match Request: ' + clenseAndMatchRequest);
+
                 // Dear DNB - why did you send a $ as a variable name?
                 String jsonResponse = cleanseAndMatchResponse.getBody();
                 jsonResponse = jsonResponse.replaceAll('"\\$":', '"value":');
 
-                System.debug('### ' + jsonResponse);
+                System.debug('### Cleanse And Match Response: ' + jsonResponse);
 
                 CreditWSUtil_DNBDirect_Match cleanseAndMatchResult = CreditWSUtil_DNBDirect_Match.parse(jsonResponse);
-
-                System.debug('### ' + cleanseAndMatchResult);
 
                 if(cleanseAndMatchResult != null) {
 
@@ -216,7 +216,7 @@ public class CreditWS_DNB {
                             if(result.DUNSNumber != null) matchCandidate.DUNSNumber = result.DUNSNumber;
                             if(result.OrganizationPrimaryName.OrganizationName.value != null) matchCandidate.OrganizationName = result.OrganizationPrimaryName.OrganizationName.value; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.SubjectName, matchCandidate.OrganizationName));
                             // There is no separate trade style name for DNB - so we'll compare the organization name with the trade style name
-                            if(result.OrganizationPrimaryName.OrganizationName.value != null && dnbDirectMatchRequest.TradeStyleName != null) matchCandidate.OrganizationName = result.OrganizationPrimaryName.OrganizationName.value; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.TradeStyleName, matchCandidate.OrganizationName));
+                            if(result.OrganizationPrimaryName.OrganizationName.value != null && !String.isBlank(dnbDirectMatchRequest.TradeStyleName)) matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.TradeStyleName, matchCandidate.OrganizationName));
                             if(result.PrimaryAddress.StreetAddressLine != null && result.PrimaryAddress.StreetAddressLine.size() > 0) matchCandidate.StreetAddressLine = result.PrimaryAddress.StreetAddressLine[0].LineText; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.StreetAddressLine1, matchCandidate.StreetAddressLine));
                             if(result.PrimaryAddress.PrimaryTownName != null) matchCandidate.PrimaryTownName = result.PrimaryAddress.PrimaryTownName; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.PrimaryTownName, matchCandidate.PrimaryTownName));
                             if(result.PrimaryAddress.PostalCode != null) matchCandidate.PostalCode = result.PrimaryAddress.PostalCode; matchComparison.add(new JaroWinklerDistance.StringPair(dnbDirectMatchRequest.FullPostalCode, matchCandidate.PostalCode));
@@ -464,10 +464,10 @@ public class CreditWS_DNB {
                             for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
 
                                 if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
-                                    dnbCAModelResponse.CSADHighCredit = Long.valueOf(predictiveAttribute.value);
+                                    dnbCAModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
                                 }
                                 if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
-                                    dnbCAModelResponse.SBFEHighCredit = Long.valueOf(predictiveAttribute.value);
+                                    dnbCAModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
                                 }
                                 if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
                                     dnbCAModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
@@ -493,6 +493,71 @@ public class CreditWS_DNB {
 
         return null;
     }
+
+//
+//    //TODO DELETE ME AFTER CA NEW MODEL RELEASED
+//    // This method takes in a DNB SBRI request, with a DUNS number,
+//    // and performs the call-out
+//    public static DNBCCSScoreResponse getCCSScore(DNBCCSScoreRequest dnbccsScoreRequest) {
+//
+//        try {
+//
+//            DNBCCSScoreResponse dnbccsScoreResponse = new DNBCCSScoreResponse();
+//
+//            CreditWSUtil_DNBCCS.prodOrderRequest_3 dnbCCSCalloutRequest = new CreditWSUtil_DNBCCS.prodOrderRequest_3();
+//
+//            // TODO - Move to custom setting
+//            dnbCCSCalloutRequest.UserId = dnbccsScoreRequest.UserId;
+//            dnbCCSCalloutRequest.Password = dnbccsScoreRequest.Password;
+//
+//            // Create an order request for the SBRI product with the associated DUNS
+//            dnbCCSCalloutRequest.Orders = new CreditWSUtil_DNBCCS.Orders();
+//
+//            dnbCCSCalloutRequest.Orders.DnB_DUNS_Number = dnbccsScoreRequest.DnB_DUNS_Number;
+//            dnbCCSCalloutRequest.Orders.Product = dnbccsScoreRequest.Product;
+//            dnbCCSCalloutRequest.Orders.Product_Type = dnbccsScoreRequest.Product_Type;
+//
+//            // This is weird, because it lets you get the results by mail, like an ordering
+//            // system - so you need to tell it to give you a response directly back
+//            dnbCCSCalloutRequest.Immediate_Delivery = new CreditWSUtil_DNBCCS.Immediate_Delivery();
+//
+//            dnbCCSCalloutRequest.Immediate_Delivery.Mode = dnbccsScoreRequest.Mode;
+//            dnbCCSCalloutRequest.Immediate_Delivery.Format = dnbccsScoreRequest.Format;
+//
+//            CreditWSUtil_DNBCCS.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd1_5_V12_wsp_CustomProducts1_5_V13_Port dnbCCSCallout = new CreditWSUtil_DNBCCS.DNB_WebServices_Providers_OrderAndInvestigations_CustomProducts_CustomProd1_5_V12_wsp_CustomProducts1_5_V13_Port();
+//
+//            if(!TestUtils.isRunningTest()) {
+//
+//                CreditWSUtil_DNBCCS.customProducts1_5_Response dnbCCSCalloutResponse = dnbCCSCallout.ws_CustomProducts1_5(dnbCCSCalloutRequest);
+//
+//                if(dnbCCSCalloutResponse != null) {
+//
+//                    if(dnbCCSCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.DELQ_SCR_ENTR.SCR_GRP.SCR != null) {
+//                        dnbccsScoreResponse.RawScore = Integer.valueOf(dnbCCSCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.DELQ_SCR_ENTR.SCR_GRP.SCR);
+//                    }
+//
+//                    if(dnbCCSCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.HIGH_CR != null) {
+//                        dnbccsScoreResponse.HighCreditAmount = Integer.valueOf(dnbCCSCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.HIGH_CR);
+//                    }
+//
+//                }
+//
+//
+//            }
+//            return dnbccsScoreResponse;
+//
+//        }
+//        catch(Exception e) {
+//
+//            System.debug('### ERROR: Unable to retrieve SBRI score');
+//
+//            String errorCode = WEXDEVErrorReporting.reportInternalError(APPLICATION_NAME, ApexPages.currentPage().getUrl(), UserInfo.getUserId(), e);
+//
+//        }
+//
+//        return null;
+//
+//    }
 
     public static DNBNAFleetModelResponse getNAFleetScore(DNBNAFleetModelRequest dnbNAFleetModelRequest) {
 
@@ -549,7 +614,7 @@ public class CreditWS_DNB {
                 if(dnbCustomModelCalloutResponse != null) {
 
                     System.debug('DNB Custom Model Callout Response is not null.');
-
+                    
                     dnbNAFleetModelResponse.ModelUsed = dnbNAFleetModelRequest.BOCAType;
 
                     if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS != null) {
@@ -605,7 +670,7 @@ public class CreditWS_DNB {
 
                         // TODO - Add USDS_BKCY_FILG_DT for Bankruptcy
 
-                        if(null != dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore) {
+                        if(null != dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore) {                           
 
                             if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore != null) {
                                 dnbNAFleetModelResponse.RawScore = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore);
@@ -618,7 +683,7 @@ public class CreditWS_DNB {
                             dnbNAFleetModelResponse.ReasonCodes = new String[]{};
 
                             if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary != null) {
-
+               
                                 for(CreditWSUtil_DNBCustomModel.ScoreCommentary scoreCommentary : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary) {
 
                                     if(scoreCommentary.CommentaryText.DNBCodeValue != null) {
@@ -643,10 +708,10 @@ public class CreditWS_DNB {
                             for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
 
                                 if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
-                                    dnbNAFleetModelResponse.CSADHighCredit = Long.valueOf(predictiveAttribute.value);
+                                    dnbNAFleetModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
                                 }
                                 if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
-                                    dnbNAFleetModelResponse.SBFEHighCredit = Long.valueOf(predictiveAttribute.value);
+                                    dnbNAFleetModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
                                 }
                                 if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
                                     dnbNAFleetModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
@@ -732,7 +797,7 @@ public class CreditWS_DNB {
             if(!TestUtils.isRunningTest()) {
                 CreditWSUtil_DNBCustomModel.customProducts12_Response dnbCustomModelCalloutResponse = dnbCustomModelCallOut.ws_CustomProducts12(dnbCustomModelCalloutRequest);
 
-                if(dnbCustomModelCalloutResponse != null) {
+                if(dnbCustomModelCalloutResponse != null) {              
 
                     if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS != null) {
 
@@ -787,12 +852,12 @@ public class CreditWS_DNB {
 
                         // TODO - Add USDS_BKCY_FILG_DT for Bankruptcy
                         if (dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment == null) {
-                            System.debug('DNB Assessment from the response is null!');
+							System.debug('DNB Assessment from the response is null!');
                         }
                         else {
-
+                        
                             if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore != null) {
-
+    
                                 if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore != null) {
                                     dnbOTRModelResponse.RawScore = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RawScore);
                                 }
@@ -800,46 +865,46 @@ public class CreditWS_DNB {
                                     System.debug(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0]);
                                     dnbOTRModelResponse.RecommendedCreditLimitAmount = Integer.valueOf(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].RecommendedCreditLimitAmount);
                                 }
-
+    							    
                                 dnbOTRModelResponse.ReasonCodes = new String[]{};
-
+   								
                                 if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary != null) {
-
+    
                                     for(CreditWSUtil_DNBCustomModel.ScoreCommentary scoreCommentary : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.CustomScore[0].ScoreCommentary) {
 
                                         if(scoreCommentary.CommentaryText.DNBCodeValue != null) {
                                             List<DNB_Custom_Model_Reason_Code__mdt> dnbCustomModelReasonCodes = [SELECT Reason_Code_Description__c FROM DNB_Custom_Model_Reason_Code__mdt WHERE Reason_Code__c =: scoreCommentary.CommentaryText.DNBCodeValue];
 
                                             if(dnbCustomModelReasonCodes.size() == 1) {
-
+    
                                                 dnbOTRModelResponse.ReasonCodes.add(String.valueOf(scoreCommentary.CommentaryText.DNBCodeValue) + ': ' + dnbCustomModelReasonCodes[0].Reason_Code_Description__c);
-
+    
                                             }
-
+    
                                         }
-
+    
                                     }
-
+    
                                 }
                             }
-
+                        
 
                             if(dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes != null) {
-
+    
                                 for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
-
+    
                                     if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
-                                        dnbOTRModelResponse.CSADHighCredit = Long.valueOf(predictiveAttribute.value);
+                                        dnbOTRModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
                                     }
                                     if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
-                                        dnbOTRModelResponse.SBFEHighCredit = Long.valueOf(predictiveAttribute.value);
+                                        dnbOTRModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
                                     }
                                     if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
                                         dnbOTRModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
                                     }
-
+    
                                 }
-
+    
                             }
                         }
                     }
@@ -1002,10 +1067,10 @@ public class CreditWS_DNB {
                                 for(CreditWSUtil_DNBCustomModel.PredictiveAttributesType predictiveAttribute : dnbCustomModelCalloutResponse.DGX.CREDITMSGSRSV2.DATATRNRS.DATARS.CustomScores.Organization.Assessment.PredictiveAttributes) {
 
                                     if((predictiveAttribute.key).equalsIgnoreCase('hicdtmax')) {
-                                        dnbCPModelResponse.CSADHighCredit = Long.valueOf(predictiveAttribute.value);
+                                        dnbCPModelResponse.CSADHighCredit = Integer.valueOf(predictiveAttribute.value);
                                     }
                                     if((predictiveAttribute.key).equalsIgnoreCase('max_cur_creditlimit_rev_12m')) {
-                                        dnbCPModelResponse.SBFEHighCredit = Long.valueOf(predictiveAttribute.value);
+                                        dnbCPModelResponse.SBFEHighCredit = Integer.valueOf(predictiveAttribute.value);
                                     }
                                     if((predictiveAttribute.key).equalsIgnoreCase('sbri_powered_score_card')) {
                                         dnbCPModelResponse.SBRICardScore = Integer.valueOf(predictiveAttribute.value);
@@ -1113,8 +1178,8 @@ public class CreditWS_DNB {
         public String PrimaryGeographicArea { get; set; }
         public String PostalCode { get; set; }
         public String CountryCode { get; set; }
-        public Long SBFEHighCredit { get; set; }
-        public Long CSADHighCredit { get; set; }
+        public Integer SBFEHighCredit { get; set; }
+        public Integer CSADHighCredit { get; set; }
         public Integer SBRICardScore { get; set; }
         public Integer BankruptcyDateOfFiling { get; set; }
         public String FeinTaxID { get; set; }
@@ -1179,8 +1244,8 @@ public class CreditWS_DNB {
         public String PrimaryGeographicArea { get; set; }
         public String PostalCode { get; set; }
         public String CountryCode { get; set; }
-        public Long SBFEHighCredit { get; set; }
-        public Long CSADHighCredit { get; set; }
+        public Integer SBFEHighCredit { get; set; }
+        public Integer CSADHighCredit { get; set; }
         public Integer SBRICardScore { get; set; }
         public String FeinTaxID { get; set; }
         public Integer Paydex { get; set; }
@@ -1241,8 +1306,8 @@ public class CreditWS_DNB {
         public String PrimaryGeographicArea { get; set; }
         public String PostalCode { get; set; }
         public String CountryCode { get; set; }
-        public Long SBFEHighCredit { get; set; }
-        public Long CSADHighCredit { get; set; }
+        public Integer SBFEHighCredit { get; set; }
+        public Integer CSADHighCredit { get; set; }
         public Integer SBRICardScore { get; set; }
         public String FeinTaxID { get; set; }
         public Integer Paydex { get; set; }
@@ -1309,8 +1374,8 @@ public class CreditWS_DNB {
         public String PrimaryGeographicArea { get; set; }
         public String PostalCode { get; set; }
         public String CountryCode { get; set; }
-        public Long SBFEHighCredit { get; set; }
-        public Long CSADHighCredit { get; set; }
+        public Integer SBFEHighCredit { get; set; }
+        public Integer CSADHighCredit { get; set; }
         public Integer SBRICardScore { get; set; }
         public Integer BankruptcyDateOfFiling { get; set; }
         public String FeinTaxID { get; set; }

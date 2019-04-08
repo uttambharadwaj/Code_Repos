@@ -116,7 +116,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
                 gResponse.result = true;
                 gResponse.message = 'Case Queue successfully retrieved!';
 
-                gResponse.availableImplementationCases = [SELECT Id, Fleet_Enrollment__c, Siebel_Oppty__c FROM Case WHERE Status = 'New' and OwnerId = :dataEntryQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate DESC];
+                gResponse.availableImplementationCases = [SELECT Id, Fleet_Enrollment__c, Siebel_Oppty__c FROM Case WHERE Status = 'New' and OwnerId = :dataEntryQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate ASC];
 
                 RestContext.response.addHeader('Content-Type', 'application/json');
                 RestContext.response.responseBody = Blob.valueOf(JSON.serialize(gResponse));
@@ -190,8 +190,9 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
 
                 cases[0].Data_Entry_Completed__c = true;
                 if (numberOfCards != null) {
-                    cases[0].Cards__c = Integer.valueOf(numberOfCards);
+                    // TODO - Redundancy, but need future effort to determine use of these fields as there are a lot of FE processes using both
                     cases[0].No_Cards__c = Integer.valueOf(numberOfCards);
+                    cases[0].Cards__c = Integer.valueOf(numberOfCards);
                 }
                 cases[0].Status = 'Closed';
                 if (caseNotes.length() > 255) {
