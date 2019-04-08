@@ -38,7 +38,8 @@ public with sharing class CreditExistingExposureController {
         if(((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
             List<OnlineApplication__c> onlineApplications = [SELECT Id, Name, Legal_Business_Name__c, Business_Street_Address__c, Business_Address_Line_2__c,
-                                                             City__c, State__c, Zip_Code__c FROM OnlineApplication__c WHERE Id =: applicationId];
+                                                             City__c, State__c, Zip_Code__c, Federal_Tax_ID__c, DUNS__c, Phone_Number__c, IP_Address__c, AO_Social_Security_Number__c
+                                                                FROM OnlineApplication__c WHERE Id =: applicationId];
 
             if(onlineApplications.size() == 1) {
 
@@ -49,6 +50,11 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.city = onlineApplications[0].City__c;
                 existingExposureRequest.state = onlineApplications[0].State__c;
                 existingExposureRequest.postalCode = onlineApplications[0].Zip_Code__c;
+                existingExposureRequest.phone = onlineApplications[0].Phone_Number__c;
+                existingExposureRequest.duns = onlineApplications[0].DUNS__c;
+                existingExposureRequest.taxID = onlineApplications[0].Federal_Tax_ID__c;
+                existingExposureRequest.pgSSN = onlineApplications[0].AO_Social_Security_Number__c;
+                existingExposureRequest.ipAddress = onlineApplications[0].IP_Address__c;
 
                 originalRequest = existingExposureRequest.clone();
 

@@ -11,17 +11,17 @@
         <div class="ptBreadcrumb">&nbsp;«&nbsp;<a href="/{!originalRequest.applicationId}">Back to Application: {!originalRequest.applicationName}</a></div>
     </div><br/>
     <apex:pageBlock mode="mainDetail" >
-        <apex:pageBlockSection title="Application Information" columns="2">
-            <apex:pageBlockSection columns="1">
-                <apex:outputText value="{!originalRequest.legalBusinessName}" />
-            </apex:pageBlockSection>
-            <apex:pageBlockSection columns="1">
-                <apex:outputText value="{!originalRequest.addressLine1}" />
-                <apex:outputText value="{!originalRequest.city}" />
-                <apex:outputText value="{!originalRequest.state}" />
-                <apex:outputText value="{!originalRequest.postalCode}" />
-            </apex:pageBlockSection>
-        </apex:pageBlockSection>
+        <apex:pageBlockTable id ="originalRequestTable" value="{!originalRequest}" var="originalRequest">
+            <apex:column headerValue="Legal Business Name">{!originalRequest.legalBusinessName}</apex:column>
+            <apex:column headerValue="Address">{!originalRequest.addressLine1}</apex:column>
+            <apex:column headerValue="City">{!originalRequest.city}</apex:column>
+            <apex:column headerValue="State/Province">{!originalRequest.State}</apex:column>
+            <apex:column headerValue="Postal Code">{!originalRequest.postalCode}</apex:column>
+            <apex:column headerValue="Phone">{!originalRequest.taxId}</apex:column>
+            <apex:column headerValue="Tax ID">{!originalRequest.taxId}</apex:column>
+            <apex:column headerValue="DUNS Number">{!originalRequest.duns}</apex:column>
+            <apex:column headerValue="IP Address">{!originalRequest.ipAddress}</apex:column>
+        </apex:pageBlockTable>
     </apex:pageBlock>
     <apex:pageBlock id="onlineAppBlock" title="Possible Duplicate Applications"><br/>
         <apex:pageBlockTable id="resultTable" value="{!duplicateApplications}" var="duplicate" rendered="{!(duplicateApplications.size != 0)}">
@@ -32,17 +32,20 @@
             <apex:column headerValue="Submitted to Credit">{!duplicate.applicationCreatedDate}</apex:column>
             <apex:column headerValue="Date Decisioned">{!duplicate.applicationDecisionedDate}</apex:column>
             <apex:column headerValue="Credit Decision">{!duplicate.creditDecision}</apex:column>
+            <apex:column headerValue="Fraud Flag">{!duplicate.fraudFlag}</apex:column>
             <apex:column headerValue="Credit Line Requested">{!duplicate.creditLineRequested}</apex:column>
             <apex:column headerValue="Credit Line Approved">{!duplicate.creditLineApproved}</apex:column>
             <apex:column headerValue="Legal Business Name">{!duplicate.legalBusinessName}</apex:column>
             <apex:column headerValue="Address">{!duplicate.addressLine1}</apex:column>
             <apex:column headerValue="City">{!duplicate.city}</apex:column>
-            <apex:column headerValue="State">{!duplicate.state}</apex:column>
+            <apex:column headerValue="State/Province">{!duplicate.state}</apex:column>
             <apex:column headerValue="Postal Code">{!duplicate.postalCode}</apex:column>
+            <apex:column headerValue="Phone">{!duplicate.phone}</apex:column>
             <apex:column headerValue="Program">{!duplicate.program}</apex:column>
-            <apex:column headerValue="Fraud Flag">{!duplicate.fraudFlag}</apex:column>
             <apex:column headerValue="Tax ID">{!duplicate.taxId}</apex:column>
             <apex:column headerValue="PG SSN">{!duplicate.pgSSN}</apex:column>
+            <apex:column headerValue="DUNS Number">{!duplicate.duns}</apex:column>
+            <apex:column headerValue="IP Address">{!duplicate.ipAddress}</apex:column>
         </apex:pageBlockTable><br/>
         <apex:outputPanel id="errorDisplay">
             <apex:outputPanel rendered="{!duplicateApplications.size = 0}">
@@ -65,6 +68,7 @@
             <apex:column headerValue="National ID">{!duplicate.nationalId}</apex:column>
             <apex:column headerValue="Credit Line">${!duplicate.creditLine}</apex:column>
             <apex:column headerValue="Status">{!duplicate.accountStatus}</apex:column>
+            <apex:column headerValue="DUNS Number">{!duplicate.duns}</apex:column>
         </apex:pageBlockTable><br/>
         <apex:outputPanel id="accountErrorDisplay">
             <apex:outputPanel rendered="{!duplicateAccounts.size = 0}">

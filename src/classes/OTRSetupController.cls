@@ -150,8 +150,6 @@ public without sharing class OTRSetupController {
 
         try {
 
-            System.debug(customerParameter);
-
             if (!String.isEmpty(customerParameter)) {
 
                 List<OnlineApplication__c> onlineApplications = [
@@ -160,7 +158,7 @@ public without sharing class OTRSetupController {
                                 Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Business_Address_Line_2__c,
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
                                 Opportunity__r.CampaignId, Contact_Last_Name__c, Email__c, Contact_First_Name__c, Phone_Number__c, Cell_Number__c, Opportunity__r.Campaign_Program__c,
-                                Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c
+                                Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c
                         FROM OnlineApplication__c
                         WHERE Id = :customerParameter AND Status__c = 'App-Incomplete'
                         LIMIT 1
@@ -225,18 +223,17 @@ public without sharing class OTRSetupController {
                         addUnit();
                     }
 
-                    //applicationKey will not be null on saved for later...but there won't be an authorized contact either
-                    //check for existence of attachment signifying this came from a saved for later
-                    Boolean fromSFL = false;
-                    if([SELECT count() FROM Attachment WHERE ParentId = :onlineApplication.Id AND Name = :onlineApplication.Name + fromSFLString + '.pdf']>0)
-                        fromSFL = true;
-
-                    if(applicationKey != null && !fromSFL) {
-                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete'];
+                    if(applicationKey != null) {
+                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete' LIMIT 1];
                         if(onlineApplicationAuthorizedContacts.size() > 0) {
                             onlineApplicationAuthorizedContact = onlineApplicationAuthorizedContacts[0];
                         }
                     } else {
+                        //IADJUDICAT-929 save when coming directly from page one (no key)
+                        insert generatePDF(onlineApplication, fromSFLString); //inserts the pdf when accessed directly from page one
+                    }
+                    //IADJUDICAT-1144 if no authorized contact found, create one
+                    if(onlineApplicationAuthorizedContact == null){
                         onlineApplicationAuthorizedContact = new OnlineApplicationAuthorizedContact__c();
                         onlineApplicationAuthorizedContact.First_Name__c = onlineApplication.Contact_First_Name__c;
                         onlineApplicationAuthorizedContact.Last_Name__c = onlineApplication.Contact_Last_Name__c;
@@ -245,7 +242,7 @@ public without sharing class OTRSetupController {
                         onlineApplicationAuthorizedContact.Mobile_Number__c = onlineApplication.Cell_Number__c;
                     }
 
-                    if(applicationKey == null || fromSFL) {
+                    if(applicationKey == null) {
                         populateAddress();
                     }
 
@@ -275,6 +272,7 @@ public without sharing class OTRSetupController {
     }
 
     public void populateAddress() {
+
         if (selectedAddressOption.equalsIgnoreCase('yes')) {
             if (onlineApplication != null) {
                 onlineApplication.Card_Shipping_Address_Line_1__c = onlineApplication.Business_Street_Address__c;
@@ -489,8 +487,8 @@ public without sharing class OTRSetupController {
             Attachment pdfAttachment = generatePDF(onlineApplication, '(Complete)');
             insert pdfAttachment;
 
-            String attachName = onlineApplication.Name + fromSFLString + '.pdf';
-            delete [SELECT Id FROM Attachment WHERE Name=:attachName AND ParentId=:onlineApplication.Id LIMIT 1];
+            String partialName = onlineApplication.Name + fromSFLString + '.pdf';
+            delete [SELECT Id FROM Attachment WHERE Name=:partialName AND ParentId=:onlineApplication.Id LIMIT 1];
 
             try {
 

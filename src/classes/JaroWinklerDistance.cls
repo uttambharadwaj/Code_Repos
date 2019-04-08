@@ -47,7 +47,7 @@ public with sharing class JaroWinklerDistance {
 
         // they are an identical match - no need to get all fancy
         if (string1.equalsIgnoreCase(string2)) {
-            System.debug('The Strings are equal');
+            System.debug('The Strings are equal: string1 = ' + string1 + ', string2 = ' + string2);
             return 1.0;
         }
 
