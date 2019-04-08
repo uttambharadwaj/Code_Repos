@@ -15,9 +15,9 @@
             <apex:column headerValue="Legal Business Name">{!originalRequest.legalBusinessName}</apex:column>
             <apex:column headerValue="Address">{!originalRequest.addressLine1}</apex:column>
             <apex:column headerValue="City">{!originalRequest.city}</apex:column>
-            <apex:column headerValue="State/Province">{!originalRequest.State}</apex:column>
+            <apex:column headerValue="State/Province">{!originalRequest.state}</apex:column>
             <apex:column headerValue="Postal Code">{!originalRequest.postalCode}</apex:column>
-            <apex:column headerValue="Phone">{!originalRequest.taxId}</apex:column>
+            <apex:column headerValue="Phone">{!originalRequest.phone}</apex:column>
             <apex:column headerValue="Tax ID">{!originalRequest.taxId}</apex:column>
             <apex:column headerValue="DUNS Number">{!originalRequest.duns}</apex:column>
             <apex:column headerValue="IP Address">{!originalRequest.ipAddress}</apex:column>

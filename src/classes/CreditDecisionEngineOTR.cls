@@ -409,45 +409,45 @@ global class CreditDecisionEngineOTR {
                 }
 
             }
-
-            CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
-
-            giactVerifyRequest.RoutingNumber = onlineApplication.ABA_Routing_Number__c;
-            giactVerifyRequest.AccountNumber = onlineApplication.Checking_Account_Number__c;
-            giactVerifyRequest.FirstName = onlineApplication.Contact_First_Name__c;
-            giactVerifyRequest.LastName = onlineApplication.Contact_Last_Name__c;
-            giactVerifyRequest.BusinessName = onlineApplication.Legal_Business_Name__c;
-            giactVerifyRequest.AddressLine1 = onlineApplication.Business_Street_Address__c;
-            giactVerifyRequest.AddressLine2 = onlineApplication.Business_Address_Line_2__c;
-            giactVerifyRequest.City = onlineApplication.City__c;
-            giactVerifyRequest.State = onlineApplication.State__c;
-            giactVerifyRequest.ZipCode = onlineApplication.Zip_Code__c;
-            giactVerifyRequest.Country = onlineApplication.Country__c;
-            giactVerifyRequest.PhoneNumber = onlineApplication.Phone_Number__c;
-            giactVerifyRequest.FederalTaxId = onlineApplication.Federal_Tax_ID__c;
-            giactVerifyRequest.EmailAddress = onlineApplication.Email__c;
-            giactVerifyRequest.IpAddress = onlineApplication.IP_Address__c;
-
-            if (!TestUtils.isRunningTest()) {
-
-                CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
-
-                if(giactVerifyResponse != null) {
-
-                    onlineApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
-                    onlineApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
-                    onlineApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
-                    onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
-
-                }
-                else {
-
-                    onlineApplication.GIACT_Check__c = 'Error';
-                    onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
-
-                }
-
-            }
+//
+//            CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
+//
+//            giactVerifyRequest.RoutingNumber = onlineApplication.ABA_Routing_Number__c;
+//            giactVerifyRequest.AccountNumber = onlineApplication.Checking_Account_Number__c;
+//            giactVerifyRequest.FirstName = onlineApplication.Contact_First_Name__c;
+//            giactVerifyRequest.LastName = onlineApplication.Contact_Last_Name__c;
+//            giactVerifyRequest.BusinessName = onlineApplication.Legal_Business_Name__c;
+//            giactVerifyRequest.AddressLine1 = onlineApplication.Business_Street_Address__c;
+//            giactVerifyRequest.AddressLine2 = onlineApplication.Business_Address_Line_2__c;
+//            giactVerifyRequest.City = onlineApplication.City__c;
+//            giactVerifyRequest.State = onlineApplication.State__c;
+//            giactVerifyRequest.ZipCode = onlineApplication.Zip_Code__c;
+//            giactVerifyRequest.Country = onlineApplication.Country__c;
+//            giactVerifyRequest.PhoneNumber = onlineApplication.Phone_Number__c;
+//            giactVerifyRequest.FederalTaxId = onlineApplication.Federal_Tax_ID__c;
+//            giactVerifyRequest.EmailAddress = onlineApplication.Email__c;
+//            giactVerifyRequest.IpAddress = onlineApplication.IP_Address__c;
+//
+//            if (!TestUtils.isRunningTest()) {
+//
+//                CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+//
+//                if(giactVerifyResponse != null) {
+//
+//                    onlineApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
+//                    onlineApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
+//                    onlineApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
+//                    onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
+//
+//                }
+//                else {
+//
+//                    onlineApplication.GIACT_Check__c = 'Error';
+//                    onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+//
+//                }
+//
+//            }
 
             // Upsert and execute BREeze
             upsert onlineApplication;
