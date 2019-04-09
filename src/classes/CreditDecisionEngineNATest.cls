@@ -425,28 +425,32 @@ public with sharing class CreditDecisionEngineNATest {
         }
 
     }
-    //TODO DELETE ME
 
-//    static testMethod void testDNBCCSCallout() {
-//
-//        List<Application_Request__c> applicationRequests = [SELECT Id, DUNS_Number__c FROM Application_Request__c LIMIT 1];
-//
-//        if (applicationRequests.size() == 1) {
-//
-//            Test.startTest();
-//
-//            TestUtils.enable_isRunningTest = true;
-//
-//            CreditWS_DNB.DNBCCSScoreRequest dnbCCSScoreRequest = new CreditWS_DNB.DNBCCSScoreRequest();
-//            dnbCCSScoreRequest.DnB_DUNS_Number = applicationRequests[0].DUNS_Number__c;
-//
-//            CreditWS_DNB.DNBCCSScoreResponse dnbccsScoreResponse = CreditWS_DNB.getCCSScore(dnbCCSScoreRequest);
-//
-//            Test.stopTest();
-//
-//        }
-//
-//    }
+
+    static testMethod void testExistingExposure() {
+
+        List<Application_Request__c> naApplications = [SELECT Id FROM Application_Request__c];
+
+        if (naApplications.size() > 0) {
+
+            PageReference creditExistingExposure = Page.FindDupOnlineApps;
+
+            creditExistingExposure.getParameters().put('id', naApplications[0].Id);
+
+            Test.setCurrentPage(creditExistingExposure);
+
+            CreditExistingExposureController fdoac = new CreditExistingExposureController();
+
+            fdoac.init();
+
+            System.debug('duplication Account size = ' + fdoac.duplicateAccounts.size());
+            System.debug('duplication Applications size = ' + fdoac.duplicateApplications.size());
+            System.assert(fdoac.duplicateAccounts.size() == 0);
+            System.assert(fdoac.duplicateApplications.size() >= 0);
+
+        }
+
+    }
 
     static testMethod void testCreditWSUtil_DNBCustomModel() {
 
