@@ -102,27 +102,6 @@ global class CreditDecisionEngineNA {
                 naApplication.ThreatMetrix_Result__c = 'Pass';
             }
 
-            // Existing Exposure - Application/Account Exposure
-            CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
-            existingExposureRequest.applicationId = naApplication.Id;
-            existingExposureRequest.applicationName = naApplication.Name;
-            existingExposureRequest.legalBusinessName = naApplication.Opportunity_Name_Text__c;
-            existingExposureRequest.addressLine1 = naApplication.Physical_Street__c;
-            existingExposureRequest.city = naApplication.Physical_City__c;
-            existingExposureRequest.state = naApplication.Physical_State__c;
-            existingExposureRequest.postalCode = naApplication.Physical_Zip_Postal_Code__c;
-            existingExposureRequest.fraudFlag = naApplication.Fraud_Flag__c;
-
-            List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
-            naApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
-            naApplication.Number_of_Existing_Accounts__c = (CreditUtil_ExistingExposure.getAccounts(existingExposureRequest)).size();
-
-            for (CreditUtil_ExistingExposure.ExistingExposureApplications existingExposureApplication : existingExposureApplications) {
-                if (existingExposureApplication.fraudFlag) {
-                    naApplication.Previous_Fraud__c = true;
-                }
-            }
-
             if (naApplication.Personal_Guarantor_SSN__c != null) {
 
                 // LexisNexis Check
@@ -403,8 +382,30 @@ global class CreditDecisionEngineNA {
 //
 //            }
 
+            // Existing Exposure - Application/Account Exposure
+            CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
+            existingExposureRequest.applicationId = naApplication.Id;
+            existingExposureRequest.applicationName = naApplication.Name;
+            existingExposureRequest.legalBusinessName = naApplication.Opportunity_Name_Text__c;
+            existingExposureRequest.addressLine1 = naApplication.Physical_Street__c;
+            existingExposureRequest.city = naApplication.Physical_City__c;
+            existingExposureRequest.state = naApplication.Physical_State__c;
+            existingExposureRequest.postalCode = naApplication.Physical_Zip_Postal_Code__c;
+            existingExposureRequest.fraudFlag = naApplication.Fraud_Flag__c;
+
+            List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
+            List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
+
+            for (CreditUtil_ExistingExposure.ExistingExposureApplications existingExposureApplication : existingExposureApplications) {
+                if (existingExposureApplication.fraudFlag) {
+                    naApplication.Previous_Fraud__c = true;
+                }
+            }
+
             // Upsert and execute BREeze
             upsert naApplication;
+            naApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
+            naApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
 
             // Make a safe copy so we don't overwrite any fields
             naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :naApplicationId];
