@@ -143,10 +143,6 @@ public with sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.pgSSN = existingApplication.Guarantor_SSN__c;
                     duplicateApplication.program = existingApplication.Program__c;
                     duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
-                    duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
-                    duplicateApplication.phone = existingApplication.Business_Phone_Number__c;
-                    duplicateApplication.ipAddress = existingApplication.App_Signer_IP_Address__c;
-                    duplicateApplication.applicationCreatedDate = existingApplication.App_Submitted_Date__c;
                     duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
                     duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Approved_Credit_Limit__c);
                     duplicateApplication.applicationDecisionedDate = existingApplication.Decision_Date__c;
