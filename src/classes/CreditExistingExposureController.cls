@@ -93,8 +93,7 @@ public with sharing class CreditExistingExposureController {
         }
         else if(((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('Application_Request__c')) {
 
-            List<Application_Request__c> naApplicationRequests = [SELECT Id, Name, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
-                    Business_Phone_Number__c, App_Signer_IP_Address__c, Tax_Payer_ID_number__c, DNB_Resolved_DUNS__c
+            List<Application_Request__c> naApplicationRequests = [SELECT Id, Name, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c
             FROM Application_Request__c WHERE Id =: applicationId];
 
             if(naApplicationRequests.size() == 1) {
@@ -106,10 +105,6 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.city = naApplicationRequests[0].Physical_City__c;
                 existingExposureRequest.state = naApplicationRequests[0].Physical_State__c;
                 existingExposureRequest.postalCode = naApplicationRequests[0].Physical_Zip_Postal_Code__c;
-                existingExposureRequest.ipAddress = naApplicationRequests[0].App_Signer_IP_Address__c;
-                existingExposureRequest.phone = naApplicationRequests[0].Business_Phone_Number__c;
-                existingExposureRequest.duns = naApplicationRequests[0].DNB_Resolved_DUNS__c;
-                existingExposureRequest.taxID = naApplicationRequests[0].Tax_Payer_ID_number__c;
 
                 originalRequest = existingExposureRequest.clone();
 
