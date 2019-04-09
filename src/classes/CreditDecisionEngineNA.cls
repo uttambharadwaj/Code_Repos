@@ -102,27 +102,6 @@ global class CreditDecisionEngineNA {
                 naApplication.ThreatMetrix_Result__c = 'Pass';
             }
 
-            // Existing Exposure - Application/Account Exposure
-            CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
-            existingExposureRequest.applicationId = naApplication.Id;
-            existingExposureRequest.applicationName = naApplication.Name;
-            existingExposureRequest.legalBusinessName = naApplication.Opportunity_Name_Text__c;
-            existingExposureRequest.addressLine1 = naApplication.Physical_Street__c;
-            existingExposureRequest.city = naApplication.Physical_City__c;
-            existingExposureRequest.state = naApplication.Physical_State__c;
-            existingExposureRequest.postalCode = naApplication.Physical_Zip_Postal_Code__c;
-            existingExposureRequest.fraudFlag = naApplication.Fraud_Flag__c;
-
-            List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
-            naApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
-            naApplication.Number_of_Existing_Accounts__c = (CreditUtil_ExistingExposure.getAccounts(existingExposureRequest)).size();
-
-            for (CreditUtil_ExistingExposure.ExistingExposureApplications existingExposureApplication : existingExposureApplications) {
-                if (existingExposureApplication.fraudFlag) {
-                    naApplication.Previous_Fraud__c = true;
-                }
-            }
-
             if (naApplication.Personal_Guarantor_SSN__c != null) {
 
                 // LexisNexis Check
@@ -226,10 +205,12 @@ global class CreditDecisionEngineNA {
             dnbDirectMatchRequest.FullPostalCode = naApplication.Physical_Zip_Postal_Code__c;
             dnbDirectMatchRequest.CountryISOAlpha2Code = naApplication.Physical_Country__c;
             dnbDirectMatchRequest.DUNSNumber = naApplication.DUNS_Number__c;
+            dnbDirectMatchRequest.TradeStyleName = naApplication.Doing_Business_As__c;
+            dnbDirectMatchRequest.TelephoneNumber = naApplication.Business_Phone_Number__c;
 
             CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
-            if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1) {
+            if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1 && dnbDirectMatchResponse.matchCandidates[0].OperatingStatus != null && (dnbDirectMatchResponse.matchCandidates[0].OperatingStatus).equalsIgnoreCase('Active')) {
 
                 naApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
                 naApplication.DNB_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchGradeString;
@@ -362,8 +343,69 @@ global class CreditDecisionEngineNA {
                 System.debug('Match Score: ' + naApplication.DNB_Match_Score__c);
             }
 
+//            CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
+//
+//            giactVerifyRequest.RoutingNumber = naApplication.ABA_Routing_Number__c;
+//            giactVerifyRequest.AccountNumber = naApplication.Checking_Account_Number__c;
+//            giactVerifyRequest.FirstName = naApplication.Billing_Contact_First_Name_Text__c;
+//            giactVerifyRequest.LastName = naApplication.Billing_Contact_Last_Name_Text__c;
+//            giactVerifyRequest.BusinessName = naApplication.Opportunity_Name_Text__c;
+//            giactVerifyRequest.AddressLine1 = naApplication.Physical_Street__c;
+//            giactVerifyRequest.AddressLine2 = naApplication.Physical_Street_Line_2__c;
+//            giactVerifyRequest.City = naApplication.Physical_City__c;
+//            giactVerifyRequest.State = naApplication.Physical_State__c;
+//            giactVerifyRequest.ZipCode = naApplication.Physical_Zip_Postal_Code__c;
+//            giactVerifyRequest.Country = naApplication.Physical_Country__c;
+//            giactVerifyRequest.PhoneNumber = naApplication.Business_Phone_Number__c;
+//            giactVerifyRequest.FederalTaxId = naApplication.Tax_Payer_ID_number__c;
+//            giactVerifyRequest.EmailAddress = naApplication.Billing_Contact_Email__c;
+//            giactVerifyRequest.IpAddress = naApplication.App_Signer_IP_Address__c;
+//
+//            if (!TestUtils.isRunningTest()) {
+//
+//                CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+//
+//                if(giactVerifyResponse != null) {
+//
+//                    naApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
+//                    naApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
+//                    naApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
+//                    naApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
+//
+//                }
+//                else {
+//
+//                    naApplication.GIACT_Check__c = 'Error';
+//                    naApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+//
+//                }
+//
+//            }
+
+            // Existing Exposure - Application/Account Exposure
+            CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
+            existingExposureRequest.applicationId = naApplication.Id;
+            existingExposureRequest.applicationName = naApplication.Name;
+            existingExposureRequest.legalBusinessName = naApplication.Opportunity_Name_Text__c;
+            existingExposureRequest.addressLine1 = naApplication.Physical_Street__c;
+            existingExposureRequest.city = naApplication.Physical_City__c;
+            existingExposureRequest.state = naApplication.Physical_State__c;
+            existingExposureRequest.postalCode = naApplication.Physical_Zip_Postal_Code__c;
+            existingExposureRequest.fraudFlag = naApplication.Fraud_Flag__c;
+
+            List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
+            List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
+
+            for (CreditUtil_ExistingExposure.ExistingExposureApplications existingExposureApplication : existingExposureApplications) {
+                if (existingExposureApplication.fraudFlag) {
+                    naApplication.Previous_Fraud__c = true;
+                }
+            }
+
             // Upsert and execute BREeze
             upsert naApplication;
+            naApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
+            naApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
 
             // Make a safe copy so we don't overwrite any fields
             naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :naApplicationId];

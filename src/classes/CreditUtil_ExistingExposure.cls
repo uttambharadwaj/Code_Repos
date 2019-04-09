@@ -2,8 +2,14 @@
  * Created by dgilbert on 5/14/2018.
  */
 
+/** The purpose of this class is to potentially find duplicate applications or accounts based on the current application being submitted.
+     */
 public with sharing class CreditUtil_ExistingExposure {
 
+    /** Things have gotten a little complicated.
+    * First a list of potentially duplicate applications are gathered. The business name and address need to be at least a 75% match to the
+    * potential existing application to be considered a duplicate.
+     */
     public static List<ExistingExposureApplications> getApplications(ExistingExposureRequest request) {
 
         List<ExistingExposureApplications> existingExposureApplications = new List<ExistingExposureApplications>();
@@ -17,16 +23,19 @@ public with sharing class CreditUtil_ExistingExposure {
 
         if(((Id.valueOf(request.applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
-            for(OnlineApplication__c existingApplication : [SELECT Id, CreatedDate, Name, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c,
-                    Credit_Decision__c, Status__c, Federal_Tax_ID__c, AO_Social_Security_Number__c, Program__c, Fraud_Flag__c, Submitted_to_Credit__c, Credit_Line_Requested__c, Credit_Line_Approved__c, Date_Decisioned__c
-            FROM OnlineApplication__c
-            WHERE Legal_Business_Name__c like :request.legalBusinessName and Zip_Code__c like :request.postalCode and Id !=: request.applicationId]) {
+            List<OnlineApplication__c> existingAPplications = getOTRExistingApplications(request);
 
-                if(JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Legal_Business_Name__c) >= 0.75 &&
+            for (OnlineApplication__c existingApplication : existingAPplications) {
+
+                if((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Legal_Business_Name__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Business_Street_Address__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.city, existingApplication.City__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.state, existingApplication.State__c) >= 0.75 &&
-                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Zip_Code__c) >= 0.75) {
+                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Zip_Code__c) >= 0.75)
+                        || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.IP_Address__c) == 1.00)
+                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DUNS__c)) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Federal_Tax_ID__c) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Phone_Number__c) == 1.00)) {
 
                     ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
@@ -43,6 +52,9 @@ public with sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.pgSSN = existingApplication.AO_Social_Security_Number__c;
                     duplicateApplication.program = existingApplication.Program__c;
                     duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
+                    duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
+                    duplicateApplication.phone = existingApplication.Phone_Number__c;
+                    duplicateApplication.ipAddress = existingApplication.IP_Address__c;
                     if (null != existingApplication.Submitted_to_Credit__c) {
                         duplicateApplication.applicationCreatedDate = date.newInstance(existingApplication.Submitted_to_Credit__c.year(), existingApplication.Submitted_to_Credit__c.month(), existingApplication.Submitted_to_Credit__c.day());
                     }
@@ -53,7 +65,6 @@ public with sharing class CreditUtil_ExistingExposure {
                     }
 
                     existingExposureApplications.add(duplicateApplication);
-
                 }
 
             }
@@ -61,16 +72,19 @@ public with sharing class CreditUtil_ExistingExposure {
         }
         else if(((Id.valueOf(request.applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('CP_Application_Request__c')) {
 
-            for(CP_Application_Request__c existingApplication : [SELECT Id, CreatedDate, Name, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State__c, Physical_Postal_Code__c,
-                    Credit_Decision__c, Status__c, Taxpayer_ID__c, Guarantor_Social_Security_Number__c, Program__c, Fraud_Flag__c, Credit_Line_Requested__c, Credit_Line_Approved__c, Application_Decisioned_Date__c
-            FROM CP_Application_Request__c
-            WHERE Company_Legal_Name__c like :request.legalBusinessName and Physical_Postal_Code__c like :request.postalCode and Id !=: request.applicationId]) {
+            List<CP_Application_Request__c> existingAPplications = getCPExistingApplications(request);
 
-                if(JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Company_Legal_Name__c) >= 0.75 &&
+            for (CP_Application_Request__c existingApplication : existingAPplications) {
+
+                if((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Company_Legal_Name__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Physical_Address_Line_1__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State__c) >= 0.75 &&
-                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Postal_Code__c) >= 0.75) {
+                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Postal_Code__c) >= 0.75)
+                        || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.Application_Signer_IP_Address__c) == 1.00)
+                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
+                       // || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Taxpayer_ID__c) == 1.00) // Cannot query matches on encrypted fields
+                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone__c) == 1.00)) {
 
                     ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
@@ -87,7 +101,9 @@ public with sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.pgSSN = existingApplication.Guarantor_Social_Security_Number__c;
                     duplicateApplication.program = existingApplication.Program__c;
                     duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
-                    //  duplicateApplication.applicationCreatedDate = existingApplication.App_Submitted_Date__c;
+                    duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
+                    duplicateApplication.phone = existingApplication.Business_Phone__c;
+                    duplicateApplication.ipAddress = existingApplication.Application_Signer_IP_Address__c;
                     duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
                     duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Credit_Line_Approved__c);
                     duplicateApplication.applicationDecisionedDate = existingApplication.Application_Decisioned_Date__c;
@@ -127,7 +143,6 @@ public with sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.pgSSN = existingApplication.Guarantor_SSN__c;
                     duplicateApplication.program = existingApplication.Program__c;
                     duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
-                    duplicateApplication.applicationCreatedDate = existingApplication.App_Submitted_Date__c;
                     duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
                     duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Approved_Credit_Limit__c);
                     duplicateApplication.applicationDecisionedDate = existingApplication.Decision_Date__c;
@@ -144,6 +159,103 @@ public with sharing class CreditUtil_ExistingExposure {
 
     }
 
+    /** OTR
+    * Dynamically create the query based on whether or not a DUNS number was provided. Each unindexed OR clause slows down the query.
+    * Often DUNS is null so let's only look for a match on DUNS when needed.
+     */
+    private static List<OnlineApplication__c> getOTRExistingApplications(ExistingExposureRequest request) {
+
+        String whereClause = ' WHERE Id != \'' + request.applicationId + '\' AND (' +
+                '(Legal_Business_Name__c like \'' + request.legalBusinessName + '\' AND Zip_Code__c like \'' + request.postalCode + '\')' +
+                ' OR IP_Address__c = \'' + request.ipAddress + '\'' +
+                ' OR Federal_Tax_ID__c = \'' + request.taxID + '\'' +
+                ' OR Phone_Number__c = \'' + request.phone + '\'';
+
+        if (request.duns != null) {
+            whereClause += ' OR DNB_Resolved_DUNS__c = \'' + request.duns + '\'';
+        }
+
+        whereClause += ')';
+
+        String databaseQuery = 'SELECT Id, CreatedDate, Name, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c,' +
+                'Credit_Decision__c, Status__c, Federal_Tax_ID__c, AO_Social_Security_Number__c, Program__c, Fraud_Flag__c, Submitted_to_Credit__c, Credit_Line_Requested__c,' +
+                'Credit_Line_Approved__c, Date_Decisioned__c, DNB_Resolved_DUNS__c, Phone_Number__c, IP_Address__c' +
+                ' FROM OnlineApplication__c' + whereClause;
+
+        try {
+            List<OnlineApplication__c> onlineApplications = Database.query(databaseQuery);
+            return onlineApplications;
+        } catch (QueryException qe) {
+            System.debug('Error when attempting to locate potential existing exposure applications for OnlineApplication__c : ' + qe.getMessage());
+        }
+        return null;
+    }
+
+    /** CP
+    * Dynamically create the query based on whether or not a DUNS number was provided. Each unindexed OR clause slows down the query.
+    * Often DUNS is null so let's only look for a match on DUNS when needed.
+     */
+    private static List<CP_Application_Request__c> getCPExistingApplications(ExistingExposureRequest request) {
+
+        String whereClause = ' WHERE Id != \'' + request.applicationId + '\' AND (' +
+                '(Company_Legal_Name__c like \'' + request.legalBusinessName + '\' AND Physical_Postal_Code__c like \'' + request.postalCode + '\')' +
+                ' OR Application_Signer_IP_Address__c = \'' + request.ipAddress + '\'' +
+             //   ' OR Taxpayer_ID__c = \'' + request.taxID + '\'' +  // Cannot query matches on encrypted fields
+                ' OR Business_Phone__c = \'' + request.phone + '\'';
+
+        if (request.duns != null) {
+            whereClause += ' OR DNB_Resolved_DUNS__c = \'' + request.duns + '\'';
+        }
+
+        whereClause += ')';
+
+        String databaseQuery = 'SELECT Id, CreatedDate, Name, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State__c, Physical_Postal_Code__c, ' +
+                'Credit_Decision__c, Status__c, Taxpayer_ID__c, Guarantor_Social_Security_Number__c, Program__c, Fraud_Flag__c, ' +
+                'Credit_Line_Requested__c, Credit_Line_Approved__c, Application_Decisioned_Date__c, Application_Signer_IP_Address__c, Business_Phone__c, DNB_Resolved_DUNS__c' +
+                ' FROM CP_Application_Request__c' + whereClause;
+
+        try {
+            List<CP_Application_Request__c> cpApplications = Database.query(databaseQuery);
+            return cpApplications;
+        } catch (QueryException qe) {
+            System.debug('Error when attempting to locate potential existing exposure applications for CP_Application_Request__c : ' + qe.getMessage());
+        }
+        return null;
+    }
+
+    // This query was taking on average 11 seconds to run in production. Need to index these fields matching on or redesign
+//    /** NA
+//    * Dynamically create the query based on whether or not a DUNS number was provided. Each unindexed OR clause slows down the query.
+//    * Often DUNS is null so let's only look for a match on DUNS when needed.
+//     */
+//    private static List<Application_Request__c> getNAExistingApplications(ExistingExposureRequest request) {
+//
+//        String whereClause = ' WHERE Id != \'' + request.applicationId + '\' AND (' +
+//                '(Opportunity_Name_Text__c like \'' + request.legalBusinessName + '\' AND Physical_Zip_Postal_Code__c like \'' + request.postalCode + '\')' +
+//                ' OR App_Signer_IP_Address__c = \'' + request.ipAddress + '\'' +
+//                ' OR Tax_Payer_ID_number__c = \'' + request.taxID + '\'' +
+//                ' OR Business_Phone_Number__c = \'' + request.phone + '\'';
+//
+//        if (request.duns != null) {
+//            whereClause += ' OR DNB_Resolved_DUNS__c = \'' + request.duns + '\'';
+//        }
+//
+//        whereClause += ')';
+//
+//        String databaseQuery = 'SELECT Id, CreatedDate, Name, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c, ' +
+//                'Credit_Decision__c, Status__c, App_Submitted_Date__c, Tax_Payer_ID_number__c, Guarantor_SSN__c, Program__c, Fraud_Flag__c, Credit_Line_Requested__c, Approved_Credit_Limit__c, Decision_Date__c, ' +
+//                'App_Signer_IP_Address__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c'+
+//                ' FROM Application_Request__c' + whereClause;
+//
+//        try {
+//            List<Application_Request__c> naApplications = Database.query(databaseQuery);
+//            return naApplications;
+//        } catch (QueryException qe) {
+//            System.debug('Error when attempting to locate potential existing exposure applications for Application_Request__c : ' + qe.getMessage());
+//        }
+//        return null;
+//    }
+
     public static List<ExistingExposureAccounts> getAccounts(ExistingExposureRequest request) {
 
         List<ExistingExposureAccounts> existingExposureAccounts = new List<ExistingExposureAccounts>();
@@ -155,7 +267,8 @@ public with sharing class CreditUtil_ExistingExposure {
             request.postalCode = request.postalCode + '%';
         }
 
-        for(FSC_Existing_Exposure__c existingAccount : [SELECT Id, Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c
+        for(FSC_Existing_Exposure__c existingAccount : [SELECT Id, Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c,
+                DUNS_Number__c
         FROM FSC_Existing_Exposure__c
         WHERE Business_Name__c like :request.legalBusinessName and Postal_Code__c like :request.postalCode]) {
 
@@ -163,7 +276,8 @@ public with sharing class CreditUtil_ExistingExposure {
                     JaroWinklerDistance.getScore(request.addressLine1, existingAccount.Address__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.city, existingAccount.City__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.state, existingAccount.State_Province__c ) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.postalCode, existingAccount.Postal_Code__c) >= 0.75) {
+                    JaroWinklerDistance.getScore(request.postalCode, existingAccount.Postal_Code__c) >= 0.75
+                    || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingAccount.DUNS_Number__c)) == 1.00)) {
 
                 ExistingExposureAccounts existingExposureAccount = new ExistingExposureAccounts();
 
@@ -177,6 +291,7 @@ public with sharing class CreditUtil_ExistingExposure {
                 existingExposureAccount.nationalId = existingAccount.National_Account_Number__c;
                 existingExposureAccount.creditLine = String.valueOf(existingAccount.Credit_Limit__c);
                 existingExposureAccount.accountStatus = existingAccount.Account_Status__c;
+                existingExposureAccount.duns = existingAccount.DUNS_Number__c;
 
                 existingExposureAccounts.add(existingExposureAccount);
 
@@ -199,7 +314,11 @@ public with sharing class CreditUtil_ExistingExposure {
         public String state { get; set; }
         public String postalCode { get; set; }
         public Boolean fraudFlag { get; set; }
-
+        public String duns { get; set; }
+        public String taxID { get; set; }
+        public String phone { get; set; }
+        public String pgSSN { get; set; }
+        public String ipAddress { get; set; }
     }
 
     public class ExistingExposureApplications {
@@ -221,7 +340,9 @@ public with sharing class CreditUtil_ExistingExposure {
         public String pgSSN { get; set; }
         public String program { get; set; }
         public Boolean fraudFlag { get; set; }
-
+        public String duns { get; set; }
+        public String phone { get; set; }
+        public String ipAddress { get; set; }
     }
 
     public class ExistingExposureAccounts {
@@ -236,7 +357,7 @@ public with sharing class CreditUtil_ExistingExposure {
         public String nationalId { get; set; }
         public String creditLine { get; set; }
         public String accountStatus { get; set; }
-
+        public String duns { get; set; }
     }
 
 }

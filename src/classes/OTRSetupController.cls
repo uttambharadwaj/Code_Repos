@@ -1,6 +1,15 @@
+/*
+Description:        Controller Class for OTRSetup VF Page
+                    (Page 2 of Online Application for OTRBOCA)
+Test Classes:       OTRBOCATest
+Last Coverage:      30%
+Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 refactor to allow code reuse on save for later pdf generation
+ */
 public without sharing class OTRSetupController {
 
     public final static String APPLICATION_NAME = 'OTRSetup';
+
+    private final String fromSFLString = '(Partial)';
 
     public String customerParameter {
         get {
@@ -34,7 +43,7 @@ public without sharing class OTRSetupController {
     public Integer unitCollectionSize {
         get {
             if(onlineApplicationUnits != null) {
-            return onlineApplicationUnits.size();
+                return onlineApplicationUnits.size();
             }
             return null;
         }
@@ -47,7 +56,7 @@ public without sharing class OTRSetupController {
     public Integer driverCollectionSize {
         get {
             if(onlineApplicationDrivers != null) {
-            return onlineApplicationDrivers.size();
+                return onlineApplicationDrivers.size();
             }
             return -1;
         }
@@ -141,9 +150,6 @@ public without sharing class OTRSetupController {
 
         try {
 
-            System.debug(customerParameter);
-            ///eee
-
             if (!String.isEmpty(customerParameter)) {
 
                 List<OnlineApplication__c> onlineApplications = [
@@ -152,7 +158,7 @@ public without sharing class OTRSetupController {
                                 Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Business_Address_Line_2__c,
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
                                 Opportunity__r.CampaignId, Contact_Last_Name__c, Email__c, Contact_First_Name__c, Phone_Number__c, Cell_Number__c, Opportunity__r.Campaign_Program__c,
-                                Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c
+                                Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c
                         FROM OnlineApplication__c
                         WHERE Id = :customerParameter AND Status__c = 'App-Incomplete'
                         LIMIT 1
@@ -218,13 +224,16 @@ public without sharing class OTRSetupController {
                     }
 
                     if(applicationKey != null) {
-                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete'];
-
+                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete' LIMIT 1];
                         if(onlineApplicationAuthorizedContacts.size() > 0) {
                             onlineApplicationAuthorizedContact = onlineApplicationAuthorizedContacts[0];
                         }
+                    } else {
+                        //IADJUDICAT-929 save when coming directly from page one (no key)
+                        insert generatePDF(onlineApplication, fromSFLString); //inserts the pdf when accessed directly from page one
                     }
-                    else {
+                    //IADJUDICAT-1144 if no authorized contact found, create one
+                    if(onlineApplicationAuthorizedContact == null){
                         onlineApplicationAuthorizedContact = new OnlineApplicationAuthorizedContact__c();
                         onlineApplicationAuthorizedContact.First_Name__c = onlineApplication.Contact_First_Name__c;
                         onlineApplicationAuthorizedContact.Last_Name__c = onlineApplication.Contact_Last_Name__c;
@@ -263,6 +272,7 @@ public without sharing class OTRSetupController {
     }
 
     public void populateAddress() {
+
         if (selectedAddressOption.equalsIgnoreCase('yes')) {
             if (onlineApplication != null) {
                 onlineApplication.Card_Shipping_Address_Line_1__c = onlineApplication.Business_Street_Address__c;
@@ -286,8 +296,8 @@ public without sharing class OTRSetupController {
 
     public void addDriver() {
         if(onlineApplication != null && onlineApplicationDrivers != null) {
-        	OnlineApplicationDriverSetup__c driver = new OnlineApplicationDriverSetup__c(Online_Application__c = onlineApplication.Id);
-        	onlineApplicationDrivers.add(driver);
+            OnlineApplicationDriverSetup__c driver = new OnlineApplicationDriverSetup__c(Online_Application__c = onlineApplication.Id);
+            onlineApplicationDrivers.add(driver);
         }
     }
 
@@ -297,16 +307,16 @@ public without sharing class OTRSetupController {
         List<OnlineApplicationDriverSetup__c> newList = new List<OnlineApplicationDriverSetup__c>();
 
         if(onlineApplicationDrivers != null) {
-        for (Integer i = 0; i < onlineApplicationDrivers.size(); i++) {
-            if (i == Integer.valueOf(selectedDriverIndex)) {
-                System.debug('Removing ' + i);
-                continue;
+            for (Integer i = 0; i < onlineApplicationDrivers.size(); i++) {
+                if (i == Integer.valueOf(selectedDriverIndex)) {
+                    System.debug('Removing ' + i);
+                    continue;
+                }
+
+                newList.add(onlineApplicationDrivers.get(i));
             }
 
-            newList.add(onlineApplicationDrivers.get(i));
-        }
-
-        onlineApplicationDrivers = newList;
+            onlineApplicationDrivers = newList;
 
         }
 
@@ -314,8 +324,8 @@ public without sharing class OTRSetupController {
 
     public void addUnit() {
         if(onlineApplication != null) {
-        OnlineApplicationUnitNumber__c unit = new OnlineApplicationUnitNumber__c(Online_Application__c = onlineApplication.Id);
-        onlineApplicationUnits.add(unit);
+            OnlineApplicationUnitNumber__c unit = new OnlineApplicationUnitNumber__c(Online_Application__c = onlineApplication.Id);
+            onlineApplicationUnits.add(unit);
         }
     }
 
@@ -323,15 +333,15 @@ public without sharing class OTRSetupController {
         List<OnlineApplicationUnitNumber__c> newList = new List<OnlineApplicationUnitNumber__c>();
 
         if(onlineApplicationUnits != null) {
-        for (Integer i = 0; i < onlineApplicationUnits.size(); i++) {
-            if (i == Integer.valueOf(selectedUnitIndex)) {
-                continue;
+            for (Integer i = 0; i < onlineApplicationUnits.size(); i++) {
+                if (i == Integer.valueOf(selectedUnitIndex)) {
+                    continue;
+                }
+
+                newList.add(onlineApplicationUnits.get(i));
             }
 
-            newList.add(onlineApplicationUnits.get(i));
-        }
-
-        onlineApplicationUnits = newList;
+            onlineApplicationUnits = newList;
         }
     }
 
@@ -362,7 +372,7 @@ public without sharing class OTRSetupController {
             upsert onlineApplication;
 
             if(onlineApplicationAuthorizedContact.Online_Application__c == null) {
-            	onlineApplicationAuthorizedContact.Online_Application__c = onlineApplication.Id;
+                onlineApplicationAuthorizedContact.Online_Application__c = onlineApplication.Id;
             }
 
             try {
@@ -436,31 +446,49 @@ public without sharing class OTRSetupController {
 
     }
 
+    /*
+    IADJUDICAT-929 Jason Arbegast: add pdf attachment of page 1 when page 1 is saved for later; move pdf logic into own method
+    description:    turns OnlineApplication into pdf form. returns Attachment, no DML
+    parameters:     onlineApp: the online application we are turning into a pdf
+    known usage:    OTRSetupController.generatePDFandConfirm
+                    OTRBOCAController.saveApplication
+    test method:    OTRBOCATest.testGeneratePDFMethod
+     */
+    public static Attachment generatePDF(OnlineApplication__c onlineApp, String completionStatus){
+
+        //name is not available when saved for later on page 1; if null, requery for it
+        String appNumber = onlineApp.Name;
+        if(appNumber == null && onlineApp.Id != null)
+            appNumber = [SELECT Name FROM OnlineApplication__c WHERE Id = :onlineApp.Id LIMIT 1].Name;
+        Attachment pdfAttachment = new Attachment();
+        pdfAttachment.ParentId = onlineApp.Id;
+        pdfAttachment.Name = appNumber + completionStatus + '.pdf';
+        pdfAttachment.ContentType = 'application/pdf';
+
+        PageReference bocaToPDF = Page.BOCAToPDF;
+        bocaToPDF.getParameters().put('applicationId', onlineApp.Id);
+        bocaToPDF.getParameters().put('token', onlineApp.PDF_Token__c);
+        if(!TestUtils.isRunningTest()) {
+            pdfAttachment.Body = bocaToPDF.getContentAsPDF();
+        } else {
+            pdfAttachment.Body = blob.valueOf('Unit.Test');
+        }
+
+        return pdfAttachment;
+    }
+
     public PageReference generatePDFandConfirm() {
 
         PageReference redirect = null;
 
         try {
 
-            Attachment pdfAttachment = new Attachment();
+            //IADJUDICAT-929 Jason Arbegast: add pdf attachment of page 1 when page 1 is saved for later; move pdf logic into own method
+            Attachment pdfAttachment = generatePDF(onlineApplication, '(Complete)');
+            insert pdfAttachment;
 
-            if (!TestUtils.isRunningTest()) {
-
-                pdfAttachment.ParentId = onlineApplication.Id;
-
-                pdfAttachment.Name = onlineApplication.Name + '.pdf';
-
-                PageReference bocaToPDF = Page.BOCAToPDF;
-                bocaToPDF.getParameters().put('applicationId', onlineApplication.Id);
-                bocaToPDF.getParameters().put('token', onlineApplication.PDF_Token__c);
-
-                pdfAttachment.Body = bocaToPDF.getContentAsPDF();
-
-                pdfAttachment.ContentType = 'application/pdf';
-
-                insert pdfAttachment;
-
-            }
+            String partialName = onlineApplication.Name + fromSFLString + '.pdf';
+            delete [SELECT Id FROM Attachment WHERE Name=:partialName AND ParentId=:onlineApplication.Id LIMIT 1];
 
             try {
 
@@ -541,7 +569,7 @@ public without sharing class OTRSetupController {
 
         redirect = Page.OTRBOCAConfirmation;
         if(onlineApplication != null) {
-        redirect.getParameters().put('customer', onlineApplication.Id);
+            redirect.getParameters().put('customer', onlineApplication.Id);
         }
         return redirect;
 

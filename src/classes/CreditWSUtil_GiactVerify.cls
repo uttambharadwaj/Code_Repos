@@ -1,0 +1,349 @@
+/**
+ * Created by dgilbert on 03/29/2019.
+ */
+
+public class CreditWSUtil_GiactVerify {
+
+    public class Customer {
+        public Integer EntityType;
+        public String NamePrefix;
+        public String FirstName;
+        public String MiddleName;
+        public String LastName;
+        public String NameSuffix;
+        public String BusinessName;
+        public String AddressLine1;
+        public String AddressLine2;
+        public String City;
+        public String State;
+        public String ZipCode;
+        public String Country;
+        public String PhoneNumber;
+        public String TaxId;
+        public String DateOfBirth;
+        public String DlNumber;
+        public String DlState;
+        public String EmailAddress;
+        public String CurrentIpAddress;
+        public String Domain;
+        public Integer MobileConsentRecordId;
+        public Integer AltIdType;
+        public String AltIdIssuer;
+        public String AltIdNumber;
+    }
+
+    public class Check {
+        public String RoutingNumber;
+        public String AccountNumber;
+        public String CheckNumber;
+        public Double CheckAmount;
+        public Integer AccountType;
+    }
+
+    public class GiactInquiryRequest {
+        public String UniqueId;
+        public Check Check;
+        public Customer Customer;
+        public Boolean GVerifyEnabled;
+        public Boolean FundsConfirmationEnabled;
+        public Boolean GAuthenticateEnabled;
+        public Boolean VoidedCheckImageEnabled;
+        public Boolean GIdentifyEnabled;
+        public Boolean GIdentifyKbaEnabled;
+        public Boolean GIdentifyEsiEnabled;
+        public Boolean CustomerIdEnabled;
+        public Boolean OfacScanEnabled;
+        public Boolean IpAddressInformationEnabled;
+        public Boolean DomainWhoisEnabled;
+        public Boolean MobileVerifyEnabled;
+        public Boolean MobileIdentifyEnabled;
+        public Boolean MobileLocationEnabled;
+    }
+
+    public class DomainRegistry {
+        public String DomainName;
+        public String CreationDate;
+        public String UpdateDate;
+        public String ExpirationDate;
+        public List<String> Status;
+        public String RegistrarName;
+        public String RegistrarWhoisServer;
+        public List<String> NameServers;
+        public String RegistrantName;
+        public String RegistrantOrganization;
+        public AddressRecords_Z RegistrantAddress;
+        public PhoneNumbers RegistrantPhone;
+        public String RegistrantEmailAddress;
+        public String AdminName;
+        public String AdminOrganization;
+        public AddressRecords_Z AdminAddress;
+        public PhoneNumbers AdminPhone;
+        public String AdminEmailAddress;
+        public String TechnicalName;
+        public String TechnicalOrganization;
+        public AddressRecords_Z TechnicalAddress;
+        public PhoneNumbers TechnicalPhone;
+        public String TechnicalEmailAddress;
+    }
+
+    public class BusinessContacts {
+        public String FirstName;
+        public String MiddleName;
+        public String LastName;
+        public String Title;
+    }
+
+    public class StatusInformation {
+        public Integer IdentityAge;
+        public Integer CurrentMNO;
+        public Integer AccountStatus;
+        public Integer AccountPaymentType;
+        public Integer AccountOwnerType;
+        public Integer AccountUserType;
+        public List<StatusEvents> StatusEvents;
+    }
+
+    public class MatchedBusinessData {
+        public List<NameRecords> NameRecords;
+        public Boolean MatchingBusinessContactFound;
+        public String FEIN;
+        public String DunsNumber;
+        public String CorporationType;
+        public String RegistrationType;
+        public String IncorporationState;
+        public String IncorporationDate;
+        public String FilingNumber;
+        public List<String> Industries;
+        public List<String> Domains;
+        public List<AddressRecords_Z> AddressRecords;
+        public List<PhoneNumbers> PhoneNumbers;
+        public List<BusinessContacts> BusinessContacts;
+        public Integer BankruptcySubjectRecordCount;
+        public Integer BankruptcyCreditorRecordCount;
+        public String MiscellaneousDetails;
+        public String BusinessReportKey;
+    }
+
+    public class GIdentifyKbaResult {
+        public String Question;
+        public List<PossibleAnswers> PossibleAnswers;
+    }
+
+    public class Name {
+        public String ListItemName;
+        public String FirstName;
+        public String MiddleName;
+        public String LastName;
+    }
+
+    public class Addresses {
+        public String Address;
+        public String CityStatePost;
+        public String Country;
+        public String Remarks;
+    }
+
+    public class MobileVerifyResult {
+        public Boolean NumberMatch;
+        public Integer NumberType;
+        public Boolean IsParticipatingMobileNetwork;
+        public StatusInformation StatusInformation;
+    }
+
+    public class AddressRecords {
+        public String AddressLine1;
+        public String AddressLine2;
+        public String City;
+        public String State;
+        public String ZipCode;
+        public Integer Status;
+        public String DateReported;
+        public ParsedAddressLine1 ParsedAddressLine1;
+    }
+
+    public class ParsedAddressLine1 {
+        public String StreetNumber;
+        public String PreDirectional;
+        public String StreetName;
+        public String StreetSuffix;
+        public String PostDirectional;
+        public String UnitType;
+        public String UnitIdentifier;
+    }
+
+    public class StatusEvents {
+        public Integer EventType;
+        public String EventDate;
+    }
+
+    public class AddressRecords_Z {
+        public String AddressLine1;
+        public String AddressLine2;
+        public String City;
+        public String State;
+        public String ZipCode;
+        public ParsedAddressLine1 ParsedAddressLine1;
+    }
+
+    public class GiactInquiryResponse {
+        public Integer ItemReferenceId;
+        public String CreatedDate;
+        public String ErrorMessage;
+        public Integer VerificationResponse;
+        public Integer AccountResponseCode;
+        public String BankName;
+        public String AccountAddedDate;
+        public String AccountLastUpdatedDate;
+        public String AccountClosedDate;
+        public String BankAccountType;
+        public String VoidedCheckImage;
+        public Integer FundsConfirmationResult;
+        public Integer CustomerResponseCode;
+        public List<MatchedPersonData> MatchedPersonData;
+        public List<ConsumerAlertMessages> ConsumerAlertMessages;
+        public List<MatchedBusinessData> MatchedBusinessData;
+        public List<OfacListPotentialMatches> OfacListPotentialMatches;
+        public List<GIdentifyKbaResult> GIdentifyKbaResult;
+        public EmailAddressInformationResult EmailAddressInformationResult;
+        public IpAddressInformationResult IpAddressInformationResult;
+        public DomainRegistry DomainRegistry;
+        public MobileVerifyResult MobileVerifyResult;
+        public MobileIdentifyResult MobileIdentifyResult;
+        public Location MobileLocationResult;
+        public PhoneIntelligenceResult PhoneIntelligenceResult;
+    }
+
+    public class PossibleAnswers {
+        public String Answer;
+        public Boolean IsCorrect;
+    }
+
+    public class PhoneNumbers {
+        public Integer Classification;
+        public Integer NumberType;
+        public String AreaCode;
+        public String Exchange;
+        public String Suffix;
+        public String PhoneNumber;
+    }
+
+    public class MobileIdentifyResult {
+        public Integer NameMatch;
+        public Integer AddressMatch;
+        public Integer EmailMatch;
+        public Integer MatchSource;
+    }
+
+    public class IpAddressInformationResult {
+        public Location Location;
+        public Integer UserType;
+        public Integer NetSpeed;
+        public String Domain;
+        public String ISP;
+        public String Organization;
+        public Boolean CorporateProxy;
+        public Boolean AnonymousProxy;
+    }
+
+    public class NameRecords {
+        public String BusinessName;
+        public String BusinessType;
+    }
+
+    public class ConsumerAlertMessages {
+        public String Code;
+        public String Description;
+    }
+
+    public class OfacListPotentialMatches {
+        public Integer EntityId;
+        public Summary Summary;
+        public Name Name;
+        public String Title;
+        public String DataSource;
+        public List<String> ProgramNames;
+        public List<String> AlsoKnownAs;
+        public List<String> Associations;
+        public List<String> DateOfBirthListings;
+        public List<String> PlaceOfBirthListings;
+        public List<String> Nationalities;
+        public List<String> NationalIds;
+        public List<String> Citizenships;
+        public List<String> Passports;
+        public String Website;
+        public String TaxIdNumber;
+        public String EmailAddress;
+        public List<Addresses> Addresses;
+        public String Remarks;
+        public String LastUpdatedDate;
+        public String Gender;
+    }
+
+    public class MatchedPersonData {
+        public String FirstName;
+        public String MiddleName;
+        public String LastName;
+        public String DateOfBirth;
+        public String IdNumber;
+        public String SsnIssueState;
+        public String SsnIssueStartYear;
+        public String SsnIssueEndYear;
+        public String SsnStatus;
+        public List<AddressRecords> AddressRecords;
+        public List<PhoneNumbers> PhoneNumbers;
+    }
+
+    public class EmailAddressInformationResult {
+        public Boolean EmailAddressFound;
+        public String EmailAddressOwnerName;
+        public String EmailAddressOwnerCompany;
+        public String EmailAddressOwnerTitle;
+        public String EmailAddressOwnerPhoto;
+        public String EmailAddressStatus;
+        public Integer EmailAddressStatusId;
+        public Integer EmailAddressAdvice;
+        public String EmailAddressCreatedDate;
+        public String FirstSeen;
+        public String LastSeen;
+        public String Domain;
+        public Boolean DomainExists;
+        public String DomainCreatedDate;
+        public String DomainCompany;
+        public String DomainCountry;
+        public String DomainCategory;
+        public Integer DomainRisk;
+        public List<String> SocialMediaLinks;
+        public String SourceIndustry;
+        public Integer Fraud;
+        public Boolean IsNotDeliverable;
+    }
+
+    public class PhoneIntelligenceResult {
+        public Integer LineType;
+        public String Carrier;
+        public Boolean IsCommercial;
+        public Boolean IsPrepaid;
+    }
+
+    public class Summary {
+        public Integer PotentialMatchLevel;
+        public List<String> PotentialMatchDetails;
+        public Boolean PotentialMatchAka;
+    }
+
+    public class Location {
+        public Double Latitude;
+        public Double Longitude;
+        public String City;
+        public String StateRegion;
+        public String ZipPostalCode;
+        public String Country;
+        public Integer AccuracyRadius;
+        public Integer Distance;
+        public Boolean ZipCodeMatch;
+        public Boolean CityMatch;
+        public Boolean StateMatch;
+        public Boolean CountryMatch;
+    }
+
+}

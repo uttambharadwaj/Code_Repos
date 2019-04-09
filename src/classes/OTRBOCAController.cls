@@ -1,3 +1,10 @@
+/*
+Description:        Controller Class for OTRBOCA VF Page
+                    (Page 1 of Online Application for OTRBOCA)
+Test Classes:       OTRBOCATest
+Last Coverage:      60%
+Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
+ */
 public class OTRBOCAController {
 
     public final static String APPLICATION_NAME = 'OTRBOCA';
@@ -340,7 +347,7 @@ public class OTRBOCAController {
                                             Payment_Method__c, Phone_Number__c, Promotional_Code__c, State__c, Trade_Name__c, Type_of_Business__c, Year_Established__c, Zip_code__c, Account_Type__c,
                                             Mobile_Number__c, Application_Key__c, External_Application_URL__c
                                     FROM OnlineApplication__c
-                                    WHERE Id = :partialCustomer and Application_Stage__c = 'Application' and Status__c = 'App-Incomplete' and Application_Key__c = :applicationKey
+                                    WHERE Id = :partialCustomer and Application_Stage__c = 'Application' and Status__c in ('App-Incomplete', 'Saved-Incomplete') and Application_Key__c = :applicationKey
                             ];
 
                             if (partialOnlineApplications.size() > 0) {
@@ -419,7 +426,6 @@ public class OTRBOCAController {
                     } else {
 
                         onlineApplication = new OnlineApplication__c();
-
                     }
 
                     // Generate ThreatMetrix SessionID
@@ -480,20 +486,42 @@ public class OTRBOCAController {
 
         try {
 
-            onlineApplication.Application_Stage__c = 'Application';
-            onlineApplication.Status__c = 'Saved-Incomplete';
+            // Set this initial status so we don't trigger workflows
+            onlineApplication.Program__c = program.Id;
+            onlineApplication.Offer__c = onlineApplicationOffer.Id;
+            onlineApplication.Product_Type__c = 'OTR';
+            onlineApplication.Application_Title__c = onlineApplicationOffer.Name;
 
             Database.upsertResult result = Database.upsert(onlineApplication, false);
             if (!result.isSuccess()) {
                 throw new creditApplicationException('Critical error inserting the Online Application: ' + result.getErrors());
             }
 
-            PageReference redirect = Page.OTRBOCAConfirmation;
-            redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
-            redirect.getParameters().put('customer', onlineApplication.Id);
-            redirect.getParameters().put('saved', 'true');
+            // Once we get the ID, we need to generate the external URL and upsert.
+            if (onlineApplication.Application_Key__c == null) {
 
-            return redirect;
+                Datetime dt = Datetime.now();
+                Long l = dt.getTime();
+
+                String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+
+                onlineApplication.Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
+            }
+
+            // Set the application URL, for ease of picking up in the e-mail
+            if (onlineApplication.External_Application_URL__c == null) {
+                onlineApplication.External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&offer=' + onlineApplicationOffer.Id + '&customer=' + onlineApplication.Id + '&key=' + onlineApplication.Application_Key__c;
+            }
+
+            // Set this status to trigger the Save For Later email
+            onlineApplication.Application_Stage__c = 'Application';
+            onlineApplication.Status__c = 'Saved-Incomplete';
+            String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(256));
+            Long l = DateTime.now().getTime();
+            onlineApplication.PDF_Token__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + onlineApplication.Application_Signer_IP__c + salt)));
+
+            upsert onlineApplication;
+            return null;
 
         }
         catch(Exception e) {
@@ -508,6 +536,23 @@ public class OTRBOCAController {
 
         }
 
+    }
+
+    /*
+    IADJUDICAT-929  add pdf attachment when page 1 is saved
+    description:    turns OnlineApplication into pdf form. inserts and redirects to confirmation
+    known usage:    called via page actionFunction, after saveApplication completes
+    test method:    OTRBOCATest.testGeneratePDFMethod
+     */
+    public PageReference generatePDF(){
+        Attachment pdfAttachment = OTRSetupController.generatePDF(onlineApplication, '(Partial)'); //if second parameter is changed, fromSFLString must also be changed in OTRSetupController
+        insert pdfAttachment;
+
+        PageReference redirect = Page.OTRBOCAConfirmation;
+        redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
+        redirect.getParameters().put('customer', onlineApplication.Id);
+        redirect.getParameters().put('saved', 'true');
+        return redirect;
     }
 
     // This method will write the application with any mappings. This could either be used for
@@ -592,7 +637,7 @@ public class OTRBOCAController {
             // Create PG Contact
             Contact pgContact = new Contact();
 
-            if (additionalAttributes.ssn != null) {
+            if (additionalAttributes.ssn != null || Test.isRunningTest()) {
 
                 pgContact.AccountId = account.Id;
 
@@ -691,7 +736,7 @@ public class OTRBOCAController {
             opportunity.Guarantor_City__c = onlineApplication.AO_City__c;
             opportunity.Guarantor_State__c = onlineApplication.AO_State__c;
             opportunity.Guarantor_Zip_code__c = onlineApplication.AO_Zip_Code__c;
-            opportunity.Guarantor_Country__c =	onlineApplication.AO_Country__c;
+            opportunity.Guarantor_Country__c =  onlineApplication.AO_Country__c;
 
             opportunity.Guarantor_Email__c = onlineApplication.AO_Work_Email__c;
             opportunity.Guarantor_Annual_Income__c = 0.00;
@@ -862,6 +907,12 @@ public class OTRBOCAController {
             if (onlineApplication.External_Application_URL__c == null) {
                 onlineApplication.External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&offer=' + onlineApplicationOffer.Id + '&customer=' + onlineApplication.Id + '&key=' + onlineApplication.Application_Key__c;
             }
+
+            //IADJUDICAT-929 to save this when moving to page two, we need pdf token
+            String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(256));
+            Long l = DateTime.now().getTime();
+            onlineApplication.PDF_Token__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + onlineApplication.Application_Signer_IP__c + salt)));
+
 
             result = Database.upsert(onlineApplication, false);
             if (!result.isSuccess()) {

@@ -1,13 +1,20 @@
 trigger ApplicationRequestTrigger on Application_Request__c (before insert, before update, after insert, after update) {
     
     List<Application_Request__c> records = trigger.isDelete ? trigger.old : trigger.new;
-    
-    
+
+
     if(trigger.isBefore)
     {
-        if(trigger.isInsert) 
+        if(trigger.isInsert)
         {
             UApplicationRequest.communityUserStampData(records);
+
+            for(Application_Request__c applicationRequest : records) {
+                if (applicationRequest.Sales_Person__c == null) {
+                    applicationRequest.Sales_Person__c = UserInfo.getUserId();
+                }
+            }
+
         }
     }
     else if(trigger.isAfter)

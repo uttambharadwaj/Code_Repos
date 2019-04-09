@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"/>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
         <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous" />
-            
+
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
 		<!-- Import the Design System style sheet -->
@@ -242,7 +242,7 @@
 						'A': {pattern: /[0-9\\.,]+/, recursive: true}
 					}
 				});
-                
+
                 $j('.datePicker').datepicker();
 
 
@@ -413,12 +413,12 @@
 
 											<dt class="slds-item_label slds-text-color_weak" title="Second Label">Contact:</dt>
 											<dd class="slds-item_detail" title="Description for second label">
-												{!applicationRequest.Billing_Contact__r.FirstName} {!applicationRequest.Billing_Contact__r.LastName}
+												{!opportunity.Billing_Contact_First_Name__c} {!opportunity.Billing_Contact_Last_Name__c}
 												<br/>
-												{!applicationRequest.Billing_Contact__r.MailingStreet}<br/>
-												{!applicationRequest.Billing_Contact__r.MailingCity}, {!applicationRequest.Billing_Contact__r.MailingState}
+												{!opportunity.Billing_Street__c}<br/>
+												{!opportunity.Billing_City__c}, {!opportunity.Billing_State__c}
 												<br/>
-												{!applicationRequest.Billing_Contact__r.MailingPostalCode}<br/>
+												{!opportunity.Billing_Zip_Postal_Code__c}<br/>
 											</dd>
 										</dl>
 										<br/>
