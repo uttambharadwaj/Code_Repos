@@ -140,14 +140,8 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
                 gResponse.availableImplementationCases = new List<Case>();
 
-                // Add cases with no Fleet Data, and add in the template
                 for(Case fleetEnrollmentCase : [SELECT Id, Siebel_Oppty__c, Fleet_Enrollment__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c != null ORDER BY CreatedDate DESC LIMIT 10]) {
                     gResponse.availableImplementationCases.add(fleetEnrollmentCase);
-                }
-
-                // Add cases with no Fleet Data, and add in the template
-                for(Case nonFleetEnrollmentCase : [SELECT Id, Siebel_Oppty__c, Program_Template_Account__r.Program__r.Brand_Long_Name__c, Program_Template_Account__r.Name, Program_Template_Account__r.Usage_Type__c, Program_Template_Account__r.Friendly_Billing_Cycle__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c = null ORDER BY CreatedDate DESC LIMIT 10]) {
-                    gResponse.availableImplementationCases.add(nonFleetEnrollmentCase);
                 }
 
                 System.debug(gResponse);
@@ -212,7 +206,7 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
         try {
 
-            List<Case> cases = [SELECT Id, Account_Activation_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c FROM Case WHERE Id = :caseId LIMIT 1];
+            List<Case> cases = [SELECT Id, Account_Activation_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c, App_Request_This_Case__r.Fleet_Enrollment__r.Bypass_Data_Entry_Automation__c FROM Case WHERE Id = :caseId LIMIT 1];
 
             if (cases.size() > 0) {
                 cases[0].Account_Activation_Completed__c = true;
@@ -232,7 +226,7 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
                 upsert cases;
 
-                if(cases[0].Fleet_Enrollment__c != null) {
+                if(cases[0].Fleet_Enrollment__c != null && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Bypass_Data_Entry_Automation__c == false) {
 
                     Case implementationCallCase = new Case();
 
