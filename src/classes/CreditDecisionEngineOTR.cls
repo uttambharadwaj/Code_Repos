@@ -235,7 +235,7 @@ global class CreditDecisionEngineOTR {
 
                         dnbOTRModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
                         dnbOTRModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(onlineApplication.Credit_Line_Requested__c));
-                        dnbOTRModelRequest.TeamDriversSlipSeat = String.valueOf(onlineApplication.Team_Drivers_Slip_Seat__c);
+                        dnbOTRModelRequest.TeamDriversSlipSeat = onlineApplication.Team_Drivers_Slip_Seat__c;
                         dnbOTRModelRequest.NumberOfTrucks = String.valueOf(onlineApplication.Number_of_Trucks__c);
 
                         CreditWS_DNB.DNBOTRModelResponse dnbOTRModelResponse = CreditWS_DNB.getOTRScore(dnbOTRModelRequest);
@@ -284,7 +284,7 @@ global class CreditDecisionEngineOTR {
                         dnbCAModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
                         dnbCAModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(onlineApplication.Credit_Line_Requested__c));
                         dnbCAModelRequest.Platforms = 'OTR';
-                        dnbCAModelRequest.TeamDriversSlipSeat = String.valueOf(onlineApplication.Team_Drivers_Slip_Seat__c);
+                        dnbCAModelRequest.TeamDriversSlipSeat = onlineApplication.Team_Drivers_Slip_Seat__c;
                         dnbCAModelRequest.NumberOfTrucks = String.valueOf(onlineApplication.Number_of_Trucks__c);
 
                         CreditWS_DNB.DNBCAModelResponse dnbCAModelResponse = CreditWS_DNB.getCAScore(dnbCAModelRequest);

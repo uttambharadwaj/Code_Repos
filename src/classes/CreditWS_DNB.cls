@@ -341,7 +341,7 @@ public class CreditWS_DNB {
 
                 CreditWSUtil_DNBCustomModel.AdditionalFields teamDriverOrSlipSeat = new CreditWSUtil_DNBCustomModel.AdditionalFields();
                 teamDriverOrSlipSeat.FieldName = 'team_drivers_slip_seat';
-                teamDriverOrSlipSeat.FieldValue = dnbCAModelRequest.TeamDriversSlipSeat; //todo should be 0 or 1
+                teamDriverOrSlipSeat.FieldValue = String.valueOf(dnbCAModelRequest.TeamDriversSlipSeat).equalsIgnoreCase('true') ? '1' : '0';
 
                 additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(teamDriverOrSlipSeat);
             }
@@ -718,7 +718,7 @@ public class CreditWS_DNB {
 
             CreditWSUtil_DNBCustomModel.AdditionalFields teamDriverOrSlipSeat = new CreditWSUtil_DNBCustomModel.AdditionalFields();
             teamDriverOrSlipSeat.FieldName = 'team_drivers_slip_seat';
-            teamDriverOrSlipSeat.FieldValue = dnbOTRModelRequest.TeamDriversSlipSeat;
+            teamDriverOrSlipSeat.FieldValue = String.valueOf(dnbOTRModelRequest.TeamDriversSlipSeat).equalsIgnoreCase('true') ? '1' : '0';
 
             additionalFieldsArray.ArrayOfAdditionalFieldsItem.add(teamDriverOrSlipSeat);
 
@@ -1142,7 +1142,7 @@ public class CreditWS_DNB {
         public String InputID { get; set; }
 
         public String NumberOfTrucks { get; set; }
-        public String TeamDriversSlipSeat { get; set; }
+        public Boolean TeamDriversSlipSeat { get; set; }
         public String RequestedCreditLimit { get; set; }
 
         public DNBOTRModelRequest() {
@@ -1273,7 +1273,7 @@ public class CreditWS_DNB {
         public String RequestedCreditLimit { get; set; }
         public String Country { get; set; }
         public String NumberOfTrucks { get; set; }
-        public String TeamDriversSlipSeat { get; set; }
+        public Boolean TeamDriversSlipSeat { get; set; }
 
         public DNBCAModelRequest() {
 
