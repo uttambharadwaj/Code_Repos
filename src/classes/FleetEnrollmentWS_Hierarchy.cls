@@ -246,13 +246,36 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                     // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
                     // least need a Program Template Account associated for das bots.
-                    if(cases[0].Fleet_Enrollment__c == null && cases[0].Program_Template_Account__c == null) {
+                    if(cases[0].Fleet_Enrollment__c == null) {
+
+                        FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
+
+                        fleetEnrollment.Program__c = cases[0].Opportunity__r.Campaign_Program__r.Program__c;
+                        fleetEnrollment.Opportunity__c = cases[0].Opportunity__c;
+                        fleetEnrollment.Application_Request__c = cases[0].App_Request_This_Case__c;
+                        fleetEnrollment.Bypass_Data_Entry_Automation__c = true;
 
                         List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Program_Default__c = true and Program__c =: cases[0].Opportunity__r.Campaign_Program__r.Program__c LIMIT 1];
 
                         if(programTemplateAccounts.size() > 0) {
 
-                            implementationCallCase.Program_Template_Account__c = programTemplateAccounts[0].Id;
+                            fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
+
+                        }
+
+                        if (Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal') != null) {
+                            fleetEnrollment.RecordTypeId = Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal').getRecordTypeId();
+                        }
+
+                        insert fleetEnrollment;
+
+                        List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id =: cases[0].App_Request_This_Case__c LIMIT 1];
+
+                        if(applicationRequests.size() > 0) {
+
+                            applicationRequests[0].Fleet_Enrollment__c = fleetEnrollment.Id;
+
+                            upsert applicationRequests[0];
 
                         }
 

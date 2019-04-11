@@ -33,7 +33,7 @@ public with sharing class CreditUtil_ExistingExposure {
                         JaroWinklerDistance.getScore(request.state, existingApplication.State__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.postalCode, existingApplication.Zip_Code__c) >= 0.75)
                         || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.IP_Address__c) == 1.00)
-                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DUNS__c)) == 1.00)
+                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
                         || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Federal_Tax_ID__c) == 1.00)
                         || (JaroWinklerDistance.getScore(request.phone, existingApplication.Phone_Number__c) == 1.00)) {
 

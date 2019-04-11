@@ -54,9 +54,11 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                     equifaxRequest.province = onlineApplication.AO_State__c;
                     equifaxRequest.postalCode = onlineApplication.AO_Zip_Code__c;
                     equifaxRequest.phone = onlineApplication.AO_Home_Phone_Number__c;
-                    equifaxRequest.dateOfBirthMonth = String.valueOf(onlineApplication.AO_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
-                    equifaxRequest.dateOfBirthDay = String.valueOf(onlineApplication.AO_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
-                    equifaxRequest.dateOfBirthYear = String.valueOf(onlineApplication.AO_Date_of_Birth__c.year());
+                    if (onlineApplication.AO_Date_of_Birth__c != null) {
+                        equifaxRequest.dateOfBirthMonth = String.valueOf(onlineApplication.AO_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
+                        equifaxRequest.dateOfBirthDay = String.valueOf(onlineApplication.AO_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
+                        equifaxRequest.dateOfBirthYear = String.valueOf(onlineApplication.AO_Date_of_Birth__c.year());
+                    }
 
                     CreditWS_Equifax.EquifaxResponse equifaxResponse = CreditWS_Equifax.getCreditScore((equifaxRequest));
 
@@ -112,9 +114,11 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                     equifaxRequest.province = cpApplicant.Guarantor_State_Province__c;
                     equifaxRequest.postalCode = cpApplicant.Guarantor_Residential_Postal_Code__c;
                     equifaxRequest.phone = cpApplicant.Guarantor_Residential_Phone__c;
-                    equifaxRequest.dateOfBirthMonth = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
-                    equifaxRequest.dateOfBirthDay = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
-                    equifaxRequest.dateOfBirthYear = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.year());
+                    if (cpApplicant.Guarantor_Date_of_Birth__c != null) {
+                        equifaxRequest.dateOfBirthMonth = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
+                        equifaxRequest.dateOfBirthDay = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
+                        equifaxRequest.dateOfBirthYear = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.year());
+                    }
 
                     CreditWS_Equifax.EquifaxResponse equifaxResponse = CreditWS_Equifax.getCreditScore((equifaxRequest));
 
@@ -168,9 +172,11 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                 equifaxRequest.province = naApplicant.Personal_Guarantor_Mailing_State__c;
                 equifaxRequest.postalCode = naApplicant.Personal_Guarantor_Mailing_Zip__c;
                 equifaxRequest.phone = naApplicant.Personal_Guarantor_Home_Phone__c;
-                equifaxRequest.dateOfBirthMonth = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.month()).leftPad(2).replace(' ', '0');
-                equifaxRequest.dateOfBirthDay = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.day()).leftPad(2).replace(' ', '0');
-                equifaxRequest.dateOfBirthYear = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.year());
+                if (naApplicant.Personal_Guarantor_DOB__c != null) {
+                    equifaxRequest.dateOfBirthMonth = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.month()).leftPad(2).replace(' ', '0');
+                    equifaxRequest.dateOfBirthDay = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.day()).leftPad(2).replace(' ', '0');
+                    equifaxRequest.dateOfBirthYear = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.year());
+                }
                 
                 CreditWS_Equifax.EquifaxResponse equifaxResponse = CreditWS_Equifax.getCreditScore((equifaxRequest));
                 
