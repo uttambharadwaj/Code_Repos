@@ -253,7 +253,6 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                         fleetEnrollment.Program__c = cases[0].Opportunity__r.Campaign_Program__r.Program__c;
                         fleetEnrollment.Opportunity__c = cases[0].Opportunity__c;
                         fleetEnrollment.Application_Request__c = cases[0].App_Request_This_Case__c;
-                        fleetEnrollment.Bypass_Data_Entry_Automation__c = true;
 
                         List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Program_Default__c = true and Program__c =: cases[0].Opportunity__r.Campaign_Program__r.Program__c LIMIT 1];
 
