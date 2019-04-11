@@ -365,6 +365,10 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Association__c = fleetEnrollmentInformation.selectedAssociation;
             }
 
+            if (fleetEnrollmentInformation.directDebit == true) {
+                fleetEnrollment.Direct_Debit__c = true;
+            }
+
             fleetEnrollment.Hierarchy_Needed__c = fleetEnrollmentInformation.hierarchyNeeded;
 
             fleetEnrollment.Station_Card__c = fleetEnrollmentInformation.stationCard;
