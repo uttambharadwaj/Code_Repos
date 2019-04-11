@@ -206,7 +206,7 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
         try {
 
-            List<Case> cases = [SELECT Id, Account_Activation_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c, App_Request_This_Case__r.Fleet_Enrollment__r.Bypass_Data_Entry_Automation__c FROM Case WHERE Id = :caseId LIMIT 1];
+            List<Case> cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, Account_Activation_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c FROM Case WHERE Id = :caseId LIMIT 1];
 
             if (cases.size() > 0) {
                 cases[0].Account_Activation_Completed__c = true;
@@ -226,7 +226,12 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
                 upsert cases;
 
-                if(cases[0].Fleet_Enrollment__c != null && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Bypass_Data_Entry_Automation__c == false) {
+                List<FleetEnrollment_Contact__c> fleetEnrollmentContacts = [SELECT Id FROM FleetEnrollment_Contact__c WHERE Fleet_Enrollment__c =: cases[0].Fleet_Enrollment__c and Fleet_Enrollment__c != null];
+                List<FleetEnrollment_Driver__c> fleetEnrollmentDrivers = [SELECT Id FROM FleetEnrollment_Driver__c WHERE Fleet_Enrollment__c =: cases[0].Fleet_Enrollment__c and Fleet_Enrollment__c != null];
+                List<FleetEnrollment_Vehicle__c> fleetEnrollmentVehicles = [SELECT Id FROM FleetEnrollment_Vehicle__c WHERE Fleet_Enrollment__c =: cases[0].Fleet_Enrollment__c and Fleet_Enrollment__c != null];
+                List<Attachment> fleetEnrollmentAttachmnets = [SELECT Id FROM Attachment WHERE ParentId =: cases[0].Fleet_Enrollment__c and ParentId != null];
+
+                if(cases[0].Fleet_Enrollment__c != null && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Association__c == null && ((fleetEnrollmentContacts.size() > 0 && fleetEnrollmentVehicles.size() > 0 && fleetEnrollmentDrivers.size() > 0) || fleetEnrollmentAttachmnets.size() > 0)) {
 
                     Case implementationCallCase = new Case();
 
