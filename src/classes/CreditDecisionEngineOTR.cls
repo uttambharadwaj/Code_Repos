@@ -450,9 +450,9 @@ global class CreditDecisionEngineOTR {
 //            }
 
             // Upsert and execute BREeze
-            upsert onlineApplication;
             onlineApplication.Application_Exposure_Hits__c = existingExposureApplications.size();
             onlineApplication.Existing_Account_Exposure_Hits__c = existingExposureAccounts.size();
+            upsert onlineApplication;
 
             // Make a safe copy so we don't overwrite any fields
             onlineApplications = [SELECT Id, Running_Credit_Decisioning__c FROM OnlineApplication__c WHERE Id = :onlineApplicationId LIMIT 1];

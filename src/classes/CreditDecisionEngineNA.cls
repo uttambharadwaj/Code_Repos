@@ -403,9 +403,9 @@ global class CreditDecisionEngineNA {
             }
 
             // Upsert and execute BREeze
-            upsert naApplication;
             naApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
             naApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
+            upsert naApplication;
 
             // Make a safe copy so we don't overwrite any fields
             naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :naApplicationId];
