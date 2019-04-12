@@ -348,6 +348,7 @@ global class CreditDecisionEngineNA {
 
                 CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
 
+                giactVerifyRequest.UniqueId = String.valueOf(naApplication.Id);
                 giactVerifyRequest.RoutingNumber = naApplication.ABA_Routing_Number__c;
                 giactVerifyRequest.AccountNumber = naApplication.Checking_Account_Number__c;
                 giactVerifyRequest.FirstName = naApplication.Billing_Contact_First_Name_Text__c;

@@ -416,6 +416,7 @@ global class CreditDecisionEngineOTR {
 
                 CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
 
+                giactVerifyRequest.UniqueId = String.valueOf(onlineApplication.Id);
                 giactVerifyRequest.RoutingNumber = onlineApplication.ABA_Routing_Number__c;
                 giactVerifyRequest.AccountNumber = onlineApplication.Checking_Account_Number__c;
                 giactVerifyRequest.FirstName = onlineApplication.Contact_First_Name__c;
