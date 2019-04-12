@@ -51,7 +51,9 @@ public with sharing class CreditWS_Giact {
                 giactRequest.Customer.State = giactInquiryRequest.State;
                 giactRequest.Customer.ZipCode = giactInquiryRequest.ZipCode;
                 giactRequest.Customer.Country = giactInquiryRequest.Country;
-                giactRequest.Customer.PhoneNumber = giactInquiryRequest.PhoneNumber;
+                if(!String.isBlank(giactInquiryRequest.PhoneNumber)) {
+                    giactRequest.Customer.PhoneNumber = giactInquiryRequest.PhoneNumber.replaceAll('[^0-9]', '');
+                }
                 giactRequest.Customer.TaxId = giactInquiryRequest.FederalTaxId;
                 giactRequest.Customer.DateOfBirth = giactInquiryRequest.DateOfBirth;
                 giactRequest.Customer.EmailAddress = giactInquiryRequest.EmailAddress;
