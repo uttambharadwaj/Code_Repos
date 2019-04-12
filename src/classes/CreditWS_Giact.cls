@@ -32,6 +32,8 @@ public with sharing class CreditWS_Giact {
 
                 CreditWSUtil_GiactVerify.GiactInquiryRequest giactRequest = new CreditWSUtil_GiactVerify.GiactInquiryRequest();
 
+                giactRequest.UniqueId = giactInquiryRequest.UniqueId;
+
                 // Checking Account Information
                 giactRequest.Check = new CreditWSUtil_GiactVerify.Check();
                 giactRequest.Check.AccountNumber = giactInquiryRequest.AccountNumber;
@@ -56,7 +58,7 @@ public with sharing class CreditWS_Giact {
                 giactRequest.Customer.CurrentIpAddress = giactInquiryRequest.IpAddress;
 
                 // General Settings
-                giactRequest.GVerifyEnabled = true;
+                giactRequest.GAuthenticateEnabled = true;
 
                 System.debug('### GIACT Verify Request: ' + giactRequest);
 
@@ -123,6 +125,7 @@ public with sharing class CreditWS_Giact {
 
     public class GiactVerifyRequest {
 
+        public String UniqueId { get; set; }
         public String RoutingNumber { get; set; }
         public String AccountNumber { get; set; }
         public String FirstName { get; set; }
