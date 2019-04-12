@@ -12,6 +12,8 @@
 public without sharing class CustomerDetailsController {
     
     public class customerDetailsException extends Exception {}
+
+    private static Set<String> caseTypesToDisplay = new Set<String>{'Service Operations','VAS - Retention'};
     
     @AuraEnabled
     public static Customer_Dashboard_Services__c CDS { get; set; }
@@ -43,7 +45,7 @@ public without sharing class CustomerDetailsController {
         
         try {
             
-            List<Case> cases = [SELECT Id FROM Case WHERE Account.Wex_Account__c =: accountNumber AND CreatedDate = TODAY AND RecordType.Name = 'Service Operations'];
+            List<Case> cases = [SELECT Id FROM Case WHERE Account.Wex_Account__c =: accountNumber AND CreatedDate = TODAY AND RecordType.Name IN: caseTypesToDisplay];
             
             System.debug(cases.size());
             
@@ -72,7 +74,7 @@ public without sharing class CustomerDetailsController {
         
         try {
             
-            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, toLabel(Status), LastModifiedDate, toLabel(Origin), Owner.Name, Department__c FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name = 'Service Operations' ORDER BY LastModifiedDate DESC];
+            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, toLabel(Status), LastModifiedDate, toLabel(Origin), Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay ORDER BY LastModifiedDate DESC];
             
             return cases;
             
@@ -93,7 +95,7 @@ public without sharing class CustomerDetailsController {
 
         try {
 
-            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, Status, LastModifiedDate, Origin, Owner.Name, Department__c FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name = 'Service Operations' AND IsClosed = FALSE ORDER BY LastModifiedDate DESC LIMIT 5];
+            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, Status, LastModifiedDate, Origin, Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay AND IsClosed = FALSE ORDER BY LastModifiedDate DESC LIMIT 5];
             System.debug('### getExistingOpenCases found '+cases.size());
 
             return cases;
@@ -109,7 +111,7 @@ public without sharing class CustomerDetailsController {
     }
     
     @AuraEnabled
-    public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId) {
+    public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString) {
         
         try {
             
@@ -132,6 +134,10 @@ public without sharing class CustomerDetailsController {
             
             customerDetailsRequest.accountID = accountNumber;
             customerDetailsRequest.accountIdType = 'Internal';
+
+            if (!String.isEmpty(pdRowIdString)) {
+                customerDetailsRequest.pdRowId = pdRowIdString;
+            }
             
             CustomerDetailsWSUtilv2.customerDetails customerDetails = customerDetailsCallout.getCustomerDetails(customerDetailsRequest);
             
@@ -183,9 +189,12 @@ public without sharing class CustomerDetailsController {
             
             System.debug('### ' + customerContactsResponse);
             
+            /*
             if(!String.isEmpty(customerContactsResponse.errorMsg)) {
-                throw new customerDetailsException('Unable to retrieve account contacts.');
+
+                throw new customerDetailsException('Unable to retrieve account contacts: ');
             }
+             */
             
             return customerContactsResponse.contacts;
             
@@ -464,7 +473,7 @@ public without sharing class CustomerDetailsController {
         
         try {
             
-            CustomerDetailsWSUtilv2.customerDetails customerDetails = (CustomerDetailsWSUtilv2.customerDetails)JSON.deserialize(customerDetailsJSON, CustomerDetailsWSUtilv2.customerDetails.class);
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = getCustomerDetailsFromJson(customerDetailsJSON);
             
             if(customerDetails != null) {
                 
@@ -576,7 +585,7 @@ public without sharing class CustomerDetailsController {
                 }
                 else {
                     
-                    throw new customerDetailsException('Unable to find Serivce Operations record type when upserting account.');
+                    throw new customerDetailsException('Unable to find Service Operations record type when upserting account.');
                     
                 }
             }
@@ -596,7 +605,12 @@ public without sharing class CustomerDetailsController {
         }
         
     }
-    
+
+    private static CustomerDetailsWSUtilv2.customerDetails getCustomerDetailsFromJson(String customerDetailsJSON) {
+        CustomerDetailsWSUtilv2.customerDetails customerDetails = (CustomerDetailsWSUtilv2.customerDetails) JSON.deserialize(customerDetailsJSON, CustomerDetailsWSUtilv2.customerDetails.class);
+        return customerDetails;
+    }
+
     @AuraEnabled
     public static Id upsertContacts(Id accountId, String customerContactsJSON, String contactRowId) {
         
@@ -726,7 +740,7 @@ public without sharing class CustomerDetailsController {
             
             Id contactId = upsertContacts(accountId, customerContactsJSON, contactRowId);
             
-            return innerAttachToCase(caseId, accountId, contactId);
+            return innerAttachToCase(caseId, accountId, contactId, customerDetailsJSON);
             
         }
         catch(Exception e) {
@@ -749,7 +763,7 @@ public without sharing class CustomerDetailsController {
 
             Id contactId = getDummyContactId(contactRowId);
 
-            return innerAttachToCase(caseId, accountId, contactId);
+            return innerAttachToCase(caseId, accountId, contactId, customerDetailsJSON);
 
         }
         catch(Exception e) {
@@ -762,7 +776,7 @@ public without sharing class CustomerDetailsController {
 
     }
 
-    private static String innerAttachToCase(String caseId, Id accountId, Id contactId) {
+    private static String innerAttachToCase(String caseId, Id accountId, Id contactId, String customerDetailsJSON) {
         Id serviceOperationsCaseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
 
         Case serviceOperationsCase = new Case();
@@ -786,6 +800,21 @@ public without sharing class CustomerDetailsController {
 
         if (!String.isEmpty(contactId)) {
             serviceOperationsCase.ContactId = (ID) contactId;
+        }
+
+        try {
+            if (!String.isEmpty(customerDetailsJSON)) {
+                CustomerDetailsWSUtilv2.customerDetails customerDetails = getCustomerDetailsFromJson(customerDetailsJSON);
+                CustomerDetailsWSUtilv2.pdAsset asset = customerDetails.pdAsset;
+                if (asset != null ) {
+                    serviceOperationsCase.G_Tag__c = asset.custAssetNbr;
+                    serviceOperationsCase.Region__c = asset.gsaRegion;
+                    serviceOperationsCase.Vehicle_Card_No__c = asset.cardNbr;
+                    serviceOperationsCase.VIN__c = asset.vin;
+                }
+            }
+        } catch (Exception e) {
+            logError(e);
         }
 
         upsert serviceOperationsCase;

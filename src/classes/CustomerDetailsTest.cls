@@ -95,15 +95,90 @@ public class CustomerDetailsTest {
 
             System.assert(CustomerDetailsController.genericProgram != null);
 
-            Integer numberOfCasesToday = CustomerDetailsController.getNumberOfCasesToday('9100000000000');
+            Integer numberOfCasesToday = CustomerDetailsController.getNumberOfCasesToday(accountNumberToTest);
 
-            List<Case> existingCases = CustomerDetailsController.getExistingCases('9100000000000');
+            List<Case> existingCases = CustomerDetailsController.getExistingCases(accountNumberToTest);
 
-            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails('9100000000000', null);
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest, null, null);
 
-            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts('9100000000000');
+            System.assert(customerDetails.pdAsset == null);
 
-            CustomerDetailsWSUtilv2.agingHistory agingHistory = CustomerDetailsController.getAgingHistory('9100000000000');
+            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts(accountNumberToTest);
+
+            CustomerDetailsWSUtilv2.agingHistory agingHistory = CustomerDetailsController.getAgingHistory(accountNumberToTest);
+
+            List<CustomerDetailsWSUtilv2.authLogRecord> declinedAuths = CustomerDetailsController.getRecentDeclinedAuths(accountNumberToTest, sourceSys);
+
+            List<Case> cases = CustomerDetailsController.getExistingOpenCases(accountNumberToTest);
+
+            Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+
+            //Need to create a case so we'll have an owner in the attachToCase function.  Otherwise the triggers complain.
+            Case xCase = new Case(
+                    Subject = 'Test case',
+                    Type = 'Service Operations',
+                    RecordTypeId = caseRecordTypeId,
+                    OwnerId = user.Id
+            );
+            upsert xCase;
+
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, 'Contact#1-1ZZZZZ', JSON.serialize(customerDetails), JSON.serialize(contacts));
+            System.debug('### ContactID=' + contactId);
+
+            Support_Operation_Settings__c sos = CustomerDetailsController.getSupportOperationsSettings();
+            String dummyDriverId = sos.ContactDriverRecordID__c;
+
+            Id dummyDrivercontactId = CustomerDetailsController.attachToCase(null, dummyDriverId, JSON.serialize(customerDetails), JSON.serialize(contacts));
+            System.debug('### dummyDrivercontactId=' + dummyDrivercontactId);
+
+            String accountIdString = CustomerDetailsController.getAccountId('9100000000000');
+            System.debug('### accountIdString=' + accountIdString);
+
+            String accountNumber = CustomerDetailsController.getAccountNumber(accountIdString);
+            System.debug('### accountNumber=' + accountNumber);
+
+            String contactIdString = CustomerDetailsController.getContactId(accountIdString, 'Contact#1-1ZZZZZ');
+            System.debug('### contactIdString=' + contactIdString);
+
+            Test.stopTest();
+        }
+
+    }
+
+    // Happy path test with account number passed in
+    static testMethod void testCustomerDetailsWithAccountAndPdRowId() {
+
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            String accountNumberToTest = '9100000000000';
+            String sourceSys           = 'SIEBEL';
+            String pdRowId = 'I-1234-Q';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            System.assert(CustomerDetailsController.genericProgram != null);
+
+            Integer numberOfCasesToday = CustomerDetailsController.getNumberOfCasesToday(accountNumberToTest);
+
+            List<Case> existingCases = CustomerDetailsController.getExistingCases(accountNumberToTest);
+
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest, null, pdRowId);
+
+            System.assert(customerDetails.pdAsset != null);
+
+            System.assert(customerDetails.pdAsset.pdRowId == pdRowId);
+
+            System.assert(customerDetails.pdAsset.wexAcctNbr == accountNumberToTest);
+
+            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts(accountNumberToTest);
+
+            CustomerDetailsWSUtilv2.agingHistory agingHistory = CustomerDetailsController.getAgingHistory(accountNumberToTest);
 
             List<CustomerDetailsWSUtilv2.authLogRecord> declinedAuths = CustomerDetailsController.getRecentDeclinedAuths(accountNumberToTest, sourceSys);
 
@@ -199,7 +274,7 @@ public class CustomerDetailsTest {
 
             try {
 
-                CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, '0000');
+                CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, '0000',null);
 
             }
             catch(Exception e) {
@@ -317,6 +392,12 @@ public class CustomerDetailsTest {
             }
             Test.stopTest();
         }
+    }
+
+    static testMethod void testEmailValidation() {
+        String badEmailAddress = 'test.user@@wexinc.com';
+
+        System.assertEquals(false,CustomerDetailsController.checkEmailFormat(badEmailAddress) );
     }
 
 }

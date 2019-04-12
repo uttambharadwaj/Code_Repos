@@ -4,9 +4,9 @@ public class CustomerDetailsWSUtilv2 {
     public class accountSearchRequest {
         @AuraEnabled public String searchData { get; set; }
         @AuraEnabled public String searchField { get; set; }
-        private String[] searchData_type_info = new String[]{'searchData','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] searchField_type_info = new String[]{'searchField','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] searchData_type_info = new String[]{'searchData','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] searchField_type_info = new String[]{'searchField','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'searchData','searchField'};
     }
     public class payments {
@@ -14,31 +14,31 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public CustomerDetailsWSUtilv2.paymentDetailEntry[] paymentDetails;
         @AuraEnabled public CustomerDetailsWSUtilv2.paymentHistoryEntry[] paymentHistory;
         @AuraEnabled public CustomerDetailsWSUtilv2.pendingPaymentEntry[] pendingPayments;
-        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] paymentDetails_type_info = new String[]{'paymentDetails','http://com.wex.coreinfo.customerinfo',null,'0','-1','true'};
-        private String[] paymentHistory_type_info = new String[]{'paymentHistory','http://com.wex.coreinfo.customerinfo',null,'0','-1','true'};
-        private String[] pendingPayments_type_info = new String[]{'pendingPayments','http://com.wex.coreinfo.customerinfo',null,'0','-1','true'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] paymentDetails_type_info = new String[]{'paymentDetails','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] paymentHistory_type_info = new String[]{'paymentHistory','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] pendingPayments_type_info = new String[]{'pendingPayments','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'errorMsg','paymentDetails','paymentHistory','pendingPayments'};
     }
     public class getContactsResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.contacts return_x;
-        private String[] return_x_type_info = new String[]{'return','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
     public class getContacts {
         @AuraEnabled public CustomerDetailsWSUtilv2.customerDetailsRequest arg0;
-        private String[] arg0_type_info = new String[]{'arg0','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] arg0_type_info = new String[]{'arg0','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'arg0'};
     }
     public class getInvoices {
         @AuraEnabled public String wexAcctNbr { get; set; }
         @AuraEnabled public String sourceSys { get; set; }
-        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'wexAcctNbr','sourceSys'};
     }
     public class agingHistory {
@@ -136,109 +136,109 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Integer nsfCnt11;
         @AuraEnabled public String riskCode;
         @AuraEnabled public String sourceSys;
-        private String[] accountId_type_info = new String[]{'accountId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountNm_type_info = new String[]{'accountNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] createDt_type_info = new String[]{'createDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleAnchorDt_type_info = new String[]{'cycleAnchorDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCd_type_info = new String[]{'cycleCd','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] cycleCloseDt00_type_info = new String[]{'cycleCloseDt00','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt01_type_info = new String[]{'cycleCloseDt01','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt02_type_info = new String[]{'cycleCloseDt02','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt03_type_info = new String[]{'cycleCloseDt03','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt04_type_info = new String[]{'cycleCloseDt04','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt05_type_info = new String[]{'cycleCloseDt05','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt06_type_info = new String[]{'cycleCloseDt06','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt07_type_info = new String[]{'cycleCloseDt07','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt08_type_info = new String[]{'cycleCloseDt08','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt09_type_info = new String[]{'cycleCloseDt09','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt10_type_info = new String[]{'cycleCloseDt10','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt11_type_info = new String[]{'cycleCloseDt11','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt12_type_info = new String[]{'cycleCloseDt12','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt13_type_info = new String[]{'cycleCloseDt13','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt14_type_info = new String[]{'cycleCloseDt14','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt15_type_info = new String[]{'cycleCloseDt15','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt16_type_info = new String[]{'cycleCloseDt16','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt17_type_info = new String[]{'cycleCloseDt17','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt18_type_info = new String[]{'cycleCloseDt18','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt19_type_info = new String[]{'cycleCloseDt19','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt20_type_info = new String[]{'cycleCloseDt20','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt21_type_info = new String[]{'cycleCloseDt21','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt22_type_info = new String[]{'cycleCloseDt22','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt23_type_info = new String[]{'cycleCloseDt23','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt24_type_info = new String[]{'cycleCloseDt24','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleCloseDt25_type_info = new String[]{'cycleCloseDt25','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cyclePeriod_type_info = new String[]{'cyclePeriod','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] daysLatePastDueCnt_type_info = new String[]{'daysLatePastDueCnt','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt00_type_info = new String[]{'daysPastDueCnt00','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt01_type_info = new String[]{'daysPastDueCnt01','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt02_type_info = new String[]{'daysPastDueCnt02','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt03_type_info = new String[]{'daysPastDueCnt03','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt04_type_info = new String[]{'daysPastDueCnt04','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt05_type_info = new String[]{'daysPastDueCnt05','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt06_type_info = new String[]{'daysPastDueCnt06','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt07_type_info = new String[]{'daysPastDueCnt07','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt08_type_info = new String[]{'daysPastDueCnt08','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt09_type_info = new String[]{'daysPastDueCnt09','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt10_type_info = new String[]{'daysPastDueCnt10','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt11_type_info = new String[]{'daysPastDueCnt11','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt12_type_info = new String[]{'daysPastDueCnt12','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt13_type_info = new String[]{'daysPastDueCnt13','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt14_type_info = new String[]{'daysPastDueCnt14','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt15_type_info = new String[]{'daysPastDueCnt15','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt16_type_info = new String[]{'daysPastDueCnt16','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt17_type_info = new String[]{'daysPastDueCnt17','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt18_type_info = new String[]{'daysPastDueCnt18','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt19_type_info = new String[]{'daysPastDueCnt19','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt20_type_info = new String[]{'daysPastDueCnt20','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt21_type_info = new String[]{'daysPastDueCnt21','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt22_type_info = new String[]{'daysPastDueCnt22','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt23_type_info = new String[]{'daysPastDueCnt23','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt24_type_info = new String[]{'daysPastDueCnt24','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] daysPastDueCnt25_type_info = new String[]{'daysPastDueCnt25','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] dnbViabilityRate_type_info = new String[]{'dnbViabilityRate','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] hrcFeeAmt_type_info = new String[]{'hrcFeeAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] hrcFeeEffDt_type_info = new String[]{'hrcFeeEffDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] hrcFeeExpnDt_type_info = new String[]{'hrcFeeExpnDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] hrcFeeWaiveEndDt_type_info = new String[]{'hrcFeeWaiveEndDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lastUpDtSessionNm_type_info = new String[]{'lastUpDtSessionNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lastUpdtDt_type_info = new String[]{'lastUpdtDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lastWaiveDt_type_info = new String[]{'lastWaiveDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lateFeeCnt00_type_info = new String[]{'lateFeeCnt00','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt01_type_info = new String[]{'lateFeeCnt01','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt02_type_info = new String[]{'lateFeeCnt02','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt03_type_info = new String[]{'lateFeeCnt03','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt04_type_info = new String[]{'lateFeeCnt04','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt05_type_info = new String[]{'lateFeeCnt05','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt06_type_info = new String[]{'lateFeeCnt06','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt07_type_info = new String[]{'lateFeeCnt07','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt08_type_info = new String[]{'lateFeeCnt08','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt09_type_info = new String[]{'lateFeeCnt09','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt10_type_info = new String[]{'lateFeeCnt10','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] lateFeeCnt11_type_info = new String[]{'lateFeeCnt11','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt00_type_info = new String[]{'nsfCnt00','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt01_type_info = new String[]{'nsfCnt01','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt02_type_info = new String[]{'nsfCnt02','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt03_type_info = new String[]{'nsfCnt03','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt04_type_info = new String[]{'nsfCnt04','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt05_type_info = new String[]{'nsfCnt05','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt06_type_info = new String[]{'nsfCnt06','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt07_type_info = new String[]{'nsfCnt07','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt08_type_info = new String[]{'nsfCnt08','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt09_type_info = new String[]{'nsfCnt09','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt10_type_info = new String[]{'nsfCnt10','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] nsfCnt11_type_info = new String[]{'nsfCnt11','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] riskCode_type_info = new String[]{'riskCode','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] accountId_type_info = new String[]{'accountId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountNm_type_info = new String[]{'accountNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] createDt_type_info = new String[]{'createDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleAnchorDt_type_info = new String[]{'cycleAnchorDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCd_type_info = new String[]{'cycleCd','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] cycleCloseDt00_type_info = new String[]{'cycleCloseDt00','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt01_type_info = new String[]{'cycleCloseDt01','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt02_type_info = new String[]{'cycleCloseDt02','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt03_type_info = new String[]{'cycleCloseDt03','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt04_type_info = new String[]{'cycleCloseDt04','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt05_type_info = new String[]{'cycleCloseDt05','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt06_type_info = new String[]{'cycleCloseDt06','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt07_type_info = new String[]{'cycleCloseDt07','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt08_type_info = new String[]{'cycleCloseDt08','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt09_type_info = new String[]{'cycleCloseDt09','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt10_type_info = new String[]{'cycleCloseDt10','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt11_type_info = new String[]{'cycleCloseDt11','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt12_type_info = new String[]{'cycleCloseDt12','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt13_type_info = new String[]{'cycleCloseDt13','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt14_type_info = new String[]{'cycleCloseDt14','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt15_type_info = new String[]{'cycleCloseDt15','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt16_type_info = new String[]{'cycleCloseDt16','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt17_type_info = new String[]{'cycleCloseDt17','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt18_type_info = new String[]{'cycleCloseDt18','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt19_type_info = new String[]{'cycleCloseDt19','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt20_type_info = new String[]{'cycleCloseDt20','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt21_type_info = new String[]{'cycleCloseDt21','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt22_type_info = new String[]{'cycleCloseDt22','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt23_type_info = new String[]{'cycleCloseDt23','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt24_type_info = new String[]{'cycleCloseDt24','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleCloseDt25_type_info = new String[]{'cycleCloseDt25','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cyclePeriod_type_info = new String[]{'cyclePeriod','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] daysLatePastDueCnt_type_info = new String[]{'daysLatePastDueCnt','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt00_type_info = new String[]{'daysPastDueCnt00','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt01_type_info = new String[]{'daysPastDueCnt01','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt02_type_info = new String[]{'daysPastDueCnt02','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt03_type_info = new String[]{'daysPastDueCnt03','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt04_type_info = new String[]{'daysPastDueCnt04','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt05_type_info = new String[]{'daysPastDueCnt05','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt06_type_info = new String[]{'daysPastDueCnt06','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt07_type_info = new String[]{'daysPastDueCnt07','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt08_type_info = new String[]{'daysPastDueCnt08','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt09_type_info = new String[]{'daysPastDueCnt09','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt10_type_info = new String[]{'daysPastDueCnt10','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt11_type_info = new String[]{'daysPastDueCnt11','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt12_type_info = new String[]{'daysPastDueCnt12','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt13_type_info = new String[]{'daysPastDueCnt13','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt14_type_info = new String[]{'daysPastDueCnt14','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt15_type_info = new String[]{'daysPastDueCnt15','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt16_type_info = new String[]{'daysPastDueCnt16','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt17_type_info = new String[]{'daysPastDueCnt17','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt18_type_info = new String[]{'daysPastDueCnt18','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt19_type_info = new String[]{'daysPastDueCnt19','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt20_type_info = new String[]{'daysPastDueCnt20','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt21_type_info = new String[]{'daysPastDueCnt21','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt22_type_info = new String[]{'daysPastDueCnt22','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt23_type_info = new String[]{'daysPastDueCnt23','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt24_type_info = new String[]{'daysPastDueCnt24','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] daysPastDueCnt25_type_info = new String[]{'daysPastDueCnt25','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] dnbViabilityRate_type_info = new String[]{'dnbViabilityRate','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] hrcFeeAmt_type_info = new String[]{'hrcFeeAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] hrcFeeEffDt_type_info = new String[]{'hrcFeeEffDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] hrcFeeExpnDt_type_info = new String[]{'hrcFeeExpnDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] hrcFeeWaiveEndDt_type_info = new String[]{'hrcFeeWaiveEndDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lastUpDtSessionNm_type_info = new String[]{'lastUpDtSessionNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lastUpdtDt_type_info = new String[]{'lastUpdtDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lastWaiveDt_type_info = new String[]{'lastWaiveDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lateFeeCnt00_type_info = new String[]{'lateFeeCnt00','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt01_type_info = new String[]{'lateFeeCnt01','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt02_type_info = new String[]{'lateFeeCnt02','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt03_type_info = new String[]{'lateFeeCnt03','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt04_type_info = new String[]{'lateFeeCnt04','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt05_type_info = new String[]{'lateFeeCnt05','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt06_type_info = new String[]{'lateFeeCnt06','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt07_type_info = new String[]{'lateFeeCnt07','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt08_type_info = new String[]{'lateFeeCnt08','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt09_type_info = new String[]{'lateFeeCnt09','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt10_type_info = new String[]{'lateFeeCnt10','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] lateFeeCnt11_type_info = new String[]{'lateFeeCnt11','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt00_type_info = new String[]{'nsfCnt00','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt01_type_info = new String[]{'nsfCnt01','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt02_type_info = new String[]{'nsfCnt02','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt03_type_info = new String[]{'nsfCnt03','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt04_type_info = new String[]{'nsfCnt04','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt05_type_info = new String[]{'nsfCnt05','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt06_type_info = new String[]{'nsfCnt06','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt07_type_info = new String[]{'nsfCnt07','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt08_type_info = new String[]{'nsfCnt08','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt09_type_info = new String[]{'nsfCnt09','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt10_type_info = new String[]{'nsfCnt10','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] nsfCnt11_type_info = new String[]{'nsfCnt11','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] riskCode_type_info = new String[]{'riskCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'accountId','accountNm','createDt','cycleAnchorDt','cycleCd','cycleCloseDt00','cycleCloseDt01','cycleCloseDt02','cycleCloseDt03','cycleCloseDt04','cycleCloseDt05','cycleCloseDt06','cycleCloseDt07','cycleCloseDt08','cycleCloseDt09','cycleCloseDt10','cycleCloseDt11','cycleCloseDt12','cycleCloseDt13','cycleCloseDt14','cycleCloseDt15','cycleCloseDt16','cycleCloseDt17','cycleCloseDt18','cycleCloseDt19','cycleCloseDt20','cycleCloseDt21','cycleCloseDt22','cycleCloseDt23','cycleCloseDt24','cycleCloseDt25','cyclePeriod','daysLatePastDueCnt','daysPastDueCnt00','daysPastDueCnt01','daysPastDueCnt02','daysPastDueCnt03','daysPastDueCnt04','daysPastDueCnt05','daysPastDueCnt06','daysPastDueCnt07','daysPastDueCnt08','daysPastDueCnt09','daysPastDueCnt10','daysPastDueCnt11','daysPastDueCnt12','daysPastDueCnt13','daysPastDueCnt14','daysPastDueCnt15','daysPastDueCnt16','daysPastDueCnt17','daysPastDueCnt18','daysPastDueCnt19','daysPastDueCnt20','daysPastDueCnt21','daysPastDueCnt22','daysPastDueCnt23','daysPastDueCnt24','daysPastDueCnt25','dnbViabilityRate','errorMsg','hrcFeeAmt','hrcFeeEffDt','hrcFeeExpnDt','hrcFeeWaiveEndDt','lastUpDtSessionNm','lastUpdtDt','lastWaiveDt','lateFeeCnt00','lateFeeCnt01','lateFeeCnt02','lateFeeCnt03','lateFeeCnt04','lateFeeCnt05','lateFeeCnt06','lateFeeCnt07','lateFeeCnt08','lateFeeCnt09','lateFeeCnt10','lateFeeCnt11','nsfCnt00','nsfCnt01','nsfCnt02','nsfCnt03','nsfCnt04','nsfCnt05','nsfCnt06','nsfCnt07','nsfCnt08','nsfCnt09','nsfCnt10','nsfCnt11','riskCode','sourceSys'};
     }
     public class invoices {
         @AuraEnabled public String errorMsg;
         @AuraEnabled public CustomerDetailsWSUtilv2.invoiceEntry[] invoices;
-        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] invoices_type_info = new String[]{'invoices','http://com.wex.coreinfo.customerinfo',null,'0','-1','true'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] invoices_type_info = new String[]{'invoices','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'errorMsg','invoices'};
     }
     public class contact {
@@ -252,23 +252,23 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String middleNm;
         @AuraEnabled public String phoneNbr;
         @AuraEnabled public String rowId;
-        private String[] role_type_info = new String[]{'role','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] address_type_info = new String[]{'address','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] contactType_type_info = new String[]{'contactType','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] emailAddr_type_info = new String[]{'emailAddr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] faxNbr_type_info = new String[]{'faxNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] firstNm_type_info = new String[]{'firstNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lastNm_type_info = new String[]{'lastNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] middleNm_type_info = new String[]{'middleNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] phoneNbr_type_info = new String[]{'phoneNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] rowId_type_info = new String[]{'rowId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] role_type_info = new String[]{'role','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] address_type_info = new String[]{'address','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] contactType_type_info = new String[]{'contactType','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] emailAddr_type_info = new String[]{'emailAddr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] faxNbr_type_info = new String[]{'faxNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] firstNm_type_info = new String[]{'firstNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lastNm_type_info = new String[]{'lastNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] middleNm_type_info = new String[]{'middleNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] phoneNbr_type_info = new String[]{'phoneNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] rowId_type_info = new String[]{'rowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'role','address','contactType','emailAddr','faxNbr','firstNm','lastNm','middleNm','phoneNbr','rowId'};
     }
     public class getPaymentsResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.payments return_x;
-        private String[] return_x_type_info = new String[]{'return','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
     public class paymentDetailEntry {
@@ -278,21 +278,21 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Decimal paymentAmt;
         @AuraEnabled public String paymentId;
         @AuraEnabled public DateTime postingDt;
-        private String[] accountingDt_type_info = new String[]{'accountingDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] currencyCd_type_info = new String[]{'currencyCd','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] id_type_info = new String[]{'id','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] paymentAmt_type_info = new String[]{'paymentAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] paymentId_type_info = new String[]{'paymentId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] postingDt_type_info = new String[]{'postingDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] accountingDt_type_info = new String[]{'accountingDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] currencyCd_type_info = new String[]{'currencyCd','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] id_type_info = new String[]{'id','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] paymentAmt_type_info = new String[]{'paymentAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] paymentId_type_info = new String[]{'paymentId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] postingDt_type_info = new String[]{'postingDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'accountingDt','currencyCd','id','paymentAmt','paymentId','postingDt'};
     }
     public class authSearchResult {
         @AuraEnabled public CustomerDetailsWSUtilv2.authLogRecord[] authLog;
         @AuraEnabled public String errorMsg;
-        private String[] authLog_type_info = new String[]{'authLog','http://com.wex.coreinfo.customerinfo',null,'0','-1','true'};
-        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] authLog_type_info = new String[]{'authLog','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'authLog','errorMsg'};
     }
     public class customerDetails {
@@ -315,6 +315,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Boolean clearViewCustomer { get; set; }
         @AuraEnabled public DateTime clearViewCustomerEndDt { get; set; }
         @AuraEnabled public DateTime clearViewCustomerStartDt { get; set; }
+        @AuraEnabled public Decimal collectionRiskScore { get; set; }
         @AuraEnabled public Boolean consumerIndicator { get; set; }
         @AuraEnabled public CustomerDetailsWSUtilv2.contacts contacts { get; set; }
         @AuraEnabled public DateTime contractEndDt { get; set; }
@@ -359,8 +360,12 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Boolean masterCardCustomer { get; set; }
         @AuraEnabled public Decimal monthlyCardFee { get; set; }
         @AuraEnabled public String monthlyCardFeeDescription { get; set; }
+        @AuraEnabled public Decimal nsfFee { get; set; }
+        @AuraEnabled public String nsfFeeDescription { get; set; }
         @AuraEnabled public String nsfPaymentCounter { get; set; }
         @AuraEnabled public String onlineApplication { get; set; }
+        @AuraEnabled public Decimal overLimitFee { get; set; }
+        @AuraEnabled public String overLimitFeeDescription { get; set; }
         @AuraEnabled public Decimal outOfNetworkPerTxnFee { get; set; }
         @AuraEnabled public String outOfNetworkProgramOrAccountRte { get; set; }
         @AuraEnabled public Decimal paperDeliveryFee { get; set; }
@@ -368,6 +373,8 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String paperless { get; set; }
         @AuraEnabled public Boolean partnerFleetCustomer { get; set; }
         @AuraEnabled public Boolean partnerRebateIndicator { get; set; }
+        @AuraEnabled public Decimal pastDueAmount { get; set; }
+        @AuraEnabled public CustomerDetailsWSUtilv2.pdAsset pdAsset { get; set; }
         @AuraEnabled public Decimal pendingTxns { get; set; }
         @AuraEnabled public Decimal periodicFinanceChargeRte { get; set; }
         @AuraEnabled public String pfsRepNm { get; set; }
@@ -377,6 +384,8 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String programMaintenanceCharge { get; set; }
         @AuraEnabled public String programMaintenanceChargeDescription { get; set; }
         @AuraEnabled public String programNm { get; set; }
+        @AuraEnabled public Decimal reactivationFee { get; set; }
+        @AuraEnabled public String reactivationFeeDescription { get; set; }
         @AuraEnabled public String rebateTierFlag { get; set; }
         @AuraEnabled public String salesRepCode { get; set; }
         @AuraEnabled public String servicingRules { get; set; }
@@ -402,119 +411,128 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public DateTime wrightRewardsCustomerEndDt { get; set; }
         @AuraEnabled public DateTime wrightRewardsCustomerStartDt { get; set; }
         @AuraEnabled public Decimal dIDLength { get; set; }
-        private String[] accountNbrType_type_info = new String[]{'accountNbrType','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountNm_type_info = new String[]{'accountNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountSinceDt_type_info = new String[]{'accountSinceDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountStatusReason_type_info = new String[]{'accountStatusReason','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountingFee_type_info = new String[]{'accountingFee','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountingFeeDescription_type_info = new String[]{'accountingFeeDescription','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountSts_type_info = new String[]{'accountSts','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountStsDt_type_info = new String[]{'accountStsDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] acctRowId_type_info = new String[]{'acctRowId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] alternateAddress_type_info = new String[]{'alternateAddress','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] availableCreditLmt_type_info = new String[]{'availableCreditLmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] billingAccountId_type_info = new String[]{'billingAccountId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] billingAddress_type_info = new String[]{'billingAddress','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] billingCycleDesc_type_info = new String[]{'billingCycleDesc','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] billtoAccountNm_type_info = new String[]{'billtoAccountNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cashEnabledIndicator_type_info = new String[]{'cashEnabledIndicator','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] clearViewCustomer_type_info = new String[]{'clearViewCustomer','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] clearViewCustomerEndDt_type_info = new String[]{'clearViewCustomerEndDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] clearViewCustomerStartDt_type_info = new String[]{'clearViewCustomerStartDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] consumerIndicator_type_info = new String[]{'consumerIndicator','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] contacts_type_info = new String[]{'contacts','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] contractEndDt_type_info = new String[]{'contractEndDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] contractName_type_info = new String[]{'contractName','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] contractNbr_type_info = new String[]{'contractNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] contractNm_type_info = new String[]{'contractNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] contractStartDt_type_info = new String[]{'contractStartDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] costPlusIndicator_type_info = new String[]{'costPlusIndicator','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] creditLmt_type_info = new String[]{'creditLmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] creditScore_type_info = new String[]{'creditScore','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] currentBillingCycle_type_info = new String[]{'currentBillingCycle','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] currentInvoiceClosingDt_type_info = new String[]{'currentInvoiceClosingDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] currentInvoiceDueDt_type_info = new String[]{'currentInvoiceDueDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] customerId_type_info = new String[]{'customerId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] customerIdentifier_type_info = new String[]{'customerIdentifier','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] customerNm_type_info = new String[]{'customerNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] customerSegmentation_type_info = new String[]{'customerSegmentation','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] customerSinceDt_type_info = new String[]{'customerSinceDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] daysToPay_type_info = new String[]{'daysToPay','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] debitCycle_type_info = new String[]{'debitCycle','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] description_type_info = new String[]{'description','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] discountIndicator_type_info = new String[]{'discountIndicator','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] driverCount_type_info = new String[]{'driverCount','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] evergreenIndicator_type_info = new String[]{'evergreenIndicator','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] financeChargeRteType_type_info = new String[]{'financeChargeRteType','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] fleetOneCustomer_type_info = new String[]{'fleetOneCustomer','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] flexCardApplicableRte_type_info = new String[]{'flexCardApplicableRte','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] flexCardCustomer_type_info = new String[]{'flexCardCustomer','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] flexCardPenaltyPricingIndicator_type_info = new String[]{'flexCardPenaltyPricingIndicator','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] highCreditRiskFeeIndicator_type_info = new String[]{'highCreditRiskFeeIndicator','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] highRiskCureDt_type_info = new String[]{'highRiskCureDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] highRiskPercentageRte_type_info = new String[]{'highRiskPercentageRte','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] iolCustomerNbr_type_info = new String[]{'iolCustomerNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] iolFleetNbr_type_info = new String[]{'iolFleetNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lastInvoiceBilledAmt_type_info = new String[]{'lastInvoiceBilledAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lastPaymentAmount_type_info = new String[]{'lastPaymentAmount','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lastPaymentDt_type_info = new String[]{'lastPaymentDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lastPaymentMethod_type_info = new String[]{'lastPaymentMethod','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] latePaymentCounter_type_info = new String[]{'latePaymentCounter','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] mailingAddress_type_info = new String[]{'mailingAddress','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] masterCardCustomer_type_info = new String[]{'masterCardCustomer','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] monthlyCardFee_type_info = new String[]{'monthlyCardFee','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] monthlyCardFeeDescription_type_info = new String[]{'monthlyCardFeeDescription','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] nsfPaymentCounter_type_info = new String[]{'nsfPaymentCounter','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] onlineApplication_type_info = new String[]{'onlineApplication','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] outOfNetworkPerTxnFee_type_info = new String[]{'outOfNetworkPerTxnFee','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] outOfNetworkProgramOrAccountRte_type_info = new String[]{'outOfNetworkProgramOrAccountRte','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] paperDeliveryFee_type_info = new String[]{'paperDeliveryFee','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] paperWithFeeWaived_type_info = new String[]{'paperWithFeeWaived','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] paperless_type_info = new String[]{'paperless','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] partnerFleetCustomer_type_info = new String[]{'partnerFleetCustomer','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] partnerRebateIndicator_type_info = new String[]{'partnerRebateIndicator','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] pendingTxns_type_info = new String[]{'pendingTxns','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] periodicFinanceChargeRte_type_info = new String[]{'periodicFinanceChargeRte','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] pfsRepNm_type_info = new String[]{'pfsRepNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] primaryAddress_type_info = new String[]{'primaryAddress','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] priorityLevel_type_info = new String[]{'priorityLevel','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] programId_type_info = new String[]{'programId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] programMaintenanceCharge_type_info = new String[]{'programMaintenanceCharge','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] programMaintenanceChargeDescription_type_info = new String[]{'programMaintenanceChargeDescription','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] programNm_type_info = new String[]{'programNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] rebateTierFlag_type_info = new String[]{'rebateTierFlag','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] salesRepCode_type_info = new String[]{'salesRepCode','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] servicingRules_type_info = new String[]{'servicingRules','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] shippingAddress_type_info = new String[]{'shippingAddress','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] specialInstructions_type_info = new String[]{'specialInstructions','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] spnrAccountNbr_type_info = new String[]{'spnrAccountNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] srsCodeAndName_type_info = new String[]{'srsCodeAndName','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] telematicsCustomer_type_info = new String[]{'telematicsCustomer','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] telematicsCustomerEndDt_type_info = new String[]{'telematicsCustomerEndDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] telematicsCustomerStartDt_type_info = new String[]{'telematicsCustomerStartDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] truckStopFee_type_info = new String[]{'truckStopFee','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] truckStopFeeDescription_type_info = new String[]{'truckStopFeeDescription','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] unbilledAmt_type_info = new String[]{'unbilledAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] usualMethodOfPayment_type_info = new String[]{'usualMethodOfPayment','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] vehicleCount_type_info = new String[]{'vehicleCount','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] vehicleIdLength_type_info = new String[]{'vehicleIdLength','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] WEXFleetCustomer_type_info = new String[]{'WEXFleetCustomer','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] wexAccountNbr_type_info = new String[]{'wexAccountNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] wexRebateDescription_type_info = new String[]{'wexRebateDescription','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] wexRebateIndicator_type_info = new String[]{'wexRebateIndicator','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] wrightRewardsCustomer_type_info = new String[]{'wrightRewardsCustomer','http://com.wex.coreinfo.customerinfo',null,'1','1','false'};
-        private String[] wrightRewardsCustomerEndDt_type_info = new String[]{'wrightRewardsCustomerEndDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] wrightRewardsCustomerStartDt_type_info = new String[]{'wrightRewardsCustomerStartDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] dIDLength_type_info = new String[]{'dIDLength','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'accountNbrType','accountNm','accountSinceDt','accountStatusReason','accountingFee','accountingFeeDescription','accountSts','accountStsDt','acctRowId','alternateAddress','availableCreditLmt','billingAccountId','billingAddress','billingCycleDesc','billtoAccountNm','cashEnabledIndicator','clearViewCustomer','clearViewCustomerEndDt','clearViewCustomerStartDt','consumerIndicator','contacts','contractEndDt','contractName','contractNbr','contractNm','contractStartDt','costPlusIndicator','creditLmt','creditScore','currentBillingCycle','currentInvoiceClosingDt','currentInvoiceDueDt','customerId','customerIdentifier','customerNm','customerSegmentation','customerSinceDt','daysToPay','debitCycle','description','discountIndicator','driverCount','errorMsg','evergreenIndicator','financeChargeRteType','fleetOneCustomer','flexCardApplicableRte','flexCardCustomer','flexCardPenaltyPricingIndicator','highCreditRiskFeeIndicator','highRiskCureDt','highRiskPercentageRte','iolCustomerNbr','iolFleetNbr','lastInvoiceBilledAmt','lastPaymentAmount','lastPaymentDt','lastPaymentMethod','latePaymentCounter','mailingAddress','masterCardCustomer','monthlyCardFee','monthlyCardFeeDescription','nsfPaymentCounter','onlineApplication','outOfNetworkPerTxnFee','outOfNetworkProgramOrAccountRte','paperDeliveryFee','paperWithFeeWaived','paperless','partnerFleetCustomer','partnerRebateIndicator','pendingTxns','periodicFinanceChargeRte','pfsRepNm','primaryAddress','priorityLevel','programId','programMaintenanceCharge','programMaintenanceChargeDescription','programNm','rebateTierFlag','salesRepCode','servicingRules','shippingAddress','sourceSys','specialInstructions','spnrAccountNbr','srsCodeAndName','telematicsCustomer','telematicsCustomerEndDt','telematicsCustomerStartDt','truckStopFee','truckStopFeeDescription','unbilledAmt','usualMethodOfPayment','vehicleCount','vehicleIdLength','WEXFleetCustomer','wexAccountNbr','wexRebateDescription','wexRebateIndicator','wrightRewardsCustomer','wrightRewardsCustomerEndDt','wrightRewardsCustomerStartDt','dIDLength'};
+        private String[] accountNbrType_type_info = new String[]{'accountNbrType','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountNm_type_info = new String[]{'accountNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountSinceDt_type_info = new String[]{'accountSinceDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountStatusReason_type_info = new String[]{'accountStatusReason','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountingFee_type_info = new String[]{'accountingFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountingFeeDescription_type_info = new String[]{'accountingFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountSts_type_info = new String[]{'accountSts','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountStsDt_type_info = new String[]{'accountStsDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] acctRowId_type_info = new String[]{'acctRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] alternateAddress_type_info = new String[]{'alternateAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] availableCreditLmt_type_info = new String[]{'availableCreditLmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] billingAccountId_type_info = new String[]{'billingAccountId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] billingAddress_type_info = new String[]{'billingAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] billingCycleDesc_type_info = new String[]{'billingCycleDesc','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] billtoAccountNm_type_info = new String[]{'billtoAccountNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cashEnabledIndicator_type_info = new String[]{'cashEnabledIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] clearViewCustomer_type_info = new String[]{'clearViewCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] clearViewCustomerEndDt_type_info = new String[]{'clearViewCustomerEndDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] clearViewCustomerStartDt_type_info = new String[]{'clearViewCustomerStartDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] collectionRiskScore_type_info = new String[]{'collectionRiskScore','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] consumerIndicator_type_info = new String[]{'consumerIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] contacts_type_info = new String[]{'contacts','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] contractEndDt_type_info = new String[]{'contractEndDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] contractName_type_info = new String[]{'contractName','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] contractNbr_type_info = new String[]{'contractNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] contractNm_type_info = new String[]{'contractNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] contractStartDt_type_info = new String[]{'contractStartDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] costPlusIndicator_type_info = new String[]{'costPlusIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] creditLmt_type_info = new String[]{'creditLmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] creditScore_type_info = new String[]{'creditScore','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] currentBillingCycle_type_info = new String[]{'currentBillingCycle','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] currentInvoiceClosingDt_type_info = new String[]{'currentInvoiceClosingDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] currentInvoiceDueDt_type_info = new String[]{'currentInvoiceDueDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] customerId_type_info = new String[]{'customerId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] customerIdentifier_type_info = new String[]{'customerIdentifier','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] customerNm_type_info = new String[]{'customerNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] customerSegmentation_type_info = new String[]{'customerSegmentation','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] customerSinceDt_type_info = new String[]{'customerSinceDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] daysToPay_type_info = new String[]{'daysToPay','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] debitCycle_type_info = new String[]{'debitCycle','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] description_type_info = new String[]{'description','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] discountIndicator_type_info = new String[]{'discountIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] driverCount_type_info = new String[]{'driverCount','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] evergreenIndicator_type_info = new String[]{'evergreenIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] financeChargeRteType_type_info = new String[]{'financeChargeRteType','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] fleetOneCustomer_type_info = new String[]{'fleetOneCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] flexCardApplicableRte_type_info = new String[]{'flexCardApplicableRte','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] flexCardCustomer_type_info = new String[]{'flexCardCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] flexCardPenaltyPricingIndicator_type_info = new String[]{'flexCardPenaltyPricingIndicator','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] highCreditRiskFeeIndicator_type_info = new String[]{'highCreditRiskFeeIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] highRiskCureDt_type_info = new String[]{'highRiskCureDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] highRiskPercentageRte_type_info = new String[]{'highRiskPercentageRte','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] iolCustomerNbr_type_info = new String[]{'iolCustomerNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] iolFleetNbr_type_info = new String[]{'iolFleetNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lastInvoiceBilledAmt_type_info = new String[]{'lastInvoiceBilledAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lastPaymentAmount_type_info = new String[]{'lastPaymentAmount','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lastPaymentDt_type_info = new String[]{'lastPaymentDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lastPaymentMethod_type_info = new String[]{'lastPaymentMethod','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] latePaymentCounter_type_info = new String[]{'latePaymentCounter','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] mailingAddress_type_info = new String[]{'mailingAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] masterCardCustomer_type_info = new String[]{'masterCardCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] monthlyCardFee_type_info = new String[]{'monthlyCardFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] monthlyCardFeeDescription_type_info = new String[]{'monthlyCardFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] nsfFee_type_info = new String[]{'nsfFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] nsfFeeDescription_type_info = new String[]{'nsfFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] nsfPaymentCounter_type_info = new String[]{'nsfPaymentCounter','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] onlineApplication_type_info = new String[]{'onlineApplication','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] outOfNetworkPerTxnFee_type_info = new String[]{'outOfNetworkPerTxnFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] outOfNetworkProgramOrAccountRte_type_info = new String[]{'outOfNetworkProgramOrAccountRte','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] overLimitFee_type_info = new String[]{'overLimitFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] overLimitFeeDescription_type_info = new String[]{'overLimitFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] paperDeliveryFee_type_info = new String[]{'paperDeliveryFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] paperWithFeeWaived_type_info = new String[]{'paperWithFeeWaived','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] paperless_type_info = new String[]{'paperless','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] partnerFleetCustomer_type_info = new String[]{'partnerFleetCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] partnerRebateIndicator_type_info = new String[]{'partnerRebateIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] pastDueAmount_type_info = new String[]{'pastDueAmount','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pdAsset_type_info = new String[]{'pdAsset','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pendingTxns_type_info = new String[]{'pendingTxns','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] periodicFinanceChargeRte_type_info = new String[]{'periodicFinanceChargeRte','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pfsRepNm_type_info = new String[]{'pfsRepNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] primaryAddress_type_info = new String[]{'primaryAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] priorityLevel_type_info = new String[]{'priorityLevel','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] programId_type_info = new String[]{'programId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] programMaintenanceCharge_type_info = new String[]{'programMaintenanceCharge','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] programMaintenanceChargeDescription_type_info = new String[]{'programMaintenanceChargeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] programNm_type_info = new String[]{'programNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] reactivationFee_type_info = new String[]{'reactivationFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] reactivationFeeDescription_type_info = new String[]{'reactivationFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] rebateTierFlag_type_info = new String[]{'rebateTierFlag','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] salesRepCode_type_info = new String[]{'salesRepCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] servicingRules_type_info = new String[]{'servicingRules','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] shippingAddress_type_info = new String[]{'shippingAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] specialInstructions_type_info = new String[]{'specialInstructions','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] spnrAccountNbr_type_info = new String[]{'spnrAccountNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] srsCodeAndName_type_info = new String[]{'srsCodeAndName','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] telematicsCustomer_type_info = new String[]{'telematicsCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] telematicsCustomerEndDt_type_info = new String[]{'telematicsCustomerEndDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] telematicsCustomerStartDt_type_info = new String[]{'telematicsCustomerStartDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] truckStopFee_type_info = new String[]{'truckStopFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] truckStopFeeDescription_type_info = new String[]{'truckStopFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] unbilledAmt_type_info = new String[]{'unbilledAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] usualMethodOfPayment_type_info = new String[]{'usualMethodOfPayment','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] vehicleCount_type_info = new String[]{'vehicleCount','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] vehicleIdLength_type_info = new String[]{'vehicleIdLength','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] WEXFleetCustomer_type_info = new String[]{'WEXFleetCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] wexAccountNbr_type_info = new String[]{'wexAccountNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] wexRebateDescription_type_info = new String[]{'wexRebateDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] wexRebateIndicator_type_info = new String[]{'wexRebateIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] wrightRewardsCustomer_type_info = new String[]{'wrightRewardsCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] wrightRewardsCustomerEndDt_type_info = new String[]{'wrightRewardsCustomerEndDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] wrightRewardsCustomerStartDt_type_info = new String[]{'wrightRewardsCustomerStartDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] dIDLength_type_info = new String[]{'dIDLength','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'accountNbrType','accountNm','accountSinceDt','accountStatusReason','accountingFee','accountingFeeDescription','accountSts','accountStsDt','acctRowId','alternateAddress','availableCreditLmt','billingAccountId','billingAddress','billingCycleDesc','billtoAccountNm','cashEnabledIndicator','clearViewCustomer','clearViewCustomerEndDt','clearViewCustomerStartDt','collectionRiskScore','consumerIndicator','contacts','contractEndDt','contractName','contractNbr','contractNm','contractStartDt','costPlusIndicator','creditLmt','creditScore','currentBillingCycle','currentInvoiceClosingDt','currentInvoiceDueDt','customerId','customerIdentifier','customerNm','customerSegmentation','customerSinceDt','daysToPay','debitCycle','description','discountIndicator','driverCount','errorMsg','evergreenIndicator','financeChargeRteType','fleetOneCustomer','flexCardApplicableRte','flexCardCustomer','flexCardPenaltyPricingIndicator','highCreditRiskFeeIndicator','highRiskCureDt','highRiskPercentageRte','iolCustomerNbr','iolFleetNbr','lastInvoiceBilledAmt','lastPaymentAmount','lastPaymentDt','lastPaymentMethod','latePaymentCounter','mailingAddress','masterCardCustomer','monthlyCardFee','monthlyCardFeeDescription','nsfFee','nsfFeeDescription','nsfPaymentCounter','onlineApplication','outOfNetworkPerTxnFee','outOfNetworkProgramOrAccountRte','overLimitFee','overLimitFeeDescription','paperDeliveryFee','paperWithFeeWaived','paperless','partnerFleetCustomer','partnerRebateIndicator','pastDueAmount','pdAsset','pendingTxns','periodicFinanceChargeRte','pfsRepNm','primaryAddress','priorityLevel','programId','programMaintenanceCharge','programMaintenanceChargeDescription','programNm','reactivationFee','reactivationFeeDescription','rebateTierFlag','salesRepCode','servicingRules','shippingAddress','sourceSys','specialInstructions','spnrAccountNbr','srsCodeAndName','telematicsCustomer','telematicsCustomerEndDt','telematicsCustomerStartDt','truckStopFee','truckStopFeeDescription','unbilledAmt','usualMethodOfPayment','vehicleCount','vehicleIdLength','WEXFleetCustomer','wexAccountNbr','wexRebateDescription','wexRebateIndicator','wrightRewardsCustomer','wrightRewardsCustomerEndDt','wrightRewardsCustomerStartDt','dIDLength'};
     }
     public class getRecentDeclinedAuthsResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.authSearchResult return_x;
-        private String[] return_x_type_info = new String[]{'return','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
     public class authLogRecord {
@@ -526,29 +544,29 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public CustomerDetailsWSUtilv2.address merchantAddress;
         @AuraEnabled public String merchantSite;
         @AuraEnabled public DateTime txnDt;
-        private String[] actionCode_type_info = new String[]{'actionCode','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] actionCodeDescription_type_info = new String[]{'actionCodeDescription','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] authCode_type_info = new String[]{'authCode','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cardNumber_type_info = new String[]{'cardNumber','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] driverId_type_info = new String[]{'driverId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] merchantAddress_type_info = new String[]{'merchantAddress','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] merchantSite_type_info = new String[]{'merchantSite','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] txnDt_type_info = new String[]{'txnDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] actionCode_type_info = new String[]{'actionCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] actionCodeDescription_type_info = new String[]{'actionCodeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] authCode_type_info = new String[]{'authCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cardNumber_type_info = new String[]{'cardNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] driverId_type_info = new String[]{'driverId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] merchantAddress_type_info = new String[]{'merchantAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] merchantSite_type_info = new String[]{'merchantSite','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] txnDt_type_info = new String[]{'txnDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'actionCode','actionCodeDescription','authCode','cardNumber','driverId','merchantAddress','merchantSite','txnDt'};
     }
     public class invoiceEntry {
         @AuraEnabled public DateTime closingDt;
         @AuraEnabled public String invoiceUrl;
-        private String[] closingDt_type_info = new String[]{'closingDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] invoiceUrl_type_info = new String[]{'invoiceUrl','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] closingDt_type_info = new String[]{'closingDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] invoiceUrl_type_info = new String[]{'invoiceUrl','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'closingDt','invoiceUrl'};
     }
     public class abstractContact {
         @AuraEnabled public String role;
-        private String[] role_type_info = new String[]{'role','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] role_type_info = new String[]{'role','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'role'};
     }
     public class address {
@@ -561,86 +579,124 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String orgName;
         @AuraEnabled public String postalCode;
         @AuraEnabled public String state;
-        private String[] addr1_type_info = new String[]{'addr1','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] addr2_type_info = new String[]{'addr2','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] addr3_type_info = new String[]{'addr3','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] addr4_type_info = new String[]{'addr4','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] city_type_info = new String[]{'city','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] country_type_info = new String[]{'country','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] orgName_type_info = new String[]{'orgName','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] postalCode_type_info = new String[]{'postalCode','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] state_type_info = new String[]{'state','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] addr1_type_info = new String[]{'addr1','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] addr2_type_info = new String[]{'addr2','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] addr3_type_info = new String[]{'addr3','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] addr4_type_info = new String[]{'addr4','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] city_type_info = new String[]{'city','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] country_type_info = new String[]{'country','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] orgName_type_info = new String[]{'orgName','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] postalCode_type_info = new String[]{'postalCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] state_type_info = new String[]{'state','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'addr1','addr2','addr3','addr4','city','country','orgName','postalCode','state'};
     }
     public class accountSearchResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.accountSearchResult return_x;
-        private String[] return_x_type_info = new String[]{'return','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
     public class getRecentDeclinedAuths {
         @AuraEnabled public String wexAcctNbr;
         @AuraEnabled public String sourceSys;
-        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'wexAcctNbr','sourceSys'};
     }
     public class customerDetailsRequest {
         @AuraEnabled public String accountID { get; set; }
         @AuraEnabled public String accountIdType { get; set; }
-        private String[] accountID_type_info = new String[]{'accountID','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] accountIdType_type_info = new String[]{'accountIdType','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'accountID','accountIdType'};
+        @AuraEnabled public String pdRowId { get; set; }
+        private String[] accountID_type_info = new String[]{'accountID','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountIdType_type_info = new String[]{'accountIdType','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pdRowId_type_info = new String[]{'pdRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'accountID','accountIdType','pdRowId'};
     }
     public class getPayments {
         @AuraEnabled public String wexAcctNbr;
         @AuraEnabled public String sourceSys;
-        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'wexAcctNbr','sourceSys'};
     }
     public class getInvoicesResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.invoices return_x;
-        private String[] return_x_type_info = new String[]{'return','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
     public class updateSalesforceID {
         @AuraEnabled public String wexAcctNbr;
         @AuraEnabled public String uuid;
-        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] uuid_type_info = new String[]{'uuid','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] uuid_type_info = new String[]{'uuid','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'wexAcctNbr','uuid'};
     }
     public class accountSearch {
         @AuraEnabled public CustomerDetailsWSUtilv2.accountSearchRequest arg0;
-        private String[] arg0_type_info = new String[]{'arg0','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] arg0_type_info = new String[]{'arg0','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'arg0'};
     }
     public class getCustomerDetailsResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.customerDetails return_x;
-        private String[] return_x_type_info = new String[]{'return','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
     public class getAgingHistory {
         @AuraEnabled public CustomerDetailsWSUtilv2.customerDetailsRequest arg0;
-        private String[] arg0_type_info = new String[]{'arg0','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] arg0_type_info = new String[]{'arg0','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'arg0'};
     }
     public class getAgingHistoryResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.agingHistory return_x;
-        private String[] return_x_type_info = new String[]{'return','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
+
+    public class pdAsset {
+        @AuraEnabled public String assetMake { get; set; }
+        @AuraEnabled public String assetModel { get; set; }
+        @AuraEnabled public String assetRowId { get; set; }
+        @AuraEnabled public String assetYear { get; set; }
+        @AuraEnabled public String cardNbr { get; set; }
+        @AuraEnabled public String cardRestr { get; set; }
+        @AuraEnabled public String custAssetNbr { get; set; }
+        @AuraEnabled public String gsaRegion { get; set; }
+        @AuraEnabled public Long odometer { get; set; }
+        @AuraEnabled public Datetime odometerDate { get; set; }
+        @AuraEnabled public String pdRowId { get; set; }
+        @AuraEnabled public String pdStatus { get; set; }
+        @AuraEnabled public String pdStatusdate { get; set; }
+        @AuraEnabled public String vin { get; set; }
+        @AuraEnabled public String wexAcctNbr { get; set; }
+        private String[] assetMake_type_info = new String[]{'assetMake','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] assetModel_type_info = new String[]{'assetModel','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] assetRowId_type_info = new String[]{'assetRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] assetYear_type_info = new String[]{'assetYear','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cardNbr_type_info = new String[]{'cardNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cardRestr_type_info = new String[]{'cardRestr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] custAssetNbr_type_info = new String[]{'custAssetNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] gsaRegion_type_info = new String[]{'gsaRegion','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] odometer_type_info = new String[]{'odometer','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] odometerDate_type_info = new String[]{'odometerDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pdRowId_type_info = new String[]{'pdRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pdStatus_type_info = new String[]{'pdStatus','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pdStatusdate_type_info = new String[]{'pdStatusdate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] vin_type_info = new String[]{'vin','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'assetMake','assetModel','assetRowId','assetYear','cardNbr','cardRestr','custAssetNbr','gsaRegion','odometer','odometerDate','pdRowId','pdStatus','pdStatusdate','vin','wexAcctNbr'};
+    }
+
     public class accountSearchDTO {
         @AuraEnabled public String acctNm;
         @AuraEnabled public String acctRowId;
@@ -662,47 +718,47 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String salesforceUUID;
         @AuraEnabled public String spnrAcctNbr;
         @AuraEnabled public String wexAcctNbr;
-        private String[] acctNm_type_info = new String[]{'acctNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] acctRowId_type_info = new String[]{'acctRowId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] acctSts_type_info = new String[]{'acctSts','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] addrCity_type_info = new String[]{'addrCity','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] addrStateProvCd_type_info = new String[]{'addrStateProvCd','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] chldFlg_type_info = new String[]{'chldFlg','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] customAcctNbr_type_info = new String[]{'customAcctNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] dwSourceSys_type_info = new String[]{'dwSourceSys','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] hierLevelNbr_type_info = new String[]{'hierLevelNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] mainPhone_type_info = new String[]{'mainPhone','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] onlineUserAccessLevel_type_info = new String[]{'onlineUserAccessLevel','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] onlineUserNm_type_info = new String[]{'onlineUserNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] parentWexAcctNbr_type_info = new String[]{'parentWexAcctNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] pgmRowId_type_info = new String[]{'pgmRowId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] primaryContactNm_type_info = new String[]{'primaryContactNm','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] primaryContactPhoneNbr_type_info = new String[]{'primaryContactPhoneNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] primaryContactRowId_type_info = new String[]{'primaryContactRowId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] salesforceUUID_type_info = new String[]{'salesforceUUID','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] spnrAcctNbr_type_info = new String[]{'spnrAcctNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] acctNm_type_info = new String[]{'acctNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] acctRowId_type_info = new String[]{'acctRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] acctSts_type_info = new String[]{'acctSts','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] addrCity_type_info = new String[]{'addrCity','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] addrStateProvCd_type_info = new String[]{'addrStateProvCd','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] chldFlg_type_info = new String[]{'chldFlg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] customAcctNbr_type_info = new String[]{'customAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] dwSourceSys_type_info = new String[]{'dwSourceSys','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] hierLevelNbr_type_info = new String[]{'hierLevelNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] mainPhone_type_info = new String[]{'mainPhone','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] onlineUserAccessLevel_type_info = new String[]{'onlineUserAccessLevel','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] onlineUserNm_type_info = new String[]{'onlineUserNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] parentWexAcctNbr_type_info = new String[]{'parentWexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pgmRowId_type_info = new String[]{'pgmRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] primaryContactNm_type_info = new String[]{'primaryContactNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] primaryContactPhoneNbr_type_info = new String[]{'primaryContactPhoneNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] primaryContactRowId_type_info = new String[]{'primaryContactRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] salesforceUUID_type_info = new String[]{'salesforceUUID','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] spnrAcctNbr_type_info = new String[]{'spnrAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'acctNm','acctRowId','acctSts','addrCity','addrStateProvCd','chldFlg','customAcctNbr','dwSourceSys','hierLevelNbr','mainPhone','onlineUserAccessLevel','onlineUserNm','parentWexAcctNbr','pgmRowId','primaryContactNm','primaryContactPhoneNbr','primaryContactRowId','salesforceUUID','spnrAcctNbr','wexAcctNbr'};
     }
     public class getCustomerDetails {
         @AuraEnabled public CustomerDetailsWSUtilv2.customerDetailsRequest arg0;
-        private String[] arg0_type_info = new String[]{'arg0','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] arg0_type_info = new String[]{'arg0','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'arg0'};
     }
     public class updateSalesforceIDResponse {
         @AuraEnabled public Decimal return_x;
-        private String[] return_x_type_info = new String[]{'return','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
     public class contacts {
         @AuraEnabled public CustomerDetailsWSUtilv2.contact[] contacts;
         @AuraEnabled public String errorMsg;
-        private String[] contacts_type_info = new String[]{'contacts','http://com.wex.coreinfo.customerinfo',null,'0','-1','true'};
-        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] contacts_type_info = new String[]{'contacts','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'contacts','errorMsg'};
     }
     public class paymentHistoryEntry {
@@ -717,18 +773,18 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String ocl;
         @AuraEnabled public Decimal paymentAmt;
         @AuraEnabled public Decimal salesAmt;
-        private String[] adjustmentAmt_type_info = new String[]{'adjustmentAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] balanceAmt_type_info = new String[]{'balanceAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cls_type_info = new String[]{'cls','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] cycleEndDt_type_info = new String[]{'cycleEndDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] dueDt_type_info = new String[]{'dueDt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] epiBasisAmt_type_info = new String[]{'epiBasisAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] id_type_info = new String[]{'id','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] lateFeeAmt_type_info = new String[]{'lateFeeAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] ocl_type_info = new String[]{'ocl','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] paymentAmt_type_info = new String[]{'paymentAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] salesAmt_type_info = new String[]{'salesAmt','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] adjustmentAmt_type_info = new String[]{'adjustmentAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] balanceAmt_type_info = new String[]{'balanceAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cls_type_info = new String[]{'cls','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] cycleEndDt_type_info = new String[]{'cycleEndDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] dueDt_type_info = new String[]{'dueDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] epiBasisAmt_type_info = new String[]{'epiBasisAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] id_type_info = new String[]{'id','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] lateFeeAmt_type_info = new String[]{'lateFeeAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] ocl_type_info = new String[]{'ocl','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] paymentAmt_type_info = new String[]{'paymentAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] salesAmt_type_info = new String[]{'salesAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'adjustmentAmt','balanceAmt','cls','cycleEndDt','dueDt','epiBasisAmt','id','lateFeeAmt','ocl','paymentAmt','salesAmt'};
     }
     public class pendingPaymentEntry {
@@ -739,22 +795,22 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String source;
         @AuraEnabled public String status;
         @AuraEnabled public DateTime updateDate;
-        private String[] amount_type_info = new String[]{'amount','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] payId_type_info = new String[]{'payId','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] postingDate_type_info = new String[]{'postingDate','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] scheduledDate_type_info = new String[]{'scheduledDate','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] source_type_info = new String[]{'source','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] status_type_info = new String[]{'status','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] updateDate_type_info = new String[]{'updateDate','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] amount_type_info = new String[]{'amount','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] payId_type_info = new String[]{'payId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] postingDate_type_info = new String[]{'postingDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] scheduledDate_type_info = new String[]{'scheduledDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] source_type_info = new String[]{'source','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] status_type_info = new String[]{'status','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] updateDate_type_info = new String[]{'updateDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'amount','payId','postingDate','scheduledDate','source','status','updateDate'};
     }
     public class accountSearchResult {
         @AuraEnabled public CustomerDetailsWSUtilv2.accountSearchDTO[] accountList;
         @AuraEnabled public String errorMsg;
-        private String[] accountList_type_info = new String[]{'accountList','http://com.wex.coreinfo.customerinfo',null,'0','-1','true'};
-        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.coreinfo.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.coreinfo.customerinfo','false','false'};
+        private String[] accountList_type_info = new String[]{'accountList','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'accountList','errorMsg'};
     }
     public class CustomerDetailsSOAPQSPort {
@@ -765,7 +821,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String clientCert_x;
         @AuraEnabled public String clientCertPasswd_x;
         @AuraEnabled public Integer timeout_x;
-        private String[] ns_map_type_info = new String[]{'http://com.wex.coreinfo.customerinfo', 'CustomerDetailsWSUtilv2'};
+        private String[] ns_map_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo', 'CustomerDetailsWSUtilv2'};
         public CustomerDetailsWSUtilv2.authSearchResult getRecentDeclinedAuths(String wexAcctNbr,String sourceSys) {
             CustomerDetailsWSUtilv2.getRecentDeclinedAuths request_x = new CustomerDetailsWSUtilv2.getRecentDeclinedAuths();
             request_x.wexAcctNbr = wexAcctNbr;
@@ -779,9 +835,9 @@ public class CustomerDetailsWSUtilv2 {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getRecentDeclinedAuths',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getRecentDeclinedAuthsResponse',
               'CustomerDetailsWSUtilv2.getRecentDeclinedAuthsResponse'}
             );
@@ -800,9 +856,9 @@ public class CustomerDetailsWSUtilv2 {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getCustomerDetails',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getCustomerDetailsResponse',
               'CustomerDetailsWSUtilv2.getCustomerDetailsResponse'}
             );
@@ -822,9 +878,9 @@ public class CustomerDetailsWSUtilv2 {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getPayments',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getPaymentsResponse',
               'CustomerDetailsWSUtilv2.getPaymentsResponse'}
             );
@@ -843,9 +899,9 @@ public class CustomerDetailsWSUtilv2 {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getAgingHistory',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getAgingHistoryResponse',
               'CustomerDetailsWSUtilv2.getAgingHistoryResponse'}
             );
@@ -865,9 +921,9 @@ public class CustomerDetailsWSUtilv2 {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getInvoices',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getInvoicesResponse',
               'CustomerDetailsWSUtilv2.getInvoicesResponse'}
             );
@@ -886,9 +942,9 @@ public class CustomerDetailsWSUtilv2 {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'accountSearch',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'accountSearchResponse',
               'CustomerDetailsWSUtilv2.accountSearchResponse'}
             );
@@ -907,9 +963,9 @@ public class CustomerDetailsWSUtilv2 {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getContacts',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'getContactsResponse',
               'CustomerDetailsWSUtilv2.getContactsResponse'}
             );
@@ -929,9 +985,9 @@ public class CustomerDetailsWSUtilv2 {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'updateSalesforceID',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'updateSalesforceIDResponse',
               'CustomerDetailsWSUtilv2.updateSalesforceIDResponse'}
             );

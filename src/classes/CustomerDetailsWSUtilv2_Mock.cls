@@ -213,7 +213,16 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     responseElement.return_x.monthlyCardFeeDescription = 'TFS';
                     responseElement.return_x.truckStopFeeDescription = 'Waived';
                     responseElement.return_x.servicingRules = 'Proceed with caution.';
-                    
+                    responseElement.return_x.collectionRiskScore = 999;
+                    responseElement.return_x.pastDueAmount = 1000.00;
+                    responseElement.return_x.reactivationFee = 50.00;
+                    responseElement.return_x.reactivationFeeDescription = 'Reactivation Fee';
+                    responseElement.return_x.overLimitFee = 75.00;
+                    responseElement.return_x.overLimitFeeDescription = 'OCL Fee';
+                    responseElement.return_x.nsfFee = 50.00;
+                    responseElement.return_x.nsfFeeDescription = 'NSF Fee';
+
+
                     CustomerDetailsWSUtilv2.address AlternateAddress = new CustomerDetailsWSUtilv2.address();
                     AlternateAddress.addr1 = '123 Darling Ave';
                     AlternateAddress.addr2 = 'Filler';
@@ -278,6 +287,26 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     ShippingAddress.postalCode = '04106';
                     
                     responseElement.return_x.shippingAddress = ShippingAddress;
+
+                    if (customerDetailsRequest.pdRowId != null && !(String.isEmpty(customerDetailsRequest.pdRowId))) {
+                        CustomerDetailsWSUtilv2.pdAsset asset = new CustomerDetailsWSUtilv2.pdAsset();
+                        asset.pdRowId = customerDetailsRequest.pdRowId;
+                        asset.wexAcctNbr = responseElement.return_x.wexAccountNbr;
+                        asset.vin = 'AA12B3CH1B1234567';
+                        asset.cardNbr = '1234-1';
+                        asset.gsaRegion = 'REG XX';
+                        asset.custAssetNbr = 'G99 9995Z';
+                        asset.assetMake = 'Plymouth';
+                        asset.assetModel = 'Barracuda';
+                        asset.assetYear = '1999';
+                        asset.cardRestr = 'Unrestricted';
+                        asset.odometer = 99999;
+                        asset.odometerDate = Datetime.newInstance(2099,12,31,23,59,59);
+                        asset.pdStatus = 'Active';
+                        asset.pdStatusdate = '2018-12-31';
+                        
+                        responseElement.return_x.pdAsset = asset;
+                    }
                     
                     response.put('response_x', responseElement);
                     

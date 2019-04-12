@@ -19,6 +19,7 @@
             {label: "Subject", fieldName: "Subject", type: "text"},
             {label: "Contact", fieldName: "Contact.Name", type: "text"},
             {label: "Status", fieldName: "Status", type: "text"},
+            {label: "Case Type", fieldName: "RecordType.Name", type: "text"},
             {label: "Last Modified", fieldName: "LastModifiedDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: "false"}},
             {label: "Owner", fieldName: "Owner.Name", type: "text"}
         ]);
@@ -30,6 +31,7 @@
             {label: "Origin", fieldName: "Origin", type: "text", sortable: true},
             {label: "Contact", fieldName: "Contact_Name", type: "text", sortable: true},
             {label: "Subject", fieldName: "Subject", type: "text", sortable: true},
+            {label: "Case Type", fieldName: "RecordType_Name", type: "text"},
             {label: "Owner", fieldName: "Owner_Name", type: "text", sortable: true},
             {label: "Dept.", fieldName: "Department__c", type: "text", sortable: true}
         ]);
@@ -111,6 +113,14 @@
                     var contactRowId = (pageRef && pageRef.state) ? pageRef.state.contactRowId : null;
                     // var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
                     component.set("v.contactRowId", contactRowId);
+
+                    // Grab the pdRowId off the enclosing tab URL
+                    var pdRowid = (pageRef && pageRef.state) ? pageRef.state.pdRowId : null;
+                    component.set("v.pdRowId", pdRowid);
+
+                    console.log('#### caseId = '+component.get("v.caseId"));
+                    console.log('#### contactRowId = '+component.get("v.contactRowId"));
+                    console.log('#### pdRowId = '+component.get("v.pdRowId"));
 
                     // Display the spinner
                     var spinner = component.find("loadingSpinner");
@@ -334,7 +344,6 @@
     lazyLoadDeclinedTransactions : function(component, event, helper) {
         if(component.get("v.declinedTransactions") == null) {           
             var spinner = component.find("declinedTransactionsLoadingSpinner");
-            console.log("Found spinner: "+(spinner != null));
             $A.util.removeClass(spinner, "slds-hide");
             helper.loadDeclinedTransactions(component, null);			
         }        
@@ -343,7 +352,6 @@
      lazyLoadInvoices : function(component, event, helper) {
         if(component.get("v.invoices") == null) {           
             var spinner = component.find("invoicesLoadingSpinner");
-            console.log("Found spinner: "+(spinner != null));
             $A.util.removeClass(spinner, "slds-hide");
             helper.loadInvoices(component, null);
         }        
