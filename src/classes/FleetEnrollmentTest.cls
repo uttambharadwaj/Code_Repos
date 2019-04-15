@@ -45,6 +45,7 @@ public class FleetEnrollmentTest {
         program.WEX_Associations__c = 'BizUnite';
         program.Fleet_Available_Billing_Cycles__c = 'Cycle 4';
         program.Allow_Partner_Billed_Overnight_Cards__c = true;
+        program.WEX_Platform__c = 'Millennium';
 
         upsert program;
 

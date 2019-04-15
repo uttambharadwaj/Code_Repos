@@ -72,6 +72,7 @@ public with sharing class CreditDecisionEngineNATest {
         program.Analytics_Head_Block__c = '';
         program.Brand_Color_1__c = '#ccc';
         program.Brand_Color_2__c = '#fff';
+        program.WEX_Platform__c = 'Millennium';
 
         insert program;
 
