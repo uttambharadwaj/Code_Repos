@@ -209,6 +209,24 @@ public with sharing class CreditDecisionEngineNATest {
 
     }
 
+    static testMethod void testAppSignerCheck() {
+
+        List<Application_Request__c> applicationRequests = [SELECT Id FROM Application_Request__c];
+
+        if (applicationRequests.size() > 0) {
+
+            CreditUtil_AppSignerCheck cuccl = new CreditUtil_AppSignerCheck();
+
+            cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+
+            cuccl.postProcess();
+
+            cuccl.preProcess(applicationRequests, 'Test', 'Test');
+
+        }
+
+    }
+
     static testMethod void testCreditUtilCalculateCreditLine() {
 
         List<Application_Request__c> applicationRequests = [SELECT Id, Risk_Grade__c, Requested_Credit_Limit__c, PG_Required__c, PG_High_Credit_Amount__c, Credit_Line_Recommendation__c,
