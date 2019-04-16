@@ -343,44 +343,49 @@ global class CreditDecisionEngineNA {
                 System.debug('Match Score: ' + naApplication.DNB_Match_Score__c);
             }
 
-//            CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
-//
-//            giactVerifyRequest.RoutingNumber = naApplication.ABA_Routing_Number__c;
-//            giactVerifyRequest.AccountNumber = naApplication.Checking_Account_Number__c;
-//            giactVerifyRequest.FirstName = naApplication.Billing_Contact_First_Name_Text__c;
-//            giactVerifyRequest.LastName = naApplication.Billing_Contact_Last_Name_Text__c;
-//            giactVerifyRequest.BusinessName = naApplication.Opportunity_Name_Text__c;
-//            giactVerifyRequest.AddressLine1 = naApplication.Physical_Street__c;
-//            giactVerifyRequest.AddressLine2 = naApplication.Physical_Street_Line_2__c;
-//            giactVerifyRequest.City = naApplication.Physical_City__c;
-//            giactVerifyRequest.State = naApplication.Physical_State__c;
-//            giactVerifyRequest.ZipCode = naApplication.Physical_Zip_Postal_Code__c;
-//            giactVerifyRequest.Country = naApplication.Physical_Country__c;
-//            giactVerifyRequest.PhoneNumber = naApplication.Business_Phone_Number__c;
-//            giactVerifyRequest.FederalTaxId = naApplication.Tax_Payer_ID_number__c;
-//            giactVerifyRequest.EmailAddress = naApplication.Billing_Contact_Email__c;
-//            giactVerifyRequest.IpAddress = naApplication.App_Signer_IP_Address__c;
-//
-//            if (!TestUtils.isRunningTest()) {
-//
-//                CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
-//
-//                if(giactVerifyResponse != null) {
-//
-//                    naApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
-//                    naApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
-//                    naApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
-//                    naApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
-//
-//                }
-//                else {
-//
-//                    naApplication.GIACT_Check__c = 'Error';
-//                    naApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
-//
-//                }
-//
-//            }
+            // GIACT
+            if(!String.isBlank(naApplication.Checking_Account_Number__c) && !String.isBlank(naApplication.ABA_Routing_Number__c)) {
+
+                CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
+
+                giactVerifyRequest.UniqueId = String.valueOf(naApplication.Id);
+                giactVerifyRequest.RoutingNumber = naApplication.ABA_Routing_Number__c;
+                giactVerifyRequest.AccountNumber = naApplication.Checking_Account_Number__c;
+                giactVerifyRequest.FirstName = naApplication.Billing_Contact_First_Name_Text__c;
+                giactVerifyRequest.LastName = naApplication.Billing_Contact_Last_Name_Text__c;
+                giactVerifyRequest.BusinessName = naApplication.Opportunity_Name_Text__c;
+                giactVerifyRequest.AddressLine1 = naApplication.Physical_Street__c;
+                giactVerifyRequest.AddressLine2 = naApplication.Physical_Street_Line_2__c;
+                giactVerifyRequest.City = naApplication.Physical_City__c;
+                giactVerifyRequest.State = naApplication.Physical_State__c;
+                giactVerifyRequest.ZipCode = naApplication.Physical_Zip_Postal_Code__c;
+                giactVerifyRequest.Country = naApplication.Physical_Country__c;
+                giactVerifyRequest.PhoneNumber = naApplication.Business_Phone_Number__c;
+                giactVerifyRequest.FederalTaxId = naApplication.Tax_Payer_ID_number__c;
+                giactVerifyRequest.EmailAddress = naApplication.Billing_Contact_Email__c;
+                giactVerifyRequest.IpAddress = naApplication.App_Signer_IP_Address__c;
+
+                if (!TestUtils.isRunningTest()) {
+
+                    CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+
+                    if (giactVerifyResponse != null) {
+
+                        naApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
+                        naApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
+                        naApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
+                        naApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
+
+                    } else {
+
+                        naApplication.GIACT_Check__c = 'Error';
+                        naApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+
+                    }
+
+                }
+
+            }
 
             // Existing Exposure - Application/Account Exposure
             CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();

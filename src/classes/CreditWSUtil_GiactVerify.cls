@@ -44,20 +44,20 @@ public class CreditWSUtil_GiactVerify {
         public String UniqueId;
         public Check Check;
         public Customer Customer;
-        public Boolean GVerifyEnabled;
-        public Boolean FundsConfirmationEnabled;
+//        public Boolean GVerifyEnabled;
+//        public Boolean FundsConfirmationEnabled;
         public Boolean GAuthenticateEnabled;
-        public Boolean VoidedCheckImageEnabled;
-        public Boolean GIdentifyEnabled;
-        public Boolean GIdentifyKbaEnabled;
-        public Boolean GIdentifyEsiEnabled;
-        public Boolean CustomerIdEnabled;
-        public Boolean OfacScanEnabled;
-        public Boolean IpAddressInformationEnabled;
-        public Boolean DomainWhoisEnabled;
-        public Boolean MobileVerifyEnabled;
-        public Boolean MobileIdentifyEnabled;
-        public Boolean MobileLocationEnabled;
+//        public Boolean VoidedCheckImageEnabled;
+//        public Boolean GIdentifyEnabled;
+//        public Boolean GIdentifyKbaEnabled;
+//        public Boolean GIdentifyEsiEnabled;
+//        public Boolean CustomerIdEnabled;
+//        public Boolean OfacScanEnabled;
+//        public Boolean IpAddressInformationEnabled;
+//        public Boolean DomainWhoisEnabled;
+//        public Boolean MobileVerifyEnabled;
+//        public Boolean MobileIdentifyEnabled;
+//        public Boolean MobileLocationEnabled;
     }
 
     public class DomainRegistry {
@@ -186,7 +186,7 @@ public class CreditWSUtil_GiactVerify {
     }
 
     public class GiactInquiryResponse {
-        public Integer ItemReferenceId;
+        public String ItemReferenceId;
         public String CreatedDate;
         public String ErrorMessage;
         public Integer VerificationResponse;
