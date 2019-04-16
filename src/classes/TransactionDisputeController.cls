@@ -569,7 +569,7 @@ global without sharing class TransactionDisputeController {
 
             }
             catch(Exception e) {
-                System.debug('### Emailing is disabled');
+                System.debug('### Error sending email... Continuing...');
             }
 
         }
