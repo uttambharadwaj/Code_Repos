@@ -1,3 +1,4 @@
+<!--revision history:   IADJUDICAT-966 remove address section-->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRSetupController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
     <head>
@@ -199,75 +200,7 @@
                             <apex:inputHidden value="{!selectedOtherServices}" id="selectedOtherServicesValue" />
                             <apex:actionFunction name="submitForm" action="{!submitForm}" oncomplete="generatePDFandConfirm()" rerender="" />
                             <apex:actionFunction name="generatePDFandConfirm" action="{!generatePDFandConfirm}" rerender="" />
-                            <div class="twelve columns clearfix">
-                                <div class="section-header">
-                                    Card Shipping Address
-                                </div>
-                            </div>
-                            <div class="twelve columns clearfix form-field">
-                                &nbsp;
-                            </div>
-                            <div class="twelve columns clearfix">
-                                Physical address required. Cannot ship to P.O. Boxes.
-                            </div>
-                            <div class="twelve columns clearfix form-field">
-                                &nbsp;
-                            </div>
-                            <div class="twelve columns clearfix">
-                                <div class="six columns clearfix form-field" data-row="1">
-                                    <label class="styled-label">{!$Label.OTRSetup_Card_Address_Correct} <span class="styled-label-required">*</span></label>
-                                    <apex:selectList id="addressOptions" value="{!selectedAddressOption}" size="1" styleClass="styled-input required" tabindex="1">
-                                        <apex:selectOption itemValue="Yes" itemLabel="Yes"/>
-                                        <apex:selectOption itemValue="No" itemLabel="No"/>
-                                        <apex:actionSupport event="onchange" action="{!populateAddress}" rerender="contactAddress" oncomplete="pageLoadFunctions()" />
-                                    </apex:selectList>
-                                </div>
-                                <div class="six columns clearfix form-field" data-row="1">
-                                    &nbsp;
-                                </div>
-                            </div>
-                            <apex:outputPanel id="contactAddress">
-                                <div class="twelve columns clearfix form-field">
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <label class="styled-label">Address Line 1 <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  label="" html-tabindex="2" value="{!onlineApplication.Card_Shipping_Address_Line_1__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <label class="styled-label">Address Line 2</label>
-                                            <apex:InputField styleClass="styled-input"  label="" html-tabindex="3" value="{!onlineApplication.Card_Shipping_Address_Line_2__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
-                                            <label class="styled-label">City <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  html-tabindex="4" label="" value="{!onlineApplication.Card_Shipping_City__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="5">
-                                            <label class="styled-label" id="cardShippingPostalCode">Postal Code <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required {!IF(onlineApplication.Card_Shipping_Country__c == null || onlineApplication.Card_Shipping_Country__c = 'US', 'postal', 'postalCanada')}"  html-tabindex="5" label="" value="{!onlineApplication.Card_Shipping_Postal_Code__c}" />
-                                        </div>
-                                    </div>
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <label class="styled-label">State <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  html-tabindex="6" label="" value="{!onlineApplication.Card_Shipping_State__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <label class="styled-label">Country <span class="styled-label-required">*</span></label>
-                                            <apex:InputField html-disabled="true" styleClass="styled-input" value="{!onlineApplication.Card_Shipping_Country__c}">
-                                                <apex:actionSupport event="onchange" rerender="cardShippingPostalCode" oncomplete="pageLoadFunctions()"/>
-                                            </apex:InputField>
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
-                                            <label class="styled-label">Attention First Name<span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  label="" html-tabindex="7" value="{!onlineApplication.Card_Shipping_First_Name__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="5">
-                                            <label class="styled-label">Attention Last Name<span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  label="" html-tabindex="8" value="{!onlineApplication.Card_Shipping_Last_Name__c}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </apex:outputPanel>
+                            <!--4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section. it went here. RIP Address section-->
                             <div class="twelve columns clearfix form-field styled-panel">
                                 &nbsp;
                             </div>
