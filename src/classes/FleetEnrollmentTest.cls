@@ -258,9 +258,11 @@ public class FleetEnrollmentTest {
 
             Application_Request__c applicationRequest = new Application_Request__c();
 
+            List<Campaign_Program__c> campaignPrograms = [SELECT Id, Campaign__c FROM Campaign_Program__c WHERE Program__c =: testProgram.Id];
+
             System.runAs(integrationUser) {
 
-                Opportunity opportunity = new Opportunity(name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
+                Opportunity opportunity = new Opportunity(CampaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
                 opportunity.Fueling_Methos__c = 'BP';
 
                 insert opportunity;
@@ -793,9 +795,11 @@ public class FleetEnrollmentTest {
 
             Application_Request__c applicationRequest = new Application_Request__c();
 
+            List<Campaign_Program__c> campaignPrograms = [SELECT Id, Campaign__c FROM Campaign_Program__c WHERE Program__c =: testProgram.Id];
+
             System.runAs(integrationUser) {
 
-                Opportunity opportunity = new Opportunity(name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
+                Opportunity opportunity = new Opportunity(CampaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
                 opportunity.Fueling_Methos__c = 'BP';
 
                 insert opportunity;

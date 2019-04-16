@@ -121,7 +121,7 @@ public with sharing class CreditDecisionEngineNATest {
 
         System.runAs(integrationUser) {
 
-            Opportunity opportunity = new Opportunity(name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'BOCA');
+            Opportunity opportunity = new Opportunity(CampaignId = campaign.Id, Campaign_Program__c = campaignProgram.Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'BOCA');
             opportunity.Fueling_Methos__c = 'BP';
 
             insert opportunity;
