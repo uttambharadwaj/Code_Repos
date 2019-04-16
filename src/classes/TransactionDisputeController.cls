@@ -421,6 +421,8 @@ global without sharing class TransactionDisputeController {
 
     }
 
+    public class transactionDisputeFormException extends Exception {}
+
     public PageReference submitForm() {
 
         try {
@@ -549,6 +551,26 @@ global without sharing class TransactionDisputeController {
             currentStep = 5;
 
             System.debug(serviceOperationsCase);
+
+            try {
+                Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+                List<Service_Settings__mdt> serviceSettings = [SELECT Id, Transaction_Dispute_Form_Template__c FROM Service_Settings__mdt WHERE DeveloperName = 'Settings'];
+
+                mail.setTemplateId(serviceSettings[0].Transaction_Dispute_Form_Template__c);
+                mail.setWhatId(claim.Id);
+                mail.setTargetObjectId(UserInfo.getUserId());
+                mail.SetSaveAsActivity(false);
+                mail.setReplyTo('noreply@wexinc.com');
+                mail.setSenderDisplayName('FFS Disputes');
+
+                List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}, !Test.isRunningTest());
+                if((!results.get(0).isSuccess() && !Test.isRunningTest()) || (Test.isRunningTest() && Limits.getEmailInvocations()<1)) throw new transactionDisputeFormException(String.valueOf(results.get(0).getErrors()[0]));
+
+            }
+            catch(Exception e) {
+                System.debug('### Emailing is disabled');
+            }
 
         }
         catch(Exception e) {
