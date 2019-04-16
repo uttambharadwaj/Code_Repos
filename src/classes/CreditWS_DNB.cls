@@ -224,7 +224,7 @@ public class CreditWS_DNB {
                             if(result.PrimaryAddress.CountryISOAlpha2Code != null) matchCandidate.CountryISOAlpha2Code = result.PrimaryAddress.CountryISOAlpha2Code;
                             if(result.MatchQualityInformation.ConfidenceCodeValue != null) matchCandidate.ConfidenceCodeValue = result.MatchQualityInformation.ConfidenceCodeValue;
                             if(result.MatchQualityInformation.MatchGradeText != null) matchCandidate.MatchGradeText = result.MatchQualityInformation.MatchGradeText;
-                            if(result.TelephoneNumber.TelecommunicationNumber != null) matchCandidate.TelephoneNumber = result.TelephoneNumber.TelecommunicationNumber;
+                            if(result.TelephoneNumber != null && result.TelephoneNumber.TelecommunicationNumber != null) matchCandidate.TelephoneNumber = result.TelephoneNumber.TelecommunicationNumber;
                             if(result.OperatingStatusText.value != null) matchCandidate.OperatingStatus = result.OperatingStatusText.value;
 
                             matchCandidate.WEXMatchScore = JaroWinklerDistance.getAverageScoreOfList(matchComparison);

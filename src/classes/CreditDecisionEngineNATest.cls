@@ -120,7 +120,7 @@ public with sharing class CreditDecisionEngineNATest {
 
         System.runAs(integrationUser) {
 
-            Opportunity opportunity = new Opportunity(name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'BOCA');
+            Opportunity opportunity = new Opportunity(CampaignId = campaign.Id, Campaign_Program__c = campaignProgram.Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'BOCA');
             opportunity.Fueling_Methos__c = 'BP';
 
             insert opportunity;
@@ -337,7 +337,6 @@ public with sharing class CreditDecisionEngineNATest {
             upsert applicationRequests[0];
 
             ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
-            System.debug('ar : ' + ar);
             System.assertEquals(10000, ar);
 
             // Risk Grade 1 or 2
@@ -400,6 +399,87 @@ public with sharing class CreditDecisionEngineNATest {
             cuccl.postProcess();
 
             cuccl.preProcess(applicationRequests, 'Test', 'Test');
+
+            Test.stopTest();
+        }
+    }
+
+    static testMethod void testRevolverCreditUtilCalculateCreditLine() {
+
+        List<Program__c> programs = [SELECT Id, BOCA_Type__c FROM Program__c LIMIT 1];
+
+        if (programs.size() == 1) {
+            programs[0].BOCA_Type__c = 'Revolver Card';
+            upsert programs[0];
+        }
+
+        List<Application_Request__c> applicationRequests = [SELECT Id, Risk_Grade__c, Requested_Credit_Limit__c, Credit_Line_Recommendation__c,
+                Annual_Gross_Revenue__c, Legal_Structure__c, BOCA_Type__c, PG_Required__c
+        FROM Application_Request__c LIMIT 1];
+
+        if (applicationRequests.size() > 0) {
+
+            CreditUtil_CalculateCreditLine cuccl = new CreditUtil_CalculateCreditLine();
+
+            Test.startTest();
+
+            // Credit Limit Table 1 / 2 - Risk Grade 1
+            applicationRequests[0].PG_Required__c = false;
+            applicationRequests[0].Risk_Grade__c = '1';
+            applicationRequests[0].Annual_Gross_Revenue__c = 1000000;
+            applicationRequests[0].Legal_Structure__c = 'Sole Proprietorship';
+            applicationRequests[0].Requested_Credit_Limit__c = '20000';
+            upsert applicationRequests[0];
+
+            Decimal ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(15000, ar);
+
+            // Credit Limit Table 1 / 2 - Risk Grade 2
+            applicationRequests[0].Risk_Grade__c = '2';
+            upsert applicationRequests[0];
+
+            ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(12500, ar);
+
+            // Credit Limit Table 3 - Risk Grade 1
+            applicationRequests[0].Risk_Grade__c = '1';
+            applicationRequests[0].Legal_Structure__c = 'Corporation';
+            applicationRequests[0].Years_In_Business__c = 2;
+            upsert applicationRequests[0];
+
+            ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(20000, ar);
+
+            // Credit Limit Table 3 - Risk Grade 2
+            applicationRequests[0].Risk_Grade__c = '2';
+            upsert applicationRequests[0];
+
+            ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(17500, ar);
+
+            // Credit Limit Table 4 - Risk Grade 1
+            applicationRequests[0].Risk_Grade__c = '1';
+            applicationRequests[0].Years_In_Business__c = 4;
+            upsert applicationRequests[0];
+
+            ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(25000, ar);
+
+            // Credit Limit Table 4 - Risk Grade 2
+            applicationRequests[0].Risk_Grade__c = '2';
+            upsert applicationRequests[0];
+
+            ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(20000, ar);
+
+            // Requesting over 25k
+            applicationRequests[0].Risk_Grade__c = '2';
+            applicationRequests[0].Requested_Credit_Limit__c = '30000';
+            upsert applicationRequests[0];
+
+            ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(0, ar);
+
 
             Test.stopTest();
         }
