@@ -499,7 +499,7 @@
 																	<label class="slds-checkbox__label">
 																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillCustomer" value="{!fleetEnrollmentInformation.overnightCardsBillCustomer}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards');toggleSection(this, 'customerCarrierNumberBox');" html-data-controls-section="customerCarrierNumberBox" />
 																		<span class="slds-checkbox_faux"></span>
-																		<span class="slds-form-element__label">Bill Customer</span>
+																		<span class="slds-form-element__label">Bill Customer <strong>(Overnight Only)</strong></span>
 																	</label>
 																</span>
 															</div>
@@ -516,7 +516,7 @@
 																	<label class="slds-checkbox__label">
 																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillPartner" value="{!fleetEnrollmentInformation.overnightCardsBillPartner}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards');"/>
 																		<span class="slds-checkbox_faux"></span>
-																		<span class="slds-form-element__label">Bill Partner</span>
+																		<span class="slds-form-element__label">Bill Partner <strong>(Overnight Only)</strong></span>
 																	</label><br/>
 																</span>
 															</div>
@@ -527,7 +527,7 @@
 																	<label class="slds-checkbox__label">
 																		<apex:inputCheckbox id="overnightCardsBillWEX" value="{!fleetEnrollmentInformation.overnightCardsBillWEX}" html-data-checkbox-group="overnightCards" html-data-controls-section="attachOvernightCardsApproval" onChange="toggleCheckboxGroup(this, 'overnightCards'); toggleSection(this, 'attachOvernightCardsApproval');"/>
 																		<span class="slds-checkbox_faux"></span>
-																		<span class="slds-form-element__label">Bill WEX</span>
+																		<span class="slds-form-element__label">Bill WEX <strong>(Overnight Only)</strong></span>
 																	</label><br/>
 																</span>
 															</div>
