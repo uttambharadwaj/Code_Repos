@@ -160,7 +160,7 @@ public class CreditDecisionEngineCPTest {
                 cpApplication.Payment_Due_Date__c = 'Monday';
                 cpApplication.Payment_Type__c = 'ET';
                 cpApplication.Financial_Institution__c = 'Chase Bank';
-                cpApplication.Checking_Account_Number__c = '';
+                cpApplication.Checking_Account_Number__c = '123456789';
                 cpApplication.ABA_Routing_Number__c = '123456789';
                 cpApplication.Guarantor_First_Name__c = 'George';
                 cpApplication.Guarantor_Last_Name__c = 'Smiley';

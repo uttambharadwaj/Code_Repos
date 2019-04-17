@@ -150,6 +150,9 @@ public with sharing class CreditDecisionEngineNATest {
             applicationRequest.Physical_Country__c = 'US';
             applicationRequest.DUNS_Number__c = '12345678';
 
+            applicationRequest.Checking_Account_Number__c = '123456789';
+            applicationRequest.ABA_Routing_Number__c = '123456789';
+
             insert applicationRequest;
 
         }
