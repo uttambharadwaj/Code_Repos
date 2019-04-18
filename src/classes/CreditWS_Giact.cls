@@ -88,8 +88,10 @@ public with sharing class CreditWS_Giact {
 
                     giactVerifyResponse.GiactErrorMessage = giactResponse.ErrorMessage;
                     giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
+                    giactVerifyResponse.VerificationResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
                     giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
                     giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
+                    giactVerifyResponse.AccountResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
                     giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
 
                     return giactVerifyResponse;
@@ -114,6 +116,25 @@ public with sharing class CreditWS_Giact {
 
             if(giactVerifyResponseCodes.size() > 0) {
                 return giactVerifyResponseCodes[0].Response_Field_Message__c;
+            }
+
+        }
+        catch(Exception e) {
+            System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
+        }
+
+        return null;
+
+    }
+
+    public static String getGiactResponseCodeName(String service, String field, String responseCode) {
+
+        try {
+
+            List<GIACT_Verify_Response_Codes__mdt> giactVerifyResponseCodes = [SELECT Id, Response_Field_Friendly_Value__c FROM GIACT_Verify_Response_Codes__mdt WHERE GIACT_Service__c =: service and Response_Field_Name__c =: field and Response_Field_Value__c =: responseCode LIMIT 1];
+
+            if(giactVerifyResponseCodes.size() > 0) {
+                return giactVerifyResponseCodes[0].Response_Field_Friendly_Value__c;
             }
 
         }
@@ -154,8 +175,10 @@ public with sharing class CreditWS_Giact {
     public class GiactVerifyResponse {
 
         public String AccountResponseCode { get; set; }
+        public String AccountResponseCodeName { get; set; }
         public String AccountResponseMessage { get; set; }
         public String VerificationResponseCode { get; set; }
+        public String VerificationResponseCodeName { get; set; }
         public String VerificationResponseMessage { get; set; }
         public String GiactErrorMessage { get; set; }
 
