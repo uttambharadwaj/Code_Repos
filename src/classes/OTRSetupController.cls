@@ -278,7 +278,11 @@ public without sharing class OTRSetupController {
             onlineApplication.Card_Shipping_State__c = onlineApplication.State__c;
             onlineApplication.Card_Shipping_Postal_Code__c = onlineApplication.Zip_Code__c;
         }
-
+        //IADJUDICAT-966 also add defaulting for shipping name, which is part of address section
+        if(onlineApplication != null){
+            onlineApplication.Card_Shipping_First_Name__c = onlineApplication.Contact_First_Name__c;
+            onlineApplication.Card_Shipping_Last_Name__c = onlineApplication.Contact_Last_Name__c;
+        }
     }
 
     public void addDriver() {

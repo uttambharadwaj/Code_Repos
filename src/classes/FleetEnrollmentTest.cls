@@ -45,7 +45,6 @@ public class FleetEnrollmentTest {
         program.WEX_Associations__c = 'BizUnite';
         program.Fleet_Available_Billing_Cycles__c = 'Cycle 4';
         program.Allow_Partner_Billed_Overnight_Cards__c = true;
-        program.WEX_Platform__c = 'Millennium';
 
         upsert program;
 
@@ -262,7 +261,7 @@ public class FleetEnrollmentTest {
 
             System.runAs(integrationUser) {
 
-                Opportunity opportunity = new Opportunity(CampaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
+                Opportunity opportunity = new Opportunity(campaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
                 opportunity.Fueling_Methos__c = 'BP';
 
                 insert opportunity;
