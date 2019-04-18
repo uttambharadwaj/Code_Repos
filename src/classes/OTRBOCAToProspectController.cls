@@ -83,6 +83,8 @@ public class OTRBOCAToProspectController {
                 programIds.add(cp.Program__r.Partner__c);
             }
 
+            programIds.remove(null);
+
             List<SelectOption> availablePrograms = new List<SelectOption>();
 
             availablePrograms.add(new SelectOption('', '-- Choose One--'));
