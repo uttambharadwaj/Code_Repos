@@ -376,6 +376,9 @@ global class CreditDecisionEngineNA {
                         naApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
                         naApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
 
+                        naApplication.GIACT_Account_Response_Code_Name__c = giactVerifyResponse.AccountResponseCodeName;
+                        naApplication.GIACT_Verify_Response_Code_Name__c = giactVerifyResponse.VerificationResponseCodeName;
+
                     } else {
 
                         naApplication.GIACT_Check__c = 'Error';
