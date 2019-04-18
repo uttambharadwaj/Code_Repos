@@ -423,6 +423,9 @@ global class CreditDecisionEngineCP {
                         cpApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
                         cpApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
 
+                        cpApplication.GIACT_Account_Response_Code_Name__c = giactVerifyResponse.AccountResponseCodeName;
+                        cpApplication.GIACT_Verify_Response_Code_Name__c = giactVerifyResponse.VerificationResponseCodeName;
+
                     } else {
 
                         cpApplication.GIACT_Check__c = 'Error';
