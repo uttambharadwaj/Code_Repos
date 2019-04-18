@@ -140,7 +140,7 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
                 gResponse.availableImplementationCases = new List<Case>();
 
-                for(Case fleetEnrollmentCase : [SELECT Id, Siebel_Oppty__c, Fleet_Enrollment__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c != null ORDER BY CreatedDate ASC LIMIT 10]) {
+                for(Case fleetEnrollmentCase : [SELECT Id, CaseNumber, Siebel_Oppty__c, Fleet_Enrollment__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c != null ORDER BY CreatedDate ASC LIMIT 10]) {
                     gResponse.availableImplementationCases.add(fleetEnrollmentCase);
                 }
 
