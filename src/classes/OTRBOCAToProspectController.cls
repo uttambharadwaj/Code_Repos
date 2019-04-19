@@ -2,7 +2,7 @@
 Description:        controller for otrbocatoprospect
 Test Classes:       OTRBOCAToProspectTest
 Last Coverage:      98%
-Revision History:   4/12/2019 Jason Arbegast IADJUDICAT-1085 limit program options to those related to the partner
+Revision History:
 TODO:               move logerror to utility method; can be used across classes and easier to test the individual method that way
                     move email sections to utility/class method; similar code is in place across methods
  */
@@ -77,18 +77,10 @@ public class OTRBOCAToProspectController {
     public List<SelectOption> availablePrograms {
         get {
 
-            //get partner from the program from the oppty
-            Set<Id> programIds = new Set<Id>();
-            for(Campaign_Program__c cp : [SELECT Id, Program__r.Partner__c FROM Campaign_Program__c WHERE Id = :opportunity.Campaign_Program__c]){
-                programIds.add(cp.Program__r.Partner__c);
-            }
-
-            programIds.remove(null);
-
             List<SelectOption> availablePrograms = new List<SelectOption>();
 
             availablePrograms.add(new SelectOption('', '-- Choose One--'));
-            for (Program__c program : [SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = 'OTR' and Publish_BOCA__c = true AND Partner__c IN :programIds ORDER BY Name ASC]) {
+            for (Program__c program : [SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = 'OTR' and Publish_BOCA__c = true ORDER BY Name ASC]) {
                 availablePrograms.add(new SelectOption(program.Id, program.Name));
             }
 
