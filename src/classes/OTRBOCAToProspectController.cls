@@ -2,8 +2,7 @@
 Description:        controller for otrbocatoprospect
 Test Classes:       OTRBOCAToProspectTest
 Last Coverage:      98%
-Revision History:   4/12/2019 Jason Arbegast IADJUDICAT-1085 limit program options to those related to the partner
-                    4/19/2019 Jason Arbegast IADJUDICAT-1085 undo that stuff from 4/12 bc it's ahead of its time
+Revision History:
 TODO:               move logerror to utility method; can be used across classes and easier to test the individual method that way
                     move email sections to utility/class method; similar code is in place across methods
  */
