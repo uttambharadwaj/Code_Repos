@@ -62,15 +62,16 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                         experianRequest.contactFirstName = onlineApplication.AO_First_Name__c;
                         experianRequest.contactLastName = onlineApplication.AO_Last_Name__c;
                     }
-                    System.debug('TEMP contact first name = ' + experianRequest.contactFirstName + ' contact last name: ' + experianRequest.contactLastName);
                     experianRequest.address = onlineApplication.AO_Address__c;
                     experianRequest.city = onlineApplication.AO_City__c;
                     experianRequest.state = onlineApplication.AO_State__c;
                     experianRequest.zipCode = onlineApplication.AO_Zip_Code__c;
                     experianRequest.phone = onlineApplication.AO_Home_Phone_Number__c;
-                    experianRequest.dateOfBirthMonth = String.valueOf(onlineApplication.AO_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
-                    experianRequest.dateOfBirthDay = String.valueOf(onlineApplication.AO_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
-                    experianRequest.dateOfBirthYear = String.valueOf(onlineApplication.AO_Date_of_Birth__c.year());
+                    if (onlineApplication.AO_Date_of_Birth__c != null) {
+                        experianRequest.dateOfBirthMonth = String.valueOf(onlineApplication.AO_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
+                        experianRequest.dateOfBirthDay = String.valueOf(onlineApplication.AO_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
+                        experianRequest.dateOfBirthYear = String.valueOf(onlineApplication.AO_Date_of_Birth__c.year());
+                    }
 
                     CreditWS_Experian.ExperianResponse experianResponse = CreditWS_Experian.getCreditScore((experianRequest));
 
@@ -143,9 +144,11 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                     experianRequest.state = cpApplicant.Guarantor_State_Province__c;
                     experianRequest.zipCode = cpApplicant.Guarantor_Residential_Postal_Code__c;
                     experianRequest.phone = cpApplicant.Guarantor_Residential_Phone__c;
-                    experianRequest.dateOfBirthMonth = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
-                    experianRequest.dateOfBirthDay = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
-                    experianRequest.dateOfBirthYear = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.year());
+                    if (cpApplicant.Guarantor_Date_of_Birth__c != null) {
+                        experianRequest.dateOfBirthMonth = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
+                        experianRequest.dateOfBirthDay = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
+                        experianRequest.dateOfBirthYear = String.valueOf(cpApplicant.Guarantor_Date_of_Birth__c.year());
+                    }
 
                     CreditWS_Experian.ExperianResponse experianResponse = CreditWS_Experian.getCreditScore((experianRequest));
 
@@ -218,9 +221,11 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                     experianRequest.state = naApplicant.Personal_Guarantor_Mailing_State__c;
                     experianRequest.zipCode = naApplicant.Personal_Guarantor_Mailing_Zip__c;
                     experianRequest.phone = naApplicant.Personal_Guarantor_Home_Phone__c;
-                    experianRequest.dateOfBirthMonth = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.month()).leftPad(2).replace(' ', '0');
-                    experianRequest.dateOfBirthDay = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.day()).leftPad(2).replace(' ', '0');
-                    experianRequest.dateOfBirthYear = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.year());
+                    if (naApplicant.Personal_Guarantor_DOB__c != null) {
+                        experianRequest.dateOfBirthMonth = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.month()).leftPad(2).replace(' ', '0');
+                        experianRequest.dateOfBirthDay = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.day()).leftPad(2).replace(' ', '0');
+                        experianRequest.dateOfBirthYear = String.valueOf(naApplicant.Personal_Guarantor_DOB__c.year());
+                    }
 
                     CreditWS_Experian.ExperianResponse experianResponse = CreditWS_Experian.getCreditScore((experianRequest));
 

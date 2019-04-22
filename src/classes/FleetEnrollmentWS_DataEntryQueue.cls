@@ -116,7 +116,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
                 gResponse.result = true;
                 gResponse.message = 'Case Queue successfully retrieved!';
 
-                gResponse.availableImplementationCases = [SELECT Id, Fleet_Enrollment__c, Siebel_Oppty__c FROM Case WHERE Status = 'New' and OwnerId = :dataEntryQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate ASC];
+                gResponse.availableImplementationCases = [SELECT Id, CaseNumber, Fleet_Enrollment__c, Siebel_Oppty__c FROM Case WHERE Status = 'New' and OwnerId = :dataEntryQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate ASC];
 
                 RestContext.response.addHeader('Content-Type', 'application/json');
                 RestContext.response.responseBody = Blob.valueOf(JSON.serialize(gResponse));

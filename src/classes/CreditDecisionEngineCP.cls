@@ -390,51 +390,59 @@ global class CreditDecisionEngineCP {
 
             }
 
-//            CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
-//
-//            giactVerifyRequest.RoutingNumber = cpApplication.ABA_Routing_Number__c;
-//            giactVerifyRequest.AccountNumber = cpApplication.Checking_Account_Number__c;
-//            giactVerifyRequest.FirstName = cpApplication.First_Name__c;
-//            giactVerifyRequest.LastName = cpApplication.Last_Name__c;
-//            giactVerifyRequest.BusinessName = cpApplication.Company_Legal_Name__c;
-//            giactVerifyRequest.AddressLine1 = cpApplication.Physical_Address_Line_1__c;
-//            giactVerifyRequest.AddressLine2 = cpApplication.Physical_Address_Line_2__c;
-//            giactVerifyRequest.City = cpApplication.Physical_City__c;
-//            giactVerifyRequest.State = cpApplication.Physical_State__c;
-//            giactVerifyRequest.ZipCode = cpApplication.Physical_Postal_Code__c;
-//            giactVerifyRequest.Country = cpApplication.Physical_Country__c;
-//            giactVerifyRequest.PhoneNumber = cpApplication.Business_Phone__c;
-//            giactVerifyRequest.FederalTaxId = cpApplication.Taxpayer_ID__c;
-//            giactVerifyRequest.EmailAddress = cpApplication.Email__c;
-//            giactVerifyRequest.IpAddress = cpApplication.Application_Signer_IP_Address__c;
-//
-//            if (!TestUtils.isRunningTest()) {
-//
-//                CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
-//
-//                if(giactVerifyResponse != null) {
-//
-//                    cpApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
-//                    cpApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
-//                    cpApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
-//                    cpApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
-//
-//                }
-//                else {
-//
-//                    cpApplication.GIACT_Check__c = 'Error';
-//                    cpApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
-//
-//                }
-//
-//            }
+            // GIACT
+            if(!String.isBlank(cpApplication.ABA_Routing_Number__c) && !String.isBlank(cpApplication.Checking_Account_Number__c)) {
+
+                CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
+
+                giactVerifyRequest.UniqueId = String.valueOf(cpApplication.Id);
+                giactVerifyRequest.RoutingNumber = cpApplication.ABA_Routing_Number__c;
+                giactVerifyRequest.AccountNumber = cpApplication.Checking_Account_Number__c;
+                giactVerifyRequest.FirstName = cpApplication.First_Name__c;
+                giactVerifyRequest.LastName = cpApplication.Last_Name__c;
+                giactVerifyRequest.BusinessName = cpApplication.Company_Legal_Name__c;
+                giactVerifyRequest.AddressLine1 = cpApplication.Physical_Address_Line_1__c;
+                giactVerifyRequest.AddressLine2 = cpApplication.Physical_Address_Line_2__c;
+                giactVerifyRequest.City = cpApplication.Physical_City__c;
+                giactVerifyRequest.State = cpApplication.Physical_State__c;
+                giactVerifyRequest.ZipCode = cpApplication.Physical_Postal_Code__c;
+                giactVerifyRequest.Country = cpApplication.Physical_Country__c;
+                giactVerifyRequest.PhoneNumber = cpApplication.Business_Phone__c;
+                giactVerifyRequest.FederalTaxId = cpApplication.Taxpayer_ID__c;
+                giactVerifyRequest.EmailAddress = cpApplication.Email__c;
+                giactVerifyRequest.IpAddress = cpApplication.Application_Signer_IP_Address__c;
+
+                if (!TestUtils.isRunningTest()) {
+
+                    CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+
+                    if (giactVerifyResponse != null) {
+
+                        cpApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
+                        cpApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
+                        cpApplication.GIACT_Response_Code__c = giactVerifyResponse.VerificationResponseCode;
+                        cpApplication.GIACT_Response_Message__c = giactVerifyResponse.VerificationResponseMessage;
+
+                        cpApplication.GIACT_Account_Response_Code_Name__c = giactVerifyResponse.AccountResponseCodeName;
+                        cpApplication.GIACT_Verify_Response_Code_Name__c = giactVerifyResponse.VerificationResponseCodeName;
+
+                    } else {
+
+                        cpApplication.GIACT_Check__c = 'Error';
+                        cpApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+
+                    }
+
+                }
+
+            }
 
             System.debug(cpApplication);
 
             // Upsert and execute BREeze
-            upsert cpApplication;
             cpApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
             cpApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
+            upsert cpApplication;
 
             // Make a safe copy so we don't overwrite any fields
             cpApplications = [SELECT Id, Running_Credit_Decisioning__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];

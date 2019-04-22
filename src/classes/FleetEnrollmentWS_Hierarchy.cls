@@ -143,7 +143,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                 gResponse.result = true;
                 gResponse.message = 'Case Queue successfully retrieved!';
 
-                gResponse.availableImplementationCases = [SELECT Id, Siebel_Oppty__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Default_Hierarchy_Level__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Parent_Account_Number__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Ultimate_Parent_Account_Number__c FROM Case WHERE Status = 'New' and OwnerId = :hierarchyQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate DESC LIMIT 10];
+                gResponse.availableImplementationCases = [SELECT Id, CaseNumber, Siebel_Oppty__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Default_Hierarchy_Level__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Parent_Account_Number__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Ultimate_Parent_Account_Number__c FROM Case WHERE Status = 'New' and OwnerId = :hierarchyQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate ASC LIMIT 10];
 
                 RestContext.response.addHeader('Content-Type', 'application/json');
                 RestContext.response.responseBody = Blob.valueOf(JSON.serialize(gResponse));
@@ -212,9 +212,10 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
         try {
 
-            List<Case> cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c, Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c, Opportunity__r.Campaign_Program__r.Program__c FROM Case WHERE Id = :caseId LIMIT 1];
+            List<Case> cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c, Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c, Opportunity__r.Campaign_Program__r.Program__c FROM Case WHERE Id = :caseId LIMIT 1];
 
             if (cases.size() > 0) {
+
                 cases[0].Hierarchy_Setup_Completed__c = true;
                 cases[0].OwnerId = UserInfo.getUserId();
                 cases[0].Status = 'Closed';
@@ -231,7 +232,46 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 upsert cases;
 
-                if (cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c == false && cases[0].Opportunity__r.SourceSystem__c != null && (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') && cases[0].App_Request_This_Case__r.Sales_Person__r.Alias != null && (cases[0].App_Request_This_Case__r.Sales_Person__r.Alias).equalsIgnoreCase('sinte')) {
+                // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
+                // least need a Program Template Account associated for das bots.
+                if(cases[0].Fleet_Enrollment__c == null) {
+
+                    FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
+
+                    fleetEnrollment.Program__c = cases[0].Opportunity__r.Campaign_Program__r.Program__c;
+                    fleetEnrollment.Opportunity__c = cases[0].Opportunity__c;
+                    fleetEnrollment.Application_Request__c = cases[0].App_Request_This_Case__c;
+
+                    List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Program_Default__c = true and Program__c =: cases[0].Opportunity__r.Campaign_Program__r.Program__c LIMIT 1];
+
+                    if(programTemplateAccounts.size() > 0) {
+
+                        fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
+
+                    }
+
+                    if (Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal') != null) {
+                        fleetEnrollment.RecordTypeId = Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal').getRecordTypeId();
+                    }
+
+                    insert fleetEnrollment;
+
+                    List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id =: cases[0].App_Request_This_Case__c LIMIT 1];
+
+                    if(applicationRequests.size() > 0) {
+
+                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollment.Id;
+
+                        upsert applicationRequests[0];
+
+                    }
+
+                }
+
+                // Re-fetch the case after insert
+                cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c, Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c, Opportunity__r.Campaign_Program__r.Program__c FROM Case WHERE Id = :caseId LIMIT 1];
+
+                if (cases[0].Fleet_Enrollment__c != null && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c == false && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Association__c == null && cases[0].Opportunity__r.SourceSystem__c != null && (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') && cases[0].App_Request_This_Case__r.Sales_Person__r.Alias != null && (cases[0].App_Request_This_Case__r.Sales_Person__r.Alias).equalsIgnoreCase('sinte')) {
 
                     Case implementationCallCase = new Case();
 
@@ -243,20 +283,6 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     implementationCallCase.AccountId = cases[0].AccountId;
                     implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
                     implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;
-
-                    // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
-                    // least need a Program Template Account associated for das bots.
-                    if(cases[0].Fleet_Enrollment__c == null && cases[0].Program_Template_Account__c == null) {
-
-                        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Program_Default__c = true and Program__c =: cases[0].Opportunity__r.Campaign_Program__r.Program__c LIMIT 1];
-
-                        if(programTemplateAccounts.size() > 0) {
-
-                            implementationCallCase.Program_Template_Account__c = programTemplateAccounts[0].Id;
-
-                        }
-
-                    }
 
                     if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation') != null) {
                         implementationCallCase.RecordTypeId = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Fleet Implementation').getRecordTypeId();
