@@ -4,7 +4,7 @@
 * Module: Main Runner
 * Author: Derek Gilbert
 * Initial Date: 3/26/2018
-*
+* Revision History: 4/23/2019 Jason Arbegast IADJUDICAT-1188 escape single quotes on business name
 */
 global class CreditDecisionEngineOTR {
 
@@ -369,7 +369,7 @@ global class CreditDecisionEngineOTR {
 
             existingExposureRequest.applicationId = onlineApplication.Id;
             existingExposureRequest.applicationName = onlineApplication.Name;
-            existingExposureRequest.legalBusinessName = onlineApplication.Legal_Business_Name__c;
+            existingExposureRequest.legalBusinessName = String.escapeSingleQuotes(onlineApplication.Legal_Business_Name__c);//IADJUDICAT-1188
             existingExposureRequest.addressLine1 = onlineApplication.Business_Street_Address__c;
             existingExposureRequest.city = onlineApplication.City__c;
             existingExposureRequest.state = onlineApplication.State__c;
