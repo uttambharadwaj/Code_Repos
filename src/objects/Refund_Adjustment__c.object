@@ -702,6 +702,19 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Old_State__c</fullName>
+        <externalId>false</externalId>
+        <label>Old State</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>US_States</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Reason_Comment__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -770,16 +783,15 @@
     </fields>
     <fields>
         <fullName>State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>State</label>
+        <length>5</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetName>US_States</valueSetName>
-        </valueSet>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Term_Date__c</fullName>
@@ -1039,34 +1051,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Refund_Code__c</picklist>
-            <values>
-                <fullName>ESCH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MISAP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OTHER</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OVRPY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>REFND</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TERM</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>State__c</picklist>
+            <picklist>Old_State__c</picklist>
             <values>
                 <fullName>AK</fullName>
                 <default>false</default>
@@ -1297,6 +1282,33 @@
             </values>
             <values>
                 <fullName>WY</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Refund_Code__c</picklist>
+            <values>
+                <fullName>ESCH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MISAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OVRPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REFND</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TERM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1486,34 +1498,7 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Refund_Code__c</picklist>
-            <values>
-                <fullName>ESCH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MISAP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OTHER</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OVRPY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>REFND</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TERM</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>State__c</picklist>
+            <picklist>Old_State__c</picklist>
             <values>
                 <fullName>AK</fullName>
                 <default>false</default>
@@ -1744,6 +1729,33 @@
             </values>
             <values>
                 <fullName>WY</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Refund_Code__c</picklist>
+            <values>
+                <fullName>ESCH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MISAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OVRPY</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>REFND</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TERM</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

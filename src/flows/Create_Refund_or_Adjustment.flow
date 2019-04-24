@@ -132,7 +132,7 @@
         <name>Update_Refund_Values</name>
         <label>Update Refund Values</label>
         <locationX>393</locationX>
-        <locationY>274</locationY>
+        <locationY>273</locationY>
         <assignmentItems>
             <assignToReference>RefundAdjustment.Bank_ABA__c</assignToReference>
             <operator>Assign</operator>
@@ -732,7 +732,7 @@
         <description>Create the initial Refund or Adjustment record</description>
         <name>Create_Refund_or_Adjustment_Record</name>
         <label>Create Refund or Adjustment Record</label>
-        <locationX>1213</locationX>
+        <locationX>1214</locationX>
         <locationY>184</locationY>
         <assignRecordIdToReference>RefundAdjustment.Id</assignRecordIdToReference>
         <connector>
@@ -1188,7 +1188,7 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <showHeader>true</showHeader>
     </screens>
     <startElementReference>ChooseRecordType</startElementReference>
-    <status>Draft</status>
+    <status>Active</status>
     <variables>
         <name>Adjustment_Type_Picklist</name>
         <dataType>Picklist</dataType>
