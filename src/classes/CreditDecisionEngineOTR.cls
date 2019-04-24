@@ -4,7 +4,7 @@
 * Module: Main Runner
 * Author: Derek Gilbert
 * Initial Date: 3/26/2018
-*
+* Revision History: 4/23/2019 Jason Arbegast IADJUDICAT-1188 escape single quotes on business name
 */
 global class CreditDecisionEngineOTR {
 
@@ -170,7 +170,7 @@ global class CreditDecisionEngineOTR {
             System.debug('Running NexisLexis Business...');
             CreditWS_LexisNexisBridger.LexisNexisBridgerBusinessRequest lexisNexisBridgerBusinessRequest = new CreditWS_LexisNexisBridger.LexisNexisBridgerBusinessRequest();
 
-            lexisNexisBridgerBusinessRequest.companyName = onlineApplication.Legal_Business_Name__c;
+            lexisNexisBridgerBusinessRequest.companyName = String.escapeSingleQuotes(onlineApplication.Legal_Business_Name__c);//IADJUDICAT-1188 get those singlies outta there
             lexisNexisBridgerBusinessRequest.addressLine1 = onlineApplication.Business_Street_Address__c;
             lexisNexisBridgerBusinessRequest.city = onlineApplication.City__c;
             lexisNexisBridgerBusinessRequest.state = onlineApplication.State__c;
@@ -193,7 +193,7 @@ global class CreditDecisionEngineOTR {
             CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
 
             dnbDirectMatchRequest.SingleResolution = true;
-            dnbDirectMatchRequest.SubjectName = onlineApplication.Legal_Business_Name__c;
+            dnbDirectMatchRequest.SubjectName = String.escapeSingleQuotes(onlineApplication.Legal_Business_Name__c);//IADJUDICAT-1188 get those singlies outta there
             dnbDirectMatchRequest.StreetAddressLine1 = onlineApplication.Business_Street_Address__c;
             dnbDirectMatchRequest.PrimaryTownName = onlineApplication.City__c;
             dnbDirectMatchRequest.TerritoryName = onlineApplication.State__c;
@@ -357,7 +357,7 @@ global class CreditDecisionEngineOTR {
             // SAFER
             if (onlineApplication.DOT_Number__c != null && !onlineApplication.DOT_Number__c.equals('')) {
                 List<SAFER_Carrier__c> saferCarriers = [SELECT Id, DOT_Number__c from SAFER_Carrier__c where DOT_Number__c =: onlineApplication.DOT_Number__c];
-    
+
                 if (saferCarriers.size() > 0) {
                     onlineApplication.SAFER_Carrier__c = saferCarriers[0].Id;
                 }
@@ -369,7 +369,7 @@ global class CreditDecisionEngineOTR {
 
             existingExposureRequest.applicationId = onlineApplication.Id;
             existingExposureRequest.applicationName = onlineApplication.Name;
-            existingExposureRequest.legalBusinessName = onlineApplication.Legal_Business_Name__c;
+            existingExposureRequest.legalBusinessName = String.escapeSingleQuotes(onlineApplication.Legal_Business_Name__c);//IADJUDICAT-1188 get those singlies outta there
             existingExposureRequest.addressLine1 = onlineApplication.Business_Street_Address__c;
             existingExposureRequest.city = onlineApplication.City__c;
             existingExposureRequest.state = onlineApplication.State__c;
@@ -421,7 +421,7 @@ global class CreditDecisionEngineOTR {
                 giactVerifyRequest.AccountNumber = onlineApplication.Checking_Account_Number__c;
                 giactVerifyRequest.FirstName = onlineApplication.Contact_First_Name__c;
                 giactVerifyRequest.LastName = onlineApplication.Contact_Last_Name__c;
-                giactVerifyRequest.BusinessName = onlineApplication.Legal_Business_Name__c;
+                giactVerifyRequest.BusinessName = String.escapeSingleQuotes(onlineApplication.Legal_Business_Name__c);//IADJUDICAT-1188 be gone, singlies
                 giactVerifyRequest.AddressLine1 = onlineApplication.Business_Street_Address__c;
                 giactVerifyRequest.AddressLine2 = onlineApplication.Business_Address_Line_2__c;
                 giactVerifyRequest.City = onlineApplication.City__c;
