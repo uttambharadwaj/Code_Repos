@@ -1,5 +1,7 @@
 /**
  * Created by dgilbert on 9/20/2018.
+ * Revision History:    IADJUDICAT-1199 order by lastmodifieddate
+ *                      IADJUDICAT-1200 restrict what goes to Account Activation queue--adding App Channel
  */
 @RestResource(urlMapping='/FleetEnrollmentWS/HierarchyQueue/*')
 global with sharing class FleetEnrollmentWS_Hierarchy {
@@ -143,7 +145,8 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                 gResponse.result = true;
                 gResponse.message = 'Case Queue successfully retrieved!';
 
-                gResponse.availableImplementationCases = [SELECT Id, CaseNumber, Siebel_Oppty__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Default_Hierarchy_Level__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Parent_Account_Number__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Ultimate_Parent_Account_Number__c FROM Case WHERE Status = 'New' and OwnerId = :hierarchyQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate ASC LIMIT 10];
+                //1199 order by lastmodifieddate
+                gResponse.availableImplementationCases = [SELECT Id, CaseNumber, Siebel_Oppty__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Default_Hierarchy_Level__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Parent_Account_Number__c, App_Request_This_Case__r.Opportunity__r.Campaign_Program__r.Program__r.Program_Ultimate_Parent_Account_Number__c FROM Case WHERE Status = 'New' and OwnerId = :hierarchyQueueId and Siebel_Oppty__c != null ORDER BY LastModifiedDate ASC LIMIT 10];
 
                 RestContext.response.addHeader('Content-Type', 'application/json');
                 RestContext.response.responseBody = Blob.valueOf(JSON.serialize(gResponse));
@@ -270,8 +273,15 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 // Re-fetch the case after insert
                 cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c, Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c, Opportunity__r.Campaign_Program__r.Program__c FROM Case WHERE Id = :caseId LIMIT 1];
-
-                if (cases[0].Fleet_Enrollment__c != null && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c == false && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Association__c == null && cases[0].Opportunity__r.SourceSystem__c != null && (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') && cases[0].App_Request_This_Case__r.Sales_Person__r.Alias != null && (cases[0].App_Request_This_Case__r.Sales_Person__r.Alias).equalsIgnoreCase('sinte')) {
+                //1200&1201 add app channel criteria
+                if (cases[0].Fleet_Enrollment__c != null &&
+                        cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c == false &&
+                        cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Association__c == null &&
+                        (cases[0].App_Request_This_Case__r.Application_Channel__c).equalsIgnoreCase('BOCA') &&
+                        cases[0].Opportunity__r.SourceSystem__c != null &&
+                        (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') &&
+                        cases[0].App_Request_This_Case__r.Sales_Person__r.Alias != null &&
+                        (cases[0].App_Request_This_Case__r.Sales_Person__r.Alias).equalsIgnoreCase('sinte')) {
 
                     Case implementationCallCase = new Case();
 
