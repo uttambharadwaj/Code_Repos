@@ -36,6 +36,8 @@
             {label: "Dept.", fieldName: "Department__c", type: "text", sortable: true}
         ]);
 
+        console.log('Updated caseHistoryColumnList');
+
 
         component.set("v.paymentDetailsColumnList", [
             {label: "Payment ID", fieldName: "paymentId", type: "text", sortable: false, initialWidth: 150 },

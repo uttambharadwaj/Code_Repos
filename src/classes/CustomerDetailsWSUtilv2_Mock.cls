@@ -176,6 +176,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     responseElement.return_x.fleetOneCustomer = false;
                     responseElement.return_x.flexCardCustomer = false;
                     responseElement.return_x.flexCardPenaltyPricingIndicator = 'N';
+                    responseElement.return_x.funder = 'FSC';
                     responseElement.return_x.highCreditRiskFeeIndicator = false;
                     responseElement.return_x.highRiskCureDt = (Datetime)JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
                     responseElement.return_x.lastPaymentDt = (Datetime)JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);

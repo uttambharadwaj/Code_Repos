@@ -523,6 +523,10 @@ public without sharing class CustomerDetailsController {
                         serviceOperationsAccount.Priority_Level__c = customerDetails.priorityLevel;
                         serviceOperationsAccount.Priority_Level_Update_Date__c = System.now();
                     }
+                    
+                    if (customerDetails.funder != null) {
+                        serviceOperationsAccount.Funder__c = customerDetails.funder;
+                    }
 
                     if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('A')) {
                         serviceOperationsAccount.Status__c = 'Active';    
@@ -575,7 +579,6 @@ public without sharing class CustomerDetailsController {
                         serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
                         serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
                     }
-                    
                     upsert serviceOperationsAccount;
                     
                     System.debug('### AcctId ' + serviceOperationsAccount.Id);
