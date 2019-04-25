@@ -4,7 +4,7 @@
 * Module: Main Runner
 * Author: Derek Gilbert
 * Initial Date: 3/26/2018
-*
+* Revision History: 4/25/2019 IADJUDICAT-739 move dnb lookup logic to just before upsert; gotta wait for that response
 */
 global class CreditDecisionEngineOTR {
 
@@ -207,7 +207,6 @@ global class CreditDecisionEngineOTR {
 
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1 && dnbDirectMatchResponse.matchCandidates[0].OperatingStatus != null && (dnbDirectMatchResponse.matchCandidates[0].OperatingStatus).equalsIgnoreCase('Active')) {
 
-                onlineApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
                 onlineApplication.DNB_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchGradeString;
                 onlineApplication.DNB_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchDataProfile;
                 onlineApplication.DNB_Street_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StreetNameMatchDataProfile;
@@ -335,10 +334,6 @@ global class CreditDecisionEngineOTR {
                     dnbDirectMatchRequest.SingleResolution = false;
                     dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
-                    if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null) {
-                        onlineApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
-                    }
-
                 }
 
             } else if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null) {
@@ -346,18 +341,13 @@ global class CreditDecisionEngineOTR {
                 dnbDirectMatchRequest.SingleResolution = false;
                 dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
-                if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null) {
-                    onlineApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
-                }
 
-            } else {
-                onlineApplication.DNB_Lookup_Hits__c = 0;
             }
 
             // SAFER
             if (onlineApplication.DOT_Number__c != null && !onlineApplication.DOT_Number__c.equals('')) {
                 List<SAFER_Carrier__c> saferCarriers = [SELECT Id, DOT_Number__c from SAFER_Carrier__c where DOT_Number__c =: onlineApplication.DOT_Number__c];
-    
+
                 if (saferCarriers.size() > 0) {
                     onlineApplication.SAFER_Carrier__c = saferCarriers[0].Id;
                 }
@@ -450,7 +440,7 @@ global class CreditDecisionEngineOTR {
                     } else {
 
                         onlineApplication.GIACT_Check__c = 'Error';
-                        onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+                        //onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
 
                     }
 
@@ -461,6 +451,12 @@ global class CreditDecisionEngineOTR {
             // Upsert and execute BREeze
             onlineApplication.Application_Exposure_Hits__c = existingExposureApplications.size();
             onlineApplication.Existing_Account_Exposure_Hits__c = existingExposureAccounts.size();
+            //IADJUDICAT-739 wait until the last moment to set dnb hits bc we live life on the edge
+            if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null)
+                onlineApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
+            else
+                onlineApplication.DNB_Lookup_Hits__c = 0;
+
             upsert onlineApplication;
 
             // Make a safe copy so we don't overwrite any fields
