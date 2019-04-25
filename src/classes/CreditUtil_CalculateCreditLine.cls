@@ -150,15 +150,20 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                         }
                     }
 
-                    // If DNB match was successful, and PG was not required, caluclate credit based on DNB info
+                    // If DNB match was successful, and PG was not required, calculate credit based on DNB info
                     if (!ar.PG_Required__c && ar.DNB_Credit_Line_Recommendation__c > 0) {
-                        return calculateNACreditLimitPerDNB(ar, creditLineRequested, riskGrade, highCreditAmount);
+                        ar.Credit_Line_Recommendation__c = calculateNACreditLimitPerDNB(ar, creditLineRequested, riskGrade, highCreditAmount);
 
                     }
                     // If PG pulled, calculate the recommended credit line based on PG info
                     else {
-                        return calculateNACreditLimitPerPG(ar, creditLineRequested, riskGrade, highCreditAmount);
+                        ar.Credit_Line_Recommendation__c = calculateNACreditLimitPerPG(ar, creditLineRequested, riskGrade, highCreditAmount);
                     }
+
+                    if (ar.Credit_Line_Recommendation__c != 0 && ar.Credit_Line_Recommendation__c < 500) {
+                        ar.Credit_Line_Recommendation__c = 500;
+                    }
+                    return ar.Credit_Line_Recommendation__c;
                 }
             }
 
