@@ -440,7 +440,7 @@ global class CreditDecisionEngineOTR {
                     } else {
 
                         onlineApplication.GIACT_Check__c = 'Error';
-                        //onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+                        onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
 
                     }
 
