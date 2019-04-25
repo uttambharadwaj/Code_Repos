@@ -4,7 +4,7 @@
 * Module: Lexis/Nexis
 * Author: Derek Gilbert
 * Initial Date: 3/5/2018
-*
+* Revision History: 4/25/2019 IADJUDICAT-739 make them wait longer for that response.
 */
 public class CreditWS_DNB {
 
@@ -181,7 +181,7 @@ public class CreditWS_DNB {
                 parameterStrings.put('cleansematch', 'true');
 
                 clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/V6.0/organizations?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
-
+                clenseAndMatchRequest.setTimeout(120000); //IADJUDICAT-739 make them wait as long as possible. bc everyone needs a little break now and then
                 Http clenseAndMatchCallout = new Http();
 
                 HTTPResponse cleanseAndMatchResponse = clenseAndMatchCallout.send(clenseAndMatchRequest);
