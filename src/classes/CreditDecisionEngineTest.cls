@@ -322,6 +322,7 @@ public class CreditDecisionEngineTest {
             /** TEST CONSUMER */
             // FICO 750+
             // High credit covers requested
+            onlineApplications[0].DNB_Credit_Line_Recommendation__c = null;
             onlineApplications[0].PG_Required__c = true;
             onlineApplications[0].PG_Score__c = 760;
             onlineApplications[0].Credit_Line_Requested__c = 5000;
@@ -383,18 +384,10 @@ public class CreditDecisionEngineTest {
 
             /** TEST FOR BOTH COMMERCIAL AND CONSUMER */
 
-            // Risk Grade 4
-            // credit line brought down to the minimum of $5000
-            onlineApplications[0].Number_of_Trucks__c = 1;
-            onlineApplications[0].Risk_Grade__c = '4';
-            onlineApplications[0].Credit_Line_Requested__c = 10000;
-            upsert onlineApplications[0];
-
-            oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
-            System.assertEquals(5000, oa);
-
             // Didn't have a credit line recommendation higher than the minimum amount of $2500
             onlineApplications[0].Risk_Grade__c = '1';
+            onlineApplications[0].PG_Required__c = false;
+            onlineApplications[0].DNB_Credit_Line_Recommendation__c = 2000;
             onlineApplications[0].Team_Drivers_Slip_Seat__c = false;
             onlineApplications[0].Credit_Line_Requested__c = 2000;
             upsert onlineApplications[0];
