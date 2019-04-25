@@ -413,6 +413,11 @@ public with sharing class CreditDecisionEngineNATest {
             applicationRequests[0].Requested_Credit_Limit__c = '15000';
             applicationRequests[0].PG_High_Credit_Amount__c = 9000;
 
+            upsert applicationRequests[0];
+
+            ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(9000, ar);
+
             // Risk Grade 3 or 4
             // credit line recommendation set below the minimum of $500
             applicationRequests[0].PG_Required__c = true;
