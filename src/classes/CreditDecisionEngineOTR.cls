@@ -5,7 +5,7 @@
 * Author: Derek Gilbert
 * Initial Date: 3/26/2018
 * Revision History: 4/23/2019 Jason Arbegast IADJUDICAT-1188 escape single quotes on business name
-*                   4/25/2019 IADJUDICAT-739 move dnb lookup logic to just before upsert; gotta wait for that response
+*                   4/25/2019 IADJUDICAT-739 move dnb lookup logic to just before upsert; gotta wait for that response; also do the constructor thing
 */
 global class CreditDecisionEngineOTR {
 
@@ -191,18 +191,9 @@ global class CreditDecisionEngineOTR {
 
             // DNB Resolution
             System.debug('Running DNB Matching...');
-            CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
 
-            dnbDirectMatchRequest.SingleResolution = true;
-            dnbDirectMatchRequest.SubjectName = String.escapeSingleQuotes(onlineApplication.Legal_Business_Name__c);//IADJUDICAT-1188 get those singlies outta there
-            dnbDirectMatchRequest.StreetAddressLine1 = onlineApplication.Business_Street_Address__c;
-            dnbDirectMatchRequest.PrimaryTownName = onlineApplication.City__c;
-            dnbDirectMatchRequest.TerritoryName = onlineApplication.State__c;
-            dnbDirectMatchRequest.FullPostalCode = onlineApplication.Zip_Code__c;
-            dnbDirectMatchRequest.CountryISOAlpha2Code = onlineApplication.Country__c;
-            dnbDirectMatchRequest.DUNSNumber = onlineApplication.DUNS__c;
-            dnbDirectMatchRequest.TelephoneNumber = onlineApplication.Phone_Number__c;
-            dnbDirectMatchRequest.TradeStyleName = onlineApplication.Trade_Name__c;
+            //IADJUDICAT 739 set up constructor for our class that uses online app.
+            CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest(onlineApplication);
 
             CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
@@ -250,7 +241,7 @@ global class CreditDecisionEngineOTR {
                             onlineApplication.DUNS__c = dnbOTRModelResponse.DunsNumber;
                             onlineApplication.Global_Ultimate_DUNS__c = dnbOTRModelResponse.GlobalUltimateDUNS;
                             onlineApplication.DNB_Resolved_Name__c = dnbOTRModelResponse.PrimaryName;
-                            onlineApplication.DNB_Resolved_Address__c = dnbOTRModelResponse.AddressLine;
+                            onlineApplication.DNB_Resolved_Address__c   = dnbOTRModelResponse.AddressLine;
                             onlineApplication.DNB_Resolved_City__c = dnbOTRModelResponse.PostalTown;
                             onlineApplication.DNB_Resolved_State__c = dnbOTRModelResponse.PrimaryGeographicArea;
                             onlineApplication.DNB_Resolved_Postal_Code__c = dnbOTRModelResponse.PostalCode;
@@ -456,7 +447,7 @@ global class CreditDecisionEngineOTR {
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null)
                 onlineApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
             else
-                    onlineApplication.DNB_Lookup_Hits__c = 0;
+                onlineApplication.DNB_Lookup_Hits__c = 0;
 
             upsert onlineApplication;
 

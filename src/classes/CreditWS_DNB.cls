@@ -4,7 +4,7 @@
 * Module: Lexis/Nexis
 * Author: Derek Gilbert
 * Initial Date: 3/5/2018
-* Revision History: 4/25/2019 IADJUDICAT-739 make them wait longer for that response.
+* Revision History: 4/25/2019 IADJUDICAT-739 make them wait longer for that response. also do the constructor w/ parameter thing
 */
 public class CreditWS_DNB {
 
@@ -182,9 +182,10 @@ public class CreditWS_DNB {
 
                 clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/V6.0/organizations?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
                 clenseAndMatchRequest.setTimeout(120000); //IADJUDICAT-739 make them wait as long as possible. bc everyone needs a little break now and then
-                Http clenseAndMatchCallout = new Http();
 
-                HTTPResponse cleanseAndMatchResponse = clenseAndMatchCallout.send(clenseAndMatchRequest);
+                Http cleanseRequestCallout = new Http();
+
+                HTTPResponse cleanseAndMatchResponse = cleanseRequestCallout.send(clenseAndMatchRequest);
 
                 System.debug('### Cleanse And Match Request: ' + clenseAndMatchRequest);
 
@@ -282,7 +283,9 @@ public class CreditWS_DNB {
 
         }
         catch(Exception e) {
+            //IADJUDICAT 739 let's log an error too. we need to know what is happening at all times. we are big brother and we say so.
             System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
+            insert UtilityClass.logInternalError(e, null, 'CreditWS_DNB=>dnbDirectClenseAndMatch', false, null, null);
         }
 
         return dnbDirectMatchResponse;
@@ -1340,6 +1343,22 @@ public class CreditWS_DNB {
         public DNBDirect_MatchRequest() {
 
             this.SingleResolution = false;
+
+        }
+
+        //IADJUDICAT-739 creditdecisionengineotr and dnbadvancedlookupcontroller should do same thing. let's set up one place to do that
+        public DNBDirect_MatchRequest(OnlineApplication__c myApp) {
+
+            this.SingleResolution = true;
+            this.SubjectName = String.escapeSingleQuotes(myApp.Legal_Business_Name__c);//IADJUDICAT-1188 get those singlies outta there
+            this.StreetAddressLine1 = myApp.Business_Street_Address__c;
+            this.PrimaryTownName = myApp.City__c;
+            this.TerritoryName = myApp.State__c;
+            this.FullPostalCode = myApp.Zip_Code__c;
+            this.CountryISOAlpha2Code = myApp.Country__c;
+            this.DUNSNumber = myApp.DUNS__c;
+            this.TelephoneNumber = myApp.Phone_Number__c;
+            this.TradeStyleName = myApp.Trade_Name__c;
 
         }
 
