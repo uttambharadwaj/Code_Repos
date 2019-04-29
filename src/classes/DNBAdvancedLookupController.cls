@@ -4,7 +4,7 @@
 * Module: DNB Advanced Lookup Controller
 * Author: Derek Gilbert
 * Initial Date: 5/29/2018
-*
+* Revision History: 4/29/2019 IADJUDICAT-739 use constructor w/ parameter so we can have consistency between automation and this page
  */
 
 public with sharing class DNBAdvancedLookupController {
@@ -42,7 +42,7 @@ public with sharing class DNBAdvancedLookupController {
         if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
             List<OnlineApplication__c> onlineApplications = [
-                    SELECT Id, DUNS__c, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c, Trade_Name__c, Phone_Number__c
+                    SELECT Id, DUNS__c, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c, Country__c, Phone_Number__c, Trade_Name__c
                     FROM OnlineApplication__c
                     WHERE Id = :applicationId
             ];
@@ -55,21 +55,10 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.state = onlineApplications[0].State__c;
                 applicationInformation.postalCode = onlineApplications[0].Zip_Code__c;
                 applicationInformation.dunsNumber = onlineApplications[0].DUNS__c;
-                applicationInformation.phoneNumber = onlineApplications[0].Phone_Number__c;
-                applicationInformation.tradeStyleName = onlineApplications[0].Trade_Name__c;
 
-                CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
-
-                dnbDirectMatchRequest.SubjectName = onlineApplications[0].Legal_Business_Name__c;
-                dnbDirectMatchRequest.StreetAddressLine1 = onlineApplications[0].Business_Street_Address__c;
-                dnbDirectMatchRequest.PrimaryTownName = onlineApplications[0].City__c;
-                dnbDirectMatchRequest.TerritoryName = onlineApplications[0].State__c;
-                dnbDirectMatchRequest.FullPostalCode = onlineApplications[0].Zip_Code__c;
-                dnbDirectMatchRequest.CountryISOAlpha2Code = 'US';
-                dnbDirectMatchRequest.DUNSNumber = onlineApplications[0].DUNS__c;
-                dnbDirectMatchRequest.TradeStyleName = onlineApplications[0].Trade_Name__c;
-                dnbDirectMatchRequest.TelephoneNumber = onlineApplications[0].Phone_Number__c;
-
+                //IADJUDICAT 739 set up constructor for our class that uses online app.
+                CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest(onlineApplications[0]);
+                dnbDirectMatchRequest.SingleResolution = false;
                 CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
                 if (dnbDirectMatchResponse != null) {
@@ -82,7 +71,7 @@ public with sharing class DNBAdvancedLookupController {
 
             List<CP_Application_Request__c> cpApplicationRequests = [
                     SELECT Id, DUNS_Number__c, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c,
-                            Physical_State_Province__c, Physical_Postal_Code__c, Business_Phone__c, Doing_Business_As__c
+                            Physical_State__c, Physical_Postal_Code__c
                     FROM CP_Application_Request__c
                     WHERE Id = :applicationId
             ];
@@ -92,23 +81,19 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.companyName = cpApplicationRequests[0].Company_Legal_Name__c;
                 applicationInformation.addressLine1 = cpApplicationRequests[0].Physical_Address_Line_1__c;
                 applicationInformation.city = cpApplicationRequests[0].Physical_City__c;
-                applicationInformation.state = cpApplicationRequests[0].Physical_State_Province__c;
+                applicationInformation.state = cpApplicationRequests[0].Physical_State__c;
                 applicationInformation.postalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 applicationInformation.dunsNumber = cpApplicationRequests[0].DUNS_Number__c;
-                applicationInformation.phoneNumber = cpApplicationRequests[0].Business_Phone__c;
-                applicationInformation.tradeStyleName = cpApplicationRequests[0].Doing_Business_As__c;
 
                 CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
 
                 dnbDirectMatchRequest.SubjectName = cpApplicationRequests[0].Company_Legal_Name__c;
                 dnbDirectMatchRequest.StreetAddressLine1 = cpApplicationRequests[0].Physical_Address_Line_1__c;
                 dnbDirectMatchRequest.PrimaryTownName = cpApplicationRequests[0].Physical_City__c;
-                dnbDirectMatchRequest.TerritoryName = cpApplicationRequests[0].Physical_State_Province__c;
+                dnbDirectMatchRequest.TerritoryName = cpApplicationRequests[0].Physical_State__c;
                 dnbDirectMatchRequest.FullPostalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 dnbDirectMatchRequest.CountryISOAlpha2Code = 'US';
                 dnbDirectMatchRequest.DUNSNumber = cpApplicationRequests[0].DUNS_Number__c;
-                dnbDirectMatchRequest.TradeStyleName = cpApplicationRequests[0].Doing_Business_As__c;
-                dnbDirectMatchRequest.TelephoneNumber = cpApplicationRequests[0].Business_Phone__c;
 
                 CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
@@ -122,7 +107,7 @@ public with sharing class DNBAdvancedLookupController {
 
             List<Application_Request__c> applicationRequests = [
                     SELECT Id, DUNS_Number__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c,
-                            Physical_State__c, Physical_Zip_Postal_Code__c, Physical_Country__c, Business_Phone_Number__c, Doing_Business_As__c
+                            Physical_State__c, Physical_Zip_Postal_Code__c, Physical_Country__c
                     FROM Application_Request__c
                     WHERE Id = :applicationId
             ];
@@ -135,8 +120,6 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.state = applicationRequests[0].Physical_State__c;
                 applicationInformation.postalCode = applicationRequests[0].Physical_Zip_Postal_Code__c;
                 applicationInformation.dunsNumber = applicationRequests[0].DUNS_Number__c;
-                applicationInformation.phoneNumber = applicationRequests[0].Business_Phone_Number__c;
-                applicationInformation.tradeStyleName = applicationRequests[0].Doing_Business_As__c;
 
                 CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
 
@@ -147,8 +130,6 @@ public with sharing class DNBAdvancedLookupController {
                 dnbDirectMatchRequest.FullPostalCode = applicationRequests[0].Physical_Zip_Postal_Code__c;
                 dnbDirectMatchRequest.CountryISOAlpha2Code = applicationRequests[0].Physical_Country__c;
                 dnbDirectMatchRequest.DUNSNumber = applicationRequests[0].DUNS_Number__c;
-                dnbDirectMatchRequest.TelephoneNumber = applicationRequests[0].Business_Phone_Number__c;
-                dnbDirectMatchRequest.TradeStyleName = applicationRequests[0].Doing_Business_As__c;
 
                 CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
@@ -262,12 +243,10 @@ public with sharing class DNBAdvancedLookupController {
     public class ApplicationInformation {
 
         public String companyName { get; set; }
-        public String tradeStyleName { get; set; }
         public String addressLine1 { get; set; }
         public String city { get; set; }
         public String state { get; set; }
         public String postalCode { get; set; }
-        public String phoneNumber { get; set; }
         public String dunsNumber { get; set; }
 
     }
