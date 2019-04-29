@@ -51,6 +51,7 @@ public class UtilityClassTest {
         system.assertEquals(myApplicationViewState, myError.Application_View_State__c);
         system.assertEquals(myApplicationParameters, myError.Application_Parameters__c);
         system.assertEquals(myUser, myError.User__c);
+        system.assertEquals(0, [SELECT count() FROM Internal_Application_Error__c]); //we really want to make sure there are no error records created from that thing
 
         //QED
     }
