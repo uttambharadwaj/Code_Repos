@@ -71,7 +71,7 @@ public with sharing class DNBAdvancedLookupController {
 
             List<CP_Application_Request__c> cpApplicationRequests = [
                     SELECT Id, DUNS_Number__c, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c,
-                            Physical_State__c, Physical_Postal_Code__c
+                            Physical_State_Province__c, Physical_Postal_Code__c, Business_Phone__c, Doing_Business_As__c
                     FROM CP_Application_Request__c
                     WHERE Id = :applicationId
             ];
@@ -81,19 +81,23 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.companyName = cpApplicationRequests[0].Company_Legal_Name__c;
                 applicationInformation.addressLine1 = cpApplicationRequests[0].Physical_Address_Line_1__c;
                 applicationInformation.city = cpApplicationRequests[0].Physical_City__c;
-                applicationInformation.state = cpApplicationRequests[0].Physical_State__c;
+                applicationInformation.state = cpApplicationRequests[0].Physical_State_Province__c;
                 applicationInformation.postalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 applicationInformation.dunsNumber = cpApplicationRequests[0].DUNS_Number__c;
+                applicationInformation.phoneNumber = cpApplicationRequests[0].Business_Phone__c;
+                applicationInformation.tradeStyleName = cpApplicationRequests[0].Doing_Business_As__c;
 
                 CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
 
                 dnbDirectMatchRequest.SubjectName = cpApplicationRequests[0].Company_Legal_Name__c;
                 dnbDirectMatchRequest.StreetAddressLine1 = cpApplicationRequests[0].Physical_Address_Line_1__c;
                 dnbDirectMatchRequest.PrimaryTownName = cpApplicationRequests[0].Physical_City__c;
-                dnbDirectMatchRequest.TerritoryName = cpApplicationRequests[0].Physical_State__c;
+                dnbDirectMatchRequest.TerritoryName = cpApplicationRequests[0].Physical_State_Province__c;
                 dnbDirectMatchRequest.FullPostalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 dnbDirectMatchRequest.CountryISOAlpha2Code = 'US';
                 dnbDirectMatchRequest.DUNSNumber = cpApplicationRequests[0].DUNS_Number__c;
+                dnbDirectMatchRequest.TradeStyleName = cpApplicationRequests[0].Doing_Business_As__c;
+                dnbDirectMatchRequest.TelephoneNumber = cpApplicationRequests[0].Business_Phone__c;
 
                 CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
@@ -107,7 +111,7 @@ public with sharing class DNBAdvancedLookupController {
 
             List<Application_Request__c> applicationRequests = [
                     SELECT Id, DUNS_Number__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c,
-                            Physical_State__c, Physical_Zip_Postal_Code__c, Physical_Country__c
+                            Physical_State__c, Physical_Zip_Postal_Code__c, Physical_Country__c, Business_Phone_Number__c, Doing_Business_As__c
                     FROM Application_Request__c
                     WHERE Id = :applicationId
             ];
@@ -120,6 +124,8 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.state = applicationRequests[0].Physical_State__c;
                 applicationInformation.postalCode = applicationRequests[0].Physical_Zip_Postal_Code__c;
                 applicationInformation.dunsNumber = applicationRequests[0].DUNS_Number__c;
+                applicationInformation.phoneNumber = applicationRequests[0].Business_Phone_Number__c;
+                applicationInformation.tradeStyleName = applicationRequests[0].Doing_Business_As__c;
 
                 CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
 
@@ -130,6 +136,8 @@ public with sharing class DNBAdvancedLookupController {
                 dnbDirectMatchRequest.FullPostalCode = applicationRequests[0].Physical_Zip_Postal_Code__c;
                 dnbDirectMatchRequest.CountryISOAlpha2Code = applicationRequests[0].Physical_Country__c;
                 dnbDirectMatchRequest.DUNSNumber = applicationRequests[0].DUNS_Number__c;
+                dnbDirectMatchRequest.TelephoneNumber = applicationRequests[0].Business_Phone_Number__c;
+                dnbDirectMatchRequest.TradeStyleName = applicationRequests[0].Doing_Business_As__c;
 
                 CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
@@ -243,10 +251,12 @@ public with sharing class DNBAdvancedLookupController {
     public class ApplicationInformation {
 
         public String companyName { get; set; }
+        public String tradeStyleName { get; set; }
         public String addressLine1 { get; set; }
         public String city { get; set; }
         public String state { get; set; }
         public String postalCode { get; set; }
+        public String phoneNumber { get; set; }
         public String dunsNumber { get; set; }
 
     }
