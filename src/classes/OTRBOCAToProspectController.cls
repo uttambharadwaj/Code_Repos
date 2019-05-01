@@ -91,22 +91,20 @@ public class OTRBOCAToProspectController {
 
             //get user info
             Id uid = UserInfo.getUserId();
-            String uType = UserInfo.getUserType();
 
             //from user get contact then account then program then partner
-            if(uType == 'Partner'){
-                User u = [SELECT Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
+            User u = [SELECT  profile.UserLicense.name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
+            Boolean isPartner = (u.profile.UserLicense.name == 'Partner Community') ? true : false;
+            if(isPartner)
                 partnerId = u.Contact.Account.Program__r.Partner__c;
-            }
 
             //assemble the query for possible programs.
             String myQuery = 'SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = \'OTR\' and Publish_BOCA__c = true';
-            if(uType == 'Partner' || (uType != 'Partner' && partnerId != null))
+            if(isPartner || (!isPartner && partnerId != null))
                 myQuery += ' AND Partner__c = :partnerId';
             myQuery += ' ORDER BY Name ASC';
-
             //if we have inside sales rep, or we have a partner AND a partnerid, add programs to drop down. if partner user but no partnerid, don't show anything
-            if(uType != 'Partner' || (uType == 'Partner' && partnerId != null)){
+            if(!isPartner || (isPartner && partnerId != null)){
                 for (Program__c program : database.query(myQuery)) {
                     availablePrograms.add(new SelectOption(program.Id, program.Name));
                 }
@@ -123,10 +121,11 @@ public class OTRBOCAToProspectController {
             List<SelectOption> availableOffers = new List<SelectOption>();
 
             availableOffers.add(new SelectOption('', '-- Choose One --'));
-            for (OnlineApplicationOffer__c offer : [SELECT Id, Name FROM OnlineApplicationOffer__c WHERE Program__c = :selectedProgram ORDER BY Name ASC]) {
-                availableOffers.add(new SelectOption(offer.Id, offer.Name));
+            if(selectedProgram != null){
+                for (OnlineApplicationOffer__c offer : [SELECT Id, Name FROM OnlineApplicationOffer__c WHERE Program__c = :selectedProgram ORDER BY Name ASC]) {
+                    availableOffers.add(new SelectOption(offer.Id, offer.Name));
+                }
             }
-
             return availableOffers;
         }
     }
