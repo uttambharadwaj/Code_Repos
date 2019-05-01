@@ -4,7 +4,7 @@
 * Module: Main Runner
 * Author: Derek Gilbert
 * Initial Date: 3/26/2018
-*
+* Revision History: 4/30/2019 IADJUDICAT-739 do the constructor thing.
 */
 global class CreditDecisionEngineNA {
 
@@ -194,25 +194,13 @@ global class CreditDecisionEngineNA {
 
             }
 
-            // DNB Resolution
-            CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
-
-            dnbDirectMatchRequest.SingleResolution = true;
-            dnbDirectMatchRequest.SubjectName = naApplication.Opportunity_Name_Text__c;
-            dnbDirectMatchRequest.StreetAddressLine1 = naApplication.Physical_Street__c;
-            dnbDirectMatchRequest.PrimaryTownName = naApplication.Physical_City__c;
-            dnbDirectMatchRequest.TerritoryName = naApplication.Physical_State__c;
-            dnbDirectMatchRequest.FullPostalCode = naApplication.Physical_Zip_Postal_Code__c;
-            dnbDirectMatchRequest.CountryISOAlpha2Code = naApplication.Physical_Country__c;
-            dnbDirectMatchRequest.DUNSNumber = naApplication.DUNS_Number__c;
-            dnbDirectMatchRequest.TradeStyleName = naApplication.Doing_Business_As__c;
-            dnbDirectMatchRequest.TelephoneNumber = naApplication.Business_Phone_Number__c;
+            // DNB Resolution. IADJUDCIAT-739 use a constructor for apprequests
+            CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest(naApplication);
 
             CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1 && dnbDirectMatchResponse.matchCandidates[0].OperatingStatus != null && (dnbDirectMatchResponse.matchCandidates[0].OperatingStatus).equalsIgnoreCase('Active')) {
 
-                naApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
                 naApplication.DNB_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchGradeString;
                 naApplication.DNB_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchDataProfile;
                 naApplication.DNB_Street_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StreetNameMatchDataProfile;
@@ -320,6 +308,9 @@ global class CreditDecisionEngineNA {
 
                     }
 
+                } else if(dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null){
+                    dnbDirectMatchRequest.SingleResolution = false;
+                    dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
                 }
 
             } else if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null) {
@@ -327,15 +318,9 @@ global class CreditDecisionEngineNA {
                 dnbDirectMatchRequest.SingleResolution = false;
                 dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
-                if(dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null) {
-                    naApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
-                }
-
-            } else {
-                naApplication.DNB_Lookup_Hits__c = 0;
             }
 
-            // Trust but verify 
+            // Trust but verify
             if ((null != naApplication.Tax_Payer_ID_number__c && null != naApplication.Bureau_Tax_ID__c) && naApplication.Tax_Payer_ID_number__c.equals(naApplication.Bureau_Tax_ID__c)) {
                 naApplication.DNB_Match_Score__c = 100;
             } else {
@@ -413,6 +398,13 @@ global class CreditDecisionEngineNA {
             // Upsert and execute BREeze
             naApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
             naApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
+
+            //IADJUDICAT-739 wait until the last moment to set dnb hits bc we live life on the edge
+            if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null)
+                naApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
+            else
+                    naApplication.DNB_Lookup_Hits__c = 0;
+
             upsert naApplication;
 
             // Make a safe copy so we don't overwrite any fields

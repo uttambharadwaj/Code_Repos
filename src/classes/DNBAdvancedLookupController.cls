@@ -127,17 +127,10 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.phoneNumber = applicationRequests[0].Business_Phone_Number__c;
                 applicationInformation.tradeStyleName = applicationRequests[0].Doing_Business_As__c;
 
-                CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
+                //IADJUDICAT-739 use the constructor
+                CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest(applicationRequests[0]);
 
-                dnbDirectMatchRequest.SubjectName = applicationRequests[0].Opportunity_Name_Text__c;
-                dnbDirectMatchRequest.StreetAddressLine1 = applicationRequests[0].Physical_Street__c;
-                dnbDirectMatchRequest.PrimaryTownName = applicationRequests[0].Physical_City__c;
-                dnbDirectMatchRequest.TerritoryName = applicationRequests[0].Physical_State__c;
-                dnbDirectMatchRequest.FullPostalCode = applicationRequests[0].Physical_Zip_Postal_Code__c;
-                dnbDirectMatchRequest.CountryISOAlpha2Code = applicationRequests[0].Physical_Country__c;
-                dnbDirectMatchRequest.DUNSNumber = applicationRequests[0].DUNS_Number__c;
-                dnbDirectMatchRequest.TelephoneNumber = applicationRequests[0].Business_Phone_Number__c;
-                dnbDirectMatchRequest.TradeStyleName = applicationRequests[0].Doing_Business_As__c;
+                dnbDirectMatchRequest.SingleResolution = false;
 
                 CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 

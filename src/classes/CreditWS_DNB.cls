@@ -1362,6 +1362,22 @@ public class CreditWS_DNB {
 
         }
 
+        //IADJUDICAT-739 creditdecisionenginena and dnbadvancedlookupcontroller should do same thing. let's set up one place to do that
+        public DNBDirect_MatchRequest(Application_Request__c myApp) {
+
+            this.SingleResolution = true;
+            this.SubjectName = myApp.Opportunity_Name_Text__c;
+            this.StreetAddressLine1 = myApp.Physical_Street__c;
+            this.PrimaryTownName = myApp.Physical_City__c;
+            this.TerritoryName = myApp.Physical_State__c;
+            this.FullPostalCode = myApp.Physical_Zip_Postal_Code__c;
+            this.CountryISOAlpha2Code = myApp.Physical_Country__c;
+            this.DUNSNumber = myApp.DUNS_Number__c;
+            this.TelephoneNumber = myApp.Business_Phone_Number__c;
+            this.TradeStyleName = myApp.Doing_Business_As__c;
+
+        }
+
     }
 
     public class DNBDirect_MatchResponse {
