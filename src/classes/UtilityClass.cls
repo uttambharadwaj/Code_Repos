@@ -1,0 +1,98 @@
+/*
+* Utility Class
+* Author: All the Team
+* Initial Date: 4/26/2019
+* Description: methods used by all the classes to go here. this allows for complete consistency across the org
+* Revision History: 5/1/2019 generateAppKey, getFieldMapping methods, sendEmail methods
+*
+*/
+global class UtilityClass {
+
+    /***************************ERROR LOG UTILITIES***************************/
+    //TODO: combine Internal and External error objects into one
+    //log an error. no dml bc it accepts only one exception at a time.
+    public static Internal_Application_Error__c logInternalError(Exception e, String theURL, String whereFrom, Boolean sendIt, String viewState, String params) {
+        Internal_Application_Error__c error = new Internal_Application_Error__c();
+
+        error.Error_Message__c = e.getMessage();
+        error.Error_Location__c = String.valueOf(e.getStackTraceString());
+        error.Application__c = whereFrom;
+        error.Application_URL__c = theURL;
+        error.User__c = UserInfo.getUserId();
+        error.Send_Email__c = sendIt;
+        error.Application_View_State__c = viewState;
+        error.Application_Parameters__c = params;
+
+        return error;
+    }
+    /***********************END ERROR LOG UTILITIES***************************/
+
+    /***************************BOCA UTILITIES********************************/
+    //generate application key
+    public static String generateAppKey(){
+        Datetime dt = Datetime.now();
+        Long l = dt.getTime();
+        String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128)); //get salty
+        return EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
+    }
+    /***************************END BOCA UTILITIES****************************/
+
+    /***************************FIELD MAPPING UTILITIES***********************/
+    //get field mapping metadata
+    public static Field_Mapping_Parent__mdt getFieldMapping(String destObjName, String sourceObjName, String streetName){
+        String myQuery = 'SELECT MasterLabel,';
+        myQuery += ' (SELECT Destination_Field_API_Name__c, Source_Field_API_Name__c FROM Field_Mapping_Children__r WHERE Disable_Field__c = false)';
+        myQuery += ' FROM Field_Mapping_Parent__mdt WHERE Destination_Object_API_Name__c=:destObjName';
+        myQuery += ' AND Source_Object_API_Name__c =:sourceObjName';
+        if(streetName != null)
+            myQuery += ' AND Source_Wrapper_Name__c=:streetName';
+        myQuery += ' AND Disable_Object_Mapping__c = false LIMIT 1';
+
+        List<Field_Mapping_Parent__mdt> myMaps = Database.query(myQuery);
+        if(myMaps.size()>0)
+            return myMaps[0];
+        return null;
+    }
+
+    //get field mapping data with bare minimum requirements
+    public static Field_Mapping_Parent__mdt getFieldMapping(String destObjName, String sourceObjName){
+        return getFieldMapping(destObjName, sourceObjName, null);
+    }
+    /**************************END FIELD MAPPING UTILITIES********************/
+
+    /**************************EMAIL UTILITIES********************************/
+    //TODO: will need email method(s) that return results bc sometimes we want to see those results.
+
+    //this one is for all the single emails. no more worrying about isrunningtest stuff before sending an email. will use SF default allornone true
+    public static void sendEmail(Messaging.SingleEmailMessage myEmail){
+        sendEmail(new Messaging.SingleEmailMessage[]{myEmail}, true);
+    }
+
+    //this one is for all the single emails if we want to send allornone as false
+    public static void sendEmail(Messaging.SingleEmailMessage myEmail, Boolean allOrNone){
+        sendEmail(new Messaging.SingleEmailMessage[]{myEmail}, allOrNone);
+    }
+
+    //this one is for a bunch of emails. sends SF default of true for allornone
+    public static void sendEmail(Messaging.SingleEmailMessage[] myEmailList){
+        sendEmail(myEmailList, true);
+    }
+
+    //this one actually does the sending.
+    //a non-test scenario can call this method too, sending in the allornone variable as false. otherwise it should just use above method
+    public static void sendEmail(Messaging.SingleEmailMessage[] myEmailList, Boolean allOrNone){
+        if(Test.isRunningTest()) allOrNone = false; //if we are testing then this needs to be false or it all fails
+        Messaging.sendEmail(myEmailList, allOrNone);
+    }
+    /**************************END EMAIL UTILITIES****************************/
+
+    /******************************MISCELLANEOUS******************************/
+    //custom get method for use with inner classes/wrappers, bc they don't have standard get functionality
+    public static Object get(String myVariable, Object myObject){
+        String jsonThis = JSON.serialize(myObject);
+        Map<String, Object> mapThis = (Map<String, Object>)JSON.deserializeUntyped(jsonThis);
+        return mapThis.get(myVariable);
+    }
+    /**************************END MISCELLANEOUS******************************/
+
+}

@@ -242,7 +242,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="1">
 											<label class="styled-label">{!IF(languageCode == 'en_us', 'Doing Business As', $ObjectType.OnlineApplication__c.fields.Trade_Name__c.label)}</label>
-											<apex:InputField styleClass="styled-input" html-tabindex="2" label="" id="doingBusinessAs" value="{!onlineApplication.Trade_Name__c}" html-maxlength="50" />
+											<apex:InputField styleClass="styled-input" html-tabindex="2" label="" id="doingBusinessAs" value="{!onlineApplication.Trade_Name__c}" html-maxlength="30" />
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="2">
 											<label class="styled-label">{!IF(languageCode == 'en_us', 'Business Phone', $ObjectType.OnlineApplication__c.fields.Phone_Number__c.label)} <span class="styled-label-required">*</span></label>

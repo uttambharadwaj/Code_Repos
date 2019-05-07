@@ -5,6 +5,7 @@ Test Classes:       OTRBOCATest
 Last Coverage:      60%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
                     4/10/2019 Jason Arbegast IADJUDICAT-966 added break in a for loop
+                    5/6/2019 Michael Farrell IADJUDICAT-1157 populated tmSessionId variable
  */
 public class OTRBOCAController {
 
@@ -435,7 +436,10 @@ public class OTRBOCAController {
 
                     String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
 
-                    onlineApplication.ThreatMetrix_Session_ID__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+                    // IADJUDICAT-1157 populate tmSessionId variable
+                    tmSessionId = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+
+                    onlineApplication.ThreatMetrix_Session_ID__c= tmSessionId;
 
                 } else {
                     throw new creditApplicationException('Unable to find specified credit application.');
