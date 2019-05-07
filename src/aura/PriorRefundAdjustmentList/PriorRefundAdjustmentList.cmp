@@ -1,0 +1,23 @@
+<!--
+ - Created by W083158 on 5/3/2019.
+ -->
+
+<aura:component description="PriorRefundAdjustmentList" controller="PriorRefundAdjustmentListController" implements="lightning:availableForFlowScreens,force:lightningQuickActionWithoutHeader" access="global">
+    <aura:attribute name="accountId" type="String"/>
+    <lightning:workspaceAPI aura:id="workspace" />
+    <lightning:spinner aura:id="loadingSpinner" class="full-height"/>
+
+    <aura:attribute name="refundsAdjustmentsColumnList" type="List" />
+    <aura:attribute name="refundsAdjustmentsData" type="Map" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:datatable aura:id="priorRefundsAndAdjustmentsTable"
+                                              data="{!v.refundsAdjustmentsData}"
+                                              columns="{!v.refundsAdjustmentsColumnList}"
+                                              keyField="Id"
+                                              hideCheckboxColumn="true"
+    />
+
+
+</aura:component>

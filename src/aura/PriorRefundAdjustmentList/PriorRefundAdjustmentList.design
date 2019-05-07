@@ -1,0 +1,7 @@
+<!--
+ - Created by W083158 on 5/3/2019.
+ -->
+
+<design:component label="Prior Refunds and Adjustments">
+    <design:attribute name="accountId" label="Account ID"/>
+</design:component>

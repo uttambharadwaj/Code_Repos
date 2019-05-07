@@ -3,8 +3,8 @@
     <assignments>
         <name>Assign_Adjustment_Code</name>
         <label>Assign Adjustment Code</label>
-        <locationX>1212</locationX>
-        <locationY>602</locationY>
+        <locationX>1213</locationX>
+        <locationY>600</locationY>
         <assignmentItems>
             <assignToReference>RefundAdjustment.Fee_Code__c</assignToReference>
             <operator>Assign</operator>
@@ -26,8 +26,8 @@
     <assignments>
         <name>Assign_Adjustment_Code_Retention</name>
         <label>Assign Adjustment Code (Retention)</label>
-        <locationX>785</locationX>
-        <locationY>463</locationY>
+        <locationX>787</locationX>
+        <locationY>462</locationY>
         <assignmentItems>
             <assignToReference>RefundAdjustment.Fee_Code__c</assignToReference>
             <operator>Assign</operator>
@@ -80,7 +80,101 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Update_Refund_Adjustment</targetReference>
+            <targetReference>Create_Refund_or_Adjustment_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>Create Refund/Adjustment record variable to hold the goodies</description>
+        <name>Create_Record_Variable</name>
+        <label>Create Record Variable</label>
+        <locationX>1214</locationX>
+        <locationY>236</locationY>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ParentAccount.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Account_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ParentAccount.Status__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Address1__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ParentAccount.BillingStreet</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.CaseNumber__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Parent_Case.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.City__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ParentAccount.BillingCity</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Department__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Your_Department</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Funder__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ParentAccount.Funder__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Name__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ParentAccount.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>RecordType.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.State__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ParentAccount.BillingState</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Zip__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ParentAccount.BillingPostalCode</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Approval_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Pending</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Record_Type_Selection</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -132,7 +226,7 @@
         <name>Update_Refund_Values</name>
         <label>Update Refund Values</label>
         <locationX>393</locationX>
-        <locationY>273</locationY>
+        <locationY>274</locationY>
         <assignmentItems>
             <assignToReference>RefundAdjustment.Bank_ABA__c</assignToReference>
             <operator>Assign</operator>
@@ -570,12 +664,37 @@
         </value>
     </constants>
     <decisions>
+        <name>Are_there_prior_Refunds_or_Adjustments</name>
+        <label>Are there prior Refunds or Adjustments?</label>
+        <locationX>975</locationX>
+        <locationY>52</locationY>
+        <defaultConnector>
+            <targetReference>Prior_Refunds_and_Adjustments_screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Prior Records Found</defaultConnectorLabel>
+        <rules>
+            <name>No_Items_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Prior_Refunds_or_Adjustments</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <elementReference>Yes</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Record_type</targetReference>
+            </connector>
+            <label>No Items Found</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_less_than_500</name>
         <label>Check less than $500</label>
         <locationX>248</locationX>
         <locationY>393</locationY>
         <defaultConnector>
-            <targetReference>Update_Refund_Adjustment</targetReference>
+            <targetReference>Create_Refund_or_Adjustment_Record</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Needs Approval</defaultConnectorLabel>
         <rules>
@@ -646,6 +765,7 @@
             <label>Choose Refund</label>
         </rules>
     </decisions>
+    <description>Wanted to save a version before switching to</description>
     <dynamicChoiceSets>
         <name>Adjustment_codes</name>
         <dataType>Picklist</dataType>
@@ -693,6 +813,12 @@
         <expression>{!$User.Id}</expression>
     </formulas>
     <formulas>
+        <description>Now minus 18 months, for querying prior refunds and adjustments</description>
+        <name>Eighteen_Months_Ago</name>
+        <dataType>Date</dataType>
+        <expression>ADDMONTHS({!$Flow.CurrentDateTime},-18)</expression>
+    </formulas>
+    <formulas>
         <description>Fee type is ANC for Ancillary Fee, LATE for all others.</description>
         <name>Get_Adjustment_Fee_Type</name>
         <dataType>String</dataType>
@@ -707,6 +833,12 @@
         <name>RefundCodeLookup</name>
         <dataType>String</dataType>
         <expression>LEFT({!Refund_Code},find(&quot; &quot;,{!Refund_Code})-1)</expression>
+    </formulas>
+    <formulas>
+        <description>Display approval status of the refund or adjustment.</description>
+        <name>StatusConfirmation</name>
+        <dataType>String</dataType>
+        <expression>IF(ISBLANK(TEXT({!RefundAdjustment.Approval_Status__c})),&quot;PENDING&quot;,TEXT({!RefundAdjustment.Approval_Status__c}))</expression>
     </formulas>
     <formulas>
         <name>Validate_requested_adjustment_value</name>
@@ -732,79 +864,18 @@
         <description>Create the initial Refund or Adjustment record</description>
         <name>Create_Refund_or_Adjustment_Record</name>
         <label>Create Refund or Adjustment Record</label>
-        <locationX>1214</locationX>
-        <locationY>184</locationY>
-        <assignRecordIdToReference>RefundAdjustment.Id</assignRecordIdToReference>
+        <locationX>53</locationX>
+        <locationY>451</locationY>
         <connector>
-            <targetReference>Record_Type_Selection</targetReference>
+            <targetReference>Get_Record_Name</targetReference>
         </connector>
-        <inputAssignments>
-            <field>Account_Status__c</field>
-            <value>
-                <elementReference>ParentAccount.Status__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Address1__c</field>
-            <value>
-                <elementReference>ParentAccount.BillingStreet</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>CaseNumber__c</field>
-            <value>
-                <elementReference>Parent_Case.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>City__c</field>
-            <value>
-                <elementReference>ParentAccount.BillingCity</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Department__c</field>
-            <value>
-                <elementReference>Your_Department</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Funder__c</field>
-            <value>
-                <elementReference>ParentAccount.Funder__c</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Name__c</field>
-            <value>
-                <elementReference>ParentAccount.Name</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>RecordTypeId</field>
-            <value>
-                <elementReference>RecordType.Id</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>State__c</field>
-            <value>
-                <elementReference>ParentAccount.BillingState</elementReference>
-            </value>
-        </inputAssignments>
-        <inputAssignments>
-            <field>Zip__c</field>
-            <value>
-                <elementReference>ParentAccount.BillingPostalCode</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Refund_Adjustment__c</object>
+        <inputReference>RefundAdjustment</inputReference>
     </recordCreates>
     <recordLookups>
         <description>Get Account info based on the Account in the parent Case</description>
         <name>Get_Account_Data</name>
         <label>Get Account Data</label>
-        <locationX>531</locationX>
+        <locationX>494</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -857,11 +928,11 @@
     <recordLookups>
         <name>Get_Contact_Data</name>
         <label>Get Contact Data</label>
-        <locationX>681</locationX>
+        <locationX>650</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Record_type</targetReference>
+            <targetReference>Get_Prior_Refunds_and_Adjustments</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -879,14 +950,78 @@
         <queriedFields>LastName</queriedFields>
     </recordLookups>
     <recordLookups>
+        <name>Get_Prior_Refunds_and_Adjustments</name>
+        <label>Get Prior Refunds and Adjustments</label>
+        <locationX>798</locationX>
+        <locationY>50</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Are_there_prior_Refunds_or_Adjustments</targetReference>
+        </connector>
+        <filters>
+            <field>Account__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>ParentAccount.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>Eighteen_Months_Ago</elementReference>
+            </value>
+        </filters>
+        <object>Refund_Adjustment__c</object>
+        <outputReference>Prior_Refunds_or_Adjustments</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>CaseNumber__c</queriedFields>
+        <queriedFields>Amount_Waived__c</queriedFields>
+        <queriedFields>Approval_Status__c</queriedFields>
+        <queriedFields>Approver_Name__c</queriedFields>
+        <queriedFields>Decision_Date__c</queriedFields>
+        <queriedFields>CreatedDate</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>RecordTypeId</queriedFields>
+        <sortField>Create_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+    </recordLookups>
+    <recordLookups>
+        <description>Get the name of the newly-created object</description>
+        <name>Get_Record_Name</name>
+        <label>Get Record Info</label>
+        <locationX>54</locationX>
+        <locationY>576</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Confirmation</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>RefundAdjustment.Id</elementReference>
+            </value>
+        </filters>
+        <object>Refund_Adjustment__c</object>
+        <outputReference>RefundAdjustment</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Account_Number__c</queriedFields>
+        <queriedFields>Account_Status__c</queriedFields>
+        <queriedFields>Name__c</queriedFields>
+        <queriedFields>Approval_Status__c</queriedFields>
+        <queriedFields>Amount_Waived__c</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <description>Get the record type from SF</description>
         <name>Get_Record_type</name>
         <label>Get Record Type</label>
-        <locationX>1213</locationX>
-        <locationY>50</locationY>
+        <locationX>1214</locationX>
+        <locationY>118</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Refund_or_Adjustment_Record</targetReference>
+            <targetReference>Create_Record_Variable</targetReference>
         </connector>
         <filters>
             <field>DeveloperName</field>
@@ -910,8 +1045,8 @@
     <recordUpdates>
         <name>Update_Refund_Adjustment</name>
         <label>Update Refund / Adjustment</label>
-        <locationX>36</locationX>
-        <locationY>388</locationY>
+        <locationX>88</locationX>
+        <locationY>218</locationY>
         <inputReference>RefundAdjustment</inputReference>
     </recordUpdates>
     <screens>
@@ -945,6 +1080,23 @@
             <fieldText>Your Department?</fieldText>
             <fieldType>DropdownBox</fieldType>
             <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Show confirmation message</description>
+        <name>Confirmation</name>
+        <label>Confirmation</label>
+        <locationX>53</locationX>
+        <locationY>716</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ConfirmationText</name>
+            <fieldText>&lt;p&gt;Your {!RecordType.DeveloperName} request has been recorded as {!RefundAdjustment.Name}.&lt;/p&gt;&lt;p&gt;Account Number: {!RefundAdjustment.Account_Number__c}&lt;/p&gt;&lt;p&gt;Amount: {!RefundAdjustment.Amount_Waived__c}&lt;/p&gt;&lt;p&gt;Status: {!RefundAdjustment.Approval_Status__c}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1013,7 +1165,7 @@ Adjustment Code: {!RefundAdjustment.Fee_Code__c} - {!RefundAdjustment.Reason_Des
     <screens>
         <name>Create_Refund</name>
         <label>Create Refund</label>
-        <locationX>678</locationX>
+        <locationX>566</locationX>
         <locationY>274</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -1048,7 +1200,7 @@ Adjustment Code: {!RefundAdjustment.Fee_Code__c} - {!RefundAdjustment.Reason_Des
         <fields>
             <name>Fee_Amount</name>
             <dataType>Currency</dataType>
-            <fieldText>Fee Amount</fieldText>
+            <fieldText>Refund Amount</fieldText>
             <fieldType>InputField</fieldType>
             <isRequired>true</isRequired>
             <scale>2</scale>
@@ -1079,6 +1231,32 @@ Attn: {!CaseContact.FirstName} {!CaseContact.LastName}
 {!ParentAccount.BillingStreet}
 {!ParentAccount.BillingCity} {!ParentAccount.BillingState} {!ParentAccount.BillingPostalCode}</fieldText>
             <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Prior_Refunds_and_Adjustments_screen</name>
+        <label>Prior Refunds and Adjustments</label>
+        <locationX>1214</locationX>
+        <locationY>17</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_Record_type</targetReference>
+        </connector>
+        <fields>
+            <name>priorRefundsAndAdjustmentsGrid</name>
+            <extensionName>c:PriorRefundAdjustmentList</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>accountId</name>
+                <value>
+                    <elementReference>ParentAccount.Id</elementReference>
+                </value>
+            </inputParameters>
+            <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1134,7 +1312,7 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
             <dataType>String</dataType>
             <fieldText>Adjustment code</fieldText>
             <fieldType>DropdownBox</fieldType>
-            <isRequired>false</isRequired>
+            <isRequired>true</isRequired>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1205,6 +1383,14 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <objectType>Contact</objectType>
     </variables>
     <variables>
+        <name>Current_RefAdj</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Refund_Adjustment__c</objectType>
+    </variables>
+    <variables>
         <name>Parent_Case</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -1219,6 +1405,21 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Account</objectType>
+    </variables>
+    <variables>
+        <name>Prior_Refunds_and_Adjustments_Display</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Prior_Refunds_or_Adjustments</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Refund_Adjustment__c</objectType>
     </variables>
     <variables>
         <name>recordId</name>
@@ -1256,5 +1457,29 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>Temp_Case</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Case</objectType>
+    </variables>
+    <variables>
+        <name>TempRecordType</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>RecordType</objectType>
+    </variables>
+    <variables>
+        <name>TempRecordUser</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>User</objectType>
     </variables>
 </Flow>

@@ -78,6 +78,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Refunds/Adjustments</relationshipLabel>
+        <relationshipName>Refunds_Adjustments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Acct_Platform__c</fullName>
         <externalId>false</externalId>
         <formula>IF(OR(UPPER(CaseNumber__r.Account.Platform__c) = &quot;CLASSIC&quot;,UPPER(CaseNumber__r.Account.Platform__c) = &quot;TANDEM&quot;), &quot;Classic&quot;, &quot;Millennium&quot;)</formula>
@@ -115,7 +128,8 @@
     <fields>
         <fullName>Amount_Waived__c</fullName>
         <externalId>false</externalId>
-        <label>Amount Waived</label>
+        <inlineHelpText>Amount to be adjusted (waived) or refunded</inlineHelpText>
+        <label>Ref / Adj Amount</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -146,6 +160,11 @@
             <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
+                <value>
+                    <fullName>Pending</fullName>
+                    <default>true</default>
+                    <label>Pending</label>
+                </value>
                 <value>
                     <fullName>Approved</fullName>
                     <default>false</default>
@@ -845,18 +864,27 @@
     <listViews>
         <fullName>All</fullName>
         <columns>NAME</columns>
+        <columns>Account__c</columns>
         <columns>CaseNumber__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>Fee_Code__c</columns>
         <columns>Refund_Code__c</columns>
+        <columns>Amount_Waived__c</columns>
         <columns>Fee_Type__c</columns>
-        <columns>Reason_Description__c</columns>
         <columns>Approver_Name__c</columns>
         <columns>Approval_Status__c</columns>
         <columns>Approval_Comment__c</columns>
         <columns>Decision_Date__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending,Approved,Held,Denied</value>
+        </filters>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>RFADJ-{00000000}</displayFormat>
@@ -883,6 +911,10 @@
             <values>
                 <fullName>Held</fullName>
                 <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -1331,6 +1363,10 @@
                 <fullName>Held</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>Pending</fullName>
+                <default>true</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Department__c</picklist>
@@ -1760,7 +1796,24 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <excludedStandardButtons>MassChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <listViewButtons>Approve</listViewButtons>
+        <listViewButtons>Update_Parent_Accounts</listViewButtons>
+        <searchResultsAdditionalFields>Account_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Account_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Amount_Waived__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Create_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approval_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Approver_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Decision_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Total_Late_Fee__c</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>Approve</searchResultsCustomButtons>
+    </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
         <fullName>Total_fee_GTE_waived_amount</fullName>
@@ -1770,4 +1823,29 @@
         <errorMessage>Amount Waived must not exceed the Total Fee Charged</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Approve</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Approve</masterLabel>
+        <openType>sidebar</openType>
+        <page>Refunds_Adjustments_Bulk_Approver</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>Update_Parent_Accounts</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Update Parent Accounts</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>{!Refund_Adjustment__c.AccountId__c} = {!Case.AccountId}</url>
+    </webLinks>
 </CustomObject>
