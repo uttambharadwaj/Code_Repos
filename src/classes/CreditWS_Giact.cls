@@ -54,7 +54,9 @@ public with sharing class CreditWS_Giact {
                 if(!String.isBlank(giactInquiryRequest.PhoneNumber)) {
                     giactRequest.Customer.PhoneNumber = giactInquiryRequest.PhoneNumber.replaceAll('[^0-9]', '');
                 }
-                giactRequest.Customer.TaxId = giactInquiryRequest.FederalTaxId;
+                if(!String.isBlank(giactInquiryRequest.FederalTaxId)) {
+                    giactRequest.Customer.TaxId = giactInquiryRequest.FederalTaxId.replaceAll('[^0-9]', '');
+                }
                 giactRequest.Customer.DateOfBirth = giactInquiryRequest.DateOfBirth;
                 giactRequest.Customer.EmailAddress = giactInquiryRequest.EmailAddress;
                 giactRequest.Customer.CurrentIpAddress = giactInquiryRequest.IpAddress;
