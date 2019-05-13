@@ -416,7 +416,7 @@ global class CreditDecisionEngineCP {
 
                     CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage)) {
+                    if (giactVerifyResponse != null) {
 
                         cpApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
                         cpApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
@@ -429,9 +429,7 @@ global class CreditDecisionEngineCP {
                     } else {
 
                         cpApplication.GIACT_Check__c = 'Error';
-                        if(giactVerifyResponse != null) {
-                            cpApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
-                        }
+                        cpApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
 
                     }
 
