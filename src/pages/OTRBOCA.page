@@ -1,6 +1,7 @@
 <!--
 Description:        OTRBOCA VF Page (Page 1 of Online Application for OTRBOCA)
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
+					5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAController" action="{!init}" language="{!languageCode}">
 	<html lang="{!languageCode}">
@@ -132,7 +133,8 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 				<div class="row">
 					<div class="nine columns clearfix">
 						<div id="branding">
-							<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+							<!--PSOBACKLOG-76-->
+							<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!program.Brand_Long_Name__c} Logo"/>
 							<h1 class="program-name header-large">{!program.Brand_Long_Name__c}</h1>
 						</div>
 					</div>
@@ -162,7 +164,8 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 							&nbsp;
 						</div>
 						<div class="twelve columns clearfix">
-							<img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+							<!--PSOBACKLOG-76-->
+							<img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
 						</div>
 						<apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
 							<div class="twelve columns clearfix">
