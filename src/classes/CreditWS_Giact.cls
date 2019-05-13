@@ -88,13 +88,22 @@ public with sharing class CreditWS_Giact {
 
                     CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = new CreditWS_Giact.GiactVerifyResponse();
 
-                    giactVerifyResponse.GiactErrorMessage = giactResponse.ErrorMessage;
-                    giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
-                    giactVerifyResponse.VerificationResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
-                    giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
-                    giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
-                    giactVerifyResponse.AccountResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
-                    giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+                    // If there is an error, we'll get back a non-200
+                    if(httpResponse.getStatusCode() == 200) {
+
+                        giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
+                        giactVerifyResponse.VerificationResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
+                        giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
+                        giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
+                        giactVerifyResponse.AccountResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+                        giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+
+                    }
+                    else {
+
+                        giactVerifyResponse.GiactErrorMessage = (giactResponse.ErrorMessage).abbreviate(255);
+
+                    }
 
                     return giactVerifyResponse;
 
@@ -103,7 +112,14 @@ public with sharing class CreditWS_Giact {
             }
 
         } catch (Exception e) {
+
             System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
+
+            CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = new CreditWS_Giact.GiactVerifyResponse();
+            giactVerifyResponse.GiactErrorMessage = (e.getMessage()).abbreviate(255);
+
+            return giactVerifyResponse;
+
         }
 
         return null;
