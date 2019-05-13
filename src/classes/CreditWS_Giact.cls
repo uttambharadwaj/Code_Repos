@@ -1,6 +1,6 @@
 /**
- * Created by dgilbert on 2019-03-29.
- */
+* Created by dgilbert on 2019-03-29.
+*/
 
 public with sharing class CreditWS_Giact {
 
@@ -25,6 +25,8 @@ public with sharing class CreditWS_Giact {
     }
 
     public static GiactVerifyResponse giactVerify(GiactVerifyRequest giactInquiryRequest) {
+
+        CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = new CreditWS_Giact.GiactVerifyResponse();
 
         try {
 
@@ -74,39 +76,47 @@ public with sharing class CreditWS_Giact {
                 httpRequest.setHeader('Content-Type', 'application/json');
                 httpRequest.setMethod('POST');
 
-                httpRequest.setBody(JSON.serialize(giactRequest));
+                httpRequest.setBody(JSON.serialize(giactRequest, true));
+
+                System.debug(JSON.serialize(giactRequest, true));
 
                 Http http = new Http();
 
                 HTTPResponse httpResponse = http.send(httpRequest);
 
-                CreditWSUtil_GiactVerify.GiactInquiryResponse giactResponse = (CreditWSUtil_GiactVerify.GiactInquiryResponse) JSON.deserialize(httpResponse.getBody(), CreditWSUtil_GiactVerify.GiactInquiryResponse.class);
+                if(CreditWS_Giact.isGIACTJSONValid(httpResponse.getBody())) {
 
-                System.debug('### GIACT Verify Response: ' + giactResponse);
+                    CreditWSUtil_GiactVerify.GiactInquiryResponse giactResponse = (CreditWSUtil_GiactVerify.GiactInquiryResponse) JSON.deserialize(httpResponse.getBody(), CreditWSUtil_GiactVerify.GiactInquiryResponse.class);
 
-                if(giactResponse != null) {
+                    System.debug('### GIACT Verify Response: ' + giactResponse);
 
-                    CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = new CreditWS_Giact.GiactVerifyResponse();
+                    if(giactResponse != null) {
 
-                    // If there is an error, we'll get back a non-200
-                    if(httpResponse.getStatusCode() == 200) {
+                        if(String.isBlank(giactResponse.ErrorMessage)) {
 
-                        giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
-                        giactVerifyResponse.VerificationResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
-                        giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
-                        giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
-                        giactVerifyResponse.AccountResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
-                        giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+                            giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
+                            giactVerifyResponse.VerificationResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
+                            giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
+                            giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
+                            giactVerifyResponse.AccountResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+                            giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+
+                        }
+                        else {
+
+                            if(giactResponse != null && !String.isBlank(giactResponse.ErrorMessage)) {
+                                giactVerifyResponse.GiactErrorMessage = (giactResponse.ErrorMessage).abbreviate(255);
+                            }
+
+                        }
+
+                        return giactVerifyResponse;
 
                     }
-                    else {
 
-                        giactVerifyResponse.GiactErrorMessage = (giactResponse.ErrorMessage).abbreviate(255);
-
-                    }
-
-                    return giactVerifyResponse;
-
+                }
+                else {
+                    giactVerifyResponse.GiactErrorMessage = (httpResponse.getBody()).abbreviate(255);
                 }
 
             }
@@ -115,14 +125,11 @@ public with sharing class CreditWS_Giact {
 
             System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
 
-            CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = new CreditWS_Giact.GiactVerifyResponse();
-            giactVerifyResponse.GiactErrorMessage = (e.getMessage()).abbreviate(255);
-
-            return giactVerifyResponse;
+            giactVerifyResponse.GiactErrorMessage = (e.getMessage() + ' ' + e.getStackTraceString()).abbreviate(255);
 
         }
 
-        return null;
+        return giactVerifyResponse;
 
     }
 
@@ -202,6 +209,23 @@ public with sharing class CreditWS_Giact {
 
         public GiactVerifyResponse() {
 
+        }
+
+    }
+
+    // GIACT returns content type of "application/json", but with no JSON body for
+    // the errors - this is to check before we really parse it out.
+    public static Boolean isGIACTJSONValid(String jsonString){
+
+        try {
+
+            CreditWSUtil_GiactVerify.GiactInquiryResponse giactResponse = (CreditWSUtil_GiactVerify.GiactInquiryResponse) JSON.deserialize(jsonString, CreditWSUtil_GiactVerify.GiactInquiryResponse.class);
+
+            return true;
+
+        } catch(Exception e) {
+
+            return false;
         }
 
     }
