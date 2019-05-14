@@ -276,9 +276,9 @@ public class WexConsumerController {
                             pricingTermsAndConditionsHeader = campaignProgram.Terms_and_Conditions_Header__c;
                             pricingTermsAndConditionsFooter = campaignProgram.Terms_and_Conditions_Footer__c;
                         } else {
-                            pricingTermsAndConditions = [SELECT Id, Terms_and_Conditions__c FROM Campaign_Program__c WHERE Program__c = :program.Id AND Default__c = TRUE].Terms_and_Conditions__c;
-                            pricingTermsAndConditionsHeader = [SELECT Id, Terms_and_Conditions_Header__c FROM Campaign_Program__c WHERE Program__c = :program.Id AND Default__c = TRUE].Terms_and_Conditions_Header__c;
-                            pricingTermsAndConditionsFooter = [SELECT Id, Terms_and_Conditions_Footer__c FROM Campaign_Program__c WHERE Program__c = :program.Id AND Default__c = TRUE].Terms_and_Conditions_Footer__c;
+                            pricingTermsAndConditions = [SELECT Id, Terms_and_Conditions__c FROM Campaign_Program__c WHERE Program__c = :program.Id AND Default__c = TRUE AND Language_Code__c = :languageCode LIMIT 1].Terms_and_Conditions__c;
+                            pricingTermsAndConditionsHeader = [SELECT Id, Terms_and_Conditions_Header__c FROM Campaign_Program__c WHERE Program__c = :program.Id AND Default__c = TRUE AND Language_Code__c = :languageCode LIMIT 1].Terms_and_Conditions_Header__c;
+                            pricingTermsAndConditionsFooter = [SELECT Id, Terms_and_Conditions_Footer__c FROM Campaign_Program__c WHERE Program__c = :program.Id AND Default__c = TRUE AND Language_Code__c = :languageCode LIMIT 1].Terms_and_Conditions_Footer__c;
                         }
                     }
                 }
