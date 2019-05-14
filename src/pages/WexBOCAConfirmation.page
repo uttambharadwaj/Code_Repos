@@ -1,5 +1,6 @@
 <!--
-Revision History: 4/26/2019 IADJUDICAT-1164 added comments around credit decision blocks
+Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decision blocks
+                    5/14/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="WexBOCAConfirmationController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
@@ -157,7 +158,8 @@ Revision History: 4/26/2019 IADJUDICAT-1164 added comments around credit decisio
                     <div class="twelve columns clearfix">
                         <div class="nine columns clearfix">
                             <div id="branding">
-                                <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+                                <!--PSOBACKLOG-76-->
+                                <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!brandingUtility.Program_Name__c} Logo"/>
                                 <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>
                             </div>
                         </div>
@@ -194,7 +196,8 @@ Revision History: 4/26/2019 IADJUDICAT-1164 added comments around credit decisio
                                                 <apex:outputText value="{0, number, $###,###}">
                                                     <apex:param value="{!creditLineApproved}" />
                                                 </apex:outputText>.</h1><br/>
-                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                                            <!--PSOBACKLOG-76-->
+                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
                                             <div style="margin: 30px auto; text-align: center; width: 320px;">
                                                 <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
                                             </div>
@@ -207,7 +210,8 @@ Revision History: 4/26/2019 IADJUDICAT-1164 added comments around credit decisio
                                         <center>
                                             <h1 class="header-large" style="font-weight: bold;">{!$Label.BOCA_Confirmation_Thank_You}</h1><br/>
                                             <h1 class="header-small">{!$Label.BOCA_Review_Confirmation}</h1><br/>
-                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                                            <!--PSOBACKLOG-76-->
+                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
                                             <div style="margin: 30px auto; text-align: center; width: 320px;">
                                                 <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
                                             </div>
@@ -227,7 +231,8 @@ Revision History: 4/26/2019 IADJUDICAT-1164 added comments around credit decisio
                                     <center>
                                         <h1 class="header-large" style="font-weight: bold;">{!$Label.BOCA_Confirmation_Thank_You}</h1><br/>
                                         <h1 class="header-small">{!$Label.BOCA_Application_Submitted}</h1><br/>
-                                        <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                                        <!--PSOBACKLOG-76-->
+                                        <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
                                         <div style="margin: 30px auto; text-align: center; width: 320px;">
                                             <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
                                         </div>
