@@ -1,8 +1,9 @@
 /**
  * Created by dgilbert on 5/14/2018.
+ * Refactored and added additional match criteria by lhowland on 5/1/2019.
  */
 
-/** The purpose of this class is to potentially find duplicate applications or accounts based on the current application being submitted.
+/** The purpose of this class is to potentially find duplicate applications and accounts based on the current application being submitted.
      */
 public with sharing class CreditUtil_ExistingExposure {
 
@@ -14,18 +15,22 @@ public with sharing class CreditUtil_ExistingExposure {
 
         List<ExistingExposureApplications> existingExposureApplications = new List<ExistingExposureApplications>();
 
+        // Add FIND wildcard onto business name if longer than 10 chars
         if(request.legalBusinessName != null && (request.legalBusinessName).length() > 10){
-            request.legalBusinessName = (request.legalBusinessName).subString(0, 10) + '%';
+            request.legalBusinessName = (request.legalBusinessName).subString(0, 10) + '*';
         }
-        if(request.postalCode != null) {
-            request.postalCode = request.postalCode + '%';
+        if (request.postalCode != null && (request.postalCode).length() > 5) {
+            request.postalCode = request.postalCode.substring(0,5) + '*';
         }
 
         if(((Id.valueOf(request.applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
-            List<OnlineApplication__c> existingAPplications = getOTRExistingApplications(request);
+            List<OnlineApplication__c> existingApplications = getOTRExistingApplications(request);
 
-            for (OnlineApplication__c existingApplication : existingAPplications) {
+            for (OnlineApplication__c eeApp : existingApplications) {
+            }
+
+            for (OnlineApplication__c existingApplication : existingApplications) {
 
                 if((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Legal_Business_Name__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Business_Street_Address__c) >= 0.75 &&
@@ -72,19 +77,20 @@ public with sharing class CreditUtil_ExistingExposure {
         }
         else if(((Id.valueOf(request.applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('CP_Application_Request__c')) {
 
-            List<CP_Application_Request__c> existingAPplications = getCPExistingApplications(request);
+            List<CP_Application_Request__c> existingApplications = getCPExistingApplications(request);
 
-            for (CP_Application_Request__c existingApplication : existingAPplications) {
+            for (CP_Application_Request__c existingApplication : existingApplications) {
 
                 if((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Company_Legal_Name__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Physical_Address_Line_1__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
-                        JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State_Province__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Postal_Code__c) >= 0.75)
                         || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.Application_Signer_IP_Address__c) == 1.00)
                         || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
-                       // || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Taxpayer_ID__c) == 1.00) // Cannot query matches on encrypted fields
-                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone__c) == 1.00)) {
+                        || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Taxpayer_ID__c) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone__c) == 1.00)
+                        || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Guarantor_Social_Security_Number__c)) == 1.00)) {
 
                     ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
@@ -93,7 +99,7 @@ public with sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.legalBusinessName = existingApplication.Company_Legal_Name__c;
                     duplicateApplication.addressLine1 = existingApplication.Physical_Address_Line_1__c;
                     duplicateApplication.city = existingApplication.Physical_City__c;
-                    duplicateApplication.state = existingApplication.Physical_State__c;
+                    duplicateApplication.state = existingApplication.Physical_State_Province__c;
                     duplicateApplication.postalCode = existingApplication.Physical_Postal_Code__c;
                     duplicateApplication.applicationStatus = existingApplication.Status__c;
                     duplicateApplication.creditDecision = existingApplication.Credit_Decision__c;
@@ -115,18 +121,23 @@ public with sharing class CreditUtil_ExistingExposure {
             }
 
         }
+
         else if(((Id.valueOf(request.applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('Application_Request__c')) {
 
-            for(Application_Request__c existingApplication : [SELECT Id, CreatedDate, Name, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
-                    Credit_Decision__c, Status__c, App_Submitted_Date__c, Tax_Payer_ID_number__c, Guarantor_SSN__c, Program__c, Fraud_Flag__c, Credit_Line_Requested__c, Approved_Credit_Limit__c, Decision_Date__c
-            FROM Application_Request__c
-            WHERE Opportunity_Name_Text__c like :request.legalBusinessName and Physical_Zip_Postal_Code__c like :request.postalCode and Id !=: request.applicationId]) {
+            Set<Application_Request__c> existingExposuirApps = getNAExistingApplications(request);
+
+            for(Application_Request__c existingApplication : existingExposuirApps) {
 
                 if(JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Opportunity_Name_Text__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Physical_Street__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State__c) >= 0.75 &&
-                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Zip_Postal_Code__c) >= 0.75) {
+                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Zip_Postal_Code__c) >= 0.75
+                        || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.App_Signer_IP_Address__c) == 1.00)
+                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Tax_Payer_ID_number__c) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone_Number__c) == 1.00)
+                        || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Personal_Guarantor_SSN__c)) == 1.00)) {
 
                     ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
@@ -140,7 +151,7 @@ public with sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.applicationStatus = existingApplication.Status__c;
                     duplicateApplication.creditDecision = existingApplication.Credit_Decision__c;
                     duplicateApplication.taxId = existingApplication.Tax_Payer_ID_number__c;
-                    duplicateApplication.pgSSN = existingApplication.Guarantor_SSN__c;
+                    duplicateApplication.pgSSN = existingApplication.Personal_Guarantor_SSN__c;
                     duplicateApplication.program = existingApplication.Program__c;
                     duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
                     duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
@@ -159,118 +170,199 @@ public with sharing class CreditUtil_ExistingExposure {
 
     }
 
-    /** OTR
-    * Dynamically create the query based on whether or not a DUNS number was provided. Each unindexed OR clause slows down the query.
-    * Often DUNS is null so let's only look for a match on DUNS when needed.
-     */
+
     private static List<OnlineApplication__c> getOTRExistingApplications(ExistingExposureRequest request) {
 
-        String whereClause = ' WHERE Id != \'' + request.applicationId + '\' AND (' +
-                '(Legal_Business_Name__c like \'' + request.legalBusinessName + '\' AND Zip_Code__c like \'' + request.postalCode + '\')' +
-                ' OR IP_Address__c = \'' + request.ipAddress + '\'' +
-                ' OR Federal_Tax_ID__c = \'' + request.taxID + '\'' +
-                ' OR Phone_Number__c = \'' + request.phone + '\'';
+
+        List<OnlineApplication__c> existingExposureApps = new List<OnlineApplication__c>();
+
+        String onlineAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode +
+                ' OR ' + request.ipAddress + ' OR ' + request.phone.replaceAll('\\D','') + ' OR ' + request.taxID.replaceAll('\\D','');
 
         if (request.duns != null) {
-            whereClause += ' OR DNB_Resolved_DUNS__c = \'' + request.duns + '\'';
+            onlineAppRequestSearchVariables += ' OR ' + request.duns;
         }
 
-        whereClause += ')';
+        if (request.pgSSN != null) {
+            onlineAppRequestSearchVariables += ' OR ' + request.pgSSN.replaceAll('\\D','');
+        }
 
-        String databaseQuery = 'SELECT Id, CreatedDate, Name, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c,' +
-                'Credit_Decision__c, Status__c, Federal_Tax_ID__c, AO_Social_Security_Number__c, Program__c, Fraud_Flag__c, Submitted_to_Credit__c, Credit_Line_Requested__c,' +
-                'Credit_Line_Approved__c, Date_Decisioned__c, DNB_Resolved_DUNS__c, Phone_Number__c, IP_Address__c' +
-                ' FROM OnlineApplication__c' + whereClause;
+        String onlineAppRequestQuery = 'FIND { searchString } IN ALL FIELDS RETURNING OnlineApplication__c( ' +
+                'Id, Name, CreatedDate, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c, ' +
+                'IP_Address__c, AO_Social_Security_Number__c, Phone_Number__c, DNB_Resolved_DUNS__c, ' +
+                'Status__c, Credit_Decision__c, Federal_Tax_ID__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Credit_Line_Approved__c, Date_Decisioned__c, Submitted_to_Credit__c ' +
+                'WHERE Id != \'' + request.applicationId + '\'' +
+                ' ORDER BY Id)';
+
+        onlineAppRequestQuery = onlineAppRequestQuery.replace('searchString', onlineAppRequestSearchVariables);
 
         try {
-            List<OnlineApplication__c> onlineApplications = Database.query(databaseQuery);
-            return onlineApplications;
-        } catch (QueryException qe) {
-            System.debug('Error when attempting to locate potential existing exposure applications for OnlineApplication__c : ' + qe.getMessage());
+            existingExposureApps = ((List<OnlineApplication__c>) search.query(onlineAppRequestQuery)[0]);
+
+        } catch (System.QueryException e) {
+            System.debug('Error when running Existing Exposure applications for OTR : ' + e);
         }
-        return null;
+        return existingExposureApps;
     }
 
-    /** CP
-    * Dynamically create the query based on whether or not a DUNS number was provided. Each unindexed OR clause slows down the query.
-    * Often DUNS is null so let's only look for a match on DUNS when needed.
-     */
+
     private static List<CP_Application_Request__c> getCPExistingApplications(ExistingExposureRequest request) {
 
-        String whereClause = ' WHERE Id != \'' + request.applicationId + '\' AND (' +
-                '(Company_Legal_Name__c like \'' + request.legalBusinessName + '\' AND Physical_Postal_Code__c like \'' + request.postalCode + '\')' +
-                ' OR Application_Signer_IP_Address__c = \'' + request.ipAddress + '\'' +
-             //   ' OR Taxpayer_ID__c = \'' + request.taxID + '\'' +  // Cannot query matches on encrypted fields
-                ' OR Business_Phone__c = \'' + request.phone + '\'';
+        List<CP_Application_Request__c> existingExposureApps = new List<CP_Application_Request__c>();
+
+        String cpAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode +
+                ' OR ' + request.ipAddress + ' OR ' + request.phone.replaceAll('\\D','') + ' OR ' + request.taxID.replaceAll('\\D','');
 
         if (request.duns != null) {
-            whereClause += ' OR DNB_Resolved_DUNS__c = \'' + request.duns + '\'';
+            cpAppRequestSearchVariables += ' OR ' + request.duns;
         }
 
-        whereClause += ')';
+        if (request.pgSSN != null) {
+            cpAppRequestSearchVariables += ' OR ' + request.pgSSN.replaceAll('\\D','');
+        }
 
-        String databaseQuery = 'SELECT Id, CreatedDate, Name, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State__c, Physical_Postal_Code__c, ' +
-                'Credit_Decision__c, Status__c, Taxpayer_ID__c, Guarantor_Social_Security_Number__c, Program__c, Fraud_Flag__c, ' +
-                'Credit_Line_Requested__c, Credit_Line_Approved__c, Application_Decisioned_Date__c, Application_Signer_IP_Address__c, Business_Phone__c, DNB_Resolved_DUNS__c' +
-                ' FROM CP_Application_Request__c' + whereClause;
+        String cpAppRequestQuery = 'FIND { searchString } IN ALL FIELDS RETURNING CP_Application_Request__c( ' +
+                'Id, Name, CreatedDate, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c,  ' +
+                'Application_Signer_IP_Address__c, Guarantor_Social_Security_Number__c, Business_Phone__c, DNB_Resolved_DUNS__c, ' +
+                'Status__c, Credit_Decision__c, Taxpayer_ID__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Credit_Line_Approved__c, Application_Decisioned_Date__c ' +
+                'WHERE Id != \'' + request.applicationId + '\'' +
+                ' ORDER BY Id)';
+
+        cpAppRequestQuery = cpAppRequestQuery.replace('searchString', cpAppRequestSearchVariables);
 
         try {
-            List<CP_Application_Request__c> cpApplications = Database.query(databaseQuery);
-            return cpApplications;
-        } catch (QueryException qe) {
-            System.debug('Error when attempting to locate potential existing exposure applications for CP_Application_Request__c : ' + qe.getMessage());
+            existingExposureApps = ((List<CP_Application_Request__c>) search.query(cpAppRequestQuery)[0]);
+
+        } catch (System.QueryException e) {
+            System.debug('Error when running Existing Exposure applications for CP : ' + e);
         }
-        return null;
+        return existingExposureApps;
     }
 
-    // This query was taking on average 11 seconds to run in production. Need to index these fields matching on or redesign
-//    /** NA
-//    * Dynamically create the query based on whether or not a DUNS number was provided. Each unindexed OR clause slows down the query.
-//    * Often DUNS is null so let's only look for a match on DUNS when needed.
-//     */
-//    private static List<Application_Request__c> getNAExistingApplications(ExistingExposureRequest request) {
-//
-//        String whereClause = ' WHERE Id != \'' + request.applicationId + '\' AND (' +
-//                '(Opportunity_Name_Text__c like \'' + request.legalBusinessName + '\' AND Physical_Zip_Postal_Code__c like \'' + request.postalCode + '\')' +
-//                ' OR App_Signer_IP_Address__c = \'' + request.ipAddress + '\'' +
-//                ' OR Tax_Payer_ID_number__c = \'' + request.taxID + '\'' +
-//                ' OR Business_Phone_Number__c = \'' + request.phone + '\'';
-//
-//        if (request.duns != null) {
-//            whereClause += ' OR DNB_Resolved_DUNS__c = \'' + request.duns + '\'';
-//        }
-//
-//        whereClause += ')';
-//
-//        String databaseQuery = 'SELECT Id, CreatedDate, Name, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c, ' +
-//                'Credit_Decision__c, Status__c, App_Submitted_Date__c, Tax_Payer_ID_number__c, Guarantor_SSN__c, Program__c, Fraud_Flag__c, Credit_Line_Requested__c, Approved_Credit_Limit__c, Decision_Date__c, ' +
-//                'App_Signer_IP_Address__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c'+
-//                ' FROM Application_Request__c' + whereClause;
-//
-//        try {
-//            List<Application_Request__c> naApplications = Database.query(databaseQuery);
-//            return naApplications;
-//        } catch (QueryException qe) {
-//            System.debug('Error when attempting to locate potential existing exposure applications for Application_Request__c : ' + qe.getMessage());
-//        }
-//        return null;
-//    }
+
+    /** Because SOSL doesn't support formula fields nor does it support lists or variables between OR operators, we need to do a little magical ghetto query hacking.
+        PG SSN is a formula field, populated from the Contact. So we query all Contacts that match that value.
+        Business Phone and Tax ID are formula fields, populated from the Account. So we query all Accounts that match those values.
+        Then find the App Requests that have those Account IDs.
+        Find the rest of the App Requests that meet the other Existing Exposure criteria.
+        Combine lists and return only one complete list. */
+    private static Set<Application_Request__c> getNAExistingApplications(ExistingExposureRequest request) {
+
+        List<Application_Request__c> existingExposureApps = new List<Application_Request__c>();
+        Set<Application_Request__c> uniqueExistingExposureApps = null;
+
+        try {
+            // First, look for Contacts that have the same PG SSN, then find the App Request with those Contact Ids.
+            List<Application_Request__c> appRequestWIthPGSSNMatch = new List<Application_Request__c>();
+            if (request.pgSSN != null) {
+                appRequestWIthPGSSNMatch = getAppRequestViaPGSSN(request);
+            }
+
+            // Second, look for Accounts that have the same phone or tax id, then find the App Requests with those Account Ids.
+            List<Application_Request__c> appRequestWithPhoneOrTaxMatch = getAppRequestsViaPhoneOrTax(request);
+
+            // Lastly, query for the Application Requests that match the remaining existing exposure criteria
+            String appRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode +
+                    ' OR ' + request.ipAddress;
+
+            if (request.duns != null) {
+                appRequestSearchVariables += ' OR ' + request.duns;
+            }
+
+            String appRequestQuery = 'FIND { searchString } IN ALL FIELDS RETURNING Application_Request__c( ' +
+                    'Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c, ' +
+                    'App_Signer_IP_Address__c, Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, ' +
+                    'Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c ' +
+                    'WHERE Id != \'' + request.applicationId + '\'' +
+                    ' ORDER BY Id)';
+
+            appRequestQuery = appRequestQuery.replace('searchString', appRequestSearchVariables);
+
+            existingExposureApps = ((List<Application_Request__c>) search.query(appRequestQuery)[0]);
+
+            existingExposureApps.addAll(appRequestWIthPGSSNMatch);
+            existingExposureApps.addAll(appRequestWithPhoneOrTaxMatch);
+
+            for (Application_Request__c eeApps : existingExposureApps) {
+            }
+
+            // Remove duplicates
+            uniqueExistingExposureApps = new Set<Application_Request__c>(existingExposureApps);
+
+        } catch (System.QueryException e) {
+            System.debug('Error when running Existing Exposure applications for NA Fleet : ' + e);
+        }
+        return uniqueExistingExposureApps;
+    }
+
+
+    /**
+      Because PG SSN is a formula field on the App Request, we must locate the value off of the Contact.
+     */
+    private static List<Application_Request__c> getAppRequestViaPGSSN(ExistingExposureRequest request) {
+
+        // Find PG SSN from the Contact
+        String contactSearchVariable = request.pgSSN.replaceAll('\\D','');
+        String contactQuery = 'FIND { searchString } IN ALL Fields RETURNING Contact(Id)';
+        contactQuery = contactQuery.replace('searchString', contactSearchVariable);
+
+        Map<Id, Contact> existingContactMap = new Map<Id, Contact>((List<Contact>) search.query(contactQuery)[0]);
+
+        // Second, take the IDs of the matching contacts and find the Application Request objects with those Account IDs
+        List<Application_Request__c> appRequestWithPGSSNMatch = [SELECT Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
+                App_Signer_IP_Address__c, Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
+                Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c FROM Application_Request__c WHERE Personal_Guarantor__c IN :existingContactMap.keySet() AND Id != :request.applicationId];
+
+        return appRequestWithPGSSNMatch;
+    }
+
+
+    /**
+       Because Phone and Tax ID are formula fields on the App Request, we must locate their values off of the Account.
+     */
+    private static List<Application_Request__c> getAppRequestsViaPhoneOrTax(ExistingExposureRequest request) {
+
+        // First find any accounts that have that same business phone number or tax id number.
+        String accountSearchVariables = request.phone.replaceAll('\\D','') + ' OR ' + request.taxid.replaceAll('\\D','');
+        String accountQuery = 'FIND { searchString } IN All Fields RETURNING Account(Id)';
+        accountQuery = accountQuery.replace('searchString', accountSearchVariables);
+
+        Map<Id, Account> existingAccountMap = new Map<Id, Account>((List<Account>) search.query(accountQuery)[0]);
+
+        // Second, take the IDs of the matching accounts and find the Application Request objects with those Account IDs
+        List<Application_Request__c> appRequestWithPhoneOrTaxMatch = [SELECT Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
+                App_Signer_IP_Address__c, Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
+                Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c FROM Application_Request__c WHERE Account_Name__c IN :existingAccountMap.keySet() AND Id != :request.applicationId];
+
+        return appRequestWithPhoneOrTaxMatch;
+    }
+
 
     public static List<ExistingExposureAccounts> getAccounts(ExistingExposureRequest request) {
 
-        List<ExistingExposureAccounts> existingExposureAccounts = new List<ExistingExposureAccounts>();
+        List<FSC_Existing_Exposure__c> existingExposureAccounts = new List<FSC_Existing_Exposure__c>();
+        List<ExistingExposureAccounts> existingExposureAccountMatches = new List<ExistingExposureAccounts>();
 
         if(request.legalBusinessName != null && (request.legalBusinessName).length() > 10){
-            request.legalBusinessName = (request.legalBusinessName).subString(0, 10) + '%';
-        }
-        if(request.postalCode != null) {
-            request.postalCode = request.postalCode + '%';
+            request.legalBusinessName = (request.legalBusinessName).subString(0, 10) + '*';
         }
 
-        for(FSC_Existing_Exposure__c existingAccount : [SELECT Id, Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c,
-                DUNS_Number__c
-        FROM FSC_Existing_Exposure__c
-        WHERE Business_Name__c like :request.legalBusinessName and Postal_Code__c like :request.postalCode]) {
+        String accountSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
+
+        if (request.duns != null) {
+            accountSearchVariables += ' OR ' + request.duns;
+        }
+
+        String accountQuery = 'FIND { searchString } IN ALL FIELDS RETURNING FSC_Existing_Exposure__c( ' +
+                'Id,  Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c, DUNS_Number__c ' +
+                'ORDER BY Id)';
+
+        accountQuery = accountQuery.replace('searchString', accountSearchVariables);
+
+        existingExposureAccounts = ((List<FSC_Existing_Exposure__c>) search.query(accountQuery)[0]);
+
+
+        for(FSC_Existing_Exposure__c existingAccount : existingExposureAccounts) {
 
             if(JaroWinklerDistance.getScore(request.legalBusinessName, existingAccount.Business_Name__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.addressLine1, existingAccount.Address__c) >= 0.75 &&
@@ -279,29 +371,27 @@ public with sharing class CreditUtil_ExistingExposure {
                     JaroWinklerDistance.getScore(request.postalCode, existingAccount.Postal_Code__c) >= 0.75
                     || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingAccount.DUNS_Number__c)) == 1.00)) {
 
-                ExistingExposureAccounts existingExposureAccount = new ExistingExposureAccounts();
+                ExistingExposureAccounts existingExposureAccountMatch = new ExistingExposureAccounts();
 
-                existingExposureAccount.fscExistingExposureId = existingAccount.Id;
-                existingExposureAccount.fscExistingExposureName = existingAccount.Name;
-                existingExposureAccount.legalBusinessName = existingAccount.Business_Name__c;
-                existingExposureAccount.addressLine1 = existingAccount.Address__c;
-                existingExposureAccount.city = existingAccount.City__c;
-                existingExposureAccount.state = existingAccount.State_Province__c;
-                existingExposureAccount.postalCode = existingAccount.Postal_Code__c;
-                existingExposureAccount.nationalId = existingAccount.National_Account_Number__c;
-                existingExposureAccount.creditLine = String.valueOf(existingAccount.Credit_Limit__c);
-                existingExposureAccount.accountStatus = existingAccount.Account_Status__c;
-                existingExposureAccount.duns = existingAccount.DUNS_Number__c;
+                existingExposureAccountMatch.fscExistingExposureId = existingAccount.Id;
+                existingExposureAccountMatch.fscExistingExposureName = existingAccount.Name;
+                existingExposureAccountMatch.legalBusinessName = existingAccount.Business_Name__c;
+                existingExposureAccountMatch.addressLine1 = existingAccount.Address__c;
+                existingExposureAccountMatch.city = existingAccount.City__c;
+                existingExposureAccountMatch.state = existingAccount.State_Province__c;
+                existingExposureAccountMatch.postalCode = existingAccount.Postal_Code__c;
+                existingExposureAccountMatch.nationalId = existingAccount.National_Account_Number__c;
+                existingExposureAccountMatch.creditLine = String.valueOf(existingAccount.Credit_Limit__c);
+                existingExposureAccountMatch.accountStatus = existingAccount.Account_Status__c;
+                existingExposureAccountMatch.duns = existingAccount.DUNS_Number__c;
 
-                existingExposureAccounts.add(existingExposureAccount);
+                existingExposureAccountMatches.add(existingExposureAccountMatch);
 
             }
-
         }
-
-        return existingExposureAccounts;
-
+        return existingExposureAccountMatches;
     }
+
 
     public class ExistingExposureRequest {
 
