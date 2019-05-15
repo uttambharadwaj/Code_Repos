@@ -176,11 +176,11 @@ Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decis
                             <script>
                                 $j('body').loadingModal({text: 'Your application is being processed. Please do not push the back button or leave this screen.', 'animation': 'wanderingCubes'});
                             </script>
-                            <apex:actionPoller action="{!checkStatusOfApplication}" interval="5" enabled="{!decisioningCompleted == false}" rerender="creditDecision"/>
+                            <apex:actionPoller action="{!checkStatusOfApplication}" interval="5" enabled="{!decisioningCompleted == false}" rerender="creditDecision, fleetEnrollment, confirmNum"/>
                         </apex:outputPanel>
                         <!--END APPLICATION BEING PROCESSED SECTION-->
 
-                        <!--BEGIN APPLICATION COMPLETED PROCESSED SECTION-->
+                        <!--BEGIN APPLICATION COMPLETED PROCESSED SECTION HEADER-->
                         <apex:outputPanel rendered="{!IF(AND(program.Disable_Instant_Decisioning__c == false, decisioningCompleted == true), true, false)}">
                             <div class="row">
                                 <div class="twelve columns">
@@ -188,7 +188,7 @@ Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decis
                                         $j('body').loadingModal('destroy');
                                     </script>
 
-                                    <!--BEGIN APPLICATION CONFIRMED SECTION-->
+                                    <!--BEGIN APPLICATION CONFIRMED MESSAGE SECTION-->
                                     <apex:outputPanel rendered="{!creditApproved == true}">
                                         <center>
                                             <h1 class="header-large" style="font-weight: bold;">{!$Label.BOCA_Confirmation_Congratulations}</h1><br/>
@@ -196,53 +196,55 @@ Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decis
                                                 <apex:outputText value="{0, number, $###,###}">
                                                     <apex:param value="{!creditLineApproved}" />
                                                 </apex:outputText>.</h1><br/>
-                                            <!--PSOBACKLOG-76-->
-                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
-                                            <div style="margin: 30px auto; text-align: center; width: 320px;">
-                                                <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
-                                            </div>
                                         </center>
                                     </apex:outputPanel>
-                                    <!--END APPLICATION CONFIRMED SECTION-->
+                                    <!--END APPLICATION CONFIRMED MESSAGE SECTION-->
 
-                                    <!--BEGIN APPLICATION IN REVIEW SECTION-->
+                                    <!--BEGIN APPLICATION IN REVIEW MESSAGE SECTION-->
                                     <apex:outputPanel rendered="{!creditApproved == false}">
                                         <center>
                                             <h1 class="header-large" style="font-weight: bold;">{!$Label.BOCA_Confirmation_Thank_You}</h1><br/>
                                             <h1 class="header-small">{!$Label.BOCA_Review_Confirmation}</h1><br/>
-                                            <!--PSOBACKLOG-76-->
-                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
-                                            <div style="margin: 30px auto; text-align: center; width: 320px;">
-                                                <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
-                                            </div>
                                         </center>
                                     </apex:outputPanel>
-                                    <!--END APPLICATION IN REVIEW SECTION-->
+                                    <!--END APPLICATION IN REVIEW MESSAGE SECTION-->
 
                                 </div>
                             </div>
                         </apex:outputPanel>
-                        <!--END APPLICATION COMPLETED PROCESSED SECTION-->
+                        <!--END APPLICATION COMPLETED PROCESSED SECTION HEADER-->
 
-                        <!--BEGIN DISABLED INSTANT DECISION SECTION-->
+                        <!--BEGIN DISABLED INSTANT DECISION SECTION HEADER-->
                         <apex:outputPanel rendered="{!program.Disable_Instant_Decisioning__c == true}">
                             <div class="row">
                                 <div class="twelve columns">
                                     <center>
                                         <h1 class="header-large" style="font-weight: bold;">{!$Label.BOCA_Confirmation_Thank_You}</h1><br/>
                                         <h1 class="header-small">{!$Label.BOCA_Application_Submitted}</h1><br/>
-                                        <!--PSOBACKLOG-76-->
-                                        <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
-                                        <div style="margin: 30px auto; text-align: center; width: 320px;">
-                                            <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
-                                        </div>
                                     </center>
                                 </div>
                             </div>
                         </apex:outputPanel>
-                        <!--END DISABLED INSTANT DECISION SECTION-->
+                        <!--END DISABLED INSTANT DECISION SECTION HEADER-->
 
-                        <!--BEGIN FLEEET ENROLLMENT SECTION-->
+                    </apex:outputPanel>
+
+                    <!--BEGIN CARD IMAGE AND SALUTATIONS SECTION-->
+                    <center>
+                        <!--PSOBACKLOG-76-->
+                        <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
+                        <apex:outputPanel id="confirmNum">
+                            <apex:outputPanel rendered="{!decisioningCompleted}">
+                                <div style="margin: 30px auto; text-align: center; width: 320px;">
+                                    <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
+                    </center>
+                    <!--END CARD IMAGE AND SALUTATIONS SECTION-->
+
+                    <!--BEGIN FLEEET ENROLLMENT SECTION-->
+                    <apex:outputPanel id="fleetEnrollment">
                         <apex:outputPanel rendered="{!program.Publish_Fleet_Data_Capture_Form__c == true && disableFleetEnrollment == false && decisioningCompleted == true}">
                             <div class="row">
                                 <div class="twelve columns">
@@ -265,9 +267,9 @@ Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decis
                                 </div>
                             </div>
                         </apex:outputPanel>
-                        <!--END FLEET ENROLLMENT SECTION-->
-
                     </apex:outputPanel>
+                    <!--END FLEET ENROLLMENT SECTION-->
+
                 </div>
             </div>
         </apex:form>
