@@ -361,6 +361,7 @@ global class CreditDecisionEngineOTR {
             existingExposureRequest.taxID = onlineApplication.Federal_Tax_ID__c;
             existingExposureRequest.phone = onlineApplication.Phone_Number__c;
             existingExposureRequest.pgSSN = onlineApplication.AO_Social_Security_Number__c;
+            existingExposureRequest.ipAddress = onlineApplication.IP_Address__c;
 
             List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
             List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
@@ -419,7 +420,7 @@ global class CreditDecisionEngineOTR {
 
                     CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                    if (giactVerifyResponse != null) {
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage)) {
 
                         onlineApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
                         onlineApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
@@ -432,7 +433,9 @@ global class CreditDecisionEngineOTR {
                     } else {
 
                         onlineApplication.GIACT_Check__c = 'Error';
-                        onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+                        if(giactVerifyResponse != null) {
+                            onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+                        }
 
                     }
 
