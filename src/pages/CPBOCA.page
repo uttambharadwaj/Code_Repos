@@ -386,7 +386,9 @@
                                         </apex:InputField>
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="1">
-                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Payment_Due_Date__c.label} </Label>
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Payment_Due_Date__c.label}
+                                            <i class="fa fa-question-circle help-circle helpIcon" aria-hidden="true" title="{!$ObjectType.CP_Application_Request__c.fields.Payment_Due_Date__c.InlineHelpText}"/>
+                                        </Label>
                                         <apex:InputField styleClass="styled-input" html-tabindex="26" id="paymentDueDate" label="" value="{!creditApp.Payment_Due_Date__c}"/>
                                     </div>
                                 </div>

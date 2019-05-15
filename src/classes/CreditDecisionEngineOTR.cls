@@ -419,7 +419,7 @@ global class CreditDecisionEngineOTR {
 
                     CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                    if (giactVerifyResponse != null) {
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage)) {
 
                         onlineApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
                         onlineApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
@@ -432,7 +432,9 @@ global class CreditDecisionEngineOTR {
                     } else {
 
                         onlineApplication.GIACT_Check__c = 'Error';
-                        onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+                        if(giactVerifyResponse != null) {
+                            onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
+                        }
 
                     }
 
