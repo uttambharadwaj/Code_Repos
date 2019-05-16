@@ -3,6 +3,7 @@
 * Author: Jason Arbegast
 * Initial Date: 5/14/2019
 * Description:  does all the hard work of loading data for test setups and post-sandbox refreshes
+* Test Class: DataLoaderBatchTest, 96% coverage
 * Revision History:
 */
 
@@ -15,9 +16,8 @@ global class DataLoaderBatch implements Database.Batchable<String>,
     private static Map<Integer, String> headerFieldIndex = new Map<Integer, String>();
     private static Boolean firstExecution;
     private static Test_Data_Configuration__mdt tdc;
-    private static Boolean chainObfuscateBatch = false;
-    private static Boolean chainCorrectUserBatch = false;
     private static Test_Data_Configuration__mdt currentTestConfig = null;
+    public Boolean testRunOnly = false; //DataLoaderBatchTest does not need to load all the things, just one, so testRunOnly will stop it.
 
     // This constructor is called by the DataLoaderBatch itself in order to insert the next object
     global DataLoaderBatch (Integer pcmt, Map<String, Map<String, String>> idMap) {
@@ -63,12 +63,10 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         List<sObject> toInsert = new List<sObject>(); //new records go here
         List<sObject> toUpdate = new List<sObject>(); //self-referencing objects go here
         List<sObject> insertedObjects = new List<sObject>(); //completed objects go here
-
         //iterate over scope
         for (Integer myRow=scope.size()-1; myRow>=1; myRow--) {
             //need a new sobject based on what our object should be
             sObject newRecord = Schema.getGlobalDescribe().get(tdc.Object__c).newSObject();
-
             //map our sobject fields
             Map<String,Schema.SObjectField> myObjectFieldMap = newRecord.getsObjectType().getDescribe().fields.getMap();
 
@@ -98,24 +96,19 @@ global class DataLoaderBatch implements Database.Batchable<String>,
                     currentId = currentFieldValue;
                 else {
                     //no need to do anything if we want only required fields and this isn't required
-                    if (tdc.Required_Fields_Only__c && currentFieldSchema.isNillable())
-                        continue;
+                    if (tdc.Required_Fields_Only__c && currentFieldSchema.isNillable()) continue;
 
                     //okay well then get the value of this thing and use it
                     String myValue = getTheValue(currentFieldSchema, currentFieldValue);
 
                     Set<String> numTypes = new Set<String>{'CURRENCY','INTEGER','DECIMAL','DOUBLE'};
 
-                    if (currentFieldSchema.getType() == Schema.DisplayType.Reference && !'RecordTypeId'.equalsIgnoreCase(currentFieldSchema.getName()))
-                        newRecord.put(currentFieldName, myValue);
-                    else if (currentFieldSchema.getType() == Schema.DisplayType.Date)
-                        newRecord.put(currentFieldName, getTheDate(myValue)); // convert strings from file into data type
-                    else if (currentFieldSchema.getType() == Schema.DisplayType.DateTime)
-                        newRecord.put(currentFieldName, DateTime.parse(myValue));// convert strings from file into data type
-                    else if (numTypes.contains(string.valueof(currentFieldSchema.getType())) && myValue != null)
-                        newRecord.put(currentFieldName, integer.valueOf(myValue));
-                    else
-                            newRecord.put(currentFieldName, myValue);
+                    if (currentFieldSchema.getType() == Schema.DisplayType.Reference && !'RecordTypeId'.equalsIgnoreCase(currentFieldSchema.getName())) newRecord.put(currentFieldName, myValue);
+                    else if (currentFieldSchema.getType() == Schema.DisplayType.Date) newRecord.put(currentFieldName, getTheDate(myValue));
+                    else if (currentFieldSchema.getType() == Schema.DisplayType.DateTime) newRecord.put(currentFieldName, DateTime.parse(myValue));
+                    else if (numTypes.contains(string.valueof(currentFieldSchema.getType())) && myValue != null) newRecord.put(currentFieldName, integer.valueOf(myValue));
+                    else if (currentFieldSchema.getType() == Schema.DisplayType.Boolean) newRecord.put(currentFieldName, boolean.valueof(myValue));
+                    else newRecord.put(currentFieldName, myValue);
                 }
             }
 
@@ -159,15 +152,14 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         LIMIT 1];
 
         // if there is a next metadata, run it
-        if ( objectsToProcess.size() > 0 ){
+        if ( objectsToProcess.size() > 0 && !testRunOnly){
             Database.ExecuteBatch(new DataLoaderBatch(objectsToProcess.get(0).Order__c.intValue(), sObjectToIdMap));
             nextBatchCalled = true;
         }
 
         if (!nextBatchCalled) { // if no more tdc records need to be processed
 
-            // send an email to the current user letting them know that the data loading has completed
-            sendDataLoadCompleteEmail();
+            UtilityTestLoader.postExecute();
 
         }
 
@@ -233,45 +225,18 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         return null;
     }
 
-    //send an email to running user letting them know the sandbox data is in
-    public void sendDataLoadCompleteEmail () {
-        if(!Test.isRunningTest())Messaging.reserveSingleEmailCapacity(2);
-
-        String[] toAddresses = new String[] {UserInfo.getUserEmail()};
-
-        Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        mail.setToAddresses(toAddresses);
-
-        mail.setReplyTo('jason.arbegast@wexinc.com');
-        mail.setSenderDisplayName('Salesforce.com');
-        mail.setSubject('Sandbox Refresh Data Load');
-        mail.setBccSender(false);
-
-        mail.setPlainTextBody('The sandbox data load has been completed. \r\n' +
-                'Please log in to see the newly refreshed data from your Production environment.');
-
-        mail.setHtmlBody('The sandbox data load has been completed. </br></br>' +
-                'Please log in to see the newly refreshed data from your Production environment.');
-
-        // Send the email you have created.
-        UtilityClass.sendEmail(mail);
-    }
-
     //header row is all the fields needed. kinda important.
     public void setHeaderRow(Integer order) {
-
         // Get the current mdt record for the csv being processed
         tdc = [SELECT Object__c, Required_Fields_Only__c, Static_Resource__c
         FROM Test_Data_Configuration__mdt
         WHERE Order__c =: order];
         currentTestConfig = tdc;
         StaticResource resource = [SELECT Body FROM StaticResource WHERE Name =: tdc.Static_Resource__c];
-
         // Get just the header row from the specified Static Resource and store that in a variable
         Blob blobby = resource.Body;
         String contentFile = blobby.toString();
         String[] filelines = contentFile.split('\n');
-
         String header = filelines[0];
         String[] headerValues = header.split(',');
         for (Integer i=0; i<headerValues.size(); i++) {

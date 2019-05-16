@@ -49,10 +49,8 @@ global class CustomIterable implements Iterator<String>, Iterable<String>{
     }
 
     global String next(){
-        if(i < records.size()) {
-            i++;
-            return records[i-1];
-        }
-        return null;
+        if(i>=records.size()) return null; //if our integer is larger than list of records then better get out
+        i++;
+        return records[i-1];
     }
 }
