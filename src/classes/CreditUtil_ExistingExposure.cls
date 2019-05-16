@@ -27,9 +27,6 @@ public with sharing class CreditUtil_ExistingExposure {
 
             List<OnlineApplication__c> existingApplications = getOTRExistingApplications(request);
 
-            for (OnlineApplication__c eeApp : existingApplications) {
-            }
-
             for (OnlineApplication__c existingApplication : existingApplications) {
 
                 if((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Legal_Business_Name__c) >= 0.75 &&
@@ -88,7 +85,6 @@ public with sharing class CreditUtil_ExistingExposure {
                         JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Postal_Code__c) >= 0.75)
                         || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.Application_Signer_IP_Address__c) == 1.00)
                         || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
-                        || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Taxpayer_ID__c) == 1.00)
                         || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone__c) == 1.00)
                         || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Guarantor_Social_Security_Number__c)) == 1.00)) {
 
@@ -211,7 +207,7 @@ public with sharing class CreditUtil_ExistingExposure {
         List<CP_Application_Request__c> existingExposureApps = new List<CP_Application_Request__c>();
 
         String cpAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode +
-                ' OR ' + request.ipAddress + ' OR ' + request.phone.replaceAll('\\D','') + ' OR ' + request.taxID.replaceAll('\\D','');
+                ' OR ' + request.ipAddress + ' OR ' + request.phone.replaceAll('\\D','');
 
         if (request.duns != null) {
             cpAppRequestSearchVariables += ' OR ' + request.duns;
