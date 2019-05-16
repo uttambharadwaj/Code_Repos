@@ -8,7 +8,8 @@
         var accountId = component.get("v.accountId");
         console.log('### accountId = ' + accountId);
             action.setParams({
-                accountId : component.get("v.accountId")
+                accountId : component.get("v.accountId"),
+                recordTypeId : component.get("v.recordTypeId")
             });
 
         action.setCallback(this, function(response) {

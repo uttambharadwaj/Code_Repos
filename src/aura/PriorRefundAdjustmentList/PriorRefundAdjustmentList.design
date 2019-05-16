@@ -4,4 +4,5 @@
 
 <design:component label="Prior Refunds and Adjustments">
     <design:attribute name="accountId" label="Account ID"/>
+    <design:attribute name="recordTypeId" label="RecordType ID"/>
 </design:component>

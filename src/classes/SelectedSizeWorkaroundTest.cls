@@ -11,13 +11,18 @@ private class SelectedSizeWorkaroundTest {
 
         Id CaseRecordType = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
 
-        List<User> userList = [SELECT Id, Name FROM User WHERE IsActive = true LIMIT 1];
+        List<User> userList = [SELECT Id, Name FROM User WHERE IsActive = TRUE LIMIT 1];
 
+        List<User> ownerList = [SELECT Id, Name, Role_Name__c FROM User WHERE IsActive = TRUE AND Role_Name__c <> NULL LIMIT 1];
+
+        Id owner = ownerList[0].Id;
+
+        insert new VProfileId__c(Virtual_User__c = false);
 
         Account account = new Account(Name='TestAccount',RecordTypeId=AccountRecordType);
         insert account;
 
-        Case testCase = new Case(Account = account, Subject = 'TestCase', RecordTypeId = CaseRecordType);
+        Case testCase = new Case(Account = account, Subject = 'TestCase', RecordTypeId = CaseRecordType, OwnerId = owner);
         insert testCase;
 
         Id[] refundAdjustmentRecordTypes = new Id[2];

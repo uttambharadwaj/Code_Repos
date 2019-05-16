@@ -4,6 +4,7 @@
 
 <aura:component description="PriorRefundAdjustmentList" controller="PriorRefundAdjustmentListController" implements="lightning:availableForFlowScreens,force:lightningQuickActionWithoutHeader" access="global">
     <aura:attribute name="accountId" type="String"/>
+    <aura:attribute name="recordTypeId" type="String"/>
     <lightning:workspaceAPI aura:id="workspace" />
     <lightning:spinner aura:id="loadingSpinner" class="full-height"/>
 

@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <assignments>
+        <name>Aggregate_Approved_Waivers</name>
+        <label>Aggregate Approved Waivers</label>
+        <locationX>1384</locationX>
+        <locationY>639</locationY>
+        <assignmentItems>
+            <assignToReference>WaiverRequestsGrantedSum</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Current_Prior_refadj.Amount_Waived__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Prior_Refunds_or_Adjustments_Aggregates</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Aggregate_Pending_and_Held_Totals</name>
+        <label>Aggregate Pending and Held Totals</label>
+        <locationX>1315</locationX>
+        <locationY>797</locationY>
+        <assignmentItems>
+            <assignToReference>PendingHeldWaiverRequestsSum</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Current_Prior_refadj.Amount_Waived__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Prior_Refunds_or_Adjustments_Aggregates</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>Assign_Adjustment_Code</name>
         <label>Assign Adjustment Code</label>
         <locationX>1213</locationX>
@@ -175,6 +207,45 @@
         </assignmentItems>
         <connector>
             <targetReference>Record_Type_Selection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>GetTotalAggregates</name>
+        <label>GetTotalAggregates</label>
+        <locationX>1625</locationX>
+        <locationY>593</locationY>
+        <assignmentItems>
+            <assignToReference>CountOfWaiverRequests</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>WaiverRequestsSum</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Current_Prior_refadj.Amount_Waived__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>WasTheRequestGranted</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Grab_Most_Recent_Record</name>
+        <label>Grab Most Recent Record</label>
+        <locationX>1722</locationX>
+        <locationY>205</locationY>
+        <assignmentItems>
+            <assignToReference>Most_Recent_Request</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Current_Prior_refadj</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Most_Recent_Requesting_User</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -683,7 +754,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Record_type</targetReference>
+                <targetReference>Create_Record_Variable</targetReference>
             </connector>
             <label>No Items Found</label>
         </rules>
@@ -740,6 +811,96 @@
         </rules>
     </decisions>
     <decisions>
+        <name>Is_this_the_first_trip_through</name>
+        <label>Is this the first trip through?</label>
+        <locationX>1681</locationX>
+        <locationY>22</locationY>
+        <defaultConnector>
+            <targetReference>GetTotalAggregates</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not First Record</defaultConnectorLabel>
+        <rules>
+            <name>First_Trip</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Most_Recent_Request</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <elementReference>Yes</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Grab_Most_Recent_Record</targetReference>
+            </connector>
+            <label>Save First Record</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Post_List_Screen_Decision</name>
+        <label>Post-List Screen Decision</label>
+        <locationX>646</locationX>
+        <locationY>764</locationY>
+        <defaultConnector>
+            <targetReference>Request_Abandoned</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Exit without Saving</defaultConnectorLabel>
+        <rules>
+            <name>Continue_to_Add_2</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>What_would_you_like_to_do_list_screen</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>CONTINUE_choice</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Record_Variable</targetReference>
+            </connector>
+            <label>Continue to Add</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Prior_Records_Decision</name>
+        <label>Prior Records Decision</label>
+        <locationX>1394</locationX>
+        <locationY>275</locationY>
+        <defaultConnector>
+            <targetReference>Request_Abandoned</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Exit without Adding</defaultConnectorLabel>
+        <rules>
+            <name>Show_Popup</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>What_would_you_like_to_do</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>SEE_ALL_PRIOR_choice</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Prior_Refunds_and_Adjustments_screen</targetReference>
+            </connector>
+            <label>Show Popup</label>
+        </rules>
+        <rules>
+            <name>Continue_to_Add</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>What_would_you_like_to_do</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>CONTINUE_choice</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Record_Variable</targetReference>
+            </connector>
+            <label>Continue to Add</label>
+        </rules>
+    </decisions>
+    <decisions>
         <description>Assign the record type name based on the prior check box.</description>
         <name>Record_Type_Selection</name>
         <label>Record Type Selection</label>
@@ -765,7 +926,54 @@
             <label>Choose Refund</label>
         </rules>
     </decisions>
-    <description>Wanted to save a version before switching to</description>
+    <decisions>
+        <name>WasTheRequestGranted</name>
+        <label>What is the request status?</label>
+        <locationX>1560</locationX>
+        <locationY>701</locationY>
+        <defaultConnector>
+            <targetReference>Get_Prior_Refunds_or_Adjustments_Aggregates</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Request_Was_Granted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Current_Prior_refadj.Approval_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Aggregate_Approved_Waivers</targetReference>
+            </connector>
+            <label>Request Was Granted</label>
+        </rules>
+        <rules>
+            <name>Request_is_Pending_or_Held</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>Current_Prior_refadj.Approval_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Pending</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>Current_Prior_refadj.Approval_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Held</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Aggregate_Pending_and_Held_Totals</targetReference>
+            </connector>
+            <label>Request is Pending or Held</label>
+        </rules>
+    </decisions>
+    <description>Final touches</description>
     <dynamicChoiceSets>
         <name>Adjustment_codes</name>
         <dataType>Picklist</dataType>
@@ -825,6 +1033,17 @@
         <expression>IF( ISPICKVAL({!RefundAdjustment.Fee_Code__c}, &quot;ANC&quot;) , &quot;ANC&quot;, &quot;LATE&quot;)</expression>
     </formulas>
     <formulas>
+        <name>Recent_Prior_Record_Hyperlink</name>
+        <dataType>String</dataType>
+        <expression>HYPERLINK(&quot;/&quot;&amp;&quot;test&quot;, &quot;xxxxx&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description>Returns Waived for Adjustments, Refunded for Refunds</description>
+        <name>Record_Type_Action</name>
+        <dataType>String</dataType>
+        <expression>IF({!RecordType.DeveloperName}=&quot;Adjustment&quot;,&quot;Waived&quot;,&quot;Refunded&quot;)</expression>
+    </formulas>
+    <formulas>
         <name>Refund_Code_Description_Lookup</name>
         <dataType>String</dataType>
         <expression>RIGHT({!Refund_Code}, len({!Refund_Code} )-(find(&quot; &quot;,{!Refund_Code})+2))</expression>
@@ -847,6 +1066,22 @@
     </formulas>
     <interviewLabel>Create Refund or Adjustment {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create Refund or Adjustment</label>
+    <loops>
+        <description>Gets summary data the old fashioned way....</description>
+        <name>Get_Prior_Refunds_or_Adjustments_Aggregates</name>
+        <label>Get Prior Refunds or Adjustments Aggregates</label>
+        <locationX>1554</locationX>
+        <locationY>14</locationY>
+        <assignNextValueToReference>Current_Prior_refadj</assignNextValueToReference>
+        <collectionReference>Prior_Refunds_or_Adjustments</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Is_this_the_first_trip_through</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Prior_Requests_Screen</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -875,7 +1110,7 @@
         <description>Get Account info based on the Account in the parent Case</description>
         <name>Get_Account_Data</name>
         <label>Get Account Data</label>
-        <locationX>494</locationX>
+        <locationX>533</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -905,7 +1140,7 @@
     <recordLookups>
         <name>Get_Case_Data</name>
         <label>Get Case Data</label>
-        <locationX>350</locationX>
+        <locationX>420</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -950,9 +1185,30 @@
         <queriedFields>LastName</queriedFields>
     </recordLookups>
     <recordLookups>
+        <name>Get_Most_Recent_Requesting_User</name>
+        <label>Get Most Recent Requesting User</label>
+        <locationX>1721</locationX>
+        <locationY>357</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>GetTotalAggregates</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>Most_Recent_Request.CreatedById</elementReference>
+            </value>
+        </filters>
+        <object>User</object>
+        <outputReference>MostRecentRequestUser</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Name</queriedFields>
+    </recordLookups>
+    <recordLookups>
         <name>Get_Prior_Refunds_and_Adjustments</name>
         <label>Get Prior Refunds and Adjustments</label>
-        <locationX>798</locationX>
+        <locationX>799</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
@@ -972,6 +1228,13 @@
                 <elementReference>Eighteen_Months_Ago</elementReference>
             </value>
         </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>RecordType.Id</elementReference>
+            </value>
+        </filters>
         <object>Refund_Adjustment__c</object>
         <outputReference>Prior_Refunds_or_Adjustments</outputReference>
         <queriedFields>Id</queriedFields>
@@ -983,6 +1246,9 @@
         <queriedFields>CreatedDate</queriedFields>
         <queriedFields>Name</queriedFields>
         <queriedFields>RecordTypeId</queriedFields>
+        <queriedFields>Department__c</queriedFields>
+        <queriedFields>CreatedById</queriedFields>
+        <queriedFields>Reason_Comment__c</queriedFields>
         <sortField>Create_Date__c</sortField>
         <sortOrder>Desc</sortOrder>
     </recordLookups>
@@ -1017,8 +1283,8 @@
         <description>Get the record type from SF</description>
         <name>Get_Record_type</name>
         <label>Get Record Type</label>
-        <locationX>1214</locationX>
-        <locationY>118</locationY>
+        <locationX>310</locationX>
+        <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Record_Variable</targetReference>

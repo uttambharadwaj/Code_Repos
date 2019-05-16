@@ -48,11 +48,11 @@ public with sharing class PriorRefundAdjustmentListController {
     }
 
     @AuraEnabled
-    public static List<RefundAdjustmentRecord> getPriorRefundAdjustments(String accountId) {
-        System.debug('"*** Entering getPriorRefundAdjustments');
+    public static List<RefundAdjustmentRecord> getPriorRefundAdjustments(String accountId, Id recordTypeId) {
+        System.debug('"*** Entering getPriorRefundAdjustments for accountId '+accountId+' and recordTypeId '+recordTypeId);
         List<RefundAdjustmentRecord> result = new List<RefundAdjustmentRecord>();
         try {
-            for (Refund_Adjustment__c refadj : [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: accountId ORDER BY CreatedDate DESC]) {
+            for (Refund_Adjustment__c refadj : [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: accountId AND RecordTypeId =: recordTypeId ORDER BY CreatedDate DESC]) {
                 result.add(new RefundAdjustmentRecord (refadj) );
             }
 
