@@ -553,7 +553,7 @@ public class CPBOCAController {
                 creditApp.Mailing_Address_Line_2__c = creditApp.Physical_Address_Line_2__c;
                 creditApp.Mailing_Country__c = creditApp.Physical_Country__c;
                 creditApp.Mailing_City__c = creditApp.Physical_City__c;
-                creditApp.Mailing_State__c = creditApp.Physical_State_Province__c;
+                creditApp.Mailing_State_Province__c = creditApp.Physical_State_Province__c;
                 creditApp.Mailing_Postal_Code__c = creditApp.Physical_Postal_Code__c;
             }
 

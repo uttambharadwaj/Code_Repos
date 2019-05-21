@@ -88,7 +88,6 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
                     Decimal creditLineRequested = oa.Credit_Line_Requested__c;
                     Decimal highCreditAmount = oa.PG_High_Credit_Amount__c;
-                    String riskGrade = oa.Risk_Grade__c;
                     Decimal creditLineRequestedWithTrucks = 0;
                     System.debug('requested credit line - original requested: ' + creditLineRequested);
 
@@ -105,57 +104,12 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
                     // If a PG has been pulled, calculate the recommended credit line based on consumer PG information
                     if (oa.PG_Required__c && null != oa.PG_High_Credit_Amount__c) {
-
                         oa.Credit_Line_Recommendation__c = calculateOTRCreditLimitPerPG(oa, highCreditAmount, creditLineRequested);
 
                     } else {
                         // calculate recommended credit line based on commercial DNB information
-                        oa.Credit_Line_Recommendation__c = oa.DNB_Credit_Line_Recommendation__c;
-
-                        // if DNB recommends a higher credit line than the customer requested, cap the recommended at the requested credit line
-                        if (oa.Credit_Line_Recommendation__c > creditLineRequested) {
-                            oa.Credit_Line_Recommendation__c = creditLineRequested;
-                        }
-
-                        // determine which high credit amount is highest
-                        highCreditAmount = getHighestCreditAmount(oa.DNB_SBFE_High_Credit__c, oa.DNB_CSAD_High_Credit__c);
-
-                        if (riskGrade.equals('1') || riskGrade.equals('2')) {
-                            if (oa.Credit_Line_Recommendation__c <= 25000) {
-                                return oa.Credit_Line_Recommendation__c;
-                            }
-                            else {
-                                if (oa.Credit_Line_Recommendation__c <= highCreditAmount) {
-                                    return oa.Credit_Line_Recommendation__c;
-                                }
-                                else {
-                                    oa.Credit_Line_Recommendation__c = highCreditAmount;
-                                }
-                            }
-                        }
-                        if (riskGrade.equals('3')) {
-                            if (oa.Credit_Line_Recommendation__c <= 10000) {
-                                return oa.Credit_Line_Recommendation__c;
-                            }
-                            else {
-                                if (oa.Credit_Line_Recommendation__c <= highCreditAmount) {
-                                    return oa.Credit_Line_Recommendation__c;
-                                }
-                                else {
-                                    oa.Credit_Line_Recommendation__c = highCreditAmount;
-                                }
-                            }
-                        }
+                        oa.Credit_Line_Recommendation__c = calculateOTRCreditLimitPerDNB(oa, highCreditAmount, creditLineRequested);
                     }
-
-                    // Commercial Risk Grade 4 will have a credit line recommendation based on PG information, but has a cap credit line of $5k.
-                    if (riskGrade != null && riskGrade.equals('4')) {
-                        oa.Decision_Comments__c = oa.Decision_Comments__c + ' ACH 2x weekly required. No cash products allowed.';
-                        if (oa.Credit_Line_Recommendation__c > 5000) {
-                            oa.Credit_Line_Recommendation__c = 5000;
-                        }
-                    }
-
 
                     // For any given credit line recommendation, a minimum credit line of 2500 is required (Slip Seat minimum is 3500)
                     if (oa.Credit_Line_Recommendation__c < 3500 && oa.Credit_Line_Recommendation__c != 0 && oa.Team_Drivers_Slip_Seat__c) {
@@ -196,21 +150,26 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                         }
                     }
 
-                    // If DNB match was successful, and PG was not required, caluclate credit based on DNB info
+                    // If DNB match was successful, and PG was not required, calculate credit based on DNB info
                     if (!ar.PG_Required__c && ar.DNB_Credit_Line_Recommendation__c > 0) {
-                        return calculateNACreditLimitPerDNB(ar, creditLineRequested, riskGrade, highCreditAmount);
+                        ar.Credit_Line_Recommendation__c = calculateNACreditLimitPerDNB(ar, creditLineRequested, riskGrade, highCreditAmount);
 
                     }
                     // If PG pulled, calculate the recommended credit line based on PG info
                     else {
-                        return calculateNACreditLimitPerPG(ar, creditLineRequested, riskGrade, highCreditAmount);
+                        ar.Credit_Line_Recommendation__c = calculateNACreditLimitPerPG(ar, creditLineRequested, riskGrade, highCreditAmount);
                     }
+
+                    if (ar.Credit_Line_Recommendation__c != 0 && ar.Credit_Line_Recommendation__c < 500) {
+                        ar.Credit_Line_Recommendation__c = 500;
+                    }
+                    return ar.Credit_Line_Recommendation__c;
                 }
             }
 
         } catch (Exception e) {
             System.debug('### ERROR: ' + e.getMessage() + '(Line: ' + e.getLineNumber() + ') in class: CreditUtil_CalculateCreditLine');
-            System.debug('Unable to calculate recommended credit line, possibly an unexpected null field in application id: ' + so.id);
+            System.debug('Unable to calculate recommended credit line, possibly an unexpected null field in application id: ' + so.Id);
 
         }
         return 0;
@@ -279,9 +238,18 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
             }
         }
 
-        else if ((FICO >= 660 && FICO <= 679) || (FICO >= 630 && FICO <= 659 && (oa.Program__r.Brand_Short_Name__c.equalsIgnoreCase('NASTC') || oa.Program__r.Brand_Short_Name__c.equalsIgnoreCase('JBH360')|| oa.Program__r.Brand_Short_Name__c.equalsIgnoreCase('EDGE')))) {
+        else if (FICO >= 660 && FICO <= 679) {
 
             // cap for this FICO range is $5k
+            if (oa.Credit_Line_Recommendation__c > 5000) {
+                oa.Credit_Line_Recommendation__c = 5000;
+            }
+        }
+
+        else if (FICO >= 630 && FICO <= 659) {
+
+            // cap for this FICO range is $5k
+            oa.Decision_Comments__c = oa.Decision_Comments__c + ' ACH 2x weekly required. No cash products allowed.';
             if (oa.Credit_Line_Recommendation__c > 5000) {
                 oa.Credit_Line_Recommendation__c = 5000;
             }
@@ -293,6 +261,50 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
         System.debug('recommended credit line - after looking at FICO: ' + oa.Credit_Line_Recommendation__c);
         return oa.Credit_Line_Recommendation__c;
     }
+
+    private static Decimal calculateOTRCreditLimitPerDNB(OnlineApplication__c oa, Decimal highCreditAmount, Decimal creditLineRequested) {
+
+        String riskGrade = oa.Risk_Grade__c;
+        oa.Credit_Line_Recommendation__c = oa.DNB_Credit_Line_Recommendation__c;
+
+
+        // if DNB recommends a higher credit line than the customer requested, cap the recommended at the requested credit line
+        if (oa.Credit_Line_Recommendation__c > creditLineRequested) {
+            oa.Credit_Line_Recommendation__c = creditLineRequested;
+        }
+
+        // determine which high credit amount is highest
+        highCreditAmount = getHighestCreditAmount(oa.DNB_SBFE_High_Credit__c, oa.DNB_CSAD_High_Credit__c);
+
+        if (riskGrade.equals('1') || riskGrade.equals('2')) {
+            if (oa.Credit_Line_Recommendation__c <= 25000) {
+                return oa.Credit_Line_Recommendation__c;
+            }
+            else {
+                if (oa.Credit_Line_Recommendation__c <= highCreditAmount) {
+                    return oa.Credit_Line_Recommendation__c;
+                }
+                else {
+                    return oa.Credit_Line_Recommendation__c = highCreditAmount;
+                }
+            }
+        }
+        if (riskGrade.equals('3') || riskGrade.equals('4')) {
+            if (oa.Credit_Line_Recommendation__c <= 10000) {
+                return oa.Credit_Line_Recommendation__c;
+            }
+            else {
+                if (oa.Credit_Line_Recommendation__c <= highCreditAmount) {
+                    return oa.Credit_Line_Recommendation__c;
+                }
+                else {
+                    return oa.Credit_Line_Recommendation__c = highCreditAmount;
+                }
+            }
+        }
+        return 0;
+    }
+
 
     /**
      * Calculate the NA Fleet credit line recommndation based on DNB information
@@ -318,7 +330,6 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                 return ar.Credit_Line_Recommendation__c;
             }
             if (ar.Credit_Line_Recommendation__c >= 25000) {
-                System.debug('TEMP credit line rec less than 25k');
                 if (ar.Credit_Line_Recommendation__c <= highCreditAmount) {
                     return ar.Credit_Line_Recommendation__c;
                 }

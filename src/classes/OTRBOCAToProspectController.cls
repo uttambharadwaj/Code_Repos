@@ -2,7 +2,7 @@
 Description:        controller for otrbocatoprospect
 Test Classes:       OTRBOCAToProspectTest
 Last Coverage:      98%
-Revision History:
+Revision History:   4/12/2019 Jason Arbegast IADJUDICAT-1085 limit program options to those related to the partner
 TODO:               move logerror to utility method; can be used across classes and easier to test the individual method that way
                     move email sections to utility/class method; similar code is in place across methods
  */
@@ -78,10 +78,36 @@ public class OTRBOCAToProspectController {
         get {
 
             List<SelectOption> availablePrograms = new List<SelectOption>();
-
             availablePrograms.add(new SelectOption('', '-- Choose One--'));
-            for (Program__c program : [SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = 'OTR' and Publish_BOCA__c = true ORDER BY Name ASC]) {
-                availablePrograms.add(new SelectOption(program.Id, program.Name));
+
+            //IADJUDICAT-1085 restrict partners to only their programs
+            Id partnerId = null;
+            /* uncomment this block when campaign program is in use. it will limit the programs displayed for inside sales reps.
+            //get partner from the program from the oppty
+            Campaign_Program__c cp = [SELECT Program__r.Partner__c FROM Campaign_Program__c WHERE Id = :opportunity.Campaign_Program__c LIMIT 1];
+            if(cp != null)
+                partnerId = cp.Program__r.Partner__c;
+            */
+
+            //get user info
+            Id uid = UserInfo.getUserId();
+
+            //from user get contact then account then program then partner
+            User u = [SELECT  profile.UserLicense.name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
+            Boolean isPartner = (u.profile.UserLicense.name == 'Partner Community') ? true : false;
+            if(isPartner)
+                partnerId = u.Contact.Account.Program__r.Partner__c;
+
+            //assemble the query for possible programs.
+            String myQuery = 'SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = \'OTR\' and Publish_BOCA__c = true';
+            if(isPartner || (!isPartner && partnerId != null))
+                myQuery += ' AND Partner__c = :partnerId';
+            myQuery += ' ORDER BY Name ASC';
+            //if we have inside sales rep, or we have a partner AND a partnerid, add programs to drop down. if partner user but no partnerid, don't show anything
+            if(!isPartner || (isPartner && partnerId != null)){
+                for (Program__c program : database.query(myQuery)) {
+                    availablePrograms.add(new SelectOption(program.Id, program.Name));
+                }
             }
 
             return availablePrograms;
@@ -95,10 +121,11 @@ public class OTRBOCAToProspectController {
             List<SelectOption> availableOffers = new List<SelectOption>();
 
             availableOffers.add(new SelectOption('', '-- Choose One --'));
-            for (OnlineApplicationOffer__c offer : [SELECT Id, Name FROM OnlineApplicationOffer__c WHERE Program__c = :selectedProgram ORDER BY Name ASC]) {
-                availableOffers.add(new SelectOption(offer.Id, offer.Name));
+            if(selectedProgram != null){
+                for (OnlineApplicationOffer__c offer : [SELECT Id, Name FROM OnlineApplicationOffer__c WHERE Program__c = :selectedProgram ORDER BY Name ASC]) {
+                    availableOffers.add(new SelectOption(offer.Id, offer.Name));
+                }
             }
-
             return availableOffers;
         }
     }
