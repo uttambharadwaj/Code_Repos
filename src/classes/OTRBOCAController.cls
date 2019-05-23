@@ -42,6 +42,12 @@ public class OTRBOCAController {
 
     public String tmSessionId { get; set; }
 
+    public String userSessionId {
+        get {
+            return UserInfo.getSessionId();
+        }
+    }
+
     public Boolean sendToConfirmation { get; set; }
 
     public Boolean saveForLater { get; set; }

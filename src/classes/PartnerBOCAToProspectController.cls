@@ -1,5 +1,7 @@
 /*
 * Revision History: 5/1/2019 IADJUDICAT-1186 expand functionality for CP and NAF; utilize field mapping metadata
+* Revision History: 5/21/2019 MFarrell - PSOBACKLOG-198 - Added constructor with ApexPages.standardcontroller
+*
 */
 public class PartnerBOCAToProspectController {
 
@@ -38,13 +40,18 @@ public class PartnerBOCAToProspectController {
 
     public Id selectedOffer { get; set; }
 
+    public String bocaType {get{
+        if(selectedProgram == null) return null;
+        return [select boca_type__c from program__c where id=:selectedProgram limit 1].BOCA_Type__c;
+    }}
+
     public List<SelectOption> additionalPrograms {
         get {
             List<SelectOption> additionalPrograms = new List<SelectOption>();
 
             if (partner != null) {
 
-                List<Program__c> partnerPrograms = [SELECT Id, Brand_Long_Name__c FROM Program__c WHERE Partner__c = :partner.Id AND Publish_BOCA__c = TRUE];
+                List<Program__c> partnerPrograms = [SELECT Id, Brand_Long_Name__c, BOCA_Type__c FROM Program__c WHERE Partner__c = :partner.Id AND Publish_BOCA__c = TRUE];
 
                 if (partnerPrograms.size() > 0) {
                     additionalPrograms.add(new SelectOption('', '-- Choose One --'));
@@ -87,6 +94,10 @@ public class PartnerBOCAToProspectController {
     }
 
     public PartnerBOCAToProspectController() {
+
+    }
+
+    public PartnerBOCAToProspectController(ApexPages.standardcontroller oppController) {
 
     }
 

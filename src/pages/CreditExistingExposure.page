@@ -19,6 +19,7 @@
             <apex:column headerValue="Postal Code">{!originalRequest.postalCode}</apex:column>
             <apex:column headerValue="Phone">{!originalRequest.phone}</apex:column>
             <apex:column headerValue="Tax ID">{!originalRequest.taxId}</apex:column>
+            <apex:column headerValue="PG SSN">{!originalRequest.pgSSN}</apex:column>
             <apex:column headerValue="DUNS Number">{!originalRequest.duns}</apex:column>
             <apex:column headerValue="IP Address">{!originalRequest.ipAddress}</apex:column>
         </apex:pageBlockTable>

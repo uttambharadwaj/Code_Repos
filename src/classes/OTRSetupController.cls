@@ -5,6 +5,7 @@ Test Classes:       OTRBOCATest
 Last Coverage:      30%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 refactor to allow code reuse on save for later pdf generation
                     4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section from page; remove related code from controller
+                    5/13/2019 Michael Farrell PSOBACKLOG-183 added Daily_Fuel_Limit__c & Daily_Misc_Limit__c to onlineApplications SOQL
 */
 public without sharing class OTRSetupController {
 
@@ -152,7 +153,7 @@ public without sharing class OTRSetupController {
                 List<OnlineApplication__c> onlineApplications = [
                         SELECT Id, Name, Program__c, Offer__c, Other_Services__c, Invoice_Delivery_Method_Email__c, Credit_Line_Requested__c, Billing_Cycle__c, Invoice_Delivery_Method__c,
                                 Business_Street_Address__c, City__c, State__c, Country__c, Zip_Code__c, Number_of_Cards_Needed__c, Embossing_Line_1_Company_Name__c, Number_of_Drivers__c,
-                                Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Business_Address_Line_2__c,
+                                Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Fuel_Limit__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Daily_Misc_Limit__c, Business_Address_Line_2__c,
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
                                 Opportunity__r.CampaignId, Contact_Last_Name__c, Email__c, Contact_First_Name__c, Phone_Number__c, Cell_Number__c, Opportunity__r.Campaign_Program__c,
                                 Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c
@@ -561,6 +562,7 @@ public without sharing class OTRSetupController {
         redirect = Page.OTRBOCAConfirmation;
         if(onlineApplication != null) {
             redirect.getParameters().put('customer', onlineApplication.Id);
+            redirect.getParameters().put('pgm', programParameter);
         }
         return redirect;
 
