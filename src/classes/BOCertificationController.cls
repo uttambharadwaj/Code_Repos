@@ -23,6 +23,12 @@ public class BOCertificationController {
         }
     }
 
+    public String userSessionId {
+        get {
+            return UserInfo.getSessionId();
+        }
+    }
+
     public String weFormId {
         get {
             if(ApexPages.CurrentPage().getParameters().get('weFormId') != null) { return ApexPages.CurrentPage().getParameters().get('weFormId'); }

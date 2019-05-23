@@ -541,6 +541,7 @@
                                         &nbsp;
                                     </div>
                                 </apex:outputPanel>
+                                <apex:outputPanel rendered="{!userSessionId == null}">
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
@@ -567,6 +568,7 @@
                                 <div class="twelve columns clearfix">
                                     <input id="acknowledgement" type="checkbox" />&nbsp;{!$Label.BOCDD_Certification_Language}
                                 </div>
+                                </apex:outputPanel>
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>

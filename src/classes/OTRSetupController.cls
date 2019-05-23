@@ -562,6 +562,7 @@ public without sharing class OTRSetupController {
         redirect = Page.OTRBOCAConfirmation;
         if(onlineApplication != null) {
             redirect.getParameters().put('customer', onlineApplication.Id);
+            redirect.getParameters().put('pgm', programParameter);
         }
         return redirect;
 
