@@ -625,7 +625,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 									</div>
 								</apex:outputPanel>
 							</apex:outputPanel>
-							<apex:outputPanel id="paymentMethodFeeDisclosure">
+							<apex:outputPanel id="paymentMethodFeeDisclosure" rendered="{!userSessionId == null}">
 								<apex:outputPanel rendered="{!IF(OR(onlineApplication.Payment_Method__c == 'Western Union', onlineApplication.Payment_Method__c == 'Wire'), true, false)}">
 									<div class="twelve columns clearfix">
 										<div class="section-header">
@@ -638,6 +638,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 									</div>
 								</apex:outputPanel>
 							</apex:outputPanel>
+							<apex:outputPanel rendered="{!userSessionId == null}">
 							<div class="twelve columns clearfix">
 								&nbsp;
 							</div>
@@ -663,7 +664,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 								</div>
 								<div id="authorizedSignerBody" class="disclaimer-container clearfix">
 									<div class="disclaimer-checkbox">
-										<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox" />
+										<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox"/>
 									</div>
 									<div class="disclaimer-text">
 										<apex:outputPanel id="disclaimer">
@@ -673,6 +674,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 									</div>
 								</div>
 							</div>
+							</apex:outputPanel>
 							<div class="twelve columns clearfix">
 								&nbsp;
 							</div>

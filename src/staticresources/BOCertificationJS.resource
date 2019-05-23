@@ -268,7 +268,7 @@ function validateForm() {
   	}
     else {
 
-        if(hasErrors == false && !($j('[id$=acknowledgement]').prop('checked'))) {    
+        if(hasErrors == false && !($j('[id$=acknowledgement]').prop('checked')) && $j('[id$=acknowledgement]') == null) {
             console.log('missing acknowledgement');
             $j('[id$=errors]').html($Label.BOCA_Acknowledge_Disclaimer + '.');
             
