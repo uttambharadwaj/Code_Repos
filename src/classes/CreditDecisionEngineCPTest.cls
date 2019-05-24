@@ -309,12 +309,14 @@ public class CreditDecisionEngineCPTest {
 
             Test.setCurrentPage(creditExistingExposure);
 
+            // must fix in results because using SOSL
+            Id[] fixedSearchResults = new id[new Map<id, CP_Application_Request__c>(cpApplications).keySet()];
+            Test.setFixedSearchResults(fixedSearchResults);
+
             CreditExistingExposureController fdoac = new CreditExistingExposureController();
 
             fdoac.init();
 
-            System.debug('duplication Account size = ' + fdoac.duplicateAccounts.size());
-            System.debug('duplication Applications size = ' + fdoac.duplicateApplications.size());
             System.assert(fdoac.duplicateAccounts.size() == 0);
             System.assert(fdoac.duplicateApplications.size() >= 0);
 

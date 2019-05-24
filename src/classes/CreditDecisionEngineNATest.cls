@@ -553,6 +553,10 @@ public with sharing class CreditDecisionEngineNATest {
 
             Test.setCurrentPage(creditExistingExposure);
 
+            // must fix in results because using SOSL
+            Id[] fixedSearchResults = new id[new Map<id, Application_Request__c>(naApplications).keySet()];
+            Test.setFixedSearchResults(fixedSearchResults);
+
             CreditExistingExposureController fdoac = new CreditExistingExposureController();
 
             fdoac.init();

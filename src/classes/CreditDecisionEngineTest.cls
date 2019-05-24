@@ -459,6 +459,10 @@ public class CreditDecisionEngineTest {
 
             Test.setCurrentPage(creditExistingExposure);
 
+            // must fix in results because using SOSL
+            Id[] fixedSearchResults = new id[new Map<id, OnlineApplication__c>(onlineApplications).keySet()];
+            Test.setFixedSearchResults(fixedSearchResults);
+
             CreditExistingExposureController ceec = new CreditExistingExposureController();
 
             ceec.init();
