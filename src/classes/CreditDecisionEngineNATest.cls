@@ -543,7 +543,7 @@ public with sharing class CreditDecisionEngineNATest {
 
     static testMethod void testExistingExposure() {
 
-        List<Application_Request__c> naApplications = [SELECT Id FROM Application_Request__c];
+        List<Application_Request__c> naApplications = [SELECT Id, Account_Name__r.Phone, Account_Name__r.Tax_ID__c FROM Application_Request__c];
 
         if (naApplications.size() > 0) {
 
@@ -553,12 +553,14 @@ public with sharing class CreditDecisionEngineNATest {
 
             Test.setCurrentPage(creditExistingExposure);
 
+            // must fix in results because using SOSL
+            Id[] fixedSearchResults = new id[new Map<id, Application_Request__c>(naApplications).keySet()];
+            Test.setFixedSearchResults(fixedSearchResults);
+
             CreditExistingExposureController fdoac = new CreditExistingExposureController();
 
             fdoac.init();
 
-            System.debug('duplication Account size = ' + fdoac.duplicateAccounts.size());
-            System.debug('duplication Applications size = ' + fdoac.duplicateApplications.size());
             System.assert(fdoac.duplicateAccounts.size() == 0);
             System.assert(fdoac.duplicateApplications.size() >= 0);
 
