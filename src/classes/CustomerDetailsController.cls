@@ -405,7 +405,7 @@ public without sharing class CustomerDetailsController {
             
         }
         
-    }
+    }  
 
     @AuraEnabled
     public static String getPriorityLevelServicingRule(String pgmRowId, String priorityLevel) {
