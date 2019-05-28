@@ -215,7 +215,9 @@ global class AccountWS_EFSAppManager {
         }
 
         if(onlineApplication.Offer__c != null) {
-            onlineApplicationOffer = [SELECT Id, Setup_Fee__c, Tier_ID__c, PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c, PSR_Scales__c FROM OnlineApplicationOffer__c WHERE Id =: onlineApplication.Offer__c LIMIT 1];
+            onlineApplicationOffer = [SELECT Id, Setup_Fee__c, Tier_ID__c, PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c,
+                    PSR_Money_Code__c, PSR_Scales__c, Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c
+            FROM OnlineApplicationOffer__c WHERE Id =: onlineApplication.Offer__c LIMIT 1];
         }
 
         if(onlineApplication.Program__c != null) {
@@ -690,6 +692,18 @@ global class AccountWS_EFSAppManager {
         }
 
         // End of "contract"
+        jsonPayload.writeEndObject();
+
+        // Start of offer"
+        jsonPayload.writeFieldName('carrier');
+        jsonPayload.writeStartObject();
+
+        if(onlineApplicationOffer.Notice_Type_1__c != null) jsonPayload.writeStringField('notice_type_1', onlineApplicationOffer.Notice_Type_1__c);
+        if(onlineApplicationOffer.Notice_Type_1_Value__c != null) jsonPayload.writeNumberField('notice_type_1_value', onlineApplicationOffer.Notice_Type_1_Value__c);
+        if(onlineApplicationOffer.Notice_Type_2__c != null) jsonPayload.writeStringField('notice_type_2_value', onlineApplicationOffer.Notice_Type_2__c);
+        if(onlineApplicationOffer.Notice_Type_2_Value__c != null) jsonPayload.writeNumberField('notice_type_2_value', onlineApplicationOffer.Notice_Type_2_Value__c);
+
+        // End of "offer"
         jsonPayload.writeEndObject();
 
         if(onlineApplication.Carrier_ID_Number__c == null) {

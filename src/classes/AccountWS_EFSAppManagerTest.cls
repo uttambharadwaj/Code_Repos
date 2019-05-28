@@ -31,6 +31,10 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplicationOffer.PSR_Marketing_Fee__c = 1.00;
         onlineApplicationOffer.PSR_Money_Code__c = 1.00;
         onlineApplicationOffer.PSR_Scales__c = 1.00;
+        onlineApplicationOffer.Notice_Type_1__c = 'Percent';
+        onlineApplicationOffer.Notice_Type_1_Value__c = 10;
+        onlineApplicationOffer.Notice_Type_2__c = 'Percent';
+        onlineApplicationOffer.Notice_Type_2_Value__c = 5;
 
         insert onlineApplicationOffer;
 
