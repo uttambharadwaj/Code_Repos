@@ -26,12 +26,23 @@
     loadCustomerDetails : function(component, target) {
         
         var action = component.get("c.getCustomerDetails");
-        
-        action.setParams({
-            accountNumber : component.get("v.accountNumber"),
-            accountRecordId : component.get("v.recordId")
+
+        var pdRowId = component.get("v.pdRowId");
+        console.log('### pdRowId = ' + pdRowId);
+        if (pdRowId != null) {
+            action.setParams({
+                accountNumber : component.get("v.accountNumber"),
+                accountRecordId : component.get("v.recordId"),
+                pdRowIdString : pdRowId
+            });
+        } else {
+            action.setParams({
+                accountNumber : component.get("v.accountNumber"),
+                accountRecordId : component.get("v.recordId"),
+                pdRowIdString : ''
         });
-        
+        }
+
         action.setCallback(this, function(response) {
             var state = response.getState();
             

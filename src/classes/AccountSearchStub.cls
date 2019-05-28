@@ -9,7 +9,7 @@ public class AccountSearchStub {
         public String clientCert_x;
         public String clientCertPasswd_x;
         public Integer timeout_x;
-        private String[] ns_map_type_info = new String[]{'http://com.wex.coreinfo.customerinfo', 'AccountSearchStub', 'http://com.wex.coreinfo.customerinfo', 'AccountSearchTypes'};
+        private String[] ns_map_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo', 'AccountSearchStub', 'http://com.wex.enterpriseapps.customerinfo', 'AccountSearchTypes'};
 
         public AccountSearchTypes.accountSearchResult accountSearch(AccountSearchTypes.accountSearchRequest arg0) {
             AccountSearchTypes.accountSearch request_x = new AccountSearchTypes.accountSearch();
@@ -23,9 +23,9 @@ public class AccountSearchStub {
               response_map_x,
               new String[]{endpoint_x,
               '',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'accountSearch',
-              'http://com.wex.coreinfo.customerinfo',
+              'http://com.wex.enterpriseapps.customerinfo',
               'accountSearchResponse',
               'AccountSearchTypes.accountSearchResponse'}
             );
