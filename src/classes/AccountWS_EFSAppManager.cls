@@ -216,12 +216,12 @@ global class AccountWS_EFSAppManager {
 
         if(onlineApplication.Offer__c != null) {
             onlineApplicationOffer = [SELECT Id, Setup_Fee__c, Tier_ID__c, PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c,
-                    PSR_Money_Code__c, PSR_Scales__c, Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c
+                    PSR_Money_Code__c, PSR_Scales__c, Account_Descriptor__c, Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c
             FROM OnlineApplicationOffer__c WHERE Id =: onlineApplication.Offer__c LIMIT 1];
         }
 
         if(onlineApplication.Program__c != null) {
-            onlineApplicationProgram = [SELECT Id, Statement_Type__c, Customer_Type__c, Card_Press_ID__c, Card_Order_Type__c, Card_Shipping_Method__c, Card_Style__c, Card_Type__c, Cards_per_1_Requested__c, Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c FROM Program__c WHERE Id =: onlineapplication.Program__c];
+            onlineApplicationProgram = [SELECT Id, Statement_Type__c, Customer_Type__c, Card_Press_ID__c, Card_Order_Type__c, Card_Shipping_Method__c, Lockbox_Value__c, Card_Style__c, Card_Type__c, Cards_per_1_Requested__c, Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c FROM Program__c WHERE Id =: onlineapplication.Program__c];
         }
 
         if(onlineApplication.Opportunity__c != null) {
@@ -252,6 +252,8 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeNumberField('policyNumber', 1);
         if(onlineApplicationProgram.Card_Order_Type__c != null) jsonPayload.writeNumberField('orderType', Integer.valueOf(onlineApplicationProgram.Card_Order_Type__c));
         if(onlineApplicationProgram.Card_Style__c != null) jsonPayload.writeNumberField('cardStyle', Integer.valueOf(onlineApplicationProgram.Card_Style__c));
+        //todo: is card type being updated or is it a new field? card_type__c is already being sent later on
+        if(onlineApplicationProgram.Card_Type__c != null) jsonPayload.writeNumberField('ZZZPROGRAM_CARD_TYPE', Integer.valueOf(onlineApplicationProgram.Card_Type__c));
         if(onlineApplicationProgram.Card_Press_ID__c != null) jsonPayload.writeNumberField('cardpressId', Integer.valueOf(onlineApplicationProgram.Card_Press_ID__c));
         // Certain Programs send additional cards to the customer.
         if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationProgram.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
@@ -558,12 +560,7 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Terms_ID__c != null) jsonPayload.writeStringField('terms', onlineApplication.Terms_ID__c);
         if(onlineApplication.Cycle_ID__c != null) jsonPayload.writeStringField('cycle_code', onlineApplication.Cycle_ID__c);
         if(onlineApplicationProgram.Issuer_ID__c != null) jsonPayload.writeStringField('issuer_id', onlineApplicationProgram.Issuer_ID__c);
-        if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
-            jsonPayload.writeStringField('lockbox', '53');
-        }
-        if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
-            jsonPayload.writeStringField('lockbox', '80');
-        }
+        if(onlineApplicationProgram.Lockbox_Value__c != null) jsonPayload.writeStringField('lockbox', onlineApplicationProgram.Lockbox_Value__c);
 
         if(onlineApplication.Prepaid__c == true) {
             jsonPayload.writeStringField('mgr_code', '1DRW');
@@ -585,6 +582,8 @@ global class AccountWS_EFSAppManager {
                 jsonPayload.writeStringField('mgr_code', '1CHK');
             }
         }
+
+        if(onlineApplicationOffer.Account_Descriptor__c != null) jsonPayload.writeStringField('mgr_code', onlineApplicationOffer.Account_Descriptor__c);
 
         jsonPayload.writeStringField('service_charge', 'Y');
         jsonPayload.writeStringField('late_payment', 'Y');
@@ -611,6 +610,14 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Western Union')) jsonPayload.writeStringField('payment_method', 'Wire');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Faxed Electronichek')) jsonPayload.writeStringField('payment_method', 'Check');
         if(onlineApplication.Payment_Frequency__c != null) jsonPayload.writeStringField('payment_frequency', onlineApplication.Payment_Frequency__c);
+
+        if(onlineApplication.Payment_Terms__c != null) jsonPayload.writeStringField('ZZZREQUESTED_TERMS', onlineApplication.Payment_Terms__c);
+        if(onlineApplication.Billing_Cycle__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE', onlineApplication.Billing_Cycle__c);
+        if(onlineApplication.Credit_Line_Approved__c != null) jsonPayload.writeStringField('ZZZCREDIT_LINE_APPROVED', onlineApplication.Credit_Line_Approved__c	);
+        if(onlineApplication.Payment_Method_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_METHOD_APPROVED', onlineApplication.Payment_Method_Approved__c);
+        if(onlineApplication.Payment_Frequency_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_FREQUENCY_APPROVED', onlineApplication.Payment_Frequency_Approved__c);
+        if(onlineApplication.Terms_Approved__c != null) jsonPayload.writeStringField('ZZZTERMS_APPROVED', onlineApplication.Terms_Approved__c);
+        if(onlineApplication.Billing_Cycle_Approved__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE_APPROVED', onlineApplication.Billing_Cycle_Approved__c	);
 
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('req_credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('req_credit_line_type', 'Open Line');
