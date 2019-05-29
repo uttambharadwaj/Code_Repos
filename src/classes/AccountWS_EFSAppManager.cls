@@ -513,6 +513,9 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('fee_type', '1');
         jsonPayload.writeStringField('fee_max_times_per', '3');
         jsonPayload.writeStringField('fee_max_times', '1');
+        if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
+        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('mcode_monthly_account_fee', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
+        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('monthly_account_fee', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
         jsonPayload.writeEndObject();
 
@@ -543,7 +546,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('is_master', 'N');
         if(onlineApplicationProgram.Card_Type__c != null) jsonPayload.writeStringField('card_type', onlineApplicationProgram.Card_Type__c);
         if(onlineApplicationProgram.Card_Style__c != null) jsonPayload.writeStringField('card_style', onlineApplicationProgram.Card_Style__c);
-        // Certain Programs send additional cards to the customer.
+        // Certain Programs send additional cards to the customer.carefu
         if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationProgram.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
         if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationProgram.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationProgram.Cards_per_1_Requested__c));
         if(onlineApplication.Date_Decisioned__c != null) jsonPayload.writeStringField('approved_date', String.valueOf(onlineApplication.Date_Decisioned__c.format('yyyy-MM-dd')));
@@ -695,7 +698,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeEndObject();
 
         // Start of offer"
-        jsonPayload.writeFieldName('carrier');
+        jsonPayload.writeFieldName('offer');
         jsonPayload.writeStartObject();
 
         if(onlineApplicationOffer.Notice_Type_1__c != null) jsonPayload.writeStringField('notice_type_1', onlineApplicationOffer.Notice_Type_1__c);
