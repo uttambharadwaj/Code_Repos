@@ -42,10 +42,11 @@ public with sharing class CreditUtil_ExistingExposure {
             existingApplications = getCPExistingApplications(request);
         }
 
-        existingExposureApplications = getOTRAppMatches(existingApplications[0], request, existingExposureApplications);
-        existingExposureApplications = getNAFleetAppMatches(existingApplications[1], request, existingExposureApplications);
-        existingExposureApplications = getCPAppMatches(existingApplications[2], request, existingExposureApplications);
-
+        if (existingApplications.size() >= 2) {
+            existingExposureApplications = getOTRAppMatches(existingApplications[0], request, existingExposureApplications);
+            existingExposureApplications = getNAFleetAppMatches(existingApplications[1], request, existingExposureApplications);
+            existingExposureApplications = getCPAppMatches(existingApplications[2], request, existingExposureApplications);
+        }
 
         return existingExposureApplications;
 
@@ -192,8 +193,20 @@ public with sharing class CreditUtil_ExistingExposure {
      */
     private static List<List<SObject>> getOTRExistingApplications(ExistingExposureRequest request) {
 
-        String onlineAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode +
-                ' OR ' + request.ipAddress + ' OR ' + request.phone.replaceAll('\\D','') + ' OR ' + request.taxID.replaceAll('\\D','');
+        String onlineAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
+
+
+        if (request.ipAddress != null) {
+            onlineAppRequestSearchVariables += ' OR ' + request.ipAddress;
+        }
+
+        if (request.phone != null) {
+            onlineAppRequestSearchVariables += ' OR ' + request.phone.replaceAll('\\D','');
+        }
+
+        if (request.phone != null) {
+            onlineAppRequestSearchVariables +=  ' OR ' + request.taxID.replaceAll('\\D','');
+        }
 
         if (request.duns != null) {
             onlineAppRequestSearchVariables += ' OR ' + request.duns;
@@ -262,11 +275,9 @@ public with sharing class CreditUtil_ExistingExposure {
 
             finalList = queryForAllLOBs(appRequestSearchVariables);
 
-            System.debug('TEMP finalList size: ' + finalList.size());
-
             // [0] = OTR, [1] = NA, [2] = CP
             if (uniqueExistingExposureApps.size() > 0 && finalList.size() > 0) {
-                System.debug('TEMP inside adding to finalList');
+
                 finalList[1].addAll(uniqueExistingExposureApps);
             }
 
@@ -309,7 +320,20 @@ public with sharing class CreditUtil_ExistingExposure {
     private static List<SObject> getAppRequestsViaPhoneOrTax(ExistingExposureRequest request) {
 
         // First find any accounts that have that same business phone number or tax id number.
-        String accountSearchVariables = request.phone.replaceAll('\\D','') + ' OR ' + request.taxId.replaceAll('\\D','');
+        String accountSearchVariables = '';
+        if (request.phone != null && request.taxId != null) {
+            accountSearchVariables = request.phone.replaceAll('\\D','') + ' OR ' + request.taxId.replaceAll('\\D','');
+        }
+        else if (request.phone != null) {
+            accountSearchVariables = request.phone.replaceAll('\\D','');
+        }
+        else if (request.taxid != null) {
+            accountSearchVariables = request.taxId.replaceAll('\\D','');
+        }
+        else {
+            return new List<SObject>();
+        }
+
         String accountQuery = 'FIND { searchString } IN All Fields RETURNING Account(Id)';
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
@@ -360,6 +384,7 @@ public with sharing class CreditUtil_ExistingExposure {
 
         } catch (System.QueryException e) {
             System.debug('Error when querying for Existing Exposure applications: ' + e);
+            UtilityClass.logInternalError(e, null, 'CreditUtil_ExistingExposure=>queryForAllLOBs', false, null, null);
         }
         return existingExposureApps;
     }
