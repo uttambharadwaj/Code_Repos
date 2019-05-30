@@ -355,7 +355,7 @@ public class PartnerBOCAToProspectController {
         //constructor stuffs
         public ParAppTheWrapper(Partner_BOCA_To_Prospect__c myPBTP, PartnerBOCAToProspectController thisController){
             this.Stage = 'Application';
-            this.Status = 'App - Incomplete';
+            this.Status = 'App-Incomplete';
             this.ContactFirstName = myPBTP.First_Name__c;
             this.ContactLastName = myPBTP.Last_Name__c;
             this.Email = myPBTP.Email__c;
@@ -380,10 +380,11 @@ public class PartnerBOCAToProspectController {
             if(cpbTypes.contains(BOCAType)){
                 this.AppObjectType = 'CP_Application_Request__c';
                 this.LookupField = 'CP_Application_Request__c';
-                this.Status = 'App-Incomplete';
+                this.Status = 'Sent to Prospect';
             } else if(nafTypes.contains(BOCAType)){
                 this.AppObjectType = 'WeFormObject__c';
                 this.LookupField = 'WeFormObject__c';
+                this.Status = 'App - Incomplete';
             } else if(otrTypes.contains(BOCAType)){
                 this.AppObjectType = 'OnlineApplication__c';
                 this.LookupField = 'Online_Application__c';

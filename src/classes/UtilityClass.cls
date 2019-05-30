@@ -113,7 +113,7 @@ global class UtilityClass {
 
     //get record type id using developer name...no query!
     public static Id getRecTypeByDevName(String objName, String recTypeName){
-        return Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
+        return Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
     }
     /**************************END MISCELLANEOUS******************************/
 
