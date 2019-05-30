@@ -26,6 +26,9 @@ public with sharing class CreditUtil_ExistingExposure {
         if (request.postalCode != null && (request.postalCode).length() > 5) {
             request.postalCode = request.postalCode.substring(0,5) + '*';
         }
+        if (request.addressLine1 != null) {
+            request.addressLine1.replaceAll('-','\\-');
+        }
 
         if(((Id.valueOf(request.applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
@@ -394,6 +397,10 @@ public with sharing class CreditUtil_ExistingExposure {
 
         List<FSC_Existing_Exposure__c> existingExposureAccounts = new List<FSC_Existing_Exposure__c>();
         List<ExistingExposureAccounts> existingExposureAccountMatches = new List<ExistingExposureAccounts>();
+
+        if (request.addressLine1 != null) {
+            request.addressLine1.replaceAll('-','\\-');
+        }
 
         if(request.legalBusinessName != null && (request.legalBusinessName).length() > 10){
             request.legalBusinessName = (request.legalBusinessName).subString(0, 10) + '*';
