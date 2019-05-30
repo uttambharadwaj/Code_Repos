@@ -31,10 +31,14 @@
 
             var didLength= "{!selectedDIDLength}";
 
-            document.cookie ="debug_logs=debug_logs;domain=.force.com";
+            document.cookie = "debug_logs=debug_logs;domain=.force.com";
 
             $j(document).ready(function() {
                 pageRerenderFunctions(false);
+                var previewImage = document.getElementById("brandingCard");
+                if(previewImage != null && previewImage.complete){
+                    hidePreview();
+                }
             });
 
             function updateDIDLength(value) {
@@ -537,7 +541,7 @@
 
             .addButton { display: block; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-plus.png')}) no-repeat; height: 32px; padding-left: 32px; line-height: 32px; color: #333; text-decoration: none; }
 
-            .helpIcon { padding-left: 3px; margin-top: -2px; white-space: pre-line; }
+            .helpIcon { padding-left: 3px; margin-top: -2px; white-space: pre-line; text-indent:5px;}
             .vehicleHelpIcon { margin-left: 4px; }
 
             .vehicleTable, .driverTable { width: 100%; border: 1px solid #ccc; }
@@ -749,8 +753,7 @@
                         <apex:outputPanel id="staticCardImage">
                             <apex:outputPanel rendered="{!currentStep != 2}">
                                 <div id="cardImage">
-                                    <!--PSOBACKLOG-76-->
-                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/>
+                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!currentStep == 2}">
@@ -764,20 +767,16 @@
                 <div class="eight columns" id="pageImage">
                     <apex:outputPanel id="subHeaderImage">
                         <apex:outputPanel rendered="{!currentStep == 1 || currentStep == 5}">
-                            <!--PSOBACKLOG-76-->
-                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}" alt=""/>
+                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}" />
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!currentStep == 2}">
-                            <!--PSOBACKLOG-76-->
-                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/vehicle-animation.gif')}" alt=""/>
+                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/vehicle-animation.gif')}" />
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!currentStep == 3}">
-                            <!--PSOBACKLOG-76-->
-                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/purchase-controls-v2.png')}" alt=""/>
+                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/purchase-controls-v2.png')}" />
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!currentStep == 4}">
-                            <!--PSOBACKLOG-76-->
-                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/driver-animation.gif')}" alt=""/>
+                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/driver-animation.gif')}" />
                         </apex:outputPanel>
                     </apex:outputPanel>
                 </div>
@@ -847,11 +846,10 @@
                             </apex:outputPanel>
                         </apex:outputPanel>
                         <apex:outputPanel id="movingCardImage">
-                            <apex:outputPanel rendered="{!currentStep == 2}">
+                            <apex:outputPanel rendered="{!currentStep == 2 && showPreview}">
                                 <div class="movingCardImage">
                                     <div style="text-align: center; width: 260px; position:relative;">
-                                        <!--PSOBACKLOG-76-->
-                                        <img src="{!URLFOR($Action.Attachment.Download, dynamicCard)}" alt=""/><br/>PREVIEW
+                                        <img id="previewCard" src="{!URLFOR($Action.Attachment.Download, dynamicCard)}" /><br/>PREVIEW
                                         <div id="card-company-name">
                                             {!fleetEnrollment.Embossing_Company_Name__c}
                                         </div>
@@ -866,11 +864,11 @@
                 </div>
                 <div class="eight columns form" style="padding-top: 20px;">
                     <apex:form id="fleetEnrollmentForm">
+                        <apex:actionFunction name="hidePreview" action="{!myShowPreviewMethod}" rerender="movingCardImage"/>
                         <apex:outputPanel rendered="{!currentStep == 1}">
                             <div class="mobileMessages clearfix" style="line-height: 12px; text-align: center;">
                                 <div class="twelve columns clearfix mobileCardImage">
-                                    <!--PSOBACKLOG-76-->
-                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Preview"/><br/><br/>
+                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" id="brandingCard"/><br/><br/>
                                 </div>
                                 <apex:outputText rendered="{!creditLineAmount != null}">
                                     <h2 style="font-size: 20px;">Congratulations!</h2>
@@ -1084,7 +1082,6 @@
                                             </div>
                                             <div class="one column">
                                                 <apex:commandLink action="{!removeContact}" type="img/png" rerender="fleetContact">
-                                                    <!--PSOBACKLOG-76-->
                                                     <apex:image style="width: 33px;" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-minus.png')}" alt="Remove Contact"/>
                                                     <apex:param name="selectedFleetContact" value="{!fleetContact.Id}" assignTo="{!selectedFleetContact}" />
                                                 </apex:commandLink>
@@ -1168,23 +1165,19 @@
                             <div class="twelve columns clearfix">
                                 <div class="twelve columns clearfix">
                                     <label class="checkbox-label">
-                                        <!--PSOBACKLOG-76-->
-                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Reporting_Dept__c}"/> Department <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Reporting_Dept__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Reporting Department Help"/></label>
+                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Reporting_Dept__c}"/> Department <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Reporting_Dept__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" /></label>
                                 </div>
                                 <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description', 'display: none;', '')}">
                                     <label class="checkbox-label">
-                                        <!--PSOBACKLOG-76-->
-                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleDesc__c}"/> Vehicle Description <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleDesc__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Vehicle Description Help"/></label>
+                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleDesc__c}"/> Vehicle Description <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleDesc__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" /></label>
                                 </div>
                                 <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'License Plate', 'display: none;', '')}">
                                     <label class="checkbox-label">
-                                        <!--PSOBACKLOG-76-->
-                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_LicensePlt__c}"/> License Plate <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_LicensePlt__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="License Plate Help"/></label>
+                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_LicensePlt__c}"/> License Plate <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_LicensePlt__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" /></label>
                                 </div>
                                 <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID', 'display: none;', '')}">
                                     <label class="checkbox-label">
-                                        <!--PSOBACKLOG-76-->
-                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleId__c}"/> Company Vehicle ID <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleId__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Vehicle Id Help"/></label>
+                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleId__c}"/> Company Vehicle ID <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleId__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" /></label>
                                 </div>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1225,51 +1218,43 @@
                                         <div class="eleven columns clearfix">
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'block', 'none')};">
                                                 <apex:inputText maxlength="17" required="false" value="{!fleetVehicle.companyVehicleId}" styleClass="styledVehicleInput companyVehicleId {!IF(fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID', 'required', '')}" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.label}"/>
-                                                <!--PSOBACKLOG-76-->
-                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.InlineHelpText}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" alt="Customer Vehicle Id Help"/>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.InlineHelpText}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}"/>
                                             </div>
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'block', 'none')};">
                                                 <apex:inputText maxlength="8" required="false" value="{!fleetVehicle.vehicleDepartment}" styleClass="styledVehicleInput vehicleDepartment" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Department__c.label}"/>
-                                                <!--PSOBACKLOG-76-->
-                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Department__c.InlineHelpText}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" alt="Department Help"/>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Department__c.InlineHelpText}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}"/>
                                             </div>
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'block', 'none')};">
                                                 <apex:inputText maxlength="17" required="false" value="{!fleetVehicle.vehicleDescription}" styleClass="styledVehicleInput vehicleDescription {!IF(fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description', 'required', '')}" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.label}"/>
-                                                <!--PSOBACKLOG-76-->
-                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.InlineHelpText}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" alt="Vehicle Description Help"/>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.InlineHelpText}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}"/>
                                             </div>
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'block', 'none')};">
                                                 <apex:inputText maxlength="8" required="false" value="{!fleetVehicle.licensePlate}" styleClass="styledVehicleInput licensePlate {!IF(fleetEnrollment.Embossing_Second_Line__c == 'License Plate', 'required', '')}" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.label}"/>
-                                                <!--PSOBACKLOG-76-->
-                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.InlineHelpText}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}"  alt="License Plate Help"/>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.InlineHelpText}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
                                             </div>
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: inline-block;">
                                                 <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" onChange="updateCardControlOptions(this);" styleClass="styledVehicleSelect selectedCardControlOption required" value="{!fleetVehicle.selectedCardControlOption}" size="1">
                                                     <apex:selectOptions value="{!cardControlOptions}" />
                                                 </apex:selectlist>
-                                                <!--PSOBACKLOG-76-->
-                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="Custom Cards give you the flexibility to manage the types and amount of purchases the cards will accept. These settings can be updated from your online account. For example, you can set up fuel only purchases but allow maintenance or roadside acceptance only when those occasions occur. | | Fuel only cards allow your drivers to purchase just fuel. If you want to change these controls in the future- you will need to order new cards potentially at a charge.  (See terms and conditions for more details.)" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" alt="Card Controls Help"/>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="Custom Cards give you the flexibility to manage the types and amount of purchases the cards will accept. These settings can be updated from your online account. For example, you can set up fuel only purchases but allow maintenance or roadside acceptance only when those occasions occur. | | Fuel only cards allow your drivers to purchase just fuel. If you want to change these controls in the future- you will need to order new cards potentially at a charge.  (See terms and conditions for more details.)" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}"/>
                                             </div>
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'block', 'none')};">
                                                 <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" onChange="updatePromptOptions(this);" styleClass="selectedPromptOption styledVehicleSelect {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'required', '')}" value="{!fleetVehicle.selectedPromptOption}" size="1">
                                                     <apex:selectOptions value="{!promptOptions}" />
                                                 </apex:selectlist>
-                                                <!--PSOBACKLOG-76-->
-                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="Driver ID and Odometer Reading: Provides full MPG and cost per mile reporting. | | Driver ID Only: Ensures card security and provides driver reporting." value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" alt="Fleet Prompt Options Help"/>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="Driver ID and Odometer Reading: Provides full MPG and cost per mile reporting. | | Driver ID Only: Ensures card security and provides driver reporting." value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}"/>
                                             </div>
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'block', 'none')};">
                                                 <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" styleClass="selectedAcceptanceOption styledVehicleSelect {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'required', '')}" onChange="updateAcceptanceOptions(this);" value="{!fleetVehicle.selectedAcceptanceOption}" size="1">
                                                     <apex:selectOptions value="{!acceptanceOptions}" />
                                                 </apex:selectlist>
-                                                <!--PSOBACKLOG-76-->
-                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="Messaging coming from Nicole" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" alt="Enable Universal PL Help"/>
+                                                <apex:image style="width: 16px;" styleClass="helpIcon" title="Messaging coming from Nicole" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}"/>
                                             </div>
                                         </div>
                                         <div class="one column clearfix">
                                             <apex:outputPanel rendered="{!fleetVehicle.isNotRemovable == false}">
                                                 <apex:commandLink oncomplete="pageRerenderFunctions(false)" action="{!removeFleetVehicle}" rerender="vehicleDetails" type="image/png">
-                                                    <!--PSOBACKLOG-76-->
-                                                    <apex:image style="width: 33px; margin-top: 4px;" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-minus.png')}" alt="Remove Fleet Vehicle"/>
+                                                    <apex:image style="width: 33px; margin-top: 4px;" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-minus.png')}" alt="Remove Vehicle"/>
                                                     <apex:param name="selectedFleetVehicle" value="{!fleetVehicle.Id}" assignTo="{!selectedFleetVehicle}" />
                                                 </apex:commandLink>
                                             </apex:outputPanel>
@@ -1431,7 +1416,6 @@
                                                     <div class="one column">
                                                         <apex:outputPanel rendered="{!fleetDriver.isNotRemovable != true}">
                                                             <apex:commandLink action="{!removeFleetDriver}" rerender="driverDetails" type="image/png">
-                                                                <!--PSOBACKLOG-76-->
                                                                 <apex:image style="width: 33px;" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-minus.png')}" alt="Remove Driver"/>
                                                                 <apex:param name="selectedFleetDriver" value="{!fleetDriver.Id}" assignTo="{!selectedFleetDriver}" />
                                                             </apex:commandLink>
@@ -1720,7 +1704,7 @@
                                 <apex:commandButton onclick="disableSubmit();" styleClass="fullNextButton" action="{!submitApplication}" value="Submit" rerender="subHeader,subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" />
                             </div>
                         </apex:outputPanel>
-                        <!-- STEP FIVE - END  -->
+                        <!-- STEP FIVE - END -->
                     </apex:form>
                 </div>
             </div>
