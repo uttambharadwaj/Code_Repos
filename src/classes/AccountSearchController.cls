@@ -39,9 +39,12 @@ public with sharing class AccountSearchController {
 			Boolean addColumn = true;
 			if ( c.DeveloperName.equalsIgnoreCase('CustomAcctNbr') || c.DeveloperName.equalsIgnoreCase('OnlineUserNm')) {
 				if ((c.DeveloperName.equalsIgnoreCase('CustomAcctNbr') && !(searchType.equalsIgnoreCase('CUSTOMACCTNBR')))
-						|| (c.DeveloperName.equalsIgnoreCase('OnlineUserNm') && searchType.equalsIgnoreCase('CUSTOMACCTNBR') )) {
+						|| (c.DeveloperName.equalsIgnoreCase('OnlineUserNm') && !(searchType.equalsIgnoreCase('ONLINEID')) )) {
 					addColumn = false;
-				}
+				} //Next are columns only used for GTAG search
+			} else if (!searchType.equalsIgnoreCase('GTAG')) {
+				if (c.DeveloperName.equalsIgnoreCase('vehicleNbr') || c.DeveloperName.equalsIgnoreCase('pdDepartment'))
+					addColumn = false;
 			}
 			if (addColumn) {
 				SearchResultsColumn column = new SearchResultsColumn();
@@ -114,8 +117,12 @@ public with sharing class AccountSearchController {
 								if (caseinstvMap.containsKey('primarycontactrowid')) {
 									contactId = (String) caseinstvMap.get('primarycontactrowid');
 								}
+								String pdRowId = '';
+								if (caseinstvMap.containsKey('pdrowid')) {
+									pdRowId = (String) caseinstvMap.get('pdrowid');
+								}
 
-								resultColumns.put(col.Name, accNum + '|' + acctRowId + '|' + contactId);
+								resultColumns.put(col.Name, accNum + '|' + acctRowId + '|' + contactId + '|' + pdRowId);
 							}
 							else {
 								resultColumns.put(col.Name, '');
