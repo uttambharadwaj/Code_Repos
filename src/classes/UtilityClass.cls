@@ -3,8 +3,8 @@
 * Author: All the Team
 * Initial Date: 4/26/2019
 * Description: methods used by all the classes to go here. this allows for complete consistency across the org
-* Revision History: 5/1/2019 generateAppKey, getFieldMapping methods, sendEmail methods
-*
+* Revision History: 5/1/2019    generateAppKey, getFieldMapping methods, sendEmail methods
+*                   5/24/2019   get, getObjName, getRecTypeByDevName
 */
 global class UtilityClass {
 
@@ -92,6 +92,28 @@ global class UtilityClass {
         String jsonThis = JSON.serialize(myObject);
         Map<String, Object> mapThis = (Map<String, Object>)JSON.deserializeUntyped(jsonThis);
         return mapThis.get(myVariable);
+    }
+
+    //sometimes we need to know what an object is but we only have an id. enter this method.
+    public static String getObjName(Id myId){
+        String myObjectName;
+        String myIdPrefix = String.valueOf(myId).substring(0,3);
+        Map<String, Schema.SObjectType> mySchema = Schema.getGlobalDescribe();
+        for(Schema.SObjectType sot : mySchema.values()){
+            Schema.DescribeSObjectResult myResult = sot.getDescribe();
+            String prefix = myResult.getKeyPrefix();
+            //Check if the prefix matches with requested prefix
+            if(prefix!=null && prefix.equals(myIdPrefix)){
+                myObjectName = myResult.getName();
+                break;
+            }
+        }
+        return myObjectName;
+    }
+
+    //get record type id using developer name...no query!
+    public static Id getRecTypeByDevName(String objName, String recTypeName){
+        return Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
     }
     /**************************END MISCELLANEOUS******************************/
 
