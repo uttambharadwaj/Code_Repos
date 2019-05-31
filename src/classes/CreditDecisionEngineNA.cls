@@ -381,12 +381,16 @@ global class CreditDecisionEngineNA {
             CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
             existingExposureRequest.applicationId = naApplication.Id;
             existingExposureRequest.applicationName = naApplication.Name;
-            existingExposureRequest.legalBusinessName = naApplication.Opportunity_Name_Text__c;
+            existingExposureRequest.legalBusinessName = String.escapeSingleQuotes(naApplication.Opportunity_Name_Text__c);
             existingExposureRequest.addressLine1 = naApplication.Physical_Street__c;
             existingExposureRequest.city = naApplication.Physical_City__c;
             existingExposureRequest.state = naApplication.Physical_State__c;
             existingExposureRequest.postalCode = naApplication.Physical_Zip_Postal_Code__c;
             existingExposureRequest.fraudFlag = naApplication.Fraud_Flag__c;
+            existingExposureRequest.phone = naApplication.Business_Phone_Number__c;
+            existingExposureRequest.taxID = naApplication.Tax_Payer_ID_number__c;
+            existingExposureRequest.duns = naApplication.DNB_Resolved_DUNS__c;
+            existingExposureRequest.ipAddress = naApplication.App_Signer_IP_Address__c;
 
             List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
             List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
@@ -405,7 +409,7 @@ global class CreditDecisionEngineNA {
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null)
                 naApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
             else
-                    naApplication.DNB_Lookup_Hits__c = 0;
+                naApplication.DNB_Lookup_Hits__c = 0;
 
             upsert naApplication;
 
