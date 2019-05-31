@@ -26,9 +26,6 @@ public with sharing class CreditUtil_ExistingExposure {
         if (request.postalCode != null && (request.postalCode).length() > 5) {
             request.postalCode = request.postalCode.substring(0,5) + '*';
         }
-        if (request.addressLine1 != null) {
-            request.addressLine1.replaceAll('-','\\-');
-        }
 
         if(((Id.valueOf(request.applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
@@ -299,6 +296,8 @@ public with sharing class CreditUtil_ExistingExposure {
         // Find PG SSN from the Contact
         String contactSearchVariable = request.pgSSN.replaceAll('\\D','');
         String contactQuery = 'FIND { searchString } IN ALL Fields RETURNING Contact(Id)';
+        contactSearchVariable = contactSearchVariable.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        System.debug('getAppRequestViaPGSSN search variables: ' + contactSearchVariable);
         contactQuery = contactQuery.replace('searchString', contactSearchVariable);
 
         Map<Id, Contact> existingContactMap = new Map<Id, Contact>((List<Contact>) search.query(contactQuery)[0]);
@@ -338,6 +337,8 @@ public with sharing class CreditUtil_ExistingExposure {
         }
 
         String accountQuery = 'FIND { searchString } IN All Fields RETURNING Account(Id)';
+        accountSearchVariables = accountSearchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        System.debug('getAppRequestsViaPhoneOrTax search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
         Map<Id, Account> existingAccountMap = new Map<Id, Account>((List<Account>) search.query(accountQuery)[0]);
@@ -380,6 +381,8 @@ public with sharing class CreditUtil_ExistingExposure {
                 'WHERE Id NOT IN :appIds' +
                 ' ORDER BY Id)';
 
+        searchVariables = searchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        System.debug('queryForAllLOBs search variables: ' + searchVariables);
         onlineAppRequestQuery = onlineAppRequestQuery.replace('searchString', searchVariables);
 
         try {
@@ -398,10 +401,6 @@ public with sharing class CreditUtil_ExistingExposure {
         List<FSC_Existing_Exposure__c> existingExposureAccounts = new List<FSC_Existing_Exposure__c>();
         List<ExistingExposureAccounts> existingExposureAccountMatches = new List<ExistingExposureAccounts>();
 
-        if (request.addressLine1 != null) {
-            request.addressLine1.replaceAll('-','\\-');
-        }
-
         if(request.legalBusinessName != null && (request.legalBusinessName).length() > 10){
             request.legalBusinessName = (request.legalBusinessName).subString(0, 10) + '*';
         }
@@ -416,6 +415,8 @@ public with sharing class CreditUtil_ExistingExposure {
                 'Id,  Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c, DUNS_Number__c ' +
                 'ORDER BY Id)';
 
+        accountSearchVariables = accountSearchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        System.debug('getAccounts search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
         existingExposureAccounts = ((List<FSC_Existing_Exposure__c>) search.query(accountQuery)[0]);
