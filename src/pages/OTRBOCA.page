@@ -1,7 +1,7 @@
 <!--
 Description:        OTRBOCA VF Page (Page 1 of Online Application for OTRBOCA)
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
-					5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
+					 5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAController" action="{!init}" language="{!languageCode}">
 	<html lang="{!languageCode}">
@@ -33,36 +33,36 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 
 		<!-- Additional Scripts -->
 		<script>
-            var coupon_code = "{!campaign.Coupon_Code__c}";
-            var location_code = "{!locationCode}";
-            var page_name = "App-Page1";
-            var card_program = "{!programParameter}";
-            document.cookie = "debug_logs=debug_logs;domain=.force.com";
+			var coupon_code = "{!campaign.Coupon_Code__c}";
+			var location_code = "{!locationCode}";
+			var page_name = "App-Page1";
+			var card_program = "{!programParameter}";
+			document.cookie = "debug_logs=debug_logs;domain=.force.com";
 
-            $j = jQuery.noConflict();
+			$j = jQuery.noConflict();
 
-            // Any labels need to be defined in this bridge in order
-            // for the JS to pick them up
-            window.$Label = window.$Label || {};
-            $Label.BOCA_Invalid_Amount = '{!JSENCODE($Label.BOCA_Invalid_Amount)}';
-            $Label.BOCA_Invalid_Date = '{!JSENCODE($Label.BOCA_Invalid_Date)}';
-            $Label.BOCA_Invalid_Email = '{!JSENCODE($Label.BOCA_Invalid_Email)}';
-            $Label.BOCA_Invalid_Number = '{!JSENCODE($Label.BOCA_Invalid_Number)}';
-            $Label.BOCA_Invalid_Phone = '{!JSENCODE($Label.BOCA_Invalid_Phone)}';
-            $Label.BOCA_Invalid_Postal_Code = '{!JSENCODE($Label.BOCA_Invalid_Postal_Code)}';
-            $Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
-            $Label.BOCA_Invalid_Tax_ID = '{!JSENCODE($Label.BOCA_Invalid_Tax_ID)}';
-            $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
-            $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
-            $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
-            $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
-            $Label.Check_Sample = '{!JSENCODE($Resource.SampleCheck)}';
+			// Any labels need to be defined in this bridge in order
+			// for the JS to pick them up
+			window.$Label = window.$Label || {};
+			$Label.BOCA_Invalid_Amount = '{!JSENCODE($Label.BOCA_Invalid_Amount)}';
+			$Label.BOCA_Invalid_Date = '{!JSENCODE($Label.BOCA_Invalid_Date)}';
+			$Label.BOCA_Invalid_Email = '{!JSENCODE($Label.BOCA_Invalid_Email)}';
+			$Label.BOCA_Invalid_Number = '{!JSENCODE($Label.BOCA_Invalid_Number)}';
+			$Label.BOCA_Invalid_Phone = '{!JSENCODE($Label.BOCA_Invalid_Phone)}';
+			$Label.BOCA_Invalid_Postal_Code = '{!JSENCODE($Label.BOCA_Invalid_Postal_Code)}';
+			$Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
+			$Label.BOCA_Invalid_Tax_ID = '{!JSENCODE($Label.BOCA_Invalid_Tax_ID)}';
+			$Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
+			$Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
+			$Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
+			$Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
+			$Label.Check_Sample = '{!JSENCODE($Resource.SampleCheck)}';
 
-            window.boca_language_code = '{!languageCode}';
+			window.boca_language_code = '{!languageCode}';
 
-            console.log('{!tmSessionId}');
+			console.log('{!tmSessionId}');
 
-            /*
+			/*
                 * function addDayOfPayment() {
                 *     $j("[id$=dayOfPayment] option:selected").remove().appendTo("[id$=selectedDaysOfPayment]");
                 *
@@ -120,8 +120,8 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 		<apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false"/>
 		<!-- Live Person -->
 		<script type="text/javascript">
-            if (typeof(lpUnit) == 'undefined')    var lpUnit = 'sales';
-            if (typeof(lpLanguage) == 'undefined') var lpLanguage = 'english';
+			if (typeof(lpUnit) == 'undefined')    var lpUnit = 'sales';
+			if (typeof(lpLanguage) == 'undefined') var lpLanguage = 'english';
 		</script>
 
 		<script id="tdr_3srJf" type="text/javascript" src="https://h.online-metrix.net/fp/check.js?org_id=bkwau9ws&session={!tmSessionId}"></script>
@@ -142,7 +142,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 						<apex:outputPanel rendered="{!program.Inside_Sales_Phone_Number__c != null}">
 							<div id="contactUs">
 								<span class="header-small">{!$Label.BOCA_Rather_Talk}</span><br/>
-                                {!$Label.BOCA_Call} {!program.Inside_Sales_Phone_Number__c}<br/>
+								{!$Label.BOCA_Call} {!program.Inside_Sales_Phone_Number__c}<br/>
 								<apex:outputText value="{!program.Live_Person_Code__c}" escape="false" />
 							</div>
 						</apex:outputPanel>
@@ -195,9 +195,9 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 								</div>
 								<div class="sidebar-section-static-content">
 									<span style="font-size: 18px;">{!salesRep.Name}</span><br/>
-                                    {!$Label.BOCA_Sales_Agent_Email}: {!salesRep.Email}<br/>
-                                    {!$Label.BOCA_Sales_Agent_Phone}: {!salesRep.Phone}<br/>
-                                    {!$Label.BOCA_Sales_Agent_Fax}: {!salesRep.Fax}
+									{!$Label.BOCA_Sales_Agent_Email}: {!salesRep.Email}<br/>
+									{!$Label.BOCA_Sales_Agent_Phone}: {!salesRep.Phone}<br/>
+									{!$Label.BOCA_Sales_Agent_Fax}: {!salesRep.Fax}
 								</div>
 							</div>
 						</apex:outputPanel>
@@ -300,7 +300,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="5">
 											<label class="styled-label">{!IF(languageCode == 'en_us', 'Country', $ObjectType.OnlineApplication__c.fields.Country__c.label)} <span class="styled-label-required">*</span></label>
-                                            <apex:InputField html-disabled="true" styleClass="styled-input" id="country" value="{!onlineApplication.Country__c}">
+											<apex:InputField html-disabled="true" styleClass="styled-input" id="country" value="{!onlineApplication.Country__c}">
 												<apex:actionSupport event="onchange" rerender="postalCode, state" oncomplete="pageLoadFunctions()"/>
 											</apex:InputField>
 										</div>
@@ -639,41 +639,41 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 								</apex:outputPanel>
 							</apex:outputPanel>
 							<apex:outputPanel rendered="{!userSessionId == null}">
-							<div class="twelve columns clearfix">
-								&nbsp;
-							</div>
-							<div class="twelve columns clearfix">
-								<div class="section-header">
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+								<div class="twelve columns clearfix">
+									<div class="section-header">
                                     {!$Label.BOCA_TnC}
 								</div>
-								<div class="terms-container">
-									<iframe id="exploreIFrame" src="/creditapplication/OTRTermsAndConditions?attachmentId={!termsAndConditionsId}" width="620px" height="100%" style="border: none;"></iframe>
+									<div class="terms-container">
+										<iframe id="exploreIFrame" src="/creditapplication/OTRTermsAndConditions?attachmentId={!termsAndConditionsId}" width="620px" height="100%" style="border: none;"></iframe>
+									</div>
 								</div>
-							</div>
-							<div class="twelve columns clearfix">
-								&nbsp;
-							</div>
-							<div class="twelve columns clearfix">
-								<div id="disclaimerErrors" class="stepErrors">
+								<div class="twelve columns clearfix">
+									&nbsp;
+								</div>
+								<div class="twelve columns clearfix">
+									<div id="disclaimerErrors" class="stepErrors">
                                     {!$Label.BOCA_Acknowledge_Disclaimer}
 								</div>
-							</div>
-							<div id="authorizedSigner" class="twelve columns clearfix">
-								<div class="section-header">
+								</div>
+								<div id="authorizedSigner" class="twelve columns clearfix">
+									<div class="section-header">
                                     {!$Label.BOCA_Authorized_Signer}
 								</div>
-								<div id="authorizedSignerBody" class="disclaimer-container clearfix">
-									<div class="disclaimer-checkbox">
-										<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox"/>
-									</div>
-									<div class="disclaimer-text">
-										<apex:outputPanel id="disclaimer">
-											<apex:outputText value="{!onlineApplicationOffer.Authorized_Signer_Disclosure__c}" escape="false" rendered="{!IF(AND(forcePG == false, isPg == false), true, false)}"/>
-											<apex:outputText value="{!onlineApplicationOffer.PG_Disclosure__c}" escape="false" rendered="{!IF(OR(forcePG == true, isPg == true), true, false)}"/>
-										</apex:outputPanel>
+									<div id="authorizedSignerBody" class="disclaimer-container clearfix">
+										<div class="disclaimer-checkbox">
+											<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox"/>
+										</div>
+										<div class="disclaimer-text">
+											<apex:outputPanel id="disclaimer">
+												<apex:outputText value="{!onlineApplicationOffer.Authorized_Signer_Disclosure__c}" escape="false" rendered="{!IF(AND(forcePG == false, isPg == false), true, false)}"/>
+												<apex:outputText value="{!onlineApplicationOffer.PG_Disclosure__c}" escape="false" rendered="{!IF(OR(forcePG == true, isPg == true), true, false)}"/>
+											</apex:outputPanel>
+										</div>
 									</div>
 								</div>
-							</div>
 							</apex:outputPanel>
 							<div class="twelve columns clearfix">
 								&nbsp;
