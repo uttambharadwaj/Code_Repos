@@ -1155,7 +1155,6 @@
             caseId : component.get("v.caseId"),
             contactRowId : component.get("v.contactRowId"),
             customerDetailsJSON : JSON.stringify(component.get("v.customerDetails")),
-            customerContactsJSON : JSON.stringify(component.get("v.customerContacts"))
         });
         
         action.setCallback(this, function(response) {
