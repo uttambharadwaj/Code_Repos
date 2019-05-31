@@ -51,6 +51,12 @@ public without sharing class OTRSetupController {
         }
     }
 
+    public String userSessionId {
+        get {
+            return UserInfo.getSessionId();
+        }
+    }
+
     public String selectedUnitIndex { get; set; }
 
     public List<OnlineApplicationDriverSetup__c> onlineApplicationDrivers { get; set; }
@@ -349,6 +355,10 @@ public without sharing class OTRSetupController {
             if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-Complete';
+            } else if (userSessionId != null) {
+                // if it's a paper app being submitted, this needs to go to credit for manual review
+                onlineApplication.Application_Stage__c = 'Application';
+                onlineApplication.Status__c = 'Saved-PaperApp';
             } else {
                 onlineApplication.Application_Stage__c = 'Adjudication';
                 onlineApplication.Status__c = 'Pending Decision';
