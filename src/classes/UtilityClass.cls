@@ -86,6 +86,41 @@ global class UtilityClass {
     }
     /**************************END EMAIL UTILITIES****************************/
 
+    /**************************QUERY UTILITIES********************************/
+    // Takes in a search variable or list of search variables (in the form of a String) and escapes any and all special chars
+    // Reserved special chars needed to escape in SOSL:  ? & | ! { } [ ] ( ) ^ ~ * : \ " ' + -
+    // This does NOT include the escaping reserved char * because it's used as a wild card throughout our code.
+    public static String escapeReservedChars(String searchVariables) {
+
+        String escapedSearchVariables = String.escapeSingleQuotes(searchVariables);
+
+        if (escapedSearchVariables != null) {
+
+            escapedSearchVariables = escapedSearchVariables.replaceAll('\'', '\\');
+
+            // match special characters to escape
+            Pattern myPattern = Pattern.compile( '(\\?|\\&|\\||\\!|\\{|\\}|\\[|\\]|\\(|\\)|\\^|\\~|\\:|\\"|\\+|\\-)' );
+            Matcher myMatcher = myPattern.matcher(escapedSearchVariables);
+
+            // escape special characters
+            escapedSearchVariables = myMatcher.replaceAll('\\\\$1');
+        }
+
+        return escapedSearchVariables;
+    }
+
+    // Reserved special chars needed to escape in SOSL:  ? & | ! { } [ ] ( ) ^ ~ * : \ " ' + -
+    public static String removeReservedChars(String searchVariables) {
+
+        if (searchVariables != null) {
+            searchVariables = searchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        }
+
+        return searchVariables;
+    }
+
+    /**************************END QUERY UTILITIES****************************/
+
     /******************************MISCELLANEOUS******************************/
     //custom get method for use with inner classes/wrappers, bc they don't have standard get functionality
     public static Object get(String myVariable, Object myObject){

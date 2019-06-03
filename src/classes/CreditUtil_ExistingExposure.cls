@@ -296,7 +296,7 @@ public with sharing class CreditUtil_ExistingExposure {
         // Find PG SSN from the Contact
         String contactSearchVariable = request.pgSSN.replaceAll('\\D','');
         String contactQuery = 'FIND { searchString } IN ALL Fields RETURNING Contact(Id)';
-        contactSearchVariable = contactSearchVariable.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        contactSearchVariable = UtilityClass.escapeReservedChars(contactSearchVariable);
         System.debug('getAppRequestViaPGSSN search variables: ' + contactSearchVariable);
         contactQuery = contactQuery.replace('searchString', contactSearchVariable);
 
@@ -337,7 +337,7 @@ public with sharing class CreditUtil_ExistingExposure {
         }
 
         String accountQuery = 'FIND { searchString } IN All Fields RETURNING Account(Id)';
-        accountSearchVariables = accountSearchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        accountSearchVariables = UtilityClass.escapeReservedChars(accountSearchVariables);
         System.debug('getAppRequestsViaPhoneOrTax search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
@@ -381,7 +381,7 @@ public with sharing class CreditUtil_ExistingExposure {
                 'WHERE Id NOT IN :appIds' +
                 ' ORDER BY Id)';
 
-        searchVariables = searchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        searchVariables = UtilityClass.escapeReservedChars(searchVariables);
         System.debug('queryForAllLOBs search variables: ' + searchVariables);
         onlineAppRequestQuery = onlineAppRequestQuery.replace('searchString', searchVariables);
 
@@ -415,7 +415,7 @@ public with sharing class CreditUtil_ExistingExposure {
                 'Id,  Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c, DUNS_Number__c ' +
                 'ORDER BY Id)';
 
-        accountSearchVariables = accountSearchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+        accountSearchVariables = UtilityClass.escapeReservedChars(accountSearchVariables);
         System.debug('getAccounts search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
