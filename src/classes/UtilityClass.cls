@@ -128,6 +128,27 @@ global class UtilityClass {
         Map<String, Object> mapThis = (Map<String, Object>)JSON.deserializeUntyped(jsonThis);
         return mapThis.get(myVariable);
     }
+
+    //sometimes we need to know what an object is but we only have an id. enter this method.
+    public static String getObjName(Id myId){
+        String myObjectName;
+        String myIdPrefix = String.valueOf(myId).substring(0,3);
+        Map<String, Schema.SObjectType> mySchema = Schema.getGlobalDescribe();
+        for(Schema.SObjectType sot : mySchema.values()){
+            Schema.DescribeSObjectResult myResult = sot.getDescribe();
+            String prefix = myResult.getKeyPrefix();
+            //Check if the prefix matches with requested prefix
+            if(prefix!=null && prefix.equals(myIdPrefix)){
+                myObjectName = myResult.getName();
+                break;
+            }
+        }
+        return myObjectName;
+    }
+    //get record type id using developer name...no query!
+    public static Id getRecTypeByDevName(String objName, String recTypeName){
+        return Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
+    }
     /**************************END MISCELLANEOUS******************************/
 
 }
