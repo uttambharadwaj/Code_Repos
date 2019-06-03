@@ -204,7 +204,7 @@ public with sharing class CreditUtil_ExistingExposure {
             onlineAppRequestSearchVariables += ' OR ' + request.phone.replaceAll('\\D','');
         }
 
-        if (request.phone != null) {
+        if (request.taxID != null) {
             onlineAppRequestSearchVariables +=  ' OR ' + request.taxID.replaceAll('\\D','');
         }
 

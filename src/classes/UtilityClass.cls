@@ -5,6 +5,7 @@
 * Description: methods used by all the classes to go here. this allows for complete consistency across the org
 * Revision History: 5/1/2019    generateAppKey, getFieldMapping methods, sendEmail methods
 *                   5/24/2019   get, getObjName, getRecTypeByDevName
+* Revision History:: 6/03/2019  escapeReservedChars, removeReservedChars
 */
 global class UtilityClass {
 
