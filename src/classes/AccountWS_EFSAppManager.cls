@@ -514,8 +514,8 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('fee_max_times_per', '3');
         jsonPayload.writeStringField('fee_max_times', '1');
         if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
-        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
-        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
+//        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
+//        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
         jsonPayload.writeEndObject();
 
@@ -699,18 +699,6 @@ global class AccountWS_EFSAppManager {
         }
 
         // End of "contract"
-        jsonPayload.writeEndObject();
-
-        // Start of offer"
-        jsonPayload.writeFieldName('offer');
-        jsonPayload.writeStartObject();
-
-        if(onlineApplicationOffer.Notice_Type_1__c != null) jsonPayload.writeStringField('ZZZNOTICE_TYPE_1_VALUE', onlineApplicationOffer.Notice_Type_1__c);
-        if(onlineApplicationOffer.Notice_Type_1_Value__c != null) jsonPayload.writeNumberField('ZZZNOTICE_TYPE_1_VALUE', onlineApplicationOffer.Notice_Type_1_Value__c);
-        if(onlineApplicationOffer.Notice_Type_2__c != null) jsonPayload.writeStringField('ZZZNOTICE_TYPE_2', onlineApplicationOffer.Notice_Type_2__c);
-        if(onlineApplicationOffer.Notice_Type_2_Value__c != null) jsonPayload.writeNumberField('ZZZNOTICE_TYPE_2_VALUE', onlineApplicationOffer.Notice_Type_2_Value__c);
-
-        // End of "offer"
         jsonPayload.writeEndObject();
 
         if(onlineApplication.Carrier_ID_Number__c == null) {
