@@ -296,6 +296,8 @@ public with sharing class CreditUtil_ExistingExposure {
         // Find PG SSN from the Contact
         String contactSearchVariable = request.pgSSN.replaceAll('\\D','');
         String contactQuery = 'FIND { searchString } IN ALL Fields RETURNING Contact(Id)';
+        contactSearchVariable = UtilityClass.escapeReservedChars(contactSearchVariable);
+        System.debug('getAppRequestViaPGSSN search variables: ' + contactSearchVariable);
         contactQuery = contactQuery.replace('searchString', contactSearchVariable);
 
         Map<Id, Contact> existingContactMap = new Map<Id, Contact>((List<Contact>) search.query(contactQuery)[0]);
@@ -335,6 +337,8 @@ public with sharing class CreditUtil_ExistingExposure {
         }
 
         String accountQuery = 'FIND { searchString } IN All Fields RETURNING Account(Id)';
+        accountSearchVariables = UtilityClass.escapeReservedChars(accountSearchVariables);
+        System.debug('getAppRequestsViaPhoneOrTax search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
         Map<Id, Account> existingAccountMap = new Map<Id, Account>((List<Account>) search.query(accountQuery)[0]);
@@ -377,6 +381,8 @@ public with sharing class CreditUtil_ExistingExposure {
                 'WHERE Id NOT IN :appIds' +
                 ' ORDER BY Id)';
 
+        searchVariables = UtilityClass.escapeReservedChars(searchVariables);
+        System.debug('queryForAllLOBs search variables: ' + searchVariables);
         onlineAppRequestQuery = onlineAppRequestQuery.replace('searchString', searchVariables);
 
         try {
@@ -409,6 +415,8 @@ public with sharing class CreditUtil_ExistingExposure {
                 'Id,  Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c, DUNS_Number__c ' +
                 'ORDER BY Id)';
 
+        accountSearchVariables = UtilityClass.escapeReservedChars(accountSearchVariables);
+        System.debug('getAccounts search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
         existingExposureAccounts = ((List<FSC_Existing_Exposure__c>) search.query(accountQuery)[0]);
