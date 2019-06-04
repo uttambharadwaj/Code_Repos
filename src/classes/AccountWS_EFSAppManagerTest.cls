@@ -19,18 +19,34 @@ public class AccountWS_EFSAppManagerTest {
 
         OnlineApplicationOffer__c onlineApplicationOffer = new OnlineApplicationOffer__c();
         onlineApplicationOffer.Name = 'TestOffer-01';
+        onlineApplicationOffer.ATM_Use__c = true;
         onlineApplicationOffer.Application_Title__c = 'TestTitle';
+        onlineApplicationOffer.Cash_Limit__c = 1;
         onlineApplicationOffer.Complete_Later_Text__c = 'Test';
-        onlineApplicationOffer.EchoSign_User_Email__c = 'test@test.com';
-        onlineApplicationOffer.Terms_and_Conditions_Version__c = 'TestVersion-01';
         onlineApplicationOffer.BOCA_Default_Offer__c = true;
+        onlineApplicationOffer.Daily_Cash_Limit__c = 1;
+        onlineApplicationOffer.Daily_MC_Limit__c = 1;
         onlineApplicationOffer.Disclosure__c = 'Test';
+        onlineApplicationOffer.EchoSign_User_Email__c = 'test@test.com';
+        onlineApplicationOffer.Limit_Method__c = 'Credit Limit';
+        onlineApplicationOffer.Notice_Type_1__c = 'Percent';
+        onlineApplicationOffer.Notice_Type_1_Value__c = 10;
+        onlineApplicationOffer.Notice_Type_2__c = 'Percent';
+        onlineApplicationOffer.Notice_Type_2_Value__c = 5;
+        onlineApplicationOffer.MC_Limit__c = 1;
+        onlineApplicationOffer.Mcode_Monthly_Account_Fee__c = true;
+        onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c = 0;
+        onlineApplicationOffer.Monthly_Account_Fee__c = true;
+        onlineApplicationOffer.Monthly_Account_Fee_Value__c = 0;
         onlineApplicationOffer.PSR_ATM_Limit__c = 1.00;
         onlineApplicationOffer.PSR_Card_Fee__c = 1.00;
         onlineApplicationOffer.PSR_Fuel_Cash__c = 1.00;
         onlineApplicationOffer.PSR_Marketing_Fee__c = 1.00;
         onlineApplicationOffer.PSR_Money_Code__c = 1.00;
         onlineApplicationOffer.PSR_Scales__c = 1.00;
+        onlineApplicationOffer.Trans_Limit__c = 1;
+        onlineApplicationOffer.Terms_and_Conditions_Version__c = 'TestVersion-01';
+
 
         insert onlineApplicationOffer;
 
