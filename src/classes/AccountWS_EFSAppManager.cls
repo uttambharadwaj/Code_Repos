@@ -224,7 +224,7 @@ global class AccountWS_EFSAppManager {
         }
 
         if(onlineApplication.Program__c != null) {
-            onlineApplicationProgram = [SELECT Id, Statement_Type__c, Customer_Type__c, Card_Press_ID__c, Card_Order_Type__c, Card_Shipping_Method__c, Lockbox_Value__c, Card_Style__c, Card_Type__c, Cards_per_1_Requested__c, Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c FROM Program__c WHERE Id =: onlineapplication.Program__c];
+            onlineApplicationProgram = [SELECT Id, Statement_Type__c, Customer_Type__c, Card_Press_ID__c, Card_Order_Type__c, Card_Shipping_Method__c, Lockbox_Value__c, Card_Style__c, Card_Type__c, Cards_per_1_Requested__c, Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c, Partner_Territory__r.Name FROM Program__c WHERE Id =: onlineapplication.Program__c];
         }
 
         if(onlineApplication.Opportunity__c != null) {
@@ -358,8 +358,12 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeStringField('status', 'A');
             if(onlineApplication.Number_of_Trucks__c != null) jsonPayload.writeNumberField('company_vehicles', onlineApplication.Number_of_Trucks__c);
             if(onlineApplication.Number_of_Trucks__c != null) jsonPayload.writeNumberField('owner_op_vehicles', onlineApplication.Number_of_Trucks__c);
+            // If Online App Territory Code is present, always send that
             if(onlineApplication.Territory_Code__c != null) jsonPayload.writeStringField('sales_territory', onlineApplication.Territory_Code__c);
-            if(onlineApplication.Territory_Code__c == null) jsonPayload.writeStringField('sales_territory', 'UN');
+            //If Online App Territory Code is null, send territory from the program.
+            if(onlineApplicationProgram.Partner_Territory__r.Name != null && onlineApplication.Territory_Code__c == null) jsonPayload.writeStringField('sales_territory', onlineApplicationProgram.Partner_Territory__r.Name);
+            //If Online App and Program are null, send default.
+            if(onlineApplicationProgram.Partner_Territory__r.Name == null && onlineApplication.Territory_Code__c == null) jsonPayload.writeStringField('sales_territory', 'UN');
             if(onlineApplicationProgram.Issuer_Group__c != null) jsonPayload.writeStringField('credit_group_id', onlineApplicationProgram.Issuer_Group__c);
             if(onlineApplication.Card_Shipping_Address_Line_1__c != null) jsonPayload.writeStringField('shipping_address1', onlineApplication.Card_Shipping_Address_Line_1__c.replaceAll('[^a-zA-Z0-9 -]', ''));
             if(onlineApplication.Card_Shipping_City__c != null) jsonPayload.writeStringField('shipping_city', onlineApplication.Card_Shipping_City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
