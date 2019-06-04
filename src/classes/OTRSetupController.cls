@@ -6,6 +6,7 @@ Last Coverage:      30%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 refactor to allow code reuse on save for later pdf generation
                     4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section from page; remove related code from controller
                     5/13/2019 Michael Farrell PSOBACKLOG-183 added Daily_Fuel_Limit__c & Daily_Misc_Limit__c to onlineApplications SOQL
+                    6/3/2019 MFarrell PSOBACKLOG-49 - Added Security_Code__c & Online_Password__c to OnlineApplicationAuthorizedContacts SOQL
 */
 public without sharing class OTRSetupController {
 
@@ -228,7 +229,7 @@ public without sharing class OTRSetupController {
                     }
 
                     if(applicationKey != null) {
-                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete' LIMIT 1];
+                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Online_Password__c, Phone_Number__c, Security_Code__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete' LIMIT 1];
                         if(onlineApplicationAuthorizedContacts.size() > 0) {
                             onlineApplicationAuthorizedContact = onlineApplicationAuthorizedContacts[0];
                         }
