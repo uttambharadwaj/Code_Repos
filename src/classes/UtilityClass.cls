@@ -92,11 +92,11 @@ global class UtilityClass {
     // This does NOT include the escaping reserved char * because it's used as a wild card throughout our code.
     public static String escapeReservedChars(String searchVariables) {
 
-        String escapedSearchVariables = String.escapeSingleQuotes(searchVariables);
+        String escapedSearchVariables = String.escapeSingleQuotes(searchVariables); //TODO change to replaceAll making ' change to  \' . This method doesn't work because it changes it to \\'
 
         if (escapedSearchVariables != null) {
 
-            escapedSearchVariables = escapedSearchVariables.replaceAll('\'', '\\');
+            escapedSearchVariables = escapedSearchVariables.replaceAll('\\\\',''); // removing slashes - that's silly to have them
 
             // match special characters to escape
             Pattern myPattern = Pattern.compile( '(\\?|\\&|\\||\\!|\\{|\\}|\\[|\\]|\\(|\\)|\\^|\\~|\\:|\\"|\\+|\\-)' );
@@ -113,8 +113,10 @@ global class UtilityClass {
     public static String removeReservedChars(String searchVariables) {
 
         if (searchVariables != null) {
+            searchVariables = searchVariables.replaceAll('\\\\','');
             searchVariables = searchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
         }
+        System.debug('TEMP after chars removed: ' + searchVariables);
 
         return searchVariables;
     }
