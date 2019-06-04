@@ -602,7 +602,7 @@ public without sharing class CustomerDetailsController {
                 }
                 contact.Fax = customerContact.FaxNbr;
                 contact.Phone = customerContact.PhoneNbr;
-                contact.WEX_Contact_ID__c = customerContact.ContactType + '#' + customerContact.RowId;
+                contact.WEX_Contact_ID__c = customerContact.RowId;
                 contact.AccountId = accountId;
                 contact.RecordTypeId = serviceOperationsContactRecordTypeId;
                 contact.Contact_Type__c = customerContact.ContactType;

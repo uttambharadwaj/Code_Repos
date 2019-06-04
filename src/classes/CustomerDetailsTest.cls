@@ -183,7 +183,7 @@ public class CustomerDetailsTest {
             );
             upsert xCase;
 
-            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, 'Contact#1-1ZZZZZ', JSON.serialize(customerDetails));
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZZ', JSON.serialize(customerDetails));
             System.debug('### ContactID=' + contactId);
 
             Support_Operation_Settings__c sos = CustomerDetailsController.getSupportOperationsSettings();
@@ -198,7 +198,7 @@ public class CustomerDetailsTest {
             String accountNumber = CustomerDetailsController.getAccountNumber(accountIdString);
             System.debug('### accountNumber=' + accountNumber);
 
-            Id contactIdString = CustomerDetailsController.getContactId(accountIdString, 'Contact#1-1ZZZZZ');
+            Id contactIdString = CustomerDetailsController.getContactId(accountIdString, '1-1ZZZZZ');
             System.debug('### contactIdString=' + contactIdString);
 
             String servicingRule = CustomerDetailsController.getPriorityLevelServicingRule(customerDetails.programId,'A');
