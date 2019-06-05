@@ -961,14 +961,12 @@
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix">
-                                <label class="checkbox-label">
-                                    <apex:inputCheckbox styleClass="checkbox"
-                                                        value="{!cardShippingSameAsBillingAddress}">
-                                        <apex:actionSupport event="onchange" action="{!setCardShippingSame}"
-                                                            rerender="cardShippingAddress"/>
-                                    </apex:inputCheckbox>
-                                    Card Shipping Address Same As Billing Address
-                                </label>
+                                <apex:outputLabel for="shippingSame" styleClass="checkbox-label" value="Card Shipping Address Same As Billing Address">
+                                    <span class="styled-label-required">*</span>
+                                </apex:outputLabel>
+                                <apex:inputCheckbox styleClass="checkbox" value="{!cardShippingSameAsBillingAddress}" id="shippingSame">
+                                    <apex:actionSupport event="onchange" action="{!setCardShippingSame}" rerender="cardShippingAddress"/>
+                                </apex:inputCheckbox>
                             </div>
                             <apex:outputPanel id="cardShippingAddress">
                                 <apex:outputPanel rendered="{!cardShippingSameAsBillingAddress == false}">
@@ -1164,20 +1162,28 @@
                             <p>Check off any optional fields below which you would like to see on your reports. Reports will include the cards' second line of printing, if selected.</p>
                             <div class="twelve columns clearfix">
                                 <div class="twelve columns clearfix">
-                                    <label class="checkbox-label">
-                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Reporting_Dept__c}"/> Department <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Reporting_Dept__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" /></label>
+                                    <apex:outputLabel for="reportDept" styleClass="checkbox-label" value="Department ">
+                                        <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Reporting_Dept__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" />
+                                    </apex:outputLabel>
+                                    <apex:inputCheckbox id="reportDept" styleClass="checkbox" value="{!fleetEnrollment.Reporting_Dept__c}"/>
                                 </div>
                                 <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description', 'display: none;', '')}">
-                                    <label class="checkbox-label">
-                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleDesc__c}"/> Vehicle Description <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleDesc__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" /></label>
+                                    <apex:outputLabel for="reportVhcl" styleClass="checkbox-label" value=" Vehicle Description ">
+                                        <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleDesc__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" />
+                                    </apex:outputLabel>
+                                    <apex:inputCheckbox id="reportVhcl" styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleDesc__c}"/>
                                 </div>
                                 <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'License Plate', 'display: none;', '')}">
-                                    <label class="checkbox-label">
-                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_LicensePlt__c}"/> License Plate <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_LicensePlt__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" /></label>
+                                    <apex:outputLabel for="reportLcPt" styleClass="checkbox-label" value=" License Plate ">
+                                        <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_LicensePlt__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" />
+                                    </apex:outputLabel>
+                                    <apex:inputCheckbox id="reportLcPt" styleClass="checkbox" value="{!fleetEnrollment.Report_LicensePlt__c}"/>
                                 </div>
                                 <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID', 'display: none;', '')}">
-                                    <label class="checkbox-label">
-                                        <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleId__c}"/> Company Vehicle ID <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleId__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" /></label>
+                                    <apex:outputLabel for="reportVhclId" styleClass="checkbox-label" value=" Company Vehicle ID ">
+                                        <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleId__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" />
+                                    </apex:outputLabel>
+                                    <apex:inputCheckbox id="reportVhclId" styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleId__c}"/>
                                 </div>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1320,18 +1326,26 @@
                                 </apex:actionFunction>
                                 <apex:outputPanel rendered="{!selectedDriverIdOption == 'custom'}">
                                     <div class="radioSelectDiv">
-                                        <label class="radioSelectLabel"><input class="radioSelect" type="radio" id="driverIdOption" name="driverIdOption" onchange="setDriverIdOption(this.value)" value="custom" checked="checked" /> Customer Generated Driver ID</label>
+                                        <label class="radioSelectLabel" for="driverIdOption" value="Customer Generated Driver ID">
+                                            <input class="radioSelect" type="radio" id="driverIdOption" name="driverIdOption" onchange="setDriverIdOption(this.value)" value="custom" checked="checked" />
+                                        </label>
                                     </div>
                                     <div class="radioSelectDiv">
-                                        <label class="radioSelectLabel"><input class="radioSelect" type="radio" id="driverIdOption" name="driverIdOption" onchange="setDriverIdOption(this.value)" value="random" /> Computer Generated Driver ID</label>
+                                        <label class="radioSelectLabel" for="driverIdOption" value="Computer Generated Driver ID">
+                                            <input class="radioSelect" type="radio" id="driverIdOption" name="driverIdOption" onchange="setDriverIdOption(this.value)" value="random" />
+                                        </label>
                                     </div>
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!selectedDriverIdOption == 'random'}">
                                     <div class="radioSelectDiv">
-                                        <label class="radioSelectLabel"><input class="radioSelect" type="radio" id="driverIdOption" name="driverIdOption" onchange="setDriverIdOption(this.value)" value="custom" /> Customer Generated Driver ID</label>
+                                        <label class="radioSelectLabel" for="driverIdOption" value="Customer Generated Driver ID">
+                                            <input class="radioSelect" type="radio" id="driverIdOption" name="driverIdOption" onchange="setDriverIdOption(this.value)" value="custom" />
+                                        </label>
                                     </div>
                                     <div class="radioSelectDiv">
-                                        <label class="radioSelectLabel"><input class="radioSelect" type="radio" id="driverIdOption" name="driverIdOption" onchange="setDriverIdOption(this.value)" value="random" checked="checked" /> Computer Generated Driver ID</label>
+                                        <label class="radioSelectLabel" for="driverIdOption" value="Computer Generated Driver ID">
+                                            <input class="radioSelect" type="radio" id="driverIdOption" name="driverIdOption" onchange="setDriverIdOption(this.value)" value="random" checked="checked" />
+                                        </label>
                                     </div>
                                 </apex:outputPanel>
                             </div>
@@ -1372,10 +1386,14 @@
                                     </div>
                                     <div class="twelve columns clearfix">
                                         <div class="radioSelectDiv">
-                                            <label class="radioSelectLabel"><input class="radioSelect" type="radio" id="driverIdLength" name="driverIdLength" onchange="setDriverIDLength(this.value)" value="4" checked="checked" /> 4-digit</label>
+                                            <label class="radioSelectLabel" for="driverIdLength" value="4-digit">
+                                                <input class="radioSelect" type="radio" id="driverIdLength" name="driverIdLength" onchange="setDriverIDLength(this.value)" value="4" checked="checked" />
+                                            </label>
                                         </div>
                                         <div class="radioSelectDiv">
-                                            <label class="radioSelectLabel"><input class="radioSelect" type="radio" id="driverIdLength" name="driverIdLength" onchange="setDriverIDLength(this.value)" value="6" /> 6-digit</label>
+                                            <label class="radioSelectLabel" for="driverIdLength" value="6-digit">
+                                                <input class="radioSelect" type="radio" id="driverIdLength" name="driverIdLength" onchange="setDriverIDLength(this.value)" value="6" />
+                                            </label>
                                         </div>
                                     </div>
                                 </apex:outputPanel>

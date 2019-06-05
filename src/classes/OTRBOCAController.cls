@@ -433,7 +433,7 @@ public class OTRBOCAController {
 
                     } else {
 
-                        onlineApplication = new OnlineApplication__c();
+                        onlineApplication = new OnlineApplication__c(AO_Country__c='US');
                     }
 
                     // Generate ThreatMetrix SessionID
