@@ -29,15 +29,17 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplicationOffer.Disclosure__c = 'Test';
         onlineApplicationOffer.EchoSign_User_Email__c = 'test@test.com';
         onlineApplicationOffer.Limit_Method__c = 'Credit Limit';
-        onlineApplicationOffer.Notice_Type_1__c = 'Percent';
-        onlineApplicationOffer.Notice_Type_1_Value__c = 10;
-        onlineApplicationOffer.Notice_Type_2__c = 'Percent';
-        onlineApplicationOffer.Notice_Type_2_Value__c = 5;
+        // OTRONBOARD-29
+        //onlineApplicationOffer.Notice_Type_1__c = 'Percent';
+        //onlineApplicationOffer.Notice_Type_1_Value__c = 10;
+        //onlineApplicationOffer.Notice_Type_2__c = 'Percent';
+        //onlineApplicationOffer.Notice_Type_2_Value__c = 5;
         onlineApplicationOffer.MC_Limit__c = 1;
-        onlineApplicationOffer.Mcode_Monthly_Account_Fee__c = true;
-        onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c = 0;
-        onlineApplicationOffer.Monthly_Account_Fee__c = true;
-        onlineApplicationOffer.Monthly_Account_Fee_Value__c = 0;
+        // OTRONBOARD-33
+        //onlineApplicationOffer.Mcode_Monthly_Account_Fee__c = true;
+        //onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c = 0;
+        //onlineApplicationOffer.Monthly_Account_Fee__c = true;
+        //onlineApplicationOffer.Monthly_Account_Fee_Value__c = 0;
         onlineApplicationOffer.PSR_ATM_Limit__c = 1.00;
         onlineApplicationOffer.PSR_Card_Fee__c = 1.00;
         onlineApplicationOffer.PSR_Fuel_Cash__c = 1.00;
