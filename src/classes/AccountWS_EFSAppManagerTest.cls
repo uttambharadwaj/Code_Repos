@@ -35,6 +35,10 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplicationOffer.Notice_Type_1_Value__c = 10;
         onlineApplicationOffer.Notice_Type_2__c = 'Percent';
         onlineApplicationOffer.Notice_Type_2_Value__c = 5;
+        onlineApplicationOffer.Mcode_Monthly_Account_Fee__c = true;
+        onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c = 0;
+        onlineApplicationOffer.Monthly_Account_Fee__c = true;
+        onlineApplicationOffer.Monthly_Account_Fee_Value__c = 0;
 
         insert onlineApplicationOffer;
 
