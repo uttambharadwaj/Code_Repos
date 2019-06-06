@@ -309,10 +309,10 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 											<apex:InputField styleClass="styled-input required" html-tabindex="12" id="city" required="true" label="" value="{!onlineApplication.City__c}" html-maxlength="40" />
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="3">
-											<apex:outputLabel for="state" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'State', $ObjectType.OnlineApplication__c.fields.State__c.label)}">
+											<apex:outputLabel for="PB2PComponentController" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'State', $ObjectType.OnlineApplication__c.fields.State__c.label)}">
 												<span class="styled-label-required">*</span>
 											</apex:outputLabel>
-											<apex:InputField styleClass="styled-input required" html-tabindex="13" id="state" required="true" label="" value="{!onlineApplication.State__c}" />
+											<apex:InputField styleClass="styled-input required" html-tabindex="13" id="state" required="true" label="" value="{!onlineApplication.State__c}"/>
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="4">
 											<apex:outputLabel for="postalCode" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Postal Code', $ObjectType.OnlineApplication__c.fields.Zip_Code__c.label)}">
