@@ -455,6 +455,35 @@
 								</div>
 								<div class="slds-media__body slds-truncate">
 									<a href="javascript:void(0);" class="slds-text-link--reset">
+										<span class="slds-text-heading--small">Fleet Data Sheets</span>
+									</a>
+								</div>
+							</header>
+						</div>
+						<!-- CARD BODY = TABLE -->
+						<div class="slds-card__body" style="background: #fff !important; padding: 10px 0;">
+							<div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+								<div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+									<div class="slds-media__body">
+										<p>Below is a list of Fleet Data Sheet templates that are available for download.</p><br/>
+										<apex:repeat var="fleetDataSheet" value="{!fleetDataSheets}">
+											<p><li><a href="/servlet/servlet.FileDownload?file={!fleetDataSheet.Id}">{!fleetDataSheet.Name}</a></li></p>
+										</apex:repeat><br/>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+					<article class="slds-card">
+						<div class="slds-card__header slds-grid">
+							<header class="slds-media slds-media--center slds-has-flexi-truncate">
+								<div class="slds-media__figure">
+									<svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+										<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product_item')}"></use>
+									</svg>
+								</div>
+								<div class="slds-media__body slds-truncate">
+									<a href="javascript:void(0);" class="slds-text-link--reset">
 										<span class="slds-text-heading--small">Fleet Implementation</span>
 									</a>
 								</div>
