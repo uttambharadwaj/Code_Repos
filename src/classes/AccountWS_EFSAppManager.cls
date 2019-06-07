@@ -732,8 +732,7 @@ global class AccountWS_EFSAppManager {
         //if(onlineApplicationOffer.Notice_Type_2_Value__c != null) jsonPayload.writeNumberField('ZZZNOTICE_TYPE_2_VALUE', onlineApplicationOffer.Notice_Type_2_Value__c);
 
         // End of "offer"
-
-        jsonPayload.writeEndObject();
+        //jsonPayload.writeEndObject();
 
         if(onlineApplication.Carrier_ID_Number__c == null) {
             jsonPayload.writeEndArray();
