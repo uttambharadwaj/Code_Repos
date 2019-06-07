@@ -28,6 +28,7 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplicationOffer.Daily_MC_Limit__c = 1;
         onlineApplicationOffer.Disclosure__c = 'Test';
         onlineApplicationOffer.EchoSign_User_Email__c = 'test@test.com';
+        onlineApplicationOffer.Funding__c = 'Parent Funded';
         onlineApplicationOffer.Limit_Method__c = 'Credit Limit';
         // OTRONBOARD-29
         //onlineApplicationOffer.Notice_Type_1__c = 'Percent';
