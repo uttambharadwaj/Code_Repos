@@ -14,8 +14,8 @@ public with sharing class RefundsAdjustmentsInstantApprover {
 
     public PageReference updateRecords() {
         System.debug('Saving RefundsAdjustmentsInstantApprover');
-        System.debug('Updating record count: '+setCon.getRecords().size());
-        for (Refund_Adjustment__c refadj : (List<Refund_Adjustment__c>)(setCon.getRecords())) {
+        System.debug('Updating record count: '+setCon.getSelected().size());
+        for (Refund_Adjustment__c refadj : (List<Refund_Adjustment__c>)(setCon.getSelected())) {
             if (refadj.Approval_Status__c != 'Approved' && refadj.Approval_Status__c != 'Denied') {
                 refadj.Approver_Name__c = UserInfo.getUserId();
                 refadj.Decision_Date__c = System.now();
