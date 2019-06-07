@@ -4,7 +4,7 @@
 
 @IsTest
 private class RefundsAdjustmentsInstantApproverTest {
-    @testSetup
+    @TestSetup
     static void setup() {
 
         Id AccountRecordType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
@@ -64,7 +64,7 @@ private class RefundsAdjustmentsInstantApproverTest {
         Test.setCurrentPage(Page.Refunds_Adjustments_Instant_Approver);
         Account testAccount = [SELECT Id FROM Account WHERE Name='TestAccount' LIMIT 1];
         List<Refund_Adjustment__c> refadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id ORDER BY CreatedDate DESC];
-        List<Refund_Adjustment__c> selectedRefadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id LIMIT 1];
+        List<Refund_Adjustment__c> selectedRefadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id];
         ApexPages.StandardSetController stdSetController = new ApexPages.StandardSetController(refadjs);
         stdSetController.setSelected(selectedRefadjs);
         RefundsAdjustmentsInstantApprover ext = new RefundsAdjustmentsInstantApprover(stdSetController);
