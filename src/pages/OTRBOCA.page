@@ -84,6 +84,15 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 
 		<script type="text/javascript" src="{!URLFOR($Resource.OTRBOCABaseJS)}" />
 
+		<script type="text/javascript">
+			window.onload = function() {
+				var elems = document.querySelectorAll('.required');
+				for (var i = 0; i < elems.length; i++) {
+					elems[i].required = true;
+				}
+			}
+		</script>
+
 		<!-- Local Styles -->
 		<style>
 			.section-header {
@@ -239,7 +248,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 								<div class="twelve columns clearfix">
 									<div class="six columns clearfix">
 										<div class="twelve columns clearfix form-field" data-row="0">
-											<apex:actionRegion>
+											<apex:actionRegion >
 												<apex:outputLabel for="companyName" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Company Legal Name', $ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.label)}">
 													<span class="styled-label-required">*</span>
 												</apex:outputLabel>
@@ -309,10 +318,10 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 											<apex:InputField styleClass="styled-input required" html-tabindex="12" id="city" required="true" label="" value="{!onlineApplication.City__c}" html-maxlength="40" />
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="3">
-											<apex:outputLabel for="PB2PComponentController" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'State', $ObjectType.OnlineApplication__c.fields.State__c.label)}">
+											<apex:outputLabel for="state" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'State', $ObjectType.OnlineApplication__c.fields.State__c.label)}">
 												<span class="styled-label-required">*</span>
 											</apex:outputLabel>
-											<apex:InputField styleClass="styled-input required" html-tabindex="13" id="state" required="true" label="" value="{!onlineApplication.State__c}"/>
+											<apex:InputField styleClass="styled-input required" html-tabindex="13" id="state" required="true" value="{!onlineApplication.State__c}" />
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="4">
 											<apex:outputLabel for="postalCode" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Postal Code', $ObjectType.OnlineApplication__c.fields.Zip_Code__c.label)}">
@@ -322,7 +331,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 											<!--<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input {!IF(isPG, 'required', '')} postal" html-tabindex="44" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />-->
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="5">
-											<apex:actionRegion>
+											<apex:actionRegion >
 												<apex:outputLabel for="country" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Country', $ObjectType.OnlineApplication__c.fields.Country__c.label)}">
 													<span class="styled-label-required">*</span>
 												</apex:outputLabel>
@@ -332,7 +341,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 											</apex:actionRegion>
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="6">
-											<apex:actionRegion>
+											<apex:actionRegion >
 												<apex:outputLabel for="fleetSize" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Number of Trucks', $ObjectType.OnlineApplication__c.fields.Number_of_Trucks__c.label)}">
 													<span class="styled-label-required">*</span>
 												</apex:outputLabel>
@@ -351,8 +360,8 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 											<div class="six columns clearfix form-field">
 												<apex:outputLabel for="slipSeat" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.label}"/>
 												<center>
-													<apex:actionRegion>
-														<apex:InputField styleClass="required" style="margin: 12px 0;" html-tabindex="17" id="slipSeat" label="" value="{!onlineApplication.Team_Drivers_Slip_Seat__c}" html-maxlength="6">
+													<apex:actionRegion >
+														<apex:InputField styleClass="styled-input" style="margin: 12px 0;" html-tabindex="17" id="slipSeat" label="" value="{!onlineApplication.Team_Drivers_Slip_Seat__c}" html-maxlength="6">
 															<apex:actionSupport event="onchange" action="{!setCreditLineRequested}" rerender="creditLineRequested" />
 														</apex:InputField>
 													</apex:actionRegion>
@@ -377,11 +386,11 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 								<div class="twelve columns clearfix">
 									<div class="six columns clearfix">
 										<div class="twelve columns clearfix form-field" data-row="7">
-											<apex:actionRegion>
+											<apex:actionRegion >
 												<apex:outputLabel for="legalStructure" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Legal Structure', $ObjectType.OnlineApplication__c.fields.Type_of_Business__c.label)}">
 													<span class="styled-label-required">*</span>
 												</apex:outputLabel>
-												<apex:InputField styleClass="styled-select-full required" html-tabindex="18" id="legalStructure" label="" value="{!onlineApplication.Type_of_Business__c}">
+												<apex:InputField styleClass="styled-select-full required" required="true" html-tabindex="18" id="legalStructure" label="" value="{!onlineApplication.Type_of_Business__c}">
 													<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="accountGuarantor,disclaimer" oncomplete="pageLoadFunctions()" />
 												</apex:InputField>
 											</apex:actionRegion>
@@ -390,12 +399,12 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 											<apex:outputLabel for="businessDescription" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.label}">
 												<span class="styled-label-required">*</span>
 											</apex:outputLabel>
-											<apex:selectList size="1" styleClass="styled-select-full required" tabIndex="19" id="businessDescription" value="{!onlineApplication.Business_Description__c}">
+											<apex:selectList size="1" styleClass="styled-select-full required" required="true" tabIndex="19" id="businessDescription" value="{!onlineApplication.Business_Description__c}">
 												<apex:selectOptions value="{!businessDescriptionOptions}" />
 											</apex:selectList>
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="9">
-											<apex:actionRegion>
+											<apex:actionRegion >
 												<apex:outputLabel for="yearsInBusiness" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Year Established', $ObjectType.OnlineApplication__c.fields.Year_Established__c.label)}">
 													<span class="styled-label-required">*</span>
 												</apex:outputLabel>
@@ -418,10 +427,10 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 											<apex:outputLabel for="taxpayerId" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Taxpayer ID', $ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.label)}">
 												<span class="styled-label-required">*</span>
 											</apex:outputLabel>
-											<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Taxpayer_ID}" styleClass="styled-input taxpayerId required" html-tabindex="23" id="taxpayerId" label="" value="{!onlineApplication.Federal_Tax_ID__c}" html-maxlength="9" />
+											<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Taxpayer_ID}" styleClass="styled-input taxpayerId required" required="true" html-tabindex="23" id="taxpayerId" label="" value="{!onlineApplication.Federal_Tax_ID__c}" html-maxlength="9" />
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="8">
-											<apex:actionRegion>
+											<apex:actionRegion >
 												<apex:outputLabel for="fleetIdentifier" styleClass="styled-label" value="Please Select An Identifier (MC, FF, or DOT #) ">
 													<span class="styled-label-required">*</span>
 												</apex:outputLabel>
@@ -475,7 +484,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 								<div class="twelve columns clearfix">
 									<div class="six columns clearfix">
 										<div class="twelve columns clearfix form-field" data-row="12">
-											<apex:actionRegion>
+											<apex:actionRegion >
 												<apex:outputLabel for="accountType" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Account_Type__c.label} ">
 													<span class="styled-label-required">*</span>
 												</apex:outputLabel>
@@ -498,7 +507,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 									<div class="six columns clearfix">
 										<apex:outputPanel id="paymentMethodContainer">
 											<div class="twelve columns clearfix form-field" data-row="12">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="paymentMethod" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Payment_Method__c.label} ">
 														<span class="styled-label-required">*</span>
 														<i class="fa fa-question-circle help-circle helpIcon" aria-hidden="true" title="Auto Draft: Payments are drawn from your bank account automatically for usage on your account.  Payments are drawn based on the day(s) you selected. || Internet Pay: You initiate payments via our online portal.  || Wire: You initiate payment from your bank with a bank wire. || Customer Initiated ACH: You initiate payment from your bank with an ACH/Electronic Funds Transfer."></i>
@@ -646,7 +655,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 									<div class="twelve columns clearfix">
 										<div class="six columns clearfix">
 											<div class="twelve columns clearfix form-field" data-row="20">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="pgAddress" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential Address', $ObjectType.OnlineApplication__c.fields.AO_Address__c.label)} ">
 														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
 													</apex:outputLabel>
@@ -656,7 +665,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 												</apex:actionRegion>
 											</div>
 											<div class="twelve columns clearfix form-field" data-row="21">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="pgCity" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential City', $ObjectType.OnlineApplication__c.fields.AO_City__c.label)} ">
 														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
 													</apex:outputLabel>
@@ -666,7 +675,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 												</apex:actionRegion>
 											</div>
 											<div class="twelve columns clearfix form-field" data-row="22">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="pgState" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential State', $ObjectType.OnlineApplication__c.fields.AO_State__c.label)} ">
 														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
 													</apex:outputLabel>
@@ -676,7 +685,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 												</apex:actionRegion>
 											</div>
 											<div class="twelve columns clearfix form-field" data-row="23">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="pgPostalCode" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential Postal Code', $ObjectType.OnlineApplication__c.fields.AO_Zip_Code__c.label)} ">
 														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
 													</apex:outputLabel>
@@ -686,7 +695,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 												</apex:actionRegion>
 											</div>
 											<div class="twelve columns clearfix form-field" data-row="24">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="pgCountry" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential Country', $ObjectType.OnlineApplication__c.fields.AO_Country__c.label)} ">
 														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
 													</apex:outputLabel>
@@ -699,7 +708,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 										</div>
 										<div class="six columns clearfix">
 											<div class="twelve columns clearfix form-field" data-row="20">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="pgSSN" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Social Security Number', $ObjectType.OnlineApplication__c.fields.AO_Social_Security_Number__c.label)} ">
 														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
 													</apex:outputLabel>
@@ -716,7 +725,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 												<input type="text" placeholder="{!$Label.BOCA_Placeholder_SSN}" class="styled-input {!IF(isPG, 'required', '')} ssn" required="{!isPG}" tabindex="46" id="verifyPgSSN" />
 											</div>
 											<div class="twelve columns clearfix form-field" data-row="22">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="pgDateOfBirth" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Date of Birth', $ObjectType.OnlineApplication__c.fields.AO_Date_of_Birth__c.label)} ">
 														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
 													</apex:outputLabel>
@@ -726,7 +735,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 												</apex:actionRegion>
 											</div>
 											<div class="twelve columns clearfix form-field" data-row="23">
-												<apex:actionRegion>
+												<apex:actionRegion >
 													<apex:outputLabel for="pgPhone" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Residential Phone', $ObjectType.OnlineApplication__c.fields.AO_Home_Phone_Number__c.label)} ">
 														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
 													</apex:outputLabel>
@@ -736,11 +745,9 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 												</apex:actionRegion>
 											</div>
 											<div class="twelve columns clearfix form-field" data-row="24">
-												<apex:actionRegion>
-													<apex:outputLabel for="pgMobile" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.AO_Mobile_Number__c.label} ">
-														<apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*"/>
-													</apex:outputLabel>
-													<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="49" html-class="phone" required="{!isPG}" id="pgMobile" value="{!onlineApplication.AO_Mobile_Number__c}" maxlength="20" >
+												<apex:actionRegion >
+													<apex:outputLabel for="pgMobile" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.AO_Mobile_Number__c.label} "/>
+													<apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="49" html-class="phone" id="pgMobile" value="{!onlineApplication.AO_Mobile_Number__c}" maxlength="20" >
 														<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
 													</apex:InputText>
 												</apex:actionRegion>
@@ -790,14 +797,15 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                     {!$Label.BOCA_Authorized_Signer}
                                 </div>
 									<div id="authorizedSignerBody" class="disclaimer-container clearfix">
-										<div class="disclaimer-checkbox">
-											<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox"/>
-										</div>
-										<div class="disclaimer-text">
-											<apex:outputPanel id="disclaimer">
-												<apex:outputText value="{!onlineApplicationOffer.Authorized_Signer_Disclosure__c}" escape="false" rendered="{!IF(AND(forcePG == false, isPg == false), true, false)}"/>
-												<apex:outputText value="{!onlineApplicationOffer.PG_Disclosure__c}" escape="false" rendered="{!IF(OR(forcePG == true, isPg == true), true, false)}"/>
-											</apex:outputPanel>
+										<div class="disclaimer-checkbox disclaimer-text">
+											<label for="acknowledgeDisclaimer" >
+												Accept
+												<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox" class="required" required="true"/>
+												<apex:outputPanel id="disclaimer">
+													<apex:outputText value="{!onlineApplicationOffer.Authorized_Signer_Disclosure__c}" escape="false" rendered="{!IF(AND(forcePG == false, isPg == false), true, false)}"/>
+													<apex:outputText value="{!onlineApplicationOffer.PG_Disclosure__c}" escape="false" rendered="{!IF(OR(forcePG == true, isPg == true), true, false)}"/>
+												</apex:outputPanel>
+											</label>
 										</div>
 									</div>
 								</div>
