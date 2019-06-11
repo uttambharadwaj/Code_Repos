@@ -21,7 +21,14 @@ public with sharing class FleetEnrollmentInternalController {
     public List<Document> fleetDataSheets {
         get {
 
-            List<Document> documents = [SELECT Id, Name FROM Document WHERE FolderId =: dataSheetFolder];
+            List<Document> documents = new List<Document>();
+
+            if(program != null && !String.isBlank(program.Default_Fleet_Data_Sheets__c)) {
+                documents = [SELECT Id, Name FROM Document WHERE FolderId = :dataSheetFolder and DeveloperName =: program.Default_Fleet_Data_Sheets__c];
+            }
+            if(documents.size() > 0) {
+                documents = [SELECT Id, Name FROM Document WHERE FolderId = :dataSheetFolder];
+            }
 
             return documents;
 
