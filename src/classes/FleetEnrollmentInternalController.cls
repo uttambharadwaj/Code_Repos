@@ -6,6 +6,28 @@ public with sharing class FleetEnrollmentInternalController {
 
     public final static String APPLICATION_NAME = 'Internal Fleet Enrollment Form';
 
+    public Id dataSheetFolder {
+        get {
+            List<Folder> folders = [SELECT Id FROM Folder WHERE DeveloperName = 'Fleet_Implementation_Data_Sheets'];
+
+            if(folders.size() > 0) {
+                return folders[0].Id;
+            }
+
+            return null;
+        }
+    }
+
+    public List<Document> fleetDataSheets {
+        get {
+
+            List<Document> documents = [SELECT Id, Name FROM Document WHERE FolderId =: dataSheetFolder];
+
+            return documents;
+
+        }
+    }
+
     public String opportunityId {
         get {
             return ApexPages.currentPage().getParameters().get('opportunityId');
