@@ -285,7 +285,9 @@ public class CreditWS_DNB {
         catch(Exception e) {
             //IADJUDICAT 739 let's log an error too. we need to know what is happening at all times. we are big brother and we say so.
             System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
-            insert UtilityClass.logInternalError(e, null, 'CreditWS_DNB=>dnbDirectClenseAndMatch', false, null, null);
+            // Removed by DDG - this needs to be queued or futured as the engine needs to continue on even if this call fails..
+            // Causing uncommited work errors
+            //insert UtilityClass.logInternalError(e, null, 'CreditWS_DNB=>dnbDirectClenseAndMatch', false, null, null);
         }
 
         return dnbDirectMatchResponse;
