@@ -389,7 +389,7 @@
                                     <div class="four columns clearfix" style="display: {!IF(cardType == 'unit', 'none', 'block')};">
                                         <center>
                                             <apex:actionRegion>
-                                                <apex:outputLabel for="driverUnits" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Unit__c.label}"/>
+                                                <apex:outputLabel for="unit" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Unit__c.label}"/>
                                                 <apex:inputField value="{!onlineApplication.Unit__c}" id="unit" html-tabindex="20">
                                                     <apex:actionsupport event="onchange" rerender="driverUnits" oncomplete="pageLoadFunctions()"/>
                                                 </apex:inputField>
