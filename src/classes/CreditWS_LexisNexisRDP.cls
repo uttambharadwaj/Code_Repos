@@ -230,11 +230,32 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             HTTPResponse httpResponse = http.send(httpRequest);
 
-            System.debug(httpResponse.getBody());
+            CreditWSUtil_LexisNexisIID response = CreditWSUtil_LexisNexisIID.parse(CreditWS_LexisNexisRDP.jsonKeywordSafeReplace(httpResponse.getBody(), false));
+
+            if(response != null) {
+                for(CreditWSUtil_LexisNexisIID.cls_Products product : response.Products) {
+
+                    if(product.ParameterDetails != null) {
+
+                        for(CreditWSUtil_LexisNexisIID.cls_ParameterDetails parameterDetails : product.ParameterDetails) {
+
+                            if(!String.isBlank(parameterDetails.Group_x) && !String.isBlank(parameterDetails.Name)
+                                    && (parameterDetails.Group_x).equalsIgnoreCase('FRAUD_POINT') && (parameterDetails.Name).equalsIgnoreCase('LexID')) {
+
+                                lexisNexisIIDResponse.fraudPointScore = Integer.valueOf(parameterDetails.Values[0].Value);
+
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
 
         } catch (Exception e) {
 
-            System.debug('### ' + e.getStackTraceString());
+            System.debug('### ' + e.getMessage() + '\n' + e.getStackTraceString());
 
         }
 
@@ -420,7 +441,7 @@ public with sharing class CreditWS_LexisNexisRDP {
 
     public class LexisNexisIIDResponse {
 
-        public String iidWorkflowResult { get; set; }
+        public Integer fraudPointScore { get; set; }
 
         public LexisNexisIIDResponse() {
 
