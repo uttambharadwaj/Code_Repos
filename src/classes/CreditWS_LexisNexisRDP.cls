@@ -92,7 +92,9 @@ public with sharing class CreditWS_LexisNexisRDP {
             addresses.City = lexisNexisBIIDRequest.city;
             addresses.State = lexisNexisBIIDRequest.state;
             addresses.Zip5 = lexisNexisBIIDRequest.postalCode;
-            if((addresses.Zip5).length() > 5) { addresses.Zip5 = (addresses.Zip5).substring(0, 5); }
+            if ((addresses.Zip5).length() > 5) {
+                addresses.Zip5 = (addresses.Zip5).substring(0, 5);
+            }
             addresses.Country = 'US';
             addresses.Context = 'primary';
 
@@ -174,7 +176,9 @@ public with sharing class CreditWS_LexisNexisRDP {
             addresses.City = lexisNexisIIDRequest.city;
             addresses.State = lexisNexisIIDRequest.state;
             addresses.Zip5 = lexisNexisIIDRequest.postalCode;
-            if((addresses.Zip5).length() > 5) { addresses.Zip5 = (addresses.Zip5).substring(0, 5); }
+            if ((addresses.Zip5).length() > 5) {
+                addresses.Zip5 = (addresses.Zip5).substring(0, 5);
+            }
             addresses.Country = 'US';
             addresses.Context = 'primary';
 
@@ -189,7 +193,7 @@ public with sharing class CreditWS_LexisNexisRDP {
             }
             person.SSN.Type_x = 'ssn9';
 
-            if(lexisNexisIIDRequest.dateOfBirth != null) {
+            if (lexisNexisIIDRequest.dateOfBirth != null) {
 
                 person.DateOfBirth = new CreditWSUtil_LexisNexisIID.cls_DateOfBirth();
 
@@ -210,7 +214,9 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             person.Context = 'primary';
 
-            request.Persons = new CreditWSUtil_LexisNexisIID.cls_Persons[]{ person };
+            request.Persons = new CreditWSUtil_LexisNexisIID.cls_Persons[]{
+                    person
+            };
 
             String jsonRequest = CreditWS_LexisNexisRDP.jsonKeywordSafeReplace(JSON.serializePretty(request, true), true);
 
@@ -232,14 +238,14 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             CreditWSUtil_LexisNexisIID response = CreditWSUtil_LexisNexisIID.parse(CreditWS_LexisNexisRDP.jsonKeywordSafeReplace(httpResponse.getBody(), false));
 
-            if(response != null) {
-                for(CreditWSUtil_LexisNexisIID.cls_Products product : response.Products) {
+            if (response != null) {
+                for (CreditWSUtil_LexisNexisIID.cls_Products product : response.Products) {
 
-                    if(product.ParameterDetails != null) {
+                    if (product.ParameterDetails != null) {
 
-                        for(CreditWSUtil_LexisNexisIID.cls_ParameterDetails parameterDetails : product.ParameterDetails) {
+                        for (CreditWSUtil_LexisNexisIID.cls_ParameterDetails parameterDetails : product.ParameterDetails) {
 
-                            if(!String.isBlank(parameterDetails.Group_x) && !String.isBlank(parameterDetails.Name)
+                            if (!String.isBlank(parameterDetails.Group_x) && !String.isBlank(parameterDetails.Name)
                                     && (parameterDetails.Group_x).equalsIgnoreCase('FRAUD_POINT') && (parameterDetails.Name).equalsIgnoreCase('LexID')) {
 
                                 lexisNexisIIDResponse.fraudPointScore = Integer.valueOf(parameterDetails.Values[0].Value);
@@ -263,7 +269,7 @@ public with sharing class CreditWS_LexisNexisRDP {
 
     }
 
-    public static LexisNexisSBAResponse lexisNexisSmallBusinessAnalystics(LexisNexisSBARequest lexisNexisSBARequest) {
+    public static LexisNexisSBAResponse lexisNexisSmallBusinessAnalytics(LexisNexisSBARequest lexisNexisSBARequest) {
 
         LexisNexisSBAResponse lexisNexisSBAResponse = new LexisNexisSBAResponse();
 
@@ -282,7 +288,9 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             CreditWSUtil_LexisNexisSBA.Names_element namesElement = new CreditWSUtil_LexisNexisSBA.Names_element();
 
-            namesElement.Name = new String[]{ 'BOFM1812_1_0' };
+            namesElement.Name = new String[]{
+                    'BOFM1812_1_0'
+            };
 
             smallBusinessAnalyticsRequestElement.Options.IncludeModels.Names = namesElement;
 
@@ -294,13 +302,15 @@ public with sharing class CreditWS_LexisNexisRDP {
             smallBusinessAnalyticsRequestElement.SearchBy.Company.Address = new CreditWSUtil_LexisNexisSBA.Address();
             smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.StreetAddress1 = lexisNexisSBARequest.streetAddress;
             smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5 = lexisNexisSBARequest.postalCode;
-            if((smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5).length() > 5) { smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5 = (smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5).substring(0, 5); }
+            if ((smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5).length() > 5) {
+                smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5 = (smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5).substring(0, 5);
+            }
 
             smallBusinessAnalyticsRequestElement.SearchBy.Company.Phone = lexisNexisSBARequest.phoneNumber.replaceAll('[^0-9]', '');
             smallBusinessAnalyticsRequestElement.SearchBy.Company.FEIN = lexisNexisSBARequest.federalTaxId.replaceAll('[^0-9]', '');
 
             // Dear Lexis Nexis - If you're going to accept multiples - ever heard of an array? Love Derek.
-            if(lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives.size() > 0) {
+            if (lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives != null && lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives.size() > 0) {
 
                 Integer count = 1;
                 for (LexisNexisAuthorizedRepresenative lexisNexisAuthorizedRepresenative : lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives) {
@@ -376,9 +386,23 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             System.debug(smallBusinessAnalyticsResponse);
 
+            try {
+
+                lexisNexisSBAResponse.fraudScore = smallBusinessAnalyticsResponse.Result.Models.Model[0].Scores.Score[0].Value;
+
+            }
+            catch (Exception e) {
+
+                System.debug('### ' + e.getMessage() + '\n' + e.getStackTraceString());
+
+                lexisNexisSBAResponse.fraudScore = -1;
+
+            }
+
+
         } catch (Exception e) {
 
-            System.debug('### ' + e.getStackTraceString());
+            System.debug('### ' + e.getMessage() + '\n' + e.getStackTraceString());
 
         }
 
@@ -484,6 +508,8 @@ public with sharing class CreditWS_LexisNexisRDP {
     }
 
     public class LexisNexisSBAResponse {
+
+        public Integer fraudScore { get; set; }
 
         public LexisNexisSBAResponse() {
 
