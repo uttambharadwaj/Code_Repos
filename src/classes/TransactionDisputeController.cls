@@ -212,12 +212,49 @@ global without sharing class TransactionDisputeController {
         return null;
     }
 
+//    public void getCustomerDetails() {
+//
+//        // Get the account associated - need this later for the upsert of the account
+//        Customer_Dashboard_Services__c CDS = Customer_Dashboard_Services__c.getOrgDefaults();
+//
+//        CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
+//
+//        CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+//
+//        customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
+//
+//        // Some damage control - we don't want that value to be below the default threshold
+//        if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+//            customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
+//        }
+//
+//        customerDetailsRequest.accountID = accountNumber;
+//        customerDetailsRequest.accountIdType = 'External';
+//
+//        customerDetails = customerDetailsCallout.getCustomerDetails(customerDetailsRequest);
+//
+//        // Get the contacts associated - need this later for the upsert of contacts
+//        customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
+//
+//        customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+//
+//        customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
+//
+//        // Some damage control - we don't want that value to be below the default threshold
+//        if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+//            customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
+//        }
+//
+//        customerDetailsRequest.accountID = accountNumber;
+//        customerDetailsRequest.accountIdType = 'External';
+//
+//        customerContacts = customerDetailsCallout.getContacts(customerDetailsRequest);
+//
+//    }
+
     public void getCustomerDetails() {
 
-        // Get the account associated - need this later for the upsert of the account
         Customer_Dashboard_Services__c CDS = Customer_Dashboard_Services__c.getOrgDefaults();
-
-        CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
 
         CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
 
@@ -228,27 +265,15 @@ global without sharing class TransactionDisputeController {
             customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
         }
 
-        customerDetailsRequest.accountID = accountNumber;
-        customerDetailsRequest.accountIdType = 'External';
+        CustomerDetailsWSUtilv2.accountSearchRequest accountSearchRequest = new CustomerDetailsWSUtilv2.accountSearchRequest();
 
-        customerDetails = customerDetailsCallout.getCustomerDetails(customerDetailsRequest);
+        accountSearchRequest.searchData = accountNumber;
+        accountSearchRequest.searchField = 'CUSTOMERACCTNBR';
 
-        // Get the contacts associated - need this later for the upsert of contacts
-        customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
+        CustomerDetailsWSUtilv2.accountSearchResult accountSearchResult = customerDetailsCallout.accountSearch(accountSearchRequest);
 
-        customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+        System.debug(accountSearchResult); 
 
-        customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
-
-        // Some damage control - we don't want that value to be below the default threshold
-        if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
-            customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
-        }
-
-        customerDetailsRequest.accountID = accountNumber;
-        customerDetailsRequest.accountIdType = 'External';
-
-        customerContacts = customerDetailsCallout.getContacts(customerDetailsRequest);
 
     }
 
@@ -284,41 +309,6 @@ global without sharing class TransactionDisputeController {
         	return false;
         }
         
-        /*
-        if(!String.isEmpty(customerDetails.wexAccountNbr)) {
-
-            customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
-
-            customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
-
-            customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
-
-            // Some damage control - we don't want that value to be below the default threshold
-            if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
-                customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
-            }
-
-            customerDetailsRequest.accountID = accountNumber;
-            customerDetailsRequest.accountIdType = 'External';
-
-            CustomerDetailsWSUtilv2.contacts customerContacts = customerDetailsCallout.getContacts(customerDetailsRequest);
-
-            for(CustomerDetailsWSUtilv2.contact contact : customerContacts.contacts) {
-
-                if((contact.emailAddr != null && (contact.emailAddr).equalsIgnoreCase(UserInfo.getUserEmail())) || !(UserInfo.getUserType()).equalsIgnoreCase('Partner')) {
-                    return true;
-                }
-
-            }
-
-            return false;
-
-        }
-        else {
-            return false;
-        }
-		*/
-
     }
 
     // Step functions
