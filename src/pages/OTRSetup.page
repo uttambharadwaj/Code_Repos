@@ -534,10 +534,10 @@
                                             </div>
                                             <div class="twelve columns clearfix form-field styled-panel">
                                                 <apex:outputText rendered="{!IF(program.WEX_Platform__c == 'CoreCard', true, false)}">
-                                                    Please enter valid unit numbers for unit pool below. Unit number can be a maximum of 8 digits. Your driver will be required to enter one of these unit numbers at the time of purchase. Additional units may be added online upon account activatiorequired="true"n.
+                                                    Please enter valid unit numbers for unit pool below. Unit number can be a maximum of 8 digits. Your driver will be required to enter one of these unit numbers at the time of purchase. Additional units may be added online upon account activation.
                                                 </apex:outputText>
                                                 <apex:outputText rendered="{!IF(program.WEX_Platform__c != 'CoreCard', true, false)}">
-                                                    Please enter valid unit numbers for unit pool below. Unit number can be a maximum of 8 digits. Your driver will be required to enter one of these unit numbers at the time of purchase. Additional units may be added via eManager upon account activatiorequired="true"n.
+                                                    Please enter valid unit numbers for unit pool below. Unit number can be a maximum of 8 digits. Your driver will be required to enter one of these unit numbers at the time of purchase. Additional units may be added via eManager upon account activation.
                                                 </apex:outputText>
 
                                             </div>
