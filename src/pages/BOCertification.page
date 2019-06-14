@@ -1,5 +1,5 @@
 <!--
-    Revision History: 5/13/2019 PSOBACKLOG-76 ADA Compliance-Images
+	Revision History: 5/13/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="BOCertificationController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
@@ -59,9 +59,9 @@
 
             //window.addEventListener( "pageshow", function ( event ) {
             //var detectedBackButton = event.persisted || ( typeof window.performance != "undefined" && window.performance.navigation.type === 2 );
-            //  if ( detectedBackButton ) {
-            //      window.location.reload();
-            //  }
+            //	if ( detectedBackButton ) {
+            //		window.location.reload();
+            //	}
             //});
         </script>
 
@@ -89,7 +89,7 @@
 
             .step-button {
             {!program.Brand_Color_2__c}
-            padding: .5em 2em .55em;
+                padding: .5em 2em .55em;
             }
 
             #mobile-footer-call {
@@ -331,12 +331,11 @@
                                             </p>
                                         </div>
                                         <div class="twelve columns clearfix">
-                                            <apex:actionRegion>
-                                                <apex:outputLabel for="noBeneficialOwners" styleClass="styled-label" value="&nbsp;{!$Label.BOCDD_Owner_Not_Applicable}"/>
+                                            <label class="styled-label">
                                                 <apex:inputCheckbox id="noBeneficialOwners" value="{!ownersNotApplicable}">
                                                     <apex:actionSupport event="onchange" action="{!removeOwners}" rerender="boOwnerRecords" />
                                                 </apex:inputCheckbox>
-                                            </apex:actionRegion>
+                                                &nbsp;{!$Label.BOCDD_Owner_Not_Applicable}</label>
                                         </div>
                                         <apex:outputPanel id="beneficialOwners">
                                             <apex:outputPanel rendered="{!noOwnerProngs == false}">
@@ -360,86 +359,79 @@
                                                             <div class="twelve columns clearfix beneficial-owner">
                                                                 <div class="six columns clearfix">
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}1">
-                                                                        <apex:outputLabel for="firstName" styleClass="styled-label" value="{!$Label.BOCDD_First_Name}"/>
-                                                                        <apex:inputText id="firstName" styleClass="styled-input required" value="{!boOwner.firstName}" maxlength="50" />
+                                                                        <label class="styled-label">{!$Label.BOCDD_First_Name}</label>
+                                                                        <apex:inputText styleClass="styled-input required" value="{!boOwner.firstName}" maxlength="50" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}2">
-                                                                        <apex:outputLabel for="accountType" styleClass="styled-label" value="{!$Label.BOCDD_Last_Name}"/>
-                                                                        <apex:inputText id="lastName" styleClass="styled-input required" value="{!boOwner.lastName}" maxlength="50" />
+                                                                        <label class="styled-label">{!$Label.BOCDD_Last_Name}</label>
+                                                                        <apex:inputText styleClass="styled-input required" value="{!boOwner.lastName}" maxlength="50" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}3">
-                                                                        <apex:outputLabel for="DOB" styleClass="styled-label" value="{!$Label.BOCDD_Date_Of_Birth}"/>
-                                                                        <apex:inputText id="DOB" html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boOwner.dateOfBirth}" />
+                                                                        <label class="styled-label">{!$Label.BOCDD_Date_Of_Birth}</label>
+                                                                        <apex:inputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boOwner.dateOfBirth}" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" style="display: {!IF(boOwner.countryOfResidence == 'United States', 'block', 'none')};" data-row="{!VALUE(index)}4">
-                                                                        <apex:outputLabel for="ssn" styleClass="styled-label" value="{!$Label.BOCDD_Social_Security}"/>
-                                                                        <apex:inputText id="ssn" html-placeholder="###-##-####" styleClass="styled-input required ssn" value="{!boOwner.socialSecurityNumber}" />
+                                                                        <label class="styled-label">{!$Label.BOCDD_Social_Security}</label>
+                                                                        <apex:inputText html-placeholder="###-##-####" styleClass="styled-input required ssn" value="{!boOwner.socialSecurityNumber}" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" style="display: {!IF(boOwner.countryOfResidence == 'United States', 'none', 'block')};" data-row="{!VALUE(index)}5">
-                                                                        <apex:outputLabel for="ppNumber" escape="false" styleClass="styled-label" value="{!$Label.BOCDD_Passport_Other_Government_ID}"/>
-                                                                        <apex:inputText id="ppNumber" styleClass="styled-input required" value="{!boOwner.passportNumber}" maxlength="50" />
+                                                                        <label class="styled-label"><apex:outputText value="{!$Label.BOCDD_Passport_Other_Government_ID}" escape="false" /></label>
+                                                                        <apex:inputText styleClass="styled-input required" value="{!boOwner.passportNumber}" maxlength="50" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" style="display: {!IF(boOwner.countryOfResidence == 'United States', 'none', 'block')};" data-row="{!VALUE(index)}6">
-                                                                        <apex:actionRegion>
-                                                                            <apex:outputLabel for="issueCountry" styleClass="styled-label" value="{!$Label.BOCDD_Issuing_Country}"/>
-                                                                            <apex:selectList id="issueCountry" size="1" styleClass="styled-select-full required" value="{!boOwner.countryOfIssue}">
-                                                                                <apex:selectOptions value="{!countriesList}" />
-                                                                                <apex:actionSupport event="onchange" rerender="beneficialOwners" oncomplete="pageLoadFunctions()" />
-                                                                            </apex:selectList>
-                                                                        </apex:actionRegion>
+                                                                        <label class="styled-label">{!$Label.BOCDD_Issuing_Country}</label>
+                                                                        <apex:selectList size="1" styleClass="styled-select-full required" value="{!boOwner.countryOfIssue}">
+                                                                            <apex:selectOptions value="{!countriesList}" />
+                                                                            <apex:actionSupport event="onchange" rerender="beneficialOwners" oncomplete="pageLoadFunctions()" />
+                                                                        </apex:selectList>
                                                                     </div>
                                                                 </div>
                                                                 <div class="six columns clearfix">
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}1">
-                                                                        <apex:outputLabel for="addy1" styleClass="styled-label" value="{!$Label.BOCDD_Address_Line_1}"/>
-                                                                        <apex:inputText id="addy1" styleClass="styled-input required country-controlled" value="{!boOwner.addressLine1}" maxlength="100" />
+                                                                        <label class="styled-label">{!$Label.BOCDD_Address_Line_1}</label>
+                                                                        <apex:inputText styleClass="styled-input required country-controlled" value="{!boOwner.addressLine1}" maxlength="100" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}2">
-                                                                        <apex:outputLabel for="addy2" styleClass="styled-label" value="{!$Label.BOCDD_Address_Line_2}"/>
-                                                                        <apex:inputText id="addy2" styleClass="styled-input country-controlled" value="{!boOwner.addressLine2}" maxlength="100" />
+                                                                        <label class="styled-label">{!$Label.BOCDD_Address_Line_2}</label>
+                                                                        <apex:inputText styleClass="styled-input country-controlled" value="{!boOwner.addressLine2}" maxlength="100" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}3">
-                                                                        <apex:outputLabel for="city" styleClass="styled-label" value="{!$Label.BOCDD_City}"/>
-                                                                        <apex:inputText id="city" styleClass="styled-input required country-controlled" value="{!boOwner.city}" maxlength="40" />
+                                                                        <label class="styled-label">{!$Label.BOCDD_City}</label>
+                                                                        <apex:inputText styleClass="styled-input required country-controlled" value="{!boOwner.city}" maxlength="40" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}4">
-                                                                        <apex:outputLabel for="state1" styleClass="styled-label" value="{!$Label.BOCDD_State}" rendered="{!boOwner.countryOfResidence == 'United States'}"/>
-                                                                        <apex:selectList id="state1" size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!boOwner.countryOfResidence == 'United States'}">
+                                                                        <label class="styled-label">{!$Label.BOCDD_State}</label>
+                                                                        <apex:selectList size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!boOwner.countryOfResidence == 'United States'}">
                                                                             <apex:selectOptions value="{!stateList}"/>
                                                                         </apex:selectList>
-                                                                        <apex:outputLabel for="state2" styleClass="styled-label" value="{!$Label.BOCDD_State}" rendered="{!boOwner.countryOfResidence == 'Canada'}"/>
-                                                                        <apex:selectList id="state2" size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!boOwner.countryOfResidence == 'Canada'}">
+                                                                        <apex:selectList size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!boOwner.countryOfResidence == 'Canada'}">
                                                                             <apex:selectOptions value="{!provinceList}"/>
                                                                         </apex:selectList>
-                                                                        <apex:outputLabel for="state3" styleClass="styled-label" value="{!$Label.BOCDD_State}" rendered="{!IF(AND(boOwner.countryOfResidence != 'United States', boOwner.countryOfResidence != 'Canada'), true, false)}"/>
-                                                                        <apex:inputText id="state3" size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!IF(AND(boOwner.countryOfResidence != 'United States', boOwner.countryOfResidence != 'Canada'), true, false)}" />
+                                                                        <apex:inputText size="1" styleClass="styled-input required country-controlled" value="{!boOwner.state}" rendered="{!IF(AND(boOwner.countryOfResidence != 'United States', boOwner.countryOfResidence != 'Canada'), true, false)}" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}5">
-                                                                        <apex:actionRegion>
-                                                                            <apex:outputLabel for="country" styleClass="styled-label" value="{!$Label.BOCDD_Country_of_Residence}"/>
-                                                                            <apex:selectList id="country" size="1" styleClass="styled-select-full required country" value="{!boOwner.countryOfResidence}">
-                                                                                <apex:selectOptions value="{!countriesList}" />
-                                                                                <apex:actionSupport action="{!clearAddressFieldsOnCountryChange}" event="onchange" rerender="beneficialOwners" oncomplete="pageLoadFunctions()">
-                                                                                    <apex:param name="selectedBoOwnerIndex" value="{!VALUE(index)}" assignTo="{!selectedBoOwnerIndex}" />
-                                                                                </apex:actionSupport>
-                                                                            </apex:selectList>
-                                                                        </apex:actionRegion>
+                                                                        <label class="styled-label">{!$Label.BOCDD_Country_of_Residence}</label>
+                                                                        <apex:selectList size="1" styleClass="styled-select-full required country" value="{!boOwner.countryOfResidence}">
+                                                                            <apex:selectOptions value="{!countriesList}" />
+                                                                            <apex:actionSupport action="{!clearAddressFieldsOnCountryChange}" event="onchange" rerender="beneficialOwners" oncomplete="pageLoadFunctions()">
+                                                                                <apex:param name="selectedBoOwnerIndex" value="{!VALUE(index)}" assignTo="{!selectedBoOwnerIndex}" />
+                                                                            </apex:actionSupport>
+                                                                        </apex:selectList>
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}6">
-                                                                        <apex:outputLabel for="postal" styleClass="styled-label" value="{!$Label.BOCDD_Postal_Code}"/>
-                                                                        <apex:inputText id="postal" styleClass="styled-input country-controlled required {!IF(boOwner.countryOfResidence == 'United States', 'postal', IF(boOwner.countryOfResidence == 'Canada', 'postalCanada', ''))}" value="{!boOwner.postalCode}" />
+                                                                        <label class="styled-label">{!$Label.BOCDD_Postal_Code}</label>
+                                                                        <apex:inputText styleClass="styled-input country-controlled required {!IF(boOwner.countryOfResidence == 'United States', 'postal', IF(boOwner.countryOfResidence == 'Canada', 'postalCanada', ''))}" value="{!boOwner.postalCode}" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="twelve columns clearfix" style="display: {!IF(OR(boOwner.isController == true, isOwnerAController == false), 'block', 'none')};">
-                                                                <apex:actionRegion>
-                                                                    <apex:outputLabel for="isController" styleClass="styled-label" style="line-height: 22px; margin-top: -2px;" value="&nbsp;{!$Label.BOCDD_Individual_Is_Controller}"/>
-                                                                    <apex:inputCheckbox id="isController" styleClass="isAlsoController" style="margin-top: 8px;" value="{!boOwner.isController}" label="">
+                                                                <label class="styled-label" style="line-height: 22px; margin-top: -2px;">
+                                                                    <apex:inputCheckbox styleClass="isAlsoController" style="margin-top: 8px;" value="{!boOwner.isController}" label="">
                                                                         <apex:actionSupport action="{!setOwnerSameAsController}" event="onchange" rerender="beneficialOwners,beneficialController" oncomplete="pageLoadFunctions()">
                                                                             <apex:param name="selectedBoOwnerIndex" value="{!VALUE(index)}" assignTo="{!selectedBoOwnerIndex}" />
                                                                         </apex:actionSupport>
-                                                                    </apex:inputCheckbox>
-                                                                </apex:actionRegion>
+                                                                    </apex:inputCheckbox>&nbsp;{!$Label.BOCDD_Individual_Is_Controller}</label>
+
                                                             </div>
                                                             <apex:variable var="index" value="{!VALUE(index) + 1}"/>
                                                             <apex:variable var="ownerNumber" value="{!VALUE(ownerNumber) + 1}"/>
@@ -476,78 +468,72 @@
                                     <div class="twelve columns clearfix">
                                         <div class="six columns clearfix">
                                             <div class="twelve columns clearfix form-field" data-row="91">
-                                                <apex:outputLabel for="boFirstName" styleClass="styled-label" value="{!$Label.BOCDD_First_Name}"/>
-                                                <apex:inputText id="boFirstName" styleClass="styled-input required" value="{!boController.firstName}" maxlength="50" />
+                                                <label class="styled-label">{!$Label.BOCDD_First_Name}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.firstName}" maxlength="50" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="92">
-                                                <apex:outputLabel for="boLastName" styleClass="styled-label" value="{!$Label.BOCDD_Last_Name}"/>
-                                                <apex:inputText id="boLastName" styleClass="styled-input required" value="{!boController.lastName}" maxlength="50" />
+                                                <label class="styled-label">{!$Label.BOCDD_Last_Name}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.lastName}" maxlength="50" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="93">
-                                                <apex:outputLabel for="boTitle" styleClass="styled-label" value="{!$Label.BOCDD_Control_Title}"/>
-                                                <apex:inputText id="boTitle" styleClass="styled-input required" value="{!boController.title}" maxlength="50" />
+                                                <label class="styled-label">{!$Label.BOCDD_Control_Title}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.title}" maxlength="50" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="94">
-                                                <apex:outputLabel for="boDOB" styleClass="styled-label" value="{!$Label.BOCDD_Date_Of_Birth}"/>
-                                                <apex:inputText id="boDOB" html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boController.dateOfBirth}" />
+                                                <label class="styled-label">{!$Label.BOCDD_Date_Of_Birth}</label>
+                                                <apex:inputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boController.dateOfBirth}" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" style="display: {!IF(boController.countryOfResidence == 'United States', 'block', 'none')};" data-row="95">
-                                                <apex:outputLabel for="boSSN" styleClass="styled-label" value="{!$Label.BOCDD_Social_Security}"/>
-                                                <apex:inputText id="boSSN" html-placeholder="###-##-####" styleClass="styled-input required ssn" value="{!boController.socialSecurityNumber}" />
+                                                <label class="styled-label">{!$Label.BOCDD_Social_Security}</label>
+                                                <apex:inputText html-placeholder="###-##-####" styleClass="styled-input required ssn" value="{!boController.socialSecurityNumber}" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" style="display: {!IF(boController.countryOfResidence == 'United States', 'none', 'block')};" data-row="95">
-                                                <apex:outputLabel for="boPPNumber" styleClass="styled-label" escape="false" value="{!$Label.BOCDD_Passport_Other_Government_ID}"/>
-                                                <apex:inputText id="boPPNumber" styleClass="styled-input required" value="{!boController.passportNumber}" maxlength="50" />
+                                                <label class="styled-label"><apex:outputText value="{!$Label.BOCDD_Passport_Other_Government_ID}" escape="false" /></label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.passportNumber}" maxlength="50" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" style="display: {!IF(boController.countryOfResidence == 'United States', 'none', 'block')};" data-row="96">
-                                                <apex:actionRegion>
-                                                    <apex:outputLabel for="conIssueCountry" styleClass="styled-label" value="{!$Label.BOCDD_Issuing_Country}"/>
-                                                    <apex:selectList id="conIssueCountry" size="1" styleClass="styled-select-full required" value="{!boController.countryOfIssue}">
-                                                        <apex:selectOptions value="{!countriesList}" />
-                                                        <apex:actionSupport event="onchange" rerender="beneficialController" oncomplete="pageLoadFunctions()" />
-                                                    </apex:selectList>
-                                                </apex:actionRegion>
+                                                <label class="styled-label">{!$Label.BOCDD_Issuing_Country}</label>
+                                                <apex:selectList size="1" styleClass="styled-select-full required" value="{!boController.countryOfIssue}">
+                                                    <apex:selectOptions value="{!countriesList}" />
+                                                    <apex:actionSupport event="onchange" rerender="beneficialController" oncomplete="pageLoadFunctions()" />
+                                                </apex:selectList>
                                             </div>
                                         </div>
                                         <div class="six columns clearfix">
                                             <div class="twelve columns clearfix form-field" data-row="91">
-                                                <apex:outputLabel for="boaddy1" styleClass="styled-label" value="{!$Label.BOCDD_Address_Line_1}"/>
-                                                <apex:inputText id="boaddy1" styleClass="styled-input required" value="{!boController.addressLine1}" maxlength="100" />
+                                                <label class="styled-label">{!$Label.BOCDD_Address_Line_1}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.addressLine1}" maxlength="100" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="92">
-                                                <apex:outputLabel for="boaddy2" styleClass="styled-label" value="{!$Label.BOCDD_Address_Line_2}"/>
-                                                <apex:inputText id="boaddy2" styleClass="styled-input" value="{!boController.addressLine2}" maxlength="100" />
+                                                <label class="styled-label">{!$Label.BOCDD_Address_Line_2}</label>
+                                                <apex:inputText styleClass="styled-input" value="{!boController.addressLine2}" maxlength="100" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="93">
-                                                <apex:outputLabel for="bocity" styleClass="styled-label" value="{!$Label.BOCDD_City}"/>
-                                                <apex:inputText id="bocity" styleClass="styled-input required" value="{!boController.city}" maxlength="40" />
+                                                <label class="styled-label">{!$Label.BOCDD_City}</label>
+                                                <apex:inputText styleClass="styled-input required" value="{!boController.city}" maxlength="40" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="94">
-                                                <apex:outputLabel for="bostate1" styleClass="styled-label" value="{!$Label.BOCDD_State}" rendered="{!boController.countryOfResidence == 'United States'}"/>
-                                                <apex:selectList id="bostate1" size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!boController.countryOfResidence == 'United States'}">
+                                                <label class="styled-label">{!$Label.BOCDD_State}</label>
+                                                <apex:selectList size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!boController.countryOfResidence == 'United States'}">
                                                     <apex:selectOptions value="{!stateList}"/>
                                                 </apex:selectList>
-                                                <apex:outputLabel for="bostate2" styleClass="styled-label" value="{!$Label.BOCDD_State}" rendered="{!boController.countryOfResidence == 'Canada'}"/>
-                                                <apex:selectList id="bostate2" size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!boController.countryOfResidence == 'Canada'}">
+                                                <apex:selectList size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!boController.countryOfResidence == 'Canada'}">
                                                     <apex:selectOptions value="{!provinceList}"/>
                                                 </apex:selectList>
-                                                <apex:outputLabel for="bostate3" styleClass="styled-label" value="{!$Label.BOCDD_State}" rendered="{!IF(AND(boController.countryOfResidence != 'United States', boController.countryOfResidence != 'Canada'), true, false)}"/>
-                                                <apex:inputText id="bostate3" size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!IF(AND(boController.countryOfResidence != 'United States', boController.countryOfResidence != 'Canada'), true, false)}"/>
+                                                <apex:inputText size="1" styleClass="styled-input required" value="{!boController.state}" rendered="{!IF(AND(boController.countryOfResidence != 'United States', boController.countryOfResidence != 'Canada'), true, false)}" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="95">
-                                                <apex:actionRegion>
-                                                    <apex:outputLabel for="bocountry" styleClass="styled-label" value="{!$Label.BOCDD_Country_of_Residence}"/>
-                                                    <apex:selectList id="bocountry" size="1" styleClass="styled-select-full required" value="{!boController.countryOfResidence}">
-                                                        <apex:selectOptions value="{!countriesList}" />
-                                                        <apex:actionSupport action="{!clearAddressFieldsOnCountryChange}" event="onchange" rerender="beneficialController" oncomplete="pageLoadFunctions()">
-                                                            <apex:param name="selectedBoOwnerIndex" value="-1" assignTo="{!selectedBoOwnerIndex}" />
-                                                        </apex:actionSupport>
-                                                    </apex:selectList>
-                                                </apex:actionRegion>
+                                                <label class="styled-label">{!$Label.BOCDD_Country_of_Residence}</label>
+                                                <apex:selectList size="1" styleClass="styled-select-full required" value="{!boController.countryOfResidence}">
+                                                    <apex:selectOptions value="{!countriesList}" />
+                                                    <apex:actionSupport action="{!clearAddressFieldsOnCountryChange}" event="onchange" rerender="beneficialController" oncomplete="pageLoadFunctions()">
+                                                        <apex:param name="selectedBoOwnerIndex" value="-1" assignTo="{!selectedBoOwnerIndex}" />
+                                                    </apex:actionSupport>
+                                                </apex:selectList>
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="96">
-                                                <apex:outputLabel for="bopostal" styleClass="styled-label" value="{!$Label.BOCDD_Postal_Code}"/>
-                                                <apex:inputText id="bopostal" styleClass="styled-input required {!IF(boController.countryOfResidence == 'United States', 'postal', IF(boController.countryOfResidence == 'Canada', 'postalCanada', ''))}" value="{!boController.postalCode}" />
+                                                <label class="styled-label">{!$Label.BOCDD_Postal_Code}</label>
+                                                <apex:inputText styleClass="styled-input required {!IF(boController.countryOfResidence == 'United States', 'postal', IF(boController.countryOfResidence == 'Canada', 'postalCanada', ''))}" value="{!boController.postalCode}" />
                                             </div>
                                         </div>
                                     </div>
@@ -556,32 +542,32 @@
                                     </div>
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!userSessionId == null}">
-                                    <div class="twelve columns clearfix">
-                                        &nbsp;
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        <h2>{!$Label.BOCDD_Certified_Agreed_To}</h2>
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        &nbsp;
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        <div class="six columns clearfix">
-                                            <div class="twelve columns clearfix">
-                                                <apex:outputLabel for="certBy" styleClass="styled-label" value="{!$Label.BOCDD_Name_of_Person_Opening_Account}"/>
-                                                <apex:inputText id="certBy" styleClass="styled-input required" value="{!boEntity.Certified_By__c}" />
-                                            </div>
-                                        </div>
-                                        <div class="six columns clearfix">
-                                            <div class="twelve columns clearfix">
-                                                <apex:outputLabel for="certDate" styleClass="styled-label" value="Date"/>
-                                                <apex:inputText id="certDate" html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boEntity.Certified_Date__c}" />
-                                            </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <h2>{!$Label.BOCDD_Certified_Agreed_To}</h2>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix">
+                                            <label class="styled-label">{!$Label.BOCDD_Name_of_Person_Opening_Account}</label>
+                                            <apex:inputText styleClass="styled-input required" value="{!boEntity.Certified_By__c}" />
                                         </div>
                                     </div>
-                                    <div class="twelve columns clearfix">
-                                        <input id="acknowledgement" type="checkbox" />&nbsp;{!$Label.BOCDD_Certification_Language}
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix">
+                                            <label class="styled-label">Date</label>
+                                            <apex:inputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boEntity.Certified_Date__c}" />
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <input id="acknowledgement" type="checkbox" />&nbsp;{!$Label.BOCDD_Certification_Language}
+                                </div>
                                 </apex:outputPanel>
                                 <div class="twelve columns clearfix">
                                     &nbsp;
