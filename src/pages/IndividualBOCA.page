@@ -2,213 +2,213 @@
     Revision History: 5/14/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="WexConsumerController" action="{!init}" language="{!languageCode}">
-<html lang="{!languageCode}">
-<head>
-    <!-- Title -->
-    <title>{!program.Brand_Long_Name__c} {!$Label.BOCA_Credit_Application}</title>
-    
-    <!-- Meta -->
-    <meta charset="utf-8" />
-    <meta content="width=device-width, user-scalable=no" name="viewport" />
-    
-    <!-- Imported Styles -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
-    <link rel="stylesheet" href="{!URLFOR($Resource.IndividualBOCACSS)}"/>
-    
-    <!-- Fonts -->
-    <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+    <html lang="{!languageCode}">
+    <head>
+        <!-- Title -->
+        <title>{!program.Brand_Long_Name__c} {!$Label.BOCA_Credit_Application}</title>
 
-    <!-- Imported Scripts -->
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js" />
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta content="width=device-width, user-scalable=no" name="viewport" />
 
-    <!-- Additional Scripts -->
-    <script>
-        var coupon_code = "{!campaign.Coupon_Code__c}";
-        var location_code = "{!locationCode}";
-        var page_name = "App-Page1-Ind";
-        var card_program = "{!programParameter}";
-        document.cookie = "debug_logs=debug_logs;domain=.force.com";
-    
-        $j = jQuery.noConflict();
-    
-        // Any labels need to be defined in this bridge in order
-        // for the JS to pick them up
-        window.$Label = window.$Label || {};
-        $Label.BOCA_Invalid_Amount = '{!JSENCODE($Label.BOCA_Invalid_Amount)}';
-        $Label.BOCA_Invalid_Date = '{!JSENCODE($Label.BOCA_Invalid_Date)}';
-        $Label.BOCA_Invalid_Email = '{!JSENCODE($Label.BOCA_Invalid_Email)}';
-        $Label.BOCA_Invalid_Number = '{!JSENCODE($Label.BOCA_Invalid_Number)}';
-        $Label.BOCA_Invalid_Phone = '{!JSENCODE($Label.BOCA_Invalid_Phone)}';
-        $Label.BOCA_Invalid_Postal_Code = '{!JSENCODE($Label.BOCA_Invalid_Postal_Code)}';
-        $Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
-        $Label.BOCA_Invalid_Tax_ID = '{!JSENCODE($Label.BOCA_Invalid_Tax_ID)}';
-        $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
-        $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
-        $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
-        $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
+        <!-- Imported Styles -->
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+        <link rel="stylesheet" href="{!URLFOR($Resource.IndividualBOCACSS)}"/>
 
-        window.$Session = window.$Session || {};
-        $Session.Language_Code = '{!JSENCODE(languageCode)}';
-        window.card_program_name = '{!programParameter}';
-    
-        console.log('{!tmSessionId}');
-    </script>
-    
-    <script type="text/javascript" src="{!URLFOR($Resource.IndividualBOCAJS)}" />
-    
-    <!-- Local Styles -->
-    <style>
-        .section-header { 
+        <!-- Fonts -->
+        <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+        <!-- Imported Scripts -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment-with-locales.min.js" />
+
+        <!-- Additional Scripts -->
+        <script>
+            var coupon_code = "{!campaign.Coupon_Code__c}";
+            var location_code = "{!locationCode}";
+            var page_name = "App-Page1-Ind";
+            var card_program = "{!programParameter}";
+            document.cookie = "debug_logs=debug_logs;domain=.force.com";
+
+            $j = jQuery.noConflict();
+
+            // Any labels need to be defined in this bridge in order
+            // for the JS to pick them up
+            window.$Label = window.$Label || {};
+            $Label.BOCA_Invalid_Amount = '{!JSENCODE($Label.BOCA_Invalid_Amount)}';
+            $Label.BOCA_Invalid_Date = '{!JSENCODE($Label.BOCA_Invalid_Date)}';
+            $Label.BOCA_Invalid_Email = '{!JSENCODE($Label.BOCA_Invalid_Email)}';
+            $Label.BOCA_Invalid_Number = '{!JSENCODE($Label.BOCA_Invalid_Number)}';
+            $Label.BOCA_Invalid_Phone = '{!JSENCODE($Label.BOCA_Invalid_Phone)}';
+            $Label.BOCA_Invalid_Postal_Code = '{!JSENCODE($Label.BOCA_Invalid_Postal_Code)}';
+            $Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
+            $Label.BOCA_Invalid_Tax_ID = '{!JSENCODE($Label.BOCA_Invalid_Tax_ID)}';
+            $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
+            $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
+            $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
+            $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
+
+            window.$Session = window.$Session || {};
+            $Session.Language_Code = '{!JSENCODE(languageCode)}';
+            window.card_program_name = '{!programParameter}';
+
+            console.log('{!tmSessionId}');
+        </script>
+
+        <script type="text/javascript" src="{!URLFOR($Resource.IndividualBOCAJS)}" />
+
+        <!-- Local Styles -->
+        <style>
+            .section-header {
             {!program.Brand_Color_1__c}
-        }
+            }
 
-        .sidebar-section-header { 
-            {!program.Brand_Color_1__c} 
-        }
+            .sidebar-section-header {
+            {!program.Brand_Color_1__c}
+            }
 
-        .panel-heading {
-            {!program.Brand_Color_1__c} 
-        }
+            .panel-heading {
+            {!program.Brand_Color_1__c}
+            }
 
-        .step-button {
+            .step-button {
             {!program.Brand_Color_2__c}
-        }
-    
-        #mobile-footer-call {
+            }
+
+            #mobile-footer-call {
             {!program.Brand_Color_1__c}
-        }
-    
-        .disabled-button { 
-            background: #e9e9e9 !important; 
-            pointer-events: none; 
-            color: #ccc !important; 
-            border: 1px solid #ccc !important;
-        }
-    </style>
-    
-    <apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false"/>
-</head>
-<body>
-<div class="page-wrap clearfix">
-    <apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false"/>
-    <!-- Live Person -->
-    <script type="text/javascript">
-        if (typeof(lpUnit) == 'undefined')    var lpUnit = 'sales';
-        if (typeof(lpLanguage) == 'undefined') var lpLanguage = 'english';
-    </script>
-    
-    <script id="tdr_3srJf" type="text/javascript" src="https://h.online-metrix.net/fp/check.js?org_id=bkwau9ws&session={!tmSessionId}"></script>
-    <img id="tdr_6IIEo" style="display:none" src="https://bkwau9ws-8a69bc0ab2ee96e97f45f425f60a04e571228253-sac.d.aa.online-metrix.net/fp/clear.png?org_id=bkwau9ws&session={!tmSessionId};di=yes"/>
-    <img id="tdr_95nWt" style="display:none" src="https://h.online-metrix.net/fp/clear.png"/>
-    
-    <div id="header" class="clearfix">
-        <div class="container">
-            <div class="row">
-                <div class="nine columns clearfix">
-                    <div id="branding">
-                        <!--PSOBACKLOG-76-->
-                        <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!brandingUtility.Program_Name__c} Logo"/>
-                            <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>    
+            }
+
+            .disabled-button {
+                background: #e9e9e9 !important;
+                pointer-events: none;
+                color: #ccc !important;
+                border: 1px solid #ccc !important;
+            }
+        </style>
+
+        <apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false"/>
+    </head>
+    <body>
+    <div class="page-wrap clearfix">
+        <apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false"/>
+        <!-- Live Person -->
+        <script type="text/javascript">
+            if (typeof(lpUnit) == 'undefined')    var lpUnit = 'sales';
+            if (typeof(lpLanguage) == 'undefined') var lpLanguage = 'english';
+        </script>
+
+        <script id="tdr_3srJf" type="text/javascript" src="https://h.online-metrix.net/fp/check.js?org_id=bkwau9ws&session={!tmSessionId}"></script>
+        <img id="tdr_6IIEo" style="display:none" src="https://bkwau9ws-8a69bc0ab2ee96e97f45f425f60a04e571228253-sac.d.aa.online-metrix.net/fp/clear.png?org_id=bkwau9ws&session={!tmSessionId};di=yes"/>
+        <img id="tdr_95nWt" style="display:none" src="https://h.online-metrix.net/fp/clear.png"/>
+
+        <div id="header" class="clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="nine columns clearfix">
+                        <div id="branding">
+                            <!--PSOBACKLOG-76-->
+                            <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!brandingUtility.Program_Name__c} Logo"/>
+                            <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>
+                        </div>
                     </div>
-                </div>
-                <div class="three columns">
-                    <div id="contactUs">
-                        <span class="header-small">{!$Label.BOCA_Rather_Talk}</span><br/> 
-                        {!$Label.BOCA_Call} {!program.Inside_Sales_Phone_Number__c}<br/>
-                        <apex:outputText value="{!program.Live_Person_Code__c}" escape="false" />
+                    <div class="three columns">
+                        <div id="contactUs">
+                            <span class="header-small">{!$Label.BOCA_Rather_Talk}</span><br/>
+                            {!$Label.BOCA_Call} {!program.Inside_Sales_Phone_Number__c}<br/>
+                            <apex:outputText value="{!program.Live_Person_Code__c}" escape="false" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="content">
-        <div class="container">
-            <div class="row">
-                <div class="twelve columns">
-                    &nbsp;
-                </div>
-            </div>
-            <div class="row">
-                <div class="four columns sidebar">
-                    <!-- Left Column -->
-                    <div class="twelve columns clearfix">
+        <div id="content">
+            <div class="container">
+                <div class="row">
+                    <div class="twelve columns">
                         &nbsp;
                     </div>
-                    <div class="twelve columns clearfix">
-                        <!--PSOBACKLOG-76-->
-                        <img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
-                    </div>
-                    <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
+                </div>
+                <div class="row">
+                    <div class="four columns sidebar">
+                        <!-- Left Column -->
                         <div class="twelve columns clearfix">
-                            &nbsp;    
-                        </div>  
-                        <div class="twelve columns clearfix brand-text">
-                            <apex:outputtext value="{!brandingUtility.Brand_Heading__c}" escape="false"></apex:outputtext>
+                            &nbsp;
                         </div>
-                    </apex:outputPanel>
-                    <apex:outputPanel rendered="{!brandingUtility.Brand_Tagline__c != null}">
-                        <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c == null}">
-                            <div class="twelve columns clearfix ">
-                                &nbsp;    
+                        <div class="twelve columns clearfix">
+                            <!--PSOBACKLOG-76-->
+                            <img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
+                        </div>
+                        <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix brand-text">
+                                <apex:outputtext value="{!brandingUtility.Brand_Heading__c}" escape="false"></apex:outputtext>
                             </div>
                         </apex:outputPanel>
-                        <div class="twelve columns clearfix brand-text">
-                            <apex:outputtext value="{!brandingUtility.Brand_Tagline__c}" escape="false"></apex:outputtext>  
-                        </div>
-                    </apex:outputPanel>
-                    <div class="twelve columns clearfix">
-                        &nbsp;    
-                    </div>
-                    <apex:outputPanel rendered="{!salesRep != null && salesCode != null}">
-                        <div class="twelve columns clearfix salesRep">
-                            <div class="sidebar-section-header">
-                                {!$Label.BOCA_Sales_Agent} 
+                        <apex:outputPanel rendered="{!brandingUtility.Brand_Tagline__c != null}">
+                            <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c == null}">
+                                <div class="twelve columns clearfix ">
+                                    &nbsp;
+                                </div>
+                            </apex:outputPanel>
+                            <div class="twelve columns clearfix brand-text">
+                                <apex:outputtext value="{!brandingUtility.Brand_Tagline__c}" escape="false"></apex:outputtext>
                             </div>
-                            <div class="sidebar-section-static-content">
-                                <span style="font-size: 18px;">{!salesRep.Name}</span><br/>
-                                {!$Label.BOCA_Sales_Agent_Email}: {!salesRep.Email}<br/>
-                                {!$Label.BOCA_Sales_Agent_Phone}: {!salesRep.Phone}<br/>
-                                {!$Label.BOCA_Sales_Agent_Fax}: {!salesRep.Fax}
-                            </div>
-                        </div>
-                    </apex:outputPanel>
-                    <apex:outputPanel rendered="{!brandingUtility.Side_Panel_Title__c != ''}">
+                        </apex:outputPanel>
                         <div class="twelve columns clearfix">
-                            <div class="sidebar-section-header">
-                                {!brandingUtility.Side_Panel_Title__c}    
-                            </div>
-                            <div class="sidebar-section-dynamic-content">
-                                <apex:outputText value="{!brandingUtility.SideBar__c}" escape="false"/>
-                            </div>
+                            &nbsp;
                         </div>
-                    </apex:outputPanel>
-                </div>
-                <div class="eight columns form">
-                    <apex:outputPanel id="indicator">
-                        <div class="step-indicator clearfix">
-                            <div class="step {!IF(currentStep == 1, 'step-active', '')}">{!$Label.BOCA_Applicant_Information_Breadcrumb}</div>
-                            <div class="step step-last">{!$Label.BOCA_Done_In_Minutes}</div>
-                        </div>
-                    </apex:outputPanel>
-                    <div class="twelve columns clearfix">
-                        &nbsp;
+                        <apex:outputPanel rendered="{!salesRep != null && salesCode != null}">
+                            <div class="twelve columns clearfix salesRep">
+                                <div class="sidebar-section-header">
+	        	            	{!$Label.BOCA_Sales_Agent}
+							</div>
+                                <div class="sidebar-section-static-content">
+                                    <span style="font-size: 18px;">{!salesRep.Name}</span><br/>
+                                    {!$Label.BOCA_Sales_Agent_Email}: {!salesRep.Email}<br/>
+                                    {!$Label.BOCA_Sales_Agent_Phone}: {!salesRep.Phone}<br/>
+                                    {!$Label.BOCA_Sales_Agent_Fax}: {!salesRep.Fax}
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel rendered="{!brandingUtility.Side_Panel_Title__c != ''}">
+                            <div class="twelve columns clearfix">
+                                <div class="sidebar-section-header">
+	        	            	{!brandingUtility.Side_Panel_Title__c}
+							</div>
+                                <div class="sidebar-section-dynamic-content">
+                                    <apex:outputText value="{!brandingUtility.SideBar__c}" escape="false"/>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
                     </div>
-                    <div class="twelve columns clearfix">
-                        <div id="errors" class="stepErrors">
+                    <div class="eight columns form">
+                        <apex:outputPanel id="indicator">
+                            <div class="step-indicator clearfix">
+                                <div class="step {!IF(currentStep == 1, 'step-active', '')}">{!$Label.BOCA_Applicant_Information_Breadcrumb}</div>
+                                <div class="step step-last">{!$Label.BOCA_Done_In_Minutes}</div>
+                            </div>
+                        </apex:outputPanel>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <div class="twelve columns clearfix">
+                            <div id="errors" class="stepErrors">
                             {!$Label.BOCA_Application_Errors}
                         </div>
-                    </div>
-                    <apex:form id="creditForm">
-                        <apex:actionFunction name="submitApplication" action="{!submitApplication}" rerender="indicator,creditForm" />
+                        </div>
+                        <apex:form id="creditForm">
+                            <apex:actionFunction name="submitApplication" action="{!submitApplication}" rerender="indicator,creditForm" />
                             <div class="twelve columns clearfix">
                                 <div class="section-header">
-                                    {!$Label.BOCA_Applicant_Information}    
-                                </div>
+	                    			{!$Label.BOCA_Applicant_Information}
+								</div>
                             </div>
                             <div class="twelve columns clearfix">
                                 &nbsp;
@@ -217,19 +217,19 @@
                                 <div class="six columns clearfix">
                                     <div class="twelve columns clearfix form-field" data-row="0">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Email Address', $ObjectType.WeFormObject__c.fields.Email__c.label)}</label>
-                                        <apex:InputField required="true" styleClass="styled-input required" html-tabindex="1" id="email" label="" value="{!creditApp.Email__c}" />
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="1" id="email" label="" value="{!creditApp.Email__c}" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="1">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'First Name', $ObjectType.WeFormObject__c.fields.First_Name__c.label)}</label>
-                                        <apex:InputField required="true" styleClass="styled-input required" html-tabindex="2" id="firstName" label="" value="{!creditApp.First_Name__c}" html-maxlength="50" />
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="2" id="firstName" label="" value="{!creditApp.First_Name__c}" html-maxlength="50" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="2">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Last Name', $ObjectType.WeFormObject__c.fields.Last_Name__c.label)}</label>
-                                        <apex:InputField required="true" styleClass="styled-input required" html-tabindex="3" id="lastName" label="" value="{!creditApp.Last_Name__c}" html-maxlength="50" />
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="3" id="lastName" label="" value="{!creditApp.Last_Name__c}" html-maxlength="50" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="3">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Phone', 'Téléphone')}</label>
-                                        <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required" html-tabindex="4" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20" />
+                                        <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required" html-tabindex="4" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="4">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Mobile Phone', 'Téléphone cellulaire')} ({!$Label.BOCA_Optional})</label>
@@ -237,7 +237,7 @@
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="5">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Date of Birth', $ObjectType.WeFormObject__c.fields.Date_of_Birth__c.label)}</label>
-                                        <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required" html-tabindex="6" id="dateOfBirth" html-class="{!IF(languageCode == 'fr_ca', 'dateFRCA', 'date')}" label="" value="{!creditApp.Date_of_Birth__c}" html-maxlength="20" />
+                                        <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required" html-tabindex="6" id="dateOfBirth" html-class="{!IF(languageCode == 'fr_ca', 'dateFRCA', 'date')}" label="" value="{!creditApp.Date_of_Birth__c}" html-maxlength="20" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="6">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Social Insurance Number', 'Numéro d’assurance sociale')} ({!$Label.BOCA_Optional})</label>
@@ -247,7 +247,7 @@
                                 <div class="six columns clearfix">
                                     <div class="twelve columns clearfix form-field" data-row="0">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Physical Address', 'Adresse réelle ')}</label>
-                                        <apex:inputField required="true" value="{!creditApp.Business_Street_Address__c}" id="addressLine1" html-tabindex="8" styleClass="styled-input required" />
+                                        <apex:inputField value="{!creditApp.Business_Street_Address__c}" id="addressLine1" html-tabindex="8" styleClass="styled-input required" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="1">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Address Line 2', 'Adresse (ligne 2)')} ({!$Label.BOCA_Optional})</label>
@@ -255,27 +255,27 @@
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="2">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'City', $ObjectType.WeFormObject__c.fields.City__c.label)}</label>
-                                        <apex:inputField required="true" value="{!creditApp.City__c}" id="city" html-tabindex="10" styleClass="styled-input required" />
+                                        <apex:inputField value="{!creditApp.City__c}" id="city" html-tabindex="10" styleClass="styled-input required" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="3">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Province', $ObjectType.WeFormObject__c.fields.State__c.label)}</label>
-                                        <apex:inputField required="true" value="{!creditApp.State__c}" id="state" html-tabindex="11" styleClass="styled-input required" />
+                                        <apex:inputField value="{!creditApp.State__c}" id="state" html-tabindex="11" styleClass="styled-input required" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="4">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Postal Code', $ObjectType.WeFormObject__c.fields.Zip_code__c.label)}</label>
-                                        <apex:inputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" html-tabindex="12" value="{!creditApp.Zip_code__c}" id="postalCode" styleClass="styled-input required postalCanada" />
+                                        <apex:inputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" html-tabindex="12" value="{!creditApp.Zip_code__c}" id="postalCode" styleClass="styled-input required postalCanada" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="5">
                                         <label class="styled-label">{!IF(languageCode != 'fr_ca', 'Language Preference', $ObjectType.WeFormObject__c.fields.Communications_Preference__c.label)}</label>
-                                        <apex:InputField required="true" styleClass="styled-input required" html-tabindex="13" id="languagePreference" label="" value="{!creditApp.Communications_Preference__c}" html-maxlength="20" />
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="13" id="languagePreference" label="" value="{!creditApp.Communications_Preference__c}" html-maxlength="20" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="6">
                                         <label class="styled-label">{!$ObjectType.WeFormObject__c.fields.Estimated_Monthly_Fuel_Volume_Litres__c.label}</label>
-                                        <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Estimated_Monthly_Litres}" styleClass="styled-input required money" html-tabindex="14" id="estimatedFuelVolume" value="{!creditApp.Estimated_Monthly_Fuel_Volume_Litres__c}" />
+                                        <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Estimated_Monthly_Litres}" styleClass="styled-input required money" html-tabindex="14" id="estimatedFuelVolume" value="{!creditApp.Estimated_Monthly_Fuel_Volume_Litres__c}" />
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="7">
                                         <label class="styled-label">{!IF(languageCode == 'en_us', 'Average Monthly Fuel & Service Expenses', $ObjectType.WeFormObject__c.fields.Avg_Monthly_Fuel_Service_Expenses__c.label)}</label>
-                                        <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Monthly_Expenses}" styleClass="styled-input required" html-tabindex="15" html-class="{!IF(creditApp.Avg_Monthly_Fuel_Service_Expenses__c != null, 'prefilledMoney', 'money')}" id="averageMonthlyFuelExpenses" value="{!creditApp.Avg_Monthly_Fuel_Service_Expenses__c}"  html-maxlength="8"/>
+                                        <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Monthly_Expenses}" styleClass="styled-input required" html-tabindex="15" html-class="{!IF(creditApp.Avg_Monthly_Fuel_Service_Expenses__c != null, 'prefilledMoney', 'money')}" id="averageMonthlyFuelExpenses" value="{!creditApp.Avg_Monthly_Fuel_Service_Expenses__c}"  html-maxlength="8"/>
                                     </div>
                                 </div>
                             </div>
@@ -287,8 +287,8 @@
                             </div>
                             <div class="twelve columns clearfix">
                                 <div class="section-header">
-                                    {!$Label.BOCA_TnC}
-                                </div>
+									{!$Label.BOCA_TnC}
+								</div>
                                 <div class="terms-container">
                                     <apex:outputText value="{!pricingTermsAndConditions}" escape="false" />
                                     <apex:outputText value="{!termsAndConditions}" escape="false" />
@@ -299,13 +299,13 @@
                             </div>
                             <div class="twelve columns clearfix">
                                 <div id="disclaimerErrors" class="stepErrors">
-                                    {!$Label.BOCA_Acknowledge_Disclaimer}
-                                </div>
+                            		{!$Label.BOCA_Acknowledge_Disclaimer}
+                        		</div>
                             </div>
                             <div id="authorizedSigner" class="twelve columns clearfix">
                                 <div class="section-header">
-                                    {!$Label.BOCA_Authorized_Signer}
-                                </div>
+									{!$Label.BOCA_Authorized_Signer}
+								</div>
                                 <div id="authorizedSignerBody" class="disclaimer-container clearfix">
                                     <div class="disclaimer-checkbox">
                                         <input id="acknowledgeDisclaimer" type="checkbox" />
@@ -325,20 +325,20 @@
                                     <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" alt="Loading..."/>
                                 </div>
                             </div>
-                    </apex:form>
+                        </apex:form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
-    <div class="line1">CLICK HERE TO GIVE US A CALL</div>
-    <div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
-</a>
-<div id="footer">
-    <a href="//onlineservices.secure.force.com/creditapplication/creditApp_TermsAndConditions" title="terms of use" target="_blank"> {!$Label.BOCA_Terms_Of_Use_Link} <span class="glyphicon glyphicon-lock"></span></a>   
-</div>
-<iframe id="tdr_lWBO2" width="0" height="0" style="color:rgba(0,0,0,0); float:left; position:absolute; top:-200; left:-200; border:0px" src="https://h.online-metrix.net/fp/ls_fp.html?org_id=bkwau9ws&amp;session_id={!tmSessionId}"></iframe>
-</body>
-</html>
+    <a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
+        <div class="line1">CLICK HERE TO GIVE US A CALL</div>
+        <div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
+    </a>
+    <div id="footer">
+        <a href="//onlineservices.secure.force.com/creditapplication/creditApp_TermsAndConditions" title="terms of use" target="_blank"> {!$Label.BOCA_Terms_Of_Use_Link} <span class="glyphicon glyphicon-lock"></span></a>
+    </div>
+    <iframe id="tdr_lWBO2" width="0" height="0" style="color:rgba(0,0,0,0); float:left; position:absolute; top:-200; left:-200; border:0px" src="https://h.online-metrix.net/fp/ls_fp.html?org_id=bkwau9ws&amp;session_id={!tmSessionId}"></iframe>
+    </body>
+    </html>
 </apex:page>
