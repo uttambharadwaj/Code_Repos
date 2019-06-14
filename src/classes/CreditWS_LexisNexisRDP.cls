@@ -119,6 +119,69 @@ public with sharing class CreditWS_LexisNexisRDP {
                     businesses
             };
 
+            if(lexisNexisBIIDRequest.lexisNexisAuthorizedRepresenatives != null) {
+
+                request.Persons = new CreditWSUtil_LexisNexisBIID.cls_Persons[]{};
+
+                for(LexisNexisAuthorizedRepresenative lexisNexisAuthorizedRepresenative : lexisNexisBIIDRequest.lexisNexisAuthorizedRepresenatives) {
+
+                    CreditWSUtil_LexisNexisBIID.cls_Persons person = new CreditWSUtil_LexisNexisBIID.cls_Persons();
+
+                    person.Name = new CreditWSUtil_LexisNexisBIID.cls_Name();
+
+                    person.Name.FirstName = lexisNexisAuthorizedRepresenative.firstName;
+                    person.Name.LastName = lexisNexisAuthorizedRepresenative.lastName;
+
+                    CreditWSUtil_LexisNexisBIID.cls_Addresses personsAddress = new CreditWSUtil_LexisNexisBIID.cls_Addresses();
+
+                    personsAddress.StreetAddress1 = lexisNexisAuthorizedRepresenative.streetAddress;
+                    personsAddress.City = lexisNexisAuthorizedRepresenative.city;
+                    personsAddress.State = lexisNexisAuthorizedRepresenative.state;
+                    personsAddress.Zip5 = lexisNexisAuthorizedRepresenative.postalCode;
+                    if ((personsAddress.Zip5).length() > 5) {
+                        personsAddress.Zip5 = (personsAddress.Zip5).substring(0, 5);
+                    }
+                    personsAddress.Country = 'US';
+                    personsAddress.Context = 'primary';
+
+                    person.Addresses = new CreditWSUtil_LexisNexisBIID.cls_Addresses[]{
+                            personsAddress
+                    };
+
+                    person.SSN = new CreditWSUtil_LexisNexisBIID.cls_SSN();
+
+                    if (!String.isBlank(lexisNexisAuthorizedRepresenative.socialSecurityNumber)) {
+                        person.SSN.Number_x = lexisNexisAuthorizedRepresenative.socialSecurityNumber.replaceAll('[^0-9]', '');
+                    }
+                    person.SSN.Type_x = 'ssn9';
+
+                    if (lexisNexisAuthorizedRepresenative.dateOfBirth != null) {
+
+                        person.DateOfBirth = new CreditWSUtil_LexisNexisBIID.cls_DateOfBirth();
+
+                        person.DateOfBirth.Year = String.valueOf(lexisNexisAuthorizedRepresenative.dateOfBirth.year());
+                        person.DateOfBirth.Day = String.valueOf(lexisNexisAuthorizedRepresenative.dateOfBirth.day());
+                        person.DateOfBirth.Month = String.valueOf(lexisNexisAuthorizedRepresenative.dateOfBirth.month());
+
+                    }
+
+                    if (!String.isBlank(lexisNexisAuthorizedRepresenative.phoneNumber)) {
+
+                        CreditWSUtil_LexisNexisBIID.cls_Phones phones = new CreditWSUtil_LexisNexisBIID.cls_Phones();
+
+                        phones.Number_x = lexisNexisAuthorizedRepresenative.phoneNumber.replaceAll('[^0-9]', '');
+                        phones.Context = 'primary';
+
+                    }
+
+                    person.Context = 'primary';
+
+                    request.Persons.add(person);
+
+                }
+
+            }
+
             String jsonRequest = CreditWS_LexisNexisRDP.jsonKeywordSafeReplace(JSON.serializePretty(request, true), true);
 
             HttpRequest httpRequest = new HttpRequest();
@@ -136,6 +199,8 @@ public with sharing class CreditWS_LexisNexisRDP {
             HTTPResponse httpResponse = http.send(httpRequest);
 
             System.debug(httpResponse.getBody());
+
+            System.debug(jsonRequest);
 
         } catch (Exception e) {
 
