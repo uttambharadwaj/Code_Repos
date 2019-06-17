@@ -31,7 +31,7 @@ global class CreditDecisionEngineCP {
                         Guarantor_Residential_Postal_Code__c, Guarantor_Residential_Phone__c, Guarantor_Social_Security_Number__c, Opportunity__r.SourceSystem__c,
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
                         Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c,
-                        Doing_Business_As__c, Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c,
+                        Doing_Business_As__c, Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State_Province__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c,
                         DNB_Resolved_DUNS__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
@@ -64,7 +64,7 @@ global class CreditDecisionEngineCP {
 
                     threatMetrixSessionQueryRequest.mailingAddressLine1 = cpApplication.Mailing_Address_Line_1__c;
                     threatMetrixSessionQueryRequest.mailingCity = cpApplication.Mailing_City__c;
-                    threatMetrixSessionQueryRequest.mailingState = cpApplication.Mailing_State__c;
+                    threatMetrixSessionQueryRequest.mailingState = cpApplication.Mailing_State_Province__c;
                     threatMetrixSessionQueryRequest.mailingPostalCode = cpApplication.Mailing_Postal_Code__c;
 
                     threatMetrixSessionQueryRequest.guarantorName = cpApplication.Guarantor_First_Name__c + ' ' + cpApplication.Guarantor_Last_Name__c;
