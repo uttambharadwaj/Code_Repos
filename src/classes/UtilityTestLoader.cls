@@ -20,7 +20,7 @@ public class UtilityTestLoader {
         Database.executeBatch(new DataLoaderBatch());
     }
 
-    private static void setAutomation(Boolean disabled){
+    public static void setAutomation(Boolean disabled){
         Automation_Settings__c newRecord = Automation_Settings__c.getOrgDefaults();
         if(newRecord == null)
             newRecord = new Automation_Settings__c();

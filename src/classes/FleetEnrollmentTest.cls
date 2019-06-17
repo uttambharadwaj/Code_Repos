@@ -13,6 +13,8 @@ public class FleetEnrollmentTest {
     @testSetup
     static void setupData() {
 
+        UtilityTestLoader.setAutomation(false);
+    
         insert new Fleet_Enrollment_Settings__c(Enable_Siebel_Opportunity_Update__c = true);
 
         Campaign campaign = new Campaign();
@@ -45,6 +47,7 @@ public class FleetEnrollmentTest {
         program.WEX_Associations__c = 'BizUnite';
         program.Fleet_Available_Billing_Cycles__c = 'Cycle 4';
         program.Allow_Partner_Billed_Overnight_Cards__c = true;
+        program.WEX_Platform__c = 'Millennium';
 
         upsert program;
 
@@ -256,10 +259,12 @@ public class FleetEnrollmentTest {
             User integrationUser = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
             Application_Request__c applicationRequest = new Application_Request__c();
-
+                    
+            List<Campaign_Program__c> campaignPrograms = [SELECT Id, Campaign__c FROM Campaign_Program__c WHERE Program__c =: testProgram.Id];
+            
             System.runAs(integrationUser) {
 
-                Opportunity opportunity = new Opportunity(name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
+                Opportunity opportunity = new Opportunity(CampaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
                 opportunity.Fueling_Methos__c = 'BP';
 
                 insert opportunity;
@@ -792,9 +797,11 @@ public class FleetEnrollmentTest {
 
             Application_Request__c applicationRequest = new Application_Request__c();
 
+            List<Campaign_Program__c> campaignPrograms = [SELECT Id, Campaign__c FROM Campaign_Program__c WHERE Program__c =: testProgram.Id];
+            
             System.runAs(integrationUser) {
 
-                Opportunity opportunity = new Opportunity(name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
+                Opportunity opportunity = new Opportunity(CampaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
                 opportunity.Fueling_Methos__c = 'BP';
 
                 insert opportunity;

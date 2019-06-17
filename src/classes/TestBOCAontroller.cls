@@ -3,6 +3,8 @@ private class TestBOCAontroller {
    public static String cpId = '';
   @testSetup public static void setupController(){
         
+        UtilityTestLoader.setAutomation(false);
+    
         BOCA_IDS__C bi = BOCAtestDataUtility.getBOCAids();
         insert bi;
         //Create a postcode record to validate against
