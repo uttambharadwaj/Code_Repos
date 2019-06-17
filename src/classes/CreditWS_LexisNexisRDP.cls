@@ -200,7 +200,22 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             System.debug(httpResponse.getBody());
 
-            System.debug(jsonRequest);
+            CreditWSUtil_LexisNexisBIID response = CreditWSUtil_LexisNexisBIID.parse(CreditWS_LexisNexisRDP.jsonKeywordSafeReplace(httpResponse.getBody(), false));
+
+            if(response != null) {
+
+                for(CreditWSUtil_LexisNexisBIID.cls_Products product : response.Products) {
+
+                    if(!String.isEmpty(product.ExecutedStepName) && (product.ExecutedStepName).equalsIgnoreCase('Decision')) {
+
+                        lexisNexisBIIDResponse.biidWorkflowResult = product.ProductStatus;
+
+                    }
+
+                }
+
+            }
+
 
         } catch (Exception e) {
 
@@ -366,6 +381,8 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             smallBusinessAnalyticsRequestElement.SearchBy.Company.Address = new CreditWSUtil_LexisNexisSBA.Address();
             smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.StreetAddress1 = lexisNexisSBARequest.streetAddress;
+            smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.City = lexisNexisSBARequest.city;
+            smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.State = lexisNexisSBARequest.state;
             smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5 = lexisNexisSBARequest.postalCode;
             if ((smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5).length() > 5) {
                 smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5 = (smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5).substring(0, 5);
@@ -560,6 +577,8 @@ public with sharing class CreditWS_LexisNexisRDP {
 
         public String companyName { get; set; }
         public String streetAddress { get; set; }
+        public String city { get; set; }
+        public String state { get; set; }
         public String postalCode { get; set; }
         public String phoneNumber { get; set; }
         public String federalTaxId { get; set; }
