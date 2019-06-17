@@ -274,6 +274,8 @@ global class CreditDecisionEngineOTR {
                     CreditWS_LexisNexisRDP.LexisNexisIIDResponse lexisNexisIIDResponse = CreditWS_LexisNexisRDP.lexisNexisConsumerInstantId(LexisNexisIIDRequest);
 
                     onlineApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
+                    onlineApplication.Lexis_Nexis_FraudPoint_Result__c = lexisNexisIIDResponse.fraudPointWorkflowResult;
+                    onlineApplication.Lexis_Nexis_IID_Result__c = lexisNexisIIDResponse.iidWorkflowResult;
 
                 }
 

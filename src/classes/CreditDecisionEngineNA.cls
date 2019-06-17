@@ -278,6 +278,8 @@ global class CreditDecisionEngineNA {
                     CreditWS_LexisNexisRDP.LexisNexisIIDResponse lexisNexisIIDResponse = CreditWS_LexisNexisRDP.lexisNexisConsumerInstantId(LexisNexisIIDRequest);
 
                     naApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
+                    naApplication.Lexis_Nexis_FraudPoint_Result__c = lexisNexisIIDResponse.fraudPointWorkflowResult;
+                    naApplication.Lexis_Nexis_IID_Result__c = lexisNexisIIDResponse.iidWorkflowResult;
 
                 }
 

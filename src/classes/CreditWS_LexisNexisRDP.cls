@@ -321,6 +321,13 @@ public with sharing class CreditWS_LexisNexisRDP {
             if (response != null) {
                 for (CreditWSUtil_LexisNexisIID.cls_Products product : response.Products) {
 
+                    if ((product.ExecutedStepName).equalsIgnoreCase('InstantID')) {
+                        lexisNexisIIDResponse.iidWorkflowResult = product.ProductStatus;
+                    }
+                    else if((product.ExecutedStepName).equalsIgnoreCase('FraudPoint')) {
+                        lexisNexisIIDResponse.fraudPointWorkflowResult = product.ProductStatus;
+                    }
+
                     if (product.ParameterDetails != null) {
 
                         for (CreditWSUtil_LexisNexisIID.cls_ParameterDetails parameterDetails : product.ParameterDetails) {
@@ -547,6 +554,8 @@ public with sharing class CreditWS_LexisNexisRDP {
 
     public class LexisNexisIIDResponse {
 
+        public String iidWorkflowResult { get; set; }
+        public String fraudPointWorkflowResult { get; set; }
         public Integer fraudPointScore { get; set; }
 
         public LexisNexisIIDResponse() {
