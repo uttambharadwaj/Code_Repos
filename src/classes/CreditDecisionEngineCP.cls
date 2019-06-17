@@ -254,10 +254,10 @@ global class CreditDecisionEngineCP {
             if(lexisNexisBIIDResponse != null && !String.isEmpty(lexisNexisBIIDResponse.biidWorkflowResult)) {
 
                 // set result in object
-                cpApplication.Lexis_Nexis_BIID_Result__c = lexisNexisBIIDResponse.biidWorkflowResult;
+                cpApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
 
                 // If we fail, go to Fraud Point
-                if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('passed') && !String.isEmpty(cpApplication.Guarantor_Social_Security_Number__c)) {
+                if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && !String.isEmpty(cpApplication.Guarantor_Social_Security_Number__c)) {
 
                     CreditWS_LexisNexisRDP.LexisNexisIIDRequest lexisNexisIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisIIDRequest();
 
@@ -274,8 +274,8 @@ global class CreditDecisionEngineCP {
                     CreditWS_LexisNexisRDP.LexisNexisIIDResponse lexisNexisIIDResponse = CreditWS_LexisNexisRDP.lexisNexisConsumerInstantId(LexisNexisIIDRequest);
 
                     cpApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
-                    cpApplication.Lexis_Nexis_FraudPoint_Result__c = lexisNexisIIDResponse.fraudPointWorkflowResult;
-                    cpApplication.Lexis_Nexis_IID_Result__c = lexisNexisIIDResponse.iidWorkflowResult;
+                    cpApplication.Lexis_Nexis_FraudPoint_Result__c = (lexisNexisIIDResponse.fraudPointWorkflowResult).capitalize();
+                    cpApplication.Lexis_Nexis_IID_Result__c = (lexisNexisIIDResponse.iidWorkflowResult).capitalize();
 
                 }
 
