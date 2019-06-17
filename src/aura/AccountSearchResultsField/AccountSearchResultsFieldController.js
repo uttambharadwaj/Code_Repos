@@ -23,11 +23,11 @@
                     "componentName": "c__CustomerDetails"
                 },
                 "state": {
-                    "accountNumber": component.get("v.accountNumber"),
-                    "accountRowID": component.get("v.accountRowID"),
-                    "contactRowId": component.get("v.contactRowId"),
-                    "pdRowId": component.get("v.pdRowId"),
-                    "caseId": component.get("v.caseId")
+                    "c__accountNumber": component.get("v.accountNumber"),
+                    "c__accountRowID": component.get("v.accountRowID"),
+                    "c__contactRowId": component.get("v.contactRowId"),
+                    "c__pdRowId": component.get("v.pdRowId"),
+                    "c__caseId": component.get("v.caseId")
                 }
             },
             focus: true

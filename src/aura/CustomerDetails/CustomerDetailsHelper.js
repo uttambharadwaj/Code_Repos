@@ -1185,7 +1185,7 @@
                     
                     workspaceAPI.openSubtab({
                         parentTabId: response,
-                        url: '#/n/Customer_Details?accountNumber=' + component.get("v.accountNumber"),
+                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber"),
                         focus: false
                     });
                     

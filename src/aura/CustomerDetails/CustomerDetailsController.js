@@ -90,9 +90,9 @@
                 
                 // Gears additions commented out until we find out what else is missing - MHB 28 Jun 2018
                 var pageRef = component.get("v.pageReference");
-                var accountNumber = (pageRef && pageRef.state) ? pageRef.state.accountNumber : null;
-                // var accountNumber = helper.getParameterByName(component, event, 'accountNumber', response.url);
-                
+                //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
+                 var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
+
                 if(accountNumber == null && component.get("v.recordId") == null) {
                     
                     var toastEvent = $A.get("e.force:showToast");
@@ -107,19 +107,20 @@
                     component.set("v.accountNumber", accountNumber);
                     
                     // Grab the case ID off the enclosing tab URL
-                    var caseId = (pageRef && pageRef.state) ? pageRef.state.caseId : null;
+                    var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
                     // var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
                     component.set("v.caseId", caseId);
                     
                     // Grab the contactRowID off the enclosing tab URL
-                    var contactRowId = (pageRef && pageRef.state) ? pageRef.state.contactRowId : null;
+                    var contactRowId = (pageRef && pageRef.state) ? pageRef.state.c__contactRowId : null;
                     // var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
                     component.set("v.contactRowId", contactRowId);
 
                     // Grab the pdRowId off the enclosing tab URL
-                    var pdRowid = (pageRef && pageRef.state) ? pageRef.state.pdRowId : null;
+                    var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
                     component.set("v.pdRowId", pdRowid);
 
+                    console.log('#### accountNumber = '+component.get("v.accountNumber"));
                     console.log('#### caseId = '+component.get("v.caseId"));
                     console.log('#### contactRowId = '+component.get("v.contactRowId"));
                     console.log('#### pdRowId = '+component.get("v.pdRowId"));
