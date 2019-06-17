@@ -89,7 +89,7 @@
 
             .step-button {
             {!program.Brand_Color_2__c}
-            padding: .5em 2em .55em;
+                padding: .5em 2em .55em;
             }
 
             #mobile-footer-call {
@@ -542,32 +542,32 @@
                                     </div>
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!userSessionId == null}">
-                                    <div class="twelve columns clearfix">
-                                        &nbsp;
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        <h2>{!$Label.BOCDD_Certified_Agreed_To}</h2>
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        &nbsp;
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        <div class="six columns clearfix">
-                                            <div class="twelve columns clearfix">
-                                                <label class="styled-label">{!$Label.BOCDD_Name_of_Person_Opening_Account}</label>
-                                                <apex:inputText styleClass="styled-input required" value="{!boEntity.Certified_By__c}" />
-                                            </div>
-                                        </div>
-                                        <div class="six columns clearfix">
-                                            <div class="twelve columns clearfix">
-                                                <label class="styled-label">Date</label>
-                                                <apex:inputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boEntity.Certified_Date__c}" />
-                                            </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <h2>{!$Label.BOCDD_Certified_Agreed_To}</h2>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix">
+                                            <label class="styled-label">{!$Label.BOCDD_Name_of_Person_Opening_Account}</label>
+                                            <apex:inputText styleClass="styled-input required" value="{!boEntity.Certified_By__c}" />
                                         </div>
                                     </div>
-                                    <div class="twelve columns clearfix">
-                                        <input id="acknowledgement" type="checkbox" />&nbsp;{!$Label.BOCDD_Certification_Language}
+                                    <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix">
+                                            <label class="styled-label">Date</label>
+                                            <apex:inputText html-placeholder="{!$Label.BOCA_Placeholder_DOB}" styleClass="styled-input required {!IF(languageCode =='fr_ca', 'dateCanada', 'date')}" value="{!boEntity.Certified_Date__c}" />
+                                        </div>
                                     </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    <input id="acknowledgement" type="checkbox" />&nbsp;{!$Label.BOCDD_Certification_Language}
+                                </div>
                                 </apex:outputPanel>
                                 <div class="twelve columns clearfix">
                                     &nbsp;
