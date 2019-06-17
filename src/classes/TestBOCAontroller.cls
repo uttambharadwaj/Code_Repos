@@ -1,10 +1,8 @@
 @isTest
 private class TestBOCAontroller {
-   public static String cpId = '';
-  @testSetup public static void setupController(){
-        
-        UtilityTestLoader.setAutomation(false);
-    
+    public static String cpId = '';
+    @testSetup public static void setupController(){
+
         BOCA_IDS__C bi = BOCAtestDataUtility.getBOCAids();
         insert bi;
         //Create a postcode record to validate against
@@ -12,9 +10,9 @@ private class TestBOCAontroller {
         pc.State__c = 'ME';
         pc.Postcode__c = '4101';
         insert pc;
-        
+
         Campaign testCamp = new Campaign();
-        
+
         //create campaign test data
         testCamp.Coupon_Code__c = 'A001';
         testCamp.Name = 'testBOCA123';
@@ -24,7 +22,7 @@ private class TestBOCAontroller {
         testCamp.EndDate = date.today();
         testCamp.CurrencyIsoCode = 'USD';
         testCamp.IsActive = true;
-        
+
         insert testCamp;
         SYSTEM.debug('Here is campaign ' + testCamp.Id);
         //testCamp = [SELECT Id, Name, Coupon_Code__c, IsActive FROM Campaign WHERE Name =: 'testBOCA123'];
@@ -55,11 +53,11 @@ private class TestBOCAontroller {
         pric.promo_periods__c = 1.0;
         pric.promotional_rate__c = 8.17;
         pric.CurrencyIsoCode = 'USD';
-        
+
         insert pric;
 
         Program__c testProg2 = new Program__c();
-        
+
         testProg2.Name = 'testFlex2';
         testProg2.Form_Template__c = 'WexBOCA';
         testProg2.Brand_Short_Name__c = 'flex2';
@@ -68,7 +66,7 @@ private class TestBOCAontroller {
         testProg2.Custom_Email_Header_URL__c = 'http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg';
         testProg2.Brand_Heading__c = 'Time is money. Use WEX and save both.';
         testProg2.Brand_Long_Name__c = 'flex test card';
-        testProg2.Section_Titles__c = 'Tell Us About Your Business; Billing Contact Information; Promotional Information; Statement & Report Delivery; Tell Us About Yourself; Authorization; Terms & Conditions';  
+        testProg2.Section_Titles__c = 'Tell Us About Your Business; Billing Contact Information; Promotional Information; Statement & Report Delivery; Tell Us About Yourself; Authorization; Terms & Conditions';
         testProg2.Upload_Pricing_Data_Flag__c = false;
         testProg2.Auto_Send_BOCA_to_Siebel__c = true;
         testProg2.T_C__c = 'WEX_BOCA_TNC';
@@ -76,13 +74,13 @@ private class TestBOCAontroller {
         testProg2.Analytics_Head_Block__c = '';
         testProg2.Brand_Color_1__c = '#ccc';
         testProg2.Brand_Color_2__c = '#fff';
-        
+
         //remove the below once the BOCAcontroller code has been refactored with the old BOCAcontroller
         testProg2.Brand_Heading__c = 'removethis';
         testProg2.Brand_Long_Name__c = 'removethis';
         testProg2.Brand_Tagline__c = '';
-        
-        
+
+
         insert testProg2;
         //attachments
         Attachment attach3 = new Attachment();
@@ -91,7 +89,7 @@ private class TestBOCAontroller {
         attach3.body=bodyBlob3;
         attach3.parentId=testProg2.id;
         insert attach3;
-        
+
         Attachment attach4 = new Attachment();
         attach4.Name = 'ui-logo.png';
         Blob bodyBlob4=Blob.valueOf('Unit Test Attachment Body');
@@ -99,7 +97,7 @@ private class TestBOCAontroller {
         attach4.parentId=testProg2.id;
         insert attach4;
         SYSTEM.debug('Here is program ' + testProg2.id);
-        
+
         Campaign_Program__c testCP = new Campaign_Program__c();
         //create campaign program test data
         testCP.Name = 'Flex Test';
@@ -107,10 +105,10 @@ private class TestBOCAontroller {
         testCP.Program__c = testProg2.Id;
         testCP.Terms_and_Conditions__c = 'Test T&C';
         testCP.Default__c = true;
-        
+
         insert testCP;
         cpId = testCP.Id;
-        
+
         Boca_Res__c bocaRes = new Boca_Res__c();
         bocaRes.Email_Template_ID__c = '00X70000001EfPG';
         bocaRes.Brand_Heading__c = 'Test Heading';
@@ -122,10 +120,10 @@ private class TestBOCAontroller {
         bocaRes.Program_Name__c = testProg2.Name;
         bocaRes.Name = 'test';
         bocaRes.Program_Sell_Sheets__c = 'www.sellsheet.com';
-        
+
         insert bocaRes;
         SYSTEM.debug('Here is bocaRes ' + bocaRes.id);
-      
+
         Boca_Res__c bocaRes2 = new Boca_Res__c();
         bocaRes2.Email_Template_ID__c = '00X70000001EfPG';
         bocaRes2.Brand_Heading__c = 'Test Heading';
@@ -136,17 +134,17 @@ private class TestBOCAontroller {
         bocaRes2.SideBar__c = 'Test Sidebar';
         bocaRes2.Program_Name__c = testProg2.Name;
         bocaRes2.Name = 'test2';
-        
+
         insert bocaRes2;
-        
+
         testProg2.Publish_BOCA__c = true;
         upsert testProg2;
-        
+
         testCamp.Coupon_Code__c = pric.coup_code__c;
         upsert testCamp;
-        
+
     }
-        
+
     public static WeFormObject__c setupApp(){
         WeFormObject__c we1 = new WeFormObject__c();
         we1.Address_Line_2__c = 'Suite 100';
@@ -170,7 +168,7 @@ private class TestBOCAontroller {
         we1.PG_Residential_Street_Address__c = '11 Awesome Street';
         we1.PG_Residential_City__c = 'Portland';
         we1.PG_Residential_State__c = 'ME';
-        we1.PG_Residential_Zip__c = '04101'; 
+        we1.PG_Residential_Zip__c = '04101';
         we1.Email__c = 'test@test.com';
         we1.City__c = 'Portland';
         we1.Company_Name__c = 'Stantive Technologies';
@@ -203,9 +201,9 @@ private class TestBOCAontroller {
         we1.PG_Residential_Phone__c = '555-555-5555';
         we1.Mobile_Phone__c = '555-555-5555';
         we1.Guarantor_Annual_Income__c = 1000000.00;
-        
+
         return we1;
-        
+
     }
     public class CustomHttpCalloutMock implements HttpCalloutMock
     {
@@ -216,18 +214,18 @@ private class TestBOCAontroller {
             return retVal;
         }
     }
-      @future (callout=true)
-        public static void calloutOnsubmit() {
+    @future (callout=true)
+    public static void calloutOnsubmit() {
         test.setMock(HttpCalloutMock.class, new CustomHttpCalloutMock());
-        
+
     }
 
     @isTest static void testPageWithoutParam(){
-        
+
         test.startTest();
         TestUtils.enable_isRunningTest = true;
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         cont.creditApp = SetupApp();
         cont.appStatus = 'pending';
         cont.lang = 'en_us';
@@ -235,23 +233,23 @@ private class TestBOCAontroller {
         cont.oppNum = '1234455';
         cont.LocationCode = 'NW';
         PageReference testPage = new PageReference('/apex/WexBOCA');
-        
+
         Test.setCurrentPage(testPage);
         PageReference p = cont.initBrandCheck();
         SYSTEM.debug('error' + cont.errorMsg);
-        
+
         PageReference errP = cont.CreditApplicationError();
-        
+
         test.stopTest();
-        
-        
+
+
     }
     @isTest static void testPageInvalidTemplate(){
-        
+
         test.startTest();
-        
+
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         cont.creditApp = SetupApp();
         cont.appStatus = 'pending';
         cont.lang = 'en_us';
@@ -259,21 +257,21 @@ private class TestBOCAontroller {
         cont.oppNum = '1234455';
         cont.LocationCode = 'NW';
         PageReference testPage = new PageReference('/apex/testFlex2?pgm=flex2&lang=en_us&loc=ne');
-        
+
         Test.setCurrentPage(testPage);
         SYSTEM.debug('error' + cont.errorMsg);
         PageReference p = cont.initBrandCheck();
         PageReference errP = cont.CreditApplicationError();
-        
+
         test.stopTest();
-        
+
     }
     @isTest static void testPageUnpublished(){
-        
+
         test.startTest();
-        
+
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         //cont.creditApp = Database.query(weQ2);
         cont.creditApp = SetupApp();
         cont.appStatus = 'pending';
@@ -282,22 +280,22 @@ private class TestBOCAontroller {
         cont.oppNum = '1234455';
         cont.LocationCode = 'NW';
         PageReference testPage = new PageReference('/apex/CreditApp_Revolver?pgm=flex&lang=en_us&loc=ne');
-        
+
         Test.setCurrentPage(testPage);
         PageReference p = cont.initBrandCheck();
         SYSTEM.debug('error' + cont.errorMsg);
-        
+
         PageReference errP = cont.CreditApplicationError();
-        
+
         test.stopTest();
-        
+
     }
     @isTest static void testStatusPage(){
-        
+
         test.startTest();
-        
+
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         //cont.creditApp = Database.query(weQ2);
         cont.creditApp = SetupApp();
         cont.appStatus = 'pending';
@@ -306,23 +304,23 @@ private class TestBOCAontroller {
         cont.oppNum = '1234455';
         cont.LocationCode = 'NW';
         PageReference testPage = new PageReference('/apex/BOCAStatus?pgm=flex2&lang=en_us&loc=ne');
-        
+
         Test.setCurrentPage(testPage);
-        
+
         cont.statusInfo = 'pending';
         PageReference p = cont.initBrandCheck();
         SYSTEM.debug('status' + cont.statusInfo);
-        
+
         test.stopTest();
-        
-        
+
+
     }
     @isTest static void testStatusNoProgPage(){
-        
+
         test.startTest();
-        
+
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         //cont.creditApp = Database.query(weQ2);
         cont.creditApp = SetupApp();
         cont.appStatus = 'pending';
@@ -331,24 +329,24 @@ private class TestBOCAontroller {
         cont.oppNum = '1234455';
         cont.LocationCode = 'NW';
         PageReference testPage = new PageReference('/apex/BOCAStatus?lang=en_us&loc=ne');
-        
+
         Test.setCurrentPage(testPage);
-        
+
         PageReference p = cont.initBrandCheck();
         cont.statusInfo = 'pending';
-        
+
         SYSTEM.debug('status' + cont.statusInfo);
-        
+
         test.stopTest();
-        
+
     }
-    
+
     @isTest static void testConfirmationPage(){
-        
+
         test.startTest();
-        
+
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         //cont.creditApp = Database.query(weQ2);
         cont.creditApp = SetupApp();
         cont.appStatus = 'pending';
@@ -357,23 +355,23 @@ private class TestBOCAontroller {
         cont.oppNum = '1234455';
         cont.LocationCode = 'NW';
         PageReference testPage = new PageReference('/apex/BOCAConfirmation?pgm=flex2&lang=en_us&oppNum=01289478');
-        
+
         Test.setCurrentPage(testPage);
-        
+
         cont.statusInfo = 'pending';
-        
+
         SYSTEM.debug('status' + cont.statusInfo);
-        
+
         test.stopTest();
-        
+
     }
-    
+
     @isTest static void testBrandedErrorPage(){
-        
+
         test.startTest();
-        
+
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         //cont.creditApp = Database.query(weQ2);
         cont.creditApp = SetupApp();
         cont.appStatus = 'pending';
@@ -382,20 +380,20 @@ private class TestBOCAontroller {
         cont.oppNum = '1234455';
         cont.LocationCode = 'NW';
         PageReference testPage = new PageReference('/apex/BOCAError?pgm=flex2&lang=en_us&lc=ne');
-        
+
         testPage.getParameters().put('pgm','flex');
         Test.setCurrentPage(testPage);
-        
+
         PageReference errP = cont.CreditApplicationError();
-        
+
         SYSTEM.debug('brand error' + cont.errorMsg);
-        
+
         test.stopTest();
-        
-        
+
+
     }
     @isTest static void testEmailEntryPage(){
-        
+
         WeFormObject__c we = setupApp();
         test.startTest();
         TestUtils.enable_isRunningTest = true;
@@ -412,37 +410,37 @@ private class TestBOCAontroller {
         we.Campaign_Program_ID__c = cpId;
         we.isPG__c = true;
         Test.setCurrentPage(testPage);
-        
+
         testPage = cont.SubmitCreditApplication();
-        
+
         SYSTEM.debug('brand error' + cont.errorMsg);
-        
+
         test.stopTest();
-        
-        
+
+
     }
 
     @TestVisible
     @isTest static void testUtilities(){
-        
+
         test.startTest();
-        
+
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         //cont.creditApp = Database.query(weQ2);
-        
-        cont.creditApp = SetupApp();  
+
+        cont.creditApp = SetupApp();
         cont.appStatus = 'pending';
         cont.lang = 'en_us';
         cont.termandcond = '';
         cont.oppNum = '1234455';
         cont.LocationCode = 'NW';
-        
+
         PageReference testPage = new PageReference('/apex/CreditApp_Revolver?pgm=flex2&lang=en_us&lc=ne');
-        
+
         Test.setCurrentPage(testPage);
         Program__c testProg = [SELECT Name, Id, Form_Template__c, Confirmation_Info__c, Peoplesoft_rel_code__c, Brand_Short_Name__c, Brand_Heading__c,
-                               Brand_Color_1__c, Brand_Color_2__c, Brand_Long_Name__c, Brand_Tagline__c FROM Program__c WHERE Name =: 'testFlex2'];
+                Brand_Color_1__c, Brand_Color_2__c, Brand_Long_Name__c, Brand_Tagline__c FROM Program__c WHERE Name =: 'testFlex2'];
         Campaign_Program__c testCP = [SELECT Name, Id, Default__c, Program__c, Campaign__c FROM Campaign_Program__c WHERE Default__c =: true LIMIT 1];
         Program__c testP = cont.getProg(testProg.id);
         cont.statusInfo = 'test info';
@@ -457,34 +455,34 @@ private class TestBOCAontroller {
         cont.livePerson = 'test';
         //brand util
         WEXBrandUtility util1 = new WEXBrandUtility();
-        
+
         String testcc = util1.getValidCouponCode(testProg.Id, 'A001');
         boolean testboole = util1.isValidTemplateForProgram('/apex/CreditApp_Revolver?pgm=flex2&lang=en_us&lc=ne', testProg);
         util1.getPricing(testProg.Peoplesoft_rel_code__c, 'A001');
         util1.setProgramFromURL('flex2', testPage.getUrl());
-        
+
         //wex helper     
         WEXHelper.getStates();
         WEXHelper.IsProduction();
         WEXHelper.getSecureSitesURL();
         WEXHelper.getDayOfWeek(date.today());
         WEXHelper.skipToNextBusinessDay(date.today());
-        
+
         //error util
         Map<String, String> testMap = WEXErrorUtility.errorMap;
         WEXErrorUtility.getErrorMessage(testMap.get('one'));
-        
+
         //Program Util
         WEXProgramUtility testProgUt = new WEXProgramUtility();
         Boolean testBoole2 = testProgUt.hasAnotherDefaultTermsAndConditionsSet(testCP);
         testProgUt.hasDefaultTermsAndConditions(testProg.Id);
         Boolean testBoole3 = testProgUt.isDefault(testCP);
         testProgUt.resetDefaultFlagForProgram(testCP);
-        
+
         PageReference errP = cont.CreditApplicationError();
-        
+
         SYSTEM.debug('brand error' + cont.errorMsg);
-        
+
         try{
             //test campaignProgram delete trigger
             delete testCP;
@@ -492,9 +490,9 @@ private class TestBOCAontroller {
         catch(SYSTEM.DmlException ex){
             SYSTEM.assertEquals('The default Terms and Conditions cannot be deleted until a new default is selected.', ex.getDmlMessage(0), 'Trigger Message :');
         }
-        
+
         test.stopTest();
-        
+
     }
 
 }
