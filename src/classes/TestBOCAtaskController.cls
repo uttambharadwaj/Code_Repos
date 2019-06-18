@@ -4,6 +4,8 @@ public class TestBOCAtaskController {
 
     @testSetup public static void setupData(){
         
+        UtilityTestLoader.setAutomation(false);
+    
         BOCA_IDS__C bi = BOCAtestDataUtility.getBOCAids();
         insert bi;
         

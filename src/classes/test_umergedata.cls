@@ -7,7 +7,12 @@
 @isTest
 public class test_umergedata {
 
-	static testMethod void testLeads()
+	@testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
+    static testMethod void testLeads()
 	{
 		test.startTest();
 		

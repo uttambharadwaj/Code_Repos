@@ -4,6 +4,8 @@ public class AccountWS_EFSAppManagerTest {
     @testSetup
     static void setupUser() {
 
+        UtilityTestLoader.setAutomation(false);
+
         EFS_App_Manager_Integration__c efsAppManagerIntegration = new EFS_App_Manager_Integration__c();
 
         efsAppManagerIntegration.Endpoint__c = 'Test';

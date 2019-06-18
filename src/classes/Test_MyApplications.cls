@@ -1,6 +1,11 @@
 @isTest
 private class Test_MyApplications {
     
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     @isTest static void testMyapplications() {
         
         

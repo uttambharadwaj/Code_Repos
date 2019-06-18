@@ -12,6 +12,8 @@ public class CreditDecisionEngineCPTest {
     @testSetup
     static void setupUser() {
 
+        UtilityTestLoader.setAutomation(false);
+    
         Account offerAccount = new Account();
         offerAccount.Name = 'TestAccount-01';
 

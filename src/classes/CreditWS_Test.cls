@@ -5,6 +5,11 @@
 @isTest
 public class CreditWS_Test {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void testLexisNexisBridgerPasswordReset() {
 
         Test.startTest();

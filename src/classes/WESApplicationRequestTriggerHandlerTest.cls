@@ -2,6 +2,9 @@
 public class WESApplicationRequestTriggerHandlerTest {
     @testsetup
     static void setupData() {
+    
+        UtilityTestLoader.setAutomation(false);
+    
         Velocity_Profile__c prof1 = new Velocity_Profile__c();
         prof1.Country_code__c = 'GB;DE';
         prof1.LowerLimit__c = 0;
@@ -152,7 +155,7 @@ public class WESApplicationRequestTriggerHandlerTest {
         WES_Fuel_Card_Default__c def = new WES_Fuel_Card_Default__c();
         def.WES_Application_Request__c = req.Id;
         def.RecordTypeId = defRectypeId;
-        def.Toll_Usage__c = 'Y';
+        def.Toll_Usage__c = 'N';
         def.Purchase_Option_Services__c = '0';
         insert def;
 

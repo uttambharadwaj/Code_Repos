@@ -1,5 +1,10 @@
 @IsTest
 public class TestActivePricingUpdate{
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void updateCampaignActive(){
         Campaign testCamp = new Campaign();
         testCamp.Name = 'test 1';

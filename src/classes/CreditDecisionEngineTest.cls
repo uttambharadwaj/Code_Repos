@@ -12,6 +12,8 @@ public class CreditDecisionEngineTest {
     @testSetup
     static void setupUser() {
 
+        UtilityTestLoader.setAutomation(false);
+    
         Account offerAccount = new Account();
         offerAccount.Name = 'TestAccount-01';
 
@@ -203,13 +205,14 @@ public class CreditDecisionEngineTest {
             onlineApplication.Day_of_Payment__c = 'Monday;Tuesday';
             onlineApplication.Payment_Method__c = 'Auto Draft';
             onlineApplication.ThreatMetrix_Request_ID__c = '123456789';
+            onlineApplication.Federal_Tax_ID__c = '123-45-6789';
 
             onlineApplications.add(onlineApplication);
 
         }
 
         insert onlineApplications;
-
+        
     }
 
     static testMethod void testCreditDecisionEngine() {

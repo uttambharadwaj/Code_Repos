@@ -8,6 +8,8 @@ public with sharing class CreditDecisionEngineNATest {
     @testSetup
     static void setupData() {
 
+        UtilityTestLoader.setAutomation(false);
+    
         // Revisit this later..
         BOCA_IDS__C bocaId = BOCAtestDataUtility.getBOCAids();
         insert bocaId;
@@ -115,6 +117,13 @@ public with sharing class CreditDecisionEngineNATest {
 
         insert brandingUtility;
 
+        Account account = new Account();
+        account.Name = 'Company Name';
+        account.Phone = '207-555-7109';
+        account.Tax_ID__c = '111111111';
+
+        insert account;
+
         User integrationUser = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
         Application_Request__c applicationRequest = new Application_Request__c();
@@ -149,6 +158,11 @@ public with sharing class CreditDecisionEngineNATest {
             applicationRequest.Physical_Zip_Postal_Code__c = '04106';
             applicationRequest.Physical_Country__c = 'US';
             applicationRequest.DUNS_Number__c = '12345678';
+            applicationRequest.App_Signer_IP_Address__c = '208.64.194.000';
+            applicationRequest.Account_Name__c = account.Id;
+
+            applicationRequest.Checking_Account_Number__c = '123456789';
+            applicationRequest.ABA_Routing_Number__c = '123456789';
 
             applicationRequest.Checking_Account_Number__c = '123456789';
             applicationRequest.ABA_Routing_Number__c = '123456789';

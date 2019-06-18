@@ -1,6 +1,11 @@
 @isTest
 public with sharing class TransactionDisputeControllerTest {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void testTransactionDisputeForm() {
 
         TestUtils.enable_isRunningTest = true;
