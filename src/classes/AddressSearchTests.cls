@@ -1,6 +1,12 @@
 @isTest
 public class AddressSearchTests {
 	
+    
+    @testSetup
+    static void setup(){
+       UtilityTestLoader.setAutomation(false);
+    }
+
     public static testmethod void testShippingAddressSearchController(){
         
         PageReference pageRef = Page.PrepareNewQuote;

@@ -1,6 +1,11 @@
 @isTest
 private class SecurityTriggerHandlerTest {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void DepositConversionTest() {
         Account acc = new Account(name = 'Test Account');
         insert acc;

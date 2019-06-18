@@ -1,5 +1,10 @@
 @isTest
 private class LiveAgentPostChatFormControllerTest {
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testmethod void testController() {
         Contact ct = new Contact();
         ct.LastName = 'test';

@@ -48,6 +48,24 @@ public class OTRBOCAController {
         }
     }
 
+    public Id optyId {
+        get {
+            if (ApexPages.currentPage().getParameters().get('optyId') != null) {
+                return ApexPages.currentPage().getParameters().get('optyId');
+            }
+            return null;
+        }
+    }
+
+    public Id accountId {
+        get {
+            if (ApexPages.currentPage().getParameters().get('accntId') != null) {
+                return ApexPages.currentPage().getParameters().get('accntId');
+            }
+            return null;
+        }
+    }
+
     public Boolean sendToConfirmation { get; set; }
 
     public Boolean saveForLater { get; set; }
@@ -433,7 +451,7 @@ public class OTRBOCAController {
 
                     } else {
 
-                        onlineApplication = new OnlineApplication__c();
+                        onlineApplication = new OnlineApplication__c(AO_Country__c = 'US');
                     }
 
                     // Generate ThreatMetrix SessionID
@@ -581,7 +599,10 @@ public class OTRBOCAController {
                 account.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
             }
 
-            if (onlineApplication.Account__c != null) {
+            if (accountId != null) {
+                account.Id = accountId;
+            }
+            else if (onlineApplication.Account__c != null) {
                 account.Id = onlineApplication.Account__c;
             }
 
@@ -683,7 +704,11 @@ public class OTRBOCAController {
             // Add Opportunity
             Opportunity opportunity = new Opportunity();
 
-            if (onlineApplication.Opportunity__c != null) {
+            // if this was a Paper Application submitted through an existing application, then the opty id will be passed into the URL
+            if (optyId != null) {
+                opportunity.Id = optyId;
+            }
+            else if (onlineApplication.Opportunity__c != null) {
                 opportunity.Id = onlineApplication.Opportunity__c;
             }
 

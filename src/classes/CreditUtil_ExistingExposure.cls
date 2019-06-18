@@ -42,10 +42,11 @@ public with sharing class CreditUtil_ExistingExposure {
             existingApplications = getCPExistingApplications(request);
         }
 
-        existingExposureApplications = getOTRAppMatches(existingApplications[0], request, existingExposureApplications);
-        existingExposureApplications = getNAFleetAppMatches(existingApplications[1], request, existingExposureApplications);
-        existingExposureApplications = getCPAppMatches(existingApplications[2], request, existingExposureApplications);
-
+        if (existingApplications.size() >= 2) {
+            existingExposureApplications = getOTRAppMatches(existingApplications[0], request, existingExposureApplications);
+            existingExposureApplications = getNAFleetAppMatches(existingApplications[1], request, existingExposureApplications);
+            existingExposureApplications = getCPAppMatches(existingApplications[2], request, existingExposureApplications);
+        }
 
         return existingExposureApplications;
 
@@ -192,8 +193,20 @@ public with sharing class CreditUtil_ExistingExposure {
      */
     private static List<List<SObject>> getOTRExistingApplications(ExistingExposureRequest request) {
 
-        String onlineAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode +
-                ' OR ' + request.ipAddress + ' OR ' + request.phone.replaceAll('\\D','') + ' OR ' + request.taxID.replaceAll('\\D','');
+        String onlineAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
+
+
+        if (request.ipAddress != null) {
+            onlineAppRequestSearchVariables += ' OR ' + request.ipAddress;
+        }
+
+        if (request.phone != null) {
+            onlineAppRequestSearchVariables += ' OR ' + request.phone.replaceAll('\\D','');
+        }
+
+        if (request.taxID != null) {
+            onlineAppRequestSearchVariables +=  ' OR ' + request.taxID.replaceAll('\\D','');
+        }
 
         if (request.duns != null) {
             onlineAppRequestSearchVariables += ' OR ' + request.duns;
@@ -262,11 +275,9 @@ public with sharing class CreditUtil_ExistingExposure {
 
             finalList = queryForAllLOBs(appRequestSearchVariables);
 
-            System.debug('TEMP finalList size: ' + finalList.size());
-
             // [0] = OTR, [1] = NA, [2] = CP
             if (uniqueExistingExposureApps.size() > 0 && finalList.size() > 0) {
-                System.debug('TEMP inside adding to finalList');
+
                 finalList[1].addAll(uniqueExistingExposureApps);
             }
 
@@ -285,6 +296,8 @@ public with sharing class CreditUtil_ExistingExposure {
         // Find PG SSN from the Contact
         String contactSearchVariable = request.pgSSN.replaceAll('\\D','');
         String contactQuery = 'FIND { searchString } IN ALL Fields RETURNING Contact(Id)';
+        contactSearchVariable = UtilityClass.removeReservedChars(contactSearchVariable);
+        System.debug('getAppRequestViaPGSSN search variables: ' + contactSearchVariable);
         contactQuery = contactQuery.replace('searchString', contactSearchVariable);
 
         Map<Id, Contact> existingContactMap = new Map<Id, Contact>((List<Contact>) search.query(contactQuery)[0]);
@@ -309,8 +322,23 @@ public with sharing class CreditUtil_ExistingExposure {
     private static List<SObject> getAppRequestsViaPhoneOrTax(ExistingExposureRequest request) {
 
         // First find any accounts that have that same business phone number or tax id number.
-        String accountSearchVariables = request.phone.replaceAll('\\D','') + ' OR ' + request.taxId.replaceAll('\\D','');
+        String accountSearchVariables = '';
+        if (request.phone != null && request.taxId != null) {
+            accountSearchVariables = request.phone.replaceAll('\\D','') + ' OR ' + request.taxId.replaceAll('\\D','');
+        }
+        else if (request.phone != null) {
+            accountSearchVariables = request.phone.replaceAll('\\D','');
+        }
+        else if (request.taxid != null) {
+            accountSearchVariables = request.taxId.replaceAll('\\D','');
+        }
+        else {
+            return new List<SObject>();
+        }
+
         String accountQuery = 'FIND { searchString } IN All Fields RETURNING Account(Id)';
+        accountSearchVariables = UtilityClass.removeReservedChars(accountSearchVariables);
+        System.debug('getAppRequestsViaPhoneOrTax search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
         Map<Id, Account> existingAccountMap = new Map<Id, Account>((List<Account>) search.query(accountQuery)[0]);
@@ -353,6 +381,8 @@ public with sharing class CreditUtil_ExistingExposure {
                 'WHERE Id NOT IN :appIds' +
                 ' ORDER BY Id)';
 
+        searchVariables = UtilityClass.removeReservedChars(searchVariables);
+        System.debug('queryForAllLOBs search variables: ' + searchVariables);
         onlineAppRequestQuery = onlineAppRequestQuery.replace('searchString', searchVariables);
 
         try {
@@ -360,6 +390,7 @@ public with sharing class CreditUtil_ExistingExposure {
 
         } catch (System.QueryException e) {
             System.debug('Error when querying for Existing Exposure applications: ' + e);
+            UtilityClass.logInternalError(e, null, 'CreditUtil_ExistingExposure=>queryForAllLOBs', false, null, null);
         }
         return existingExposureApps;
     }
@@ -384,6 +415,8 @@ public with sharing class CreditUtil_ExistingExposure {
                 'Id,  Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c, DUNS_Number__c ' +
                 'ORDER BY Id)';
 
+        accountSearchVariables = UtilityClass.removeReservedChars(accountSearchVariables);
+        System.debug('getAccounts search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
         existingExposureAccounts = ((List<FSC_Existing_Exposure__c>) search.query(accountQuery)[0]);

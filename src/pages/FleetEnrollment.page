@@ -1,5 +1,5 @@
 <!--
-Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
+*   Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentController" action="{!init}">
     <html>
@@ -31,10 +31,14 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
 
             var didLength= "{!selectedDIDLength}";
 
-            document.cookie ="debug_logs=debug_logs;domain=.force.com";
+            document.cookie = "debug_logs=debug_logs;domain=.force.com";
 
             $j(document).ready(function() {
                 pageRerenderFunctions(false);
+                var previewImage = document.getElementById("brandingCard");
+                if(previewImage != null && previewImage.complete){
+                    hidePreview();
+                }
             });
 
             function updateDIDLength(value) {
@@ -84,6 +88,7 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                 $j('[id$=billingLastName]').on('keyup', function() { $j('[id$=primaryFleetContactLastName]').val($j(this).val()); });
                 $j('[id$=billingEmail]').on('keyup', function() { $j('[id$=primaryFleetContactEmail]').val($j(this).val()); });
                 $j('[id$=billingPhone]').on('keyup', function() { $j('[id$=primaryFleetContactPhone]').val($j(this).val()); });
+
             }
 
             function disableSubmit() {
@@ -537,7 +542,7 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
 
             .addButton { display: block; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-plus.png')}) no-repeat; height: 32px; padding-left: 32px; line-height: 32px; color: #333; text-decoration: none; }
 
-            .helpIcon { padding-left: 3px; margin-top: -2px; white-space: pre-line; }
+            .helpIcon { padding-left: 3px; margin-top: -2px; white-space: pre-line; text-indent:5px;}
             .vehicleHelpIcon { margin-left: 4px; }
 
             .vehicleTable, .driverTable { width: 100%; border: 1px solid #ccc; }
@@ -750,7 +755,7 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                             <apex:outputPanel rendered="{!currentStep != 2}">
                                 <div id="cardImage">
                                     <!--PSOBACKLOG-76-->
-                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/>
+                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/><img src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!currentStep == 2}">
@@ -847,14 +852,13 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                             </apex:outputPanel>
                         </apex:outputPanel>
                         <apex:outputPanel id="movingCardImage">
-                            <apex:outputPanel rendered="{!currentStep == 2}">
+                            <apex:outputPanel rendered="{!currentStep == 2 && showPreview}">
                                 <div class="movingCardImage">
                                     <div style="text-align: center; width: 260px; position:relative;">
-                                        <!--PSOBACKLOG-76-->
-                                        <img src="{!URLFOR($Action.Attachment.Download, dynamicCard)}" alt="{!program.Brand_Long_Name__c} Dynamic Card Preview"/><br/>PREVIEW
+                                        <img id="previewCard" src="{!URLFOR($Action.Attachment.Download, dynamicCard)}" /><br/>PREVIEW
                                         <div id="card-company-name">
                                             {!fleetEnrollment.Embossing_Company_Name__c}
-										</div>
+                                        </div>
                                         <div id="card-description">
                                             <apex:outputText value="{!selectedEmbossingOption}" rendered="{!selectedEmbossingOption != 'None' && selectedEmbossingOption != '#'}"></apex:outputText>
                                         </div>
@@ -866,6 +870,7 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                 </div>
                 <div class="eight columns form" style="padding-top: 20px;">
                     <apex:form id="fleetEnrollmentForm">
+                        <apex:actionFunction name="hidePreview" action="{!myShowPreviewMethod}" rerender="movingCardImage"/>
                         <apex:outputPanel rendered="{!currentStep == 1}">
                             <div class="mobileMessages clearfix" style="line-height: 12px; text-align: center;">
                                 <div class="twelve columns clearfix mobileCardImage">
@@ -1481,9 +1486,9 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                                     Billing Information
                                 </div>
                                 <div class="six columns" style="text-align: right;">
-                                	<span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
-                                		<apex:param value="1" assignTo="{!currentStep}" />
-                            		</apex:commandLink></span>
+                                    <span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
+                                        <apex:param value="1" assignTo="{!currentStep}" />
+                                    </apex:commandLink></span>
                                 </div>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1535,9 +1540,9 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                                     Authorized Contacts
                                 </div>
                                 <div class="six columns" style="text-align: right;">
-                                	<span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
-                                		<apex:param value="1" assignTo="{!currentStep}" />
-                            		</apex:commandLink></span>
+                                    <span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
+                                        <apex:param value="1" assignTo="{!currentStep}" />
+                                    </apex:commandLink></span>
                                 </div>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1562,9 +1567,9 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                                     Card Printing
                                 </div>
                                 <div class="six columns" style="text-align: right;">
-                                	<span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
-                                		<apex:param value="2" assignTo="{!currentStep}" />
-                            		</apex:commandLink></span>
+                                    <span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
+                                        <apex:param value="2" assignTo="{!currentStep}" />
+                                    </apex:commandLink></span>
                                 </div>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1595,9 +1600,9 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                                     Reporting Options
                                 </div>
                                 <div class="six columns" style="text-align: right;">
-                                	<span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
-                                		<apex:param value="2" assignTo="{!currentStep}" />
-                            		</apex:commandLink></span>
+                                    <span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
+                                        <apex:param value="2" assignTo="{!currentStep}" />
+                                    </apex:commandLink></span>
                                 </div>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1641,9 +1646,9 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                                     Vehicle Reporting Details and Card Controls
                                 </div>
                                 <div class="five columns" style="text-align: right;">
-                                	<span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
-                                		<apex:param value="3" assignTo="{!currentStep}" />
-                            		</apex:commandLink></span>
+                                    <span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
+                                        <apex:param value="3" assignTo="{!currentStep}" />
+                                    </apex:commandLink></span>
                                 </div>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1685,9 +1690,9 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                                     Driver Details
                                 </div>
                                 <div class="six columns" style="text-align: right;">
-    	                            <span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
-	                                	<apex:param value="4" assignTo="{!currentStep}" />
-                            		</apex:commandLink></span>
+                                    <span class="confirmEdit"><apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" value="Edit">
+                                        <apex:param value="4" assignTo="{!currentStep}" />
+                                    </apex:commandLink></span>
                                 </div>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1720,7 +1725,7 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                                 <apex:commandButton onclick="disableSubmit();" styleClass="fullNextButton" action="{!submitApplication}" value="Submit" rerender="subHeader,subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage" />
                             </div>
                         </apex:outputPanel>
-                        <!-- STEP FIVE - END  -->
+                        <!-- STEP FIVE - END -->
                     </apex:form>
                 </div>
             </div>

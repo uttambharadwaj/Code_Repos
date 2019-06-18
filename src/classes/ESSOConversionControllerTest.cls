@@ -4,6 +4,8 @@ public with sharing class ESSOConversionControllerTest {
     @testSetup
     static void setupData() {
 
+        UtilityTestLoader.setAutomation(false);
+    
         Customer_Conversion_Data__c conversionData = new Customer_Conversion_Data__c();
 
         conversionData.Previous_Account_Number__c = '123456789';
