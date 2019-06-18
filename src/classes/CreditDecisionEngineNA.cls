@@ -34,7 +34,7 @@ global class CreditDecisionEngineNA {
                         Personal_Guarantor_Mailing_Zip__c, Personal_Guarantor_SSN__c, PG_Required__c, Physical_City__c, Physical_State__c, Physical_Street__c, Requested_Credit_Limit__c,
                         Physical_Zip_Postal_Code__c, Program__c, Running_Credit_Decisioning__c, Sanctions_Business_Check__c, Sanctions_Business_Result_ID__c,
                         Sanctions_Individual_Check__c, Sanctions_Individual_Result_ID__c, Tax_Payer_ID_number__c, ThreatMetrix_Session_ID__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Result__c,
-                        Physical_Country__c, Fraud_Flag__c, DNB_Match_Score__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c
+                        Physical_Country__c, Fraud_Flag__c, DNB_Match_Score__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c
                 FROM Application_Request__c
                 WHERE Id = :naApplicationId
         ];
@@ -202,7 +202,7 @@ global class CreditDecisionEngineNA {
             lexisNexisSBARequest.city = naApplication.Billing_City__c;
             lexisNexisSBARequest.state = naApplication.Billing_State__c;
             lexisNexisSBARequest.postalCode = naApplication.Billing_Zip_Postal_Code__c;
-            lexisNexisSBARequest.phoneNumber = naApplication.Billing_Contact_Phone_Number__c;
+            lexisNexisSBARequest.phoneNumber = naApplication.Business_Phone_Number__c;
             lexisNexisSBARequest.federalTaxId = naApplication.Tax_Payer_ID_number__c;
 
             if(naApplication.Personal_Guarantor__c != null) {
@@ -233,7 +233,7 @@ global class CreditDecisionEngineNA {
             lexisNexisBIIDRequest.city = naApplication.Billing_City__c;
             lexisNexisBIIDRequest.state = naApplication.Billing_State__c;
             lexisNexisBIIDRequest.postalCode = naApplication.Billing_Zip_Postal_Code__c;
-            lexisNexisBIIDRequest.phoneNumber = naApplication.Billing_Contact_Phone_Number__c;
+            lexisNexisBIIDRequest.phoneNumber = naApplication.Business_Phone_Number__c;
             lexisNexisBIIDRequest.federalTaxId = naApplication.Tax_Payer_ID_number__c;
 
             if(naApplication.Personal_Guarantor__c != null) {
@@ -254,6 +254,8 @@ global class CreditDecisionEngineNA {
             }
 
             CreditWS_LexisNexisRDP.LexisNexisBIIDResponse lexisNexisBIIDResponse = CreditWS_LexisNexisRDP.lexisNexisBusinessInstantID(lexisNexisBIIDRequest);
+
+            System.debug(lexisNexisBIIDResponse);
 
             if(lexisNexisBIIDResponse != null && !String.isEmpty(lexisNexisBIIDResponse.biidWorkflowResult)) {
 
@@ -500,7 +502,7 @@ global class CreditDecisionEngineNA {
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null)
                 naApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
             else
-                naApplication.DNB_Lookup_Hits__c = 0;
+                    naApplication.DNB_Lookup_Hits__c = 0;
 
             upsert naApplication;
 

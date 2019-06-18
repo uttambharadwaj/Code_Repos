@@ -202,6 +202,8 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             CreditWSUtil_LexisNexisBIID response = CreditWSUtil_LexisNexisBIID.parse(CreditWS_LexisNexisRDP.jsonKeywordSafeReplace(httpResponse.getBody(), false));
 
+            System.debug(response);
+
             if(response != null) {
 
                 for(CreditWSUtil_LexisNexisBIID.cls_Products product : response.Products) {
@@ -221,6 +223,10 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             System.debug('### ERROR: ' + e.getMessage() + '\n' + e.getStackTraceString());
 
+        }
+
+        if(String.isEmpty(lexisNexisBIIDResponse.biidWorkflowResult)) {
+            lexisNexisBIIDResponse.biidWorkflowResult = 'Fail';
         }
 
         return lexisNexisBIIDResponse;
@@ -352,6 +358,16 @@ public with sharing class CreditWS_LexisNexisRDP {
 
         }
 
+        if(String.isBlank(lexisNexisIIDResponse.iidWorkflowResult)) {
+            lexisNexisIIDResponse.iidWorkflowResult = 'Fail';
+        }
+        if(String.isBlank(lexisNexisIIDResponse.fraudPointWorkflowResult)) {
+            lexisNexisIIDResponse.fraudPointWorkflowResult = 'Fail';
+        }
+        if(lexisNexisIIDResponse.fraudPointScore == null) {
+            lexisNexisIIDResponse.fraudPointScore = 0;
+        }
+
         return lexisNexisIIDResponse;
 
     }
@@ -395,8 +411,12 @@ public with sharing class CreditWS_LexisNexisRDP {
                 smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5 = (smallBusinessAnalyticsRequestElement.SearchBy.Company.Address.Zip5).substring(0, 5);
             }
 
-            smallBusinessAnalyticsRequestElement.SearchBy.Company.Phone = lexisNexisSBARequest.phoneNumber.replaceAll('[^0-9]', '');
-            smallBusinessAnalyticsRequestElement.SearchBy.Company.FEIN = lexisNexisSBARequest.federalTaxId.replaceAll('[^0-9]', '');
+            if(!String.isEmpty(lexisNexisSBARequest.phoneNumber)) {
+                smallBusinessAnalyticsRequestElement.SearchBy.Company.Phone = lexisNexisSBARequest.phoneNumber.replaceAll('[^0-9]', '');
+            }
+            if(!String.isEmpty(lexisNexisSBARequest.federalTaxID)) {
+                smallBusinessAnalyticsRequestElement.SearchBy.Company.FEIN = lexisNexisSBARequest.federalTaxId.replaceAll('[^0-9]', '');
+            }
 
             // Dear Lexis Nexis - If you're going to accept multiples - ever heard of an array? Love Derek.
             if (lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives != null && lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives.size() > 0) {
@@ -484,7 +504,7 @@ public with sharing class CreditWS_LexisNexisRDP {
 
                 System.debug('### ' + e.getMessage() + '\n' + e.getStackTraceString());
 
-                lexisNexisSBAResponse.fraudScore = -1;
+                lexisNexisSBAResponse.fraudScore = 0;
 
             }
 
