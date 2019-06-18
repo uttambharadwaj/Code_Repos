@@ -379,7 +379,7 @@ global class AccountWS_EFSAppManager {
             if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipping_zip', onlineApplication.Card_Shipping_Postal_Code__c);
             if(onlineApplication.Federal_Tax_ID__c != null) jsonPayload.writeStringField('tax_id', onlineApplication.Federal_Tax_ID__c);
             if(onlineApplicationProgram !=null && onlineApplicationProgram.Parent_Carrier_ID__c != null) jsonPayload.writeStringField('original_parent_carrier_id', onlineApplicationProgram.Parent_Carrier_ID__c);
-            else jsonPayload.writeNullField('original_parent_carrier_id');
+//            else jsonPayload.writeNullField('original_parent_carrier_id');
             jsonPayload.writeStringField('parent_type', 'group');
             if(onlineApplicationProgram.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationProgram.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship type', onlineApplicationOffer.Funding__c);
