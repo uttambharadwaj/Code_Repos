@@ -539,6 +539,111 @@ public class CreditWS_Test {
 
     }
 
+    static testMethod void testLexisNexisConsumerInstantID() {
+
+        Test.startTest();
+
+        TestUtils.enable_isRunningTest = true;
+
+        Test.setMock(HttpCalloutMock.class, new LexisNexisIIDCalloutMock());
+
+        CreditWS_LexisNexisRDP.LexisNexisIIDRequest lexisNexisIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisIIDRequest();
+
+        LexisNexisIIDRequest.applicationId = '123456';
+        lexisNexisIIDRequest.firstName = 'MICHAEL';
+        lexisNexisIIDRequest.lastName = 'CARRATALA';
+        lexisNexisIIDRequest.postalCode = '50313';
+        lexisNexisIIDRequest.phoneNumber = '2095243588';
+        lexisNexisIIDRequest.socialSecurityNumber = '003882722';
+
+        CreditWS_LexisNexisRDP.LexisNexisIIDResponse lexisNexisIIDResponse = CreditWS_LexisNexisRDP.lexisNexisConsumerInstantId(LexisNexisIIDRequest);
+
+        // This should be parsed out of the mock response successfully
+        System.assert(lexisNexisIIDResponse.fraudPointScore == 0);
+
+        Test.stopTest();
+
+    }
+
+    static testMethod void testLexisNexisBusinessInstantID() {
+
+        Test.startTest();
+
+        Test.setMock(HttpCalloutMock.class, new LexisNexisBIIDCalloutMock());
+
+        CreditWS_LexisNexisRDP.LexisNexisBIIDRequest lexisNexisBIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisBIIDRequest();
+
+        lexisNexisBIIDRequest.applicationId = '123456';
+        lexisNexisBIIDRequest.businessName = 'RB TROUT';
+        lexisNexisBIIDRequest.streetAddress = '6902 COMPANY STREET RD';
+        lexisNexisBIIDRequest.city = 'Modesto';
+        lexisNexisBIIDRequest.state = 'CA';
+        lexisNexisBIIDRequest.postalCode = '95357';
+        lexisNexisBIIDRequest.phoneNumber = '8014927556';
+        lexisNexisBIIDRequest.federalTaxId = '264428636';
+
+        System.debug(CreditWS_LexisNexisRDP.lexisNexisBusinessInstantID(lexisNexisBIIDRequest));
+
+        Test.stopTest();
+
+    }
+
+    static testMethod void testLexisNexisSmallBusinessAnalytics() {
+
+        Test.startTest();
+
+        Test.setMock(WebServiceMock.class, new CreditWSUtil_Mock());
+
+        CreditWS_LexisNexisRDP.LexisNexisSBARequest lexisNexisSBARequest = new CreditWS_LexisNexisRDP.LexisNexisSBARequest();
+
+        lexisNexisSBARequest.companyName = 'Test Company';
+        lexisNexisSBARequest.streetAddress = '123 Test St';
+        lexisNexisSBARequest.postalCode = '12345';
+        lexisNexisSBARequest.phoneNumber = '207-523-6969';
+        lexisNexisSBARequest.federalTaxId = '12-3456789';
+
+        CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative lexisNexisAuthorizedRepresenative = new CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative();
+
+        lexisNexisAuthorizedRepresenative.firstName = 'Test';
+        lexisNexisAuthorizedRepresenative.lastName = 'Test';
+        lexisNexisAuthorizedRepresenative.streetAddress = '123 Test Street';
+        lexisNexisAuthorizedRepresenative.city = 'Test';
+        lexisNexisAuthorizedRepresenative.state = 'ME';
+        lexisNexisAuthorizedRepresenative.postalCode = '04074';
+        lexisNexisAuthorizedRepresenative.phoneNumber = '207-523-6969';
+        lexisNexisAuthorizedRepresenative.dateOfBirth = Date.Today();
+        lexisNexisAuthorizedRepresenative.socialSecurityNumber = '111-11-1111';
+
+        lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives = new List<CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative>();
+
+        lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives.add(lexisNexisAuthorizedRepresenative);
+
+        CreditWS_LexisNexisRDP.LexisNexisSBAResponse response = CreditWS_LexisNexisRDP.lexisNexisSmallBusinessAnalytics(lexisNexisSBARequest);
+
+        System.assert(response.fraudScore != -1);
+
+        Test.stopTest();
+
+    }
+
+    public class LexisNexisBIIDCalloutMock implements  HttpCalloutMock {
+        public HTTPResponse respond(HTTPRequest req) {
+            HTTPResponse retVal = new HTTPResponse();
+            retVal.setStatusCode(200);
+            retVal.setBody('{"Status":{"ConversationId":"31000205699026","RequestId":"449916996","TransactionStatus":"passed","Reference":"123456"},"Products":[{"ProductType":"BusinessInstantID_2.0","ExecutedStepName":"Business Instant ID","ProductConfigurationName":"Wex.BIID","ProductStatus":"pass","ParameterDetails":[{"Group":"VERIFICATION_INDICATORS","Name":"VerificationIndicator_CompanyName","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_INDICATORS","Name":"VerificationIndicator_StreetAddress","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_INDICATORS","Name":"VerificationIndicator_City","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_INDICATORS","Name":"VerificationIndicator_State","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_INDICATORS","Name":"VerificationIndicator_Zip","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_INDICATORS","Name":"VerificationIndicator_Phone","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_INDICATORS","Name":"VerificationIndicator_FEIN","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"POWID","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"ProxID","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"SeleID","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"OrgID","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"UltID","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"VerificationSummary_PHONESOURCE","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"VerificationSummary_BUREAU","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"VerificationSummary_GOVTREGISTRATIONS","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"VerificationSummary_PUBLICRECORDFILINGS","Values":[{"Value":"0"}]},{"Group":"VERIFICATION_SUMMARIES","Name":"VerificationSummary_BUSDIRECTORIES","Values":[{"Value":"0"}]}]}]}');
+            return retVal;
+        }
+    }
+
+    public class LexisNexisIIDCalloutMock implements  HttpCalloutMock {
+        public HTTPResponse respond(HTTPRequest req) {
+            HTTPResponse retVal = new HTTPResponse();
+            retVal.setStatusCode(200);
+            retVal.setBody('{ "Status": { "ConversationId": "31000205378036", "RequestId": "449412256", "TransactionStatus": "passed", "Reference": "123456" }, "Products": [ { "ProductType": "InstantID", "ExecutedStepName": "InstantID", "ProductConfigurationName": "Wex.IID", "ProductStatus": "pass" }, { "ProductType": "FraudPoint", "ExecutedStepName": "FraudPoint", "ProductConfigurationName": "Wex.FP", "ProductStatus": "pass", "ParameterDetails": [ { "Group": "FRAUD_POINT", "Name": "LexID", "Values": [ { "Value": "0" } ] }, { "Group": "FRAUD_POINT", "Name": "Attributes", "Values": [ { "Value": "IdentityRiskLevel" }, { "Value": "IdentityAgeOldest" }, { "Value": "IdentityAgeNewest" }, { "Value": "IdentityRecentUpdate" }, { "Value": "IdentityRecordCount" }, { "Value": "IdentitySourceCount" }, { "Value": "IdentityAgeRiskIndicator" }, { "Value": "IDVerRiskLevel" }, { "Value": "IDVerSSN" }, { "Value": "IDVerName" }, { "Value": "IDVerAddress" }, { "Value": "IDVerAddressNotCurrent" }, { "Value": "IDVerAddressAssocCount" }, { "Value": "IDVerPhone" }, { "Value": "IDVerDriversLicense" }, { "Value": "IDVerDOB" }, { "Value": "IDVerSSNSourceCount" }, { "Value": "IDVerAddressSourceCount" }, { "Value": "IDVerDOBSourceCount" }, { "Value": "IDVerSSNCreditBureauCount" }, { "Value": "IDVerSSNCreditBureauDelete" }, { "Value": "IDVerAddrCreditBureauCount" }, { "Value": "SourceRiskLevel" }, { "Value": "SourceFirstReportingIdentity" }, { "Value": "SourceCreditBureau" }, { "Value": "SourceCreditBureauCount" }, { "Value": "SourceCreditBureauAgeOldest" }, { "Value": "SourceCreditBureauAgeNewest" }, { "Value": "SourceCreditBureauAgeChange" }, { "Value": "SourcePublicRecord" }, { "Value": "SourcePublicRecordCount" }, { "Value": "SourcePublicRecordCountYear" }, { "Value": "SourceEducation" }, { "Value": "SourceOccupationalLicense" }, { "Value": "SourceVoterRegistration" }, { "Value": "SourceOnlineDirectory" }, { "Value": "SourceDoNotMail" }, { "Value": "SourceAccidents" }, { "Value": "SourceBusinessRecords" }, { "Value": "SourceProperty" }, { "Value": "SourceAssets" }, { "Value": "SourcePhoneDirectoryAssistance" }, { "Value": "SourcePhoneNonPublicDirectory" }, { "Value": "VariationRiskLevel" }, { "Value": "VariationIdentityCount" }, { "Value": "VariationSSNCount" }, { "Value": "VariationSSNCountNew" }, { "Value": "VariationMSourcesSSNCount" }, { "Value": "VariationMSourcesSSNUnrelCount" }, { "Value": "VariationLastNameCount" }, { "Value": "VariationLastNameCountNew" }, { "Value": "VariationAddrCountYear" }, { "Value": "VariationAddrCountNew" }, { "Value": "VariationAddrStability" }, { "Value": "VariationAddrChangeAge" }, { "Value": "VariationDOBCount" }, { "Value": "VariationDOBCountNew" }, { "Value": "VariationPhoneCount" }, { "Value": "VariationPhoneCountNew" }, { "Value": "VariationSearchSSNCount" }, { "Value": "VariationSearchAddrCount" }, { "Value": "VariationSearchPhoneCount" }, { "Value": "SearchVelocityRiskLevel" }, { "Value": "SearchCount" }, { "Value": "SearchCountYear" }, { "Value": "SearchCountMonth" }, { "Value": "SearchCountWeek" }, { "Value": "SearchCountDay" }, { "Value": "SearchUnverifiedSSNCountYear" }, { "Value": "SearchUnverifiedAddrCountYear" }, { "Value": "SearchUnverifiedDOBCountYear" }, { "Value": "SearchUnverifiedPhoneCountYear" }, { "Value": "SearchBankingSearchCount" }, { "Value": "SearchBankingSearchCountYear" }, { "Value": "SearchBankingSearchCountMonth" }, { "Value": "SearchBankingSearchCountWeek" }, { "Value": "SearchBankingSearchCountDay" }, { "Value": "SearchHighRiskSearchCount" }, { "Value": "SearchHighRiskSearchCountYear" }, { "Value": "SearchHighRiskSearchCountMonth" }, { "Value": "SearchHighRiskSearchCountWeek" }, { "Value": "SearchHighRiskSearchCountDay" }, { "Value": "SearchFraudSearchCount" }, { "Value": "SearchFraudSearchCountYear" }, { "Value": "SearchFraudSearchCountMonth" }, { "Value": "SearchFraudSearchCountWeek" }, { "Value": "SearchFraudSearchCountDay" }, { "Value": "SearchLocateSearchCount" }, { "Value": "SearchLocateSearchCountYear" }, { "Value": "SearchLocateSearchCountMonth" }, { "Value": "SearchLocateSearchCountWeek" }, { "Value": "SearchLocateSearchCountDay" }, { "Value": "AssocRiskLevel" }, { "Value": "AssocCount" }, { "Value": "AssocDistanceClosest" }, { "Value": "AssocSuspicousIdentitiesCount" }, { "Value": "AssocCreditBureauOnlyCount" }, { "Value": "AssocCreditBureauOnlyCountNew" }, { "Value": "AssocCreditBureauOnlyCountMonth" }, { "Value": "AssocHighRiskTopologyCount" }, { "Value": "ValidationRiskLevel" }, { "Value": "ValidationSSNProblems" }, { "Value": "ValidationAddrProblems" }, { "Value": "ValidationPhoneProblems" }, { "Value": "ValidationDLProblems" }, { "Value": "ValidationIPProblems" }, { "Value": "CorrelationRiskLevel" }, { "Value": "CorrelationSSNNameCount" }, { "Value": "CorrelationSSNAddrCount" }, { "Value": "CorrelationAddrNameCount" }, { "Value": "CorrelationAddrPhoneCount" }, { "Value": "CorrelationPhoneLastNameCount" }, { "Value": "DivRiskLevel" }, { "Value": "DivSSNIdentityCount" }, { "Value": "DivSSNIdentityCountNew" }, { "Value": "DivSSNIdentityMSourceCount" }, { "Value": "DivSSNIdentityMSourceUrelCount" }, { "Value": "DivSSNLNameCount" }, { "Value": "DivSSNLNameCountNew" }, { "Value": "DivSSNAddrCount" }, { "Value": "DivSSNAddrCountNew" }, { "Value": "DivSSNAddrMSourceCount" }, { "Value": "DivAddrIdentityCount" }, { "Value": "DivAddrIdentityCountNew" }, { "Value": "DivAddrIdentityMSourceCount" }, { "Value": "DivAddrSuspIdentityCountNew" }, { "Value": "DivAddrSSNCount" }, { "Value": "DivAddrSSNCountNew" }, { "Value": "DivAddrSSNMSourceCount" }, { "Value": "DivAddrPhoneCount" }, { "Value": "DivAddrPhoneCountNew" }, { "Value": "DivAddrPhoneMSourceCount" }, { "Value": "DivPhoneIdentityCount" }, { "Value": "DivPhoneIdentityCountNew" }, { "Value": "DivPhoneIdentityMSourceCount" }, { "Value": "DivPhoneAddrCount" }, { "Value": "DivPhoneAddrCountNew" }, { "Value": "DivSearchSSNIdentityCount" }, { "Value": "DivSearchAddrIdentityCount" }, { "Value": "DivSearchAddrSuspIdentityCount" }, { "Value": "DivSearchPhoneIdentityCount" }, { "Value": "SearchComponentRiskLevel" }, { "Value": "SearchSSNSearchCount" }, { "Value": "SearchSSNSearchCountYear" }, { "Value": "SearchSSNSearchCountMonth" }, { "Value": "SearchSSNSearchCountWeek" }, { "Value": "SearchSSNSearchCountDay" }, { "Value": "SearchAddrSearchCount" }, { "Value": "SearchAddrSearchCountYear" }, { "Value": "SearchAddrSearchCountMonth" }, { "Value": "SearchAddrSearchCountWeek" }, { "Value": "SearchAddrSearchCountDay" }, { "Value": "SearchPhoneSearchCount" }, { "Value": "SearchPhoneSearchCountYear" }, { "Value": "SearchPhoneSearchCountMonth" }, { "Value": "SearchPhoneSearchCountWeek" }, { "Value": "SearchPhoneSearchCountDay" }, { "Value": "ComponentCharRiskLevel" }, { "Value": "SSNHighIssueAge" }, { "Value": "SSNLowIssueAge" }, { "Value": "SSNIssueState" }, { "Value": "SSNNonUS" }, { "Value": "InputPhoneType" }, { "Value": "IPState" }, { "Value": "IPCountry" }, { "Value": "IPContinent" }, { "Value": "InputAddrAgeOldest" }, { "Value": "InputAddrAgeNewest" }, { "Value": "InputAddrType" }, { "Value": "InputAddrLenOfRes" }, { "Value": "InputAddrDwellType" }, { "Value": "InputAddrDelivery" }, { "Value": "InputAddrActivePhoneList" }, { "Value": "InputAddrOccupantOwned" }, { "Value": "InputAddrBusinessCount" }, { "Value": "InputAddrNBRHDBusinessCount" }, { "Value": "InputAddrNBRHDSingleFamilyCount" }, { "Value": "InputAddrNBRHDMultiFamilyCount" }, { "Value": "InputAddrNBRHDMedianIncome" }, { "Value": "InputAddrNBRHDMedianValue" }, { "Value": "InputAddrNBRHDMurderIndex" }, { "Value": "InputAddrNBRHDCarTheftIndex" }, { "Value": "InputAddrNBRHDBurglaryIndex" }, { "Value": "InputAddrNBRHDCrimeIndex" }, { "Value": "InputAddrNBRHDMobilityIndex" }, { "Value": "InputAddrNBRHDVacantPropCount" }, { "Value": "AddrChangeDistance" }, { "Value": "AddrChangeStateDiff" }, { "Value": "AddrChangeIncomeDiff" }, { "Value": "AddrChangeValueDiff" }, { "Value": "AddrChangeCrimeDiff" }, { "Value": "AddrChangeEconTrajectory" }, { "Value": "AddrChangeEconTrajectoryIndex" }, { "Value": "CurrAddrAgeOldest" }, { "Value": "CurrAddrAgeNewest" }, { "Value": "CurrAddrLenOfRes" }, { "Value": "CurrAddrDwellType" }, { "Value": "CurrAddrStatus" }, { "Value": "CurrAddrActivePhoneList" }, { "Value": "CurrAddrMedianIncome" }, { "Value": "CurrAddrMedianValue" }, { "Value": "CurrAddrMurderIndex" }, { "Value": "CurrAddrCarTheftIndex" }, { "Value": "CurrAddrBurglaryIndex" }, { "Value": "CurrAddrCrimeIndex" }, { "Value": "PrevAddrAgeOldest" }, { "Value": "PrevAddrAgeNewest" }, { "Value": "PrevAddrLenOfRes" }, { "Value": "PrevAddrDwellType" }, { "Value": "PrevAddrStatus" }, { "Value": "PrevAddrOccupantOwned" }, { "Value": "PrevAddrMedianIncome" }, { "Value": "PrevAddrMedianValue" }, { "Value": "PrevAddrMurderIndex" }, { "Value": "PrevAddrCarTheftIndex" }, { "Value": "PrevAddrBurglaryIndex" }, { "Value": "PrevAddrCrimeIndex" } ] } ] } ] }');
+            return retVal;
+        }
+    }
+
     public class ForteCalloutMock implements HttpCalloutMock {
         public HTTPResponse respond(HTTPRequest req) {
             HTTPResponse retVal = new HTTPResponse();

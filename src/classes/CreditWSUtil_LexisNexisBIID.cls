@@ -49,9 +49,9 @@ public class CreditWSUtil_LexisNexisBIID{
     }
 
     public class cls_DateOfBirth {
-        public Integer Year;	//1947
-        public Integer Month;	//8
-        public Integer Day;	//24
+        public String Year;	//1966
+        public String Month;	//9
+        public String Day;	//5
     }
 
     public class cls_Phones {
