@@ -47,7 +47,7 @@
             $Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
             $Label.BOCA_Invalid_Tax_ID = '{!JSENCODE($Label.BOCA_Invalid_Tax_ID)}';
             $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
-            $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}required="true"';
+            $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
 
             function addProduct() {
                 $j("[id$=otherServices] option:selected").remove().appendTo("[id$=selectedOtherServices]");
