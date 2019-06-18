@@ -15,7 +15,7 @@ public class UtilityTestLoader {
         postExecute();
     }
 
-    //separate method in case we want to do this with post sandbox refresh too
+    // separate method in case we want to do this with post sandbox refresh too
     public static void doTheLoad(){
         Database.executeBatch(new DataLoaderBatch());
     }
@@ -33,12 +33,12 @@ public class UtilityTestLoader {
     }
 
     //add settings
-    private static void preExecute(){
+    public static void preExecute(){
         setAutomation(true);
     }
 
     //modify settings
-    private static void postExecute(){
+    public static void postExecute(){
         setAutomation(false);
         setLDSRole();
     }
