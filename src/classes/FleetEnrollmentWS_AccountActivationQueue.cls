@@ -1,5 +1,6 @@
 /**
  * Created by dgilbert on 9/20/2018.
+ * Revision History: IADJUDICAT-1199 order by lastmodifieddate
  */
 // TODO - The robots are coming.
 @RestResource(urlMapping='/FleetEnrollmentWS/AccountActivationQueue/*')
@@ -139,8 +140,8 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
                 gResponse.message = 'Case Queue successfully retrieved!';
 
                 gResponse.availableImplementationCases = new List<Case>();
-
-                for(Case fleetEnrollmentCase : [SELECT Id, Siebel_Oppty__c, Fleet_Enrollment__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c != null ORDER BY CreatedDate DESC LIMIT 10]) {
+                //1199 order by lastmodifieddate
+                for(Case fleetEnrollmentCase : [SELECT Id, CaseNumber, Siebel_Oppty__c, Fleet_Enrollment__c FROM Case WHERE Status = 'New' and OwnerId = :activationQueueId and Siebel_Oppty__c != null and Fleet_Enrollment__c != null ORDER BY LastModifiedDate ASC LIMIT 10]) {
                     gResponse.availableImplementationCases.add(fleetEnrollmentCase);
                 }
 

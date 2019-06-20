@@ -350,7 +350,7 @@ function validateBOCA() {
   	}
     else {
 
-        if(!($j('[id$=acknowledgeDisclaimer]').prop('checked'))) {
+        if(!($j('[id$=acknowledgeDisclaimer]').prop('checked')) && $j('[id$=userSessionId]') == null) {
            	$j('[id$=disclaimerErrors]').css('display', 'block');   
             
             $j('[id$=authorizedSignerBody]').addClass('erroredSection');

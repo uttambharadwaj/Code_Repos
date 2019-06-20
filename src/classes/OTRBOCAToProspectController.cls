@@ -1,48 +1,44 @@
+/*
+Description:        controller for otrbocatoprospect
+Test Classes:       OTRBOCAToProspectTest
+Last Coverage:      98%
+Revision History:   4/12/2019 Jason Arbegast IADJUDICAT-1085 limit program options to those related to the partner
+TODO:               move logerror to utility method; can be used across classes and easier to test the individual method that way
+                    move email sections to utility/class method; similar code is in place across methods
+ */
 public class OTRBOCAToProspectController {
 
     public String applicationId {
         get {
-            if (applicationId == null) {
+            if (applicationId == null)
                 return ApexPages.CurrentPage().getParameters().get('applicationId');
-            } else {
-                return applicationId;
-            }
+            return applicationId;
         }
         set;
     }
 
     public String bocaToProspectId {
         get {
-            if (bocaToProspectId == null) {
+            if (bocaToProspectId == null)
                 return ApexPages.CurrentPage().getParameters().get('bocaToProspectId');
-            } else {
-                return bocaToProspectId;
-            }
+            return bocaToProspectId;
         }
         set;
     }
 
     public String bocaToProspectConfirm {
         get {
-            if (bocaToProspectConfirm == null) {
+            if (bocaToProspectConfirm == null)
                 return ApexPages.CurrentPage().getParameters().get('bocaToProspectConfirm');
-            } else {
-                return bocaToProspectConfirm;
-            }
+            return bocaToProspectConfirm;
         }
         set;
     }
 
     public Boolean resend {
         get {
-            if (!String.isEmpty(ApexPages.CurrentPage().getParameters().get('resend'))) {
-                try {
-                    return Boolean.valueOf(ApexPages.CurrentPage().getParameters().get('resend'));
-                } catch (Exception e) {
-                    //
-                }
-            }
-
+            if (!String.isEmpty(ApexPages.CurrentPage().getParameters().get('resend')))
+                return Boolean.valueOf(ApexPages.CurrentPage().getParameters().get('resend'));
             return false;
         }
     }
@@ -61,9 +57,8 @@ public class OTRBOCAToProspectController {
 
     public String salesRepName {
         get {
-            if (salesRep != null) {
+            if (salesRep != null)
                 return salesRep.Name;
-            }
             return null;
         }
         set;
@@ -81,11 +76,38 @@ public class OTRBOCAToProspectController {
 
     public List<SelectOption> availablePrograms {
         get {
-            List<SelectOption> availablePrograms = new List<SelectOption>();
 
+            List<SelectOption> availablePrograms = new List<SelectOption>();
             availablePrograms.add(new SelectOption('', '-- Choose One--'));
-            for (Program__c program : [SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = 'OTR' and Publish_BOCA__c = true ORDER BY Name ASC]) {
-                availablePrograms.add(new SelectOption(program.Id, program.Name));
+
+            //IADJUDICAT-1085 restrict partners to only their programs
+            Id partnerId = null;
+            /* uncomment this block when campaign program is in use. it will limit the programs displayed for inside sales reps.
+            //get partner from the program from the oppty
+            Campaign_Program__c cp = [SELECT Program__r.Partner__c FROM Campaign_Program__c WHERE Id = :opportunity.Campaign_Program__c LIMIT 1];
+            if(cp != null)
+                partnerId = cp.Program__r.Partner__c;
+            */
+
+            //get user info
+            Id uid = UserInfo.getUserId();
+
+            //from user get contact then account then program then partner
+            User u = [SELECT  profile.UserLicense.name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
+            Boolean isPartner = (u.profile.UserLicense.name == 'Partner Community') ? true : false;
+            if(isPartner)
+                partnerId = u.Contact.Account.Program__r.Partner__c;
+
+            //assemble the query for possible programs.
+            String myQuery = 'SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = \'OTR\' and Publish_BOCA__c = true';
+            if(isPartner || (!isPartner && partnerId != null))
+                myQuery += ' AND Partner__c = :partnerId';
+            myQuery += ' ORDER BY Name ASC';
+            //if we have inside sales rep, or we have a partner AND a partnerid, add programs to drop down. if partner user but no partnerid, don't show anything
+            if(!isPartner || (isPartner && partnerId != null)){
+                for (Program__c program : database.query(myQuery)) {
+                    availablePrograms.add(new SelectOption(program.Id, program.Name));
+                }
             }
 
             return availablePrograms;
@@ -99,18 +121,17 @@ public class OTRBOCAToProspectController {
             List<SelectOption> availableOffers = new List<SelectOption>();
 
             availableOffers.add(new SelectOption('', '-- Choose One --'));
-            for (OnlineApplicationOffer__c offer : [SELECT Id, Name FROM OnlineApplicationOffer__c WHERE Program__c = :selectedProgram ORDER BY Name ASC]) {
-                availableOffers.add(new SelectOption(offer.Id, offer.Name));
+            if(selectedProgram != null){
+                for (OnlineApplicationOffer__c offer : [SELECT Id, Name FROM OnlineApplicationOffer__c WHERE Program__c = :selectedProgram ORDER BY Name ASC]) {
+                    availableOffers.add(new SelectOption(offer.Id, offer.Name));
+                }
             }
-
             return availableOffers;
         }
     }
 
     public Map<String, String> associatedOffers {
-
         get {
-
             return null;
         }
 
@@ -122,9 +143,8 @@ public class OTRBOCAToProspectController {
 
     public Boolean hasAdditionalContacts {
         get {
-            if (additionalContacts != null && additionalContacts.size() > 0) {
+            if (additionalContacts != null && additionalContacts.size() > 0)
                 return true;
-            }
             return false;
         }
     }
@@ -132,7 +152,6 @@ public class OTRBOCAToProspectController {
     public String bocaToProspectTemplateId {
         get {
             BOCA_To_Prospect_Settings__c bocaToProspectSettings = BOCA_To_Prospect_Settings__c.getOrgDefaults();
-
             return bocaToProspectSettings.OTR_Email_Template_ID__c;
         }
     }
@@ -140,7 +159,6 @@ public class OTRBOCAToProspectController {
     public String bocaToProspectResendTemplateId {
         get {
             BOCA_To_Prospect_Settings__c bocaToProspectSettings = BOCA_To_Prospect_Settings__c.getOrgDefaults();
-
             return bocaToProspectSettings.OTR_Resend_Template_ID__c;
         }
     }
@@ -154,11 +172,9 @@ public class OTRBOCAToProspectController {
 
     public String opportunityId {
         get {
-            if (opportunityId == null) {
+            if (opportunityId == null)
                 return ApexPages.CurrentPage().getParameters().get('id');
-            } else {
-                return opportunityId;
-            }
+            return opportunityId;
         }
         set;
     }
@@ -173,12 +189,6 @@ public class OTRBOCAToProspectController {
             urlVal = urlValExtra[0];
             urlVal = EncodingUtil.urlDecode(urlVal, 'UTF-8');
             return 'https://' + hostVal + urlVal;
-        }
-    }
-
-    private String applicationViewState {
-        get {
-            return Apexpages.currentPage().getUrl();
         }
     }
 
@@ -223,7 +233,7 @@ public class OTRBOCAToProspectController {
                         selectedProgram = onlineApplications[0].Program__c;
                         selectedOffer = onlineApplications[0].Offer__c;
                     }
-                    
+
                     customMessage = 'Please click the link below to correct your application and re-submit.';
 
                 }
@@ -393,7 +403,7 @@ public class OTRBOCAToProspectController {
                 bocaToProspect.Sent__c = Date.today();
                 bocaToProspect.Custom_Message__c = customMessage;
                 bocaToProspect.Online_Application_Offer__c = selectedOffer;
-                
+
                 System.debug('TEMP boca to prospect online app: ' + onlineApplication.Id);
 
                 insert bocaToProspect;
@@ -449,19 +459,14 @@ public class OTRBOCAToProspectController {
                     }
                 }
 
-                if (!Test.isRunningTest() && mail != null) {
-                    List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{
-                            mail
-                    });
-                    if (!results.get(0).isSuccess()) {
-                        throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
-                    } else {
-                        redirect = Page.BOCAToProspect;
-                        redirect.getParameters().put('bocaToProspectConfirm', 'true');
-                        redirect.setRedirect(true);
-                        return redirect;
-                    }
-                }
+                List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}, !Test.isRunningTest());
+                if((!results.get(0).isSuccess() && !Test.isRunningTest()) || (Test.isRunningTest() && Limits.getEmailInvocations()<1)) throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
+
+                redirect = Page.BOCAToProspect;
+                redirect.getParameters().put('bocaToProspectConfirm', 'true');
+                redirect.setRedirect(true);
+                return redirect;
+
             } else {
                 throw new bocaToProspectException('General Fault');
             }
@@ -477,8 +482,6 @@ public class OTRBOCAToProspectController {
             return redirect;
 
         }
-
-        return redirect;
 
     }
 
@@ -505,7 +508,7 @@ public class OTRBOCAToProspectController {
 
                 // Set the application URL, for ease of picking up in the e-mail
                 //if (onlineApplications[0].External_Application_URL__c == null) {
-                    onlineApplications[0].External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + onlineApplications[0].Program__r.Form_Template__c + '?pgm=' + onlineApplications[0].Program__r.Brand_Short_Name__c + '&offer=' + onlineApplications[0].Offer__c + '&customer=' + onlineApplications[0].Id + '&key=' + onlineApplications[0].Application_Key__c;
+                onlineApplications[0].External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + onlineApplications[0].Program__r.Form_Template__c + '?pgm=' + onlineApplications[0].Program__r.Brand_Short_Name__c + '&offer=' + onlineApplications[0].Offer__c + '&customer=' + onlineApplications[0].Id + '&key=' + onlineApplications[0].Application_Key__c;
                 //}
 
                 // Kick the stage back to "Application/App-Incomplete"
@@ -517,6 +520,7 @@ public class OTRBOCAToProspectController {
                 if (onlineApplications[0].Opportunity__r.Beneficial_Owner_Entity__c != null) {
 
                     // Clone Beneficial Owner Entity
+                    system.debug(onlineApplications[0]);
                     Id newBeneficialOwnerRecord = BeneficialOwnerUtilities.deepCloneBORecord(onlineApplications[0].Opportunity__r.Beneficial_Owner_Entity__c);
 
                     if (newBeneficialOwnerRecord != null) {
@@ -606,14 +610,8 @@ public class OTRBOCAToProspectController {
                 }
             }
 
-            if (!Test.isRunningTest()) {
-                List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{
-                        mail
-                });
-                if (!results.get(0).isSuccess()) {
-                    throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
-                }
-            }
+            List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}, !Test.isRunningTest());
+            if((!results.get(0).isSuccess() && !Test.isRunningTest()) || (Test.isRunningTest() && Limits.getEmailInvocations()<1)) throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
 
             Task reminderSentTask = new Task();
 
@@ -712,14 +710,8 @@ public class OTRBOCAToProspectController {
                 }
             }
 
-            if (!Test.isRunningTest()) {
-                List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{
-                        mail
-                });
-                if (!results.get(0).isSuccess()) {
-                    throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
-                }
-            }
+            List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}, !Test.isRunningTest());
+            if((!results.get(0).isSuccess() && !Test.isRunningTest()) || (Test.isRunningTest() && Limits.getEmailInvocations()<1)) throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
 
             Task reminderSentTask = new Task();
 

@@ -1,6 +1,6 @@
 /**
- * Created by dgilbert on 2019-03-29.
- */
+* Created by dgilbert on 2019-03-29.
+*/
 
 public with sharing class CreditWS_Giact {
 
@@ -26,11 +26,15 @@ public with sharing class CreditWS_Giact {
 
     public static GiactVerifyResponse giactVerify(GiactVerifyRequest giactInquiryRequest) {
 
+        CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = new CreditWS_Giact.GiactVerifyResponse();
+
         try {
 
             if (giactVerifySettings != null) {
 
                 CreditWSUtil_GiactVerify.GiactInquiryRequest giactRequest = new CreditWSUtil_GiactVerify.GiactInquiryRequest();
+
+                giactRequest.UniqueId = giactInquiryRequest.UniqueId;
 
                 // Checking Account Information
                 giactRequest.Check = new CreditWSUtil_GiactVerify.Check();
@@ -49,14 +53,18 @@ public with sharing class CreditWS_Giact {
                 giactRequest.Customer.State = giactInquiryRequest.State;
                 giactRequest.Customer.ZipCode = giactInquiryRequest.ZipCode;
                 giactRequest.Customer.Country = giactInquiryRequest.Country;
-                giactRequest.Customer.PhoneNumber = giactInquiryRequest.PhoneNumber;
-                giactRequest.Customer.TaxId = giactInquiryRequest.FederalTaxId;
+                if(!String.isBlank(giactInquiryRequest.PhoneNumber)) {
+                    giactRequest.Customer.PhoneNumber = giactInquiryRequest.PhoneNumber.replaceAll('[^0-9]', '');
+                }
+                if(!String.isBlank(giactInquiryRequest.FederalTaxId)) {
+                    giactRequest.Customer.TaxId = giactInquiryRequest.FederalTaxId.replaceAll('[^0-9]', '');
+                }
                 giactRequest.Customer.DateOfBirth = giactInquiryRequest.DateOfBirth;
                 giactRequest.Customer.EmailAddress = giactInquiryRequest.EmailAddress;
                 giactRequest.Customer.CurrentIpAddress = giactInquiryRequest.IpAddress;
 
                 // General Settings
-                giactRequest.GVerifyEnabled = true;
+                giactRequest.GAuthenticateEnabled = true;
 
                 System.debug('### GIACT Verify Request: ' + giactRequest);
 
@@ -68,37 +76,60 @@ public with sharing class CreditWS_Giact {
                 httpRequest.setHeader('Content-Type', 'application/json');
                 httpRequest.setMethod('POST');
 
-                httpRequest.setBody(JSON.serialize(giactRequest));
+                httpRequest.setBody(JSON.serialize(giactRequest, true));
+
+                System.debug(JSON.serialize(giactRequest, true));
 
                 Http http = new Http();
 
                 HTTPResponse httpResponse = http.send(httpRequest);
 
-                CreditWSUtil_GiactVerify.GiactInquiryResponse giactResponse = (CreditWSUtil_GiactVerify.GiactInquiryResponse) JSON.deserialize(httpResponse.getBody(), CreditWSUtil_GiactVerify.GiactInquiryResponse.class);
+                if(CreditWS_Giact.isGIACTJSONValid(httpResponse.getBody())) {
 
-                System.debug('### GIACT Verify Response: ' + giactResponse);
+                    CreditWSUtil_GiactVerify.GiactInquiryResponse giactResponse = (CreditWSUtil_GiactVerify.GiactInquiryResponse) JSON.deserialize(httpResponse.getBody(), CreditWSUtil_GiactVerify.GiactInquiryResponse.class);
 
-                if(giactResponse != null) {
+                    System.debug('### GIACT Verify Response: ' + giactResponse);
 
-                    CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = new CreditWS_Giact.GiactVerifyResponse();
+                    if(giactResponse != null) {
 
-                    giactVerifyResponse.GiactErrorMessage = giactResponse.ErrorMessage;
-                    giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
-                    giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
-                    giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
-                    giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+                        if(String.isBlank(giactResponse.ErrorMessage)) {
 
-                    return giactVerifyResponse;
+                            giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
+                            giactVerifyResponse.VerificationResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
+                            giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
+                            giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
+                            giactVerifyResponse.AccountResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+                            giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
 
+                        }
+                        else {
+
+                            if(giactResponse != null && !String.isBlank(giactResponse.ErrorMessage)) {
+                                giactVerifyResponse.GiactErrorMessage = (giactResponse.ErrorMessage).abbreviate(255);
+                            }
+
+                        }
+
+                        return giactVerifyResponse;
+
+                    }
+
+                }
+                else {
+                    giactVerifyResponse.GiactErrorMessage = (httpResponse.getBody()).abbreviate(255);
                 }
 
             }
 
         } catch (Exception e) {
+
             System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
+
+            giactVerifyResponse.GiactErrorMessage = (e.getMessage() + ' ' + e.getStackTraceString()).abbreviate(255);
+
         }
 
-        return null;
+        return giactVerifyResponse;
 
     }
 
@@ -121,8 +152,28 @@ public with sharing class CreditWS_Giact {
 
     }
 
+    public static String getGiactResponseCodeName(String service, String field, String responseCode) {
+
+        try {
+
+            List<GIACT_Verify_Response_Codes__mdt> giactVerifyResponseCodes = [SELECT Id, Response_Field_Friendly_Value__c FROM GIACT_Verify_Response_Codes__mdt WHERE GIACT_Service__c =: service and Response_Field_Name__c =: field and Response_Field_Value__c =: responseCode LIMIT 1];
+
+            if(giactVerifyResponseCodes.size() > 0) {
+                return giactVerifyResponseCodes[0].Response_Field_Friendly_Value__c;
+            }
+
+        }
+        catch(Exception e) {
+            System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
+        }
+
+        return null;
+
+    }
+
     public class GiactVerifyRequest {
 
+        public String UniqueId { get; set; }
         public String RoutingNumber { get; set; }
         public String AccountNumber { get; set; }
         public String FirstName { get; set; }
@@ -149,13 +200,32 @@ public with sharing class CreditWS_Giact {
     public class GiactVerifyResponse {
 
         public String AccountResponseCode { get; set; }
+        public String AccountResponseCodeName { get; set; }
         public String AccountResponseMessage { get; set; }
         public String VerificationResponseCode { get; set; }
+        public String VerificationResponseCodeName { get; set; }
         public String VerificationResponseMessage { get; set; }
         public String GiactErrorMessage { get; set; }
 
         public GiactVerifyResponse() {
 
+        }
+
+    }
+
+    // GIACT returns content type of "application/json", but with no JSON body for
+    // the errors - this is to check before we really parse it out.
+    public static Boolean isGIACTJSONValid(String jsonString){
+
+        try {
+
+            CreditWSUtil_GiactVerify.GiactInquiryResponse giactResponse = (CreditWSUtil_GiactVerify.GiactInquiryResponse) JSON.deserialize(jsonString, CreditWSUtil_GiactVerify.GiactInquiryResponse.class);
+
+            return true;
+
+        } catch(Exception e) {
+
+            return false;
         }
 
     }
