@@ -1,6 +1,11 @@
 @isTest
 private class UCaseTest {
 
+    @testSetup
+    static void setup(){
+        //UtilityTestLoader.setAutomation(false);
+    }
+
     @isTest
     static void testShellEntitlementCase(){
         Account auxAccount = new Account();
