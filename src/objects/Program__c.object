@@ -72,33 +72,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Allow_Monthly_Accounting_Fee_Waiver__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Allow Monthly Accounting Fee Waiver</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Allow_Monthly_Activity_Fee_Waiver__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Allow Monthly Activity Fee Waiver</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Allow_Partner_Billed_Overnight_Cards__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Allow Partner Billed Overnight Cards</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Always_Require_PG__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Always require PG for this Program.</description>
@@ -168,9 +141,9 @@
                     <label>Fuel and Auto</label>
                 </value>
                 <value>
-                    <fullName>Fuel and Oil</fullName>
+                    <fullName>Fuel and Oil &amp; Fluids</fullName>
                     <default>false</default>
-                    <label>Fuel and Oil</label>
+                    <label>Fuel and Oil &amp; Fluids</label>
                 </value>
                 <value>
                     <fullName>Fuel Only</fullName>
@@ -183,61 +156,13 @@
                     <label>No Restrictions</label>
                 </value>
                 <value>
-                    <fullName>Fuel and Oil &amp; Fluids</fullName>
+                    <fullName>Fuel and Oil</fullName>
                     <default>false</default>
-                    <label>Fuel and Oil &amp; Fluids</label>
+                    <label>Fuel and Oil</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
         <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Available_Card_Shipping_Options__c</fullName>
-        <externalId>false</externalId>
-        <label>Available Card Shipping Options</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Overnight</fullName>
-                    <default>false</default>
-                    <label>Overnight</label>
-                </value>
-                <value>
-                    <fullName>2nd Day</fullName>
-                    <default>false</default>
-                    <label>2nd Day</label>
-                </value>
-                <value>
-                    <fullName>Standard</fullName>
-                    <default>false</default>
-                    <label>Standard</label>
-                </value>
-                <value>
-                    <fullName>2nd Day Air</fullName>
-                    <default>false</default>
-                    <label>2nd Day Air</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-        <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Avg_Revenue_per_Card_Monthly__c</fullName>
-        <description>Used for the OTR PSR Report</description>
-        <externalId>false</externalId>
-        <label>Avg Revenue per Card - Monthly</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Currency</type>
     </fields>
     <fields>
         <fullName>BOCA_Application_Status_URL__c</fullName>
@@ -1037,25 +962,6 @@
         </valueSet>
     </fields>
     <fields>
-        <fullName>Cards_per_1_Requested__c</fullName>
-        <description>Used for specific programs who want to send additional cards to the customer.</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Used to order additional cards for specific programs
-
-Example:
-Number of Cards (Online App): 5 | 
-# of Cards per 1 Requested: 2 | 
-Number of Cards sent to LLC = 10</inlineHelpText>
-        <label># of Cards per 1 Requested</label>
-        <precision>1</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Client_Id__c</fullName>
         <externalId>false</externalId>
         <label>Client Id</label>
@@ -1595,67 +1501,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
-        <fullName>Default_Hierarchy_Level__c</fullName>
-        <description>Default Hierarchy Level used for IN-RGY</description>
-        <externalId>false</externalId>
-        <label>Default Hierarchy Level</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>L1</fullName>
-                    <default>false</default>
-                    <label>L1</label>
-                </value>
-                <value>
-                    <fullName>L2</fullName>
-                    <default>false</default>
-                    <label>L2</label>
-                </value>
-                <value>
-                    <fullName>L3</fullName>
-                    <default>false</default>
-                    <label>L3</label>
-                </value>
-                <value>
-                    <fullName>L4</fullName>
-                    <default>false</default>
-                    <label>L4</label>
-                </value>
-                <value>
-                    <fullName>L5</fullName>
-                    <default>false</default>
-                    <label>L5</label>
-                </value>
-                <value>
-                    <fullName>L6</fullName>
-                    <default>false</default>
-                    <label>L6</label>
-                </value>
-                <value>
-                    <fullName>L7</fullName>
-                    <default>false</default>
-                    <label>L7</label>
-                </value>
-                <value>
-                    <fullName>L8</fullName>
-                    <default>false</default>
-                    <label>L8</label>
-                </value>
-                <value>
-                    <fullName>L9</fullName>
-                    <default>false</default>
-                    <label>L9</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Disable_Instant_Decisioning__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -1700,119 +1545,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Fleet_Available_Billing_Cycles__c</fullName>
-        <externalId>false</externalId>
-        <label>Available Billing Cycles</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Cycle 1</fullName>
-                    <default>false</default>
-                    <label>Cycle 1</label>
-                </value>
-                <value>
-                    <fullName>Cycle 2</fullName>
-                    <default>false</default>
-                    <label>Cycle 2</label>
-                </value>
-                <value>
-                    <fullName>Cycle 3</fullName>
-                    <default>false</default>
-                    <label>Cycle 3</label>
-                </value>
-                <value>
-                    <fullName>Cycle 4</fullName>
-                    <default>false</default>
-                    <label>Cycle 4</label>
-                </value>
-                <value>
-                    <fullName>Cycle 6</fullName>
-                    <default>false</default>
-                    <label>Cycle 6</label>
-                </value>
-                <value>
-                    <fullName>Cycle 14</fullName>
-                    <default>false</default>
-                    <label>Cycle 14</label>
-                </value>
-                <value>
-                    <fullName>Cycle 16</fullName>
-                    <default>false</default>
-                    <label>Cycle 16</label>
-                </value>
-                <value>
-                    <fullName>Cycle 17</fullName>
-                    <default>false</default>
-                    <label>Cycle 17</label>
-                </value>
-                <value>
-                    <fullName>Cycle 18</fullName>
-                    <default>false</default>
-                    <label>Cycle 18</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-        <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Fleet_Available_Card_Types__c</fullName>
-        <externalId>false</externalId>
-        <label>Available Card Types</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Driver</fullName>
-                    <default>false</default>
-                    <label>Driver</label>
-                </value>
-                <value>
-                    <fullName>Vehicle</fullName>
-                    <default>false</default>
-                    <label>Vehicle</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-        <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Fleet_Available_Usage_Types__c</fullName>
-        <externalId>false</externalId>
-        <label>Available Usage Types</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>1:1</fullName>
-                    <default>false</default>
-                    <label>1:1</label>
-                </value>
-                <value>
-                    <fullName>1:M</fullName>
-                    <default>false</default>
-                    <label>1:M</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-        <visibleLines>4</visibleLines>
-    </fields>
-    <fields>
         <fullName>Fleet_Data_Capture_Email_Template__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -1849,66 +1581,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>3-5</fullName>
                     <default>false</default>
                     <label>3-5</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Fleet_Default_Billing_Cycle__c</fullName>
-        <externalId>false</externalId>
-        <label>Default Billing Cycle</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Cycle 1</fullName>
-                    <default>false</default>
-                    <label>Cycle 1</label>
-                </value>
-                <value>
-                    <fullName>Cycle 2</fullName>
-                    <default>false</default>
-                    <label>Cycle 2</label>
-                </value>
-                <value>
-                    <fullName>Cycle 3</fullName>
-                    <default>false</default>
-                    <label>Cycle 3</label>
-                </value>
-                <value>
-                    <fullName>Cycle 4</fullName>
-                    <default>false</default>
-                    <label>Cycle 4</label>
-                </value>
-                <value>
-                    <fullName>Cycle 6</fullName>
-                    <default>false</default>
-                    <label>Cycle 6</label>
-                </value>
-                <value>
-                    <fullName>Cycle 14</fullName>
-                    <default>false</default>
-                    <label>Cycle 14</label>
-                </value>
-                <value>
-                    <fullName>Cycle 16</fullName>
-                    <default>false</default>
-                    <label>Cycle 16</label>
-                </value>
-                <value>
-                    <fullName>Cycle 17</fullName>
-                    <default>false</default>
-                    <label>Cycle 17</label>
-                </value>
-                <value>
-                    <fullName>Cycle 18</fullName>
-                    <default>false</default>
-                    <label>Cycle 18</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -2011,17 +1683,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Inside_Sales_Email__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Inside Sales Email</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Email</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -2402,11 +2063,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <label>315732</label>
                 </value>
                 <value>
-                    <fullName>318789</fullName>
-                    <default>false</default>
-                    <label>318789</label>
-                </value>
-                <value>
                     <fullName>700000</fullName>
                     <default>false</default>
                     <label>700000</label>
@@ -2781,18 +2437,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
-        <fullName>Program_Parent_Account_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Program Parent Account Number</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Program_Pricing__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -2802,18 +2446,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>Program_Ultimate_Parent_Account_Number__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>Program Ultimate Parent Account Number</label>
-        <length>20</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Publish_BOCA__c</fullName>
@@ -3065,15 +2697,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
-        <fullName>Station_Card_Available__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>Station Card Available</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>T_C__c</fullName>
         <description>Generally static T&amp;C doc for bottom of BOCA, will default to the WEX BOCA but FlexCard should use the BOCA_TC</description>
         <externalId>false</externalId>
@@ -3135,21 +2758,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>BOCA_TNC_ShellPlus</fullName>
                     <default>false</default>
                     <label>BOCA_TNC_ShellPlus</label>
-                </value>
-                <value>
-                    <fullName>BOCA_TNC_WEX_Univ</fullName>
-                    <default>false</default>
-                    <label>BOCA_TNC_WEX_Univ</label>
-                </value>
-                <value>
-                    <fullName>BOCA_TNC_FEE_699_ALL</fullName>
-                    <default>false</default>
-                    <label>BOCA_TNC_FEE_699_ALL</label>
-                </value>
-                <value>
-                    <fullName>BOCA_TNC_FEE_799</fullName>
-                    <default>false</default>
-                    <label>BOCA_TNC_FEE_799</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3246,45 +2854,9 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Upload Pricing Data Flag</label>
-        <trackHistory>true</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>WEX_Associations__c</fullName>
-        <externalId>false</externalId>
-        <label>WEX Associations</label>
-        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Association 1</fullName>
-                    <default>false</default>
-                    <label>Association 1</label>
-                </value>
-                <value>
-                    <fullName>Association 2</fullName>
-                    <default>false</default>
-                    <label>Association 2</label>
-                </value>
-                <value>
-                    <fullName>Association 3</fullName>
-                    <default>false</default>
-                    <label>Association 3</label>
-                </value>
-                <value>
-                    <fullName>BizUnite</fullName>
-                    <default>false</default>
-                    <label>BizUnite</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-        <visibleLines>4</visibleLines>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>WEX_Platform__c</fullName>
@@ -3299,6 +2871,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>CoreCard</fullName>
+                    <default>false</default>
+                    <label>CoreCard</label>
+                </value>
+                <value>
                     <fullName>LLC</fullName>
                     <default>false</default>
                     <label>LLC</label>
@@ -3312,16 +2889,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>Millennium</fullName>
                     <default>false</default>
                     <label>Millennium</label>
-                </value>
-                <value>
-                    <fullName>FTS</fullName>
-                    <default>false</default>
-                    <label>FTS</label>
-                </value>
-                <value>
-                    <fullName>CoreCard</fullName>
-                    <default>false</default>
-                    <label>CoreCard</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3339,7 +2906,9 @@ Number of Cards sent to LLC = 10</inlineHelpText>
     <label>Program</label>
     <listViews>
         <fullName>All_w_Created_Date</fullName>
+        <columns>Siebel_Program_Row_Id__c</columns>
         <columns>Form_Template__c</columns>
+        <columns>T_C__c</columns>
         <columns>NAME</columns>
         <columns>Personal_Guarantee_URL__c</columns>
         <columns>Siebel_L1_Account_Number__c</columns>
@@ -3351,7 +2920,13 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <columns>Email_From_Name__c</columns>
         <columns>RECORDTYPE</columns>
         <filterScope>Everything</filterScope>
+        <filters>
+            <field>UPDATEDBY_USER</field>
+            <operation>equals</operation>
+            <value>Mark Bickford</value>
+        </filters>
         <label>All w Created Date</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>EMAP_Programs</fullName>
@@ -3383,56 +2958,25 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <label>FlexCard Programs</label>
     </listViews>
     <listViews>
-        <fullName>Published_OTR_BOCA_Programs</fullName>
+        <fullName>Published_BOCA_Programs</fullName>
         <columns>NAME</columns>
         <columns>Brand_Short_Name__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <columns>BOCA_Type__c</columns>
         <columns>Form_Template__c</columns>
-        <columns>Consumer_Application_Enabled__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Publish_BOCA__c</field>
             <operation>equals</operation>
             <value>1</value>
         </filters>
-        <filters>
-            <field>BOCA_Type__c</field>
-            <operation>equals</operation>
-            <value>OTR</value>
-        </filters>
-        <label>Published OTR BOCA Programs</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
-        <fullName>Published_OTR_BOCA_Programs1</fullName>
-        <columns>NAME</columns>
-        <columns>Brand_Short_Name__c</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>Card_Shipping_Method__c</columns>
-        <columns>BOCA_Type__c</columns>
-        <columns>Form_Template__c</columns>
-        <columns>Consumer_Application_Enabled__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Publish_BOCA__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <filters>
-            <field>BOCA_Type__c</field>
-            <operation>equals</operation>
-            <value>OTR</value>
-        </filters>
-        <label>Published OTR BOCA Programs</label>
+        <label>Published BOCA Programs</label>
         <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Sinclair_Programs</fullName>
         <columns>NAME</columns>
         <columns>Always_Require_PG__c</columns>
-        <columns>Disable_Instant_Decisioning__c</columns>
-        <columns>Siebel_L1_Account_Number__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>URL_Generator_Group__c</field>
@@ -3446,9 +2990,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </filters>
         <label>Sinclair Programs</label>
         <language>en_US</language>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <nameField>
         <encryptionScheme>None</encryptionScheme>
@@ -3491,25 +3032,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>No Restrictions</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Available_Card_Shipping_Options__c</picklist>
-            <values>
-                <fullName>2nd Day</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2nd Day Air</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Overnight</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Standard</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4206,106 +3728,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Default_Hierarchy_Level__c</picklist>
-            <values>
-                <fullName>L1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Billing_Cycles__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Card_Types__c</picklist>
-            <values>
-                <fullName>Driver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vehicle</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Usage_Types__c</picklist>
-            <values>
-                <fullName>1%3A1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1%3AM</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Fleet_Data_Capture_Form_Delivery__c</picklist>
             <values>
                 <fullName>2-3</fullName>
@@ -4317,45 +3739,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>5-7</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Default_Billing_Cycle__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4596,10 +3979,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>315732</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>318789</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -4930,10 +4309,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>BOCA_TNC_WEX_Univ</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CPBOCATNC</fullName>
                 <default>false</default>
             </values>
@@ -4985,28 +4360,13 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>WEX_Associations__c</picklist>
-            <values>
-                <fullName>Association 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BizUnite</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>WEX_Platform__c</picklist>
             <values>
                 <fullName>Classic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CoreCard</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5056,25 +4416,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Available_Card_Shipping_Options__c</picklist>
-            <values>
-                <fullName>2nd Day</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2nd Day Air</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Overnight</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Standard</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>BOCA_Disclaimer__c</picklist>
             <values>
                 <fullName>BOCA_Default_Disclaimer</fullName>
@@ -5775,106 +5116,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Default_Hierarchy_Level__c</picklist>
-            <values>
-                <fullName>L1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Billing_Cycles__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Card_Types__c</picklist>
-            <values>
-                <fullName>Driver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vehicle</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Usage_Types__c</picklist>
-            <values>
-                <fullName>1%3A1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1%3AM</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Fleet_Data_Capture_Form_Delivery__c</picklist>
             <values>
                 <fullName>2-3</fullName>
@@ -5886,45 +5127,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>5-7</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Default_Billing_Cycle__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6169,10 +5371,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>315732</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>318789</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6491,14 +5689,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>BOCA_TNC_FEE_699_ALL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BOCA_TNC_FEE_799</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>BOCA_TNC_Shell</fullName>
                 <default>false</default>
             </values>
@@ -6508,10 +5698,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>BOCA_TNC_ShellSmallBusiness</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BOCA_TNC_WEX_Univ</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6566,28 +5752,13 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>WEX_Associations__c</picklist>
-            <values>
-                <fullName>Association 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BizUnite</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>WEX_Platform__c</picklist>
             <values>
                 <fullName>Classic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CoreCard</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6637,25 +5808,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Available_Card_Shipping_Options__c</picklist>
-            <values>
-                <fullName>2nd Day</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2nd Day Air</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Overnight</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Standard</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>BOCA_Disclaimer__c</picklist>
             <values>
                 <fullName>BOCA_GETT_Disclosure</fullName>
@@ -7348,148 +6500,9 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Default_Hierarchy_Level__c</picklist>
-            <values>
-                <fullName>L1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Billing_Cycles__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Card_Types__c</picklist>
-            <values>
-                <fullName>Driver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vehicle</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Usage_Types__c</picklist>
-            <values>
-                <fullName>1%3A1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1%3AM</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Fleet_Data_Capture_Form_Delivery__c</picklist>
             <values>
                 <fullName>3-5</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Default_Billing_Cycle__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7730,10 +6743,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>315732</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>318789</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8060,10 +7069,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>BOCA_TNC_WEX_Univ</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CPBOCATNC</fullName>
                 <default>false</default>
             </values>
@@ -8115,28 +7120,13 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>WEX_Associations__c</picklist>
-            <values>
-                <fullName>Association 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BizUnite</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>WEX_Platform__c</picklist>
             <values>
                 <fullName>Classic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CoreCard</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -8185,25 +7175,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Available_Card_Shipping_Options__c</picklist>
-            <values>
-                <fullName>2nd Day</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2nd Day Air</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Overnight</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Standard</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>BOCA_Disclaimer__c</picklist>
             <values>
                 <fullName>BOCA_Default_Disclaimer</fullName>
@@ -8904,106 +7875,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Default_Hierarchy_Level__c</picklist>
-            <values>
-                <fullName>L1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Billing_Cycles__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Card_Types__c</picklist>
-            <values>
-                <fullName>Driver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vehicle</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Usage_Types__c</picklist>
-            <values>
-                <fullName>1%3A1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1%3AM</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Fleet_Data_Capture_Form_Delivery__c</picklist>
             <values>
                 <fullName>2-3</fullName>
@@ -9015,45 +7886,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>5-7</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Default_Billing_Cycle__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9298,10 +8130,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>315732</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>318789</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9620,14 +8448,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>BOCA_TNC_FEE_699_ALL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BOCA_TNC_FEE_799</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>BOCA_TNC_Shell</fullName>
                 <default>false</default>
             </values>
@@ -9637,10 +8457,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>BOCA_TNC_ShellSmallBusiness</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BOCA_TNC_WEX_Univ</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9695,28 +8511,13 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>WEX_Associations__c</picklist>
-            <values>
-                <fullName>Association 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BizUnite</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>WEX_Platform__c</picklist>
             <values>
                 <fullName>Classic</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CoreCard</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9765,25 +8566,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Available_Card_Shipping_Options__c</picklist>
-            <values>
-                <fullName>2nd Day</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>2nd Day Air</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Overnight</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Standard</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>BOCA_Disclaimer__c</picklist>
             <values>
                 <fullName>BOCA_Default_Disclaimer</fullName>
@@ -10484,106 +9266,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Default_Hierarchy_Level__c</picklist>
-            <values>
-                <fullName>L1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L5</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L6</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L7</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L8</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>L9</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Billing_Cycles__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Card_Types__c</picklist>
-            <values>
-                <fullName>Driver</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Vehicle</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Available_Usage_Types__c</picklist>
-            <values>
-                <fullName>1%3A1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>1%3AM</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Fleet_Data_Capture_Form_Delivery__c</picklist>
             <values>
                 <fullName>2-3</fullName>
@@ -10595,45 +9277,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>5-7</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Fleet_Default_Billing_Cycle__c</picklist>
-            <values>
-                <fullName>Cycle 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 14</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 16</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 17</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 18</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 4</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cycle 6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10878,10 +9521,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>315732</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>318789</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11212,10 +9851,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
-                <fullName>BOCA_TNC_WEX_Univ</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>CPBOCATNC</fullName>
                 <default>false</default>
             </values>
@@ -11267,25 +9902,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>WEX_Associations__c</picklist>
-            <values>
-                <fullName>Association 1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 2</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Association 3</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>BizUnite</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>WEX_Platform__c</picklist>
             <values>
                 <fullName>Classic</fullName>
@@ -11293,10 +9909,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>CoreCard</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>FTS</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11309,14 +9921,7 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts>
-        <customTabListAdditionalFields>WEX_Platform__c</customTabListAdditionalFields>
-        <lookupDialogsAdditionalFields>WEX_Platform__c</lookupDialogsAdditionalFields>
-        <lookupPhoneDialogsAdditionalFields>WEX_Platform__c</lookupPhoneDialogsAdditionalFields>
-        <searchFilterFields>NAME</searchFilterFields>
-        <searchFilterFields>WEX_Platform__c</searchFilterFields>
-        <searchResultsAdditionalFields>WEX_Platform__c</searchResultsAdditionalFields>
-    </searchLayouts>
+    <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
     <webLinks>
