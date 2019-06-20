@@ -1,6 +1,30 @@
 @isTest
 private class UCaseTest {
 
+    @isTest
+    static void testShellEntitlementCase(){
+        Account auxAccount = new Account();
+        auxAccount.Name = 'Test';
+        insert auxAccount;
+
+        Entitlement auxEntitlementWeek = new Entitlement();
+        auxEntitlementWeek.Name = 'Shell SLA';
+        auxEntitlementWeek.AccountId = auxAccount.ID;
+        insert auxEntitlementWeek;
+
+        Entitlement auxEntitlementWeekEnd = new Entitlement();
+        auxEntitlementWeekEnd.Name = 'Shell SLA Weekend';
+        auxEntitlementWeekEnd.AccountId = auxAccount.ID;
+        insert auxEntitlementWeekEnd;
+
+        Test.startTest();
+        Case auxCase = new Case();
+        //auxCase.SuppliedEmail = 'test@shell.com';
+        auxCase.Program_Email__c = 'Shellfleethelp@wexinc.com';
+        insert auxCase;
+        Test.stopTest();
+    }
+
     @isTest static void caseAccountDomainMatch() {
 
         VRTN__c vrtn = new VRTN__c();
