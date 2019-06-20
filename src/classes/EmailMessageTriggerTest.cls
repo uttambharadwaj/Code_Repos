@@ -11,6 +11,8 @@ private class EmailMessageTriggerTest {
     @TestSetup
     static void testSetup() {
 
+        UtilityTestLoader.setAutomation(false);
+    
         RecordType caseRecordType = [SELECT Id FROM RecordType WHERE (SobjectType = 'Case' AND RecordType.DeveloperName = 'Service_Operations')];
         RecordType acctRecordType = [SELECT Id FROM RecordType WHERE (SobjectType = 'Account' AND RecordType.DeveloperName = 'Service_Operations')];
         RecordType contactRecordType = [SELECT Id FROM RecordType WHERE (SobjectType = 'Contact' AND RecordType.DeveloperName = 'Service_Operations')];

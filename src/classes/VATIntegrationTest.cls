@@ -1,5 +1,10 @@
 @isTest
 private class VATIntegrationTest {
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testmethod void testVATIntegration() {
 
         Id rectypeid = [SELECT Id FROM RecordType WHERE sObjectType = 'Account' AND DeveloperName = 'WES_Accounts' LIMIT 1].Id;

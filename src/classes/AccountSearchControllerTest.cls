@@ -1,6 +1,11 @@
 @istest
 public class AccountSearchControllerTest {
 
+	@testSetup
+	static void setup(){
+	   UtilityTestLoader.setAutomation(false);
+	}
+
 	static testmethod void testController() {
 		Test.setMock(WebServiceMock.class, new MockResponseGenerator());
 

@@ -23,6 +23,11 @@
 private class Test_UOnline {
 
         
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     /*static testMethod void testSmallFleetLocal() {
     
         Test.startTest();

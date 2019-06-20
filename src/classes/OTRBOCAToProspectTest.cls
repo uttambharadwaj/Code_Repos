@@ -11,6 +11,8 @@ public class OTRBOCAToProspectTest {
     @testSetup
     static void setupData(){
 
+        UtilityTestLoader.setAutomation(false);
+    
         // Revisit this later..
         // 4/12/2019 NOW IS THE LATER
         // 4/15/2019 but still...revisit this later

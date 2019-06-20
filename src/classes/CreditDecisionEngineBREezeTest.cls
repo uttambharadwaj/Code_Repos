@@ -5,6 +5,11 @@
 @isTest
 public with sharing class CreditDecisionEngineBREezeTest {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void testBREezeAdvancedFraudRule_Phone() {
 
         TestUtils.enable_isRunningTest = true;
