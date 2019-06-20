@@ -3,7 +3,7 @@ private class UCaseTest {
 
     @testSetup
     static void setup(){
-        //UtilityTestLoader.setAutomation(false);
+        UtilityTestLoader.setAutomation(false);
     }
 
     @isTest
