@@ -5,8 +5,11 @@ Test Classes:       OTRBOCATest
 Last Coverage:      60%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
                     4/10/2019 Jason Arbegast IADJUDICAT-966 added break in a for loop
-                    5/6/2019 Michael Farrell IADJUDICAT-1157 populated tmSessionId variable
+                    05/06/2019  Michael Farrell     IADJUDICAT-1157     populated tmSessionId variable
+                    06/21/2019  Michael Farrell     PSOBACKLOG-226      added Offer__c lookup field to opportunity for CPQ
+
  */
+
 public class OTRBOCAController {
 
     public final static String APPLICATION_NAME = 'OTRBOCA';
@@ -368,7 +371,7 @@ public class OTRBOCAController {
                                     SELECT Id, Opportunity__r.Beneficial_Owner_Entity__c, AO_Address__c, AO_City__c, AO_Home_Phone_Number__c,
                                             AO_Mobile_Number__c, AO_State__c, AO_Title__c, AO_Zip_Code__c, AO_Country__c, Account__c, Business_Address_Line_2__c, Business_Description__c,
                                             Business_Street_Address__c, Cell_Number__c, City__c, Country__c, Contact_First_Name__c, Contact_Last_Name__c, Credit_Line_Requested__c,
-                                            DOT_Number__c, Day_of_Payment__c, Email__c, FF_Number__c, Fax_Number__c, Financial_Institution__c, Legal_Business_Name__c,
+                                            DOT_Number__c, Days_of_Payment__c, Email__c, FF_Number__c, Fax_Number__c, Financial_Institution__c, Legal_Business_Name__c,
                                             MC_FF_or_DOT__c, MC_Number__c, Name_of_Parent_Company__c, Number_Of_Drivers__c, Number_of_Cards_Needed__c, Number_of_Trucks__c,
                                             Payment_Method__c, Phone_Number__c, Promotional_Code__c, State__c, Trade_Name__c, Type_of_Business__c, Year_Established__c, Zip_code__c, Account_Type__c,
                                             Mobile_Number__c, Application_Key__c, External_Application_URL__c
@@ -777,6 +780,11 @@ public class OTRBOCAController {
             opportunity.Guarantor_Email__c = onlineApplication.AO_Work_Email__c;
             opportunity.Guarantor_Annual_Income__c = 0.00;
             opportunity.Guarantor_home_phone__c = onlineApplication.AO_Home_Phone_Number__c;
+
+            // PSOBACKLOG-226
+            if (onlineApplicationOffer != null) {
+                opportunity.Offer__c = onlineApplicationOffer.Id;
+            }
 
             if (campaign != null && campaignProgram != null) {
                 opportunity.CampaignId = campaign.Id;
