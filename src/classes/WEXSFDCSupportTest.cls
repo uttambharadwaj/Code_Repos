@@ -1,7 +1,7 @@
 /**
  * Created by lhowland on 12/12/2018.
  */
-@isTest (SeeAllData = true)
+@isTest
 public with sharing class WEXSFDCSupportTest {
 
     public static Account setupAccount() {
@@ -28,7 +28,7 @@ public with sharing class WEXSFDCSupportTest {
     }
 
     static testMethod void WEXSFDCSupportTest() {
-
+        UtilityTestLoader.setAutomation(false);
         Account account = setupAccount();
 
         Contact contact = setupContact();
@@ -53,11 +53,12 @@ public with sharing class WEXSFDCSupportTest {
         System.assert(controller.nextStep != null);
         System.assert(controller.caseAttachmentsSize == 0);
         System.assert(controller.offset != null);
-        
+
         controller.caseRequest.Account = account;
         controller.caseRequest.Contact = contact;
 
         controller.caseRequest.Department__c = 'Corporate Development';
+        controller.caseRequest.Business_Unit__c = 'Other';
         controller.caseRequest.Nature_of_Case__c = 'Issue';
         controller.caseRequest.Functional_Area__c = 'Data Issue';
         controller.caseRequest.Subject = 'Ninjas are invading my SF account';
@@ -67,7 +68,8 @@ public with sharing class WEXSFDCSupportTest {
         controller.caseRequest.Browser_Used__c = 'Chrome';
         controller.caseRequest.Number_of_Users_Affected__c = '1';
         controller.caseRequest.Workaround__c = 'No';
-        
+
+
         controller.previousStep();
         controller.beginningStep();
         controller.nextStep();
