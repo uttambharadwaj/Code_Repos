@@ -704,9 +704,6 @@ global class AccountWS_EFSAppManager {
             if (onlineApplicationOffer.ATM_Use__c == false) jsonPayload.writeStringField('atm use', 'N');
         }
 
-
-        System.debug('TEMP selected services: ' + selectedOtherServices);
-
         // Per Gaylon and Justine - we're always going to send this.
         if(onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('fuel_and_cash', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Fuel_Cash__c));
 
