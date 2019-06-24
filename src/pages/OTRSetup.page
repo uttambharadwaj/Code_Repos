@@ -308,6 +308,46 @@
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
+                            <apex:outputPanel rendered="{!otherServicesSize != 0}">
+                                <div class="twelve columns clearfix">
+                                    <div class="section-header">
+                                        Available Products
+                                        <!--{!$Label.OTRSetup_Services}-->
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    These products or services are subject to Applicant’s execution of applicable additional enrollment form(s) or agreement(s). Products or services may be subject to additional fees.
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix form-field styled-panel">
+                                    <div class="five columns clearfix">
+                                        <label for="otherServices" class="styled-label">Available Products</label>
+                                        <select size="7" multiple="multiple" class="styled-multi-select" id="otherServices" tabindex="18" >
+                                            <apex:repeat value="{!otherServices}" var="otherService">
+                                                <option value="{!otherService}">{!otherService}</option>
+                                            </apex:repeat>
+                                        </select>
+                                    </div>
+                                    <div class="two columns clearfix" style="padding-top: 60px;">
+                                        <div class="action-button" onclick="javascript:addProduct();">
+                                            <i class="fa fa-arrow-right" aria-hidden="true"></i><br/>
+                                        </div><br/>
+                                        <div class="action-button" onclick="javascript:removeProduct();">
+                                            <i class="fa fa-arrow-left" aria-hidden="true"></i><br/>
+                                        </div>
+                                    </div>
+                                    <div class="five columns clearfix">
+                                        <label for="selectedOtherServices" class="styled-label">Selected Products</label>
+                                        <select size="7" multiple="multiple" class="styled-multi-select" tabindex="19" id="selectedOtherServices">
+                                        </select>
+                                    </div>
+                                </div>
+                            </apex:outputPanel>
                             <apex:outputPanel id="cardPolicy" rendered="{!onlineApplicationOffer.Enable_Card_Information__c == true}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
@@ -413,46 +453,6 @@
                                     &nbsp;
                                 </div>
                             </apex:outputPanel>
-                            <apex:outputPanel rendered="{!otherServicesSize != 0}">
-                                <div class="twelve columns clearfix">
-                                    <div class="section-header">
-                                        Available Products
-                                    </div>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    These products or services are subject to Applicant’s execution of applicable additional enrollment form(s) or agreement(s). Products or services may be subject to additional fees.
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix form-field styled-panel">
-                                    <div class="five columns clearfix">
-                                        <label for="otherServices" class="styled-label">Available Products</label>
-                                        <select size="7" multiple="multiple" class="styled-multi-select" id="otherServices" tabindex="18" >
-                                            <apex:repeat value="{!otherServices}" var="otherService">
-                                                <option value="{!otherService}">{!otherService}</option>
-                                            </apex:repeat>
-                                        </select>
-                                    </div>
-                                    <div class="two columns clearfix" style="padding-top: 60px;">
-                                        <div class="action-button" onclick="javascript:addProduct();">
-                                            <i class="fa fa-arrow-right" aria-hidden="true"></i><br/>
-                                        </div><br/>
-                                        <div class="action-button" onclick="javascript:removeProduct();">
-                                            <i class="fa fa-arrow-left" aria-hidden="true"></i><br/>
-                                        </div>
-                                    </div>
-                                    <div class="five columns clearfix">
-                                        <label for="selectedOtherServices" class="styled-label">Selected Products</label>
-                                        <select size="7" multiple="multiple" class="styled-multi-select" tabindex="19" id="selectedOtherServices">
-                                        </select>
-                                    </div>
-                                </div>
-                            </apex:outputPanel>
-
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>

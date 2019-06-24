@@ -680,7 +680,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                         <apex:outputLabel for="pgState" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential State', $ObjectType.OnlineApplication__c.fields.AO_State__c.label)} ">
                                                             <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
                                                         </apex:outputLabel>
-                                                        <apex:InputField styleClass="styled-input {!IF(isPG, 'required', '')}" html-tabindex="42" id="pgState" value="{!onlineApplication.AO_State__c}" html-maxlength="40" required="true">
+                                                        <apex:InputField styleClass="styled-input {!IF(isPG, 'required', '')}" html-tabindex="42" id="pgState" value="{!onlineApplication.AO_State__c}" html-maxlength="40">
                                                             <apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
                                                         </apex:InputField>
                                                     </apex:actionRegion>
@@ -762,7 +762,6 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                     <script type="text/javascript">
                                     (function(){
                                         var elems = document.querySelectorAll('.required');
-                                        debugger;
                                         for (var i = 0; i < elems.length; i++) {
                                             elems[i].required = true;
                                         }
@@ -786,7 +785,6 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                 <script type="text/javascript">
                                     (function(){
                                         var elems = document.querySelectorAll('.required');
-                                        debugger;
                                         for (var i = 0; i < elems.length; i++) {
                                             elems[i].required = true;
                                         }
