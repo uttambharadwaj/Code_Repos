@@ -311,8 +311,7 @@
                             <apex:outputPanel rendered="{!otherServicesSize != 0}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
-                                        Available Products
-                                        <!--{!$Label.OTRSetup_Services}-->
+                                        {!$Label.OTRSetup_Services}
                                     </div>
                                 </div>
                                 <div class="twelve columns clearfix">
