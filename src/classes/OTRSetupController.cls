@@ -192,6 +192,9 @@ public without sharing class OTRSetupController {
                         // Get the Online Application Offer
                         onlineApplicationOffer = WexBrandingController.getOnlineApplicationOfferById(onlineApplication.Offer__c);
 
+                        String otherServicesString = onlineApplicationOffer.Other_Services__c;
+                        if (otherServicesString != null) otherServices = otherServicesString.split(';');
+
                         campaign = WexBrandingController.getCampaignByCampaignProgram(onlineApplication.Opportunity__r.Campaign_Program__c);
 
                     }
@@ -371,6 +374,8 @@ public without sharing class OTRSetupController {
             if (selectedOtherServices != null) {
                 onlineApplication.Other_Services__c = selectedOtherServices;
             }
+
+            System.debug('TEMP other services selected: ' + selectedOtherServices);
 
             upsert onlineApplication;
 
