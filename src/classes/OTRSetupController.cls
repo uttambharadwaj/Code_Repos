@@ -195,8 +195,6 @@ public without sharing class OTRSetupController {
                         String otherServicesString = onlineApplicationOffer.Other_Services__c;
                         if (otherServicesString != null) otherServices = otherServicesString.split(';');
 
-                        System.debug('TEMP other services: ' + otherServices);
-
                         campaign = WexBrandingController.getCampaignByCampaignProgram(onlineApplication.Opportunity__r.Campaign_Program__c);
 
                     }
