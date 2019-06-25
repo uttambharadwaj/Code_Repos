@@ -36,9 +36,12 @@
         </apex:pageBlock>
         <apex:pageBlock title="Selected Refunds/Adjustments" id="muselectedlist">
             <apex:pageBlockTable value="{!selected}" var="ref" id="mutab">
-                <apex:column value="{!ref.Account_Number__c}" id="refAcctNbr"/>
+                <apex:column value="{!ref.RecordType.DeveloperName}" id="refRecTypeName"/>
                 <apex:column value="{!ref.Name}" id="refName"/>
+                <apex:column value="{!ref.Account_Number__c}" id="refAcctNbr"/>
                 <apex:column value="{!ref.Approval_Status__c}" id="refStatus"/>
+                <apex:column value="{!ref.Department__c}" id="refDept"/>
+                <apex:column value="{!ref.Iten_id__c}" id="refItemId" rendered="false"/>
                 <apex:column value="{!ref.Approval_Comment__c}" id="refComment"/>
                 <apex:column value="{!ref.Approver_Name__c}" id="refApprover"/>
                 <apex:column value="{!ref.Decision_Date__c}" id="refApproveDate"/>

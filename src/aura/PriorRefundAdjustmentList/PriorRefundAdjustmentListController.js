@@ -26,6 +26,7 @@
             },
             {label: "Approval Status", fieldName: "Approval_Status", type: "text", sortable: false},
             {label: "Approver", fieldName: "Approver_Name", type: "text"},
+            {label: "Dept", fieldName: "Department", type: "text", sortable: false},
             {
                 label: "Create Date",
                 fieldName: "CreatedDate",

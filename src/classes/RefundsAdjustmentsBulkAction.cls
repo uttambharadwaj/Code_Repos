@@ -30,6 +30,10 @@ public with sharing class RefundsAdjustmentsBulkAction {
     public PageReference updateRecords() {
         if (((Refund_Adjustment__c)(setCon.getRecord())).Approval_Status__c == 'Held') {
             ((Refund_Adjustment__c) (setCon.getRecord())).Decision_Date__c = null;
+        } else if (((Refund_Adjustment__c)(setCon.getRecord())).Approval_Status__c == 'Approved') {
+            for (Refund_Adjustment__c refadj : (List<Refund_Adjustment__c>)(setCon.getSelected())) {
+                refadj.Iten_id__c = RefundsAdjustmentsCommon.getItemId(refadj);
+            }
         }
         return setCon.save();
     }
