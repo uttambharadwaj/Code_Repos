@@ -1,0 +1,7 @@
+<!--
+ - Created by lhowland on 5/22/2019.
+ -->
+
+<apex:page standardController="Opportunity" extensions="PaperAppSubmissionExtension" action="{!buildURL}">
+    <apex:pageMessages id="msgs" />
+</apex:page>

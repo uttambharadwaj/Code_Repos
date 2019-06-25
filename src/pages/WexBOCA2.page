@@ -1,3 +1,6 @@
+<!--
+	Revision History: 5/14/2019 PSOBACKLOG-76 ADA Compliance-Images
+-->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="WexBOCAController" action="{!init}" language="{!languageCode}">
 <html lang="{!languageCode}">
 <head>
@@ -101,7 +104,8 @@
             <div class="row">
                 <div class="nine columns clearfix">
                     <div id="branding">
-                    	<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+						<!--PSOBACKLOG-76-->
+                    	<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!program.Brand_Long_Name__c} Logo"/>
                			<h1 class="program-name header-large">{!program.Brand_Long_Name__c}</h1>    
                     </div>
 				</div>
@@ -129,7 +133,8 @@
                         &nbsp;
                     </div>
                     <div class="twelve columns clearfix">
-                    	<img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+						<!--PSOBACKLOG-76-->
+                    	<img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
                     </div>
                     <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
                         <div class="twelve columns clearfix">
@@ -252,7 +257,8 @@
                     		<div class="twelve columns clearfix">
                                 <div class="clearfix">
                                     <input type="button" class="step-button ge-click-appcontinue2" onClick="validate({!currentStep});" value="{!$Label.BOCA_Button_Continue}" />
-                                	<img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />	
+									<!--PSOBACKLOG-76-->
+                                	<img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" alt="Loading..."/>
                                 </div>
 							</div>
 						</apex:outputPanel>
@@ -402,7 +408,8 @@
                     		<div class="twelve columns clearfix">
                                 <div class="clearfix">
                                     <input type="button" class="step-button ge-click-appsubmit" onClick="validate({!currentStep});" value="{!$Label.BOCA_Button_Submit}"/>
-                                	<img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />	
+									<!--PSOBACKLOG-76-->
+                                	<img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" alt="Loading..."/>
                                 </div>
 							</div>
     					</apex:outputPanel>

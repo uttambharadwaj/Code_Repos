@@ -1,6 +1,7 @@
 <!--
 Description:        OTRBOCA VF Page (Page 1 of Online Application for OTRBOCA)
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
+					5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAController" action="{!init}" language="{!languageCode}">
 	<html lang="{!languageCode}">
@@ -132,7 +133,8 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 				<div class="row">
 					<div class="nine columns clearfix">
 						<div id="branding">
-							<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+							<!--PSOBACKLOG-76-->
+							<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!program.Brand_Long_Name__c} Logo"/>
 							<h1 class="program-name header-large">{!program.Brand_Long_Name__c}</h1>
 						</div>
 					</div>
@@ -162,7 +164,8 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 							&nbsp;
 						</div>
 						<div class="twelve columns clearfix">
-							<img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+							<!--PSOBACKLOG-76-->
+							<img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
 						</div>
 						<apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
 							<div class="twelve columns clearfix">
@@ -242,7 +245,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="1">
 											<label class="styled-label">{!IF(languageCode == 'en_us', 'Doing Business As', $ObjectType.OnlineApplication__c.fields.Trade_Name__c.label)}</label>
-											<apex:InputField styleClass="styled-input" html-tabindex="2" label="" id="doingBusinessAs" value="{!onlineApplication.Trade_Name__c}" html-maxlength="50" />
+											<apex:InputField styleClass="styled-input" html-tabindex="2" label="" id="doingBusinessAs" value="{!onlineApplication.Trade_Name__c}" html-maxlength="30" />
 										</div>
 										<div class="twelve columns clearfix form-field" data-row="2">
 											<label class="styled-label">{!IF(languageCode == 'en_us', 'Business Phone', $ObjectType.OnlineApplication__c.fields.Phone_Number__c.label)} <span class="styled-label-required">*</span></label>
@@ -622,7 +625,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 									</div>
 								</apex:outputPanel>
 							</apex:outputPanel>
-							<apex:outputPanel id="paymentMethodFeeDisclosure">
+							<apex:outputPanel id="paymentMethodFeeDisclosure" rendered="{!userSessionId == null}">
 								<apex:outputPanel rendered="{!IF(OR(onlineApplication.Payment_Method__c == 'Western Union', onlineApplication.Payment_Method__c == 'Wire'), true, false)}">
 									<div class="twelve columns clearfix">
 										<div class="section-header">
@@ -635,6 +638,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 									</div>
 								</apex:outputPanel>
 							</apex:outputPanel>
+							<apex:outputPanel rendered="{!userSessionId == null}">
 							<div class="twelve columns clearfix">
 								&nbsp;
 							</div>
@@ -660,7 +664,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 								</div>
 								<div id="authorizedSignerBody" class="disclaimer-container clearfix">
 									<div class="disclaimer-checkbox">
-										<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox" />
+										<input tabindex="50" id="acknowledgeDisclaimer" type="checkbox"/>
 									</div>
 									<div class="disclaimer-text">
 										<apex:outputPanel id="disclaimer">
@@ -670,6 +674,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
 									</div>
 								</div>
 							</div>
+							</apex:outputPanel>
 							<div class="twelve columns clearfix">
 								&nbsp;
 							</div>

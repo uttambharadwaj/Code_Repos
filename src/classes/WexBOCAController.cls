@@ -402,16 +402,16 @@ public class WexBOCAController {
                     if (!campaignPrograms.isEmpty()){
                         campaign = campaigns[0];
                         campaignProgram = campaignPrograms[0];
-                        
-                       	if(!String.isEmpty(campaignProgram.Terms_and_Conditions__c) || (!String.isEmpty(campaignProgram.Terms_and_Conditions_Header__c) && (!String.isEmpty(campaignProgram.Terms_and_Conditions_Footer__c)))) {
+
+                        if(!String.isEmpty(campaignProgram.Terms_and_Conditions__c) || (!String.isEmpty(campaignProgram.Terms_and_Conditions_Header__c) && (!String.isEmpty(campaignProgram.Terms_and_Conditions_Footer__c)))) {
                             pricingTermsAndConditions = campaignProgram.Terms_and_Conditions__c;
                             pricingTermsAndConditionsHeader = campaignProgram.Terms_and_Conditions_Header__c;
                             pricingTermsAndConditionsFooter = campaignProgram.Terms_and_Conditions_Footer__c;
                         }
                         else {
-                            pricingTermsAndConditions = [SELECT Id, Terms_and_Conditions__c  FROM Campaign_Program__c WHERE Program__c = :program.Id and Default__c = true].Terms_and_Conditions__c;
-                            pricingTermsAndConditionsHeader = [SELECT Id, Terms_and_Conditions_Header__c  FROM Campaign_Program__c WHERE Program__c = :program.Id and Default__c = true].Terms_and_Conditions_Header__c;
-                            pricingTermsAndConditionsFooter = [SELECT Id, Terms_and_Conditions_Footer__c  FROM Campaign_Program__c WHERE Program__c = :program.Id and Default__c = true].Terms_and_Conditions_Footer__c;
+                            pricingTermsAndConditions = [SELECT Id, Terms_and_Conditions__c  FROM Campaign_Program__c WHERE Program__c = :program.Id and Default__c = true and Language_Code__c = :languageCode LIMIT 1].Terms_and_Conditions__c;
+                            pricingTermsAndConditionsHeader = [SELECT Id, Terms_and_Conditions_Header__c  FROM Campaign_Program__c WHERE Program__c = :program.Id and Default__c = true and Language_Code__c = :languageCode LIMIT 1].Terms_and_Conditions_Header__c;
+                            pricingTermsAndConditionsFooter = [SELECT Id, Terms_and_Conditions_Footer__c  FROM Campaign_Program__c WHERE Program__c = :program.Id and Default__c = true and Language_Code__c = :languageCode LIMIT 1].Terms_and_Conditions_Footer__c;
                         }
                     }
                 }

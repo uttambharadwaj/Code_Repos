@@ -4,6 +4,8 @@ Description:        Controller Class for OTRBOCA VF Page
 Test Classes:       OTRBOCATest
 Last Coverage:      60%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
+                    4/10/2019 Jason Arbegast IADJUDICAT-966 added break in a for loop
+                    5/6/2019 Michael Farrell IADJUDICAT-1157 populated tmSessionId variable
  */
 public class OTRBOCAController {
 
@@ -39,6 +41,12 @@ public class OTRBOCAController {
     public OnlineApplication__c onlineApplication { get; set; }
 
     public String tmSessionId { get; set; }
+
+    public String userSessionId {
+        get {
+            return UserInfo.getSessionId();
+        }
+    }
 
     public Boolean sendToConfirmation { get; set; }
 
@@ -434,7 +442,10 @@ public class OTRBOCAController {
 
                     String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
 
-                    onlineApplication.ThreatMetrix_Session_ID__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+                    // IADJUDICAT-1157 populate tmSessionId variable
+                    tmSessionId = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+
+                    onlineApplication.ThreatMetrix_Session_ID__c= tmSessionId;
 
                 } else {
                     throw new creditApplicationException('Unable to find specified credit application.');
@@ -798,6 +809,7 @@ public class OTRBOCAController {
 
                     if (onlineApplication.Type_of_Business__c != null && (onlineApplication.Type_of_Business__c).equalsIgnoreCase(exemption.Legal_Structure__c)) {
                         isBOExempt = true;
+                        break; //IADJUDICAT-966 added this break just bc we don't need to iterate over any more once we find one that matches
                     }
 
                 }
