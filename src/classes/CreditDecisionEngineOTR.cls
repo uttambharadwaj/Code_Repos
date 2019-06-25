@@ -522,6 +522,10 @@ global class CreditDecisionEngineOTR {
                         onlineApplication.GIACT_Account_Response_Code_Name__c = giactVerifyResponse.AccountResponseCodeName;
                         onlineApplication.GIACT_Verify_Response_Code_Name__c = giactVerifyResponse.VerificationResponseCodeName;
 
+                        onlineApplication.GIACT_Customer_Response_Code__c = giactVerifyResponse.CustomerResponseCode;
+                        onlineApplication.GIACT_Customer_Response_Message__c = giactVerifyResponse.CustomerResponseCodeMessage;
+                        onlineApplication.GIACT_Customer_Response_Code_Name__c = giactVerifyResponse.CustomerResponseCodeName;
+
                     } else {
 
                         onlineApplication.GIACT_Check__c = 'Error';
