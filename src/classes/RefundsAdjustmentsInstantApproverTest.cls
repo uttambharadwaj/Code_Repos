@@ -49,6 +49,7 @@ private class RefundsAdjustmentsInstantApproverTest {
                             CaseNumber__c = testCase.Id,
                             Amount_Waived__c = i*150,
                             Approval_Status__c = approvalStatus,
+                            Department__c = 'CS',
                             Approver_Name__c   = tempUser,
                             Decision_Date__c   = decisionDate
                     );
@@ -59,17 +60,50 @@ private class RefundsAdjustmentsInstantApproverTest {
     }
 
     @IsTest
-    static void testBehavior() {
+    static void testGeneralBehavior() {
         Test.startTest();
         Test.setCurrentPage(Page.Refunds_Adjustments_Instant_Approver);
         Account testAccount = [SELECT Id FROM Account WHERE Name='TestAccount' LIMIT 1];
-        List<Refund_Adjustment__c> refadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id ORDER BY CreatedDate DESC];
-        List<Refund_Adjustment__c> selectedRefadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id];
+        List<Refund_Adjustment__c> refadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Department__c, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id ORDER BY CreatedDate DESC];
+        List<Refund_Adjustment__c> selectedRefadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Department__c, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id];
+        ApexPages.StandardSetController stdSetController = new ApexPages.StandardSetController(refadjs);
+        stdSetController.setSelected(selectedRefadjs);
+        RefundsAdjustmentsInstantApprover ext = new RefundsAdjustmentsInstantApprover(stdSetController);
+        PageReference pageReference = ext.updateRecords();
+        System.debug('### ref = '+ pageReference);
+        Test.stopTest();
+    }
+
+    @IsTest
+    static void testRefundBehavior() {
+        Test.startTest();
+        Test.setCurrentPage(Page.Refunds_Adjustments_Instant_Approver);
+        Account testAccount = [SELECT Id FROM Account WHERE Name='TestAccount' LIMIT 1];
+        List<Refund_Adjustment__c> refadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Department__c, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id AND RecordType.DeveloperName='Refund' ORDER BY CreatedDate DESC];
+        List<Refund_Adjustment__c> selectedRefadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Department__c, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id AND RecordType.DeveloperName='Refund'];
         ApexPages.StandardSetController stdSetController = new ApexPages.StandardSetController(refadjs);
         stdSetController.setSelected(selectedRefadjs);
         RefundsAdjustmentsInstantApprover ext = new RefundsAdjustmentsInstantApprover(stdSetController);
         PageReference pageReference = ext.updateRecords();
         System.assert(pageReference != null);
+        System.assert(pageReference.getUrl().contains('Report'));
+        System.debug('### ref = '+ pageReference);
+        Test.stopTest();
+    }
+
+    @IsTest
+    static void testAdjustmentBehavior() {
+        Test.startTest();
+        Test.setCurrentPage(Page.Refunds_Adjustments_Instant_Approver);
+        Account testAccount = [SELECT Id FROM Account WHERE Name='TestAccount' LIMIT 1];
+        List<Refund_Adjustment__c> refadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Department__c, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id AND RecordType.DeveloperName='Adjustment' ORDER BY CreatedDate DESC];
+        List<Refund_Adjustment__c> selectedRefadjs = [SELECT Id, Name, RecordType.DeveloperName,CaseNumber__c, CaseNumber__r.CaseNumber, Department__c, Amount_Waived__c, Approval_Status__c, Approver_Name__r.Name, Decision_Date__c, CreatedDate FROM Refund_Adjustment__c WHERE Account__c =: testAccount.Id AND RecordType.DeveloperName='Adjustment'];
+        ApexPages.StandardSetController stdSetController = new ApexPages.StandardSetController(refadjs);
+        stdSetController.setSelected(selectedRefadjs);
+        RefundsAdjustmentsInstantApprover ext = new RefundsAdjustmentsInstantApprover(stdSetController);
+        PageReference pageReference = ext.updateRecords();
+        System.assert(pageReference != null);
+        System.assert(pageReference.getUrl().contains('Report'));
         System.debug('### ref = '+ pageReference);
         Test.stopTest();
     }
