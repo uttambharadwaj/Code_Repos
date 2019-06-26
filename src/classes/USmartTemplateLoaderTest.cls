@@ -2,11 +2,6 @@
 public class USmartTemplateLoaderTest {
     
     @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-    @testSetup
     static void dataSetup() {
         
         Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
@@ -21,7 +16,7 @@ public class USmartTemplateLoaderTest {
         insert u3;
         
         system.runas(u1) {
-            
+            UtilityTestLoader.setAutomation(true);
             // !!! change recordTypeName to a Virtual CS rtn once in StageFull
             // no need to create Custom Metadata Type in test, see https://developer.salesforce.com/blogs/engineering/2015/05/testing-custom-metadata-types.html
             VRTN__c rtCS = WE_TestDataUtility.createRecTypeNameCustSett(
@@ -86,6 +81,7 @@ public class USmartTemplateLoaderTest {
             casesToInsert.addAll(cases5);
             
             insert casesToInsert;
+            UtilityTestLoader.setAutomation(false);
         }
     }
     

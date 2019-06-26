@@ -1,4 +1,4 @@
-@isTest //(seealldata=true)
+@isTest
 private class Test_DeletedRecordsStageClass {
 
     static testMethod void test1() 

@@ -1,4 +1,4 @@
-@istest(seeAllData=false)
+@istest
 private class EMAP_CreditApp_Controller_Test{
 
 static testMethod void DupeChecktest(){

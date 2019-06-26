@@ -1,7 +1,7 @@
 @isTest
 private class URLGeneratorControllerTest{
 
-    @IsTest(SeeAllData=true)
+    @IsTest
     public static void testURLGeneratorController() {
     
         Test.setCurrentPageReference(new PageReference('Page.URLGenerator'));
