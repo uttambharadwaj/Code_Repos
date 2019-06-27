@@ -218,7 +218,7 @@ global class AccountWS_EFSAppManager {
 
         if(onlineApplication.Offer__c != null) {
             onlineApplicationOffer = [SELECT Id, Account_Descriptor__c, ATM_Use__c, Cash_Limit__c, Daily_Cash_Limit__c, Daily_MC_Limit__c, Funding__c, Limit_Method__c,
-                    PSR_MC_Network__c, PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c, PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c
+                    PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c, PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c
                     // OTRONBOARD-33 && OTRONBOARD-29
                     // Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c, Mcode_Monthly_Account_Fee__c, Mcode_Monthly_Account_Fee_Value__c, Monthly_Account_Fee__c, Monthly_Account_Fee_Value__c
             FROM OnlineApplicationOffer__c WHERE Id =: onlineApplication.Offer__c LIMIT 1];
@@ -410,6 +410,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('description', 'Default Policy');
         jsonPayload.writeBooleanField('handEnter', false);
         jsonPayload.writeNumberField('payrollContractId', 0);
+        // todo replace these falses with the value of OnlineApplication__c.Funding_Options__c
         jsonPayload.writeBooleanField('payrollAtm', false);
         jsonPayload.writeBooleanField('payrollChk', false);
         jsonPayload.writeBooleanField('payrollAch', false);
@@ -523,12 +524,14 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('fee_type', '1');
         jsonPayload.writeStringField('fee_max_times_per', '3');
         jsonPayload.writeStringField('fee_max_times', '1');
+        //TODO why is this PST Card Fee in the payload twice? -lhowland
         if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
 //        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
 //        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
         jsonPayload.writeEndObject();
 
+        // TODO need to ask Regina or Tiana if this section should be updated to say 'Smartfunds Payroll' or 'Smartfunds Non-payroll' because there is no product called just 'Smartfunds' -lhowland
         if(onlineApplication.Other_Services__c != null && (onlineApplication.Other_Services__c).contains('SmartFunds')) {
 
             jsonPayload.writeStartObject();
@@ -717,10 +720,6 @@ global class AccountWS_EFSAppManager {
 
         if(selectedOtherServices != null && selectedOtherServices.contains('Scales') && onlineApplicationOffer.PSR_Scales__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('scales', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Scales__c));
-        }
-
-        if(selectedOtherServices != null && selectedOtherServices.contains('Fleet MasterCard') && onlineApplicationOffer.PSR_MC_Network__c != null) {
-            if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('mc_fleet', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_MC_Network__c));
         }
 
         // End of "contract"

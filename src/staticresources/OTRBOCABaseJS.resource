@@ -611,6 +611,22 @@ function validateFleetForm() {
    	}
 }
 
+var selectedFundingOptions = [];
+
+function changeSelectedFunOptions(field) {
+    const index = selectedFundingOptions.indexOf(field.value);
+    if (field.checked && index < 0) {
+        selectedFundingOptions.push(field.value);
+    } else if (!field.checked) {
+        const index = selectedFundingOptions.indexOf(field.value);
+        if (index > -1) {
+            selectedFundingOptions.splice(index, 1);
+        }
+    }
+    $j("[id$=selectedFundingOptionsValue]").val(selectedFundingOptions);
+    console.log(selectedFundingOptions);
+}
+
 function scrollIntoView(divId) {
     
     var offset = $j('[id$=' + divId + ']').offset();
@@ -621,5 +637,5 @@ function scrollIntoView(divId) {
         scrollTop: offset.top,
         scrollLeft: offset.left
     })
-    
+
 }

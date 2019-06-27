@@ -52,7 +52,7 @@ public class PricingController{
                String body = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pric="http://xmlns.wexinc.com/Internal/BOD/Price"xmlns:com="http://xmlns.wexinc.com/Internal/BOD/Common"><soapenv:Header/><soapenv:Body><pric:GetPricingRateByCouponInputMsg><pric:Source><!--Optional:--><com:Name>?</com:Name><!--Optional:--><com:EntityType>?</com:EntityType><!--Optional:--><com:EntityId></com:EntityId></pric:Source><pric:RelationCode>'+psCode+'</pric:RelationCode><pric:CouponCode>'+coupon+'</pric:CouponCode></pric:GetPricingRateByCouponInputMsg></soapenv:Body></soapenv:Envelope>';
                 
                 req.setMethod('POST');
-                req.setEndpoint('https://webservices.wexinc.com/EnterpriseServices/Entity/Pricing/V1');
+                req.setEndpoint('https://wexfleet.wexapi.com/pricingservice');
                 req.setHeader('Accept-Encoding', 'gzip,deflate');
                 req.setHeader('Content-Type', 'text/xml;charset=UTF-8');
                 req.setHeader('SOAPAction', '"GetPricingRateByCoupon"');
