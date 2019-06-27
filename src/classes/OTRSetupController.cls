@@ -138,6 +138,24 @@ public without sharing class OTRSetupController {
         }
     }
 
+    public String selectedFundingOptions { get; set; }
+
+    public List<SelectOption> fundingOptions {
+
+        get {
+            List<SelectOption> availableFundingOptions = new List<SelectOption>();
+            String availableFundingOptionsString = onlineApplicationOffer.Available_Funding_Options__c;
+
+            if (availableFundingOptionsString != null) {
+                for (String option : availableFundingOptionsString.split(';')) {
+                    availableFundingOptions.add(new SelectOption(option, option));
+                }
+            }
+
+            return availableFundingOptions;
+        }
+    }
+
     public class creditApplicationException extends Exception { }
 
     public OTRSetupController() {
@@ -375,7 +393,9 @@ public without sharing class OTRSetupController {
                 onlineApplication.Other_Services__c = selectedOtherServices;
             }
 
-            System.debug('TEMP other services selected: ' + selectedOtherServices);
+            if (selectedFundingOptions != null) {
+                onlineApplication.Funding_Options__c = selectedFundingOptions.replaceAll(',',';');
+            }
 
             upsert onlineApplication;
 
