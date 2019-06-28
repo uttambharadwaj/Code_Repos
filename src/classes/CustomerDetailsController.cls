@@ -359,6 +359,76 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
+    public static CustomerDetailsWSUtilv2.RefundAdjustmentDTO getRefunds(String accountNumber) {
+
+        try {
+
+            CDS = Customer_Dashboard_Services__c.getOrgDefaults();
+
+            customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+
+            customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
+
+            System.debug('### CDS ' + CDS );
+
+            // Some damage control - we don't want that value to be below the default threshold
+            if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+                customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
+            }
+
+            CustomerDetailsWSUtilv2.RefundAdjustmentDTO refundDTO = customerDetailsCallout.getRefunds(accountNumber);
+
+            System.debug('### ' + refundDTO);
+
+            return refundDTO;
+
+        }
+        catch(Exception e) {
+
+            String errorCode = logError(e);
+
+            throw new AuraHandledException('Unable to retrieve recent payments. (Error Tracking Code: ' + errorCode + ')');
+
+        }
+
+    }
+
+    @AuraEnabled
+    public static CustomerDetailsWSUtilv2.RefundAdjustmentDTO getAdjustments(String accountNumber) {
+
+        try {
+
+            CDS = Customer_Dashboard_Services__c.getOrgDefaults();
+
+            customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+
+            customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
+
+            System.debug('### CDS ' + CDS );
+
+            // Some damage control - we don't want that value to be below the default threshold
+            if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+                customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
+            }
+
+            CustomerDetailsWSUtilv2.RefundAdjustmentDTO adjustmentDTO = customerDetailsCallout.getAdjustments(accountNumber);
+
+            System.debug('### ' + adjustmentDTO);
+
+            return adjustmentDTO;
+
+        }
+        catch(Exception e) {
+
+            String errorCode = logError(e);
+
+            throw new AuraHandledException('Unable to retrieve recent payments. (Error Tracking Code: ' + errorCode + ')');
+
+        }
+
+    }
+
+    @AuraEnabled
     public static String getAccountId(String accountNumber) {
         
         try {

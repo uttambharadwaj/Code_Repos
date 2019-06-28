@@ -239,6 +239,44 @@ public class CustomerDetailsTest {
         }
     }
 
+    static testMethod void testGetRefundsWithAccount() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+            String accountNumberToTest = '9100000000000';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            CustomerDetailsWSUtilv2.RefundAdjustmentDTO refundsResponse =  CustomerDetailsController.getRefunds(accountNumberToTest);
+            System.debug('### Refunds' + refundsResponse);
+
+            Test.stopTest();
+        }
+    }
+
+    static testMethod void testGetAdjustmentsWithAccount() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+            String accountNumberToTest = '9100000000000';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            CustomerDetailsWSUtilv2.RefundAdjustmentDTO adjustmentsResponse =  CustomerDetailsController.getAdjustments(accountNumberToTest);
+            System.debug('### Adjustments' + adjustmentsResponse);
+
+            Test.stopTest();
+        }
+    }
+
     static testMethod void testGetInvoicesWithAccount() {
         User user = getTestUser();
 
@@ -379,6 +417,70 @@ public class CustomerDetailsTest {
 
                 if (invoices.errorMsg != null)
                     throw new AuraHandledException(invoices.errorMsg) ;
+
+            }
+            catch(Exception e) {
+
+                Boolean expectedExceptionThrown = e.getMessage().contains('Unable to retrieve') ? true : false;
+
+                System.debug('### Exception: ' + e);
+
+                System.assertEquals(expectedExceptionThrown, false);
+
+            }
+            Test.stopTest();
+        }
+    }
+
+    static testMethod void testGetRefundsWithoutAccount() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            try {
+
+                CustomerDetailsWSUtilv2.RefundAdjustmentDTO refunds = CustomerDetailsController.getRefunds('0000');
+
+                if (refunds.errorMsg != null)
+                    throw new AuraHandledException(refunds.errorMsg) ;
+
+            }
+            catch(Exception e) {
+
+                Boolean expectedExceptionThrown = e.getMessage().contains('Unable to retrieve') ? true : false;
+
+                System.debug('### Exception: ' + e);
+
+                System.assertEquals(expectedExceptionThrown, false);
+
+            }
+            Test.stopTest();
+        }
+    }
+
+    static testMethod void testGetAdjustmentsWithoutAccount() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            try {
+
+                CustomerDetailsWSUtilv2.RefundAdjustmentDTO Adjustments = CustomerDetailsController.getAdjustments('0000');
+
+                if (Adjustments.errorMsg != null)
+                    throw new AuraHandledException(Adjustments.errorMsg) ;
 
             }
             catch(Exception e) {

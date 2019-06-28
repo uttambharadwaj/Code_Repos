@@ -815,6 +815,71 @@ public class CustomerDetailsWSUtilv2 {
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'accountList','errorMsg'};
     }
+
+    public class getRefunds {
+        @AuraEnabled public String wexAcctNbr;
+        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'wexAcctNbr'};
+    }
+    public class getAdjustments {
+        @AuraEnabled public String wexAcctNbr;
+        private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'wexAcctNbr'};
+    }
+    public class getRefundsResponse {
+        public CustomerDetailsWSUtilv2.RefundAdjustmentDTO return_x;
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'return_x'};
+    }
+    public class getAdjustmentsResponse {
+        @AuraEnabled public CustomerDetailsWSUtilv2.RefundAdjustmentDTO return_x;
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'return_x'};
+    }
+    public class RefundAdjustmentDTO {
+        @AuraEnabled public String errorMsg;
+        @AuraEnabled public CustomerDetailsWSUtilv2.refundAdjustment[] refundAdjustments;
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] refundAdjustments_type_info = new String[]{'refundAdjustments','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'errorMsg','refundAdjustments'};
+    }
+    public class refundAdjustment {
+        @AuraEnabled public String accountName;
+        @AuraEnabled public String accountNumber;
+        @AuraEnabled public String acctPlatform;
+        @AuraEnabled public String acctStatusCd;
+        @AuraEnabled public Decimal amountWaived;
+        @AuraEnabled public String approvalComment;
+        @AuraEnabled public String approvalStatus;
+        @AuraEnabled public Datetime decisionDt;
+        @AuraEnabled public String approver;
+        @AuraEnabled public String description;
+        @AuraEnabled public Long id;
+        @AuraEnabled public String reasonComment;
+        @AuraEnabled public String recordType;
+        @AuraEnabled public String type_x;
+        private String[] accountName_type_info = new String[]{'accountName','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountNumber_type_info = new String[]{'accountNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] acctPlatform_type_info = new String[]{'acctPlatform','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] acctStatusCd_type_info = new String[]{'acctStatusCd','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] amountWaived_type_info = new String[]{'amountWaived','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] approvalComment_type_info = new String[]{'approvalComment','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] approvalStatus_type_info = new String[]{'approvalStatus','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] decisionDt_type_info = new String[]{'decisionDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] approver_type_info = new String[]{'approver','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] description_type_info = new String[]{'description','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] id_type_info = new String[]{'id','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] reasonComment_type_info = new String[]{'reasonComment','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] recordType_type_info = new String[]{'recordType','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] type_x_type_info = new String[]{'type','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'accountName','accountNumber','acctPlatform','acctStatusCd','amountWaived','approvalComment','approvalStatus','decisionDt','approver','description','id','reasonComment','recordType','type_x'};
+    }
     public class CustomerDetailsSOAPQSPort {
         @AuraEnabled public String endpoint_x = 'http://pwm-wex-1042:8080/SalesforceCustomerServices/ProxyServices/CustomerDetails';
         @AuraEnabled public Map<String,String> inputHttpHeaders_x;
@@ -970,6 +1035,64 @@ public class CustomerDetailsWSUtilv2 {
               'http://com.wex.enterpriseapps.customerinfo',
               'getContactsResponse',
               'CustomerDetailsWSUtilv2.getContactsResponse'}
+            );
+            response_x = response_map_x.get('response_x');
+            return response_x.return_x;
+        }
+        public String accountName;
+        public String accountNumber;
+        public String acctPlatform;
+        public String acctStatusCd;
+        public String amountWaived;
+        public String approvalComment;
+        public String approvalStatus;
+        public String approver;
+        public String description;
+        public Long id;
+        public String reasonComment;
+        public String recordType;
+        public String type_x;
+
+
+        public CustomerDetailsWSUtilv2.refundAdjustmentDTO getRefunds(String wexAcctNbr) {
+            CustomerDetailsWSUtilv2.getRefunds request_x = new CustomerDetailsWSUtilv2.getRefunds();
+            request_x.wexAcctNbr = wexAcctNbr;
+            CustomerDetailsWSUtilv2.getRefundsResponse response_x;
+            Map<String, CustomerDetailsWSUtilv2.getRefundsResponse> response_map_x = new Map<String, CustomerDetailsWSUtilv2.getRefundsResponse>();
+            response_map_x.put('response_x', response_x);
+            WebServiceCallout.invoke(
+                    this,
+                    request_x,
+                    response_map_x,
+                    new String[]{endpoint_x,
+                            '',
+                            'http://com.wex.enterpriseapps.customerinfo',
+                            'getRefunds',
+                            'http://com.wex.enterpriseapps.customerinfo',
+                            'getRefundsResponse',
+                            'CustomerDetailsWSUtilv2.getRefundsResponse'}
+            );
+            response_x = response_map_x.get('response_x');
+            return response_x.return_x;
+        }
+
+        public CustomerDetailsWSUtilv2.refundAdjustmentDTO getAdjustments(String wexAcctNbr) {
+            CustomerDetailsWSUtilv2.getAdjustments request_x = new CustomerDetailsWSUtilv2.getAdjustments();
+            request_x.wexAcctNbr = wexAcctNbr;
+            CustomerDetailsWSUtilv2.getAdjustmentsResponse response_x;
+            Map<String, CustomerDetailsWSUtilv2.getAdjustmentsResponse> response_map_x = new Map<String, CustomerDetailsWSUtilv2.getAdjustmentsResponse>();
+            response_map_x.put('response_x', response_x);
+            WebServiceCallout.invoke(
+                    this,
+                    request_x,
+                    response_map_x,
+                    new String[]{endpoint_x,
+                            '',
+                            'http://com.wex.enterpriseapps.customerinfo',
+                            'getAdjustments',
+                            'http://com.wex.enterpriseapps.customerinfo',
+                            'getAdjustmentsResponse',
+                            'CustomerDetailsWSUtilv2.getAdjustmentsResponse'}
             );
             response_x = response_map_x.get('response_x');
             return response_x.return_x;

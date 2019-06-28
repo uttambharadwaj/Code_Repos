@@ -572,6 +572,113 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 }
 
             }
+
+            else if(request instanceof CustomerDetailsWSUtilv2.getRefunds) {
+
+                CustomerDetailsWSUtilv2.getRefunds getRefundsObject = (CustomerDetailsWSUtilv2.getRefunds)request;
+
+                if((getRefundsObject.wexAcctNbr).equalsIgnoreCase('9100000000000')) {
+
+                    CustomerDetailsWSUtilv2.getRefundsResponse responseElement = new CustomerDetailsWSUtilv2.getRefundsResponse();
+
+                    responseElement.return_x = new CustomerDetailsWSUtilv2.RefundAdjustmentDTO();
+
+                    //This is the dummy version
+                    CustomerDetailsWSUtilv2.refundAdjustment[] refundArray = new CustomerDetailsWSUtilv2.refundAdjustment[]{};
+
+                    Datetime startDate = Datetime.now();
+                    Datetime decisionDate;
+                    String NA = 'N/A';
+
+                    for (Integer i=1; i <=3;i++) {
+                        decisionDate = startDate.addMonths(i*-1);
+                        CustomerDetailsWSUtilv2.refundAdjustment entry = new CustomerDetailsWSUtilv2.refundAdjustment();
+                        entry.accountNumber = getRefundsObject.wexAcctNbr;
+                        entry.acctPlatform = 'SIEBEL';
+                        entry.decisionDt = decisionDate;
+                        entry.acctStatusCd = 'Active';
+                        entry.amountWaived = 100.00;
+                        entry.approvalComment = 'Approved without comment';
+                        entry.approvalStatus = 'Approved';
+                        entry.approver = 'Derek Curtis';
+                        entry.description = 'Description goes here';
+                        entry.id = 100000 + i;
+                        entry.reasonComment = 'Unreasonable';
+                        entry.recordType  = 'Refund';
+                        entry.type_x = 'ONDR';
+                        refundArray.add(entry);
+                    }
+
+                    responseElement.return_x.refundAdjustments = refundArray;
+                    responseElement.return_x.errorMsg = 'Generated demo data';
+                    response.put('response_x', responseElement);
+                }
+                else {
+
+                    CustomerDetailsWSUtilv2.getRefundsResponse responseElement = new CustomerDetailsWSUtilv2.getRefundsResponse();
+
+                    responseElement.return_x = new CustomerDetailsWSUtilv2.RefundAdjustmentDTO();
+
+                    responseElement.return_x.errorMsg = 'Unable to retrieve specified Refunds!';
+
+                    response.put('response_x', responseElement);
+
+                }
+
+            }
+            else if(request instanceof CustomerDetailsWSUtilv2.getAdjustments) {
+
+                CustomerDetailsWSUtilv2.getAdjustments getAdjustmentsObject = (CustomerDetailsWSUtilv2.getAdjustments)request;
+
+                if((getAdjustmentsObject.wexAcctNbr).equalsIgnoreCase('9100000000000')) {
+
+                    CustomerDetailsWSUtilv2.getAdjustmentsResponse responseElement = new CustomerDetailsWSUtilv2.getAdjustmentsResponse();
+
+                    responseElement.return_x = new CustomerDetailsWSUtilv2.RefundAdjustmentDTO();
+
+                    //This is the dummy version
+                    CustomerDetailsWSUtilv2.refundAdjustment[] adjustmentsArray = new CustomerDetailsWSUtilv2.refundAdjustment[]{};
+
+                    Datetime startDate = Datetime.now();
+                    Datetime decisionDate;
+                    String NA = 'N/A';
+
+                    for (Integer i=1; i <=3;i++) {
+                        decisionDate = startDate.addMonths(i*-1);
+                        CustomerDetailsWSUtilv2.refundAdjustment entry = new CustomerDetailsWSUtilv2.refundAdjustment();
+                        entry.accountNumber = getAdjustmentsObject.wexAcctNbr;
+                        entry.acctPlatform = 'SIEBEL';
+                        entry.decisionDt = decisionDate;
+                        entry.acctStatusCd = 'Active';
+                        entry.amountWaived = -100.00;
+                        entry.approvalComment = 'Approved without comment';
+                        entry.approvalStatus = 'Approved';
+                        entry.approver = 'Derek Curtis';
+                        entry.description = 'Description goes here';
+                        entry.id = 100000 + i;
+                        entry.reasonComment = 'Unreasonable';
+                        entry.recordType  = 'Adjustment';
+                        entry.type_x = 'ONDR';
+                        adjustmentsArray.add(entry);
+                    }
+
+                    responseElement.return_x.refundAdjustments = adjustmentsArray;
+                    responseElement.return_x.errorMsg = 'Generated demo data';
+                    response.put('response_x', responseElement);
+                }
+                else {
+
+                    CustomerDetailsWSUtilv2.getRefundsResponse responseElement = new CustomerDetailsWSUtilv2.getRefundsResponse();
+
+                    responseElement.return_x = new CustomerDetailsWSUtilv2.RefundAdjustmentDTO();
+
+                    responseElement.return_x.errorMsg = 'Unable to retrieve specified Refunds!';
+
+                    response.put('response_x', responseElement);
+
+                }
+
+            }
             
         }
     
