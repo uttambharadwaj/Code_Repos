@@ -49,27 +49,6 @@
             $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
             $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
 
-            function addProduct() {
-                $j("[id$=otherServices] option:selected").remove().appendTo("[id$=selectedOtherServices]");
-
-                $j("[id$=selectedOtherServicesValue]").val($j("[id$=selectedOtherServices]").val().join(";"));
-
-                if($j("[id$=selectedOtherServices]").val().join(";").includes('MasterCard'))
-                    $j("[id$=allowedMerchantCategories").show();
-
-                console.log($j("[id$=selectedOtherServicesValue]").val());
-            }
-
-            function removeProduct() {
-                $j("[id$=selectedOtherServices] option:selected").remove().appendTo("[id$=otherServices]");
-
-                $j("[id$=selectedOtherServicesValue]").val($j("[id$=selectedOtherServices]").val().join(";"));
-
-                if(!$j("[id$=selectedOtherServices]").val().join(";").includes('MasterCard'))
-                    $j("[id$=allowedMerchantCategories").hide();
-
-                console.log($j("[id$=selectedOtherServicesValue]").val());
-            }
         </script>
 
         <script type="text/javascript" src="{!URLFOR($Resource.OTRBOCABaseJS)}" />
@@ -341,7 +320,7 @@
                                     &nbsp;
                                 </div>
                                 <fieldset class="slds-form-element">
-                                    <div class="slds-form-element__control">
+                                    <div class="slds-form-element__control" id="fundingOptions">
                                         <apex:repeat value="{!fundingOptions}" var="funOpt" id="repeatFun">
                                             <div class="slds-checkbox three columns">
                                                 <label class="styled-label" for="{!funOpt.value}">{!funOpt.label}</label>
@@ -370,27 +349,17 @@
                                     &nbsp;
                                 </div>
                                 <div class="twelve columns clearfix form-field styled-panel">
-                                    <div class="five columns clearfix">
-                                        <label for="otherServices" class="styled-label">Available Products</label>
-                                        <select size="7" multiple="multiple" class="styled-multi-select" id="otherServices" tabindex="18" >
-                                            <apex:repeat value="{!otherServices}" var="otherService">
-                                                <option value="{!otherService}">{!otherService}</option>
-                                            </apex:repeat>
-                                        </select>
-                                    </div>
-                                    <div class="two columns clearfix" style="padding-top: 60px;">
-                                        <div class="action-button" onclick="javascript:addProduct();">
-                                            <i class="fa fa-arrow-right" aria-hidden="true"></i><br/>
-                                        </div><br/>
-                                        <div class="action-button" onclick="javascript:removeProduct();">
-                                            <i class="fa fa-arrow-left" aria-hidden="true"></i><br/>
-                                        </div>
-                                    </div>
-                                    <div class="five columns clearfix">
-                                        <label for="selectedOtherServices" class="styled-label">Selected Products</label>
-                                        <select size="7" multiple="multiple" class="styled-multi-select" tabindex="19" id="selectedOtherServices">
-                                        </select>
-                                    </div>
+                                    <fieldset class="slds-form-element">
+                                        <legend class="slds-form-element__legend slds-form-element__label">Available Products</legend>
+                                        <apex:repeat value="{!otherServicesOptions}" var="otherService">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-checkbox columns offset-by-one">
+                                                    <label class="styled-label" for="{!otherService.value}">{!otherService.label}</label>
+                                                    <input type="checkbox" id="{!otherService.value}" value="{!otherService.value}" onchange="prodSelection(this)"/>
+                                                </div>
+                                            </div>
+                                        </apex:repeat>
+                                    </fieldset>
                                 </div>
 
                                 <!--BEGIN ALLOWED MERCHANT CATEGORIES SUBSECTION-->

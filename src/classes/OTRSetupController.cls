@@ -104,6 +104,22 @@ public without sharing class OTRSetupController {
 
     public List<String> otherServices { get; set; }
 
+    public List<SelectOption> otherServicesOptions {
+
+        get {
+            List<SelectOption> othSvcOpts = new List<SelectOption>();
+            String othSvcOptsString = onlineApplicationOffer.Other_Services__c;
+
+            if (othSvcOptsString != null) {
+                for (String option : othSvcOptsString.split(';')) {
+                    othSvcOpts.add(new SelectOption(option, option));
+                }
+            }
+
+            return othSvcOpts;
+        }
+    }
+
     public String selectedOtherServices { get; set; }
 
     public Integer otherServicesSize {
@@ -428,7 +444,7 @@ public without sharing class OTRSetupController {
             onlineApplication.Number_of_Cards_Needed__c = numberOfCards;
 
             if (selectedOtherServices != null) {
-                onlineApplication.Other_Services__c = selectedOtherServices;
+                onlineApplication.Other_Services__c = selectedOtherServices.replaceAll(',',';');
             }
 
             if(selectedMerch != null){
