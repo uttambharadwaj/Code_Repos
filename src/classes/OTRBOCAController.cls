@@ -280,7 +280,7 @@ public class OTRBOCAController {
         }
     }
 
-    public List<String> dayOfPaymentOptions {
+    /* public List<String> dayOfPaymentOptions {
         get {
             List<String> picklistValues = new List<String>();
             Schema.DescribeFieldResult dayOfPayment = OnlineApplication__c.Day_of_Payment__c.getDescribe();
@@ -290,7 +290,7 @@ public class OTRBOCAController {
             }
             return picklistValues;
         }
-    }
+    } */
 
     public String selectedDaysOfPayment { get; set; }
 
@@ -385,7 +385,7 @@ public class OTRBOCAController {
                                 onlineApplication.Id = partialOnlineApplications[0].Id;
 
                                 fleetIdentifier = partialOnlineApplications[0].MC_FF_or_DOT__c;
-                                selectedDaysOfPayment = partialOnlineApplications[0].Day_of_Payment__c;
+                                selectedDaysOfPayment = partialOnlineApplications[0].Days_of_Payment__c;
 
                             } else {
 
@@ -874,7 +874,7 @@ public class OTRBOCAController {
 //                onlineApplication.OwnerId = opportunity.OwnerId;
 //            }
 
-            onlineApplication.Day_of_Payment__c = selectedDaysOfPayment;
+//            onlineApplication.Day_of_Payment__c = selectedDaysOfPayment;
             onlineApplication.Program__c = program.Id;
             onlineApplication.Offer__c = onlineApplicationOffer.Id;
             onlineApplication.Product_Type__c = 'OTR';
