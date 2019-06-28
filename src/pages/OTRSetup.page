@@ -353,7 +353,7 @@
                                         <legend class="slds-form-element__legend slds-form-element__label">Available Products</legend>
                                         <apex:repeat value="{!otherServicesOptions}" var="otherService">
                                             <div class="slds-form-element__control">
-                                                <div class="slds-checkbox columns offset-by-one">
+                                                <div class="slds-checkbox columns four">
                                                     <label class="styled-label" for="{!otherService.value}">{!otherService.label}</label>
                                                     <input type="checkbox" id="{!otherService.value}" value="{!otherService.value}" onchange="prodSelection(this)"/>
                                                 </div>
