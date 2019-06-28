@@ -5,8 +5,9 @@
 * Author: Derek Gilbert
 * Initial Date: 3/20/2018
 *
-* Revision History: 6/4/2019 - MFarrell OTRONBOARD-35 - New Fields added to contract section
-*
+* Revision History: 04/Jun/2019 MFarrell    OTRONBOARD-35   New Fields added to contract section
+*                   24/Jun/2019 MFarrell    OTRONBOARD-30   Moar Fields added to contract section
+*                   25/Jun/2018 JArbegast   OTRONBOARD-44   Still not enough fields
 */
 global class AccountWS_EFSAppManager {
 
@@ -219,8 +220,8 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Offer__c != null) {
             onlineApplicationOffer = [SELECT Id, Account_Descriptor__c, ATM_Use__c, Cash_Limit__c, Daily_Cash_Limit__c, Daily_MC_Limit__c, Funding__c, Limit_Method__c,
                     PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c, PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c
-                    // OTRONBOARD-33 && OTRONBOARD-29
-                    // Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c, Mcode_Monthly_Account_Fee__c, Mcode_Monthly_Account_Fee_Value__c, Monthly_Account_Fee__c, Monthly_Account_Fee_Value__c
+            // OTRONBOARD-33 && OTRONBOARD-29
+            // Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c, Mcode_Monthly_Account_Fee__c, Mcode_Monthly_Account_Fee_Value__c, Monthly_Account_Fee__c, Monthly_Account_Fee_Value__c
             FROM OnlineApplicationOffer__c WHERE Id =: onlineApplication.Offer__c LIMIT 1];
         }
 
@@ -414,6 +415,14 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeBooleanField('payrollAtm', false);
         jsonPayload.writeBooleanField('payrollChk', false);
         jsonPayload.writeBooleanField('payrollAch', false);
+
+        if(onlineApplication.Funding_Options__c != null) {
+            if(onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'ATM');
+            if(onlineApplication.Funding_Options__c.contains('Register Check')) jsonPayload.writeStringField('payrollChk', 'Register Check');
+            if(onlineApplication.Funding_Options__c.contains('ACH Transfer')) jsonPayload.writeStringField('payrollAch', 'ACH Transfer');
+            if(onlineApplication.Funding_Options__c.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Debit Use');
+        }
+
         jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('payrollDebit', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
@@ -506,6 +515,35 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeEndArray();
         // End of "infos"
+
+        // Start of refresh limits
+        jsonPayload.writeFieldName('refreshLimits');
+        jsonPayload.writeStartObject();
+        if(onlineApplication.Daily_Amount_Requested__c != null) jsonPayload.writeNumberField('dailyAmount',onlineApplication.Daily_Amount_Requested__c);
+        if(onlineApplication.Daily_Transactions__c != null) jsonPayload.writeNumberField('dailyCount',onlineApplication.Daily_Transactions__c);
+        if(onlineApplication.Monthly_Amount_Requested__c != null) jsonPayload.writeNumberField('monthlyAmount',onlineApplication.Monthly_Amount_Requested__c);
+        if(onlineApplication.Monthly_Transactions__c != null) jsonPayload.writeNumberField('monthlyCount',onlineApplication.Monthly_Transactions__c);
+        if(onlineApplication.Weekly_Amount_Requested__c != null) jsonPayload.writeNumberField('weeklyAmount',onlineApplication.Weekly_Amount_Requested__c);
+        if(onlineApplication.Weekly_Transactions__c != null) jsonPayload.writeNumberField('weeklyCount',onlineApplication.Weekly_Transactions__c);
+        jsonPayload.writeEndObject();
+        // End of "refresh limits"
+
+        //start merchant category codes
+        if(onlineApplication.Allowed_Merchant_Categories__c!=null){
+            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', onlineApplication.Allowed_Merchant_Categories__c.contains('All Merchants'));
+            jsonPayload.writeFieldName('merchantCategoryCodes');
+            jsonPayload.writeStartArray();
+            for(String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')){
+                if(s.isNumeric())
+                    jsonPayload.writeNumber(Integer.valueOf(s));
+            }
+            jsonPayload.writeEndArray();
+        } else {
+            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', false);
+        }
+        //end merchant category codes
+
+        //if(onlineApplication.Scales_Limit__c != null) jsonPayload.writeNumberField('scalesLimit', onlineApplication.Scales_Limit__c);
 
         jsonPayload.writeEndObject();
         // End of "policy"
@@ -697,15 +735,21 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Fax_Number__c != null) jsonPayload.writeStringField('shipping_fax', onlineApplication.Fax_Number__c);
         // OTRONBOARD-35 If Offer is Parent Funded, send these fields.
         if(onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded') {
-            if (onlineApplicationOffer.Limit_Method__c != null) jsonPayload.writeStringField('limit method', onlineApplicationOffer.Limit_Method__c);
-            if (onlineApplicationOffer.Daily_Cash_Limit__c != null) jsonPayload.writeNumberField('daily cash limit', Integer.valueOf(onlineApplicationOffer.Daily_Cash_Limit__c));
-            if (onlineApplicationOffer.Daily_MC_Limit__c != null) jsonPayload.writeNumberField('daily mc limit', Integer.valueOf(onlineApplicationOffer.Daily_MC_Limit__c));
-            if (onlineApplicationOffer.Cash_Limit__c != null) jsonPayload.WriteNumberField('cash limit', Integer.valueOf(onlineApplicationOffer.Cash_Limit__c));
-            if (onlineApplicationOffer.MC_Limit__c != null) jsonPayload.writeNumberField('mc limit', Integer.valueOf(onlineApplicationOffer.MC_Limit__c));
-            if (onlineApplicationOffer.Trans_Limit__c != null) jsonPayload.writeNumberField('trans limit', Integer.valueOf(onlineApplicationOffer.Trans_Limit__c));
-            if (onlineApplicationOffer.ATM_Use__c == true) jsonPayload.writeStringField('atm use', 'Y');
-            if (onlineApplicationOffer.ATM_Use__c == false) jsonPayload.writeStringField('atm use', 'N');
+            if (onlineApplicationOffer.Limit_Method__c != null) jsonPayload.writeStringField('limit_method', onlineApplicationOffer.Limit_Method__c);
+            if (onlineApplicationOffer.Daily_Cash_Limit__c != null) jsonPayload.writeNumberField('daily_cash_limit', Integer.valueOf(onlineApplicationOffer.Daily_Cash_Limit__c));
+            if (onlineApplicationOffer.Daily_MC_Limit__c != null) jsonPayload.writeNumberField('daily_mc_limit', Integer.valueOf(onlineApplicationOffer.Daily_MC_Limit__c));
+            if (onlineApplicationOffer.Cash_Limit__c != null) jsonPayload.WriteNumberField('cash_limit', Integer.valueOf(onlineApplicationOffer.Cash_Limit__c));
+            if (onlineApplicationOffer.MC_Limit__c != null) jsonPayload.writeNumberField('mc_limit', Integer.valueOf(onlineApplicationOffer.MC_Limit__c));
+            if (onlineApplicationOffer.Trans_Limit__c != null) jsonPayload.writeNumberField('trans_limit', Integer.valueOf(onlineApplicationOffer.Trans_Limit__c));
+            if (onlineApplicationOffer.ATM_Use__c == true) jsonPayload.writeStringField('atm_use', 'Y');
+            if (onlineApplicationOffer.ATM_Use__c == false) jsonPayload.writeStringField('atm_use', 'N');
         }
+
+        // OTRONBOARD-30
+        if(onlineApplicationOffer.approval_type__c != null) jsonPayload.writeStringField('approval_type', onlineApplicationOffer.Approval_Type__c);
+        if(onlineApplicationOffer.primary_contact_email_address__c != null) jsonPayload.writeStringField('email_address', onlineApplicationOffer.Primary_Contact_Email_Address__c);
+        if(onlineApplicationOffer.create_letter__c != null) jsonPayload.writeStringField('create_letter', onlineApplicationOffer.Create_Letter__c);
+        if(onlineApplicationOffer.notice_delivery__c != null) jsonPayload.writeStringField('notice_delivery', onlineApplicationOffer.Notice_Delivery__c);
 
         // Per Gaylon and Justine - we're always going to send this.
         if(onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('fuel_and_cash', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Fuel_Cash__c));

@@ -71,6 +71,35 @@ public without sharing class OTRSetupController {
         }
     }
 
+    public String selectedMerch {get;set;}
+
+    public List<OptionWrapper> merchCats {
+        get {
+            List<OptionWrapper> myMerchObjs = new List<OptionWrapper>();
+            Schema.DescribeFieldResult myPicklistFields = OnlineApplication__c.Allowed_Merchant_Categories__c.getDescribe();
+            for(Schema.PicklistEntry pe : myPicklistFields.getPicklistValues()){
+                if(!pe.getValue().contains('All')){
+                    myMerchObjs.add(new OptionWrapper(pe));
+                }
+            }
+            return myMerchObjs;
+        }
+    }
+
+    public class OptionWrapper {
+        public String label {get;set;}
+        public String value {get;set;}
+        public String helps {get;set;}
+
+        public OptionWrapper(Schema.PicklistEntry myPicker){
+            this.label = myPicker.getLabel();
+            this.value = myPicker.getValue();
+            String myHelp = 'OTRSetup' + myPicker.getValue();
+            this.helps = myHelp;
+
+        }
+    }
+
     public String selectedDriverIndex { get; set; }
 
     public List<String> otherServices { get; set; }
@@ -83,6 +112,14 @@ public without sharing class OTRSetupController {
                 return otherServices.size();
             }
             return 0;
+        }
+    }
+
+    public Boolean hasScales {
+        get{
+            if(otherServices != null && otherServices.contains('Scales'))
+                return true;
+            return false;
         }
     }
 
@@ -181,7 +218,8 @@ public without sharing class OTRSetupController {
                                 Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Fuel_Limit__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Daily_Misc_Limit__c, Business_Address_Line_2__c,
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
                                 Opportunity__r.CampaignId, Contact_Last_Name__c, Email__c, Contact_First_Name__c, Phone_Number__c, Cell_Number__c, Opportunity__r.Campaign_Program__c,
-                                Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c
+                                Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c, Allowed_Merchant_Categories__c, Daily_Amount_Requested__c, Daily_Transactions__c,
+                                Monthly_Amount_Requested__c, Monthly_Transactions__c, Weekly_Amount_Requested__c, Weekly_Transactions__c, Scales_Limit__c
                         FROM OnlineApplication__c
                         WHERE Id = :customerParameter AND Status__c = 'App-Incomplete'
                         LIMIT 1
@@ -391,6 +429,10 @@ public without sharing class OTRSetupController {
 
             if (selectedOtherServices != null) {
                 onlineApplication.Other_Services__c = selectedOtherServices;
+            }
+
+            if(selectedMerch != null){
+                onlineApplication.Allowed_Merchant_Categories__c = selectedMerch.replaceAll(',',';');
             }
 
             if (selectedFundingOptions != null) {
