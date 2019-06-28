@@ -219,7 +219,8 @@ global class AccountWS_EFSAppManager {
 
         if(onlineApplication.Offer__c != null) {
             onlineApplicationOffer = [SELECT Id, Account_Descriptor__c, ATM_Use__c, Cash_Limit__c, Daily_Cash_Limit__c, Daily_MC_Limit__c, Funding__c, Limit_Method__c,
-                    PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c, PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c
+                    PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c, PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c,
+                    Approval_Type__c, Primary_Contact_Email_Address__c, Create_Letter__c, Notice_Delivery__c
             // OTRONBOARD-33 && OTRONBOARD-29
             // Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c, Mcode_Monthly_Account_Fee__c, Mcode_Monthly_Account_Fee_Value__c, Monthly_Account_Fee__c, Monthly_Account_Fee_Value__c
             FROM OnlineApplicationOffer__c WHERE Id =: onlineApplication.Offer__c LIMIT 1];
