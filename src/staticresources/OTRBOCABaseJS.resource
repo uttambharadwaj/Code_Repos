@@ -636,6 +636,69 @@ function scrollIntoView(divId) {
     $j('html, body').animate({
         scrollTop: offset.top,
         scrollLeft: offset.left
-    })
-
+    });
 }
+
+//all selected merch...for Allowed Merchant Categories
+var mySelectedMerch = [];
+
+//one of the merchant options was clicked! add/remove it from the list!
+function merchSelection(myField){
+    const myIndex = mySelectedMerch.indexOf(myField.value);
+    if(myField.checked && myIndex < 0){
+        mySelectedMerch.push(myField.value);
+    } else if(!myField.checked) {
+        deselectThisMerch(myField.value);
+        $j("[id$=allFuel]").prop('checked', false);
+        removeAllMerch();
+    }
+    $j("[id$=selectedMerchValue]").val(mySelectedMerch);
+}
+
+//removes an entry from mySelectedMerch list
+function deselectThisMerch(myMerch){
+    const myIndex = mySelectedMerch.indexOf(myMerch);
+    if(myIndex > -1){
+        mySelectedMerch.splice(myIndex,1);
+    }
+}
+
+//deselects and removes the all merchant option
+function removeAllMerch(){
+    deselectThisMerch('All Merchants');
+    $j("[id$=allMerch]").prop('checked', false);
+}
+
+//select all the fuel options. or deselect. whichever.
+function allFuelSelect(myField){
+    if(myField.checked){
+        $j("[name=myMerch]").each(function(){
+            this.checked=true;
+            merchSelection(this);
+        });
+    } else {
+        $j("[name=myMerch]").each(function(){
+            this.checked=false;
+            merchSelection(this);
+        });
+    }
+}
+
+//select all merchants and fuel categories
+function allMerchants(myField){
+    if(myField.checked){
+        mySelectedMerch.push('All Merchants');
+        $j("[name=myMerch]").each(function(){
+            this.checked=true;
+            merchSelection(this);
+        });
+        $j("[name=allTheFuel]").prop('checked',true);
+    } else {
+        $j("[name=myMerch]").each(function(){
+            this.checked=false;
+            merchSelection(this);
+        });
+        $j("[name=allTheFuel]").prop('checked',false);
+    }
+}
+
