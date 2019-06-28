@@ -708,3 +708,18 @@ function allMerchants(myField){
     }
 }
 
+var selectedProducts = [];
+function prodSelection(myProduct){
+    const myIndex = selectedProducts.indexOf(myProduct.value);
+    if(myProduct.checked && myIndex < 0){
+        selectedProducts.push(myProduct.value);
+    } else if(!myProduct.checked) {
+        selectedProducts.splice(myIndex,1);
+    }
+    $j("[id$=selectedOtherServicesValue]").val(selectedProducts);
+
+    if(selectedProducts.join(";").includes('Fleet MasterCard') || selectedProducts.join(";").includes('SmartFunds'))
+        $j("[id$=allowedMerchantCategories").show();
+    else
+        $j("[id$=allowedMerchantCategories").hide();
+}
