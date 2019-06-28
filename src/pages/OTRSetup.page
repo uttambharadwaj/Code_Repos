@@ -317,7 +317,7 @@
                                     &nbsp;
                                 </div>
                                 <fieldset class="slds-form-element">
-                                    <div class="slds-form-element__control">
+                                    <div class="slds-form-element__control" id="fundingOptions">
                                     <apex:repeat value="{!fundingOptions}" var="funOpt" id="repeatFun">
                                             <div class="slds-checkbox three columns">
                                                 <label class="styled-label" for="{!funOpt.value}">{!funOpt.label}</label>
