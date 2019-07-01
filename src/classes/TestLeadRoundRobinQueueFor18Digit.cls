@@ -1,5 +1,7 @@
 public with sharing class TestLeadRoundRobinQueueFor18Digit {
 
+/*
+//identified as deletable in technicaldebtz spreadsheet
    static testMethod void domainExists(){
       LeadRoundRobinQueue__c l = new LeadRoundRobinQueue__c();
       l.Standard_Queue_Id__c = [Select QueueId, Id, CreatedById From QueueSobject where sobjecttype = 'Lead' limit 1].id;
@@ -8,4 +10,5 @@ public with sharing class TestLeadRoundRobinQueueFor18Digit {
       insert l;
    }
 
+*/
 }
