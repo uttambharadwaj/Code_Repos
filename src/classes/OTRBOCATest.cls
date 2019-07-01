@@ -304,7 +304,7 @@ public class OTRBOCATest {
 
             System.assert(otrBOCAController.businessDescriptionOptions != null);
             System.assert(otrBOCAController.paymentMethodOptions != null);
-            System.assert(otrBOCAController.dayOfPaymentOptions != null);
+            //System.assert(otrBOCAController.dayOfPaymentOptions != null);
 
             System.assert(otrBOCAController.fleetIdentifier == null);
 
