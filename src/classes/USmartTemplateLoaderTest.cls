@@ -78,6 +78,10 @@ public class USmartTemplateLoaderTest {
                 '<5>',								// identifier
                 'WEX Salesforce Support Request'	// recordTypeName
             );
+            cases5[0].Business_Unit__c = 'Global';
+            cases5[0].Department__c = 'Sales';
+            cases5[0].Nature_of_Case__c = 'Issue';
+            cases5[0].Description = 'Bah gawd! He\'s been broken in half!';
             casesToInsert.addAll(cases5);
             
             insert casesToInsert;

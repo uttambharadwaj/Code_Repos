@@ -98,7 +98,8 @@ public class TestBOCATaskTrigger {
         Test.stopTest();
         
     }
-    
+    /*
+    //trigger this tests is marked for deletion; delete this test method with BOCATaskTrigger
     static testMethod void testSolicitedTask() {
         
         Profile profile = [SELECT Id FROM Profile WHERE Name = 'IS Sales']; 
@@ -200,5 +201,5 @@ public class TestBOCATaskTrigger {
         Test.stopTest();
         
     }
-    
+    */
 }
