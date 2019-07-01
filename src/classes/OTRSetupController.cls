@@ -102,6 +102,8 @@ public without sharing class OTRSetupController {
 
     public String selectedDriverIndex { get; set; }
 
+    public String otherServicesString { get; set; }
+
     public List<String> otherServices { get; set; }
 
     public List<SelectOption> otherServicesOptions {
@@ -264,8 +266,10 @@ public without sharing class OTRSetupController {
                         // Get the Online Application Offer
                         onlineApplicationOffer = WexBrandingController.getOnlineApplicationOfferById(onlineApplication.Offer__c);
 
-                        String otherServicesString = onlineApplicationOffer.Other_Services__c;
-                        if (otherServicesString != null) otherServices = otherServicesString.split(';');
+                        otherServicesString = onlineApplicationOffer.Other_Services__c;
+                        if (otherServicesString != null) {
+                            otherServices = otherServicesString.split(';');
+                        }
 
                         campaign = WexBrandingController.getCampaignByCampaignProgram(onlineApplication.Opportunity__r.Campaign_Program__c);
 
