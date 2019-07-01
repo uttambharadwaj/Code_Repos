@@ -204,7 +204,7 @@
                         <apex:form id="bocaForm">
                             <apex:inputHidden value="{!selectedOtherServices}" id="selectedOtherServicesValue" />
                             <apex:inputHidden value="{!selectedFundingOptions}" id="selectedFundingOptionsValue" />
-                            <apex:inputHidden value="{!onlineApplicationOffer.Other_Services__c}" id="otherServicesOffer" />
+                            <apex:inputHidden value="{!otherServicesString}" id="otherServicesOffer" />
                             <apex:actionFunction name="submitForm" action="{!submitForm}" oncomplete="generatePDFandConfirm()" rerender="" />
                             <apex:actionFunction name="generatePDFandConfirm" action="{!generatePDFandConfirm}" rerender="" />
                             <!--4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section. it went here. RIP Address section-->
