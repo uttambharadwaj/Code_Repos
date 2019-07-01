@@ -718,7 +718,7 @@ function prodSelection(myProduct){
     }
     $j("[id$=selectedOtherServicesValue]").val(selectedProducts);
 
-    if(selectedProducts.join(";").includes('Fleet MasterCard') || selectedProducts.join(";").includes('SmartFunds'))
+    if(selectedProducts.join(";").includes('Fleet MasterCard') || selectedProducts.join(";").includes('SmartFunds') || selectedProducts.join(";").includes('Smartfunds'))
         $j("[id$=allowedMerchantCategories").show();
     else
         $j("[id$=allowedMerchantCategories").hide();
