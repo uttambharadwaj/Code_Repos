@@ -56,12 +56,10 @@ public class UtilityClassTest {
         //QED
     }
 
-<<<<<<< HEAD
-=======
     @isTest static void testHelper(){
         //the org is infected with terrible testing practices. we know who to call...
         UtilityClass.testHelper();
         UtilityClass.testHelper2();
+        UtilityClass.testHelper3();
     }
->>>>>>> remotes/origin/techdebtrefactoring
 }
