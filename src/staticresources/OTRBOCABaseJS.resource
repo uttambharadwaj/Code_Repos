@@ -593,12 +593,11 @@ function validateFleetForm() {
 
     var otherServices = $j('[id$=otherServicesOffer]').val();
 
-    if(selectedFundingOptions == null || selectedFundingOptions.length < 1) {
-        if( (otherServices.includes('SmartFunds Payroll') || otherServices.includes('Smartfunds Non-Payroll'))  && (selectedFundingOptions == null || selectedFundingOptions.length < 1)) {
-            $j('[id$=fundingOptions]').addClass('erroredInput').after('<div class="fieldErrorMessage">You must select at least one Funding Option.</div>');
-            $j('[id$=fundingOptions]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-            hasErrors = true;
-        }
+    if( (otherServices.includes('SmartFunds Payroll') || otherServices.includes('Smartfunds Non-Payroll'))  && (selectedFundingOptions == null || selectedFundingOptions.length < 1)) {
+        $j('[id$=fundingOptions]').addClass('erroredInput').after('<div class="fieldErrorMessage">You must select at least one Funding Option.</div>');
+        $j('[id$=fundingOptions]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
+        hasErrors = true;
+    }
 
     console.log(hasErrors);
 
