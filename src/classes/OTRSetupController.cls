@@ -1,4 +1,4 @@
-/*
+ /*
 Description:        Controller Class for OTRSetup VF Page
                     (Page 2 of Online Application for OTRBOCA)
 Test Classes:       OTRBOCATest
@@ -101,8 +101,6 @@ public without sharing class OTRSetupController {
     }
 
     public String selectedDriverIndex { get; set; }
-
-    public String otherServicesString { get; set; }
 
     public List<String> otherServices { get; set; }
 
