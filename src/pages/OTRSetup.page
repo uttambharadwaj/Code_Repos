@@ -49,27 +49,17 @@
             $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
             $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
 
-            function addProduct() {
-                $j("[id$=otherServices] option:selected").remove().appendTo("[id$=selectedOtherServices]");
-
-                $j("[id$=selectedOtherServicesValue]").val($j("[id$=selectedOtherServices]").val().join(";"));
-
-                console.log($j("[id$=selectedOtherServicesValue]").val());
-            }
-
-            function removeProduct() {
-                $j("[id$=selectedOtherServices] option:selected").remove().appendTo("[id$=otherServices]");
-
-                $j("[id$=selectedOtherServicesValue]").val($j("[id$=selectedOtherServices]").val().join(";"));
-
-                console.log($j("[id$=selectedOtherServicesValue]").val());
-            }
         </script>
 
         <script type="text/javascript" src="{!URLFOR($Resource.OTRBOCABaseJS)}" />
 
         <!-- Local Styles -->
         <style>
+            .scales{
+                width:30.6666666667%;
+                box-sizing:border-box;
+            }
+
             .section-header {
             {!program.Brand_Color_1__c}
             }
@@ -201,14 +191,21 @@
 
                             </div>
                         </div>
+
+                        <!--FORM BEGIN-->
                         <apex:form id="bocaForm">
                             <apex:inputHidden value="{!selectedOtherServices}" id="selectedOtherServicesValue" />
-                            <apex:actionFunction name="submitForm" action="{!submitForm}" oncomplete="generatePDFandConfirm()" rerender="" />
+                            <apex:inputHidden value="{!selectedFundingOptions}" id="selectedFundingOptionsValue" />
+							<apex:inputHidden value="{!otherServicesString}" id="otherServicesOffer" />
+                            <apex:inputHidden value="{!selectedMerch}" id="selectedMerchValue" />
                             <apex:actionFunction name="generatePDFandConfirm" action="{!generatePDFandConfirm}" rerender="" />
+                            <apex:actionFunction name="submitForm" action="{!submitForm}" oncomplete="generatePDFandConfirm()" rerender="" />
                             <!--4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section. it went here. RIP Address section-->
                             <div class="twelve columns clearfix form-field styled-panel">
                                 &nbsp;
                             </div>
+
+                            <!--BEGIN AUTHORIZED CONTACT SECTION-->
                             <div class="twelve columns clearfix">
                                 <div class="section-header">
                                     Authorized Contact
@@ -276,9 +273,13 @@
                                     </apex:outputPanel>
                                 </div>
                             </div>
+                            <!--END AUTHORIZED CONTACT SECTION-->
+
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
+
+                            <!--BEGIN CARD INFORMATION SECTION-->
                             <div class="twelve columns clearfix">
                                 <div class="section-header">
                                     {!$Label.OTRSetup_Card_Information}
@@ -305,9 +306,110 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
+                            <!--END CARD INFORMATION SECTION-->
+
+                            <!--BEGIN AVAILABLE PRODUCTS SECTION-->
+                            <apex:outputPanel rendered="{!IF(OR(CONTAINS(onlineApplicationOffer.Other_Services__c, 'SmartFunds Payroll'), CONTAINS(onlineApplicationOffer.Other_Services__c, 'Smartfunds Non-Payroll')), true, false)}">
+                                <div class="twelve columns clearfix">
+                                    <b>Funding Options</b>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <fieldset class="slds-form-element">
+                                    <div class="slds-form-element__control" id="fundingOptions">
+                                        <apex:repeat value="{!fundingOptions}" var="funOpt" id="repeatFun">
+                                            <div class="slds-checkbox three columns">
+                                                <label class="styled-label" for="{!funOpt.value}">{!funOpt.label}</label>
+                                                <input type="checkbox" id="{!funOpt.value}" class="fundingOptions" name="myFunOpt" value="{!funOpt.value}" onchange="changeSelectedFunOptions(this)"/>
+                                            </div>
+                                        </apex:repeat>
+                                    </div>
+                                </fieldset>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!otherServicesSize != 0}">
+                                <div class="twelve columns clearfix">
+                                    <div class="section-header">
+                                        {!$Label.OTRSetup_Services}
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    These products or services are subject to Applicant’s execution of applicable additional enrollment form(s) or agreement(s). Products or services may be subject to additional fees.
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix form-field styled-panel">
+                                    <fieldset class="slds-form-element">
+                                        <legend class="slds-form-element__legend slds-form-element__label">Available Products</legend>
+                                        <apex:repeat value="{!otherServicesOptions}" var="otherService">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-checkbox columns four">
+                                                    <label class="styled-label" for="{!otherService.value}">{!otherService.label}</label>
+                                                    <input type="checkbox" id="{!otherService.value}" value="{!otherService.value}" onchange="prodSelection(this)"/>
+                                                </div>
+                                            </div>
+                                        </apex:repeat>
+                                    </fieldset>
+                                </div>
+
+                                <!--BEGIN ALLOWED MERCHANT CATEGORIES SUBSECTION-->
+                                <div id="allowedMerchantCategories" style="display:none;">
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div>
+                                        <fieldset class="slds-form-element">
+                                            <legend class="slds-form-element__legend slds-form-element__label">Fueling Categories</legend>
+                                            <div>
+                                                <div class="six columns clearfix form-field">
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-checkbox">
+                                                            <label class="styled-label" for="allFuel">Select All Fueling Categories</label>
+                                                            <input type="checkbox" id="allFuel" class="merchCats" name="allTheFuel" value="All Fueling Categories" onClick="allFuelSelect(this)"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="six columns clearfix form-field">
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-checkbox">
+                                                            <label class="styled-label" for="allMerch">All Merchants
+                                                                <apex:image style="width: 16px;" title="{!$Label.OTRSetupHelpAllMerch}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="All Merchant Help"/>
+                                                            </label>
+                                                            <input type="checkbox" id="allMerch" class="allMerchCat" name="allTheMerch" value="All Merchants" onClick="allMerchants(this)"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <apex:repeat value="{!merchCats}" var="myCat" id="catRepeat">
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-checkbox columns offset-by-one">
+                                                        <label class="styled-label" for="{!myCat.value}">{!myCat.label}
+                                                            <apex:image style="width: 16px;" title="{!$Label[myCat.helps]}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="All Merchant Help"/>
+                                                        </label>
+                                                        <input type="checkbox" id="{!myCat.value}" class="merchCats" name="myMerch" value="{!myCat.value}" onchange="merchSelection(this)"/>
+                                                    </div>
+                                                </div>
+                                            </apex:repeat>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <!--END ALLOWED MERCHANT CATEGORIES SUBSECTION-->
+
+                            </apex:outputPanel>
+                            <!--END AVAILABLE PRODUCTS SECTION-->
+
+                            <!--BEGIN POLICY SECTION-->
                             <apex:outputPanel id="cardPolicy" rendered="{!onlineApplicationOffer.Enable_Card_Information__c == true}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
@@ -328,18 +430,75 @@
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
-                                <div class="twelve columns clearfix">
-                                    <b>Limits</b>
+
+                                <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-->
+                                <div class="twelve columns clearfix form-field styled-panel">
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <b>Limits</b>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        Policy limits will reset at midnight Central Standard Time.
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="four columns clearfix form-field">
+                                            Daily Limit
+                                            <div>
+                                                <apex:outputLabel for="dailyTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Daily_Transactions__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Daily_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Daily Transaction Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Daily_Transactions__c}" id="dailyTrans"/>
+                                            </div>
+                                            <div>
+                                                <apex:outputLabel for="dailyAmt" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Daily_Amount_Requested__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Daily_Amount_Requested__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Daily Amount Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Daily_Amount_Requested__c}" id="dailyAmt"/>
+                                            </div>
+                                        </div>
+                                        <div class="four columns clearfix form-field">
+                                            Weekly Limit
+                                            <div>
+                                                <apex:outputLabel for="weekTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Weekly_Transactions__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Weekly_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Weekly Transaction Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Weekly_Transactions__c}" id="weekTrans"/>
+                                            </div>
+                                            <div>
+                                                <apex:outputLabel for="weekAmt" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Weekly_Amount_Requested__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Weekly_Amount_Requested__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Weekly Amount Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Weekly_Amount_Requested__c}" id="weekAmt"/>
+                                            </div>
+                                        </div>
+                                        <div class="four columns clearfix form-field">
+                                            Monthly Limit
+                                            <div>
+                                                <apex:outputLabel for="monthTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Monthly_Transactions__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Monthly_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Monthly Transaction Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Monthly_Transactions__c}" id="monthTrans"/>
+                                            </div>
+                                            <div>
+                                                <apex:outputLabel for="monthAmt" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Monthly_Amount_Requested__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Monthly_Amount_Requested__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Monthly Amount Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Monthly_Amount_Requested__c}" id="monthAmt"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    Policy limits will reset at midnight Central Standard Time.
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
+                                <!--END REFRESH LIMITS SUBSECTION-->
+
+                                <!--BEGIN OTHER LIMITS SUBSECTION-->
                                 <div class="twelve columns clearfix form-field styled-panel">
                                     <div class="twelve columns clearfix">
                                         <apex:outputPanel >
@@ -374,11 +533,23 @@
                                                 </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
+                                        <apex:outputPanel id="scalesLimits" rendered="{!hasScales}">
+                                            <div class="four columns offset-by-four">
+                                                <apex:outputLabel for="scales" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Scales_Limit__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Scales_Limit__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Scales Limit Help"/>
+                                                </apex:outputLabel>
+                                                <apex:InputField styleClass="styled-input" id="scales" label="" html-tabindex="16" value="{!onlineApplication.Scales_Limit__c}" />
+                                            </div>
+                                        </apex:outputPanel>
                                     </div>
                                 </div>
+                                <!--END OTHER LIMITS SUBSECTION-->
+
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
+
+                                <!--BEGIN PROMPTS SUBSECTION-->
                                 <div class="twelve columns clearfix">
                                     <b>Prompts</b>
                                 </div>
@@ -409,53 +580,19 @@
                                         </center>
                                     </div>
                                 </div>
+                                <!--END PROMPTS SUBSECTION-->
+
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
                             </apex:outputPanel>
-                            <apex:outputPanel rendered="{!otherServicesSize != 0}">
-                                <div class="twelve columns clearfix">
-                                    <div class="section-header">
-                                        Available Products
-                                    </div>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    These products or services are subject to Applicant’s execution of applicable additional enrollment form(s) or agreement(s). Products or services may be subject to additional fees.
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix form-field styled-panel">
-                                    <div class="five columns clearfix">
-                                        <label for="otherServices" class="styled-label">Available Products</label>
-                                        <select size="7" multiple="multiple" class="styled-multi-select" id="otherServices" tabindex="18" >
-                                            <apex:repeat value="{!otherServices}" var="otherService">
-                                                <option value="{!otherService}">{!otherService}</option>
-                                            </apex:repeat>
-                                        </select>
-                                    </div>
-                                    <div class="two columns clearfix" style="padding-top: 60px;">
-                                        <div class="action-button" onclick="javascript:addProduct();">
-                                            <i class="fa fa-arrow-right" aria-hidden="true"></i><br/>
-                                        </div><br/>
-                                        <div class="action-button" onclick="javascript:removeProduct();">
-                                            <i class="fa fa-arrow-left" aria-hidden="true"></i><br/>
-                                        </div>
-                                    </div>
-                                    <div class="five columns clearfix">
-                                        <label for="selectedOtherServices" class="styled-label">Selected Products</label>
-                                        <select size="7" multiple="multiple" class="styled-multi-select" tabindex="19" id="selectedOtherServices">
-                                        </select>
-                                    </div>
-                                </div>
-                            </apex:outputPanel>
+                            <!--END POLICY SECTION-->
 
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
+
+                            <!--BEGIN DRIVER INFORMATION SECTION-->
                             <apex:outputPanel id="cardSetup" rendered="{!onlineApplicationOffer.Enable_Driver_Unit_Information__c == true}">
                                 <apex:outputPanel rendered="{!cardType == 'driver'}">
                                     <div class="twelve columns clearfix">
@@ -581,6 +718,8 @@
                                     </apex:outputPanel>
                                 </apex:outputPanel>
                             </apex:outputPanel>
+                            <!--END DRIVER INFORMATION SECTION-->
+
                             <script>
                                 pageLoadFunctions();
                             </script>
@@ -594,6 +733,7 @@
                                 </div>
                             </div>
                         </apex:form>
+                        <!--FORM END-->
                     </div>
                 </div>
             </div>

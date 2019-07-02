@@ -1,4 +1,4 @@
-@isTest (seeAllData=true)
+@isTest
 public class CCH_Transaction_Test {
     
     public static testMethod void test_method_one() {

@@ -33,7 +33,7 @@ global class BatchDelete implements  Database.Batchable<sObject> {
       mail.setPlainTextBody('The batch Apex job processed ' + a.TotalJobItems +
         ' batches with '+ a.NumberOfErrors + ' failures.');
     
-      Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+      UtilityClass.sendEmail(mail);
     }
     
 }

@@ -1,4 +1,4 @@
-@isTest(SeeAllData = true)
+@isTest
 global class TestPricingController {
     
     public static testmethod void testMyCallout() {  

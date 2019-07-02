@@ -284,6 +284,64 @@ public class UCase
 
     }
 
+    public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap)
+    {
+        Id recordTypeId = null;
+        Id templateId = null;
+
+        for (RecordType rt :[SELECT Id FROM RecordType WHERE SobjectType = 'Case' AND RecordType.DeveloperName = 'Service_Operations'])
+        {
+            recordTypeId = rt.Id;
+        }
+
+        for (EmailTemplate et :[SELECT Id FROM EmailTemplate WHERE DeveloperName = 'CS_Survey_Request'])
+        {
+            templateId = et.Id;
+        }
+
+        List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
+
+        for (Case c : records)
+        {
+            if(c.ContactId != null && String.isNotBlank(c.Contact.Email)) {
+                if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed && c.RecordTypeId == recordTypeId && String.isNotBlank(c.SurveyInclusionHTML__c))
+                {
+                    Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+
+                    email.setTargetObjectId(c.ContactId);
+                    email.setTreatTargetObjectAsRecipient(true);
+                    email.setUseSignature(false);
+                    email.setSaveAsActivity(true);
+
+                    // Case's surveySent flag will be set by outbound email trigger
+                    email.setWhatId(c.Id);
+
+                    Messaging.SingleEmailMessage renderBody = Messaging.renderStoredEmailTemplate(templateId, c.Contact.OwnerId, c.Id);
+                    email.setSubject(renderBody.getSubject());
+                    email.setHtmlBody(renderBody.getHtmlBody());
+                    email.setPlainTextBody(renderBody.getPlainTextBody());
+                    emails.add(email);
+                }
+            }
+        }
+
+        try {
+            Messaging.reserveSingleEmailCapacity(emails.size());
+            List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails);
+
+            for (Messaging.SendEmailResult res : results)
+            {
+                for (Messaging.SendEmailError err : res.getErrors())
+                {
+                    System.debug('UCase.sendCaseCloseSurveyEmail send mail error: ' + err.getMessage());
+                }
+            }
+        }
+        catch (Exception e) {
+            System.debug('Unable to send email');
+        }
+    }
+
     public static void sendCaseCloseEmailToOpportunityOwner(List<Case> records, Map<Id, Case> oldMap)
     {
         Boolean isUpdate = oldMap != null;

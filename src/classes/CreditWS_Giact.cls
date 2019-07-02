@@ -97,9 +97,15 @@ public with sharing class CreditWS_Giact {
                             giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
                             giactVerifyResponse.VerificationResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
                             giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
+
                             giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
                             giactVerifyResponse.AccountResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
                             giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+
+                            giactVerifyResponse.CustomerResponseCode = String.valueOf(giactResponse.CustomerResponseCode);
+                            giactVerifyResponse.CustomerResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'CustomerResponseCode', giactVerifyResponse.CustomerResponseCode);
+                            giactVerifyResponse.CustomerResponseCodeMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'CustomerResponseCode', giactVerifyResponse.CustomerResponseCode);
+
 
                         }
                         else {
@@ -205,6 +211,9 @@ public with sharing class CreditWS_Giact {
         public String VerificationResponseCode { get; set; }
         public String VerificationResponseCodeName { get; set; }
         public String VerificationResponseMessage { get; set; }
+        public String CustomerResponseCode { get; set; }
+        public String CustomerResponseCodeName { get; set; }
+        public String CustomerResponseCodeMessage { get; set; }
         public String GiactErrorMessage { get; set; }
 
         public GiactVerifyResponse() {

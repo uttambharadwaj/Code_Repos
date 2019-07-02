@@ -2,11 +2,6 @@
 public class USmartTemplateLoaderTest {
     
     @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-    @testSetup
     static void dataSetup() {
         
         Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
@@ -21,7 +16,7 @@ public class USmartTemplateLoaderTest {
         insert u3;
         
         system.runas(u1) {
-            
+            UtilityTestLoader.setAutomation(true);
             // !!! change recordTypeName to a Virtual CS rtn once in StageFull
             // no need to create Custom Metadata Type in test, see https://developer.salesforce.com/blogs/engineering/2015/05/testing-custom-metadata-types.html
             VRTN__c rtCS = WE_TestDataUtility.createRecTypeNameCustSett(
@@ -83,9 +78,14 @@ public class USmartTemplateLoaderTest {
                 '<5>',								// identifier
                 'WEX Salesforce Support Request'	// recordTypeName
             );
+            cases5[0].Business_Unit__c = 'Global';
+            cases5[0].Department__c = 'Sales';
+            cases5[0].Nature_of_Case__c = 'Enhancement';
+            cases5[0].Description = 'Bah gawd! He\'s been broken in half!';
             casesToInsert.addAll(cases5);
             
             insert casesToInsert;
+            UtilityTestLoader.setAutomation(false);
         }
     }
     

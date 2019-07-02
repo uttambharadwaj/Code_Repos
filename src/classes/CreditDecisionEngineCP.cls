@@ -255,6 +255,8 @@ global class CreditDecisionEngineCP {
 
                 // set result in object
                 cpApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
+                cpApplication.Lexis_Nexis_BIID_Score__c = lexisNexisBIIDResponse.biidScore;
+                cpApplication.Lexis_Nexis_CVI_Score__c = lexisNexisBIIDResponse.cviScore;
 
                 // If we fail, go to Fraud Point
                 if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && !String.isEmpty(cpApplication.Guarantor_Social_Security_Number__c)) {
@@ -516,6 +518,10 @@ global class CreditDecisionEngineCP {
 
                         cpApplication.GIACT_Account_Response_Code_Name__c = giactVerifyResponse.AccountResponseCodeName;
                         cpApplication.GIACT_Verify_Response_Code_Name__c = giactVerifyResponse.VerificationResponseCodeName;
+
+                        cpApplication.GIACT_Customer_Response_Code__c = giactVerifyResponse.CustomerResponseCode;
+                        cpApplication.GIACT_Customer_Response_Message__c = giactVerifyResponse.CustomerResponseCodeMessage;
+                        cpApplication.GIACT_Customer_Response_Code_Name__c = giactVerifyResponse.CustomerResponseCodeName;
 
                     } else {
 

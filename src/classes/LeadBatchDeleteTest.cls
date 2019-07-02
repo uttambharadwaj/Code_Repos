@@ -1,12 +1,13 @@
-@isTest (SeeAllData=true)
+@isTest 
 public class LeadBatchDeleteTest{ 
 
    static testMethod void runTest(){
+      UtilityTestLoader.setAutomation(false);
   
-  		List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
-  		
-  		Id leadRT = [select Id from RecordType where sObjectType = 'Lead' and DeveloperName NOT IN :AU_Lead_RTs limit 1].Id;
-  		
+      List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
+      
+      Id leadRT = [select Id from RecordType where sObjectType = 'Lead' and DeveloperName NOT IN :AU_Lead_RTs limit 1].Id;
+      
         Lead lead = new Lead();
         lead.RecordTypeId = leadRT;
         lead.company = 'sawicki test';
