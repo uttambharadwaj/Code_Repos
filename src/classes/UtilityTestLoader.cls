@@ -12,21 +12,20 @@ public class UtilityTestLoader {
     public static void loadTestData(){
         preExecute();
         doTheLoad();
-        postExecute();
     }
 
-    // separate method in case we want to do this with post sandbox refresh too
+    //separate method in case we want to do this with post sandbox refresh too
     public static void doTheLoad(){
         Database.executeBatch(new DataLoaderBatch());
     }
 
     public static void setAutomation(Boolean disabled){
         Automation_Settings__c newRecord = Automation_Settings__c.getOrgDefaults();
-        if(newRecord == null)
-            newRecord = new Automation_Settings__c();
+        if(newRecord == null) newRecord = new Automation_Settings__c();
         Map<String,Schema.SObjectField> myObjectFieldMap = newRecord.getsObjectType().getDescribe().fields.getMap();
         for(Schema.SObjectField sof : myObjectFieldMap.values()){
-            if(sof.getDescribe().getType() == Schema.DisplayType.Boolean)
+            Schema.DescribeFieldResult myField = sof.getDescribe();
+            if(myField.getType() == Schema.DisplayType.Boolean && myField.isUpdateable())
                 newRecord.put(sof.getDescribe().getName(), disabled);
         }
         upsert newRecord;
