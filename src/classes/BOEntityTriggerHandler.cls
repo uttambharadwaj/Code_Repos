@@ -1,5 +1,5 @@
 public class BOEntityTriggerHandler {
-    
+    /*
     public static boolean alreadyRunning = false;
 
     public static void updateExemptionStatus(Beneficial_Owner_Entity__c boEntity) {
@@ -83,13 +83,13 @@ public class BOEntityTriggerHandler {
         
         if(boEntity.Opportunity__c != null) {
         
-        	for(Beneficial_Owner_Entity__c boEntitySibling : [SELECT Id, Record_Status__c FROM Beneficial_Owner_Entity__c WHERE Opportunity__c =: boEntity.Opportunity__c and Id != null and Id !=: boEntity.Id and Record_Status__c = 'Active']) {
+            for(Beneficial_Owner_Entity__c boEntitySibling : [SELECT Id, Record_Status__c FROM Beneficial_Owner_Entity__c WHERE Opportunity__c =: boEntity.Opportunity__c and Id != null and Id !=: boEntity.Id and Record_Status__c = 'Active']) {
             
-            	boEntitySibling.Record_Status__c = 'Archived';
+                boEntitySibling.Record_Status__c = 'Archived';
             
-            	update boEntitySibling;
+                update boEntitySibling;
             
-        	}
+            }
             
         }
         
@@ -123,5 +123,5 @@ public class BOEntityTriggerHandler {
         
         
     }
-
+*/
 }

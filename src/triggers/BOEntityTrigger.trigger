@@ -1,7 +1,7 @@
 trigger BOEntityTrigger on Beneficial_Owner_Entity__c (before insert, before update, after insert, after update) {
-    Automation_Settings__c autoSettings = Automation_Settings__c.getOrgDefaults();
-    if(autoSettings != null && autoSettings.Disable_Apex_Triggers__c) return;
-
+    TriggerFactory.createTriggerDispatcher(Beneficial_Owner_Entity__c.sObjectType);
+    /*
+    //original trigger. commented out. delete these comments when new trigger framework is proven
     if(Trigger.isBefore && (Trigger.isInsert || Trigger.isUpdate)) {
 
         if(Trigger.isInsert) {
@@ -60,4 +60,5 @@ trigger BOEntityTrigger on Beneficial_Owner_Entity__c (before insert, before upd
 
     }
 
+     */
 }
