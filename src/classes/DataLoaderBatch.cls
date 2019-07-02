@@ -3,7 +3,7 @@
 * Author: Jason Arbegast
 * Initial Date: 5/14/2019
 * Description:  does all the hard work of loading data for test setups and post-sandbox refreshes
-* Test Class: DataLoaderBatchTest, 96% coverage
+* Test Class: DataLoaderBatchTest
 * Revision History:
 */
 
@@ -17,7 +17,6 @@ global class DataLoaderBatch implements Database.Batchable<String>,
     private static Boolean firstExecution;
     private static Test_Data_Configuration__mdt tdc;
     private static Test_Data_Configuration__mdt currentTestConfig = null;
-    public Boolean testRunOnly = false; //DataLoaderBatchTest does not need to load all the things, just one, so testRunOnly will stop it.
 
     // This constructor is called by the DataLoaderBatch itself in order to insert the next object
     global DataLoaderBatch (Integer pcmt, Map<String, Map<String, String>> idMap) {
@@ -39,12 +38,8 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         tdcQuery += ' ORDER BY Order__c ASC' +
                 ' LIMIT 1';
         List<Test_Data_Configuration__mdt> tdcs = Database.query(tdcQuery);
-        if (tdcs.size()>0) {
-            orderOfInsert = tdcs[0].Order__c.intValue();
-        } else {
-            // If there are no tdc's. error. SHAME!
-            throw new TestSetupException('There must be at least 1 Test Data Configuration metadata record to run the DataLoaderBatch.');
-        }
+        if(tdcs.size()<=0) throw new TestSetupException('There must be at least 1 Test Data Configuration metadata record to run the DataLoaderBatch.');
+        orderOfInsert = tdcs[0].Order__c.intValue();
 
         //turn that tdc number into a header row
         setHeaderRow(orderOfInsert);
@@ -152,24 +147,20 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         LIMIT 1];
 
         // if there is a next metadata, run it
-        if ( objectsToProcess.size() > 0 && !testRunOnly){
+        if ( objectsToProcess.size() > 0){
             Database.ExecuteBatch(new DataLoaderBatch(objectsToProcess.get(0).Order__c.intValue(), sObjectToIdMap));
             nextBatchCalled = true;
         }
 
-        if (!nextBatchCalled) { // if no more tdc records need to be processed
-
+        if (!nextBatchCalled)
             UtilityTestLoader.postExecute();
-
-        }
 
     }
 
     //split that row up
     private static String[] splitItUp(List<String> scope, Integer j){
-        if (firstExecution)
-            return scope[j].split(',');
-        return scope[j-1].split(',');
+        if(!firstExecution) return scope[j-1].split(',');
+        return scope[j].split(',');
     }
 
     public static void populateSObjectToIdMap(List<sObject>insertedObjects, List<sObject>toInsert, Map<sObject, String> recordToOldId){
@@ -205,7 +196,6 @@ global class DataLoaderBatch implements Database.Batchable<String>,
                 //do some lookup logic
                 return doLookupLogic(currentFieldValue);
             }
-            return null;
         }
         return currentFieldValue;
     }
@@ -217,12 +207,9 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         String lookupObjectName = oldId.getSobjectType().getDescribe().getName(); //whatchu lookin up to willis?
 
         //get map of oldid to new id for lookup object
-        if (sObjectToIdMap.containsKey(lookupObjectName)) {
-            Map<String, String> idMap = sObjectToIdMap.get(lookupObjectName);
-            if (idMap.containsKey(currentFieldValue))
-                return idMap.get(currentFieldValue);
-        }
-        return null;
+        if(!sObjectToIdMap.containsKey(lookupObjectName) || !sObjectToIdMap.get(lookupObjectName).containsKey(currentFieldValue)) return null;
+        Map<String, String> idMap = sObjectToIdMap.get(lookupObjectName);
+        return idMap.get(currentFieldValue);
     }
 
     //header row is all the fields needed. kinda important.
