@@ -214,7 +214,24 @@ public with sharing class CreditWS_LexisNexisRDP {
 
                     }
 
+                    for(CreditWSUtil_LexisNexisBIID.cls_ParameterDetails parameterDetail : product.ParameterDetails) {
+
+                        if((parameterDetail.Group_x).equalsIgnoreCase('BVI') && (parameterDetail.Name).equalsIgnoreCase('BusinessVerification')) {
+
+                            lexisNexisBIIDResponse.biidScore = Integer.valueOf(parameterDetail.Values[0].Value);
+
+                        }
+                        else if((parameterDetail.Group_x).equalsIgnoreCase('VERIFICATION_SUMMARIES') && (parameterDetail.Name).equalsIgnoreCase('AR_1_ComprehensiveVerificationIndex')) {
+
+                            lexisNexisBIIDResponse.biidScore = Integer.valueOf(parameterDetail.Values[0].Value);
+
+                        }
+
+                    }
+
                 }
+
+
 
             }
 
@@ -544,6 +561,8 @@ public with sharing class CreditWS_LexisNexisRDP {
     public class LexisNexisBIIDResponse {
 
         public String biidWorkflowResult { get; set; }
+        public Integer biidScore { get; set; }
+        public Integer cviScore { get; set; }
 
         public LexisNexisBIIDResponse() {
 
