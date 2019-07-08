@@ -4,7 +4,7 @@ public class CustomerDetailsTest {
     @testSetup
     static void setupTestData() {
         Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
-        CustomerDetailsWSUtilv2.customerDetails details = CustomerDetailsController.getCustomerDetails('9100000000000','');
+        CustomerDetailsWSUtilv2.customerDetails details = CustomerDetailsController.getCustomerDetails('9100000000000','',null);
         String jsonAccountString = JSON.serialize(details);
         System.debug('### jsonAccountString='+jsonAccountString);
         List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts('9100000000000');
@@ -13,7 +13,7 @@ public class CustomerDetailsTest {
         System.debug('### contactJsonString='+contactJsonString);
 
         UtilityTestLoader.setAutomation(false);
-    
+
         Id genericProgramId;
         Id genericPartnerId;
         String programRowId;
@@ -27,7 +27,7 @@ public class CustomerDetailsTest {
             programRowId = genericPrograms[0].Siebel_Program_Row_Id__c;
         }
         else {
-            programRowId =  '1Z=ZZZZZ';
+            programRowId =  '1-12N3P99';
 
             Partner__c partner = new Partner__c();
             partner.Name = 'WEXGeneric';
@@ -77,8 +77,11 @@ public class CustomerDetailsTest {
 
         Id contactId = CustomerDetailsController.upsertContacts(accountId,contactJsonString,'1-1ZZZZZ');
 
+        System.debug('Upserted contactId = '+contactId);
+
         Priority_Level_Servicing_Rule__c servicingRule = new Priority_Level_Servicing_Rule__c();
         servicingRule.Partner__c = genericPartnerId;
+        servicingRule.Name = 'Generic A';
         servicingRule.Priority_Level__c = 'A';
         servicingRule.Priority_Level_Rule_Detail__c = 'This customer is awesome!';
 
@@ -187,13 +190,13 @@ public class CustomerDetailsTest {
             );
             upsert xCase;
 
-            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, 'Contact#1-1ZZZZZ', JSON.serialize(customerDetails), JSON.serialize(contacts));
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZZ', JSON.serialize(customerDetails));
             System.debug('### ContactID=' + contactId);
 
             Support_Operation_Settings__c sos = CustomerDetailsController.getSupportOperationsSettings();
             String dummyDriverId = sos.ContactDriverRecordID__c;
 
-            Id dummyDrivercontactId = CustomerDetailsController.attachToCase(null, dummyDriverId, JSON.serialize(customerDetails), JSON.serialize(contacts));
+            Id dummyDrivercontactId = CustomerDetailsController.attachDummyContactToCase(null, dummyDriverId, JSON.serialize(customerDetails));
             System.debug('### dummyDrivercontactId=' + dummyDrivercontactId);
 
             String accountIdString = CustomerDetailsController.getAccountId('9100000000000');
@@ -202,7 +205,7 @@ public class CustomerDetailsTest {
             String accountNumber = CustomerDetailsController.getAccountNumber(accountIdString);
             System.debug('### accountNumber=' + accountNumber);
 
-            String contactIdString = CustomerDetailsController.getContactId(accountIdString, 'Contact#1-1ZZZZZ');
+            String contactIdString = CustomerDetailsController.getContactId(accountIdString, '1-1ZZZZZ');
             System.debug('### contactIdString=' + contactIdString);
 
             Test.stopTest();
