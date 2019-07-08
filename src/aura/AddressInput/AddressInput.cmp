@@ -1,0 +1,21 @@
+<aura:component>
+    <aura:attribute name="myAddress" type="Map"/>
+    <div class="twelve columns clearfix">
+        <lightning:inputAddress
+            addressLabel="myLabel"
+            streetLabel="myLabel"
+            cityLabel="City"
+            countryLabel="Country"
+            provinceLabel="Province/State"
+            postalCodeLabel="PostalCode"
+            street="{!v.myAddress.street}"
+            city="{!v.myAddress.city}"
+            province="{!v.myAddress.province}"
+            country="{!v.myAddress.country}"
+            postalCode="{!v.myAddress.postalCode}"
+            countryOptions="{!v.myAddress.countryOptions}"
+            provinceOptions="{!v.myAddress.provinceOptions}"
+            required="true"
+        />
+    </div>
+</aura:component>

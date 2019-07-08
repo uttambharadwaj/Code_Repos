@@ -1,0 +1,25 @@
+<aura:component>
+
+    <aura:attribute name="myContacts" type="Map[]"/>
+
+    <aura:iteration items="{!v.myContacts}" var="myCon" indexVar="i">
+        <c:ContactInput myContact="{!myCon}"/>
+        <div class="one column">
+            &nbsp;
+        </div>
+        <!--button goes here-->
+        <div class="twelve columns clearfix">
+            <div class="one column">
+                <div class="slds-p-top_small">
+                    <lightning:button label="Remove Contact" value="{!i}" title="Remove Contact" onclick="{!c.removeContact}"/>
+                </div>
+            </div>
+        </div>
+    </aura:iteration>
+
+    <!--add another! button-->
+    <div class="slds-p-top_small">
+        <lightning:button label="Add Additional Contact" title="Add Additional Contact" onclick="{!c.addNewContact}"/>
+    </div>
+
+</aura:component>

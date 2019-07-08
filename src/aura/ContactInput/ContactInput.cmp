@@ -1,0 +1,30 @@
+<aura:component >
+    <aura:attribute name="myContact" type="Map"/>
+
+    <lightning:layout horizontalAlign="spread" multipleRows="true">
+        <div class="twelve columns clearfix">
+            <div class="six columns">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:input aura:id="firstName" name="firstName" label="Billing First Name" maxlength="40" value="{!v.myContact.firstName}" required="true" />
+                </lightning:layoutItem>
+            </div>
+            <div class="six columns">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:input aura:id="lastName" name="lastName" label="Billing Last Name" maxlength="40" value="{!v.myContact.lastName}" required="true" />
+                </lightning:layoutItem>
+            </div>
+        </div>
+        <div class="twelve columns clearfix">
+            <div class="six columns">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:input aura:id="email" name="email" label="Email" value="{!v.myContact.email}" required="true" />
+                </lightning:layoutItem>
+            </div>
+            <div class="six columns">
+                <lightning:layoutItem padding="around-small" size="12">
+                    <lightning:input aura:id="phone" name="phone" label="Phone" maxlength="40" value="{!v.myContact.phone}" required="true" />
+                </lightning:layoutItem>
+            </div>
+        </div>
+    </lightning:layout>
+</aura:component>
