@@ -90,9 +90,6 @@
                 //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
                  var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
 
-                console.log("### using accountNumber "+accountNumber);
-                console.log("### recordId is "+component.get("v.recordId"));
-
                 if(accountNumber == null && component.get("v.recordId") == null) {
                     
                     var toastEvent = $A.get("e.force:showToast");
@@ -120,10 +117,12 @@
                     var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
                     component.set("v.pdRowId", pdRowid);
 
+                    /*
                     console.log('#### accountNumber = '+component.get("v.accountNumber"));
                     console.log('#### caseId = '+component.get("v.caseId"));
                     console.log('#### contactRowId = '+component.get("v.contactRowId"));
                     console.log('#### pdRowId = '+component.get("v.pdRowId"));
+                     */
 
                     // Display the spinner
                     var spinner = component.find("loadingSpinner");
