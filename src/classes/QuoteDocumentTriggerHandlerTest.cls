@@ -1,5 +1,10 @@
 @isTest
 public class QuoteDocumentTriggerHandlerTest {
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     public static testmethod void insertDoc() {
         OnlineApplicationOffer__c offer1 = new OnlineApplicationOffer__c(Application_Title__c = 'test', Complete_Later_Text__c = 'test', EchoSign_User_Email__c = 'test@test.com', Terms_and_Conditions_Version__c = '1.0');
         insert offer1;

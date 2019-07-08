@@ -190,7 +190,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     responseElement.return_x.partnerRebateIndicator = false;
                     responseElement.return_x.pendingTxns = 0.0;
                     responseElement.return_x.pfsRepNm = '000 - Tom';
-                    responseElement.return_x.programId = '1-12N3P99';
+                    responseElement.return_x.programId = '1Z=ZZZZZ';
                     responseElement.return_x.programMaintenanceCharge = '.02 Descriptor';
                     responseElement.return_x.programNm = 'WEX DIRECT UNIVERSAL';
                     responseElement.return_x.sourceSys = 'SIEBEL';

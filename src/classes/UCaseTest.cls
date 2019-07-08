@@ -1,6 +1,35 @@
 @isTest
 private class UCaseTest {
 
+	@testSetup
+	static void setup(){
+		UtilityTestLoader.setAutomation(false);
+	}
+
+	@isTest
+	static void testShellEntitlementCase(){
+		Account auxAccount = new Account();
+		auxAccount.Name = 'Test';
+		insert auxAccount;
+
+		Entitlement auxEntitlementWeek = new Entitlement();
+		auxEntitlementWeek.Name = 'Shell SLA';
+		auxEntitlementWeek.AccountId = auxAccount.ID;
+		insert auxEntitlementWeek;
+
+		Entitlement auxEntitlementWeekEnd = new Entitlement();
+		auxEntitlementWeekEnd.Name = 'Shell SLA Weekend';
+		auxEntitlementWeekEnd.AccountId = auxAccount.ID;
+		insert auxEntitlementWeekEnd;
+
+		Test.startTest();
+		Case auxCase = new Case();
+		//auxCase.SuppliedEmail = 'test@shell.com';
+		auxCase.Program_Email__c = 'Shellfleethelp@wexinc.com';
+		insert auxCase;
+		Test.stopTest();
+	}
+
 	@isTest static void caseAccountDomainMatch() {
 
 		VRTN__c vrtn = new VRTN__c();
@@ -12,10 +41,10 @@ private class UCaseTest {
 
 
 		/*VApexC__c acCS = WE_TestDataUtility.createApexControllerCustSett(
-		  'Domain Match',  // fieldRef
-		  false);          // fcstDisabledStatus
-		  insert acCS;
-		 */
+          'Domain Match',  // fieldRef
+          false);          // fcstDisabledStatus
+          insert acCS;
+         */
 
 		Schema.DescribeSObjectResult accountSobject = Account.SObjectType.getDescribe();
 		Map<String, Schema.RecordTypeInfo> accountRtMapByName = accountSobject.getRecordTypeInfosByName();
@@ -172,13 +201,13 @@ private class UCaseTest {
 		insert acc;
 
 		Opportunity opp = new Opportunity(
-		                                  Name = 'Test Opportunity',
-		                                  RecordTypeId = Opportunity.sObjectType.getDescribe().getRecordTypeInfosByName().get('Fuel Card').getRecordTypeId(),
-		                                  AccountId = acc.Id,
-		                                  CloseDate = Date.today(),
-		                                  Amount = 100,
-		                                  StageName = '5) Signed',
-		                                  Error_Log__c = 'Success'
+				Name = 'Test Opportunity',
+				RecordTypeId = Opportunity.sObjectType.getDescribe().getRecordTypeInfosByName().get('Fuel Card').getRecordTypeId(),
+				AccountId = acc.Id,
+				CloseDate = Date.today(),
+				Amount = 100,
+				StageName = '5) Signed',
+				Error_Log__c = 'Success'
 		);
 
 		insert opp;
@@ -236,11 +265,11 @@ private class UCaseTest {
 		Date endDate = Date.today().addDays(365);
 
 		List<Entitlement> entitlements = new List<Entitlement> {
-			new Entitlement(AccountId = parentAccount.Id, SlaProcessId = sla.Id, Name = 'Parent Entitlement', StartDate = startDate, EndDate = endDate),
-			new Entitlement(AccountId = accountWithParent1.Id, SlaProcessId = sla.Id, Name = 'Child Entitlement 1', StartDate = startDate, EndDate = endDate),
-			new Entitlement(AccountId = accountWithParent1.Id, SlaProcessId = sla.Id, Name = 'Child Entitlement 2', StartDate = startDate, EndDate = endDate),
-			new Entitlement(AccountId = parentlessAccount.Id, SlaProcessId = sla.Id, Name = 'Solo Entitlement', StartDate = startDate, EndDate = endDate),
-			new Entitlement(AccountId = accountWithParent2.Id, SlaProcessId = sla.Id, Name = 'Solo Entitlement', StartDate = startDate, EndDate = endDate)
+				new Entitlement(AccountId = parentAccount.Id, SlaProcessId = sla.Id, Name = 'Parent Entitlement', StartDate = startDate, EndDate = endDate),
+				new Entitlement(AccountId = accountWithParent1.Id, SlaProcessId = sla.Id, Name = 'Child Entitlement 1', StartDate = startDate, EndDate = endDate),
+				new Entitlement(AccountId = accountWithParent1.Id, SlaProcessId = sla.Id, Name = 'Child Entitlement 2', StartDate = startDate, EndDate = endDate),
+				new Entitlement(AccountId = parentlessAccount.Id, SlaProcessId = sla.Id, Name = 'Solo Entitlement', StartDate = startDate, EndDate = endDate),
+				new Entitlement(AccountId = accountWithParent2.Id, SlaProcessId = sla.Id, Name = 'Solo Entitlement', StartDate = startDate, EndDate = endDate)
 		};
 
 		insert entitlements;
@@ -248,10 +277,10 @@ private class UCaseTest {
 		insert new Support_Operation_Settings__c(SetupOwnerId = UserInfo.getOrganizationId(), DefaultEntitlementID__c = entitlements[0].Id);
 
 		List<Case> cases = new List<Case> {
-			new Case(AccountId = parentAccount.Id, Origin = 'Test', SuppliedEmail = 'user1@test.com', SuppliedName = 'john smith', Reason = 'test', EntitlementId = null),
-			new Case(AccountId = accountWithParent1.Id, Origin = 'Test', SuppliedEmail = 'user1@test.com', SuppliedName = 'john smith', Reason = 'test', EntitlementId = null),
-			new Case(AccountId = parentlessAccount.Id, Origin = 'Test', SuppliedEmail = 'user1@test.com', SuppliedName = 'john smith', Reason = 'test', EntitlementId = null),
-			new Case(AccountId = accountWithParent2.Id, Origin = 'Test', SuppliedEmail = 'user1@test.com', SuppliedName = 'john smith', Reason = 'test', EntitlementId = null)
+				new Case(AccountId = parentAccount.Id, Origin = 'Test', SuppliedEmail = 'user1@test.com', SuppliedName = 'john smith', Reason = 'test', EntitlementId = null),
+				new Case(AccountId = accountWithParent1.Id, Origin = 'Test', SuppliedEmail = 'user1@test.com', SuppliedName = 'john smith', Reason = 'test', EntitlementId = null),
+				new Case(AccountId = parentlessAccount.Id, Origin = 'Test', SuppliedEmail = 'user1@test.com', SuppliedName = 'john smith', Reason = 'test', EntitlementId = null),
+				new Case(AccountId = accountWithParent2.Id, Origin = 'Test', SuppliedEmail = 'user1@test.com', SuppliedName = 'john smith', Reason = 'test', EntitlementId = null)
 		};
 
 		Test.startTest();
@@ -260,16 +289,16 @@ private class UCaseTest {
 
 		Map<Id, Case> casesAfter = new Map<Id, Case> ([SELECT Id, AccountId, EntitlementId FROM Case]);
 
-//		System.assertEquals(casesAfter.get(cases[0].Id).EntitlementId, entitlements[0].Id);
-//		System.assertEquals(casesAfter.get(cases[1].Id).EntitlementId, entitlements[0].Id);
-//		System.assertEquals(casesAfter.get(cases[2].Id).EntitlementId, entitlements[3].Id);
-//		System.assertEquals(casesAfter.get(cases[3].Id).EntitlementId, entitlements[4].Id);
+//    System.assertEquals(casesAfter.get(cases[0].Id).EntitlementId, entitlements[0].Id);
+//    System.assertEquals(casesAfter.get(cases[1].Id).EntitlementId, entitlements[0].Id);
+//    System.assertEquals(casesAfter.get(cases[2].Id).EntitlementId, entitlements[3].Id);
+//    System.assertEquals(casesAfter.get(cases[3].Id).EntitlementId, entitlements[4].Id);
 	}
 
 	@isTest static void testE2CContactAssociationSingleContactFound()
 	{
 		Account acc = new Account(
-		                          Name = 'newAcc1'
+				Name = 'newAcc1'
 		);
 		insert acc;
 
@@ -288,17 +317,17 @@ private class UCaseTest {
 		insert settings;
 
 		Contact con1 = new Contact(
-		                           AccountId = acc.id,
-		                           LastName = 'tstLastName',
-		                           Email = 'testuser1@test.com',
-		                           RecordTypeId = pilotRectypeId
+				AccountId = acc.id,
+				LastName = 'tstLastName',
+				Email = 'testuser1@test.com',
+				RecordTypeId = pilotRectypeId
 		);
 		insert con1;
 		Contact con2 = new Contact(
-		                           AccountId = acc.id,
-		                           LastName = 'tstLastName',
-		                           Email = 'testuser1@test.com',
-		                           RecordTypeId = nonPilotRectypeId
+				AccountId = acc.id,
+				LastName = 'tstLastName',
+				Email = 'testuser1@test.com',
+				RecordTypeId = nonPilotRectypeId
 		);
 		insert con2;
 
@@ -315,7 +344,7 @@ private class UCaseTest {
 	@isTest static void testE2CContactAssociationMultipleContactsFound()
 	{
 		Account acc = new Account(
-		                          Name = 'newAcc1'
+				Name = 'newAcc1'
 		);
 		insert acc;
 
@@ -334,26 +363,26 @@ private class UCaseTest {
 		insert settings;
 
 		Contact con1 = new Contact(
-		                           AccountId = acc.id,
-		                           LastName = 'tstLastName',
-		                           Email = 'testuser1@test.com',
-		                           RecordTypeId = pilotRectypeId
+				AccountId = acc.id,
+				LastName = 'tstLastName',
+				Email = 'testuser1@test.com',
+				RecordTypeId = pilotRectypeId
 		);
 		insert con1;
 
 		Contact con2 = new Contact(
-		                           AccountId = acc.id,
-		                           LastName = 'tstLastName',
-		                           Email = 'testuser1@test.com',
-		                           RecordTypeId = pilotRectypeId
+				AccountId = acc.id,
+				LastName = 'tstLastName',
+				Email = 'testuser1@test.com',
+				RecordTypeId = pilotRectypeId
 		);
 		insert con2;
 
 		Contact con3 = new Contact(
-		                           AccountId = acc.id,
-		                           LastName = 'tstLastName',
-		                           Email = 'testuser1@test.com',
-		                           RecordTypeId = nonPilotRectypeId
+				AccountId = acc.id,
+				LastName = 'tstLastName',
+				Email = 'testuser1@test.com',
+				RecordTypeId = nonPilotRectypeId
 		);
 		insert con3;
 
@@ -370,7 +399,7 @@ private class UCaseTest {
 	@isTest static void testE2CContactAssociationNoContactsFound()
 	{
 		Account acc = new Account(
-		                          Name = 'newAcc1'
+				Name = 'newAcc1'
 		);
 		insert acc;
 
@@ -389,10 +418,10 @@ private class UCaseTest {
 		insert settings;
 
 		Contact con1 = new Contact(
-		                           AccountId = acc.id,
-		                           LastName = 'tstLastName',
-		                           Email = 'testuser1@test.com',
-		                           RecordTypeId = nonPilotRectypeId
+				AccountId = acc.id,
+				LastName = 'tstLastName',
+				Email = 'testuser1@test.com',
+				RecordTypeId = nonPilotRectypeId
 		);
 		insert con1;
 
@@ -409,7 +438,7 @@ private class UCaseTest {
 	@isTest static void testE2CContactAssociationPilotContact()
 	{
 		Account acc = new Account(
-		                          Name = 'newAcc1'
+				Name = 'newAcc1'
 		);
 		insert acc;
 
@@ -423,10 +452,10 @@ private class UCaseTest {
 		insert settings;
 
 		Contact con1 = new Contact(
-		                           AccountId = acc.id,
-		                           LastName = 'tstLastName',
-		                           Email = 'testuser1@test.com',
-		                           RecordTypeId = pilotRectypeId
+				AccountId = acc.id,
+				LastName = 'tstLastName',
+				Email = 'testuser1@test.com',
+				RecordTypeId = pilotRectypeId
 		);
 		insert con1;
 

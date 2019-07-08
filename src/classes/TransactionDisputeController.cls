@@ -28,7 +28,7 @@ global without sharing class TransactionDisputeController {
     public List<Attachment> claimAttachments {
         get {
             if (UserInfo.getSessionId() != null && claim != null && claim.Id != null) {
-                List<Attachment> attachments = [SELECT Id, Name FROM Attachment WHERE CreatedById = :UserInfo.getUserId() and ParentId =: claim.Id];
+                List<Attachment> attachments = [SELECT Id, Name FROM Attachment WHERE CreatedById = :UserInfo.getUserId() and ParentId = :claim.Id];
 
                 return attachments;
             }
@@ -38,7 +38,7 @@ global without sharing class TransactionDisputeController {
 
     public Integer sizeOfClaimAttachments {
         get {
-            if(claimAttachments != null) {
+            if (claimAttachments != null) {
                 return claimAttachments.size();
             }
             return 0;
@@ -56,10 +56,10 @@ global without sharing class TransactionDisputeController {
 
     public String claimNumber {
         get {
-            if(claim != null) {
-                List<Claim__c> claims = [SELECT Id, Name FROM Claim__c WHERE Id =: claim.Id];
+            if (claim != null) {
+                List<Claim__c> claims = [SELECT Id, Name FROM Claim__c WHERE Id = :claim.Id];
 
-                if(claims.size() > 0) {
+                if (claims.size() > 0) {
                     return claims[0].Name;
                 }
             }
@@ -75,7 +75,7 @@ global without sharing class TransactionDisputeController {
 
     public Integer sizeOfFraudPurchaseDevices {
         get {
-            if(transactionDispute != null && transactionDispute.fraudPurchaseDevices != null) {
+            if (transactionDispute != null && transactionDispute.fraudPurchaseDevices != null) {
                 return transactionDispute.fraudPurchaseDevices.size();
             }
             return 0;
@@ -88,7 +88,7 @@ global without sharing class TransactionDisputeController {
 
     public static String currentUserRole {
         get {
-            List<User> user = [SELECT Id, UserRole.Name FROM User WHERE Id =: UserInfo.getUserId()];
+            List<User> user = [SELECT Id, UserRole.Name FROM User WHERE Id = :UserInfo.getUserId()];
 
             return user[0].UserRole.Name;
         }
@@ -105,10 +105,10 @@ global without sharing class TransactionDisputeController {
             return UserInfo.getUserEmail();
         }
     }
-    
+
     public String authorizedUserPhone {
         get {
-            List<User> user = [SELECT Id, Phone FROM User WHERE Id =: UserInfo.getUserId()];
+            List<User> user = [SELECT Id, Phone FROM User WHERE Id = :UserInfo.getUserId()];
 
             return user[0].Phone;
         }
@@ -124,12 +124,18 @@ global without sharing class TransactionDisputeController {
 
     public String physicalAddress {
         get {
-            if(customerDetails != null && customerDetails.primaryAddress != null) {
+            if (customerDetails != null && customerDetails.primaryAddress != null) {
                 String address = (customerDetails.primaryAddress.addr1).trim() + '\n';
 
-                if((customerDetails.primaryAddress.addr2).trim() != '') { address = address + (customerDetails.primaryAddress.addr2).trim() + '\n'; }
-                if((customerDetails.primaryAddress.addr3).trim() != '') { address = address + (customerDetails.primaryAddress.addr3).trim() + '\n'; }
-                if((customerDetails.primaryAddress.addr4).trim() != '') { address = address + (customerDetails.primaryAddress.addr4).trim() + '\n'; }
+                if ((customerDetails.primaryAddress.addr2).trim() != '') {
+                    address = address + (customerDetails.primaryAddress.addr2).trim() + '\n';
+                }
+                if ((customerDetails.primaryAddress.addr3).trim() != '') {
+                    address = address + (customerDetails.primaryAddress.addr3).trim() + '\n';
+                }
+                if ((customerDetails.primaryAddress.addr4).trim() != '') {
+                    address = address + (customerDetails.primaryAddress.addr4).trim() + '\n';
+                }
 
                 address = address + (customerDetails.primaryAddress.city).trim() + ', ' + (customerDetails.primaryAddress.state).trim() + '\n';
                 address = address + (customerDetails.primaryAddress.postalCode).trim() + '\n';
@@ -142,7 +148,7 @@ global without sharing class TransactionDisputeController {
 
     public CustomerDetailsWSUtilv2.address primaryAddress {
         get {
-            if(customerDetails != null && customerDetails.primaryAddress != null) {
+            if (customerDetails != null && customerDetails.primaryAddress != null) {
                 return customerDetails.primaryAddress;
             }
             return null;
@@ -152,7 +158,7 @@ global without sharing class TransactionDisputeController {
     // Determines if the "Previous/Back" button is rendered
     public boolean previousStep {
         get {
-            if(currentStep > minStep) {
+            if (currentStep > minStep) {
                 return false;
             } else {
                 return true;
@@ -168,7 +174,7 @@ global without sharing class TransactionDisputeController {
     // Determines if the "Next" button is rendered
     public boolean nextStep {
         get {
-            if(currentStep < maxStep) {
+            if (currentStep < maxStep) {
                 return false;
             } else {
                 return true;
@@ -191,16 +197,15 @@ global without sharing class TransactionDisputeController {
         try {
             if (!String.isEmpty(action)) {
                 if ((action).equalsIgnoreCase('attachFiles') && claimIdParameter != null) {
-                    List<Claim__c> claims = [SELECT Id FROM Claim__c WHERE Id =: claimIdParameter];
+                    List<Claim__c> claims = [SELECT Id FROM Claim__c WHERE Id = :claimIdParameter];
 
-                    if(claims.size() > 0) {
+                    if (claims.size() > 0) {
                         claim = claims[0];
                         currentStep = 6;
                     }
                 }
             }
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             String errorCode = WEXDEVErrorReporting.reportInternalError(APPLICATION_NAME, ApexPages.currentPage(), UserInfo.getUserId(), e, true);
 
             PageReference errorPage = Page.InternalApplicationError;
@@ -214,41 +219,69 @@ global without sharing class TransactionDisputeController {
 
     public void getCustomerDetails() {
 
-        // Get the account associated - need this later for the upsert of the account
         Customer_Dashboard_Services__c CDS = Customer_Dashboard_Services__c.getOrgDefaults();
-
-        CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
 
         CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
 
         customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
 
         // Some damage control - we don't want that value to be below the default threshold
-        if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+        if (CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
             customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
         }
 
-        customerDetailsRequest.accountID = accountNumber;
-        customerDetailsRequest.accountIdType = 'External';
+        CustomerDetailsWSUtilv2.accountSearchRequest accountSearchRequest = new CustomerDetailsWSUtilv2.accountSearchRequest();
 
-        customerDetails = customerDetailsCallout.getCustomerDetails(customerDetailsRequest);
+        accountSearchRequest.searchData = accountNumber;
+        accountSearchRequest.searchField = 'CUSTOMERACCTNBR';
 
-        // Get the contacts associated - need this later for the upsert of contacts
-        customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
+        CustomerDetailsWSUtilv2.accountSearchResult accountSearchResult = customerDetailsCallout.accountSearch(accountSearchRequest);
 
-        customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+        if (accountSearchResult.accountList != null && accountSearchResult.accountList.size() > 0) {
+
+            for (CustomerDetailsWSUtilv2.accountSearchDTO accountSearchDTO : accountSearchResult.accountList) {
+
+                if (!String.isBlank(accountSearchDTO.spnrAcctNbr) && (accountSearchDTO.spnrAcctNbr).equalsIgnoreCase(accountNumber) && !String.isBlank(accountSearchDTO.acctSts) && (accountSearchDTO.acctSts).equalsIgnoreCase('Active')) {
+
+                    customerDetails = new CustomerDetailsWSUtilv2.customerDetails();
+
+                    customerDetails.accountNm = accountSearchDTO.acctNm;
+                    customerDetails.acctRowId = accountSearchDTO.acctRowId;
+                    customerDetails.wexAccountNbr = accountSearchDTO.wexAcctNbr;
+                    customerDetails.spnrAccountNbr = accountSearchDTO.spnrAcctNbr;
+                    customerDetails.accountSts = accountSearchDTO.acctSts;
+
+                    customerDetails.sourceSys = accountSearchDTO.dwSourceSys;
+
+                    customerDetails.programId = accountSearchDTO.pgmRowId;
+
+                    CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
 
         customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
 
         // Some damage control - we don't want that value to be below the default threshold
-        if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+                    if (CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
             customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
         }
+
+                    // Get the contacts associated - need this later for the upsert of contacts
+                    customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
 
         customerDetailsRequest.accountID = accountNumber;
         customerDetailsRequest.accountIdType = 'External';
 
         customerContacts = customerDetailsCallout.getContacts(customerDetailsRequest);
+
+                    break;
+
+    }
+
+            }
+
+        }
+
+        System.debug('### Customer Details ' + customerDetails);
+        System.debug('### Customer Contacts ' + customerContacts);
 
     }
 
@@ -257,67 +290,45 @@ global without sharing class TransactionDisputeController {
 
         Customer_Dashboard_Services__c CDS = Customer_Dashboard_Services__c.getOrgDefaults();
 
-        CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
-
         CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
 
         customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
 
         // Some damage control - we don't want that value to be below the default threshold
-        if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+        if (CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
             customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
         }
 
-        customerDetailsRequest.accountID = accountNumber;
-        customerDetailsRequest.accountIdType = 'External';
+        CustomerDetailsWSUtilv2.accountSearchRequest accountSearchRequest = new CustomerDetailsWSUtilv2.accountSearchRequest();
 
-        CustomerDetailsWSUtilv2.customerDetails customerDetails = customerDetailsCallout.getCustomerDetails(customerDetailsRequest);
+        accountSearchRequest.searchData = accountNumber;
+        accountSearchRequest.searchField = 'CUSTOMERACCTNBR';
 
-        System.debug('### ' + customerDetails.programId);
+        CustomerDetailsWSUtilv2.accountSearchResult accountSearchResult = customerDetailsCallout.accountSearch(accountSearchRequest);
 
-        Set<String> programRowIDs = new Set<String>{'1-5UJ7D7','1-3PR9L6W','1-5VD2FQ','1-3FJ9JP1'};
-        
-        if(customerDetails != null && customerDetails.programId != null && programRowIDs.contains(customerDetails.programId)) {
-            return true;
-        }
-        else { 
-        	return false;
-        }
-        
-        /*
-        if(!String.isEmpty(customerDetails.wexAccountNbr)) {
+        System.debug(accountSearchResult);
 
-            customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
+        if (accountSearchResult.accountList != null && accountSearchResult.accountList.size() > 0) {
 
-            customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+            for (CustomerDetailsWSUtilv2.accountSearchDTO accountSearchDTO : accountSearchResult.accountList) {
 
-            customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
+                if (!String.isBlank(accountSearchDTO.spnrAcctNbr) && (accountSearchDTO.spnrAcctNbr).equalsIgnoreCase(accountNumber) && !String.isBlank(accountSearchDTO.acctSts) && (accountSearchDTO.acctSts).equalsIgnoreCase('Active')) {
 
-            // Some damage control - we don't want that value to be below the default threshold
-            if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
-                customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
-            }
+                    Set<String> programRowIDs = new Set<String>{
+                            '1-5UJ7D7', '1-3PR9L6W', '1-5VD2FQ', '1-3FJ9JP1'
+                    };
 
-            customerDetailsRequest.accountID = accountNumber;
-            customerDetailsRequest.accountIdType = 'External';
-
-            CustomerDetailsWSUtilv2.contacts customerContacts = customerDetailsCallout.getContacts(customerDetailsRequest);
-
-            for(CustomerDetailsWSUtilv2.contact contact : customerContacts.contacts) {
-
-                if((contact.emailAddr != null && (contact.emailAddr).equalsIgnoreCase(UserInfo.getUserEmail())) || !(UserInfo.getUserType()).equalsIgnoreCase('Partner')) {
+                    if (accountSearchDTO.pgmRowId != null && programRowIDs.contains(accountSearchDTO.pgmRowId)) {
                     return true;
                 }
 
             }
 
-            return false;
+            }
 
         }
-        else {
+
             return false;
-        }
-		*/
 
     }
 
@@ -327,11 +338,11 @@ global without sharing class TransactionDisputeController {
     }
 
     public void beginningStep() {
-        currentStep = currentStep -2;
+        currentStep = currentStep - 2;
     }
 
     public void nextStep() {
-        if(currentStep == 1) {
+        if (currentStep == 1) {
             getCustomerDetails();
         }
         currentStep = currentStep + 1;
@@ -340,13 +351,13 @@ global without sharing class TransactionDisputeController {
     public String selectedStep { get; set; }
 
     public void goToSelectedStep() {
-        if(selectedStep != null) {
+        if (selectedStep != null) {
             currentStep = Integer.valueOf(selectedStep);
         }
     }
 
     public PageReference addAsset() {
-        if(transactionDispute != null && transactionDispute.fraudPurchaseDevices != null) {
+        if (transactionDispute != null && transactionDispute.fraudPurchaseDevices != null) {
             transactionDispute.fraudPurchaseDevices.add(new FraudPurchaseDevice());
         }
 
@@ -355,7 +366,7 @@ global without sharing class TransactionDisputeController {
 
     public PageReference removeAsset() {
 
-        if(transactionDispute != null && transactionDispute.fraudPurchaseDevices != null && transactionDispute.fraudPurchaseDevices[Integer.valueOf(selectedAsset)] != null) {
+        if (transactionDispute != null && transactionDispute.fraudPurchaseDevices != null && transactionDispute.fraudPurchaseDevices[Integer.valueOf(selectedAsset)] != null) {
             transactionDispute.fraudPurchaseDevices.remove(Integer.valueOf(selectedAsset));
         }
 
@@ -365,11 +376,11 @@ global without sharing class TransactionDisputeController {
 
     public PageReference deleteFile() {
 
-        if(selectedFile != null) {
+        if (selectedFile != null) {
 
-            List<Attachment> selectedAttachment = [SELECT Id, Name FROM Attachment WHERE CreatedById =: UserInfo.getUserId() and ParentId =: claim.Id and Id =: selectedFile];
+            List<Attachment> selectedAttachment = [SELECT Id, Name FROM Attachment WHERE CreatedById = :UserInfo.getUserId() and ParentId = :claim.Id and Id = :selectedFile];
 
-            if(selectedAttachment.size() == 1) {
+            if (selectedAttachment.size() == 1) {
 
                 delete selectedAttachment;
 
@@ -387,7 +398,7 @@ global without sharing class TransactionDisputeController {
 
     public PageReference uploadFile() {
 
-        if(attachmentName != null && attachmentBody != null) {
+        if (attachmentName != null && attachmentBody != null) {
 
             Attachment claimAttachment = new Attachment();
 
@@ -403,16 +414,14 @@ global without sharing class TransactionDisputeController {
                 refresh.getParameters().put('action', 'attachFiles');
                 refresh.setRedirect(true);
                 return refresh;
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 String errorCode = WEXDEVErrorReporting.reportInternalError(APPLICATION_NAME, ApexPages.currentPage(), UserInfo.getUserId(), e, true);
 
                 PageReference errorPage = Page.InternalApplicationError;
                 errorPage.getParameters().put('errorCode', errorCode);
                 errorPage.setRedirect(true);
                 return errorPage;
-            }
-            finally {
+            } finally {
                 claimAttachment.Body = null;
             }
         }
@@ -421,7 +430,8 @@ global without sharing class TransactionDisputeController {
 
     }
 
-    public class transactionDisputeFormException extends Exception {}
+    public class transactionDisputeFormException extends Exception {
+    }
 
     public PageReference submitForm() {
 
@@ -447,8 +457,8 @@ global without sharing class TransactionDisputeController {
 
             }
 
-            // Upsert Contacts
-            Id contactId = CustomerDetailsController.upsertContacts(accountId, JSON.serialize(contacts), focusedContactRowId);
+            // Get contact although it doesn't seem to be used - MHB 5/29/2019 RAVEN-768
+            Id contactId = CustomerDetailsController.getContactId(accountId,focusedContactRowId);
 
             // Create Case
 
@@ -467,7 +477,7 @@ global without sharing class TransactionDisputeController {
             //serviceOperationsCase.ContactId = (ID) contactId;
 
             System.debug('### ' + serviceOperationsCase);
-            
+
             upsert serviceOperationsCase;
 
             List<Account> claimAccount = [SELECT Id, Name, Wex_Account__c, ShippingStreet, ShippingCity, ShippingState, ShippingPostalCode FROM Account WHERE Id = :accountId];
@@ -489,41 +499,38 @@ global without sharing class TransactionDisputeController {
             claim.Account_Contact_Name__c = UserInfo.getName();
             claim.Account_Contact_Email__c = UserInfo.getUserEmail();
 
-            if(transactionDispute.driverName != null) claim.Driver_Name__c = transactionDispute.driverName;
-            if(!String.isEmpty(transactionDispute.lostOrStolenDate)) claim.Dispute_Reported_Date__c = Date.parse(transactionDispute.lostOrStolenDate);
-            if(!String.isEmpty(transactionDispute.driverEmploymentStartDate)) claim.Driver_Employment_Start_Date__c = Date.parse(transactionDispute.driverEmploymentStartDate);
-            if(!String.isEmpty(transactionDispute.driverEmploymentEndDate)) claim.Driver_Employment_End_Date__c = Date.parse(transactionDispute.driverEmploymentEndDate);
+            if (transactionDispute.driverName != null) claim.Driver_Name__c = transactionDispute.driverName;
+            if (!String.isEmpty(transactionDispute.lostOrStolenDate)) claim.Dispute_Reported_Date__c = Date.parse(transactionDispute.lostOrStolenDate);
+            if (!String.isEmpty(transactionDispute.driverEmploymentStartDate)) claim.Driver_Employment_Start_Date__c = Date.parse(transactionDispute.driverEmploymentStartDate);
+            if (!String.isEmpty(transactionDispute.driverEmploymentEndDate)) claim.Driver_Employment_End_Date__c = Date.parse(transactionDispute.driverEmploymentEndDate);
 
             claim.Dispute_Form_Comments__c = transactionDispute.additionalComments;
 
-            if(transactionDispute.disputeWhitePlastic) {
+            if (transactionDispute.disputeWhitePlastic) {
 				claim.Dispute_Type__c = 'White Plastic (Skimmed)';
-            }
-            else if(transactionDispute.disputeStolenLost) {
+            } else if (transactionDispute.disputeStolenLost) {
                 claim.Dispute_Type__c = 'Lost/Stolen';
-            }
-            else if(transactionDispute.disputeDriverName || transactionDispute.disputeDriverNameDate) {
+            } else if (transactionDispute.disputeDriverName || transactionDispute.disputeDriverNameDate) {
                 claim.Dispute_Type__c = 'Driver';
-            }
-            else {
+            } else {
                 claim.Dispute_Type__c = 'Undetermined';
             }
 
             claim.Dispute_Reported_Date__c = Date.today();
             claim.Agency_1__c = transactionDispute.agencyName1;
             claim.Personnel_Taking_Report_1__c = transactionDispute.personnelName1;
-            if(!String.isEmpty(transactionDispute.dateOfReport1)) claim.Date_of_Report_1__c = Date.parse(transactionDispute.dateOfReport1);
+            if (!String.isEmpty(transactionDispute.dateOfReport1)) claim.Date_of_Report_1__c = Date.parse(transactionDispute.dateOfReport1);
             claim.Report_Number_1__c = transactionDispute.reportNumber1;
             claim.Agency_Phone_Number_1__c = transactionDispute.agencyPhone1;
             claim.Agency_Email_1__c = transactionDispute.agencyEmail1;
 
             claim.Agency_2__c = transactionDispute.agencyName2;
             claim.Personnel_Taking_Report_2__c = transactionDispute.personnelName2;
-            if(!String.isEmpty(transactionDispute.dateOfReport2)) claim.Date_of_Report_2__c = Date.parse(transactionDispute.dateOfReport2);
+            if (!String.isEmpty(transactionDispute.dateOfReport2)) claim.Date_of_Report_2__c = Date.parse(transactionDispute.dateOfReport2);
             claim.Report_Number_2__c = transactionDispute.reportNumber2;
             claim.Agency_Phone_Number_2__c = transactionDispute.agencyPhone2;
             claim.Agency_Email_2__c = transactionDispute.agencyEmail2;
-            
+
             claim.Prosecution_Assistance_By_Customer__c = transactionDispute.prosecutionAssistanceByCustomer;
             claim.Reported_To_Law_Enforcement_By_Customer__c = transactionDispute.reportedToLawEnforcementByCustomer;
             claim.Law_Enforcement_Report_Filed__c = transactionDispute.lawEnforcementReportFiled;
@@ -531,8 +538,8 @@ global without sharing class TransactionDisputeController {
 
             insert claim;
 
-            for(FraudPurchaseDevice fraudPurchaseDevice : transactionDispute.fraudPurchaseDevices) {
-                if(!String.isEmpty(fraudPurchaseDevice.vehicleCardNumber)) {
+            for (FraudPurchaseDevice fraudPurchaseDevice : transactionDispute.fraudPurchaseDevices) {
+                if (!String.isEmpty(fraudPurchaseDevice.vehicleCardNumber)) {
                     Fraud_Purchase_Device__c newFraudPurchaseDevice = new Fraud_Purchase_Device__c();
 
                     newFraudPurchaseDevice.Claim__c = claim.Id;
@@ -564,16 +571,16 @@ global without sharing class TransactionDisputeController {
                 mail.setReplyTo('noreply@wexinc.com');
                 mail.setSenderDisplayName('FFS Disputes');
 
-                List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}, !Test.isRunningTest());
-                if((!results.get(0).isSuccess() && !Test.isRunningTest()) || (Test.isRunningTest() && Limits.getEmailInvocations()<1)) throw new transactionDisputeFormException(String.valueOf(results.get(0).getErrors()[0]));
+                List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{
+                        mail
+                }, !Test.isRunningTest());
+                if ((!results.get(0).isSuccess() && !Test.isRunningTest()) || (Test.isRunningTest() && Limits.getEmailInvocations() < 1)) throw new transactionDisputeFormException(String.valueOf(results.get(0).getErrors()[0]));
 
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 System.debug('### Error sending email... Continuing...');
             }
 
-        }
-        catch(Exception e) {
+        } catch (Exception e) {
             String errorCode = WEXDEVErrorReporting.reportInternalError(APPLICATION_NAME, ApexPages.currentPage(), UserInfo.getUserId(), e, true);
 
             PageReference errorPage = Page.InternalApplicationError;
@@ -625,7 +632,9 @@ global without sharing class TransactionDisputeController {
 
         public TransactionDispute() {
 
-            fraudPurchaseDevices = new List<FraudPurchaseDevice>{new FraudPurchaseDevice()};
+            fraudPurchaseDevices = new List<FraudPurchaseDevice>{
+                    new FraudPurchaseDevice()
+            };
 
 			this.disputeWhitePlastic = false;
             this.disputeStolenLost = false;

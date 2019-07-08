@@ -1,5 +1,10 @@
 @istest
 private class LiveAgentPreChatControllerTest {
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testmethod void testController() {
 
         Id pilotRectypeId;

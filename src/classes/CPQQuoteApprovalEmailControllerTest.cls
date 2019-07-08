@@ -1,7 +1,12 @@
 @isTest
 public class CPQQuoteApprovalEmailControllerTest {
 
-	public static testmethod void testController() {
+	@testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
+    public static testmethod void testController() {
 		SBQQ__Quote__c q = new SBQQ__Quote__c();
 		insert q;
 		CPQQuoteApprovalEmailController ctl = new CPQQuoteApprovalEmailController();
