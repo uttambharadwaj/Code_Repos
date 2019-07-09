@@ -438,17 +438,21 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
-    public static String getContactId(String accountId, String contactRowId) {
+    public static Id getContactId(String accountId, String contactRowId) {
         System.debug('Entering getContactId for accountId '+accountId+' and contactRowId '+contactRowId);
         try {
-
+            //todo: Switch this method to querying IntegrationRecord__c once it's in an environment where they're available
             List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
+            //Commented out because this sandbox doesn't have Integration Records yet
+            //List<IntegrationRecord__c> serviceOperationsContacts = [SELECT Contact__r.ID FROM IntegrationRecord__c WHERE Contact_Row_ID__c =: contactRowId];
 
             System.debug('### ' + serviceOperationsContacts);
 
             if(serviceOperationsContacts.size() > 0) {
 
                 return serviceOperationsContacts[0].Id;
+                //Future once integration records are implemented
+                //return serviceOperationsContacts[0].Contact__r.ID;
 
             }
             else {
