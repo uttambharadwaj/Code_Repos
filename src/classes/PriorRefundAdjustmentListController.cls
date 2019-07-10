@@ -21,6 +21,8 @@ public with sharing class PriorRefundAdjustmentListController {
 
             if ( refadj.CaseNumber__r != null &&  refadj.CaseNumber__r.CaseNumber != null)
                 this.CaseNumber = refadj.CaseNumber__r.CaseNumber;
+            if (refadj.Total_Late_Fee__c != null)
+                this.Amount_Requested = refadj.Total_Late_Fee__c;
             if (refadj.Amount_Waived__c != null)
                 this.Amount_Waived = refadj.Amount_Waived__c;
             if (refadj.Approval_Status__c != null)
@@ -28,9 +30,11 @@ public with sharing class PriorRefundAdjustmentListController {
             if (refadj.Approver_Name__r != null && refadj.Approver_Name__r.Name != null)
                 this.Approver_Name = refadj.Approver_Name__r.Name;
             if (refadj.Decision_Date__c != null)
-                this.Decision_Date = refadj.Decision_Date__c;
+                this.Decision_Date = refadj.Decision_Date__c.format();
             if (refadj.CreatedDate != null)
-                this.CreatedDate = refadj.CreatedDate;
+                this.CreatedDate = refadj.CreatedDate.format();
+            if (refadj.CreatedBy != null)
+                this.CreatedBy = refadj.CreatedBy.Name;
         }
 
         @AuraEnabled public String Id { get; set; }
@@ -40,11 +44,14 @@ public with sharing class PriorRefundAdjustmentListController {
         @AuraEnabled public String CaseId { get; set; }
         @AuraEnabled public String CaseIdLink { get; set; }
         @AuraEnabled public String CaseNumber { get; set; }
+        @AuraEnabled public Decimal Amount_Requested { get; set; }
         @AuraEnabled public Decimal Amount_Waived { get; set; }
         @AuraEnabled public String Approval_Status { get; set; }
         @AuraEnabled public String Approver_Name { get; set; }
-        @AuraEnabled public Datetime Decision_Date { get; set; }
-        @AuraEnabled public Datetime CreatedDate { get; set; }
+        @AuraEnabled public String Department { get; set; }
+        @AuraEnabled public String Decision_Date { get; set; }
+        @AuraEnabled public String CreatedDate { get; set; }
+        @AuraEnabled public String CreatedBy { get; set; }
     }
 
     @AuraEnabled

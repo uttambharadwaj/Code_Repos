@@ -17,6 +17,10 @@ global with sharing class RefundAdjustment {
 
     @InvocableVariable
     @AuraEnabled
+    global Decimal amountRequested;
+
+    @InvocableVariable
+    @AuraEnabled
     global Decimal amount;
 
     @InvocableVariable
@@ -29,11 +33,11 @@ global with sharing class RefundAdjustment {
 
     @InvocableVariable
     @AuraEnabled
-    global Datetime decisionDate;
+    global String decisionDate;
 
     @InvocableVariable
     @AuraEnabled
-    global Datetime createdDate;
+    global String createdDate;
 
     @InvocableVariable
     @AuraEnabled

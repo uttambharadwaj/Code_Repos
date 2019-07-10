@@ -6,23 +6,27 @@ public with sharing class RefundAdjustmentOldDataPullerTest {
 
     @IsTest
     static void testBehavior() {
+        Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
         Test.startTest();
         RefundAdjustmentRequest request = new RefundAdjustmentRequest();
         request.recordTypeName = 'Adjustment';
         request.wexAccountNbr = '7000000003988';
         List<RefundAdjustmentRequest> requests = new List<RefundAdjustmentRequest>();
         requests.add(request);
-        List<List<RefundAdjustment>> results = RefundAdjustmentOldDataPuller.getPriorRefundAdjustments(requests);
+        List<RefundAdjustmentResult> results = RefundAdjustmentFlowDemo.getPriorRefundAdjustments(requests);
         System.assert(results != null);
         System.assert(results.size()==1);
-        List<RefundAdjustment> result = results.get(0);
+        RefundAdjustmentResult result = results.get(0);
         System.assert(result != null);
-        responsePrinter(result);
+        if (result.refundAdjustments != null && result.refundAdjustments.size() > 0) {
+            responsePrinter(result);
+        }
         Test.stopTest();
     }
 
     @IsTest
     static void testDemoClass() {
+        Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
         Test.startTest();
         RefundAdjustmentRequest request = new RefundAdjustmentRequest();
         request.recordTypeName = 'Adjustment';
@@ -30,13 +34,13 @@ public with sharing class RefundAdjustmentOldDataPullerTest {
         List<RefundAdjustmentRequest> requests = new List<RefundAdjustmentRequest>();
         requests.add(request);
         List<RefundAdjustmentResult> results = RefundAdjustmentFlowDemo.getPriorRefundAdjustments(requests);
-        System.assert(results == null);
+        System.assert(results != null);
         Test.stopTest();
     }
     
-    static private void responsePrinter(List<RefundAdjustment> result) {
+    static private void responsePrinter(RefundAdjustmentResult result) {
 
-        for (RefundAdjustment refadj : result ) {
+        for (RefundAdjustment refadj : result.refundAdjustments ) {
             System.debug('      Id: '+refadj.ID);
 
             System.debug('      wexAccountNbr  : '+refadj.wexAccountNbr);

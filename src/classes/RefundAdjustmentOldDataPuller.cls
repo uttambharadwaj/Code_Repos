@@ -3,18 +3,17 @@
  */
 
 global with sharing class RefundAdjustmentOldDataPuller {
-    @InvocableMethod(Label='get Prior Refunds and Adjustments' Description='Get Prior Refunds and Adjustments formerly in Access')
-    global static List<List<RefundAdjustment>> getPriorRefundAdjustments(List<RefundAdjustmentRequest> requestList ) {
+    public static List<RefundAdjustmentResult> getPriorRefundAdjustments(List<RefundAdjustmentRequest> requestList ) {
         //todo connect this to the web service and database
-        List<RefundAdjustment> results = new List<RefundAdjustment>();
+        List<RefundAdjustmentResult> finalResult = new List<RefundAdjustmentResult>();
         for (RefundAdjustmentRequest request: requestList) {
             RefundAdjustmentResult result = new RefundAdjustmentResult();
+            result.request = request;
             result.refundAdjustments = RefundAdjustmentGenerator.getRefundsOrAdjustments(request.wexAccountNbr, request.recordTypeName);
-            results.addAll(result.refundAdjustments);
+            finalResult.add(result);
         }
-        List<List<RefundAdjustment>> finalResult = new List<List<RefundAdjustment>>();
-        finalResult.add(results);
-        System.debug(results);
+        System.debug('End RefundAdjustmentOldDataPuller.getPriorRefundAdjustments');
+        System.debug(finalResult);
         return finalResult;
     }
 

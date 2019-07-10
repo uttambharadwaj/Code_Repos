@@ -3,9 +3,16 @@
  */
 
 global with sharing class RefundAdjustmentFlowDemo {
-    @InvocableMethod(Label='Demo' Description='Demo')
+    @InvocableMethod(Label='GetPriorRefundAdjustments' Description='Get Prior Refunds and Adjustments formerly in Access')
     global static List<RefundAdjustmentResult> getPriorRefundAdjustments(List<RefundAdjustmentRequest> requestList ) {
         //todo connect this to the web service and database
-       return null;
+       /* List<RefundAdjustmentResult> resultList = new List<RefundAdjustmentResult>();
+        for (RefundAdjustmentRequest request:requestList) {
+            RefundAdjustmentResult resultvar = new RefundAdjustmentResult();
+            resultvar.request = request;
+            resultList.add(resultvar);
+        }
+        return resultList;*/
+       return RefundAdjustmentOldDataPuller.getPriorRefundAdjustments(requestList);
     }
 }

@@ -588,19 +588,24 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
 
                     Datetime startDate = Datetime.now();
                     Datetime decisionDate;
+                    Datetime requestDate;
                     String NA = 'N/A';
 
                     for (Integer i=1; i <=3;i++) {
                         decisionDate = startDate.addMonths(i*-1);
+                        requestDate = decisionDate;
                         CustomerDetailsWSUtilv2.refundAdjustment entry = new CustomerDetailsWSUtilv2.refundAdjustment();
                         entry.accountNumber = getRefundsObject.wexAcctNbr;
                         entry.acctPlatform = 'SIEBEL';
                         entry.decisionDt = decisionDate;
+                        entry.requestDt = requestDate;
                         entry.acctStatusCd = 'Active';
+                        entry.amountRequested = 200.00;
                         entry.amountWaived = 100.00;
                         entry.approvalComment = 'Approved without comment';
                         entry.approvalStatus = 'Approved';
                         entry.approver = 'Derek Curtis';
+                        entry.department = 'DEPT';
                         entry.description = 'Description goes here';
                         entry.id = 100000 + i;
                         entry.reasonComment = 'Unreasonable';
@@ -654,6 +659,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                         entry.approvalComment = 'Approved without comment';
                         entry.approvalStatus = 'Approved';
                         entry.approver = 'Derek Curtis';
+                        entry.department = 'DEPT';
                         entry.description = 'Description goes here';
                         entry.id = 100000 + i;
                         entry.reasonComment = 'Unreasonable';
@@ -668,7 +674,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 }
                 else {
 
-                    CustomerDetailsWSUtilv2.getRefundsResponse responseElement = new CustomerDetailsWSUtilv2.getRefundsResponse();
+                    CustomerDetailsWSUtilv2.getAdjustmentsResponse responseElement = new CustomerDetailsWSUtilv2.getAdjustmentsResponse();
 
                     responseElement.return_x = new CustomerDetailsWSUtilv2.RefundAdjustmentDTO();
 

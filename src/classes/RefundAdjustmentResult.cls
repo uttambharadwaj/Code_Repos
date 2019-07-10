@@ -3,10 +3,10 @@
  */
 
 global with sharing class RefundAdjustmentResult {
-    @InvocableVariable
     @AuraEnabled
+    @InvocableVariable
     global RefundAdjustmentRequest request;
-    @InvocableVariable
     @AuraEnabled
+    @InvocableVariable
     global List<RefundAdjustment> refundAdjustments;
 }
