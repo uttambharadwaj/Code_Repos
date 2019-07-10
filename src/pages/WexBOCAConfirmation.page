@@ -1,6 +1,8 @@
 <!--
 Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decision blocks
                     5/14/2019 PSOBACKLOG-76 ADA Compliance-Images
+                    02/Jul/2019     MFarrell    NAFONBOARD-43   Add second Fleet Enrollment Form link depending on Program selection
+
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="WexBOCAConfirmationController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
@@ -252,18 +254,39 @@ Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decis
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="twelve columns">
-                                    <center>
-                                        <h1 class="header-large">
+                                <div align="center" class="twelve columns">
+                                    <h1 class="header-large">
                                         {!$Label.BOCA_Fleet_Enrollment_Header}
-                                    </h1><br/>
-                                        <p style="max-width: 320px;">
+                                    </h1>
+                                    <br/>
+                                    <p style="max-width: 320px;">
                                         {!$Label.BOCA_Fleet_Enrollment}
                                     </p>
-                                        <a href="/FleetEnrollment?appId={!applicationRequestNumber}&program={!program.Brand_Short_Name__c}&ver=BOCA">
-                                            <button type="button" class="step-button ge-click-acctsetup">{!$Label.BOCA_Fleet_Enrollment_Button}</button>
-                                        </a>
-                                    </center>
+                                    <a href="/FleetEnrollment?appId={!applicationRequestNumber}&program={!program.Brand_Short_Name__c}&ver=BOCA">
+                                        <button type="button" class="step-button ge-click-acctsetup">{!$Label.BOCA_Fleet_Enrollment_Button}</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </apex:outputPanel>
+                        <!--NAFONBOARD-43 Present a different fleet enrollment link depending on Program data-->
+                        <apex:outputPanel rendered="{!program.Publish_Fleet_Data_Capture_Form_1_1__c == true && disableFleetEnrollment == false && decisioningCompleted == true}">
+                            <div class="row">
+                                <div class="twelve columns">
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div align="center" class="twelve columns">
+                                    <h1 class="header-large">
+                                        {!$Label.BOCA_Fleet_Enrollment_Header}
+                                    </h1>
+                                    <br/>
+                                    <p style="max-width: 320px;">
+                                        {!$Label.BOCA_Fleet_Enrollment}
+                                    </p>
+                                    <a href="/FleetEnrollment/FleetEnrollment2?appId={!applicationRequestNumber}&program={!program.Brand_Short_Name__c}&ver=BOCA">
+                                        <button type="button" class="step-button ge-click-acctsetup">{!$Label.BOCA_Fleet_Enrollment_Button}</button>
+                                    </a>
                                 </div>
                             </div>
                         </apex:outputPanel>
