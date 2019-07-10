@@ -55,7 +55,8 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplicationOffer.Card_Shipping_Method__c = '1';
         onlineApplicationOffer.Card_Style__c = '1';
         onlineApplicationOffer.Card_Type__c = '1';
-        onlineApplicationOffer.Issuer_ID__c = '1';
+        onlineApplicationOffer.Parent_Funded_Issuer_ID__c = '1';
+        onlineApplicationOffer.Child_Funded_Issuer_ID__c = '1';
         onlineApplicationOffer.Issuer_Group__c = '1';
         onlineApplicationOffer.Parent_Carrier_ID__c = '1';
         onlineApplicationOffer.Card_Order_Type__c = '1';
