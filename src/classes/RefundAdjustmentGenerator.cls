@@ -59,6 +59,7 @@ public with sharing class RefundAdjustmentGenerator {
         return result;
     }
 
+    /*
     private static List<RefundAdjustment> getTestData(String wexAccountNbr, String recordTypeName) {
         RecordType recordType = [SELECT Id, DeveloperName FROM RecordType WHERE SobjectType = 'Refund_Adjustment__c' AND DeveloperName =: recordTypeName];
 
@@ -79,6 +80,6 @@ public with sharing class RefundAdjustmentGenerator {
             result.add(newRefAdj);
         }
         return result;
-    }
+    } */
 
 }

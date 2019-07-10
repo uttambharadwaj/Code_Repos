@@ -21,7 +21,7 @@ private class PriorRefundAdjustmentListControllerTest {
 
         insert new VProfileId__c(Virtual_User__c = false);
 
-        Account account = new Account(Name='TestAccount',RecordTypeId=AccountRecordType, Type='Customer' );
+        Account account = new Account(Name='TestAccount',RecordTypeId=AccountRecordType, Type='Customer', Wex_Account__c='9100000000000' );
         insert account;
 
         Case testCase = new Case(Account = account, Subject = 'TestCase', RecordTypeId = CaseRecordType, OwnerId = owner);
@@ -65,6 +65,7 @@ private class PriorRefundAdjustmentListControllerTest {
 
     @IsTest
     static void testBehavior() {
+        Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
         Test.startTest();
         Account testAccount = [SELECT Id FROM Account WHERE Name='TestAccount' LIMIT 1];
         System.debug('### testAccount Id = '+testAccount.Id);

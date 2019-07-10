@@ -634,7 +634,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
             else if(request instanceof CustomerDetailsWSUtilv2.getAdjustments) {
 
                 CustomerDetailsWSUtilv2.getAdjustments getAdjustmentsObject = (CustomerDetailsWSUtilv2.getAdjustments)request;
-
+                System.debug(getAdjustmentsObject);
                 if((getAdjustmentsObject.wexAcctNbr).equalsIgnoreCase('9100000000000')) {
 
                     CustomerDetailsWSUtilv2.getAdjustmentsResponse responseElement = new CustomerDetailsWSUtilv2.getAdjustmentsResponse();
