@@ -1,6 +1,11 @@
 @isTest
  class Test_UpdateExpCreditInsuranceFlag {
- static testmethod void testScheduler() {
+ @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
+    static testmethod void testScheduler() {
    Test.startTest();
 
    String CRON_EXP = '0 0 0 15 9 ? 2030';

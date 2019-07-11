@@ -1,9 +1,9 @@
 @isTest
 private class TestBOCALangExtension {
-  
+
     public static String cpId = '';
-  	@testSetup public static void setupController(){
-        
+    @testSetup public static void setupController(){
+
         BOCA_IDS__C bi = BOCAtestDataUtility.getBOCAids();
         insert bi;
         //Create a postcode record to validate against
@@ -11,9 +11,9 @@ private class TestBOCALangExtension {
         pc.State__c = 'ME';
         pc.Postcode__c = '4101';
         insert pc;
-        
+
         Campaign testCamp = new Campaign();
-        
+
         //create campaign test data
         testCamp.Coupon_Code__c = 'A001';
         testCamp.Name = 'testBOCA123';
@@ -23,7 +23,7 @@ private class TestBOCALangExtension {
         testCamp.EndDate = date.today();
         testCamp.CurrencyIsoCode = 'USD';
         testCamp.IsActive = true;
-        
+
         insert testCamp;
         SYSTEM.debug('Here is campaign ' + testCamp.Id);
         //testCamp = [SELECT Id, Name, Coupon_Code__c, IsActive FROM Campaign WHERE Name =: 'testBOCA123'];
@@ -54,11 +54,11 @@ private class TestBOCALangExtension {
         pric.promo_periods__c = 1.0;
         pric.promotional_rate__c = 8.17;
         pric.CurrencyIsoCode = 'USD';
-        
+
         insert pric;
 
         Program__c testProg2 = new Program__c();
-        
+
         testProg2.Name = 'testFlex2';
         testProg2.Form_Template__c = 'WexBOCA';
         testProg2.Brand_Short_Name__c = 'flex2';
@@ -67,7 +67,7 @@ private class TestBOCALangExtension {
         testProg2.Custom_Email_Header_URL__c = 'http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg';
         testProg2.Brand_Heading__c = 'Time is money. Use WEX and save both.';
         testProg2.Brand_Long_Name__c = 'flex test card';
-        testProg2.Section_Titles__c = 'Tell Us About Your Business; Billing Contact Information; Promotional Information; Statement & Report Delivery; Tell Us About Yourself; Authorization; Terms & Conditions';  
+        testProg2.Section_Titles__c = 'Tell Us About Your Business; Billing Contact Information; Promotional Information; Statement & Report Delivery; Tell Us About Yourself; Authorization; Terms & Conditions';
         testProg2.Upload_Pricing_Data_Flag__c = false;
         testProg2.Auto_Send_BOCA_to_Siebel__c = true;
         testProg2.T_C__c = 'WEX_BOCA_TNC';
@@ -75,13 +75,13 @@ private class TestBOCALangExtension {
         testProg2.Analytics_Head_Block__c = '';
         testProg2.Brand_Color_1__c = '#ccc';
         testProg2.Brand_Color_2__c = '#fff';
-        
+
         //remove the below once the BOCAcontroller code has been refactored with the old BOCAcontroller
         testProg2.Brand_Heading__c = 'removethis';
         testProg2.Brand_Long_Name__c = 'removethis';
         testProg2.Brand_Tagline__c = '';
-        
-        
+
+
         insert testProg2;
         //attachments
         Attachment attach3 = new Attachment();
@@ -90,7 +90,7 @@ private class TestBOCALangExtension {
         attach3.body=bodyBlob3;
         attach3.parentId=testProg2.id;
         insert attach3;
-        
+
         Attachment attach4 = new Attachment();
         attach4.Name = 'ui-logo.png';
         Blob bodyBlob4=Blob.valueOf('Unit Test Attachment Body');
@@ -98,7 +98,7 @@ private class TestBOCALangExtension {
         attach4.parentId=testProg2.id;
         insert attach4;
         SYSTEM.debug('Here is program ' + testProg2.id);
-        
+
         Campaign_Program__c testCP = new Campaign_Program__c();
         //create campaign program test data
         testCP.Name = 'Flex Test';
@@ -106,10 +106,10 @@ private class TestBOCALangExtension {
         testCP.Program__c = testProg2.Id;
         testCP.Terms_and_Conditions__c = 'Test T&C';
         testCP.Default__c = true;
-        
+
         insert testCP;
         cpId = testCP.Id;
-        
+
         Boca_Res__c bocaRes = new Boca_Res__c();
         bocaRes.Email_Template_ID__c = '00X70000001EfPG';
         bocaRes.Brand_Heading__c = 'Test Heading';
@@ -121,10 +121,10 @@ private class TestBOCALangExtension {
         bocaRes.Program_Name__c = testProg2.Name;
         bocaRes.Name = 'test';
         bocaRes.Program_Sell_Sheets__c = 'www.sellsheet.com';
-        
+
         insert bocaRes;
         SYSTEM.debug('Here is bocaRes ' + bocaRes.id);
-      
+
         Boca_Res__c bocaRes2 = new Boca_Res__c();
         bocaRes2.Email_Template_ID__c = '00X70000001EfPG';
         bocaRes2.Brand_Heading__c = 'Test Heading';
@@ -135,17 +135,17 @@ private class TestBOCALangExtension {
         bocaRes2.SideBar__c = 'Test Sidebar';
         bocaRes2.Program_Name__c = testProg2.Name;
         bocaRes2.Name = 'test2';
-        
+
         insert bocaRes2;
-        
+
         testProg2.Publish_BOCA__c = true;
         upsert testProg2;
-        
+
         testCamp.Coupon_Code__c = pric.coup_code__c;
         upsert testCamp;
-        
+
     }
-        
+
     public static WeFormObject__c setupApp(){
         WeFormObject__c we1 = new WeFormObject__c();
         we1.Address_Line_2__c = 'Suite 100';
@@ -169,7 +169,7 @@ private class TestBOCALangExtension {
         we1.PG_Residential_Street_Address__c = '11 Awesome Street';
         we1.PG_Residential_City__c = 'Portland';
         we1.PG_Residential_State__c = 'ME';
-        we1.PG_Residential_Zip__c = '04101'; 
+        we1.PG_Residential_Zip__c = '04101';
         we1.Email__c = 'test@test.com';
         we1.City__c = 'Portland';
         we1.Company_Name__c = 'Stantive Technologies';
@@ -202,9 +202,9 @@ private class TestBOCALangExtension {
         we1.PG_Residential_Phone__c = '555-555-5555';
         we1.Mobile_Phone__c = '555-555-5555';
         we1.Guarantor_Annual_Income__c = 1000000.00;
-        
+
         return we1;
-        
+
     }
     public class CustomHttpCalloutMock implements HttpCalloutMock
     {
@@ -215,22 +215,22 @@ private class TestBOCALangExtension {
             return retVal;
         }
     }
-      @future (callout=true)
-        public static void calloutOnsubmit() {
+    @future (callout=true)
+    public static void calloutOnsubmit() {
         test.setMock(HttpCalloutMock.class, new CustomHttpCalloutMock());
-        
+
     }
-      
+
     @isTest static void testLanguageExtensions() {
-        
+
         test.startTest();
         BOCAcontroller cont =  new BOCAcontroller();
-        
+
         PageReference testPage = new PageReference('/apex/WexBOCA?pgm=flex2&lang=en_us&lc=ne');
         Test.setCurrentPage(testPage);
-        
+
         BOCALangExtension ble = new BOCALangExtension(cont);
-        
+
         System.assertEquals('WexBOCA', ble.currentPageName);
         System.assertEquals('en_us', ble.lang);
         System.assertEquals('flex2', ble.pgm);
@@ -242,21 +242,21 @@ private class TestBOCALangExtension {
         System.assertEquals('Test Tagline', ble.tagline);
         System.assertEquals('Test Sidebar Title', ble.sidebarTitle);
         System.assertEquals('Test Sidebar', ble.sidebar);
-        
+
         System.assertNotEquals('', ble.emailTemplate);
-        
-		testPage = new PageReference('/apex/WexBOCA?pgm=flex2&lang=fr&lc=ne');
+
+        testPage = new PageReference('/apex/WexBOCA?pgm=flex2&lang=fr&lc=ne');
         Test.setCurrentPage(testPage);
-        
+
         System.assertEquals('en cours', ble.BOCAText.get('message1'));
-        
+
         testPage = new PageReference('/apex/CreditApp_Revolver?pgm=flex2&lang=en_us&lc=ne');
         Test.setCurrentPage(testPage);
-        
+
         System.assertNotEquals('', ble.BOCAText.get('html1'));
-        
+
         test.stopTest();
-        
+
     }
 
 }

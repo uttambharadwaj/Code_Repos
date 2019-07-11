@@ -8,6 +8,9 @@ public class OTRBOCATest {
 
     @testSetup
     static void setup(){
+    
+        UtilityTestLoader.setAutomation(false);
+    
         Account offerAccount = new Account();
         offerAccount.Name ='TestAccount-01';
 
