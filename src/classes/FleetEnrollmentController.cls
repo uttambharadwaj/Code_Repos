@@ -404,7 +404,7 @@ public virtual class FleetEnrollmentController {
 
                 System.debug('### ' + program);
 
-                if(program != null && program.Publish_Fleet_Data_Capture_Form__c != false) {
+                if(program != null && (program.Publish_Fleet_Data_Capture_Form__c != false || program.Publish_Fleet_Data_Capture_Form_1_1__c != false)) {
 
                     brandingCard = WexBrandingController.getCreditCardImageId(program.Id);
 
