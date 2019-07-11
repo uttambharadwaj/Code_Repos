@@ -13,6 +13,8 @@ public without sharing class CustomerDetailsController {
 
     public class customerDetailsException extends Exception {}
 
+    private static Set<String> caseTypesToDisplay = new Set<String>{'Service Operations','VAS - Retention'};
+
     @AuraEnabled
     public static Customer_Dashboard_Services__c CDS { get; set; }
 
@@ -43,7 +45,7 @@ public without sharing class CustomerDetailsController {
 
         try {
 
-            List<Case> cases = [SELECT Id FROM Case WHERE Account.Wex_Account__c =: accountNumber AND CreatedDate = TODAY AND RecordType.Name = 'Service Operations'];
+            List<Case> cases = [SELECT Id FROM Case WHERE Account.Wex_Account__c =: accountNumber AND CreatedDate = TODAY AND RecordType.Name IN: caseTypesToDisplay];
 
             System.debug(cases.size());
 
@@ -72,7 +74,7 @@ public without sharing class CustomerDetailsController {
 
         try {
 
-            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, toLabel(Status), LastModifiedDate, toLabel(Origin), Owner.Name, Department__c FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name = 'Service Operations' ORDER BY LastModifiedDate DESC];
+            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, toLabel(Status), LastModifiedDate, toLabel(Origin), Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay ORDER BY LastModifiedDate DESC];
 
             return cases;
 
@@ -93,7 +95,7 @@ public without sharing class CustomerDetailsController {
 
         try {
 
-            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, Status, LastModifiedDate, Origin, Owner.Name, Department__c FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name = 'Service Operations' AND IsClosed = FALSE ORDER BY LastModifiedDate DESC LIMIT 5];
+            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, Status, LastModifiedDate, Origin, Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay AND IsClosed = FALSE ORDER BY LastModifiedDate DESC LIMIT 5];
             System.debug('### getExistingOpenCases found '+cases.size());
 
             return cases;
@@ -109,7 +111,7 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
-    public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId) {
+    public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString) {
 
         try {
 
@@ -132,6 +134,10 @@ public without sharing class CustomerDetailsController {
 
             customerDetailsRequest.accountID = accountNumber;
             customerDetailsRequest.accountIdType = 'Internal';
+
+            if (!String.isEmpty(pdRowIdString)) {
+                customerDetailsRequest.pdRowId = pdRowIdString;
+            }
 
             CustomerDetailsWSUtilv2.customerDetails customerDetails = customerDetailsCallout.getCustomerDetails(customerDetailsRequest);
 
@@ -183,9 +189,12 @@ public without sharing class CustomerDetailsController {
 
             System.debug('### ' + customerContactsResponse);
 
+            /*
             if(!String.isEmpty(customerContactsResponse.errorMsg)) {
-                throw new customerDetailsException('Unable to retrieve account contacts.');
+
+                throw new customerDetailsException('Unable to retrieve account contacts: ');
             }
+             */
 
             return customerContactsResponse.contacts;
 
@@ -432,18 +441,24 @@ public without sharing class CustomerDetailsController {
     public static Id getContactId(String accountId, String contactRowId) {
         System.debug('Entering getContactId for accountId '+accountId+' and contactRowId '+contactRowId);
         try {
+            String contactRowIdToUse = contactRowId;
+            if (contactRowId.contains('#')) {
+                contactRowIdToUse = contactRowId.split('#').get(0);
+            }
+            //List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
+            List<IntegrationRecord__c> serviceOperationsContacts = [SELECT Contact__r.ID FROM IntegrationRecord__c WHERE Contact_Row_ID__c =: contactRowIdToUse];
 
-            List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_ID__c =: contactRowId];
+            System.debug('### ' + serviceOperationsContacts);
 
             if(serviceOperationsContacts.size() > 0) {
 
-                return serviceOperationsContacts[0].Id;
+                return serviceOperationsContacts[0].Contact__r.ID;
 
             }
             else {
 
-                throw new customerDetailsException('Unable to retrieve contact ID.');
-                
+                System.debug('Unable to retrieve contact ID for rowId '+contactRowId);
+                return null;
             }
 
         }
@@ -463,7 +478,7 @@ public without sharing class CustomerDetailsController {
 
         try {
 
-            CustomerDetailsWSUtilv2.customerDetails customerDetails = (CustomerDetailsWSUtilv2.customerDetails)JSON.deserialize(customerDetailsJSON, CustomerDetailsWSUtilv2.customerDetails.class);
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = getCustomerDetailsFromJson(customerDetailsJSON);
 
             if(customerDetails != null) {
 
@@ -529,8 +544,41 @@ public without sharing class CustomerDetailsController {
                             serviceOperationsAccount.Status__c = customerDetails.accountSts;
                         }
                         serviceOperationsAccount.Platform__c = customerDetails.sourceSys;
-                    } //accountNewToSalesforce
 
+                        if(customerDetails.billingAddress.addr2 != null) {
+                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr2;
+                        }
+                        if(customerDetails.billingAddress.addr3 != null) {
+                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr3;
+                        }
+                        if(customerDetails.billingAddress.addr4 != null) {
+                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr4;
+                        }
+
+                        serviceOperationsAccount.BillingCity = customerDetails.billingAddress.city;
+                        serviceOperationsAccount.BillingState = customerDetails.billingAddress.state;
+                        serviceOperationsAccount.BillingCountry = customerDetails.billingAddress.country;
+                        serviceOperationsAccount.BillingPostalCode = customerDetails.billingAddress.postalCode;
+
+                        if(customerDetails.mailingAddress != null) {
+                            serviceOperationsAccount.ShippingStreet = customerDetails.mailingAddress.addr1;
+
+                            if(customerDetails.billingAddress.addr2 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr2;
+                            }
+                            if(customerDetails.billingAddress.addr3 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr3;
+                            }
+                            if(customerDetails.billingAddress.addr4 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr4;
+                            }
+
+                            serviceOperationsAccount.ShippingCity = customerDetails.mailingAddress.city;
+                            serviceOperationsAccount.ShippingState = customerDetails.mailingAddress.state;
+                            serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
+                            serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
+                        }
+                    } //accountNewToSalesforce
 
                     //Upsert for convenience; if the account is new to Salesforce it will be an Insert, otherwise an Update but
                     //we only update segmentation.
@@ -564,6 +612,11 @@ public without sharing class CustomerDetailsController {
 
     }
 
+    private static CustomerDetailsWSUtilv2.customerDetails getCustomerDetailsFromJson(String customerDetailsJSON) {
+        CustomerDetailsWSUtilv2.customerDetails customerDetails = (CustomerDetailsWSUtilv2.customerDetails) JSON.deserialize(customerDetailsJSON, CustomerDetailsWSUtilv2.customerDetails.class);
+        return customerDetails;
+    }
+
     //We only call this in a test method now, to simplify data setup.
     @AuraEnabled
     public static Id upsertContacts(Id accountId, String customerContactsJSON, String contactRowId) {
@@ -577,8 +630,8 @@ public without sharing class CustomerDetailsController {
 
             // Convert the list of contacts to a map for cleaner matching
             Map<String, Id> existingServiceOperationsContacts = new Map<String, Id>();
-            for(Contact contact : [SELECT Id, WEX_Contact_ID__c FROM Contact WHERE AccountId =: accountId AND RecordTypeId =: serviceOperationsContactRecordTypeId]) {
-                existingServiceOperationsContacts.put(contact.WEX_Contact_ID__c, contact.Id);
+            for(Contact contact : [SELECT Id, WEX_Contact_Id__c FROM Contact WHERE AccountId =: accountId AND RecordTypeId =: serviceOperationsContactRecordTypeId]) {
+                existingServiceOperationsContacts.put(contact.WEX_Contact_Id__c, contact.Id);
             }
 
             // New list collection for the contacts we're going to upsert
@@ -589,8 +642,8 @@ public without sharing class CustomerDetailsController {
 
                 Contact contact = new Contact();
 
-                if(existingServiceOperationsContacts != null && existingServiceOperationsContacts.containsKey(customerContact.ContactType + '#' + customerContact.RowId)) {
-                    contact.Id = existingServiceOperationsContacts.get(customerContact.ContactType + '#' + customerContact.RowId);
+                if(existingServiceOperationsContacts != null && existingServiceOperationsContacts.containsKey(customerContact.RowId)) {
+                    contact.Id = existingServiceOperationsContacts.get(customerContact.RowId);
                 }
 
                 contact.FirstName = customerContact.FirstNm;
@@ -607,7 +660,7 @@ public without sharing class CustomerDetailsController {
                 contact.RecordTypeId = serviceOperationsContactRecordTypeId;
                 contact.Contact_Type__c = customerContact.ContactType;
 
-                System.debug('### ' + contact.WEX_Contact_ID__c);
+                System.debug('### ' + contact.WEX_Contact_Id__c);
 
                 if(customerContact.address != null) {
 
@@ -644,7 +697,7 @@ public without sharing class CustomerDetailsController {
                 upsert updatedServiceOperationsContacts;
             }
 
-            List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_ID__c =: contactRowId AND Account.Id =: accountId AND RecordType.Name = 'Service Operations'];
+            List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_Id__c =: contactRowId AND Account.Id =: accountId AND RecordType.Name = 'Service Operations'];
 
             if(focusedContact.size() > 0) {
 
@@ -674,7 +727,7 @@ public without sharing class CustomerDetailsController {
         dummyContactList.add(sos.ContactOnlineUserRecordID__c);
         dummyContactList.add(sos.ContactSalesRepRecordId__c);
 
-        List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_ID__c = :contactRowId AND WEX_Contact_ID__c in :dummyContactList AND RecordType.Name = 'Service Operations'];
+        List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_Id__c = :contactRowId AND WEX_Contact_Id__c in :dummyContactList AND RecordType.Name = 'Service Operations'];
         if (focusedContact.size() > 0) {
             System.debug('getDummyContactId returns '+focusedContact[0].Id);
             return focusedContact[0].Id;
@@ -740,13 +793,13 @@ public without sharing class CustomerDetailsController {
         serviceOperationsCase.Status = 'Open';
 
         if (!String.isEmpty(caseId) && !caseId.equalsIgnoreCase('undefined')) {
-            serviceOperationsCase.Id = (Id) caseId;
+            serviceOperationsCase.Id = (ID) caseId;
         }
-        
+
         //todo: casts to (Id) below here are probably unnecessary since the parameters are declared as Id
         if (!String.isEmpty(accountId)) {
             List<Account> priorityLevels = [SELECT Id, Priority_Level__c FROM Account WHERE Id = :accountId];
-            serviceOperationsCase.AccountId = (Id) accountId;
+            serviceOperationsCase.AccountId = (ID) accountId;
             if (priorityLevels.size() > 0) {
                 serviceOperationsCase.Priority_Level__c = priorityLevels[0].Priority_Level__c;
             }
