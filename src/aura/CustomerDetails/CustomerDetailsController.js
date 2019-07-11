@@ -26,7 +26,7 @@
 
         component.set("v.caseHistoryColumnList", [
             {label: "Last Modified", fieldName: "LastModifiedDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: "false"}, sortable: true},
-            {label: "Case Number", fieldName: "Anchor", type: "url", typeAttributes: {label:{fieldName: "CaseNumber"}}, sortable: true},
+            {label: "Case Number", fieldName: "Anchor", type: "url", typeAttributes: {label:{fieldName: "CaseNumber"}, target:"_self"}, sortable: true},
             {label: "Status", fieldName: "Status", type: "text", sortable: true},
             {label: "Origin", fieldName: "Origin", type: "text", sortable: true},
             {label: "Contact", fieldName: "Contact_Name", type: "text", sortable: true},
@@ -35,9 +35,6 @@
             {label: "Owner", fieldName: "Owner_Name", type: "text", sortable: true},
             {label: "Dept.", fieldName: "Department__c", type: "text", sortable: true}
         ]);
-
-        console.log('Updated caseHistoryColumnList');
-
 
         component.set("v.paymentDetailsColumnList", [
             {label: "Payment ID", fieldName: "paymentId", type: "text", sortable: false, initialWidth: 150 },
@@ -120,10 +117,12 @@
                     var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
                     component.set("v.pdRowId", pdRowid);
 
+                    /*
                     console.log('#### accountNumber = '+component.get("v.accountNumber"));
                     console.log('#### caseId = '+component.get("v.caseId"));
                     console.log('#### contactRowId = '+component.get("v.contactRowId"));
                     console.log('#### pdRowId = '+component.get("v.pdRowId"));
+                     */
 
                     // Display the spinner
                     var spinner = component.find("loadingSpinner");

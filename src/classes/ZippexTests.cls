@@ -4,6 +4,11 @@
 @isTest
 private class ZippexTests 
 {
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     @isTest static void testHexUtil() 
     {
 

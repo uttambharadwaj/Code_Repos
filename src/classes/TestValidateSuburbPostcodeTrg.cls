@@ -8,6 +8,11 @@
 private class TestValidateSuburbPostcodeTrg
 {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void myUnitTest()
     {
     	Postcode__c postcode = new Postcode__c(Suburb__c = 'Melbourne', Postcode__c = '8888');

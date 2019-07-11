@@ -53,7 +53,8 @@ private class Test_TG_XmlNode {
 								 + '</bookstore>';
 								 	
     static testMethod void testGetElementsByTagName() {
-		TG_XmlDom dom = new TG_XmlDom(sampleXml);
+		UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	List<TG_XmlNode> books = root.getElementsByTagName('book');
     	System.assertEquals(2, books.size());
@@ -72,14 +73,16 @@ private class Test_TG_XmlNode {
     }
 
 	static testMethod void testGetElementByTagName() {
-		TG_XmlDom dom = new TG_XmlDom(sampleXml);
+		UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.getElementByTagName('book');
     	System.assertNotEquals(null, book);
 	}
 	
 	static testMethod void testChildNodes() {
-		TG_XmlDom dom = new TG_XmlDom(sampleXml);
+		UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.getElementByTagName('book');
     	System.assertNotEquals(null, book);
@@ -115,7 +118,8 @@ private class Test_TG_XmlNode {
 	}
 	
 	static testMethod void testNodeName() {
-		TG_XmlDom dom = new TG_XmlDom(sampleXml);
+		UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	System.assertEquals('bookstore', root.nodeName);
     	TG_XmlNode book = root.getElementByTagName('book');
@@ -124,7 +128,8 @@ private class Test_TG_XmlNode {
 	}   
 	 								 	
     static testMethod void testGetAttribute() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	List<TG_XmlNode> books = root.getElementsByTagName('book');
     	System.assertEquals(2, books.size());
@@ -133,7 +138,8 @@ private class Test_TG_XmlNode {
     }
     
     static testMethod void testToXmlString() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
  		TG_XmlNode book = root.getElementByTagName('book');
  		TG_XmlNode title = book.getElementByTagName('c:title');
@@ -141,7 +147,8 @@ private class Test_TG_XmlNode {
     }
      
      static testMethod void testTextContent() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
  		TG_XmlNode book = root.getElementByTagName('book');
  		System.assertEquals('Harry Potter J K. Rowling 2005 29.99', book.textContent);
@@ -152,7 +159,8 @@ private class Test_TG_XmlNode {
     }
     
      static testMethod void testNodeValue() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
  		TG_XmlNode book = root.getElementByTagName('book');
  		TG_XmlNode title = book.getElementByTagName('c:title');
@@ -163,7 +171,8 @@ private class Test_TG_XmlNode {
     }
  	
  	static testMethod void testFirstChild() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
  		TG_XmlNode fc = root.firstChild;
  		TG_XmlNode book = root.getElementByTagName('book');
@@ -171,7 +180,8 @@ private class Test_TG_XmlNode {
  	}
  	
  	static testMethod void testLastChild() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
  		TG_XmlNode book = root.getElementByTagName('book');
  		TG_XmlNode lc = book.lastChild;
@@ -179,7 +189,8 @@ private class Test_TG_XmlNode {
  	}
  	
  	static testMethod void testNamespaceURI() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
  		System.assertEquals(null, root.namespaceURI);
  		root.namespaceURI = 'http://www.tgerm.com';
@@ -187,7 +198,8 @@ private class Test_TG_XmlNode {
  	}
  	
  	static testMethod void testNextSibling() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	//must be a book tag
     	TG_XmlNode firstKid = root.firstChild;
@@ -198,26 +210,30 @@ private class Test_TG_XmlNode {
  	}
  	
  	static testMethod void testOwnerDocument() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	System.assertEquals(dom.ownerDocument, dom.root.ownerDocument);
  	}
  	
  	static testMethod void testParentNode() {
- 		TG_XmlDom dom = new TG_XmlDom(sampleXml);
+ 		UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.firstChild;
     	System.assertEquals(root.xmlNode, book.parentNode.xmlNode);
  	}
  	
  	static testmethod void testPrefix() {
- 		TG_XmlDom dom = new TG_XmlDom(sampleXml);
+ 		UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	System.assertEquals(null, root.prefix);
  	}
  	
  	
  	static testMethod void testPreviousSibling() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode[] books = root.getElementsByTagName('book');
     	System.assertEquals(2, books.size());
@@ -226,28 +242,32 @@ private class Test_TG_XmlNode {
  	}	
     
 	static testMethod void testHasAttributes() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.getElementByTagName('book');
     	System.assertEquals(true, book.hasAttributes()); 
  	}	
     
 	static testMethod void testHasChildNodes() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.getElementByTagName('book');
     	System.assertEquals(true, book.hasChildNodes()); 
  	}	
     
 	static testMethod void testIsDefaultNamespace() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.getElementByTagName('book');
     	System.assertEquals(true, book.isDefaultNamespace(root.namespaceURI)); 
  	}	    
 
 	static testMethod void testRemoveChild() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.getElementByTagName('book');
     	TG_XmlNode title = book.getElementByTagName('title');
@@ -259,21 +279,24 @@ private class Test_TG_XmlNode {
  	}
  
  	static testMethod void testRoot() {
-    	TG_XmlDom dom = new TG_XmlDom(sampleXml);
+    	UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode title = root.getElementByTagName('title');
     	System.assertEquals(root.xmlNode, title.root.xmlNode);
  	}
  	
  	static testMethod void testLookupPrefix() {
- 		TG_XmlDom dom = new TG_XmlDom(sampleXml);
+ 		UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.getElementByTagName('book');
     	System.assertEquals('c', book.lookupPrefix('http://www.w3schools.com/children/'));
  	}
  	
  	 static testMethod void testLookupNamespaceURI() {
- 		TG_XmlDom dom = new TG_XmlDom(sampleXml);
+ 		UtilityTestLoader.setAutomation(false);
+        TG_XmlDom dom = new TG_XmlDom(sampleXml);
     	TG_XmlNode root = dom.root;
     	TG_XmlNode book = root.getElementByTagName('book');
     	System.assertEquals('http://www.w3schools.com/children/', book.lookupNamespaceURI('c'));

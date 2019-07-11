@@ -35,27 +35,32 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 private class Test_TG_XmlDom {
 								 	
  	static testMethod void testCreateFromXml() {
+		UtilityTestLoader.setAutomation(false);
 		TG_XmlDom dom = TG_XmlDom.createFromXml('<price>29.99</price>');
 		String asXml = dom.root.toXmlString();
 		System.assertEquals('<price>29.99</price>', asXml);     	
 	}
 
 	static testMethod void testCreateForRootElement() {
+		UtilityTestLoader.setAutomation(false);
 		TG_XmlDom dom = TG_XmlDom.createForRootElement('price');
 		System.assertEquals('price', dom.root.nodeName);     	
 	}
 	
 	static testMethod void testCreateForRootElement2() {
+		UtilityTestLoader.setAutomation(false);
 		TG_XmlDom dom = TG_XmlDom.createForRootElement('price', null, null);
 		System.assertEquals('price', dom.root.nodeName);     	
 	}
 	
 	static testMethod void testToXmlString() {
+		UtilityTestLoader.setAutomation(false);
 		TG_XmlDom dom = TG_XmlDom.createFromXml('<price>29.99</price>');
 		System.assertEquals('<?xml version="1.0" encoding="UTF-8"?><price>29.99</price>', dom.toXmlString());     	
 	}
 	
 	static testMethod void testOwnerDocument() {
+		UtilityTestLoader.setAutomation(false);
 		TG_XmlDom dom = TG_XmlDom.createFromXml('<price>29.99</price>');
 		System.assert(null != dom.ownerDocument);     	
 	}

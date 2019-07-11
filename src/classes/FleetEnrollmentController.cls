@@ -14,24 +14,26 @@ public class FleetEnrollmentController {
             return ApexPages.currentPage().getParameters().get('opty');
         }
     }
-    
+
     public Boolean checkOpportunityParameter {
         get {
             try {
-               Schema.SObjectType objectType = (Id.valueOf(opportunityParameter)).getSobjectType();
+                Schema.SObjectType objectType = (Id.valueOf(opportunityParameter)).getSobjectType();
 
-			if((String.valueOf(objectType)).equalsIgnoreCase('Opportunity')) {
-				return true;
-			}
-                    
+                if((String.valueOf(objectType)).equalsIgnoreCase('Opportunity')) {
+                    return true;
+                }
+
             }
             catch(Exception e) {
                 System.debug('### Not a valid ID..');
             }
-            
+
             return false;
         }
     }
+
+    public Boolean showPreview {get;set;}
 
     public String currentPage {
         get {
@@ -305,6 +307,7 @@ public class FleetEnrollmentController {
         minStep = 1;
         maxStep = 5;
         currentStep = 1;
+        showPreview = false;
 
         cardShippingSameAsBillingAddress = true;
 
@@ -629,7 +632,7 @@ public class FleetEnrollmentController {
 
             if(!String.isEmpty(opportunityParameter)) {
                 if(checkOpportunityParameter == false) {
-			 	fleetEnrollment.Opportunity_Number__c = opportunityParameter;
+                    fleetEnrollment.Opportunity_Number__c = opportunityParameter;
                 }
                 fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
             }
@@ -801,6 +804,10 @@ public class FleetEnrollmentController {
 
         delete temporaryContact;
 
+    }
+
+    public void myShowPreviewMethod(){
+        showPreview=true;
     }
 
 }

@@ -27,6 +27,11 @@ private class BOCAFormTriggerTest {
     static Campaign campaign { get; set; }
     static OnlineApplicationOffer__c onlineApplicationOffer { get; set; }
 
+    @testSetup
+    static void setup(){
+       UtilityTestLoader.setAutomation(false);
+    }
+
     public static void setupFuelCardBOCA() {
 
         User bocaUser = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];

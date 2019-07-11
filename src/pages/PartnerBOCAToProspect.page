@@ -1,11 +1,5 @@
-<!--
-Description:        Partner BOCA To Prospect VF Page
-Revision History:   5/21/2019 MFarrell - PSOBACKLOG-198 updating controllers so we can create a button on the opportunity.
-
--->
-
-<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0"
-           standardcontroller="Opportunity" extensions="PartnerBOCAToProspectController" action="{!init}">
+<apex:page showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false"
+           standardController="Opportunity" extensions="PartnerBOCAToProspectController" action="{!init}">
     <html>
     <head>
 

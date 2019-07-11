@@ -1,5 +1,8 @@
 /*
-* Revision History: 5/1/2019 IADJUDICAT-1186 expand functionality for CP and NAF; utilize field mapping metadata
+* PartnerBOCAToProspectController Class
+* Description: controller for PartnerBOCAToProspect page
+* Revision History: 5/24/2019   PSOBACKLOG-65 & IADJUDICAT-1186 build out for NAF and CP
+*
 * Revision History: 5/21/2019 MFarrell - PSOBACKLOG-198 - Added constructor with ApexPages.standardcontroller
 *
 */
@@ -40,6 +43,7 @@ public class PartnerBOCAToProspectController {
 
     public Id selectedOffer { get; set; }
 
+    //IADJUDICAT-1186 build out for NAF and CP...which don't have offer selection
     public String bocaType {get{
         if(selectedProgram == null) return null;
         return [select boca_type__c from program__c where id=:selectedProgram limit 1].BOCA_Type__c;
@@ -208,7 +212,7 @@ public class PartnerBOCAToProspectController {
 
         try {
 
-            //turn that partner boca into a wrapper. mapping is prettier that way. plus there are values we have to build
+            //IADJUDICAT-1186 turn that partner boca into a wrapper, since we will map it to one of three boca types. mapping is prettier that way. plus there are values we have to build
             ParAppTheWrapper myWrapper = new ParAppTheWrapper(partnerBOCAtoProspect, this);
 
             //turn that wrapper into our sobject for insertion
@@ -233,6 +237,7 @@ public class PartnerBOCAToProspectController {
                 partnerBOCAtoProspect.put(myWrapper.LookupField, myAppRecord.Id);
                 partnerBOCAtoProspect.Program__c = selectedProgram;
                 partnerBOCAtoProspect.Online_Application_Offer__c = selectedOffer;
+                partnerBOCAtoProspect.External_Application_URL__c = keyMaster.theURL;
                 upsert partnerBOCAtoProspect;
 
                 System.debug('### DEBUG - PartnerBOCAToProspect ID: ' + partnerBOCAtoProspect);
@@ -241,14 +246,14 @@ public class PartnerBOCAToProspectController {
 
                 String emailTemplateId = bocaToProspectSettings.Partner_BOCA_To_Prospect_Template__c;
 
-                List<RecordType> contactRecordTypes = [SELECT Id FROM RecordType WHERE SobjectType = 'Contact' AND DeveloperName IN ('F1_Contact')];
+                Id myRecType = UtilityClass.getRecTypeByDevName('Contact', 'F1_Contact');
 
                 Contact temporaryContact = new Contact();
 
                 temporaryContact.FirstName = myWrapper.ContactFirstName;
                 temporaryContact.LastName = myWrapper.ContactLastName;
                 temporaryContact.Email = myWrapper.Email;
-                temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
+                temporaryContact.RecordTypeId = myRecType;
 
                 insert temporaryContact;
 
@@ -301,6 +306,7 @@ public class PartnerBOCAToProspectController {
 
     }
 
+    //IADJUDICAT-1186 use field mapping to go from wrapper to whichever object we need
     private SObject convertWrapper(SObject myApp, KeyURLWrapper myWrapper){
         //get field mapping metadata for the object type and for this class/wrapper combination.
         Field_Mapping_Parent__mdt myMapping = UtilityClass.getFieldMapping(myApp.Id.getSObjectType().getDescribe().getName(), 'PartnerBOCAToProspectController', 'KeyURLWrapper');
@@ -315,7 +321,7 @@ public class PartnerBOCAToProspectController {
         return myApp;
     }
 
-    //create a useful sobject out of a meaningless wrapper
+    //IADJUDICAT-1186 create a useful sobject out of a meaningless wrapper
     private SObject convertWrapper(ParAppTheWrapper myWrapper){
         //start with a new sobject
         SObject myApp = Schema.getGlobalDescribe().get(myWrapper.AppObjectType).newSObject();
@@ -333,7 +339,7 @@ public class PartnerBOCAToProspectController {
         return myApp;
     }
 
-    //using a wrapper class thingy specifically for this controller
+    //IADJUDICAT-1186 using a wrapper class thingy specifically for this controller
     public class ParAppTheWrapper {
         public String Stage;
         public String Status;
@@ -351,7 +357,7 @@ public class PartnerBOCAToProspectController {
         //constructor stuffs
         public ParAppTheWrapper(Partner_BOCA_To_Prospect__c myPBTP, PartnerBOCAToProspectController thisController){
             this.Stage = 'Application';
-            this.Status = 'App - Incomplete';
+            this.Status = 'App-Incomplete';
             this.ContactFirstName = myPBTP.First_Name__c;
             this.ContactLastName = myPBTP.Last_Name__c;
             this.Email = myPBTP.Email__c;
@@ -376,10 +382,11 @@ public class PartnerBOCAToProspectController {
             if(cpbTypes.contains(BOCAType)){
                 this.AppObjectType = 'CP_Application_Request__c';
                 this.LookupField = 'CP_Application_Request__c';
-                this.Status = 'App-Incomplete';
+                this.Status = 'Sent to Prospect';
             } else if(nafTypes.contains(BOCAType)){
                 this.AppObjectType = 'WeFormObject__c';
                 this.LookupField = 'WeFormObject__c';
+                this.Status = 'App - Incomplete';
             } else if(otrTypes.contains(BOCAType)){
                 this.AppObjectType = 'OnlineApplication__c';
                 this.LookupField = 'Online_Application__c';
@@ -388,6 +395,7 @@ public class PartnerBOCAToProspectController {
 
     }
 
+    //IADJUDICAT-1186 generated key and url for future use
     public class KeyURLWrapper{
         public String theKey;
         public String theURL;
@@ -396,7 +404,7 @@ public class PartnerBOCAToProspectController {
             this.theKey = UtilityClass.generateAppKey();
             String offer = myWrapper.Offer;
             Program__c myProgram = WexBrandingController.getProgram(myWrapper.Program);
-            String myURL = 'https://' + Label.External_Instance_URL + '/creditapplication' + myProgram.Form_Template__c;
+            String myURL = 'https://' + Label.External_Instance_URL + '/creditapplication/' + myProgram.Form_Template__c;
             myURL += '?pgm=' + myProgram.Brand_Short_Name__c; //program parameter. that's a big one. might want to hold on to that one.
             if(offer != null)
                 myURL += '&offer=' + offer; //offer parameter. limited to OTR

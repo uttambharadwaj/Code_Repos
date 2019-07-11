@@ -10,21 +10,21 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
         String responseNS,
         String responseName,
         String responseType) {
-            
+
             System.debug('### ' + request);
-            
+
             if (request instanceof CustomerDetailsWSUtilv2.getAgingHistory) {
-                
+
                 CustomerDetailsWSUtilv2.getAgingHistory getAgingHistoryObject = (CustomerDetailsWSUtilv2.getAgingHistory)request;
-                
+
                 CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest = (CustomerDetailsWSUtilv2.customerDetailsRequest)getAgingHistoryObject.arg0;
-                
+
                 if((customerDetailsRequest.accountID).equalsIgnoreCase('9100000000000')) {
-                    
+
                     CustomerDetailsWSUtilv2.getAgingHistoryResponse responseElement = new CustomerDetailsWSUtilv2.getAgingHistoryResponse();
-                    
+
                     responseElement.return_x = new CustomerDetailsWSUtilv2.agingHistory();
-                    
+
                     responseElement.return_x.accountId = '9100003325428';
                     responseElement.return_x.accountNm = 'Hub Cap Annie &amp; Wheel of Idaho Inc';
                     responseElement.return_x.cycleCd = 2;
@@ -114,35 +114,35 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     responseElement.return_x.nsfCnt10 = Integer.valueOf(Math.floor(Math.random() * ((23-0)+1) + 0));
                     responseElement.return_x.nsfCnt11 = Integer.valueOf(Math.floor(Math.random() * ((23-0)+1) + 0));
                     responseElement.return_x.riskCode = '9';
-                    
+
                     response.put('response_x', responseElement);
-                    
+
                 }
                 else {
-                    
+
                     CustomerDetailsWSUtilv2.getAgingHistoryResponse responseElement = new CustomerDetailsWSUtilv2.getAgingHistoryResponse();
-                    
+
                     responseElement.return_x = new CustomerDetailsWSUtilv2.agingHistory();
-                    
+
                     responseElement.return_x.errorMsg = 'Could not find specified account!';
-                    
+
                     response.put('response_x', responseElement);
-                    
+
                 }
-                
+
             }
             else if(request instanceof CustomerDetailsWSUtilv2.getCustomerDetails) {
-                
+
                 CustomerDetailsWSUtilv2.getCustomerDetails getCustomerDetailsObject = (CustomerDetailsWSUtilv2.getCustomerDetails)request;
-                
+
                 CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest = (CustomerDetailsWSUtilv2.customerDetailsRequest)getCustomerDetailsObject.arg0;
-                
+
                 if((customerDetailsRequest.accountID).equalsIgnoreCase('9100000000000')) {
-                    
+
                     CustomerDetailsWSUtilv2.getCustomerDetailsResponse responseElement = new CustomerDetailsWSUtilv2.getCustomerDetailsResponse();
-                    
+
                     responseElement.return_x = new CustomerDetailsWSUtilv2.customerDetails();
-                    
+
                     responseElement.return_x.accountNbrType = 'Internal';
                     responseElement.return_x.accountNm = 'Hub Cap Annie &amp; Wheel of Idaho Inc';
                     responseElement.return_x.accountSinceDt = (Datetime)JSON.deserialize('"2015-04-15T00:00:00-04:00"', Datetime.class);
@@ -234,9 +234,9 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     AlternateAddress.country = 'US';
                     AlternateAddress.orgName = 'WEX';
                     AlternateAddress.postalCode = '04106';
-                    
+
                     responseElement.return_x.alternateAddress = AlternateAddress;
-                      
+
                     CustomerDetailsWSUtilv2.address BillingAddress = new CustomerDetailsWSUtilv2.address();
                     BillingAddress.addr1 = '123 Darling Ave';
                     BillingAddress.addr2 = 'Filler';
@@ -247,9 +247,9 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     BillingAddress.country = 'US';
                     BillingAddress.orgName = 'WEX';
                     BillingAddress.postalCode = '04106';
-                    
+
                     responseElement.return_x.billingAddress = BillingAddress;
-                    
+
                     CustomerDetailsWSUtilv2.address MailingAddress = new CustomerDetailsWSUtilv2.address();
                     MailingAddress.addr1 = '123 Darling Ave';
                     MailingAddress.addr2 = 'Filler';
@@ -260,9 +260,9 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     MailingAddress.country = 'US';
                     MailingAddress.orgName = 'WEX';
                     MailingAddress.postalCode = '04106';
-                    
+
                     responseElement.return_x.mailingAddress = MailingAddress;
-                    
+
                     CustomerDetailsWSUtilv2.address PrimaryAddress = new CustomerDetailsWSUtilv2.address();
                     PrimaryAddress.addr1 = '123 Darling Ave';
                     PrimaryAddress.addr2 = 'Filler';
@@ -273,9 +273,9 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     PrimaryAddress.country = 'US';
                     PrimaryAddress.orgName = 'WEX';
                     PrimaryAddress.postalCode = '04106';
-                    
+
                     responseElement.return_x.primaryAddress = PrimaryAddress;
-                    
+
                     CustomerDetailsWSUtilv2.address ShippingAddress = new CustomerDetailsWSUtilv2.address();
                     ShippingAddress.addr1 = '123 Darling Ave';
                     ShippingAddress.addr2 = 'Filler';
@@ -286,7 +286,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     ShippingAddress.country = 'US';
                     ShippingAddress.orgName = 'WEX';
                     ShippingAddress.postalCode = '04106';
-                    
+
                     responseElement.return_x.shippingAddress = ShippingAddress;
 
                     if (customerDetailsRequest.pdRowId != null && !(String.isEmpty(customerDetailsRequest.pdRowId))) {
@@ -305,40 +305,40 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                         asset.odometerDate = Datetime.newInstance(2099,12,31,23,59,59);
                         asset.pdStatus = 'Active';
                         asset.pdStatusdate = '2018-12-31';
-                        
+
                         responseElement.return_x.pdAsset = asset;
                     }
-                    
+
                     response.put('response_x', responseElement);
-                    
+
                 }
                 else {
-                    
+
                     CustomerDetailsWSUtilv2.getCustomerDetailsResponse responseElement = new CustomerDetailsWSUtilv2.getCustomerDetailsResponse();
-                    
+
                     responseElement.return_x = new CustomerDetailsWSUtilv2.customerDetails();
-                    
+
                     responseElement.return_x.errorMsg = 'Could not find specified account!';
-                    
+
                     response.put('response_x', responseElement);
-                    
+
                 }
-                
+
             }
             else if(request instanceof CustomerDetailsWSUtilv2.getContacts) {
-                
+
                 CustomerDetailsWSUtilv2.getContacts getContactsObject = (CustomerDetailsWSUtilv2.getContacts)request;
-                
+
                 CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest = (CustomerDetailsWSUtilv2.customerDetailsRequest)getContactsObject.arg0;
-                
+
                 if((customerDetailsRequest.accountID).equalsIgnoreCase('9100000000000')) {
-                    
+
                     CustomerDetailsWSUtilv2.getContactsResponse responseElement = new CustomerDetailsWSUtilv2.getContactsResponse();
-                    
+
                     responseElement.return_x = new CustomerDetailsWSUtilv2.contacts();
-                    
+
                     CustomerDetailsWSUtilv2.contact contact = new CustomerDetailsWSUtilv2.contact();
-                    
+
                     contact.role = 'Contact';
                     contact.contactType = 'Contact';
                     contact.emailAddr = 'test@wexinc.com';
@@ -348,7 +348,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     contact.lastNm = 'McTesterson';
                     contact.phoneNbr = '207-555-5555';
                     contact.rowId = '1-1ZZZZZ';
-                    
+
                     CustomerDetailsWSUtilv2.address MailingAddress = new CustomerDetailsWSUtilv2.address();
                     MailingAddress.addr1 = '123 Darling Ave';
                     MailingAddress.addr2 = 'Filler';
@@ -359,50 +359,51 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     MailingAddress.country = 'US';
                     MailingAddress.orgName = 'WEX';
                     MailingAddress.postalCode = '04106';
-                    
+
                     contact.address = MailingAddress;
-                    
+
                     responseElement.return_x.contacts = new CustomerDetailsWSUtilv2.contact[]{};
-                        
+
                         responseElement.return_x.contacts.add(contact);
-                    
+
                     response.put('response_x', responseElement);
-                    
+
                 }
                 else {
-                    
+
                     CustomerDetailsWSUtilv2.getContactsResponse responseElement = new CustomerDetailsWSUtilv2.getContactsResponse();
-                    
+
                     responseElement.return_x = new CustomerDetailsWSUtilv2.contacts();
-                    
+
                     responseElement.return_x.errorMsg = 'Could not find specified account!';
-                    
+
                     response.put('response_x', responseElement);
-                    
+
                 }
-                
+
             }
+
             else if(request instanceof CustomerDetailsWSUtilv2.getRecentDeclinedAuths) {
-                
+
                 CustomerDetailsWSUtilv2.getRecentDeclinedAuths getRecentDeclinedAuthsObject = (CustomerDetailsWSUtilv2.getRecentDeclinedAuths)request;
-                
+
                 if(!(getRecentDeclinedAuthsObject.wexAcctNbr).equalsIgnoreCase('9100000000000')) {
-                    
+
                     CustomerDetailsWSUtilv2.getRecentDeclinedAuthsResponse responseElement = new CustomerDetailsWSUtilv2.getRecentDeclinedAuthsResponse();
-                    
+
                     responseElement.return_x = new CustomerDetailsWSUtilv2.authSearchResult();
-                    
+
                     responseElement.return_x.authLog = new CustomerDetailsWSUtilv2.authLogRecord[]{};
-                    
+
                     CustomerDetailsWSUtilv2.authLogRecord authLog1 = new CustomerDetailsWSUtilv2.authLogRecord();
-                    
+
                     authLog1.actionCode = '180';
                     authLog1.actionCodeDescription = 'Invalid Driver ID';
                     authLog1.cardNumber = '*******************12341';
                     authLog1.driverId = '123456';
                     authLog1.merchantSite = 'WX222333';
                     authLog1.txnDt = (Datetime)JSON.deserialize('"2018-03-07T00:00:00-05:00"', Datetime.class);
-                    
+
                     CustomerDetailsWSUtilv2.address MerchantAddress = new CustomerDetailsWSUtilv2.address();
                     MerchantAddress.addr1 = '123 DARLING AVE';
                     MerchantAddress.addr2 = 'Filler';
@@ -413,13 +414,13 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     MerchantAddress.country = 'US';
                     MerchantAddress.orgName = 'WRIGHT EXPRESS CARDLOCKS INC';
                     MerchantAddress.postalCode = '041061111';
-                    
+
                     authLog1.merchantAddress = MerchantAddress;
-                    
+
                     responseElement.return_x.authLog.add(authLog1);
-                    
+
                     CustomerDetailsWSUtilv2.authLogRecord authLog2 = new CustomerDetailsWSUtilv2.authLogRecord();
-                    
+
                     authLog2.actionCode = '109';
                     authLog2.actionCodeDescription = 'Invalid Site';
                     authLog2.cardNumber = '*******************12341';
@@ -428,22 +429,22 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     authLog2.txnDt = (Datetime)JSON.deserialize('"2018-03-08T00:00:00-05:00"', Datetime.class);
                     authLog2.merchantAddress = MerchantAddress;
                     responseElement.return_x.authLog.add(authLog2);
-                    
+
                     response.put('response_x', responseElement);
-                    
+
                 }
                 else {
-                    
+
                     CustomerDetailsWSUtilv2.getRecentDeclinedAuthsResponse responseElement = new CustomerDetailsWSUtilv2.getRecentDeclinedAuthsResponse();
-                    
+
                     responseElement.return_x = new CustomerDetailsWSUtilv2.authSearchResult();
-                    
+
                     responseElement.return_x.errorMsg = 'Could not find specified account!';
-                    
+
                     response.put('response_x', responseElement);
-                    
+
                 }
-                
+
             }
 
             else if(request instanceof CustomerDetailsWSUtilv2.getPayments) {
@@ -526,10 +527,11 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     response.put('response_x', responseElement);
 
                 }
-                
+
 
             }
 
+        else if(request instanceof CustomerDetailsWSUtilv2.getInvoices) {
             else if(request instanceof CustomerDetailsWSUtilv2.getInvoices) {
 
                 CustomerDetailsWSUtilv2.getInvoices getInvoicesObject = (CustomerDetailsWSUtilv2.getInvoices)request;
@@ -572,6 +574,30 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 }
 
             }
+
+        else if(request instanceOf CustomerDetailsWSUtilv2.accountSearch) {
+
+            System.debug('We is here..');
+
+            List<CustomerDetailsWSUtilv2.accountSearchDTO> testAccounts = new List<CustomerDetailsWSUtilv2.accountSearchDTO>();
+
+            CustomerDetailsWSUtilv2.accountSearchDTO testAccount = new CustomerDetailsWSUtilv2.accountSearchDTO();
+
+            testAccount.acctNm = 'Test';
+            testAccount.wexAcctNbr = '9100000000000';
+            testAccount.spnrAcctNbr = '9100000000000';
+            testAccount.acctSts = 'Active';
+
+            testAccounts.add(testAccount);
+
+            CustomerDetailsWSUtilv2.accountSearchResponse accountSearchResponse = new CustomerDetailsWSUtilv2.accountSearchResponse();
+
+            accountSearchResponse.return_x = new CustomerDetailsWSUtilv2.accountSearchResult();
+
+            accountSearchResponse.return_x.accountList = testAccounts;
+
+            response.put('response_x', accountSearchResponse);
+
 
             else if(request instanceof CustomerDetailsWSUtilv2.getRefunds) {
 
@@ -687,5 +713,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
             }
             
         }
-    
+
+    }
+
 }
