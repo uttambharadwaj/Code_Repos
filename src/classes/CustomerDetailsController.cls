@@ -423,7 +423,7 @@ public without sharing class CustomerDetailsController {
         try {
             List<Program__c> programs = [SELECT Id, Partner__c FROM Program__c WHERE Siebel_Program_Row_Id__c =: pgmRowId];
             if (programs.size() >0) {
-                Id partnerId = programs.get(0).Partner__c;
+                Id partnerId = programs[0].Partner__c;
                 List<Priority_Level_Servicing_Rule__c> servicingRules = [SELECT Id, Priority_Level_Rule_Detail__c FROM Priority_Level_Servicing_Rule__c WHERE Partner__c =: partnerId AND Priority_Level__c =: priorityLevel];
                 if (servicingRules.size() > 0)
                     result = servicingRules[0].Priority_Level_Rule_Detail__c;
@@ -453,6 +453,8 @@ public without sharing class CustomerDetailsController {
             if(serviceOperationsContacts.size() > 0) {
 
                 return serviceOperationsContacts[0].Contact__r.ID;
+                //Future once integration records are implemented
+                //return serviceOperationsContacts[0].Contact__r.ID;
 
             }
             else {
