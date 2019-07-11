@@ -14,10 +14,8 @@
 		<script src="{!URLFOR($Resource.AppiphonyJS, 'appiphony-lightning-js-master/dist/jquery.aljs-all-with-moment.min.js')}"></script>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js"/>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
-        <script type="text/javascript" src="//code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous" />
-		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" />
-
-
+        <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous" />
+            
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
 		<!-- Import the Design System style sheet -->
@@ -244,7 +242,7 @@
 						'A': {pattern: /[0-9\\.,]+/, recursive: true}
 					}
 				});
-
+                
                 $j('.datePicker').datepicker();
 
 
@@ -326,8 +324,8 @@
 					$j('[id$=' + fieldName + ']').prop('required', false);
 				}
 			}
-
-			function calculateDateRequirementForTFS(date) {
+        
+        	  function calculateDateRequirementForTFS(date) {
 
 				var momentCurrent = moment();
 				var momentFuture = moment(date).format('MM/DD/YYYY');
@@ -637,7 +635,7 @@
                                                             	<div class="slds-form-element slds-size_1-of-2">
                                                                     <label class="slds-form-element__label" for="text-input-id-1">Waive End Date</label>
 																	<div class="slds-form-element__control">
-																		<apex:inputText styleClass="slds-input date datePicker" value="{!fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate}" onChange="calculateDateRequirementForTFS(this.value);"/>
+																		<apex:inputText styleClass="slds-input date datePicker" value="{!fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate}" onChange="calculateDateRequirementForTFS(this.value);" />
                                                                     </div>
 																</div>
 															</div>

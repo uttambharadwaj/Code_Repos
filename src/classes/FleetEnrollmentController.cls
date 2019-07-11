@@ -14,6 +14,24 @@ public class FleetEnrollmentController {
             return ApexPages.currentPage().getParameters().get('opty');
         }
     }
+    
+    public Boolean checkOpportunityParameter {
+        get {
+            try {
+               Schema.SObjectType objectType = (Id.valueOf(opportunityParameter)).getSobjectType();
+
+			if((String.valueOf(objectType)).equalsIgnoreCase('Opportunity')) {
+				return true;
+			}
+                    
+            }
+            catch(Exception e) {
+                System.debug('### Not a valid ID..');
+            }
+            
+            return false;
+        }
+    }
 
     public String currentPage {
         get {
@@ -341,7 +359,7 @@ public class FleetEnrollmentController {
 
                 // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
                 // but not pre-filling any of the existing information!
-                fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter and CreatedBy.Alias != 'guest'];
+                fleetEnrollments = [SELECT Id, Opportunity_Number__c FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter and CreatedBy.Alias != 'guest'];
 
                 if(fleetEnrollments.size() > 0) {
 
@@ -359,7 +377,7 @@ public class FleetEnrollmentController {
 
                 // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
                 // but not pre-filling any of the existing information!
-                fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity_Number__c =: opportunityParameter and CreatedBy.Alias != 'guest'];
+                fleetEnrollments = [SELECT Id, Opportunity_Number__c FROM FleetEnrollment__c WHERE (Opportunity_Number__c =: opportunityParameter or Opportunity__c =: opportunityParameter) and CreatedBy.Alias != 'guest'];
 
                 if(fleetEnrollments.size() > 0) {
 
@@ -545,7 +563,7 @@ public class FleetEnrollmentController {
     public PageReference setDIDLength() {
 
         System.debug('### DID Length: ' + selectedDIDLength);
-
+        
         return null;
 
     }
@@ -610,7 +628,9 @@ public class FleetEnrollmentController {
             fleetEnrollment.Print_Token__c = key.substring(0, 25);
 
             if(!String.isEmpty(opportunityParameter)) {
-                fleetEnrollment.Opportunity_Number__c = opportunityParameter;
+                if(checkOpportunityParameter == false) {
+			 	fleetEnrollment.Opportunity_Number__c = opportunityParameter;
+                }
                 fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
             }
 
@@ -705,7 +725,7 @@ public class FleetEnrollmentController {
                             newFleetDriver.First_Name__c = fleetDrivers.get(i).firstName;
                             newFleetDriver.Last_Name__c = fleetDrivers.get(i).lastName;
                             newFleetDriver.Driver_ID__c = fleetDrivers.get(i).driverId;
-
+                            
                             if(fleetEnrollment.Driver_ID_Random__c == true) {
                                 newFleetDriver.Driver_ID__c = 'Random';
                             }

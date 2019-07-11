@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<RemoteSiteSetting xmlns="http://soap.sforce.com/2006/04/metadata">
-    <description>WEX AU web service end point for Apex callouts to create Genesis Accounts and child Card records.</description>
-    <disableProtocolSecurity>false</disableProtocolSecurity>
-    <isActive>true</isActive>
-    <url>https://prodws.wexaustralia.com:4123</url>
-</RemoteSiteSetting>

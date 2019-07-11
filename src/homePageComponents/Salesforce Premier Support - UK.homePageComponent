@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
-    <body>&lt;font face=&quot;Arial, sans-serif&quot;&gt;Phone:&amp;nbsp;&lt;font color=&quot;#ff0000&quot;&gt;&lt;b&gt;00-800-40454045&amp;nbsp;&lt;/b&gt;&lt;/font&gt;&lt;span style=&quot;color: rgb(85, 85, 85);&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;/font&gt;&lt;div&gt;&lt;font face=&quot;Arial, sans-serif&quot; size=&quot;2&quot;&gt;Passcode:&amp;nbsp;&lt;b&gt;548756&lt;/b&gt;&lt;/font&gt;&lt;/div&gt;</body>
-    <pageComponentType>htmlArea</pageComponentType>
-    <width>narrow</width>
-</HomePageComponent>

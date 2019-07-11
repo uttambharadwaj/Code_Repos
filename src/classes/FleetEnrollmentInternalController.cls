@@ -364,7 +364,7 @@ public with sharing class FleetEnrollmentInternalController {
             if (fleetEnrollmentInformation.association) {
                 fleetEnrollment.Association__c = fleetEnrollmentInformation.selectedAssociation;
             }
-
+            
             if (fleetEnrollmentInformation.directDebit == true) {
                 fleetEnrollment.Direct_Debit__c = true;
             }
@@ -444,7 +444,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.overnightCardsFileBody != null) {
                     Attachment managerApproval = new Attachment();
-                    if(applicationRequest.Siebel_Oppty__c != null) {
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
                         managerApproval.Name = applicationRequest.Siebel_Oppty__c + '_OvernightCardApproval_' + fleetEnrollmentInformation.overnightCardsFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
                     else {
@@ -457,7 +457,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.feeWaiversTFSFileBody != null) {
                     Attachment tfsSchedule = new Attachment();
-                    if(applicationRequest.Siebel_Oppty__c != null) {
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
                         tfsSchedule.Name = applicationRequest.Siebel_Oppty__c + '_TFS_' + fleetEnrollmentInformation.feeWaiversTFSFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
                     else {
@@ -470,7 +470,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.fleetDataFileBody != null) {
                     Attachment fleetEnrollmentData = new Attachment();
-                    if(applicationRequest.Siebel_Oppty__c != null) {
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
                         fleetEnrollmentData.Name = applicationRequest.Siebel_Oppty__c + '_FleetData_' + fleetEnrollmentInformation.fleetDataFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
                     else {
@@ -483,7 +483,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.directDebitFileBody != null) {
                     Attachment directDebitData = new Attachment();
-                    if(applicationRequest.Siebel_Oppty__c != null) {
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
                         directDebitData.Name = applicationRequest.Siebel_Oppty__c + '_DirectDebit_' + fleetEnrollmentInformation.directDebitFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
                     else {

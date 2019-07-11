@@ -88,11 +88,11 @@ function pageLoadFunctions() {
     }
     
     console.log(boca_language_code);
-
+    
     $j(document).on( 'focus', ':input', function(){
         $j(this).attr('autocomplete', 'nope');
     });
-    
+
 }
 
 function flipToProvince(id) {

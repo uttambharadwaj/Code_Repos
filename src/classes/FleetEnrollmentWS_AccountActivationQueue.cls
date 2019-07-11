@@ -234,6 +234,7 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
                 if(cases[0].Fleet_Enrollment__c != null && cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Association__c == null && ((fleetEnrollmentContacts.size() > 0 && fleetEnrollmentVehicles.size() > 0 && fleetEnrollmentDrivers.size() > 0) || fleetEnrollmentAttachmnets.size() > 0)) {
 
+
                     Case implementationCallCase = new Case();
 
                     implementationCallCase.ParentId = cases[0].ParentId;

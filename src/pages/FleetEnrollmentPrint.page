@@ -177,7 +177,7 @@
            	Billing Information
         </div>
 		<div class="twelve columns clearfix">
-        	<apex:outputText value="{!fleetEnrollment.Billing_Full_Name__c}" /><br/>
+        	<apex:outputText value="{!fleetEnrollment.Billing_Contact_First_Name__c}" />&nbsp;<apex:outputText value="{!fleetEnrollment.Billing_Contact_First_Name__c}" /><br/>
             <apex:outputText value="{!fleetEnrollment.Billing_Email__c}"/><br/>
             <apex:outputText value="{!fleetEnrollment.Billing_Phone__c}"/>
         </div>
@@ -194,13 +194,30 @@
         <div class="twelve columns clearfix">			
 				&nbsp;
         </div>
+		<div class="sectionHeader">
+			Card Shipping Information
+		</div>
+		<div class="twelve columns clearfix">
+			<apex:outputText value="{!fleetEnrollment.Card_Shipping_Attention__c}" /><br/>
+			<apex:outputText value="{!fleetEnrollment.Card_Shipping_Address_Line_1__c}"/><br/>
+			<apex:outputText value="{!fleetEnrollment.Card_Shipping_Address_Line_2__c}"/>
+			<apex:outputText value="{!fleetEnrollment.Card_Shipping_City__c},"/>&nbsp;
+			<apex:outputText value="{!fleetEnrollment.Card_Shipping_State__c}"/>&nbsp;
+			<apex:outputText value="{!fleetEnrollment.Card_Shipping_Postal_Code__c}"/>
+		</div>
+		<div class="twelve columns clearfix">
+			&nbsp;
+		</div>
 		<div class="twelve columns clearfix sectionHeader">
                	Fleet Contacts    
         </div>
 		<div class="twelve columns clearfix">
             <apex:dataTable styleClass="driverTable" value="{!fleetEnrollmentContacts}" var="fleetEnrollmentContact">
 				<apex:column style="width: 40%;" headerValue="Full Name">
-					<apex:outputText value="{!fleetEnrollmentContact.Full_Name__c}" />
+					<apex:outputText value="{!fleetEnrollmentContact.First_Name__c}" />
+				</apex:column>
+				<apex:column style="width: 40%;" headerValue="Full Name">
+					<apex:outputText value="{!fleetEnrollmentContact.Last_Name__c}" />
 				</apex:column>
 				<apex:column style="width: 40%;" headerValue="Email">
 					<apex:outputText value="{!fleetEnrollmentContact.Email__c}" />
