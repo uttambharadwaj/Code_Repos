@@ -35,9 +35,11 @@ public with sharing class RefundAdjustmentGenerator {
         System.debug(result.ID);
         result.wexAccountNbr = ra.accountNumber;
         System.debug(result.wexAccountNbr);
-        result.amountRequested = (ra.amountRequested).setScale(2);
+        if (ra.amountRequested != null)
+            result.amountRequested = (ra.amountRequested).setScale(2);
         System.debug(result.amountRequested);
-        result.amount = (ra.amountWaived).setScale(2);
+        if (ra.amountWaived != null)
+            result.amount = (ra.amountWaived).setScale(2);
         System.debug(result.amount);
         result.approvalStatus = ra.approvalStatus;
         System.debug(result.approvalStatus);
@@ -45,9 +47,11 @@ public with sharing class RefundAdjustmentGenerator {
         System.debug(result.approverName);
         result.department = ra.department;
         System.debug(result.department);
-        result.decisionDate = ra.decisionDt.format();
+        if (ra.decisionDt != null)
+            result.decisionDate = ra.decisionDt.format();
         System.debug(result.decisionDate);
-        result.createdDate = ra.requestDt.format();
+        if (ra.requestDt != null)
+            result.createdDate = ra.requestDt.format();
         System.debug(result.createdDate);
         result.createdBy = ra.requestor;
         System.debug(result.createdBy);
