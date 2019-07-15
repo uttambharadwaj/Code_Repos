@@ -1631,18 +1631,6 @@
                                     />
                                 </div>
                                 <div class="twelve columns clearfix">
-                                    {!$Label.Fleet_Print_Second_Line}
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    <apex:selectlist id="selectedEmbossingOption" onchange="updateSecondLine(this.value)" styleClass="styledSelect required"
-                                     value="{!fleetEnrollment.Embossing_Second_Line__c}" size="1">
-                                        <apex:selectOptions value="{!embossingOptions}" />
-                                    </apex:selectlist>
-                                </div>
-                                <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
                             </apex:outputPanel>
