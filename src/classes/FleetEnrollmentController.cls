@@ -194,6 +194,17 @@ public virtual class FleetEnrollmentController {
         }
     }
 
+    public List<SelectOption> promptOptions1to1 {
+        get {
+            List<SelectOption> promptOptions = new List<SelectOption>();
+            promptOptions.add(new SelectOption('#', Label.Fleet_Prompt_Options, true));
+            promptOptions.add(new SelectOption('Vehicle ID & Odometer', Label.Fleet_Driver_ID_Odometer));
+            promptOptions.add(new SelectOption('Vehicle ID Only', Label.Fleet_Driver_ID_Only));
+
+            return promptOptions;
+        }
+    }
+
     public List<SelectOption> driverIdOptions {
         get {
             List<SelectOption> driverIdOptions = new List<SelectOption>();
