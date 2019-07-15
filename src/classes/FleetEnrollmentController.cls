@@ -848,9 +848,7 @@ public virtual class FleetEnrollmentController {
             }
         }
 
-        if(!Test.isRunningTest()){
-            Messaging.sendEmail(new Messaging.SingleEmailMessage[] {confirmation});
-        }
+        UtilityClass.sendEmail(confirmation);
 
         delete temporaryContact;
 
