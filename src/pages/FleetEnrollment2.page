@@ -1990,12 +1990,6 @@
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>
-                                    <div class="twelve columns clearfix">
-                                        <b>{!$Label.Optional_printing}: </b> {!IF(selectedEmbossingOption == '#', '$Label.Fleet_None', fleetEnrollment.Embossing_Second_Line__c)}
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        &nbsp;
-                                    </div>
                                 </apex:outputPanel>
                                 <apex:outputPanel id="confirmDriverDetails" rendered="{!currentStep == 3 && program.Fleet_Enrollment_Disable_Driver_Page__c == false}">
                                     <div class="twelve columns clearfix sectionHeader">
