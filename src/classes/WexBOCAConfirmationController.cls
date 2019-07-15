@@ -1,5 +1,7 @@
 /*
-Revision History: 4/26/2019 IADJUDICAT-1164 if instant adjudication is disabled, set decisioncomplete to true so that fleet enrollment appears
+Revision History:   4/26/2019 IADJUDICAT-1164 if instant adjudication is disabled, set decisioncomplete to true so that fleet enrollment appears
+                    03/Jul/2019     MFarrell    NAFONBOARD-43   Added Publish_Fleet_Data_Capture_Form_1_1__c to Program SOQL
+
 */
 public class WexBOCAConfirmationController {
 
@@ -96,7 +98,7 @@ public class WexBOCAConfirmationController {
         }
         else {
             // Setup the program
-            List<Program__c> programs = [SELECT Id, Disable_Instant_Decisioning__c, Brand_Short_Name__c, Publish_Fleet_Data_Capture_Form__c, Confirmation_Info__c, Publish_BOCA__c, Custom_Email_Header_URL__c, Analytics_Body_Block__c, Analytics_Head_Block__c, Peoplesoft_rel_code__c, Upload_Pricing_Data_Flag__c, T_C__c, BOCA_Disclaimer__c, Brand_Long_Name__c, Inside_Sales_Phone_Number__c, Brand_Color_1__c, Brand_Color_2__c FROM Program__c WHERE Brand_Short_Name__c = :programParameter];
+            List<Program__c> programs = [SELECT Id, Disable_Instant_Decisioning__c, Brand_Short_Name__c, Publish_Fleet_Data_Capture_Form__c, Publish_Fleet_Data_Capture_Form_1_1__c, Confirmation_Info__c, Publish_BOCA__c, Custom_Email_Header_URL__c, Analytics_Body_Block__c, Analytics_Head_Block__c, Peoplesoft_rel_code__c, Upload_Pricing_Data_Flag__c, T_C__c, BOCA_Disclaimer__c, Brand_Long_Name__c, Inside_Sales_Phone_Number__c, Brand_Color_1__c, Brand_Color_2__c FROM Program__c WHERE Brand_Short_Name__c = :programParameter];
 
             // If we have a program, then set it, otherwise, redirect to error page
             if(programs.size() > 0) {
