@@ -70,13 +70,13 @@
                     document.querySelector("#header").scrollIntoView();
                 }
 
-                $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedCardControlOption[row-id="0"]').on('change', function () {
+                $j('[id$=driverDetails]').find('.fleetDriver').find('.selectedCardControlOption[row-id="0"]').on('change', function () {
                     if ($j(this).val() === 'Fuel Only') {
                         $j(this).next('.helpIcon').tooltip('open');
                     }
                 });
 
-                $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedCardControlOption[row-id="0"]').on('blur', function () {
+                $j('[id$=driverDetails]').find('.fleetDriver').find('.selectedCardControlOption[row-id="0"]').on('blur', function () {
                     $j(this).next('.helpIcon').tooltip('close');
                 });
 
@@ -86,7 +86,7 @@
                 $j('.driverId6').mask('000000');
                 $j('.noSpecialChars').mask('Z', { translation: { 'Z': { pattern: /[a-zA-Z0-9\ ]/, recursive: true } } });
 
-                $j('[id$=vehicleDetails]').find('.fleetVehicle').each(function () {
+                $j('[id$=driverDetails]').find('.fleetDriver').each(function () {
                     console.log($j(this).find('.vehicleField').filter(function () { return this.style && this.style.display !== 'none' }).length);
                     if ($j(this).find('.vehicleField').filter(function () { return this.style && this.style.display !== 'none' }).length > 3) {
                         $j(this).find('.vehicleField').filter(function () { return this.style && this.style.display !== 'none' }).eq(2).after("<div class='twelve columns clearfix errorSpacer'></div>");
@@ -109,7 +109,7 @@
             function updateCardControlOptions(obj) {
                 console.log($j(obj).val());
                 if ($j(obj).attr('row-id') == 0) {
-                    $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedCardControlOption').each(function () {
+                    $j('[id$=driverDetails]').find('.fleetDriver').find('.selectedCardControlOption').each(function () {
                         if ($j(this).val() === null) {
                             $j(this).val($j(obj).val());
                         }
@@ -120,7 +120,7 @@
             function updatePromptOptions(obj) {
                 console.log($j(obj).val());
                 if ($j(obj).attr('row-id') == 0) {
-                    $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedPromptOption').each(function () {
+                    $j('[id$=driverDetails]').find('.fleetDriver').find('.selectedPromptOption').each(function () {
                         if ($j(this).val() === null) {
                             $j(this).val($j(obj).val());
                         }
@@ -131,7 +131,7 @@
             function updateAcceptanceOptions(obj) {
                 console.log($j(obj).val());
                 if ($j(obj).attr('row-id') == 0) {
-                    $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedAcceptanceOption').each(function () {
+                    $j('[id$=driverDetails]').find('.fleetDriver').find('.selectedAcceptanceOption').each(function () {
                         if ($j(this).val() === null) {
                             $j(this).val($j(obj).val());
                         }
@@ -746,16 +746,16 @@
                 text-decoration: underline;
             }
 
-            .fleetVehicleSeperator {
+            .fleetDriverSeperator {
                 border-bottom: 0;
             }
 
-            .fleetVehicleSeperator:last-child {
+            .fleetDriverSeperator:last-child {
                 border-bottom: 0;
                 margin: 0;
             }
 
-            .fleetVehicleSpacer {
+            .fleetDriverSpacer {
                 display: none;
             }
 
@@ -831,7 +831,7 @@
                 white-space: pre-line;
             }
 
-            .mobileFleetVehicleSpacer {
+            .mobilefleetDriverSpacer {
                 padding: 10px 0;
                 display: block;
             }
@@ -858,7 +858,7 @@
                     margin: 0 auto;
                 }
 
-                .mobileFleetVehicleSpacer {
+                .mobilefleetDriverSpacer {
                     display: none;
                 }
                 .fleetContactSeperator {
@@ -889,10 +889,6 @@
                     text-align: right;
                 }
 
-                .mobileCardImage,
-                .mobileCardImage img {
-                    display: none;
-                }
                 /* Header Section - END */
                 /* Subheader Section - START */
                 #subheader {
@@ -1006,7 +1002,7 @@
                 font-size: 12px;
                 letter-spacing: -0.07em;
                 margin-top: 17px;
-                width: 80px;
+                width: 100px;
             }
 
             .stepDescription p {
@@ -1189,16 +1185,16 @@
 
             /* Content Section - END */
 
-            .fleetVehicle {
+            .fleetDriver {
                 margin-bottom: 4px;
             }
 
-            .fleetVehicle:last-child {
+            .fleetDriver:last-child {
                 border-bottom: 0;
                 margin: 0;
             }
 
-            .fleetVehicleSpacer {
+            .fleetDriverSpacer {
                 padding: 4px 0;
                 display: block;
             }
@@ -1213,13 +1209,13 @@
                 display: none;
             }
 
-            .mobileFleetVehicleSpacer {
+            .mobilefleetDriverSpacer {
                 border-top: 1px solid #ddd;
                 padding: 2px 0;
                 margin-bottom: 14px;
             }
 
-            .mobileFleetVehicleSpacer:last-child {
+            .mobilefleetDriverSpacer:last-child {
                 display: none;
             }
 
@@ -1272,18 +1268,18 @@
                                 <apex:outputText value="{!$Label.Fleet_Approved_2}" escape="false" />
                             </apex:outputText>
                             <apex:outputText rendered="{!creditLineAmount == null}">
-                                <apex:outputText value="{!$Label.Fleet_Thankyou_Applying}" escape="false" />
+                                <apex:outputText value="{!$Label.Fleet_ThankYou_Applying_1to1}" escape="false" />
                                 <apex:outputText rendered="{!currentStep != 1}">
                                     <p>&nbsp;</p>
                                 </apex:outputText>
                             </apex:outputText>
                             <apex:outputPanel id="staticCardImage">
                                 <apex:outputPanel >
-                                    <div id="cardImage">
-                                        <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                                    <div class="clearfix mobileCardImage">
+                                        <img src="{!URLFOR($Action.Attachment.Download, brandingCard1to1)}" id="brandingCard"/><br/><br/>
                                     </div>
                                 </apex:outputPanel>
-                                <apex:outputPanel rendered="{!currentStep == 1}">
+                                <apex:outputPanel >
                                     <div style="height: 80px;">
                                         &nbsp;
                                     </div>
@@ -1325,7 +1321,7 @@
                                     <div onclick="{!IF(AND(currentStep > 2), 'goToStep(2);', '')}" class="step {!IF(AND(currentStep == 2), 'stepActive', '')} {!IF(AND(currentStep > 2), 'step-clickable', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
                                         <div class="{!IF(AND(currentStep == 2), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 2), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 2), 'stepIndicatorIncomplete', '')}"></div>
                                         <div class="stepDescription">
-                                            <apex:outputText value="{!$Label.Step_3_vehicle_details}" escape="false" />
+                                            <apex:outputText value="{!$Label.Step_2_Driver_Information}" escape="false" />
                                         </div>
                                     </div>
                                     <div class="step {!IF(AND(currentStep == 3), 'stepActive', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
@@ -1358,22 +1354,6 @@
                                     </div>
                                 </apex:outputPanel>
                             </apex:outputPanel>
-                            <apex:outputPanel id="movingCardImage">
-                                <apex:outputPanel rendered="{!currentStep == 1 && showPreview}">
-                                    <div class="movingCardImage">
-                                        <div style="text-align: center; width: 260px; position:relative;">
-                                            <img id="previewCard" src="{!URLFOR($Action.Attachment.Download, dynamicCard)}" />
-                                            <br/>{!$Label.Fleet_Preview}
-                                            <div id="card-company-name">
-                                                {!fleetEnrollment.Embossing_Company_Name__c}
-                                            </div>
-                                            <div id="card-description">
-                                                <apex:outputText value="{!selectedEmbossingOption}" rendered="{!selectedEmbossingOption != 'None' && selectedEmbossingOption != '#'}"></apex:outputText>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </apex:outputPanel>
-                            </apex:outputPanel>
                         </div>
                     </div>
                     <div class="eight columns form" style="padding-top: 20px;">
@@ -1381,11 +1361,7 @@
                             <apex:actionFunction name="hidePreview" action="{!myShowPreviewMethod}" rerender="movingCardImage" />
                             <apex:outputPanel rendered="{!currentStep == 1}">
                                 <div class="mobileMessages clearfix" style="line-height: 12px; text-align: center;">
-                                    <div class="twelve columns clearfix mobileCardImage">
-                                        <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
-                                        <br/>
-                                        <br/>
-                                    </div>
+                                    
                                     <apex:outputText rendered="{!creditLineAmount != null}">
                                         <apex:outputText value="{!$Label.Fleet_Approved_3}" escape="false" />
                                         <apex:outputText value="{0, number, $###,###,###}">
@@ -1416,7 +1392,6 @@
                             />
                             <apex:actionFunction oncomplete="pageRerenderFunctions(true)" name="stepPrevious" action="{!previousStep}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
                             />
-                            <apex:actionFunction name="rerenderReportingOptions" action="{!doNothing}" rerender="reportingOptions" />
                             <apex:outputPanel id="billingContact" rendered="{!currentStep == 1}">
                                 <div class="twelve columns clearfix sectionHeader">
                                     {!$Label.Fleet_Billing_Information}
@@ -1671,48 +1646,6 @@
                                     &nbsp;
                                 </div>
                             </apex:outputPanel>
-                            <apex:outputPanel id="reportingOptions" rendered="{!currentStep == 1}">
-                                <div class="twelve columns clearfix sectionHeader">
-                                    {!$Label.Fleet_Reporting_Options}
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <p>{!$Label.Check_off_any_optional_fields_below_which_you_would_lie_to_see_on_your_reports}</p>
-                                <div class="twelve columns clearfix">
-                                    <div class="twelve columns clearfix">
-                                        <label class="checkbox-label">
-                                            <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Reporting_Dept__c}" /> {!$Label.Department}
-                                            <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Reporting_Dept__c.InlineHelpText}" styleClass="helpIcon"
-                                             value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" />
-                                        </label>
-                                    </div>
-                                    <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description', 'display: none;', '')}">
-                                        <label class="checkbox-label">
-                                            <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleDesc__c}" /> {!$Label.Vehicle_Description}
-                                            <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleDesc__c.InlineHelpText}" styleClass="helpIcon"
-                                             value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" />
-                                        </label>
-                                    </div>
-                                    <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'License Plate', 'display: none;', '')}">
-                                        <label class="checkbox-label">
-                                            <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_LicensePlt__c}" /> {!$Label.License_Plate}
-                                            <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_LicensePlt__c.InlineHelpText}" styleClass="helpIcon"
-                                             value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" />
-                                        </label>
-                                    </div>
-                                    <div class="twelve columns clearfix" style="{!IF(fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID', 'display: none;', '')}">
-                                        <label class="checkbox-label">
-                                            <apex:inputCheckbox styleClass="checkbox" value="{!fleetEnrollment.Report_VehicleId__c}" /> {!$Label.Company_Vehicle_ID}
-                                            <apex:image style="width: 16px;" title="{!$ObjectType.FleetEnrollment__c.fields.Report_VehicleId__c.InlineHelpText}" styleClass="helpIcon"
-                                             value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" />
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                            </apex:outputPanel>
                             <apex:outputPanel id="stepTwoButtons" rendered="{!currentStep == 1}">
                                 <div class="twelve columns clearfix">
                                     <div class="six columns">
@@ -1725,111 +1658,6 @@
                                 <br/>
                             </apex:outputPanel>
                             <!-- STEP TWO - END -->
-
-                            <!-- STEP THREE - START -->
-                            <apex:outputPanel id="vehicleDetails" rendered="{!currentStep == 2}">
-                                <div class="twelve columns clearfix sectionHeader">
-                                    {!$Label.Fleet_Vehicle_Reporting_Details}
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    {!$Label.Please_provide_your_vehicle_information_and_select_your_card_controls_This_info}
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="fleetVehicles">
-                                    <apex:variable value="0" var="num" />
-                                    <apex:repeat var="fleetVehicle" value="{!fleetVehicles}">
-                                        <apex:variable value="0" var="fields" />
-                                        <div class="twelve columns clearfix fleetVehicle">
-                                            <div class="eleven columns clearfix">
-                                                <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'block', 'none')};">
-                                                    <apex:inputText maxlength="17" required="false" value="{!fleetVehicle.companyVehicleId}" styleClass="styledVehicleInput companyVehicleId {!IF(fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID', 'required', '')}"
-                                                     html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.label}" />
-                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.InlineHelpText}"
-                                                     value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
-                                                </div>
-                                                <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'block', 'none')};">
-                                                    <apex:inputText maxlength="8" required="false" value="{!fleetVehicle.vehicleDepartment}" styleClass="styledVehicleInput vehicleDepartment"
-                                                     html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Department__c.label}" />
-                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Department__c.InlineHelpText}"
-                                                     value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
-                                                </div>
-                                                <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'block', 'none')};">
-                                                    <apex:inputText maxlength="17" required="false" value="{!fleetVehicle.vehicleDescription}" styleClass="styledVehicleInput vehicleDescription {!IF(fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description', 'required', '')}"
-                                                     html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.label}" />
-                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.InlineHelpText}"
-                                                     value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
-                                                </div>
-                                                <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'block', 'none')};">
-                                                    <apex:inputText maxlength="8" required="false" value="{!fleetVehicle.licensePlate}" styleClass="styledVehicleInput licensePlate {!IF(fleetEnrollment.Embossing_Second_Line__c == 'License Plate', 'required', '')}"
-                                                     html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.label}" />
-                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.InlineHelpText}"
-                                                     value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
-                                                </div>
-                                                <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: inline-block;">
-                                                    <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" onChange="updateCardControlOptions(this);"
-                                                     styleClass="styledVehicleSelect selectedCardControlOption required" value="{!fleetVehicle.selectedCardControlOption}"
-                                                     size="1">
-                                                        <apex:selectOptions value="{!cardControlOptions}" />
-                                                    </apex:selectlist>
-                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$Label.Fleet_Custom_Cards}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
-                                                     rendered="{!VALUE(num) == 0}" />
-                                                </div>
-                                                <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'block', 'none')};">
-                                                    <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" onChange="updatePromptOptions(this);" styleClass="selectedPromptOption styledVehicleSelect {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'required', '')}"
-                                                     value="{!fleetVehicle.selectedPromptOption}" size="1">
-                                                        <apex:selectOptions value="{!promptOptions}" />
-                                                    </apex:selectlist>
-                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$Label.Fleet_Driver_ID_Odometer_Reading}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
-                                                     rendered="{!VALUE(num) == 0}" />
-                                                </div>
-                                                <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'block', 'none')};">
-                                                    <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" styleClass="selectedAcceptanceOption styledVehicleSelect {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'required', '')}"
-                                                     onChange="updateAcceptanceOptions(this);" value="{!fleetVehicle.selectedAcceptanceOption}" size="1">
-                                                        <apex:selectOptions value="{!acceptanceOptions}" />
-                                                    </apex:selectlist>
-                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="Messaging coming from Nicole" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
-                                                     rendered="{!VALUE(num) == 0}" />
-                                                </div>
-                                            </div>
-                                            <div class="one column clearfix">
-                                                <apex:outputPanel rendered="{!fleetVehicle.isNotRemovable == false}">
-                                                    <apex:commandLink oncomplete="pageRerenderFunctions(false)" action="{!removeFleetVehicle}" rerender="vehicleDetails" type="image/png">
-                                                        <apex:image style="width: 33px; margin-top: 4px;" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-minus.png')}" />
-                                                        <apex:param name="selectedFleetVehicle" value="{!fleetVehicle.Id}" assignTo="{!selectedFleetVehicle}" />
-                                                    </apex:commandLink>
-                                                </apex:outputPanel>
-                                            </div>
-                                            <apex:variable var="num" value="{!VALUE(num) + 1}" />
-                                        </div>
-                                        <div class="twelve columns mobileFleetVehicleSpacer">
-
-                                        </div>
-                                    </apex:repeat>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    <apex:outputPanel rendered="{!VALUE(num) < 30}">
-                                        <apex:commandLink style="width: 140px;" styleClass="addButton" oncomplete="pageRerenderFunctions(false)" action="{!addNewFleetVehicle}"
-                                         rerender="vehicleDetails" type="image/png" value="{!$Label.Add_Another_Vehicle}">
-                                        </apex:commandLink>
-                                    </apex:outputPanel>
-                                    <apex:outputPanel rendered="{!VALUE(num) >= 30 && creditLineAmount != null}">
-                                        <p>{!$Label.Fleet_Added_30_Vehicles}</p>
-                                        <p>{!program.Implementation_Team_Number__c} {!$Label.Fleet_MonFri}</p>
-                                    </apex:outputPanel>
-                                    <apex:outputPanel rendered="{!VALUE(num) >= 30 && creditLineAmount == null}">
-                                        <p>{!$Label.Fleet_Allows_30_Vehicles}</p>
-                                    </apex:outputPanel>
-                                </div>
-                            </apex:outputPanel>
-                            <div class="twelve columns clearfix">
-                                &nbsp;
-                            </div>
-                            <!-- STEP THREE - END -->
 
                             <!-- STEP FOUR - START -->
                             <apex:outputPanel id="driverDetails" rendered="{!currentStep == 2}">
@@ -1949,6 +1777,7 @@
                                 <div class="twelve columns clearfix">
                                     <div class="twelve columns clearfix">
                                         <apex:outputPanel id="fleetDrivers">
+                                            <apex:variable value="0" var="num"/>
                                             <apex:repeat var="fleetDriver" value="{!fleetDrivers}">
                                                 <div class="fleetDriverItem">
                                                     <div class="twelve columns clearfix">
@@ -1965,6 +1794,33 @@
                                                              html-placeholder="{!$ObjectType.FleetEnrollment_Driver__c.fields.Driver_ID__c.label}" maxlength="{!selectedDIDLength}"
                                                             />
                                                         </div>
+                                                    </div>
+                                                    <div class="twelve columns clearfix">
+                                                        <div class="four columns " >
+                                                            <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" onChange="updateCardControlOptions(this);"
+                                                             styleClass="styledVehicleSelect selectedCardControlOption required" value="{!fleetDriver.selectedCardControlOption}"
+                                                             size="1">
+                                                                <apex:selectOptions value="{!cardControlOptions}" />
+                                                            </apex:selectlist>
+                                                            <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$Label.Fleet_Custom_Cards}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
+                                                             rendered="{!VALUE(num) == 0}" />
+                                                        </div>
+                                                        <div class="four columns " style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'block', 'none')};">
+                                                            <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" onChange="updatePromptOptions(this);" styleClass="selectedPromptOption styledVehicleSelect {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'required', '')}"
+                                                             value="{!fleetDriver.selectedPromptOption}" size="1">
+                                                                <apex:selectOptions value="{!promptOptions}" />
+                                                            </apex:selectlist>
+                                                            <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$Label.Fleet_Driver_ID_Odometer_Reading}" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
+                                                             rendered="{!VALUE(num) == 0}" />
+                                                        </div>
+                                                        <div class="three columns " style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'block', 'none')};">
+                                                            <apex:selectlist html-row-id="{!VALUE(num)}" required="false" multiselect="false" styleClass="selectedAcceptanceOption styledVehicleSelect {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'required', '')}"
+                                                             onChange="updateAcceptanceOptions(this);" value="{!fleetDriver.selectedAcceptanceOption}" size="1">
+                                                                <apex:selectOptions value="{!acceptanceOptions}" />
+                                                            </apex:selectlist>
+                                                            <apex:image style="width: 16px;" styleClass="helpIcon" title="Messaging coming from Nicole" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}"
+                                                             rendered="{!VALUE(num) == 0}" />
+                                                        </div>
                                                         <div class="one column">
                                                             <apex:outputPanel rendered="{!fleetDriver.isNotRemovable != true}">
                                                                 <apex:commandLink action="{!removeFleetDriver}" rerender="driverDetails" type="image/png">
@@ -1974,8 +1830,8 @@
                                                             </apex:outputPanel>
                                                         </div>
                                                     </div>
-                                                    <br/>
                                                 </div>
+                                                <apex:variable var="num" value="{!VALUE(num) + 1}" />
                                             </apex:repeat>
                                         </apex:outputPanel>
                                     </div>
@@ -2153,111 +2009,10 @@
                                     &nbsp;
                                 </div>
                             </apex:outputPanel>
-                            <apex:outputPanel id="confirmReportingOptions" rendered="{!currentStep == 3}">
-                                <div class="twelve columns clearfix sectionHeader">
-                                    <div class="six columns">
-                                        {!$Label.Fleet_Reporting_Options}
-                                    </div>
-                                    <div class="six columns" style="text-align: right;">
-                                        <span class="confirmEdit">
-                                            <apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
-                                             value="{!$Label.Fleet_Edit}">
-                                                <apex:param value="2" assignTo="{!currentStep}" />
-                                            </apex:commandLink>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    <b>{!$Label.Fleet_Additional_Fields}</b>
-                                    <br/>
-                                    <br/>
-                                </div>
-                                <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == true}">
-                                    <div class="twelve columns clearfix" style="padding-left: 10px;">
-                                        {!$Label.Department}
-                                    </div>
-                                    <br/>
-                                </apex:outputPanel>
-                                <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleDesc__c == true}">
-                                    <div class="twelve columns clearfix" style="padding-left: 10px;">
-                                        {!$Label.Vehicle_Description}
-                                    </div>
-                                    <br/>
-                                </apex:outputPanel>
-                                <apex:outputPanel rendered="{!fleetEnrollment.Report_LicensePlt__c == true}">
-                                    <div class="twelve columns clearfix" style="padding-left: 10px;">
-                                        {!$Label.License_Plate}
-                                    </div>
-                                    <br/>
-                                </apex:outputPanel>
-                                <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleId__c == true}">
-                                    <div class="twelve columns clearfix" style="padding-left: 10px;">
-                                        {!$Label.Company_Vehicle_ID}
-                                    </div>
-                                </apex:outputPanel>
-                                <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == false && fleetEnrollment.Report_VehicleDesc__c == false && fleetEnrollment.Report_LicensePlt__c == false && fleetEnrollment.Report_VehicleId__c == false}">
-                                    <div class="twelve columns clearfix" style="padding-left: 10px;">
-                                        {!$Label.Fleet_None}
-                                    </div>
-                                </apex:outputPanel>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                            </apex:outputPanel>
-                            <apex:outputPanel id="confirmVehicleDetails" rendered="{!currentStep == 3}">
-                                <div class="twelve columns clearfix sectionHeader">
-                                    <div class="seven columns">
-                                        {!$Label.Fleet_Vehicle_Reporting_Details}
-                                    </div>
-                                    <div class="five columns" style="text-align: right;">
-                                        <span class="confirmEdit">
-                                            <apex:commandLink oncomplete="pageRerenderFunctions()" action="{!doNothing}" rerender="subHeaderImage,fleetEnrollmentForm,stepDisplay,overLimitNotification,staticCardImage,movingCardImage"
-                                             value="{!$Label.Fleet_Edit}">
-                                                <apex:param value="3" assignTo="{!currentStep}" />
-                                            </apex:commandLink>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    <table class="vehicleTable" id="vehicleTable">
-                                        <thead>
-                                            <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!$Label.Fleet_Vehicle_Id}</th>
-                                            <th>{!$Label.Card_Controls}</th>
-                                            <th style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!$Label.Department}</th>
-                                            <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!$Label.Vehicle_Description}</th>
-                                            <th style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!$Label.Fleet_Plate}</th>
-                                            <th style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Prompt_Option}</th>
-                                            <th style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Acceptance}</th>
-                                        </thead>
-                                        <tbody>
-                                            <apex:repeat value="{!fleetVehicles}" var="fleetVehicle">
-                                                <tr>
-                                                    <td style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!fleetVehicle.companyVehicleId}</td>
-                                                    <td>{!fleetVehicle.selectedCardControlOption}</td>
-                                                    <td style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!fleetVehicle.vehicleDepartment}</td>
-                                                    <td style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!fleetVehicle.vehicleDescription}</td>
-                                                    <td style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!fleetVehicle.licensePlate}</td>
-                                                    <td style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">{!fleetVehicle.selectedPromptOption}</td>
-                                                    <td style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">{!fleetVehicle.selectedAcceptanceOption}</td>
-                                                </tr>
-                                            </apex:repeat>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                            </apex:outputPanel>
                             <apex:outputPanel id="confirmDriverDetails" rendered="{!currentStep == 3 && program.Fleet_Enrollment_Disable_Driver_Page__c == false}">
                                 <div class="twelve columns clearfix sectionHeader">
                                     <div class="six columns">
-                                        {!$Label.Fleet_Driver_Details}
+                                        {!$Label.Fleet_Card_Details}
                                     </div>
                                     <div class="six columns" style="text-align: right;">
                                         <span class="confirmEdit">

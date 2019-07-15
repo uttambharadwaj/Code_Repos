@@ -104,6 +104,8 @@ public virtual class FleetEnrollmentController {
     // Branding - Card image from the chosen program
     public Id brandingCard { get; set; }
 
+    public Id brandingCard1to1 { get; set; }
+
     // Dynamic Card Image
     public Id dynamicCard { get; set; }
 
@@ -267,6 +269,23 @@ public virtual class FleetEnrollmentController {
         public String lastName { get; set; }
         public String driverId { get; set; }
         public Boolean isNotRemovable { get; set; }
+        public String selectedCardControlOption;
+        public String selectedPromptOption { get; set; }
+        public String selectedAcceptanceOption { get; set; }
+        
+        public String getSelectedCardControlOption() {
+            return selectedCardControlOption;
+        }
+
+        public void setSelectedCardControlOption(String selectedCardControlOption) {
+            this.selectedCardControlOption = selectedCardControlOption;
+        }
+
+        public FleetDriver() {
+            selectedCardControlOption = '#';
+            selectedPromptOption = '#';
+            selectedAcceptanceOption = '#';
+        }
     }
 
     // Various variables used for maintaining
@@ -409,6 +428,8 @@ public virtual class FleetEnrollmentController {
                     brandingCard = WexBrandingController.getCreditCardImageId(program.Id);
 
                     dynamicCard = WexBrandingController.getCreditCardNotTextImageId(program.Id);
+
+                    brandingCard1to1 = WexBrandingController.getCreditCardOneToOne(program.Id);
 
                     programTemplateAccount = WexBrandingController.getProgramTemplateAccount(WexBrandingController.getDefaultAccountTemplateByProgram(program.Id));
 
@@ -734,6 +755,16 @@ public virtual class FleetEnrollmentController {
                             newFleetDriver.First_Name__c = fleetDrivers.get(i).firstName;
                             newFleetDriver.Last_Name__c = fleetDrivers.get(i).lastName;
                             newFleetDriver.Driver_ID__c = fleetDrivers.get(i).driverId;
+
+                            newFleetDriver.Card_Control_Type__c = fleetDrivers.get(i).selectedCardControlOption;
+
+                            if(program.Fleet_Enrollment_Enable_Prompt_Options__c == true && fleetDrivers.get(i).selectedPromptOption != '#') {
+                                newFleetDriver.Prompt_Options__c = fleetDrivers.get(i).selectedPromptOption;
+                            }
+
+                            if(program.Fleet_Enrollment_Enable_Universal_PL__c == true && fleetDrivers.get(i).selectedAcceptanceOption != '#') {
+                                newFleetDriver.Acceptance__c = fleetDrivers.get(i).selectedAcceptanceOption;
+                            }
                             
                             if(fleetEnrollment.Driver_ID_Random__c == true) {
                                 newFleetDriver.Driver_ID__c = 'Random';
