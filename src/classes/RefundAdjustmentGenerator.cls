@@ -7,8 +7,6 @@ public with sharing class RefundAdjustmentGenerator {
 
 
     public static List<RefundAdjustment> getRefundsOrAdjustments(String wexAccountNbr, String recordTypeName) {
-        //todo: make this make a web service call to the new database
-        //return getTestData(wexAccountNbr, recordTypeName);
         RecordType recordType = [SELECT Id, DeveloperName FROM RecordType WHERE SobjectType = 'Refund_Adjustment__c' AND DeveloperName =: recordTypeName];
         CustomerDetailsWSUtilv2.RefundAdjustmentDTO dto;
         List<RefundAdjustment> result = new List<RefundAdjustment>();
@@ -23,6 +21,23 @@ public with sharing class RefundAdjustmentGenerator {
         for (CustomerDetailsWSUtilv2.refundAdjustment x : dto.refundAdjustments) {
             result.add(convertDtoRefadjToApexRefadj(x, recordType.Id));
         }
+        }
+        return result;
+
+    }
+
+    public static List<RefundAdjustmentTotals> getRefundsOrAdjustmentsAggregates(String wexAccountNbr, String recordTypeName) {
+        //return getTestData(wexAccountNbr, recordTypeName);
+
+        CustomerDetailsWSUtilv2.RefundAdjustmentAggregateDTO dto;
+        List<RefundAdjustmentTotals> result = new List<RefundAdjustmentTotals>();
+
+        RefundAdjustmentTotals response = new RefundAdjustmentTotals();
+        dto = CustomerDetailsController.getRefAdjTotals(wexAccountNbr, recordTypeName);
+
+        if (dto != null) {
+            response = convertTotalsDtoToApex(dto);
+            result.add(response);
         }
         return result;
 
@@ -61,6 +76,26 @@ public with sharing class RefundAdjustmentGenerator {
         System.debug(result.reasonComment);
 
         return result;
+    }
+
+    private static RefundAdjustmentTotals convertTotalsDtoToApex(CustomerDetailsWSUtilv2.RefundAdjustmentAggregateDTO dto) {
+        RefundAdjustmentTotals totals = new RefundAdjustmentTotals();
+
+        totals.errorMsg = dto.errorMsg;
+        totals.mostRecentAmount = dto.mostRecentAmount;
+        totals.mostRecentApprovalStatus = dto.mostRecentApprovalStatus;
+        totals.mostRecentCodeDescription = dto.mostRecentCodeDescription;
+        totals.mostRecentCreatedDate = dto.mostRecentCreatedDate;
+        totals.mostRecentDepartment = dto.mostRecentDepartment;
+        totals.mostRecentReason = dto.mostRecentReason;
+        totals.mostRecentSubmitter = dto.mostRecentSubmitter;
+        totals.totalFeesRefunded = dto.totalFeesRefunded;
+        totals.totalFeesRequested = dto.totalFeesRequested;
+        totals.totalRequests = dto.totalRequests;
+        totals.totalRequestsApproved = dto.totalRequestsApproved;
+        totals.totalRequestsPending = dto.totalRequestsPending;
+
+        return totals;
     }
 
     /*

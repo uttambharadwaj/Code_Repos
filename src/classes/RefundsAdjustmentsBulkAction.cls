@@ -28,35 +28,13 @@ public with sharing class RefundsAdjustmentsBulkAction {
     }
 
     public PageReference updateRecords() {
-        //IF all the records were selected, and all the records are the same record type,
-        //forward to the appropriate report to extract and send to Finance.
-        String recordTypeName;
-        Boolean allAlike = (setCon.getSelected().size() == setCon.getResultSize());
         if (((Refund_Adjustment__c)(setCon.getRecord())).Approval_Status__c == 'Held') {
             ((Refund_Adjustment__c) (setCon.getRecord())).Decision_Date__c = null;
         } else if (((Refund_Adjustment__c)(setCon.getRecord())).Approval_Status__c == 'Approved') {
             for (Refund_Adjustment__c refadj : (List<Refund_Adjustment__c>)(setCon.getSelected())) {
-                if (recordTypeName == null) {
-                    recordTypeName = refadj.RecordType.DeveloperName;
-                } else {
-                    allAlike = (allAlike && (recordTypeName.equals(refadj.RecordType.DeveloperName)));
-                }
                 refadj.Iten_id__c = RefundsAdjustmentsCommon.getItemId(refadj);
             }
         }
-        PageReference ref = setCon.save();
-        if (allAlike && recordTypeName != null) {
-            String url;
-            if ('Refund'.equals(recordTypeName)) {
-                url = RefundsAdjustmentsCommon.getRefundsPageRef();
-            } else if ('Adjustment'.equals(recordTypeName)) {
-                url = RefundsAdjustmentsCommon.getAdjustmentsPageRef();
-            }
-            if (url != null) {
-                ref = new PageReference(url);
-            }
-        }
-        System.debug('Ref='+ref);
-        return ref;
+        return setCon.save();
     }
 }
