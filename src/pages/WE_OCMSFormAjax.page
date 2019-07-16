@@ -1,1 +1,3 @@
-<apex:page controller="OCMSForm" action="{!loadResponse}" showHeader="false" sidebar="false" contentType="text/plain">{!JSONResponse}</apex:page>
+<apex:page controller="OCMSForm" showHeader="false" sidebar="false" contentType="text/plain">
+    <!--{!JSONResponse}-->
+</apex:page>
