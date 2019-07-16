@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customObject>true</customObject>
-    <description>Have to create a custom object in order to set up a new Category for use in Commitkeeper. Create a custom Card Program object, with the &apos;record name&apos; as a text field (the default). You would then create records for the CP object, one for each of your card programs.</description>
-    <mobileReady>false</mobileReady>
-    <motif>Custom12: Circle</motif>
-</CustomTab>
