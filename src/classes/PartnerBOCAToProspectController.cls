@@ -1,12 +1,4 @@
 /*
-Acceptance Criteria – 
-
-Create validation rule that checks the match between the "Partner Sales Code" on the BOCA send window, and the "Partner Sales Code" on the Partner Record in Salesforce.   
-
-*/
-
-
-/*
 * PartnerBOCAToProspectController Class
 * Description: controller for PartnerBOCAToProspect page
 * Revision History: 5/24/2019   PSOBACKLOG-65 & IADJUDICAT-1186 build out for NAF and CP
@@ -289,7 +281,7 @@ public class PartnerBOCAToProspectController {
 
             PageReference errorPage = Page.ExternalApplicationError;
             errorPage.getParameters().put('errorCode', errorNumber);
-            
+
             return errorPage;
 
         }
@@ -345,6 +337,12 @@ public class PartnerBOCAToProspectController {
         public String AppObjectType;
         public String LookupField;
         public String BOCAType;
+        public String RepFirstName;
+        public String RepLastName;
+        public String RepEmail;
+        public String RepCode;
+        public String RepPhone;
+        public String OtherId;
 
         //constructor stuffs
         public ParAppTheWrapper(Partner_BOCA_To_Prospect__c myPBTP, PartnerBOCAToProspectController thisController){
@@ -357,6 +355,12 @@ public class PartnerBOCAToProspectController {
             this.LegalBusinessName = myPBTP.Company_Name__c;
             this.Program = thisController.selectedprogram;
             this.Offer = thisController.selectedoffer;
+            this.RepFirstName = myPBTP.Sales_Rep_First_Name__c;
+            this.RepLastName = myPBTP.Sales_Rep_Last_Name__c;
+            this.RepEmail = myPBTP.Sales_Rep_Email__c;
+            this.RepCode = myPBTP.Sales_Rep_Code__c;
+            this.RepPhone = myPBTP.Sales_Rep_Phone__c;
+            this.OtherId = myPBTP.Partner_Opportunity_ID__c;
             setObjectType();
         }
 
