@@ -1,9 +1,16 @@
 /*
+Acceptance Criteria – 
+
+Create validation rule that checks the match between the "Partner Sales Code" on the BOCA send window, and the "Partner Sales Code" on the Partner Record in Salesforce.   
+
+*/
+
+
+/*
 * PartnerBOCAToProspectController Class
 * Description: controller for PartnerBOCAToProspect page
 * Revision History: 5/24/2019   PSOBACKLOG-65 & IADJUDICAT-1186 build out for NAF and CP
 *
-* Revision History: 5/21/2019 MFarrell - PSOBACKLOG-198 - Added constructor with ApexPages.standardcontroller
 *
 */
 public class PartnerBOCAToProspectController {
@@ -23,13 +30,6 @@ public class PartnerBOCAToProspectController {
     public String partnerParameter {
         get {
             return ApexPages.currentPage().getParameters().get('partner');
-        }
-    }
-
-    // Get the program passed in
-    public String externalSalesCodeParameter {
-        get {
-            return ApexPages.currentPage().getParameters().get('salesCode');
         }
     }
 
@@ -55,12 +55,12 @@ public class PartnerBOCAToProspectController {
 
             if (partner != null) {
 
-                List<Program__c> partnerPrograms = [SELECT Id, Brand_Long_Name__c, BOCA_Type__c FROM Program__c WHERE Partner__c = :partner.Id AND Publish_BOCA__c = TRUE];
+                List<Program__c> partnerPrograms = [SELECT Id, Name, BOCA_Type__c FROM Program__c WHERE Partner__c = :partner.Id AND Publish_BOCA__c = TRUE];
 
                 if (partnerPrograms.size() > 0) {
                     additionalPrograms.add(new SelectOption('', '-- Choose One --'));
                     for (Program__c partnerProgram : partnerPrograms) {
-                        additionalPrograms.add(new SelectOption(partnerProgram.Id, partnerProgram.Brand_Long_Name__c));
+                        additionalPrograms.add(new SelectOption(partnerProgram.Id, partnerProgram.Name));
                     }
                 }
 
@@ -101,10 +101,6 @@ public class PartnerBOCAToProspectController {
 
     }
 
-    public PartnerBOCAToProspectController(ApexPages.standardcontroller oppController) {
-
-    }
-
     public class partnerBOCAToProspectException extends Exception {
     }
 
@@ -112,8 +108,8 @@ public class PartnerBOCAToProspectController {
 
         try {
 
-            if (partnerParameter != null && externalSalesCodeParameter != null) {
-                List<Partner__c> partners = [SELECT Id, Name, Partner_Key__c FROM Partner__c WHERE Partner_Key__c = :partnerParameter AND External_Sales_Code__c = :externalSalesCodeParameter];
+            if (partnerParameter != null) {
+                List<Partner__c> partners = [SELECT Id, Name, Partner_Key__c, External_Sales_Code__c FROM Partner__c WHERE Partner_Key__c = :partnerParameter];
 
                 // If we have a program, then set it, otherwise, redirect to error page
                 if (partners.size() > 0) {
@@ -154,10 +150,6 @@ public class PartnerBOCAToProspectController {
 
                             if (!String.isEmpty(ApexPages.currentPage().getParameters().get('opportunityId'))) {
                                 partnerBOCAtoProspect.Partner_Opportunity_ID__c = ApexPages.currentPage().getParameters().get('opportunityId');
-                            }
-
-                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerSalesCode'))) {
-                                partnerBOCAtoProspect.Partner_Sales_Code__c = ApexPages.currentPage().getParameters().get('partnerSalesCode');
                             }
 
                             if (!String.isEmpty(ApexPages.currentPage().getParameters().get('repFirstName'))) {
@@ -211,6 +203,8 @@ public class PartnerBOCAToProspectController {
     public PageReference sendApplication() {
 
         try {
+            //validate the partner sales code
+            if(partnerBOCAtoProspect.Partner_Sales_Code__c != partner.External_Sales_Code__c) throw new partnerBOCAToProspectException('Verification Code does not match our records.');
 
             //IADJUDICAT-1186 turn that partner boca into a wrapper, since we will map it to one of three boca types. mapping is prettier that way. plus there are values we have to build
             ParAppTheWrapper myWrapper = new ParAppTheWrapper(partnerBOCAtoProspect, this);
@@ -281,7 +275,6 @@ public class PartnerBOCAToProspectController {
                 redirect.getParameters().put('action', 'confirm');
                 redirect.getParameters().put('appId', myAppRecord.Id);
                 redirect.getParameters().put('partner', partnerParameter);
-                redirect.getParameters().put('salesCode', externalSalesCodeParameter);
                 redirect.setRedirect(true);
 
                 return redirect;
@@ -296,8 +289,7 @@ public class PartnerBOCAToProspectController {
 
             PageReference errorPage = Page.ExternalApplicationError;
             errorPage.getParameters().put('errorCode', errorNumber);
-            errorPage.getParameters().put('partner', partner.Partner_Key__c);
-
+            
             return errorPage;
 
         }
