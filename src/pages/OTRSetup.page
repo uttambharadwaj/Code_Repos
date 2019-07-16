@@ -431,7 +431,7 @@
                                     &nbsp;
                                 </div>
 
-                                <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-->
+                                <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-*->
                                 <div class="twelve columns clearfix form-field styled-panel">
                                     <div class="twelve columns clearfix">
                                         &nbsp;
@@ -496,7 +496,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--END REFRESH LIMITS SUBSECTION-->
+                                <!-*-END REFRESH LIMITS SUBSECTION-->
 
                                 <!--BEGIN OTHER LIMITS SUBSECTION-->
                                 <div class="twelve columns clearfix form-field styled-panel">

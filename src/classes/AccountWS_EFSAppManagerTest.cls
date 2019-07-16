@@ -51,7 +51,17 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplicationOffer.PSR_Scales__c = 1.00;
         onlineApplicationOffer.Trans_Limit__c = 1;
         onlineApplicationOffer.Terms_and_Conditions_Version__c = 'TestVersion-01';
-
+        onlineApplicationOffer.Cards_per_1_Requested__c = 1;
+        onlineApplicationOffer.Card_Shipping_Method__c = '1';
+        onlineApplicationOffer.Card_Style__c = '1';
+        onlineApplicationOffer.Card_Type__c = '1';
+        onlineApplicationOffer.Parent_Funded_Issuer_ID__c = '1';
+        onlineApplicationOffer.Child_Funded_Issuer_ID__c = '1';
+        onlineApplicationOffer.Issuer_Group__c = '1';
+        onlineApplicationOffer.Parent_Carrier_ID__c = '1';
+        onlineApplicationOffer.Card_Order_Type__c = '1';
+        onlineApplicationOffer.Statement_Type__c = '1';
+        onlineApplicationOffer.Customer_Type__c = '1';
 
         insert onlineApplicationOffer;
 
