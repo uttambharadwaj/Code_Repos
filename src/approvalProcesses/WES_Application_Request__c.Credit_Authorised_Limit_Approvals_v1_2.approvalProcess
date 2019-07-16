@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <submitter>WES_Credit_Vetting_Analyst</submitter>
+        <type>role</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>WES_Credit_Vetting_Manager</submitter>
+        <type>role</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
+        <submitter>WES_Credit_Vetting_Supervisor</submitter>
+        <type>role</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>Credit_Authorised_Limit__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>matthew.crowther@wexeuropeservices.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>The manager of the credit analyst is notified to review application for approval request.</description>
+        <label>Credit Manager Approval</label>
+        <name>Credit_Manager_Approval</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>simon.shaw@wexeuropeservices.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Approvals sent to Credit Director for approval.</description>
+        <entryCriteria>
+            <booleanFilter>1 OR 2</booleanFilter>
+            <criteriaItems>
+                <field>WES_Application_Request__c.Credit_Authorised_Limit__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;GBP 50,000&quot;</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>WES_Application_Request__c.Total_Fuel_Cards_Needed__c</field>
+                <operation>greaterThan</operation>
+                <value>100</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>Credit Director Approval</label>
+        <name>Credit_Director_Approval</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <description>A credit analyst can&apos;t make a credit decision if its above their approval threshold without a supervisor&apos;s approval.</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND(
+TEXT(Credit_Decision__c) = &quot;Pending Approval&quot;, 				
+Credit_Authorised_Limit__c &gt;  $User.WES_Approval_Threshold__c ||
+Total_Fuel_Cards_Needed__c &gt; $User.WES_MaxCardsCanApprove__c,
+CreditLevelRequestApproved__c = FALSE
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>WES_Set_Application_Status_to_Accepted</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>WES_Set_Credit_Level_Request_True</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>WES_Set_App_Status_to_Being_Worked</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>WES_Set_Credit_Decision_to_Rejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>WES_Set_Status_to_Higher_Authority</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Credit Authorised Limit Approvals v1.2</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>true</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <recallActions>
+        <action>
+            <name>WES_Set_App_Status_to_Being_Worked</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

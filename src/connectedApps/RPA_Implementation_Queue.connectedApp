@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>derek.gilbert@wexinc.com</contactEmail>
+    <contactPhone>12075236969</contactPhone>
+    <label>RPA Implementation Queue</label>
+    <oauthConfig>
+        <callbackUrl>https://www.wexinc.com</callbackUrl>
+        <consumerKey>3MVG90D5vR7Utjboc8b3nxgWl_Z_rPMm9Ji2IN3FWtGXmEnjx144LUGafKDOiC92uuu6yi6u3B2P95X9WBhPJ</consumerKey>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>CustomApplications</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>OpenID</scopes>
+        <scopes>CustomPermissions</scopes>
+        <scopes>Wave</scopes>
+        <scopes>Eclair</scopes>
+    </oauthConfig>
+</ConnectedApp>

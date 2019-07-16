@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Create_New_Task_Default__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>The default value for the &quot;Create Task&quot; field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default value for the &quot;Create Task&quot; field.</inlineHelpText>
+        <label>Create Task Default</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Do_Not_Create_New_Opp_Default__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>The default value for the &quot;Do not create a new opportunity upon conversion&quot; field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default value for the &quot;Do not create a new opportunity upon conversion&quot; field.</inlineHelpText>
+        <label>Do Not Create New Opp Default</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_Lead_Development_Split__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Enable Lead Development Split</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Lead_Converted_Status__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Lead Converted Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Close_Date_Offset__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>This is the number of days to push the opportunity close date out.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the number of days to push the opportunity close date out.</inlineHelpText>
+        <label>Opportunity Close Date Offset</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Close_Date_To_Month_End__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This setting pushes the opportunity close date to the end of the month based on the value returned after the Opportunity Close Date Offset is applied.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This setting pushes the opportunity close date to the end of the month based on the value returned after the Opportunity Close Date Offset is applied.</inlineHelpText>
+        <label>Opportunity Close Date to Month End</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reminder_Minutes_Interval__c</fullName>
+        <defaultValue>30</defaultValue>
+        <description>This is the interval in minutes that is used to build out the reminder time select list. Must be greater than or equals to 5.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the interval in minutes that is used to build out the reminder time select list. Must be greater than or equals to 5.</inlineHelpText>
+        <label>Reminder Minutes Interval</label>
+        <precision>18</precision>
+        <required>true</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Select_Account_if_Found__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Ability for user to select account or create new one if related account is found.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Ability for user to select account or create new one if related account is found.</inlineHelpText>
+        <label>Select Account if Found</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Select_Contact_if_Found__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Ability for user to select contact or create new one if related contact is found.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Ability for user to select contact or create new one if related contact is found.</inlineHelpText>
+        <label>Select Contact if Found</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Send_Email_To_Owner_Default__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>The default value for the &quot;Send Email to Owner&quot; field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The default value for the &quot;Send Email to Owner&quot; field.</inlineHelpText>
+        <label>Send Email to Owner Default</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Convert_And_Go_To_Account__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Turns on and off the button to convert and jump to the account after converting the lead.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Turns on and off the button to convert and jump to the account after converting the lead.</inlineHelpText>
+        <label>Show Convert and go to Account</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Convert_And_Go_To_Contact__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>Turns on and off the button to convert and jump to the contact after converting the lead.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Turns on and off the button to convert and jump to the contact after converting the lead.</inlineHelpText>
+        <label>Show Convert and go to Contact</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Convert_And_Go_To_Opportunity__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Turns on and off the button to convert and jump to the opportunity after converting the lead.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Turns on and off the button to convert and jump to the opportunity after converting the lead.</inlineHelpText>
+        <label>Show Convert and go to Opportunity</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Opp_Close_Date__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This settings turns on an off the opportunity close date field.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This settings turns on an off the opportunity close date field.</inlineHelpText>
+        <label>Show Opp Close Date</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Show_Send_Email_To_Owner__c</fullName>
+        <defaultValue>true</defaultValue>
+        <externalId>false</externalId>
+        <label>Show Send Email to Owner</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Task_Due_Date_Offset__c</fullName>
+        <defaultValue>0</defaultValue>
+        <externalId>false</externalId>
+        <label>Task Due Date Offset</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Task_Priority__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Task Priority</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Task_Status__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Task Status</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Task_Subject__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Task Subject</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>ConvertLeadSettings</label>
+    <visibility>Public</visibility>
+</CustomObject>

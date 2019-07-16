@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>PreCard Queue</name>
+    <queueMembers>
+        <users>
+            <user>brianne.charrier@wexinc.com</user>
+            <user>christopher.tabb@wexinc.com</user>
+            <user>ellen.cousins@wexinc.com</user>
+            <user>jackie.bonner@wexinc.com</user>
+            <user>john.mcmorrow@wexinc.com</user>
+            <user>johnathan.palman@wexinc.com</user>
+            <user>kim.sorensen@wexinc.com</user>
+            <user>melissa.martin@wexinc.com</user>
+            <user>olivia.whitehouse@wexinc.com</user>
+            <user>thomas.moore@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueRoutingConfig>PreCard_Call_Cases</queueRoutingConfig>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

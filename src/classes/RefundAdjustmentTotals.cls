@@ -53,5 +53,5 @@ global with sharing class RefundAdjustmentTotals {
 
     @InvocableVariable
     @AuraEnabled
-    global Long totalRequestsPending;
+    global Decimal totalRequestsPending;
 }

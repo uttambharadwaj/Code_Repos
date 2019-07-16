@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <description>Clone of Sales app, with WEX logo added.</description>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>WEX Sales</label>
+    <tabs>WEX_Support_Portal</tabs>
+    <tabs>standard-Chatter</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>standard-Lead</tabs>
+    <tabs>standard-Account</tabs>
+    <tabs>standard-Contact</tabs>
+    <tabs>standard-Opportunity</tabs>
+    <tabs>Virtual_FEP__c</tabs>
+    <tabs>Competitor__c</tabs>
+    <tabs>standard-report</tabs>
+    <tabs>standard-Dashboard</tabs>
+    <tabs>echosign_dev1__SIGN_Agreement__c</tabs>
+    <tabs>Application_Request__c</tabs>
+    <tabs>Account_Asset__c</tabs>
+    <tabs>Training__c</tabs>
+    <tabs>standard-Case</tabs>
+    <tabs>standard-Workspace</tabs>
+    <tabs>standard-Console</tabs>
+    <tabs>Site__c</tabs>
+    <tabs>Child_Host__c</tabs>
+    <tabs>Cards__c</tabs>
+    <tabs>OCMS_Form_Data__c</tabs>
+    <tabs>WeFormObject__c</tabs>
+    <tabs>Online_Application_Status__c</tabs>
+    <tabs>mea__Activities_Tab</tabs>
+    <tabs>Campaign_Pricing__c</tabs>
+    <tabs>WEX_Map__c</tabs>
+    <tabs>po_box_validation__c</tabs>
+    <tabs>MPM4_BASE__Milestone1_Project__c</tabs>
+    <tabs>MPM4_BASE__Milestone1_Task__c</tabs>
+    <tabs>MPM4_BASE__Milestone1_Milestone__c</tabs>
+    <tabs>Forms__c</tabs>
+    <tabs>Daily_Transaction_Monitoring_Report</tabs>
+    <tabs>FleetEnrollment__c</tabs>
+    <tabs>Truckers_Commisions__c</tabs>
+    <tabs>Customer_Dashboard</tabs>
+    <tabs>Partner__c</tabs>
+    <tabs>CP_Projects__c</tabs>
+    <tabs>FSC_Existing_Exposure__c</tabs>
+    <tabs>iSell__Avention</tabs>
+    <tabs>SAP_Commissions</tabs>
+    <tabs>Internal_Application_Error__c</tabs>
+</CustomApplication>

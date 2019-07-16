@@ -1,0 +1,643 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Compassion_Fund</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>WEX_Compact_Layout</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>WEX_Compact_Layout</fullName>
+        <fields>Name</fields>
+        <fields>Qualifying_Event_Type__c</fields>
+        <fields>Grant_Amount__c</fields>
+        <fields>Grant_Range__c</fields>
+        <fields>Request_Status__c</fields>
+        <label>WEX Compact Layout</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Additional_Information__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>WEX may require additional information in support of your application (receipts, invoices, medical information, personal financial, mortgage, or insurance information). Will you be able to provide this information as specified in the guideline?</inlineHelpText>
+        <label>Additional Information</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Date_of_Event__c</fullName>
+        <description>Applications may be submitted up to six months after the qualifying event</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Date of Event</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Disclaimer__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disclaimer</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <description>Submitter&apos;s email. Updated by Process Builder</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employee_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Employee ID</label>
+        <length>6</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Employment_Length__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Length of time employed at WEX. Please note that we are collecting this for informational purposes only. Federal law and IRS regulations prohibit the WEX Compassion Fund from considering length of employment and performance as criteria for issuing funding</inlineHelpText>
+        <label>Employment Length</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FirstName__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>First Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fund_Manager_Comments__c</fullName>
+        <description>Where Fund Manager can make summary notes about the request which is displayed during the Approval Process.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Fund Manager Comments</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Grant_Amount__c</fullName>
+        <description>Amount of Grant, not to exceed $2500</description>
+        <externalId>false</externalId>
+        <label>Grant Amount</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Grant_Range__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(TEXT(Qualifying_Event_Type__c),
+  &quot;Catastrophic Illness or Injury&quot;, &quot;Tier 3 (Up to $5000)&quot;,
+  &quot;Death/Funeral Expenses&quot;, &quot;Tier 1 (Up to $1000)&quot;,
+  &quot;Domestic Abuse&quot;, &quot;Tier 2 (Up to $2500)&quot;,
+  &quot;Military Deployment&quot;, &quot;Tier 1 (Up to $1000)&quot;,
+  &quot;Qualified or Natural Disaster&quot;, &quot;Tier 3 (Up to $5000)&quot;,
+  &quot;Violent Crime&quot;, &quot;Tier 2 (Up to $2500)&quot;, &quot;UNKNOWN&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Grant Range</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Home_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Home City</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Home_Country__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Home Country</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Home_Postal_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Postal Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Home_State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Home State/Province</label>
+        <length>2</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Home_Street_Address__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Home Street Address</label>
+        <length>500</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Home_Zip__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Home Zip</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>LastName__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Last Name</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mobile_Home_Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Mobile/Home Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Office_Location__c</fullName>
+        <externalId>false</externalId>
+        <label>Office Location</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>EFS - Indianapolis, Indiana</fullName>
+                    <default>false</default>
+                    <label>EFS - Indianapolis, Indiana</label>
+                </value>
+                <value>
+                    <fullName>EFS - Memphis, Tennessee</fullName>
+                    <default>false</default>
+                    <label>EFS - Memphis, Tennessee</label>
+                </value>
+                <value>
+                    <fullName>EFS - Nashville, Tennessee</fullName>
+                    <default>false</default>
+                    <label>EFS - Nashville, Tennessee</label>
+                </value>
+                <value>
+                    <fullName>EFS - Ogden, Utah</fullName>
+                    <default>false</default>
+                    <label>EFS - Ogden, Utah</label>
+                </value>
+                <value>
+                    <fullName>WEX Asia - Singapore</fullName>
+                    <default>false</default>
+                    <label>WEX Asia - Singapore</label>
+                </value>
+                <value>
+                    <fullName>WEX Australia - Melbourne</fullName>
+                    <default>false</default>
+                    <label>WEX Australia - Melbourne</label>
+                </value>
+                <value>
+                    <fullName>WEX Bank - Midvale, Utah</fullName>
+                    <default>false</default>
+                    <label>WEX Bank - Midvale, Utah</label>
+                </value>
+                <value>
+                    <fullName>WEX Brazil - São Paulo</fullName>
+                    <default>false</default>
+                    <label>WEX Brazil - São Paulo</label>
+                </value>
+                <value>
+                    <fullName>WEX Europe - 1 London Bridge</fullName>
+                    <default>false</default>
+                    <label>WEX Europe - 1 London Bridge</label>
+                </value>
+                <value>
+                    <fullName>WEX Europe Services (Lille) - SAS France</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>WEX Europe Services (Lille) - SAS France</label>
+                </value>
+                <value>
+                    <fullName>WEX Europe Services (main office) - Emperor Court, Emperor Way, Crewe Business Park</fullName>
+                    <default>false</default>
+                    <label>WEX Europe Services (main office) - Emperor Court, Emperor Way, Crewe Business Park</label>
+                </value>
+                <value>
+                    <fullName>WEX Europe Services As (Oslo) - Rosenholm Campus</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>WEX Europe Services As (Oslo) - Rosenholm Campus</label>
+                </value>
+                <value>
+                    <fullName>WEX Europe Services BV (Breda) - Esso Card Center</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>WEX Europe Services BV (Breda) - Esso Card Center</label>
+                </value>
+                <value>
+                    <fullName>WEX Europe Services GmbH (Hamburg) - Esso Card Center</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>WEX Europe Services GmbH (Hamburg) - Esso Card Center</label>
+                </value>
+                <value>
+                    <fullName>WEX Europe Services SAS (Sedoc) - rue de la Haie Coq</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>WEX Europe Services SAS (Sedoc) - rue de la Haie Coq</label>
+                </value>
+                <value>
+                    <fullName>WEX Europe Services SRL (Italy) - Esso Card Centre</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>WEX Europe Services SRL (Italy) - Esso Card Centre</label>
+                </value>
+                <value>
+                    <fullName>WEX Fuel Management - Louisville, Kentucky</fullName>
+                    <default>false</default>
+                    <label>WEX Fuel Management - Louisville, Kentucky</label>
+                </value>
+                <value>
+                    <fullName>WEX Health, General - West Fargo, North Dakota</fullName>
+                    <default>false</default>
+                    <label>WEX Health, General - West Fargo, North Dakota</label>
+                </value>
+                <value>
+                    <fullName>WEX Health, Press - St. Louis, Missouri</fullName>
+                    <default>false</default>
+                    <label>WEX Health, Press - St. Louis, Missouri</label>
+                </value>
+                <value>
+                    <fullName>WEX Health, Sales - Edina, Minnesota</fullName>
+                    <default>false</default>
+                    <label>WEX Health, Sales - Edina, Minnesota</label>
+                </value>
+                <value>
+                    <fullName>WEX Health, Support - Simsbury, Connecticut</fullName>
+                    <default>false</default>
+                    <label>WEX Health, Support - Simsbury, Connecticut</label>
+                </value>
+                <value>
+                    <fullName>WEX Health - Omaha, Nebraska</fullName>
+                    <default>false</default>
+                    <label>WEX Health - Omaha, Nebraska</label>
+                </value>
+                <value>
+                    <fullName>WEX New Zealand - Auckland</fullName>
+                    <default>false</default>
+                    <label>WEX New Zealand - Auckland</label>
+                </value>
+                <value>
+                    <fullName>WEX - South Portland, Maine</fullName>
+                    <default>false</default>
+                    <label>WEX - South Portland, Maine</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Other_Assistance__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>List any other assistance that you/the applicant have applied for, are receiving, or anticipate receiving as a result of the qualifying event.</inlineHelpText>
+        <label>Other Assistance</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Permission_to_Share__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>WEX may occasionally look to share stories of employees who have benefitted from the Fund. Are you willing to share your story?</inlineHelpText>
+        <label>Permission to Share</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Purpose_of_Funds__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Explain in detail how you/the applicant will use the grant funds, if received. IMPORTANT: Federal Law prohibits WEX from providing grants to be used to pay medical deductibles from WEX’s plans or to cover loss in wages due to reduction in hours.</inlineHelpText>
+        <label>Purpose of Funds</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Qualifying_Event_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Qualifying Event Type</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Catastrophic Illness or Injury</fullName>
+                    <default>false</default>
+                    <label>Catastrophic Illness or Injury</label>
+                </value>
+                <value>
+                    <fullName>Death/Funeral Expenses</fullName>
+                    <default>false</default>
+                    <label>Death/Funeral Expenses</label>
+                </value>
+                <value>
+                    <fullName>Domestic Abuse</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Domestic Abuse</label>
+                </value>
+                <value>
+                    <fullName>Domestic Violence</fullName>
+                    <default>false</default>
+                    <label>Domestic Violence</label>
+                </value>
+                <value>
+                    <fullName>Military Deployment</fullName>
+                    <default>false</default>
+                    <label>Military Deployment</label>
+                </value>
+                <value>
+                    <fullName>Qualified or Natural Disaster</fullName>
+                    <default>false</default>
+                    <label>Qualified or Natural Disaster</label>
+                </value>
+                <value>
+                    <fullName>Violent Crime</fullName>
+                    <default>false</default>
+                    <label>Violent Crime</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Reason_for_Request__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Please describe the reason that you are requesting assistance from WEX, including details about the qualifying event and how this has impacted, or will impact you, financially.</inlineHelpText>
+        <label>Reason for Request</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Request_Status__c</fullName>
+        <defaultValue>&quot;Submitted&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Request Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Submitted</fullName>
+                    <default>false</default>
+                    <label>Submitted</label>
+                </value>
+                <value>
+                    <fullName>Manager Review</fullName>
+                    <default>false</default>
+                    <label>Manager Review</label>
+                </value>
+                <value>
+                    <fullName>Board Review</fullName>
+                    <default>false</default>
+                    <label>Board Review</label>
+                </value>
+                <value>
+                    <fullName>Approved</fullName>
+                    <default>false</default>
+                    <label>Approved</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Supporting_Documentation__c</fullName>
+        <description>Please upload any supporting documentation to your application</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Please upload any supporting documentation to your application</inlineHelpText>
+        <label>Supporting Documentation</label>
+        <length>32768</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Work_Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Work Phone</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <label>Compassion Fund</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Qualifying_Event_Type__c</columns>
+        <columns>Request_Status__c</columns>
+        <columns>Date_of_Event__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <displayFormat>CF-{0000}</displayFormat>
+        <label>Compassion Fund Number</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Compassion Funds</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>Request_Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Date_of_Event__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Private</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

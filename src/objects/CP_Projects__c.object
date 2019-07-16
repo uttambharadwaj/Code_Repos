@@ -1,0 +1,2154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override updated by Lightning App Builder during activation.</comment>
+        <content>Corporate_Payments_CP_Projects</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account_Details_Sent_to_Client__c</fullName>
+        <description>Date on which the welcome email, Log-in and relevant information for the customer to start transaction is sent.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date on which the welcome email, Log-in and relevant information for the customer to start transaction is sent.</inlineHelpText>
+        <label>Account Details Sent to Client</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Account_Manager_Assigned_Date__c</fullName>
+        <description>Date Account Management takes ownership of the account/CP project</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date Account Management takes ownership of the account/CP project</inlineHelpText>
+        <label>Account Manager Assigned - Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Account_Manager_Assigned_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Account Manager allocated to the account</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of Account Manager allocated to the account</inlineHelpText>
+        <label>Account Manager Assigned - Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CP_Projects4</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Account_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Account</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Acct_Mgr_Assigned_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Acct Mgr Assigned - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Acct_Mgr_Assigned_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Acct Mgr Assigned - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Acct_Mgr_Assigned_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Acct Mgr Assigned - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Annual_Spend__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Annual_Spend__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Annual Spend</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Cycles_Successfully_Complete__c</fullName>
+        <description>The date at which 2 cycles billing cycles have ran without any customer issues or defects.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The date at which 2 cycles billing cycles have ran without any customer issues or defects.</inlineHelpText>
+        <label>Billing Cycles Successfully Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>CP_Project_Approved__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.CP_Project_Approved__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>CP Project Approved</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Complete_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Complete Notes</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Current_Milestone__c</fullName>
+        <externalId>false</externalId>
+        <label>Current Milestone</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>SE Introduction</fullName>
+                    <default>false</default>
+                    <label>SE Introduction</label>
+                </value>
+                <value>
+                    <fullName>Demo Environment</fullName>
+                    <default>false</default>
+                    <label>Demo Environment</label>
+                </value>
+                <value>
+                    <fullName>Discovery &amp; Requirements</fullName>
+                    <default>false</default>
+                    <label>Discovery &amp; Requirements</label>
+                </value>
+                <value>
+                    <fullName>Resource Allocation</fullName>
+                    <default>false</default>
+                    <label>Resource Allocation</label>
+                </value>
+                <value>
+                    <fullName>Signed Contract from Legal</fullName>
+                    <default>false</default>
+                    <label>Signed Contract from Legal</label>
+                </value>
+                <value>
+                    <fullName>Processor</fullName>
+                    <default>false</default>
+                    <label>Processor</label>
+                </value>
+                <value>
+                    <fullName>Front End</fullName>
+                    <default>false</default>
+                    <label>Front End</label>
+                </value>
+                <value>
+                    <fullName>IT Work</fullName>
+                    <default>false</default>
+                    <label>IT Work</label>
+                </value>
+                <value>
+                    <fullName>Testing</fullName>
+                    <default>false</default>
+                    <label>Testing</label>
+                </value>
+                <value>
+                    <fullName>Training</fullName>
+                    <default>false</default>
+                    <label>Training</label>
+                </value>
+                <value>
+                    <fullName>Peer Review</fullName>
+                    <default>false</default>
+                    <label>Peer Review</label>
+                </value>
+                <value>
+                    <fullName>Stabilization Complete</fullName>
+                    <default>false</default>
+                    <label>Stabilization Complete</label>
+                </value>
+                <value>
+                    <fullName>Account Manager Assigned</fullName>
+                    <default>false</default>
+                    <label>Account Manager Assigned</label>
+                </value>
+                <value>
+                    <fullName>Handover Meeting</fullName>
+                    <default>false</default>
+                    <label>Handover Meeting</label>
+                </value>
+                <value>
+                    <fullName>Implementation Complete</fullName>
+                    <default>false</default>
+                    <label>Implementation Complete</label>
+                </value>
+                <value>
+                    <fullName>Ramp Plan Signed Off</fullName>
+                    <default>false</default>
+                    <label>Ramp Plan Signed Off</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Customer_Readiness_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Customer Readiness - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Readiness_Duration_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>Implementation_Complete__c -  Customer_Readiness_Complete__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Implementation Complete - Customer Readiness Complete</inlineHelpText>
+        <label>Customer Readiness Duration Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_Readiness_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Customer Readiness Notes</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Date_of_First_Transaction_Actual__c</fullName>
+        <description>Date at which the customer uses our system</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date at which the customer uses our system</inlineHelpText>
+        <label>Date of First Transaction - Actual</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Date_of_First_Transaction_Expected__c</fullName>
+        <description>The date the customer expects to use the system to make their first transaction.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The date the customer expects to use the system to make their first transaction.</inlineHelpText>
+        <label>Date of First Transaction - Expected</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Demo_Completed_Date__c</fullName>
+        <description>Date demonstration was carried out.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date demonstration was carried out.</inlineHelpText>
+        <label>Demo Completed - Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Demo_Completed_Name__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of person conducting demonstration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of person conducting demonstration</inlineHelpText>
+        <label>Demo Completed - Name</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CP_Projects5</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Demo_Environment_Complete__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Demo_Environment__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Demo Environment - Complete</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Demo_Environment_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Demo Environment - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Demo_Environment_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Demo Environment - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Demo_Required__c</fullName>
+        <description>Entering a date indicates customer requires a demonstration and the date they require it.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Entering a date indicates customer requires a demonstration and the date they require it.</inlineHelpText>
+        <label>Demo Required</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Disc_Reqs_Complete__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Discovery_Requirements__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Disc &amp; Reqs - Complete</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Disc_Reqs_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Disc &amp; Reqs - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Disc_Reqs_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Disc &amp; Reqs - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Discovery_Duration_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>Ready_To_Move_Into_Implementation__c -   Discovery_Start_Actual__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Ready to Move Into Implementation - Discovery Start Actual</inlineHelpText>
+        <label>Discovery Duration Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Discovery_Start_Actual__c</fullName>
+        <description>Date agreed with Client that the Discover process did start</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date agreed with Client that the Discover process did start</inlineHelpText>
+        <label>Discovery Start - Actual</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Discovery_Start_Due__c</fullName>
+        <description>Date agreed with Client that the Discover process would start</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date agreed with Client that the Discover process would start</inlineHelpText>
+        <label>Discovery Start - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Duration_to_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(Implementation_Complete__c), TODAY() -  DATEVALUE(CreatedDate)  , Implementation_Complete__c - DATEVALUE(CreatedDate))</formula>
+        <inlineHelpText>If Implementation Complete - Complete date is blank, it is calculated as the number of days between when this record was created and today. Otherwise, it is calculated as the number of days between Created Date and Implementation Complete - Complete</inlineHelpText>
+        <label>Duration to Date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Front_End_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Front End - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Front_End_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Front End - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Front_End_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Front End - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Handover_Actual__c</fullName>
+        <description>The date at which Account Management accepts the CP project into BAU</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The date at which Account Management accepts the CP project into BAU</inlineHelpText>
+        <label>Handover - Actual</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Handover_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Handover - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Handover_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Handover - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Handover_Expected__c</fullName>
+        <description>Expected date of transition based on billing cycles, testing etc.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Expected date of transition based on billing cycles, testing etc.</inlineHelpText>
+        <label>Handover - Expected</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Handover_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Handover - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IM_Assigned__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of Implementation Manager resource allocated to the CP project</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of Implementation Manager resource allocated to the CP project</inlineHelpText>
+        <label>IM Assigned</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CP_Projects1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IT_Work_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>IT Work - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IT_Work_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>IT Work - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>IT_Work_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>IT Work - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Implementation_Complete_Due__c</fullName>
+        <description>Date on which Implementation Manager is schedule to commence Build/configuration</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date on which Implementation Manager is schedule to commence Build/configuration</inlineHelpText>
+        <label>Implementation Complete - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Implementation_Complete_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Implementation Complete - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Implementation_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Implementation Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Implementation_Duration_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>Implementation_Complete__c - Implementation_Kickoff__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Implementation Complete - Implementation Kickoff</inlineHelpText>
+        <label>Implementation Duration Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Implementation_Kickoff__c</fullName>
+        <description>Date on which Implementation Manager commences Build/configuration</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date on which Implementation Manager commences Build/configuration</inlineHelpText>
+        <label>Implementation Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Implementation_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Implementation Notes</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Inception_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Inception Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Inception_Duration_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>Inception_Complete__c - DATEVALUE(CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Inception Complete - Created Date</inlineHelpText>
+        <label>Inception Duration Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Inception_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Inception Notes</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Issue_Log_During_Build_and_Test_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Documentation of the Defect / Issue Resolution Log is added to sfdc in Notes &amp; Attachments</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Documentation of the Defect / Issue Resolution Log is added to sfdc in Notes &amp; Attachments</inlineHelpText>
+        <label>Issue Log During Build and Test Attached</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Issue_Log_During_Customer_Readiness__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Issue Log During Customer Readiness</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Issue_Log_During_Stabilization_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Defect / Issue Resolution Log is updated during the stabilization phase and added to SFDC in Notes &amp; Attachments</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Defect / Issue Resolution Log is updated during the stabilization phase and added to SFDC in Notes &amp; Attachments</inlineHelpText>
+        <label>Issue Log During Stabilization Attached</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Non_Standard_Implementation_Requested__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Non-Standard Implementation Requested</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Onboarding_Pipeline_Meeting__c</fullName>
+        <description>Date at which new CP Project request is reviewed.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date at which new CP Project request is reviewed.</inlineHelpText>
+        <label>Onboarding Pipeline Meeting</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Owner__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Owner_First_Name__c &amp; &quot; &quot; &amp; Opportunity__r.Owner_Last_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Owner</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Total_Net_FSR__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Net_Full_Service_Revenue__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Opportunity Total Net FSR</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipName>Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Peer_Review_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Peer Review - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Peer_Review_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Peer Review - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Peer_Review_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Peer Review - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Peer_Reviewer__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The individual assigned and responsible for conducting the peer review</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The individual assigned and responsible for conducting the peer review</inlineHelpText>
+        <label>Peer Reviewer</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CP_Projects2</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Processor_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Processor - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Processor_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Processor - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Processor_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Processor - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Processor_Type__c</fullName>
+        <description>Indicate the type of processor - TAG or Tsys</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate the type of processor - TAG or Tsys</inlineHelpText>
+        <label>Processor Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>TSYS</fullName>
+                    <default>false</default>
+                    <label>TSYS</label>
+                </value>
+                <value>
+                    <fullName>TAG</fullName>
+                    <default>false</default>
+                    <label>TAG</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Program_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Campaign_Program__r.Program__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Program Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NOW() - CreatedDate &lt;= 45, &quot;45 Days or Less&quot;,
+  IF(NOW()- CreatedDate &gt; 70, &quot;71 Days or More&quot;, &quot;46 to 70 Days&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Age</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Plan_Workbook_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Documentation of the Project Plan/Worksheet added to SFDC in Notes &amp; Attachments</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Documentation of the Project Plan/Worksheet added to SFDC in Notes &amp; Attachments</inlineHelpText>
+        <label>Project Plan / Workbook Attached</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>QA_Assigned__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>The individual assigned and responsible for conducting the QA</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The individual assigned and responsible for conducting the QA</inlineHelpText>
+        <label>QA Assigned</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>User.IsActive</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CP_Projects3</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Quality_Assurance_Complete__c</fullName>
+        <description>The date of which the QA was actually completed</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The date of which the QA was actually completed</inlineHelpText>
+        <label>Quality Assurance - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Quality_Assurance_Due__c</fullName>
+        <description>The expected date of which the assigned individual will commence the work</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The expected date of which the assigned individual will commence the work</inlineHelpText>
+        <label>Quality Assurance - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>RAG_Status__c</fullName>
+        <description>NO LONGER USED</description>
+        <externalId>false</externalId>
+        <inlineHelpText>NO LONGER USED</inlineHelpText>
+        <label>RAG Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Red</fullName>
+                    <default>false</default>
+                    <label>Red</label>
+                </value>
+                <value>
+                    <fullName>Amber</fullName>
+                    <default>false</default>
+                    <label>Amber</label>
+                </value>
+                <value>
+                    <fullName>Green</fullName>
+                    <default>false</default>
+                    <label>Green</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Ramp_Plan_Signed_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Ramp Plan Signed - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Ramp_Plan_Signed_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Ramp Plan Signed - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Ramp_Plan_Signed_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Ramp Plan Signed - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Ramp_to_BAU_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Ramp to BAU Notes</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Ready_To_Move_Into_Implementation__c</fullName>
+        <description>Check point to make sure a signed contract, signed SOW and a signed credit worksheet are in Notes &amp; Attachments</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Check point to make sure a signed contract, signed SOW and a signed credit worksheet are in Notes &amp; Attachments</inlineHelpText>
+        <label>Ready To Move Into Implementation</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Reason_Closed__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Reason Closed</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resource_Allocated_Complete__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Resource_Allocation__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Resource Allocated - Complete</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Allocated_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Resource Allocated - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Resource_Allocated_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Resource Allocated - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SE_Assigned__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Name of assigned Sales/Solution Engineer</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Name of assigned Sales/Solution Engineer</inlineHelpText>
+        <label>SE Assigned</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>CP_Projects</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>SE_Introduction_Complete__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.SE_Introduction__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>SE Introduction - Complete</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SE_Introduction_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>SE Introduction - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>SE_Introduction_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>SE Introduction - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Signed_Contract_Complete__c</fullName>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Signed_Contract_from_Legal__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Signed Contract - Complete</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Signed_Contract_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Signed Contract - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Signed_Contract_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Signed Contract - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Signed_Credit_Worksheets_Attached__c</fullName>
+        <description>Documentation of the Signed Credit Worksheet  added to sfdc in Notes &amp; Attachments</description>
+        <externalId>false</externalId>
+        <formula>Opportunity__r.Signed_Credit_Worksheet_Attached__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Documentation of the Signed Credit Worksheet  added to sfdc in Notes &amp; Attachments</inlineHelpText>
+        <label>Signed Credit Worksheets Attached</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Signed_Statement_of_Work_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Documentation of the SOW  added to SFDC in Notes &amp; Attachments</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Documentation of the SOW  added to SFDC in Notes &amp; Attachments</inlineHelpText>
+        <label>Signed Statement of Work Attached</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Stabilization_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Stabilization - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Stabilization_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Stabilization - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Stabilization_Duration_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>Billing_Cycles_Successfully_Complete__c  - Customer_Readiness_Complete__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Billing Cycles Successfully Complete - Customer Readiness Complete</inlineHelpText>
+        <label>Stabilization Duration Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Stabilization_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Stabilization - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Stabilization_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Stabilization Notes</label>
+        <length>5000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Stage</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CP1: Inception</fullName>
+                    <default>false</default>
+                    <label>CP1: Inception</label>
+                </value>
+                <value>
+                    <fullName>CP2: Discovery</fullName>
+                    <default>false</default>
+                    <label>CP2: Discovery</label>
+                </value>
+                <value>
+                    <fullName>CP3: Implementation</fullName>
+                    <default>false</default>
+                    <label>CP3: Implementation</label>
+                </value>
+                <value>
+                    <fullName>CP4: Customer Readiness</fullName>
+                    <default>false</default>
+                    <label>CP4: Customer Readiness</label>
+                </value>
+                <value>
+                    <fullName>CP5: Stabilize</fullName>
+                    <default>false</default>
+                    <label>CP5: Stabilize</label>
+                </value>
+                <value>
+                    <fullName>CP6: Transition</fullName>
+                    <default>false</default>
+                    <label>CP6: Transition</label>
+                </value>
+                <value>
+                    <fullName>Stage 5 - Complete</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Stage 10 - Complete</label>
+                </value>
+                <value>
+                    <fullName>Stage 1 –  Inception</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Stage 6 –  Inception</label>
+                </value>
+                <value>
+                    <fullName>Stage 2 –  Implementation</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Stage 7 –  Implementation</label>
+                </value>
+                <value>
+                    <fullName>Stage 3 –  Stabilization</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Stage 8 –  Stabilization</label>
+                </value>
+                <value>
+                    <fullName>Stage 4 –  Ramp to BAU</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Stage 9 –  Ramp to BAU</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Statement_of_Work_Sent_to_Client__c</fullName>
+        <description>Date on which SOW was emailed to Client</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date on which SOW was emailed to Client</inlineHelpText>
+        <label>Statement of Work Sent to Client</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Statement_of_Work_Signed__c</fullName>
+        <description>Date on which Client approval of SOW was received</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date on which Client approval of SOW was received</inlineHelpText>
+        <label>Statement of Work Signed</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Stalled</fullName>
+                    <default>false</default>
+                    <label>Stalled</label>
+                </value>
+                <value>
+                    <fullName>On Hold</fullName>
+                    <default>false</default>
+                    <label>On Hold</label>
+                </value>
+                <value>
+                    <fullName>Closed_Lost</fullName>
+                    <default>false</default>
+                    <label>Closed/Lost</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Testing_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Testing - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Testing_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Testing - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Testing_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Testing - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Total_Hours_Complete_Customer_Readiness__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Hours Complete Customer Readiness</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Hours_to_Complete_Discovery__c</fullName>
+        <description>Field to collect time in 30 minute segment to reflect work time within the Discovery phase</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field to collect time in 30 minute segment to reflect work time within the Discovery phase</inlineHelpText>
+        <label>Total Hours to Complete Discovery</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Hours_to_Complete_Implementation__c</fullName>
+        <description>Field to collect time in 30 minute segment to reflect work time within the Implementation phase</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field to collect time in 30 minute segment to reflect work time within the Implementation phase</inlineHelpText>
+        <label>Total Hours to Complete Implementation</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Hours_to_Complete_Stabilization__c</fullName>
+        <description>Field to collect time in 30 minute segment to reflect work time within the Stabilization phase</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Field to collect time in 30 minute segment to reflect work time within the Stabilization phase</inlineHelpText>
+        <label>Total Hours to Complete Stabilization</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Training_Complete__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Training - Complete</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Training_Due__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Training - Due</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Training_Kickoff__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Start Date</inlineHelpText>
+        <label>Training - Kickoff</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Training_Required__c</fullName>
+        <description>Has the customer requested training</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Has the customer requested training</inlineHelpText>
+        <label>Training Required</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Transition_Duration_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>Handover_Actual__c -  Billing_Cycles_Successfully_Complete__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Handover Actual - Two Billing Cycles Successfully Complete</inlineHelpText>
+        <label>Transition Duration Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WF_Approval_Submitted__c</fullName>
+        <description>Used to kick the record out of being locked</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>WF Approval Submitted</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>X3rd_Party_Integration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>3rd Party Integration</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <label>CP Projects</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>LAST_ACTIVITY</columns>
+        <columns>Handover_Kickoff__c</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Handover_Actual__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_CP_Projects</fullName>
+        <columns>NAME</columns>
+        <filterScope>Mine</filterScope>
+        <label>My CP Projects</label>
+    </listViews>
+    <listViews>
+        <fullName>Non_OBM_Projects</fullName>
+        <columns>Opportunity__c</columns>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Current_Milestone__c</columns>
+        <columns>Stage__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>CP_Projects__c.Non_OBM_Projects</value>
+        </filters>
+        <label>Non-OBM Projects</label>
+    </listViews>
+    <listViews>
+        <fullName>OBM_Projects</fullName>
+        <columns>Opportunity__c</columns>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Current_Milestone__c</columns>
+        <columns>Stage__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>CP_Projects__c.OBM_Projects</value>
+        </filters>
+        <label>OBM Projects</label>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Project Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>CP Projects</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Non_OBM_Projects</fullName>
+        <active>true</active>
+        <label>Non OBM Projects</label>
+        <picklistValues>
+            <picklist>Current_Milestone__c</picklist>
+            <values>
+                <fullName>Front End</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handover Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peer Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Processor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stabilization Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Processor_Type__c</picklist>
+            <values>
+                <fullName>TAG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSYS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RAG_Status__c</picklist>
+            <values>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Stage__c</picklist>
+            <values>
+                <fullName>CP1%3A Inception</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP2%3A Discovery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP3%3A Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP4%3A Customer Readiness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP5%3A Stabilize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP6%3A Transition</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed_Lost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stalled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Training_Required__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>OBM_Projects</fullName>
+        <active>true</active>
+        <label>OBM Projects</label>
+        <picklistValues>
+            <picklist>Current_Milestone__c</picklist>
+            <values>
+                <fullName>Account Manager Assigned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Front End</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Handover Meeting</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT Work</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Implementation Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Peer Review</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Processor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ramp Plan Signed Off</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stabilization Complete</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Testing</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Processor_Type__c</picklist>
+            <values>
+                <fullName>TAG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TSYS</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>RAG_Status__c</picklist>
+            <values>
+                <fullName>Amber</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Green</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Red</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Stage__c</picklist>
+            <values>
+                <fullName>CP1%3A Inception</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP2%3A Discovery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP3%3A Implementation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP4%3A Customer Readiness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP5%3A Stabilize</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP6%3A Transition</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed_Lost</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stalled</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Training_Required__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Billing_Cycle_Success_Reqd_Stage_CP6</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;),
+
+ISBLANK( Billing_Cycles_Successfully_Complete__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Billing_Cycles_Successfully_Complete__c</errorDisplayField>
+        <errorMessage>Billing Cycles must be filled in before moving to Stage CP6 or beyond</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Customer_Readiness_Required_Stage_CP5</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK(  Customer_Readiness_Complete__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Customer_Readiness_Complete__c</errorDisplayField>
+        <errorMessage>Customer Readiness Complete must be filled in before moving to Stage CP5 or beyond</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Implementation_Complete_Reqd_Stage_CP4</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK( Implementation_Complete__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Implementation_Complete__c</errorDisplayField>
+        <errorMessage>Implementation Complete must be filled in before moving to Stage CP4 or beyond</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Inception_Complete_Required_Stage_CP2</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP2: Discovery&quot;), 
+ISPICKVAL(Stage__c, &quot;CP3: Implementation&quot;), 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK(Inception_Complete__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Inception_Complete__c</errorDisplayField>
+        <errorMessage>Inception Complete must be filled in before moving to Stage CP2 or beyond</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Ready_Implementation_Required_Stage_CP3</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule to be deactivated when the setting is changed 
+*/ 
+$Setup.WE_VRC__c.All_Opportunity_Disabled__c = FALSE, 
+/* 
+Custom Setting - WE Validation Rules Controller - allows rule for non forecast field to be deactivated 
+*/ 
+$Setup.WE_VRC__c.Non_Fcst_Disabled__c = FALSE, 
+
+OR( 
+ISPICKVAL(Stage__c, &quot;CP3: Implementation&quot;), 
+ISPICKVAL(Stage__c, &quot;CP4: Customer Readiness&quot;),
+ISPICKVAL(Stage__c, &quot;CP5: Stabilize&quot;),
+ISPICKVAL(Stage__c, &quot;CP6: Transition&quot;)), 
+
+ISBLANK( Ready_To_Move_Into_Implementation__c ) 
+)</errorConditionFormula>
+        <errorDisplayField>Ready_To_Move_Into_Implementation__c</errorDisplayField>
+        <errorMessage>Ready to Move Into Implementation must be filled in before moving to Stage CP3 or beyond</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

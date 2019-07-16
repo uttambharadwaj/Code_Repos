@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>Case Ownership Assignment</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>AccountManagerCaseQueue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Account Management Case</value>
+            </criteriaItems>
+            <template>Partner_Global_Templates/SUPPORT_Notify_User_of_new_case</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>WEX_Procurement_Case_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>WEX Procurement Record Type</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>peter.wood@wexinc.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Global Sales Op&apos;s &amp; Support</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Content</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_Card_Admin</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual Payments,Virtual AM</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_Sales_Engineer_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual SE</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_Implementation_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual Implementation</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>AU_Virtual_AM_Case_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual AU - AM</value>
+            </criteriaItems>
+            <template>Virtual_AU_Case_Notifications/AU_New_Case_in_Queue</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>kathryn.connolly@wexinc.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Global Sales Op&apos;s &amp; Support</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Type</field>
+                <operation>equals</operation>
+                <value>Facilitation,Gap Training,Onboarding,Project,Question,Training</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Legal_Support_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Contract Request Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>New</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.LastModifiedByAlias</field>
+                <operation>equals</operation>
+                <value>sinte</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>WEXSalesforceSupportQueue185171</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>WEX Salesforce Support Request</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>jason.grant@wexinc.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Facilities Request</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>kathryn.connolly@wexinc.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Sales Training Request</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>SFDC_Support</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>SFDC User Case</value>
+            </criteriaItems>
+            <template>SFDC_Admin_InternalUseOnly/SUPPORT_New_assignment_notification_Gears</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>doffutt@fleetone.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Merchant Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Merchant_Category__c</field>
+                <operation>equals</operation>
+                <value>All Other Merchants</value>
+            </criteriaItems>
+            <template>Partner_Global_Templates/SUPPORT_Notify_User_of_new_case</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>jsimpson@fleetone.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Account Management Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Account.OwnerAlias</field>
+                <operation>equals</operation>
+                <value>jsimp</value>
+            </criteriaItems>
+            <template>Partner_Global_Templates/SUPPORT_Notify_User_of_new_case</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>kburriss@fleetone.com</assignedTo>
+            <assignedToType>User</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Account Management Case</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Account.OwnerAlias</field>
+                <operation>equals</operation>
+                <value>kburr</value>
+            </criteriaItems>
+            <template>Partner_Global_Templates/SUPPORT_Notify_User_of_new_case</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Partner_Processing_Case_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Partner Processing Case</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Field_Support_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Field Support</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>WEX_Development_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>WEX Salesforce Development</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Status</field>
+                <operation>equals</operation>
+                <value>New</value>
+            </criteriaItems>
+            <overrideExistingTeams>true</overrideExistingTeams>
+            <team>WEX Salesforce Development</team>
+            <template>WEX_Dev/New_Case</template>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_CS_SPAM</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual Business Support CS,Virtual Credit CS,Virtual Prepaid CS</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Reason</field>
+                <operation>equals</operation>
+                <value>Virtual Spam</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_CS_Credit_A</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual Credit CS</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Customer_Category__c</field>
+                <operation>equals</operation>
+                <value>A</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_CS_Prepaid_A</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual Prepaid CS</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Customer_Category__c</field>
+                <operation>equals</operation>
+                <value>A</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_CS_Credit_B_C</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual Credit CS</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Customer_Category__c</field>
+                <operation>notEqual</operation>
+                <value>A</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_CS_Prepaid_B_C</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual Prepaid CS</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Customer_Category__c</field>
+                <operation>notEqual</operation>
+                <value>A</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Virtual_CS</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Virtual Business Support CS,Virtual Credit CS,Virtual Prepaid CS</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Case.Origin</field>
+                <operation>equals</operation>
+                <value>Email</value>
+            </criteriaItems>
+        </ruleEntry>
+        <ruleEntry>
+            <assignedTo>Telematics_Support_Queue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <criteriaItems>
+                <field>Case.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>Telematics Service Case</value>
+            </criteriaItems>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

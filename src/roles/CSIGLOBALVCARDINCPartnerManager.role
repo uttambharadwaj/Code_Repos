@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>None</contactAccessLevel>
+    <description>CSI / GLOBAL VCARD INC Partner Manager</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>CSI / GLOBAL VCARD INC Partner Manager</name>
+    <opportunityAccessLevel>None</opportunityAccessLevel>
+    <parentRole>EFS_Mastercard_Sales</parentRole>
+</Role>

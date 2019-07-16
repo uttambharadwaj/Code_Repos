@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Commission_Payable__c</fullName>
+        <description>Who receives the Truckers commission?</description>
+        <externalId>false</externalId>
+        <label>Commission Payable</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Adam Aurich</fullName>
+                    <default>false</default>
+                    <label>Adam Aurich</label>
+                </value>
+                <value>
+                    <fullName>Dawna Cole</fullName>
+                    <default>false</default>
+                    <label>Dawna Cole</label>
+                </value>
+                <value>
+                    <fullName>Ian Wilkinson</fullName>
+                    <default>false</default>
+                    <label>Ian Wilkinson</label>
+                </value>
+                <value>
+                    <fullName>Jennifer Nelson</fullName>
+                    <default>false</default>
+                    <label>Jennifer Nelson</label>
+                </value>
+                <value>
+                    <fullName>Rebecca Lester</fullName>
+                    <default>false</default>
+                    <label>Rebecca Lester</label>
+                </value>
+                <value>
+                    <fullName>Tyler Douglass</fullName>
+                    <default>false</default>
+                    <label>Tyler Douglass</label>
+                </value>
+                <value>
+                    <fullName>Dan Jenkins</fullName>
+                    <default>false</default>
+                    <label>Dan Jenkins</label>
+                </value>
+                <value>
+                    <fullName>Denise Lockwood</fullName>
+                    <default>false</default>
+                    <label>Denise Lockwood</label>
+                </value>
+                <value>
+                    <fullName>Jessica Rivera</fullName>
+                    <default>false</default>
+                    <label>Jessica Rivera</label>
+                </value>
+                <value>
+                    <fullName>Ross Murray</fullName>
+                    <default>false</default>
+                    <label>Ross Murray</label>
+                </value>
+                <value>
+                    <fullName>Shawn Galliett</fullName>
+                    <default>false</default>
+                    <label>Shawn Galliett</label>
+                </value>
+                <value>
+                    <fullName>Brian Loveland</fullName>
+                    <default>false</default>
+                    <label>Brian Loveland</label>
+                </value>
+                <value>
+                    <fullName>Johnathan Cosman</fullName>
+                    <default>false</default>
+                    <label>Johnathan Cosman</label>
+                </value>
+                <value>
+                    <fullName>Ryan Knowles</fullName>
+                    <default>false</default>
+                    <label>Ryan Knowles</label>
+                </value>
+                <value>
+                    <fullName>Ashley Darling</fullName>
+                    <default>false</default>
+                    <label>Ashley Darling</label>
+                </value>
+                <value>
+                    <fullName>Adam Weber</fullName>
+                    <default>false</default>
+                    <label>Adam Weber</label>
+                </value>
+                <value>
+                    <fullName>Kellie Ciprian</fullName>
+                    <default>false</default>
+                    <label>Kellie Ciprian</label>
+                </value>
+                <value>
+                    <fullName>Ryan Nichols</fullName>
+                    <default>false</default>
+                    <label>Ryan Nichols</label>
+                </value>
+                <value>
+                    <fullName>Dean Nunnelly</fullName>
+                    <default>false</default>
+                    <label>Dean Nunnelly</label>
+                </value>
+                <value>
+                    <fullName>Christine Jennings</fullName>
+                    <default>false</default>
+                    <label>Christine Jennings</label>
+                </value>
+                <value>
+                    <fullName>Katie Dean</fullName>
+                    <default>false</default>
+                    <label>Katie Dean</label>
+                </value>
+                <value>
+                    <fullName>Jared Mathis</fullName>
+                    <default>false</default>
+                    <label>Jared Mathis</label>
+                </value>
+                <value>
+                    <fullName>Cameron Smith</fullName>
+                    <default>false</default>
+                    <label>Cameron Smith</label>
+                </value>
+                <value>
+                    <fullName>Katie Schwerdtfeger</fullName>
+                    <default>false</default>
+                    <label>Katie Schwerdtfeger</label>
+                </value>
+                <value>
+                    <fullName>Taylor Jones</fullName>
+                    <default>false</default>
+                    <label>Taylor Jones</label>
+                </value>
+                <value>
+                    <fullName>Nathan Horn</fullName>
+                    <default>false</default>
+                    <label>Nathan Horn</label>
+                </value>
+                <value>
+                    <fullName>Tim Engles</fullName>
+                    <default>false</default>
+                    <label>Tim Engles</label>
+                </value>
+                <value>
+                    <fullName>Kyle Dodson</fullName>
+                    <default>false</default>
+                    <label>Kyle Dodson</label>
+                </value>
+                <value>
+                    <fullName>Zach Johnson</fullName>
+                    <default>false</default>
+                    <label>Zach Johnson</label>
+                </value>
+                <value>
+                    <fullName>Melanie Sleigh</fullName>
+                    <default>false</default>
+                    <label>Melanie Sleigh</label>
+                </value>
+                <value>
+                    <fullName>Yance Baker</fullName>
+                    <default>false</default>
+                    <label>Yance Baker</label>
+                </value>
+                <value>
+                    <fullName>Kris Chadwick</fullName>
+                    <default>false</default>
+                    <label>Kris Chadwick</label>
+                </value>
+                <value>
+                    <fullName>Reginald Craig</fullName>
+                    <default>false</default>
+                    <label>Reginald Craig</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+</CustomObject>

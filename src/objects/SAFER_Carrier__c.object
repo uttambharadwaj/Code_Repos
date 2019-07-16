@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Safety and Fitness Electronic Record System. Listing of motor carriers downloaded periodically from https://ai.fmcsa.dot.gov/SMS/Tools/Downloads.aspx and loaded here.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Add_Date__c</fullName>
+        <description>Date when carrier information was added to MCMIS Database System</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Date when carrier information was added to MCMIS Database System</inlineHelpText>
+        <label>Add Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Carrier_Operation__c</fullName>
+        <description>Codes identifying carriers&apos; type of Operation; A = Interstate, B = Intrastate Hazmat, C = Intrastate Non-Hazmat</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Codes identifying carriers&apos; type of Operation; A = Interstate, B = Intrastate Hazmat, C = Intrastate Non-Hazmat</inlineHelpText>
+        <label>Carrier Operation</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>A</fullName>
+                    <default>false</default>
+                    <label>A</label>
+                </value>
+                <value>
+                    <fullName>B</fullName>
+                    <default>false</default>
+                    <label>B</label>
+                </value>
+                <value>
+                    <fullName>C</fullName>
+                    <default>false</default>
+                    <label>C</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>DBA_Name__c</fullName>
+        <description>Carrier&apos;s Doing-Business-As name</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Carrier&apos;s Doing-Business-As name</inlineHelpText>
+        <label>DBA Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>DOT_Number__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <description>Unique USDOT Number of the Motor Carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <inlineHelpText>Unique USDOT Number of the Motor Carrier</inlineHelpText>
+        <label>DOT Number</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Drivers_Total__c</fullName>
+        <description>Number of drivers reported</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of drivers reported</inlineHelpText>
+        <label>Drivers Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Fax__c</fullName>
+        <description>Fax Number</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Fax Number</inlineHelpText>
+        <label>Fax</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>HM_Flag__c</fullName>
+        <description>Carrier is subject to placardable HM threshold ( Y = Yes, N = No)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Carrier is subject to placardable HM threshold ( Y = Yes, N = No)</inlineHelpText>
+        <label>HM Flag</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Y</fullName>
+                    <default>false</default>
+                    <label>Y</label>
+                </value>
+                <value>
+                    <fullName>N</fullName>
+                    <default>false</default>
+                    <label>N</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MCS150_Date__c</fullName>
+        <description>Latest date MCS-150 was filed</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Latest date MCS-150 was filed</inlineHelpText>
+        <label>MCS150 Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>MCS150_Mileage_Year__c</fullName>
+        <description>Year for which VMT was reported</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Year for which VMT was reported</inlineHelpText>
+        <label>MCS150 Mileage Year</label>
+        <length>4</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MCS150_Mileage__c</fullName>
+        <description>Vehicle Mileage Traveled (VMT) reported on the carrier&apos;s MCS-150 form</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Vehicle Mileage Traveled (VMT) reported on the carrier&apos;s MCS-150 form</inlineHelpText>
+        <label>MCS150 Mileage</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_City__c</fullName>
+        <description>Mail city of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Mail city of a carrier</inlineHelpText>
+        <label>Mailing City</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_Country__c</fullName>
+        <description>Mail country of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Mail country of a carrier</inlineHelpText>
+        <label>Mailing Country</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_State__c</fullName>
+        <description>Mail state of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Mail state of a carrier</inlineHelpText>
+        <label>Mailing State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_Street__c</fullName>
+        <description>Mail street address of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Mail street address of a carrier</inlineHelpText>
+        <label>Mailing Street</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Mailing_Zip__c</fullName>
+        <description>Mail zip code of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Mail zip code of a carrier</inlineHelpText>
+        <label>Mailing Zip</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_Power_Units__c</fullName>
+        <description>Number of power units reported</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Number of power units reported</inlineHelpText>
+        <label>Number Power Units</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OIC_State__c</fullName>
+        <description>FMCSA State office with oversight for this carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>FMCSA State office with oversight for this carrier</inlineHelpText>
+        <label>OIC State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PC_Flag__c</fullName>
+        <description>Carrier is subject to passengercarrier Threshold (Y = Yes, N = No)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Carrier is subject to passengercarrier Threshold (Y = Yes, N = No)</inlineHelpText>
+        <label>PC Flag</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Y</fullName>
+                    <default>false</default>
+                    <label>Y</label>
+                </value>
+                <value>
+                    <fullName>N</fullName>
+                    <default>false</default>
+                    <label>N</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Physical_City__c</fullName>
+        <description>Physical city of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Physical city of a carrier</inlineHelpText>
+        <label>Physical City</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Physical_Country__c</fullName>
+        <description>Physical country of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Physical country of a carrier</inlineHelpText>
+        <label>Physical Country</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Physical_State__c</fullName>
+        <description>Physical state of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Physical state of a carrier</inlineHelpText>
+        <label>Physical State</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Physical_Street__c</fullName>
+        <description>Physical street address of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Physical street address of a carrier</inlineHelpText>
+        <label>Physical Street</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Physical_Zip__c</fullName>
+        <description>Physical zip code of a carrier</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Physical zip code of a carrier</inlineHelpText>
+        <label>Physical Zip</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Telephone__c</fullName>
+        <description>Contact telephone number</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Contact telephone number</inlineHelpText>
+        <label>Telephone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <label>SAFER Carrier</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>SAFER Carriers</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Year_Contains_Numbers_Only</fullName>
+        <active>true</active>
+        <description>Year is text field to eliminate showing thousands separator, so we use this to limit input to integers only</description>
+        <errorConditionFormula>AND(NOT(ISBLANK(MCS150_Mileage_Year__c)),
+  NOT(ISNUMBER(MCS150_Mileage_Year__c)))</errorConditionFormula>
+        <errorDisplayField>MCS150_Mileage_Year__c</errorDisplayField>
+        <errorMessage>Please enter an integer value</errorMessage>
+    </validationRules>
+    <visibility>Public</visibility>
+</CustomObject>

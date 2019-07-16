@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Competitor</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Competitors</value>
+    </caseValues>
+    <layouts>
+        <layout>AU Competitor</layout>
+        <sections>
+            <label><!-- Sales Strategy --></label>
+            <section>Sales Strategy</section>
+        </sections>
+        <sections>
+            <label><!-- Search --></label>
+            <section>Search</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Competitor Layout</layout>
+        <sections>
+            <label><!-- Additional Competitor Detail --></label>
+            <section>Additional Competitor Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Advantages --></label>
+            <section>Advantages</section>
+        </sections>
+        <sections>
+            <label><!-- Disadvantages --></label>
+            <section>Disadvantages</section>
+        </sections>
+        <sections>
+            <label><!-- Search --></label>
+            <section>Search</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WexEurope Competitor Layout</layout>
+        <sections>
+            <label><!-- Additional Competitor Detail --></label>
+            <section>Additional Competitor Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Advantages / Disadvantages - archive --></label>
+            <section>Advantages / Disadvantages - archive</section>
+        </sections>
+        <sections>
+            <label><!-- Competitor Product / Service Detail --></label>
+            <section>Competitor Product / Service Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Search --></label>
+            <section>Search</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

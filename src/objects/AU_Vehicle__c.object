@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>AU_Vehicle</compactLayoutAssignment>
+    <compactLayouts>
+        <fullName>AU_Vehicle</fullName>
+        <fields>Name</fields>
+        <fields>AU_Vehicle_Registration__c</fields>
+        <fields>AU_Vehicle_Registration_State__c</fields>
+        <fields>AU_Vehicle_VIN__c</fields>
+        <label>AU Vehicle</label>
+    </compactLayouts>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>An object used for the AU Fuel business and the Accident Assist product. Contains vehicle specific information. Should only be used for Accident Assist.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>AU_Vehicle_Body_Type__c</fullName>
+        <description>Used to capture the body type of the vehicle e.g. Sedan, Wagon</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Body type of the vehicle e.g SEDAN</inlineHelpText>
+        <label>Body Type</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Colour__c</fullName>
+        <description>Used to capture the colour of the vehicle</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Colour of the vehicle eg: WHITE</inlineHelpText>
+        <label>Colour</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Engine_Number__c</fullName>
+        <description>Used to capture the engine number of the vehicle e.g DGD153290945</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The engine number of the vehicle e.g DGD153290945</inlineHelpText>
+        <label>Vehicle Engine Number</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Expiry_Date__c</fullName>
+        <description>Used to capture the expiration date of the vehicle registration</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The expiration date of the vehicle registration</inlineHelpText>
+        <label>Registration Expiry Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Make_Code__c</fullName>
+        <description>Short length manufacturer code e.g. HOLD</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Short length manufacturer code e.g. HOLD</inlineHelpText>
+        <label>Make Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Make_Description__c</fullName>
+        <description>Used to capture the name of the vehicle manufacturer</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Manufacturer Name eg: HOLDEN</inlineHelpText>
+        <label>Make Description</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Model_Code__c</fullName>
+        <description>The code used to identify the model of the vehicle</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The model code eg: COMMO</inlineHelpText>
+        <label>Model Code</label>
+        <length>5</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Model_Description__c</fullName>
+        <description>Used to capture the model of the vehicle e.g. Commodore, Fiesta</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The model of the vehicle e.g. Commodore</inlineHelpText>
+        <label>Model Description</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Registration_State__c</fullName>
+        <description>The State of vehicle registration</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select the state the vehicle is registered in</inlineHelpText>
+        <label>Registration State</label>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetName>AUState</valueSetName>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Registration__c</fullName>
+        <description>Registration number of the vehicle eg: 309WHI
+* Required for all vehicles&quot;</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the registration number of the vehicle eg: 309WHI</inlineHelpText>
+        <label>Registration</label>
+        <length>11</length>
+        <required>true</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Status__c</fullName>
+        <description>Used to capture whether the vehicle is registered or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is the vehicle registered?</inlineHelpText>
+        <label>Vehicle Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Registered</fullName>
+                    <default>false</default>
+                    <label>Registered</label>
+                </value>
+                <value>
+                    <fullName>Unregistered</fullName>
+                    <default>false</default>
+                    <label>Unregistered</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_VIN__c</fullName>
+        <description>Vehicle Identification Number (VIN) eg: 6G1NP5EW5GL218192</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Please enter the Vehicle Identification Number (VIN) eg: 6G1NP5EW5GL218192</inlineHelpText>
+        <label>Vehicle Identification Number (VIN)</label>
+        <length>17</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Vehicle_Vehicle_Type__c</fullName>
+        <description>Used to capture the type of vehicle e.g. Passenger Car / Small, Passenger Car / Large</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Type of vehicle e.g: Passenger Car / Small</inlineHelpText>
+        <label>Vehicle Type</label>
+        <length>35</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lead__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup relationship to the lead</description>
+        <externalId>false</externalId>
+        <label>Lead</label>
+        <referenceTo>Lead</referenceTo>
+        <relationshipLabel>AU Vehicles</relationshipLabel>
+        <relationshipName>AU_Vehicles</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Opportunity__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Lookup relationship to the opportunity</description>
+        <externalId>false</externalId>
+        <label>Opportunity</label>
+        <referenceTo>Opportunity</referenceTo>
+        <relationshipLabel>AU Vehicles</relationshipLabel>
+        <relationshipName>AU_Vehicles</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>AU Vehicle</label>
+    <nameField>
+        <displayFormat>V-{000000}</displayFormat>
+        <label>AU Vehicle Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>AU Vehicles</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>AU_Vehicle_Registration__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>AU_Vehicle_Registration_State__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>AU_Vehicle_VIN__c</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>AU_Vehicle_Registration__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AU_Vehicle_Registration_State__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>AU_Vehicle_VIN__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AU_Vehicle_Registration__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AU_Vehicle_Registration_State__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>AU_Vehicle_VIN__c</lookupPhoneDialogsAdditionalFields>
+        <searchResultsAdditionalFields>AU_Vehicle_Registration__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>AU_Vehicle_Registration_State__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>AU_Vehicle_VIN__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <startsWith>Vowel</startsWith>
+    <visibility>Public</visibility>
+</CustomObject>

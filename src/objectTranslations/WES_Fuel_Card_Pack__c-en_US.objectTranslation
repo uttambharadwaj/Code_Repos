@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WES Fuel Card Pack</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WES Fuel Card Packs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Additional Embossed Line --></label>
+        <name>Additional_Embossed_Line__c</name>
+    </fields>
+    <fields>
+        <label><!-- Card Type --></label>
+        <name>Card_Type__c</name>
+        <picklistValues>
+            <masterLabel>EDC</masterLabel>
+            <translation><!-- EDC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Esso</masterLabel>
+            <translation><!-- Esso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK Fuels</masterLabel>
+            <translation><!-- UK Fuels --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Number of Fuel Cards in Pack with different velocity profiles than the default or overide on the application. --></help>
+        <label><!-- # of Cards with different Vel Profiles --></label>
+        <name>CardsWithDiffVelProfiles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cards in Pack Completed --></label>
+        <name>Cards_in_Pack_Completed__c</name>
+    </fields>
+    <fields>
+        <label><!-- EDC Card Type --></label>
+        <name>EDCCardType__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of EDC Cards --></label>
+        <name>EDCCards__c</name>
+    </fields>
+    <fields>
+        <label><!-- Esso Card Type --></label>
+        <name>EssoCardType__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Esso Cards --></label>
+        <name>EssoCards__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fuel Cards Needed --></label>
+        <name>Fuel_Cards_Needed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fuel Cards in Pack --></label>
+        <name>Fuel_Cards_in_Pack__c</name>
+    </fields>
+    <fields>
+        <label><!-- UK Fuels Card Type --></label>
+        <name>UKFuelsCardType__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of UK Fuels Cards --></label>
+        <name>UKFuelsCards__c</name>
+    </fields>
+    <fields>
+        <label><!-- VRN / Driver --></label>
+        <name>VRN_Driver__c</name>
+    </fields>
+    <fields>
+        <label><!-- WES Application Request --></label>
+        <name>WES_Application_Request__c</name>
+        <relationshipLabel><!-- WES Fuel Card Packs --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>WES Fuel Card Pack Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

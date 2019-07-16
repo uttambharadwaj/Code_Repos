@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>Implementation Task</layout>
+        <sections>
+            <label><!-- Blocked --></label>
+            <section>Blocked</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Hours --></label>
+            <section>Hours</section>
+        </sections>
+    </layouts>
+    <validationRules>
+        <errorMessage><!-- Select a task priority --></errorMessage>
+        <name>Set_Task_Priority</name>
+    </validationRules>
+</CustomObjectTranslation>

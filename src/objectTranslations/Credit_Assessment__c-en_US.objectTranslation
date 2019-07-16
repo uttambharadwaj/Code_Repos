@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Credit Assessment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Credit Assessment</value>
+    </caseValues>
+    <layouts>
+        <layout>Credit Assessment Layout</layout>
+        <sections>
+            <label><!-- . --></label>
+            <section>.</section>
+        </sections>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Assessment Details --></label>
+            <section>Assessment Details</section>
+        </sections>
+        <sections>
+            <label><!-- BUREAU RESULTS --></label>
+            <section>BUREAU RESULTS</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Redi Results --></label>
+            <section>Credit Redi Results</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EMAP Credit Assessment Layout</layout>
+        <sections>
+            <label><!-- . --></label>
+            <section>.</section>
+        </sections>
+        <sections>
+            <label><!-- Account Information --></label>
+            <section>Account Information</section>
+        </sections>
+        <sections>
+            <label><!-- Assessment Details --></label>
+            <section>Assessment Details</section>
+        </sections>
+        <sections>
+            <label><!-- BUREAU RESULTS --></label>
+            <section>BUREAU RESULTS</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Redi Results --></label>
+            <section>Credit Redi Results</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please specify decline reason, if final judgement is Declined or cancelled. --></errorMessage>
+        <name>EMAP_CA_Decline_reason_mandate</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter hold expiration date, if Assessment Sub Status is Hold. --></errorMessage>
+        <name>EMAP_Hold_Expiration_Date_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter RPS Match details, if RPS outcome is Match. --></errorMessage>
+        <name>EMAP_RPS_Match_Details_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You are not allowed to change Final Judgement value. Please submit the record for approval. --></errorMessage>
+        <name>EMAP_Restrict_change_in_Final_judgement</name>
+    </validationRules>
+</CustomObjectTranslation>

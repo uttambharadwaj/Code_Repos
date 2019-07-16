@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WEX SFDC Support Portal Setting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WEX SFDC Support Portal Settings</value>
+    </caseValues>
+    <fields>
+        <label><!-- Default Account ID --></label>
+        <name>Default_Account_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Business Hours --></label>
+        <name>Default_Business_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Case Owner --></label>
+        <name>Default_Case_Owner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Case Record Type --></label>
+        <name>Default_Case_Record_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Contact Record Type ID --></label>
+        <name>Default_Contact_Record_Type_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Currency --></label>
+        <name>Default_Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Entitlement --></label>
+        <name>Default_Entitlement__c</name>
+    </fields>
+    <layouts>
+        <layout>WEX SFDC Support Portal Setting Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

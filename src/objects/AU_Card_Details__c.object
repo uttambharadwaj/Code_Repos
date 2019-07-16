@@ -1,0 +1,1531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <fields>
+        <fullName>AU_Card_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Card Type (Control)</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Driver &amp; Vehicle</fullName>
+                    <default>false</default>
+                    <label>Driver &amp; Vehicle</label>
+                </value>
+                <value>
+                    <fullName>Driver Only</fullName>
+                    <default>false</default>
+                    <label>Driver Only</label>
+                </value>
+                <value>
+                    <fullName>Vehicle Only</fullName>
+                    <default>false</default>
+                    <label>Vehicle Only</label>
+                </value>
+                <value>
+                    <fullName>Trade</fullName>
+                    <default>false</default>
+                    <label>Trade</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>AU_Drivers_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The name of the driver associated with the card.  Must be provided if no vehicle details provided.  This will be embossed on Line 2 on the card.</inlineHelpText>
+        <label>Cardholder/Driver Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_card_PIN_setting__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>M        Mandatory
+O        Optional
+N        Not Permitted
+B        Bulk PIN</inlineHelpText>
+        <label>Card PIN setting</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <controllingField>Card_Type__c</controllingField>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>M: Mandatory</fullName>
+                    <default>false</default>
+                    <label>M: Mandatory</label>
+                </value>
+                <value>
+                    <fullName>O: Optional</fullName>
+                    <default>false</default>
+                    <label>O: Optional</label>
+                </value>
+                <value>
+                    <fullName>N: Not Permitted</fullName>
+                    <default>false</default>
+                    <label>N: Not Permitted</label>
+                </value>
+                <value>
+                    <fullName>B: Bulk PIN</fullName>
+                    <default>false</default>
+                    <label>B: Bulk PIN</label>
+                </value>
+            </valueSetDefinition>
+            <valueSettings>
+                <controllingFieldValue>UF: UNIGAS Fuel &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>UG: UNIGAS Gas &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>UU: UNIGAS Unrestricted</controllingFieldValue>
+                <controllingFieldValue>WC: WACAP</controllingFieldValue>
+                <controllingFieldValue>S6: SILVER W.A.</controllingFieldValue>
+                <controllingFieldValue>WF: UNIGAS WA Fuel &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>S7: SILVER Tas.</controllingFieldValue>
+                <controllingFieldValue>SB: SMB</controllingFieldValue>
+                <controllingFieldValue>SG: SG Fleet</controllingFieldValue>
+                <controllingFieldValue>AT: AUTOPIA</controllingFieldValue>
+                <controllingFieldValue>SN: 7-Eleven Fuel Card</controllingFieldValue>
+                <controllingFieldValue>B: BASE</controllingFieldValue>
+                <controllingFieldValue>C: APCO</controllingFieldValue>
+                <controllingFieldValue>CM: Coles Account Id Card</controllingFieldValue>
+                <controllingFieldValue>CP: Capricorn</controllingFieldValue>
+                <controllingFieldValue>CV: Orix Exxon Mobil CV Card</controllingFieldValue>
+                <controllingFieldValue>WG: UNIGAS WA Gas &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>WU: UNIGAS WA Unrestricted</controllingFieldValue>
+                <controllingFieldValue>PD: Pumacard Direct NG</controllingFieldValue>
+                <controllingFieldValue>AL: ALP</controllingFieldValue>
+                <controllingFieldValue>AP: Australia Post</controllingFieldValue>
+                <controllingFieldValue>MF: Fuel 1 EM</controllingFieldValue>
+                <controllingFieldValue>AR: Aspire Co_Brand</controllingFieldValue>
+                <controllingFieldValue>PF: Fuel 1 Pacific</controllingFieldValue>
+                <controllingFieldValue>DG: Dib Group</controllingFieldValue>
+                <controllingFieldValue>EA: Exxon Mobil Card</controllingFieldValue>
+                <controllingFieldValue>EC: Electrical &amp; Communications</controllingFieldValue>
+                <controllingFieldValue>EN: ENLIST</controllingFieldValue>
+                <controllingFieldValue>DB: Mobil Business Card</controllingFieldValue>
+                <controllingFieldValue>DF: Mobil Fleet Card</controllingFieldValue>
+                <controllingFieldValue>JG: Jim&apos;s Group</controllingFieldValue>
+                <controllingFieldValue>CF: Fuel 1 Carrison</controllingFieldValue>
+                <controllingFieldValue>TF: Fuel 1 Trinity</controllingFieldValue>
+                <controllingFieldValue>FP: FLEETPLUS</controllingFieldValue>
+                <controllingFieldValue>G6: GOLD W.A.</controllingFieldValue>
+                <controllingFieldValue>G7: GOLD Tas.</controllingFieldValue>
+                <controllingFieldValue>VT: Ventia</controllingFieldValue>
+                <controllingFieldValue>BP: Fuel 1 BudgetPetrol</controllingFieldValue>
+                <controllingFieldValue>WL: Fuel 1 WAFuel</controllingFieldValue>
+                <controllingFieldValue>GS: GreenShareCar</controllingFieldValue>
+                <controllingFieldValue>IT: IntelliTrac Motorpass</controllingFieldValue>
+                <controllingFieldValue>XP: Fuel 1 Xpress Fuel</controllingFieldValue>
+                <controllingFieldValue>PK: Fuel 1 Park Fuels</controllingFieldValue>
+                <controllingFieldValue>LE: LEASEPLUS</controllingFieldValue>
+                <controllingFieldValue>LG: Lowes Petroleum Gold</controllingFieldValue>
+                <controllingFieldValue>MCM: MERCHANT</controllingFieldValue>
+                <controllingFieldValue>NM: NRMA</controllingFieldValue>
+                <controllingFieldValue>MO: Motorpass One Card</controllingFieldValue>
+                <controllingFieldValue>MP: Motorpass</controllingFieldValue>
+                <controllingFieldValue>MPM: MERCHANT</controllingFieldValue>
+                <controllingFieldValue>NB: NLC Blue</controllingFieldValue>
+                <controllingFieldValue>MT: Metro Petroleum</controllingFieldValue>
+                <controllingFieldValue>SD: Street Fleet</controllingFieldValue>
+                <controllingFieldValue>NE: NECA Motorpass</controllingFieldValue>
+                <controllingFieldValue>NL: NLC</controllingFieldValue>
+                <controllingFieldValue>NR: NLC Repair &amp; Authorisation</controllingFieldValue>
+                <controllingFieldValue>NV: Orix Exxon Mobil NV Card</controllingFieldValue>
+                <controllingFieldValue>OA: ORIX/Motorcharge Authorised Maintenance</controllingFieldValue>
+                <controllingFieldValue>OM: Orix Motorpass Card</controllingFieldValue>
+                <controllingFieldValue>SR: Salary Packaging</controllingFieldValue>
+                <controllingFieldValue>SS: 7-Eleven Staff Card</controllingFieldValue>
+                <controllingFieldValue>SU: Motorpass</controllingFieldValue>
+                <controllingFieldValue>TO: Toyota (TFS)</controllingFieldValue>
+                <controllingFieldValue>TP: Trinity Petroleum Services</controllingFieldValue>
+                <controllingFieldValue>PC: PUMA - CLOSED LOOP</controllingFieldValue>
+                <controllingFieldValue>TY: Toyota (BOX)</controllingFieldValue>
+                <controllingFieldValue>PL: Paint Place</controllingFieldValue>
+                <controllingFieldValue>PO: PUMA - OPEN LOOP</controllingFieldValue>
+                <controllingFieldValue>PP: PAY-PLAN</controllingFieldValue>
+                <valueName>M: Mandatory</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>UF: UNIGAS Fuel &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>UG: UNIGAS Gas &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>UU: UNIGAS Unrestricted</controllingFieldValue>
+                <controllingFieldValue>WC: WACAP</controllingFieldValue>
+                <controllingFieldValue>S6: SILVER W.A.</controllingFieldValue>
+                <controllingFieldValue>WF: UNIGAS WA Fuel &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>S7: SILVER Tas.</controllingFieldValue>
+                <controllingFieldValue>SB: SMB</controllingFieldValue>
+                <controllingFieldValue>SG: SG Fleet</controllingFieldValue>
+                <controllingFieldValue>AT: AUTOPIA</controllingFieldValue>
+                <controllingFieldValue>SN: 7-Eleven Fuel Card</controllingFieldValue>
+                <controllingFieldValue>B: BASE</controllingFieldValue>
+                <controllingFieldValue>C: APCO</controllingFieldValue>
+                <controllingFieldValue>CM: Coles Account Id Card</controllingFieldValue>
+                <controllingFieldValue>CP: Capricorn</controllingFieldValue>
+                <controllingFieldValue>CV: Orix Exxon Mobil CV Card</controllingFieldValue>
+                <controllingFieldValue>WG: UNIGAS WA Gas &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>WU: UNIGAS WA Unrestricted</controllingFieldValue>
+                <controllingFieldValue>PD: Pumacard Direct NG</controllingFieldValue>
+                <controllingFieldValue>AL: ALP</controllingFieldValue>
+                <controllingFieldValue>AP: Australia Post</controllingFieldValue>
+                <controllingFieldValue>MF: Fuel 1 EM</controllingFieldValue>
+                <controllingFieldValue>AR: Aspire Co_Brand</controllingFieldValue>
+                <controllingFieldValue>PF: Fuel 1 Pacific</controllingFieldValue>
+                <controllingFieldValue>DG: Dib Group</controllingFieldValue>
+                <controllingFieldValue>EA: Exxon Mobil Card</controllingFieldValue>
+                <controllingFieldValue>EC: Electrical &amp; Communications</controllingFieldValue>
+                <controllingFieldValue>EN: ENLIST</controllingFieldValue>
+                <controllingFieldValue>DB: Mobil Business Card</controllingFieldValue>
+                <controllingFieldValue>DF: Mobil Fleet Card</controllingFieldValue>
+                <controllingFieldValue>JG: Jim&apos;s Group</controllingFieldValue>
+                <controllingFieldValue>CF: Fuel 1 Carrison</controllingFieldValue>
+                <controllingFieldValue>TF: Fuel 1 Trinity</controllingFieldValue>
+                <controllingFieldValue>FP: FLEETPLUS</controllingFieldValue>
+                <controllingFieldValue>G6: GOLD W.A.</controllingFieldValue>
+                <controllingFieldValue>G7: GOLD Tas.</controllingFieldValue>
+                <controllingFieldValue>VT: Ventia</controllingFieldValue>
+                <controllingFieldValue>BP: Fuel 1 BudgetPetrol</controllingFieldValue>
+                <controllingFieldValue>WL: Fuel 1 WAFuel</controllingFieldValue>
+                <controllingFieldValue>GS: GreenShareCar</controllingFieldValue>
+                <controllingFieldValue>IT: IntelliTrac Motorpass</controllingFieldValue>
+                <controllingFieldValue>XP: Fuel 1 Xpress Fuel</controllingFieldValue>
+                <controllingFieldValue>PK: Fuel 1 Park Fuels</controllingFieldValue>
+                <controllingFieldValue>LE: LEASEPLUS</controllingFieldValue>
+                <controllingFieldValue>LG: Lowes Petroleum Gold</controllingFieldValue>
+                <controllingFieldValue>MCM: MERCHANT</controllingFieldValue>
+                <controllingFieldValue>NM: NRMA</controllingFieldValue>
+                <controllingFieldValue>MO: Motorpass One Card</controllingFieldValue>
+                <controllingFieldValue>MP: Motorpass</controllingFieldValue>
+                <controllingFieldValue>MPM: MERCHANT</controllingFieldValue>
+                <controllingFieldValue>NB: NLC Blue</controllingFieldValue>
+                <controllingFieldValue>MT: Metro Petroleum</controllingFieldValue>
+                <controllingFieldValue>SD: Street Fleet</controllingFieldValue>
+                <controllingFieldValue>NE: NECA Motorpass</controllingFieldValue>
+                <controllingFieldValue>NL: NLC</controllingFieldValue>
+                <controllingFieldValue>NR: NLC Repair &amp; Authorisation</controllingFieldValue>
+                <controllingFieldValue>NV: Orix Exxon Mobil NV Card</controllingFieldValue>
+                <controllingFieldValue>OA: ORIX/Motorcharge Authorised Maintenance</controllingFieldValue>
+                <controllingFieldValue>OM: Orix Motorpass Card</controllingFieldValue>
+                <controllingFieldValue>SR: Salary Packaging</controllingFieldValue>
+                <controllingFieldValue>SS: 7-Eleven Staff Card</controllingFieldValue>
+                <controllingFieldValue>SU: Motorpass</controllingFieldValue>
+                <controllingFieldValue>TO: Toyota (TFS)</controllingFieldValue>
+                <controllingFieldValue>TP: Trinity Petroleum Services</controllingFieldValue>
+                <controllingFieldValue>PC: PUMA - CLOSED LOOP</controllingFieldValue>
+                <controllingFieldValue>TY: Toyota (BOX)</controllingFieldValue>
+                <controllingFieldValue>PL: Paint Place</controllingFieldValue>
+                <controllingFieldValue>PO: PUMA - OPEN LOOP</controllingFieldValue>
+                <controllingFieldValue>PP: PAY-PLAN</controllingFieldValue>
+                <valueName>O: Optional</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>UF: UNIGAS Fuel &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>UG: UNIGAS Gas &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>UU: UNIGAS Unrestricted</controllingFieldValue>
+                <controllingFieldValue>WC: WACAP</controllingFieldValue>
+                <controllingFieldValue>S6: SILVER W.A.</controllingFieldValue>
+                <controllingFieldValue>WF: UNIGAS WA Fuel &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>S7: SILVER Tas.</controllingFieldValue>
+                <controllingFieldValue>SB: SMB</controllingFieldValue>
+                <controllingFieldValue>SG: SG Fleet</controllingFieldValue>
+                <controllingFieldValue>AT: AUTOPIA</controllingFieldValue>
+                <controllingFieldValue>SN: 7-Eleven Fuel Card</controllingFieldValue>
+                <controllingFieldValue>B: BASE</controllingFieldValue>
+                <controllingFieldValue>C: APCO</controllingFieldValue>
+                <controllingFieldValue>CM: Coles Account Id Card</controllingFieldValue>
+                <controllingFieldValue>CP: Capricorn</controllingFieldValue>
+                <controllingFieldValue>CV: Orix Exxon Mobil CV Card</controllingFieldValue>
+                <controllingFieldValue>WG: UNIGAS WA Gas &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>WU: UNIGAS WA Unrestricted</controllingFieldValue>
+                <controllingFieldValue>PD: Pumacard Direct NG</controllingFieldValue>
+                <controllingFieldValue>AL: ALP</controllingFieldValue>
+                <controllingFieldValue>AP: Australia Post</controllingFieldValue>
+                <controllingFieldValue>MF: Fuel 1 EM</controllingFieldValue>
+                <controllingFieldValue>AR: Aspire Co_Brand</controllingFieldValue>
+                <controllingFieldValue>PF: Fuel 1 Pacific</controllingFieldValue>
+                <controllingFieldValue>DG: Dib Group</controllingFieldValue>
+                <controllingFieldValue>EA: Exxon Mobil Card</controllingFieldValue>
+                <controllingFieldValue>EC: Electrical &amp; Communications</controllingFieldValue>
+                <controllingFieldValue>EN: ENLIST</controllingFieldValue>
+                <controllingFieldValue>DB: Mobil Business Card</controllingFieldValue>
+                <controllingFieldValue>DF: Mobil Fleet Card</controllingFieldValue>
+                <controllingFieldValue>JG: Jim&apos;s Group</controllingFieldValue>
+                <controllingFieldValue>CF: Fuel 1 Carrison</controllingFieldValue>
+                <controllingFieldValue>TF: Fuel 1 Trinity</controllingFieldValue>
+                <controllingFieldValue>FP: FLEETPLUS</controllingFieldValue>
+                <controllingFieldValue>G6: GOLD W.A.</controllingFieldValue>
+                <controllingFieldValue>G7: GOLD Tas.</controllingFieldValue>
+                <controllingFieldValue>VT: Ventia</controllingFieldValue>
+                <controllingFieldValue>BP: Fuel 1 BudgetPetrol</controllingFieldValue>
+                <controllingFieldValue>WL: Fuel 1 WAFuel</controllingFieldValue>
+                <controllingFieldValue>GS: GreenShareCar</controllingFieldValue>
+                <controllingFieldValue>IT: IntelliTrac Motorpass</controllingFieldValue>
+                <controllingFieldValue>XP: Fuel 1 Xpress Fuel</controllingFieldValue>
+                <controllingFieldValue>PK: Fuel 1 Park Fuels</controllingFieldValue>
+                <controllingFieldValue>LE: LEASEPLUS</controllingFieldValue>
+                <controllingFieldValue>LG: Lowes Petroleum Gold</controllingFieldValue>
+                <controllingFieldValue>MCM: MERCHANT</controllingFieldValue>
+                <controllingFieldValue>BW: Best Western Trade Card</controllingFieldValue>
+                <controllingFieldValue>NM: NRMA</controllingFieldValue>
+                <controllingFieldValue>MO: Motorpass One Card</controllingFieldValue>
+                <controllingFieldValue>MP: Motorpass</controllingFieldValue>
+                <controllingFieldValue>MPM: MERCHANT</controllingFieldValue>
+                <controllingFieldValue>NB: NLC Blue</controllingFieldValue>
+                <controllingFieldValue>MT: Metro Petroleum</controllingFieldValue>
+                <controllingFieldValue>SD: Street Fleet</controllingFieldValue>
+                <controllingFieldValue>NE: NECA Motorpass</controllingFieldValue>
+                <controllingFieldValue>NL: NLC</controllingFieldValue>
+                <controllingFieldValue>NR: NLC Repair &amp; Authorisation</controllingFieldValue>
+                <controllingFieldValue>NV: Orix Exxon Mobil NV Card</controllingFieldValue>
+                <controllingFieldValue>OA: ORIX/Motorcharge Authorised Maintenance</controllingFieldValue>
+                <controllingFieldValue>OM: Orix Motorpass Card</controllingFieldValue>
+                <controllingFieldValue>SR: Salary Packaging</controllingFieldValue>
+                <controllingFieldValue>SS: 7-Eleven Staff Card</controllingFieldValue>
+                <controllingFieldValue>SU: Motorpass</controllingFieldValue>
+                <controllingFieldValue>TO: Toyota (TFS)</controllingFieldValue>
+                <controllingFieldValue>TP: Trinity Petroleum Services</controllingFieldValue>
+                <controllingFieldValue>PC: PUMA - CLOSED LOOP</controllingFieldValue>
+                <controllingFieldValue>TY: Toyota (BOX)</controllingFieldValue>
+                <controllingFieldValue>PL: Paint Place</controllingFieldValue>
+                <controllingFieldValue>PO: PUMA - OPEN LOOP</controllingFieldValue>
+                <controllingFieldValue>PP: PAY-PLAN</controllingFieldValue>
+                <valueName>N: Not Permitted</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>UF: UNIGAS Fuel &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>UG: UNIGAS Gas &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>UU: UNIGAS Unrestricted</controllingFieldValue>
+                <controllingFieldValue>WC: WACAP</controllingFieldValue>
+                <controllingFieldValue>S6: SILVER W.A.</controllingFieldValue>
+                <controllingFieldValue>WF: UNIGAS WA Fuel &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>S7: SILVER Tas.</controllingFieldValue>
+                <controllingFieldValue>SB: SMB</controllingFieldValue>
+                <controllingFieldValue>SG: SG Fleet</controllingFieldValue>
+                <controllingFieldValue>AT: AUTOPIA</controllingFieldValue>
+                <controllingFieldValue>SN: 7-Eleven Fuel Card</controllingFieldValue>
+                <controllingFieldValue>B: BASE</controllingFieldValue>
+                <controllingFieldValue>C: APCO</controllingFieldValue>
+                <controllingFieldValue>CM: Coles Account Id Card</controllingFieldValue>
+                <controllingFieldValue>CP: Capricorn</controllingFieldValue>
+                <controllingFieldValue>CV: Orix Exxon Mobil CV Card</controllingFieldValue>
+                <controllingFieldValue>WG: UNIGAS WA Gas &amp; Oil</controllingFieldValue>
+                <controllingFieldValue>WU: UNIGAS WA Unrestricted</controllingFieldValue>
+                <controllingFieldValue>PD: Pumacard Direct NG</controllingFieldValue>
+                <controllingFieldValue>AL: ALP</controllingFieldValue>
+                <controllingFieldValue>AP: Australia Post</controllingFieldValue>
+                <controllingFieldValue>MF: Fuel 1 EM</controllingFieldValue>
+                <controllingFieldValue>AR: Aspire Co_Brand</controllingFieldValue>
+                <controllingFieldValue>PF: Fuel 1 Pacific</controllingFieldValue>
+                <controllingFieldValue>DG: Dib Group</controllingFieldValue>
+                <controllingFieldValue>EA: Exxon Mobil Card</controllingFieldValue>
+                <controllingFieldValue>EC: Electrical &amp; Communications</controllingFieldValue>
+                <controllingFieldValue>EN: ENLIST</controllingFieldValue>
+                <controllingFieldValue>DB: Mobil Business Card</controllingFieldValue>
+                <controllingFieldValue>DF: Mobil Fleet Card</controllingFieldValue>
+                <controllingFieldValue>JG: Jim&apos;s Group</controllingFieldValue>
+                <controllingFieldValue>CF: Fuel 1 Carrison</controllingFieldValue>
+                <controllingFieldValue>TF: Fuel 1 Trinity</controllingFieldValue>
+                <controllingFieldValue>FP: FLEETPLUS</controllingFieldValue>
+                <controllingFieldValue>G6: GOLD W.A.</controllingFieldValue>
+                <controllingFieldValue>G7: GOLD Tas.</controllingFieldValue>
+                <controllingFieldValue>VT: Ventia</controllingFieldValue>
+                <controllingFieldValue>BP: Fuel 1 BudgetPetrol</controllingFieldValue>
+                <controllingFieldValue>WL: Fuel 1 WAFuel</controllingFieldValue>
+                <controllingFieldValue>GS: GreenShareCar</controllingFieldValue>
+                <controllingFieldValue>IT: IntelliTrac Motorpass</controllingFieldValue>
+                <controllingFieldValue>XP: Fuel 1 Xpress Fuel</controllingFieldValue>
+                <controllingFieldValue>PK: Fuel 1 Park Fuels</controllingFieldValue>
+                <controllingFieldValue>LE: LEASEPLUS</controllingFieldValue>
+                <controllingFieldValue>LG: Lowes Petroleum Gold</controllingFieldValue>
+                <controllingFieldValue>MCM: MERCHANT</controllingFieldValue>
+                <controllingFieldValue>NM: NRMA</controllingFieldValue>
+                <controllingFieldValue>MO: Motorpass One Card</controllingFieldValue>
+                <controllingFieldValue>MP: Motorpass</controllingFieldValue>
+                <controllingFieldValue>MPM: MERCHANT</controllingFieldValue>
+                <controllingFieldValue>NB: NLC Blue</controllingFieldValue>
+                <controllingFieldValue>MT: Metro Petroleum</controllingFieldValue>
+                <controllingFieldValue>SD: Street Fleet</controllingFieldValue>
+                <controllingFieldValue>NE: NECA Motorpass</controllingFieldValue>
+                <controllingFieldValue>NL: NLC</controllingFieldValue>
+                <controllingFieldValue>NR: NLC Repair &amp; Authorisation</controllingFieldValue>
+                <controllingFieldValue>NV: Orix Exxon Mobil NV Card</controllingFieldValue>
+                <controllingFieldValue>OA: ORIX/Motorcharge Authorised Maintenance</controllingFieldValue>
+                <controllingFieldValue>OM: Orix Motorpass Card</controllingFieldValue>
+                <controllingFieldValue>SR: Salary Packaging</controllingFieldValue>
+                <controllingFieldValue>SS: 7-Eleven Staff Card</controllingFieldValue>
+                <controllingFieldValue>SU: Motorpass</controllingFieldValue>
+                <controllingFieldValue>TO: Toyota (TFS)</controllingFieldValue>
+                <controllingFieldValue>TP: Trinity Petroleum Services</controllingFieldValue>
+                <controllingFieldValue>PC: PUMA - CLOSED LOOP</controllingFieldValue>
+                <controllingFieldValue>TY: Toyota (BOX)</controllingFieldValue>
+                <controllingFieldValue>PL: Paint Place</controllingFieldValue>
+                <controllingFieldValue>PO: PUMA - OPEN LOOP</controllingFieldValue>
+                <controllingFieldValue>PP: PAY-PLAN</controllingFieldValue>
+                <valueName>B: Bulk PIN</valueName>
+            </valueSettings>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Card_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Card Type</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>AL: ALP</fullName>
+                    <default>false</default>
+                    <label>AL: ALP</label>
+                </value>
+                <value>
+                    <fullName>AO: APCO Service Station</fullName>
+                    <default>false</default>
+                    <label>AO: APCO Service Station</label>
+                </value>
+                <value>
+                    <fullName>AP: Australia Post</fullName>
+                    <default>false</default>
+                    <label>AP: Australia Post</label>
+                </value>
+                <value>
+                    <fullName>AR: Aspire Co_Brand</fullName>
+                    <default>false</default>
+                    <label>AR: Aspire Co_Brand</label>
+                </value>
+                <value>
+                    <fullName>AT: AUTOPIA</fullName>
+                    <default>false</default>
+                    <label>AT: AUTOPIA</label>
+                </value>
+                <value>
+                    <fullName>B: BASE</fullName>
+                    <default>false</default>
+                    <label>B: BASE</label>
+                </value>
+                <value>
+                    <fullName>BP: Fuel 1 BudgetPetrol</fullName>
+                    <default>false</default>
+                    <label>BP: Fuel 1 BudgetPetrol</label>
+                </value>
+                <value>
+                    <fullName>BW: Best Western Trade Card</fullName>
+                    <default>false</default>
+                    <label>BW: Best Western Trade Card</label>
+                </value>
+                <value>
+                    <fullName>C: APCO</fullName>
+                    <default>false</default>
+                    <label>C: APCO</label>
+                </value>
+                <value>
+                    <fullName>CD: Fuel1 CDO</fullName>
+                    <default>false</default>
+                    <label>CD: Fuel1 CDO</label>
+                </value>
+                <value>
+                    <fullName>CF: Fuel 1 Carrison</fullName>
+                    <default>false</default>
+                    <label>CF: Fuel 1 Carrison</label>
+                </value>
+                <value>
+                    <fullName>CM: Coles Account Id Card</fullName>
+                    <default>false</default>
+                    <label>CM: Coles Account Id Card</label>
+                </value>
+                <value>
+                    <fullName>CP: Capricorn</fullName>
+                    <default>false</default>
+                    <label>CP: Capricorn</label>
+                </value>
+                <value>
+                    <fullName>CV: Orix Exxon Mobil CV Card</fullName>
+                    <default>false</default>
+                    <label>CV: Orix Exxon Mobil CV Card</label>
+                </value>
+                <value>
+                    <fullName>DB: Mobil Business Card</fullName>
+                    <default>false</default>
+                    <label>DB: Mobil Business Card</label>
+                </value>
+                <value>
+                    <fullName>DF: Mobil Fleet Card</fullName>
+                    <default>false</default>
+                    <label>DF: Mobil Fleet Card</label>
+                </value>
+                <value>
+                    <fullName>DG: Dib Group</fullName>
+                    <default>false</default>
+                    <label>DG: Dib Group</label>
+                </value>
+                <value>
+                    <fullName>EA: Exxon Mobil Card</fullName>
+                    <default>false</default>
+                    <label>EA: Exxon Mobil Card</label>
+                </value>
+                <value>
+                    <fullName>EC: Electrical &amp; Communications</fullName>
+                    <default>false</default>
+                    <label>EC: Electrical &amp; Communications</label>
+                </value>
+                <value>
+                    <fullName>EN: ENLIST</fullName>
+                    <default>false</default>
+                    <label>EN: ENLIST</label>
+                </value>
+                <value>
+                    <fullName>EP: RACV Salary Solution</fullName>
+                    <default>false</default>
+                    <label>EP: RACV Salary Solution</label>
+                </value>
+                <value>
+                    <fullName>FP: FLEETPLUS</fullName>
+                    <default>false</default>
+                    <label>FP: FLEETPLUS</label>
+                </value>
+                <value>
+                    <fullName>G6: GOLD W.A.</fullName>
+                    <default>false</default>
+                    <label>G6: GOLD W.A.</label>
+                </value>
+                <value>
+                    <fullName>G7: GOLD Tas.</fullName>
+                    <default>false</default>
+                    <label>G7: GOLD Tas.</label>
+                </value>
+                <value>
+                    <fullName>GS: GreenShareCar</fullName>
+                    <default>false</default>
+                    <label>GS: GreenShareCar</label>
+                </value>
+                <value>
+                    <fullName>IT: IntelliTrac Motorpass</fullName>
+                    <default>false</default>
+                    <label>IT: IntelliTrac Motorpass</label>
+                </value>
+                <value>
+                    <fullName>JG: Jim&apos;s Group</fullName>
+                    <default>false</default>
+                    <label>JG: Jim&apos;s Group</label>
+                </value>
+                <value>
+                    <fullName>LE: LEASEPLUS</fullName>
+                    <default>false</default>
+                    <label>LE: LEASEPLUS</label>
+                </value>
+                <value>
+                    <fullName>LG: Lowes Petroleum Gold</fullName>
+                    <default>false</default>
+                    <label>LG: Lowes Petroleum Gold</label>
+                </value>
+                <value>
+                    <fullName>MCM: MERCHANT</fullName>
+                    <default>false</default>
+                    <label>MCM: MERCHANT</label>
+                </value>
+                <value>
+                    <fullName>MF: Fuel 1 EM</fullName>
+                    <default>false</default>
+                    <label>MF: Fuel 1 EM</label>
+                </value>
+                <value>
+                    <fullName>MO: Motorpass One Card</fullName>
+                    <default>false</default>
+                    <label>MO: Motorpass One Card</label>
+                </value>
+                <value>
+                    <fullName>MP: Motorpass</fullName>
+                    <default>false</default>
+                    <label>MP: Motorpass</label>
+                </value>
+                <value>
+                    <fullName>MPM: MERCHANT</fullName>
+                    <default>false</default>
+                    <label>MPM: MERCHANT</label>
+                </value>
+                <value>
+                    <fullName>MT: Metro Petroleum</fullName>
+                    <default>false</default>
+                    <label>MT: Metro Petroleum</label>
+                </value>
+                <value>
+                    <fullName>NB: NLC Blue</fullName>
+                    <default>false</default>
+                    <label>NB: NLC Blue</label>
+                </value>
+                <value>
+                    <fullName>NE: NECA Motorpass</fullName>
+                    <default>false</default>
+                    <label>NE: NECA Motorpass</label>
+                </value>
+                <value>
+                    <fullName>NL: NLC</fullName>
+                    <default>false</default>
+                    <label>NL: NLC</label>
+                </value>
+                <value>
+                    <fullName>NM: NRMA</fullName>
+                    <default>false</default>
+                    <label>NM: NRMA</label>
+                </value>
+                <value>
+                    <fullName>NR: NLC Repair &amp; Authorisation</fullName>
+                    <default>false</default>
+                    <label>NR: NLC Repair &amp; Authorisation</label>
+                </value>
+                <value>
+                    <fullName>NV: Orix Exxon Mobil NV Card</fullName>
+                    <default>false</default>
+                    <label>NV: Orix Exxon Mobil NV Card</label>
+                </value>
+                <value>
+                    <fullName>OA: ORIX/Motorcharge Authorised Maintenance</fullName>
+                    <default>false</default>
+                    <label>OA: ORIX/Motorcharge Authorised Maintenance</label>
+                </value>
+                <value>
+                    <fullName>OM: Orix Motorpass Card</fullName>
+                    <default>false</default>
+                    <label>OM: Orix Motorpass Card</label>
+                </value>
+                <value>
+                    <fullName>PC: PUMA - CLOSED LOOP</fullName>
+                    <default>false</default>
+                    <label>PC: PUMA - CLOSED LOOP</label>
+                </value>
+                <value>
+                    <fullName>PD: Pumacard Direct NG</fullName>
+                    <default>false</default>
+                    <label>PD: Pumacard Direct NG</label>
+                </value>
+                <value>
+                    <fullName>PF: Fuel 1 Pacific</fullName>
+                    <default>false</default>
+                    <label>PF: Fuel 1 Pacific</label>
+                </value>
+                <value>
+                    <fullName>PK: Fuel 1 Park Fuels</fullName>
+                    <default>false</default>
+                    <label>PK: Fuel 1 Park Fuels</label>
+                </value>
+                <value>
+                    <fullName>PL: Paint Place</fullName>
+                    <default>false</default>
+                    <label>PL: Paint Place</label>
+                </value>
+                <value>
+                    <fullName>PO: PUMA - OPEN LOOP</fullName>
+                    <default>false</default>
+                    <label>PO: PUMA - OPEN LOOP</label>
+                </value>
+                <value>
+                    <fullName>PP: PAY-PLAN</fullName>
+                    <default>false</default>
+                    <label>PP: PAY-PLAN</label>
+                </value>
+                <value>
+                    <fullName>S6: SILVER W.A.</fullName>
+                    <default>false</default>
+                    <label>S6: SILVER W.A.</label>
+                </value>
+                <value>
+                    <fullName>S7: SILVER Tas.</fullName>
+                    <default>false</default>
+                    <label>S7: SILVER Tas.</label>
+                </value>
+                <value>
+                    <fullName>SB: SMB</fullName>
+                    <default>false</default>
+                    <label>SB: SMB</label>
+                </value>
+                <value>
+                    <fullName>SD: Street Fleet</fullName>
+                    <default>false</default>
+                    <label>SD: Street Fleet</label>
+                </value>
+                <value>
+                    <fullName>SG: SG Fleet</fullName>
+                    <default>false</default>
+                    <label>SG: SG Fleet</label>
+                </value>
+                <value>
+                    <fullName>SN: 7-Eleven Fuel Card</fullName>
+                    <default>false</default>
+                    <label>SN: 7-Eleven Fuel Card</label>
+                </value>
+                <value>
+                    <fullName>SR: Salary Packaging</fullName>
+                    <default>false</default>
+                    <label>SR: Salary Packaging</label>
+                </value>
+                <value>
+                    <fullName>SS: 7-Eleven Staff Card</fullName>
+                    <default>false</default>
+                    <label>SS: 7-Eleven Staff Card</label>
+                </value>
+                <value>
+                    <fullName>SU: Motorpass</fullName>
+                    <default>false</default>
+                    <label>SU: Motorpass</label>
+                </value>
+                <value>
+                    <fullName>T: Travelcards</fullName>
+                    <default>false</default>
+                    <label>T: Travelcards</label>
+                </value>
+                <value>
+                    <fullName>TC: Trade</fullName>
+                    <default>false</default>
+                    <label>TC: Trade</label>
+                </value>
+                <value>
+                    <fullName>TF: Fuel 1 Trinity</fullName>
+                    <default>false</default>
+                    <label>TF: Fuel 1 Trinity</label>
+                </value>
+                <value>
+                    <fullName>TO: Toyota (TFS)</fullName>
+                    <default>false</default>
+                    <label>TO: Toyota (TFS)</label>
+                </value>
+                <value>
+                    <fullName>TP: Trinity Petroleum Services</fullName>
+                    <default>false</default>
+                    <label>TP: Trinity Petroleum Services</label>
+                </value>
+                <value>
+                    <fullName>TY: Toyota (BOX)</fullName>
+                    <default>false</default>
+                    <label>TY: Toyota (BOX)</label>
+                </value>
+                <value>
+                    <fullName>UF: UNIGAS Fuel &amp; Oil</fullName>
+                    <default>false</default>
+                    <label>UF: UNIGAS Fuel &amp; Oil</label>
+                </value>
+                <value>
+                    <fullName>UG: UNIGAS Gas &amp; Oil</fullName>
+                    <default>false</default>
+                    <label>UG: UNIGAS Gas &amp; Oil</label>
+                </value>
+                <value>
+                    <fullName>UU: UNIGAS Unrestricted</fullName>
+                    <default>false</default>
+                    <label>UU: UNIGAS Unrestricted</label>
+                </value>
+                <value>
+                    <fullName>VT: Ventia</fullName>
+                    <default>false</default>
+                    <label>VT: Ventia</label>
+                </value>
+                <value>
+                    <fullName>WC: WACAP</fullName>
+                    <default>false</default>
+                    <label>WC: WACAP</label>
+                </value>
+                <value>
+                    <fullName>WF: UNIGAS WA Fuel &amp; Oil</fullName>
+                    <default>false</default>
+                    <label>WF: UNIGAS WA Fuel &amp; Oil</label>
+                </value>
+                <value>
+                    <fullName>WG: UNIGAS WA Gas &amp; Oil</fullName>
+                    <default>false</default>
+                    <label>WG: UNIGAS WA Gas &amp; Oil</label>
+                </value>
+                <value>
+                    <fullName>WL: Fuel 1 WAFuel</fullName>
+                    <default>false</default>
+                    <label>WL: Fuel 1 WAFuel</label>
+                </value>
+                <value>
+                    <fullName>WU: UNIGAS WA Unrestricted</fullName>
+                    <default>false</default>
+                    <label>WU: UNIGAS WA Unrestricted</label>
+                </value>
+                <value>
+                    <fullName>XP: Fuel 1 Xpress Fuel</fullName>
+                    <default>false</default>
+                    <label>XP: Fuel 1 Xpress Fuel</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Product_Restriction_Groups__c</fullName>
+        <description>AU business processes.
+Sent to Genesis</description>
+        <externalId>false</externalId>
+        <label>Product Restriction Groups</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>10: Leaded</fullName>
+                    <default>false</default>
+                    <label>10: Leaded</label>
+                </value>
+                <value>
+                    <fullName>20: Unleaded</fullName>
+                    <default>false</default>
+                    <label>20: Unleaded</label>
+                </value>
+                <value>
+                    <fullName>30: Premium Unleaded</fullName>
+                    <default>false</default>
+                    <label>30: Premium Unleaded</label>
+                </value>
+                <value>
+                    <fullName>40: Diesel</fullName>
+                    <default>false</default>
+                    <label>40: Diesel</label>
+                </value>
+                <value>
+                    <fullName>50: LPG</fullName>
+                    <default>false</default>
+                    <label>50: LPG</label>
+                </value>
+                <value>
+                    <fullName>52: Ethanol PULP</fullName>
+                    <default>false</default>
+                    <label>52: Ethanol PULP</label>
+                </value>
+                <value>
+                    <fullName>53: Ethanol ULP</fullName>
+                    <default>false</default>
+                    <label>53: Ethanol ULP</label>
+                </value>
+                <value>
+                    <fullName>54: Low Aromatic Fuel</fullName>
+                    <default>false</default>
+                    <label>54: Low Aromatic Fuel</label>
+                </value>
+                <value>
+                    <fullName>60: Oil</fullName>
+                    <default>false</default>
+                    <label>60: Oil</label>
+                </value>
+                <value>
+                    <fullName>70: Car Wash</fullName>
+                    <default>false</default>
+                    <label>70: Car Wash</label>
+                </value>
+                <value>
+                    <fullName>80: Insurance</fullName>
+                    <default>false</default>
+                    <label>80: Insurance</label>
+                </value>
+                <value>
+                    <fullName>90: Parking</fullName>
+                    <default>false</default>
+                    <label>90: Parking</label>
+                </value>
+                <value>
+                    <fullName>120: Roadside Assistance</fullName>
+                    <default>false</default>
+                    <label>120: Roadside Assistance</label>
+                </value>
+                <value>
+                    <fullName>130: Service and Repairs</fullName>
+                    <default>false</default>
+                    <label>130: Service and Repairs</label>
+                </value>
+                <value>
+                    <fullName>135: Tyres</fullName>
+                    <default>false</default>
+                    <label>135: Tyres</label>
+                </value>
+                <value>
+                    <fullName>140: Tolls</fullName>
+                    <default>false</default>
+                    <label>140: Tolls</label>
+                </value>
+                <value>
+                    <fullName>150: Accommodation</fullName>
+                    <default>false</default>
+                    <label>150: Accommodation</label>
+                </value>
+                <value>
+                    <fullName>170: Car Rental</fullName>
+                    <default>false</default>
+                    <label>170: Car Rental</label>
+                </value>
+                <value>
+                    <fullName>200: Shop</fullName>
+                    <default>false</default>
+                    <label>200: Shop</label>
+                </value>
+                <value>
+                    <fullName>210: Taxi</fullName>
+                    <default>false</default>
+                    <label>210: Taxi</label>
+                </value>
+                <value>
+                    <fullName>220: Liquor</fullName>
+                    <default>false</default>
+                    <label>220: Liquor</label>
+                </value>
+                <value>
+                    <fullName>230:Food &amp; Beverage</fullName>
+                    <default>false</default>
+                    <label>230:Food &amp; Beverage</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <recordTypes>
+        <fullName>AU_Fuel_Business</fullName>
+        <active>true</active>
+        <label>AU Fuel Business</label>
+        <picklistValues>
+            <picklist>AU_Card_Type__c</picklist>
+            <values>
+                <fullName>Driver %26 Vehicle</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Driver Only</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle Only</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>AU_card_PIN_setting__c</picklist>
+            <values>
+                <fullName>B%3A Bulk PIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M%3A Mandatory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%3A Not Permitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O%3A Optional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Card_Type__c</picklist>
+            <values>
+                <fullName>AL%3A ALP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AO%3A APCO Service Station</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AP%3A Australia Post</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AR%3A Aspire Co_Brand</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>AT%3A AUTOPIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>B%3A BASE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BP%3A Fuel 1 BudgetPetrol</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>C%3A APCO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CD%3A Fuel1 CDO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CF%3A Fuel 1 Carrison</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CM%3A Coles Account Id Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CP%3A Capricorn</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CV%3A Orix Exxon Mobil CV Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DB%3A Mobil Business Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DF%3A Mobil Fleet Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>DG%3A Dib Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EA%3A Exxon Mobil Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EC%3A Electrical %26 Communications</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EN%3A ENLIST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>EP%3A RACV Salary Solution</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FP%3A FLEETPLUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G6%3A GOLD W%2EA%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>G7%3A GOLD Tas%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>GS%3A GreenShareCar</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT%3A IntelliTrac Motorpass</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>JG%3A Jim%27s Group</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LE%3A LEASEPLUS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LG%3A Lowes Petroleum Gold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCM%3A MERCHANT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MF%3A Fuel 1 EM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MO%3A Motorpass One Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MP%3A Motorpass</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MPM%3A MERCHANT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MT%3A Metro Petroleum</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NB%3A NLC Blue</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NE%3A NECA Motorpass</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NL%3A NLC</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NM%3A NRMA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NR%3A NLC Repair %26 Authorisation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NV%3A Orix Exxon Mobil NV Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OA%3A ORIX%2FMotorcharge Authorised Maintenance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OM%3A Orix Motorpass Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PC%3A PUMA - CLOSED LOOP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PD%3A Pumacard Direct NG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PF%3A Fuel 1 Pacific</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PK%3A Fuel 1 Park Fuels</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PL%3A Paint Place</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PO%3A PUMA - OPEN LOOP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PP%3A PAY-PLAN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S6%3A SILVER W%2EA%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>S7%3A SILVER Tas%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SB%3A SMB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SD%3A Street Fleet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SG%3A SG Fleet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SN%3A 7-Eleven Fuel Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SR%3A Salary Packaging</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SS%3A 7-Eleven Staff Card</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SU%3A Motorpass</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>T%3A Travelcards</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TF%3A Fuel 1 Trinity</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TO%3A Toyota %28TFS%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TP%3A Trinity Petroleum Services</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TY%3A Toyota %28BOX%29</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UF%3A UNIGAS Fuel %26 Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UG%3A UNIGAS Gas %26 Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UU%3A UNIGAS Unrestricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>VT%3A Ventia</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WC%3A WACAP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WF%3A UNIGAS WA Fuel %26 Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WG%3A UNIGAS WA Gas %26 Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WL%3A Fuel 1 WAFuel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WU%3A UNIGAS WA Unrestricted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>XP%3A Fuel 1 Xpress Fuel</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Restriction_Groups__c</picklist>
+            <values>
+                <fullName>10%3A Leaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>120%3A Roadside Assistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>130%3A Service and Repairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>135%3A Tyres</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>140%3A Tolls</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>150%3A Accommodation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>170%3A Car Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20%3A Unleaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>200%3A Shop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>210%3A Taxi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>220%3A Liquor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30%3A Premium Unleaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40%3A Diesel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50%3A LPG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>52%3A Ethanol PULP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53%3A Ethanol ULP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54%3A Low Aromatic Fuel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60%3A Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>70%3A Car Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>80%3A Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>90%3A Parking</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>AU_Trade</fullName>
+        <active>true</active>
+        <description>Use this record type for AU Trade Cards</description>
+        <label>AU Trade</label>
+        <picklistValues>
+            <picklist>AU_Card_Type__c</picklist>
+            <values>
+                <fullName>Trade</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>AU_card_PIN_setting__c</picklist>
+            <values>
+                <fullName>B%3A Bulk PIN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>M%3A Mandatory</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%3A Not Permitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>O%3A Optional</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Card_Type__c</picklist>
+            <values>
+                <fullName>BW%3A Best Western Trade Card</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Product_Restriction_Groups__c</picklist>
+            <values>
+                <fullName>10%3A Leaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>120%3A Roadside Assistance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>130%3A Service and Repairs</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>135%3A Tyres</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>140%3A Tolls</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>150%3A Accommodation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>170%3A Car Rental</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>20%3A Unleaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>200%3A Shop</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>210%3A Taxi</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>220%3A Liquor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>230%3AFood %26 Beverage</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>30%3A Premium Unleaded</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40%3A Diesel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>50%3A LPG</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>52%3A Ethanol PULP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>53%3A Ethanol ULP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>54%3A Low Aromatic Fuel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>60%3A Oil</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>70%3A Car Wash</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>80%3A Insurance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>90%3A Parking</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <validationRules>
+        <fullName>Best_Western_Accomodation_rule</fullName>
+        <active>true</active>
+        <description>Ensures that accomodation is selected as a product on all Best Western cards</description>
+        <errorConditionFormula>AND(ISPICKVAL( Card_Type__c, &quot;BW: Best Western Trade Card&quot;),
+NOT( INCLUDES( Product_Restriction_Groups__c , &quot;150: Accommodation&quot;) ))</errorConditionFormula>
+        <errorDisplayField>Product_Restriction_Groups__c</errorDisplayField>
+        <errorMessage>Accommodation must be selected for Best Western cards</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Best_Western_Product_Rule</fullName>
+        <active>true</active>
+        <description>Checks that only Accommodation or Food are selected as products for Best Western cards</description>
+        <errorConditionFormula>AND(
+ ISPICKVAL( Card_Type__c , &quot;BW: Best Western Trade Card&quot;) 
+ ,
+ or(
+ INCLUDES(Product_Restriction_Groups__c,&quot;10: Leaded&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;20: Unleaded	&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;30: Premium Unleaded	&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;40: Diesel&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;50: LPG&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;52: Ethanol PULP&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;53: Ethanol ULP&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;54: Low Aromatic Fuel&quot;),
+ INCLUDES(Product_Restriction_Groups__c,&quot;60: Oil&quot;),  
+INCLUDES(Product_Restriction_Groups__c,&quot;70: Car Wash&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;80: Insurance&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;90: Parking&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;120: Roadside Assistance&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;130: Service and Repairs&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;135: Tyres&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;140: Tolls&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;170: Car Rental&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;200: Shop&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;210: Taxi&quot;),
+INCLUDES(Product_Restriction_Groups__c,&quot;220: Liquor&quot;)
+ )
+ )</errorConditionFormula>
+        <errorDisplayField>Product_Restriction_Groups__c</errorDisplayField>
+        <errorMessage>Only Accommodation or Beverage products can be selected for Best Western cards</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cardholder_Email</fullName>
+        <active>true</active>
+        <description>Error when Cardholders email&apos;s address is blank and card type control = Trade</description>
+        <errorConditionFormula>AND
+ (
+ ISBLANK( AU_Card_Holder_email_address__c),
+ ISPICKVAL(AU_Card_Type__c, &apos;Trade&apos;)
+ )</errorConditionFormula>
+        <errorMessage>Cardholder&apos;s email address must be completed for Trade cards</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cardholder_Phone</fullName>
+        <active>true</active>
+        <description>Error when cardholder&apos;s mobile phone number field is blank and card type (control) = Trade</description>
+        <errorConditionFormula>and (
+ ISPICKVAL( AU_Card_Type__c , &apos;Trade&apos;),
+ isblank  ( AU_Cardholder_Mobile_Phone_Number__c )
+
+)</errorConditionFormula>
+        <errorMessage>Cardholder&apos;s mobile phone number must be completed.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Driver_Name_Required</fullName>
+        <active>true</active>
+        <description>It is an error if Card Type (Control) is either &quot;Driver &amp; Vehicle&quot; , &quot;Driver Only&quot; or &quot;Trade&quot;
+AND Driver Name is empty</description>
+        <errorConditionFormula>AND(
+ ISBLANK(AU_Drivers_Name__c),
+ OR(
+  ISPICKVAL(AU_Card_Type__c, &apos;Driver Only&apos;),
+  ISPICKVAL(AU_Card_Type__c, &apos;Driver &amp; Vehicle&apos;),
+  ISPICKVAL(AU_Card_Type__c, &apos;Trade&apos;)
+ )
+)</errorConditionFormula>
+        <errorDisplayField>AU_Drivers_Name__c</errorDisplayField>
+        <errorMessage>Driver Name must be entered if Driver chosen in Card Type (Control)</errorMessage>
+    </validationRules>
+</CustomObject>

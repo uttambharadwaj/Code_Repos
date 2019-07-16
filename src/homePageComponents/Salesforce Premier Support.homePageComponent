@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <body>&lt;P style=&quot;LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt&quot; class=MsoNormal&gt;&lt;FONT size=3 face=Calibri&gt;Phone: &lt;STRONG&gt;&lt;FONT color=#ff0000&gt;866-614-7375&lt;/FONT&gt;&lt;/STRONG&gt;&lt;/FONT&gt;&lt;/P&gt;
+&lt;P style=&quot;LINE-HEIGHT: normal; MARGIN: 0in 0in 0pt&quot; class=MsoNormal&gt;&lt;FONT size=3 face=Calibri&gt;Passcode: &lt;STRONG&gt;548756&lt;/STRONG&gt;&lt;/FONT&gt;&lt;/P&gt;</body>
+    <pageComponentType>htmlArea</pageComponentType>
+    <width>narrow</width>
+</HomePageComponent>

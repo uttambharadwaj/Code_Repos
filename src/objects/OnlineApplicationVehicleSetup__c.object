@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Forseva Online Application Project</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Additives__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Additives include oil, brake fluid, washer fluid, etc.</inlineHelpText>
+        <label>Additives</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Fuel_Grade__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Grades of fuel that are preferred to be purchased. (Ex: Only diesel can be purchased.) Fleet One will notify you on the activity report if a driver buys a different type of fuel.</inlineHelpText>
+        <label>Fuel Grade</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Unleaded</fullName>
+                    <default>true</default>
+                    <label>Unleaded</label>
+                </value>
+                <value>
+                    <fullName>Unleaded - Mid</fullName>
+                    <default>false</default>
+                    <label>Unleaded - Mid</label>
+                </value>
+                <value>
+                    <fullName>Unleaded - Prem</fullName>
+                    <default>false</default>
+                    <label>Unleaded - Prem</label>
+                </value>
+                <value>
+                    <fullName>Diesel</fullName>
+                    <default>false</default>
+                    <label>Diesel</label>
+                </value>
+                <value>
+                    <fullName>All</fullName>
+                    <default>false</default>
+                    <label>All</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Fuel__c</fullName>
+        <externalId>false</externalId>
+        <label>Fuel</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Maintenance__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Maintenance, including oil changes.</inlineHelpText>
+        <label>Maint.</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Miscellaneous__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Items other than fuel, maintenance, and additives.  Examples:  car wash, snacks, or beverages.</inlineHelpText>
+        <label>Misc.</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Online_Application__c</fullName>
+        <externalId>false</externalId>
+        <label>Online Application</label>
+        <referenceTo>OnlineApplication__c</referenceTo>
+        <relationshipLabel>Vehicle Setups</relationshipLabel>
+        <relationshipName>Online_Application_Vehicle_Setups</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Description__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The description will be printed on the card as displayed above.</inlineHelpText>
+        <label>Vehicle Description</label>
+        <length>22</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Drivers will be prompted for a valid Vehicle ID and odometer reading when purchasing fuel and maintenance services.</inlineHelpText>
+        <label>Vehicle Id</label>
+        <length>6</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Vehicle_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Vehicle Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Car/Sedan</fullName>
+                    <default>false</default>
+                    <label>Car/Sedan</label>
+                </value>
+                <value>
+                    <fullName>Light Truck/Van</fullName>
+                    <default>true</default>
+                    <label>Light Truck/Van</label>
+                </value>
+                <value>
+                    <fullName>Mid Size/Truck</fullName>
+                    <default>false</default>
+                    <label>Mid Size/Truck</label>
+                </value>
+                <value>
+                    <fullName>Large Truck/Equipment</fullName>
+                    <default>false</default>
+                    <label>Large Truck/Equipment</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <label>Online Application Vehicle Setup</label>
+    <nameField>
+        <displayFormat>Vehicle Setup-{0}</displayFormat>
+        <label>Vehicle Setup Id</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Online Application Vehicle Setups</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

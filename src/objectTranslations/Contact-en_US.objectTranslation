@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <caseValues>
+            <plural>false</plural>
+            <value>Contact Background Notes</value>
+        </caseValues>
+        <name>description_contact</name>
+        <startsWith>Consonant</startsWith>
+    </fields>
+    <layouts>
+        <layout>AU Contact</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- WAA Information --></label>
+            <section>WAA Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CPS Sales</layout>
+        <sections>
+            <label><!-- Contact Background Notes --></label>
+            <section>Contact Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activites --></label>
+            <section>Pardot Activites</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Compassion Community Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Contact Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Corporate Payments</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay</layout>
+        <sections>
+            <label><!-- Additional Information --></label>
+            <section>Additional Information</section>
+        </sections>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Contact --></label>
+            <section>Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Contact&apos;s Website Activity --></label>
+            <section>Contact&apos;s Website Activity</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B Hoovers --></label>
+            <section>D&amp;B Hoovers</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Company Profile --></label>
+            <section>LinkedIn Company Profile</section>
+        </sections>
+        <sections>
+            <label><!-- LinkedIn Member Profile --></label>
+            <section>LinkedIn Member Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Refferrer Details --></label>
+            <section>Refferrer Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>EMAP Contact Layout</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Contact Layout - ActOn</layout>
+        <sections>
+            <label><!-- Call Information --></label>
+            <section>Call Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Data --></label>
+            <section>Pardot Data</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Information --></label>
+            <section>Referral Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Contact Layout Marketing</layout>
+        <sections>
+            <label><!-- Call Information --></label>
+            <section>Call Information</section>
+        </sections>
+        <sections>
+            <label><!-- Jigsaw Backend --></label>
+            <section>Jigsaw Backend</section>
+        </sections>
+        <sections>
+            <label><!-- Jigsaw Data Fusion --></label>
+            <section>Jigsaw Data Fusion</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label><!-- PROFITS ARCHIVE DATA (Read Only) --></label>
+            <section>PROFITS ARCHIVE DATA (Read Only)</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot --></label>
+            <section>Pardot</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Referrer information --></label>
+            <section>Referrer information</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 Partner Contact Layout</layout>
+        <sections>
+            <label><!-- Marketing Information --></label>
+            <section>Marketing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Phone Numbers --></label>
+            <section>Phone Numbers</section>
+        </sections>
+        <sections>
+            <label><!-- Referral Detail --></label>
+            <section>Referral Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Web Form Information (Read Only) --></label>
+            <section>Web Form Information (Read Only)</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>F1 User Contact Layout</layout>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Revolver Contact</layout>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Personal Guarantor Information --></label>
+            <section>Personal Guarantor Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Service Operations</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Service Operations Admin</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Truckers Contact Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Activities --></label>
+            <section>Pardot Activities</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Data --></label>
+            <section>Pardot Data</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WE Integrator</layout>
+        <sections>
+            <label><!-- Contact --></label>
+            <section>Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Info --></label>
+            <section>Contact Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES Contact</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Preferences --></label>
+            <section>Contact Preferences</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Description Information --></label>
+            <section>Description Information</section>
+        </sections>
+        <sections>
+            <label><!-- Pardot Information --></label>
+            <section>Pardot Information</section>
+        </sections>
+        <sections>
+            <label><!-- System Info --></label>
+            <section>System Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX F1 Partner Community Layout2</layout>
+        <sections>
+            <label><!-- Phone Numbers --></label>
+            <section>Phone Numbers</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX Partner Community Layout</layout>
+        <sections>
+            <label><!-- Contact Background Notes --></label>
+            <section>Contact Background Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX User Contact</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+        <sections>
+            <label><!-- Trainee Contact Details --></label>
+            <section>Trainee Contact Details</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- WES Company Owner --></label>
+        <name>WES_Company_Owner</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- WES Primary Contact --></label>
+        <name>WES_Primary_Contact</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- A valid two-letter province code is required. --></errorMessage>
+        <name>Canadian_State_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Call Stage must be &quot;1st Call, 2nd Call, etc.&quot; before you can enter a Call Outcome. --></errorMessage>
+        <name>Contact_Call_Outcome_Requires_Call_Stage</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the Contact&apos;s email address. This enables us to market to the Contact &amp; prevent duplicate records from being created. --></errorMessage>
+        <name>Email_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a Lead Source or the Partner Referrer (from separate field) in the field of the Contact which you are creating this Opportunity from --></errorMessage>
+        <name>Lead_Source_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code. --></errorMessage>
+        <name>Phone_Number_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code. --></errorMessage>
+        <name>Phone_Number_Validation_Asst</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code. --></errorMessage>
+        <name>Phone_Number_Validation_Fax</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code. --></errorMessage>
+        <name>Phone_Number_Validation_Home</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code. --></errorMessage>
+        <name>Phone_Number_Validation_Other</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone numbers starting with 1 are not permitted. Phone numbers should start with the area code. --></errorMessage>
+        <name>Phone_Number_Validation_mobile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Phone Number must be 20 digits or less --></errorMessage>
+        <name>Phone_number_must_be_20_digits</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Referred by Internal field is already set and cannot be changed. --></errorMessage>
+        <name>Referred_By_Internal_Cannot_be_Modified</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A valid two-letter state code is required. --></errorMessage>
+        <name>US_State_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- A valid two-letter state or province code is required --></errorMessage>
+        <name>Valid_State_Providence_Values</name>
+    </validationRules>
+    <workflowTasks>
+        <name>Follow_Up_Call_After_Email_Campaign_Action</name>
+        <subject><!-- Follow Up Call After Email Campaign Action --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_1st_Call</name>
+        <subject><!-- Place 1st Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_2nd_Call</name>
+        <subject><!-- Place 2nd Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_3rd_Call</name>
+        <subject><!-- Place 3rd Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_3rd_Call_c</name>
+        <subject><!-- Place 3rd Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_4th_Call</name>
+        <subject><!-- Place 4th Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_5th_Call</name>
+        <subject><!-- Place 5th Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Place_6th_Call</name>
+        <subject><!-- Place 6th Call --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

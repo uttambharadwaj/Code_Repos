@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <validationRules>
+        <fullName>Validate_OpData_Parent_exists_as_Account</fullName>
+        <active>false</active>
+        <errorConditionFormula>OpData_Valid__r.OpData_Account_Number_Index__c 
+= 
+OpData_Parent_Index__c</errorConditionFormula>
+        <errorMessage>Account number does not exist in OpData Account Number. Create the appropriate record in &quot;OpData Account Number&quot; and then create the record in this object.</errorMessage>
+    </validationRules>
+</CustomObject>

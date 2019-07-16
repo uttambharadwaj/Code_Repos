@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LiveChatButton xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <autoGreeting>Hi, how can I help you?</autoGreeting>
+    <chasitorIdleTimeout>240</chasitorIdleTimeout>
+    <chasitorIdleTimeoutWarning>120</chasitorIdleTimeoutWarning>
+    <chatPage>LiveAgentChatWindow</chatPage>
+    <deployments/>
+    <enableQueue>true</enableQueue>
+    <isActive>true</isActive>
+    <label>Service Operations - WOLNP</label>
+    <optionsCustomRoutingIsEnabled>false</optionsCustomRoutingIsEnabled>
+    <optionsHasChasitorIdleTimeout>true</optionsHasChasitorIdleTimeout>
+    <optionsHasInviteAfterAccept>false</optionsHasInviteAfterAccept>
+    <optionsHasInviteAfterReject>false</optionsHasInviteAfterReject>
+    <optionsHasRerouteDeclinedRequest>false</optionsHasRerouteDeclinedRequest>
+    <optionsIsAutoAccept>true</optionsIsAutoAccept>
+    <optionsIsInviteAutoRemove>false</optionsIsInviteAutoRemove>
+    <overallQueueLength>100</overallQueueLength>
+    <postChatPage>LiveAgentPostChatForm</postChatPage>
+    <preChatFormPage>LiveAgentPreChat</preChatFormPage>
+    <routingType xsi:nil="true"/>
+    <site>Chat</site>
+    <type>Standard</type>
+    <windowLanguage>en_US</windowLanguage>
+</LiveChatButton>
