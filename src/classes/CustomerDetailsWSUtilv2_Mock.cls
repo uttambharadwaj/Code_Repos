@@ -710,7 +710,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     result.totalFeesRequested = 200.00;
                     result.totalRequests = 2;
                     result.totalRequestsApproved = 2;
-                    result.totalRequestsPending = 0;
+                    result.totalRequestsPending = 0.00;
 
 
                     responseElement.return_x= result;

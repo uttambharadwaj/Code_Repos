@@ -1314,7 +1314,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Decimal totalFeesRequested { get; set; }
         @AuraEnabled public Long totalRequests { get; set; }
         @AuraEnabled public Long totalRequestsApproved { get; set; }
-        @AuraEnabled public Long totalRequestsPending { get; set; }
+        @AuraEnabled public Decimal totalRequestsPending { get; set; }
         private String[] errorMsg_type_info = new String[]{
                 'errorMsg', 'http://com.wex.enterpriseapps.customerinfo', null, '0', '1', 'false'
         };
