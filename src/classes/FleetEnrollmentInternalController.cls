@@ -201,7 +201,8 @@ public with sharing class FleetEnrollmentInternalController {
 
                 for (String option : (program.Fleet_Available_Billing_Cycles__c).split(';')) {
 
-                    availableBillingCycles.add(new SelectOption(option, option));
+                    if(option != 'Cycle 4')
+                        availableBillingCycles.add(new SelectOption(option, option));
 
                 }
 
@@ -524,7 +525,7 @@ public with sharing class FleetEnrollmentInternalController {
                 }
 
                 System.debug(fleetEnrollmentInformation.fleetEnrollmentContacts);
-                
+
                 for (FleetEnrollmentContacts fleetEnrollmentContact : fleetEnrollmentInformation.fleetEnrollmentContacts) {
 
                     if (!String.isBlank(fleetEnrollmentContact.firstName)) {
@@ -593,7 +594,7 @@ public with sharing class FleetEnrollmentInternalController {
         public String feeWaiversMonthlyAccountingFeeEndDate { get; set; }
         public String feeWaiversTFSFileName { get; set; }
         public Blob feeWaiversTFSFileBody { get; set; }
-        
+
         public Boolean feeWaiversMonthlyActivityFee { get; set; }
         public Decimal feeWaiversMonthlyActivityFeeAmount { get; set; }
 
