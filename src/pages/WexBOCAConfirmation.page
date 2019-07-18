@@ -262,7 +262,7 @@ Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decis
                                     <p style="max-width: 320px;">
                                         {!$Label.BOCA_Fleet_Enrollment}
                                     </p>
-                                    <a href="/FleetEnrollment?appId={!applicationRequestNumber}&program={!program.Brand_Short_Name__c}&ver=BOCA">
+                                    <a href="/FleetEnrollment?appId={!applicationRequestNumber}&program={!program.Brand_Short_Name__c}&ver=BOCA&opty={!applicationOpportunity}">
                                         <button type="button" class="step-button ge-click-acctsetup">{!$Label.BOCA_Fleet_Enrollment_Button}</button>
                                     </a>
                                 </div>
@@ -284,7 +284,7 @@ Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decis
                                     <p style="max-width: 320px;">
                                         {!$Label.BOCA_Fleet_Enrollment}
                                     </p>
-                                    <a href="/FleetEnrollment/FleetEnrollment2?appId={!applicationRequestNumber}&program={!program.Brand_Short_Name__c}&ver=BOCA">
+                                    <a href="/FleetEnrollment/FleetEnrollment2?appId={!applicationRequestNumber}&program={!program.Brand_Short_Name__c}&ver=BOCA&opty={!applicationOpportunity}">
                                         <button type="button" class="step-button ge-click-acctsetup">{!$Label.BOCA_Fleet_Enrollment_Button}</button>
                                     </a>
                                 </div>

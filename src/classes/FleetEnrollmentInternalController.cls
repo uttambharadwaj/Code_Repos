@@ -271,10 +271,12 @@ public with sharing class FleetEnrollmentInternalController {
 
                         fleetEnrollment = new FleetEnrollment__c();
 
-                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id];
+                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id or Debug_Opportunity_Parameter__c=:opportunity.Id];
 
                         if(fleetEnrollments.size() > 0) {
                             fleetEnrollment.Id = fleetEnrollments[0].Id;
+                        } else {
+                            fleetEnrollment.Opportunity__c = opportunity.Id;
                         }
 
                         if (opportunity.Campaign_Program__r.Program__c != null) {
