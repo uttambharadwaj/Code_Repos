@@ -1,6 +1,10 @@
-/**
- * Created by dgilbert on 9/26/2018.
- */
+/*
+*
+* Created by dgilbert on 9/26/2018.
+*
+* Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name to FleetEnrollmentInternal Page.
+*
+*/
 
 public with sharing class FleetEnrollmentInternalController {
 
@@ -70,6 +74,9 @@ public with sharing class FleetEnrollmentInternalController {
             return ApexPages.hasMessages();
         }
     }
+
+    // NAFONBOARD-44
+    public boolean embossingNameBlank { get; set; }
 
     public Id internalRecordType {
         get {
@@ -271,12 +278,20 @@ public with sharing class FleetEnrollmentInternalController {
 
                         fleetEnrollment = new FleetEnrollment__c();
 
-                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id or Debug_Opportunity_Parameter__c=:opportunity.Id];
+                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Embossing_Company_Name__c FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id or Debug_Opportunity_Parameter__c=:opportunity.Id];
 
                         if(fleetEnrollments.size() > 0) {
                             fleetEnrollment.Id = fleetEnrollments[0].Id;
                         } else {
                             fleetEnrollment.Opportunity__c = opportunity.Id;
+                        }
+
+                        // NAFONBOARD-44
+                        if (fleetEnrollments.size() > 0 && fleetEnrollments[0].Embossing_Company_Name__c != null) {
+                            embossingNameBlank = false;
+                        } else {
+                            embossingNameBlank = true;
+                            FleetEnrollment.Embossing_Company_Name__c = opportunity.Name.substring(0, 30);
                         }
 
                         if (opportunity.Campaign_Program__r.Program__c != null) {
@@ -405,7 +420,7 @@ public with sharing class FleetEnrollmentInternalController {
 
             fleetEnrollment.Station_Card__c = fleetEnrollmentInformation.stationCard;
 
-            fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
+//            fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
 
             fleetEnrollment.Billing_Full_Name__c = opportunity.Billing_Contact_First_Name__c + ' ' + opportunity.Billing_Contact_Last_Name__c;
             fleetEnrollment.Billing_Email__c = opportunity.Billing_Contact_Email__c;
