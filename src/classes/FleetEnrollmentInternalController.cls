@@ -201,7 +201,8 @@ public with sharing class FleetEnrollmentInternalController {
 
                 for (String option : (program.Fleet_Available_Billing_Cycles__c).split(';')) {
 
-                    availableBillingCycles.add(new SelectOption(option, option));
+                    if(option != 'Cycle 4')
+                        availableBillingCycles.add(new SelectOption(option, option));
 
                 }
 
@@ -270,10 +271,12 @@ public with sharing class FleetEnrollmentInternalController {
 
                         fleetEnrollment = new FleetEnrollment__c();
 
-                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id];
+                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id or Debug_Opportunity_Parameter__c=:opportunity.Id];
 
                         if(fleetEnrollments.size() > 0) {
                             fleetEnrollment.Id = fleetEnrollments[0].Id;
+                        } else {
+                            fleetEnrollment.Opportunity__c = opportunity.Id;
                         }
 
                         if (opportunity.Campaign_Program__r.Program__c != null) {
@@ -524,7 +527,7 @@ public with sharing class FleetEnrollmentInternalController {
                 }
 
                 System.debug(fleetEnrollmentInformation.fleetEnrollmentContacts);
-                
+
                 for (FleetEnrollmentContacts fleetEnrollmentContact : fleetEnrollmentInformation.fleetEnrollmentContacts) {
 
                     if (!String.isBlank(fleetEnrollmentContact.firstName)) {
@@ -593,7 +596,7 @@ public with sharing class FleetEnrollmentInternalController {
         public String feeWaiversMonthlyAccountingFeeEndDate { get; set; }
         public String feeWaiversTFSFileName { get; set; }
         public Blob feeWaiversTFSFileBody { get; set; }
-        
+
         public Boolean feeWaiversMonthlyActivityFee { get; set; }
         public Decimal feeWaiversMonthlyActivityFeeAmount { get; set; }
 
