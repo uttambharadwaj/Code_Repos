@@ -15601,28 +15601,30 @@
         <fullName>BO_Entity_Virtual_Required</fullName>
         <active>true</active>
         <description>If this is a virtual record, we need to require either a SFDC account/opportunity, or a Siebel opportunity #, or contract #.</description>
-        <errorConditionFormula>AND( 
-$RecordType.Name = &quot;Virtual&quot;, 
-ISBLANK(Account__c), 
-ISBLANK(Opportunity__c), 
-ISBLANK(Contract_Number__c), 
-ISBLANK(Opportunity_Number__c),
-ISBLANK(Opportunity_Number__c)
-)</errorConditionFormula>
+        <errorConditionFormula>AND(
+            NOT($Setup.Automation_Settings__c.Disable_Validation_Rules__c),
+            $RecordType.Name = &quot;Virtual&quot;,
+            ISBLANK(Account__c),
+            ISBLANK(Opportunity__c),
+            ISBLANK(Contract_Number__c),
+            ISBLANK(Opportunity_Number__c),
+            ISBLANK(Opportunity_Number__c)
+            )</errorConditionFormula>
         <errorMessage>Please link this record to an existing Account or Opportunity in Salesforce, or enter an Account #, Contract #, or Siebel Opportunity #.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Verify_Certified_By_Is_Entered</fullName>
         <active>true</active>
         <errorConditionFormula>AND(
-AND(
-TEXT(Verification_Status__c) != &apos;Pending Lexis/Nexis&apos;,
-TEXT(Verification_Status__c) != &apos;Exempted&apos;),
-OR(
-ISBLANK(Certified_By__c),
-ISBLANK(Certified_Date__c)
-)
-)</errorConditionFormula>
+            NOT($Setup.Automation_Settings__c.Disable_Validation_Rules__c),
+            AND(
+            TEXT(Verification_Status__c) != &apos;Pending Lexis/Nexis&apos;,
+            TEXT(Verification_Status__c) != &apos;Exempted&apos;),
+            OR(
+            ISBLANK(Certified_By__c),
+            ISBLANK(Certified_Date__c)
+            )
+            )</errorConditionFormula>
         <errorMessage>Please provided a certified name and date!</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
@@ -15635,21 +15637,21 @@ ISBLANK(Certified_Date__c)
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
-{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+            {!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
 
-try {
-if(&quot;{!Beneficial_Owner_Entity__c.Record_Status__c}&quot; != &quot;Archived&quot;) {
-var result = sforce.apex.execute(&quot;BeneficialOwnerUtilities&quot;, &quot;deepCloneBORecord&quot;,{boEntityID : &quot;{!Beneficial_Owner_Entity__c.Id}&quot;});
+            try {
+            if(&quot;{!Beneficial_Owner_Entity__c.Record_Status__c}&quot; != &quot;Archived&quot;) {
+            var result = sforce.apex.execute(&quot;BeneficialOwnerUtilities&quot;, &quot;deepCloneBORecord&quot;,{boEntityID : &quot;{!Beneficial_Owner_Entity__c.Id}&quot;});
 
-window.top.location.href = &apos;/&apos; + result;
-}
-else {
-alert(&apos;Please clone from the current active record&apos;);
-}
-}
-catch(error) {
-alert(&apos;An error occured: &apos; + error);
-}</url>
+            window.top.location.href = &apos;/&apos; + result;
+            }
+            else {
+            alert(&apos;Please clone from the current active record&apos;);
+            }
+            }
+            catch(error) {
+            alert(&apos;An error occured: &apos; + error);
+            }</url>
     </webLinks>
     <webLinks>
         <fullName>CloneCP</fullName>
@@ -15670,51 +15672,51 @@ alert(&apos;An error occured: &apos; + error);
         <masterLabel>Verify Information</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)} 
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+            {!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
 
 
-if(&quot;{!Beneficial_Owner_Entity__c.Record_Status__c}&quot; != &quot;Archived&quot; &amp;&amp; &quot;{!Beneficial_Owner_Entity__c.Verification_Status__c}&quot; != &quot;Exempted&quot; &amp;&amp;
-&quot;{!Beneficial_Owner_Entity__c.Verification_Status__c}&quot; != &quot;Passed&quot;) { 
+            if(&quot;{!Beneficial_Owner_Entity__c.Record_Status__c}&quot; != &quot;Archived&quot; &amp;&amp; &quot;{!Beneficial_Owner_Entity__c.Verification_Status__c}&quot; != &quot;Exempted&quot; &amp;&amp;
+            &quot;{!Beneficial_Owner_Entity__c.Verification_Status__c}&quot; != &quot;Passed&quot;) {
 
-  if(&quot;{!Beneficial_Owner_Entity__c.Certified_By__c}&quot; === &quot;&quot; || &quot;{!Beneficial_Owner_Entity__c.Certified_Date__c}&quot; === &quot;&quot;) {
-  
-    alert(&apos;Please ensure you have the Certified By and Certified Date fields filled in before running verification!&apos;); 
-    
-  }
-  else{
+            if(&quot;{!Beneficial_Owner_Entity__c.Certified_By__c}&quot; === &quot;&quot; || &quot;{!Beneficial_Owner_Entity__c.Certified_Date__c}&quot; === &quot;&quot;) {
 
-    var existingOwners = sforce.connection.query(&quot;SELECT Id FROM Beneficial_Owner_Prong__c WHERE Beneficial_Owner_Entity__c = &apos;{!Beneficial_Owner_Entity__c.Id}&apos; and (RecordType.Name = &apos;Beneficial Owner&apos; or RecordType.Name = &apos;Beneficial Owner - Locked&apos;)&quot;);
+            alert(&apos;Please ensure you have the Certified By and Certified Date fields filled in before running verification!&apos;);
 
-    var existingController = sforce.connection.query(&quot;SELECT Id FROM Beneficial_Owner_Prong__c WHERE Beneficial_Owner_Entity__c = &apos;{!Beneficial_Owner_Entity__c.Id}&apos; and (RecordType.Name = &apos;Control Person&apos; or RecordType.Name = &apos;Control Person - Locked&apos;)&quot;);
+            }
+            else{
 
-    var records = existingOwners.getArray(&quot;records&quot;);
+            var existingOwners = sforce.connection.query(&quot;SELECT Id FROM Beneficial_Owner_Prong__c WHERE Beneficial_Owner_Entity__c = &apos;{!Beneficial_Owner_Entity__c.Id}&apos; and (RecordType.Name = &apos;Beneficial Owner&apos; or RecordType.Name = &apos;Beneficial Owner - Locked&apos;)&quot;);
 
-    if(&quot;{!Beneficial_Owner_Entity__c.Legal_Structure__c}&quot; !== &quot;Non-Profit&quot; &amp;&amp; &quot;{!Beneficial_Owner_Entity__c.No_Beneficial_Owners__c}&quot; == 0 &amp;&amp; existingOwners.getArray(&quot;records&quot;).length == 0) {
-      alert(&quot;No Beneficial Owner records exist. Please only run verification after they have been added.&quot;);
-    }
-    else if(existingController.getArray(&quot;records&quot;).length == 0) {
-      alert(&quot;No Control Person record exists. Please only run verification after they have been added.&quot;);
-    }
-    else {
+            var existingController = sforce.connection.query(&quot;SELECT Id FROM Beneficial_Owner_Prong__c WHERE Beneficial_Owner_Entity__c = &apos;{!Beneficial_Owner_Entity__c.Id}&apos; and (RecordType.Name = &apos;Control Person&apos; or RecordType.Name = &apos;Control Person - Locked&apos;)&quot;);
 
-      try { 
+            var records = existingOwners.getArray(&quot;records&quot;);
 
-        sforce.apex.execute(&quot;CreditWS_LexisNexis&quot;, &quot;runBeneficialOwnerVerificationButton&quot;,{beneficialEntityId : &quot;{!Beneficial_Owner_Entity__c.Id}&quot;}); 
+            if(&quot;{!Beneficial_Owner_Entity__c.Legal_Structure__c}&quot; !== &quot;Non-Profit&quot; &amp;&amp; &quot;{!Beneficial_Owner_Entity__c.No_Beneficial_Owners__c}&quot; == 0 &amp;&amp; existingOwners.getArray(&quot;records&quot;).length == 0) {
+            alert(&quot;No Beneficial Owner records exist. Please only run verification after they have been added.&quot;);
+            }
+            else if(existingController.getArray(&quot;records&quot;).length == 0) {
+            alert(&quot;No Control Person record exists. Please only run verification after they have been added.&quot;);
+            }
+            else {
 
-        window.top.location.reload(); 
-      } 
-catch(error) { 
-      alert(&apos;An error occured: &apos; + error); 
-    }
-      
-    } 
-    
-  }
-}
-else { 
-  alert(&apos;Verification cannot be run from an archived record, or any record that is either exempted, or has already passed verification&apos;); 
-}</url>
+            try {
+
+            sforce.apex.execute(&quot;CreditWS_LexisNexis&quot;, &quot;runBeneficialOwnerVerificationButton&quot;,{beneficialEntityId : &quot;{!Beneficial_Owner_Entity__c.Id}&quot;});
+
+            window.top.location.reload();
+            }
+            catch(error) {
+            alert(&apos;An error occured: &apos; + error);
+            }
+
+            }
+
+            }
+            }
+            else {
+            alert(&apos;Verification cannot be run from an archived record, or any record that is either exempted, or has already passed verification&apos;);
+            }</url>
     </webLinks>
     <webLinks>
         <fullName>Send_Form</fullName>
