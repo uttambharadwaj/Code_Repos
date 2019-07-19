@@ -489,7 +489,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
                                                 <apex:InputField id="accountType" styleClass="styled-input required" required="true" html-tabIndex="29" label="" value="{!onlineApplication.Account_Type__c}">
-                                                    <apex:actionSupport event="onchange" action="{!doNothing}" rerender="creditLine,paymentMethodContainer,dayOfPaymentGroup,accountGuarantor,disclaimer" />
+                                                    <apex:actionSupport event="onchange" action="{!doNothing}" rerender="creditLine,paymentMethodContainer,dayOfPaymentGroup,accountGuarantor,disclaimer"  oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
