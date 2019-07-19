@@ -291,7 +291,7 @@ public with sharing class FleetEnrollmentInternalController {
                             embossingNameBlank = false;
                         } else {
                             embossingNameBlank = true;
-                            FleetEnrollment.Embossing_Company_Name__c = opportunity.Name.substring(0, 30);
+                            FleetEnrollment.Embossing_Company_Name__c = opportunity.Name.replaceFirst('^(.{30}).*', '$1');
                         }
 
                         if (opportunity.Campaign_Program__r.Program__c != null) {
