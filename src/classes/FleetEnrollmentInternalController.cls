@@ -341,12 +341,14 @@ public with sharing class FleetEnrollmentInternalController {
     public void addNewContact() {
 
         if(fleetEnrollmentInformation.fleetEnrollmentContacts != null) {
-            fleetEnrollmentInformation.fleetEnrollmentContacts.add(new FleetEnrollmentContacts());
+            FleetEnrollmentContacts newFEC = new FleetEnrollmentContacts();
+            newFEC.myIndex = fleetEnrollmentInformation.fleetEnrollmentContacts.size();
+            fleetEnrollmentInformation.fleetEnrollmentContacts.add(newFEC);
         }
 
     }
 
-    public String selectedContact { get; set; }
+    public Integer selectedContact { get; set; }
 
     public Integer additionalContactsSize {
         get {
@@ -361,8 +363,12 @@ public with sharing class FleetEnrollmentInternalController {
 
         System.debug(selectedContact);
 
-        if(fleetEnrollmentInformation.fleetEnrollmentContacts != null && selectedContact != null && fleetEnrollmentInformation.fleetEnrollmentContacts[Integer.valueOf(selectedContact)] != null) {
-            fleetEnrollmentInformation.fleetEnrollmentContacts.remove(Integer.valueOf(selectedContact));
+        if(fleetEnrollmentInformation.fleetEnrollmentContacts != null && selectedContact != null && fleetEnrollmentInformation.fleetEnrollmentContacts[selectedContact] != null) {
+            fleetEnrollmentInformation.fleetEnrollmentContacts.remove(selectedContact);
+            //reset the indexes
+            for(Integer i=0; i<fleetEnrollmentInformation.fleetEnrollmentContacts.size(); i++){
+                fleetEnrollmentInformation.fleetEnrollmentContacts[i].myIndex = i;
+            }
         }
 
         return null;
@@ -663,6 +669,7 @@ public with sharing class FleetEnrollmentInternalController {
             fleetEnrollmentContacts = new List<FleetEnrollmentContacts>();
 
             fleetEnrollmentContacts.add(new FleetEnrollmentContacts());
+            fleetEnrollmentContacts[0].myIndex=0;
 
         }
 
@@ -675,6 +682,7 @@ public with sharing class FleetEnrollmentInternalController {
         public String phone { get; set; }
         public String emailAddress { get; set; }
         public String role { get; set; }
+        public Integer myIndex {get;set;}
 
         public FleetEnrollmentContacts() {
 
