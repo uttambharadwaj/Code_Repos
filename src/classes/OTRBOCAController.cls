@@ -782,9 +782,9 @@ public class OTRBOCAController {
             opportunity.Guarantor_home_phone__c = onlineApplication.AO_Home_Phone_Number__c;
 
             // PSOBACKLOG-226
-            if (onlineApplicationOffer != null) {
-                opportunity.Offer__c = onlineApplicationOffer.Id;
-            }
+//            if (onlineApplicationOffer != null) {
+//                opportunity.Offer__c = onlineApplicationOffer.Id;
+//            }
 
             if (campaign != null && campaignProgram != null) {
                 opportunity.CampaignId = campaign.Id;
