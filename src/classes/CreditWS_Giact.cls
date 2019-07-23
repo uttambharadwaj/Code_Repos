@@ -44,24 +44,10 @@ public with sharing class CreditWS_Giact {
                 // Customer Information
                 giactRequest.Customer = new CreditWSUtil_GiactVerify.Customer();
                 giactRequest.Customer.EntityType = 0;
-                giactRequest.Customer.FirstName = giactInquiryRequest.FirstName;
-                giactRequest.Customer.LastName = giactInquiryRequest.LastName;
                 giactRequest.Customer.BusinessName = giactInquiryRequest.BusinessName;
-                giactRequest.Customer.AddressLine1 = giactInquiryRequest.AddressLine1;
-                giactRequest.Customer.AddressLine2 = giactInquiryRequest.AddressLine2;
-                giactRequest.Customer.City = giactInquiryRequest.City;
-                giactRequest.Customer.State = giactInquiryRequest.State;
-                giactRequest.Customer.ZipCode = giactInquiryRequest.ZipCode;
-                giactRequest.Customer.Country = giactInquiryRequest.Country;
-                if(!String.isBlank(giactInquiryRequest.PhoneNumber)) {
-                    giactRequest.Customer.PhoneNumber = giactInquiryRequest.PhoneNumber.replaceAll('[^0-9]', '');
-                }
                 if(!String.isBlank(giactInquiryRequest.FederalTaxId)) {
                     giactRequest.Customer.TaxId = giactInquiryRequest.FederalTaxId.replaceAll('[^0-9]', '');
                 }
-                giactRequest.Customer.DateOfBirth = giactInquiryRequest.DateOfBirth;
-                giactRequest.Customer.EmailAddress = giactInquiryRequest.EmailAddress;
-                giactRequest.Customer.CurrentIpAddress = giactInquiryRequest.IpAddress;
 
                 // General Settings
                 giactRequest.GAuthenticateEnabled = true;
