@@ -516,20 +516,8 @@ public class CreditWS_Test {
 
         giactVerifyRequest.RoutingNumber = '12345678';
         giactVerifyRequest.AccountNumber = '1234567890';
-        giactVerifyRequest.FirstName = 'Derek';
-        giactVerifyRequest.LastName = 'Gilbert';
         giactVerifyRequest.BusinessName = 'WEX Inc';
-        giactVerifyRequest.AddressLine1 = '97 Darling Ave';
-        giactVerifyRequest.AddressLine2 = '';
-        giactVerifyRequest.City = 'South Portland';
-        giactVerifyRequest.State = 'ME';
-        giactVerifyRequest.ZipCode = '04106';
-        giactVerifyRequest.Country = 'US';
-        giactVerifyRequest.PhoneNumber = '207-523-6969';
         giactVerifyRequest.FederalTaxId = '123456789';
-        giactVerifyRequest.DateOfBirth = '12/28/1986';
-        giactVerifyRequest.EmailAddress = 'derek.gilbert@wexinc.com';
-        giactVerifyRequest.IpAddress = '127.0.0.1';
 
         CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 

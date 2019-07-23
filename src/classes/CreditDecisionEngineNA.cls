@@ -431,19 +431,8 @@ global class CreditDecisionEngineNA {
                 giactVerifyRequest.UniqueId = String.valueOf(naApplication.Id);
                 giactVerifyRequest.RoutingNumber = naApplication.ABA_Routing_Number__c;
                 giactVerifyRequest.AccountNumber = naApplication.Checking_Account_Number__c;
-                giactVerifyRequest.FirstName = naApplication.Billing_Contact_First_Name_Text__c;
-                giactVerifyRequest.LastName = naApplication.Billing_Contact_Last_Name_Text__c;
                 giactVerifyRequest.BusinessName = naApplication.Opportunity_Name_Text__c;
-                giactVerifyRequest.AddressLine1 = naApplication.Physical_Street__c;
-                giactVerifyRequest.AddressLine2 = naApplication.Physical_Street_Line_2__c;
-                giactVerifyRequest.City = naApplication.Physical_City__c;
-                giactVerifyRequest.State = naApplication.Physical_State__c;
-                giactVerifyRequest.ZipCode = naApplication.Physical_Zip_Postal_Code__c;
-                giactVerifyRequest.Country = naApplication.Physical_Country__c;
-                giactVerifyRequest.PhoneNumber = naApplication.Business_Phone_Number__c;
                 giactVerifyRequest.FederalTaxId = naApplication.Tax_Payer_ID_number__c;
-                giactVerifyRequest.EmailAddress = naApplication.Billing_Contact_Email__c;
-                giactVerifyRequest.IpAddress = naApplication.App_Signer_IP_Address__c;
 
                 if (!TestUtils.isRunningTest()) {
 
