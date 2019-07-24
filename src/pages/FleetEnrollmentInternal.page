@@ -531,6 +531,19 @@
 											</div>
 											<br/>
 										</div>
+										<!-- BEGIN CHANGES 7/17/2019 CDJ-->
+										<div style="display: {!IF(availableFindersFeesSize != 1, 'block', 'none')};">
+											<div class="slds-form-element__control">
+												<label class="slds-form-element__label" for="text-input-id-1">Finders Fee</label>
+												<div class="slds-form-element__control">
+													<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedFindersFee}" styleClass="slds-input" multiSelect="false" size="1">
+														<apex:selectOptions value="{!availableFindersFees}"/>
+													</apex:selectList>
+												</div>
+											</div>
+											<br/>
+										</div>
+										<!-- END CHANGES 7/17/2019 CDJ-->
 										<div class="slds-form-element__control">
 											<span class="slds-checkbox">
 												<label class="slds-checkbox__label">
@@ -965,7 +978,6 @@
 											<apex:outputPanel id="additionalContactsSection">
 												<apex:actionRegion >
 													<apex:repeat value="{!fleetEnrollmentInformation.fleetEnrollmentContacts}" var="fleetEnrollmentContact">
-														<apex:variable value="0" var="num"/>
 														<div class="slds-box" style="margin-bottom: 20px;">
 															<fieldset class="slds-form-element slds-form_compound">
 																<div class="slds-form-element__control">
@@ -1012,7 +1024,7 @@
 																			<div class="slds-form-element slds-size_1-of-1">
 																				<div class="slds-form-element__control">
 																					<apex:commandLink styleClass="slds-button slds-button_destructive" oncomplete="pageRerenderFunctions()" value="Remove Contact" action="{!removeContact}" rerender="additionalContactsSection">
-																						<apex:param name="selectedContact" value="{!num}" assignTo="{!selectedContact}" />
+																						<apex:param name="selectedContact" value="{!fleetEnrollmentContact.myIndex}" assignTo="{!selectedContact}" />
 																					</apex:commandLink>
 																				</div>
 																			</div>
@@ -1021,7 +1033,6 @@
 																</div>
 															</fieldset>
 														</div>
-														<apex:variable var="num" value="{!VALUE(num) + 1}"/>
 													</apex:repeat>
 													<apex:commandLink styleClass="slds-button slds-button_brand" oncomplete="pageRerenderFunctions()" value="Add Contact" action="{!addNewContact}" rerender="additionalContactsSection"></apex:commandLink>
 												</apex:actionRegion>

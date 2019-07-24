@@ -3,6 +3,7 @@
 * Created by dgilbert on 9/26/2018.
 *
 * Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name to FleetEnrollmentInternal Page.
+* Revision History: 22/Jul/2019 CJackson    NAFONBOARD-5    Esso Finders Fee derived from sales checklist.
 *
 */
 
@@ -68,6 +69,24 @@ public with sharing class FleetEnrollmentInternalController {
     public FleetEnrollment__c fleetEnrollment { get; set; }
 
     public Program__c program { get; set; }
+
+    public Finders_Fee__c findersFee { get; set; }
+
+    public Finders_Fee__c defaultFindersFee { get; set; }
+
+    public String defaultFleetDataFolder {
+        get {
+
+            List<Folder> folders = [SELECT Id FROM Folder WHERE Name = 'NA Fleet Enrollment Sheets' LIMIT 1];
+
+            if(folders.size() > 0) {
+                return String.valueOf(folders[0].Id);
+            }
+
+            return null;
+
+        }
+    }
 
     public Boolean hasError {
         get {
@@ -225,6 +244,31 @@ public with sharing class FleetEnrollmentInternalController {
         }
     }
 
+    //NAFONBOARD-5 Esso Finders Fee derived from sales checklist
+    public List<SelectOption> availableFindersFees {
+        get {
+            List<SelectOption> availableFindersFees = new List<SelectOption>();
+            //Default to value set on Program
+            if (defaultFindersFee != null) {
+                availableFindersFees.add(new SelectOption(defaultFindersFee.Id, defaultFindersFee.Name));
+            } else {
+                availableFindersFees.add(new SelectOption('', '--- Choose One ---'));
+            }
+
+            for (Finders_Fee__c fees : [SELECT Id, Name FROM Finders_Fee__c WHERE Program__c = :program.Id ORDER BY Name]) {
+                availableFindersFees.add(new SelectOption(fees.Id, fees.Name));
+            }
+
+            return availableFindersFees;
+        }
+    }
+
+    public Integer availableFindersFeesSize {
+        get {
+            return availableFindersFees.size();
+        }
+    }
+
     public List<SelectOption> availableStateOptions {
         get {
             List<SelectOption> availableStateOptions = new List<SelectOption>();
@@ -268,7 +312,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (opportunityId != null) {
 
-                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name FROM Opportunity WHERE Id = :opportunityId];
+                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name, Campaign_Program__r.Program__r.Finders_Fee__c FROM Opportunity WHERE Id = :opportunityId];
 
                     if (opportunities.size() == 1) {
 
@@ -291,7 +335,11 @@ public with sharing class FleetEnrollmentInternalController {
                             embossingNameBlank = false;
                         } else {
                             embossingNameBlank = true;
-                            FleetEnrollment.Embossing_Company_Name__c = opportunity.Name.substring(0, 30);
+                            if (opportunity.Name.length() > 30) {
+                                FleetEnrollment.Embossing_Company_Name__c = opportunity.Name.substring(0, 30);
+                            } else {
+                                FleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
+                            }
                         }
 
                         if (opportunity.Campaign_Program__r.Program__c != null) {
@@ -304,6 +352,19 @@ public with sharing class FleetEnrollmentInternalController {
                                 fleetEnrollmentInformation.selectedCardShippingOption = 'Overnight';
                             }
 
+                        }
+
+                        //Get finder fee ID from Program to use as default for new Fleet Enrollment Form record
+                        if (opportunity.Campaign_Program__r.Program__r.Finders_Fee__c != null) {
+
+                            defaultFindersFee = new Finders_Fee__c();
+
+                            List<Finders_Fee__c> defaultFindersFees = [SELECT Id, Name FROM Finders_Fee__c WHERE Id =: opportunity.Campaign_Program__r.Program__r.Finders_Fee__c];
+
+                            if(defaultFindersFees.size() > 0) {
+                                defaultFindersFee.Id = defaultFindersFees[0].Id;
+                                defaultFindersFee.Name = defaultFindersFees[0].Name;
+                            }
                         }
 
                         List<Application_Request__c> applicationRequests = [SELECT Id, Siebel_Oppty__c FROM Application_Request__c WHERE Opportunity__c = :opportunityId];
@@ -337,12 +398,14 @@ public with sharing class FleetEnrollmentInternalController {
     public void addNewContact() {
 
         if(fleetEnrollmentInformation.fleetEnrollmentContacts != null) {
-            fleetEnrollmentInformation.fleetEnrollmentContacts.add(new FleetEnrollmentContacts());
+            FleetEnrollmentContacts newFEC = new FleetEnrollmentContacts();
+            newFEC.myIndex = fleetEnrollmentInformation.fleetEnrollmentContacts.size();
+            fleetEnrollmentInformation.fleetEnrollmentContacts.add(newFEC);
         }
 
     }
 
-    public String selectedContact { get; set; }
+    public Integer selectedContact { get; set; }
 
     public Integer additionalContactsSize {
         get {
@@ -357,8 +420,12 @@ public with sharing class FleetEnrollmentInternalController {
 
         System.debug(selectedContact);
 
-        if(fleetEnrollmentInformation.fleetEnrollmentContacts != null && selectedContact != null && fleetEnrollmentInformation.fleetEnrollmentContacts[Integer.valueOf(selectedContact)] != null) {
-            fleetEnrollmentInformation.fleetEnrollmentContacts.remove(Integer.valueOf(selectedContact));
+        if(fleetEnrollmentInformation.fleetEnrollmentContacts != null && selectedContact != null && fleetEnrollmentInformation.fleetEnrollmentContacts[selectedContact] != null) {
+            fleetEnrollmentInformation.fleetEnrollmentContacts.remove(selectedContact);
+            //reset the indexes
+            for(Integer i=0; i<fleetEnrollmentInformation.fleetEnrollmentContacts.size(); i++){
+                fleetEnrollmentInformation.fleetEnrollmentContacts[i].myIndex = i;
+            }
         }
 
         return null;
@@ -464,6 +531,12 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Usage_Type__c = fleetEnrollmentInformation.selectedUsageType;
             } else {
                 fleetEnrollment.Usage_Type__c = availableUsageTypes.get(1).getValue();
+            }
+
+            if (fleetEnrollmentInformation.selectedFindersFee != null) {
+                fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
+            } else {
+                fleetEnrollment.Finders_Fee__c = availableFindersFees.get(1).getValue();
             }
 
             List<Program_Template_Account__c> programTemplateAccounts = null;
@@ -649,6 +722,7 @@ public with sharing class FleetEnrollmentInternalController {
 
         public String selectedCardType { get; set; }
         public String selectedUsageType { get; set; }
+        public String selectedFindersFee { get; set; }
 
         public Boolean additionalContacts { get; set; }
 
@@ -659,6 +733,7 @@ public with sharing class FleetEnrollmentInternalController {
             fleetEnrollmentContacts = new List<FleetEnrollmentContacts>();
 
             fleetEnrollmentContacts.add(new FleetEnrollmentContacts());
+            fleetEnrollmentContacts[0].myIndex=0;
 
         }
 
@@ -671,6 +746,7 @@ public with sharing class FleetEnrollmentInternalController {
         public String phone { get; set; }
         public String emailAddress { get; set; }
         public String role { get; set; }
+        public Integer myIndex {get;set;}
 
         public FleetEnrollmentContacts() {
 
