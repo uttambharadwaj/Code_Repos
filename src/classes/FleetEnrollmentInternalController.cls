@@ -74,20 +74,6 @@ public with sharing class FleetEnrollmentInternalController {
 
     public Finders_Fee__c defaultFindersFee { get; set; }
 
-    public String defaultFleetDataFolder {
-        get {
-
-            List<Folder> folders = [SELECT Id FROM Folder WHERE Name = 'NA Fleet Enrollment Sheets' LIMIT 1];
-
-            if(folders.size() > 0) {
-                return String.valueOf(folders[0].Id);
-            }
-
-            return null;
-
-        }
-    }
-
     public Boolean hasError {
         get {
             return ApexPages.hasMessages();
@@ -250,13 +236,13 @@ public with sharing class FleetEnrollmentInternalController {
             List<SelectOption> availableFindersFees = new List<SelectOption>();
             //Default to value set on Program
             if (defaultFindersFee != null) {
-                availableFindersFees.add(new SelectOption(defaultFindersFee.Id, defaultFindersFee.Name));
+                availableFindersFees.add(new SelectOption(defaultFindersFee.Id, defaultFindersFee.Finders_Fee_Name__c));
             } else {
                 availableFindersFees.add(new SelectOption('', '--- Choose One ---'));
             }
 
-            for (Finders_Fee__c fees : [SELECT Id, Name FROM Finders_Fee__c WHERE Program__c = :program.Id ORDER BY Name]) {
-                availableFindersFees.add(new SelectOption(fees.Id, fees.Name));
+            for (Finders_Fee__c fees : [SELECT Id, Finders_Fee_Name__c FROM Finders_Fee__c WHERE Program__c = :program.Id ORDER BY Finders_Fee_Name__c]) {
+                availableFindersFees.add(new SelectOption(fees.Id, fees.Finders_Fee_Name__c));
             }
 
             return availableFindersFees;
@@ -359,11 +345,11 @@ public with sharing class FleetEnrollmentInternalController {
 
                             defaultFindersFee = new Finders_Fee__c();
 
-                            List<Finders_Fee__c> defaultFindersFees = [SELECT Id, Name FROM Finders_Fee__c WHERE Id =: opportunity.Campaign_Program__r.Program__r.Finders_Fee__c];
+                            List<Finders_Fee__c> defaultFindersFees = [SELECT Id, Finders_Fee_Name__c FROM Finders_Fee__c WHERE Id =: opportunity.Campaign_Program__r.Program__r.Finders_Fee__c];
 
                             if(defaultFindersFees.size() > 0) {
                                 defaultFindersFee.Id = defaultFindersFees[0].Id;
-                                defaultFindersFee.Name = defaultFindersFees[0].Name;
+                                defaultFindersFee.Finders_Fee_Name__c = defaultFindersFees[0].Finders_Fee_Name__c;
                             }
                         }
 
