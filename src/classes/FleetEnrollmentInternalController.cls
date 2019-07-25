@@ -3,6 +3,7 @@
 * Created by dgilbert on 9/26/2018.
 *
 * Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name to FleetEnrollmentInternal Page.
+* Revision History: 22/Jul/2019 CJackson    NAFONBOARD-5    Esso Finders Fee derived from sales checklist.
 *
 */
 
@@ -68,6 +69,10 @@ public with sharing class FleetEnrollmentInternalController {
     public FleetEnrollment__c fleetEnrollment { get; set; }
 
     public Program__c program { get; set; }
+
+    public Finders_Fee__c findersFee { get; set; }
+
+    public Finders_Fee__c defaultFindersFee { get; set; }
 
     public Boolean hasError {
         get {
@@ -225,6 +230,31 @@ public with sharing class FleetEnrollmentInternalController {
         }
     }
 
+    //NAFONBOARD-5 Esso Finders Fee derived from sales checklist
+    public List<SelectOption> availableFindersFees {
+        get {
+            List<SelectOption> availableFindersFees = new List<SelectOption>();
+            //Default to value set on Program
+            if (defaultFindersFee != null) {
+                availableFindersFees.add(new SelectOption(defaultFindersFee.Id, defaultFindersFee.Finders_Fee_Name__c));
+            } else {
+                availableFindersFees.add(new SelectOption('', ''));
+            }
+
+            for (Finders_Fee__c fees : [SELECT Id, Finders_Fee_Name__c FROM Finders_Fee__c WHERE Program__c = :program.Id ORDER BY Finders_Fee_Name__c]) {
+                availableFindersFees.add(new SelectOption(fees.Id, fees.Finders_Fee_Name__c));
+            }
+
+            return availableFindersFees;
+        }
+    }
+
+    public Integer availableFindersFeesSize {
+        get {
+            return availableFindersFees.size();
+        }
+    }
+
     public List<SelectOption> availableStateOptions {
         get {
             List<SelectOption> availableStateOptions = new List<SelectOption>();
@@ -268,7 +298,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (opportunityId != null) {
 
-                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name FROM Opportunity WHERE Id = :opportunityId];
+                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name, Campaign_Program__r.Program__r.Finders_Fee__c FROM Opportunity WHERE Id = :opportunityId];
 
                     if (opportunities.size() == 1) {
 
@@ -308,6 +338,19 @@ public with sharing class FleetEnrollmentInternalController {
                                 fleetEnrollmentInformation.selectedCardShippingOption = 'Overnight';
                             }
 
+                        }
+
+                        //Get finder fee ID from Program to use as default for new Fleet Enrollment Form record
+                        if (opportunity.Campaign_Program__r.Program__r.Finders_Fee__c != null) {
+
+                            defaultFindersFee = new Finders_Fee__c();
+
+                            List<Finders_Fee__c> defaultFindersFees = [SELECT Id, Finders_Fee_Name__c FROM Finders_Fee__c WHERE Id =: opportunity.Campaign_Program__r.Program__r.Finders_Fee__c];
+
+                            if(defaultFindersFees.size() > 0) {
+                                defaultFindersFee.Id = defaultFindersFees[0].Id;
+                                defaultFindersFee.Finders_Fee_Name__c = defaultFindersFees[0].Finders_Fee_Name__c;
+                            }
                         }
 
                         List<Application_Request__c> applicationRequests = [SELECT Id, Siebel_Oppty__c FROM Application_Request__c WHERE Opportunity__c = :opportunityId];
@@ -474,6 +517,10 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Usage_Type__c = fleetEnrollmentInformation.selectedUsageType;
             } else {
                 fleetEnrollment.Usage_Type__c = availableUsageTypes.get(1).getValue();
+            }
+
+            if (fleetEnrollmentInformation.selectedFindersFee != null) {
+                fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
             }
 
             List<Program_Template_Account__c> programTemplateAccounts = null;
@@ -659,6 +706,7 @@ public with sharing class FleetEnrollmentInternalController {
 
         public String selectedCardType { get; set; }
         public String selectedUsageType { get; set; }
+        public String selectedFindersFee { get; set; }
 
         public Boolean additionalContacts { get; set; }
 
