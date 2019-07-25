@@ -61,5 +61,8 @@ public class UtilityClassTest {
         UtilityClass.testHelper();
         UtilityClass.testHelper2();
         UtilityClass.testHelper3();
+        UtilityClass.testHelper4();
+        UtilityClass.testHelper5();
+        UtilityClass.testHelper6();
     }
 }
