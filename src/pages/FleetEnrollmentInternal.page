@@ -536,7 +536,7 @@
 											<div class="slds-form-element__control">
 												<label class="slds-form-element__label" for="text-input-id-1">Finders Fee</label>
 												<div class="slds-form-element__control">
-													<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedFindersFee}" styleClass="slds-input" multiSelect="false" size="1">
+													<apex:selectList value="{!fleetEnrollmentInformation.selectedFindersFee}" styleClass="slds-input" multiSelect="false" size="1">
 														<apex:selectOptions value="{!availableFindersFees}"/>
 													</apex:selectList>
 												</div>

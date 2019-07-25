@@ -238,7 +238,7 @@ public with sharing class FleetEnrollmentInternalController {
             if (defaultFindersFee != null) {
                 availableFindersFees.add(new SelectOption(defaultFindersFee.Id, defaultFindersFee.Finders_Fee_Name__c));
             } else {
-                availableFindersFees.add(new SelectOption('', '--- Choose One ---'));
+                availableFindersFees.add(new SelectOption('', ''));
             }
 
             for (Finders_Fee__c fees : [SELECT Id, Finders_Fee_Name__c FROM Finders_Fee__c WHERE Program__c = :program.Id ORDER BY Finders_Fee_Name__c]) {
@@ -521,8 +521,6 @@ public with sharing class FleetEnrollmentInternalController {
 
             if (fleetEnrollmentInformation.selectedFindersFee != null) {
                 fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
-            } else {
-                fleetEnrollment.Finders_Fee__c = availableFindersFees.get(1).getValue();
             }
 
             List<Program_Template_Account__c> programTemplateAccounts = null;
