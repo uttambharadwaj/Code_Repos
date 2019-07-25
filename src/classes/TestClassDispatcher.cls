@@ -1,6 +1,6 @@
 /*
 Description:        Test class dispatcher. A one-stop shop for test execution.
-Revision History:   
+Revision History:   7/23/2019 add apprequest tests
 */
 @isTest
 public class TestClassDispatcher {
@@ -33,6 +33,14 @@ public class TestClassDispatcher {
     
     @isTest static void testBOEntityBusinessProcesses(){
         BOEntityTriggerTest.testBusinessProcesses();
+    }
+
+    @isTest static void testAppRequestTriggerInserts() {
+        AppRequestTriggerTest.testInsert();
+    }
+
+    @isTest static void testAppRequestTriggerUpdates(){
+        AppRequestTriggerTest.testUpdate();
     }
 
 }
