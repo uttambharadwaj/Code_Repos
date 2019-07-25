@@ -1,6 +1,7 @@
 /*
 Description:        Test class dispatcher. A one-stop shop for test execution.
-Revision History:   
+Revision History:   7/23/2019 add apprequest tests
+                    25/Jul/2019 add Opportunity tests
 */
 @isTest
 public class TestClassDispatcher {
@@ -9,6 +10,10 @@ public class TestClassDispatcher {
     static void setup(){
         //create all the things!
         UtilityTestLoader.loadTestData();
+    }
+
+    @isTest static void testOpportunityTriggerAfterInsert1() {
+        OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnInsert();
     }
 
     @isTest static void testBOEntityTriggerBeforeInsert1() {
@@ -33,6 +38,14 @@ public class TestClassDispatcher {
     
     @isTest static void testBOEntityBusinessProcesses(){
         BOEntityTriggerTest.testBusinessProcesses();
+    }
+
+    @isTest static void testAppRequestTriggerInserts() {
+        AppRequestTriggerTest.testInsert();
+    }
+
+    @isTest static void testAppRequestTriggerUpdates(){
+        AppRequestTriggerTest.testUpdate();
     }
 
 }

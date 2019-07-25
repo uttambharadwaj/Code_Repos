@@ -35,7 +35,7 @@ public class OpportunityTriggerDispatcher extends TriggerDispatcherBase {
         if(isBeforeUpdateProcessing) execute(null, tp, TriggerParameters.TriggerEvent.beforeUpdate);
         else {
             isBeforeUpdateProcessing = true;
-            execute(new OpportunityAfterUpdateTriggerHandler(), tp, TriggerParameters.TriggerEvent.beforeUpdate);
+            execute(new OpportunityBeforeUpdateTriggerHandler(), tp, TriggerParameters.TriggerEvent.beforeUpdate);
             isBeforeUpdateProcessing = false;
         }
     }

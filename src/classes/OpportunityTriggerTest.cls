@@ -6,25 +6,57 @@ Revision History:
 public class OpportunityTriggerTest {
 
     public static void testFleetEnrollmentOpptyInfoOnInsert() {
-        Opportunity oppty = [SELECT Id, Campaign_Program__r.Program__c FROM Opportunity WHERE Name = 'Test Oppty' LIMIT 1];
-        Program_Template_Account__c pta = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program__c =: oppty.Campaign_Program__r.Program__c LIMIT 1];
 
-        FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
-        fleetEnrollment.Opportunity__c = oppty.id;
-        fleetEnrollment.Program__c = oppty.Campaign_Program__r.Program__c;
-        fleetEnrollment.Program_Template_Account__c = pta.Id;
-        fleetEnrollment.RecordTypeId = Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal').getRecordTypeId();
+        Account acc = [SELECT Id, Name FROM Account WHERE Name = 'Test' LIMIT 1];
+        System.debug('Account Id is: ' + acc.id);
+        Campaign_Program__c campaignProgram = [SELECT Id, Name, Campaign__c, Program__c FROM Campaign_Program__c WHERE Name = 'Test' LIMIT 1];
+        System.debug('Campaign Program Id is: ' + campaignProgram.id);
+        system.debug('Campaign_Program__r.Program__c is: ' + campaignProgram.Program__c);
+//        Campaign_Program__c campaignProgram2 = [SELECT Id, Name, Campaign__c, Program__c FROM Campaign_Program__c WHERE Name = 'Test 2' LIMIT 1];
+//        System.debug('Campaign Program Id is: ' + campaignProgram2.id);
+//        system.debug('Campaign_Program__r.Program__c is: ' + campaignProgram2.Program__c);
+
+        Opportunity oppty = new Opportunity();
+        oppty.Name = 'Test FE Creation Oppty';
+        oppty.AccountId = acc.Id;
+        system.debug('Related Account is: ' + oppty.AccountId);
+        oppty.CloseDate = Date.today().addDays(30);
+        oppty.StageName = '1) Qualified';
+        oppty.Type = 'New Customer';
+        oppty.CampaignId = campaignProgram.Campaign__c;
+        system.debug('Related Campaign is : ' + oppty.CampaignId);
+        oppty.Campaign_Program__c = campaignProgram.Id;
+        system.debug('Related Campaign Program is : ' + oppty.Campaign_Program__c);
+        oppty.Fueling_Methos__c = 'Bank Debit Card';
+        oppty.Fleet_Size__c = 10;
+        Oppty.Legal_Structure__c = 'Sole Proprietorship';
+        oppty.RecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Fuel Card').getRecordTypeId();
 
         Test.startTest();
-        insert fleetEnrollment;
+        insert oppty;
         Test.stopTest();
 
-        //Asserts for After Insert logic on mapping parents
-        FleetEnrollment__c myFE = [SELECT Id, Opportunity__c, Program__c, Program_Template_Account__c FROM FleetEnrollment__c WHERE Id =:fleetEnrollment.Id];
-        system.assertEquals(oppty.id, myFE.Opportunity__c);
-        system.assertEquals(oppty.Campaign_Program__r.Program__c, myFE.Program__c);
-        system.assertEquals(oppty.Campaign_Program__r.Program__c, myFE.Program_Template_Account__r.Program__c);
+        //Asserts for After Insert logic
+        Opportunity oppty2 = [SELECT Id, Name, Campaign_Program__c, Campaign_Program__r.Program__c FROM Opportunity WHERE Name ='Test FE Creation Oppty' LIMIT 1];
+        FleetEnrollment__c myFE = [SELECT Id, Opportunity__c, Program__c, Program_Template_Account__c, Program_Template_Account__r.Program__c, RecordType.Name FROM FleetEnrollment__c WHERE Opportunity__c =:oppty.Id];
+        system.assertEquals(oppty2.id, myFE.Opportunity__c);
+        system.assertEquals(oppty2.Campaign_Program__r.Program__c, myFE.Program__c);
+        system.assertEquals(oppty2.Campaign_Program__r.Program__c, myFE.Program_Template_Account__r.Program__c);
         system.assertEquals('Internal', myFE.RecordType.Name);
+
+        /* TODO: OppotyunityHelper has one uncovered line... need to work on coverage
+        //Update Oppty, check that FleetEnrollment Record updates
+        oppty2.Campaign_Program__c = campaignProgram2.Id;
+
+        Test.startTest();
+        update oppty2;
+        Test.stopTest();
+
+        //Asserts for Before Update logic
+        FleetEnrollment__c myFE2 = [SELECT Id, Opportunity__c, Program__c, Program_Template_Account__c, Program_Template_Account__r.Program__c, RecordType.Name FROM FleetEnrollment__c WHERE Opportunity__c =:oppty2.Id];
+        system.assertNotEquals(myFE.Program__c, myFE2.Program__c);
+        system.assertEquals(myFE2.Program__c, myFE2.Opportunity__r.Campaign_Program__r.Program__c);
+        */
 
     }
 
