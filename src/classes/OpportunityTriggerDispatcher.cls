@@ -8,7 +8,7 @@
 
 public class OpportunityTriggerDispatcher extends TriggerDispatcherBase {
     private static Boolean isAfterInsertProcessing = false;
-    private static Boolean isAfterUpdateProcessing = false;
+    private static Boolean isBeforeUpdateProcessing = false;
 
     /**
     * @description Called by the trigger framework to carry out the actions after the record(s) are created. If there is an
@@ -26,17 +26,17 @@ public class OpportunityTriggerDispatcher extends TriggerDispatcherBase {
     }
 
     /**
-    * @description Called by the trigger framework to carry out the actions after the records are updated. If there is an
+    * @description Called by the trigger framework to carry out the actions before the records are updated. If there is an
     *               existing call running on the same context, the rentrant call will utilize the handler that was created
     *               in the original call.
     * @param TriggerParameters Contains the trigger parameters which includes the record(s) that got updated.
     */
-    public virtual override void afterUpdate(TriggerParameters tp) {
-        if(isAfterUpdateProcessing) execute(null, tp, TriggerParameters.TriggerEvent.afterUpdate);
+    public virtual override void beforeUpdate(TriggerParameters tp) {
+        if(isBeforeUpdateProcessing) execute(null, tp, TriggerParameters.TriggerEvent.beforeUpdate);
         else {
-            isAfterUpdateProcessing = true;
-            execute(new OpportunityAfterUpdateTriggerHandler(), tp, TriggerParameters.TriggerEvent.afterUpdate);
-            isAfterUpdateProcessing = false;
+            isBeforeUpdateProcessing = true;
+            execute(new OpportunityAfterUpdateTriggerHandler(), tp, TriggerParameters.TriggerEvent.beforeUpdate);
+            isBeforeUpdateProcessing = false;
         }
     }
 }

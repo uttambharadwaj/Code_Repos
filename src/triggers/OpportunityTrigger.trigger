@@ -4,6 +4,6 @@
  *
  */
 
-trigger OpportunityTrigger on Opportunity (after insert, after update) {
+trigger OpportunityTrigger on Opportunity (after insert, before update) {
     TriggerFactory.createTriggerDispatcher(Opportunity.sObjectType);
 }
