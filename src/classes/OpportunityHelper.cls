@@ -4,7 +4,7 @@
 
 public class OpportunityHelper {
 
-    // After Insert, After Update
+    // After Insert, Before Update
     // check for FleetEnrollment__c record on creation of Fuel Card Opportunity
     public static void checkFleetEnrollment(List<Opportunity> opptyList) {
         Set<Id> opptyIds = new Set<Id>();
