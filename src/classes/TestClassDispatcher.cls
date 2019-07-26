@@ -11,6 +11,14 @@ public class TestClassDispatcher {
         UtilityTestLoader.loadTestData();
     }
 
+    @isTest static void testOpportunityTriggerAfterInsert() {
+        OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnInsert();
+    }
+
+    @isTest static void testOpportunityTriggerBeforeUpdate() {
+        OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnUpdate();
+    }
+
     @isTest static void testBOEntityTriggerBeforeInsert1() {
         BOEntityTriggerTest.testLegalStructureBeforeInsertFail();
     }
@@ -30,7 +38,7 @@ public class TestClassDispatcher {
     @isTest static void testBOEntityTriggerAfterUpdate1() {
         BOEntityTriggerTest.testCheckOpptyChangesAfterUpdate();
     }
-    
+
     @isTest static void testBOEntityBusinessProcesses(){
         BOEntityTriggerTest.testBusinessProcesses();
     }
