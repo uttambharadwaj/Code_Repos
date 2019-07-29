@@ -302,35 +302,6 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                     </div>
                                     <div class="six columns clearfix">
                                         <div class="twelve columns clearfix form-field" data-row="0">
-                                            <apex:outputLabel for="physicalAddress" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Business Physical Address', $ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label)}">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" required="true" html-tabindex="10" id="physicalAddress" html-maxlength="40" value="{!onlineApplication.Business_Street_Address__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Address Line 2', $ObjectType.OnlineApplication__c.fields.Business_Address_Line_2__c.label)}"/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="11" id="physicalAddressLine2" html-maxlength="40" value="{!onlineApplication.Business_Address_Line_2__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <apex:outputLabel for="city" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'City', $ObjectType.OnlineApplication__c.fields.City__c.label)}">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required" html-tabindex="12" id="city" required="true" label="" value="{!onlineApplication.City__c}" html-maxlength="40" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <apex:outputLabel for="state" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'State', $ObjectType.OnlineApplication__c.fields.State__c.label)}">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required" html-tabindex="13" id="state" required="true" value="{!onlineApplication.State__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
-                                            <apex:outputLabel for="postalCode" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Postal Code', $ObjectType.OnlineApplication__c.fields.Zip_Code__c.label)}">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required" required="true" html-tabindex="13" html-class="{!IF(onlineApplication.Country__c == null || onlineApplication.Country__c = 'US', 'postal', 'postalCanada')}" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />
-                                            <!--<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input {!IF(isPG, 'required', '')} postal" html-tabindex="44" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />-->
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="5">
                                             <apex:actionRegion >
                                                 <apex:outputLabel for="country" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Country', $ObjectType.OnlineApplication__c.fields.Country__c.label)}">
                                                     <span class="styled-label-required">*</span>
@@ -343,6 +314,35 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     <apex:actionSupport event="onchange" rerender="postalCode, state" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="1">
+                                            <apex:outputLabel for="physicalAddress" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Business Physical Address', $ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label)}">
+                                                <span class="styled-label-required">*</span>
+                                            </apex:outputLabel>
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" required="true" html-tabindex="10" id="physicalAddress" html-maxlength="40" value="{!onlineApplication.Business_Street_Address__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="2">
+                                            <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Address Line 2', $ObjectType.OnlineApplication__c.fields.Business_Address_Line_2__c.label)}"/>
+                                            <apex:InputField styleClass="styled-input" html-tabindex="11" id="physicalAddressLine2" html-maxlength="40" value="{!onlineApplication.Business_Address_Line_2__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="3">
+                                            <apex:outputLabel for="city" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'City', $ObjectType.OnlineApplication__c.fields.City__c.label)}">
+                                                <span class="styled-label-required">*</span>
+                                            </apex:outputLabel>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="12" id="city" required="true" label="" value="{!onlineApplication.City__c}" html-maxlength="40" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="4">
+                                            <apex:outputLabel for="state" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'State / Province', $ObjectType.OnlineApplication__c.fields.State__c.label)}">
+                                                <span class="styled-label-required">*</span>
+                                            </apex:outputLabel>
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="13" id="state" required="true" value="{!onlineApplication.State__c}" />
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="5">
+                                            <apex:outputLabel for="postalCode" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Postal Code', $ObjectType.OnlineApplication__c.fields.Zip_Code__c.label)}">
+                                                <span class="styled-label-required">*</span>
+                                            </apex:outputLabel>
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required" required="true" html-tabindex="13" html-class="{!IF(onlineApplication.Country__c == null || onlineApplication.Country__c = 'US', 'postal', 'postalCanada')}" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />
+                                            <!--<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input {!IF(isPG, 'required', '')} postal" html-tabindex="44" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />-->
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="6">
                                             <apex:actionRegion >
@@ -493,7 +493,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
                                                 <apex:InputField id="accountType" styleClass="styled-input required" required="true" html-tabIndex="29" label="" value="{!onlineApplication.Account_Type__c}">
-                                                    <apex:actionSupport event="onchange" action="{!doNothing}" rerender="creditLine,paymentMethodContainer,dayOfPaymentGroup,accountGuarantor,disclaimer"  oncomplete="pageLoadFunctions()"/>
+                                                    <apex:actionSupport event="onchange" action="{!doNothing}" rerender="creditLine,paymentMethodContainer,dayOfPaymentGroup,accountGuarantor,disclaimer" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
@@ -660,6 +660,17 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                         <div class="six columns clearfix">
                                             <div class="twelve columns clearfix form-field" data-row="20">
                                                 <apex:actionRegion >
+                                                    <apex:outputLabel for="pgCountry" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential Country', $ObjectType.OnlineApplication__c.fields.AO_Country__c.label)} ">
+                                                        <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
+                                                    </apex:outputLabel>
+                                                    <apex:InputField html-disabled="true"  styleClass="styled-input {!IF(isPG, 'required', '')}" required="{!isPG}" html-tabindex="44" id="pgCountry" value="{!onlineApplication.AO_Country__c}">
+                                                        <apex:actionSupport event="onchange" rerender="pgPostalCode, pgState, disclaimer" action="{!recalculatePG}" oncomplete="pageLoadFunctions()"/>
+                                                        <!--<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />-->
+                                                    </apex:inputField>
+                                                </apex:actionRegion>
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="21">
+                                                <apex:actionRegion >
                                                     <apex:outputLabel for="pgAddress" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential Address', $ObjectType.OnlineApplication__c.fields.AO_Address__c.label)} ">
                                                         <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
                                                     </apex:outputLabel>
@@ -668,7 +679,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     </apex:inputField>
                                                 </apex:actionRegion>
                                             </div>
-                                            <div class="twelve columns clearfix form-field" data-row="21">
+                                            <div class="twelve columns clearfix form-field" data-row="22">
                                                 <apex:actionRegion >
                                                     <apex:outputLabel for="pgCity" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential City', $ObjectType.OnlineApplication__c.fields.AO_City__c.label)} ">
                                                         <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
@@ -678,10 +689,10 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     </apex:inputField>
                                                 </apex:actionRegion>
                                             </div>
-                                            <div class="twelve columns clearfix form-field" data-row="22">
+                                            <div class="twelve columns clearfix form-field" data-row="23">
                                                 <apex:outputPanel id="resState">
                                                     <apex:actionRegion >
-                                                        <apex:outputLabel for="pgState" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential State', $ObjectType.OnlineApplication__c.fields.AO_State__c.label)} ">
+                                                        <apex:outputLabel for="pgState" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential State / Province', $ObjectType.OnlineApplication__c.fields.AO_State__c.label)} ">
                                                             <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
                                                         </apex:outputLabel>
                                                         <apex:InputField styleClass="styled-input {!IF(isPG, 'required', '')}" html-tabindex="42" id="pgState" value="{!onlineApplication.AO_State__c}" html-maxlength="40">
@@ -690,24 +701,13 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     </apex:actionRegion>
                                                 </apex:outputPanel>
                                             </div>
-                                            <div class="twelve columns clearfix form-field" data-row="23">
+                                            <div class="twelve columns clearfix form-field" data-row="24">
                                                 <apex:actionRegion >
                                                     <apex:outputLabel for="pgPostalCode" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential Postal Code', $ObjectType.OnlineApplication__c.fields.AO_Zip_Code__c.label)} ">
                                                         <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
                                                     </apex:outputLabel>
                                                     <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}"  required="{!isPG}" styleClass="styled-input {!IF(isPG, 'required', '')} {!IF(onlineApplication.AO_Country__c == null || onlineApplication.AO_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="44" id="pgPostalCode" value="{!onlineApplication.AO_Zip_Code__c}" html-maxlength="10" >
                                                         <apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />
-                                                    </apex:inputField>
-                                                </apex:actionRegion>
-                                            </div>
-                                            <div class="twelve columns clearfix form-field" data-row="24">
-                                                <apex:actionRegion >
-                                                    <apex:outputLabel for="pgCountry" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Your Residential Country', $ObjectType.OnlineApplication__c.fields.AO_Country__c.label)} ">
-                                                        <apex:outputText styleClass="styled-label-required" rendered="{!isPG}" value="*" />
-                                                    </apex:outputLabel>
-                                                    <apex:InputField html-disabled="true"  styleClass="styled-input {!IF(isPG, 'required', '')}" required="{!isPG}" html-tabindex="44" id="pgCountry" value="{!onlineApplication.AO_Country__c}">
-                                                        <apex:actionSupport event="onchange" rerender="pgPostalCode, pgState, disclaimer" action="{!recalculatePG}" oncomplete="pageLoadFunctions()"/>
-                                                        <!--<apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="disclaimer" />-->
                                                     </apex:inputField>
                                                 </apex:actionRegion>
                                             </div>
