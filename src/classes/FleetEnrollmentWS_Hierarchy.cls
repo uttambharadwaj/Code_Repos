@@ -242,9 +242,11 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                     List<FleetEnrollment__c> fleetEnrollment = [SELECT Id, Application_Request__c, Opportunity__c, Program__c, Program_Template_Account__c FROM FleetEnrollment__c WHERE Opportunity__c =: cases[0].opportunity__c LIMIT 1];
 
-                    fleetEnrollment[0].Application_Request__c = cases[0].App_Request_This_Case__c;
+                    if (fleetEnrollment.size() > 0) {
+                        fleetEnrollment[0].Application_Request__c = cases[0].App_Request_This_Case__c;
 
-                    upsert fleetEnrollment[0];
+                        update fleetEnrollment[0];
+                    }
 /*
                     FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
 

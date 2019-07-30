@@ -37,7 +37,7 @@ public class OpportunityHelper {
         // Find all Program in the list of opptys
         List<Opportunity> opptyList = [
                 SELECT Id, Name, Campaign_Program__c, Campaign_Program__r.Program__c, Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c,
-                        Account, Account.Name, Siebel_Opportunity__c, OwnerId, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c,
+                        AccountId, Account.Name, Siebel_Opportunity__c, OwnerId, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c,
                         Billing_Street__c, Billing_Street_Line_2__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c,
                         Billing_Contact_Email__c, Billing_Contact_Phone__c
                 FROM Opportunity
@@ -63,7 +63,6 @@ public class OpportunityHelper {
             fleetEnrollment.Company_Name__c = opp.Account.Name;
             fleetEnrollment.Embossing_Company_Name__c = opp.name;
             fleetEnrollment.Opportunity_Number__c = opp.Siebel_Opportunity__c;
-            fleetEnrollment.Sales_Person__c = opp.OwnerId;
             fleetEnrollment.Billing_Cycle__c = opp.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c;
             fleetEnrollment.Billing_Contact_First_Name__c = opp.Billing_Contact_First_Name__c;
             fleetEnrollment.Billing_Contact_Last_Name__c = opp.Billing_Contact_Last_Name__c;
