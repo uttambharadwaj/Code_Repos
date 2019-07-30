@@ -491,19 +491,8 @@ global class CreditDecisionEngineCP {
                 giactVerifyRequest.UniqueId = String.valueOf(cpApplication.Id);
                 giactVerifyRequest.RoutingNumber = cpApplication.ABA_Routing_Number__c;
                 giactVerifyRequest.AccountNumber = cpApplication.Checking_Account_Number__c;
-                giactVerifyRequest.FirstName = cpApplication.First_Name__c;
-                giactVerifyRequest.LastName = cpApplication.Last_Name__c;
                 giactVerifyRequest.BusinessName = cpApplication.Company_Legal_Name__c;
-                giactVerifyRequest.AddressLine1 = cpApplication.Physical_Address_Line_1__c;
-                giactVerifyRequest.AddressLine2 = cpApplication.Physical_Address_Line_2__c;
-                giactVerifyRequest.City = cpApplication.Physical_City__c;
-                giactVerifyRequest.State = cpApplication.Physical_State__c;
-                giactVerifyRequest.ZipCode = cpApplication.Physical_Postal_Code__c;
-                giactVerifyRequest.Country = cpApplication.Physical_Country__c;
-                giactVerifyRequest.PhoneNumber = cpApplication.Business_Phone__c;
                 giactVerifyRequest.FederalTaxId = cpApplication.Taxpayer_ID__c;
-                giactVerifyRequest.EmailAddress = cpApplication.Email__c;
-                giactVerifyRequest.IpAddress = cpApplication.Application_Signer_IP_Address__c;
 
                 if (!TestUtils.isRunningTest()) {
 

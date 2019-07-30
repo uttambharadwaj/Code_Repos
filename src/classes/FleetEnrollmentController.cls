@@ -673,6 +673,7 @@ public virtual class FleetEnrollmentController {
                 fleetEnrollment.Opportunity_Number__c = opportunityParameter;
                 }
                 fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
+                fleetEnrollment.Opportunity__c = opportunityParameter;
             }
 
             if(selectedDriverIdOption.equalsIgnoreCase('random')) {

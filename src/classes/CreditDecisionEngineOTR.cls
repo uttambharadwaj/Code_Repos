@@ -496,19 +496,8 @@ global class CreditDecisionEngineOTR {
                 giactVerifyRequest.UniqueId = String.valueOf(onlineApplication.Id);
                 giactVerifyRequest.RoutingNumber = onlineApplication.ABA_Routing_Number__c;
                 giactVerifyRequest.AccountNumber = onlineApplication.Checking_Account_Number__c;
-                giactVerifyRequest.FirstName = onlineApplication.Contact_First_Name__c;
-                giactVerifyRequest.LastName = onlineApplication.Contact_Last_Name__c;
                 giactVerifyRequest.BusinessName = String.escapeSingleQuotes(onlineApplication.Legal_Business_Name__c);//IADJUDICAT-1188 be gone, singlies
-                giactVerifyRequest.AddressLine1 = onlineApplication.Business_Street_Address__c;
-                giactVerifyRequest.AddressLine2 = onlineApplication.Business_Address_Line_2__c;
-                giactVerifyRequest.City = onlineApplication.City__c;
-                giactVerifyRequest.State = onlineApplication.State__c;
-                giactVerifyRequest.ZipCode = onlineApplication.Zip_Code__c;
-                giactVerifyRequest.Country = onlineApplication.Country__c;
-                giactVerifyRequest.PhoneNumber = onlineApplication.Phone_Number__c;
                 giactVerifyRequest.FederalTaxId = onlineApplication.Federal_Tax_ID__c;
-                giactVerifyRequest.EmailAddress = onlineApplication.Email__c;
-                giactVerifyRequest.IpAddress = onlineApplication.IP_Address__c;
 
                 if (!TestUtils.isRunningTest()) {
 

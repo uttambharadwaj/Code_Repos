@@ -235,10 +235,19 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 upsert cases;
 
+
                 // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
                 // least need a Program Template Account associated for das bots.
                 if(cases[0].Fleet_Enrollment__c == null) {
 
+                    List<FleetEnrollment__c> fleetEnrollment = [SELECT Id, Application_Request__c, Opportunity__c, Program__c, Program_Template_Account__c FROM FleetEnrollment__c WHERE Opportunity__c =: cases[0].opportunity__c LIMIT 1];
+
+                    if (fleetEnrollment.size() > 0) {
+                        fleetEnrollment[0].Application_Request__c = cases[0].App_Request_This_Case__c;
+
+                        update fleetEnrollment[0];
+                    }
+/*
                     FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
 
                     fleetEnrollment.Program__c = cases[0].Opportunity__r.Campaign_Program__r.Program__c;
@@ -258,12 +267,13 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     }
 
                     insert fleetEnrollment;
+*/
 
                     List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id =: cases[0].App_Request_This_Case__c LIMIT 1];
 
                     if(applicationRequests.size() > 0) {
 
-                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollment.Id;
+                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollment[0].Id;
 
                         upsert applicationRequests[0];
 
