@@ -101,7 +101,7 @@ global class UtilityClass {
 
     public static List<Messaging.SendEmailResult> relayEmail(Messaging.SingleEmailMessage[] myEmailList, Boolean allOrNone){
         if(Test.isRunningtest()) allOrNone = false;
-        return relayEmail(myEmailList, allOrNone);
+        return Messaging.sendEmail(myEmailList, allOrNone);
     }
 
     public static Boolean emailErrors(Messaging.SendEmailResult myResult){
