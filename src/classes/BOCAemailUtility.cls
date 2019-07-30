@@ -228,8 +228,8 @@ public class BOCAemailUtility {
             }
         }
         
-        List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
-        if (!results.get(0).isSuccess()) {
+        List<Messaging.SendEmailResult> results = UtilityClass.relayEmail(mail);
+        if (UtilityClass.emailErrors(results.get(0))) {
             System.StatusCode statusCode = results.get(0).getErrors()[0].getStatusCode();
             message = results.get(0).getErrors()[0].getMessage();
             SYSTEM.debug('message ' + message);
@@ -388,8 +388,8 @@ public class BOCAemailUtility {
         	mail.setSenderDisplayName(fromName);
         }
               
-        List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
-        if (!results.get(0).isSuccess()) {
+        List<Messaging.SendEmailResult> results = UtilityClass.relayEmail(mail);
+        if (UtilityClass.emailErrors(results.get(0))) {
             System.StatusCode statusCode = results.get(0).getErrors()[0].getStatusCode();
             message = results.get(0).getErrors()[0].getMessage();
             SYSTEM.debug('message ' + message);
@@ -455,8 +455,8 @@ public class BOCAemailUtility {
 		mail.setReplyTo(replyTo);
 		mail.setSenderDisplayName(fromName);
 	
-		List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
-		if (!results.get(0).isSuccess()) {
+		List<Messaging.SendEmailResult> results = UtilityClass.relayEmail(mail);
+		if (UtilityClass.emailErrors(results.get(0))) {
 			System.StatusCode statusCode = results.get(0).getErrors()[0].getStatusCode();
 			message = results.get(0).getErrors()[0].getMessage();
 			SYSTEM.debug('message ' + message);

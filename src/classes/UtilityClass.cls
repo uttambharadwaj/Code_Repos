@@ -86,6 +86,28 @@ global class UtilityClass {
         if(Test.isRunningTest()) allOrNone = false; //if we are testing then this needs to be false or it all fails
         Messaging.sendEmail(myEmailList, allOrNone);
     }
+
+    public static List<Messaging.SendEmailResult> relayEmail(Messaging.SingleEmailMessage myEmail){
+        return relayEmail(new Messaging.SingleEmailMessage[]{myEmail}, true);
+    }
+
+    public static List<Messaging.SendEmailResult> relayEmail(Messaging.SingleEmailMessage myEmail, Boolean allOrNone){
+        return relayEmail(new Messaging.SingleEmailMessage[]{myEmail}, allOrNone);
+    }
+
+    public static List<Messaging.SendEmailResult> relayEmail(Messaging.SingleEmailMessage[] myEmailList){
+        return relayEmail(myEmailList, true);
+    }
+
+    public static List<Messaging.SendEmailResult> relayEmail(Messaging.SingleEmailMessage[] myEmailList, Boolean allOrNone){
+        if(Test.isRunningtest()) allOrNone = false;
+        return relayEmail(myEmailList, allOrNone);
+    }
+
+    public static Boolean emailErrors(Messaging.SendEmailResult myResult){
+        if(myResult.isSuccess()) return true;
+        return false;
+    }
     /**************************END EMAIL UTILITIES****************************/
 
     /**************************QUERY UTILITIES********************************/
