@@ -109,10 +109,30 @@ public class OpportunityHelper {
         }
 
         // Keep Program on related FleetEnrollment in sync with Program on Oppty
-        for (FleetEnrollment__c fe : [SELECT Id, Opportunity__c, Opportunity__r.Campaign_Program__r.Program__c, Program__c, Program_Template_Account__c FROM FleetEnrollment__c WHERE Opportunity__c IN :opptyIds]) {
+        for (FleetEnrollment__c fe : [
+                SELECT Id, Opportunity__c, Opportunity__r.Campaign_Program__r.Program__c, Program__c, Program_Template_Account__c, Opportunity_Number__c,
+                        Billing_Cycle__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Address_Line_1__c, Billing_City__c,
+                        Billing_State__c, Billing_Postal_Code__c, Billing_Email__c, Billing_Phone__c,
+                        Opportunity__r.Siebel_Opportunity__c, Opportunity__r.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c,
+                        Opportunity__r.Billing_Contact_First_Name__c, Opportunity__r.Billing_Contact_Last_Name__c, Opportunity__r.Billing_Street__c,
+                        Opportunity__r.Billing_City__c, Opportunity__r.Billing_State__c, Opportunity__r.Billing_Zip_Postal_Code__c,
+                        Opportunity__r.Billing_Contact_Email__c, Opportunity__r.Billing_Contact_Phone__c
+                FROM FleetEnrollment__c
+                WHERE Opportunity__c IN :opptyIds]
+        ) {
             if (fe.Program__c != fe.Opportunity__r.Campaign_Program__r.Program__c)
                 fe.Program__c = fe.Opportunity__r.Campaign_Program__r.Program__c;
                 fe.Program_Template_Account__c = programTemplateToProgramMap.get(fe.Opportunity__r.Campaign_Program__r.Program__c);
+            if (fe.Opportunity__r.Siebel_Opportunity__c != null && fe.Opportunity_Number__c == null) fe.Opportunity_Number__c = fe.Opportunity__r.Siebel_Opportunity__c;
+            if (fe.Opportunity__r.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c != null && fe.Billing_Cycle__c == null) fe.Billing_Cycle__c = fe.Opportunity__r.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c;
+            if (fe.Opportunity__r.Billing_Contact_First_Name__c != null && fe.Billing_Contact_First_Name__c == null) fe.Billing_Contact_First_Name__c = fe.Opportunity__r.Billing_Contact_First_Name__c;
+            if (fe.Opportunity__r.Billing_Contact_Last_Name__c != null && fe.Billing_Contact_Last_Name__c == null) fe.Billing_Contact_Last_Name__c = fe.Opportunity__r.Billing_Contact_Last_Name__c;
+            if (fe.Opportunity__r.Billing_Street__c != null && fe.Billing_Address_Line_1__c == null) fe.Billing_Address_Line_1__c = fe.Opportunity__r.Billing_Street__c;
+            if (fe.Opportunity__r.Billing_City__c != null && fe.Billing_City__c == null) fe.Billing_City__c = fe.Opportunity__r.Billing_City__c;
+            if (fe.Opportunity__r.Billing_State__c != null && fe.Billing_State__c == null) fe.Billing_State__c = fe.Opportunity__r.Billing_State__c;
+            if (fe.Opportunity__r.Billing_Zip_Postal_Code__c != null && fe.Billing_Postal_Code__c == null) fe.Billing_Postal_Code__c = fe.Opportunity__r.Billing_Zip_Postal_Code__c;
+            if (fe.Opportunity__r.Billing_Contact_Email__c != null && fe.Billing_Email__c == null) fe.Billing_Email__c = fe.Opportunity__r.Billing_Contact_Email__c;
+            if (fe.Opportunity__r.Billing_Contact_Phone__c != null && fe.Billing_Phone__c == null) fe.Billing_Phone__c = fe.Opportunity__r.Billing_Contact_Phone__c;
             feUpdateList.add(fe);
         }
 
