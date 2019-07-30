@@ -60,18 +60,21 @@ public class OpportunityHelper {
             fleetEnrollment.Program_Template_Account__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c);
             fleetEnrollment.Debug_Opportunity_Parameter__c = opp.Id;
             fleetEnrollment.Status__c = 'New';
-            fleetEnrollment.Company_Name__c = opp.Account.Name;
-            fleetEnrollment.Embossing_Company_Name__c = opp.name;
-            fleetEnrollment.Opportunity_Number__c = opp.Siebel_Opportunity__c;
-            fleetEnrollment.Billing_Cycle__c = opp.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c;
-            fleetEnrollment.Billing_Contact_First_Name__c = opp.Billing_Contact_First_Name__c;
-            fleetEnrollment.Billing_Contact_Last_Name__c = opp.Billing_Contact_Last_Name__c;
-            fleetEnrollment.Billing_Address_Line_1__c = opp.Billing_Street__c;
-            fleetEnrollment.Billing_City__c	= opp.Billing_City__c;
-            fleetEnrollment.Billing_State__c = opp.Billing_State__c;
-            fleetEnrollment.Billing_Postal_Code__c = opp.Billing_Zip_Postal_Code__c;
-            fleetEnrollment.Billing_Email__c = opp.Billing_Contact_Email__c;
-            fleetEnrollment.Billing_Phone__c = opp.Billing_Contact_Phone__c;
+            if (opp.name.length() > 30) {
+                fleetEnrollment.Embossing_Company_Name__c = opp.Name.substring(0, 30);
+            } else {
+                fleetEnrollment.Embossing_Company_Name__c = opp.Name;
+            }
+            if (opp.Siebel_Opportunity__c != null) fleetEnrollment.Opportunity_Number__c = opp.Siebel_Opportunity__c;
+            if (opp.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c != null) fleetEnrollment.Billing_Cycle__c = opp.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c;
+            if (opp.Billing_Contact_First_Name__c != null) fleetEnrollment.Billing_Contact_First_Name__c = opp.Billing_Contact_First_Name__c;
+            if (opp.Billing_Contact_Last_Name__c != null) fleetEnrollment.Billing_Contact_Last_Name__c = opp.Billing_Contact_Last_Name__c;
+            if (opp.Billing_Street__c != null) fleetEnrollment.Billing_Address_Line_1__c = opp.Billing_Street__c;
+            if (opp.Billing_City__c != null) fleetEnrollment.Billing_City__c = opp.Billing_City__c;
+            if (opp.Billing_State__c != null) fleetEnrollment.Billing_State__c = opp.Billing_State__c;
+            if (opp.Billing_Zip_Postal_Code__c != null) fleetEnrollment.Billing_Postal_Code__c = opp.Billing_Zip_Postal_Code__c;
+            if (opp.Billing_Contact_Email__c != null) fleetEnrollment.Billing_Email__c = opp.Billing_Contact_Email__c;
+            if (opp.Billing_Contact_Phone__c != null) fleetEnrollment.Billing_Phone__c = opp.Billing_Contact_Phone__c;
             if (Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal') != null)
                 fleetEnrollment.RecordTypeId = Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal').getRecordTypeId();
 
