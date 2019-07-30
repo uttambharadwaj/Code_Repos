@@ -12,6 +12,7 @@ public class OpportunityTriggerTest {
         Campaign_Program__c campaignProgram = [SELECT Id, Name, Campaign__c, Program__c FROM Campaign_Program__c WHERE Name = 'Test' LIMIT 1];
         System.debug('Campaign Program Id is: ' + campaignProgram.id);
         system.debug('Campaign_Program__r.Program__c is: ' + campaignProgram.Program__c);
+        Contact billingContact = [SELECT Id, LastName FROM Contact WHERE LastName = 'McTesterson' LIMIT 1];
 
         Opportunity oppty = new Opportunity();
         oppty.Name = 'Test FE Creation Oppty';
@@ -28,13 +29,19 @@ public class OpportunityTriggerTest {
         oppty.Fleet_Size__c = 10;
         Oppty.Legal_Structure__c = 'Sole Proprietorship';
         oppty.RecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Fuel Card').getRecordTypeId();
+        oppty.Siebel_Opportunity__c = '1-5Y02BEZ';
+        oppty.Billing_Street__c = '123 anywhere st';
+        oppty.Billing_City__c = 'Nashville';
+        oppty.Billing_State__c = 'TN';
+        oppty.Billing_Zip_Postal_Code__c = '37214';
+        oppty.Billing_Contact__c = billingContact.Id;
 
         Test.startTest();
         insert oppty;
         Test.stopTest();
 
         //Asserts for After Insert logic
-        Opportunity oppty2 = [SELECT Id, Name, Campaign_Program__c, Campaign_Program__r.Program__c FROM Opportunity WHERE Name = 'Test FE Creation Oppty' LIMIT 1];
+        Opportunity oppty2 = [SELECT Id, Name, Campaign_Program__c, Campaign_Program__r.Program__c, Billing_Contact__c FROM Opportunity WHERE Name = 'Test FE Creation Oppty' LIMIT 1];
         FleetEnrollment__c myFE = [SELECT Id, Opportunity__c, Program__c, Program_Template_Account__c, Program_Template_Account__r.Program__c, RecordType.Name FROM FleetEnrollment__c WHERE Opportunity__c = :oppty.Id];
         system.assertEquals(oppty2.id, myFE.Opportunity__c);
         system.assertEquals(oppty2.Campaign_Program__r.Program__c, myFE.Program__c);

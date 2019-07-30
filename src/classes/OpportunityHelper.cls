@@ -35,7 +35,14 @@ public class OpportunityHelper {
         Map<Id, Id> programTemplateToProgramMap = new Map<Id, Id>();
 
         // Find all Program in the list of opptys
-        List<Opportunity> opptyList = [SELECT Id, Campaign_Program__c, Campaign_Program__r.Program__c FROM Opportunity WHERE Id IN :opptyIds];
+        List<Opportunity> opptyList = [
+                SELECT Id, Name, Campaign_Program__c, Campaign_Program__r.Program__c, Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c,
+                        Account, Account.Name, Siebel_Opportunity__c, OwnerId, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c,
+                        Billing_Street__c, Billing_Street_Line_2__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c,
+                        Billing_Contact_Email__c, Billing_Contact_Phone__c
+                FROM Opportunity
+                WHERE Id IN :opptyIds
+            ];
             for (Opportunity o : opptyList) {
                 opptyToProgramMap.put(o.campaign_program__r.program__c, o.id);
             }
@@ -48,9 +55,24 @@ public class OpportunityHelper {
         // create new FleetEnrollment__c record for each opportunity, add records to feList
         for (Opportunity opp : opptyList) {
             FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
-            fleetEnrollment.Opportunity__c = opp.id;
+            fleetEnrollment.Opportunity__c = opp.Id;
             fleetEnrollment.Program__c = opp.Campaign_Program__r.Program__c;
             fleetEnrollment.Program_Template_Account__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c);
+            fleetEnrollment.Debug_Opportunity_Parameter__c = opp.Id;
+            fleetEnrollment.Status__c = 'New';
+            fleetEnrollment.Company_Name__c = opp.Account.Name;
+            fleetEnrollment.Embossing_Company_Name__c = opp.name;
+            fleetEnrollment.Opportunity_Number__c = opp.Siebel_Opportunity__c;
+            fleetEnrollment.Sales_Person__c = opp.OwnerId;
+            fleetEnrollment.Billing_Cycle__c = opp.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c;
+            fleetEnrollment.Billing_Contact_First_Name__c = opp.Billing_Contact_First_Name__c;
+            fleetEnrollment.Billing_Contact_Last_Name__c = opp.Billing_Contact_Last_Name__c;
+            fleetEnrollment.Billing_Address_Line_1__c = opp.Billing_Street__c;
+            fleetEnrollment.Billing_City__c	= opp.Billing_City__c;
+            fleetEnrollment.Billing_State__c = opp.Billing_State__c;
+            fleetEnrollment.Billing_Postal_Code__c = opp.Billing_Zip_Postal_Code__c;
+            fleetEnrollment.Billing_Email__c = opp.Billing_Contact_Email__c;
+            fleetEnrollment.Billing_Phone__c = opp.Billing_Contact_Phone__c;
             if (Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal') != null)
                 fleetEnrollment.RecordTypeId = Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal').getRecordTypeId();
 
