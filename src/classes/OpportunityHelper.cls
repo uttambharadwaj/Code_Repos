@@ -108,7 +108,7 @@ public class OpportunityHelper {
             programTemplateToProgramMap.put(pta.program__c, pta.Id);
         }
 
-        // Keep Program on related FleetEnrollment in sync with Program on Oppty
+        // Keep FleetEnrollment in sync with Oppty
         for (FleetEnrollment__c fe : [
                 SELECT Id, Opportunity__c, Opportunity__r.Campaign_Program__r.Program__c, Program__c, Program_Template_Account__c, Opportunity_Number__c,
                         Billing_Cycle__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Address_Line_1__c, Billing_City__c,
