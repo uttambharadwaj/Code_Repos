@@ -1,5 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>App_Approval_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>Application_Request__r.App_Approved_Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>App Approval Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Application_Request__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Application Request</label>
+        <referenceTo>Application_Request__c</referenceTo>
+        <relationshipLabel>Fleet Enrollments</relationshipLabel>
+        <relationshipName>Fleet_Enrollments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Application_Status__c</fullName>
+        <externalId>false</externalId>
+        <formula>Application_Request__r.Sales_Stage__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Application Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Association__c</fullName>
         <encryptionScheme>None</encryptionScheme>
@@ -8,6 +197,42 @@
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Billing_Address_Line_1__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Billing Address Line 1</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Billing_Address_Line_2__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Billing Address Line 2</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Billing_City__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Billing City</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -107,6 +332,72 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Billing_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Billing Email</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Billing_Full_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Billing Contact Full Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Billing_Phone__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Billing Phone</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Billing_Postal_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Billing Postal Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Billing_State__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Billing State</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Bypass_Data_Entry_Automation__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Bypass Data Entry Automation</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Card_Replacement_Duration__c</fullName>
         <externalId>false</externalId>
         <label>Card Replacement Duration</label>
@@ -116,6 +407,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Card_Replacement_Fee_Waive_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Card Replacement Fee Waive Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Card_Shipping_Address_Line_1__c</fullName>
@@ -300,11 +601,99 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Company_Name_Lookup__c</fullName>
+        <externalId>false</externalId>
+        <formula>Embossing_Company_Name__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Company Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Company_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Company Name</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Completed_Date__c</fullName>
+        <description>Date the application was marked completed</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Completed Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Confirmation_Number__c</fullName>
+        <displayFormat>FE-{000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Confirmation Number</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Credit_Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Credit Approved</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Credit_Line_Amount__c</fullName>
+        <externalId>false</externalId>
+        <label>Credit Line Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Customer_Carrier_Number__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Customer Carrier Number</label>
         <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Debug_Application_Parameter__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Debug Application Parameter</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Debug_Opportunity_Parameter__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Debug Opportunity Parameter</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -319,6 +708,94 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Driver_ID_Random__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Driver ID Random</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Email_Version__c</fullName>
+        <description>For Jim Barton to track versions of e-mails the enrollment was sourced from.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Email Version</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Embossing_Company_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Embossing Company Name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Embossing_Second_Line__c</fullName>
+        <externalId>false</externalId>
+        <label>Embossing Second Line</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>None</fullName>
+                    <default>false</default>
+                    <label>None</label>
+                </value>
+                <value>
+                    <fullName>Vehicle Description</fullName>
+                    <default>false</default>
+                    <label>Vehicle Description</label>
+                </value>
+                <value>
+                    <fullName>License Plate</fullName>
+                    <default>false</default>
+                    <label>License Plate</label>
+                </value>
+                <value>
+                    <fullName>Vehicle Company Id</fullName>
+                    <default>false</default>
+                    <label>Vehicle Company Id</label>
+                </value>
+                <value>
+                    <fullName>Waived</fullName>
+                    <default>false</default>
+                    <label>Waived</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Finders_Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Finders Fee entered from Sales Checklist. Should not be editable once it&apos;s been entered.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Finders Fee entered from Sales Checklist. Should not be editable once it&apos;s been entered.</inlineHelpText>
+        <label>Finders Fee</label>
+        <referenceTo>Finders_Fee__c</referenceTo>
+        <relationshipLabel>Fleet Enrollments</relationshipLabel>
+        <relationshipName>Fleet_Enrollments</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Friendly_Billing_Cycle__c</fullName>
@@ -342,6 +819,28 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Implementation_Duration__c</fullName>
+        <externalId>false</externalId>
+        <formula>MAX ( 0, 
+( Completed_Date__c - Submitted_Date__c+ CASE ( MOD (Completed_Date__c- DATE( 1900,1,6 ),7),0,1,1,1,0 ) ) - 
+( ( FLOOR ( ( ( Completed_Date__c- Submitted_Date__c ) / 7 ) ) * 2 ) + 
+CASE ( 
+MOD ( Submitted_Date__c - DATE( 1900,1,6 ),7), 
+0,CASE( MOD ( Completed_Date__c - DATE( 1900,1,6 ),7),0,1,2 ), 
+1,CASE( MOD ( Completed_Date__c - DATE( 1900,1,6 ),7),0,2,1 ), 
+IF ( MOD ( Submitted_Date__c - DATE( 1900,1,6 ),7) - MOD ( Completed_Date__c - DATE( 1900,1,6 ),7) &lt;= 0 ,0, 
+IF ( MOD ( Completed_Date__c - DATE( 1900,1,6 ),7) = 0,1,2 ) ) ) ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Implementation Duration</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Monthly_Accounting_Fee_Waive_Date__c</fullName>
@@ -376,6 +875,16 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Monthly_Card_Charges_Waive_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Monthly Card Charges Waive Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Monthly_Card_Charges__c</fullName>
         <externalId>false</externalId>
         <label>Monthly Card Charges</label>
@@ -396,6 +905,30 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_Of_Vehicles__c</fullName>
+        <externalId>false</externalId>
+        <label>Number Of Vehicles</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Number__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Opportunity Number</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -435,9 +968,21 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Print_Token__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Print Token</label>
+        <length>25</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Program_Name__c</fullName>
         <externalId>false</externalId>
-        <formula>Program__r.Brand_Long_Name__c</formula>
+        <formula>Program__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Program Name</label>
         <required>false</required>
@@ -493,11 +1038,34 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Program__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Program</label>
+        <referenceTo>Program__c</referenceTo>
+        <relationshipLabel>Fleet Enrollments</relationshipLabel>
+        <relationshipName>Fleet_Enrollments</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Report_Driver_Name__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Report Driver Name</label>
         <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Report_LicensePlt__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Your monthly reporting can identify the license plate number assigned to the card. If license plate number is printed on your card, it is automatically added to your reporting.</inlineHelpText>
+        <label>Report License Plate On Bill</label>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -509,6 +1077,48 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Report_VehicleDesc__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Allows you to identify your vehicles on reports by vehicle description (i.e., make/model). If the vehicle description is printed on your card, it is automatically added to your reporting.</inlineHelpText>
+        <label>Report Vehicle Description On Bill</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Report_VehicleId__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>If you company has existing IDs assigned to vehicles (i.e., Unit 1), you can provide these so your reports will match to your IDs.  If Vehicle ID# is printed on your cards, it is automatically added to reporting.</inlineHelpText>
+        <label>Report Company Vehicle Id On Bill</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Reporting_Dept__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Allows you to see a summary by department (i.e. Sales, Service) on your invoice.</inlineHelpText>
+        <label>Report Department On Bill</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sales_Person__c</fullName>
+        <externalId>false</externalId>
+        <formula>Application_Request__r.Sales_Person__r.FirstName &amp; &quot; &quot; &amp; Application_Request__r.Sales_Person__r.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Sales Person</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Setup_Fee__c</fullName>
@@ -603,6 +1213,72 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Completed</fullName>
+                    <default>false</default>
+                    <label>Completed</label>
+                </value>
+                <value>
+                    <fullName>New</fullName>
+                    <default>false</default>
+                    <label>New</label>
+                </value>
+                <value>
+                    <fullName>Rejected</fullName>
+                    <default>false</default>
+                    <label>Rejected</label>
+                </value>
+                <value>
+                    <fullName>Working</fullName>
+                    <default>false</default>
+                    <label>Working</label>
+                </value>
+                <value>
+                    <fullName>Ready For Siebel</fullName>
+                    <default>false</default>
+                    <label>Ready For Siebel</label>
+                </value>
+                <value>
+                    <fullName>Pending Ready For Siebel</fullName>
+                    <default>false</default>
+                    <label>Pending Ready For Siebel</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Submit_Fleet_Data_Form_Used__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Set to true after a sales rep uses the &quot;Submit Fleet Data&quot; button on the opportunity.
+This is used to determine where we route implementation cases.</description>
+        <externalId>false</externalId>
+        <label>Submit Fleet Data Form Used</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Submitted_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>CreatedDate</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Submitted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Usage_Type__c</fullName>
         <externalId>false</externalId>
         <label>Usage Type</label>
@@ -628,6 +1304,30 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>WEX_Account_Nbr__c</fullName>
+        <externalId>false</externalId>
+        <formula>Application_Request__r.WEX_Account_Nbr__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>WEX Account #</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>WEX_Acct__c</fullName>
+        <externalId>false</externalId>
+        <formula>Application_Request__r.WEX_Account_Nbr__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>WEX Acct #</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>WEX_Platform__c</fullName>
         <externalId>false</externalId>
         <formula>TEXT(Program__r.WEX_Platform__c)</formula>
@@ -639,6 +1339,349 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <label>Fleet Enrollment</label>
+    <listViews>
+        <fullName>All_Fleet_Enrollments</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Approved__c</columns>
+        <columns>Program__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Billing_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>2/14/2017 12:00 AM</value>
+        </filters>
+        <label>All Fleet Enrollments</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Completed_Fleet_Enrollments</fullName>
+        <columns>NAME</columns>
+        <columns>Email_Version__c</columns>
+        <columns>Status__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Program__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Billing_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>2/14/2017 12:00 AM</value>
+        </filters>
+        <label>Completed Fleet Enrollments</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Credit_approved_Fleet_Enrollments</fullName>
+        <columns>Application_Status__c</columns>
+        <columns>NAME</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Approval_Date__c</columns>
+        <columns>Program__c</columns>
+        <columns>Sales_Person__c</columns>
+        <columns>Number_Of_Vehicles__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Email_Version__c</columns>
+        <columns>Submitted_Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>06 - Approved,10 - Re-review Approved</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New,Working</value>
+        </filters>
+        <label>Credit approved Fleet Enrollments</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Credit_approved_Fleet_Enrollments_2</fullName>
+        <columns>Application_Status__c</columns>
+        <columns>NAME</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_Date__c</columns>
+        <columns>Program__c</columns>
+        <columns>Number_Of_Vehicles__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Email_Version__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>06 - Approved,10 - Re-review Approved</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New,Working</value>
+        </filters>
+        <label>Credit approved Fleet Enrollments 2</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Declined_Fleet_Enrollments</fullName>
+        <columns>Application_Status__c</columns>
+        <columns>Status__c</columns>
+        <columns>Program__c</columns>
+        <columns>NAME</columns>
+        <columns>Email_Version__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Billing_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>2/14/2017 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New,Working</value>
+        </filters>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>07 - Declined</value>
+        </filters>
+        <label>Declined Fleet Enrollments</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Fleet_Enrollment_PTA</fullName>
+        <booleanFilter>1 and (2 or 3)</booleanFilter>
+        <columns>Application_Status__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Completed_Date__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Submitted_Date__c</columns>
+        <columns>Status__c</columns>
+        <columns>Number_Of_Vehicles__c</columns>
+        <columns>Email_Version__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Completed</value>
+        </filters>
+        <filters>
+            <field>Email_Version__c</field>
+            <operation>contains</operation>
+            <value>PTA</value>
+        </filters>
+        <filters>
+            <field>Email_Version__c</field>
+            <operation>contains</operation>
+            <value>BOCA</value>
+        </filters>
+        <label>Fleet Enrollment PTA</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>In_Progress_apps_Fleet_Enrollments</fullName>
+        <columns>Application_Status__c</columns>
+        <columns>Status__c</columns>
+        <columns>Program__c</columns>
+        <columns>NAME</columns>
+        <columns>Email_Version__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Billing_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>2/14/2017 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New,Working</value>
+        </filters>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>05 - Application Sent</value>
+        </filters>
+        <label>In Progress apps Fleet Enrollments</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>New_Fleet_Enrollments</fullName>
+        <columns>Application_Status__c</columns>
+        <columns>Status__c</columns>
+        <columns>Program__c</columns>
+        <columns>NAME</columns>
+        <columns>Email_Version__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Billing_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>2/14/2017 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New,Working</value>
+        </filters>
+        <filters>
+            <field>Application_Status__c</field>
+            <operation>equals</operation>
+            <value>05 - Application Sent</value>
+        </filters>
+        <label>New Fleet Enrollments 2</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>New_Fleet_Enrollments1</fullName>
+        <columns>Application_Status__c</columns>
+        <columns>Status__c</columns>
+        <columns>Program__c</columns>
+        <columns>NAME</columns>
+        <columns>Application_Request__c</columns>
+        <columns>Email_Version__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Billing_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>2/14/2017 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New,Working</value>
+        </filters>
+        <filters>
+            <field>Opportunity_Number__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>New Fleet Enrollments</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>OVERNIGHT_MACRO</fullName>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_Date__c</columns>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Completed,Rejected,Working</value>
+        </filters>
+        <label>OVERNIGHT MACRO</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Rejected_Fleet_Enrollments</fullName>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Program__c</columns>
+        <columns>Email_Version__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Billing_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>2/14/2017 12:00 AM</value>
+        </filters>
+        <label>Rejected Fleet Enrollments</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Stuck_Applications</fullName>
+        <columns>Application_Status__c</columns>
+        <columns>Status__c</columns>
+        <columns>Program__c</columns>
+        <columns>NAME</columns>
+        <columns>Application_Request__c</columns>
+        <columns>Email_Version__c</columns>
+        <columns>Opportunity_Number__c</columns>
+        <columns>Confirmation_Number__c</columns>
+        <columns>Company_Name_Lookup__c</columns>
+        <columns>Billing_Full_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>2/14/2017 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>New,Working</value>
+        </filters>
+        <filters>
+            <field>Opportunity_Number__c</field>
+            <operation>equals</operation>
+        </filters>
+        <label>Stuck Applications</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <encryptionScheme>None</encryptionScheme>
+        <label>FleetEnrollment Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Fleet Enrollments</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>Internal</fullName>
         <active>true</active>
@@ -700,6 +1743,56 @@
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Embossing_Second_Line__c</picklist>
+            <values>
+                <fullName>License Plate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>None</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle Company Id</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Vehicle Description</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Waived</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>New</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Pending Ready For Siebel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Ready For Siebel</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Working</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Usage_Type__c</picklist>
             <values>
                 <fullName>1%3A1</fullName>
@@ -711,4 +1804,43 @@
             </values>
         </picklistValues>
     </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Company_Name_Lookup__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Opportunity_Number__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Program__c</customTabListAdditionalFields>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>Mass_Export</listViewButtons>
+        <lookupDialogsAdditionalFields>Company_Name_Lookup__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Opportunity_Number__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Program__c</lookupDialogsAdditionalFields>
+        <searchResultsAdditionalFields>Company_Name_Lookup__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Opportunity_Number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Program__c</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <webLinks>
+        <fullName>Export_Excel</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Export To Excel</masterLabel>
+        <openType>replace</openType>
+        <page>FleetEnrollmentXLS</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>Mass_Export</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Run Siebel Export</masterLabel>
+        <openType>sidebar</openType>
+        <page>FleetEnrollmentExport</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
 </CustomObject>
