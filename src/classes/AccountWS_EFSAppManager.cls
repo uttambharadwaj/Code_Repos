@@ -9,6 +9,7 @@
 *                   24/Jun/2019 MFarrell    OTRONBOARD-30   Moar Fields added to contract section
 *                   25/Jun/2019 JArbegast   OTRONBOARD-44   Still not enough fields
 *                   03/Jul/2019 MFarrell    OTRONBOARD-57   moving fields from program -> offer... because why not
+*                   31/Jul/2019 CJackson    OTRONBOARD-78   Update ShipToCountry to CA for EFS
 */
 global class AccountWS_EFSAppManager {
 
@@ -278,7 +279,7 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeStringField('shipToCountry', 'USA');
         }
         if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('CA')) {
-            jsonPayload.writeStringField('shipToCountry', 'CAN');
+            jsonPayload.writeStringField('shipToCountry', 'CA');
         }
         if(onlineApplicationOffer.Card_Shipping_Method__c != null) jsonPayload.writeStringField('shippingMethod', onlineApplicationOffer.Card_Shipping_Method__c);
         if(onlineApplication.Embossing_Line_1_Company_Name__c != null) jsonPayload.writeStringField('embossedName', onlineApplication.Embossing_Line_1_Company_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
