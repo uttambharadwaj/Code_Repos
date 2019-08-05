@@ -7,6 +7,106 @@
 */
 public class UCase
 {
+
+    private static final String SHELL_SLA_WEEK = 'Shell SLA';
+    private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
+    private static Boolean hasRunOnceUpdate = false;
+
+    public static void associateWithEntitlement(List<Case> newRecords){
+        // First, filter out the Cases that do not have "shell" as the Supplied Email's domain.
+        if((Trigger.isUpdate && hasRunOnceUpdate) || System.isFuture() || (System.isBatch() && Trigger.isUpdate)){
+            return;
+        }else{
+            hasRunOnceUpdate = true;
+        }
+
+        List<Id> idsToProcess = new List<Id>();
+        for(Case auxCase : newRecords){
+            idsToProcess.add(auxCase.ID);
+        }
+
+        processRecords(idsToProcess);
+    }
+
+    @future
+    public static void processRecords(List<ID> recordIds){
+        List<Case> newRecords = [SELECT ID, Program_Email__c, CreatedDate FROM Case WHERE ID in :recordIds];
+
+        List<Entitlement> auxEntitlementsList = [SELECT Name, Id
+        FROM Entitlement];
+        System.debug(LoggingLevel.INFO, '#debug: auxEntitlementsList: ' + auxEntitlementsList);
+        ID weekEntitlementID;
+        ID weekendEntitlementID;
+        for(Entitlement auxEntitlement : auxEntitlementsList){
+            if(auxEntitlement.Name == SHELL_SLA_WEEK){
+                weekEntitlementID = auxEntitlement.ID;
+            }
+            if(auxEntitlement.Name == SHELL_SLA_WEEKEND){
+                weekendEntitlementID = auxEntitlement.ID;
+            }
+        }
+
+        List<Case> casesToUpdate = new List<Case>();
+        for(Case auxCase : newRecords){
+            Case auxCaseNew = new Case();
+            auxCaseNew.ID = auxCase.ID;
+            if(auxCase.Program_Email__c != null){
+                //String domain = auxCase.SuppliedEmail.split('@').get(1);
+                //System.debug(LoggingLevel.INFO, '#debug: auxCase.SuppliedName: ' + auxCase.SuppliedName);
+                //System.debug(LoggingLevel.INFO, '#debug: domain: ' + domain);
+                //if(domain.contains('shell')){
+                if(auxCase.Program_Email__c == 'Shellfleethelp@wexinc.com'){
+                    // Evaluate the created date/time.
+                    Datetime thisDT = auxCase.CreatedDate;
+                    String myDate = thisDT.format('yyyy-MM-dd HH:mm:ss', 'EST');
+                    Datetime convertedDate = Datetime.valueOf(myDate);
+                    String correctSLA = getCorrectSLA(convertedDate);
+                    if(correctSLA == SHELL_SLA_WEEK){
+                        auxCaseNew.EntitlementId = weekEntitlementID;
+                    }else{
+                        auxCaseNew.EntitlementId = weekendEntitlementID;
+                    }
+                    casesToUpdate.add(auxCaseNew);
+                }
+            }
+        }
+        update casesToUpdate;
+    }
+
+    private static String getCorrectSLA(Datetime estCreatedDateTime){
+        // Find out if it is within Weekend SLA.
+        String dayOfWeek = estCreatedDateTime.format('EEEE');
+        Integer hourOfDay = estCreatedDateTime.hour();
+        Integer minuteOfHour = estCreatedDateTime.minute();
+        String slaName = '';
+        switch on dayOfWeek{
+            when 'Friday'{
+                if((hourOfDay == 20 && minuteOfHour >= 1) || hourOfDay > 20){
+                    slaName = SHELL_SLA_WEEKEND;
+                }else{
+                    slaName = SHELL_SLA_WEEK;
+                }
+            }
+            when 'Saturday'{
+                slaName = SHELL_SLA_WEEKEND;
+            }
+            when 'Sunday'{
+                slaName = SHELL_SLA_WEEKEND;
+            }
+            when 'Monday'{
+                if((hourOfDay == 7 && minuteOfHour <= 59) || hourOfDay < 7){
+                    slaName = SHELL_SLA_WEEKEND;
+                }else{
+                    slaName = SHELL_SLA_WEEK;
+                }
+            }
+            when else {
+                slaName = SHELL_SLA_WEEK;
+            }
+        }
+        return slaName;
+    }
+
     public static void setNotificationFromBatch(List<Case> records)
     {
         List<Case> casesToUpdate = new List<Case> ();
@@ -23,9 +123,6 @@ public class UCase
         }
 
         update casesToUpdate;
-
-
-
     }
 
 
@@ -61,10 +158,10 @@ public class UCase
         //pull by member role, sort by last created to use most recent, req change.
         //changed back to account manager, keep sort.
         for (AccountTeamMember atm :[Select Id, UserId, AccountId from AccountTeamMember
-             Where AccountId IN :accountIds
-             //AND TeamMemberRole = 'Account Team Member'
-             AND TeamMemberRole = 'Account Manager'
-             Order by CreatedDate ASC])
+        Where AccountId IN :accountIds
+        //AND TeamMemberRole = 'Account Team Member'
+        AND TeamMemberRole = 'Account Manager'
+        Order by CreatedDate ASC])
         {
             teamMemberByAccountId.put(atm.accountId, atm.userid);
         }
@@ -103,6 +200,66 @@ public class UCase
             sendOwnerUpdateEmail(caseToOwnerMap);
         }
     }
+/* Commented pending bug fixes - MHB 2 Aug 2019
+    public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap)
+    {
+        Id recordTypeId = null;
+        Id templateId = null;
+
+        for (RecordType rt :[SELECT Id FROM RecordType WHERE SobjectType = 'Case' AND RecordType.DeveloperName = 'Service_Operations'])
+        {
+            recordTypeId = rt.Id;
+        }
+
+        for(EmailTemplate et :[SELECT Id FROM EmailTemplate WHERE DeveloperName = 'CS_Survey_Request'])
+        {
+            templateId = et.Id;
+        }
+
+        List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
+
+        for (Case c : records)
+        {
+            if(c.ContactId != null && String.isNotBlank(c.ContactEmail)) {
+
+                if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed && c.RecordTypeId == recordTypeId && String.isNotBlank(c.SurveyInclusionHTML__c))
+                {
+                    Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+
+                    email.setTargetObjectId(c.ContactId);
+                    email.setTreatTargetObjectAsRecipient(true);
+                    email.setUseSignature(false);
+                    email.setSaveAsActivity(true);
+
+                    // Case's surveySent flag will be set by outbound email trigger
+                    email.setWhatId(c.Id);
+
+                    Messaging.SingleEmailMessage renderBody = Messaging.renderStoredEmailTemplate(templateId, c.OwnerId, c.Id);
+                    email.setSubject(renderBody.getSubject());
+                    email.setHtmlBody(renderBody.getHtmlBody());
+                    email.setPlainTextBody(renderBody.getPlainTextBody());
+                    emails.add(email);
+                }
+            }
+        }
+
+        try {
+            Messaging.reserveSingleEmailCapacity(emails.size());
+            List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails);
+
+            for (Messaging.SendEmailResult res : results)
+            {
+                for (Messaging.SendEmailError err : res.getErrors())
+                {
+                    System.debug('UCase.sendCaseCloseSurveyEmail send mail error: ' + err.getMessage());
+                }
+            }
+        }
+        catch (Exception e) {
+            System.debug('Unable to send email');
+        }
+    }
+*/
 
     @future
     public static void sendOwnerUpdateEmail(Map<Id, Id> caseToOwnerMap)
@@ -126,7 +283,7 @@ public class UCase
         GlobalSettings__c gs = GlobalSettings__c.getOrgDefaults();
         system.debug('___gs___ Virtual Card RecTypeID ' + gs.Virtual_Card_RecType_ID__c);
 
-        //BusinessHours bh = [select id from BusinessHours 
+        //BusinessHours bh = [select id from BusinessHours
         //                    where Name = 'Virtual Payments' limit 1];
         List<BusinessHours> bhours = [Select Id from BusinessHours Where Name = 'Virtual Payments' limit 1];
 
@@ -208,7 +365,7 @@ public class UCase
             for (Case c : records) {
 
                 if (caseRecordsToInclude.contains(c.RecordTypeID) &&
-                    c.Origin == 'Email') {
+                        c.Origin == 'Email') {
 
                     String domain = null;
 
@@ -374,11 +531,11 @@ public class UCase
         for (Case c : records)
         {
             if (isUpdate
-                && c.RecordTypeId == recordTypeId
-                && c.Cards__c > 0
-                && c.Opportunity__c != null
-                && (c.Type == 'Data Entry' || c.Type == 'Expedited' || c.Type == 'PreCard Call' || c.Type == 'Standard')
-                && (c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed))
+                    && c.RecordTypeId == recordTypeId
+                    && c.Cards__c > 0
+                    && c.Opportunity__c != null
+                    && (c.Type == 'Data Entry' || c.Type == 'Expedited' || c.Type == 'PreCard Call' || c.Type == 'Standard')
+                    && (c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed))
             {
                 toProcess.add(c.Id);
             }
@@ -411,7 +568,7 @@ public class UCase
         try {
             Messaging.reserveSingleEmailCapacity(emails.size());
             List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails);
-            
+
             for (Messaging.SendEmailResult res : results)
             {
                 for (Messaging.SendEmailError err : res.getErrors())
@@ -424,12 +581,12 @@ public class UCase
             System.debug('Unable to send email');
         }
     }
-    
+
     // Set default entitlement for Service Operations
     public static void setDefaultEntitlement(List<Case> records, Map<Id, Case> oldMap)
     {
         Set<Id> queueBypassIds = new Set<Id>();
-        
+
         ///List<Service_Operations_Entitlement_Bypass__mdt> bypassEntries = [SELECT Id, Queue_Id__c FROM Service_Operations_Entitlement_Bypass__mdt];
         //for(Service_Operations_Entitlement_Bypass__mdt bypassEntry : bypassEntries) {
         //    queueBypassIds.add(bypassEntry.Queue_Id__c);
@@ -440,23 +597,23 @@ public class UCase
         List<Case> toUpdate = new List<Case> ();
         List<Case> toProcess = new List<Case> ();
         Set<Id> accountIds = new Set<Id> ();
-        
+
         Id serviceOperationsRecordType = null;
 
         // Add Record Type Check
         if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Service Operations') != null) {
-        	serviceOperationsRecordType = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
-	   }
-        
+            serviceOperationsRecordType = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+        }
+
         Support_Operation_Settings__c sos = Support_Operation_Settings__c.getOrgDefaults();
 
         for (Case c : records)
         {
-            // We only want this to run for Service Operations.. 
+            // We only want this to run for Service Operations..
             if((serviceOperationsRecordType != null && c.RecordTypeId != serviceOperationsRecordType) || queueBypassIds.contains(c.OwnerId)) {
                 continue;
             }
-            
+
             // Added check to ensure Entitlement isn't already set.. DDG 3/18/2019
             if ((!isUpdate || c.AccountId != oldMap.get(c.Id).AccountId))
             {
@@ -559,7 +716,7 @@ public class UCase
             Map<String, Contact> emailCtMap = new Map<String, Contact> ();
 
             for (Contact ct : [SELECT Id, AccountId, Email FROM Contact WHERE Pilot_Flag__c = true AND Email IN :emails]) {
-                    emailCtMap.put(ct.Email, ct);
+                emailCtMap.put(ct.Email, ct);
             }
 
             for (Case c : records) {
