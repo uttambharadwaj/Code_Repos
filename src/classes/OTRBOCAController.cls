@@ -618,7 +618,7 @@ public class OTRBOCAController {
                     }
                 }
                 if(carrierNotFound)
-                    throw new creditApplicationException('Carrier ID not found');
+                    throw new creditApplicationException('Carrier ID not found or no prior applications');
 
             }
 
