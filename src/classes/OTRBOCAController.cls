@@ -596,132 +596,140 @@ public class OTRBOCAController {
 
         try {
 
+            Account account = new Account();
+            Contact primaryContact = new Contact();
+            Contact pgContact = new Contact();
+            Database.upsertResult result;
+
             if(carrierID != null && carrierID != ''){
                 Boolean carrierNotFound = true;
-                for(Account a : [SELECT Id, Carrier_ID__c FROM Account WHERE Program__c = :program.Id AND Carrier_ID__c != null]){
-                    if(a.Carrier_ID__c == carrierID){
-                        carrierNotFound = false;
-                        break;
+                for(Account a : [SELECT Id,(SELECT Id, Program__c, Opportunity__r.Primary_Contact__c, Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c FROM Online_Applications__r) FROM Account WHERE Carrier_ID__c = :carrierID]) {
+                    for (OnlineApplication__c oa : a.Online_Applications__r) {
+                        if (oa.Program__c == program.Id) {
+                            carrierNotFound = false;
+                            //need to get account and contact informations
+                            account.Id = a.Id;
+                            primaryContact.Id = oa.Opportunity__r.Primary_Contact__c;
+                            pgContact.Id = oa.Personal_Guarantor__c;
+                            pgContact.FirstName = oa.Personal_Guarantor__r.FirstName;
+                            pgContact.LastName = oa.Personal_Guarantor__r.LastName;
+                            break;
+                        }
                     }
                 }
                 if(carrierNotFound)
                     throw new creditApplicationException('Carrier ID not found');
+
             }
 
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
+            if(account.Id == null) {
+                if (Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account') != null) {
+                    account.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
+                }
 
-            // Add Account
-            Account account = new Account();
+                if (accountId != null) {
+                    account.Id = accountId;
+                } else if (onlineApplication.Account__c != null) {
+                    account.Id = onlineApplication.Account__c;
+                }
 
-            if(carrierId != null && carrierId != ''){
-                account.Carrier_ID__c = carrierId;
+                if (onlineApplication.Account__c == null) {
+                    account.OwnerId = defaultOwner.Id;
+                    account.Name = onlineApplication.Legal_Business_Name__c;
+                }
+                account.Phone = onlineApplication.Phone_Number__c;
+                account.Fax = onlineApplication.Fax_Number__c;
+
+                // Billing Information
+                account.BillingStreet = onlineApplication.Business_Street_Address__c;
+                account.BillingCity = onlineApplication.City__c;
+                account.BillingState = onlineApplication.State__c;
+                account.BillingPostalCode = onlineApplication.Zip_Code__c;
+
+                // Shipping Information
+                account.ShippingStreet = onlineApplication.Business_Street_Address__c;
+                if (onlineApplication.Business_Address_Line_2__c != null) {
+                    account.ShippingStreet = onlineApplication.Business_Street_Address__c + ', ' + onlineApplication.Business_Address_Line_2__c;
+                }
+                account.ShippingCity = onlineApplication.City__c;
+                account.ShippingState = onlineApplication.State__c;
+                account.ShippingPostalCode = onlineApplication.Zip_code__c;
+
+                // Misc Information
+                account.Tax_ID__c = onlineApplication.Federal_Tax_ID__c;
+
+                result = Database.upsert(account, false);
+                if (!result.isSuccess()) {
+                    throw new creditApplicationException('Critical error inserting the Account: ' + result.getErrors());
+                }
+
+                System.debug('***OTR*** Account: ' + account.Id);
             }
-            if (Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account') != null) {
-                account.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
-            }
-
-            if (accountId != null) {
-                account.Id = accountId;
-            }
-            else if (onlineApplication.Account__c != null) {
-                account.Id = onlineApplication.Account__c;
-            }
-
-            if (onlineApplication.Account__c == null) {
-                account.OwnerId = defaultOwner.Id;
-                account.Name = onlineApplication.Legal_Business_Name__c;
-            }
-            account.Phone = onlineApplication.Phone_Number__c;
-            account.Fax = onlineApplication.Fax_Number__c;
-
-            // Billing Information
-            account.BillingStreet = onlineApplication.Business_Street_Address__c;
-            account.BillingCity = onlineApplication.City__c;
-            account.BillingState = onlineApplication.State__c;
-            account.BillingPostalCode = onlineApplication.Zip_Code__c;
-
-            // Shipping Information
-            account.ShippingStreet = onlineApplication.Business_Street_Address__c;
-            if (onlineApplication.Business_Address_Line_2__c != null) {
-                account.ShippingStreet = onlineApplication.Business_Street_Address__c + ', ' + onlineApplication.Business_Address_Line_2__c;
-            }
-            account.ShippingCity = onlineApplication.City__c;
-            account.ShippingState = onlineApplication.State__c;
-            account.ShippingPostalCode = onlineApplication.Zip_code__c;
-
-            // Misc Information
-            account.Tax_ID__c = onlineApplication.Federal_Tax_ID__c;
-
-            Database.upsertResult result = Database.upsert(account, false);
-            if (!result.isSuccess()) {
-                throw new creditApplicationException('Critical error inserting the Account: ' + result.getErrors());
-            }
-
-            System.debug('***OTR*** Account: ' + account.Id);
 
             // Add Contacts
 
-            // Create Primary Contact
-            Contact primaryContact = new Contact();
+            if(primaryContact.Id == null) {
+                // Create Primary Contact
+                primaryContact.AccountId = account.Id;
 
-            primaryContact.AccountId = account.Id;
+                primaryContact.FirstName = onlineApplication.Contact_First_Name__c;
+                primaryContact.LastName = onlineApplication.Contact_Last_Name__c;
+                primaryContact.Phone = onlineApplication.Phone_Number__c;
+                primaryContact.Fax = onlineApplication.Fax_Number__c;
+                primaryContact.Email = onlineApplication.Email__c;
 
-            primaryContact.FirstName = onlineApplication.Contact_First_Name__c;
-            primaryContact.LastName = onlineApplication.Contact_Last_Name__c;
-            primaryContact.Phone = onlineApplication.Phone_Number__c;
-            primaryContact.Fax = onlineApplication.Fax_Number__c;
-            primaryContact.Email = onlineApplication.Email__c;
+                primaryContact.MailingStreet = onlineApplication.Business_Street_Address__c;
+                primaryContact.MailingCity = onlineApplication.City__c;
+                primaryContact.MailingState = onlineApplication.State__c;
+                primaryContact.MailingPostalCode = onlineApplication.Zip_code__c;
+                primaryContact.MailingCountry = onlineApplication.Country__c;
 
-            primaryContact.MailingStreet = onlineApplication.Business_Street_Address__c;
-            primaryContact.MailingCity = onlineApplication.City__c;
-            primaryContact.MailingState = onlineApplication.State__c;
-            primaryContact.MailingPostalCode = onlineApplication.Zip_code__c;
-            primaryContact.MailingCountry = onlineApplication.Country__c;
+                insert primaryContact;
 
-            insert primaryContact;
-
-            result = Database.upsert(primaryContact, false);
-            if (!result.isSuccess()) {
-                throw new creditApplicationException('Critical error inserting the Primary Contact: ' + result.getErrors());
+                result = Database.upsert(primaryContact, false);
+                if (!result.isSuccess()) {
+                    throw new creditApplicationException('Critical error inserting the Primary Contact: ' + result.getErrors());
+                }
             }
 
             System.debug('***OTR*** Primary Contact: ' + primaryContact.Id);
 
-            // Create PG Contact
-            Contact pgContact = new Contact();
+            if(pgContact.Id == null){
+                // Create PG Contact
 
-            if (additionalAttributes.ssn != null || Test.isRunningTest()) {
+                if (additionalAttributes.ssn != null || Test.isRunningTest()) {
 
-                pgContact.AccountId = account.Id;
+                    pgContact.AccountId = account.Id;
 
-                pgContact.FirstName = onlineApplication.Contact_First_Name__c;
-                pgContact.LastName = onlineApplication.Contact_Last_Name__c;
+                    pgContact.FirstName = onlineApplication.Contact_First_Name__c;
+                    pgContact.LastName = onlineApplication.Contact_Last_Name__c;
 
-                pgContact.Email = onlineApplication.AO_Work_Email__c;
-                pgContact.mobilePhone = onlineApplication.Mobile_Number__c;
-                pgContact.Phone = onlineApplication.AO_Home_Phone_Number__c;
+                    pgContact.Email = onlineApplication.AO_Work_Email__c;
+                    pgContact.mobilePhone = onlineApplication.Mobile_Number__c;
+                    pgContact.Phone = onlineApplication.AO_Home_Phone_Number__c;
 
-                pgContact.MailingStreet = onlineApplication.AO_Address__c;
-                pgContact.MailingCity = onlineApplication.AO_City__c;
-                pgContact.MailingState = onlineApplication.AO_State__c;
-                pgContact.MailingPostalCode = onlineApplication.AO_Zip_Code__c;
-                pgContact.MailingCountry = onlineApplication.AO_Country__c;
+                    pgContact.MailingStreet = onlineApplication.AO_Address__c;
+                    pgContact.MailingCity = onlineApplication.AO_City__c;
+                    pgContact.MailingState = onlineApplication.AO_State__c;
+                    pgContact.MailingPostalCode = onlineApplication.AO_Zip_Code__c;
+                    pgContact.MailingCountry = onlineApplication.AO_Country__c;
 
-                if (onlineApplication.AO_Date_of_Birth__c != null) {
-                    pgContact.Birthdate = onlineApplication.AO_Date_of_Birth__c;
+                    if (onlineApplication.AO_Date_of_Birth__c != null) {
+                        pgContact.Birthdate = onlineApplication.AO_Date_of_Birth__c;
+                    }
+                    pgContact.SSN__c = additionalAttributes.ssn;
+
+                    result = Database.upsert(pgContact, false);
+                    if (!result.isSuccess()) {
+                        throw new creditApplicationException('Critical error inserting the PG Contact: ' + result.getErrors());
+                    }
                 }
-                pgContact.SSN__c = additionalAttributes.ssn;
-
-                result = Database.upsert(pgContact, false);
-                if (!result.isSuccess()) {
-                    throw new creditApplicationException('Critical error inserting the PG Contact: ' + result.getErrors());
-                }
-
-                onlineApplication.Personal_Guarantor__c = pgContact.Id;
-                System.debug('***OTR*** PG Contact: ' + pgContact.Id);
-
             }
+
+            onlineApplication.Personal_Guarantor__c = pgContact.Id;
+            System.debug('***OTR*** PG Contact: ' + pgContact.Id);
 
             // Add Opportunity
             Opportunity opportunity = new Opportunity();
