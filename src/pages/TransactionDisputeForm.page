@@ -508,14 +508,6 @@
                                 </div>
                                 <div class="slds-form-element__row slds-var-p-around_x-small">
                                     <div class="slds-form-element slds-size_2-of-4">
-                                        <label class="slds-form-element__label" for="input-03">Current Business Address</label>
-                                        <div class="slds-form-element__control">
-                                            <textarea id="textarea-id-01" class="slds-textarea" disabled="true" rows="6" style="resize: none;">{!physicalAddress}</textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="slds-form-element__row slds-var-p-around_x-small">
-                                    <div class="slds-form-element slds-size_2-of-4">
                                         <label class="slds-form-element__label" for="input-03">Authorized Contact</label>
                                         <div class="slds-form-element__control">
                                             <input type="text" class="slds-input" disabled="true" value="{!authorizedUserFullName} ({!authorizedUserEmail})" />

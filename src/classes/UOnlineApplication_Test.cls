@@ -1,4 +1,4 @@
-@isTest (seeAllData = false)
+@isTest
 private class UOnlineApplication_Test {
 
     static testMethod void myUnitTest() {

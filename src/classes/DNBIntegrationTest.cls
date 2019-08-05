@@ -1,5 +1,10 @@
 @isTest
 private class DNBIntegrationTest {
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testmethod void testDNBIntegration() {
         Account acc1 = new Account();
         acc1.Name = 'test';

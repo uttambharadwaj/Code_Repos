@@ -13,6 +13,8 @@ public class FleetEnrollmentTest {
     @testSetup
     static void setupData() {
 
+        UtilityTestLoader.setAutomation(false);
+    
         insert new Fleet_Enrollment_Settings__c(Enable_Siebel_Opportunity_Update__c = true);
 
         Campaign campaign = new Campaign();
@@ -28,6 +30,13 @@ public class FleetEnrollmentTest {
         campaign.IsActive = true;
 
         insert campaign;
+
+        Finders_Fee__c finders = new Finders_Fee__c();
+
+        finders.Name = 'HDT';
+        finders.Finders_Fee_Name__c = 'Home Depot';
+
+        upsert finders;
 
         // Setup Program
         Program__c program = new Program__c();
@@ -45,8 +54,13 @@ public class FleetEnrollmentTest {
         program.WEX_Associations__c = 'BizUnite';
         program.Fleet_Available_Billing_Cycles__c = 'Cycle 4';
         program.Allow_Partner_Billed_Overnight_Cards__c = true;
+        program.WEX_Platform__c = 'Millennium';
+        program.Finders_Fee__c = finders.Id;
 
         upsert program;
+
+        finders.Program__c = program.Id;
+        update finders;
 
         Campaign_Program__c campaignProgram = new Campaign_Program__c();
         //create campaign program test data
@@ -256,12 +270,12 @@ public class FleetEnrollmentTest {
             User integrationUser = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
             Application_Request__c applicationRequest = new Application_Request__c();
-
+                    
             List<Campaign_Program__c> campaignPrograms = [SELECT Id, Campaign__c FROM Campaign_Program__c WHERE Program__c =: testProgram.Id];
-
+            
             System.runAs(integrationUser) {
 
-                Opportunity opportunity = new Opportunity(campaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
+                Opportunity opportunity = new Opportunity(CampaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');
                 opportunity.Fueling_Methos__c = 'BP';
 
                 insert opportunity;
@@ -465,6 +479,8 @@ public class FleetEnrollmentTest {
                 System.assert(fleetEnrollmentInternalController.availableAssociationsSize > 0);
                 System.assert(fleetEnrollmentInternalController.availableBillingCycles != null);
                 System.assert(fleetEnrollmentInternalController.availableBillingCyclesSize > 0);
+                System.assert(fleetEnrollmentInternalController.availableFindersFees != null);
+                System.assert(fleetEnrollmentInternalController.availableFindersFeesSize > 0);
                 System.assert(fleetEnrollmentInternalController.availableStateOptions != null);
 
                 FleetEnrollmentInternalController.FleetEnrollmentInformation fleetEnrollmentInformation = new FleetEnrollmentInternalController.FleetEnrollmentInformation();
@@ -531,7 +547,7 @@ public class FleetEnrollmentTest {
 
                 fleetEnrollmentInternalController.addNewContact();
 
-                fleetEnrollmentInternalController.selectedContact = '1';
+                fleetEnrollmentInternalController.selectedContact = 1;
 
                 System.assert(fleetEnrollmentInternalController.additionalContactsSize > -1);
 
@@ -664,7 +680,7 @@ public class FleetEnrollmentTest {
 
         RestContext.response = postRestResponse;
 
-        FleetEnrollmentWS_Attachments.updateQueueCase();
+        //FleetEnrollmentWS_Attachments.updateQueueCase();
 
         Test.stopTest();
 
@@ -795,7 +811,7 @@ public class FleetEnrollmentTest {
             Application_Request__c applicationRequest = new Application_Request__c();
 
             List<Campaign_Program__c> campaignPrograms = [SELECT Id, Campaign__c FROM Campaign_Program__c WHERE Program__c =: testProgram.Id];
-
+            
             System.runAs(integrationUser) {
 
                 Opportunity opportunity = new Opportunity(CampaignId = campaignPrograms[0].Campaign__c, Campaign_Program__c = campaignPrograms[0].Id, name = 'TestOpp', closedate = date.newinstance(2015, 11, 11), stagename = '5) Signed', fleet_size__c = 10, ownerId = integrationUser.Id, sourcesystem__c = 'test');

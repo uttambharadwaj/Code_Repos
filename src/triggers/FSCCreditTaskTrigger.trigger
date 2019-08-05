@@ -3,7 +3,7 @@
  */
 
 trigger FSCCreditTaskTrigger on Task (after insert) {
-
+/*
     static Boolean fscCreditTaskTriggerRunning = false;
 
     BOCA_Settings__c bocaSettings = BOCA_Settings__c.getOrgDefaults();
@@ -21,5 +21,5 @@ trigger FSCCreditTaskTrigger on Task (after insert) {
         }
 
     }
-
+*/
 }

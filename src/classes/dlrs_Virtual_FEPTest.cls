@@ -4,6 +4,11 @@
 @IsTest
 private class dlrs_Virtual_FEPTest
 {
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     @IsTest
     private static void testTrigger()
     {

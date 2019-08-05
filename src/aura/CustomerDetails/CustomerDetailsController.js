@@ -19,21 +19,22 @@
             {label: "Subject", fieldName: "Subject", type: "text"},
             {label: "Contact", fieldName: "Contact.Name", type: "text"},
             {label: "Status", fieldName: "Status", type: "text"},
+            {label: "Case Type", fieldName: "RecordType.Name", type: "text"},
             {label: "Last Modified", fieldName: "LastModifiedDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: "false"}},
             {label: "Owner", fieldName: "Owner.Name", type: "text"}
         ]);
 
         component.set("v.caseHistoryColumnList", [
             {label: "Last Modified", fieldName: "LastModifiedDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: "false"}, sortable: true},
-            {label: "Case Number", fieldName: "Anchor", type: "url", typeAttributes: {label:{fieldName: "CaseNumber"}}, sortable: true},
+            {label: "Case Number", fieldName: "Anchor", type: "url", typeAttributes: {label:{fieldName: "CaseNumber"}, target:"_self"}, sortable: true},
             {label: "Status", fieldName: "Status", type: "text", sortable: true},
             {label: "Origin", fieldName: "Origin", type: "text", sortable: true},
             {label: "Contact", fieldName: "Contact_Name", type: "text", sortable: true},
             {label: "Subject", fieldName: "Subject", type: "text", sortable: true},
+            {label: "Case Type", fieldName: "RecordType_Name", type: "text"},
             {label: "Owner", fieldName: "Owner_Name", type: "text", sortable: true},
             {label: "Dept.", fieldName: "Department__c", type: "text", sortable: true}
         ]);
-
 
         component.set("v.paymentDetailsColumnList", [
             {label: "Payment ID", fieldName: "paymentId", type: "text", sortable: false, initialWidth: 150 },
@@ -86,9 +87,12 @@
                 
                 // Gears additions commented out until we find out what else is missing - MHB 28 Jun 2018
                 var pageRef = component.get("v.pageReference");
-                var accountNumber = (pageRef && pageRef.state) ? pageRef.state.accountNumber : null;
-                // var accountNumber = helper.getParameterByName(component, event, 'accountNumber', response.url);
-                
+                //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
+                 var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
+
+                console.log("### using accountNumber "+accountNumber);
+                console.log("### recordId is "+component.get("v.recordId"));
+
                 if(accountNumber == null && component.get("v.recordId") == null) {
                     
                     var toastEvent = $A.get("e.force:showToast");
@@ -103,14 +107,23 @@
                     component.set("v.accountNumber", accountNumber);
                     
                     // Grab the case ID off the enclosing tab URL
-                    var caseId = (pageRef && pageRef.state) ? pageRef.state.caseId : null;
+                    var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
                     // var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
                     component.set("v.caseId", caseId);
                     
                     // Grab the contactRowID off the enclosing tab URL
-                    var contactRowId = (pageRef && pageRef.state) ? pageRef.state.contactRowId : null;
+                    var contactRowId = (pageRef && pageRef.state) ? pageRef.state.c__contactRowId : null;
                     // var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
                     component.set("v.contactRowId", contactRowId);
+
+                    // Grab the pdRowId off the enclosing tab URL
+                    var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
+                    component.set("v.pdRowId", pdRowid);
+
+                    console.log('#### accountNumber = '+component.get("v.accountNumber"));
+                    console.log('#### caseId = '+component.get("v.caseId"));
+                    console.log('#### contactRowId = '+component.get("v.contactRowId"));
+                    console.log('#### pdRowId = '+component.get("v.pdRowId"));
 
                     // Display the spinner
                     var spinner = component.find("loadingSpinner");
@@ -334,7 +347,6 @@
     lazyLoadDeclinedTransactions : function(component, event, helper) {
         if(component.get("v.declinedTransactions") == null) {           
             var spinner = component.find("declinedTransactionsLoadingSpinner");
-            console.log("Found spinner: "+(spinner != null));
             $A.util.removeClass(spinner, "slds-hide");
             helper.loadDeclinedTransactions(component, null);			
         }        
@@ -343,7 +355,6 @@
      lazyLoadInvoices : function(component, event, helper) {
         if(component.get("v.invoices") == null) {           
             var spinner = component.find("invoicesLoadingSpinner");
-            console.log("Found spinner: "+(spinner != null));
             $A.util.removeClass(spinner, "slds-hide");
             helper.loadInvoices(component, null);
         }        

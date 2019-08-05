@@ -8,6 +8,9 @@ public class OTRBOCATest {
 
     @testSetup
     static void setup(){
+    
+        UtilityTestLoader.setAutomation(false);
+    
         Account offerAccount = new Account();
         offerAccount.Name ='TestAccount-01';
 
@@ -181,7 +184,7 @@ public class OTRBOCATest {
         onlineApplication.Odometer__c = true;
         onlineApplication.Offer__c = onlineApplicationOffer.Id;
         onlineApplication.Other_Services__c = 'SmartFunds;ATM;Money Codes and ATM;Scales';
-        onlineApplication.Payment_Method__c = 'Customer ACH';
+//        onlineApplication.Payment_Method__c = 'Customer ACH';
         onlineApplication.Phone_Number__c = '3123339999';
         onlineApplication.Product_Type__c = 'OTR';
         onlineApplication.Promotional_Code__c = 'promo12345';
@@ -196,7 +199,7 @@ public class OTRBOCATest {
         onlineApplication.Zip_Code__c = '60606';
         onlineApplication.OwnerId = UserInfo.getUserId();
         //onlineApplication.Day_of_Payment__c = 'Monday;Tuesday';
-        onlineApplication.Payment_Method__c = 'Auto Draft';
+//        onlineApplication.Payment_Method__c = 'Auto Draft';
         onlineApplication.ThreatMetrix_Request_ID__c = '123456789';
         onlineApplication.Program__c = program.Id;
         onlineApplication.Account__c = offerAccount.Id;
@@ -301,7 +304,7 @@ public class OTRBOCATest {
 
             System.assert(otrBOCAController.businessDescriptionOptions != null);
             System.assert(otrBOCAController.paymentMethodOptions != null);
-            System.assert(otrBOCAController.dayOfPaymentOptions != null);
+            //System.assert(otrBOCAController.dayOfPaymentOptions != null);
 
             System.assert(otrBOCAController.fleetIdentifier == null);
 

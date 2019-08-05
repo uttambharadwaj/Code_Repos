@@ -31,7 +31,7 @@ trigger CaseTrigger on Case (before insert,after insert, after update)
                 else if(trigger.isUpdate == true)
                 {
                     UCase.EmailToCaseOwernshipAssignment(records, trigger.oldmap);
-                    UCase.sendCaseCloseEmailToOpportunityOwner(records, trigger.oldMap);
+                  UCase.sendCaseCloseEmailToOpportunityOwner(records, trigger.oldMap);
                     //  UCase.sendCaseCloseSurveyEmail(records, trigger.oldMap);
                     UCase.associateWithEntitlement(Trigger.new);
                 }

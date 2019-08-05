@@ -13,7 +13,7 @@
 @isTest
 private class AccountAndCardsToGenesis_ExConTest {
 
-    @isTest (SeeAllData = true) static void accountFails() {
+    @isTest static void accountFails() {
         // Set up test data
         Schema.DescribeSObjectResult accountSobject = Account.SObjectType.getDescribe();
         Map<String, Schema.RecordTypeInfo> accRtMapByName = accountSobject.getRecordTypeInfosByName();
@@ -145,7 +145,7 @@ private class AccountAndCardsToGenesis_ExConTest {
         PageReference pageRef = accountAndCardsToGenesisController.submitAccountAndCards();
         Test.stopTest();
     }
-    @isTest (SeeAllData = true) static void accountSucceedsCardsSucceed() {
+    @isTest static void accountSucceedsCardsSucceed() {
         // Set up test data
         Schema.DescribeSObjectResult accountSobject = Account.SObjectType.getDescribe();
         Map<String, Schema.RecordTypeInfo> accRtMapByName = accountSobject.getRecordTypeInfosByName();
@@ -327,7 +327,7 @@ private class AccountAndCardsToGenesis_ExConTest {
         PageReference pageRef = accountAndCardsToGenesisController.submitAccountAndCards();
         Test.stopTest();
     }
-    @isTest (SeeAllData = true) static void accountSucceedsCardsFail() {
+    @isTest static void accountSucceedsCardsFail() {
         // Set up test data
         Schema.DescribeSObjectResult accountSobject = Account.SObjectType.getDescribe();
         Map<String, Schema.RecordTypeInfo> accRtMapByName = accountSobject.getRecordTypeInfosByName();

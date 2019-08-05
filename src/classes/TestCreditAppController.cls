@@ -8,6 +8,11 @@ public class TestCreditAppController {
     public static Campaign_Pricing__c pric1{get; set;}
     public static Campaign_Pricing__c pric2{get; set;}
     
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     public static Campaign_Pricing__c setupPricing(){
     	Campaign_Pricing__c pric = new Campaign_Pricing__c();
         pric.Name = 'test';

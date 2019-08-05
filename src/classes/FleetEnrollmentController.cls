@@ -1,4 +1,4 @@
-public class FleetEnrollmentController {
+public virtual class FleetEnrollmentController {
 
     // Defining the main form object
     public FleetEnrollment__c fleetEnrollment { get; set; }
@@ -7,6 +7,11 @@ public class FleetEnrollmentController {
 
     public String confirmationNumber { get; set; }
     public String printToken { get; set; }
+    public String languageCode { 
+        get {
+            return ApexPages.CurrentPage().getParameters().get('lang');
+        } 
+    }    
 
     // URL Parameters to fetch
     public String opportunityParameter {
@@ -14,6 +19,26 @@ public class FleetEnrollmentController {
             return ApexPages.currentPage().getParameters().get('opty');
         }
     }
+
+    public Boolean checkOpportunityParameter {
+        get {
+            try {
+                Schema.SObjectType objectType = (Id.valueOf(opportunityParameter)).getSobjectType();
+
+                if((String.valueOf(objectType)).equalsIgnoreCase('Opportunity')) {
+                    return true;
+                }
+
+            }
+            catch(Exception e) {
+                System.debug('### Not a valid ID..');
+            }
+
+            return false;
+        }
+    }
+
+    public Boolean showPreview {get;set;}
 
     public String currentPage {
         get {
@@ -79,6 +104,8 @@ public class FleetEnrollmentController {
     // Branding - Card image from the chosen program
     public Id brandingCard { get; set; }
 
+    public Id brandingCard1to1 { get; set; }
+
     // Dynamic Card Image
     public Id dynamicCard { get; set; }
 
@@ -87,7 +114,7 @@ public class FleetEnrollmentController {
     public List<SelectOption> availableStateSelectOptions {
         get {
             List<SelectOption> picklistValues = new List<SelectOption>();
-            picklistValues.add(new SelectOption('#', 'Billing State'));
+            picklistValues.add(new SelectOption('#', Label.Billing_State));
             Schema.DescribeFieldResult billingState = WeFormObject__c.Billing_State__c.getDescribe();
             List<Schema.PicklistEntry> picklistEntries = billingState.getPicklistValues();
             for( Schema.PicklistEntry picklistValue : picklistEntries) {
@@ -101,11 +128,11 @@ public class FleetEnrollmentController {
     public List<SelectOption> embossingOptions {
         get {
             List<SelectOption> embossingOptions = new List<SelectOption>();
-            embossingOptions.add(new SelectOption('#', 'Optional printing', true));
-            embossingOptions.add(new SelectOption('None', 'No Printing'));
-            embossingOptions.add(new SelectOption('License Plate', 'License Plate'));
-            embossingOptions.add(new SelectOption('Vehicle Description', 'Vehicle Description'));
-            embossingOptions.add(new SelectOption('Company Vehicle ID', 'Company Vehicle ID'));
+            embossingOptions.add(new SelectOption('#', Label.Optional_printing, true));
+            embossingOptions.add(new SelectOption('None', Label.No_Printing));
+            embossingOptions.add(new SelectOption('License Plate', Label.License_Plate));
+            embossingOptions.add(new SelectOption('Vehicle Description', Label.Vehicle_Description));
+            embossingOptions.add(new SelectOption('Company Vehicle ID', Label.Company_Vehicle_ID));
 
             return embossingOptions;
         }
@@ -116,9 +143,9 @@ public class FleetEnrollmentController {
     public List<SelectOption> acceptanceOptions {
         get {
             List<SelectOption> acceptanceOptions = new List<SelectOption>();
-            acceptanceOptions.add(new SelectOption('#', 'Acceptance', true));
-            acceptanceOptions.add(new SelectOption('Private Label', 'Private Label'));
-            acceptanceOptions.add(new SelectOption('Universal', 'Universal'));
+            acceptanceOptions.add(new SelectOption('#', Label.Fleet_Acceptance, true));
+            acceptanceOptions.add(new SelectOption('Private Label', Label.Fleet_Private_Label));
+            acceptanceOptions.add(new SelectOption('Universal', Label.Fleet_Universal));
 
             return acceptanceOptions;
         }
@@ -127,7 +154,7 @@ public class FleetEnrollmentController {
     public List<SelectOption> cardControlOptions {
         get {
             List<SelectOption> cardControlOptions = new List<SelectOption>();
-            cardControlOptions.add(new SelectOption('#', 'Card Controls', true));
+            cardControlOptions.add(new SelectOption('#', Label.Card_Controls, true));
 
             if(program != null && program.Available_Card_Controls__c !=  null) {
 
@@ -142,13 +169,13 @@ public class FleetEnrollmentController {
             }
             else {
 
-                cardControlOptions.add(new SelectOption('Custom Controls', 'Custom Controls'));
+                cardControlOptions.add(new SelectOption('Custom Controls', Label.Custom_Controls));
 
                 if (program != null && program.Fleet_Enrollment_Enable_Fuel_Oil__c) {
-                    cardControlOptions.add(new SelectOption('Fuel and Oil', 'Fuel and Oil'));
+                    cardControlOptions.add(new SelectOption('Fuel and Oil', Label.Fuel_and_Oil));
                 }
 
-                cardControlOptions.add(new SelectOption('Fuel Only', 'Fuel Only'));
+                cardControlOptions.add(new SelectOption('Fuel Only', Label.Fuel_Only));
 
             }
 
@@ -159,9 +186,20 @@ public class FleetEnrollmentController {
     public List<SelectOption> promptOptions {
         get {
             List<SelectOption> promptOptions = new List<SelectOption>();
-            promptOptions.add(new SelectOption('#', 'Prompt Options', true));
-            promptOptions.add(new SelectOption('Driver ID & Odometer', 'Driver ID & Odometer'));
-            promptOptions.add(new SelectOption('Driver ID Only', 'Driver ID Only'));
+            promptOptions.add(new SelectOption('#', Label.Fleet_Prompt_Options, true));
+            promptOptions.add(new SelectOption('Driver ID & Odometer', Label.Fleet_Driver_ID_Odometer));
+            promptOptions.add(new SelectOption('Driver ID Only', Label.Fleet_Driver_ID_Only));
+
+            return promptOptions;
+        }
+    }
+
+    public List<SelectOption> promptOptions1to1 {
+        get {
+            List<SelectOption> promptOptions = new List<SelectOption>();
+            promptOptions.add(new SelectOption('#', Label.Fleet_Prompt_Options, true));
+            promptOptions.add(new SelectOption('Vehicle ID & Odometer', Label.Fleet_Driver_ID_Odometer));
+            promptOptions.add(new SelectOption('Vehicle ID Only', Label.Fleet_Driver_ID_Only));
 
             return promptOptions;
         }
@@ -170,8 +208,8 @@ public class FleetEnrollmentController {
     public List<SelectOption> driverIdOptions {
         get {
             List<SelectOption> driverIdOptions = new List<SelectOption>();
-            driverIdOptions.add(new SelectOption('custom', 'Custom Driver IDs'));
-            driverIdOptions.add(new SelectOption('random', 'Randomly Generated IDs'));
+            driverIdOptions.add(new SelectOption('custom', Label.Fleet_Custom_Driver_IDs));
+            driverIdOptions.add(new SelectOption('random', Label.Fleet_Randomly_Generated_IDs));
             return driverIdOptions;
         }
     }
@@ -242,6 +280,23 @@ public class FleetEnrollmentController {
         public String lastName { get; set; }
         public String driverId { get; set; }
         public Boolean isNotRemovable { get; set; }
+        public String selectedCardControlOption;
+        public String selectedPromptOption { get; set; }
+        public String selectedAcceptanceOption { get; set; }
+        
+        public String getSelectedCardControlOption() {
+            return selectedCardControlOption;
+        }
+
+        public void setSelectedCardControlOption(String selectedCardControlOption) {
+            this.selectedCardControlOption = selectedCardControlOption;
+        }
+
+        public FleetDriver() {
+            selectedCardControlOption = '#';
+            selectedPromptOption = '#';
+            selectedAcceptanceOption = '#';
+        }
     }
 
     // Various variables used for maintaining
@@ -287,7 +342,8 @@ public class FleetEnrollmentController {
         minStep = 1;
         maxStep = 5;
         currentStep = 1;
-
+        showPreview = false;
+        
         cardShippingSameAsBillingAddress = true;
 
         if(currentPage != null) {
@@ -341,7 +397,7 @@ public class FleetEnrollmentController {
 
                 // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
                 // but not pre-filling any of the existing information!
-                fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter and CreatedBy.Alias != 'guest'];
+                fleetEnrollments = [SELECT Id, Opportunity_Number__c FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter and CreatedBy.Alias != 'guest'];
 
                 if(fleetEnrollments.size() > 0) {
 
@@ -359,7 +415,7 @@ public class FleetEnrollmentController {
 
                 // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
                 // but not pre-filling any of the existing information!
-                fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity_Number__c =: opportunityParameter and CreatedBy.Alias != 'guest'];
+                fleetEnrollments = [SELECT Id, Opportunity_Number__c FROM FleetEnrollment__c WHERE (Opportunity_Number__c =: opportunityParameter or Opportunity__c =: opportunityParameter) and CreatedBy.Alias != 'guest'];
 
                 if(fleetEnrollments.size() > 0) {
 
@@ -378,11 +434,13 @@ public class FleetEnrollmentController {
 
                 System.debug('### ' + program);
 
-                if(program != null && program.Publish_Fleet_Data_Capture_Form__c != false) {
+                if(program != null && (program.Publish_Fleet_Data_Capture_Form__c != false || program.Publish_Fleet_Data_Capture_Form_1_1__c != false)) {
 
                     brandingCard = WexBrandingController.getCreditCardImageId(program.Id);
 
                     dynamicCard = WexBrandingController.getCreditCardNotTextImageId(program.Id);
+
+                    brandingCard1to1 = WexBrandingController.getCreditCardOneToOne(program.Id);
 
                     programTemplateAccount = WexBrandingController.getProgramTemplateAccount(WexBrandingController.getDefaultAccountTemplateByProgram(program.Id));
 
@@ -403,6 +461,7 @@ public class FleetEnrollmentController {
             redirect = Page.ExternalApplicationError;
             redirect.getParameters().put('errorCode', errorCode);
             redirect.getParameters().put('pgm', programParameter);
+            redirect.getParameters().put('lang', languageCode);
             return redirect;
 
         }
@@ -545,7 +604,7 @@ public class FleetEnrollmentController {
     public PageReference setDIDLength() {
 
         System.debug('### DID Length: ' + selectedDIDLength);
-
+        
         return null;
 
     }
@@ -555,7 +614,7 @@ public class FleetEnrollmentController {
         currentStep = currentStep - 1;
     }
 
-    public void nextStep() {
+    public virtual void nextStep() {
 
         if(currentStep == 1) {
             setCardShippingSame();
@@ -610,8 +669,11 @@ public class FleetEnrollmentController {
             fleetEnrollment.Print_Token__c = key.substring(0, 25);
 
             if(!String.isEmpty(opportunityParameter)) {
+                if(checkOpportunityParameter == false) {
                 fleetEnrollment.Opportunity_Number__c = opportunityParameter;
+                }
                 fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
+                fleetEnrollment.Opportunity__c = opportunityParameter;
             }
 
             if(selectedDriverIdOption.equalsIgnoreCase('random')) {
@@ -706,6 +768,16 @@ public class FleetEnrollmentController {
                             newFleetDriver.Last_Name__c = fleetDrivers.get(i).lastName;
                             newFleetDriver.Driver_ID__c = fleetDrivers.get(i).driverId;
 
+                            newFleetDriver.Card_Control_Type__c = fleetDrivers.get(i).selectedCardControlOption;
+
+                            if(program.Fleet_Enrollment_Enable_Prompt_Options__c == true && fleetDrivers.get(i).selectedPromptOption != '#') {
+                                newFleetDriver.Prompt_Options__c = fleetDrivers.get(i).selectedPromptOption;
+                            }
+
+                            if(program.Fleet_Enrollment_Enable_Universal_PL__c == true && fleetDrivers.get(i).selectedAcceptanceOption != '#') {
+                                newFleetDriver.Acceptance__c = fleetDrivers.get(i).selectedAcceptanceOption;
+                            }
+                            
                             if(fleetEnrollment.Driver_ID_Random__c == true) {
                                 newFleetDriver.Driver_ID__c = 'Random';
                             }
@@ -731,6 +803,7 @@ public class FleetEnrollmentController {
             applicationRedirect = Page.FleetEnrollmentConfirmation;
             applicationRedirect.getParameters().put('applicant', fleetEnrollmentConfirmed.Id);
             applicationRedirect.getParameters().put('token', fleetEnrollmentConfirmed.Print_Token__c);
+            applicationRedirect.getParameters().put('lang', languageCode);
             applicationRedirect.setRedirect(true);
             return applicationRedirect;
 
@@ -741,6 +814,7 @@ public class FleetEnrollmentController {
             PageReference errorPage = Page.ExternalApplicationError;
             errorPage.getParameters().put('errorCode', errorNumber);
             errorPage.getParameters().put('pgm', programParameter);
+            errorPage.getParameters().put('lang', languageCode);            
             return errorPage;
         }
 
@@ -775,12 +849,14 @@ public class FleetEnrollmentController {
             }
         }
 
-        if(!Test.isRunningTest()){
-            Messaging.sendEmail(new Messaging.SingleEmailMessage[] {confirmation});
-        }
+        UtilityClass.sendEmail(confirmation);
 
         delete temporaryContact;
 
+    }
+
+    public void myShowPreviewMethod(){
+        showPreview=true;
     }
 
 }

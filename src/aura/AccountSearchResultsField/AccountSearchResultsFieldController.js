@@ -7,6 +7,7 @@
             component.set("v.accountNumber", params[0]);
             component.set("v.accountRowID", encodeURIComponent(params[1]));
             component.set("v.contactRowId", encodeURIComponent(params[2]));
+            component.set("v.pdRowId", encodeURIComponent(params[3]));
         } else {
             var outputText = component.find("outputTextId");
             outputText.set("v.value", result[fieldName]);
@@ -22,10 +23,11 @@
                     "componentName": "c__CustomerDetails"
                 },
                 "state": {
-                    "accountNumber": component.get("v.accountNumber"),
-                    "accountRowID": component.get("v.accountRowID"),
-                    "contactRowId": component.get("v.contactRowId"),
-                    "caseId": component.get("v.caseId")
+                    "c__accountNumber": component.get("v.accountNumber"),
+                    "c__accountRowID": component.get("v.accountRowID"),
+                    "c__contactRowId": component.get("v.contactRowId"),
+                    "c__pdRowId": component.get("v.pdRowId"),
+                    "c__caseId": component.get("v.caseId")
                 }
             },
             focus: true

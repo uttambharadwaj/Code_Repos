@@ -1,7 +1,7 @@
 @isTest
 class PartnersCommLoginControllerTests implements HttpCalloutMock
 {
-    @IsTest(SeeAllData=true)        
+    @IsTest
     private static void testPartnersCommLoginController() 
     {   
         Deployment_PartnersCommunity d = new Deployment_PartnersCommunity(Deployment_PartnersCommunity.Environment.DEV);

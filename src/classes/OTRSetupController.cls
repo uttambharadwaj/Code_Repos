@@ -1,4 +1,4 @@
-/*
+ /*
 Description:        Controller Class for OTRSetup VF Page
                     (Page 2 of Online Application for OTRBOCA)
 Test Classes:       OTRBOCATest
@@ -6,6 +6,7 @@ Last Coverage:      30%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 refactor to allow code reuse on save for later pdf generation
                     4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section from page; remove related code from controller
                     5/13/2019 Michael Farrell PSOBACKLOG-183 added Daily_Fuel_Limit__c & Daily_Misc_Limit__c to onlineApplications SOQL
+                    6/3/2019 MFarrell PSOBACKLOG-49 - Added Security_Code__c & Online_Password__c to OnlineApplicationAuthorizedContacts SOQL
 */
 public without sharing class OTRSetupController {
 
@@ -51,6 +52,12 @@ public without sharing class OTRSetupController {
         }
     }
 
+    public String userSessionId {
+        get {
+            return UserInfo.getSessionId();
+        }
+    }
+
     public String selectedUnitIndex { get; set; }
 
     public List<OnlineApplicationDriverSetup__c> onlineApplicationDrivers { get; set; }
@@ -64,9 +71,56 @@ public without sharing class OTRSetupController {
         }
     }
 
+    public String selectedMerch {get;set;}
+
+    public List<OptionWrapper> merchCats {
+        get {
+            List<OptionWrapper> myMerchObjs = new List<OptionWrapper>();
+            Schema.DescribeFieldResult myPicklistFields = OnlineApplication__c.Allowed_Merchant_Categories__c.getDescribe();
+            for(Schema.PicklistEntry pe : myPicklistFields.getPicklistValues()){
+                if(!pe.getValue().contains('All')){
+                    myMerchObjs.add(new OptionWrapper(pe));
+                }
+            }
+            return myMerchObjs;
+        }
+    }
+
+    public class OptionWrapper {
+        public String label {get;set;}
+        public String value {get;set;}
+        public String helps {get;set;}
+
+        public OptionWrapper(Schema.PicklistEntry myPicker){
+            this.label = myPicker.getLabel();
+            this.value = myPicker.getValue();
+            String myHelp = 'OTRSetup' + myPicker.getValue();
+            this.helps = myHelp;
+
+        }
+    }
+
     public String selectedDriverIndex { get; set; }
 
     public List<String> otherServices { get; set; }
+
+    public String otherServicesString { get; set; }
+
+    public List<SelectOption> otherServicesOptions {
+
+        get {
+            List<SelectOption> othSvcOpts = new List<SelectOption>();
+            String othSvcOptsString = onlineApplicationOffer.Other_Services__c;
+
+            if (othSvcOptsString != null) {
+                for (String option : othSvcOptsString.split(';')) {
+                    othSvcOpts.add(new SelectOption(option, option));
+                }
+            }
+
+            return othSvcOpts;
+        }
+    }
 
     public String selectedOtherServices { get; set; }
 
@@ -76,6 +130,14 @@ public without sharing class OTRSetupController {
                 return otherServices.size();
             }
             return 0;
+        }
+    }
+
+    public Boolean hasScales {
+        get{
+            if(otherServices != null && otherServices.contains('Scales'))
+                return true;
+            return false;
         }
     }
 
@@ -131,6 +193,24 @@ public without sharing class OTRSetupController {
         }
     }
 
+    public String selectedFundingOptions { get; set; }
+
+    public List<SelectOption> fundingOptions {
+
+        get {
+            List<SelectOption> availableFundingOptions = new List<SelectOption>();
+            String availableFundingOptionsString = onlineApplicationOffer.Available_Funding_Options__c;
+
+            if (availableFundingOptionsString != null) {
+                for (String option : availableFundingOptionsString.split(';')) {
+                    availableFundingOptions.add(new SelectOption(option, option));
+                }
+            }
+
+            return availableFundingOptions;
+        }
+    }
+
     public class creditApplicationException extends Exception { }
 
     public OTRSetupController() {
@@ -156,7 +236,8 @@ public without sharing class OTRSetupController {
                                 Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Fuel_Limit__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Daily_Misc_Limit__c, Business_Address_Line_2__c,
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
                                 Opportunity__r.CampaignId, Contact_Last_Name__c, Email__c, Contact_First_Name__c, Phone_Number__c, Cell_Number__c, Opportunity__r.Campaign_Program__c,
-                                Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c
+                                Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c, Allowed_Merchant_Categories__c, Daily_Amount_Requested__c, Daily_Transactions__c,
+                                Monthly_Amount_Requested__c, Monthly_Transactions__c, Weekly_Amount_Requested__c, Weekly_Transactions__c, Scales_Limit__c
                         FROM OnlineApplication__c
                         WHERE Id = :customerParameter AND Status__c = 'App-Incomplete'
                         LIMIT 1
@@ -184,6 +265,8 @@ public without sharing class OTRSetupController {
 
                         // Get the Online Application Offer
                         onlineApplicationOffer = WexBrandingController.getOnlineApplicationOfferById(onlineApplication.Offer__c);
+                        otherServicesString = onlineApplicationOffer.Other_Services__c;
+                        if (otherServicesString != null) otherServices = otherServicesString.split(';');
 
                         campaign = WexBrandingController.getCampaignByCampaignProgram(onlineApplication.Opportunity__r.Campaign_Program__c);
 
@@ -222,7 +305,7 @@ public without sharing class OTRSetupController {
                     }
 
                     if(applicationKey != null) {
-                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete' LIMIT 1];
+                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Online_Password__c, Phone_Number__c, Security_Code__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete' LIMIT 1];
                         if(onlineApplicationAuthorizedContacts.size() > 0) {
                             onlineApplicationAuthorizedContact = onlineApplicationAuthorizedContacts[0];
                         }
@@ -349,6 +432,10 @@ public without sharing class OTRSetupController {
             if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-Complete';
+            } else if (userSessionId != null) {
+                // if it's a paper app being submitted, this needs to go to credit for manual review
+                onlineApplication.Application_Stage__c = 'Application';
+                onlineApplication.Status__c = 'Saved-PaperApp';
             } else {
                 onlineApplication.Application_Stage__c = 'Adjudication';
                 onlineApplication.Status__c = 'Pending Decision';
@@ -358,7 +445,15 @@ public without sharing class OTRSetupController {
             onlineApplication.Number_of_Cards_Needed__c = numberOfCards;
 
             if (selectedOtherServices != null) {
-                onlineApplication.Other_Services__c = selectedOtherServices;
+                onlineApplication.Other_Services__c = selectedOtherServices.replaceAll(',',';');
+            }
+
+            if(selectedMerch != null){
+                onlineApplication.Allowed_Merchant_Categories__c = selectedMerch.replaceAll(',',';');
+            }
+
+            if (selectedFundingOptions != null) {
+                onlineApplication.Funding_Options__c = selectedFundingOptions.replaceAll(',',';');
             }
 
             upsert onlineApplication;
