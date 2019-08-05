@@ -222,7 +222,10 @@ public class UCase
         {
             if(c.ContactId != null && String.isNotBlank(c.ContactEmail)) {
 
-                if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed && c.RecordTypeId == recordTypeId && String.isNotBlank(c.SurveyInclusionHTML__c))
+                if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed     //Case newly closed
+                        && c.RecordTypeId == recordTypeId                    //Service Operations record type
+                        && String.isNotBlank(c.SurveyInclusionHTML__c)       //This field is blank for programs we don't send surveys to
+                        && !(c.Service_Program_Survey_Sent__c))              //Don't send more than once on a single case even if it reopens
                 {
                     Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
 
