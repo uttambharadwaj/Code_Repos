@@ -447,7 +447,7 @@ global class CreditDecisionEngineCP {
             // Trust but verify
             if ((null != cpApplication.Taxpayer_ID__c && null != cpApplication.Bureau_Tax_ID__c) && cpApplication.Taxpayer_ID__c.equals(cpApplication.Bureau_Tax_ID__c)) {
                 cpApplication.DNB_Match_Score__c = 100;
-            } else {
+            } else if (cpApplication.Company_Legal_Name__c != null && dnbDirectMatchRequest.SubjectName != null) {
                 cpApplication.DNB_Match_Score__c = JaroWinklerDistance.getScore((cpApplication.Company_Legal_Name__c).replaceAll('[^0-9A-Za-z]',''), (dnbDirectMatchRequest.SubjectName).replaceAll('[^0-9A-Za-z]',''));
                 System.debug('Match Score: ' + cpApplication.DNB_Match_Score__c);
             }
