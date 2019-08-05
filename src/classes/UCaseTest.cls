@@ -482,7 +482,7 @@ private class UCaseTest {
     * Created by mbickford on 10/11/2018.
     * 'Borrowed' by sschmidt on 6/14/2019.
      */
-    //  @IsTest  // Uncomment after email trigger bug fix -- MHB 2 Aug 2019
+    @IsTest
     static void testBehavior() {
 
         final String caseWithSurveySummary = 'EmailMessageTriggerTest Test Case';
@@ -532,7 +532,7 @@ private class UCaseTest {
 
     }
 
-    //  @IsTest // Uncomment after email trigger bug fix -- MHB 2 Aug 2019
+    @IsTest
     static void testNoTriggerBehavior() {
 
         final String caseWithSurveySummary = 'EmailMessageTriggerTest Test Case';
