@@ -9,7 +9,6 @@
 *                   24/Jun/2019 MFarrell    OTRONBOARD-30   Moar Fields added to contract section
 *                   25/Jun/2019 JArbegast   OTRONBOARD-44   Still not enough fields
 *                   03/Jul/2019 MFarrell    OTRONBOARD-57   moving fields from program -> offer... because why not
-*                   30/Jul/2019 JA          OTRONBOARD-59   secondary contract logic
 */
 global class AccountWS_EFSAppManager {
 
