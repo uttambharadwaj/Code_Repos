@@ -217,6 +217,7 @@ public class UCase
         }
 
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
+        Map<String,Id> orgWideEmailAddresses = new Map<String,Id>();
 
         for (Case c : records)
         {
@@ -227,7 +228,22 @@ public class UCase
                         && String.isNotBlank(c.SurveyInclusionHTML__c)       //This field is blank for programs we don't send surveys to
                         && !(c.Service_Program_Survey_Sent__c))              //Don't send more than once on a single case even if it reopens
                 {
+                    Id programEmailId;
+                    if (c.Program_Email__c != null && !(c.Program_Email__c.equals(''))) {
+                        if (orgWideEmailAddresses.containsKey(c.Program_Email__c)) {
+                            programEmailId = orgWideEmailAddresses.get(c.Program_Email__c);
+                        } else {
+                            OrgWideEmailAddress[] owea = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: c.Program_Email__c];
+                            if ( owea.size() > 0 ) {
+                                programEmailId = (owea.get(0).Id);
+                                orgWideEmailAddresses.put(c.Program_Email__c,programEmailId);
+                            }
+                        }
+                    }
                     Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+                    if (programEmailId != null) {
+                        email.setOrgWideEmailAddressId(programEmailId);
+                    }
 
                     email.setTargetObjectId(c.ContactId);
                     email.setTreatTargetObjectAsRecipient(true);
