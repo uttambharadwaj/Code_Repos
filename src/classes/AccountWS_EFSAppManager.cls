@@ -9,6 +9,7 @@
 *                   24/Jun/2019 MFarrell    OTRONBOARD-30   Moar Fields added to contract section
 *                   25/Jun/2019 JArbegast   OTRONBOARD-44   Still not enough fields
 *                   03/Jul/2019 MFarrell    OTRONBOARD-57   moving fields from program -> offer... because why not
+*                   30/Jul/2019 JA          OTRONBOARD-59   secondary contract logic
 */
 global class AccountWS_EFSAppManager {
 
@@ -109,6 +110,13 @@ global class AccountWS_EFSAppManager {
                 String firstPayload = buildPayload_callout1(onlineApplication, loginResponse.clientId);
 
                 if(firstPayload != null) {
+
+
+                    //otronboard-59
+                    OnlineApplicationOffer__c onlineApplicationOffer;
+                    if(onlineApplication.Offer__c != null){
+                        onlineApplicationOffer = [SELECT Id, Funding__c FROM OnlineApplicationOffer__c WHERE Id = :onlineApplication.Offer__c LIMIT 1];
+                    }
 
                     // Send the payload to Ogden LLC
                     http = new Http();
@@ -406,6 +414,9 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStartObject();
 
         jsonPayload.writeStringField('application_id', onlineApplication.ID);
+        //otronboard-59
+        if(onlineApplication.Carrier_ID_Number__c != null)
+            jsonPayload.writeNumberField('linkSecondaryThreshold', 100);
 
         // Start of "policy"
         jsonPayload.writeFieldName('policy');

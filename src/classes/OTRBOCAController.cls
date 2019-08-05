@@ -7,6 +7,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                     4/10/2019 Jason Arbegast IADJUDICAT-966 added break in a for loop
                     05/06/2019  Michael Farrell     IADJUDICAT-1157     populated tmSessionId variable
                     06/21/2019  Michael Farrell     PSOBACKLOG-226      added Offer__c lookup field to opportunity for CPQ
+                    07/30/2019 JA OTRONBOARD-59 add existing carrier id
 
  */
 
@@ -42,6 +43,8 @@ public class OTRBOCAController {
     public WeFormObject__c creditApp { get; set; }
 
     public OnlineApplication__c onlineApplication { get; set; }
+
+    public String carrierID { get; set; }
 
     public String tmSessionId { get; set; }
 
@@ -593,11 +596,27 @@ public class OTRBOCAController {
 
         try {
 
+            if(carrierID != null && carrierID != ''){
+                Boolean carrierNotFound = true;
+                for(Account a : [SELECT Id, Carrier_ID__c FROM Account WHERE Program__c = :program.Id AND Carrier_ID__c != null]){
+                    if(a.Carrier_ID__c == carrierID){
+                        carrierNotFound = false;
+                        break;
+                    }
+                }
+                if(carrierNotFound)
+                    throw new creditApplicationException('Carrier ID not found');
+            }
+
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
+
 
             // Add Account
             Account account = new Account();
 
+            if(carrierId != null && carrierId != ''){
+                account.Carrier_ID__c = carrierId;
+            }
             if (Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account') != null) {
                 account.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
             }
