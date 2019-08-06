@@ -244,6 +244,7 @@ function validateBOCA() {
     });
 
     $j('[id$=bocaForm]').find('.email').each(function() {
+        this.value = $j(this).val().replace(/\s/g,''); //remove all spaces in the field
         if($j(this).val() != null && !validateEmail($j(this).val())) {
             $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Email + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
