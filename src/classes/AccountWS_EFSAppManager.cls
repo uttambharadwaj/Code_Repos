@@ -111,6 +111,13 @@ global class AccountWS_EFSAppManager {
 
                 if(firstPayload != null) {
 
+
+                    //otronboard-59
+                    OnlineApplicationOffer__c onlineApplicationOffer;
+                    if(onlineApplication.Offer__c != null){
+                        onlineApplicationOffer = [SELECT Id, Funding__c FROM OnlineApplicationOffer__c WHERE Id = :onlineApplication.Offer__c LIMIT 1];
+                    }
+
                     // Send the payload to Ogden LLC
                     http = new Http();
 
@@ -407,6 +414,9 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStartObject();
 
         jsonPayload.writeStringField('application_id', onlineApplication.ID);
+        //otronboard-59
+        if(onlineApplication.Carrier_ID_Number__c != null)
+            jsonPayload.writeNumberField('linkSecondaryThreshold', 100);
 
         // Start of "policy"
         jsonPayload.writeFieldName('policy');
@@ -668,14 +678,14 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Western Union')) jsonPayload.writeStringField('payment_method', 'Wire');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Faxed Electronichek')) jsonPayload.writeStringField('payment_method', 'Check');
         if(onlineApplication.Payment_Frequency__c != null) jsonPayload.writeStringField('payment_frequency', onlineApplication.Payment_Frequency__c);
-
+/*
         if(onlineApplication.Payment_Terms__c != null) jsonPayload.writeStringField('ZZZREQUESTED_TERMS', onlineApplication.Payment_Terms__c);
         if(onlineApplication.Billing_Cycle__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE', onlineApplication.Billing_Cycle__c);
         if(onlineApplication.Payment_Method_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_METHOD_APPROVED', onlineApplication.Payment_Method_Approved__c);
         if(onlineApplication.Payment_Frequency_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_FREQUENCY_APPROVED', onlineApplication.Payment_Frequency_Approved__c);
         if(onlineApplication.Terms_Approved__c != null) jsonPayload.writeStringField('ZZZTERMS_APPROVED', onlineApplication.Terms_Approved__c);
         if(onlineApplication.Billing_Cycle_Approved__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE_APPROVED', onlineApplication.Billing_Cycle_Approved__c	);
-
+*/
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('req_credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('req_credit_line_type', 'Open Line');
         if(onlineApplication.Credit_Line_Requested__c != null) jsonPayload.writeNumberField('req_credit_line_amt', onlineApplication.Credit_Line_Requested__c);
