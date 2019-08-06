@@ -100,21 +100,21 @@ public class ZQUQuoteTriggerTest {
         
         //our test is updating some quotes
         Test.startTest();
-        QuoteTriggerHandler.isRunning = true;
+        QuoteTriggerHandler.isRunning = true; //have to do this bc zuora cares not for its clients (tests that use their callout are required to have seealldata=true...)
         update new List<zqu__Quote__c>{myQuote1,myQuote2,myQuote3,myQuote4,myQuote5,myQuote6,myQuote7,myQuote8,myQuote9,myQuote10};
         Test.stopTest();
 
         //requery the quotes and verify the results
-        myQuote1 = [SELECT RecordType.DeveloperName  FROM zqu__Quote__c WHERE Id = :myQuote1.Id LIMIT 1];
-        myQuote2 = [SELECT RecordType.DeveloperName  FROM zqu__Quote__c WHERE Id = :myQuote2.Id LIMIT 1];
-        myQuote3 = [SELECT RecordType.DeveloperName, zqu__Status__c  FROM zqu__Quote__c WHERE Id = :myQuote3.Id LIMIT 1];
-        myQuote4 = [SELECT RecordType.DeveloperName, zqu__Status__c  FROM zqu__Quote__c WHERE Id = :myQuote4.Id LIMIT 1];
-        myQuote5 = [SELECT RecordType.DeveloperName, zqu__Status__c  FROM zqu__Quote__c WHERE Id = :myQuote5.Id LIMIT 1];
-        myQuote6 = [SELECT RecordType.DeveloperName, zqu__Status__c  FROM zqu__Quote__c WHERE Id = :myQuote6.Id LIMIT 1];
-        myQuote7 = [SELECT RecordType.DeveloperName, zqu__Status__c  FROM zqu__Quote__c WHERE Id = :myQuote7.Id LIMIT 1];
-        myQuote8 = [SELECT RecordType.DeveloperName, zqu__Status__c  FROM zqu__Quote__c WHERE Id = :myQuote8.Id LIMIT 1];
-        myQuote9 = [SELECT RecordType.DeveloperName, zqu__Status__c,Approved__c,Vendor__c,CustomerApprovalOverride__c,Recurring_Charge_Count__c,Quote_Count_Shipment_Charges__c,Termination_Fee_Flag__c FROM zqu__Quote__c WHERE Id = :myQuote9.Id LIMIT 1];
-        myQuote10 = [SELECT RecordType.DeveloperName  FROM zqu__Quote__c WHERE Id = :myQuote10.Id LIMIT 1];
+        myQuote1 = [SELECT RecordType.DeveloperName FROM zqu__Quote__c WHERE Id = :myQuote1.Id LIMIT 1];
+        myQuote2 = [SELECT RecordType.DeveloperName FROM zqu__Quote__c WHERE Id = :myQuote2.Id LIMIT 1];
+        myQuote3 = [SELECT RecordType.DeveloperName, zqu__Status__c FROM zqu__Quote__c WHERE Id = :myQuote3.Id LIMIT 1];
+        myQuote4 = [SELECT RecordType.DeveloperName, zqu__Status__c FROM zqu__Quote__c WHERE Id = :myQuote4.Id LIMIT 1];
+        myQuote5 = [SELECT RecordType.DeveloperName, zqu__Status__c FROM zqu__Quote__c WHERE Id = :myQuote5.Id LIMIT 1];
+        myQuote6 = [SELECT RecordType.DeveloperName, zqu__Status__c FROM zqu__Quote__c WHERE Id = :myQuote6.Id LIMIT 1];
+        myQuote7 = [SELECT RecordType.DeveloperName, zqu__Status__c FROM zqu__Quote__c WHERE Id = :myQuote7.Id LIMIT 1];
+        myQuote8 = [SELECT RecordType.DeveloperName, zqu__Status__c FROM zqu__Quote__c WHERE Id = :myQuote8.Id LIMIT 1];
+        myQuote9 = [SELECT RecordType.DeveloperName, zqu__Status__c FROM zqu__Quote__c WHERE Id = :myQuote9.Id LIMIT 1];
+        myQuote10 = [SELECT RecordType.DeveloperName FROM zqu__Quote__c WHERE Id = :myQuote10.Id LIMIT 1];
         
         system.assertEquals('Customer_Approval_Override',myQuote1.RecordType.DeveloperName);
         system.assertEquals('Pending_Approval_Pending_Customer',myQuote2.RecordType.DeveloperName);
@@ -130,13 +130,13 @@ public class ZQUQuoteTriggerTest {
         system.assertEquals('Customer Approved',myQuote7.zqu__Status__c);
         system.assertEquals('CustomerApproved',myQuote8.RecordType.DeveloperName);
         system.assertEquals('Customer Approved',myQuote8.zqu__Status__c);
-        system.debug(myQuote9);
         system.assertEquals('CustomerApproved',myQuote9.RecordType.DeveloperName);
         system.assertEquals('Customer Approved',myQuote9.zqu__Status__c);
         system.assertEquals('Approved_Pending_Customer',myQuote10.RecordType.DeveloperName);
         
     }
 /*
+    //TODO: find a way to do the sendtozuora thing without requiring seealldata=true bc apparently zuora isn't working on that
     public static void testSendToZuoraOnUpdate(){
         zqu__Quote__c myQuote11 = [SELECT zqu__ZuoraAccountID__c, Approved__c, CustomerApproval__c FROM zqu__Quote__c WHERE Name = 'New Quote 11' LIMIT 1];
         //for after update, need zqu__ZuoraAccountID__c to be null or blank and Approved__c and CustomerApproval__c

@@ -98,7 +98,6 @@ global class DataLoaderBatch implements Database.Batchable<String>,
                     String myValue = getTheValue(currentFieldSchema, currentFieldValue);
 
                     Set<String> numTypes = new Set<String>{'CURRENCY','INTEGER','DECIMAL','DOUBLE'};
-                    system.debug(currentFieldName);
                     if (currentFieldSchema.getType() == Schema.DisplayType.Reference && !'RecordTypeId'.equalsIgnoreCase(currentFieldSchema.getName())) newRecord.put(currentFieldName, myValue);
                     else if (currentFieldSchema.getType() == Schema.DisplayType.Date) newRecord.put(currentFieldName, getTheDate(myValue));
                     else if (currentFieldSchema.getType() == Schema.DisplayType.DateTime) newRecord.put(currentFieldName, DateTime.parse(myValue));
@@ -210,8 +209,6 @@ global class DataLoaderBatch implements Database.Batchable<String>,
                 return currentFieldValue;
             }
             if (!String.isBlank(currentFieldValue)) {
-                system.debug(currentFieldValue);
-                system.debug(currentFieldSchema.getReferenceTo()[0].getDescribe().getName());
                 if('current'.equalsIgnoreCase(currentFieldValue) &&
                         ('user'.equalsIgnoreCase(currentFieldSchema.getReferenceTo()[0].getDescribe().getName()) ||
                                 'group'.equalsIgnoreCase(currentFieldSchema.getReferenceTo()[0].getDescribe().getName()))){
