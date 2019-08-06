@@ -57,7 +57,7 @@ public class OpportunityTriggerTest {
         Campaign_Program__c campaignProgram = [SELECT Id, Name, Campaign__c, Program__c FROM Campaign_Program__c WHERE Name = 'Test' LIMIT 1];
         System.debug('Campaign Program Id is: ' + campaignProgram.id);
         system.debug('Campaign_Program__r.Program__c is: ' + campaignProgram.Program__c);
-        Campaign_Program__c campaignProgram2 = [SELECT Id, Name, Campaign__c, Program__c FROM Campaign_Program__c WHERE Name = 'Test 2' LIMIT 1];
+        Campaign_Program__c campaignProgram2 = [SELECT Id, Name, Campaign__c, Program__c FROM Campaign_Program__c WHERE Name = 'Test 3' LIMIT 1];
         System.debug('Campaign Program Id is: ' + campaignProgram2.id);
         system.debug('Campaign_Program__r.Program__c is: ' + campaignProgram2.Program__c);
 

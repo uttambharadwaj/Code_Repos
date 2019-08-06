@@ -1,3 +1,4 @@
 ID,NAME,PREFERRED_LANGUAGE_INDICATOR__C,T_C__C,FORM_TEMPLATE__C,BRAND_SHORT_NAME__C,CUSTOM_EMAIL_HEADER_URL__C,BRAND_HEADING__C,BRAND_LONG_NAME__C,UPLOAD_PRICING_DATA_FLAG__C,AUTO_SEND_BOCA_TO_SIEBEL__C,ANALYTICS_BODY_BLOCK__C,ANALYTICS_HEAD_BLOCK__C,BRAND_COLOR_1__C,BRAND_COLOR_2__C,BOCA_TYPE__C,FLEET_DEFAULT_BILLING_CYCLE__C
 a0Z6C000000b6OSUAY,Test,ENG,BOCA_TNC,,,,,,,,,,,,,Cycle 1
-a0Z0g00000GvTi5EAF,Test 2,ENU,WEX_BOCA_TNC,OTRBOCA,OTRTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,false,false,,,#ccc,#fff,OTR,Cycle 2
+a0Z0g00000GvTi5EAF,Test 2,ENU,WEX_BOCA_TNC,OTRBOCA,OTRTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,false,false,,,#ccc,#fff,OTR,
+a0ZV00000024XsTMAU,Test 3,ENU,WEX_BOCA_TNC,OTRBOCA,SOMETEST,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,false,false,,,#ccc,#fff,OTR,Cycle 2
