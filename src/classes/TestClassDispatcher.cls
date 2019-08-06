@@ -1,6 +1,6 @@
 /*
 Description:        Test class dispatcher. A one-stop shop for test execution.
-Revision History:   7/23/2019 add apprequest tests
+Revision History:   
 */
 @isTest
 public class TestClassDispatcher {
@@ -9,14 +9,6 @@ public class TestClassDispatcher {
     static void setup(){
         //create all the things!
         UtilityTestLoader.loadTestData();
-    }
-
-    @isTest static void testOpportunityTriggerAfterInsert() {
-        OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnInsert();
-    }
-
-    @isTest static void testOpportunityTriggerBeforeUpdate() {
-        OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnUpdate();
     }
 
     @isTest static void testBOEntityTriggerBeforeInsert1() {
@@ -38,17 +30,25 @@ public class TestClassDispatcher {
     @isTest static void testBOEntityTriggerAfterUpdate1() {
         BOEntityTriggerTest.testCheckOpptyChangesAfterUpdate();
     }
-
+    
     @isTest static void testBOEntityBusinessProcesses(){
         BOEntityTriggerTest.testBusinessProcesses();
     }
-
+    
     @isTest static void testAppRequestTriggerInserts() {
         AppRequestTriggerTest.testInsert();
     }
 
     @isTest static void testAppRequestTriggerUpdates(){
         AppRequestTriggerTest.testUpdate();
+    }
+    
+    @isTest static void testZuoraQuoteInserts(){
+        ZQUQuoteTriggerTest.testZQUQuoteOnInsert();
+    }
+    
+    @isTest static void testZuoraQuoteUpdates(){
+        ZQUQuoteTriggerTest.testZQUQuoteOnUpdate();
     }
 
 }
