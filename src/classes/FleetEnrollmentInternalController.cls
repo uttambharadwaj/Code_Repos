@@ -328,6 +328,8 @@ public with sharing class FleetEnrollmentInternalController {
                             }
                         }
 
+                        FleetEnrollment.Submit_Fleet_Data_Form_Used__c = true;
+
                         if (opportunity.Campaign_Program__r.Program__c != null) {
 
                             program = WexBrandingController.getProgram(opportunity.Campaign_Program__r.Program__c);
