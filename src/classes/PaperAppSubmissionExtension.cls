@@ -51,8 +51,8 @@ public class PaperAppSubmissionExtension {
         uid = UserInfo.getUserId();
 
         //from user get contact then account then program then partner
-        u = [SELECT profile.UserLicense.name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
-        isPartner = (u.profile.UserLicense.name == 'Partner Community') ? true : false;
+        u = [SELECT Profile.UserLicense.Name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
+        isPartner = (u.Profile.UserLicense.Name == 'Partner Community') ? true : false;
         if (isPartner) {
             partnerId = u.Contact.Account.Program__r.Partner__c;
         }
@@ -89,7 +89,7 @@ public class PaperAppSubmissionExtension {
                     List<Campaign_Program__c> campaignPrograms = [SELECT Program__c FROM Campaign_Program__c WHERE Id = :campaignProgram LIMIT 1];
 
                     if (campaignPrograms.size() > 0) {
-                        List<Program__c> programs = [SELECT Form_Template__c, Brand_Short_Name__C FROM Program__c WHERE Id = :campaignPrograms[0].Program__c LIMIT 1];
+                        List<Program__c> programs = [SELECT Form_Template__c, Brand_Short_Name__c FROM Program__c WHERE Id = :campaignPrograms[0].Program__c LIMIT 1];
 
                         if (programs.size() > 0) {
                             String brandShortName = programs[0].Brand_Short_Name__c;
@@ -125,20 +125,19 @@ public class PaperAppSubmissionExtension {
                 }
             }
         } catch (Exception e) {
-            //TODO
-            //     String errorNumber = WEXDEVErrorReporting.reportExternalError('OTRBOCA', ApexPages.currentPage(), e, true);
+            System.debug('### ERROR - Line: ' + e.getLineNumber() + ' - ' + e.getMessage());
 
-            //     PageReference externalApplicationError = Page.ExternalApplicationError;
-            //    externalApplicationError.getParameters().put('errorCode', errorNumber);
-            //    externalApplicationError.getParameters().put('pgm', programParameter);
-            //    externalApplicationError.setRedirect(true);
-            //    return externalApplicationError;
+            PageReference errorPage = Page.ExternalApplicationError;
+            if (partnerId != null) {
+                errorPage.getParameters().put('partner', partnerId);
+            }
+
+            return errorPage;
         }
         return null;
 
     }
 
-    // Dear Jason Arbegast, Thank you for the below method, amen.
     public List<SelectOption> AvailablePrograms {
         get {
 
