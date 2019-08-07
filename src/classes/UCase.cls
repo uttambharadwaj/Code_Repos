@@ -230,6 +230,7 @@ public class UCase
                         && String.isNotBlank(c.SurveyInclusionHTML__c)       //This field is blank for programs we don't send surveys to
                         && !(c.Service_Program_Survey_Sent__c)               //Don't send more than once on a single case even if it reopens
                         && checkForWexEmailAddress(c.ContactEmail)           // Don't send to contacts with a Wex email address
+                        && !(c.Department__c.toLowerCase().startsWith('corporate payments')) //Don't send to Corporate Payments cases
                   )                                                          //End IF parameters
                 {
                     Id programEmailId;
