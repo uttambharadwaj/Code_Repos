@@ -11,6 +11,7 @@ public class UCase
     private static final String SHELL_SLA_WEEK = 'Shell SLA';
     private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
     private static Boolean hasRunOnceUpdate = false;
+    private static List<String> wexEmailAddressDomains = new List<String>{'wexinc.com','wrightexpress.com','wexaustralia.com','wexeurope.com'};
 
     public static void associateWithEntitlement(List<Case> newRecords){
         // First, filter out the Cases that do not have "shell" as the Supplied Email's domain.
@@ -226,7 +227,9 @@ public class UCase
                 if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed     //Case newly closed
                         && c.RecordTypeId == recordTypeId                    //Service Operations record type
                         && String.isNotBlank(c.SurveyInclusionHTML__c)       //This field is blank for programs we don't send surveys to
-                        && !(c.Service_Program_Survey_Sent__c))              //Don't send more than once on a single case even if it reopens
+                        && !(c.Service_Program_Survey_Sent__c)               //Don't send more than once on a single case even if it reopens
+                        && checkForWexEmailAddress(c.ContactEmail)           // Don't send to contacts with a Wex email address
+                  )                                                          //End IF parameters
                 {
                     Id programEmailId;
                     if (c.Program_Email__c != null && !(c.Program_Email__c.equals(''))) {
@@ -277,6 +280,24 @@ public class UCase
         catch (Exception e) {
             System.debug('Unable to send email');
         }
+    }
+
+    /**
+     * Checks provided email address against a list of Wex employee domains
+     *
+     * @param emailAddress
+     *
+     * @return True if the email address does NOT match a Wex email domain, False if it does
+     */
+    private static Boolean checkForWexEmailAddress(String emailAddress) {
+        Boolean result = true;
+        Integer domainsSize = wexEmailAddressDomains.size();
+        Integer i = 0;
+        while (result && i < domainsSize) {
+            result = !(emailAddress.toLowerCase().endsWith(wexEmailAddressDomains.get(i)));
+            i++;
+        }
+        return result;
     }
 
 

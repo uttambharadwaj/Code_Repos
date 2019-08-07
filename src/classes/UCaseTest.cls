@@ -515,7 +515,7 @@ private class UCaseTest {
         message.FromAddress = 'mark_bickford@wrightexpress.com';
         message.ParentId = caseWithSurvey.Id;
         message.Subject = 'Test message';
-        message.ToAddress = 'sara.schmidt@wexinc.com';
+        message.ToAddress = 'sara.schmidt@domain.com';
         message.HtmlBody = 'This is a test message.<br/><br/>'+caseWithSurvey.SurveyInclusionHTML__c;
         message.TextBody = 'This is a test message.\n\n'+caseWithSurvey.SurveyInclusionText__c;
         message.Status = '3';
@@ -565,7 +565,7 @@ private class UCaseTest {
         message.FromAddress = 'mark_bickford@wrightexpress.com';
         message.ParentId = caseWithoutSurvey.Id;
         message.Subject = 'Test message';
-        message.ToAddress = 'sara.schmidt@wexinc.com';
+        message.ToAddress = 'sara.schmidt@domain.com';
         message.HtmlBody = 'This is a test message.<br/><br/>'+ caseWithoutSurvey.SurveyInclusionHTML__c;
         message.TextBody = 'This is a test message.\n\n'+ caseWithoutSurvey.SurveyInclusionText__c;
         message.Status = '3';
