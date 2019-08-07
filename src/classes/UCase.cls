@@ -11,6 +11,8 @@ public class UCase
     private static final String SHELL_SLA_WEEK = 'Shell SLA';
     private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
     private static Boolean hasRunOnceUpdate = false;
+    private static List<String> wexEmailAddressDomains = new List<String>{'wexinc.com','wrightexpress.com','wexaustralia.com','wexeurope.com'};
+    private static Id genericEmailAddressId;
 
     public static void associateWithEntitlement(List<Case> newRecords){
         // First, filter out the Cases that do not have "shell" as the Supplied Email's domain.
@@ -200,7 +202,7 @@ public class UCase
             sendOwnerUpdateEmail(caseToOwnerMap);
         }
     }
-/* Commented pending bug fixes - MHB 2 Aug 2019
+
     public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap)
     {
         Id recordTypeId = null;
@@ -217,14 +219,44 @@ public class UCase
         }
 
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
+        Map<String,Id> orgWideEmailAddresses = new Map<String,Id>();
 
         for (Case c : records)
         {
             if(c.ContactId != null && String.isNotBlank(c.ContactEmail)) {
 
-                if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed && c.RecordTypeId == recordTypeId && String.isNotBlank(c.SurveyInclusionHTML__c))
+                if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed     //Case newly closed
+                        && c.RecordTypeId == recordTypeId                    //Service Operations record type
+                        && String.isNotBlank(c.SurveyInclusionHTML__c)       //This field is blank for programs we don't send surveys to
+                        && !(c.Service_Program_Survey_Sent__c)               //Don't send more than once on a single case even if it reopens
+                        && checkForWexEmailAddress(c.ContactEmail)           // Don't send to contacts with a Wex email address
+                        && !(c.Department__c.toLowerCase().startsWith('corporate payments')) //Don't send to Corporate Payments cases
+                  )                                                          //End IF parameters
                 {
+                    Id programEmailId;
+                    if (c.Program_Email__c != null && !(c.Program_Email__c.equals(''))) {
+                        if (orgWideEmailAddresses.containsKey(c.Program_Email__c)) {
+                            programEmailId = orgWideEmailAddresses.get(c.Program_Email__c);
+                        } else {
+                            OrgWideEmailAddress[] owea = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: c.Program_Email__c];
+                            if ( owea.size() > 0 ) {
+                                programEmailId = (owea.get(0).Id);
+                                orgWideEmailAddresses.put(c.Program_Email__c,programEmailId);
+                            } else { //use generic
+                                if (genericEmailAddressId == null) {
+                                    OrgWideEmailAddress[] generic = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'surveys@fleetservicesonline.com'];
+                                    if (generic.size() > 0) {    //This will always hit
+                                        genericEmailAddressId = generic.get(0).Id;
+                                    }
+                                }
+                                programEmailId = genericEmailAddressId;
+                            }
+                        }
+                    }
                     Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+                    if (programEmailId != null) {
+                        email.setOrgWideEmailAddressId(programEmailId);
+                    }
 
                     email.setTargetObjectId(c.ContactId);
                     email.setTreatTargetObjectAsRecipient(true);
@@ -259,7 +291,25 @@ public class UCase
             System.debug('Unable to send email');
         }
     }
-*/
+
+    /**
+     * Checks provided email address against a list of Wex employee domains
+     *
+     * @param emailAddress
+     *
+     * @return True if the email address does NOT match a Wex email domain, False if it does
+     */
+    private static Boolean checkForWexEmailAddress(String emailAddress) {
+        Boolean result = true;
+        Integer domainsSize = wexEmailAddressDomains.size();
+        Integer i = 0;
+        while (result && i < domainsSize) {
+            result = !(emailAddress.toLowerCase().endsWith(wexEmailAddressDomains.get(i)));
+            i++;
+        }
+        return result;
+    }
+
 
     @future
     public static void sendOwnerUpdateEmail(Map<Id, Id> caseToOwnerMap)
@@ -439,64 +489,6 @@ public class UCase
             }
         }
 
-    }
-
-    public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap)
-    {
-        Id recordTypeId = null;
-        Id templateId = null;
-
-        for (RecordType rt :[SELECT Id FROM RecordType WHERE SobjectType = 'Case' AND RecordType.DeveloperName = 'Service_Operations'])
-        {
-            recordTypeId = rt.Id;
-        }
-
-        for (EmailTemplate et :[SELECT Id FROM EmailTemplate WHERE DeveloperName = 'CS_Survey_Request'])
-        {
-            templateId = et.Id;
-        }
-
-        List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
-
-        for (Case c : records)
-        {
-            if(c.ContactId != null && String.isNotBlank(c.Contact.Email)) {
-                if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed && c.RecordTypeId == recordTypeId && String.isNotBlank(c.SurveyInclusionHTML__c))
-                {
-                    Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
-
-                    email.setTargetObjectId(c.ContactId);
-                    email.setTreatTargetObjectAsRecipient(true);
-                    email.setUseSignature(false);
-                    email.setSaveAsActivity(true);
-
-                    // Case's surveySent flag will be set by outbound email trigger
-                    email.setWhatId(c.Id);
-
-                    Messaging.SingleEmailMessage renderBody = Messaging.renderStoredEmailTemplate(templateId, c.Contact.OwnerId, c.Id);
-                    email.setSubject(renderBody.getSubject());
-                    email.setHtmlBody(renderBody.getHtmlBody());
-                    email.setPlainTextBody(renderBody.getPlainTextBody());
-                    emails.add(email);
-                }
-            }
-        }
-
-        try {
-            Messaging.reserveSingleEmailCapacity(emails.size());
-            List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails);
-
-            for (Messaging.SendEmailResult res : results)
-            {
-                for (Messaging.SendEmailError err : res.getErrors())
-                {
-                    System.debug('UCase.sendCaseCloseSurveyEmail send mail error: ' + err.getMessage());
-                }
-            }
-        }
-        catch (Exception e) {
-            System.debug('Unable to send email');
-        }
     }
 
     public static void sendCaseCloseEmailToOpportunityOwner(List<Case> records, Map<Id, Case> oldMap)
