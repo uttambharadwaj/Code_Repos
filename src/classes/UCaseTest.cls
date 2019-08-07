@@ -493,7 +493,11 @@ private class UCaseTest {
         insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = true);
         EmailMessage message = new EmailMessage();
 
-        Case caseWithSurvey = [SELECT Id, RecordTypeId, AccountId , Subject, ContactId, Service_Program_Survey_Sent__c, Service_Survey_Transactional_link__c, SurveyInclusionText__c, SurveyInclusionHTML__c FROM Case WHERE Subject = :caseWithSurveySummary];
+        Case caseWithSurvey = [SELECT Id, RecordTypeId, AccountId , Subject, Status, ContactId, Service_Program_Survey_Sent__c, Service_Survey_Transactional_link__c, SurveyInclusionText__c, SurveyInclusionHTML__c FROM Case WHERE Subject = :caseWithSurveySummary];
+
+        caseWithSurvey.Status = 'Closed';
+
+        update(caseWithSurvey);
 
         Contact caseContact =[SELECT Id, Email FROM Contact WHERE Id = :caseWithSurvey.ContactId];
 
@@ -618,7 +622,7 @@ private class UCaseTest {
         contact.RecordType = contactRecordType;
         contact.FirstName = 'Mark';
         contact.LastName = 'Bickford';
-        contact.Email = 'mark.bickford@wexinc.com';
+        contact.Email = 'mark.bickford@domain.com';
         contact.Account = wexAccount;
         contact.Status__c = 'Active';
 
@@ -633,6 +637,7 @@ private class UCaseTest {
         caseWithSurvey.AccountId = wexAccount.Id;
         caseWithSurvey.Subject = caseWithSurveySummary;
         caseWithSurvey.ContactId = contact.Id;
+        caseWithSurvey.Status = 'Pending';
         caseWithSurvey.Service_Program_Survey_Sent__c = false;
 
         insert caseWithSurvey;
@@ -647,6 +652,7 @@ private class UCaseTest {
         caseWithoutSurvey.AccountId = wexAccount.Id;
         caseWithoutSurvey.Subject = caseWithoutSurveySummary;
         caseWithoutSurvey.ContactId = contact.Id;
+        caseWithSurvey.Status = 'Pending';
         caseWithoutSurvey.Service_Program_Survey_Sent__c = false;
 
         insert caseWithoutSurvey;

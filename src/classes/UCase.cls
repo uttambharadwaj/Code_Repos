@@ -12,6 +12,7 @@ public class UCase
     private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
     private static Boolean hasRunOnceUpdate = false;
     private static List<String> wexEmailAddressDomains = new List<String>{'wexinc.com','wrightexpress.com','wexaustralia.com','wexeurope.com'};
+    private static Id genericEmailAddressId;
 
     public static void associateWithEntitlement(List<Case> newRecords){
         // First, filter out the Cases that do not have "shell" as the Supplied Email's domain.
@@ -240,6 +241,14 @@ public class UCase
                             if ( owea.size() > 0 ) {
                                 programEmailId = (owea.get(0).Id);
                                 orgWideEmailAddresses.put(c.Program_Email__c,programEmailId);
+                            } else { //use generic
+                                if (genericEmailAddressId == null) {
+                                    OrgWideEmailAddress[] generic = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'surveys@fleetservicesonline.com'];
+                                    if (generic.size() > 0) {    //This will always hit
+                                        genericEmailAddressId = generic.get(0).Id;
+                                    }
+                                }
+                                programEmailId = genericEmailAddressId;
                             }
                         }
                     }
