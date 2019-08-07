@@ -380,7 +380,7 @@
                                             <apex:outputLabel for="averageMonthlyFuelExpenses" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Average Monthly Fuel & Service Expenses', $ObjectType.WeFormObject__c.fields.Avg_Monthly_Fuel_Service_Expenses__c.label)} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Monthly_Expenses}" styleClass="styled-input required" required="true" html-tabindex="11" html-class="{!IF(creditApp.Avg_Monthly_Fuel_Service_Expenses__c != null, 'prefilledMoney', 'money')}" id="averageMonthlyFuelExpenses" value="{!creditApp.Avg_Monthly_Fuel_Service_Expenses__c}"  html-maxlength="8"/>
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Monthly_Expenses}" styleClass="styled-input required" required="true" html-tabindex="11" html-class="{!IF(creditApp.Avg_Monthly_Fuel_Service_Expenses__c != null, 'prefilledMoney', 'money')}" id="averageMonthlyFuelExpenses" value="{!creditApp.Avg_Monthly_Fuel_Service_Expenses__c}"  html-maxlength="9"/>
                                         </div>
                                         <apex:outputPanel rendered="{!IF(OR(languageCode == 'en_ca', languageCode == 'fr_ca'), false, true)}">
                                             <div class="twelve columns clearfix form-field" data-row="3">

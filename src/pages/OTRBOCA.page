@@ -510,7 +510,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     <apex:outputLabel for="creditLineRequested" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Credit Line Requested', $ObjectType.OnlineApplication__c.fields.Credit_Line_Requested__c.label)} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField styleClass="styled-input required" required="true" html-tabindex="30" html-class="money" id="creditLineRequested" value="{!onlineApplication.Credit_Line_Requested__c}"  html-maxlength="8"/>
+                                                    <apex:InputField styleClass="styled-input required" required="true" html-tabindex="30" html-class="money" id="creditLineRequested" value="{!onlineApplication.Credit_Line_Requested__c}"  html-maxlength="9"/>
                                                 </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
