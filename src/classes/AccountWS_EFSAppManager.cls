@@ -435,7 +435,7 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeBooleanField('payrollAch', false);
 
             if (onlineApplication.Funding_Options__c != null) {
-                if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'ATM');
+                if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'Y');
                 if (onlineApplication.Funding_Options__c.contains('Register Check')) jsonPayload.writeStringField('payrollChk', 'Register Check');
                 if (onlineApplication.Funding_Options__c.contains('ACH Transfer')) jsonPayload.writeStringField('payrollAch', 'ACH Transfer');
                 if (onlineApplication.Funding_Options__c.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Debit Use');
