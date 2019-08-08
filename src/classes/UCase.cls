@@ -205,6 +205,13 @@ public class UCase
 
     public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap)
     {
+        //Enable switch
+        EmailMessageSettings__c EMS = EmailMessageSettings__c.getOrgDefaults();
+
+        if(EMS.ActivateSendSurveyEmailonCaseClose__c == false) {
+            return;
+        }
+
         Id recordTypeId = null;
         Id templateId = null;
 
