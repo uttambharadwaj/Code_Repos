@@ -238,28 +238,31 @@ public class UCase
                         && !(c.Service_Program_Survey_Sent__c)               //Don't send more than once on a single case even if it reopens
                         && checkForWexEmailAddress(c.ContactEmail)           // Don't send to contacts with a Wex email address
                         && !(c.Department__c.toLowerCase().startsWith('corporate payments')) //Don't send to Corporate Payments cases
-                  )                                                          //End IF parameters
+                        )                                                          //End IF parameters
                 {
                     Id programEmailId;
                     if (c.Program_Email__c != null && !(c.Program_Email__c.equals(''))) {
                         if (orgWideEmailAddresses.containsKey(c.Program_Email__c)) {
                             programEmailId = orgWideEmailAddresses.get(c.Program_Email__c);
                         } else {
-                            OrgWideEmailAddress[] owea = [SELECT Id FROM OrgWideEmailAddress WHERE Address =: c.Program_Email__c];
-                            if ( owea.size() > 0 ) {
+                            OrgWideEmailAddress[] owea = [SELECT Id FROM OrgWideEmailAddress WHERE Address = :c.Program_Email__c];
+                            if (owea.size() > 0) {
                                 programEmailId = (owea.get(0).Id);
-                                orgWideEmailAddresses.put(c.Program_Email__c,programEmailId);
-                            } else { //use generic
-                                if (genericEmailAddressId == null) {
-                                    OrgWideEmailAddress[] generic = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'surveys@fleetservicesonline.com'];
-                                    if (generic.size() > 0) {    //This will always hit
-                                        genericEmailAddressId = generic.get(0).Id;
-                                    }
-                                }
-                                programEmailId = genericEmailAddressId;
+                                orgWideEmailAddresses.put(c.Program_Email__c, programEmailId);
                             }
                         }
                     }
+                    if (programEmailId == null ){ //use generic
+                        if (genericEmailAddressId == null) {
+                            OrgWideEmailAddress[] generic = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'surveys@fleetservicesonline.com'];
+                            if (generic.size() > 0) {    //This will always hit
+                                genericEmailAddressId = generic.get(0).Id;
+                            }
+                        }
+                        programEmailId = genericEmailAddressId;
+                    }
+
+
                     Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
                     if (programEmailId != null) {
                         email.setOrgWideEmailAddressId(programEmailId);

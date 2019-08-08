@@ -639,6 +639,7 @@ private class UCaseTest {
         caseWithSurvey.Subject = caseWithSurveySummary;
         caseWithSurvey.ContactId = contact.Id;
         caseWithSurvey.Status = 'Pending';
+        caseWithSurvey.Program_Email__c = 'doesntexist@domain.com';
         caseWithSurvey.Service_Program_Survey_Sent__c = false;
 
         insert caseWithSurvey;
@@ -652,6 +653,7 @@ private class UCaseTest {
         caseWithoutSurvey.RecordTypeId = caseRecordType.Id;
         caseWithoutSurvey.AccountId = wexAccount.Id;
         caseWithoutSurvey.Subject = caseWithoutSurveySummary;
+        caseWithoutSurvey.Program_Email__c = 'doesntexist@domain.com';
         caseWithoutSurvey.ContactId = contact.Id;
         caseWithSurvey.Status = 'Pending';
         caseWithoutSurvey.Service_Program_Survey_Sent__c = false;
