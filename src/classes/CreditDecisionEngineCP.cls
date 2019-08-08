@@ -32,7 +32,7 @@ global class CreditDecisionEngineCP {
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
                         Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c,
                         Doing_Business_As__c, Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State_Province__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c,
-                        DNB_Resolved_DUNS__c
+                        DNB_Resolved_DUNS__c, DNB_Match_Score__c, WEX_Match_Score__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
         ];
@@ -442,6 +442,14 @@ global class CreditDecisionEngineCP {
 
             } else {
                 cpApplication.DNB_Lookup_Hits__c = 0;
+            }
+
+            // Trust but verify
+            if ((null != cpApplication.Taxpayer_ID__c && null != cpApplication.Bureau_Tax_ID__c) && cpApplication.Taxpayer_ID__c.equals(cpApplication.Bureau_Tax_ID__c)) {
+                cpApplication.DNB_Match_Score__c = 100;
+            } else if (cpApplication.Company_Legal_Name__c != null && dnbDirectMatchRequest.SubjectName != null) {
+                cpApplication.DNB_Match_Score__c = JaroWinklerDistance.getScore((cpApplication.Company_Legal_Name__c).replaceAll('[^0-9A-Za-z]',''), (dnbDirectMatchRequest.SubjectName).replaceAll('[^0-9A-Za-z]',''));
+                System.debug('Match Score: ' + cpApplication.DNB_Match_Score__c);
             }
 
             // Existing Exposure - Application/Account Exposure
