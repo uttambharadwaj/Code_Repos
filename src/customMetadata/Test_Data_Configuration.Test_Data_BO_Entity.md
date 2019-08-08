@@ -3,12 +3,16 @@
     <label>BO Entity Test Data</label>
     <protected>false</protected>
     <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
         <field>Object__c</field>
         <value xsi:type="xsd:string">Beneficial_Owner_Entity__c</value>
     </values>
     <values>
         <field>Order__c</field>
-        <value xsi:type="xsd:double">700.0</value>
+        <value xsi:type="xsd:double">7000.0</value>
     </values>
     <values>
         <field>Required_Fields_Only__c</field>
