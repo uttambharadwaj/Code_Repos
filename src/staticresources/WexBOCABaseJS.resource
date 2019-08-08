@@ -40,7 +40,7 @@ function pageLoadFunctions() {
 	$j('.postal').mask('00000-0000');
     $j('.postalCanada').mask('A0A-0A0');
 	$j('.cpf').mask('999.999.999-99', {reverse: true});
-	$j('.money').mask('000,000,000,000', {reverse: true});
+	$j('.money').mask('000,000,000', {reverse: true});
     $j('.prefilledMoney').mask('000,000,000,000', {reverse: true});
     //$j('.prefilledMoney').mask('000,000,000,000.00', {reverse: true});
     $j('.dunsNumber').mask('000000000');
