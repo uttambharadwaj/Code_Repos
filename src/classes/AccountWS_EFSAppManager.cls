@@ -582,7 +582,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('fee_max_times_per', '3');
         jsonPayload.writeStringField('fee_max_times', '1');
         //TODO why is this PST Card Fee in the payload twice? -lhowland
-        if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
+       // if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
 //        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
 //        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
@@ -627,8 +627,13 @@ global class AccountWS_EFSAppManager {
         if(onlineApplicationAccount.Preferred_Language__c == null) { jsonPayload.writeStringField('language', '1'); }
         if(onlineApplication.Terms_ID__c != null) jsonPayload.writeStringField('terms', onlineApplication.Terms_ID__c);
         if(onlineApplication.Cycle_ID__c != null) jsonPayload.writeStringField('cycle_code', onlineApplication.Cycle_ID__c);
-        if(onlineApplicationOffer.Parent_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Parent_Funded_Issuer_ID__c);
-        if(onlineApplicationOffer.Child_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('contract.issuer_id', onlineApplicationOffer.Child_Funded_Issuer_ID__c);
+
+        if(onlineApplication.Carrier_ID_Number__c != null && onlineApplicationOffer.Child_Funded_Issuer_ID__c != null) {
+            jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Child_Funded_Issuer_ID__c);
+        } else {
+            if(onlineApplicationOffer.Child_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('contract.issuer_id', onlineApplicationOffer.Child_Funded_Issuer_ID__c);
+            if(onlineApplicationOffer.Parent_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Parent_Funded_Issuer_ID__c);
+        }
         if(onlineApplicationProgram.Lockbox_Value__c != null) jsonPayload.writeStringField('lockbox', onlineApplicationProgram.Lockbox_Value__c);
 
         if(onlineApplication.Prepaid__c == true) {
