@@ -490,7 +490,8 @@ private class UCaseTest {
 
         testSetup();
 
-        insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = true);
+        insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = true,ActivateSendSurveyEmailonCaseClose__c = true);
+
         EmailMessage message = new EmailMessage();
 
         Case caseWithSurvey = [SELECT Id, RecordTypeId, AccountId , Subject, Status, ContactId, Service_Program_Survey_Sent__c, Service_Survey_Transactional_link__c, SurveyInclusionText__c, SurveyInclusionHTML__c FROM Case WHERE Subject = :caseWithSurveySummary];
@@ -543,7 +544,7 @@ private class UCaseTest {
         final String caseWithoutSurveySummary = 'EmailMessageTriggerTest Test Case Without Survey';
 
         testSetup();
-        insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = false);
+        insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = false,ActivateSendSurveyEmailonCaseClose__c = true);
 
         EmailMessage message = new EmailMessage();
 
@@ -638,6 +639,7 @@ private class UCaseTest {
         caseWithSurvey.Subject = caseWithSurveySummary;
         caseWithSurvey.ContactId = contact.Id;
         caseWithSurvey.Status = 'Pending';
+        caseWithSurvey.Program_Email__c = 'doesntexist@domain.com';
         caseWithSurvey.Service_Program_Survey_Sent__c = false;
 
         insert caseWithSurvey;
@@ -651,6 +653,7 @@ private class UCaseTest {
         caseWithoutSurvey.RecordTypeId = caseRecordType.Id;
         caseWithoutSurvey.AccountId = wexAccount.Id;
         caseWithoutSurvey.Subject = caseWithoutSurveySummary;
+        caseWithoutSurvey.Program_Email__c = 'doesntexist@domain.com';
         caseWithoutSurvey.ContactId = contact.Id;
         caseWithSurvey.Status = 'Pending';
         caseWithoutSurvey.Service_Program_Survey_Sent__c = false;
