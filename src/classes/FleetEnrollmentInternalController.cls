@@ -602,6 +602,19 @@ public with sharing class FleetEnrollmentInternalController {
                     insert directDebitData;
                 }
 
+                if (fleetEnrollmentInformation.directDebitCheckFileBody != null) {
+                    Attachment directDebitCheckData = new Attachment();
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
+                        directDebitCheckData.Name = applicationRequest.Siebel_Oppty__c + '_DirectDebitCheck_' + fleetEnrollmentInformation.directDebitCheckFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    else {
+                        directDebitCheckData.Name = opportunity.Opportunity_Number__c + '_DirectDebitCheck_' + fleetEnrollmentInformation.directDebitCheckFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    directDebitCheckData.Body = fleetEnrollmentInformation.directDebitFileBody;
+                    directDebitCheckData.ParentId = fleetEnrollment.Id;
+                    insert directDebitCheckData;
+                }
+
                 System.debug(fleetEnrollmentInformation.fleetEnrollmentContacts);
 
                 for (FleetEnrollmentContacts fleetEnrollmentContact : fleetEnrollmentInformation.fleetEnrollmentContacts) {
@@ -709,6 +722,9 @@ public with sharing class FleetEnrollmentInternalController {
         public Boolean directDebit { get; set; }
         public String directDebitFileName { get; set; }
         public Blob directDebitFileBody { get; set; }
+
+        public String directDebitCheckFileName { get; set; }
+        public Blob directDebitCheckFileBody { get; set; }
 
         public String selectedCardType { get; set; }
         public String selectedUsageType { get; set; }
