@@ -434,9 +434,9 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeBooleanField('handEnter', false);
         jsonPayload.writeNumberField('payrollContractId', 0);
         // todo replace these falses with the value of OnlineApplication__c.Funding_Options__c
-        jsonPayload.writeBooleanField('payrollAtm', false);
+        /*jsonPayload.writeBooleanField('payrollAtm', false);
         jsonPayload.writeBooleanField('payrollChk', false);
-        jsonPayload.writeBooleanField('payrollAch', false);
+        jsonPayload.writeBooleanField('payrollAch', false);*/
 
         if (onlineApplication.Funding_Options__c != null) {
             if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'Y');
