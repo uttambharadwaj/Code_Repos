@@ -415,157 +415,160 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStringField('application_id', onlineApplication.ID);
         //otronboard-59
-        if(onlineApplication.Carrier_ID_Number__c != null) {
+        if(onlineApplication.Carrier_ID_Number__c != null)
             jsonPayload.writeNumberField('linkSecondaryThreshold', 100);
-        }else {
-            // Start of "policy"
-            jsonPayload.writeFieldName('policy');
-            jsonPayload.writeStartObject();
 
-            jsonPayload.writeNumberField('policyNumber', 1);
+        // Start of "policy"
+        jsonPayload.writeFieldName('policy');
+        jsonPayload.writeStartObject();
 
-            jsonPayload.writeFieldName('header');
-            jsonPayload.writeStartObject();
+        jsonPayload.writeNumberField('policyNumber', 1);
+
+        jsonPayload.writeFieldName('header');
+        jsonPayload.writeStartObject();
+        if(onlineApplication.Carrier_ID_Number__c != null){
+            jsonPayload.writeStringField('description', 'New Policy');
+        } else {
             jsonPayload.writeStringField('description', 'Default Policy');
-            jsonPayload.writeBooleanField('handEnter', false);
-            jsonPayload.writeNumberField('payrollContractId', 0);
-            // todo replace these falses with the value of OnlineApplication__c.Funding_Options__c
-            jsonPayload.writeBooleanField('payrollAtm', false);
-            jsonPayload.writeBooleanField('payrollChk', false);
-            jsonPayload.writeBooleanField('payrollAch', false);
-
-            if (onlineApplication.Funding_Options__c != null) {
-                if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'Y');
-                if (onlineApplication.Funding_Options__c.contains('Register Check')) jsonPayload.writeStringField('payrollChk', 'Register Check');
-                if (onlineApplication.Funding_Options__c.contains('ACH Transfer')) jsonPayload.writeStringField('payrollAch', 'ACH Transfer');
-                if (onlineApplication.Funding_Options__c.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Debit Use');
-            }
-
-            jsonPayload.writeBooleanField('payrollWire', false);
-            jsonPayload.writeBooleanField('payrollDebit', false);
-            jsonPayload.writeBooleanField('defCardMgdFuel', false);
-            jsonPayload.writeBooleanField('defCardMgdNonFuel', false);
-            jsonPayload.writeEndObject();
-
-            // Start of "limits"
-            jsonPayload.writeFieldName('limits');
-            jsonPayload.writeStartArray();
-
-            if (onlineApplication.Daily_Fuel_Gallons__c != null) {
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('limitId', 'DSL');
-                jsonPayload.writeNumberField('limit', onlineApplication.Daily_Fuel_Gallons__c);
-                jsonPayload.writeNumberField('hours', 0);
-                jsonPayload.writeNumberField('minHours', 0);
-                jsonPayload.writeNumberField('autoRollMax', 0);
-                jsonPayload.writeNumberField('autoRollMap', 127);
-                jsonPayload.writeEndObject();
-            }
-
-            if (onlineApplication.Daily_Cash_Limit__c != null) {
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('limitId', 'CADV');
-                jsonPayload.writeNumberField('limit', onlineApplication.Daily_Cash_Limit__c);
-                jsonPayload.writeNumberField('hours', 24);
-                jsonPayload.writeNumberField('minHours', 0);
-                jsonPayload.writeEndObject();
-            }
-
-            if (onlineApplication.Daily_DEF_Limit__c != null) {
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('limitId', 'DEF');
-                jsonPayload.writeNumberField('limit', onlineApplication.Daily_DEF_Limit__c);
-                jsonPayload.writeNumberField('hours', 0);
-                jsonPayload.writeNumberField('minHours', 0);
-                jsonPayload.writeNumberField('autoRollMax', 0);
-                jsonPayload.writeNumberField('autoRollMap', 127);
-                jsonPayload.writeEndObject();
-            }
-
-            if (onlineApplication.Daily_Fuel_Gallons__c != null) {
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('limitId', 'ULSD');
-                jsonPayload.writeNumberField('limit', onlineApplication.Daily_Fuel_Gallons__c);
-                jsonPayload.writeNumberField('hours', 0);
-                jsonPayload.writeNumberField('minHours', 0);
-                jsonPayload.writeNumberField('autoRollMax', 0);
-                jsonPayload.writeNumberField('autoRollMap', 127);
-                jsonPayload.writeEndObject();
-            }
-
-            jsonPayload.writeEndArray();
-            // End of "limits"
-
-            // Start of "infos"
-            jsonPayload.writeFieldName('infos');
-            jsonPayload.writeStartArray();
-
-            if (onlineApplication.Odometer__c == true) {
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('infoId', 'ODRD');
-                jsonPayload.writeStringField('validationType', 'NUMERIC');
-                jsonPayload.writeEndObject();
-            }
-
-            if (onlineApplication.Trip__c == true) {
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('infoId', 'TRIP');
-                jsonPayload.writeStringField('validationType', 'ALPHANUMERIC');
-                jsonPayload.writeEndObject();
-            }
-
-            if (onlineApplication.Unit__c == true && onlineApplicationUnitNumbers.size() > 0) {
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('infoId', 'UNIT');
-                jsonPayload.writeStringField('validationType', 'INFO_POOL');
-                jsonPayload.writeFieldName('poolValues');
-                jsonPayload.writeStartArray();
-
-                for (OnlineApplicationUnitNumber__c unitNumber : onlineApplicationUnitNumbers) {
-
-                    jsonPayload.writeString(unitNumber.Name);
-
-                }
-
-                jsonPayload.writeEndArray();
-                jsonPayload.writeEndObject();
-            }
-
-            jsonPayload.writeEndArray();
-            // End of "infos"
-
-            // Start of refresh limits
-            jsonPayload.writeFieldName('refreshLimits');
-            jsonPayload.writeStartObject();
-            if (onlineApplication.Daily_Amount_Requested__c != null) jsonPayload.writeNumberField('dailyAmount', onlineApplication.Daily_Amount_Requested__c);
-            if (onlineApplication.Daily_Transactions__c != null) jsonPayload.writeNumberField('dailyCount', onlineApplication.Daily_Transactions__c);
-            if (onlineApplication.Monthly_Amount_Requested__c != null) jsonPayload.writeNumberField('monthlyAmount', onlineApplication.Monthly_Amount_Requested__c);
-            if (onlineApplication.Monthly_Transactions__c != null) jsonPayload.writeNumberField('monthlyCount', onlineApplication.Monthly_Transactions__c);
-            if (onlineApplication.Weekly_Amount_Requested__c != null) jsonPayload.writeNumberField('weeklyAmount', onlineApplication.Weekly_Amount_Requested__c);
-            if (onlineApplication.Weekly_Transactions__c != null) jsonPayload.writeNumberField('weeklyCount', onlineApplication.Weekly_Transactions__c);
-            jsonPayload.writeEndObject();
-            // End of "refresh limits"
-
-            //start merchant category codes
-            if (onlineApplication.Allowed_Merchant_Categories__c != null) {
-                jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', onlineApplication.Allowed_Merchant_Categories__c.contains('All Merchants'));
-                jsonPayload.writeFieldName('merchantCategoryCodes');
-                jsonPayload.writeStartArray();
-                for (String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')) {
-                    if (s.isNumeric())
-                        jsonPayload.writeNumber(Integer.valueOf(s));
-                }
-                jsonPayload.writeEndArray();
-            } else {
-                jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', false);
-            }
-            //end merchant category codes
-
-            //if(onlineApplication.Scales_Limit__c != null) jsonPayload.writeNumberField('scalesLimit', onlineApplication.Scales_Limit__c);
-
-            jsonPayload.writeEndObject();
-            // End of "policy"
         }
+        jsonPayload.writeBooleanField('handEnter', false);
+        jsonPayload.writeNumberField('payrollContractId', 0);
+        // todo replace these falses with the value of OnlineApplication__c.Funding_Options__c
+        jsonPayload.writeBooleanField('payrollAtm', false);
+        jsonPayload.writeBooleanField('payrollChk', false);
+        jsonPayload.writeBooleanField('payrollAch', false);
+
+        if (onlineApplication.Funding_Options__c != null) {
+            if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'Y');
+            if (onlineApplication.Funding_Options__c.contains('Register Check')) jsonPayload.writeStringField('payrollChk', 'Register Check');
+            if (onlineApplication.Funding_Options__c.contains('ACH Transfer')) jsonPayload.writeStringField('payrollAch', 'ACH Transfer');
+            if (onlineApplication.Funding_Options__c.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Debit Use');
+        }
+
+        jsonPayload.writeBooleanField('payrollWire', false);
+        jsonPayload.writeBooleanField('payrollDebit', false);
+        jsonPayload.writeBooleanField('defCardMgdFuel', false);
+        jsonPayload.writeBooleanField('defCardMgdNonFuel', false);
+        jsonPayload.writeEndObject();
+
+        // Start of "limits"
+        jsonPayload.writeFieldName('limits');
+        jsonPayload.writeStartArray();
+
+        if (onlineApplication.Daily_Fuel_Gallons__c != null) {
+            jsonPayload.writeStartObject();
+            jsonPayload.writeStringField('limitId', 'DSL');
+            jsonPayload.writeNumberField('limit', onlineApplication.Daily_Fuel_Gallons__c);
+            jsonPayload.writeNumberField('hours', 0);
+            jsonPayload.writeNumberField('minHours', 0);
+            jsonPayload.writeNumberField('autoRollMax', 0);
+            jsonPayload.writeNumberField('autoRollMap', 127);
+            jsonPayload.writeEndObject();
+        }
+
+        if (onlineApplication.Daily_Cash_Limit__c != null) {
+            jsonPayload.writeStartObject();
+            jsonPayload.writeStringField('limitId', 'CADV');
+            jsonPayload.writeNumberField('limit', onlineApplication.Daily_Cash_Limit__c);
+            jsonPayload.writeNumberField('hours', 24);
+            jsonPayload.writeNumberField('minHours', 0);
+            jsonPayload.writeEndObject();
+        }
+
+        if (onlineApplication.Daily_DEF_Limit__c != null) {
+            jsonPayload.writeStartObject();
+            jsonPayload.writeStringField('limitId', 'DEF');
+            jsonPayload.writeNumberField('limit', onlineApplication.Daily_DEF_Limit__c);
+            jsonPayload.writeNumberField('hours', 0);
+            jsonPayload.writeNumberField('minHours', 0);
+            jsonPayload.writeNumberField('autoRollMax', 0);
+            jsonPayload.writeNumberField('autoRollMap', 127);
+            jsonPayload.writeEndObject();
+        }
+
+        if (onlineApplication.Daily_Fuel_Gallons__c != null) {
+            jsonPayload.writeStartObject();
+            jsonPayload.writeStringField('limitId', 'ULSD');
+            jsonPayload.writeNumberField('limit', onlineApplication.Daily_Fuel_Gallons__c);
+            jsonPayload.writeNumberField('hours', 0);
+            jsonPayload.writeNumberField('minHours', 0);
+            jsonPayload.writeNumberField('autoRollMax', 0);
+            jsonPayload.writeNumberField('autoRollMap', 127);
+            jsonPayload.writeEndObject();
+        }
+
+        jsonPayload.writeEndArray();
+        // End of "limits"
+
+        // Start of "infos"
+        jsonPayload.writeFieldName('infos');
+        jsonPayload.writeStartArray();
+
+        if (onlineApplication.Odometer__c == true) {
+            jsonPayload.writeStartObject();
+            jsonPayload.writeStringField('infoId', 'ODRD');
+            jsonPayload.writeStringField('validationType', 'NUMERIC');
+            jsonPayload.writeEndObject();
+        }
+
+        if (onlineApplication.Trip__c == true) {
+            jsonPayload.writeStartObject();
+            jsonPayload.writeStringField('infoId', 'TRIP');
+            jsonPayload.writeStringField('validationType', 'ALPHANUMERIC');
+            jsonPayload.writeEndObject();
+        }
+
+        if (onlineApplication.Unit__c == true && onlineApplicationUnitNumbers.size() > 0) {
+            jsonPayload.writeStartObject();
+            jsonPayload.writeStringField('infoId', 'UNIT');
+            jsonPayload.writeStringField('validationType', 'INFO_POOL');
+            jsonPayload.writeFieldName('poolValues');
+            jsonPayload.writeStartArray();
+
+            for (OnlineApplicationUnitNumber__c unitNumber : onlineApplicationUnitNumbers) {
+
+                jsonPayload.writeString(unitNumber.Name);
+
+            }
+
+            jsonPayload.writeEndArray();
+            jsonPayload.writeEndObject();
+        }
+
+        jsonPayload.writeEndArray();
+        // End of "infos"
+
+        // Start of refresh limits
+        jsonPayload.writeFieldName('refreshLimits');
+        jsonPayload.writeStartObject();
+        if (onlineApplication.Daily_Amount_Requested__c != null) jsonPayload.writeNumberField('dailyAmount', onlineApplication.Daily_Amount_Requested__c);
+        if (onlineApplication.Daily_Transactions__c != null) jsonPayload.writeNumberField('dailyCount', onlineApplication.Daily_Transactions__c);
+        if (onlineApplication.Monthly_Amount_Requested__c != null) jsonPayload.writeNumberField('monthlyAmount', onlineApplication.Monthly_Amount_Requested__c);
+        if (onlineApplication.Monthly_Transactions__c != null) jsonPayload.writeNumberField('monthlyCount', onlineApplication.Monthly_Transactions__c);
+        if (onlineApplication.Weekly_Amount_Requested__c != null) jsonPayload.writeNumberField('weeklyAmount', onlineApplication.Weekly_Amount_Requested__c);
+        if (onlineApplication.Weekly_Transactions__c != null) jsonPayload.writeNumberField('weeklyCount', onlineApplication.Weekly_Transactions__c);
+        jsonPayload.writeEndObject();
+        // End of "refresh limits"
+
+        //start merchant category codes
+        if (onlineApplication.Allowed_Merchant_Categories__c != null) {
+            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', onlineApplication.Allowed_Merchant_Categories__c.contains('All Merchants'));
+            jsonPayload.writeFieldName('merchantCategoryCodes');
+            jsonPayload.writeStartArray();
+            for (String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')) {
+                if (s.isNumeric())
+                    jsonPayload.writeNumber(Integer.valueOf(s));
+            }
+            jsonPayload.writeEndArray();
+        } else {
+            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', false);
+        }
+        //end merchant category codes
+
+        //if(onlineApplication.Scales_Limit__c != null) jsonPayload.writeNumberField('scalesLimit', onlineApplication.Scales_Limit__c);
+
+        jsonPayload.writeEndObject();
+        // End of "policy"
 
         // Start driver fees
         jsonPayload.writeFieldName('driver_fees');
@@ -582,7 +585,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('fee_max_times_per', '3');
         jsonPayload.writeStringField('fee_max_times', '1');
         //TODO why is this PST Card Fee in the payload twice? -lhowland
-       // if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
+        // if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
 //        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
 //        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
@@ -690,7 +693,7 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Payment_Method_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_METHOD_APPROVED', onlineApplication.Payment_Method_Approved__c);
         if(onlineApplication.Payment_Frequency_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_FREQUENCY_APPROVED', onlineApplication.Payment_Frequency_Approved__c);
         if(onlineApplication.Terms_Approved__c != null) jsonPayload.writeStringField('ZZZTERMS_APPROVED', onlineApplication.Terms_Approved__c);
-        if(onlineApplication.Billing_Cycle_Approved__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE_APPROVED', onlineApplication.Billing_Cycle_Approved__c	);
+        if(onlineApplication.Billing_Cycle_Approved__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE_APPROVED', onlineApplication.Billing_Cycle_Approved__c   );
 */
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('req_credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('req_credit_line_type', 'Open Line');
@@ -780,7 +783,14 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('fuel_and_cash', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Fuel_Cash__c));
 
         if(selectedOtherServices != null && selectedOtherServices.contains('ATM') && onlineApplicationOffer.PSR_ATM_Limit__c != null) {
-            if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('atm_limit', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
+            if (onlineApplication.Number_of_Cards_Needed__c != null){
+                if(onlineApplication.Carrier_ID_Number__c != null){
+                    jsonPayload.writeNumberField('atm_limit', integer.valueof(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
+                } else {
+                    jsonPayload.writeNumberField('atm_limit', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
+                }
+
+            }
         }
 
         if(selectedOtherServices != null && selectedOtherServices.contains('Money Codes and ATM') && onlineApplicationOffer.PSR_Money_Code__c != null) {
