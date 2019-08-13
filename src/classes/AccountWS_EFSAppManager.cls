@@ -436,13 +436,39 @@ global class AccountWS_EFSAppManager {
         // todo replace these falses with the value of OnlineApplication__c.Funding_Options__c
         /*jsonPayload.writeBooleanField('payrollAtm', false);
         jsonPayload.writeBooleanField('payrollChk', false);
-        jsonPayload.writeBooleanField('payrollAch', false);*/
+        jsonPayload.writeBooleanField('payrollAch', false);
 
         if (onlineApplication.Funding_Options__c != null) {
-            if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'Y');
+            if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'ATM');
             if (onlineApplication.Funding_Options__c.contains('Register Check')) jsonPayload.writeStringField('payrollChk', 'Register Check');
             if (onlineApplication.Funding_Options__c.contains('ACH Transfer')) jsonPayload.writeStringField('payrollAch', 'ACH Transfer');
             if (onlineApplication.Funding_Options__c.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Debit Use');
+        }
+        */
+        //who knows what values to send to EFS? nobody!
+        if (onlineApplication.Funding_Options__c != null) {
+            if (onlineApplication.Funding_Options__c.contains('ATM')){
+                jsonPayload.writeBooleanField('payrollAtm', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollAtm', false);
+            }
+            if (onlineApplication.Funding_Options__c.contains('Register Check')){
+                jsonPayload.writeBooleanField('payrollChk', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollChk', false);
+            }
+            if (onlineApplication.Funding_Options__c.contains('ACH Transfer')){
+                jsonPayload.writeBooleanField('payrollAch', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollAch', false);
+            }
+
+            if (onlineApplication.Funding_Options__c.contains('Debit Use')){
+                jsonPayload.writeBooleanField('payrollDebit', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollDebit', false);
+            }
+
         }
 
         jsonPayload.writeBooleanField('payrollWire', false);
