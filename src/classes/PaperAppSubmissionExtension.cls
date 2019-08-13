@@ -51,8 +51,8 @@ public class PaperAppSubmissionExtension {
         uid = UserInfo.getUserId();
 
         //from user get contact then account then program then partner
-        u = [SELECT Profile.UserLicense.Name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
-        isPartner = (u.Profile.UserLicense.Name == 'Partner Community') ? true : false;
+        u = [SELECT profile.UserLicense.name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
+        isPartner = (u.profile.UserLicense.name == 'Partner Community') ? true : false;
         if (isPartner) {
             partnerId = u.Contact.Account.Program__r.Partner__c;
         }
@@ -70,12 +70,13 @@ public class PaperAppSubmissionExtension {
             // Attempt to build the URL
             if (oppties.size() > 0) {
 
-                String campaignProgram = oppties[0].Campaign_Program__c;
                 String accountId = oppties[0].AccountId;
                 Id otrProgram = null;
-                if ( oppties[0].Offer__c != null && oppties[0].Offer__r.Program__c != null) {
-                    otrProgram = oppties[0].Offer__r.Program__c;
-                } else if ( selectedProgram != null ) {
+                // temporarily removing this functionality until more time to perfect flow 8/13/19
+                // if ( oppties[0].Offer__c != null && oppties[0].Offer__r.Program__c != null) {
+                //    otrProgram = oppties[0].Offer__r.Program__c;
+                //  } else
+                if ( selectedProgram != null ) {
                     otrProgram = selectedProgram;
                 }
 
@@ -83,23 +84,8 @@ public class PaperAppSubmissionExtension {
                 system.debug('OTR Offer: ' + oppties[0].Offer__c);
                 system.debug('selectedOffer: ' + selectedOffer);
                 system.debug('selectedProgram: ' + selectedProgram);
-                System.debug('campaignProgram: ' + campaignProgram);
 
-                if (campaignProgram != null) {
-                    List<Campaign_Program__c> campaignPrograms = [SELECT Program__c FROM Campaign_Program__c WHERE Id = :campaignProgram LIMIT 1];
-
-                    if (campaignPrograms.size() > 0) {
-                        List<Program__c> programs = [SELECT Form_Template__c, Brand_Short_Name__c FROM Program__c WHERE Id = :campaignPrograms[0].Program__c LIMIT 1];
-
-                        if (programs.size() > 0) {
-                            String brandShortName = programs[0].Brand_Short_Name__c;
-
-                            PageReference paperAppSubmission = new PageReference('/partners/apex/' + programs[0].Form_Template__c + '?pgm=' + brandShortName + '&optyId=' + optyId + '&accntId=' + accountId);
-                            paperAppSubmission.setRedirect(true);
-                            return paperAppSubmission;
-                        }
-                    }
-                } else if (otrProgram != null) {
+                if (otrProgram != null) {
                     List<OnlineApplicationOffer__c> offers = [SELECT Id, Program__c FROM OnlineApplicationOffer__c WHERE Id = :oppties[0].Offer__c];
 
                     if (offers.size() > 0) {
@@ -107,11 +93,13 @@ public class PaperAppSubmissionExtension {
                         List<Program__c> programs = [SELECT Id, Brand_Short_Name__c, Form_Template__c FROM Program__c WHERE Id = :offers[0].Program__c];
                         if (programs.size() > 0) {
                             String brandShortName = programs[0].Brand_Short_Name__c;
-                            System.debug('TEMP inside otr brand short name: ' + brandShortName);
                             String formTemplate = programs[0].Form_Template__c;
 
                             if (formTemplate != null && brandShortName != null) {
-                                PageReference paperAppSubmission = new PageReference('/partners/apex/' + formTemplate + '?pgm=' + brandShortName + '&optyId=' + optyId + '&accntId=' + accountId);
+                                PageReference paperAppSubmission = Page.OTRBOCA;
+                                paperAppSubmission.getParameters().put('pgm', brandShortName);
+                                paperAppSubmission.getParameters().put('optyId', optyId);
+                                paperAppSubmission.getParameters().put('accntId', accountId);
                                 System.debug('TEMP page ref: ' + paperAppSubmission);
                                 paperAppSubmission.setRedirect(true);
                                 return paperAppSubmission;
@@ -135,7 +123,6 @@ public class PaperAppSubmissionExtension {
             return errorPage;
         }
         return null;
-
     }
 
     public List<SelectOption> AvailablePrograms {
