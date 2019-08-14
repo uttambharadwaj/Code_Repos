@@ -10,7 +10,6 @@
 *
 */
 public without sharing class CustomerDetailsController {
-
     public class customerDetailsException extends Exception {}
 
     private static Set<String> caseTypesToDisplay = new Set<String>{'Service Operations','VAS - Retention'};
@@ -25,22 +24,22 @@ public without sharing class CustomerDetailsController {
     public static CustomerDetailsWSUtilv2.customerDetailsRequest customerDetailsRequest { get; set; }
 
     public static Id genericProgram {
-        get {
+        get { 
             CDS = Customer_Dashboard_Services__c.getOrgDefaults();
 
             if(CDS.Generic_Program__c != null) {
-                List<Program__c> genericProgram = [SELECT Id FROM Program__c WHERE Id =: CDS.Generic_Program__c];
+        		List<Program__c> genericProgram = [SELECT Id FROM Program__c WHERE Id =: CDS.Generic_Program__c];
 
-                if(genericProgram.size() > 0) {
-                    return genericProgram[0].Id;
-                }
+            	if(genericProgram.size() > 0) {
+	                return genericProgram[0].Id;
+    	        }
             }
 
             return null;
         }
     }
 
-    @AuraEnabled
+    @AuraEnabled 
     public static Integer getNumberOfCasesToday(String accountNumber) {
 
         try {
@@ -69,7 +68,7 @@ public without sharing class CustomerDetailsController {
         return Support_Operation_Settings__c.getInstance();
     }
 
-    @AuraEnabled
+    @AuraEnabled 
     public static List<Case> getExistingCases(String accountNumber) {
 
         try {
@@ -306,7 +305,7 @@ public without sharing class CustomerDetailsController {
 
             CustomerDetailsWSUtilv2.payments payments = customerDetailsCallout.getPayments(accountNumber, sourceSys);
 
-            //CustomerDetailsWSUtilv2.payments payments = CustomerDetailsController.getDummyPayments(accountNumber);
+			//CustomerDetailsWSUtilv2.payments payments = CustomerDetailsController.getDummyPayments(accountNumber);
 
             System.debug('### ' + payments);
 
@@ -543,23 +542,27 @@ public without sharing class CustomerDetailsController {
         return result;
     }
 
-    @AuraEnabled
+    @AuraEnabled 
     public static Id getContactId(String accountId, String contactRowId) {
         System.debug('Entering getContactId for accountId '+accountId+' and contactRowId '+contactRowId);
         try {
             String contactRowIdToUse = contactRowId;
             if (contactRowId.contains('#')) {
                 contactRowIdToUse = contactRowId.split('#').get(0);
-            } //todo: change back to IntegrationRecord
-            List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
+            }
+            //todo: fix in downstream env
+            //List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
             //List<IntegrationRecord__c> serviceOperationsContacts = [SELECT Contact__r.ID FROM IntegrationRecord__c WHERE Contact_Row_ID__c =: contactRowIdToUse];
+
+            List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
 
             System.debug('### ' + serviceOperationsContacts);
 
             if(serviceOperationsContacts.size() > 0) {
 
-                //return serviceOperationsContacts[0].Contact__r.Id;
                 return serviceOperationsContacts[0].Id;
+                //Future once integration records are implemented
+                //return serviceOperationsContacts[0].Contact__r.ID;
 
             }
             else {
@@ -609,48 +612,57 @@ public without sharing class CustomerDetailsController {
                         accountNewToSalesforce = true;
                     }
 
-
                     if(customerDetails.customerSegmentation != null && (customerDetails.customerSegmentation).isNumeric()) {
                         serviceOperationsAccount.Customer_Segmentation__c = Integer.valueOf(customerDetails.customerSegmentation);
                     }
 
                     // Update all the fields of the account, if it didn't exist in Salesforce
                     if (accountNewToSalesforce) {
-                        // Tie our account to a program in SFDC, if it exists
-                        List<Program__c> programs = [SELECT Id FROM Program__c WHERE Siebel_Program_Row_Id__c =: customerDetails.programId];
+                    // Tie our account to a program in SFDC, if it exists
+                    List<Program__c> programs = [SELECT Id FROM Program__c WHERE Siebel_Program_Row_Id__c =: customerDetails.programId];
 
-                        if(programs.size() > 0) {
+                    if(programs.size() > 0) {
                             serviceOperationsAccount.Program__c = programs.get(0).Id;
-                        }
-                        else {
-                            serviceOperationsAccount.Program__c = genericProgram;
-                        }
+                    }
+                    else {
+                        serviceOperationsAccount.Program__c = genericProgram;
+                    }
 
-                        serviceOperationsAccount.Name = customerDetails.accountNm;
-                        serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
-                        serviceOperationsAccount.Acct_Row_Id__c = customerDetails.acctRowId;
-                        serviceOperationsAccount.Wex_Account__c = customerDetails.wexAccountNbr;
-                        serviceOperationsAccount.Sponsor_Acct__c = customerDetails.spnrAccountNbr;
-                        serviceOperationsAccount.PFS_REP__c = customerDetails.pfsRepNm;
+                    serviceOperationsAccount.Name = customerDetails.accountNm;
+                    serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
+                    serviceOperationsAccount.Acct_Row_Id__c = customerDetails.acctRowId;
+                    serviceOperationsAccount.Wex_Account__c = customerDetails.wexAccountNbr;
+                    serviceOperationsAccount.Sponsor_Acct__c = customerDetails.spnrAccountNbr;
+                    serviceOperationsAccount.PFS_REP__c = customerDetails.pfsRepNm;
 
-                        if (customerDetails.priorityLevel != null) {
-                            serviceOperationsAccount.Priority_Level__c = customerDetails.priorityLevel;
-                            serviceOperationsAccount.Priority_Level_Update_Date__c = System.now();
-                        }
+                    if (customerDetails.priorityLevel != null) {
+                        serviceOperationsAccount.Priority_Level__c = customerDetails.priorityLevel;
+                        serviceOperationsAccount.Priority_Level_Update_Date__c = System.now();
+                    }
 
-                        if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('A')) {
-                            serviceOperationsAccount.Status__c = 'Active';
-                        }
-                        else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('T')) {
-                            serviceOperationsAccount.Status__c = 'Terminated';
-                        }
-                        else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('S')) {
-                            serviceOperationsAccount.Status__c = 'Suspended';
+                    if (customerDetails.funder != null) {
+                        serviceOperationsAccount.Funder__c = customerDetails.funder;
+                    }
+
+                    if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('A')) {
+                        serviceOperationsAccount.Status__c = 'Active';    
+                    }
+                    else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('T')) {
+                        serviceOperationsAccount.Status__c = 'Terminated';    
+                    }
+                    else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('S')) {
+                        serviceOperationsAccount.Status__c = 'Suspended';    
                         } //If we sent the full-word status, use it
                         else if(customerDetails.accountSts != null && !(String.isEmpty(customerDetails.accountSts))) {
                             serviceOperationsAccount.Status__c = customerDetails.accountSts;
-                        }
-                        serviceOperationsAccount.Platform__c = customerDetails.sourceSys;
+                    }
+
+                    serviceOperationsAccount.Platform__c = customerDetails.sourceSys;
+                    serviceOperationsAccount.Online_Application_URL__c = customerDetails.onlineApplication;
+                    serviceOperationsAccount.Account_Instructions__c = customerDetails.specialInstructions;
+
+                    if(customerDetails.billingAddress != null) {
+                        serviceOperationsAccount.BillingStreet = customerDetails.billingAddress.addr1;
 
                         if(customerDetails.billingAddress.addr2 != null) {
                             serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr2;
@@ -666,25 +678,26 @@ public without sharing class CustomerDetailsController {
                         serviceOperationsAccount.BillingState = customerDetails.billingAddress.state;
                         serviceOperationsAccount.BillingCountry = customerDetails.billingAddress.country;
                         serviceOperationsAccount.BillingPostalCode = customerDetails.billingAddress.postalCode;
+                    }
 
-                        if(customerDetails.mailingAddress != null) {
-                            serviceOperationsAccount.ShippingStreet = customerDetails.mailingAddress.addr1;
+                    if(customerDetails.mailingAddress != null) {
+                        serviceOperationsAccount.ShippingStreet = customerDetails.mailingAddress.addr1;
 
-                            if(customerDetails.billingAddress.addr2 != null) {
-                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr2;
-                            }
-                            if(customerDetails.billingAddress.addr3 != null) {
-                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr3;
-                            }
-                            if(customerDetails.billingAddress.addr4 != null) {
-                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr4;
-                            }
-
-                            serviceOperationsAccount.ShippingCity = customerDetails.mailingAddress.city;
-                            serviceOperationsAccount.ShippingState = customerDetails.mailingAddress.state;
-                            serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
-                            serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
+                        if(customerDetails.billingAddress.addr2 != null) {
+                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr2;
                         }
+                        if(customerDetails.billingAddress.addr3 != null) {
+                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr3;
+                        }
+                        if(customerDetails.billingAddress.addr4 != null) {
+                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr4;
+                        }
+
+                        serviceOperationsAccount.ShippingCity = customerDetails.mailingAddress.city;
+                        serviceOperationsAccount.ShippingState = customerDetails.mailingAddress.state;
+                        serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
+                        serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
+                    }
                     } //accountNewToSalesforce
 
                     //Upsert for convenience; if the account is new to Salesforce it will be an Insert, otherwise an Update but
@@ -758,7 +771,7 @@ public without sharing class CustomerDetailsController {
 
                 if(checkEmailFormat(customerContact.EmailAddr)) {
                     System.debug('### Email is valid');
-                    contact.Email = customerContact.EmailAddr;
+                	contact.Email = customerContact.EmailAddr;
                 }
                 contact.Fax = customerContact.FaxNbr;
                 contact.Phone = customerContact.PhoneNbr;
@@ -914,7 +927,7 @@ public without sharing class CustomerDetailsController {
         }
 
         if (!String.isEmpty(contactId)) {
-            serviceOperationsCase.ContactId = (ID) contactId;
+            serviceOperationsCase.ContactId = (Id) contactId;
         }
 
         try {
@@ -940,17 +953,17 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
-    public static Boolean checkEmailFormat(String emailAddress) {
+	public static Boolean checkEmailFormat(String emailAddress) {
 
         try {
 
-            Pattern emailMatchingPattern = Pattern.compile('([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})');
+  			Pattern emailMatchingPattern = Pattern.compile('([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})');
 
-            Matcher matcher = emailMatchingPattern.matcher(emailAddress);
+			Matcher matcher = emailMatchingPattern.matcher(emailAddress);
 
-            if (matcher.matches()) {
-                return true;
-            }
+			if (matcher.matches()) {
+				return true;
+			}
 
         }
         catch(Exception e) {
@@ -961,11 +974,11 @@ public without sharing class CustomerDetailsController {
 
         return false;
 
-    }
+	} 
 
     private static String logError(Exception e) {
 
-        try {
+        try { 
 
             Internal_Application_Error__c error = new Internal_Application_Error__c();
 
