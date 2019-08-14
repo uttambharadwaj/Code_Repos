@@ -5,29 +5,20 @@
 public with sharing class CreditWS_Equifax {
 
     public static String NAMESPACE = 'http://www.equifax.ca/XMLSchemas/EfxToCust';
+    public static String UAT_ENDPOINT = 'https://uat.equifax.ca/efxws/STSRequest.asmx';
+    public static String PROD_ENDPOINT = 'https://www.equifax.ca/efxws/STSRequest.asmx';
+    public static String UAT_MEMBER_NUMBER = '999ZS01041';
+    public static String PROD_MEMBER_NUMBER = '400ZS54843';
+    public static String UAT_SECURITY_CODE = '99';
+    public static String PROD_SECURITY_CODE = '88';
+    public static String UAT_EFX_ENV = 'A01PKSS';
+    public static String PROD_EFX_ENV = 'A01PACK';
+    public static String UAT_SCHEMA_LOCATION = 'http://www.equifax.ca/XMLSchemas/UAT/CNCustTransmitToEfx.xsd';
+    public static String PROD_SCHEMA_LOCATION = 'http://www.equifax.ca/XMLSchemas/Production/CNCustTransmitToEfx.xsd';
     public static List<String> addressNumberAndStreet = new List<String>();
     public static List<String> phoneAreaCodeAndNumber = new List<String>();
     private static String extraEquifaxData = '';
     private static Integer pgHighCreditAmount = 0;
-
-    public static Credit_Decision_Engine_Endpoints__mdt equifaxSettings {
-        get {
-
-            try {
-                Credit_Decision_Engine_Endpoints__mdt equifaxSettings = [SELECT Id, Account_ID__c, Client_Key__c, Org_ID__c, Endpoint_URL__c, DB_Host__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Equifax_Toolkit'];
-
-                // Equifax translations:
-                // Account ID = Member #, Client Key = Security Code, Org ID = Schema Local, DB Host = EFX Env
-                return equifaxSettings;
-            }
-            catch(Exception e) {
-
-                System.debug('### ERROR: Error getting Equifax Toolkit connection settings.');
-
-            }
-            return null;
-        }
-    }
 
     public static EquifaxResponse getCreditScore(EquifaxRequest equifaxRequest) {
 
@@ -46,7 +37,7 @@ public with sharing class CreditWS_Equifax {
                 httpRequest.setHeader('SOAPAction', 'https://www.Equifax.ca/EFXWS/STSRequest/Submit');
                 httpRequest.setTimeout(115000);
 
-                httpRequest.setEndpoint(equifaxSettings.Endpoint_URL__c);
+                httpRequest.setEndpoint(PROD_ENDPOINT);
                 httpRequest.setBody(xmlRequest);
 
                 // get response
@@ -209,7 +200,7 @@ public with sharing class CreditWS_Equifax {
             return equifaxResponse;
 
         } catch (Exception e) {
-            System.debug('### ERROR: ' + e.getMessage() + ' On Line Number: ' + e.getLineNumber());
+            System.debug('### ERROR: ' + e.getMessage());
             equifaxResponse.calloutFailed = true;
         }
         return null;
@@ -274,12 +265,12 @@ public with sharing class CreditWS_Equifax {
                     '<soap:Body>' +
                         '<sts:Submit>' + //xmlns="https://uat.Equifax.ca/EFXWS/STSRequest">' +
                         '<sts:InputSegment>' +
-                                    '<![CDATA[<?xml version="1.0" encoding="utf-8"?><CNCustTransmitToEfx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="' + equifaxSettings.Org_ID__c + '"xmlns="http://www.equifax.ca/XMLSchemas/CustToEfx">' +
+                                    '<![CDATA[<?xml version="1.0" encoding="utf-8"?><CNCustTransmitToEfx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="' + PROD_SCHEMA_LOCATION + '"xmlns="http://www.equifax.ca/XMLSchemas/CustToEfx">' +
                                         '<CNCustomerInfo>' +
                                             '<CustomerCode>B234</CustomerCode>' +
                                             '<CustomerInfo>' +
-                                                '<CustomerNumber>' + equifaxSettings.Account_ID__c + '</CustomerNumber>' +
-                                                '<SecurityCode>' + equifaxSettings.Client_Key__c + '</SecurityCode>' +
+                                                '<CustomerNumber>' + PROD_MEMBER_NUMBER + '</CustomerNumber>' +
+                                                '<SecurityCode>' + PROD_SECURITY_CODE + '</SecurityCode>' +
                                             '</CustomerInfo>' +
                                         '</CNCustomerInfo>' +
                                         '<CNRequests>' +
@@ -330,7 +321,7 @@ public with sharing class CreditWS_Equifax {
                                         '</CNRequests>' +
                                     '</CNCustTransmitToEfx>]]>' +
                                 '</sts:InputSegment>' +
-                                '<sts:EFXEnvironment>' + equifaxSettings.DB_Host__c + '</sts:EFXEnvironment>' +
+                                '<sts:EFXEnvironment>' + PROD_EFX_ENV + '</sts:EFXEnvironment>' +
                             '</sts:Submit>' +
                          '</soap:Body>' +
                     '</soap:Envelope>';

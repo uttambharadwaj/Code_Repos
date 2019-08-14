@@ -6,8 +6,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testThreatMetrixService1() {
 
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
     
         //-------------------
@@ -24,8 +22,6 @@ private class ForsevaPostInstallationUnitTests {
     }
 
     static testMethod void testThreatMetrixService2() {
-
-        UtilityTestLoader.setAutomation(false);
 
         Test.startTest();
     
@@ -47,8 +43,6 @@ private class ForsevaPostInstallationUnitTests {
     /*
     static testMethod void testPicklists() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
         
         // Online Application Status__c Picklist
@@ -201,8 +195,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testParametersClass() {      
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
         
         String s1 = OnlineApplicationParameters.getApplicationBaseUrl();
@@ -247,8 +239,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testSOUtility() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
             
         Account a = new Account(Name = 'BooBerry', forseva1__Last_Payment_Date__c = Date.today(), forseva1__CQR_Description__c = 'Wow');
@@ -272,8 +262,6 @@ private class ForsevaPostInstallationUnitTests {
 
    /* static testMethod void testOnlineApplicationClass() { 
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
     
         //-------------------
@@ -432,8 +420,6 @@ private class ForsevaPostInstallationUnitTests {
 
      static testMethod void testEchoSignService() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
     
         EchoSignService ess = new EchoSignService();
@@ -456,8 +442,6 @@ private class ForsevaPostInstallationUnitTests {
     } 
 
     static testMethod void testEchoSignEmailHandlerWithValidSigner() {
-
-        UtilityTestLoader.setAutomation(false);
 
         Test.startTest();
         
@@ -494,8 +478,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testEchoSignEmailHandlerWithInvalidSigner() {
 
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
         
         OnlineApplicationOffer__c offer1 = createCompleteSavedOffer(OnlineApplication.OTR);
@@ -531,8 +513,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testConvertLocal() {
         
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
                 
         OnlineApplicationOffer__c offer1 = createCompleteSavedOffer(OnlineApplication.LOCAL);
@@ -558,8 +538,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testConvertOTR() {
         
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
 
         OnlineApplicationOffer__c offer1 = createCompleteSavedOffer(OnlineApplication.OTR);
@@ -585,8 +563,6 @@ private class ForsevaPostInstallationUnitTests {
 /*
       static testMethod void testConvertLocalToLead() {
         
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
                 
         OnlineApplicationOffer__c offer1 = createCompleteSavedOffer(OnlineApplication.LOCAL);
@@ -621,8 +597,6 @@ private class ForsevaPostInstallationUnitTests {
 
    static testMethod void testConvertOTRToLead() {
         
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
                 
         OnlineApplicationOffer__c offer1 = createCompleteSavedOffer(OnlineApplication.OTR);
@@ -668,8 +642,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testPersonWS() {      
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
         
         PersonWS p = new PersonWS();
@@ -700,8 +672,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testCreditPersonsWS() {      
     
-        UtilityTestLoader.setAutomation(false);
-
         // Set up account and contact by processing an application
     
         OnlineApplicationOffer__c offer1 = createCompleteSavedOffer(OnlineApplication.OTR);
@@ -742,8 +712,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testOnlineApplicationTriggers() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
         
         OnlineApplicationOffer__c offer = createCompleteSavedOffer(OnlineApplication.OTR);
@@ -800,8 +768,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testEquifaxConsumerTrigger() {      
 
-        UtilityTestLoader.setAutomation(false);
-
         // Set up account and contact by processing an application
     
         OnlineApplicationOffer__c offer1 = createCompleteSavedOffer(OnlineApplication.OTR);
@@ -837,8 +803,6 @@ private class ForsevaPostInstallationUnitTests {
     }
 
     static testMethod void testOnlineApplicationSetupWithZeroContacts() {
-
-        UtilityTestLoader.setAutomation(false);
 
         List<SObject> objs = createAccountContactOpportunity(0);
         Account a1 = (Account)objs[0];
@@ -934,8 +898,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testOnlineApplicationGoNextNoApp() {
 
-        UtilityTestLoader.setAutomation(false);
-
         OnlineApplicationOffer__c offer = createCompleteSavedOffer(OnlineApplication.OTR);
 
         TestUtils.enable_isRunningTest = true;
@@ -954,8 +916,6 @@ private class ForsevaPostInstallationUnitTests {
     }
 
     static testMethod void testOnlineApplicationGoNext() {
-
-        UtilityTestLoader.setAutomation(false);
 
         List<SObject> objs = createAccountContactOpportunity(1);
         Account a1 = (Account)objs[0];
@@ -1074,8 +1034,6 @@ private class ForsevaPostInstallationUnitTests {
     }
 
     static testMethod void testOnlineApplicationSetupWithOneContact() {
-
-        UtilityTestLoader.setAutomation(false);
 
         List<SObject> objs = createAccountContactOpportunity(1);
         Account a1 = (Account)objs[0];
@@ -1278,8 +1236,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testOnlineApplicationSetupWithThreeContacts() {
 
-        UtilityTestLoader.setAutomation(false);
-
         List<SObject> objs = createAccountContactOpportunity(3);
         Account a1 = (Account)objs[0];
         Contact c1 = (Contact)objs[1];
@@ -1374,8 +1330,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testDecisionSupportTrigger() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
     
         Account a = new Account(Name = 'Test Account');
@@ -1398,8 +1352,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testCustomReportTrigger() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
     
         Account a = new Account(Name = 'Test Account');
@@ -1421,8 +1373,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testCPRTrigger() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
     
         Account a = new Account(Name = 'Test Account');
@@ -1443,8 +1393,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testLeadTriggers() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
     
         Account a = new Account(Name = 'Test Account');
@@ -1467,8 +1415,6 @@ private class ForsevaPostInstallationUnitTests {
 
     static testMethod void testCreditForwarding() {
     
-        UtilityTestLoader.setAutomation(false);
-
         Test.startTest();
     
         Account a = new Account(Name = 'Test Account xxxvvv');

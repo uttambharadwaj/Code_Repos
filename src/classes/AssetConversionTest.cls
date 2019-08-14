@@ -21,9 +21,8 @@
  */
 @isTest
 private class AssetConversionTest {
-  
-  static testMethod void myUnitTest() {
-   UtilityTestLoader.setAutomation(false);
+    static testMethod void myUnitTest() {
+   
     Child_Host__c objchild = new Child_Host__c(name='Test',ship_notes__c='test', of_amerinet_sites__c=100);
             insert objchild;
             

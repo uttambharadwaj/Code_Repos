@@ -1,12 +1,7 @@
 @istest
 class Test_UpdateExpiredSecuritiesFlag{
 
-   @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-    static testmethod void testScheduler() {
+   static testmethod void testScheduler() {
    Test.startTest();
 
    String CRON_EXP = '0 0 0 18 9 ? 2030';

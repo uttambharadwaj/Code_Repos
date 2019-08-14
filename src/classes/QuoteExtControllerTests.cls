@@ -1,12 +1,7 @@
 @isTest
 private class QuoteExtControllerTests {
     
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-     testMethod static void testSubmit() {
+    testMethod static void testSubmit() {
         SBQQ__Quote__c quote = new SBQQ__Quote__c();
         insert quote;
         

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CorporatePayments Application Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CorporatePayments Application Requests</value>
+    </caseValues>
+    <layouts>
+        <layout>CorporatePayments Application Request - Partner Layout</layout>
+        <sections>
+            <label><!-- Application Summary --></label>
+            <section>Application Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Bank &amp; Payment Information --></label>
+            <section>Bank &amp; Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Summary --></label>
+            <section>Business Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Card Shipping Details --></label>
+            <section>Card Shipping Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Details --></label>
+            <section>Guarantor Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePayments Application Request Layout</layout>
+        <sections>
+            <label><!-- Application Summary --></label>
+            <section>Application Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Business Summary --></label>
+            <section>Business Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Card Shipping Details --></label>
+            <section>Card Shipping Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Details --></label>
+            <section>Guarantor Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>NA Corporate Payments - Compliance Analyst</layout>
+        <sections>
+            <label><!-- Applicant Information --></label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Bank &amp; Payment Information --></label>
+            <section>Bank &amp; Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Beneficial Owner Information --></label>
+            <section>Beneficial Owner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Credit Details --></label>
+            <section>Commercial Credit Details</section>
+        </sections>
+        <sections>
+            <label><!-- Consumer Credit Information --></label>
+            <section>Consumer Credit Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Application Information --></label>
+            <section>Credit Application Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decisioning --></label>
+            <section>Credit Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Existing Exposure Information --></label>
+            <section>Existing Exposure Information</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Information --></label>
+            <section>Forte Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Screening --></label>
+            <section>Fraud Screening</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Sanctions Screening --></label>
+            <section>Sanctions Screening</section>
+        </sections>
+        <sections>
+            <label><!-- ThreatMetrix Information --></label>
+            <section>ThreatMetrix Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>NA Corporate Payments - Credit Analyst</layout>
+        <sections>
+            <label><!-- Applicant Information --></label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Bank &amp; Payment Information --></label>
+            <section>Bank &amp; Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Beneficial Owner Information --></label>
+            <section>Beneficial Owner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Credit Details --></label>
+            <section>Commercial Credit Details</section>
+        </sections>
+        <sections>
+            <label><!-- Consumer Credit Information --></label>
+            <section>Consumer Credit Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Application Information --></label>
+            <section>Credit Application Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decisioning --></label>
+            <section>Credit Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Existing Exposure Information --></label>
+            <section>Existing Exposure Information</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Information --></label>
+            <section>Forte Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Screening --></label>
+            <section>Fraud Screening</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Sanctions Screening --></label>
+            <section>Sanctions Screening</section>
+        </sections>
+        <sections>
+            <label><!-- ThreatMetrix Information --></label>
+            <section>ThreatMetrix Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>NA Corporate Payments - Fraud Analyst</layout>
+        <sections>
+            <label><!-- Applicant Information --></label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Bank &amp; Payment Information --></label>
+            <section>Bank &amp; Payment Information</section>
+        </sections>
+        <sections>
+            <label><!-- Beneficial Owner Information --></label>
+            <section>Beneficial Owner Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Credit Details --></label>
+            <section>Commercial Credit Details</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Application Information --></label>
+            <section>Credit Application Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decisioning --></label>
+            <section>Credit Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Existing Exposure Information --></label>
+            <section>Existing Exposure Information</section>
+        </sections>
+        <sections>
+            <label><!-- Forte Information --></label>
+            <section>Forte Information</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Screening --></label>
+            <section>Fraud Screening</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Sanctions Screening --></label>
+            <section>Sanctions Screening</section>
+        </sections>
+        <sections>
+            <label><!-- ThreatMetrix Information --></label>
+            <section>ThreatMetrix Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>NA Corporate Payments - Sales</layout>
+        <sections>
+            <label><!-- Applicant Information --></label>
+            <section>Applicant Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Application Information --></label>
+            <section>Credit Application Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- An Adverse Action code is required --></errorMessage>
+        <name>Adverse_Action_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Compliance (Sanctions Check + Compliance Decision) and Fraud (Decision + Recommendation) Checks must be complete before Credit Decision is Approved --></errorMessage>
+        <name>Confirm_Checks_Before_Credit_Approved</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid 10-digit phone number --></errorMessage>
+        <name>Validate_Phone_Numbers</name>
+    </validationRules>
+</CustomObjectTranslation>

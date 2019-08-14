@@ -1154,6 +1154,7 @@
             caseId : component.get("v.caseId"),
             contactRowId : component.get("v.contactRowId"),
             customerDetailsJSON : JSON.stringify(component.get("v.customerDetails")),
+            customerContactsJSON : JSON.stringify(component.get("v.customerContacts"))
         });
         
         action.setCallback(this, function(response) {
@@ -1183,7 +1184,7 @@
                     
                     workspaceAPI.openSubtab({
                         parentTabId: response,
-                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber"),
+                        url: '#/n/Customer_Details?accountNumber=' + component.get("v.accountNumber"),
                         focus: false
                     });
                     

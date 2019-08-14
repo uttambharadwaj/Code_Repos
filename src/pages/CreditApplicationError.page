@@ -1,6 +1,3 @@
-<!--
-	Revision History: 5/14/2019 PSOBACKLOG-76 ADA Compliance-Images
--->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" language="en-US" applyHTMLTag="false" controller="CreditApplicationController"  action="{!CreditApplicationError}">
     <html lang="en">
         <head>
@@ -58,8 +55,8 @@ filter: none;
                 </script>
                 
                 <script src="https://www.essofleetoffers.com/secure/mtagconfig.js" type="text/Javascript"></script>
-                <!--PSOBACKLOG-76-->
-                <h1 class="logo"><apex:image value="{!URLFOR($Action.Attachment.Download, logoURL)}" width="114" height="98" alt="{!BrandLongName} Logo"/> {!BrandLongName}</h1>
+                  
+                <h1 class="logo"><apex:image value="{!URLFOR($Action.Attachment.Download, logoURL)}" width="114" height="98"/> {!BrandLongName}</h1>
                 <div class="ui-contact-details">
                     <p class="text-bold">HAVE QUESTIONS?</p>
                     <p class="text-light">Call <apex:outputText value="{!inSales}"/></p> 

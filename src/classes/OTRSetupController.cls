@@ -4,10 +4,7 @@ Description:        Controller Class for OTRSetup VF Page
 Test Classes:       OTRBOCATest
 Last Coverage:      30%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 refactor to allow code reuse on save for later pdf generation
-                    4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section from page; remove related code from controller
-                    5/13/2019 Michael Farrell PSOBACKLOG-183 added Daily_Fuel_Limit__c & Daily_Misc_Limit__c to onlineApplications SOQL
-                    6/3/2019 MFarrell PSOBACKLOG-49 - Added Security_Code__c & Online_Password__c to OnlineApplicationAuthorizedContacts SOQL
-*/
+ */
 public without sharing class OTRSetupController {
 
     public final static String APPLICATION_NAME = 'OTRSetup';
@@ -52,12 +49,6 @@ public without sharing class OTRSetupController {
         }
     }
 
-    public String userSessionId {
-        get {
-            return UserInfo.getSessionId();
-        }
-    }
-
     public String selectedUnitIndex { get; set; }
 
     public List<OnlineApplicationDriverSetup__c> onlineApplicationDrivers { get; set; }
@@ -72,6 +63,8 @@ public without sharing class OTRSetupController {
     }
 
     public String selectedDriverIndex { get; set; }
+
+    public String selectedAddressOption { get; set; }
 
     public List<String> otherServices { get; set; }
 
@@ -144,6 +137,8 @@ public without sharing class OTRSetupController {
 
         numberOfCards = 1;
 
+        selectedAddressOption = 'yes';
+
         // Setting this for now to remove the "driver/unit" flip
         cardType = 'driver';
 
@@ -160,7 +155,7 @@ public without sharing class OTRSetupController {
                 List<OnlineApplication__c> onlineApplications = [
                         SELECT Id, Name, Program__c, Offer__c, Other_Services__c, Invoice_Delivery_Method_Email__c, Credit_Line_Requested__c, Billing_Cycle__c, Invoice_Delivery_Method__c,
                                 Business_Street_Address__c, City__c, State__c, Country__c, Zip_Code__c, Number_of_Cards_Needed__c, Embossing_Line_1_Company_Name__c, Number_of_Drivers__c,
-                                Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Fuel_Limit__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Daily_Misc_Limit__c, Business_Address_Line_2__c,
+                                Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Business_Address_Line_2__c,
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
                                 Opportunity__r.CampaignId, Contact_Last_Name__c, Email__c, Contact_First_Name__c, Phone_Number__c, Cell_Number__c, Opportunity__r.Campaign_Program__c,
                                 Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c
@@ -229,7 +224,7 @@ public without sharing class OTRSetupController {
                     }
 
                     if(applicationKey != null) {
-                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Online_Password__c, Phone_Number__c, Security_Code__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete' LIMIT 1];
+                        List<OnlineApplicationAuthorizedContact__c> onlineApplicationAuthorizedContacts = [SELECT Id, Online_Application__c, First_Name__c, Last_Name__c, Email__c, Phone_Number__c, Mobile_Number__c FROM OnlineApplicationAuthorizedContact__c WHERE Online_Application__c =: customerParameter AND Online_Application__r.Application_Key__c =: applicationKey AND Online_Application__r.Application_Stage__c = 'Application' AND Online_Application__r.Status__c = 'App-Incomplete' LIMIT 1];
                         if(onlineApplicationAuthorizedContacts.size() > 0) {
                             onlineApplicationAuthorizedContact = onlineApplicationAuthorizedContacts[0];
                         }
@@ -247,7 +242,7 @@ public without sharing class OTRSetupController {
                         onlineApplicationAuthorizedContact.Mobile_Number__c = onlineApplication.Cell_Number__c;
                     }
 
-                    if(applicationKey == null) { //coming directly from page one
+                    if(applicationKey == null) {
                         populateAddress();
                     }
 
@@ -277,19 +272,25 @@ public without sharing class OTRSetupController {
     }
 
     public void populateAddress() {
-        //IADJUDICAT-966 refactor this method to default card shipping address. sales users could still change this on the detail page
-        if (onlineApplication != null && onlineApplication.Card_Shipping_Address_Line_1__c == null) {
-            onlineApplication.Card_Shipping_Address_Line_1__c = onlineApplication.Business_Street_Address__c;
-            onlineApplication.Card_Shipping_Address_Line_2__c = onlineApplication.Business_Address_Line_2__c;
-            onlineApplication.Card_Shipping_City__c = onlineApplication.City__c;
-            onlineApplication.Card_Shipping_Country__c = onlineApplication.Country__c;
-            onlineApplication.Card_Shipping_State__c = onlineApplication.State__c;
-            onlineApplication.Card_Shipping_Postal_Code__c = onlineApplication.Zip_Code__c;
-        }
-        //IADJUDICAT-966 also add defaulting for shipping name, which is part of address section
-        if(onlineApplication != null){
-            onlineApplication.Card_Shipping_First_Name__c = onlineApplication.Contact_First_Name__c;
-            onlineApplication.Card_Shipping_Last_Name__c = onlineApplication.Contact_Last_Name__c;
+
+        if (selectedAddressOption.equalsIgnoreCase('yes')) {
+            if (onlineApplication != null) {
+                onlineApplication.Card_Shipping_Address_Line_1__c = onlineApplication.Business_Street_Address__c;
+                onlineApplication.Card_Shipping_Address_Line_2__c = onlineApplication.Business_Address_Line_2__c;
+                onlineApplication.Card_Shipping_City__c = onlineApplication.City__c;
+                onlineApplication.Card_Shipping_Country__c = onlineApplication.Country__c;
+                onlineApplication.Card_Shipping_State__c = onlineApplication.State__c;
+                onlineApplication.Card_Shipping_Postal_Code__c = onlineApplication.Zip_Code__c;
+            }
+        } else {
+            if (onlineApplication != null) {
+                onlineApplication.Card_Shipping_Address_Line_1__c = '';
+                onlineApplication.Card_Shipping_Address_Line_2__c = '';
+                onlineApplication.Card_Shipping_City__c = '';
+                onlineApplication.Card_Shipping_State__c = '';
+                onlineApplication.Card_Shipping_Postal_Code__c = '';
+                onlineApplication.Card_Shipping_Country__c = '';
+            }
         }
     }
 
@@ -356,10 +357,6 @@ public without sharing class OTRSetupController {
             if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-Complete';
-            } else if (userSessionId != null) {
-                // if it's a paper app being submitted, this needs to go to credit for manual review
-                onlineApplication.Application_Stage__c = 'Application';
-                onlineApplication.Status__c = 'Saved-PaperApp';
             } else {
                 onlineApplication.Application_Stage__c = 'Adjudication';
                 onlineApplication.Status__c = 'Pending Decision';
@@ -573,7 +570,6 @@ public without sharing class OTRSetupController {
         redirect = Page.OTRBOCAConfirmation;
         if(onlineApplication != null) {
             redirect.getParameters().put('customer', onlineApplication.Id);
-            redirect.getParameters().put('pgm', programParameter);
         }
         return redirect;
 

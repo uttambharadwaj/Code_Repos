@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Monthly__c</fullName>
+        <externalId>false</externalId>
+        <label>Monthly Subscription/Unit</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Cards__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Cards</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Units__c</fullName>
+        <externalId>false</externalId>
+        <label>Number of Units</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Program_Expiration__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Program Expiration</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Program__c</fullName>
+        <externalId>false</externalId>
+        <label>Program</label>
+        <referenceTo>Programs__c</referenceTo>
+        <relationshipLabel>Fleet Card Programs</relationshipLabel>
+        <relationshipName>Fleet_Card_Programs</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Programs__c</fullName>
+        <externalId>false</externalId>
+        <label>Programs</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CFN</fullName>
+                    <default>false</default>
+                    <label>CFN</label>
+                </value>
+                <value>
+                    <fullName>PacPride</fullName>
+                    <default>false</default>
+                    <label>PacPride</label>
+                </value>
+                <value>
+                    <fullName>Fuelman</fullName>
+                    <default>false</default>
+                    <label>Fuelman</label>
+                </value>
+                <value>
+                    <fullName>Fuelman Private Label</fullName>
+                    <default>false</default>
+                    <label>Fuelman Private Label</label>
+                </value>
+                <value>
+                    <fullName>Comchek Fleet</fullName>
+                    <default>false</default>
+                    <label>Comchek Fleet</label>
+                </value>
+                <value>
+                    <fullName>WEX</fullName>
+                    <default>false</default>
+                    <label>WEX</label>
+                </value>
+                <value>
+                    <fullName>WEX Private Label</fullName>
+                    <default>false</default>
+                    <label>WEX Private Label</label>
+                </value>
+                <value>
+                    <fullName>Voyager</fullName>
+                    <default>false</default>
+                    <label>Voyager</label>
+                </value>
+                <value>
+                    <fullName>MC Fleet Issuer</fullName>
+                    <default>false</default>
+                    <label>MC Fleet Issuer</label>
+                </value>
+                <value>
+                    <fullName>FleetOne</fullName>
+                    <default>false</default>
+                    <label>FleetOne</label>
+                </value>
+                <value>
+                    <fullName>FleetOne Private Label</fullName>
+                    <default>false</default>
+                    <label>FleetOne Private Label</label>
+                </value>
+                <value>
+                    <fullName>TCH</fullName>
+                    <default>false</default>
+                    <label>TCH</label>
+                </value>
+                <value>
+                    <fullName>Proprietary Cardlock</fullName>
+                    <default>false</default>
+                    <label>Proprietary Cardlock</label>
+                </value>
+                <value>
+                    <fullName>Oil Company Fleet</fullName>
+                    <default>false</default>
+                    <label>Oil Company Fleet</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Total_Gallons__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Gallons</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Spend__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Spend</label>
+        <precision>17</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>Fleet Card Program</label>
+    <nameField>
+        <displayFormat>A-{000000}</displayFormat>
+        <label>Fleet Card Program Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Fleet Card Programs</pluralLabel>
+    <recordTypes>
+        <fullName>Fleet_Card_Program</fullName>
+        <active>true</active>
+        <description>This is for a fleet card program</description>
+        <label>Fleet Card Program</label>
+        <picklistValues>
+            <picklist>Programs__c</picklist>
+            <values>
+                <fullName>CFN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comchek Fleet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FleetOne</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FleetOne Private Label</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fuelman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fuelman Private Label</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MC Fleet Issuer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oil Company Fleet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PacPride</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proprietary Cardlock</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TCH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voyager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEX Private Label</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>Telematics_Program</fullName>
+        <active>false</active>
+        <description>Telematics_Program</description>
+        <label>Telematics Program</label>
+        <picklistValues>
+            <picklist>Programs__c</picklist>
+            <values>
+                <fullName>CFN</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Comchek Fleet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FleetOne</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FleetOne Private Label</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fuelman</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fuelman Private Label</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MC Fleet Issuer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Oil Company Fleet</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PacPride</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Proprietary Cardlock</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TCH</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voyager</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEX</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WEX Private Label</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -5,11 +5,6 @@ Created by: Phillip Southern (GearsCRM)
 @isTest  
 private class Test_gallonsDataBatch {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void myUnitTest() {
         // TO DO: implement unit test
         

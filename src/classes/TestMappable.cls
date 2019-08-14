@@ -2,7 +2,6 @@
 private class TestMappable {
 
     static testMethod void MappableObjectTest() {
-        UtilityTestLoader.setAutomation(false);
         // Set up the Account record.
         List<String> AU_Acc_RTs = new List<String>{'AU_Fuel_Customer'};
   		
@@ -95,7 +94,6 @@ private class TestMappable {
         
 
     static testMethod void KeepTidyTest() {
-        UtilityTestLoader.setAutomation(false);
         // Set up the Account record.
         List<String> AU_Acc_RTs = new List<String>{'AU_Fuel_Customer'};
   		

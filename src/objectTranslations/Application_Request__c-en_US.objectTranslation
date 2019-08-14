@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Application Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Application Requests</value>
+    </caseValues>
+    <layouts>
+        <layout>Admin Page Layout</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Application Request Information --></label>
+            <section>Application Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Notes --></label>
+            <section>Credit Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Personal Guarantor Detail --></label>
+            <section>Personal Guarantor Detail</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Application Request Layout</layout>
+        <sections>
+            <label><!-- Application Request Information --></label>
+            <section>Application Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Notes --></label>
+            <section>Credit Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Field Support Information --></label>
+            <section>Field Support Information</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Siebel Information --></label>
+            <section>Siebel Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Application Request Layout - Compliance Analyst</layout>
+        <sections>
+            <label><!-- Application Request Information --></label>
+            <section>Application Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Beneficial Owner Details --></label>
+            <section>Beneficial Owner Details</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Credit Details --></label>
+            <section>Commercial Credit Details</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance Decisioning --></label>
+            <section>Compliance Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decisioning --></label>
+            <section>Credit Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Decisioning --></label>
+            <section>Fraud Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+        <sections>
+            <label><!-- ThreatMetrix Details --></label>
+            <section>ThreatMetrix Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Application Request Layout - Credit Analyst</layout>
+        <sections>
+            <label><!-- Address --></label>
+            <section>Address</section>
+        </sections>
+        <sections>
+            <label><!-- Application --></label>
+            <section>Application</section>
+        </sections>
+        <sections>
+            <label><!-- Beneficial Owner Details --></label>
+            <section>Beneficial Owner Details</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Credit Details --></label>
+            <section>Commercial Credit Details</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance Decisioning --></label>
+            <section>Compliance Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Consumer Credit Detail --></label>
+            <section>Consumer Credit Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Existing Exposure Details --></label>
+            <section>Existing Exposure Details</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Decisioning --></label>
+            <section>Fraud Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Other Information --></label>
+            <section>Other Information</section>
+        </sections>
+        <sections>
+            <label><!-- Recourse --></label>
+            <section>Recourse</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Application Request Layout - Fraud Analyst</layout>
+        <sections>
+            <label><!-- Application Request Information --></label>
+            <section>Application Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Banking Details --></label>
+            <section>Banking Details</section>
+        </sections>
+        <sections>
+            <label><!-- Beneficial Owner Details --></label>
+            <section>Beneficial Owner Details</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Commercial Credit Details --></label>
+            <section>Commercial Credit Details</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Compliance Decisioning --></label>
+            <section>Compliance Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decisioning --></label>
+            <section>Credit Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Existing Exposure Details --></label>
+            <section>Existing Exposure Details</section>
+        </sections>
+        <sections>
+            <label><!-- Fraud Decisioning --></label>
+            <section>Fraud Decisioning</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Siebel Information --></label>
+            <section>Siebel Information</section>
+        </sections>
+        <sections>
+            <label><!-- ThreatMetrix Details --></label>
+            <section>ThreatMetrix Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Application Request Layout - IS</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Application Request Information --></label>
+            <section>Application Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Contact Information --></label>
+            <section>Contact Information</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Notes --></label>
+            <section>Credit Notes</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>CorporatePay Layout</layout>
+        <sections>
+            <label><!-- Application Request Information --></label>
+            <section>Application Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Revolver App Request</layout>
+        <sections>
+            <label><!-- Application Request Information --></label>
+            <section>Application Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Application Signer Information --></label>
+            <section>Application Signer Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Business Information --></label>
+            <section>Business Information</section>
+        </sections>
+        <sections>
+            <label><!-- Campaign --></label>
+            <section>Campaign</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fleet Information --></label>
+            <section>Fleet Information</section>
+        </sections>
+        <sections>
+            <label><!-- Guarantor Information --></label>
+            <section>Guarantor Information</section>
+        </sections>
+        <sections>
+            <label><!-- Integration Error Messages --></label>
+            <section>Integration Error Messages</section>
+        </sections>
+        <sections>
+            <label><!-- Physical Address Information --></label>
+            <section>Physical Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Siebel --></label>
+            <section>Siebel</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WEX Partner Community Layout</layout>
+        <sections>
+            <label><!-- Address Information --></label>
+            <section>Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Application Request Information --></label>
+            <section>Application Request Information</section>
+        </sections>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Campaign Info (to be hidden) --></label>
+            <section>Campaign Info (to be hidden)</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Personal Guarantee Detail --></label>
+            <section>Personal Guarantee Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Referal Info (to be hidden) --></label>
+            <section>Referal Info (to be hidden)</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please be sure to pick the App Singer and it has a First and Last Name --></errorMessage>
+        <name>Application_Signer_First_And_Last_Name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure the App Signer has a Phone and Email address. --></errorMessage>
+        <name>Application_Signer_Phone_and_Email</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Billing City to forward the Application to Credit. --></errorMessage>
+        <name>Billing_City</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure the Billing Contact Record has a Phone and Email address. --></errorMessage>
+        <name>Billing_Contact_Email_and_Phone</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please be sure to pick the Billing Contact and it has a First and Last Name --></errorMessage>
+        <name>Billing_Contact_First_and_Last_Name</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Billing Country to forward the Application to Credit. --></errorMessage>
+        <name>Billing_Country</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Billing State to forward the Application to Credit. --></errorMessage>
+        <name>Billing_State</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Billing Street to forward the Application to Credit. --></errorMessage>
+        <name>Billing_Street</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Billing Zip/Postal Code to forward the Application to Credit. --></errorMessage>
+        <name>Billing_Zip</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure your Opportunity has a Campaign Program before you forward the Application to Credit. --></errorMessage>
+        <name>Campaign_Program</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure your Opportunity has a Coupon Code before you forward the Application to Credit. --></errorMessage>
+        <name>Coupon_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Check Below Criteria:
+
+1/ When Decision Code is DNB Custom, Experian Consumer, or Equifax Consumer - Credit Bureau Score must be numeric values.
+
+2/ When Decision Code is Moodys - Credit Bureau Score must be alphanumeric values. --></errorMessage>
+        <name>Credit_Bureau_Score_Alpha_OR_Numeric</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- SSN must be in this format: 999-99-9999. --></errorMessage>
+        <name>Gurantor_SSN</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Physical City to forward the Application to Credit. --></errorMessage>
+        <name>Physical_City</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Physical Country to forward the Application to Credit. --></errorMessage>
+        <name>Physical_Country</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Physical State to forward the Application to Credit. --></errorMessage>
+        <name>Physical_State</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Physical Street to forward the Application to Credit. --></errorMessage>
+        <name>Physical_Street</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Physical Zip/Postal Code to forward the Application to Credit. --></errorMessage>
+        <name>Physical_Zip</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Requested Credit Limit to forward the Application to Credit. --></errorMessage>
+        <name>Requested_Credit_Limit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Sales Code to forward the Application to Credit. --></errorMessage>
+        <name>Sales_Code</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Source System must not be blank when sending application.  It should read &quot;Salesforce&quot;. --></errorMessage>
+        <name>Source_System_cannot_be_blank</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must have a Tax Id number when forwarding an app to credit. Please add it on the Account Record. --></errorMessage>
+        <name>Tax_Id</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure you have attached a Beneficial Owner record and run Lexis/Nexis verification. --></errorMessage>
+        <name>Validate_Beneficial_Owner_Exists</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Credit Application cannot be decisioned until Fraud and Compliance checks are completed. --></errorMessage>
+        <name>Validate_Checks_Before_Credit_Decision</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Physical Country and Billing Country are limited to two characters. Please correct and try again. --></errorMessage>
+        <name>Validate_Country_Code_Lengths</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please ensure declined applications have at least one Decline Code selected and a Decline Letter Type selected. --></errorMessage>
+        <name>Validate_Decision_Code_And_DeclineLetter</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select a Decision Code before setting application to decisioned. --></errorMessage>
+        <name>Validate_Decision_Code_For_Decision</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please run Lexis/Nexis verification before sending to Credit. --></errorMessage>
+        <name>Validate_Lexis_Nexis_Verified</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Application is for OFFIS adjudication. --></errorMessage>
+        <name>Validate_Not_Tandem_Application</name>
+    </validationRules>
+    <workflowTasks>
+        <description><!-- Please check the application as the status has changed --></description>
+        <name>AR_Updated</name>
+        <subject><!-- Application Updated --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Please create a case. --></description>
+        <name>Application_Approved_Please_Create_Case</name>
+        <subject><!-- Application Approved - Please Create Case --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Please create a case. --></description>
+        <name>Application_Approved_Please_Create_Case2</name>
+        <subject><!-- Application Approved - Please Create Case --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request has been approved. --></description>
+        <name>Application_Request_is_Approved</name>
+        <subject><!-- Application Request is Approved --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request has been approved with conditions. --></description>
+        <name>Application_Request_is_Approved_Conditions</name>
+        <subject><!-- Application Request is Approved-Conditions --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request has been approved for rereview conditionally. --></description>
+        <name>Application_Request_is_Approved_Rereview_Conditional</name>
+        <subject><!-- Application Request is Approved Rereview Conditional --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request has been declined. --></description>
+        <name>Application_Request_is_Declined</name>
+        <subject><!-- Application Request is Declined --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request has been declined pending conditions. --></description>
+        <name>Application_Request_is_Declined_Pending_Conditions</name>
+        <subject><!-- Application Request is Declined Pending Conditions --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request has been declined rereview-pending conditions. --></description>
+        <name>Application_Request_is_Declined_Rereview_Pending_Conditions</name>
+        <subject><!-- Application Request is Declined Rereview-Pending Conditions --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request is incomplete. --></description>
+        <name>Application_Request_is_Incomplete</name>
+        <subject><!-- Application Request is Incomplete --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- his Opportunity&apos;s Application Request is Pending. --></description>
+        <name>Application_Request_is_Pending</name>
+        <subject><!-- Application Request is Pending --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request is rereviewed declined. --></description>
+        <name>Application_Request_is_Rereviewed_Declined</name>
+        <subject><!-- Application Request is Rereviewed Declined --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request has been moved to Manager Review. --></description>
+        <name>Application_Request_status_is_in_Manager_Review</name>
+        <subject><!-- Application Request status is in Manager Review --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Please check the application as the status has changed --></description>
+        <name>Application_Updated</name>
+        <subject><!-- Application Updated --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Please check the application as the status has changed --></description>
+        <name>Application_Updated_Larry</name>
+        <subject><!-- Application Updated - Larry --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Approval_Email_Sent</name>
+        <subject><!-- Approval Email Sent --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Schedule a call to Cross Sell 60 days after application is approved. --></description>
+        <name>Call_TIme_to_Cross_Sell_Will</name>
+        <subject><!-- Call: TIme to Cross Sell --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Schedule a cross sell call for 60 days after application is approved --></description>
+        <name>Call_Time_to_Cross_Sell_Larry</name>
+        <subject><!-- Call: Time to Cross Sell --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Card Production has been completed for the related Application Request.  Please follow up with the Billing Contact and/or Decision Maker to confirm. --></description>
+        <name>Card_Production_Complete</name>
+        <subject><!-- Card Production Complete --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Card_Production_Complete_Notifcation_Sent</name>
+        <subject><!-- Card Production Complete Notifcation Sent --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- 30 Day check-in call --></description>
+        <name>Checkin_Call</name>
+        <subject><!-- Checkin Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- 30 Day check-in call --></description>
+        <name>Checkin_Call2</name>
+        <subject><!-- Checkin Call --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Fleet_Data_Form_Sent</name>
+        <subject><!-- Fleet Data Form Sent --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Non Solicited Application --></description>
+        <name>Non_Solicited_Application</name>
+        <subject><!-- Non Solicited Application --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- 360 Account- use 360 Template --></description>
+        <name>Set_UP_Account</name>
+        <subject><!-- Set UP Account --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- Solicited Application --></description>
+        <name>Solicited_Application</name>
+        <subject><!-- Solicited Application --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <name>Thank_you_Email_Sent</name>
+        <subject><!-- Thank you Email Sent --></subject>
+    </workflowTasks>
+    <workflowTasks>
+        <description><!-- This Opportunity&apos;s Application Request is rereviewed approved. --></description>
+        <name>This_Opportunity_s_Application_Request_is_Pending</name>
+        <subject><!-- This Opportunity&apos;s Application Request is Rereviewed Approved. --></subject>
+    </workflowTasks>
+</CustomObjectTranslation>

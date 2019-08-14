@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Contract (EFS)</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Contracts (EFS)</value>
+    </caseValues>
+    <layouts>
+        <layout>Contract Layout</layout>
+        <sections>
+            <label><!-- CardHolder Fees --></label>
+            <section>CardHolder Fees</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Driveline Fuel Tax Services --></label>
+            <section>Driveline Fuel Tax Services</section>
+        </sections>
+        <sections>
+            <label><!-- Driveline Out of Route Reporting Services --></label>
+            <section>Driveline Out of Route Reporting Services</section>
+        </sections>
+        <sections>
+            <label><!-- EFS Fuel Card and Transcheck Services(Fees) --></label>
+            <section>EFS Fuel Card and Transcheck Services(Fees)</section>
+        </sections>
+        <sections>
+            <label><!-- Financial Overview --></label>
+            <section>Financial Overview</section>
+        </sections>
+        <sections>
+            <label><!-- Fuel Purchase Management Services --></label>
+            <section>Fuel Purchase Management Services</section>
+        </sections>
+        <sections>
+            <label><!-- Limits --></label>
+            <section>Limits</section>
+        </sections>
+        <sections>
+            <label><!-- SmartFunds Payroll Card Services --></label>
+            <section>SmartFunds Payroll Card Services</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

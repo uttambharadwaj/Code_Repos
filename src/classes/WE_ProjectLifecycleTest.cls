@@ -1,11 +1,6 @@
 @isTest
 public class WE_ProjectLifecycleTest {
     
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void testNewProjectMonths(){
         
         Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator - Wex Europe'];

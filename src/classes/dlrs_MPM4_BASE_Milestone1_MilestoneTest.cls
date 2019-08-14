@@ -4,11 +4,6 @@
 @IsTest
 private class dlrs_MPM4_BASE_Milestone1_MilestoneTest
 {
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     @IsTest
     private static void testTrigger()
     {

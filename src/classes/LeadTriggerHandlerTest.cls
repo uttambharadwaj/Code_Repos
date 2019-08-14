@@ -1,10 +1,5 @@
 @isTest
 private class LeadTriggerHandlerTest {
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testmethod void testRelatedTaskAndNote() {
         Id leadRT = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('WES_Lead').getRecordTypeId();
         Lead l = new lead(company='test',lastname='test',Call_Outcome__c='test',Call_Outcome_Comments__c='test',recordtypeid=leadRT);

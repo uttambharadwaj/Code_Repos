@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Truckers Program Enrollment</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Truckers Program Enrollments</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Truckers Program Enrollments --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Application Date --></label>
+        <name>Application_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approved Date --></label>
+        <name>Approved_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Denied Date --></label>
+        <name>Denied_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Direct Bill --></label>
+        <name>Direct_Bill__c</name>
+    </fields>
+    <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Program Status --></label>
+        <name>Program_Status__c</name>
+        <picklistValues>
+            <masterLabel>Application Received</masterLabel>
+            <translation><!-- Application Received --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Application Sent to Vendor</masterLabel>
+            <translation><!-- Application Sent to Vendor --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Automatic Enrollment - Manual Approval Required</masterLabel>
+            <translation><!-- Automatic Enrollment - Manual Approval Required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denied</masterLabel>
+            <translation><!-- Denied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Effective</masterLabel>
+            <translation><!-- Effective --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Terminated</masterLabel>
+            <translation><!-- Terminated --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Program --></label>
+        <name>Program__c</name>
+        <picklistValues>
+            <masterLabel>ATA - ABC Factoring</masterLabel>
+            <translation><!-- ATA - ABC Factoring --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- RTS? --></label>
+        <name>RTS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Comments made by the vendor on the program enrollment decisions --></help>
+        <label><!-- Vendor Comments --></label>
+        <name>Vendor_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- prog_participant_id --></label>
+        <name>prog_participant_id__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -16,18 +16,6 @@ public class OTRBOCAConfirmationController {
 
     public OnlineApplicationOffer__c offer { get; set; }
 
-    public String creditAppId {
-        get {
-            return ApexPages.CurrentPage().getParameters().get('id');
-        }
-    }
-
-    public String programParameter {
-        get {
-            return ApexPages.CurrentPage().getParameters().get('pgm');
-        }
-    }
-
     public String customerParameter {
         get {
             return ApexPages.CurrentPage().getParameters().get('customer');
@@ -85,13 +73,6 @@ public class OTRBOCAConfirmationController {
         try {
 
             if (customerParameter != null) {
-
-                if(UserInfo.getSessionId() != null && !Test.isRunningTest()) {
-                    PageReference bocaAttachment = Page.BOCAAttachment;
-                    bocaAttachment.getParameters().put('applicationId', customerParameter);
-                    bocaAttachment.getParameters().put('pgm', programParameter);
-                    return bocaAttachment;
-                }
 
                 List<OnlineApplication__c> onlineApplications = [SELECT Id, Name, Offer__c, Program__c, Number_of_Trucks__c, Opportunity__r.Campaign_Program__c FROM OnlineApplication__c WHERE Id =: customerParameter];
 

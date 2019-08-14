@@ -4,9 +4,7 @@ public with sharing class CustomerConversionTest {
     @testSetup 
     static void setupData(){
         
-        UtilityTestLoader.setAutomation(false);
-    
-        // Revisit this later..
+         // Revisit this later..
         BOCA_IDS__C bocaId = BOCAtestDataUtility.getBOCAids();
         insert bocaId;
 

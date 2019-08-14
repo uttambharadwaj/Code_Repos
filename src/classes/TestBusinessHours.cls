@@ -1,12 +1,7 @@
 @isTest
 public class TestBusinessHours
 {
-  @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-     @isTest static void positiveTests() 
+   @isTest static void positiveTests() 
   {
     GlobalSettings__c gs = new GlobalSettings__c();
     gs.Name = 'test';

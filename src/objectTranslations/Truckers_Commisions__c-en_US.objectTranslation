@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Truckers Commissions</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Truckers Commissions</value>
+    </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <lookupFilter>
+            <errorMessage><!-- The account must be a member. --></errorMessage>
+        </lookupFilter>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Truckers Commissions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Is this commission active? --></help>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Commission Category --></label>
+        <name>Commission_Category__c</name>
+        <picklistValues>
+            <masterLabel>Fuel</masterLabel>
+            <translation><!-- Fuel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebate</masterLabel>
+            <translation><!-- Rebate --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- What level of Truckers commission is being received? --></help>
+        <label><!-- Commission Level --></label>
+        <name>Commission_Level__c</name>
+        <picklistValues>
+            <masterLabel>5%</masterLabel>
+            <translation><!-- 5% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7%</masterLabel>
+            <translation><!-- 7% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Existing Gold</masterLabel>
+            <translation><!-- Existing Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Existing50 Gold</masterLabel>
+            <translation><!-- Existing50 Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FLIP</masterLabel>
+            <translation><!-- FLIP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FLIP Retention</masterLabel>
+            <translation><!-- FLIP Retention --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>FTS</masterLabel>
+            <translation><!-- FTS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Factoring</masterLabel>
+            <translation><!-- Factoring --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuel Card Y1</masterLabel>
+            <translation><!-- Fuel Card Y1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuel Card Y2</masterLabel>
+            <translation><!-- Fuel Card Y2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuel Growth</masterLabel>
+            <translation><!-- Fuel Growth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold Growth</masterLabel>
+            <translation><!-- Gold Growth --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mktg Fee</masterLabel>
+            <translation><!-- Mktg Fee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Fuel</masterLabel>
+            <translation><!-- New Fuel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New Gold</masterLabel>
+            <translation><!-- New Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard</masterLabel>
+            <translation><!-- Standard --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TA Fuel</masterLabel>
+            <translation><!-- TA Fuel --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Commission Payable --></label>
+        <name>Commission_Payable__c</name>
+        <picklistValues>
+            <masterLabel>Adam Aurich</masterLabel>
+            <translation><!-- Adam Aurich --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adam Weber</masterLabel>
+            <translation><!-- Adam Weber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ashley Darling</masterLabel>
+            <translation><!-- Ashley Darling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brian Loveland</masterLabel>
+            <translation><!-- Brian Loveland --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cameron Smith</masterLabel>
+            <translation><!-- Cameron Smith --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Christine Jennings</masterLabel>
+            <translation><!-- Christine Jennings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dan Jenkins</masterLabel>
+            <translation><!-- Dan Jenkins --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dawna Cole</masterLabel>
+            <translation><!-- Dawna Cole --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dean Nunnelly</masterLabel>
+            <translation><!-- Dean Nunnelly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Denise Lockwood</masterLabel>
+            <translation><!-- Denise Lockwood --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ian Wilkinson</masterLabel>
+            <translation><!-- Ian Wilkinson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jared Mathis</masterLabel>
+            <translation><!-- Jared Mathis --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jennifer Nelson</masterLabel>
+            <translation><!-- Jennifer Nelson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Jessica Rivera</masterLabel>
+            <translation><!-- Jessica Rivera --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Johnathan Cosman</masterLabel>
+            <translation><!-- Johnathan Cosman --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Katie Dean</masterLabel>
+            <translation><!-- Katie Dean --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Katie Schwerdtfeger</masterLabel>
+            <translation><!-- Katie Schwerdtfeger --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kellie Ciprian</masterLabel>
+            <translation><!-- Kellie Ciprian --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kris Chadwick</masterLabel>
+            <translation><!-- Kris Chadwick --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Kyle Dodson</masterLabel>
+            <translation><!-- Kyle Dodson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Melanie Sleigh</masterLabel>
+            <translation><!-- Melanie Sleigh --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nathan Horn</masterLabel>
+            <translation><!-- Nathan Horn --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rebecca Lester</masterLabel>
+            <translation><!-- Rebecca Lester --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reginald Craig</masterLabel>
+            <translation><!-- Reginald Craig --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ross Murray</masterLabel>
+            <translation><!-- Ross Murray --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ryan Knowles</masterLabel>
+            <translation><!-- Ryan Knowles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ryan Nichols</masterLabel>
+            <translation><!-- Ryan Nichols --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shawn Galliett</masterLabel>
+            <translation><!-- Shawn Galliett --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Taylor Jones</masterLabel>
+            <translation><!-- Taylor Jones --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tim Engles</masterLabel>
+            <translation><!-- Tim Engles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tyler Douglass</masterLabel>
+            <translation><!-- Tyler Douglass --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yance Baker</masterLabel>
+            <translation><!-- Yance Baker --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Zach Johnson</masterLabel>
+            <translation><!-- Zach Johnson --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Commission Type --></label>
+        <name>Commission_Type__c</name>
+        <picklistValues>
+            <masterLabel>EFS Gold Referral</masterLabel>
+            <translation><!-- EFS Gold Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fuel Referral</masterLabel>
+            <translation><!-- Fuel Referral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The date the Truckers commission ended --></help>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>ExternalId__c</name>
+    </fields>
+    <fields>
+        <help><!-- The date the Truckers commission started --></help>
+        <label><!-- Start Date --></label>
+        <name>Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Threshold Qty --></label>
+        <name>Threshold_Qty__c</name>
+    </fields>
+    <layouts>
+        <layout>Truckers Commissions Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

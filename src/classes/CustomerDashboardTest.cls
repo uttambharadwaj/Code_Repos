@@ -15,11 +15,6 @@ public class CustomerDashboardTest {
         
     }
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void testCustomerDashboardViewAccount() {
 
         Test.startTest();

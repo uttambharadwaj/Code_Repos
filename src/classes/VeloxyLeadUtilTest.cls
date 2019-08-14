@@ -1,11 +1,6 @@
 @isTest
 private class VeloxyLeadUtilTest {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void conversionRestApiTest() {
         
         Lead lead = new Lead();

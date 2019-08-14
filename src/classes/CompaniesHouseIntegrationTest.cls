@@ -1,10 +1,5 @@
 @isTest
 private class CompaniesHouseIntegrationTest {
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testmethod void testCompaniesIntegration() {
         Id rectypeid = [SELECT Id FROM RecordType WHERE SObjectType = 'Account' AND DeveloperName = 'WES_Accounts' LIMIT 1].Id;
 

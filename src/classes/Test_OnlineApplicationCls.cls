@@ -22,12 +22,7 @@
 @isTest
 private class Test_OnlineApplicationCls {
 
-     @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-    static testMethod void testOnlineApplicationClass() {
+     static testMethod void testOnlineApplicationClass() {
     
         Test.startTest();
     

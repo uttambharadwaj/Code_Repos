@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Virtual Apex Controller</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Virtual Apex Controller</value>
+    </caseValues>
+    <fields>
+        <label><!-- Budget Manager Disabled --></label>
+        <name>BudgetManagerDisabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Domain Match Disabled --></label>
+        <name>DomainMatchDisabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Lost Deal Survey Disabled --></label>
+        <name>Lost_Deal_Survey_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Net FSR Calculation Disabled --></label>
+        <name>Net_FSR_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Forecast Disabled --></label>
+        <name>Opportunity_Forecast_Disabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Creation Disabled --></label>
+        <name>ProjectCreationDisabled__c</name>
+    </fields>
+    <fields>
+        <label><!-- Target Manager Disabled --></label>
+        <name>Target_Manager_Disabled__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

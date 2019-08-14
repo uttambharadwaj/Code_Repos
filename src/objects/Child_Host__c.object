@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>true</enableEnhancedLookup>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>of_Cards__c</columns>
+        <columns>Contract_Start_Date__c</columns>
+        <columns>Contract_End_Date__c</columns>
+        <columns>Gallons_per_Month__c</columns>
+        <columns>Additional_Business_Type__c</columns>
+        <columns>Rebate__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Assets</label>
+    </listViews>
+    <listViews>
+        <fullName>My_At_Risk_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Active_Cards__c</columns>
+        <columns>Total_Cards__c</columns>
+        <columns>Risk_Type__c</columns>
+        <columns>Risk_Grade__c</columns>
+        <columns>Risk_Description__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>RECORDTYPE</columns>
+        <filterScope>Mine</filterScope>
+        <filters>
+            <field>Risk_Type__c</field>
+            <operation>equals</operation>
+            <value>At Risk</value>
+        </filters>
+        <label>My At Risk Assets</label>
+    </listViews>
+    <listViews>
+        <fullName>Phyllis_Assets</fullName>
+        <columns>NAME</columns>
+        <columns>Host_Number__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>PAC_Pride_ID__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Pac Pride Assets</label>
+        <sharedTo/>
+    </listViews>
+    <validationRules>
+        <fullName>At_Risk_Grade</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND( Text(Risk_Type__c) =&quot;At Risk&quot;,  Text(Risk_Grade__c) =&quot;&quot;)</errorConditionFormula>
+        <errorDisplayField>Risk_Grade__c</errorDisplayField>
+        <errorMessage>Please provide a grade for this at risk asset.</errorMessage>
+    </validationRules>
+</CustomObject>

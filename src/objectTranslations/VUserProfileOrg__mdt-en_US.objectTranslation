@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Virtual User Profile Org</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Virtual Users Profiles Orgs</value>
+    </caseValues>
+    <fields>
+        <label><!-- Asia --></label>
+        <name>AsiaUPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- AU --></label>
+        <name>AuUPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- EU --></label>
+        <name>EuUPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Implementation --></label>
+        <name>ImplementationUPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- NA --></label>
+        <name>NaUPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- RM --></label>
+        <name>RmUPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales --></label>
+        <name>SalesUPO__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test Record --></label>
+        <name>Test_Record__c</name>
+    </fields>
+    <fields>
+        <label><!-- Location --></label>
+        <name>UpoLocation__c</name>
+        <picklistValues>
+            <masterLabel>Org</masterLabel>
+            <translation><!-- Org --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Profile</masterLabel>
+            <translation><!-- Profile --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Queue</masterLabel>
+            <translation><!-- Queue --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>User</masterLabel>
+            <translation><!-- User --></translation>
+        </picklistValues>
+    </fields>
+    <layouts>
+        <layout>Virtual UPO Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+        <sections>
+            <label><!-- Region --></label>
+            <section>Region</section>
+        </sections>
+        <sections>
+            <label><!-- Team --></label>
+            <section>Team</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

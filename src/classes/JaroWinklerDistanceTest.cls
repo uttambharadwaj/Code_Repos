@@ -4,11 +4,6 @@
 
 @isTest public with sharing class JaroWinklerDistanceTest {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testmethod void testOneStringPair()
     {
         test.startTest();

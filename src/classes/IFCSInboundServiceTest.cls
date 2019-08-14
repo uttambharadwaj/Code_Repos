@@ -1,10 +1,5 @@
 @isTest
 private class IFCSInboundServiceTest {
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testmethod void testService() {
         Account acc1 = new Account();
         acc1.Name = 'test';

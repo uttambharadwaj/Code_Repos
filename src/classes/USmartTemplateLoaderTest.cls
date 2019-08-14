@@ -2,11 +2,6 @@
 public class USmartTemplateLoaderTest {
     
     @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-    @testSetup
     static void dataSetup() {
         
         Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];

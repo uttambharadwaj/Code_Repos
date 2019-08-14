@@ -1,11 +1,6 @@
 @isTest
 public class NewOpportunityTargetTest {
     
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void testNewTarget(){
         
         Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator - Wex Europe'];

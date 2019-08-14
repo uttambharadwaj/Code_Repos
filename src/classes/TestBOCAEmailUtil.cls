@@ -2,11 +2,6 @@
 public class TestBOCAEmailUtil{
 
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     @testSetup public static void setupData(){
         
         BOCA_IDS__C bi = BOCAtestDataUtility.getBOCAids();

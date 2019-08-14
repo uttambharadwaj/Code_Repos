@@ -1,6 +1,3 @@
-<!--
-    Revision History: 5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
--->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="CPBOCAController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
     <head>
@@ -35,12 +32,7 @@
             document.cookie = "debug_logs=debug_logs;domain=.force.com";
 
             $j = jQuery.noConflict();
-            window.onload = function() {
-                var elems = document.querySelectorAll('.required');
-                for (var i = 0; i < elems.length; i++) {
-                    elems[i].required = true;
-                }
-            }
+
             // Any labels need to be defined in this bridge in order
             // for the JS to pick them up
             window.$Label = window.$Label || {};
@@ -96,10 +88,6 @@
                 color: #ccc !important;
                 border: 1px solid #ccc !important;
             }
-
-            legend{
-                width:100%;
-            }
         </style>
 
         <apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false"/>
@@ -122,8 +110,7 @@
                 <div class="row">
                     <div class="nine columns clearfix">
                         <div id="branding">
-                            <!--PSOBACKLOG-76-->
-                            <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!brandingUtility.Program_Name__c} Logo"/>
+                            <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
                             <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>
                         </div>
                     </div>
@@ -147,8 +134,7 @@
                     <div class="four columns sidebar">
                         <!-- Left Column -->
                         <div class="twelve columns clearfix">
-                            <!--PSOBACKLOG-76-->
-                            <img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
+                            <img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
                         </div>
                         <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
                             <div class="twelve columns clearfix">
@@ -212,426 +198,310 @@
                             <input type="hidden" id="country" name="country" value="US" />
                             <!--<input type="hidden" value="{!IF(OR(languageCode__c == 'en_ca', languageCode = 'fr_ca'), 'CA', 'US')}" id="country" name="country" />-->
                             <apex:actionFunction name="submitApplication" action="{!submitApplication}" rerender="" />
-                            <fieldset>
-                                <legend>
-                                    <div class="twelve columns clearfix">
-                                        <div class="section-header">
-                                            <i class="far fa-user-circle"></i>&nbsp;&nbsp;Applicant Information
-                                        </div>
-                                    </div>
-                                </legend>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
+                            <div class="twelve columns clearfix">
+                                <div class="section-header">
+                                    <i class="far fa-user-circle"></i>&nbsp;&nbsp;Applicant Information
                                 </div>
-                                <div class="twelve columns clearfix">
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="0">
-                                            <apex:outputLabel for="email" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Email__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="1" id="email" value="{!creditApp.Email__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="firstName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.First_Name__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="2" id="firstName" label="" value="{!creditApp.First_Name__c}" html-maxlength="40" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <apex:outputLabel for="lastName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Last_Name__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="3" id="lastName" label="" value="{!creditApp.Last_Name__c}" html-maxlength="40" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <apex:outputLabel for="phone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Business_Phone__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="4" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20"/>
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
-                                            <apex:outputLabel for="numberOfCards" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Number_of_Cards__c.label} (optional) "/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="5" id="numberOfCards" html-maxlength="100" value="{!creditApp.Number_of_Cards__c}" />
-                                        </div>
-                                    </div>
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="0">
-                                            <apex:outputLabel for="companyName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Company_Legal_Name__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="6" id="companyName" label="" value="{!creditApp.Company_Legal_Name__c}" html-maxlength="40" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="doingBusinessAs" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Doing_Business_As__c.label} (optional) "/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="7" label="" id="doingBusinessAs" value="{!creditApp.Doing_Business_As__c}" html-maxlength="40" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <apex:actionRegion >
-                                                <apex:outputLabel for="yearsInBusiness" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Years_in_Business__c.label} ">
-                                                    <span class="styled-label-required">*</span>
-                                                </apex:outputLabel>
-                                                <apex:InputField required="true" styleClass="styled-input required" html-tabindex="8" id="yearsInBusiness" value="{!creditApp.Years_in_Business__c}" >
-                                                    <apex:actionSupport event="onchange" rerender="pgInformation" oncomplete="pageLoadFunctions()"/>
-                                                </apex:InputField>
-                                            </apex:actionRegion>
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <apex:outputLabel for="title" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Title__c.label} (optional) "/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="9" id="title" label="" value="{!creditApp.Title__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
-                                            <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" html-placeholder="$" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
+                            </div>
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
-                            <fieldset>
-                                <legend>
-                                    <div class="twelve columns clearfix">
-                                        <div class="section-header">
-                                            <i class="far fa-building"></i>&nbsp;&nbsp;Business Information
-                                        </div>
+                            <div class="twelve columns clearfix">
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Email__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="1" id="email" value="{!creditApp.Email__c}" />
                                     </div>
-                                </legend>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="0">
-                                            <apex:outputLabel for="physicalAddressLine1" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_1__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="11" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_2__c.label} (optional)"/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="12" id="physicalAddressLine2" label="" value="{!creditApp.Physical_Address_Line_2__c}" html-maxlength="100" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <apex:outputLabel for="physicalCity" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_City__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="14" id="physicalCity" value="{!creditApp.Physical_City__c}" html-maxlength="50"/>
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <apex:outputLabel for="physicalState" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.State_Province__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="15" id="physicalState" value="{!creditApp.Physical_State_Province__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
-                                            <apex:outputLabel for="physicalPostalCode" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Postal_Code__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Physical_Country__c == null || creditApp.Physical_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="16" id="physicalPostalCode" label="" value="{!creditApp.Physical_Postal_Code__c}" html-maxlength="10" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="5">
-                                            <apex:actionRegion >
-                                                <apex:outputLabel for="physicalCountry" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} "/>
-                                                <apex:InputField html-disabled="true" styleClass="styled-input" id="physicalCountry" value="{!creditApp.Physical_Country__c}">
-                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode" oncomplete="pageLoadFunctions()"/>
-                                                </apex:InputField>
-                                            </apex:actionRegion>
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="6">
-                                            <apex:actionRegion >
-                                                <apex:outputLabel for="addressOptions" styleClass="styled-label" value="Mailing address and physical address are the same">
-                                                    <span class="styled-label-required">*</span>
-                                                </apex:outputLabel>
-                                                <apex:selectList required="true" id="addressOptions" value="{!billingAddressSame}" size="1" styleClass="styled-input required" tabIndex="16">
-                                                    <apex:selectOption itemValue="true" itemLabel="{!$Label.BOCA_Picklist_Yes}"/>
-                                                    <apex:selectOption itemValue="false" itemLabel="{!$Label.BOCA_Picklist_No}"/>
-                                                    <apex:actionSupport event="onchange" rerender="billingAddress" oncomplete="pageRerenderFunctions()" />
-                                                </apex:selectList>
-                                            </apex:actionRegion>
-                                        </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.First_Name__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="2" id="firstName" label="" value="{!creditApp.First_Name__c}" html-maxlength="40" />
                                     </div>
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="0">
-                                            <apex:outputLabel for="legalStructure" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Legal_Structure__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="17" id="legalStructure" value="{!creditApp.Legal_Structure__c}" html-maxlength="40" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="taxpayerID" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Taxpayer_ID__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required taxPayerId" html-tabindex="18" id="taxpayerID" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="10" />
-                                        </div>
+                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Last_Name__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="3" id="lastName" label="" value="{!creditApp.Last_Name__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="3">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Business_Phone__c.label} </Label>
+                                        <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="4" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20"/>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="4">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Number_of_Cards__c.label} (optional) </Label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="5" id="numberOfCards" html-maxlength="100" value="{!creditApp.Number_of_Cards__c}" />
                                     </div>
                                 </div>
-                            </fieldset>
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Company_Legal_Name__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="6" id="companyName" label="" value="{!creditApp.Company_Legal_Name__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Doing_Business_As__c.label} (optional) </Label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="7" label="" id="doingBusinessAs" value="{!creditApp.Doing_Business_As__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Years_in_Business__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="8" id="yearsInBusiness" value="{!creditApp.Years_in_Business__c}" >
+                                            <apex:actionSupport event="onchange" rerender="pgInformation" oncomplete="pageLoadFunctions()"/>
+                                        </apex:InputField>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="3">
+                                        <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Title__c.label} (optional) </Label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="9" id="title" label="" value="{!creditApp.Title__c}" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="4">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} </Label>
+                                        <apex:InputField html-placeholder="$" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="section-header">
+                                    <i class="far fa-building"></i>&nbsp;&nbsp;Business Information
+                                </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_1__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="11" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_2__c.label} (optional)</label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="12" id="physicalAddressLine2" label="" value="{!creditApp.Physical_Address_Line_2__c}" html-maxlength="100" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_City__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="14" id="physicalCity" value="{!creditApp.Physical_City__c}" html-maxlength="50"/>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="3">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.State_Province__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="15" id="physicalState" value="{!creditApp.Physical_State_Province__c}" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="4">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_Postal_Code__c.label} </Label>
+                                        <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Physical_Country__c == null || creditApp.Physical_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="16" id="physicalPostalCode" label="" value="{!creditApp.Physical_Postal_Code__c}" html-maxlength="10" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="5">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} </Label>
+                                        <apex:InputField html-disabled="true" styleClass="styled-input" id="physicalCountry" value="{!creditApp.Physical_Country__c}">
+                                            <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode" oncomplete="pageLoadFunctions()"/>
+                                        </apex:InputField>
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="6">
+                                        <label class="styled-label">Mailing address and physical address are the same</label>
+                                        <apex:selectList id="addressOptions" value="{!billingAddressSame}" size="1" styleClass="styled-input required" tabIndex="16">
+                                            <apex:selectOption itemValue="true" itemLabel="{!$Label.BOCA_Picklist_Yes}"/>
+                                            <apex:selectOption itemValue="false" itemLabel="{!$Label.BOCA_Picklist_No}"/>
+                                            <apex:actionSupport event="onchange" rerender="billingAddress" oncomplete="pageRerenderFunctions()" />
+                                        </apex:selectList>
+                                    </div>
+                                </div>
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Legal_Structure__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="17" id="legalStructure" value="{!creditApp.Legal_Structure__c}" html-maxlength="40" />
+                                    </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Taxpayer_ID__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required taxPayerId" html-tabindex="18" id="taxpayerID" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="10" />
+                                    </div>
+                                </div>
+                            </div>
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
                             <apex:outputPanel id="billingAddress">
                                 <apex:outputPanel rendered="{!billingAddressSame == false}">
-                                    <fieldset>
-                                        <legend>
-                                            <div class="twelve columns clearfix">
-                                                <div class="section-header">
-                                                    <i class="fa fa-address-card"></i>&nbsp;&nbsp;Mailing Address
-                                                </div>
-                                            </div>
-                                        </legend>
-                                        <div class="twelve columns clearfix">
-                                            &nbsp;
+                                    <div class="twelve columns clearfix">
+                                        <div class="section-header">
+                                            <i class="fa fa-address-card"></i>&nbsp;&nbsp;Mailing Address
                                         </div>
-                                        <div class="twelve columns clearfix">
-                                            <div class="six columns clearfix">
-                                                <div class="twelve columns clearfix form-field" data-row="0">
-                                                    <apex:outputLabel for="mailingAddress1" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_Address_Line_1__c.label}">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="20" id="mailingAddress1" value="{!creditApp.Mailing_Address_Line_1__c}" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="1">
-                                                    <apex:outputLabel for="mailingAddress2" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_Address_Line_2__c.label} (optional)"/>
-                                                    <apex:InputField styleClass="styled-input" html-tabindex="21" id="mailingAddress2" value="{!creditApp.Mailing_Address_Line_2__c}" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="0">
-                                                    <apex:outputLabel for="mailingCity" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_City__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="22" id="mailingCity" value="{!creditApp.Mailing_City__c}" />
-                                                </div>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_Address_Line_1__c.label}</label>
+                                                <apex:InputField styleClass="styled-input required" html-tabindex="20" id="mailingAddress1" value="{!creditApp.Mailing_Address_Line_1__c}" />
                                             </div>
-                                            <div class="six columns clearfix">
-                                                <div class="twelve columns clearfix form-field" data-row="1">
-                                                    <apex:outputLabel for="mailingState" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_State_Province__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="23" id="mailingState" value="{!creditApp.Mailing_State_Province__c}" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="2">
-                                                    <apex:outputLabel for="mailingPostalCode" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_Postal_Code__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Mailing_Country__c == null || creditApp.Mailing_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="24" id="mailingPostalCode" value="{!creditApp.Mailing_Postal_Code__c}" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="2">
-                                                    <apex:actionRegion >
-                                                        <apex:outputLabel for="mailingCountry" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_Country__c.label} "/>
-                                                        <apex:InputField html-disabled="true" styleClass="styled-input" id="mailingCountry" value="{!creditApp.Mailing_Country__c}">
-                                                            <apex:actionSupport event="onchange" rerender="mailingState, mailingPostalCode" oncomplete="pageLoadFunctions()"/>
-                                                        </apex:InputField>
-                                                    </apex:actionRegion>
-                                                </div>
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_Address_Line_2__c.label} (optional)</label>
+                                                <apex:InputField styleClass="styled-input" html-tabindex="21" id="mailingAddress2" value="{!creditApp.Mailing_Address_Line_2__c}" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_City__c.label} </label>
+                                                <apex:InputField styleClass="styled-input required" html-tabindex="22" id="mailingCity" value="{!creditApp.Mailing_City__c}" />
                                             </div>
                                         </div>
-                                    </fieldset>
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_State_Province__c.label} </label>
+                                                <apex:InputField styleClass="styled-input required" html-tabindex="23" id="mailingState" value="{!creditApp.Mailing_State_Province__c}" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="2">
+                                                <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_Postal_Code__c.label} </label>
+                                                <!--<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required postal" html-tabindex="24" id="mailingPostalCode" value="{!creditApp.Mailing_Postal_Code__c}" />-->
+                                                <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Mailing_Country__c == null || creditApp.Mailing_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="24" id="mailingPostalCode" value="{!creditApp.Mailing_Postal_Code__c}" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="2">
+                                                <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Mailing_Country__c.label} </label>
+                                                <apex:InputField html-disabled="true" styleClass="styled-input" id="mailingCountry" value="{!creditApp.Mailing_Country__c}">
+                                                    <apex:actionSupport event="onchange" rerender="mailingState, mailingPostalCode" oncomplete="pageLoadFunctions()"/>
+                                                </apex:InputField>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>
                                 </apex:outputPanel>
                             </apex:outputPanel>
-                            <fieldset>
-                                <legend>
-                                    <div class="twelve columns clearfix">
-                                        <div class="section-header">
-                                            <i class="fa fa-money-bill"></i>&nbsp;&nbsp;Payment Information
-                                        </div>
-                                    </div>
-                                </legend>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
+                            <div class="twelve columns clearfix">
+                                <div class="section-header">
+                                    <i class="fa fa-money-bill"></i>&nbsp;&nbsp;Payment Information
                                 </div>
-                                <div class="twelve columns clearfix">
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="0">
-                                            <apex:actionRegion >
-                                                <apex:outputLabel for="billingCycle" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Billing_Cycle__c.label} ">
-                                                    <span class="styled-label-required">*</span>
-                                                </apex:outputLabel>
-                                                <apex:InputField required="true" styleClass="styled-input required" html-tabindex="25" id="billingCycle" value="{!creditApp.Billing_Cycle__c}" >
-                                                    <apex:actionSupport event="onchange" action="{!setPaymentDefaults}" rerender="paymentDueDate,paymentType,bankInformation" oncomplete="pageLoadFunctions()"/>
-                                                </apex:InputField>
-                                            </apex:actionRegion>
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="paymentDueDate" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Payment_Due_Date__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                                <i class="fa fa-question-circle help-circle helpIcon" aria-hidden="true" title="{!$ObjectType.CP_Application_Request__c.fields.Payment_Due_Date__c.InlineHelpText}"/>
-                                            </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required" html-tabindex="26" id="paymentDueDate" required="true" value="{!creditApp.Payment_Due_Date__c}"/>
-                                        </div>
+                            </div>
+                            <div class="twelve columns clearfix">
+                                &nbsp;
+                            </div>
+                            <div class="twelve columns clearfix">
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Billing_Cycle__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="25" id="billingCycle" value="{!creditApp.Billing_Cycle__c}" >
+                                            <apex:actionSupport event="onchange" action="{!setPaymentDefaults}" rerender="paymentDueDate,paymentType,bankInformation" oncomplete="pageLoadFunctions()"/>
+                                        </apex:InputField>
                                     </div>
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <apex:actionRegion >
-                                                <apex:outputLabel for="paymentType" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Payment_Type__c.label} ">
-                                                    <span class="styled-label-required">*</span>
-                                                </apex:outputLabel>
-                                                <apex:InputField required="{!creditApp.Billing_Cycle__c != null}" styleClass="styled-input required" html-tabindex="27" id="paymentType" value="{!creditApp.Payment_Type__c}">
-                                                    <apex:actionSupport event="onchange" rerender="bankInformation" oncomplete="pageLoadFunctions()"/>
-                                                </apex:InputField>
-                                            </apex:actionRegion>
-                                        </div>
+                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Payment_Due_Date__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input" html-tabindex="26" id="paymentDueDate" label="" value="{!creditApp.Payment_Due_Date__c}"/>
                                     </div>
                                 </div>
-                            </fieldset>
+                                <div class="six columns clearfix">
+                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                        <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Payment_Type__c.label} </Label>
+                                        <apex:InputField styleClass="styled-input required" html-tabindex="27" id="paymentType" label="" value="{!creditApp.Payment_Type__c}">
+                                            <apex:actionSupport event="onchange" rerender="bankInformation" oncomplete="pageLoadFunctions()"/>
+                                        </apex:InputField>
+                                    </div>
+                                </div>
+                            </div>
                             <apex:outputPanel id="bankInformation">
                                 <apex:outputPanel rendered="{!isBankInfoNeeded == true}">
-                                    <fieldset>
-                                        <legend>
-                                            <div class="twelve columns clearfix">
-                                                <div class="section-header">
-                                                    <i class="fa fa-university"></i>&nbsp;&nbsp;Bank Information
-                                                </div>
-                                            </div>
-                                        </legend>
-                                        <div class="twelve columns clearfix">
-                                            &nbsp;
+                                    <div class="twelve columns clearfix">
+                                        <div class="section-header">
+                                            <i class="fa fa-university"></i>&nbsp;&nbsp;Bank Information
                                         </div>
-                                        <div class="twelve columns clearfix">
-                                            <div class="six columns clearfix">
-                                                <div class="twelve columns clearfix form-field" data-row="0">
-                                                    <apex:outputLabel for="finInst" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Financial_Institution__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" id="finInst" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Financial_Institution__c}" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="1">
-                                                    <apex:outputLabel for="checkingAccountNumber" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Checking_Account_Number__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                        <i class="fa fa-question-circle help-circle check-image" required="true" aria-hidden="true" title="Sample Check Image"></i>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField styleClass="styled-input numbers" required="true" id="checkingAccountNumber" html-tabindex="29" label="" value="{!creditApp.Checking_Account_Number__c}" html-maxlength="14"/>
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="3">
-                                                    <label for="verifyCheckingAccountNumber" class="styled-label">
-                                                        Confirm {!$ObjectType.CP_Application_Request__c.fields.Checking_Account_Number__c.label}
-                                                        <span class="styled-label-required">*</span>
-                                                        <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i>
-                                                    </label>
-                                                    <input type="text" class="styled-input numbers" id="verifyCheckingAccountNumber" required="true" tabindex="30" maxlength="14" />
-                                                </div>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Financial_Institution__c.label} </label>
+                                                <apex:InputField styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Financial_Institution__c}" />
                                             </div>
-                                            <div class="six columns clearfix">
-                                                <div class="twelve columns clearfix form-field" data-row="0">
-                                                    <apex:outputLabel for="abaRoutingNumber" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.ABA_Routing_Number__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                        <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required numbers" id="abaRoutingNumber" html-tabindex="31" label="" value="{!creditApp.ABA_Routing_Number__c}" html-maxlength="9"/>
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="1">
-                                                    <label for="verifyAbaRoutingNumber" class="styled-label">
-                                                        Confirm {!$ObjectType.CP_Application_Request__c.fields.ABA_Routing_Number__c.label}
-                                                        <span class="styled-label-required">*</span>
-                                                        <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i>
-                                                    </label>
-                                                    <input type="text" required="true" class="styled-input required numbers" id="verifyAbaRoutingNumber" maxlength="9" tabindex="32" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="2">
-                                                </div>
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.Checking_Account_Number__c.label} <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+                                                <apex:InputField styleClass="styled-input numbers" id="checkingAccountNumber" html-tabindex="29" label="" value="{!creditApp.Checking_Account_Number__c}" html-maxlength="14"/>
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="3">
+                                                <label class="styled-label">Confirm {!$ObjectType.CP_Application_Request__c.fields.Checking_Account_Number__c.label} <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+                                                <input type="text" class="styled-input required numbers" id="verifyCheckingAccountNumber" tabindex="30" maxlength="14" />
                                             </div>
                                         </div>
-                                        <div class="twelve columns clearfix">
-                                            &nbsp;
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <label class="styled-label">{!$ObjectType.CP_Application_Request__c.fields.ABA_Routing_Number__c.label} <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+                                                <apex:InputField styleClass="styled-input required numbers" id="abaRoutingNumber" html-tabindex="31" label="" value="{!creditApp.ABA_Routing_Number__c}" html-maxlength="9"/>
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <label class="styled-label">Confirm {!$ObjectType.CP_Application_Request__c.fields.ABA_Routing_Number__c.label} <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i></label>
+                                                <input type="text" class="styled-input required numbers" id="verifyAbaRoutingNumber" maxlength="9" tabindex="32" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="2">
+                                            </div>
                                         </div>
-                                    </fieldset>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
                                 </apex:outputPanel>
                             </apex:outputPanel>
                             <apex:outputPanel id="pgInformation">
                                 <apex:outputPanel rendered="{!isPGRequired == true}">
-                                    <fieldset>
-                                        <legend>
-                                            <div class="twelve columns clearfix">
-                                                <div class="section-header">
-                                                    <i class="fas fa-home"></i>&nbsp;&nbsp;Account Guarantor
-                                                </div>
-                                            </div>
-                                        </legend>
-                                        <div class="twelve columns clearfix">
-                                            &nbsp;
+                                    <div class="twelve columns clearfix">
+                                        <div class="section-header">
+                                            <i class="fas fa-home"></i>&nbsp;&nbsp;Account Guarantor
                                         </div>
-                                        <div class="twelve columns clearfix">
-                                            <div class="six columns clearfix">
-                                                <div class="twelve columns clearfix form-field" data-row="0">
-                                                    <apex:outputLabel for="guarantorFirstName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_First_Name__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="33" id="guarantorFirstName" value="{!creditApp.Guarantor_First_Name__c}" html-maxlength="40"/>
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="1">
-                                                    <apex:outputLabel for="guarantorLastName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Last_Name__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="34" id="guarantorLastName" value="{!creditApp.Guarantor_Last_Name__c}" html-maxlength="40"/>
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="2">
-                                                    <apex:outputLabel for="guarantorSSN" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Social_Security_Number__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="###-##-####" styleClass="styled-input required ssn" html-tabindex="34" id="guarantorSSN" value="{!creditApp.Guarantor_Social_Security_Number__c}" html-maxlength="11" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="3">
-                                                    <apex:outputLabel for="guarantorDOB" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Date_of_Birth__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputText required="true" html-placeholder="MM/DD/YYYY" styleClass="styled-input required date" tabindex="35" id="guarantorDOB" value="{!creditApp.Guarantor_Date_of_Birth__c}" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="4">
-                                                    <apex:outputLabel for="guarantorPhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Phone__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="36" id="guarantorPhone" html-class="phone" label="" value="{!creditApp.Guarantor_Residential_Phone__c}" html-maxlength="20"/>
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="5">
-                                                    <apex:outputLabel for="guarantorMobilePhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Mobile_Phone__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="37" id="guarantorMobilePhone" html-class="phone" label="" value="{!creditApp.Guarantor_Mobile_Phone__c}" html-maxlength="20"/>
-                                                </div>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_First_Name__c.label} </Label>
+                                                <apex:InputField styleClass="styled-input required" html-tabindex="33" id="guarantorFirstName" value="{!creditApp.Guarantor_First_Name__c}" html-maxlength="40"/>
                                             </div>
-                                            <div class="six columns clearfix">
-                                                <div class="twelve columns clearfix form-field" data-row="0">
-                                                    <apex:outputLabel for="guarantorAddress" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Address__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="38" id="guarantorAddress" label="" value="{!creditApp.Guarantor_Residential_Address__c}" html-maxlength="100" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="2">
-                                                    <apex:outputLabel for="guarantorCity" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_City__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="40" id="guarantorCity" label="" value="{!creditApp.Guarantor_Residential_City__c}" html-maxlength="50" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="3">
-                                                    <apex:outputLabel for="guarantorState" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_State_Province__c.label} ">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="41" id="guarantorState" value="{!creditApp.Guarantor_State_Province__c}" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="4">
-                                                    <apex:outputLabel for="guarantorPostalCode" styleClass="styled-label" value="Postal Code">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Guarantor_Country__c == null || creditApp.Guarantor_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="42" id="guarantorPostalCode" label="" value="{!creditApp.Guarantor_Residential_Postal_Code__c}" html-maxlength="10" />
-                                                </div>
-                                                <div class="twelve columns clearfix form-field" data-row="1">
-                                                    <apex:actionRegion >
-                                                        <apex:outputLabel for="guarantorCountry" styleClass="styled-label" value=" Country "/>
-                                                        <apex:InputField html-disabled="true" styleClass="styled-input" id="guarantorCountry" value="{!creditApp.Guarantor_Country__c}">
-                                                            <apex:actionSupport event="onchange" rerender="guarantorState, guarantorPostalCode" oncomplete="pageLoadFunctions()"/>
-                                                        </apex:InputField>
-                                                    </apex:actionRegion>
-                                                </div>
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Last_Name__c.label} </Label>
+                                                <apex:InputField styleClass="styled-input required" html-tabindex="34" id="guarantorLastName" value="{!creditApp.Guarantor_Last_Name__c}" html-maxlength="40"/>
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="2">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Social_Security_Number__c.label} </Label>
+                                                <apex:InputField html-placeholder="###-##-####" styleClass="styled-input required ssn" html-tabindex="34" id="guarantorSSN" value="{!creditApp.Guarantor_Social_Security_Number__c}" html-maxlength="11" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="3">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Date_of_Birth__c.label} </Label>
+                                                <apex:InputText html-placeholder="MM/DD/YYYY" styleClass="styled-input required date" tabindex="35" id="guarantorDOB" value="{!creditApp.Guarantor_Date_of_Birth__c}" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="4">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Phone__c.label} </Label>
+                                                <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="36" id="guarantorPhone" html-class="phone" label="" value="{!creditApp.Guarantor_Residential_Phone__c}" html-maxlength="20"/>
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="5">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Mobile_Phone__c.label} </Label>
+                                                <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="37" id="guarantorMobilePhone" html-class="phone" label="" value="{!creditApp.Guarantor_Mobile_Phone__c}" html-maxlength="20"/>
                                             </div>
                                         </div>
-                                        <div class="twelve columns clearfix">
-                                            &nbsp;
+                                        <div class="six columns clearfix">
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Address__c.label} </Label>
+                                                <apex:InputField styleClass="styled-input required" html-tabindex="38" id="guarantorAddress" label="" value="{!creditApp.Guarantor_Residential_Address__c}" html-maxlength="100" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="2">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_City__c.label} </Label>
+                                                <apex:InputField styleClass="styled-input required" html-tabindex="40" id="guarantorCity" label="" value="{!creditApp.Guarantor_Residential_City__c}" html-maxlength="50" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="3">
+                                                <Label class="styled-label"> {!$ObjectType.CP_Application_Request__c.fields.Guarantor_State_Province__c.label} </Label>
+                                                <apex:InputField styleClass="styled-input required" html-tabindex="41" id="guarantorState" value="{!creditApp.Guarantor_State_Province__c}" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="4">
+                                                <label class="styled-label">Postal Code</label>
+                                                <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Guarantor_Country__c == null || creditApp.Guarantor_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="42" id="guarantorPostalCode" label="" value="{!creditApp.Guarantor_Residential_Postal_Code__c}" html-maxlength="10" />
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <Label class="styled-label"> Country </Label>
+                                                <apex:InputField html-disabled="true" styleClass="styled-input" id="guarantorCountry" value="{!creditApp.Guarantor_Country__c}">
+                                                    <apex:actionSupport event="onchange" rerender="guarantorState, guarantorPostalCode" oncomplete="pageLoadFunctions()"/>
+                                                </apex:InputField>
+                                            </div>
                                         </div>
-                                    </fieldset>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
                                 </apex:outputPanel>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!userSessionId == null}">

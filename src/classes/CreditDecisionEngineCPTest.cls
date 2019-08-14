@@ -12,8 +12,6 @@ public class CreditDecisionEngineCPTest {
     @testSetup
     static void setupUser() {
 
-        UtilityTestLoader.setAutomation(false);
-    
         Account offerAccount = new Account();
         offerAccount.Name = 'TestAccount-01';
 
@@ -162,7 +160,7 @@ public class CreditDecisionEngineCPTest {
                 cpApplication.Payment_Due_Date__c = 'Monday';
                 cpApplication.Payment_Type__c = 'ET';
                 cpApplication.Financial_Institution__c = 'Chase Bank';
-                cpApplication.Checking_Account_Number__c = '123456789';
+                cpApplication.Checking_Account_Number__c = '';
                 cpApplication.ABA_Routing_Number__c = '123456789';
                 cpApplication.Guarantor_First_Name__c = 'George';
                 cpApplication.Guarantor_Last_Name__c = 'Smiley';
@@ -311,14 +309,12 @@ public class CreditDecisionEngineCPTest {
 
             Test.setCurrentPage(creditExistingExposure);
 
-            // must fix in results because using SOSL
-            Id[] fixedSearchResults = new id[new Map<id, CP_Application_Request__c>(cpApplications).keySet()];
-            Test.setFixedSearchResults(fixedSearchResults);
-
             CreditExistingExposureController fdoac = new CreditExistingExposureController();
 
             fdoac.init();
 
+            System.debug('duplication Account size = ' + fdoac.duplicateAccounts.size());
+            System.debug('duplication Applications size = ' + fdoac.duplicateApplications.size());
             System.assert(fdoac.duplicateAccounts.size() == 0);
             System.assert(fdoac.duplicateApplications.size() >= 0);
 

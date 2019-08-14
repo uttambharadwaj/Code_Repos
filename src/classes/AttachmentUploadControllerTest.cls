@@ -5,13 +5,7 @@
 @isTest
 public with sharing class AttachmentUploadControllerTest {
 
-
-      @testSetup
-      static void setup(){
-         UtilityTestLoader.setAutomation(false);
-      }
-
-      static testMethod void testAttachmentUploadController() {
+    static testMethod void testAttachmentUploadController() {
 
         User sinte = [SELECT Id FROM User WHERE Alias = 'sinte'];
 

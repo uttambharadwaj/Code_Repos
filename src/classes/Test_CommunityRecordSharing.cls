@@ -1,11 +1,6 @@
 @isTest
 private class Test_CommunityRecordSharing {
     
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     @isTest static void testLeadSharingAdd() {
         test.starttest();
         

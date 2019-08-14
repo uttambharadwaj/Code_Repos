@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>AU_Campaigns</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AU Campaigns</label>
+        <sharedTo>
+            <group>AU_Marketing</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>AU Offer,AU Campaign</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>AU_Partner_Beevo</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AU Partner Beevo</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>BeevoPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>AU_Partner_Access__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>AU_Partner_Salmat</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AU Partner Salmat</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SalmatPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>AU_Partner_Access__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>AU_Partner_Thought_World</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AU Partner Thought World</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>ThoughtWorldPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>AU_Partner_Access__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Aquarient_Sales_Manager</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Aquarient Sales Manager</label>
+        <sharedTo>
+            <role>AquarientSalesManager</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>00570000001Lkjs</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BizUnite</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>BizUnite</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>BizUnitePartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>BZ1</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CITGO_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CITGO Partners</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CITGOPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>AJ9</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CircleK_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>CircleK Partners</label>
+        <sharedTo>
+            <group>CircleK_Partner_Groiup</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>KNL</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Circle_K_West_Exxon</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Circle K reps selling Exxon</description>
+        <label>Circle K West/Exxon</label>
+        <sharedTo>
+            <group>Circle_K_West_Exxon</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>MY9</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Exxon_Global_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Exxon_Global_Partners</label>
+        <sharedTo>
+            <group>ExxonMobil_Partner_user_group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>WA6,E4Y,MX6,BN8,BZY,RHC,HBT,KPX</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Fleet_Advantage</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Fleet Advantage</label>
+        <sharedTo>
+            <group>Fleet_Advantage_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>TUK,DP7,FP4</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Getgo_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule for Getgo Partners</description>
+        <label>Getgo Partners</label>
+        <sharedTo>
+            <portalRole>GetGofromGiantEaglePartnerManager</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>GCW,RHE</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Kum_Go</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Kum &amp; Go</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>KumGoFleetCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>KGO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Marathon</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Marathon</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>MarathonPetroleumCompanyPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>M6Q</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Meijer</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Meijer</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>MeijerFleetCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>MER,XFZ</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Murphy_USA</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule for Murphy USA</description>
+        <label>Murphy USA</label>
+        <sharedTo>
+            <group>Murphy_USA_Partner_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>MLU</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>QuikTrip</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>QuikTrip</label>
+        <sharedTo>
+            <group>QuikTrip_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>QBF,DTX,QK1,ATL,PNX</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Racetrac_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Racetrac Partners</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>RaceTracPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>R3C,R3E</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_Campaign_for_Alon_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share&apos;s the default campaign (AZN) with Alon Partners</description>
+        <label>Share Campaign for Alon Partners</label>
+        <sharedTo>
+            <group>Alon_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>AZN</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_Campaign_for_Enterpise_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Sharing rule to share Enterprise default campaign (ENT) with Enterprise Partner community users</description>
+        <label>Share Campaign for Enterpise Partners</label>
+        <sharedTo>
+            <group>Enterprise_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>ENT</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_Campaign_for_Phillips66_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Shares the default campaign for Phillips66 (GJE) with Phillips 66 partner users</description>
+        <label>Share Campaign for Phillips66 Partners</label>
+        <sharedTo>
+            <group>Phillips66_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>GJE</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_Campaign_for_QuikTrip_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Share Campaign for QuikTrip Partners</label>
+        <sharedTo>
+            <group>QuikTrip_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>QK1,QBF</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sheetz_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Sheetz Partners</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SheetzPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>SRN</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Shell</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>This rule will share all Shell campaigns with the Shell Team</description>
+        <label>Shell</label>
+        <sharedTo>
+            <group>Shell_Sales</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>contains</operation>
+            <value>Shell</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sinclair_Partner</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Sinclair Partner</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SinclairFleetTrackPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>OCS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>VIOC</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>VIOC</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>ValvolineInstantOilChangePartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>VLS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>WES_Campaign</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Share read-access to WES Campaigns to WES Profiles</description>
+        <label>WES Campaign</label>
+        <sharedTo>
+            <group>WES_All_Users</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>WES Campaign</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>WES_Campaign_Edit_Access</fullName>
+        <accessLevel>All</accessLevel>
+        <description>Provide edit access to campaigns with WES record type to marketing and WES System Admin</description>
+        <label>WES Campaign Edit Access</label>
+        <sharedTo>
+            <group>WES_Marketing</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>WES Campaign</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>X7_11_Partners</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>7-11 Partners</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>x7ElevenIncPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>SJ2</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>CPS_Sales</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CPS Sales</label>
+        <sharedTo>
+            <group>CPSTeams</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>WEXAdmin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Corporate_Payments_All_R_to_External_Marketing</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Used to grant access to all virtual records for consultants.</description>
+        <label>Corporate Payments All R to External Marketing</label>
+        <sharedTo>
+            <group>Virtual_External_Marketing</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Virtual_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Exxon</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Exxon</label>
+        <sharedTo>
+            <group>ExxonTeam</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>WEXAdmin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>F1_Campaigns</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>F1 Campaigns</label>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>All_F1_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>InsideSales</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Inside Sales</label>
+        <sharedTo>
+            <group>InsideSales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>WEXAdmin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>NA_Virtual_Marketing_Pardot</fullName>
+        <accessLevel>All</accessLevel>
+        <description>Enables connector to see NA Virtual Marketing Campaigns</description>
+        <label>NA Virtual Marketing Pardot</label>
+        <sharedTo>
+            <group>Pardot</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>NA_Virtual_Marketing</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Outbound_Sales</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Outbound Sales</label>
+        <sharedTo>
+            <group>OutboundSales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>WEXAdmin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Truckers_Campaigns</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This rule allows Truckers sales to see all tuckers campaigns</description>
+        <label>Truckers Campaigns</label>
+        <sharedTo>
+            <group>TruckersB2B</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>TruckersB2B</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Virtual_EU_Campaign_Managers</fullName>
+        <accessLevel>All</accessLevel>
+        <description>The SF admin &amp; marketing team access to each other&apos;s Campaigns</description>
+        <label>Virtual EU Campaign Managers</label>
+        <sharedTo>
+            <group>Virtual_EU_Campaign_Managers</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Virtual_EU_Campaign_Managers</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Virtual_EU_Pardot_Campaign_Sharing</fullName>
+        <accessLevel>All</accessLevel>
+        <label>Virtual EU Pardot Campaign Sharing</label>
+        <sharedTo>
+            <group>Pardot</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Virtual_EU_Campaign_Managers</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>WEXAdmin</fullName>
+        <accessLevel>All</accessLevel>
+        <label>WEX Admin</label>
+        <sharedTo>
+            <group>WEXAdmin</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>WEXAdmin</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

@@ -3,9 +3,7 @@ private class UEmailMessageTest {
 
 	@TestSetup
 	private static void setupData(){
-	    UtilityTestLoader.setAutomation(false);
-    
-      insert new EmailMessageSettings__c(SetupOwnerId = UserInfo.getOrganizationId(), ActivateEmailMessageInsertTrigger__c = true);
+	      insert new EmailMessageSettings__c(SetupOwnerId = UserInfo.getOrganizationId(), ActivateEmailMessageInsertTrigger__c = true);
 	}
 
     @IsTest

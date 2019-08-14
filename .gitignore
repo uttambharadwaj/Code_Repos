@@ -1,1 +1,7 @@
-# Created by .ignore support plugin (hsz.mobi)
+# IntelliJ Project Files
+.idea
+*.iml
+IlluminatedCloud
+
+# Other MetaData versioned by post-deployment VCS script
+src/package.xml

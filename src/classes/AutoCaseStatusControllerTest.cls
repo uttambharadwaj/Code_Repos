@@ -1,11 +1,5 @@
 @isTest
 public class AutoCaseStatusControllerTest {
-	
-	@testSetup
-	static void setup(){
-	   UtilityTestLoader.setAutomation(false);
-	}
-
 	static testmethod void testControllerStatusClosed()
 	{
 		Case c = new Case(Subject = 'test', Status = 'Unread', Description = 'test desc', Previously_Closed__c = true);

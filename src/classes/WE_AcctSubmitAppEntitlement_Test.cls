@@ -1,11 +1,6 @@
 @isTest
 private class WE_AcctSubmitAppEntitlement_Test {
     
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
         //create custom setting to check Record Type Id against
         static testMethod void testEntitlementCreation() {
             

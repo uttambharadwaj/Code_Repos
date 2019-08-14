@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Amount_Transferred__c</fullName>
+        <externalId>false</externalId>
+        <label>Amount Transferred</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Carrier_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the revenue from the transactions that comes from the carrier.</inlineHelpText>
+        <label>Carrier Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Chain__c</fullName>
+        <externalId>false</externalId>
+        <label>Chain</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Loves</fullName>
+                    <default>false</default>
+                    <label>Loves</label>
+                </value>
+                <value>
+                    <fullName>Pilot / Flying J</fullName>
+                    <default>false</default>
+                    <label>Pilot / Flying J</label>
+                </value>
+                <value>
+                    <fullName>TA / Petro</fullName>
+                    <default>false</default>
+                    <label>TA / Petro</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Commission_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Year(First_Transaction_Date__c ) = YEAR( Transaction_Summary__r.Last_Processed_Date__c ), &quot;New&quot;,
+IF((MONTH(First_Transaction_Date__c) = 10 || MONTH(First_Transaction_Date__c) = 11 || MONTH(First_Transaction_Date__c) = 12 || 
+YEAR(First_Transaction_Date__c)=YEAR( Transaction_Summary__r.Last_Processed_Date__c )-10), &quot;New&quot;,&quot;Retention&quot;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Commission Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>First_Transaction_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>First Transaction Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Gallons__c</fullName>
+        <externalId>false</externalId>
+        <label>Gallons</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>High_Level_Revenue_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( 
+ISPICKVAL(Revenue_Subtype__c,&quot;Cross_Border&quot;) ||
+ISPICKVAL(Revenue_Subtype__c,&quot;Direct_Bill&quot;) || 
+ISPICKVAL(Revenue_Subtype__c,&quot;Funded&quot;),&quot;Total Card Based&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;ZCon&quot;),&quot;ZCon&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Smartfund_Fee&quot;) ||
+ISPICKVAL(Revenue_Subtype__c,&quot;Smartfunds&quot;),&quot;SmartFunds&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Money_Codes&quot;),&quot;Money Codes&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Other_Fees&quot;),&quot;Other Fees&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Rebates&quot;),&quot;Rebates&quot;,
+
+IF(
+ISPICKVAL(Revenue_Subtype__c,&quot;Terminal_Fuel&quot;),&quot;Terminal Fuel&quot;,
+
+&quot;&quot;
+)))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>High-Level Revenue Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Litres__c</fullName>
+        <externalId>false</externalId>
+        <label>Litres</label>
+        <precision>10</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Merchant_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This is the revenue from the transactions that comes from the Merchant.</inlineHelpText>
+        <label>Merchant Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Product__c</fullName>
+        <externalId>false</externalId>
+        <label>Product</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ACH</fullName>
+                    <default>false</default>
+                    <label>ACH</label>
+                </value>
+                <value>
+                    <fullName>ACH Credit</fullName>
+                    <default>false</default>
+                    <label>ACH Credit</label>
+                </value>
+                <value>
+                    <fullName>ACH Transfer</fullName>
+                    <default>false</default>
+                    <label>ACH Transfer</label>
+                </value>
+                <value>
+                    <fullName>ACH Transfer Credit</fullName>
+                    <default>false</default>
+                    <label>ACH Transfer Credit</label>
+                </value>
+                <value>
+                    <fullName>ATM</fullName>
+                    <default>false</default>
+                    <label>ATM</label>
+                </value>
+                <value>
+                    <fullName>ATM Credit</fullName>
+                    <default>false</default>
+                    <label>ATM Credit</label>
+                </value>
+                <value>
+                    <fullName>Cash</fullName>
+                    <default>false</default>
+                    <label>Cash</label>
+                </value>
+                <value>
+                    <fullName>Cash Adv</fullName>
+                    <default>false</default>
+                    <label>Cash Adv</label>
+                </value>
+                <value>
+                    <fullName>Cash Adv Credit</fullName>
+                    <default>false</default>
+                    <label>Cash Adv Credit</label>
+                </value>
+                <value>
+                    <fullName>Check</fullName>
+                    <default>false</default>
+                    <label>Check</label>
+                </value>
+                <value>
+                    <fullName>Check Credit</fullName>
+                    <default>false</default>
+                    <label>Check Credit</label>
+                </value>
+                <value>
+                    <fullName>Debit</fullName>
+                    <default>false</default>
+                    <label>Debit</label>
+                </value>
+                <value>
+                    <fullName>Debit Credit</fullName>
+                    <default>false</default>
+                    <label>Debit Credit</label>
+                </value>
+                <value>
+                    <fullName>Debit Use Denial</fullName>
+                    <default>false</default>
+                    <label>Debit Use Denial</label>
+                </value>
+                <value>
+                    <fullName>Debit Use Denial Credit</fullName>
+                    <default>false</default>
+                    <label>Debit Use Denial Credit</label>
+                </value>
+                <value>
+                    <fullName>Def</fullName>
+                    <default>false</default>
+                    <label>Def</label>
+                </value>
+                <value>
+                    <fullName>Draft</fullName>
+                    <default>false</default>
+                    <label>Draft</label>
+                </value>
+                <value>
+                    <fullName>Draft Credit</fullName>
+                    <default>false</default>
+                    <label>Draft Credit</label>
+                </value>
+                <value>
+                    <fullName>Fuel</fullName>
+                    <default>false</default>
+                    <label>Fuel</label>
+                </value>
+                <value>
+                    <fullName>Fuel and Cash</fullName>
+                    <default>false</default>
+                    <label>Fuel and Cash</label>
+                </value>
+                <value>
+                    <fullName>Load</fullName>
+                    <default>false</default>
+                    <label>Load</label>
+                </value>
+                <value>
+                    <fullName>Load Credit</fullName>
+                    <default>false</default>
+                    <label>Load Credit</label>
+                </value>
+                <value>
+                    <fullName>Money Code</fullName>
+                    <default>false</default>
+                    <label>Money Code</label>
+                </value>
+                <value>
+                    <fullName>Network Use</fullName>
+                    <default>false</default>
+                    <label>Network Use</label>
+                </value>
+                <value>
+                    <fullName>Network Use Credit</fullName>
+                    <default>false</default>
+                    <label>Network Use Credit</label>
+                </value>
+                <value>
+                    <fullName>Other</fullName>
+                    <default>false</default>
+                    <label>Other</label>
+                </value>
+                <value>
+                    <fullName>Other Credit</fullName>
+                    <default>false</default>
+                    <label>Other Credit</label>
+                </value>
+                <value>
+                    <fullName>Other Fee Standard</fullName>
+                    <default>false</default>
+                    <label>Other Fee Standard</label>
+                </value>
+                <value>
+                    <fullName>Rebate</fullName>
+                    <default>false</default>
+                    <label>Rebate</label>
+                </value>
+                <value>
+                    <fullName>Reefer</fullName>
+                    <default>false</default>
+                    <label>Reefer</label>
+                </value>
+                <value>
+                    <fullName>Scale</fullName>
+                    <default>false</default>
+                    <label>Scale</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Record_Source_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Record Source ID</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Revenue_Subtype__c</fullName>
+        <externalId>false</externalId>
+        <label>Revenue Category</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>CROSS_BORDER</fullName>
+                    <default>false</default>
+                    <label>CROSS_BORDER</label>
+                </value>
+                <value>
+                    <fullName>DIRECT_BILL</fullName>
+                    <default>false</default>
+                    <label>DIRECT_BILL</label>
+                </value>
+                <value>
+                    <fullName>Funded</fullName>
+                    <default>false</default>
+                    <label>Funded</label>
+                </value>
+                <value>
+                    <fullName>MONEY_CODES</fullName>
+                    <default>false</default>
+                    <label>MONEY_CODES</label>
+                </value>
+                <value>
+                    <fullName>OTHER_FEES</fullName>
+                    <default>false</default>
+                    <label>OTHER_FEES</label>
+                </value>
+                <value>
+                    <fullName>REBATES</fullName>
+                    <default>false</default>
+                    <label>REBATES</label>
+                </value>
+                <value>
+                    <fullName>SMARTFUND_FEES;</fullName>
+                    <default>false</default>
+                    <label>SMARTFUND_FEES;</label>
+                </value>
+                <value>
+                    <fullName>SMARTFUNDS</fullName>
+                    <default>false</default>
+                    <label>SMARTFUNDS</label>
+                </value>
+                <value>
+                    <fullName>TERMINAL_FUEL</fullName>
+                    <default>false</default>
+                    <label>TERMINAL_FUEL</label>
+                </value>
+                <value>
+                    <fullName>ZCON</fullName>
+                    <default>false</default>
+                    <label>ZCON</label>
+                </value>
+                <value>
+                    <fullName>Fuel/Carrier Revenue</fullName>
+                    <default>false</default>
+                    <label>Fuel/Carrier Revenue</label>
+                </value>
+                <value>
+                    <fullName>ATM</fullName>
+                    <default>false</default>
+                    <label>ATM</label>
+                </value>
+                <value>
+                    <fullName>Terminal Fuel Revenue</fullName>
+                    <default>false</default>
+                    <label>Terminal Fuel Revenue</label>
+                </value>
+                <value>
+                    <fullName>Loves DB Revenue</fullName>
+                    <default>false</default>
+                    <label>Loves DB Revenue</label>
+                </value>
+                <value>
+                    <fullName>Transaction Carrier Revenue</fullName>
+                    <default>false</default>
+                    <label>Transaction Carrier Revenue</label>
+                </value>
+                <value>
+                    <fullName>Other Direct Bill Revenue</fullName>
+                    <default>false</default>
+                    <label>Other Direct Bill Revenue</label>
+                </value>
+                <value>
+                    <fullName>ATM Carrier Revenue</fullName>
+                    <default>false</default>
+                    <label>ATM Carrier Revenue</label>
+                </value>
+                <value>
+                    <fullName>Net Back Rebates to Carrier</fullName>
+                    <default>false</default>
+                    <label>Net Back Rebates to Carrier</label>
+                </value>
+                <value>
+                    <fullName>Fuel/Merchant Revenue</fullName>
+                    <default>false</default>
+                    <label>Fuel/Merchant Revenue</label>
+                </value>
+                <value>
+                    <fullName>Money Code Revenue</fullName>
+                    <default>false</default>
+                    <label>Money Code Revenue</label>
+                </value>
+                <value>
+                    <fullName>Pilot/Flying J DB Revenue</fullName>
+                    <default>false</default>
+                    <label>Pilot/Flying J DB Revenue</label>
+                </value>
+                <value>
+                    <fullName>TA/Petro Db Revenue</fullName>
+                    <default>false</default>
+                    <label>TA/Petro Db Revenue</label>
+                </value>
+                <value>
+                    <fullName>Transaction Funded</fullName>
+                    <default>false</default>
+                    <label>Transaction Funded</label>
+                </value>
+                <value>
+                    <fullName>Money Code</fullName>
+                    <default>false</default>
+                    <label>Money Code</label>
+                </value>
+                <value>
+                    <fullName>ATM Upcharge Revenue</fullName>
+                    <default>false</default>
+                    <label>ATM Upcharge Revenue</label>
+                </value>
+                <value>
+                    <fullName>B2B Fuel Gross Revenue</fullName>
+                    <default>false</default>
+                    <label>B2B Fuel Gross Revenue</label>
+                </value>
+                <value>
+                    <fullName>Smart Pay Load Revenue</fullName>
+                    <default>false</default>
+                    <label>Smart Pay Load Revenue</label>
+                </value>
+                <value>
+                    <fullName>Smart Pay Debit Card Revenue</fullName>
+                    <default>false</default>
+                    <label>Smart Pay Debit Card Revenue</label>
+                </value>
+                <value>
+                    <fullName>Smart Pay ATM, Decline, Inquiry</fullName>
+                    <default>false</default>
+                    <label>Smart Pay ATM, Decline, Inquiry</label>
+                </value>
+                <value>
+                    <fullName>Smart Pay Direct Deposit Manual</fullName>
+                    <default>false</default>
+                    <label>Smart Pay Direct Deposit Manual</label>
+                </value>
+                <value>
+                    <fullName>Fuel Tax Revenue</fullName>
+                    <default>false</default>
+                    <label>Fuel Tax Revenue</label>
+                </value>
+                <value>
+                    <fullName>ZCon Revenue/Base Package</fullName>
+                    <default>false</default>
+                    <label>ZCon Revenue/Base Package</label>
+                </value>
+                <value>
+                    <fullName>Merchant Other Fee</fullName>
+                    <default>false</default>
+                    <label>Merchant Other Fee</label>
+                </value>
+                <value>
+                    <fullName>Merchant Setup Fee</fullName>
+                    <default>false</default>
+                    <label>Merchant Setup Fee</label>
+                </value>
+                <value>
+                    <fullName>NATC/FTS Fuel Net Revenue</fullName>
+                    <default>false</default>
+                    <label>NATC/FTS Fuel Net Revenue</label>
+                </value>
+                <value>
+                    <fullName>Triple Play Fuel Net Revenue</fullName>
+                    <default>false</default>
+                    <label>Triple Play Fuel Net Revenue</label>
+                </value>
+                <value>
+                    <fullName>B2B Fuel Net Revenue</fullName>
+                    <default>false</default>
+                    <label>B2B Fuel Net Revenue</label>
+                </value>
+                <value>
+                    <fullName>Compliance Services</fullName>
+                    <default>false</default>
+                    <label>Compliance Services</label>
+                </value>
+                <value>
+                    <fullName>Smart Pay Fuel Revenue</fullName>
+                    <default>false</default>
+                    <label>Smart Pay Fuel Revenue</label>
+                </value>
+                <value>
+                    <fullName>Merchant Change of Ownership</fullName>
+                    <default>false</default>
+                    <label>Merchant Change of Ownership</label>
+                </value>
+                <value>
+                    <fullName>Smart Pay Direct Deposit Auto</fullName>
+                    <default>false</default>
+                    <label>Smart Pay Direct Deposit Auto</label>
+                </value>
+                <value>
+                    <fullName>Fuel Management Revenue</fullName>
+                    <default>false</default>
+                    <label>Fuel Management Revenue</label>
+                </value>
+                <value>
+                    <fullName>ZCon Revenue/ZCon Plus</fullName>
+                    <default>false</default>
+                    <label>ZCon Revenue/ZCon Plus</label>
+                </value>
+                <value>
+                    <fullName>Smart Pay ACH Revenue</fullName>
+                    <default>false</default>
+                    <label>Smart Pay ACH Revenue</label>
+                </value>
+                <value>
+                    <fullName>Merchant Reporting</fullName>
+                    <default>false</default>
+                    <label>Merchant Reporting</label>
+                </value>
+                <value>
+                    <fullName>NATC/FTS Fuel Gross Revenue</fullName>
+                    <default>false</default>
+                    <label>NATC/FTS Fuel Gross Revenue</label>
+                </value>
+                <value>
+                    <fullName>Smart Pay Check Debit</fullName>
+                    <default>false</default>
+                    <label>Smart Pay Check Debit</label>
+                </value>
+                <value>
+                    <fullName>Verifone Fee</fullName>
+                    <default>false</default>
+                    <label>Verifone Fee</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Revenue_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Revenue Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Core</fullName>
+                    <default>false</default>
+                    <label>Core</label>
+                </value>
+                <value>
+                    <fullName>Non-Core</fullName>
+                    <default>false</default>
+                    <label>Non-Core</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Revenue__c</fullName>
+        <externalId>false</externalId>
+        <label>Revenue</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Summary_dtl_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Summary dtl ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Transaction_Summary__c</fullName>
+        <externalId>false</externalId>
+        <label>Transaction Summary</label>
+        <referenceTo>Transaction_Summary__c</referenceTo>
+        <relationshipLabel>Transaction Summary Details</relationshipLabel>
+        <relationshipName>Transaction_Summary_Details</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Transaction__c</fullName>
+        <externalId>false</externalId>
+        <label>Transaction</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

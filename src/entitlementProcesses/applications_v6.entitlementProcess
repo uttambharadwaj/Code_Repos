@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntitlementProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <SObjectType>Case</SObjectType>
+    <active>false</active>
+    <businessHours>Wex Europe CS Working Hours</businessHours>
+    <entryStartDateField>Case.CreatedDate</entryStartDateField>
+    <exitCriteriaFilterItems>
+        <field>Case.IsClosed</field>
+        <operation>equals</operation>
+        <value>true</value>
+    </exitCriteriaFilterItems>
+    <isVersionDefault>false</isVersionDefault>
+    <milestones>
+        <businessHours>Wex Europe CS Working Hours</businessHours>
+        <milestoneName>Case Accepted</milestoneName>
+        <minutesToComplete>120</minutesToComplete>
+        <timeTriggers>
+            <actions>
+                <name>Case.Case_Acceptance_Overdue_Bonnie</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Minutes</workflowTimeTriggerUnit>
+        </timeTriggers>
+        <timeTriggers>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </timeTriggers>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+    <milestones>
+        <businessHours>Wex Europe CS Working Hours</businessHours>
+        <milestoneName>Create %26 CSDM Approve Account</milestoneName>
+        <minutesToComplete>960</minutesToComplete>
+        <timeTriggers>
+            <actions>
+                <name>Case.Business_Requestor_Case_SLA_Exceeded_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Case.CSDM_Case_SLA_Exceeded_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Case.Case_Owner_Case_SLA_Exceeded_Notification</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Minutes</workflowTimeTriggerUnit>
+        </timeTriggers>
+        <timeTriggers>
+            <actions>
+                <name>Case.Case_Warning_Notification_CSDM</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>Case.Case_Warning_Notification_Case_Owner</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </timeTriggers>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+    <milestones>
+        <businessHours>Wex Europe CS Working Hours</businessHours>
+        <milestoneCriteriaFilterItems>
+            <field>Case.Program_Type__c</field>
+            <operation>contains</operation>
+            <value>High Limit</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneCriteriaFilterItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Compliance Approval Requested</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneName>Compliance Approval</milestoneName>
+        <minutesToComplete>299</minutesToComplete>
+        <useCriteriaStartTime>true</useCriteriaStartTime>
+    </milestones>
+    <milestones>
+        <businessHours>Wex Europe CS Working Hours</businessHours>
+        <milestoneCriteriaFilterItems>
+            <field>Case.Program_Type__c</field>
+            <operation>contains</operation>
+            <value>High Limit</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneCriteriaFilterItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>COD Approval Requested</value>
+        </milestoneCriteriaFilterItems>
+        <milestoneName>Client Operations Director Approval</milestoneName>
+        <minutesToComplete>301</minutesToComplete>
+        <useCriteriaStartTime>true</useCriteriaStartTime>
+    </milestones>
+    <name>Applications</name>
+    <versionMaster>55270000000029P</versionMaster>
+    <versionNotes>Increase SLA time to 16 hours, rather than 8.</versionNotes>
+    <versionNumber>6</versionNumber>
+</EntitlementProcess>

@@ -1,11 +1,6 @@
 @isTest
 public class FleetEnrollmentValidateTest {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void testFleetEnrollmentValidate() {
         
         Test.startTest();

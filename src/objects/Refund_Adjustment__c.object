@@ -142,7 +142,7 @@
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
-    <deploymentStatus>InDevelopment</deploymentStatus>
+    <deploymentStatus>Deployed</deploymentStatus>
     <description>Captures Refund and Adjustment requests made by Customer Service, RSLPO and SaveDesk.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
@@ -981,7 +981,7 @@
         <fullName>Unified_Fee_Code__c</fullName>
         <description>Condenses the Refund Code and Adjustment Fee Code into a single column for reporting</description>
         <externalId>false</externalId>
-        <formula>IF( RecordType.Name = &apos;Adjustment&apos;,  TEXT(Fee_Code__c) ,  TEXT(Refund_Code__c) )</formula>
+        <formula>IF( RecordType.Name = &apos;Adjustment&apos;, TEXT(Fee_Code__c) , TEXT(Refund_Code__c))</formula>
         <label>Unified Fee Code</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2008,6 +2008,17 @@
         <searchResultsCustomButtons>Approve</searchResultsCustomButtons>
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>CustomerSvcApprovalLimits</fullName>
+        <active>true</active>
+        <description>Enforces Customer Service approval limits for Refunds and Adjustments</description>
+        <errorConditionFormula>AND(TEXT(Department__c ) = &apos;CS&apos;,
+ TEXT(Approval_Status__c) = &apos;Approved&apos;,
+OR(
+Amount_Waived__c &gt; 500000,
+AND( Amount_Waived__c &gt; 50000, NOT( $Permission.Ref_Adj_Approval_Dept_1_Group_1 ))))</errorConditionFormula>
+        <errorMessage>You do not have permission to approve this amount.</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Denied_approval_requires_comment</fullName>
         <active>true</active>

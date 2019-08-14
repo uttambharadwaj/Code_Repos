@@ -4,11 +4,6 @@
 
 @IsTest public with sharing class  CompassionFundFormControllerTest {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void testCompassionFundFormSuccess() {
 
         Test.startTest();

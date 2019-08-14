@@ -1,10 +1,5 @@
 @istest
 private class TakeOwnershipControllerTest {
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testmethod void testController() {
         Profile prof = [SELECT id FROM Profile WHERE name = 'Standard User' LIMIT 1];
 

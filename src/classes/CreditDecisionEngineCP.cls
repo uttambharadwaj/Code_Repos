@@ -535,7 +535,7 @@ global class CreditDecisionEngineCP {
             // Upsert and execute BREeze
             cpApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
             cpApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
-            upsert cpApplication;         
+            upsert cpApplication;
 
             // Make a safe copy so we don't overwrite any fields
             cpApplications = [SELECT Id, Running_Credit_Decisioning__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];

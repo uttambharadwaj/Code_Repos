@@ -46,10 +46,7 @@ public class BOCAAttachmentController {
 
     public Integer existingAttachmentsSize {
         get {
-            if (existingAttachments != null) {
-                return existingAttachments.size();
-            }
-            else return 0;
+            return existingAttachments.size();
         }
     }
 

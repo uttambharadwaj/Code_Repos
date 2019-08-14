@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <label><!-- WEX Product Category --></label>
+        <name>WEXProductCategory__c</name>
+        <picklistValues>
+            <masterLabel>Antenna_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Antenna_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Connectors, Cables, Switches_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Connectors, Cables, Switches_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Services_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Data Services_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Discount_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Discount_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ELD / HOS Software</masterLabel>
+            <translation><!-- ELD / HOS Software --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPS BUNDLE</masterLabel>
+            <translation><!-- GPS BUNDLE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPS FINANCE CHRG</masterLabel>
+            <translation><!-- GPS FINANCE CHRG --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>GPS RENTAL</masterLabel>
+            <translation><!-- GPS RENTAL --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hardware Bundle (CDMA)_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Hardware Bundle (CDMA)_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hardware Bundle_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Hardware Bundle_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hardware Installation_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Hardware Installation_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hardware Rental w/ Service_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Hardware Rental w/ Service_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hardware Rental_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Hardware Rental_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Harnesses &amp; Cables</masterLabel>
+            <translation><!-- Harnesses &amp; Cables --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Harnesses_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Harnesses_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Installation</masterLabel>
+            <translation><!-- Installation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insurance and Warranties - Nonrecurring_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Insurance and Warranties - Nonrecurring_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insurance and Warranties - Recurring_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Insurance and Warranties - Recurring_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Misc Hardware</masterLabel>
+            <translation><!-- Misc Hardware --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Misc Parts and Kits_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Misc Parts and Kits_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Misc Service</masterLabel>
+            <translation><!-- Misc Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Misc. Hardware_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Misc. Hardware_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monthly AddOn Service_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Monthly AddOn Service_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monthly HOS Addon Srvc_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Monthly HOS Addon Srvc_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monthly Service</masterLabel>
+            <translation><!-- Monthly Service --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipping</masterLabel>
+            <translation><!-- Shipping --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Software - Retail_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Software - Retail_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telematics Hardware</masterLabel>
+            <translation><!-- Telematics Hardware --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>To Be Determined</masterLabel>
+            <translation><!-- To Be Determined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Training_OLD_DO_NOT_USE</masterLabel>
+            <translation><!-- Training_OLD_DO_NOT_USE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transfer and Admin Fees</masterLabel>
+            <translation><!-- Transfer and Admin Fees --></translation>
+        </picklistValues>
+    </fields>
+</CustomObjectTranslation>

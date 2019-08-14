@@ -1,10 +1,5 @@
 @isTest
 private class IFCSIntegrationTest {
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testmethod void testIFCSIntegration() {
         Account acc1 = new Account();
         acc1.Name = 'test';

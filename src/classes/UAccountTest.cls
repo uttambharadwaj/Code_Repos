@@ -1,11 +1,6 @@
 @isTest
 private class UAccountTest {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     @isTest
     static void test_assign_account_members() {
 

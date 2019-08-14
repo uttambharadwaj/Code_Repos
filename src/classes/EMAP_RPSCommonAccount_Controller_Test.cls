@@ -1,11 +1,6 @@
 @isTest
 private class EMAP_RPSCommonAccount_Controller_Test{
     
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void checkRPSMatch()
     {
         

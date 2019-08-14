@@ -550,7 +550,7 @@ public without sharing class CustomerDetailsController {
             String contactRowIdToUse = contactRowId;
             if (contactRowId.contains('#')) {
                 contactRowIdToUse = contactRowId.split('#').get(0);
-            }
+            } //todo: change back to IntegrationRecord
             List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
             //List<IntegrationRecord__c> serviceOperationsContacts = [SELECT Contact__r.ID FROM IntegrationRecord__c WHERE Contact_Row_ID__c =: contactRowIdToUse];
 
@@ -558,8 +558,8 @@ public without sharing class CustomerDetailsController {
 
             if(serviceOperationsContacts.size() > 0) {
 
-                //return serviceOperationsContacts[0].Contact__r.ID;
-                return serviceOperationsContacts[0].ID;
+                //return serviceOperationsContacts[0].Contact__r.Id;
+                return serviceOperationsContacts[0].Id;
 
             }
             else {

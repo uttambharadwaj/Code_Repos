@@ -6,11 +6,6 @@
 @isTest
 private class Test_ContactMerging {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void mergeContactsi2iId() {
         
         test.startTest();

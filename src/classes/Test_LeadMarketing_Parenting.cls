@@ -9,11 +9,6 @@
 private class Test_LeadMarketing_Parenting {
 
     
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     public static testMethod void testProcessParent_nonOCR()
 	{
 		test.startTest();

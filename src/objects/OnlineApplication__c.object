@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,7 +89,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -37,7 +117,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -49,6 +149,7 @@
     <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -1105,187 +1206,187 @@ Otherwise Decisioned - Submitted to Credit</inlineHelpText>
                 <value>
                     <fullName>A1</fullName>
                     <default>false</default>
-                    <label>A1</label>
+                    <label>A1 - Credit Bureau - Delinquent past or present credit obligations.</label>
                 </value>
                 <value>
                     <fullName>A2</fullName>
                     <default>false</default>
-                    <label>A2</label>
+                    <label>A2 - Credit Bureau - Unstable/Unsatisfactory financial conditions/ratings.</label>
                 </value>
                 <value>
                     <fullName>A3</fullName>
                     <default>false</default>
-                    <label>A3</label>
+                    <label>A3 - Credit Bureau - Insufficient information.</label>
                 </value>
                 <value>
                     <fullName>A4</fullName>
                     <default>false</default>
-                    <label>A4</label>
+                    <label>A4 - Credit Bureau - Presence of suits, liens, or judgements.</label>
                 </value>
                 <value>
                     <fullName>A5</fullName>
                     <default>false</default>
-                    <label>A5</label>
+                    <label>A5 - Credit Bureau - No Commercial Credit Information</label>
                 </value>
                 <value>
                     <fullName>A6</fullName>
                     <default>false</default>
-                    <label>A6</label>
+                    <label>A6 - Credit Bureau - Insufficient Personal Guarantee Provided (Sinclair and Distributors only)</label>
                 </value>
                 <value>
                     <fullName>A7</fullName>
                     <default>false</default>
-                    <label>A7</label>
+                    <label>A7 - Credit Bureau - Insufficient Credit-counter offer extended</label>
                 </value>
                 <value>
                     <fullName>B1</fullName>
                     <default>false</default>
-                    <label>B1</label>
+                    <label>B1 - Bank - Insufficient average balance for credit line requested.</label>
                 </value>
                 <value>
                     <fullName>B2</fullName>
                     <default>false</default>
-                    <label>B2</label>
+                    <label>B2 - Bank - Unsatisfactory conditions present (e.g. NSF Checks).</label>
                 </value>
                 <value>
                     <fullName>B3</fullName>
                     <default>false</default>
-                    <label>B3</label>
+                    <label>B3 - Bank - Delinquent past or present obligations.</label>
                 </value>
                 <value>
                     <fullName>B4</fullName>
                     <default>false</default>
-                    <label>B4</label>
+                    <label>B4 - Bank - Unable to verify reference(s).</label>
                 </value>
                 <value>
                     <fullName>C1</fullName>
                     <default>false</default>
-                    <label>C1</label>
+                    <label>C1 - Trades - Delinquent past or present credit obligations.</label>
                 </value>
                 <value>
                     <fullName>C2</fullName>
                     <default>false</default>
-                    <label>C2</label>
+                    <label>C2 - Trades - Limited credit experience.</label>
                 </value>
                 <value>
                     <fullName>C3</fullName>
                     <default>false</default>
-                    <label>C3</label>
+                    <label>C3 - Trades - Insufficient high average.</label>
                 </value>
                 <value>
                     <fullName>C4</fullName>
                     <default>false</default>
-                    <label>C4</label>
+                    <label>C4 - Trades - Unable to verify references.</label>
                 </value>
                 <value>
                     <fullName>C5</fullName>
                     <default>false</default>
-                    <label>C5</label>
+                    <label>C5 - Trades - Poor payment history with Wright Express.</label>
                 </value>
                 <value>
                     <fullName>D1</fullName>
                     <default>false</default>
-                    <label>D1</label>
+                    <label>D1 - Financial Statement - Unsatisfactory conditions present.</label>
                 </value>
                 <value>
                     <fullName>D2</fullName>
                     <default>false</default>
-                    <label>D2</label>
+                    <label>D2 - Financial Statement - Insufficient financial strength for credit line requested.</label>
                 </value>
                 <value>
                     <fullName>D3</fullName>
                     <default>false</default>
-                    <label>D3</label>
+                    <label>D3 - Financial Statement - Audited financial statements not presented or available for review.</label>
                 </value>
                 <value>
                     <fullName>E1</fullName>
                     <default>false</default>
-                    <label>E1</label>
+                    <label>E1 - Personal Credit - Delinquent past or present credit obligations.</label>
                 </value>
                 <value>
                     <fullName>E2</fullName>
                     <default>false</default>
-                    <label>E2</label>
+                    <label>E2 - Personal Credit - Limited credit information.</label>
                 </value>
                 <value>
                     <fullName>E3</fullName>
                     <default>false</default>
-                    <label>E3</label>
+                    <label>E3 - Personal Credit - Presence of suits, liens, or judgements.</label>
                 </value>
                 <value>
                     <fullName>E4</fullName>
                     <default>false</default>
-                    <label>E4</label>
+                    <label>E4 - Personal Credit - Insufficient credit score based upon Wright Express credit policy.</label>
                 </value>
                 <value>
                     <fullName>F1</fullName>
                     <default>false</default>
-                    <label>F1</label>
+                    <label>F1 - Other - Credit application complete: no response to request for information.</label>
                 </value>
                 <value>
                     <fullName>F2</fullName>
                     <default>false</default>
-                    <label>F2</label>
+                    <label>F2 - Other - Supportive or additional information: no response to request.</label>
                 </value>
                 <value>
                     <fullName>F3</fullName>
                     <default>false</default>
-                    <label>F3</label>
+                    <label>F3 - Other - No consumer credit program available.</label>
                 </value>
                 <value>
                     <fullName>F4</fullName>
                     <default>false</default>
-                    <label>F4</label>
+                    <label>F4 - Other - Missing Tax Identification Number, Federal ID, or SS#.</label>
                 </value>
                 <value>
                     <fullName>F5</fullName>
                     <default>false</default>
-                    <label>F5</label>
+                    <label>F5 - Other - Business physical address information (Requires verification such as utility bill).</label>
                 </value>
                 <value>
                     <fullName>F6</fullName>
                     <default>false</default>
-                    <label>F6</label>
+                    <label>F6 - Other - Personal Guarantee physical address information (Requires verification).</label>
                 </value>
                 <value>
                     <fullName>F7</fullName>
                     <default>false</default>
-                    <label>F7</label>
+                    <label>F7 - Other - Application does not meet WEX Bank internal approval guidelines.</label>
                 </value>
                 <value>
                     <fullName>F8</fullName>
                     <default>false</default>
-                    <label>F8</label>
+                    <label>F8 - Other - Insufficient credit available per existing credit lines with WEX Bank.</label>
                 </value>
                 <value>
                     <fullName>F9</fullName>
                     <default>false</default>
-                    <label>F9</label>
+                    <label>F9 - Other - Business owner information incomplete or unverifiable.</label>
                 </value>
                 <value>
                     <fullName>I1</fullName>
                     <default>false</default>
-                    <label>I1</label>
+                    <label>I1 - Incomplete - Incomplete or no credit application.</label>
                 </value>
                 <value>
                     <fullName>I2</fullName>
                     <default>false</default>
-                    <label>I2</label>
+                    <label>I2 - Incomplete - Daily Direct Debit paperwork Required.</label>
                 </value>
                 <value>
                     <fullName>I3</fullName>
                     <default>false</default>
-                    <label>I3</label>
+                    <label>I3 - Incomplete - Personal Guaranty Required.</label>
                 </value>
                 <value>
                     <fullName>I4</fullName>
                     <default>false</default>
-                    <label>I4</label>
+                    <label>I4 - Incomplete - Two years of financial statements required (Balance sheet and Income Statement).</label>
                 </value>
                 <value>
                     <fullName>O2</fullName>
                     <default>false</default>
-                    <label>O2</label>
+                    <label>O2 - Fraud</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3462,14 +3563,15 @@ Used to trigger welcome emails from Online Application</description>
     </fields>
     <fields>
         <fullName>Credit_Follow_up_Time__c</fullName>
-        <description>Submitted to Sales for Review - Returned to Sales for Credit Follow-up
-                If Submitted to Sales for Review is BLANK, Current Date/Time - Returned to Sales for Credit Follow-up</description>
+        <description>Carrier ID Added - Returned to Sales for Credit Follow-up
+                If Carrier ID Added is BLANK, Current Date/Time - Returned to Sales for Credit Follow-up</description>
         <externalId>false</externalId>
-        <formula>IF(ISBLANK( Submitted_to_Sales_for_Review__c ), 
-  (TODAY()- (DATEVALUE(Returned_to_Sales_for_Credit_Follow_up__c))), 
-  (DATEVALUE(Submitted_to_Sales_for_Review__c ))-(DATEVALUE( Returned_to_Sales_for_Credit_Follow_up__c )))</formula>
-        <inlineHelpText>Submitted to Sales for Review - Returned to Sales for Credit Follow-up
-                If Submitted to Sales for Review is BLANK, Current Date/Time - Returned to Sales for Credit Follow-up</inlineHelpText>
+        <formula>IF(ISBLANK( Carrier_ID_Added_PB__c ), 
+  (TODAY() - (DATEVALUE( Returned_to_Sales_for_Credit_Follow_up__c ))), 
+  (DATEVALUE( Carrier_ID_Added_PB__c )) - (DATEVALUE( Returned_to_Sales_for_Credit_Follow_up__c ))
+)</formula>
+        <inlineHelpText>Carrier ID Added - Returned to Sales for Credit Follow-up
+                If Carrier ID Added is BLANK, Current Date/Time - Returned to Sales for Credit Follow-up</inlineHelpText>
         <label>Credit Follow-up Time (Days)</label>
         <precision>18</precision>
         <required>false</required>
@@ -4847,104 +4949,6 @@ Replaced by &quot;Days of Payment&quot;</description>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>GIACT_Account_Response_Code_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>GIACT Account Response Code Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GIACT_Account_Response_Code__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>GIACT Account Response Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GIACT_Account_Response_Message__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>GIACT Account Response Message</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>GIACT_Check__c</fullName>
-        <externalId>false</externalId>
-        <label>GIACT Check</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Passed</fullName>
-                    <default>false</default>
-                    <label>Passed</label>
-                </value>
-                <value>
-                    <fullName>Failed</fullName>
-                    <default>false</default>
-                    <label>Failed</label>
-                </value>
-                <value>
-                    <fullName>Error</fullName>
-                    <default>false</default>
-                    <label>Error</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>GIACT_Response_Code__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>GIACT Response Code</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>GIACT_Response_Message__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>GIACT Response Message</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>GIACT_Verify_Response_Code_Name__c</fullName>
-        <encryptionScheme>None</encryptionScheme>
-        <externalId>false</externalId>
-        <label>GIACT Verify Response Code Name</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Global_Ultimate_DUNS__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -5640,36 +5644,6 @@ Replaced by &quot;Days of Payment&quot;</description>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Lexis_Nexis_BIID_Result__c</fullName>
-        <externalId>false</externalId>
-        <label>Lexis Nexis BIID Result</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Passed</fullName>
-                    <default>false</default>
-                    <label>Passed</label>
-                </value>
-                <value>
-                    <fullName>Warning</fullName>
-                    <default>false</default>
-                    <label>Warning</label>
-                </value>
-                <value>
-                    <fullName>Failed</fullName>
-                    <default>false</default>
-                    <label>Failed</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Lexis_Nexis_Check__c</fullName>
         <externalId>false</externalId>
         <label>Lexis Nexis Check</label>
@@ -5680,90 +5654,6 @@ Replaced by &quot;Days of Payment&quot;</description>
         <valueSet>
             <restricted>true</restricted>
             <valueSetName>Credit_Decision_Engine_Check</valueSetName>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Lexis_Nexis_Custom_Model_Score__c</fullName>
-        <externalId>false</externalId>
-        <label>Lexis Nexis Custom Model Score</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Lexis_Nexis_FraudPoint_Result__c</fullName>
-        <externalId>false</externalId>
-        <label>Lexis Nexis FraudPoint Result</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Passed</fullName>
-                    <default>false</default>
-                    <label>Passed</label>
-                </value>
-                <value>
-                    <fullName>Warning</fullName>
-                    <default>false</default>
-                    <label>Warning</label>
-                </value>
-                <value>
-                    <fullName>Failed</fullName>
-                    <default>false</default>
-                    <label>Failed</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Lexis_Nexis_FraudPoint_Score__c</fullName>
-        <externalId>false</externalId>
-        <label>Lexis Nexis FraudPoint Score</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Lexis_Nexis_IID_Result__c</fullName>
-        <externalId>false</externalId>
-        <label>Lexis Nexis IID Result</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>Passed</fullName>
-                    <default>false</default>
-                    <label>Passed</label>
-                </value>
-                <value>
-                    <fullName>Warning</fullName>
-                    <default>false</default>
-                    <label>Warning</label>
-                </value>
-                <value>
-                    <fullName>Failed</fullName>
-                    <default>false</default>
-                    <label>Failed</label>
-                </value>
-            </valueSetDefinition>
         </valueSet>
     </fields>
     <fields>
@@ -8213,6 +8103,11 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
                     <label>Closed/Lost</label>
                 </value>
                 <value>
+                    <fullName>Closed/Fraud</fullName>
+                    <default>false</default>
+                    <label>Closed/Fraud</label>
+                </value>
+                <value>
                     <fullName>Decisioned</fullName>
                     <default>false</default>
                     <label>Decisioned</label>
@@ -8336,6 +8231,12 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
                 <controllingFieldValue>Credit Follow-up</controllingFieldValue>
                 <controllingFieldValue>Implementation</controllingFieldValue>
                 <valueName>Closed/Lost</valueName>
+            </valueSettings>
+            <valueSettings>
+                <controllingFieldValue>Application</controllingFieldValue>
+                <controllingFieldValue>Credit Follow-up</controllingFieldValue>
+                <controllingFieldValue>Implementation</controllingFieldValue>
+                <valueName>Closed/Fraud</valueName>
             </valueSettings>
             <valueSettings>
                 <controllingFieldValue>Adjudication</controllingFieldValue>
@@ -9332,44 +9233,6 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>All_Applications_for_PG</fullName>
-        <booleanFilter>1 AND (2 OR 3 OR 4)</booleanFilter>
-        <columns>CREATED_DATE</columns>
-        <columns>NAME</columns>
-        <columns>Email__c</columns>
-        <columns>Offer__c</columns>
-        <columns>Application_Title__c</columns>
-        <columns>Status__c</columns>
-        <columns>Application_Stage__c</columns>
-        <columns>Type_of_Business__c</columns>
-        <columns>Risk_Grade__c</columns>
-        <columns>Credit_Line_Requested__c</columns>
-        <columns>PG_Score__c</columns>
-        <columns>PG_Required__c</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>greaterOrEqual</operation>
-            <value>1/1/2015 12:00 AM</value>
-        </filters>
-        <filters>
-            <field>PG_Score__c</field>
-            <operation>notEqual</operation>
-        </filters>
-        <filters>
-            <field>PG_Required__c</field>
-            <operation>equals</operation>
-            <value>1</value>
-        </filters>
-        <label>000 All Applications for PG</label>
-        <language>en_US</language>
-        <sharedTo>
-            <group>SystemAdmins</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>All_Apps_Submitted_2018</fullName>
         <columns>NAME</columns>
         <columns>Account__c</columns>
@@ -9519,81 +9382,6 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <sharedTo>
             <allInternalUsers></allInternalUsers>
             <group>Assist_Financial_Partners_Group</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>BOCA_Testing_Credit</fullName>
-        <columns>NAME</columns>
-        <columns>Legal_Business_Name__c</columns>
-        <columns>Status__c</columns>
-        <columns>Credit_Line_Requested__c</columns>
-        <columns>App_Created__c</columns>
-        <columns>Submitted_to_Credit__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>App_Created__c</field>
-            <operation>equals</operation>
-            <value>LAST_N_DAYS:60</value>
-        </filters>
-        <filters>
-            <field>Application_Stage__c</field>
-            <operation>equals</operation>
-            <value>Adjudication</value>
-        </filters>
-        <filters>
-            <field>CREATEDBY_USER</field>
-            <operation>equals</operation>
-            <value>CreditApplication Site Guest User</value>
-        </filters>
-        <filters>
-            <field>Offer__c</field>
-            <operation>equals</operation>
-            <value>ZZ Fleet One LLC EDGE</value>
-        </filters>
-        <label>BOCA Testing - Credit</label>
-        <language>en_US</language>
-        <sharedTo>
-            <group>All_F1_Internal_Users</group>
-            <group>SystemAdmins</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>BOCA_Testing_Implementation</fullName>
-        <columns>Submitted_to_Production__c</columns>
-        <columns>Rush__c</columns>
-        <columns>NAME</columns>
-        <columns>Status__c</columns>
-        <columns>Internal_Info__c</columns>
-        <columns>LAST_UPDATE</columns>
-        <columns>UPDATEDBY_USER</columns>
-        <columns>In_Progress__c</columns>
-        <columns>Onboarding_Rep__c</columns>
-        <columns>Audit_Notes__c</columns>
-        <columns>Offer__c</columns>
-        <columns>Legal_Business_Name__c</columns>
-        <columns>Contact_Name__c</columns>
-        <columns>Product_Type__c</columns>
-        <columns>Lead_Source_Subtype__c</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>Application_Stage__c</field>
-            <operation>equals</operation>
-            <value>Implementation</value>
-        </filters>
-        <filters>
-            <field>Status__c</field>
-            <operation>equals</operation>
-            <value>Pending Setup,Pending Setup-Generic</value>
-        </filters>
-        <filters>
-            <field>Offer__c</field>
-            <operation>equals</operation>
-            <value>ZZ Fleet One LLC EDGE</value>
-        </filters>
-        <label>BOCA Testing - Implementation</label>
-        <language>en_US</language>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -10048,14 +9836,15 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
     <listViews>
         <fullName>FTS_Onboarding</fullName>
         <columns>NAME</columns>
+        <columns>Rush__c</columns>
         <columns>Status__c</columns>
         <columns>OWNER.ALIAS</columns>
         <columns>Onboarding_Rep__c</columns>
         <columns>App_Number__c</columns>
+        <columns>Offer__c</columns>
         <columns>Account__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>Date_Decisioned__c</columns>
-        <columns>Offer__c</columns>
         <columns>Program__c</columns>
         <columns>Number_of_Cards_Needed__c</columns>
         <filterScope>Everything</filterScope>
@@ -10852,33 +10641,6 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>New_Sales_View_NAT_Elimination4</fullName>
-        <columns>NAME</columns>
-        <columns>Offer__c</columns>
-        <columns>Legal_Business_Name__c</columns>
-        <columns>Application_Stage__c</columns>
-        <columns>Status__c</columns>
-        <columns>Credit_Decision__c</columns>
-        <columns>Credit_Line_Requested__c</columns>
-        <columns>CREATED_DATE</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>greaterThan</operation>
-            <value>2/1/2016 12:00 AM</value>
-        </filters>
-        <filters>
-            <field>Application_Title__c</field>
-            <operation>startsWith</operation>
-            <value>Cars</value>
-        </filters>
-        <label>New Sales View (NAT Elimination) - Cars</label>
-        <language>en_US</language>
-        <sharedTo>
-            <group>All_F1_Internal_Users</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>New_Sales_View_NAT_Elimination6</fullName>
         <columns>NAME</columns>
         <columns>Offer__c</columns>
@@ -10887,19 +10649,28 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Status__c</columns>
         <columns>Credit_Decision__c</columns>
         <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CREATED_DATE</field>
             <operation>greaterThan</operation>
-            <value>2/1/2016 12:00 AM</value>
+            <value>10/1/2018 12:00 AM</value>
         </filters>
         <filters>
             <field>Application_Title__c</field>
             <operation>startsWith</operation>
             <value>England</value>
         </filters>
-        <label>New Sales View (NAT Elimination)-England</label>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <label>New Sales View - England Apps</label>
         <language>en_US</language>
         <sharedTo>
             <group>All_F1_Internal_Users</group>
@@ -10914,19 +10685,28 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Status__c</columns>
         <columns>Credit_Decision__c</columns>
         <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CREATED_DATE</field>
             <operation>greaterThan</operation>
-            <value>2/1/2016 12:00 AM</value>
+            <value>10/1/2018 12:00 AM</value>
         </filters>
         <filters>
             <field>Application_Title__c</field>
             <operation>startsWith</operation>
             <value>CSI</value>
         </filters>
-        <label>New Sales View (NAT Elimination)-CSI</label>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <label>New Sales View - CSI Global Apps</label>
         <language>en_US</language>
         <sharedTo>
             <group>All_F1_Internal_Users</group>
@@ -10941,19 +10721,68 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Status__c</columns>
         <columns>Credit_Decision__c</columns>
         <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CREATED_DATE</field>
             <operation>greaterThan</operation>
-            <value>2/1/2016 12:00 AM</value>
+            <value>10/1/2018 12:00 AM</value>
         </filters>
         <filters>
             <field>Application_Title__c</field>
             <operation>startsWith</operation>
             <value>D&amp;S</value>
         </filters>
-        <label>New Sales View (NAT Elimination)-D&amp;S</label>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+        </filters>
+        <label>New Sales View - D&amp;S Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Sales_View_NAT_Elimination_RTS</fullName>
+        <columns>NAME</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>10/1/2018 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>RTS</value>
+        </filters>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>jlowr</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <label>New Sales View - RTS Apps Jan</label>
         <language>en_US</language>
         <sharedTo>
             <group>All_F1_Internal_Users</group>
@@ -10968,19 +10797,28 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Status__c</columns>
         <columns>Credit_Decision__c</columns>
         <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CREATED_DATE</field>
             <operation>greaterThan</operation>
-            <value>2/1/2016 12:00 AM</value>
+            <value>10/1/2018 12:00 AM</value>
         </filters>
         <filters>
             <field>Application_Title__c</field>
             <operation>startsWith</operation>
             <value>Trans</value>
         </filters>
-        <label>New Sales View (NAT Elimination)-Trans</label>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion,Expansion</value>
+        </filters>
+        <label>New Sales View - Trans-Alliance Apps</label>
         <language>en_US</language>
         <sharedTo>
             <group>All_F1_Internal_Users</group>
@@ -10996,18 +10834,134 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Credit_Decision__c</columns>
         <columns>Credit_Line_Requested__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CREATED_DATE</field>
             <operation>greaterThan</operation>
-            <value>2/1/2016 12:00 AM</value>
+            <value>10/1/2018 12:00 AM</value>
         </filters>
         <filters>
             <field>Application_Title__c</field>
             <operation>startsWith</operation>
             <value>IT</value>
         </filters>
-        <label>New Sales View (NAT Elimination)-IT</label>
+        <label>New Sales View - IT (Roady&apos;s) Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Sales_View_NAT_Elimination_Trans2</fullName>
+        <columns>NAME</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>10/1/2018 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>Knight</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <label>New Sales View - Knight Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Sales_View_RTS_Apps_All</fullName>
+        <columns>NAME</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>10/1/2018 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>RTS</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <label>New Sales View - RTS Apps All</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Sales_View_RTS_Apps_Priscilla</fullName>
+        <columns>NAME</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>10/1/2018 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>RTS</value>
+        </filters>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>pcann</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <label>New Sales View - RTS Apps Priscilla</label>
         <language>en_US</language>
         <sharedTo>
             <group>All_F1_Internal_Users</group>
@@ -11890,13 +11844,17 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
     </listViews>
     <listViews>
         <fullName>RTS_Apps</fullName>
-        <booleanFilter>1 AND 2</booleanFilter>
+        <booleanFilter>1 AND 2 and 3 and 4</booleanFilter>
         <columns>NAME</columns>
         <columns>Application_Title__c</columns>
         <columns>Account__c</columns>
         <columns>App_Created__c</columns>
         <columns>OWNER.LAST_NAME</columns>
         <columns>OWNER.ALIAS</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Application_Title__c</field>
@@ -11907,6 +11865,16 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <field>Application_Title__c</field>
             <operation>notContain</operation>
             <value>Trade</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <filters>
+            <field>LAST_UPDATE</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2019 12:00 AM</value>
         </filters>
         <label>RTS Apps</label>
         <language>en_US</language>
@@ -12052,6 +12020,47 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <language>en_US</language>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Road_Ranger_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Road Ranger</value>
+        </filters>
+        <label>Road Ranger  Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Road_Ranger_USA_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Road_Ranger_Trade_Credit_eApps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Road Ranger</value>
+        </filters>
+        <label>Road Ranger Trade Credit eApps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>Road_Ranger_USA_Partners_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -12419,6 +12428,47 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <role>ISTeamLeader</role>
             <role>Marketing</role>
             <role>SalesSupportDataEntry</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Thorntons_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Thorntons</value>
+        </filters>
+        <label>Thorntons Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Thorntons_Partner_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Thorntons_Trade_Credit_eApps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Thorntons</value>
+        </filters>
+        <label>Thorntons Trade Credit eApps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>Thorntons_Partner_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -12796,38 +12846,6 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>X00_Unsolicited_eApps</fullName>
-        <columns>NAME</columns>
-        <columns>Application_Stage__c</columns>
-        <columns>Status__c</columns>
-        <columns>In_Progress__c</columns>
-        <columns>In_Progress_User__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>Application_Title__c</columns>
-        <columns>Legal_Business_Name__c</columns>
-        <columns>Contact_Name__c</columns>
-        <columns>AO_State__c</columns>
-        <columns>Number_of_Trucks__c</columns>
-        <columns>Credit_Line_Requested__c</columns>
-        <columns>Credit_Line_Approved__c</columns>
-        <columns>OWNER.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>OWNER.ALIAS</field>
-            <operation>equals</operation>
-            <value>guest</value>
-        </filters>
-        <filters>
-            <field>CREATED_DATE</field>
-            <operation>greaterThan</operation>
-            <value>8/16/2015 12:00 AM</value>
-        </filters>
-        <label>00 Unsolicited eApps</label>
-        <sharedTo>
-            <group>All_F1_Internal_Users</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>X00_Unsolicited_eApps_EAST</fullName>
         <booleanFilter>(1 AND 2 AND (3 OR 4) AND 5)</booleanFilter>
         <columns>NAME</columns>
@@ -13124,7 +13142,6 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <filters>
             <field>Offer_Credit_Review_Path__c</field>
             <operation>equals</operation>
-            <value>1</value>
         </filters>
         <filters>
             <field>Fraud_Recommendation__c</field>
@@ -13594,6 +13611,7 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Status__c</columns>
         <columns>In_Progress__c</columns>
         <columns>In_Progress_User__c</columns>
+        <columns>Decision_Comments__c</columns>
         <columns>Fraud_Recommendation__c</columns>
         <columns>Fraud_Decision__c</columns>
         <columns>Credit_Line_Requested__c</columns>
@@ -13603,7 +13621,6 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>OWNER.ALIAS</columns>
         <columns>Credit_Recommendation__c</columns>
         <columns>Credit_Decision__c</columns>
-        <columns>Decision_Comments__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Application_Stage__c</field>
@@ -13613,7 +13630,7 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <filters>
             <field>Offer_Credit_Review_Path__c</field>
             <operation>equals</operation>
-            <value>0</value>
+            <value>0,1</value>
         </filters>
         <filters>
             <field>Fraud_Recommendation__c</field>
@@ -13640,6 +13657,56 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <value>FedEx Custom Critical Owners Parent</value>
         </filters>
         <label>2 Adjudication Default: Credit</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X2_Adjudication_Default_Credit1</fullName>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5) AND 6 AND 7</booleanFilter>
+        <columns>ABA_Routing_Number__c</columns>
+        <columns>Checking_Account_Number__c</columns>
+        <columns>NAME</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Personal_Guarantor__c</columns>
+        <columns>Contact_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication</value>
+        </filters>
+        <filters>
+            <field>Offer_Credit_Review_Path__c</field>
+            <operation>equals</operation>
+            <value>0,1</value>
+        </filters>
+        <filters>
+            <field>Fraud_Recommendation__c</field>
+            <operation>equals</operation>
+            <value>Recommend Approve</value>
+        </filters>
+        <filters>
+            <field>Fraud_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>Fraud_Recommendation__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Credit_Recommendation__c</field>
+            <operation>notEqual</operation>
+            <value>Recommend Approve</value>
+        </filters>
+        <filters>
+            <field>Offer__c</field>
+            <operation>notEqual</operation>
+            <value>FedEx Custom Critical Owners Parent</value>
+        </filters>
+        <label>2 Adjudication Default: Credit (Giact)</label>
         <language>en_US</language>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -14751,6 +14818,45 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>X2_Adjudication_Default_Road_Ranger</fullName>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Trade_Name__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication,Credit Follow-up</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Credit-Incomplete</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>2. Adjudication Default - Road Ranger</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+            <group>Road_Ranger_USA_Partners_Group</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>X2_Adjudication_Default_St_Johns</fullName>
         <columns>Application_Title__c</columns>
         <columns>Legal_Business_Name__c</columns>
@@ -14865,6 +14971,45 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <group>All_F1_Internal_Users</group>
             <group>Sunbelt_Partner_Group</group>
             <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X2_Adjudication_Default_Thorntons</fullName>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Trade_Name__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication,Credit Follow-up</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Credit-Incomplete</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>2. Adjudication Default - Thorntons</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+            <group>SystemAdmins</group>
+            <group>Thorntons_Partner_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -15141,40 +15286,6 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>X2_Fraud_TMX_Failures</fullName>
-        <booleanFilter>1 AND 2</booleanFilter>
-        <columns>NAME</columns>
-        <columns>Submitted_to_Credit__c</columns>
-        <columns>Status__c</columns>
-        <columns>In_Progress__c</columns>
-        <columns>In_Progress_User__c</columns>
-        <columns>Legal_Business_Name__c</columns>
-        <columns>Trade_Name__c</columns>
-        <columns>Fraud_Flag__c</columns>
-        <columns>Fraud_Recommendation__c</columns>
-        <columns>WEX_Fraud_Dept_Comments__c</columns>
-        <columns>Credit_Line_Requested__c</columns>
-        <columns>Credit_Line_Recommendation__c</columns>
-        <columns>Credit_Recommendation__c</columns>
-        <columns>OWNER.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>ThreatMetrix_Check__c</field>
-            <operation>equals</operation>
-            <value>Failed,Error</value>
-        </filters>
-        <filters>
-            <field>App_Created__c</field>
-            <operation>equals</operation>
-            <value>LAST_N_DAYS:30</value>
-        </filters>
-        <label>000 Fraud Failed TMX Past 30 Days</label>
-        <language>en_US</language>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>X3_Implementation_Setup_App_Mgr</fullName>
         <booleanFilter>1 AND 2 AND (3 or 4)</booleanFilter>
         <columns>Submitted_to_Production__c</columns>
@@ -15315,7 +15426,7 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <filters>
             <field>Status__c</field>
             <operation>notEqual</operation>
-            <value>App-Incomplete,Closed/Lost</value>
+            <value>Saved-Incomplete,App-Incomplete,Closed/Lost</value>
         </filters>
         <label>3 Implementation-Setup FX CC Parent</label>
         <language>en_US</language>
@@ -16790,6 +16901,44 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>X4_Card_Prod_Default_Road_Ranger</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_to_Card_Services__c</columns>
+        <columns>Cards_Shipped_Date__c</columns>
+        <columns>Ship_Cards_To__c</columns>
+        <columns>Contact_Name__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cards Produced,Cards Shipped</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>4. Card Prod Default - Road Ranger</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>All_F1_Internal_Users</group>
+            <group>Road_Ranger_USA_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>X4_Card_Prod_Default_St_Johns</fullName>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <columns>Application_Title__c</columns>
@@ -16901,6 +17050,44 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <allInternalUsers></allInternalUsers>
             <group>All_F1_Internal_Users</group>
             <group>Sunbelt_Partner_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X4_Card_Prod_Default_Thorntons</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_to_Card_Services__c</columns>
+        <columns>Cards_Shipped_Date__c</columns>
+        <columns>Ship_Cards_To__c</columns>
+        <columns>Contact_Name__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cards Produced,Cards Shipped</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>4. Card Prod Default - Thorntons</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>All_F1_Internal_Users</group>
+            <group>Thorntons_Partner_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -17475,6 +17662,7 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <searchResultsAdditionalFields>Account__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Legal_Business_Name__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>Offer__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <startsWith>Vowel</startsWith>

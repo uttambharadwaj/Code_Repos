@@ -1,12 +1,7 @@
 @isTest
 private class Test_MakeActivitiesPublic {
 	
-	@testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-    @isTest static void test_tasks() {
+	@isTest static void test_tasks() {
 		//setup
 		Task t = new Task();
 		t.Subject = 'test1';

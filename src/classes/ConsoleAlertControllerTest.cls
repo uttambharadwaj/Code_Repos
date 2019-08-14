@@ -1,11 +1,6 @@
 @isTest
 public class ConsoleAlertControllerTest {
-	@testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
-    static testmethod void testController()
+	static testmethod void testController()
 	{
 		Service_Alerts__c alert = new Service_Alerts__c();
 		alert.Subject__c = 'test';

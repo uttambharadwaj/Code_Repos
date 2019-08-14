@@ -1,0 +1,1522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Service_Operations_Survey_Response_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+    </actionOverrides>
+    <allowInChatterGroups>true</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>true</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Action_Taken__c</fullName>
+        <externalId>false</externalId>
+        <label>Action Taken</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Contacted customer</fullName>
+                    <default>false</default>
+                    <label>Contacted customer</label>
+                </value>
+                <value>
+                    <fullName>Coached agent</fullName>
+                    <default>false</default>
+                    <label>Coached agent</label>
+                </value>
+                <value>
+                    <fullName>Training Dept – feedback</fullName>
+                    <default>false</default>
+                    <label>Training Dept – feedback</label>
+                </value>
+                <value>
+                    <fullName>Confirmed handled correctly</fullName>
+                    <default>false</default>
+                    <label>Confirmed handled correctly</label>
+                </value>
+                <value>
+                    <fullName>Product – feedback</fullName>
+                    <default>false</default>
+                    <label>Product – feedback</label>
+                </value>
+                <value>
+                    <fullName>Other – see notes</fullName>
+                    <default>false</default>
+                    <label>Other – see notes</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Additional_feedback_about_the_agent__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Please share any additional feedback about the agent</inlineHelpText>
+        <label>Additional feedback about the agent</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Case__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Case</label>
+        <referenceTo>Case</referenceTo>
+        <relationshipLabel>Service Operations Survey Responses</relationshipLabel>
+        <relationshipName>Service_Operations_Survey_Responses</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Call Escalation</fullName>
+                    <default>false</default>
+                    <label>Call Escalation</label>
+                </value>
+                <value>
+                    <fullName>Call Time Length</fullName>
+                    <default>false</default>
+                    <label>Call Time Length</label>
+                </value>
+                <value>
+                    <fullName>Care / Concern</fullName>
+                    <default>false</default>
+                    <label>Care / Concern</label>
+                </value>
+                <value>
+                    <fullName>Communication</fullName>
+                    <default>false</default>
+                    <label>Communication</label>
+                </value>
+                <value>
+                    <fullName>Disconnected Call</fullName>
+                    <default>false</default>
+                    <label>Disconnected Call</label>
+                </value>
+                <value>
+                    <fullName>Efficiency</fullName>
+                    <default>false</default>
+                    <label>Efficiency</label>
+                </value>
+                <value>
+                    <fullName>Friendliness</fullName>
+                    <default>false</default>
+                    <label>Friendliness</label>
+                </value>
+                <value>
+                    <fullName>Hold</fullName>
+                    <default>false</default>
+                    <label>Hold</label>
+                </value>
+                <value>
+                    <fullName>IVR</fullName>
+                    <default>false</default>
+                    <label>IVR</label>
+                </value>
+                <value>
+                    <fullName>Knowledge / Training</fullName>
+                    <default>false</default>
+                    <label>Knowledge / Training</label>
+                </value>
+                <value>
+                    <fullName>Legal / Safety</fullName>
+                    <default>false</default>
+                    <label>Legal / Safety</label>
+                </value>
+                <value>
+                    <fullName>Multiple Calls</fullName>
+                    <default>false</default>
+                    <label>Multiple Calls</label>
+                </value>
+                <value>
+                    <fullName>No Callback</fullName>
+                    <default>false</default>
+                    <label>No Callback</label>
+                </value>
+                <value>
+                    <fullName>Not Resolved</fullName>
+                    <default>false</default>
+                    <label>Not Resolved</label>
+                </value>
+                <value>
+                    <fullName>Policy / Procedure</fullName>
+                    <default>false</default>
+                    <label>Policy / Procedure</label>
+                </value>
+                <value>
+                    <fullName>Retention</fullName>
+                    <default>false</default>
+                    <label>Retention</label>
+                </value>
+                <value>
+                    <fullName>Transfer</fullName>
+                    <default>false</default>
+                    <label>Transfer</label>
+                </value>
+                <value>
+                    <fullName>Wait Time</fullName>
+                    <default>false</default>
+                    <label>Wait Time</label>
+                </value>
+                <value>
+                    <fullName>Website</fullName>
+                    <default>false</default>
+                    <label>Website</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>8</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Closed_Age_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>( Closed_Date__c - CreatedDate)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Closed Age Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Closed_Age_Minutes__c</fullName>
+        <externalId>false</externalId>
+        <formula>( Closed_Date__c  - CreatedDate)*24*60</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Closed Age Minutes</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Closed_Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(FLOOR(Closed_Date__c  - CreatedDate)) &amp; &quot; days &quot; 
+&amp; TEXT( FLOOR( MOD((Closed_Date__c  - CreatedDate) * 24, 24 ) ) ) &amp; &quot; hours &quot; 
+&amp; TEXT( ROUND( MOD((Closed_Date__c  - CreatedDate) * 24 * 60, 60 ), 0 ) ) &amp; &quot; minutes&quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Closed Age</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Closed_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Closed Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>Contact__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Contact</label>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Service Operations Survey Responses</relationshipLabel>
+        <relationshipName>Service_Operations_Survey_Responses</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Customer_Service_easy_to_handle_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case(  Customer_Service_easy_to_handle_issue__c 
+,&apos;Strongly disagree&apos;, 1 
+,&apos;Disagree&apos;, 2 
+,&apos;Somewhat disagree&apos;, 3 
+,&apos;Neither agree nor disagree&apos;, 4 
+,&apos;Somewhat agree&apos;, 5 
+,&apos;Agree&apos;, 6
+,&apos;Strongly agree&apos;, 7
+,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Customer Service easy to handle Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_Service_easy_to_handle_issue__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>To what extent do you agree or disagree with the following statement?</inlineHelpText>
+        <label>Customer Service easy to handle issue</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Strongly disagree</fullName>
+                    <default>false</default>
+                    <label>Strongly disagree</label>
+                </value>
+                <value>
+                    <fullName>Disagree</fullName>
+                    <default>false</default>
+                    <label>Disagree</label>
+                </value>
+                <value>
+                    <fullName>Somewhat disagree</fullName>
+                    <default>false</default>
+                    <label>Somewhat disagree</label>
+                </value>
+                <value>
+                    <fullName>Neither agree nor disagree</fullName>
+                    <default>false</default>
+                    <label>Neither agree nor disagree</label>
+                </value>
+                <value>
+                    <fullName>Somewhat agree</fullName>
+                    <default>false</default>
+                    <label>Somewhat agree</label>
+                </value>
+                <value>
+                    <fullName>Agree</fullName>
+                    <default>false</default>
+                    <label>Agree</label>
+                </value>
+                <value>
+                    <fullName>Strongly agree</fullName>
+                    <default>false</default>
+                    <label>Strongly agree</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>How_likely_to_recommend_customer_service__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>How likely are you to recommend customer service to a friend or colleague based on this experience?</inlineHelpText>
+        <label>How likely to recommend customer service</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manager_Email__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Set by process builder</inlineHelpText>
+        <label>Manager Email</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manager_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>If(  Owner:User.ManagerId    = $User.Id, True, False)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Manager Flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Manager_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Owner:User.ManagerId</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Manager ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Manager__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case__r.Owner:User.Manager.FirstName &amp; &apos; &apos; &amp; Case__r.Owner:User.Manager.LastName</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Manager</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NPS_Detractor__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(How_likely_to_recommend_customer_service__c  &lt;= 6, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NPS Detractor</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NPS_Legend__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&quot;/resource/NPS_Legend&quot;, &quot;legend&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NPS Legend</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NPS_Promoter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(How_likely_to_recommend_customer_service__c  &gt;= 9, 1, 0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NPS Promoter</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NPS_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>How_likely_to_recommend_customer_service__c</formula>
+        <label>NPS Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NPS__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(NPS_Score__c &lt;= 6, 
+IMAGE(&quot;/resource/NPS_detractor&quot;, &quot;red&quot;, 30, 30), 
+IF(NPS_Score__c &gt; 6 &amp;&amp; NPS_Score__c &lt;= 8 , 
+IMAGE(&quot;/resource/NPS_passive&quot;, &quot;yellow&quot;, 30, 30),
+IF( NPS_Score__c  &gt; 8,
+IMAGE(&quot;/resource/NPS_promoter&quot;, &quot;green&quot;, 30, 30) 
+,&apos;&apos;)))</formula>
+        <label>NPS</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Negative_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>OR(
+If(Not(IsNull(How_likely_to_recommend_customer_service__c)) &amp;&amp; How_likely_to_recommend_customer_service__c  &lt;= 4 , True, False)
+, If(IsPickVal(Was_issue_resolved_with_contact__c, &apos;No&apos;),True, False)
+, If(IsPickVal(Customer_Service_easy_to_handle_issue__c, &apos;Strongly disagree&apos;),True, False)
+, If(IsPickVal(Customer_Service_easy_to_handle_issue__c, &apos;Disagree&apos;),True, False)
+, If(IsPickVal(Customer_Service_easy_to_handle_issue__c, &apos;Somewhat disagree&apos;),True, False)
+, If(IsPickVal(Service_Agent_Knowledge__c, &apos;Very dissatisfied&apos;),True, False)
+, If(IsPickVal(Service_Agent_Overall_service__c, &apos;Very dissatisfied&apos;),True, False)
+, If(IsPickVal(Service_Agent_Professionalism__c, &apos;Very dissatisfied&apos;),True, False)
+, If(IsPickVal(Service_Agent_Responsiveness__c, &apos;Very dissatisfied&apos;),True, False)
+, If(IsPickVal(Service_Agent_Showed_care_and_concern__c, &apos;Very dissatisfied&apos;),True, False)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Likely to recommend Service score less than 5
+Issue was not Resolved
+Service was easy to handle issue; Strongly disagree, Disagree, Somewhat disagree
+Agent Overall, Knowledge, Professionalism, Responsiveness, Showed care and concern; Very dissatisfied</inlineHelpText>
+        <label>Negative Flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Positive_Agent_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>OR( 
+If(IsPickVal(Service_Agent_Knowledge__c, &apos;Very Satisfied&apos;),True, False) 
+, If(IsPickVal(Service_Agent_Overall_service__c, &apos;Very Satisfied&apos;),True, False) 
+, If(IsPickVal(Service_Agent_Professionalism__c, &apos;Very Satisfied&apos;),True, False) 
+, If(IsPickVal(Service_Agent_Responsiveness__c, &apos;Very Satisfied&apos;),True, False) 
+, If(IsPickVal(Service_Agent_Showed_care_and_concern__c, &apos;Very Satisfied&apos;),True, False) 
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Agent Knowledge, Responsiveness, Professionalism, Showed care and concern = &apos;Very Satisfied&apos;. If this is TRUE then a positive chatter post is automatically created for this survey.</inlineHelpText>
+        <label>Positive Agent Flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Positive_Flag__c</fullName>
+        <externalId>false</externalId>
+        <formula>OR(
+If(Not(IsNull(How_likely_to_recommend_customer_service__c)) &amp;&amp; How_likely_to_recommend_customer_service__c   &gt;=   9 , True, False)
+, If(IsPickVal(Was_issue_resolved_with_contact__c, &apos;Yes&apos;),True, False)
+, If(IsPickVal(Customer_Service_easy_to_handle_issue__c, &apos;Agree&apos;),True, False)
+, If(IsPickVal(Customer_Service_easy_to_handle_issue__c, &apos;Strongly Agree&apos;),True, False)
+, If(IsPickVal(Service_Agent_Knowledge__c, &apos;Very Satisfied&apos;),True, False)
+, If(IsPickVal(Service_Agent_Overall_service__c, &apos;Very Satisfied&apos;),True, False)
+, If(IsPickVal(Service_Agent_Professionalism__c, &apos;Very Satisfied&apos;),True, False)
+, If(IsPickVal(Service_Agent_Responsiveness__c, &apos;Very Satisfied&apos;),True, False)
+, If(IsPickVal(Service_Agent_Showed_care_and_concern__c, &apos;Very Satisfied&apos;),True, False)
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Likely to recommend Service score greater than 8
+Issue was Resolved
+Customer Service was easy to handle issue; Agree and Strongly Agree 
+Service Agent Overall service, Knowledge, Professionalism, Responsiveness, Showed care and concern; Very Satisfied</inlineHelpText>
+        <label>Positive Flag</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Power_Of_1__c</fullName>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Power Of 1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Reason_online_portal_was_not_used__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Please describe why you did not use the online portal.</inlineHelpText>
+        <label>Reason online portal was not used</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Resolution_Notes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Resolution Notes</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Resolution_Reason__c</fullName>
+        <externalId>false</externalId>
+        <label>Resolution Reason</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Follow up conducted</fullName>
+                    <default>false</default>
+                    <label>Follow up conducted</label>
+                </value>
+                <value>
+                    <fullName>No follow up required</fullName>
+                    <default>false</default>
+                    <label>No follow up required</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Average_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Service_Agent_Knowledge_Score__c + Service_Agent_Overall_service_Score__c + Service_Agent_Professionalism_Score__c + Service_Agent_Responsiveness_Score__c + Service_Agent_Showed_concern_Score__c)/5</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Agent - Average Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Knowledge_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case( Service_Agent_Knowledge__c 
+,&apos;Very dissatisfied&apos;, 1
+,&apos;Somewhat dissatisfied&apos;, 2
+,&apos;Neither satisfied nor dissatisfied&apos;, 3
+,&apos;Somewhat satisfied&apos;, 4
+,&apos;Very satisfied&apos;, 5
+,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Agent - Knowledge Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Knowledge__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please rate your satisfaction with the customer service agent in the following area.</inlineHelpText>
+        <label>Service Agent - Knowledge</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Very dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Very dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Neither satisfied nor dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Neither satisfied nor dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat satisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat satisfied</label>
+                </value>
+                <value>
+                    <fullName>Very satisfied</fullName>
+                    <default>false</default>
+                    <label>Very satisfied</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Overall_service_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case(  Service_Agent_Overall_service__c 
+,&apos;Very dissatisfied&apos;, 1 
+,&apos;Somewhat dissatisfied&apos;, 2 
+,&apos;Neither satisfied nor dissatisfied&apos;, 3 
+,&apos;Somewhat satisfied&apos;, 4 
+,&apos;Very satisfied&apos;, 5 
+,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Agent - Overall service Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Overall_service__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please rate your satisfaction with the customer service agent in the following area.</inlineHelpText>
+        <label>Service Agent - Overall service</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Very dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Very dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Neither satisfied nor dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Neither satisfied nor dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat satisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat satisfied</label>
+                </value>
+                <value>
+                    <fullName>Very satisfied</fullName>
+                    <default>false</default>
+                    <label>Very satisfied</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Professionalism_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case(  Service_Agent_Professionalism__c 
+,&apos;Very dissatisfied&apos;, 1 
+,&apos;Somewhat dissatisfied&apos;, 2 
+,&apos;Neither satisfied nor dissatisfied&apos;, 3 
+,&apos;Somewhat satisfied&apos;, 4 
+,&apos;Very satisfied&apos;, 5 
+,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Agent - Professionalism Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Professionalism__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please rate your satisfaction with the customer service agent in the following area.</inlineHelpText>
+        <label>Service Agent - Professionalism</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Very dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Very dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Neither satisfied nor dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Neither satisfied nor dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat satisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat satisfied</label>
+                </value>
+                <value>
+                    <fullName>Very satisfied</fullName>
+                    <default>false</default>
+                    <label>Very satisfied</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Responsiveness_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case(  Service_Agent_Responsiveness__c 
+,&apos;Very dissatisfied&apos;, 1 
+,&apos;Somewhat dissatisfied&apos;, 2 
+,&apos;Neither satisfied nor dissatisfied&apos;, 3 
+,&apos;Somewhat satisfied&apos;, 4 
+,&apos;Very satisfied&apos;, 5 
+,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Agent - Responsiveness Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Responsiveness__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please rate your satisfaction with the customer service agent in the following area.</inlineHelpText>
+        <label>Service Agent - Responsiveness</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Very dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Very dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Neither satisfied nor dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Neither satisfied nor dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat satisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat satisfied</label>
+                </value>
+                <value>
+                    <fullName>Very satisfied</fullName>
+                    <default>false</default>
+                    <label>Very satisfied</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Showed_care_and_concern__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Please rate your satisfaction with the customer service agent in the following area.</inlineHelpText>
+        <label>Service Agent - Showed care and concern</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Very dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Very dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Neither satisfied nor dissatisfied</fullName>
+                    <default>false</default>
+                    <label>Neither satisfied nor dissatisfied</label>
+                </value>
+                <value>
+                    <fullName>Somewhat satisfied</fullName>
+                    <default>false</default>
+                    <label>Somewhat satisfied</label>
+                </value>
+                <value>
+                    <fullName>Very satisfied</fullName>
+                    <default>false</default>
+                    <label>Very satisfied</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Service_Agent_Showed_concern_Score__c</fullName>
+        <externalId>false</externalId>
+        <formula>Case(  Service_Agent_Showed_care_and_concern__c 
+,&apos;Very dissatisfied&apos;, 1 
+,&apos;Somewhat dissatisfied&apos;, 2 
+,&apos;Neither satisfied nor dissatisfied&apos;, 3 
+,&apos;Somewhat satisfied&apos;, 4 
+,&apos;Very satisfied&apos;, 5 
+,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Service Agent - Showed concern Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Open</fullName>
+                    <default>true</default>
+                    <label>Open</label>
+                </value>
+                <value>
+                    <fullName>In Process</fullName>
+                    <default>false</default>
+                    <label>In Process</label>
+                </value>
+                <value>
+                    <fullName>Closed</fullName>
+                    <default>false</default>
+                    <label>Closed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Survey_Age_Days__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT( FLOOR( Now()  - CreatedDate ) ) &amp; &quot; days &quot;
+  &amp; TEXT( FLOOR( MOD( (Now() - CreatedDate) * 24, 24 ) ) ) &amp; &quot; hours &quot;</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Survey Age Days</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Survey_Age_Hours__c</fullName>
+        <externalId>false</externalId>
+        <formula>(Now() - CreatedDate)*24</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Survey Age Hours</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Tried_to_resolve_with_online_portal__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Did you first try to resolve your issue using the online portal?</inlineHelpText>
+        <label>Tried to resolve with online portal</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Was_issue_resolved_with_contact__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Was your issue resolved with this contact?</inlineHelpText>
+        <label>Was issue resolved with contact</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Yes</fullName>
+                    <default>false</default>
+                    <label>Yes</label>
+                </value>
+                <value>
+                    <fullName>No</fullName>
+                    <default>false</default>
+                    <label>No</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Why_recommend_to_a_customer__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Followup to How likely are you to recommend customer service to a friend or colleague based on this experience?</inlineHelpText>
+        <label>Why recommend to a customer</label>
+        <length>1000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
+    </fields>
+    <label>Service Operations Survey Response</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>Case__c</columns>
+        <columns>Status__c</columns>
+        <columns>NPS__c</columns>
+        <columns>Service_Agent_Average_Score__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Manager__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Contact__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All_Open</fullName>
+        <columns>NAME</columns>
+        <columns>Case__c</columns>
+        <columns>Status__c</columns>
+        <columns>NPS__c</columns>
+        <columns>Service_Agent_Average_Score__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Manager__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Open,In Process</value>
+        </filters>
+        <label>All Open</label>
+    </listViews>
+    <listViews>
+        <fullName>Manager_Survey_Results</fullName>
+        <columns>NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Case__c</columns>
+        <columns>Survey_Age_Days__c</columns>
+        <columns>NPS_Score__c</columns>
+        <columns>Service_Agent_Average_Score__c</columns>
+        <columns>Status__c</columns>
+        <columns>Category__c</columns>
+        <columns>Resolution_Reason__c</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>Resolution_Notes__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Service_Operations_Survey_Response__c.Email_Transaction_Survey</value>
+        </filters>
+        <filters>
+            <field>Manager_Flag__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Negative_Flag__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>Closed</value>
+        </filters>
+        <label>Manager Survey Results</label>
+    </listViews>
+    <listViews>
+        <fullName>My_Survey_Restults</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Case__c</columns>
+        <columns>Service_Agent_Average_Score__c</columns>
+        <columns>Negative_Flag__c</columns>
+        <columns>NPS__c</columns>
+        <columns>Status__c</columns>
+        <columns>Category__c</columns>
+        <columns>Resolution_Reason__c</columns>
+        <columns>Action_Taken__c</columns>
+        <columns>Resolution_Notes__c</columns>
+        <filterScope>Mine</filterScope>
+        <label>My Survey Results</label>
+    </listViews>
+    <nameField>
+        <displayFormat>{00000000}</displayFormat>
+        <label>Survey ID</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Service Operations Survey Responses</pluralLabel>
+    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>Email_Transaction_Survey</fullName>
+        <active>true</active>
+        <label>Transaction Survey</label>
+        <picklistValues>
+            <picklist>Action_Taken__c</picklist>
+            <values>
+                <fullName>Coached agent</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Confirmed handled correctly</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Contacted customer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other %E2%80%93 see notes</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Product %E2%80%93 feedback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Training Dept %E2%80%93 feedback</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Category__c</picklist>
+            <values>
+                <fullName>Call Escalation</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Call Time Length</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Care %2F Concern</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Communication</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disconnected Call</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Efficiency</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Friendliness</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Hold</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IVR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Knowledge %2F Training</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Legal %2F Safety</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multiple Calls</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Callback</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Not Resolved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Policy %2F Procedure</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Retention</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Transfer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Wait Time</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Website</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Customer_Service_easy_to_handle_issue__c</picklist>
+            <values>
+                <fullName>Agree</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Disagree</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Neither agree nor disagree</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat agree</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat disagree</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strongly agree</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Strongly disagree</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Resolution_Reason__c</picklist>
+            <values>
+                <fullName>Follow up conducted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No follow up required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Service_Agent_Knowledge__c</picklist>
+            <values>
+                <fullName>Neither satisfied nor dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat satisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very satisfied</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Service_Agent_Overall_service__c</picklist>
+            <values>
+                <fullName>Neither satisfied nor dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat satisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very satisfied</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Service_Agent_Professionalism__c</picklist>
+            <values>
+                <fullName>Neither satisfied nor dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat satisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very satisfied</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Service_Agent_Responsiveness__c</picklist>
+            <values>
+                <fullName>Neither satisfied nor dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat satisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very satisfied</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Service_Agent_Showed_care_and_concern__c</picklist>
+            <values>
+                <fullName>Neither satisfied nor dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Somewhat satisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very dissatisfied</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Very satisfied</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Status__c</picklist>
+            <values>
+                <fullName>Closed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>In Process</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Open</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Tried_to_resolve_with_online_portal__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Was_issue_resolved_with_contact__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <searchLayouts>
+        <customTabListAdditionalFields>Case__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>Status__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OWNER.ALIAS</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>Case__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>Status__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>OWNER.ALIAS</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CREATED_DATE</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Case__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>Status__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>OWNER.ALIAS</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CREATED_DATE</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>Case__c</searchFilterFields>
+        <searchFilterFields>Status__c</searchFilterFields>
+        <searchFilterFields>OWNER.ALIAS</searchFilterFields>
+        <searchFilterFields>CREATED_DATE</searchFilterFields>
+        <searchResultsAdditionalFields>Case__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.ALIAS</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -1,11 +1,6 @@
 @isTest
 private class Test_CommunityUserStampData {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     @isTest static void test_StampLeadData() {
 
 

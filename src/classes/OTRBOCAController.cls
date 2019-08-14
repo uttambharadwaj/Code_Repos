@@ -4,8 +4,6 @@ Description:        Controller Class for OTRBOCA VF Page
 Test Classes:       OTRBOCATest
 Last Coverage:      60%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
-                    4/10/2019 Jason Arbegast IADJUDICAT-966 added break in a for loop
-                    5/6/2019 Michael Farrell IADJUDICAT-1157 populated tmSessionId variable
  */
 public class OTRBOCAController {
 
@@ -41,30 +39,6 @@ public class OTRBOCAController {
     public OnlineApplication__c onlineApplication { get; set; }
 
     public String tmSessionId { get; set; }
-
-    public String userSessionId {
-        get {
-            return UserInfo.getSessionId();
-        }
-    }
-
-    public Id optyId {
-        get {
-            if (ApexPages.currentPage().getParameters().get('optyId') != null) {
-                return ApexPages.currentPage().getParameters().get('optyId');
-            }
-            return null;
-        }
-    }
-
-    public Id accountId {
-        get {
-            if (ApexPages.currentPage().getParameters().get('accntId') != null) {
-                return ApexPages.currentPage().getParameters().get('accntId');
-            }
-            return null;
-        }
-    }
 
     public Boolean sendToConfirmation { get; set; }
 
@@ -451,7 +425,7 @@ public class OTRBOCAController {
 
                     } else {
 
-                        onlineApplication = new OnlineApplication__c(AO_Country__c = 'US');
+                        onlineApplication = new OnlineApplication__c();
                     }
 
                     // Generate ThreatMetrix SessionID
@@ -460,10 +434,7 @@ public class OTRBOCAController {
 
                     String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
 
-                    // IADJUDICAT-1157 populate tmSessionId variable
-                    tmSessionId = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
-
-                    onlineApplication.ThreatMetrix_Session_ID__c= tmSessionId;
+                    onlineApplication.ThreatMetrix_Session_ID__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
 
                 } else {
                     throw new creditApplicationException('Unable to find specified credit application.');
@@ -599,10 +570,7 @@ public class OTRBOCAController {
                 account.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
             }
 
-            if (accountId != null) {
-                account.Id = accountId;
-            }
-            else if (onlineApplication.Account__c != null) {
+            if (onlineApplication.Account__c != null) {
                 account.Id = onlineApplication.Account__c;
             }
 
@@ -704,11 +672,7 @@ public class OTRBOCAController {
             // Add Opportunity
             Opportunity opportunity = new Opportunity();
 
-            // if this was a Paper Application submitted through an existing application, then the opty id will be passed into the URL
-            if (optyId != null) {
-                opportunity.Id = optyId;
-            }
-            else if (onlineApplication.Opportunity__c != null) {
+            if (onlineApplication.Opportunity__c != null) {
                 opportunity.Id = onlineApplication.Opportunity__c;
             }
 
@@ -834,7 +798,6 @@ public class OTRBOCAController {
 
                     if (onlineApplication.Type_of_Business__c != null && (onlineApplication.Type_of_Business__c).equalsIgnoreCase(exemption.Legal_Structure__c)) {
                         isBOExempt = true;
-                        break; //IADJUDICAT-966 added this break just bc we don't need to iterate over any more once we find one that matches
                     }
 
                 }

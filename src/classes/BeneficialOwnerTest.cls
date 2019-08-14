@@ -7,8 +7,6 @@ public class BeneficialOwnerTest {
     @testSetup
     static void setupUser() {
         
-        UtilityTestLoader.setAutomation(false);
-    
         User user = [SELECT Id FROM User WHERE Alias = 'sinte'];
         
         PermissionSet permissionSet = [SELECT ID From PermissionSet WHERE Name = 'Beneficial_Owner_All'];

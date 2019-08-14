@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataCategoryGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Managing Your Account - EU Credit</label>
+                    <name>Managing_Your_Account_EU_Credit</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Technical Guides - EU Credit</label>
+                    <name>Technical_Guides_EU_Credit</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Video Tutorials - EU Credit</label>
+                    <name>Video_Tutorials_EU_Credit</name>
+                </dataCategory>
+                <label>EU - Credit</label>
+                <name>EU_Credit</name>
+            </dataCategory>
+            <label>Credit</label>
+            <name>Credit_External</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
+                <dataCategory>
+                    <label>Managing Your Account - EU Prepaid</label>
+                    <name>Managing_Your_Account_EU_Prepaid</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Technical Guides - EU Prepaid</label>
+                    <name>Technical_Guides_EU_Prepaid</name>
+                </dataCategory>
+                <dataCategory>
+                    <label>Video Tutorials - EU Prepaid</label>
+                    <name>Video_Tutorials_EU_Prepaid</name>
+                </dataCategory>
+                <label>EU - Prepaid</label>
+                <name>EU_Prepaid</name>
+            </dataCategory>
+            <label>Prepaid</label>
+            <name>Prepaid_External</name>
+        </dataCategory>
+        <label>All</label>
+        <name>All</name>
+    </dataCategory>
+    <description>Documents to be shared in the customer community</description>
+    <label>Virtual Customer Categories</label>
+    <objectUsage>
+        <object>KnowledgeArticleVersion</object>
+    </objectUsage>
+</DataCategoryGroup>

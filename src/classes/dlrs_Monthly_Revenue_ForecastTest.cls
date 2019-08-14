@@ -4,11 +4,6 @@
 @IsTest
 private class dlrs_Monthly_Revenue_ForecastTest
 {
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     @IsTest
     private static void testTrigger()
     {

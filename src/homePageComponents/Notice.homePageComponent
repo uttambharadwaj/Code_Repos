@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HomePageComponent xmlns="http://soap.sforce.com/2006/04/metadata">
+    <body>&lt;MARQUEE&gt;&lt;FONT style=&quot;BACKGROUND-COLOR: #ffff66&quot; color=#3333ff&gt;&lt;STRONG&gt;If your click to dial is not working, please log a HelpSTAR ticket.&lt;/STRONG&gt;&lt;/FONT&gt;&lt;/MARQUEE&gt;</body>
+    <pageComponentType>htmlArea</pageComponentType>
+    <width>wide</width>
+</HomePageComponent>

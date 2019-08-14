@@ -1,11 +1,6 @@
 @isTest
 private class UOpportunityTest {
 
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     @isTest
     static void test_create_tasks() {
 

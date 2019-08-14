@@ -4,8 +4,6 @@ private class WE_ScheduledDeadlineUpdateTest {
     @testSetup
     static void dataSetup() {
 
-        UtilityTestLoader.setAutomation(false);
-    
         Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator - Wex Europe'];
 
         // create User

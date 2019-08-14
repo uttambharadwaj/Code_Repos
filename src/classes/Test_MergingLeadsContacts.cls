@@ -9,11 +9,6 @@
 private class Test_MergingLeadsContacts {
 
     
-    @testSetup
-    static void setup(){
-        UtilityTestLoader.setAutomation(false);
-    }
-
     static testMethod void mergeLeads() {
         test.startTest();
         Id rectId = [Select Id from RecordType Where sobjectType='Lead' AND Name = 'Parent Lead' LIMIT 1].Id;
