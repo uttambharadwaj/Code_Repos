@@ -25,7 +25,7 @@ function pageLoadFunctions() {
     else isNA = false;
 
     // Various transformations for the Canadian application
-    if(boca_language_code === "en_ca" || boca_language_code === "fr_ca" || myCountry == 'CA') {
+    if(boca_language_code === "en_ca" || boca_language_code === "fr_ca") {
         flipToProvince('state');
         flipToProvince('pgState');
         flipToProvince('billingState');
