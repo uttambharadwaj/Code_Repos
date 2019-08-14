@@ -304,15 +304,23 @@
                                 </div>
                                 <div class="twelve columns clearfix">
                                     <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix form-field" data-row="5">
+                                            <apex:actionRegion >
+                                                <apex:outputLabel for="physicalCountry" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} "/>
+                                                <apex:InputField styleClass="styled-input" id="physicalCountry" html-tabindex="11" value="{!creditApp.Physical_Country__c}">
+                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode" oncomplete="pageLoadFunctions()"/>
+                                                </apex:InputField>
+                                            </apex:actionRegion>
+                                        </div>
                                         <div class="twelve columns clearfix form-field" data-row="0">
                                             <apex:outputLabel for="physicalAddressLine1" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_1__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="11" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
+                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="12" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
                                             <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_2__c.label} (optional)"/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="12" id="physicalAddressLine2" label="" value="{!creditApp.Physical_Address_Line_2__c}" html-maxlength="100" />
+                                            <apex:InputField styleClass="styled-input" html-tabindex="13" id="physicalAddressLine2" label="" value="{!creditApp.Physical_Address_Line_2__c}" html-maxlength="100" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
                                             <apex:outputLabel for="physicalCity" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_City__c.label} ">
@@ -331,14 +339,6 @@
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
                                             <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Physical_Country__c == null || creditApp.Physical_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="16" id="physicalPostalCode" label="" value="{!creditApp.Physical_Postal_Code__c}" html-maxlength="10" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="5">
-                                            <apex:actionRegion >
-                                                <apex:outputLabel for="physicalCountry" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} "/>
-                                                <apex:InputField html-disabled="true" styleClass="styled-input" id="physicalCountry" value="{!creditApp.Physical_Country__c}">
-                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode" oncomplete="pageLoadFunctions()"/>
-                                                </apex:InputField>
-                                            </apex:actionRegion>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="6">
                                             <apex:actionRegion >

@@ -1,5 +1,7 @@
 $j = jQuery.noConflict();
 
+var isNA = true;
+
 $j(document).ready(function() {
     
     pageLoadFunctions();
@@ -18,6 +20,10 @@ function pageLoadFunctions() {
     
     $j( "#accordion" ).accordion({ heightStyle: 'content', collapsible: true });
     
+    const myCountry = $j("[id$=physicalCountry]").val();
+    if(myCountry == 'US' || myCountry == 'CA') isNA = true;
+    else isNA = false;
+
     // Various transformations for the Canadian application
     if(boca_language_code === "en_ca" || boca_language_code === "fr_ca") {
         flipToProvince('state');
@@ -36,7 +42,7 @@ function pageLoadFunctions() {
         $j("[id$=legalStructure] option[value='Religious']").remove();
         $j("[id$=legalStructure] option[value='Other']").remove();
     }
-    
+
     $j('.phone').mask('999-999-9999');
     $j('.ssn').mask('000-00-0000');
     $j('.date').mask('00/00/0000');
@@ -128,7 +134,7 @@ function flipToProvince(id) {
 }
 
 function validatePhone(value) {
-    if(value !== "") {
+    if(value !== "" && isNA) {
         var characterReg = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/;
         if(!characterReg.test(value)) {
             return false;
@@ -162,7 +168,7 @@ function validateFleetSize(value) {
 }
 
 function validateCanadianPostalCode(value) {
-    if(value !== "") {
+    if(value !== "" && isNA) {
         
         var characterReg = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/i;
         if(!characterReg.test(value)) {
@@ -173,7 +179,7 @@ function validateCanadianPostalCode(value) {
 }
 
 function validatePostalCode(value) {
-    if(value !== "") {
+    if(value !== "" && isNA) {
         var characterReg = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
         if(!characterReg.test(value)) {
             return false;
