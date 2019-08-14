@@ -482,7 +482,7 @@ private class UCaseTest {
     * Created by mbickford on 10/11/2018.
     * 'Borrowed' by sschmidt on 6/14/2019.
      */
-    //  @IsTest  // Uncomment after email trigger bug fix -- MHB 2 Aug 2019
+    @IsTest
     static void testBehavior() {
 
         final String caseWithSurveySummary = 'EmailMessageTriggerTest Test Case';
@@ -490,10 +490,15 @@ private class UCaseTest {
 
         testSetup();
 
-        insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = true);
+        insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = true,ActivateSendSurveyEmailonCaseClose__c = true);
+
         EmailMessage message = new EmailMessage();
 
-        Case caseWithSurvey = [SELECT Id, RecordTypeId, AccountId , Subject, ContactId, Service_Program_Survey_Sent__c, Service_Survey_Transactional_link__c, SurveyInclusionText__c, SurveyInclusionHTML__c FROM Case WHERE Subject = :caseWithSurveySummary];
+        Case caseWithSurvey = [SELECT Id, RecordTypeId, AccountId , Subject, Status, ContactId, Service_Program_Survey_Sent__c, Service_Survey_Transactional_link__c, SurveyInclusionText__c, SurveyInclusionHTML__c FROM Case WHERE Subject = :caseWithSurveySummary];
+
+        caseWithSurvey.Status = 'Closed';
+
+        update(caseWithSurvey);
 
         Contact caseContact =[SELECT Id, Email FROM Contact WHERE Id = :caseWithSurvey.ContactId];
 
@@ -515,7 +520,7 @@ private class UCaseTest {
         message.FromAddress = 'mark_bickford@wrightexpress.com';
         message.ParentId = caseWithSurvey.Id;
         message.Subject = 'Test message';
-        message.ToAddress = 'sara.schmidt@wexinc.com';
+        message.ToAddress = 'sara.schmidt@domain.com';
         message.HtmlBody = 'This is a test message.<br/><br/>'+caseWithSurvey.SurveyInclusionHTML__c;
         message.TextBody = 'This is a test message.\n\n'+caseWithSurvey.SurveyInclusionText__c;
         message.Status = '3';
@@ -532,14 +537,14 @@ private class UCaseTest {
 
     }
 
-    //  @IsTest // Uncomment after email trigger bug fix -- MHB 2 Aug 2019
+    @IsTest
     static void testNoTriggerBehavior() {
 
         final String caseWithSurveySummary = 'EmailMessageTriggerTest Test Case';
         final String caseWithoutSurveySummary = 'EmailMessageTriggerTest Test Case Without Survey';
 
         testSetup();
-        insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = false);
+        insert new EmailMessageSettings__c(ActivateEmailMessageInsertTrigger__c = false,ActivateSendSurveyEmailonCaseClose__c = true);
 
         EmailMessage message = new EmailMessage();
 
@@ -565,7 +570,7 @@ private class UCaseTest {
         message.FromAddress = 'mark_bickford@wrightexpress.com';
         message.ParentId = caseWithoutSurvey.Id;
         message.Subject = 'Test message';
-        message.ToAddress = 'sara.schmidt@wexinc.com';
+        message.ToAddress = 'sara.schmidt@domain.com';
         message.HtmlBody = 'This is a test message.<br/><br/>'+ caseWithoutSurvey.SurveyInclusionHTML__c;
         message.TextBody = 'This is a test message.\n\n'+ caseWithoutSurvey.SurveyInclusionText__c;
         message.Status = '3';
@@ -618,7 +623,7 @@ private class UCaseTest {
         contact.RecordType = contactRecordType;
         contact.FirstName = 'Mark';
         contact.LastName = 'Bickford';
-        contact.Email = 'mark.bickford@wexinc.com';
+        contact.Email = 'mark.bickford@domain.com';
         contact.Account = wexAccount;
         contact.Status__c = 'Active';
 
@@ -633,6 +638,8 @@ private class UCaseTest {
         caseWithSurvey.AccountId = wexAccount.Id;
         caseWithSurvey.Subject = caseWithSurveySummary;
         caseWithSurvey.ContactId = contact.Id;
+        caseWithSurvey.Status = 'Pending';
+        caseWithSurvey.Program_Email__c = 'doesntexist@domain.com';
         caseWithSurvey.Service_Program_Survey_Sent__c = false;
 
         insert caseWithSurvey;
@@ -646,7 +653,9 @@ private class UCaseTest {
         caseWithoutSurvey.RecordTypeId = caseRecordType.Id;
         caseWithoutSurvey.AccountId = wexAccount.Id;
         caseWithoutSurvey.Subject = caseWithoutSurveySummary;
+        caseWithoutSurvey.Program_Email__c = 'doesntexist@domain.com';
         caseWithoutSurvey.ContactId = contact.Id;
+        caseWithSurvey.Status = 'Pending';
         caseWithoutSurvey.Service_Program_Survey_Sent__c = false;
 
         insert caseWithoutSurvey;
