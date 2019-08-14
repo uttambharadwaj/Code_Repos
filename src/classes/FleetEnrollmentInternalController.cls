@@ -328,6 +328,8 @@ public with sharing class FleetEnrollmentInternalController {
                             }
                         }
 
+                        FleetEnrollment.Submit_Fleet_Data_Form_Used__c = true;
+
                         if (opportunity.Campaign_Program__r.Program__c != null) {
 
                             program = WexBrandingController.getProgram(opportunity.Campaign_Program__r.Program__c);
@@ -452,6 +454,8 @@ public with sharing class FleetEnrollmentInternalController {
             if(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount != 0) fleetEnrollment.Monthly_Card_Charges__c = fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount;
             if(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount != 0) fleetEnrollment.Monthly_Accounting_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount;
             if(!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate)) fleetEnrollment.Monthly_Accounting_Fee_Waive_Date__c = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate);
+            if(!String.isBlank(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate)) fleetEnrollment.Card_Replacement_Fee_Waive_Date__c  = Date.parse(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate);
+            if(!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate)) fleetEnrollment.Monthly_Card_Charges_Waive_Date__c  = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate);
             if(fleetEnrollmentInformation.feeWaiversPaperFeeAmount != 0) fleetEnrollment.Paper_Fee__c = fleetEnrollmentInformation.feeWaiversPaperFeeAmount;
             if(fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount != 0) fleetEnrollment.Monthly_Activity_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount;
 
@@ -598,6 +602,19 @@ public with sharing class FleetEnrollmentInternalController {
                     insert directDebitData;
                 }
 
+                if (fleetEnrollmentInformation.directDebitCheckFileBody != null) {
+                    Attachment directDebitCheckData = new Attachment();
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
+                        directDebitCheckData.Name = applicationRequest.Siebel_Oppty__c + '_DirectDebitCheck_' + fleetEnrollmentInformation.directDebitCheckFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    else {
+                        directDebitCheckData.Name = opportunity.Opportunity_Number__c + '_DirectDebitCheck_' + fleetEnrollmentInformation.directDebitCheckFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    directDebitCheckData.Body = fleetEnrollmentInformation.directDebitFileBody;
+                    directDebitCheckData.ParentId = fleetEnrollment.Id;
+                    insert directDebitCheckData;
+                }
+
                 System.debug(fleetEnrollmentInformation.fleetEnrollmentContacts);
 
                 for (FleetEnrollmentContacts fleetEnrollmentContact : fleetEnrollmentInformation.fleetEnrollmentContacts) {
@@ -662,6 +679,8 @@ public with sharing class FleetEnrollmentInternalController {
         public Boolean feeWaiversMonthlyCardCharges { get; set; }
         public Decimal feeWaiversMonthlyCardChargesAmount { get; set; }
         public Boolean feeWaiversPaperFee { get; set; }
+        public String feeWaiversMonthlyCardChargesFeeEndDate { get; set; }
+        public String feeWaiversCardReplacementDurationFeeEndDate { get; set; }
         public Decimal feeWaiversPaperFeeAmount { get; set; }
         public Boolean feeWaiversMonthlyAccountingFee { get; set; }
         public Decimal feeWaiversMonthlyAccountingFeeAmount { get; set; }
@@ -703,6 +722,9 @@ public with sharing class FleetEnrollmentInternalController {
         public Boolean directDebit { get; set; }
         public String directDebitFileName { get; set; }
         public Blob directDebitFileBody { get; set; }
+
+        public String directDebitCheckFileName { get; set; }
+        public Blob directDebitCheckFileBody { get; set; }
 
         public String selectedCardType { get; set; }
         public String selectedUsageType { get; set; }

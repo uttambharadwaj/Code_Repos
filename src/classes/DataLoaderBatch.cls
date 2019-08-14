@@ -34,7 +34,7 @@ global class DataLoaderBatch implements Database.Batchable<String>,
 
         // Get the first config record order number
         String tdcQuery = 'SELECT Object__c, Required_Fields_Only__c, Static_Resource__c, Order__c' +
-                ' FROM Test_Data_Configuration__mdt';
+                ' FROM Test_Data_Configuration__mdt WHERE Is_Active__c = true';
         tdcQuery += ' ORDER BY Order__c ASC' +
                 ' LIMIT 1';
         List<Test_Data_Configuration__mdt> tdcs = Database.query(tdcQuery);
@@ -59,6 +59,7 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         List<sObject> toUpdate = new List<sObject>(); //self-referencing objects go here
         List<sObject> insertedObjects = new List<sObject>(); //completed objects go here
         //iterate over scope
+        system.debug(tdc);
         for (Integer myRow=scope.size()-1; myRow>=1; myRow--) {
             //need a new sobject based on what our object should be
             sObject newRecord = Schema.getGlobalDescribe().get(tdc.Object__c).newSObject();
@@ -97,12 +98,12 @@ global class DataLoaderBatch implements Database.Batchable<String>,
                     String myValue = getTheValue(currentFieldSchema, currentFieldValue);
 
                     Set<String> numTypes = new Set<String>{'CURRENCY','INTEGER','DECIMAL','DOUBLE'};
-
                     if (currentFieldSchema.getType() == Schema.DisplayType.Reference && !'RecordTypeId'.equalsIgnoreCase(currentFieldSchema.getName())) newRecord.put(currentFieldName, myValue);
                     else if (currentFieldSchema.getType() == Schema.DisplayType.Date) newRecord.put(currentFieldName, getTheDate(myValue));
                     else if (currentFieldSchema.getType() == Schema.DisplayType.DateTime) newRecord.put(currentFieldName, DateTime.parse(myValue));
                     else if (numTypes.contains(string.valueof(currentFieldSchema.getType())) && myValue != null) newRecord.put(currentFieldName, integer.valueOf(myValue));
                     else if (currentFieldSchema.getType() == Schema.DisplayType.Boolean) newRecord.put(currentFieldName, boolean.valueof(myValue));
+                    else if (currentFieldSchema.getType() == Schema.DisplayType.base64) newRecord.put(currentFieldName, Blob.valueOf(myValue));
                     else newRecord.put(currentFieldName, myValue);
                 }
             }
@@ -121,6 +122,7 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         }
         // clone toInsert so we have a copy as of this point in execution
         insertedObjects = toInsert.deepClone();
+
         insert toInsert;
         update toUpdate;
 
@@ -142,6 +144,7 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         List<Test_Data_Configuration__mdt> objectsToProcess = [SELECT Object__c, Required_Fields_Only__c, Static_Resource__c, Order__c
         FROM Test_Data_Configuration__mdt
         WHERE Order__c != NULL
+        AND Is_Active__c = true
         AND Order__c > :orderOfInsert
         ORDER BY Order__c ASC
         LIMIT 1];
@@ -185,14 +188,32 @@ global class DataLoaderBatch implements Database.Batchable<String>,
 
     //dates should be stored in yyyy-mm-dd format
     public static Date getTheDate(String currentFieldValue){
-        String[] dateArray = currentFieldValue.split('-');
-        return Date.parse(dateArray.get(1)+'/'+dateArray.get(2)+'/'+dateArray.get(0));
+        Date d = Date.today();
+        if(currentFieldValue.containsIgnoreCase('today')){
+            if(currentFieldValue.contains('+')){
+                d = d.AddDays(Integer.valueOf(currentFieldValue.substringAfter('+')));
+            } else if(currentFieldValue.contains('-')){
+                d = d.AddDays(Integer.valueOf(currentFieldValue.substring(currentFieldValue.indexOf('-'))));
+            }
+        } else {
+            String[] dateArray = currentFieldValue.split('-');
+            d = Date.parse(dateArray.get(1)+'/'+dateArray.get(2)+'/'+dateArray.get(0));
+        }
+        return d;
     }
 
     //take the field api name, take the field value, return appropriate value as a string
     public static String getTheValue(Schema.DescribeFieldResult currentFieldSchema, String currentFieldValue){
-        if (currentFieldSchema.getType() == Schema.DisplayType.Reference && !'RecordTypeId'.equalsIgnoreCase(currentFieldSchema.getName())) {
+        if (currentFieldSchema.getType() == Schema.DisplayType.Reference){
+            if('RecordTypeId'.equalsIgnoreCase(currentFieldSchema.getName())) {
+                return currentFieldValue;
+            }
             if (!String.isBlank(currentFieldValue)) {
+                if('current'.equalsIgnoreCase(currentFieldValue) &&
+                        ('user'.equalsIgnoreCase(currentFieldSchema.getReferenceTo()[0].getDescribe().getName()) ||
+                                'group'.equalsIgnoreCase(currentFieldSchema.getReferenceTo()[0].getDescribe().getName()))){
+                    return UserInfo.getUserId();
+                }
                 //do some lookup logic
                 return doLookupLogic(currentFieldValue);
             }
@@ -219,11 +240,13 @@ global class DataLoaderBatch implements Database.Batchable<String>,
         FROM Test_Data_Configuration__mdt
         WHERE Order__c =: order];
         currentTestConfig = tdc;
+
         StaticResource resource = [SELECT Body FROM StaticResource WHERE Name =: tdc.Static_Resource__c];
         // Get just the header row from the specified Static Resource and store that in a variable
         Blob blobby = resource.Body;
         String contentFile = blobby.toString();
         String[] filelines = contentFile.split('\n');
+
         String header = filelines[0];
         String[] headerValues = header.split(',');
         for (Integer i=0; i<headerValues.size(); i++) {
