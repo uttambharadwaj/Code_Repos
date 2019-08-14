@@ -2,6 +2,9 @@
 public class WESApplicationRequestTriggerHandlerTest {
     @testsetup
     static void setupData() {
+    
+        UtilityTestLoader.setAutomation(false);
+    
         Velocity_Profile__c prof1 = new Velocity_Profile__c();
         prof1.Country_code__c = 'GB;DE';
         prof1.LowerLimit__c = 0;

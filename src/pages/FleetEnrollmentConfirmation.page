@@ -1,3 +1,6 @@
+<!--
+Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
+-->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentConfirmationController">
 <html>
 <head>
@@ -236,14 +239,16 @@
 						</apex:outputText>
                         <apex:outputPanel id="staticCardImage">
 							<div id="cardImage">
-	                        	<img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+								<!--PSOBACKLOG-76-->
+	                        	<img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
 							</div>
 						</apex:outputPanel>
                     </div>
                 </div>
                 <div class="eight columns" id="pageImage">
                 	<apex:outputPanel id="subHeaderImage">
-						<apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}" />
+						<!--PSOBACKLOG-76-->
+						<apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}" alt="Lander Graphic Image"/>
 					</apex:outputPanel>
                 </div>
             </div>

@@ -1,6 +1,11 @@
 @isTest
 public class TestBOCATaskTrigger {
     
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void testUnsolicitedBOCA() {
         
         BOCA_Settings__c bocaSettings = new BOCA_Settings__c();

@@ -1,5 +1,5 @@
 trigger BOCATaskTrigger on Application_Request__c (before update) {
-    
+    /*
     BOCA_Settings__c bocaSettings = BOCA_Settings__c.getOrgDefaults();
     
     if(bocaSettings.Enable_BOCA_Task_Trigger__c == false) {
@@ -20,5 +20,5 @@ trigger BOCATaskTrigger on Application_Request__c (before update) {
         
         
     }
-    
+    */
 }

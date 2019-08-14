@@ -1,4 +1,4 @@
-// TODO - Decommission This Class
+@isTest
 private class TMTDDispatchUpdatesTest
 {
     //static Program__c program { get; set; }

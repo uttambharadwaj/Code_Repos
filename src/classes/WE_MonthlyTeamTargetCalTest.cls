@@ -1,6 +1,11 @@
 @isTest
 public class WE_MonthlyTeamTargetCalTest {
     
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void testUpdateTargetAmount(){
         
         Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator - Wex Europe'];

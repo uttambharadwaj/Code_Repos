@@ -1,6 +1,11 @@
 @isTest
 public with sharing class CPBOCATest {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     public static Program__c setupProgram() {
 
         // Revisit this later..

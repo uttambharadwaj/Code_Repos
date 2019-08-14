@@ -11,7 +11,7 @@
         <div class="ptBreadcrumb">&nbsp;«&nbsp;<a href="/{!originalRequest.applicationId}">Back to Application: {!originalRequest.applicationName}</a></div>
     </div><br/>
     <apex:pageBlock mode="mainDetail" >
-        <apex:pageBlockTable id="originalRequestTable" value="{!originalRequest}" var="originalRequest">
+        <apex:pageBlockTable id ="originalRequestTable" value="{!originalRequest}" var="originalRequest">
             <apex:column headerValue="Legal Business Name">{!originalRequest.legalBusinessName}</apex:column>
             <apex:column headerValue="Address">{!originalRequest.addressLine1}</apex:column>
             <apex:column headerValue="City">{!originalRequest.city}</apex:column>
@@ -19,6 +19,7 @@
             <apex:column headerValue="Postal Code">{!originalRequest.postalCode}</apex:column>
             <apex:column headerValue="Phone">{!originalRequest.phone}</apex:column>
             <apex:column headerValue="Tax ID">{!originalRequest.taxId}</apex:column>
+            <apex:column headerValue="PG SSN">{!originalRequest.pgSSN}</apex:column>
             <apex:column headerValue="DUNS Number">{!originalRequest.duns}</apex:column>
             <apex:column headerValue="IP Address">{!originalRequest.ipAddress}</apex:column>
         </apex:pageBlockTable>

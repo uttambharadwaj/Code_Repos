@@ -1,12 +1,16 @@
 /*
 Description:        Test class for OTRBocaController and OTRSetupController
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 utilize test setup method; add test method for generating pdf
+                    4/15/2019 Jason Arbegast IADJUDICAT-966 remove selectedaddressoption
 */
 @isTest
 public class OTRBOCATest {
 
     @testSetup
     static void setup(){
+    
+        UtilityTestLoader.setAutomation(false);
+    
         Account offerAccount = new Account();
         offerAccount.Name ='TestAccount-01';
 
@@ -424,12 +428,6 @@ public class OTRBOCATest {
                 otrSetupController = new OTRSetupController();
 
                 otrSetupController.init();
-
-                otrSetupController.selectedAddressOption = 'no';
-
-                otrSetupController.populateAddress();
-
-                otrSetupController.selectedAddressOption = 'yes';
 
                 otrSetupController.populateAddress();
 
