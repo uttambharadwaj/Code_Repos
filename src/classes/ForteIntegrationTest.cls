@@ -1,7 +1,12 @@
 @isTest
 private class ForteIntegrationTest {
 
-	private static testmethod void testIntegration() {
+	@testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
+    private static testmethod void testIntegration() {
 
 		Test.setMock(HttpCalloutMock.class, new UOnlineApplicationTest());
 

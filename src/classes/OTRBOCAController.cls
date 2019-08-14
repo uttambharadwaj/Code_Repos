@@ -4,7 +4,13 @@ Description:        Controller Class for OTRBOCA VF Page
 Test Classes:       OTRBOCATest
 Last Coverage:      60%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
+                    4/10/2019 Jason Arbegast IADJUDICAT-966 added break in a for loop
+                    05/06/2019  Michael Farrell     IADJUDICAT-1157     populated tmSessionId variable
+                    06/21/2019  Michael Farrell     PSOBACKLOG-226      added Offer__c lookup field to opportunity for CPQ
+                    07/30/2019 JA OTRONBOARD-59 add existing carrier id
+
  */
+
 public class OTRBOCAController {
 
     public final static String APPLICATION_NAME = 'OTRBOCA';
@@ -38,7 +44,33 @@ public class OTRBOCAController {
 
     public OnlineApplication__c onlineApplication { get; set; }
 
+    public String carrierID { get; set; }
+
     public String tmSessionId { get; set; }
+
+    public String userSessionId {
+        get {
+            return UserInfo.getSessionId();
+        }
+    }
+
+    public Id optyId {
+        get {
+            if (ApexPages.currentPage().getParameters().get('optyId') != null) {
+                return ApexPages.currentPage().getParameters().get('optyId');
+            }
+            return null;
+        }
+    }
+
+    public Id accountId {
+        get {
+            if (ApexPages.currentPage().getParameters().get('accntId') != null) {
+                return ApexPages.currentPage().getParameters().get('accntId');
+            }
+            return null;
+        }
+    }
 
     public Boolean sendToConfirmation { get; set; }
 
@@ -251,7 +283,7 @@ public class OTRBOCAController {
         }
     }
 
-    public List<String> dayOfPaymentOptions {
+    /* public List<String> dayOfPaymentOptions {
         get {
             List<String> picklistValues = new List<String>();
             Schema.DescribeFieldResult dayOfPayment = OnlineApplication__c.Day_of_Payment__c.getDescribe();
@@ -261,7 +293,7 @@ public class OTRBOCAController {
             }
             return picklistValues;
         }
-    }
+    } */
 
     public String selectedDaysOfPayment { get; set; }
 
@@ -342,7 +374,7 @@ public class OTRBOCAController {
                                     SELECT Id, Opportunity__r.Beneficial_Owner_Entity__c, AO_Address__c, AO_City__c, AO_Home_Phone_Number__c,
                                             AO_Mobile_Number__c, AO_State__c, AO_Title__c, AO_Zip_Code__c, AO_Country__c, Account__c, Business_Address_Line_2__c, Business_Description__c,
                                             Business_Street_Address__c, Cell_Number__c, City__c, Country__c, Contact_First_Name__c, Contact_Last_Name__c, Credit_Line_Requested__c,
-                                            DOT_Number__c, Day_of_Payment__c, Email__c, FF_Number__c, Fax_Number__c, Financial_Institution__c, Legal_Business_Name__c,
+                                            DOT_Number__c, Days_of_Payment__c, Email__c, FF_Number__c, Fax_Number__c, Financial_Institution__c, Legal_Business_Name__c,
                                             MC_FF_or_DOT__c, MC_Number__c, Name_of_Parent_Company__c, Number_Of_Drivers__c, Number_of_Cards_Needed__c, Number_of_Trucks__c,
                                             Payment_Method__c, Phone_Number__c, Promotional_Code__c, State__c, Trade_Name__c, Type_of_Business__c, Year_Established__c, Zip_code__c, Account_Type__c,
                                             Mobile_Number__c, Application_Key__c, External_Application_URL__c
@@ -356,7 +388,7 @@ public class OTRBOCAController {
                                 onlineApplication.Id = partialOnlineApplications[0].Id;
 
                                 fleetIdentifier = partialOnlineApplications[0].MC_FF_or_DOT__c;
-                                selectedDaysOfPayment = partialOnlineApplications[0].Day_of_Payment__c;
+                                selectedDaysOfPayment = partialOnlineApplications[0].Days_of_Payment__c;
 
                             } else {
 
@@ -425,7 +457,7 @@ public class OTRBOCAController {
 
                     } else {
 
-                        onlineApplication = new OnlineApplication__c();
+                        onlineApplication = new OnlineApplication__c(AO_Country__c = 'US');
                     }
 
                     // Generate ThreatMetrix SessionID
@@ -434,7 +466,10 @@ public class OTRBOCAController {
 
                     String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
 
-                    onlineApplication.ThreatMetrix_Session_ID__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+                    // IADJUDICAT-1157 populate tmSessionId variable
+                    tmSessionId = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+
+                    onlineApplication.ThreatMetrix_Session_ID__c= tmSessionId;
 
                 } else {
                     throw new creditApplicationException('Unable to find specified credit application.');
@@ -561,118 +596,149 @@ public class OTRBOCAController {
 
         try {
 
+            Account account = new Account();
+            Contact primaryContact = new Contact();
+            Contact pgContact = new Contact();
+            Database.upsertResult result;
+
+            if(carrierID != null && carrierID != ''){
+                Boolean carrierNotFound = true;
+                for(Account a : [SELECT Id,(SELECT Id, Program__c, Opportunity__r.Primary_Contact__c, Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c FROM Online_Applications__r) FROM Account WHERE Carrier_ID__c = :carrierID]) {
+                    for (OnlineApplication__c oa : a.Online_Applications__r) {
+                        if (oa.Program__c == program.Id) {
+                            carrierNotFound = false;
+                            //need to get account and contact informations
+                            account.Id = a.Id;
+                            primaryContact.Id = oa.Opportunity__r.Primary_Contact__c;
+                            pgContact.Id = oa.Personal_Guarantor__c;
+                            pgContact.FirstName = oa.Personal_Guarantor__r.FirstName;
+                            pgContact.LastName = oa.Personal_Guarantor__r.LastName;
+                            break;
+                        }
+                    }
+                }
+                if(carrierNotFound)
+                    throw new creditApplicationException('Carrier ID not found or no prior applications');
+
+            }
+
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
-            // Add Account
-            Account account = new Account();
+            if(account.Id == null) {
+                if (Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account') != null) {
+                    account.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
+                }
 
-            if (Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account') != null) {
-                account.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
+                if (accountId != null) {
+                    account.Id = accountId;
+                } else if (onlineApplication.Account__c != null) {
+                    account.Id = onlineApplication.Account__c;
+                }
+
+                if (onlineApplication.Account__c == null) {
+                    account.OwnerId = defaultOwner.Id;
+                    account.Name = onlineApplication.Legal_Business_Name__c;
+                }
+                account.Phone = onlineApplication.Phone_Number__c;
+                account.Fax = onlineApplication.Fax_Number__c;
+
+                // Billing Information
+                account.BillingStreet = onlineApplication.Business_Street_Address__c;
+                account.BillingCity = onlineApplication.City__c;
+                account.BillingState = onlineApplication.State__c;
+                account.BillingPostalCode = onlineApplication.Zip_Code__c;
+
+                // Shipping Information
+                account.ShippingStreet = onlineApplication.Business_Street_Address__c;
+                if (onlineApplication.Business_Address_Line_2__c != null) {
+                    account.ShippingStreet = onlineApplication.Business_Street_Address__c + ', ' + onlineApplication.Business_Address_Line_2__c;
+                }
+                account.ShippingCity = onlineApplication.City__c;
+                account.ShippingState = onlineApplication.State__c;
+                account.ShippingPostalCode = onlineApplication.Zip_code__c;
+
+                // Misc Information
+                account.Tax_ID__c = onlineApplication.Federal_Tax_ID__c;
+
+                result = Database.upsert(account, false);
+                if (!result.isSuccess()) {
+                    throw new creditApplicationException('Critical error inserting the Account: ' + result.getErrors());
+                }
+
+                System.debug('***OTR*** Account: ' + account.Id);
             }
-
-            if (onlineApplication.Account__c != null) {
-                account.Id = onlineApplication.Account__c;
-            }
-
-            if (onlineApplication.Account__c == null) {
-                account.OwnerId = defaultOwner.Id;
-                account.Name = onlineApplication.Legal_Business_Name__c;
-            }
-            account.Phone = onlineApplication.Phone_Number__c;
-            account.Fax = onlineApplication.Fax_Number__c;
-
-            // Billing Information
-            account.BillingStreet = onlineApplication.Business_Street_Address__c;
-            account.BillingCity = onlineApplication.City__c;
-            account.BillingState = onlineApplication.State__c;
-            account.BillingPostalCode = onlineApplication.Zip_Code__c;
-
-            // Shipping Information
-            account.ShippingStreet = onlineApplication.Business_Street_Address__c;
-            if (onlineApplication.Business_Address_Line_2__c != null) {
-                account.ShippingStreet = onlineApplication.Business_Street_Address__c + ', ' + onlineApplication.Business_Address_Line_2__c;
-            }
-            account.ShippingCity = onlineApplication.City__c;
-            account.ShippingState = onlineApplication.State__c;
-            account.ShippingPostalCode = onlineApplication.Zip_code__c;
-
-            // Misc Information
-            account.Tax_ID__c = onlineApplication.Federal_Tax_ID__c;
-
-            Database.upsertResult result = Database.upsert(account, false);
-            if (!result.isSuccess()) {
-                throw new creditApplicationException('Critical error inserting the Account: ' + result.getErrors());
-            }
-
-            System.debug('***OTR*** Account: ' + account.Id);
 
             // Add Contacts
 
-            // Create Primary Contact
-            Contact primaryContact = new Contact();
+            if(primaryContact.Id == null) {
+                // Create Primary Contact
+                primaryContact.AccountId = account.Id;
 
-            primaryContact.AccountId = account.Id;
+                primaryContact.FirstName = onlineApplication.Contact_First_Name__c;
+                primaryContact.LastName = onlineApplication.Contact_Last_Name__c;
+                primaryContact.Phone = onlineApplication.Phone_Number__c;
+                primaryContact.Fax = onlineApplication.Fax_Number__c;
+                primaryContact.Email = onlineApplication.Email__c;
 
-            primaryContact.FirstName = onlineApplication.Contact_First_Name__c;
-            primaryContact.LastName = onlineApplication.Contact_Last_Name__c;
-            primaryContact.Phone = onlineApplication.Phone_Number__c;
-            primaryContact.Fax = onlineApplication.Fax_Number__c;
-            primaryContact.Email = onlineApplication.Email__c;
+                primaryContact.MailingStreet = onlineApplication.Business_Street_Address__c;
+                primaryContact.MailingCity = onlineApplication.City__c;
+                primaryContact.MailingState = onlineApplication.State__c;
+                primaryContact.MailingPostalCode = onlineApplication.Zip_code__c;
+                primaryContact.MailingCountry = onlineApplication.Country__c;
 
-            primaryContact.MailingStreet = onlineApplication.Business_Street_Address__c;
-            primaryContact.MailingCity = onlineApplication.City__c;
-            primaryContact.MailingState = onlineApplication.State__c;
-            primaryContact.MailingPostalCode = onlineApplication.Zip_code__c;
-            primaryContact.MailingCountry = onlineApplication.Country__c;
+                insert primaryContact;
 
-            insert primaryContact;
-
-            result = Database.upsert(primaryContact, false);
-            if (!result.isSuccess()) {
-                throw new creditApplicationException('Critical error inserting the Primary Contact: ' + result.getErrors());
+                result = Database.upsert(primaryContact, false);
+                if (!result.isSuccess()) {
+                    throw new creditApplicationException('Critical error inserting the Primary Contact: ' + result.getErrors());
+                }
             }
 
             System.debug('***OTR*** Primary Contact: ' + primaryContact.Id);
 
-            // Create PG Contact
-            Contact pgContact = new Contact();
+            if(pgContact.Id == null){
+                // Create PG Contact
 
-            if (additionalAttributes.ssn != null || Test.isRunningTest()) {
+                if (additionalAttributes.ssn != null || Test.isRunningTest()) {
 
-                pgContact.AccountId = account.Id;
+                    pgContact.AccountId = account.Id;
 
-                pgContact.FirstName = onlineApplication.Contact_First_Name__c;
-                pgContact.LastName = onlineApplication.Contact_Last_Name__c;
+                    pgContact.FirstName = onlineApplication.Contact_First_Name__c;
+                    pgContact.LastName = onlineApplication.Contact_Last_Name__c;
 
-                pgContact.Email = onlineApplication.AO_Work_Email__c;
-                pgContact.mobilePhone = onlineApplication.Mobile_Number__c;
-                pgContact.Phone = onlineApplication.AO_Home_Phone_Number__c;
+                    pgContact.Email = onlineApplication.AO_Work_Email__c;
+                    pgContact.mobilePhone = onlineApplication.Mobile_Number__c;
+                    pgContact.Phone = onlineApplication.AO_Home_Phone_Number__c;
 
-                pgContact.MailingStreet = onlineApplication.AO_Address__c;
-                pgContact.MailingCity = onlineApplication.AO_City__c;
-                pgContact.MailingState = onlineApplication.AO_State__c;
-                pgContact.MailingPostalCode = onlineApplication.AO_Zip_Code__c;
-                pgContact.MailingCountry = onlineApplication.AO_Country__c;
+                    pgContact.MailingStreet = onlineApplication.AO_Address__c;
+                    pgContact.MailingCity = onlineApplication.AO_City__c;
+                    pgContact.MailingState = onlineApplication.AO_State__c;
+                    pgContact.MailingPostalCode = onlineApplication.AO_Zip_Code__c;
+                    pgContact.MailingCountry = onlineApplication.AO_Country__c;
 
-                if (onlineApplication.AO_Date_of_Birth__c != null) {
-                    pgContact.Birthdate = onlineApplication.AO_Date_of_Birth__c;
+                    if (onlineApplication.AO_Date_of_Birth__c != null) {
+                        pgContact.Birthdate = onlineApplication.AO_Date_of_Birth__c;
+                    }
+                    pgContact.SSN__c = additionalAttributes.ssn;
+
+                    result = Database.upsert(pgContact, false);
+                    if (!result.isSuccess()) {
+                        throw new creditApplicationException('Critical error inserting the PG Contact: ' + result.getErrors());
+                    }
                 }
-                pgContact.SSN__c = additionalAttributes.ssn;
-
-                result = Database.upsert(pgContact, false);
-                if (!result.isSuccess()) {
-                    throw new creditApplicationException('Critical error inserting the PG Contact: ' + result.getErrors());
-                }
-
-                onlineApplication.Personal_Guarantor__c = pgContact.Id;
-                System.debug('***OTR*** PG Contact: ' + pgContact.Id);
-
             }
+
+            onlineApplication.Personal_Guarantor__c = pgContact.Id;
+            System.debug('***OTR*** PG Contact: ' + pgContact.Id);
 
             // Add Opportunity
             Opportunity opportunity = new Opportunity();
 
-            if (onlineApplication.Opportunity__c != null) {
+            // if this was a Paper Application submitted through an existing application, then the opty id will be passed into the URL
+            if (optyId != null) {
+                opportunity.Id = optyId;
+            }
+            else if (onlineApplication.Opportunity__c != null) {
                 opportunity.Id = onlineApplication.Opportunity__c;
             }
 
@@ -742,6 +808,11 @@ public class OTRBOCAController {
             opportunity.Guarantor_Annual_Income__c = 0.00;
             opportunity.Guarantor_home_phone__c = onlineApplication.AO_Home_Phone_Number__c;
 
+            // PSOBACKLOG-226
+            if (onlineApplicationOffer != null) {
+                opportunity.Offer__c = onlineApplicationOffer.Id;
+            }
+
             if (campaign != null && campaignProgram != null) {
                 opportunity.CampaignId = campaign.Id;
                 opportunity.Campaign_Program__c = campaignProgram.Id;
@@ -798,6 +869,7 @@ public class OTRBOCAController {
 
                     if (onlineApplication.Type_of_Business__c != null && (onlineApplication.Type_of_Business__c).equalsIgnoreCase(exemption.Legal_Structure__c)) {
                         isBOExempt = true;
+                        break; //IADJUDICAT-966 added this break just bc we don't need to iterate over any more once we find one that matches
                     }
 
                 }
@@ -829,7 +901,7 @@ public class OTRBOCAController {
 //                onlineApplication.OwnerId = opportunity.OwnerId;
 //            }
 
-            onlineApplication.Day_of_Payment__c = selectedDaysOfPayment;
+//            onlineApplication.Day_of_Payment__c = selectedDaysOfPayment;
             onlineApplication.Program__c = program.Id;
             onlineApplication.Offer__c = onlineApplicationOffer.Id;
             onlineApplication.Product_Type__c = 'OTR';

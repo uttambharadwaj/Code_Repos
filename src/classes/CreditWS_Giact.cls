@@ -44,24 +44,10 @@ public with sharing class CreditWS_Giact {
                 // Customer Information
                 giactRequest.Customer = new CreditWSUtil_GiactVerify.Customer();
                 giactRequest.Customer.EntityType = 0;
-                giactRequest.Customer.FirstName = giactInquiryRequest.FirstName;
-                giactRequest.Customer.LastName = giactInquiryRequest.LastName;
                 giactRequest.Customer.BusinessName = giactInquiryRequest.BusinessName;
-                giactRequest.Customer.AddressLine1 = giactInquiryRequest.AddressLine1;
-                giactRequest.Customer.AddressLine2 = giactInquiryRequest.AddressLine2;
-                giactRequest.Customer.City = giactInquiryRequest.City;
-                giactRequest.Customer.State = giactInquiryRequest.State;
-                giactRequest.Customer.ZipCode = giactInquiryRequest.ZipCode;
-                giactRequest.Customer.Country = giactInquiryRequest.Country;
-                if(!String.isBlank(giactInquiryRequest.PhoneNumber)) {
-                    giactRequest.Customer.PhoneNumber = giactInquiryRequest.PhoneNumber.replaceAll('[^0-9]', '');
-                }
                 if(!String.isBlank(giactInquiryRequest.FederalTaxId)) {
                     giactRequest.Customer.TaxId = giactInquiryRequest.FederalTaxId.replaceAll('[^0-9]', '');
                 }
-                giactRequest.Customer.DateOfBirth = giactInquiryRequest.DateOfBirth;
-                giactRequest.Customer.EmailAddress = giactInquiryRequest.EmailAddress;
-                giactRequest.Customer.CurrentIpAddress = giactInquiryRequest.IpAddress;
 
                 // General Settings
                 giactRequest.GAuthenticateEnabled = true;
@@ -97,9 +83,15 @@ public with sharing class CreditWS_Giact {
                             giactVerifyResponse.VerificationResponseCode = String.valueOf(giactResponse.VerificationResponse);
                             giactVerifyResponse.VerificationResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
                             giactVerifyResponse.VerificationResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'VerificationResponse', giactVerifyResponse.VerificationResponseCode);
+
                             giactVerifyResponse.AccountResponseCode = String.valueOf(giactResponse.AccountResponseCode);
                             giactVerifyResponse.AccountResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
                             giactVerifyResponse.AccountResponseMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'AccountResponseCode', giactVerifyResponse.AccountResponseCode);
+
+                            giactVerifyResponse.CustomerResponseCode = String.valueOf(giactResponse.CustomerResponseCode);
+                            giactVerifyResponse.CustomerResponseCodeName = CreditWS_Giact.getGiactResponseCodeName('gVerify', 'CustomerResponseCode', giactVerifyResponse.CustomerResponseCode);
+                            giactVerifyResponse.CustomerResponseCodeMessage = CreditWS_Giact.getGiactResponseMessage('gVerify', 'CustomerResponseCode', giactVerifyResponse.CustomerResponseCode);
+
 
                         }
                         else {
@@ -205,6 +197,9 @@ public with sharing class CreditWS_Giact {
         public String VerificationResponseCode { get; set; }
         public String VerificationResponseCodeName { get; set; }
         public String VerificationResponseMessage { get; set; }
+        public String CustomerResponseCode { get; set; }
+        public String CustomerResponseCodeName { get; set; }
+        public String CustomerResponseCodeMessage { get; set; }
         public String GiactErrorMessage { get; set; }
 
         public GiactVerifyResponse() {

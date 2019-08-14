@@ -1,5 +1,5 @@
 <apex:page showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false"
-           standardController="Opportunity" extensions="PartnerBOCAToProspectController" action="{!init}">
+           controller="PartnerBOCAToProspectController" action="{!init}">
     <html>
     <head>
 
@@ -46,7 +46,7 @@
                         <div class="slds-text-heading_medium">Your application was sent successfully.</div>
                     </div><br/>
                     <div class="slds-align_absolute-center">
-                        <a class="slds-button slds-button_brand submit-button" href="https://{!$Label.External_Instance_URL}/creditapplication/PartnerBOCAToProspect?partner={!partnerParameter}&salesCode={!externalSalesCodeParameter}">
+                        <a class="slds-button slds-button_brand submit-button" href="https://{!$Label.External_Instance_URL}/creditapplication/PartnerBOCAToProspect?partner={!partnerParameter}">
                             Send Another Application
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                                                 <div class="slds-p-around_medium">
                                                     <div class="slds-form-element">
                                                         <label class="slds-form-element__label"
-                                                               for="input-id-01">Program</label>
+                                                               for="input-id-01">Program *</label>
                                                         <div class="slds-form-element__control">
                                                             <apex:selectList styleClass="slds-select" html-data-parsley-required="true"
                                                                              value="{!selectedProgram}" id="program" size="1">
@@ -92,7 +92,7 @@
                                                     <apex:outputPanel id="offer">
                                                         <apex:outputPanel rendered="{!bocaType=='OTR'}">
                                                             <div class="slds-form-element" >
-                                                                <label class="slds-form-element__label" for="input-id-01">Offers</label>
+                                                                <label class="slds-form-element__label" for="input-id-01">Offers *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:selectList styleClass="slds-select" html-data-parsley-required="true"
                                                                                      value="{!selectedOffer}" size="1">
@@ -135,7 +135,7 @@
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
                                                                 <label class="slds-form-element__label" for="applicantCompanyName">Company
-                                                                    Name</label>
+                                                                    Name *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input" id="applicantCompanyName" value="{!partnerBOCAtoProspect.Company_Name__c}" html-data-parsley-required="true"/>
                                                                 </div>
@@ -144,7 +144,7 @@
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
                                                                 <label class="slds-form-element__label" for="applicantFirstName">First
-                                                                    Name</label>
+                                                                    Name *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input" id="applicantFirstName" value="{!partnerBOCAtoProspect.First_Name__c}" html-data-parsley-required="true"/>
                                                                 </div>
@@ -153,7 +153,7 @@
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
                                                                 <label class="slds-form-element__label" for="applicantLastName">Last
-                                                                    Name</label>
+                                                                    Name *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input" id="applicantLastName" value="{!partnerBOCAtoProspect.Last_Name__c}" html-data-parsley-required="true"/>
                                                                 </div>
@@ -164,7 +164,7 @@
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
                                                                 <label class="slds-form-element__label"
-                                                                       for="applicantEmail">Email</label>
+                                                                       for="applicantEmail">Email *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input" id="applicantEmail" value="{!partnerBOCAtoProspect.Email__c}" html-data-parsley-required="true" html-data-parsley-type="email" />
                                                                 </div>
@@ -173,13 +173,15 @@
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
                                                                 <label class="slds-form-element__label" for="applicantPhone">Phone
-                                                                    Number</label>
+                                                                    Number *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input phone" id="applicantPhone" value="{!partnerBOCAtoProspect.Phone__c}" html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
                                                                                      html-data-parsley-error-message="Please enter a valid phone number."/>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <!--commenting out as there will be no oppty when they use this form. yet. maybe someday.-->
+                                                        <!--
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
                                                                 <label class="slds-form-element__label" for="applicantSalesforceOpportunityID">Salesforce
@@ -189,6 +191,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        -->
                                                     </div>
                                                 </div><br/>
                                             </div>
@@ -221,15 +224,15 @@
                                                     <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2">
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
-                                                                <label class="slds-form-element__label" for="salesRepCode">Partner Sales Code</label>
+                                                                <label class="slds-form-element__label" for="partnerSalesCode">Verification Code *</label>
                                                                 <div class="slds-form-element__control">
-                                                                    <apex:inputField styleClass="slds-input" id="salesRepCode" value="{!partnerBOCAtoProspect.Sales_Rep_Code__c}" html-data-parsley-required="true" />
+                                                                    <apex:inputField styleClass="slds-input" id="partnerSalesCode" value="{!partnerBOCAtoProspect.Partner_Sales_Code__c}" html-data-parsley-required="true" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
-                                                                <label class="slds-form-element__label" for="salesRepFirstName">First Name</label>
+                                                                <label class="slds-form-element__label" for="salesRepFirstName">First Name *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input" id="salesRepFirstName" value="{!partnerBOCAtoProspect.Sales_Rep_First_Name__c}" html-data-parsley-required="true" />
                                                                 </div>
@@ -237,9 +240,17 @@
                                                         </div>
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
-                                                                <label class="slds-form-element__label" for="salesRepLastName">Last Name</label>
+                                                                <label class="slds-form-element__label" for="salesRepLastName">Last Name *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input" id="salesRepLastName" value="{!partnerBOCAtoProspect.Sales_Rep_Last_Name__c}" html-data-parsley-required="true" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerOpptyId">Partner Opportunity ID</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerOpptyId" value="{!partnerBOCAtoProspect.Partner_Opportunity_ID__c}" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -247,8 +258,16 @@
                                                     <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--1-of-2">
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="salesRepCode">Sales Rep Code</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="salesRepCode" value="{!partnerBOCAtoProspect.Sales_Rep_Code__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
                                                                 <label class="slds-form-element__label"
-                                                                       for="salesRepEmail">Email</label>
+                                                                       for="salesRepEmail">Email *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input" id="salesRepEmail" value="{!partnerBOCAtoProspect.Sales_Rep_Email__c}" html-data-parsley-required="true" html-data-parsley-type="email" />
                                                                 </div>
@@ -257,7 +276,7 @@
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
                                                                 <label class="slds-form-element__label" for="salesRepPhone">Phone
-                                                                    Number</label>
+                                                                    Number *</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input phone" id="salesRepPhone" value="{!partnerBOCAtoProspect.Sales_Rep_Phone__c}" html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
                                                                                      html-data-parsley-error-message="Please enter a valid phone number." />

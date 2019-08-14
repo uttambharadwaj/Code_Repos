@@ -1,17 +1,17 @@
 <apex:component controller="BOCAemailController" access="global">
-   <style type="css">
-        #branding1 {
-        background-image: url({!URLFOR($Action.Attachment.Download, Atts[0].Id)});
-    	background-repeat: no-repeat;
-        width: fit-content;
-        height: fit-content;
-    }
-    </style>
-    <apex:attribute name="ProgId" type="Program__c" description="Id of the Program" assignTo="{!program}" id="p" />
-  
- 
-     <div id="branding1">
-         
-    </div>
-    <apex:outputText escape="false" value="{!res[0].Program_Sell_Sheets__c}"/>
+   <!--<style type="css">-->
+        <!--#branding1 {-->
+        <!--background-image: url({!URLFOR($Action.Attachment.Download, Atts[0].Id)});-->
+    	<!--background-repeat: no-repeat;-->
+        <!--width: fit-content;-->
+        <!--height: fit-content;-->
+    <!--}-->
+    <!--</style>-->
+    <!--<apex:attribute name="ProgId" type="Program__c" description="Id of the Program" assignTo="{!program}" id="p" />-->
+  <!---->
+ <!---->
+     <!--<div id="branding1">-->
+         <!---->
+    <!--</div>-->
+    <!--<apex:outputText escape="false" value="{!res[0].Program_Sell_Sheets__c}"/>-->
 </apex:component>

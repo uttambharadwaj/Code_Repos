@@ -1,3 +1,6 @@
+<!--
+Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
+-->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentConfirmationController">
 <html>
 <head>
@@ -191,7 +194,8 @@
         	#cardImage img { max-width: 220px; position: relative; z-index: 100; pointer-events: none; }
         
         	.step { margin: 6px 6px 0 0; height: 54px; float: left; width: 118px; background: #eee; line-height: 5px; }
-        	.stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
+        	.step1to1 { margin: 6px 6px 0 0; height: 54px; float: left; width: 200px; background: #eee; line-height: 5px; }
+            .stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
         	.stepDescription { float: left; font-size: 12px; line-height: 5px; font-size: 12px; letter-spacing: -0.07em; margin-top: 17px; width: 80px; }
         	.stepDescription p { margin: 0 0 8px 1px; }
         	.step:first-child { margin-left: 6px; }
@@ -235,14 +239,16 @@
 						</apex:outputText>
                         <apex:outputPanel id="staticCardImage">
 							<div id="cardImage">
-	                        	<img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+								<!--PSOBACKLOG-76-->
+	                        	<img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
 							</div>
 						</apex:outputPanel>
                     </div>
                 </div>
                 <div class="eight columns" id="pageImage">
                 	<apex:outputPanel id="subHeaderImage">
-						<apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}" />
+						<!--PSOBACKLOG-76-->
+						<apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}" alt="Lander Graphic Image"/>
 					</apex:outputPanel>
                 </div>
             </div>
@@ -255,7 +261,7 @@
                 	&nbsp;
                 </div>
                 <div class="eight columns" style="background: #fff;">
-                	<apex:outputPanel id="stepDisplay">
+                	<apex:outputPanel id="stepDisplay" rendered="{!!program.Publish_Fleet_Data_Capture_Form_1_1__c}">
                     	<div>
                             <div class="step">
                                	<div class="stepIndicatorComplete"></div>
@@ -289,6 +295,28 @@
                         	</div>
 						</div>
 					</apex:outputPanel>
+                    <apex:outputPanel id="stepDisplay1to1" rendered="{!program.Publish_Fleet_Data_Capture_Form_1_1__c}">
+                        <div>
+                            <div class="step1to1">
+                                <div class="stepIndicatorComplete"></div>
+                                <div class="stepDescription">
+                                    <p>Step 1:</p><p><b>your company</b></p>
+                                </div>
+                            </div>
+                            <div class="step1to1">
+                                <div class="stepIndicatorComplete"></div>
+                                <div class="stepDescription">
+                                    <p>Step 2:</p><p><b>vehicle details</b></p>
+                                </div>
+                            </div>
+                            <div class="step1to1">
+                                <div class="stepIndicatorComplete"></div>
+                                <div class="stepDescription">
+                                    <p>Step 3:</p><p><b>summary</b></p>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
                 </div>
             </div>
         </div>

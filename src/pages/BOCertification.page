@@ -1,3 +1,6 @@
+<!--
+	Revision History: 5/13/2019 PSOBACKLOG-76 ADA Compliance-Images
+-->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="BOCertificationController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
     <head>
@@ -111,8 +114,9 @@
                     <div class="row">
                         <div class="nine columns clearfix">
                             <div id="branding">
-                                <apex:image styleClass="logo" value="{!URLFOR($Action.Attachment.Download, brandingLogo)}" rendered="{!brandingLogo != null}" />
-                                <apex:image styleClass="logo" value="{!URLFOR($Resource.WEXLogo)}" rendered="{!brandingLogo == null}" />
+                                <!--PSOBACKLOG-76-->
+                                <apex:image styleClass="logo" value="{!URLFOR($Action.Attachment.Download, brandingLogo)}" rendered="{!brandingLogo != null}" alt="{!brandingUtility.Program_Name__c} Logo"/>
+                                <apex:image styleClass="logo" value="{!URLFOR($Resource.WEXLogo)}" rendered="{!brandingLogo == null}" alt="WEX Logo"/>
                                 <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>
                             </div>
                         </div>
@@ -128,13 +132,15 @@
             </div>
         </apex:outputPanel>
         <apex:outputPanel rendered="{!eappId != null}">
-            <apex:image url="{!onlineApplicationOffer.EchoSign_Header_Image__c}" width="850px" style="display:block;margin-left:auto;margin-right:auto;"/><br/>
+            <!--PSOBACKLOG-76-->
+            <apex:image url="{!onlineApplicationOffer.EchoSign_Header_Image__c}" width="850px" style="display:block;margin-left:auto;margin-right:auto;" alt="{!onlineApplicationOffer.EchoSign_Header_Image__c} Icon"/><br/>
         </apex:outputPanel>
         <div id="content">
             <div class="container" style="{!IF(eappId != null, 'background: #f1f1f1; padding: 20px 20px; border-radius: 4px !important; border: 1px solid #e1e1e1; border-top: 2px solid #414143;', '')}">
                 <apex:outputPanel rendered="{!eappId != null}">
                     <div class="row">
-                        <apex:image value="{!$Resource.ReviewSmallFleet}" styleClass="headerImage" style="display:block;margin-left:auto;margin-right:auto;"/>
+                        <!--PSOBACKLOG-76-->
+                        <apex:image value="{!$Resource.ReviewSmallFleet}" styleClass="headerImage" style="display:block;margin-left:auto;margin-right:auto;" alt="{!$Resource.ReviewSmallFleet} Image"/>
                     </div>
                 </apex:outputPanel>
                 <div class="row" style="display: {!IF(program != null, 'block', 'none')};">
@@ -149,7 +155,8 @@
                             &nbsp;
                         </div>
                         <div class="twelve columns clearfix">
-                            <apex:image styleClass="cardImage" style="max-width: 200px;" value="{!URLFOR($Action.Attachment.Download, brandingCard)}" rendered="{!brandingCard != null}" />
+                            <!--PSOBACKLOG-76-->
+                            <apex:image styleClass="cardImage" style="max-width: 200px;" value="{!URLFOR($Action.Attachment.Download, brandingCard)}" rendered="{!brandingCard != null}" alt="{!brandingUtility.Program_Name__c} Card Image"/>
                         </div>
                         <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
                             <div class="twelve columns clearfix">
@@ -534,6 +541,7 @@
                                         &nbsp;
                                     </div>
                                 </apex:outputPanel>
+                                <apex:outputPanel rendered="{!userSessionId == null}">
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
@@ -560,12 +568,14 @@
                                 <div class="twelve columns clearfix">
                                     <input id="acknowledgement" type="checkbox" />&nbsp;{!$Label.BOCDD_Certification_Language}
                                 </div>
+                                </apex:outputPanel>
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
                                 <div class="twelve columns clearfix">
                                     <input type="button" id="submit-button" class="step-button ge-click-appsubmit" value="{!$Label.BOCDD_Continue}" onclick="validateForm()" />
-                                    <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
+                                    <!--PSOBACKLOG-76-->
+                                    <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" alt="Loading..."/>
                                 </div>
                                 <apex:inputHidden value="{!noOwnerProngs}" id="noOwnerprongs" />
                                 <div id="ex1" class="modal" style="width: 800px !important;">

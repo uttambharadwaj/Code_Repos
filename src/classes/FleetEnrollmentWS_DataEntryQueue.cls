@@ -1,5 +1,6 @@
 /**
  * Created by dgilbert on 9/20/2018.
+ * Revision History: IADJUDICAT-1199 order by lastmodifieddate
  */
 @RestResource(urlMapping='/FleetEnrollmentWS/DataEntryQueue/*')
 global with sharing class FleetEnrollmentWS_DataEntryQueue {
@@ -115,8 +116,8 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
                 GETResponse gResponse = new GETResponse();
                 gResponse.result = true;
                 gResponse.message = 'Case Queue successfully retrieved!';
-
-                gResponse.availableImplementationCases = [SELECT Id, Fleet_Enrollment__c, Siebel_Oppty__c FROM Case WHERE Status = 'New' and OwnerId = :dataEntryQueueId and Siebel_Oppty__c != null ORDER BY CreatedDate ASC];
+                //1199 order by lastmodifieddate
+                gResponse.availableImplementationCases = [SELECT Id, CaseNumber, Fleet_Enrollment__c, Siebel_Oppty__c FROM Case WHERE Status = 'New' and OwnerId = :dataEntryQueueId and Siebel_Oppty__c != null ORDER BY LastModifiedDate ASC];
 
                 RestContext.response.addHeader('Content-Type', 'application/json');
                 RestContext.response.responseBody = Blob.valueOf(JSON.serialize(gResponse));
@@ -141,7 +142,7 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
         try {
 
             System.debug('### Payload: ' + RestContext.request);
-            
+
             if (dataEntryQueueMemberIds.contains(UserInfo.getUserId())) {
 
                 List<Case> cases = [SELECT Id, Data_Entry_Completed__c, OwnerId, Status FROM Case WHERE Id = :id LIMIT 1];
@@ -240,11 +241,6 @@ global with sharing class FleetEnrollmentWS_DataEntryQueue {
 
         if (cases.size() > 0) {
             cases[0].OwnerId = queueId;
-            
-            if(queueId == errorQueueId) {
-                cases[0].Type = 'Error';
-            }
-            
             if(caseNotes.length() > 255) {
                 cases[0].Subject = (caseNotes).substring(0, 255);
             }

@@ -1,4 +1,4 @@
-@isTest(seealldata=true)
+@isTest
 private class EchoTriggerTest {
 
 	static testMethod void EchoTriggerTester() {

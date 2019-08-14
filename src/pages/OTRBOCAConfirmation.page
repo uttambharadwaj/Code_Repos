@@ -1,3 +1,6 @@
+<!--
+	Revision History: 5/14/2019 PSOBACKLOG-76 ADA Compliance-Images
+-->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAConfirmationController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
     <head>
@@ -131,7 +134,8 @@
                     <div class="twelve columns clearfix">
                         <div class="nine columns clearfix">
                             <div id="branding">
-                                <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+                                <!--PSOBACKLOG-76-->
+                                <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!program.Brand_Long_Name__c} Logo"/>
                                 <h1 class="program-name header-large">{!program.Brand_Long_Name__c}</h1>
                             </div>
                         </div>
@@ -162,7 +166,8 @@
                                                 <apex:outputText value="{0, number, $###,###}">
                                                     <apex:param value="{!creditLineApproved}" />
                                                 </apex:outputText>.</h1><br/>
-                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                                            <!--PSOBACKLOG-76-->
+                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
                                             <div style="margin: 30px auto; text-align: center; width: 320px;">
                                                 <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
                                             </div>
@@ -175,7 +180,8 @@
                                         <center>
                                             <h1 class="header-large" style="font-weight: bold;">Thank you!</h1><br/>
                                             <h1 class="header-small">Your application for an {!program.Brand_Long_Name__c} card is being reviewed.</h1><br/>
-                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                                            <!--PSOBACKLOG-76-->
+                                            <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
                                             <div style="margin: 30px auto; text-align: center; width: 320px;">
                                                 <p>{!$Label.BOCA_Confirmation_Number} {!applicationNumber}</p>
                                             </div>
@@ -194,7 +200,8 @@
                                 <center>
                                     <h1 class="header-large" style="font-weight: bold;">Thank You!</h1><br/>
                                     <h1 class="header-small">Your application has been saved!</h1><br/>
-                                    <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                                    <!--PSOBACKLOG-76-->
+                                    <img style="width: 260px; pointer-events: none;" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
                                     <div style="margin: 30px auto; text-align: center; width: 500px;">
                                         <p>Please check your e-mail for a link to complete your application later.</p>
                                         <p>

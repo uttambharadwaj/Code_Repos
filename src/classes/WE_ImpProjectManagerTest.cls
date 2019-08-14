@@ -1,5 +1,6 @@
 @isTest
 private class WE_ImpProjectManagerTest {
+/*//https://jira.devtools.wexinc.com/browse/IADJUDICAT-816
 
 	@testSetup
 	static void dataSetup() {
@@ -165,13 +166,13 @@ private class WE_ImpProjectManagerTest {
 	static testMethod void testEuProjectCreation() {
 
         User u = [SELECT Id FROM User WHERE Username = 'astest@wexeurope.com'];
-        
+
         System.runas(u) {
-        
+
 		WE_ApexUtility.testContext = true;
 		WE_ApexUtility.testContextStatus = 'TRUE';
 		List<Opportunity> euOppsToUpdate = new List<Opportunity>([SELECT Id,Probability,OwnerId FROM Opportunity WHERE Name LIKE '%EU Opp%']);
-        
+
         Test.startTest();
 
 		for(Opportunity o : euOppsToUpdate) {
@@ -223,13 +224,13 @@ private class WE_ImpProjectManagerTest {
 		System.assertNotEquals(euOppsToUpdate[0].OwnerId,runningUserId,'The owner of the Project should be a queue, not the running user');
 
         }
-            
+
 	}
 
 	static testMethod void testUpdatesToMultipleRegionsProjects() {
-        
+
         User u = [SELECT Id FROM User WHERE Username = 'astest@wexeurope.com'];
-        
+
         System.runas(u) {
 
 		WE_ApexUtility.testContext = true;
@@ -238,7 +239,7 @@ private class WE_ImpProjectManagerTest {
 		auAndEuOpps.addAll(auOppsToUpdate);
 		List<Opportunity> euOppsToUpdate = new List<Opportunity>([SELECT Id,Probability FROM Opportunity WHERE Name LIKE '%EU Opp%']);
 		auAndEuOpps.addAll(euOppsToUpdate);
-        
+
         System.debug(LoggingLevel.ERROR,'+++ testUpdatesToMultipleRegionsProjects method entered');
 
 		Test.startTest();
@@ -254,9 +255,9 @@ private class WE_ImpProjectManagerTest {
 		}
 
 		Test.stopTest();
-            
+
         }
 
 	}
-
+*/
 }

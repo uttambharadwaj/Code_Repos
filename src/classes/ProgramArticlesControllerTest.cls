@@ -1,5 +1,10 @@
 @isTest
 private class ProgramArticlesControllerTest {
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testmethod void testController() {
         Program__c program = new Program__c(Name = 'test');
         insert program;

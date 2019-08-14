@@ -1,4 +1,4 @@
-@isTest(seealldata=true)
+@isTest
 private class updateAppStatusTriggerTest2 {
 
     static testMethod void updateAppStatusApprovedTest() {

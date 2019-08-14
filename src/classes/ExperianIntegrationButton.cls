@@ -4,7 +4,7 @@
 
 global with sharing class ExperianIntegrationButton {
 
-    public class CustomException extends Exception {}
+    //public class CustomException extends Exception {}
     
 
 

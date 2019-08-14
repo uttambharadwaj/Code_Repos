@@ -32,7 +32,7 @@ global class CreditDecisionEngineCP {
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
                         Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c,
                         Doing_Business_As__c, Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State_Province__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c,
-                        DNB_Resolved_DUNS__c
+                        DNB_Resolved_DUNS__c, DNB_Match_Score__c, WEX_Match_Score__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
         ];
@@ -255,6 +255,8 @@ global class CreditDecisionEngineCP {
 
                 // set result in object
                 cpApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
+                cpApplication.Lexis_Nexis_BIID_Score__c = lexisNexisBIIDResponse.biidScore;
+                cpApplication.Lexis_Nexis_CVI_Score__c = lexisNexisBIIDResponse.cviScore;
 
                 // If we fail, go to Fraud Point
                 if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && !String.isEmpty(cpApplication.Guarantor_Social_Security_Number__c)) {
@@ -442,6 +444,14 @@ global class CreditDecisionEngineCP {
                 cpApplication.DNB_Lookup_Hits__c = 0;
             }
 
+            // Trust but verify
+            if ((null != cpApplication.Taxpayer_ID__c && null != cpApplication.Bureau_Tax_ID__c) && cpApplication.Taxpayer_ID__c.equals(cpApplication.Bureau_Tax_ID__c)) {
+                cpApplication.DNB_Match_Score__c = 100;
+            } else if (cpApplication.Company_Legal_Name__c != null && dnbDirectMatchRequest.SubjectName != null) {
+                cpApplication.DNB_Match_Score__c = JaroWinklerDistance.getScore((cpApplication.Company_Legal_Name__c).replaceAll('[^0-9A-Za-z]',''), (dnbDirectMatchRequest.SubjectName).replaceAll('[^0-9A-Za-z]',''));
+                System.debug('Match Score: ' + cpApplication.DNB_Match_Score__c);
+            }
+
             // Existing Exposure - Application/Account Exposure
             CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
             existingExposureRequest.applicationId = cpApplication.Id;
@@ -489,19 +499,8 @@ global class CreditDecisionEngineCP {
                 giactVerifyRequest.UniqueId = String.valueOf(cpApplication.Id);
                 giactVerifyRequest.RoutingNumber = cpApplication.ABA_Routing_Number__c;
                 giactVerifyRequest.AccountNumber = cpApplication.Checking_Account_Number__c;
-                giactVerifyRequest.FirstName = cpApplication.First_Name__c;
-                giactVerifyRequest.LastName = cpApplication.Last_Name__c;
                 giactVerifyRequest.BusinessName = cpApplication.Company_Legal_Name__c;
-                giactVerifyRequest.AddressLine1 = cpApplication.Physical_Address_Line_1__c;
-                giactVerifyRequest.AddressLine2 = cpApplication.Physical_Address_Line_2__c;
-                giactVerifyRequest.City = cpApplication.Physical_City__c;
-                giactVerifyRequest.State = cpApplication.Physical_State__c;
-                giactVerifyRequest.ZipCode = cpApplication.Physical_Postal_Code__c;
-                giactVerifyRequest.Country = cpApplication.Physical_Country__c;
-                giactVerifyRequest.PhoneNumber = cpApplication.Business_Phone__c;
                 giactVerifyRequest.FederalTaxId = cpApplication.Taxpayer_ID__c;
-                giactVerifyRequest.EmailAddress = cpApplication.Email__c;
-                giactVerifyRequest.IpAddress = cpApplication.Application_Signer_IP_Address__c;
 
                 if (!TestUtils.isRunningTest()) {
 
@@ -516,6 +515,10 @@ global class CreditDecisionEngineCP {
 
                         cpApplication.GIACT_Account_Response_Code_Name__c = giactVerifyResponse.AccountResponseCodeName;
                         cpApplication.GIACT_Verify_Response_Code_Name__c = giactVerifyResponse.VerificationResponseCodeName;
+
+                        cpApplication.GIACT_Customer_Response_Code__c = giactVerifyResponse.CustomerResponseCode;
+                        cpApplication.GIACT_Customer_Response_Message__c = giactVerifyResponse.CustomerResponseCodeMessage;
+                        cpApplication.GIACT_Customer_Response_Code_Name__c = giactVerifyResponse.CustomerResponseCodeName;
 
                     } else {
 

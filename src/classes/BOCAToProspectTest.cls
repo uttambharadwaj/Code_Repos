@@ -4,7 +4,9 @@ public class BOCAToProspectTest {
     @testSetup 
     static void setupData(){
         
-         // Revisit this later..
+        UtilityTestLoader.setAutomation(false);
+    
+        // Revisit this later..
         BOCA_IDS__C bocaId = BOCAtestDataUtility.getBOCAids();
         insert bocaId;
 

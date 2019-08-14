@@ -1,3 +1,6 @@
+<!--
+	Revision History: 5/14/2019 PSOBACKLOG-76 ADA Compliance-Images
+-->
 <apex:page controller="BrandingController" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0">
 <html>
 <head>
@@ -104,8 +107,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="row">
                 <div class="nine columns clearfix">
                     <div id="branding">
-                            <apex:image styleClass="logo" value="{!URLFOR($Action.Attachment.Download, brandingLogo)}" rendered="{!brandingLogo != null}" />
-                            <apex:image styleClass="logo" value="{!URLFOR($Resource.WEXLogo)}" rendered="{!brandingLogo == null}" />
+                            <apex:image styleClass="logo" value="{!URLFOR($Action.Attachment.Download, brandingLogo)}" rendered="{!brandingLogo != null}" alt="{!brandingUtility.Program_Name__c} Logo"/>
+                            <apex:image styleClass="logo" value="{!URLFOR($Resource.WEXLogo)}" rendered="{!brandingLogo == null}"  alt="Wex Logo"/>
                             <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>    
                     </div>
 				</div>
