@@ -281,11 +281,30 @@
 				$j('.warningM3').removeClass('warningM3');
 			}
 
+			var shipOvernight=false;
+			function setShipOption(shipOptionElement){
+				const myShipOption = $j(shipOptionElement).val();
+				console.log(myShipOption);
+				if(myShipOption == 'Overnight') shipOvernight = true;
+				else shipOvernight = false;
+				if(shipOvernight && billWex) $j('[id$=attachOvernightCardsApproval]').css('display', 'block');
+				else $j('[id$=attachOvernightCardsApproval]').css('display', 'none');
+			}
+
+			var billWex=false;
 			function toggleSection(triggeringElement, elementId) {
 				if ($j(triggeringElement).prop('checked')) {
-					$j('[id$=' + elementId + ']').css('display', 'block');
-				}
-				else {
+					if(elementId == 'attachOvernightCardsApproval'){
+						billWex = true;
+						if(shipOvernight)
+							$j('[id$=attachOvernightCardsApproval]').css('display', 'block');
+					} else {
+						billWex = false;
+						$j('[id$=' + elementId + ']').css('display', 'block');
+					}
+				} else {
+					if(elementId == 'attachOvernightCardsApproval') billWex=false;
+
 					$j('[id$=' + elementId + ']').css('display', 'none');
 
 					$j('[id$=' + elementId + ']').find('input[type=text], input[type=file], :checkbox, textarea, select').each(function () {
@@ -562,7 +581,7 @@
 															<div class="slds-form-element slds-size_1-of-1">
 																<label class="slds-form-element__label" for="text-input-id-1">Shipping Option</label>
 																<div class="slds-form-element__control">
-																	<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedCardShippingOption}" styleClass="slds-input" multiSelect="false" size="1">
+																	<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedCardShippingOption}" styleClass="slds-input" multiSelect="false" size="1" onChange="javascript:setShipOption(this)">
 																		<apex:selectOptions value="{!availableCardShippingOptions}"/>
 																	</apex:selectList>
 																</div>
@@ -574,7 +593,7 @@
 																	<label class="slds-checkbox__label">
 																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillCustomer" value="{!fleetEnrollmentInformation.overnightCardsBillCustomer}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards');toggleSection(this, 'customerCarrierNumberBox');" html-data-controls-section="customerCarrierNumberBox" />
 																		<span class="slds-checkbox_faux"></span>
-																		<span class="slds-form-element__label">Bill Customer <strong>(Overnight Only)</strong></span>
+																		<span class="slds-form-element__label">Bill Customer</span>
 																	</label>
 																</span>
 															</div>
@@ -591,7 +610,7 @@
 																	<label class="slds-checkbox__label">
 																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillPartner" value="{!fleetEnrollmentInformation.overnightCardsBillPartner}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards');"/>
 																		<span class="slds-checkbox_faux"></span>
-																		<span class="slds-form-element__label">Bill Partner <strong>(Overnight Only)</strong></span>
+																		<span class="slds-form-element__label">Bill Partner</span>
 																	</label><br/>
 																</span>
 															</div>
@@ -602,7 +621,7 @@
 																	<label class="slds-checkbox__label">
 																		<apex:inputCheckbox id="overnightCardsBillWEX" value="{!fleetEnrollmentInformation.overnightCardsBillWEX}" html-data-checkbox-group="overnightCards" html-data-controls-section="attachOvernightCardsApproval" onChange="toggleCheckboxGroup(this, 'overnightCards'); toggleSection(this, 'attachOvernightCardsApproval');"/>
 																		<span class="slds-checkbox_faux"></span>
-																		<span class="slds-form-element__label">Bill WEX <strong>(Overnight Only)</strong></span>
+																		<span class="slds-form-element__label">Bill WEX</span>
 																	</label><br/>
 																</span>
 															</div>
