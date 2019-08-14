@@ -18,8 +18,10 @@ function pageLoadFunctions() {
     
     $j( "#accordion" ).accordion({ heightStyle: 'content', collapsible: true });
     
+    var myCountry = $j("[id$=physicalCountry]").val();
+
     // Various transformations for the Canadian application
-    if(boca_language_code === "en_ca" || boca_language_code === "fr_ca") {
+    if(boca_language_code === "en_ca" || boca_language_code === "fr_ca" || myCountry == 'CA') {
         flipToProvince('state');
         flipToProvince('pgState');
         flipToProvince('billingState');
@@ -36,7 +38,7 @@ function pageLoadFunctions() {
         $j("[id$=legalStructure] option[value='Religious']").remove();
         $j("[id$=legalStructure] option[value='Other']").remove();
     }
-    
+
     $j('.phone').mask('999-999-9999');
     $j('.ssn').mask('000-00-0000');
     $j('.date').mask('00/00/0000');
