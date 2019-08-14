@@ -1,6 +1,11 @@
-/**
- * Created by dgilbert on 9/26/2018.
- */
+/*
+*
+* Created by dgilbert on 9/26/2018.
+*
+* Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name to FleetEnrollmentInternal Page.
+* Revision History: 22/Jul/2019 CJackson    NAFONBOARD-5    Esso Finders Fee derived from sales checklist.
+*
+*/
 
 public with sharing class FleetEnrollmentInternalController {
 
@@ -65,11 +70,18 @@ public with sharing class FleetEnrollmentInternalController {
 
     public Program__c program { get; set; }
 
+    public Finders_Fee__c findersFee { get; set; }
+
+    public Finders_Fee__c defaultFindersFee { get; set; }
+
     public Boolean hasError {
         get {
             return ApexPages.hasMessages();
         }
     }
+
+    // NAFONBOARD-44
+    public boolean embossingNameBlank { get; set; }
 
     public Id internalRecordType {
         get {
@@ -201,7 +213,8 @@ public with sharing class FleetEnrollmentInternalController {
 
                 for (String option : (program.Fleet_Available_Billing_Cycles__c).split(';')) {
 
-                    availableBillingCycles.add(new SelectOption(option, option));
+                    if(option != 'Cycle 4')
+                        availableBillingCycles.add(new SelectOption(option, option));
 
                 }
 
@@ -214,6 +227,31 @@ public with sharing class FleetEnrollmentInternalController {
     public Integer availableBillingCyclesSize {
         get {
             return availableBillingCycles.size();
+        }
+    }
+
+    //NAFONBOARD-5 Esso Finders Fee derived from sales checklist
+    public List<SelectOption> availableFindersFees {
+        get {
+            List<SelectOption> availableFindersFees = new List<SelectOption>();
+            //Default to value set on Program
+            if (defaultFindersFee != null) {
+                availableFindersFees.add(new SelectOption(defaultFindersFee.Id, defaultFindersFee.Finders_Fee_Name__c));
+            } else {
+                availableFindersFees.add(new SelectOption('', ''));
+            }
+
+            for (Finders_Fee__c fees : [SELECT Id, Finders_Fee_Name__c FROM Finders_Fee__c WHERE Program__c = :program.Id ORDER BY Finders_Fee_Name__c]) {
+                availableFindersFees.add(new SelectOption(fees.Id, fees.Finders_Fee_Name__c));
+            }
+
+            return availableFindersFees;
+        }
+    }
+
+    public Integer availableFindersFeesSize {
+        get {
+            return availableFindersFees.size();
         }
     }
 
@@ -260,7 +298,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (opportunityId != null) {
 
-                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name FROM Opportunity WHERE Id = :opportunityId];
+                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name, Campaign_Program__r.Program__r.Finders_Fee__c FROM Opportunity WHERE Id = :opportunityId];
 
                     if (opportunities.size() == 1) {
 
@@ -270,11 +308,27 @@ public with sharing class FleetEnrollmentInternalController {
 
                         fleetEnrollment = new FleetEnrollment__c();
 
-                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id];
+                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Embossing_Company_Name__c FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id or Debug_Opportunity_Parameter__c=:opportunity.Id];
 
                         if(fleetEnrollments.size() > 0) {
                             fleetEnrollment.Id = fleetEnrollments[0].Id;
+                        } else {
+                            fleetEnrollment.Opportunity__c = opportunity.Id;
                         }
+
+                        // NAFONBOARD-44
+                        if (fleetEnrollments.size() > 0 && fleetEnrollments[0].Embossing_Company_Name__c != null) {
+                            embossingNameBlank = false;
+                        } else {
+                            embossingNameBlank = true;
+                            if (opportunity.Name.length() > 30) {
+                                FleetEnrollment.Embossing_Company_Name__c = opportunity.Name.substring(0, 30);
+                            } else {
+                                FleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
+                            }
+                        }
+
+                        FleetEnrollment.Submit_Fleet_Data_Form_Used__c = true;
 
                         if (opportunity.Campaign_Program__r.Program__c != null) {
 
@@ -286,6 +340,19 @@ public with sharing class FleetEnrollmentInternalController {
                                 fleetEnrollmentInformation.selectedCardShippingOption = 'Overnight';
                             }
 
+                        }
+
+                        //Get finder fee ID from Program to use as default for new Fleet Enrollment Form record
+                        if (opportunity.Campaign_Program__r.Program__r.Finders_Fee__c != null) {
+
+                            defaultFindersFee = new Finders_Fee__c();
+
+                            List<Finders_Fee__c> defaultFindersFees = [SELECT Id, Finders_Fee_Name__c FROM Finders_Fee__c WHERE Id =: opportunity.Campaign_Program__r.Program__r.Finders_Fee__c];
+
+                            if(defaultFindersFees.size() > 0) {
+                                defaultFindersFee.Id = defaultFindersFees[0].Id;
+                                defaultFindersFee.Finders_Fee_Name__c = defaultFindersFees[0].Finders_Fee_Name__c;
+                            }
                         }
 
                         List<Application_Request__c> applicationRequests = [SELECT Id, Siebel_Oppty__c FROM Application_Request__c WHERE Opportunity__c = :opportunityId];
@@ -319,12 +386,14 @@ public with sharing class FleetEnrollmentInternalController {
     public void addNewContact() {
 
         if(fleetEnrollmentInformation.fleetEnrollmentContacts != null) {
-            fleetEnrollmentInformation.fleetEnrollmentContacts.add(new FleetEnrollmentContacts());
+            FleetEnrollmentContacts newFEC = new FleetEnrollmentContacts();
+            newFEC.myIndex = fleetEnrollmentInformation.fleetEnrollmentContacts.size();
+            fleetEnrollmentInformation.fleetEnrollmentContacts.add(newFEC);
         }
 
     }
 
-    public String selectedContact { get; set; }
+    public Integer selectedContact { get; set; }
 
     public Integer additionalContactsSize {
         get {
@@ -339,8 +408,12 @@ public with sharing class FleetEnrollmentInternalController {
 
         System.debug(selectedContact);
 
-        if(fleetEnrollmentInformation.fleetEnrollmentContacts != null && selectedContact != null && fleetEnrollmentInformation.fleetEnrollmentContacts[Integer.valueOf(selectedContact)] != null) {
-            fleetEnrollmentInformation.fleetEnrollmentContacts.remove(Integer.valueOf(selectedContact));
+        if(fleetEnrollmentInformation.fleetEnrollmentContacts != null && selectedContact != null && fleetEnrollmentInformation.fleetEnrollmentContacts[selectedContact] != null) {
+            fleetEnrollmentInformation.fleetEnrollmentContacts.remove(selectedContact);
+            //reset the indexes
+            for(Integer i=0; i<fleetEnrollmentInformation.fleetEnrollmentContacts.size(); i++){
+                fleetEnrollmentInformation.fleetEnrollmentContacts[i].myIndex = i;
+            }
         }
 
         return null;
@@ -381,6 +454,8 @@ public with sharing class FleetEnrollmentInternalController {
             if(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount != 0) fleetEnrollment.Monthly_Card_Charges__c = fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount;
             if(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount != 0) fleetEnrollment.Monthly_Accounting_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount;
             if(!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate)) fleetEnrollment.Monthly_Accounting_Fee_Waive_Date__c = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate);
+            if(!String.isBlank(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate)) fleetEnrollment.Card_Replacement_Fee_Waive_Date__c  = Date.parse(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate);
+            if(!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate)) fleetEnrollment.Monthly_Card_Charges_Waive_Date__c  = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate);
             if(fleetEnrollmentInformation.feeWaiversPaperFeeAmount != 0) fleetEnrollment.Paper_Fee__c = fleetEnrollmentInformation.feeWaiversPaperFeeAmount;
             if(fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount != 0) fleetEnrollment.Monthly_Activity_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount;
 
@@ -402,7 +477,7 @@ public with sharing class FleetEnrollmentInternalController {
 
             fleetEnrollment.Station_Card__c = fleetEnrollmentInformation.stationCard;
 
-            fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
+//            fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
 
             fleetEnrollment.Billing_Full_Name__c = opportunity.Billing_Contact_First_Name__c + ' ' + opportunity.Billing_Contact_Last_Name__c;
             fleetEnrollment.Billing_Email__c = opportunity.Billing_Contact_Email__c;
@@ -446,6 +521,10 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Usage_Type__c = fleetEnrollmentInformation.selectedUsageType;
             } else {
                 fleetEnrollment.Usage_Type__c = availableUsageTypes.get(1).getValue();
+            }
+
+            if (fleetEnrollmentInformation.selectedFindersFee != null) {
+                fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
             }
 
             List<Program_Template_Account__c> programTemplateAccounts = null;
@@ -523,8 +602,21 @@ public with sharing class FleetEnrollmentInternalController {
                     insert directDebitData;
                 }
 
+                if (fleetEnrollmentInformation.directDebitCheckFileBody != null) {
+                    Attachment directDebitCheckData = new Attachment();
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
+                        directDebitCheckData.Name = applicationRequest.Siebel_Oppty__c + '_DirectDebitCheck_' + fleetEnrollmentInformation.directDebitCheckFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    else {
+                        directDebitCheckData.Name = opportunity.Opportunity_Number__c + '_DirectDebitCheck_' + fleetEnrollmentInformation.directDebitCheckFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
+                    }
+                    directDebitCheckData.Body = fleetEnrollmentInformation.directDebitFileBody;
+                    directDebitCheckData.ParentId = fleetEnrollment.Id;
+                    insert directDebitCheckData;
+                }
+
                 System.debug(fleetEnrollmentInformation.fleetEnrollmentContacts);
-                
+
                 for (FleetEnrollmentContacts fleetEnrollmentContact : fleetEnrollmentInformation.fleetEnrollmentContacts) {
 
                     if (!String.isBlank(fleetEnrollmentContact.firstName)) {
@@ -587,13 +679,15 @@ public with sharing class FleetEnrollmentInternalController {
         public Boolean feeWaiversMonthlyCardCharges { get; set; }
         public Decimal feeWaiversMonthlyCardChargesAmount { get; set; }
         public Boolean feeWaiversPaperFee { get; set; }
+        public String feeWaiversMonthlyCardChargesFeeEndDate { get; set; }
+        public String feeWaiversCardReplacementDurationFeeEndDate { get; set; }
         public Decimal feeWaiversPaperFeeAmount { get; set; }
         public Boolean feeWaiversMonthlyAccountingFee { get; set; }
         public Decimal feeWaiversMonthlyAccountingFeeAmount { get; set; }
         public String feeWaiversMonthlyAccountingFeeEndDate { get; set; }
         public String feeWaiversTFSFileName { get; set; }
         public Blob feeWaiversTFSFileBody { get; set; }
-        
+
         public Boolean feeWaiversMonthlyActivityFee { get; set; }
         public Decimal feeWaiversMonthlyActivityFeeAmount { get; set; }
 
@@ -629,8 +723,12 @@ public with sharing class FleetEnrollmentInternalController {
         public String directDebitFileName { get; set; }
         public Blob directDebitFileBody { get; set; }
 
+        public String directDebitCheckFileName { get; set; }
+        public Blob directDebitCheckFileBody { get; set; }
+
         public String selectedCardType { get; set; }
         public String selectedUsageType { get; set; }
+        public String selectedFindersFee { get; set; }
 
         public Boolean additionalContacts { get; set; }
 
@@ -641,6 +739,7 @@ public with sharing class FleetEnrollmentInternalController {
             fleetEnrollmentContacts = new List<FleetEnrollmentContacts>();
 
             fleetEnrollmentContacts.add(new FleetEnrollmentContacts());
+            fleetEnrollmentContacts[0].myIndex=0;
 
         }
 
@@ -653,6 +752,7 @@ public with sharing class FleetEnrollmentInternalController {
         public String phone { get; set; }
         public String emailAddress { get; set; }
         public String role { get; set; }
+        public Integer myIndex {get;set;}
 
         public FleetEnrollmentContacts() {
 

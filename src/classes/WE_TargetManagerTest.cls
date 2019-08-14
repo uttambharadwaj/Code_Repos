@@ -1,5 +1,6 @@
 @isTest
 public class WE_TargetManagerTest {
+/*//https://jira.devtools.wexinc.com/browse/IADJUDICAT-816
 
     @testSetup
     static void dataSetup() {
@@ -158,5 +159,5 @@ public class WE_TargetManagerTest {
 
         test.stopTest();
     }
-
+*/
 }

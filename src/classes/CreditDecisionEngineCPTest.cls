@@ -140,7 +140,7 @@ public class CreditDecisionEngineCPTest {
                 CP_Application_Request__c cpApplication = new CP_Application_Request__c();
                 cpApplication.Opportunity__c = opportunity.Id;
                 cpApplication.Email__c = 'dcraigmile@forseva.com';
-                cpApplication.Company_Legal_Name__c = '';
+                cpApplication.Company_Legal_Name__c = 'Company Name';
                 cpApplication.First_Name__c = 'Testy';
                 cpApplication.Last_Name__c = 'McTesterson';
                 cpApplication.Years_in_Business__c = '5';

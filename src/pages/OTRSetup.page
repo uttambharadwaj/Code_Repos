@@ -1,3 +1,7 @@
+<!--
+    Revision History:   IADJUDICAT-966 remove address section
+                        5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
+-->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRSetupController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
     <head>
@@ -45,27 +49,17 @@
             $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
             $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
 
-            function addProduct() {
-                $j("[id$=otherServices] option:selected").remove().appendTo("[id$=selectedOtherServices]");
-
-                $j("[id$=selectedOtherServicesValue]").val($j("[id$=selectedOtherServices]").val().join(";"));
-
-                console.log($j("[id$=selectedOtherServicesValue]").val());
-            }
-
-            function removeProduct() {
-                $j("[id$=selectedOtherServices] option:selected").remove().appendTo("[id$=otherServices]");
-
-                $j("[id$=selectedOtherServicesValue]").val($j("[id$=selectedOtherServices]").val().join(";"));
-
-                console.log($j("[id$=selectedOtherServicesValue]").val());
-            }
         </script>
 
         <script type="text/javascript" src="{!URLFOR($Resource.OTRBOCABaseJS)}" />
 
         <!-- Local Styles -->
         <style>
+            .scales{
+                width:30.6666666667%;
+                box-sizing:border-box;
+            }
+
             .section-header {
             {!program.Brand_Color_1__c}
             }
@@ -110,7 +104,8 @@
                 <div class="row">
                     <div class="nine columns clearfix">
                         <div id="branding">
-                            <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+                            <!--PSOBACKLOG-76-->
+                            <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="{!program.Brand_Long_Name__c} Logo"/>
                             <h1 class="program-name header-large">{!program.Brand_Long_Name__c}</h1>
                         </div>
                     </div>
@@ -138,7 +133,8 @@
                             &nbsp;
                         </div>
                         <div class="twelve columns clearfix">
-                            <img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
+                            <!--PSOBACKLOG-76-->
+                            <img class="cardImage" src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
                         </div>
                         <apex:outputPanel rendered="{!brandingUtility.Brand_Heading__c != null}">
                             <div class="twelve columns clearfix">
@@ -195,82 +191,21 @@
 
                             </div>
                         </div>
+
+                        <!--FORM BEGIN-->
                         <apex:form id="bocaForm">
                             <apex:inputHidden value="{!selectedOtherServices}" id="selectedOtherServicesValue" />
-                            <apex:actionFunction name="submitForm" action="{!submitForm}" oncomplete="generatePDFandConfirm()" rerender="" />
+                            <apex:inputHidden value="{!selectedFundingOptions}" id="selectedFundingOptionsValue" />
+							<apex:inputHidden value="{!otherServicesString}" id="otherServicesOffer" />
+                            <apex:inputHidden value="{!selectedMerch}" id="selectedMerchValue" />
                             <apex:actionFunction name="generatePDFandConfirm" action="{!generatePDFandConfirm}" rerender="" />
-                            <div class="twelve columns clearfix">
-                                <div class="section-header">
-                                    Card Shipping Address
-                                </div>
-                            </div>
-                            <div class="twelve columns clearfix form-field">
-                                &nbsp;
-                            </div>
-                            <div class="twelve columns clearfix">
-                                Physical address required. Cannot ship to P.O. Boxes.
-                            </div>
-                            <div class="twelve columns clearfix form-field">
-                                &nbsp;
-                            </div>
-                            <div class="twelve columns clearfix">
-                                <div class="six columns clearfix form-field" data-row="1">
-                                    <label class="styled-label">{!$Label.OTRSetup_Card_Address_Correct} <span class="styled-label-required">*</span></label>
-                                    <apex:selectList id="addressOptions" value="{!selectedAddressOption}" size="1" styleClass="styled-input required" tabindex="1">
-                                        <apex:selectOption itemValue="Yes" itemLabel="Yes"/>
-                                        <apex:selectOption itemValue="No" itemLabel="No"/>
-                                        <apex:actionSupport event="onchange" action="{!populateAddress}" rerender="contactAddress" oncomplete="pageLoadFunctions()" />
-                                    </apex:selectList>
-                                </div>
-                                <div class="six columns clearfix form-field" data-row="1">
-                                    &nbsp;
-                                </div>
-                            </div>
-                            <apex:outputPanel id="contactAddress">
-                                <div class="twelve columns clearfix form-field">
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <label class="styled-label">Address Line 1 <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  label="" html-tabindex="2" value="{!onlineApplication.Card_Shipping_Address_Line_1__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <label class="styled-label">Address Line 2</label>
-                                            <apex:InputField styleClass="styled-input"  label="" html-tabindex="3" value="{!onlineApplication.Card_Shipping_Address_Line_2__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
-                                            <label class="styled-label">City <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  html-tabindex="4" label="" value="{!onlineApplication.Card_Shipping_City__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="5">
-                                            <label class="styled-label" id="cardShippingPostalCode">Postal Code <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required {!IF(onlineApplication.Card_Shipping_Country__c == null || onlineApplication.Card_Shipping_Country__c = 'US', 'postal', 'postalCanada')}"  html-tabindex="5" label="" value="{!onlineApplication.Card_Shipping_Postal_Code__c}" />
-                                        </div>
-                                    </div>
-                                    <div class="six columns clearfix">
-                                        <div class="twelve columns clearfix form-field" data-row="2">
-                                            <label class="styled-label">State <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  html-tabindex="6" label="" value="{!onlineApplication.Card_Shipping_State__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <label class="styled-label">Country <span class="styled-label-required">*</span></label>
-                                            <apex:InputField html-disabled="true" styleClass="styled-input" value="{!onlineApplication.Card_Shipping_Country__c}">
-                                                <apex:actionSupport event="onchange" rerender="cardShippingPostalCode" oncomplete="pageLoadFunctions()"/>
-                                            </apex:InputField>
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
-                                            <label class="styled-label">Attention First Name<span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  label="" html-tabindex="7" value="{!onlineApplication.Card_Shipping_First_Name__c}" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="5">
-                                            <label class="styled-label">Attention Last Name<span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input required"  label="" html-tabindex="8" value="{!onlineApplication.Card_Shipping_Last_Name__c}" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </apex:outputPanel>
+                            <apex:actionFunction name="submitForm" action="{!submitForm}" oncomplete="generatePDFandConfirm()" rerender="" />
+                            <!--4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section. it went here. RIP Address section-->
                             <div class="twelve columns clearfix form-field styled-panel">
                                 &nbsp;
                             </div>
+
+                            <!--BEGIN AUTHORIZED CONTACT SECTION-->
                             <div class="twelve columns clearfix">
                                 <div class="section-header">
                                     Authorized Contact
@@ -293,42 +228,58 @@
                             <div class="twelve columns clearfix styled-panel">
                                 <div class="six columns clearfix">
                                     <div class="twelve columns clearfix form-field" data-row="2">
-                                        <label class="styled-label">{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.First_Name__c.label} <span class="styled-label-required">*</span></label>
-                                        <apex:InputField styleClass="styled-input required"  label="" html-tabindex="8" value="{!onlineApplicationAuthorizedContact.First_Name__c}" />
+                                        <apex:outputLabel for="firstName" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.First_Name__c.label} ">
+                                            <span class="styled-label-required">*</span>
+                                        </apex:outputLabel>
+                                        <apex:InputField styleClass="styled-input required" id="firstName" label="" html-tabindex="8" value="{!onlineApplicationAuthorizedContact.First_Name__c}" required="true"/>
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="2">
-                                        <label class="styled-label">{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Last_Name__c.label} <span class="styled-label-required">*</span></label>
-                                        <apex:InputField styleClass="styled-input required"  label="" html-tabindex="9" value="{!onlineApplicationAuthorizedContact.Last_Name__c}" />
+                                        <apex:outputLabel for="lastName" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Last_Name__c.label} ">
+                                            <span class="styled-label-required">*</span>
+                                        </apex:outputLabel>
+                                        <apex:InputField styleClass="styled-input required" id="lastName" label="" html-tabindex="9" value="{!onlineApplicationAuthorizedContact.Last_Name__c}" required="true"/>
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="2">
-                                        <label class="styled-label">{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Email__c.label} <span class="styled-label-required">*</span></label>
-                                        <apex:InputField styleClass="styled-input required"  label="" html-tabindex="10" value="{!onlineApplicationAuthorizedContact.Email__c}" />
+                                        <apex:outputLabel for="email" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Email__c.label} ">
+                                            <span class="styled-label-required">*</span>
+                                        </apex:outputLabel>
+                                        <apex:InputField styleClass="styled-input required" id="email" label="" html-tabindex="10" value="{!onlineApplicationAuthorizedContact.Email__c}" required="true"/>
                                     </div>
                                 </div>
                                 <div class="six columns clearfix">
                                     <div class="twelve columns clearfix form-field" data-row="2">
-                                        <label class="styled-label">{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Phone_Number__c.label} <span class="styled-label-required">*</span></label>
-                                        <apex:InputField styleClass="styled-input required"  label="" html-tabindex="11" value="{!onlineApplicationAuthorizedContact.Phone_Number__c}" />
+                                        <apex:outputLabel for="phone" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Phone_Number__c.label} ">
+                                            <span class="styled-label-required">*</span>
+                                        </apex:outputLabel>
+                                        <apex:InputField styleClass="styled-input required" id="phone" label="" html-tabindex="11" value="{!onlineApplicationAuthorizedContact.Phone_Number__c}" required="true"/>
                                     </div>
                                     <div class="twelve columns clearfix form-field" data-row="2">
-                                        <label class="styled-label">{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Mobile_Number__c.label}</label>
-                                        <apex:InputField styleClass="styled-input"  label="" html-tabindex="12" value="{!onlineApplicationAuthorizedContact.Mobile_Number__c}" />
+                                        <apex:outputLabel for="mobile" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Mobile_Number__c.label}"/>
+                                        <apex:InputField styleClass="styled-input" id="mobile" label="" html-tabindex="12" value="{!onlineApplicationAuthorizedContact.Mobile_Number__c}" />
                                     </div>
                                     <apex:outputPanel rendered="{!IF(program.WEX_Platform__c == 'CoreCard', true, false)}">
                                         <div class="twelve columns clearfix form-field" data-row="2">
-                                            <label class="styled-label">{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Security_Code__c.label} <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input numbers securityCode required"  label="" html-tabindex="12" value="{!onlineApplicationAuthorizedContact.Security_Code__c}" />
+                                            <apex:outputLabel for="security" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Security_Code__c.label} ">
+                                                <span class="styled-label-required">*</span>
+                                            </apex:outputLabel>
+                                            <apex:InputField styleClass="styled-input numbers securityCode required" id="security" label="" html-tabindex="12" value="{!onlineApplicationAuthorizedContact.Security_Code__c}" required="true"/>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
-                                            <label class="styled-label">{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Online_Password__c.label} <span class="styled-label-required">*</span></label>
-                                            <apex:InputField styleClass="styled-input alphaNumeric onlinePassword required"  label="" html-tabindex="12" value="{!onlineApplicationAuthorizedContact.Online_Password__c}" />
+                                            <apex:outputLabel for="password" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationAuthorizedContact__c.fields.Online_Password__c.label} ">
+                                                <span class="styled-label-required">*</span>
+                                            </apex:outputLabel>
+                                            <apex:InputField styleClass="styled-input alphaNumeric onlinePassword required" id="password" label="" html-tabindex="12" value="{!onlineApplicationAuthorizedContact.Online_Password__c}" required="true"/>
                                         </div>
                                     </apex:outputPanel>
                                 </div>
                             </div>
+                            <!--END AUTHORIZED CONTACT SECTION-->
+
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
+
+                            <!--BEGIN CARD INFORMATION SECTION-->
                             <div class="twelve columns clearfix">
                                 <div class="section-header">
                                     {!$Label.OTRSetup_Card_Information}
@@ -340,20 +291,125 @@
                             <div class="twelve columns clearfix styled-panel">
                                 <div class="six columns clearfix">
                                     <div class="twelve columns clearfix form-field" data-row="15">
-                                        <label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Number_of_Cards_Needed__c.label} <span class="styled-label-required">*</span></label>
-                                        <apex:inputText id="numberOfCards" value="{!numberOfCards}" tabindex="13" styleClass="styled-input" />
+                                        <apex:outputLabel for="numberOfCards" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Number_of_Cards_Needed__c.label} ">
+                                            <span class="styled-label-required">*</span>
+                                        </apex:outputLabel>
+                                        <apex:inputText id="numberOfCards" required="true" value="{!numberOfCards}" tabindex="13" styleClass="styled-input" />
                                     </div>
                                 </div>
                                 <div class="six columns clearfix">
                                     <div class="twelve columns clearfix form-field">
-                                        <label class="styled-label">Embossing (Company Name) <span class="styled-label-required">*</span></label>
-                                        <apex:InputField styleClass="styled-input required" label="" html-tabindex="14" value="{!onlineApplication.Embossing_Line_1_Company_Name__c}" html-maxlength="19"/>
+                                        <apex:outputLabel for="companyName" styleClass="styled-label" value="Embossing (Company Name) ">
+                                            <span class="styled-label-required">*</span>
+                                        </apex:outputLabel>
+                                        <apex:InputField styleClass="styled-input required" label="" html-tabindex="14" id="companyName" value="{!onlineApplication.Embossing_Line_1_Company_Name__c}" html-maxlength="19" required="true"/>
                                     </div>
                                 </div>
                             </div>
+
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
+                            <!--END CARD INFORMATION SECTION-->
+
+                            <!--BEGIN AVAILABLE PRODUCTS SECTION-->
+                            <apex:outputPanel rendered="{!IF(OR(CONTAINS(onlineApplicationOffer.Other_Services__c, 'SmartFunds Payroll'), CONTAINS(onlineApplicationOffer.Other_Services__c, 'Smartfunds Non-Payroll')), true, false)}">
+                                <div class="twelve columns clearfix">
+                                    <b>Funding Options</b>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <fieldset class="slds-form-element">
+                                    <div class="slds-form-element__control" id="fundingOptions">
+                                        <apex:repeat value="{!fundingOptions}" var="funOpt" id="repeatFun">
+                                            <div class="slds-checkbox three columns">
+                                                <label class="styled-label" for="{!funOpt.value}">{!funOpt.label}</label>
+                                                <input type="checkbox" id="{!funOpt.value}" class="fundingOptions" name="myFunOpt" value="{!funOpt.value}" onchange="changeSelectedFunOptions(this)"/>
+                                            </div>
+                                        </apex:repeat>
+                                    </div>
+                                </fieldset>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                            </apex:outputPanel>
+                            <apex:outputPanel rendered="{!otherServicesSize != 0}">
+                                <div class="twelve columns clearfix">
+                                    <div class="section-header">
+                                        {!$Label.OTRSetup_Services}
+                                    </div>
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    These products or services are subject to Applicant’s execution of applicable additional enrollment form(s) or agreement(s). Products or services may be subject to additional fees.
+                                </div>
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
+                                <div class="twelve columns clearfix form-field styled-panel">
+                                    <fieldset class="slds-form-element">
+                                        <legend class="slds-form-element__legend slds-form-element__label">Available Products</legend>
+                                        <apex:repeat value="{!otherServicesOptions}" var="otherService">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-checkbox columns four">
+                                                    <label class="styled-label" for="{!otherService.value}">{!otherService.label}</label>
+                                                    <input type="checkbox" id="{!otherService.value}" value="{!otherService.value}" onchange="prodSelection(this)"/>
+                                                </div>
+                                            </div>
+                                        </apex:repeat>
+                                    </fieldset>
+                                </div>
+
+                                <!--BEGIN ALLOWED MERCHANT CATEGORIES SUBSECTION-->
+                                <div id="allowedMerchantCategories" style="display:none;">
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div>
+                                        <fieldset class="slds-form-element">
+                                            <legend class="slds-form-element__legend slds-form-element__label">Fueling Categories</legend>
+                                            <div>
+                                                <div class="six columns clearfix form-field">
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-checkbox">
+                                                            <label class="styled-label" for="allFuel">Select All Fueling Categories</label>
+                                                            <input type="checkbox" id="allFuel" class="merchCats" name="allTheFuel" value="All Fueling Categories" onClick="allFuelSelect(this)"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="six columns clearfix form-field">
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-checkbox">
+                                                            <label class="styled-label" for="allMerch">All Merchants
+                                                                <apex:image style="width: 16px;" title="{!$Label.OTRSetupHelpAllMerch}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="All Merchant Help"/>
+                                                            </label>
+                                                            <input type="checkbox" id="allMerch" class="allMerchCat" name="allTheMerch" value="All Merchants" onClick="allMerchants(this)"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <apex:repeat value="{!merchCats}" var="myCat" id="catRepeat">
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-checkbox columns offset-by-one">
+                                                        <label class="styled-label" for="{!myCat.value}">{!myCat.label}
+                                                            <apex:image style="width: 16px;" title="{!$Label[myCat.helps]}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="All Merchant Help"/>
+                                                        </label>
+                                                        <input type="checkbox" id="{!myCat.value}" class="merchCats" name="myMerch" value="{!myCat.value}" onchange="merchSelection(this)"/>
+                                                    </div>
+                                                </div>
+                                            </apex:repeat>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <!--END ALLOWED MERCHANT CATEGORIES SUBSECTION-->
+
+                            </apex:outputPanel>
+                            <!--END AVAILABLE PRODUCTS SECTION-->
+
+                            <!--BEGIN POLICY SECTION-->
                             <apex:outputPanel id="cardPolicy" rendered="{!onlineApplicationOffer.Enable_Card_Information__c == true}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
@@ -374,57 +430,126 @@
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
-                                <div class="twelve columns clearfix">
-                                    <b>Limits</b>
+
+                                <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-*->
+                                <div class="twelve columns clearfix form-field styled-panel">
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <b>Limits</b>
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        Policy limits will reset at midnight Central Standard Time.
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="four columns clearfix form-field">
+                                            Daily Limit
+                                            <div>
+                                                <apex:outputLabel for="dailyTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Daily_Transactions__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Daily_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Daily Transaction Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Daily_Transactions__c}" id="dailyTrans"/>
+                                            </div>
+                                            <div>
+                                                <apex:outputLabel for="dailyAmt" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Daily_Amount_Requested__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Daily_Amount_Requested__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Daily Amount Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Daily_Amount_Requested__c}" id="dailyAmt"/>
+                                            </div>
+                                        </div>
+                                        <div class="four columns clearfix form-field">
+                                            Weekly Limit
+                                            <div>
+                                                <apex:outputLabel for="weekTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Weekly_Transactions__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Weekly_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Weekly Transaction Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Weekly_Transactions__c}" id="weekTrans"/>
+                                            </div>
+                                            <div>
+                                                <apex:outputLabel for="weekAmt" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Weekly_Amount_Requested__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Weekly_Amount_Requested__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Weekly Amount Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Weekly_Amount_Requested__c}" id="weekAmt"/>
+                                            </div>
+                                        </div>
+                                        <div class="four columns clearfix form-field">
+                                            Monthly Limit
+                                            <div>
+                                                <apex:outputLabel for="monthTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Monthly_Transactions__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Monthly_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Monthly Transaction Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Monthly_Transactions__c}" id="monthTrans"/>
+                                            </div>
+                                            <div>
+                                                <apex:outputLabel for="monthAmt" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Monthly_Amount_Requested__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Monthly_Amount_Requested__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Monthly Amount Help"/>
+                                                </apex:outputLabel>
+                                                <apex:inputField styleClass="styled-input" value="{!onlineApplication.Monthly_Amount_Requested__c}" id="monthAmt"/>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    Policy limits will reset at midnight Central Standard Time.
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
+                                <!-*-END REFRESH LIMITS SUBSECTION-->
+
+                                <!--BEGIN OTHER LIMITS SUBSECTION-->
                                 <div class="twelve columns clearfix form-field styled-panel">
                                     <div class="twelve columns clearfix">
                                         <apex:outputPanel >
                                             <apex:outputPanel rendered="{!IF(program.WEX_Platform__c == 'CoreCard', false, true)}">
                                                 <div class="four columns clearfix form-field">
-                                                    <label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Daily_Fuel_Gallons__c.label}</label>
-                                                    <apex:InputField styleClass="styled-input"  label="" html-tabindex="15" value="{!onlineApplication.Daily_Fuel_Gallons__c}" />
+                                                    <apex:outputLabel for="gallons" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Daily_Fuel_Gallons__c.label}"/>
+                                                    <apex:InputField styleClass="styled-input" id="gallons" label="" html-tabindex="15" value="{!onlineApplication.Daily_Fuel_Gallons__c}" />
                                                 </div>
                                                 <div class="four columns clearfix form-field">
-                                                    <label class="styled-label">DEF Gallons</label>
-                                                    <apex:InputField styleClass="styled-input"  label="" html-tabindex="16" value="{!onlineApplication.Daily_DEF_Limit__c}" />
+                                                    <apex:outputLabel for="defLimit" styleClass="styled-label" value="DEF Gallons"/>
+                                                    <apex:InputField styleClass="styled-input" id="defLimit" label="" html-tabindex="16" value="{!onlineApplication.Daily_DEF_Limit__c}" />
                                                 </div>
                                                 <div class="four columns clearfix form-field">
-                                                    <label class="styled-label">Cash $</label>
-                                                    <apex:InputField styleClass="styled-input"  label="" html-tabindex="17" value="{!onlineApplication.Daily_Cash_Limit__c}" />
+                                                    <apex:outputLabel for="cashLimit" styleClass="styled-label" value="Cash $"/>
+                                                    <apex:InputField styleClass="styled-input" id="cashLimit" label="" html-tabindex="17" value="{!onlineApplication.Daily_Cash_Limit__c}" />
                                                 </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                         <apex:outputPanel >
                                             <apex:outputPanel rendered="{!IF(program.WEX_Platform__c == 'CoreCard', true, false)}">
                                                 <div class="four columns clearfix form-field">
-                                                    <label class="styled-label">Fuel $</label>
-                                                    <apex:InputField styleClass="styled-input"  label="" html-tabindex="15" value="{!onlineApplication.Daily_Fuel_Limit__c}" />
+                                                    <apex:outputLabel for="fuelLimit" styleClass="styled-label" value="Fuel $"/>
+                                                    <apex:InputField styleClass="styled-input" id="fuelLimit" label="" html-tabindex="15" value="{!onlineApplication.Daily_Fuel_Limit__c}" />
                                                 </div>
                                                 <div class="four columns clearfix form-field">
-                                                    <label class="styled-label">Cash $</label>
-                                                    <apex:InputField styleClass="styled-input"  label="" html-tabindex="16" value="{!onlineApplication.Daily_Cash_Limit__c}" />
+                                                    <apex:outputLabel for="dailyCash" styleClass="styled-label" value="Cash $"/>
+                                                    <apex:InputField styleClass="styled-input" id="dailyCash" label="" html-tabindex="16" value="{!onlineApplication.Daily_Cash_Limit__c}" />
                                                 </div>
                                                 <div class="four columns clearfix form-field">
-                                                    <label class="styled-label">Misc. $</label>
-                                                    <apex:InputField styleClass="styled-input"  label="" html-tabindex="17" value="{!onlineApplication.Daily_Misc_Limit__c}" />
+                                                    <apex:outputLabel for="miscLimit" styleClass="styled-label" value="Misc. $"/>
+                                                    <apex:InputField styleClass="styled-input" id="miscLimit" label="" html-tabindex="17" value="{!onlineApplication.Daily_Misc_Limit__c}" />
                                                 </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
+                                        <apex:outputPanel id="scalesLimits" rendered="{!hasScales}">
+                                            <div class="four columns offset-by-four">
+                                                <apex:outputLabel for="scales" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Scales_Limit__c.label}">
+                                                    <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Scales_Limit__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Scales Limit Help"/>
+                                                </apex:outputLabel>
+                                                <apex:InputField styleClass="styled-input" id="scales" label="" html-tabindex="16" value="{!onlineApplication.Scales_Limit__c}" />
+                                            </div>
+                                        </apex:outputPanel>
                                     </div>
                                 </div>
+                                <!--END OTHER LIMITS SUBSECTION-->
+
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
+
+                                <!--BEGIN PROMPTS SUBSECTION-->
                                 <div class="twelve columns clearfix">
                                     <b>Prompts</b>
                                 </div>
@@ -434,72 +559,40 @@
                                 <div class="twelve columns clearfix form-field styled-panel">
                                     <div class="four columns clearfix" style="display: {!IF(cardType == 'unit', 'none', 'block')};">
                                         <center>
-                                            <label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Unit__c.label}</label>
-                                            <apex:inputField value="{!onlineApplication.Unit__c}" html-tabindex="20">
-                                                <apex:actionsupport event="onchange" rerender="driverUnits" oncomplete="pageLoadFunctions()"/>
-                                            </apex:inputField>
+                                            <apex:actionRegion >
+                                                <apex:outputLabel for="unit" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Unit__c.label}"/>
+                                                <apex:inputField value="{!onlineApplication.Unit__c}" id="unit" html-tabindex="20">
+                                                    <apex:actionsupport event="onchange" rerender="driverUnits" oncomplete="pageLoadFunctions()"/>
+                                                </apex:inputField>
+                                            </apex:actionRegion>
                                         </center>
                                     </div>
                                     <div class="four columns clearfix">
                                         <center>
-                                            <label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Trip__c.label}</label>
-                                            <apex:inputField value="{!onlineApplication.Trip__c}" html-tabindex="21"/>
+                                            <apex:outputLabel for="trip" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Trip__c.label}"/>
+                                            <apex:inputField value="{!onlineApplication.Trip__c}" id="trip" html-tabindex="21"/>
                                         </center>
                                     </div>
                                     <div class="four columns clearfix">
                                         <center>
-                                            <label class="styled-label">{!$ObjectType.OnlineApplication__c.fields.Odometer__c.label}</label>
-                                            <apex:inputField value="{!onlineApplication.Odometer__c}" html-tabindex="22"/>
+                                            <apex:outputLabel for="odometer" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Odometer__c.label}"/>
+                                            <apex:inputField value="{!onlineApplication.Odometer__c}" id="odometer" html-tabindex="22"/>
                                         </center>
                                     </div>
                                 </div>
+                                <!--END PROMPTS SUBSECTION-->
+
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
                             </apex:outputPanel>
-                            <apex:outputPanel rendered="{!otherServicesSize != 0}">
-                                <div class="twelve columns clearfix">
-                                    <div class="section-header">
-                                        Available Products
-                                    </div>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    These products or services are subject to Applicant’s execution of applicable additional enrollment form(s) or agreement(s). Products or services may be subject to additional fees.
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <div class="twelve columns clearfix form-field styled-panel">
-                                    <div class="five columns clearfix">
-                                        <label class="styled-label">Available Products</label>
-                                        <select size="7" multiple="multiple" class="styled-multi-select" id="otherServices" tabindex="18" >
-                                            <apex:repeat value="{!otherServices}" var="otherService">
-                                                <option value="{!otherService}">{!otherService}</option>
-                                            </apex:repeat>
-                                        </select>
-                                    </div>
-                                    <div class="two columns clearfix" style="padding-top: 60px;">
-                                        <div class="action-button" onclick="javascript:addProduct();">
-                                            <i class="fa fa-arrow-right" aria-hidden="true"></i><br/>
-                                        </div><br/>
-                                        <div class="action-button" onclick="javascript:removeProduct();">
-                                            <i class="fa fa-arrow-left" aria-hidden="true"></i><br/>
-                                        </div>
-                                    </div>
-                                    <div class="five columns clearfix">
-                                        <label class="styled-label">Selected Products</label>
-                                        <select size="7" multiple="multiple" class="styled-multi-select" tabindex="19" id="selectedOtherServices">
-                                        </select>
-                                    </div>
-                                </div>
-                            </apex:outputPanel>
+                            <!--END POLICY SECTION-->
 
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
+
+                            <!--BEGIN DRIVER INFORMATION SECTION-->
                             <apex:outputPanel id="cardSetup" rendered="{!onlineApplicationOffer.Enable_Driver_Unit_Information__c == true}">
                                 <apex:outputPanel rendered="{!cardType == 'driver'}">
                                     <div class="twelve columns clearfix">
@@ -512,10 +605,10 @@
                                     </div>
                                     <div class="twelve columns clearfix">
                                         <apex:outputText rendered="{!IF(program.WEX_Platform__c == 'CoreCard', true, false)}">
-                                            Your driver will be required to enter the number that matches the assigned card. Driver number can be a maximum of 12 digits. Additional drivers may be added online upon account activation.
+                                            Your driver will be required to enter the number that matches the assigned card. Driver number can be a maximum of 12 digits. Additional drivers may be added online upon account activatiorequired="true"n.
                                         </apex:outputText>
                                         <apex:outputText rendered="{!IF(program.WEX_Platform__c != 'CoreCard', true, false)}">
-                                            Your driver will be required to enter the number that matches the assigned card. Driver number can be a maximum of 12 digits. Additional drivers may be added via eManager upon account activation.
+                                            Your driver will be required to enter the number that matches the assigned card. Driver number can be a maximum of 12 digits. Additional drivers may be added via eManager upon account activatiorequired="true"n.
                                         </apex:outputText>
                                     </div>
                                     <div class="twelve columns clearfix">
@@ -530,12 +623,12 @@
                                                 <div class="driver clearfix">
                                                     <div class="twelve columns clearfix" style="border: 1px solid #ccc; background: #f7f7f7; padding: 10px 20px 0 20px;">
                                                         <div class="five columns clearfix form-field" data-row="{!dataRowIndex}" style="vertical-align: middle; display: inline-block; float: none;">
-                                                            <label class="styled-label">{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Driver_Name__c.label}</label>
-                                                            <apex:inputField html-placeholder="First Name Last Name" styleClass="styled-input" value="{!onlineApplicationDriver.Driver_Name__c}" html-maxlength="25" />
+                                                            <apex:outputLabel for="driverName" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Driver_Name__c.label}"/>
+                                                            <apex:inputField html-placeholder="First Name Last Name" id="driverName" styleClass="styled-input" value="{!onlineApplicationDriver.Driver_Name__c}" html-maxlength="25" />
                                                         </div>
                                                         <div class="three columns clearfix form-field" data-row="{!dataRowIndex}" style="vertical-align: middle; display: inline-block; float: none;">
-                                                            <label class="styled-label">{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Driver_ID__c.label}</label>
-                                                            <apex:inputField styleClass="styled-input alphaNumeric" value="{!onlineApplicationDriver.Driver_ID__c}" html-maxlength="12" />
+                                                            <apex:outputLabel for="driverId" styleClass="styled-label" value="{!$ObjectType.OnlineApplicationDriverSetup__c.fields.Driver_ID__c.label}"/>
+                                                            <apex:inputField styleClass="styled-input alphaNumeric" id="driverId" value="{!onlineApplicationDriver.Driver_ID__c}" html-maxlength="12" />
                                                         </div>
                                                         <div class="three columns clearfix form-field" style="text-align: center; vertical-align: middle; display: inline-block; float: none;" data-row="0">
                                                             <apex:outputPanel rendered="{!IF(AND(driverCollectionSize == 1), false, true)}">
@@ -595,8 +688,8 @@
                                                     <div class="vehicle clearfix">
                                                         <div class="twelve columns clearfix" style="border: 1px solid #ccc; background: #f7f7f7; padding: 10px 20px 0 20px;">
                                                             <div class="six columns clearfix form-field" style="vertical-align: middle; display: inline-block; float: none;" data-row="{!dataRowIndex}">
-                                                                <label class="styled-label">Unit Number</label>
-                                                                <apex:inputField styleClass="styled-input alphaNumeric" value="{!onlineApplicationUnit.Name}" html-maxlength="8" />
+                                                                <apex:outputLabel for="name" styleClass="styled-label" value="Unit Number"/>
+                                                                <apex:inputField styleClass="styled-input alphaNumeric" id="name" value="{!onlineApplicationUnit.Name}" html-maxlength="8" />
                                                             </div>
                                                             <div class="four columns clearfix form-field" style="text-align: center; vertical-align: middle; display: inline-block; float: none;" data-row="0">
                                                                 <apex:outputPanel rendered="{!IF(AND(unitCollectionSize == 1), false, true)}">
@@ -625,6 +718,8 @@
                                     </apex:outputPanel>
                                 </apex:outputPanel>
                             </apex:outputPanel>
+                            <!--END DRIVER INFORMATION SECTION-->
+
                             <script>
                                 pageLoadFunctions();
                             </script>
@@ -638,6 +733,7 @@
                                 </div>
                             </div>
                         </apex:form>
+                        <!--FORM END-->
                     </div>
                 </div>
             </div>

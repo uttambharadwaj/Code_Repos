@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,7 +89,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -37,7 +117,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -55,6 +155,29 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>ATM_Use__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Sent to EFS App Manager</description>
+        <externalId>false</externalId>
+        <label>ATM Use</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Account_Descriptor__c</fullName>
+        <description>sent as mgr_code in app manager integration</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Account Descriptor</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>Additional_Text__c</fullName>
         <description>This is additional text that would appear on the welcome letter.</description>
@@ -100,6 +223,26 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Approval_Type__c</fullName>
+        <description>Sent to App Manager as ApprovalType</description>
+        <externalId>false</externalId>
+        <label>Approval Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Letter Type</fullName>
+                    <default>false</default>
+                    <label>Letter Type</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Authorized_Signer_Disclosure__c</fullName>
@@ -205,6 +348,43 @@
             </valueSetDefinition>
         </valueSet>
         <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Available_Funding_Options__c</fullName>
+        <description>Options on how to use the credit card that are available to offer the applicant</description>
+        <externalId>false</externalId>
+        <label>Available Funding Options</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>ACH Transfer</fullName>
+                    <default>false</default>
+                    <label>ACH Transfer</label>
+                </value>
+                <value>
+                    <fullName>ATM</fullName>
+                    <default>false</default>
+                    <label>ATM</label>
+                </value>
+                <value>
+                    <fullName>Debit Use</fullName>
+                    <default>false</default>
+                    <label>Debit Use</label>
+                </value>
+                <value>
+                    <fullName>Register Check</fullName>
+                    <default>false</default>
+                    <label>Register Check</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Available_Payment_Methods__c</fullName>
@@ -407,6 +587,66 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Card_Order_Type__c</fullName>
+        <description>Sent to EFS App Manager as</description>
+        <externalId>false</externalId>
+        <label>Card Order Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>3</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                    <label>21</label>
+                </value>
+                <value>
+                    <fullName>35</fullName>
+                    <default>false</default>
+                    <label>35</label>
+                </value>
+                <value>
+                    <fullName>36</fullName>
+                    <default>false</default>
+                    <label>36</label>
+                </value>
+                <value>
+                    <fullName>31</fullName>
+                    <default>false</default>
+                    <label>31</label>
+                </value>
+                <value>
+                    <fullName>30</fullName>
+                    <default>false</default>
+                    <label>30</label>
+                </value>
+                <value>
+                    <fullName>51</fullName>
+                    <default>false</default>
+                    <label>51</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Card_Program__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -418,6 +658,602 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Card_Shipping_Method__c</fullName>
+        <description>Sent to EFS App Manager as</description>
+        <externalId>false</externalId>
+        <label>Card Shipping Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>72</fullName>
+                    <default>false</default>
+                    <label>72</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Card_Style__c</fullName>
+        <description>Sent to EFS App Manager as card_style</description>
+        <externalId>false</externalId>
+        <label>Card Style</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>25</fullName>
+                    <default>false</default>
+                    <label>25</label>
+                </value>
+                <value>
+                    <fullName>20</fullName>
+                    <default>false</default>
+                    <label>20</label>
+                </value>
+                <value>
+                    <fullName>35</fullName>
+                    <default>false</default>
+                    <label>35</label>
+                </value>
+                <value>
+                    <fullName>36</fullName>
+                    <default>false</default>
+                    <label>36</label>
+                </value>
+                <value>
+                    <fullName>38</fullName>
+                    <default>false</default>
+                    <label>38</label>
+                </value>
+                <value>
+                    <fullName>43</fullName>
+                    <default>false</default>
+                    <label>43</label>
+                </value>
+                <value>
+                    <fullName>50</fullName>
+                    <default>false</default>
+                    <label>50</label>
+                </value>
+                <value>
+                    <fullName>60</fullName>
+                    <default>false</default>
+                    <label>60</label>
+                </value>
+                <value>
+                    <fullName>97</fullName>
+                    <default>false</default>
+                    <label>97</label>
+                </value>
+                <value>
+                    <fullName>114</fullName>
+                    <default>false</default>
+                    <label>114</label>
+                </value>
+                <value>
+                    <fullName>118</fullName>
+                    <default>false</default>
+                    <label>118</label>
+                </value>
+                <value>
+                    <fullName>122</fullName>
+                    <default>false</default>
+                    <label>122</label>
+                </value>
+                <value>
+                    <fullName>139</fullName>
+                    <default>false</default>
+                    <label>139</label>
+                </value>
+                <value>
+                    <fullName>159</fullName>
+                    <default>false</default>
+                    <label>159</label>
+                </value>
+                <value>
+                    <fullName>182</fullName>
+                    <default>false</default>
+                    <label>182</label>
+                </value>
+                <value>
+                    <fullName>198</fullName>
+                    <default>false</default>
+                    <label>198</label>
+                </value>
+                <value>
+                    <fullName>200</fullName>
+                    <default>false</default>
+                    <label>200</label>
+                </value>
+                <value>
+                    <fullName>201</fullName>
+                    <default>false</default>
+                    <label>201</label>
+                </value>
+                <value>
+                    <fullName>202</fullName>
+                    <default>false</default>
+                    <label>202</label>
+                </value>
+                <value>
+                    <fullName>203</fullName>
+                    <default>false</default>
+                    <label>203</label>
+                </value>
+                <value>
+                    <fullName>204</fullName>
+                    <default>false</default>
+                    <label>204</label>
+                </value>
+                <value>
+                    <fullName>205</fullName>
+                    <default>false</default>
+                    <label>205</label>
+                </value>
+                <value>
+                    <fullName>206</fullName>
+                    <default>false</default>
+                    <label>206</label>
+                </value>
+                <value>
+                    <fullName>207</fullName>
+                    <default>false</default>
+                    <label>207</label>
+                </value>
+                <value>
+                    <fullName>208</fullName>
+                    <default>false</default>
+                    <label>208</label>
+                </value>
+                <value>
+                    <fullName>209</fullName>
+                    <default>false</default>
+                    <label>209</label>
+                </value>
+                <value>
+                    <fullName>210</fullName>
+                    <default>false</default>
+                    <label>210</label>
+                </value>
+                <value>
+                    <fullName>211</fullName>
+                    <default>false</default>
+                    <label>211</label>
+                </value>
+                <value>
+                    <fullName>212</fullName>
+                    <default>false</default>
+                    <label>212</label>
+                </value>
+                <value>
+                    <fullName>215</fullName>
+                    <default>false</default>
+                    <label>215</label>
+                </value>
+                <value>
+                    <fullName>216</fullName>
+                    <default>false</default>
+                    <label>216</label>
+                </value>
+                <value>
+                    <fullName>217</fullName>
+                    <default>false</default>
+                    <label>217</label>
+                </value>
+                <value>
+                    <fullName>218</fullName>
+                    <default>false</default>
+                    <label>218</label>
+                </value>
+                <value>
+                    <fullName>219</fullName>
+                    <default>false</default>
+                    <label>219</label>
+                </value>
+                <value>
+                    <fullName>220</fullName>
+                    <default>false</default>
+                    <label>220</label>
+                </value>
+                <value>
+                    <fullName>221</fullName>
+                    <default>false</default>
+                    <label>221</label>
+                </value>
+                <value>
+                    <fullName>222</fullName>
+                    <default>false</default>
+                    <label>222</label>
+                </value>
+                <value>
+                    <fullName>223</fullName>
+                    <default>false</default>
+                    <label>223</label>
+                </value>
+                <value>
+                    <fullName>224</fullName>
+                    <default>false</default>
+                    <label>224</label>
+                </value>
+                <value>
+                    <fullName>225</fullName>
+                    <default>false</default>
+                    <label>225</label>
+                </value>
+                <value>
+                    <fullName>226</fullName>
+                    <default>false</default>
+                    <label>226</label>
+                </value>
+                <value>
+                    <fullName>227</fullName>
+                    <default>false</default>
+                    <label>227</label>
+                </value>
+                <value>
+                    <fullName>228</fullName>
+                    <default>false</default>
+                    <label>228</label>
+                </value>
+                <value>
+                    <fullName>229</fullName>
+                    <default>false</default>
+                    <label>229</label>
+                </value>
+                <value>
+                    <fullName>230</fullName>
+                    <default>false</default>
+                    <label>230</label>
+                </value>
+                <value>
+                    <fullName>231</fullName>
+                    <default>false</default>
+                    <label>231</label>
+                </value>
+                <value>
+                    <fullName>232</fullName>
+                    <default>false</default>
+                    <label>232</label>
+                </value>
+                <value>
+                    <fullName>233</fullName>
+                    <default>false</default>
+                    <label>233</label>
+                </value>
+                <value>
+                    <fullName>234</fullName>
+                    <default>false</default>
+                    <label>234</label>
+                </value>
+                <value>
+                    <fullName>235</fullName>
+                    <default>false</default>
+                    <label>235</label>
+                </value>
+                <value>
+                    <fullName>236</fullName>
+                    <default>false</default>
+                    <label>236</label>
+                </value>
+                <value>
+                    <fullName>237</fullName>
+                    <default>false</default>
+                    <label>237</label>
+                </value>
+                <value>
+                    <fullName>239</fullName>
+                    <default>false</default>
+                    <label>239</label>
+                </value>
+                <value>
+                    <fullName>240</fullName>
+                    <default>false</default>
+                    <label>240</label>
+                </value>
+                <value>
+                    <fullName>241</fullName>
+                    <default>false</default>
+                    <label>241</label>
+                </value>
+                <value>
+                    <fullName>242</fullName>
+                    <default>false</default>
+                    <label>242</label>
+                </value>
+                <value>
+                    <fullName>244</fullName>
+                    <default>false</default>
+                    <label>244</label>
+                </value>
+                <value>
+                    <fullName>245</fullName>
+                    <default>false</default>
+                    <label>245</label>
+                </value>
+                <value>
+                    <fullName>246</fullName>
+                    <default>false</default>
+                    <label>246</label>
+                </value>
+                <value>
+                    <fullName>249</fullName>
+                    <default>false</default>
+                    <label>249</label>
+                </value>
+                <value>
+                    <fullName>250</fullName>
+                    <default>false</default>
+                    <label>250</label>
+                </value>
+                <value>
+                    <fullName>251</fullName>
+                    <default>false</default>
+                    <label>251</label>
+                </value>
+                <value>
+                    <fullName>252</fullName>
+                    <default>false</default>
+                    <label>252</label>
+                </value>
+                <value>
+                    <fullName>253</fullName>
+                    <default>false</default>
+                    <label>253</label>
+                </value>
+                <value>
+                    <fullName>254</fullName>
+                    <default>false</default>
+                    <label>254</label>
+                </value>
+                <value>
+                    <fullName>256</fullName>
+                    <default>false</default>
+                    <label>256</label>
+                </value>
+                <value>
+                    <fullName>257</fullName>
+                    <default>false</default>
+                    <label>257</label>
+                </value>
+                <value>
+                    <fullName>258</fullName>
+                    <default>false</default>
+                    <label>258</label>
+                </value>
+                <value>
+                    <fullName>259</fullName>
+                    <default>false</default>
+                    <label>259</label>
+                </value>
+                <value>
+                    <fullName>260</fullName>
+                    <default>false</default>
+                    <label>260</label>
+                </value>
+                <value>
+                    <fullName>261</fullName>
+                    <default>false</default>
+                    <label>261</label>
+                </value>
+                <value>
+                    <fullName>275</fullName>
+                    <default>false</default>
+                    <label>275</label>
+                </value>
+                <value>
+                    <fullName>291</fullName>
+                    <default>false</default>
+                    <label>291</label>
+                </value>
+                <value>
+                    <fullName>263</fullName>
+                    <default>false</default>
+                    <label>263</label>
+                </value>
+                <value>
+                    <fullName>293</fullName>
+                    <default>false</default>
+                    <label>293</label>
+                </value>
+                <value>
+                    <fullName>336</fullName>
+                    <default>false</default>
+                    <label>336</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Card_Type__c</fullName>
+        <description>Sent to EFS App Manager as card_type</description>
+        <externalId>false</externalId>
+        <label>Card Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>2</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>4</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>27</fullName>
+                    <default>false</default>
+                    <label>27</label>
+                </value>
+                <value>
+                    <fullName>42</fullName>
+                    <default>false</default>
+                    <label>42</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Cards_per_1_Requested__c</fullName>
+        <description>Used for specific programs who want to send additional cards to the customer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used to order additional cards for specific programs
+
+Example:
+Number of Cards (Online App): 5 |
+# of Cards per 1 Requested: 2 |
+Number of Cards sent to LLC = 10</inlineHelpText>
+        <label># of Cards per 1 Requested</label>
+        <precision>1</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cash_Limit__c</fullName>
+        <externalId>false</externalId>
+        <label>Cash Limit</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Child_Funded_Issuer_ID__c</fullName>
+        <description>Sent to EFS App Manager as Child_Funded_Issuer_ID</description>
+        <externalId>false</externalId>
+        <label>Child Funded Issuer ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>100000</fullName>
+                    <default>false</default>
+                    <label>100000</label>
+                </value>
+                <value>
+                    <fullName>105757</fullName>
+                    <default>false</default>
+                    <label>105757</label>
+                </value>
+                <value>
+                    <fullName>113301</fullName>
+                    <default>false</default>
+                    <label>113301</label>
+                </value>
+                <value>
+                    <fullName>118897</fullName>
+                    <default>false</default>
+                    <label>118897</label>
+                </value>
+                <value>
+                    <fullName>140187</fullName>
+                    <default>false</default>
+                    <label>140187</label>
+                </value>
+                <value>
+                    <fullName>141905</fullName>
+                    <default>false</default>
+                    <label>141905</label>
+                </value>
+                <value>
+                    <fullName>143039</fullName>
+                    <default>false</default>
+                    <label>143039</label>
+                </value>
+                <value>
+                    <fullName>144496</fullName>
+                    <default>false</default>
+                    <label>144496</label>
+                </value>
+                <value>
+                    <fullName>151674</fullName>
+                    <default>false</default>
+                    <label>151674</label>
+                </value>
+                <value>
+                    <fullName>155189</fullName>
+                    <default>false</default>
+                    <label>155189</label>
+                </value>
+                <value>
+                    <fullName>189984</fullName>
+                    <default>false</default>
+                    <label>189984</label>
+                </value>
+                <value>
+                    <fullName>194133</fullName>
+                    <default>false</default>
+                    <label>194133</label>
+                </value>
+                <value>
+                    <fullName>194134</fullName>
+                    <default>false</default>
+                    <label>194134</label>
+                </value>
+                <value>
+                    <fullName>194135</fullName>
+                    <default>false</default>
+                    <label>194135</label>
+                </value>
+                <value>
+                    <fullName>194136</fullName>
+                    <default>false</default>
+                    <label>194136</label>
+                </value>
+                <value>
+                    <fullName>194143</fullName>
+                    <default>false</default>
+                    <label>194143</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Complete_Later_Email_From__c</fullName>
@@ -499,6 +1335,36 @@
         <type>Url</type>
     </fields>
     <fields>
+        <fullName>Create_Letter__c</fullName>
+        <description>Sent to App Manager as CreateLetter</description>
+        <externalId>false</externalId>
+        <label>Create Letter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>ACH Debit</fullName>
+                    <default>false</default>
+                    <label>ACH Debit</label>
+                </value>
+                <value>
+                    <fullName>Emanager Letter</fullName>
+                    <default>false</default>
+                    <label>Emanager Letter</label>
+                </value>
+                <value>
+                    <fullName>Wire/ACH Credit</fullName>
+                    <default>false</default>
+                    <label>Wire/ACH Credit</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Credit_Limit_Per_Truck_Slip_Seat__c</fullName>
         <externalId>false</externalId>
         <label>Credit Limit Per Truck - Slip Seat</label>
@@ -533,6 +1399,290 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Customer_Type__c</fullName>
+        <description>Sent to EFS App Manager as</description>
+        <externalId>false</externalId>
+        <label>Customer Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>5</fullName>
+                    <default>false</default>
+                    <label>5</label>
+                </value>
+                <value>
+                    <fullName>6</fullName>
+                    <default>false</default>
+                    <label>6</label>
+                </value>
+                <value>
+                    <fullName>7</fullName>
+                    <default>false</default>
+                    <label>7</label>
+                </value>
+                <value>
+                    <fullName>8</fullName>
+                    <default>false</default>
+                    <label>8</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+                <value>
+                    <fullName>11</fullName>
+                    <default>false</default>
+                    <label>11</label>
+                </value>
+                <value>
+                    <fullName>12</fullName>
+                    <default>false</default>
+                    <label>12</label>
+                </value>
+                <value>
+                    <fullName>13</fullName>
+                    <default>false</default>
+                    <label>13</label>
+                </value>
+                <value>
+                    <fullName>14</fullName>
+                    <default>false</default>
+                    <label>14</label>
+                </value>
+                <value>
+                    <fullName>15</fullName>
+                    <default>false</default>
+                    <label>15</label>
+                </value>
+                <value>
+                    <fullName>16</fullName>
+                    <default>false</default>
+                    <label>16</label>
+                </value>
+                <value>
+                    <fullName>19</fullName>
+                    <default>false</default>
+                    <label>19</label>
+                </value>
+                <value>
+                    <fullName>20</fullName>
+                    <default>false</default>
+                    <label>20</label>
+                </value>
+                <value>
+                    <fullName>21</fullName>
+                    <default>false</default>
+                    <label>21</label>
+                </value>
+                <value>
+                    <fullName>23</fullName>
+                    <default>false</default>
+                    <label>23</label>
+                </value>
+                <value>
+                    <fullName>24</fullName>
+                    <default>false</default>
+                    <label>24</label>
+                </value>
+                <value>
+                    <fullName>25</fullName>
+                    <default>false</default>
+                    <label>25</label>
+                </value>
+                <value>
+                    <fullName>26</fullName>
+                    <default>false</default>
+                    <label>26</label>
+                </value>
+                <value>
+                    <fullName>27</fullName>
+                    <default>false</default>
+                    <label>27</label>
+                </value>
+                <value>
+                    <fullName>28</fullName>
+                    <default>false</default>
+                    <label>28</label>
+                </value>
+                <value>
+                    <fullName>29</fullName>
+                    <default>false</default>
+                    <label>29</label>
+                </value>
+                <value>
+                    <fullName>31</fullName>
+                    <default>false</default>
+                    <label>31</label>
+                </value>
+                <value>
+                    <fullName>34</fullName>
+                    <default>false</default>
+                    <label>34</label>
+                </value>
+                <value>
+                    <fullName>35</fullName>
+                    <default>false</default>
+                    <label>35</label>
+                </value>
+                <value>
+                    <fullName>36</fullName>
+                    <default>false</default>
+                    <label>36</label>
+                </value>
+                <value>
+                    <fullName>37</fullName>
+                    <default>false</default>
+                    <label>37</label>
+                </value>
+                <value>
+                    <fullName>38</fullName>
+                    <default>false</default>
+                    <label>38</label>
+                </value>
+                <value>
+                    <fullName>39</fullName>
+                    <default>false</default>
+                    <label>39</label>
+                </value>
+                <value>
+                    <fullName>40</fullName>
+                    <default>false</default>
+                    <label>40</label>
+                </value>
+                <value>
+                    <fullName>41</fullName>
+                    <default>false</default>
+                    <label>41</label>
+                </value>
+                <value>
+                    <fullName>42</fullName>
+                    <default>false</default>
+                    <label>42</label>
+                </value>
+                <value>
+                    <fullName>43</fullName>
+                    <default>false</default>
+                    <label>43</label>
+                </value>
+                <value>
+                    <fullName>44</fullName>
+                    <default>false</default>
+                    <label>44</label>
+                </value>
+                <value>
+                    <fullName>45</fullName>
+                    <default>false</default>
+                    <label>45</label>
+                </value>
+                <value>
+                    <fullName>46</fullName>
+                    <default>false</default>
+                    <label>46</label>
+                </value>
+                <value>
+                    <fullName>49</fullName>
+                    <default>false</default>
+                    <label>49</label>
+                </value>
+                <value>
+                    <fullName>50</fullName>
+                    <default>false</default>
+                    <label>50</label>
+                </value>
+                <value>
+                    <fullName>51</fullName>
+                    <default>false</default>
+                    <label>51</label>
+                </value>
+                <value>
+                    <fullName>53</fullName>
+                    <default>false</default>
+                    <label>53</label>
+                </value>
+                <value>
+                    <fullName>54</fullName>
+                    <default>false</default>
+                    <label>54</label>
+                </value>
+                <value>
+                    <fullName>58</fullName>
+                    <default>false</default>
+                    <label>58</label>
+                </value>
+                <value>
+                    <fullName>118</fullName>
+                    <default>false</default>
+                    <label>118</label>
+                </value>
+                <value>
+                    <fullName>119</fullName>
+                    <default>false</default>
+                    <label>119</label>
+                </value>
+                <value>
+                    <fullName>120</fullName>
+                    <default>false</default>
+                    <label>120</label>
+                </value>
+                <value>
+                    <fullName>121</fullName>
+                    <default>false</default>
+                    <label>121</label>
+                </value>
+                <value>
+                    <fullName>122</fullName>
+                    <default>false</default>
+                    <label>122</label>
+                </value>
+                <value>
+                    <fullName>123</fullName>
+                    <default>false</default>
+                    <label>123</label>
+                </value>
+                <value>
+                    <fullName>124</fullName>
+                    <default>false</default>
+                    <label>124</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Daily_Cash_Limit__c</fullName>
+        <description>Sent to EFS in App Manager payload</description>
+        <externalId>false</externalId>
+        <label>Daily Cash Limit</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Daily_MC_Limit__c</fullName>
+        <description>Sent to EFS App Manager</description>
+        <externalId>false</externalId>
+        <label>Daily MC Limit</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>Disclosure__c</fullName>
@@ -671,16 +1821,26 @@
         <valueSet>
             <restricted>true</restricted>
             <valueSetDefinition>
-                <sorted>false</sorted>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Child Funded</fullName>
+                    <default>false</default>
+                    <label>Child Funded</label>
+                </value>
+                <value>
+                    <fullName>Dual Funded</fullName>
+                    <default>false</default>
+                    <label>Dual Funded</label>
+                </value>
                 <value>
                     <fullName>Parent Funded</fullName>
                     <default>true</default>
                     <label>Parent Funded</label>
                 </value>
                 <value>
-                    <fullName>Child Funded</fullName>
+                    <fullName>Parent Funded &amp; Secondary Contract</fullName>
                     <default>false</default>
-                    <label>Child Funded</label>
+                    <label>Parent Funded &amp; Secondary Contract</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -694,6 +1854,36 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Issuer_Group__c</fullName>
+        <description>Sent to EFS App Manager as</description>
+        <externalId>false</externalId>
+        <label>Issuer Group</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
+                    <fullName>10</fullName>
+                    <default>false</default>
+                    <label>10</label>
+                </value>
+                <value>
+                    <fullName>26</fullName>
+                    <default>false</default>
+                    <label>26</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Large_Fleet_Completion_Message__c</fullName>
@@ -812,6 +2002,48 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Limit_Method__c</fullName>
+        <description>Sent to EFS in the App Manager Payload</description>
+        <externalId>false</externalId>
+        <label>Limit Method</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Credit Limit</fullName>
+                    <default>false</default>
+                    <label>Credit Limit</label>
+                </value>
+                <value>
+                    <fullName>Daily Limit</fullName>
+                    <default>false</default>
+                    <label>Daily Limit</label>
+                </value>
+                <value>
+                    <fullName>Less of Daily and Credit</fullName>
+                    <default>false</default>
+                    <label>Less of Daily and Credit</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>MC_Limit__c</fullName>
+        <description>Sent to EFS App Manager</description>
+        <externalId>false</externalId>
+        <label>MC Limit</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Mailed_Check_Fee_Disclosure__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -836,6 +2068,26 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Notice_Delivery__c</fullName>
+        <description>Sent to App Manager as NoticeDelivery</description>
+        <externalId>false</externalId>
+        <label>Notice Delivery</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Email</fullName>
+                    <default>false</default>
+                    <label>Email</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Offer_Contact_Name__c</fullName>
@@ -1252,6 +2504,576 @@
         <type>Currency</type>
     </fields>
     <fields>
+        <fullName>Parent_Carrier_ID__c</fullName>
+        <description>Sent to EFS App Manager as</description>
+        <externalId>false</externalId>
+        <label>Parent Carrier ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>122465</fullName>
+                    <default>false</default>
+                    <label>122465</label>
+                </value>
+                <value>
+                    <fullName>143543</fullName>
+                    <default>false</default>
+                    <label>143543</label>
+                </value>
+                <value>
+                    <fullName>144360</fullName>
+                    <default>false</default>
+                    <label>144360</label>
+                </value>
+                <value>
+                    <fullName>145050</fullName>
+                    <default>false</default>
+                    <label>145050</label>
+                </value>
+                <value>
+                    <fullName>147997</fullName>
+                    <default>false</default>
+                    <label>147997</label>
+                </value>
+                <value>
+                    <fullName>150581</fullName>
+                    <default>false</default>
+                    <label>150581</label>
+                </value>
+                <value>
+                    <fullName>150732</fullName>
+                    <default>false</default>
+                    <label>150732</label>
+                </value>
+                <value>
+                    <fullName>151755</fullName>
+                    <default>false</default>
+                    <label>151755</label>
+                </value>
+                <value>
+                    <fullName>157330</fullName>
+                    <default>false</default>
+                    <label>157330</label>
+                </value>
+                <value>
+                    <fullName>158985</fullName>
+                    <default>false</default>
+                    <label>158985</label>
+                </value>
+                <value>
+                    <fullName>159885</fullName>
+                    <default>false</default>
+                    <label>159885</label>
+                </value>
+                <value>
+                    <fullName>160109</fullName>
+                    <default>false</default>
+                    <label>160109</label>
+                </value>
+                <value>
+                    <fullName>162181</fullName>
+                    <default>false</default>
+                    <label>162181</label>
+                </value>
+                <value>
+                    <fullName>162383</fullName>
+                    <default>false</default>
+                    <label>162383</label>
+                </value>
+                <value>
+                    <fullName>162800</fullName>
+                    <default>false</default>
+                    <label>162800</label>
+                </value>
+                <value>
+                    <fullName>169608</fullName>
+                    <default>false</default>
+                    <label>169608</label>
+                </value>
+                <value>
+                    <fullName>170602</fullName>
+                    <default>false</default>
+                    <label>170602</label>
+                </value>
+                <value>
+                    <fullName>170960</fullName>
+                    <default>false</default>
+                    <label>170960</label>
+                </value>
+                <value>
+                    <fullName>172348</fullName>
+                    <default>false</default>
+                    <label>172348</label>
+                </value>
+                <value>
+                    <fullName>175433</fullName>
+                    <default>false</default>
+                    <label>175433</label>
+                </value>
+                <value>
+                    <fullName>175545</fullName>
+                    <default>false</default>
+                    <label>175545</label>
+                </value>
+                <value>
+                    <fullName>178682</fullName>
+                    <default>false</default>
+                    <label>178682</label>
+                </value>
+                <value>
+                    <fullName>179102</fullName>
+                    <default>false</default>
+                    <label>179102</label>
+                </value>
+                <value>
+                    <fullName>180956</fullName>
+                    <default>false</default>
+                    <label>180956</label>
+                </value>
+                <value>
+                    <fullName>182851</fullName>
+                    <default>false</default>
+                    <label>182851</label>
+                </value>
+                <value>
+                    <fullName>183703</fullName>
+                    <default>false</default>
+                    <label>183703</label>
+                </value>
+                <value>
+                    <fullName>184835</fullName>
+                    <default>false</default>
+                    <label>184835</label>
+                </value>
+                <value>
+                    <fullName>189227</fullName>
+                    <default>false</default>
+                    <label>189227</label>
+                </value>
+                <value>
+                    <fullName>192449</fullName>
+                    <default>false</default>
+                    <label>192449</label>
+                </value>
+                <value>
+                    <fullName>301119</fullName>
+                    <default>false</default>
+                    <label>301119</label>
+                </value>
+                <value>
+                    <fullName>306186</fullName>
+                    <default>false</default>
+                    <label>306186</label>
+                </value>
+                <value>
+                    <fullName>306598</fullName>
+                    <default>false</default>
+                    <label>306598</label>
+                </value>
+                <value>
+                    <fullName>306721</fullName>
+                    <default>false</default>
+                    <label>306721</label>
+                </value>
+                <value>
+                    <fullName>308385</fullName>
+                    <default>false</default>
+                    <label>308385</label>
+                </value>
+                <value>
+                    <fullName>311825</fullName>
+                    <default>false</default>
+                    <label>311825</label>
+                </value>
+                <value>
+                    <fullName>313098</fullName>
+                    <default>false</default>
+                    <label>313098</label>
+                </value>
+                <value>
+                    <fullName>313565</fullName>
+                    <default>false</default>
+                    <label>313565</label>
+                </value>
+                <value>
+                    <fullName>314057</fullName>
+                    <default>false</default>
+                    <label>314057</label>
+                </value>
+                <value>
+                    <fullName>314493</fullName>
+                    <default>false</default>
+                    <label>314493</label>
+                </value>
+                <value>
+                    <fullName>315732</fullName>
+                    <default>false</default>
+                    <label>315732</label>
+                </value>
+                <value>
+                    <fullName>316683</fullName>
+                    <default>false</default>
+                    <label>316683</label>
+                </value>
+                <value>
+                    <fullName>318789</fullName>
+                    <default>false</default>
+                    <label>318789</label>
+                </value>
+                <value>
+                    <fullName>700000</fullName>
+                    <default>false</default>
+                    <label>700000</label>
+                </value>
+                <value>
+                    <fullName>700001</fullName>
+                    <default>false</default>
+                    <label>700001</label>
+                </value>
+                <value>
+                    <fullName>700002</fullName>
+                    <default>false</default>
+                    <label>700002</label>
+                </value>
+                <value>
+                    <fullName>700003</fullName>
+                    <default>false</default>
+                    <label>700003</label>
+                </value>
+                <value>
+                    <fullName>700004</fullName>
+                    <default>false</default>
+                    <label>700004</label>
+                </value>
+                <value>
+                    <fullName>700005</fullName>
+                    <default>false</default>
+                    <label>700005</label>
+                </value>
+                <value>
+                    <fullName>700006</fullName>
+                    <default>false</default>
+                    <label>700006</label>
+                </value>
+                <value>
+                    <fullName>700007</fullName>
+                    <default>false</default>
+                    <label>700007</label>
+                </value>
+                <value>
+                    <fullName>700010</fullName>
+                    <default>false</default>
+                    <label>700010</label>
+                </value>
+                <value>
+                    <fullName>700011</fullName>
+                    <default>false</default>
+                    <label>700011</label>
+                </value>
+                <value>
+                    <fullName>700012</fullName>
+                    <default>false</default>
+                    <label>700012</label>
+                </value>
+                <value>
+                    <fullName>700013</fullName>
+                    <default>false</default>
+                    <label>700013</label>
+                </value>
+                <value>
+                    <fullName>700014</fullName>
+                    <default>false</default>
+                    <label>700014</label>
+                </value>
+                <value>
+                    <fullName>700015</fullName>
+                    <default>false</default>
+                    <label>700015</label>
+                </value>
+                <value>
+                    <fullName>700016</fullName>
+                    <default>false</default>
+                    <label>700016</label>
+                </value>
+                <value>
+                    <fullName>700017</fullName>
+                    <default>false</default>
+                    <label>700017</label>
+                </value>
+                <value>
+                    <fullName>700018</fullName>
+                    <default>false</default>
+                    <label>700018</label>
+                </value>
+                <value>
+                    <fullName>700019</fullName>
+                    <default>false</default>
+                    <label>700019</label>
+                </value>
+                <value>
+                    <fullName>700020</fullName>
+                    <default>false</default>
+                    <label>700020</label>
+                </value>
+                <value>
+                    <fullName>700021</fullName>
+                    <default>false</default>
+                    <label>700021</label>
+                </value>
+                <value>
+                    <fullName>700022</fullName>
+                    <default>false</default>
+                    <label>700022</label>
+                </value>
+                <value>
+                    <fullName>700023</fullName>
+                    <default>false</default>
+                    <label>700023</label>
+                </value>
+                <value>
+                    <fullName>700024</fullName>
+                    <default>false</default>
+                    <label>700024</label>
+                </value>
+                <value>
+                    <fullName>700025</fullName>
+                    <default>false</default>
+                    <label>700025</label>
+                </value>
+                <value>
+                    <fullName>700026</fullName>
+                    <default>false</default>
+                    <label>700026</label>
+                </value>
+                <value>
+                    <fullName>700027</fullName>
+                    <default>false</default>
+                    <label>700027</label>
+                </value>
+                <value>
+                    <fullName>700028</fullName>
+                    <default>false</default>
+                    <label>700028</label>
+                </value>
+                <value>
+                    <fullName>700029</fullName>
+                    <default>false</default>
+                    <label>700029</label>
+                </value>
+                <value>
+                    <fullName>700031</fullName>
+                    <default>false</default>
+                    <label>700031</label>
+                </value>
+                <value>
+                    <fullName>700032</fullName>
+                    <default>false</default>
+                    <label>700032</label>
+                </value>
+                <value>
+                    <fullName>700033</fullName>
+                    <default>false</default>
+                    <label>700033</label>
+                </value>
+                <value>
+                    <fullName>700034</fullName>
+                    <default>false</default>
+                    <label>700034</label>
+                </value>
+                <value>
+                    <fullName>700035</fullName>
+                    <default>false</default>
+                    <label>700035</label>
+                </value>
+                <value>
+                    <fullName>700036</fullName>
+                    <default>false</default>
+                    <label>700036</label>
+                </value>
+                <value>
+                    <fullName>700037</fullName>
+                    <default>false</default>
+                    <label>700037</label>
+                </value>
+                <value>
+                    <fullName>700038</fullName>
+                    <default>false</default>
+                    <label>700038</label>
+                </value>
+                <value>
+                    <fullName>700039</fullName>
+                    <default>false</default>
+                    <label>700039</label>
+                </value>
+                <value>
+                    <fullName>700040</fullName>
+                    <default>false</default>
+                    <label>700040</label>
+                </value>
+                <value>
+                    <fullName>700041</fullName>
+                    <default>false</default>
+                    <label>700041</label>
+                </value>
+                <value>
+                    <fullName>700042</fullName>
+                    <default>false</default>
+                    <label>700042</label>
+                </value>
+                <value>
+                    <fullName>700043</fullName>
+                    <default>false</default>
+                    <label>700043</label>
+                </value>
+                <value>
+                    <fullName>700044</fullName>
+                    <default>false</default>
+                    <label>700044</label>
+                </value>
+                <value>
+                    <fullName>700045</fullName>
+                    <default>false</default>
+                    <label>700045</label>
+                </value>
+                <value>
+                    <fullName>700046</fullName>
+                    <default>false</default>
+                    <label>700046</label>
+                </value>
+                <value>
+                    <fullName>700047</fullName>
+                    <default>false</default>
+                    <label>700047</label>
+                </value>
+                <value>
+                    <fullName>700048</fullName>
+                    <default>false</default>
+                    <label>700048</label>
+                </value>
+                <value>
+                    <fullName>700049</fullName>
+                    <default>false</default>
+                    <label>700049</label>
+                </value>
+                <value>
+                    <fullName>700050</fullName>
+                    <default>false</default>
+                    <label>700050</label>
+                </value>
+                <value>
+                    <fullName>700051</fullName>
+                    <default>false</default>
+                    <label>700051</label>
+                </value>
+                <value>
+                    <fullName>700315</fullName>
+                    <default>false</default>
+                    <label>700315</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Parent_Funded_Issuer_ID__c</fullName>
+        <description>Sent to EFS App Manager as</description>
+        <externalId>false</externalId>
+        <label>Parent Funded Issuer ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>100000</fullName>
+                    <default>false</default>
+                    <label>100000</label>
+                </value>
+                <value>
+                    <fullName>105757</fullName>
+                    <default>false</default>
+                    <label>105757</label>
+                </value>
+                <value>
+                    <fullName>113301</fullName>
+                    <default>false</default>
+                    <label>113301</label>
+                </value>
+                <value>
+                    <fullName>118897</fullName>
+                    <default>false</default>
+                    <label>118897</label>
+                </value>
+                <value>
+                    <fullName>140187</fullName>
+                    <default>false</default>
+                    <label>140187</label>
+                </value>
+                <value>
+                    <fullName>141905</fullName>
+                    <default>false</default>
+                    <label>141905</label>
+                </value>
+                <value>
+                    <fullName>143039</fullName>
+                    <default>false</default>
+                    <label>143039</label>
+                </value>
+                <value>
+                    <fullName>144496</fullName>
+                    <default>false</default>
+                    <label>144496</label>
+                </value>
+                <value>
+                    <fullName>151674</fullName>
+                    <default>false</default>
+                    <label>151674</label>
+                </value>
+                <value>
+                    <fullName>155189</fullName>
+                    <default>false</default>
+                    <label>155189</label>
+                </value>
+                <value>
+                    <fullName>189984</fullName>
+                    <default>false</default>
+                    <label>189984</label>
+                </value>
+                <value>
+                    <fullName>194133</fullName>
+                    <default>false</default>
+                    <label>194133</label>
+                </value>
+                <value>
+                    <fullName>194134</fullName>
+                    <default>false</default>
+                    <label>194134</label>
+                </value>
+                <value>
+                    <fullName>194135</fullName>
+                    <default>false</default>
+                    <label>194135</label>
+                </value>
+                <value>
+                    <fullName>194136</fullName>
+                    <default>false</default>
+                    <label>194136</label>
+                </value>
+                <value>
+                    <fullName>194143</fullName>
+                    <default>false</default>
+                    <label>194143</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Partner_Email_List__c</fullName>
         <description>A list of partners who would will receive the email communication related for this offer. (Separate by commas.)</description>
         <encryptionScheme>None</encryptionScheme>
@@ -1387,6 +3209,18 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Primary_Contact_Email_Address__c</fullName>
+        <description>Sent to App Manager as EmailAddress</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Primary Contact Email Address</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Product_Type__c</fullName>
         <externalId>false</externalId>
         <label>Product Type</label>
@@ -1446,6 +3280,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Send_to_App_Manager__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, once an application is adjudicated, send to App Manager.</description>
+        <externalId>false</externalId>
+        <label>Send to App Manager</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Setup_Fee__c</fullName>
         <externalId>false</externalId>
         <label>Setup Fee</label>
@@ -1466,6 +3310,36 @@
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Statement_Type__c</fullName>
+        <description>Sent to EFS App Manager as</description>
+        <externalId>false</externalId>
+        <label>Statement Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>02</fullName>
+                    <default>false</default>
+                    <label>02</label>
+                </value>
+                <value>
+                    <fullName>44</fullName>
+                    <default>false</default>
+                    <label>44</label>
+                </value>
+                <value>
+                    <fullName>46</fullName>
+                    <default>false</default>
+                    <label>46</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Terms_and_Conditions_Version__c</fullName>
@@ -1524,6 +3398,18 @@
                 </value>
             </valueSetDefinition>
         </valueSet>
+    </fields>
+    <fields>
+        <fullName>Trans_Limit__c</fullName>
+        <description>Sent to EFS App Manager</description>
+        <externalId>false</externalId>
+        <label>Trans Limit</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Use_Offer_Contact_Details_not_Owner__c</fullName>

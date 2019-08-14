@@ -5,27 +5,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>CancelEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -33,27 +13,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -61,27 +21,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -89,27 +29,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>SaveEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -117,27 +37,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -183,8 +83,20 @@
         <description>Code used to access to the BOCA To Prospect application for two-factor security purposes.</description>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
-        <label>External Sales Code</label>
+        <label>Partner Sales Code</label>
         <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Partner_BOCA_Form_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;https://&apos; + $Label.External_Instance_URL + &apos;/creditapplication/PartnerBOCAToProspect&apos; + &apos;?partner=&apos; + Name, &quot;BOCA Form&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Partner BOCA Form Link</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -204,6 +116,8 @@
     </fields>
     <fields>
         <fullName>Partner_Key__c</fullName>
+        <businessStatus>Active</businessStatus>
+        <caseSensitive>true</caseSensitive>
         <description>The short name used in URL&apos;s to identify the partner (Example: CircleK) with no spaces.</description>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -211,10 +125,11 @@
         <label>Partner Key</label>
         <length>100</length>
         <required>false</required>
+        <securityClassification>Confidential</securityClassification>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
+        <unique>true</unique>
     </fields>
     <label>Partner</label>
     <listViews>

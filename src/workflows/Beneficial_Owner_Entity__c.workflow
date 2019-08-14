@@ -85,7 +85,9 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND(  ISCHANGED(Record_Status__c), TEXT(PRIORVALUE(Record_Status__c)) == &apos;Awaiting Customer&apos;, TEXT(Record_Status__c) == &apos;Active&apos;,  RecordType.Name != &apos;Merchant&apos;, $User.Id != Owner:User.Id )</formula>
+        <formula>AND(
+NOT($Setup.Automation_Settings__c.Disable_Workflow_Rules__c),
+ISCHANGED(Record_Status__c), TEXT(PRIORVALUE(Record_Status__c)) == &apos;Awaiting Customer&apos;, TEXT(Record_Status__c) == &apos;Active&apos;,  RecordType.Name != &apos;Merchant&apos;, $User.Id != Owner:User.Id )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -95,7 +97,13 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND(  ISCHANGED(Record_Status__c), TEXT(PRIORVALUE(Record_Status__c)) == &apos;Awaiting Customer&apos;, TEXT(Record_Status__c) == &apos;Active&apos;,  RecordType.Name == &apos;Merchant&apos;, $User.Id != Owner:User.Id )</formula>
+        <formula>AND(
+NOT($Setup.Automation_Settings__c.Disable_Workflow_Rules__c),
+ISCHANGED(Record_Status__c),
+TEXT(PRIORVALUE(Record_Status__c)) == &apos;Awaiting Customer&apos;,
+TEXT(Record_Status__c) == &apos;Active&apos;,
+RecordType.Name == &apos;Merchant&apos;,
+$User.Id != Owner:User.Id)</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -105,7 +113,15 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND( $User.Alias == &apos;guest&apos;, ISCHANGED(Record_Status__c), TEXT(PRIORVALUE(Record_Status__c)) == &apos;Awaiting Customer&apos;, ISPICKVAL(Record_Status__c, &apos;Active&apos;), NOT(ISBLANK(Save_For_Later_Key__c)), NOT(Owner:User.Alias == &apos;guest&apos;), ISPICKVAL(Language_Preference__c, &apos;English&apos;)  )</formula>
+        <formula>AND(
+NOT($Setup.Automation_Settings__c.Disable_Workflow_Rules__c),
+$User.Alias == &apos;guest&apos;,
+ISCHANGED(Record_Status__c),
+TEXT(PRIORVALUE(Record_Status__c)) == &apos;Awaiting Customer&apos;,
+ISPICKVAL(Record_Status__c, &apos;Active&apos;),
+NOT(ISBLANK(Save_For_Later_Key__c)),
+NOT(Owner:User.Alias == &apos;guest&apos;),
+ISPICKVAL(Language_Preference__c, &apos;English&apos;))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -115,7 +131,15 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND( $User.Alias == &apos;guest&apos;, ISCHANGED(Record_Status__c), TEXT(PRIORVALUE(Record_Status__c)) == &apos;Awaiting Customer&apos;, ISPICKVAL(Record_Status__c, &apos;Active&apos;), NOT(ISBLANK(Save_For_Later_Key__c)), NOT(Owner:User.Alias == &apos;guest&apos;), ISPICKVAL(Language_Preference__c, &apos;French&apos;)  )</formula>
+        <formula>AND(
+NOT($Setup.Automation_Settings__c.Disable_Workflow_Rules__c),
+$User.Alias == &apos;guest&apos;,
+ISCHANGED(Record_Status__c),
+TEXT(PRIORVALUE(Record_Status__c)) == &apos;Awaiting Customer&apos;,
+ISPICKVAL(Record_Status__c, &apos;Active&apos;),
+NOT(ISBLANK(Save_For_Later_Key__c)),
+NOT(Owner:User.Alias == &apos;guest&apos;),
+ISPICKVAL(Language_Preference__c, &apos;French&apos;))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -125,7 +149,11 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND( $User.Alias == &apos;guest&apos;,  ISCHANGED(Save_For_Later_URL__c), ISPICKVAL(Language_Preference__c, &apos;English&apos;))</formula>
+        <formula>AND(
+NOT($Setup.Automation_Settings__c.Disable_Workflow_Rules__c),
+$User.Alias == &apos;guest&apos;,
+ISCHANGED(Save_For_Later_URL__c),
+ISPICKVAL(Language_Preference__c, &apos;English&apos;))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -135,7 +163,11 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>AND( $User.Alias == &apos;guest&apos;,  ISCHANGED(Save_For_Later_URL__c), ISPICKVAL(Language_Preference__c, &apos;French&apos;))</formula>
+        <formula>AND(
+NOT($Setup.Automation_Settings__c.Disable_Workflow_Rules__c),
+$User.Alias == &apos;guest&apos;,
+ISCHANGED(Save_For_Later_URL__c),
+ISPICKVAL(Language_Preference__c, &apos;French&apos;))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
@@ -145,11 +177,10 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <criteriaItems>
-            <field>Beneficial_Owner_Entity__c.Account_Name__c</field>
-            <operation>notEqual</operation>
-        </criteriaItems>
         <description>Used to update the program name field to build sharing rules.</description>
+        <formula>AND(
+NOT($Setup.Automation_Settings__c.Disable_Workflow_Rules__c),
+NOT(ISBLANK(Account_Name__c)))</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>

@@ -10,7 +10,11 @@ public class BeneficialOwnerTest {
         User user = [SELECT Id FROM User WHERE Alias = 'sinte'];
         
         PermissionSet permissionSet = [SELECT ID From PermissionSet WHERE Name = 'Beneficial_Owner_All'];
-		insert new PermissionSetAssignment(AssigneeId = user.id, PermissionSetId = permissionSet.Id);
+        insert new PermissionSetAssignment(AssigneeId = user.id, PermissionSetId = permissionSet.Id);
+        
+        system.runAs(user){
+            UtilityTestLoader.setAutomation(false);
+        }
 
     }
     

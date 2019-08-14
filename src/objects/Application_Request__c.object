@@ -5,27 +5,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Accept</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>CancelEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>CancelEdit</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -33,27 +13,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Clone</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>Delete</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Delete</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -61,27 +21,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Edit</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>List</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>List</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -89,27 +29,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>New</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>SaveEdit</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>SaveEdit</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -117,27 +37,7 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>Tab</actionName>
-        <formFactor>Small</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Large</formFactor>
-        <type>Default</type>
-    </actionOverrides>
-    <actionOverrides>
-        <actionName>View</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -149,7 +49,6 @@
     <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
-    <enableLicensing>false</enableLicensing>
     <enableReports>true</enableReports>
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
@@ -2476,6 +2375,148 @@ SUBSTITUTE(Billing_Contact__r.Phone, &quot;(&quot;, &quot;&quot;), &quot;)&quot;
         </valueSet>
     </fields>
     <fields>
+        <fullName>GIACT_Customer_Response_Code_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Customer Response Code Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GIACT_Customer_Response_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Customer Response Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GIACT_Customer_Response_Message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Customer Response Message</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>GIACT_Account_Response_Code_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Account Response Code Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GIACT_Account_Response_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Account Response Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GIACT_Account_Response_Message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Account Response Message</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>GIACT_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>GIACT Check</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Passed</fullName>
+                    <default>false</default>
+                    <label>Passed</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
+                </value>
+                <value>
+                    <fullName>Error</fullName>
+                    <default>false</default>
+                    <label>Error</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>GIACT_Response_Code__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Response Code</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>GIACT_Response_Message__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Response Message</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>GIACT_Verify_Response_Code_Name__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>GIACT Verify Response Code Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Global_Ultimate_DUNS__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -2651,6 +2692,37 @@ SUBSTITUTE(Billing_Contact__r.Phone, &quot;(&quot;, &quot;&quot;), &quot;)&quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Lexis_Nexis_BIID_Result__c</fullName>
+        <externalId>false</externalId>
+        <label>Lexis Nexis BIID Result</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Passed</fullName>
+                    <default>false</default>
+                    <label>Passed</label>
+                </value>
+                <value>
+                    <fullName>Warning</fullName>
+                    <default>false</default>
+                    <label>Warning</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Lexis_Nexis_Check__c</fullName>
         <externalId>false</externalId>
         <label>Lexis Nexis BOCDD Check</label>
@@ -2677,6 +2749,120 @@ SUBSTITUTE(Billing_Contact__r.Phone, &quot;(&quot;, &quot;&quot;), &quot;)&quot;
                     <fullName>Error</fullName>
                     <default>false</default>
                     <label>Error</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Lexis_Nexis_BIID_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Lexis Nexis BIID Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lexis_Nexis_CVI_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Lexis Nexis CVI Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lexis_Nexis_Custom_Model_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Lexis Nexis Custom Model Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lexis_Nexis_FraudPoint_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Lexis Nexis FraudPoint Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Lexis_Nexis_IID_Result__c</fullName>
+        <externalId>false</externalId>
+        <label>Lexis Nexis IID Result</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Passed</fullName>
+                    <default>false</default>
+                    <label>Passed</label>
+                </value>
+                <value>
+                    <fullName>Warning</fullName>
+                    <default>false</default>
+                    <label>Warning</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Lexis_Nexis_FraudPoint_Result__c</fullName>
+        <externalId>false</externalId>
+        <label>Lexis Nexis FraudPoint Result</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Passed</fullName>
+                    <default>false</default>
+                    <label>Passed</label>
+                </value>
+                <value>
+                    <fullName>Warning</fullName>
+                    <default>false</default>
+                    <label>Warning</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -5703,7 +5889,7 @@ false, true)</formula>
     </listViews>
     <listViews>
         <fullName>X2_Adjudication_Default_Revolver_Apps</fullName>
-        <booleanFilter>1 AND ((2 AND 3) OR (8 AND 9)) AND 4 AND 5 and 6 and 7 and 10</booleanFilter>
+        <booleanFilter>1 AND ((2 AND 3) OR (9 AND 10)) AND 4 AND 5 AND 6 and 7 and 8</booleanFilter>
         <columns>Opportunity_Number__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>
@@ -5730,6 +5916,11 @@ false, true)</formula>
             <value>Pending Decision</value>
         </filters>
         <filters>
+            <field>In_Progress__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
             <field>Program__c</field>
             <operation>contains</operation>
             <value>Flex,Shell Small</value>
@@ -5750,17 +5941,12 @@ false, true)</formula>
         </filters>
         <filters>
             <field>Credit_Decision__c</field>
-            <operation>equals</operation>
+            <operation>notEqual</operation>
         </filters>
         <filters>
             <field>Credit_Info_Status__c</field>
-            <operation>notEqual</operation>
+            <operation>equals</operation>
             <value>Info Returned</value>
-        </filters>
-        <filters>
-            <field>App_Submitted_Date__c</field>
-            <operation>greaterThan</operation>
-            <value>10/31/2018</value>
         </filters>
         <label>2. Adjudication Default - Revolver Apps</label>
         <language>en_US</language>
@@ -5878,7 +6064,7 @@ false, true)</formula>
         <filters>
             <field>Program__c</field>
             <operation>notContain</operation>
-            <value>Chevron,Flex,Shell,Texaco,ESSO,MasterCard</value>
+            <value>ESSO</value>
         </filters>
         <filters>
             <field>Sales_Stage__c</field>
@@ -5970,6 +6156,45 @@ false, true)</formula>
         <language>en_US</language>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X2_Model_Score_No_RG</fullName>
+        <booleanFilter>1 AND 2 AND 3 and 4</booleanFilter>
+        <columns>CREATED_DATE</columns>
+        <columns>Application_Channel__c</columns>
+        <columns>Program__c</columns>
+        <columns>NAME</columns>
+        <columns>Account_Name__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Requested_Credit_Limit__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>DNB_Score__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>Risk_Grade__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterOrEqual</operation>
+            <value>10/30/2018 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Program__c</field>
+            <operation>notContain</operation>
+            <value>ESSO</value>
+        </filters>
+        <label>000 Model Score No RG</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>SystemAdmins</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -7036,6 +7261,21 @@ false, true)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>GIACT_Check__c</picklist>
+            <values>
+                <fullName>Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Guarantor_Type__c</picklist>
             <values>
                 <fullName>Both</fullName>
@@ -7048,6 +7288,21 @@ false, true)</formula>
             <values>
                 <fullName>Personal</fullName>
                 <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lexis_Nexis_BIID_Result__c</picklist>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -8485,6 +8740,21 @@ false, true)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>GIACT_Check__c</picklist>
+            <values>
+                <fullName>Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Guarantor_Type__c</picklist>
             <values>
                 <fullName>Both</fullName>
@@ -8496,6 +8766,21 @@ false, true)</formula>
             </values>
             <values>
                 <fullName>Personal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lexis_Nexis_BIID_Result__c</picklist>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10026,10 +10311,40 @@ false, true)</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>GIACT_Check__c</picklist>
+            <values>
+                <fullName>Error</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Guarantor_Type__c</picklist>
             <values>
                 <fullName>Personal</fullName>
                 <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Lexis_Nexis_BIID_Result__c</picklist>
+            <values>
+                <fullName>Failed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Passed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Warning</fullName>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>

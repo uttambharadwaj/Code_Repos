@@ -22,7 +22,7 @@ public class FleetEnrollmentConfirmationController {
     // Branding - Elements from the specified program
     public Program__c program { 
         get {
-            Program__c program = [SELECT Id, Fleet_Data_Capture_Form_Delivery__c, Brand_Long_Name__c, Implementation_Team_Number__c, Brand_Color_1__c FROM Program__c WHERE Id = :fleetEnrollment.Program__c];
+            Program__c program = [SELECT Id, Fleet_Data_Capture_Form_Delivery__c, Publish_Fleet_Data_Capture_Form_1_1__c, Brand_Long_Name__c, Implementation_Team_Number__c, Brand_Color_1__c FROM Program__c WHERE Id = :fleetEnrollment.Program__c];
             
             return program; 
         }

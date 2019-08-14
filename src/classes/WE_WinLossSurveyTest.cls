@@ -1,5 +1,6 @@
 @isTest
 private class WE_WinLossSurveyTest {
+/*//https://jira.devtools.wexinc.com/browse/IADJUDICAT-816
 
 	@testSetup
     static void dataSetup() {
@@ -139,5 +140,5 @@ private class WE_WinLossSurveyTest {
 
 		//System.assertEquals(true,updateCausedError,'error should have been thrown when no Decision Maker Contact Roles were found');
 	}
-
+*/
 }
