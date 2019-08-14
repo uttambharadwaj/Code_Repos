@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>share_guest_with_faye</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>share guest with faye</label>
+        <sharedTo>
+            <group>User_Faye_Gotten</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>ForsevaApplGuestUser</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

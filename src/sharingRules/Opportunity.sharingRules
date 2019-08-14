@@ -1,0 +1,2214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>AAble_iFleet_Partner</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AAble iFleet Partner</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>AableLicenseConsultantsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>AAble iFleet</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>AMBEST_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>AMBEST Opportunities</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>AMBESTPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>AMBEST</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>contains</operation>
+            <value>AMBEST</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Advanced_Commercial_Credit</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Advanced Commercial Credit</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>AdvancedCommercialCreditCoBrandedOTRFuelcardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Advanced Commercial Credit</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Aladdin_Financial</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Aladdin Financial</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>AladdinFinancialPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Aladdin Financial</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Alon_Partner_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Alon Partner Manager</label>
+        <sharedTo>
+            <portalRole>ALONFINAPartnerManager</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-KWV4SA,1-9BVXHF</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>BizUnite_Partner</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>BizUnite Partner</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>BizUnitePartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-D8CK2B</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Bridgestone_National</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Bridgestone National</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>BridgestoneCommercialSolutionsGroupPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Bridgestone</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>BSNF</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CITGO_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CITGO Partners</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CITGOPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-QSWRIM,1-QSWRII,1-QSWRJ0</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CJM_Financial</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CJM Financial</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CJMFinancialOTRCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>CJM Financial</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Card_Program_Fuelbook</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Card Program Fuelbook</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TruckMonkIncFormaPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Fuelbook</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CenterFire_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CenterFire Opportunities</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TallgrassCommoditiesLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>CenterFire</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>CenterFire</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Chevron</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Chevron</label>
+        <sharedTo>
+            <group>Chevron</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-2IT9P8B,1-2MM5C4N,1-2PH8XG2</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CircleK_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CircleK Partners</label>
+        <sharedTo>
+            <group>CircleK_Partner_Groiup</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-WLUHP4,1-3HX1-11,1-ADLERR,1-WLUHP4</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Citgo</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Citgo</label>
+        <sharedTo>
+            <group>Citgo_Sales</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-QSWRIM,1-QSWRII,1-QSWRJ0</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Commercial_Funding</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Commercial Funding</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TRANSFACCAPITALLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Commercial Funding</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>CoreFund_Capital</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CoreFund Capital</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CorefundCapitalLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>CoreFund Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Created_by_FleetPro_Services</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Created by FleetPro Services</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FleetProServicesLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>FleetPro Services</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>FleetPro Services</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Created_by_Partner_CSI_Global_Fleet</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Created by Partner CSI Global-Fleet</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CSIEnterprisesIncPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>CSI Global</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>CSI Global</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Created_by_Quality_Companies</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Created by Quality Companies</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>QualityCompaniesLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Quality Companies</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Quality Companies</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>DAT</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>DAT</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>DATSolutionsLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>DAT</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>D_S_Factors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Combined these two sharing rules as both are shared Read/Write with SkyCapital Portal roles &amp; subortinates</description>
+        <label>D&amp;S Factors/Roady&apos;s Card</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SkyCapitalPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>D&amp;S Factors</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Roady&apos;s Card</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>D_S_Fuel_Card_Opportunity_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>D&amp;S Fuel Card Opportunity Sharing</description>
+        <label>D&amp;S Fuel Card Opportunity Sharing</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>DSFuelCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>D&amp;S Fuel Card</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>D&amp;S Fuel Card</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Discount_Diesel_Opp_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Discount Diesel Fuel Card Opportunity Sharing</description>
+        <label>Discount Diesel Opp Sharing</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>DiscountDieselPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Discount Diesel</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>EnglandLogistics</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EnglandLogistics</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>EnglandLogisticsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>England Logistics</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>England_Card_Program</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>England Card Program</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>EnglandLogisticsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>England Logistics</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Enterprise_Partner_Sharing_Rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>mock up sharing for community</description>
+        <label>Enterprise Partner Sharing Rule</label>
+        <sharedTo>
+            <group>Enterprise_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-TB9HBK,1-TB9HBN,1-1CWS4GX,1-RWK54W,1-3HWT-25,1-RWK54Z,1-PVYU5R,1-RWK54T</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Envio_360</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Envio 360</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>Envio360PartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Envio 360</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Esso_Oppties_to_Share</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Esso Oppties to Share</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>Esso_Sales_Manager</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>,1-2Z6YLDC,1-3HX1-16,1-3HX1-17,1-2ZQKNUO,1-3HX1-18</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Express_Freight_Finance</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Express Freight Finance</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FREIGHTFINANCECOPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Express Freight Finance</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Express_Truck_Tax_Oppty_RO</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Express Truck Tax Oppty RO</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SPANEnterprisesLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Express Truck Tax</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Express_Truck_Tax_Oppty_RW</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Express Truck Tax Oppty RW</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SPANEnterprisesLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Express Truck Tax</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>ExxonMobil_Partner_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>ExxonMobil Partner Manager</label>
+        <sharedTo>
+            <portalRole>ExxonMobilBWPartnerManager</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-3HWT-36,1-35WQHQ</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Exxon_with_Inside_Sales</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Exxon with Inside Sales</label>
+        <sharedTo>
+            <group>ExxonTeam</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-32DDRI2,1-1IT848L,1-1EU8DUL,1-3HWT-36,1-35WQHQ,1-1EQBV0A</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Far_West_Capital</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Far West Capital</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FARWESTCAPITALPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Far West Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>FedEx_Custom_Critical</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>FedEx Custom Critical</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FEDEXCUSTOMCRITICALPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>FedEx Custom Critical</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Financial_Carrier_Service</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Financial Carrier Service</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FINANCIALCARRIERSERVICEPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Financial Carrier Service</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Fleet_Advantage</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Fleet Advantage</label>
+        <sharedTo>
+            <group>Fleet_Advantage_Partner_User_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-KAHLK4,1-KABFKH</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Fleet_Savings</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Fleet Savings</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FleetSavingsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Fleet Savings</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Fleet Savings</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Foley_Carrier_Services</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Foley Carrier Services</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FOLEYCARRIERSERVICESLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Foley Carrier Services</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Freight_Factoring_Special</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Freight Factoring Special</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FreightFactoringSpecialistsLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Freight Factoring Special</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>GE_Card_Program</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>GE Card Program</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GECapitalTransportationFinancePartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>GE Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>GE_Created_By</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>GE Created By</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GECapitalTransportationFinancePartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>GE Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>G_H_Factor</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>G.H. Factor</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GHFactorLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>contains</operation>
+            <value>G.H. Factor</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Getgo_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Getgo Partners</label>
+        <sharedTo>
+            <portalRole>GetGofromGiantEaglePartnerManager</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-BGA5R1,1-K9UFQQ</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Great_Plains</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Great Plains</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>GreatPlainsOTRCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Great Plains</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>InTouch_GPS</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>InTouch GPS</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>InTouchGPSPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>InTouch GPS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>contains</operation>
+            <value>InTouch GPS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Integra</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Integra</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>IntegraFundingSolutionsLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Integra</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Integrated_Logistics</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Integrated Logistics</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>FingerLakesLogisticsIncdbaIntegratedLogisticsandAssoPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Integrated Logistics</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>JB_Hunt</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>JB Hunt</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>JBHUNTTRANSPORTSERVICESPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>JB Hunt</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>JD_Factors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>JD Factors</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>JDFactorsCoBrandedOTRFuelCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>JD Factors</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Kevin_Coleman_Access_to_Shell</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Kevin Coleman Access to Shell</label>
+        <sharedTo>
+            <role>AquarientSalesTL</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>Type</field>
+            <operation>equals</operation>
+            <value>,New Customer,Cross Sell,Existing Customer - Referral,Contract Renewal,Existing Customer - Cross-Sell,Existing Customer - Upsell</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Knight_Logistics_card_oppty</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Knight Logistics card oppty</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>KnightLogisticsLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>contains</operation>
+            <value>Knight Logistics</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Knight_Logistics_opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Knight Logistics opportunities</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>KnightLogisticsLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>contains</operation>
+            <value>Knight Logistics</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Kum_Go</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Kum &amp; Go</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>KumGoFleetCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-4EI7VS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Liquid_Capital</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Liquid Capital</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>eIungFinancialCorpPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Liquid Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Mansfield_Oil_Company</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Mansfield Oil Company</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>MansfieldOilCompanyPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>contains</operation>
+            <value>Mansfield</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Marathon_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Marathon Partners</label>
+        <sharedTo>
+            <group>Marathon_Partners_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-LQU6OK,1-LQU6OO</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Maverick</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Maverick</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>MaverikPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-13K9VW5</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Meijer</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Meijer</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>MeijerFleetCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-2TWFMB</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Murphy_USA</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Sharing rule for Murphy USA Partners</description>
+        <label>Murphy USA</label>
+        <sharedTo>
+            <group>Murphy_USA_Partner_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-2W1QJY,1-FJS3HX</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NASTC_Card_Program</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>NASTC Card Program</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>NASTCPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>NASTC</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>NASTC_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>NASTC Partners</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>NASTCPartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>NASTC</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>OTR_Capital</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>OTR Capital</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>OTRCAPITALPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>OTR Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Oppty_created_by_Fuelbook</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Oppty created by Fuelbook</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TruckMonkIncFormaPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Fuelbook</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>PTP_Stop_NATSN</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>PTP Stop NATSN</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>PTPStopNATSNPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>PTP Stop NATSN</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Parikh_Financial</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Parikh Financial</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>ParikhFinancialLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Parikh Financial</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Partners_Funding</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Partners Funding</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>PartnerFundingOTRCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Partners Funding</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Pay4Freight</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Pay4Freight</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>Pay4FreightLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Pay4Freight</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Petro_Solutions</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Petro Solutions</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>PetroSolutionsTechnologiesLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Petro Solutions</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Phillips_66_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Phillips 66 Manager</label>
+        <sharedTo>
+            <portalRole>Phillips66CompanyPartnerManager</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-D4W7B2,1-D43K4N,1-RWK54Z</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Quick_Pay_Funding</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Quick Pay Funding</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>QuickPayFundingOTRCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Quick Pay Funding</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>QuikTrip_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>QuikTrip Manager</label>
+        <sharedTo>
+            <portalRole>QuikTripCorporateOfficePartnerManager</portalRole>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-3HWT-33,1-LH1AGV,1-1DEFBB</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Coupon_Code__c</field>
+            <operation>equals</operation>
+            <value>DTX</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>RTS_Card_Program_Text_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>RTS Card Program Text</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>RTSCarrierServicesPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>((1 AND (2 OR 3 OR 5 OR 6)) OR 4)</booleanFilter>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>RTS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>00570000002ULYw</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>00570000002S4fa</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>RTS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>00570000004rHwjAAE</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>00570000002S4gKAAS</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>RTS_Management_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>RTS Management Sharing</label>
+        <sharedTo>
+            <group>Partner_RTS_Management</group>
+        </sharedTo>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>RTS</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>00570000002S4fa</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>equals</operation>
+            <value>00570000002ULYw</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>RaceTrac_Oppties</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>RaceTrac Oppties</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>RaceTracPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-UDBH5G,1-UEPE0D</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Racetrac</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Racetrac</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>RaceTracPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-UDBH5G,1-UEPE0D</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>STC_Card_Program</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>STC Card Program</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>STCInternationalCorpPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>STC</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_with_3MD_Solutions</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with 3MD Solutions</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>x3MDIncPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>3MD Solutions</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_with_Patriot_Fleet</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with Patriot Fleet</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>PeopleaseLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Patriot Fleet</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Share_with_TBS_Factoring_Oppty</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share with TBS Factoring Oppty</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TBSFACTORINGSERVICELLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>TBS Factoring Service</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>TBS Factoring</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sheetz_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sheetz Partners</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SheetzPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-K5QWKS,1-K722BZ,1-K6V4N4,1-1ARZ4F1,1-1ANX23P</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Shell</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Shell</label>
+        <sharedTo>
+            <group>Shell_Sales</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-3MGD0QG,1-3PIHZ4E,1-4SU05P,1-3Z9ZU5E</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sinclair</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sinclair</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SinclairFleetTrackPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-J0BI1V,1-1FMLZ4W,1-3EGQNA,1-15VTHSF,1-3EGQSO,1-3EJ4HC,1-3EJ4IW,1-55S8X9,1-3EJIWX,1-1AAAXGB,1-3EGQSG,1-3EJ4GQ,1-FHOU4Z,1-3J1WF8,1-3E89QH</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Single_Point_Fuel_Card_Opportunity_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Single Point Fuel Card Opportunity Sharing</description>
+        <label>Single Point Fuel Card Opportunity Sharing</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SinglePointCapitalPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Single</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Speedway_Sales</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This sharing rule is so that speedway sales only see&apos;s speedway oppty&apos;s</description>
+        <label>Speedway Sales</label>
+        <sharedTo>
+            <group>Speedway_Sales</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-10SM3SU,1-10QEQ7W</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>St_Johns</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>St Johns</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SaintJohnCapitalOTRCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>contains</operation>
+            <value>St Johns</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Steelhead</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Steelhead</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SteelheadFinancePartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Steelhead</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sunbelt</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sunbelt</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SUNBELTFINANCELLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Sunbelt</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>SuperAmerica</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This rule shares all SA Oppty&apos;s with the SA partner user</description>
+        <label>SuperAmerica</label>
+        <sharedTo>
+            <portalRole>NorthernTierRetailPartnerManager</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-1DVJDAG,1-1DVLSXM</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Thunder_Carrier_Services</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Thunder Carrier Services</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>THUNDERCARRIERSERVICESLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>contains</operation>
+            <value>Thunder Carrier Services</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Trans_Alliance</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Trans-Alliance</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TransAlliancePartnerExecutive</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Trans-Alliance</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Truckers_B2B_Opportunity_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Truckers B2B Opportunity Sharing</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TruckersB2BPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Truckers B2B</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Truckers_Solutions</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Truckers Solutions</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TRUCKERSSOLUTIONLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Truckers Solutions</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Trulos</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Trulos</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TrulosTransportationPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Trulos</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Trulos_Card_Program</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Trulos Card Program</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TrulosTransportationPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Trulos</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>United_Refining</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>United Refining</label>
+        <sharedTo>
+            <group>United_Refining</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-2EEPLO,1-IRU5ZI</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>VIOC_Partner</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>VIOC Partner</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>ValvolineInstantOilChangePartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-3HWT-38</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Vessix_Fuel_Card_Opportunity_Sharing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Vessix Fuel Card Opportunity Sharing</description>
+        <label>Vessix Fuel Card Opportunity Sharing</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>VessixIncPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>LeadSource</field>
+            <operation>equals</operation>
+            <value>Vessix</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Vessix</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>WES_Credit_view_WES_Opps</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>WES Credit should be able to view all opportunity information</description>
+        <label>WES Credit view WES Opps</label>
+        <sharedTo>
+            <group>WES_Credit_Vetting</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>WES - Opportunity</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>WES_Marketing_and_Sales_Managers</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>WES Marketing and Sales Managers</label>
+        <sharedTo>
+            <group>WES_Marketing_and_Sales_Manager</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>RecordTypeId</field>
+            <operation>equals</operation>
+            <value>WES - Opportunity</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Wawa_Opportunities</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This Rule is so the Wawa salesteam can see all Wawa Opportunites that are on the Wawa Program regardless of who owns them</description>
+        <label>Wawa Opportunities</label>
+        <sharedTo>
+            <group>Wawa_Sales</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-GT93H0,1-GT4OYN,1-1VJCB54</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>X123Loadboard</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>123Loadboard</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>x123LOADBOARDPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>123Loadboard</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>X360_Fuel</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>360 Fuel</label>
+        <sharedTo>
+            <group>X360_Fuel</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-2WVSTMN</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>X7_11_Partners</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>7-11 Partners</label>
+        <sharedTo>
+            <portalRole>x7ElevenIncPartnerManager</portalRole>
+        </sharedTo>
+        <criteriaItems>
+            <field>Program_Row_Id_Update__c</field>
+            <operation>equals</operation>
+            <value>1-LTC412</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>XPO_Logistics_Oppty</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>XPO Logistics Oppty</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>XPOLogisticsPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>XPO Logistics</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Card_Program_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>XPO Logistics</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Xfactors</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Xfactors</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>XFactorsCobrandedOTRFuelCardPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>Xfactors</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>created_by_CarsArrive</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>created by CarsArrive</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>CarsArriveNetworkPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>CarsArrive</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>created_by_ECAPITAL</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>created by ECAPITAL</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>ECAPITALPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>ECAPITAL</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>created_by_ENGS_Commercial_Capital</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>created by ENGS Commercial Capital</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>EngsCommercialCapitalPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>ENGS Commercial</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>created_by_Interstate_Capital</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>created by Interstate Capital</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>INTERSTATECAPITALPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Interstate Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>created_by_SUMMAR</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>created by SUMMAR</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>SummarFinancialLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>SUMMAR</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>created_by_TRANSPORT_FINANCIAL_SOLUTIONS</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>created by TRANSPORT FINANCIAL SOLUTIONS</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TRANSPORTFINANCIALSOLUTIONSPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>TRANSPORT FINANCIAL</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>created_by_TRIUMPH_BUSINESS_CAPITAL_LLC</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>created by TRIUMPH BUSINESS CAPITAL LLC</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>TRIUMPHBUSINESSCAPITALLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>startsWith</operation>
+            <value>TRIUMPH BUSINESS CAPITAL</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>created_by_Vero_Business_Capital</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>created by Vero Business Capital</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>VeroBusinessCapitalPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>Vero Business Capital</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>iThrive_Funding</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>iThrive Funding</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>ITHRIVEFUNDINGLLCPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Created_by_Partner_Tag__c</field>
+            <operation>equals</operation>
+            <value>iThrive Funding</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>AU</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This rules shares oppty&apos;s owned by AU Partners with the AU Credit Team</description>
+        <label>AU Partner</label>
+        <sharedTo>
+            <group>AU_Roles_Except_VCC</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>AU_Partners</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>AU_VCC_Team_View_and_Edit</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>AU VCC users should be able to view and edit each others Leads</description>
+        <label>AU VCC Team View and Edit</label>
+        <sharedTo>
+            <group>AU_Roles_Except_VCC</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>AU_Roles_Except_VCC</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>AU_VCC_View_and_Edit_All_AU</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>AU VCC users should be able to view and edit all AU Opportunities.</description>
+        <label>AU VCC View and Edit All AU</label>
+        <sharedTo>
+            <group>AU_VCC_Roles</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>AUS_Managing_Dir</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>All_F1_Internal_usrs</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>All F1 Internal usrs</label>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>All_F1_Internal_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Aquarient_Manager_shared_w_Exxon</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Aquarient Manager shared w Exxon</label>
+        <sharedTo>
+            <role>AquarientSalesManager</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>ExxonTeam</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Branded_w_Lingman</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Branded w Lingman</label>
+        <sharedTo>
+            <role>FieldSalesManagerEast</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>SmallBusiness</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CMSunoco</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CM - Sunoco</label>
+        <sharedTo>
+            <group>CMSunoco</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>SunocoTeam</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CPSTeams</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CPS Teams</label>
+        <sharedTo>
+            <group>CPSTeams</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>CPSTeams</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>CPSTeams138161</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>CPS Teams</label>
+        <sharedTo>
+            <group>CPSTeams</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Telematics</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Client_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Shares Opptys owned by outbound fleet in Nashville to Client Managers</description>
+        <label>Client Manager</label>
+        <sharedTo>
+            <role>ClientRelationshipManager</role>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>Fleet_Outbound_Channel_Sales_STL</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Corporate_Pay</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Corporate Pay</label>
+        <sharedTo>
+            <group>Wex_Europe</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Wex_Europe</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Corporate_Payments_All_RW_to_Marketing</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Corporate Payments All RW to Marketing</label>
+        <sharedTo>
+            <group>Virtual_All_Marketing</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Virtual_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Corporate_Payments_Read_to_External_Marketing</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>Used to grant access to all virtual records for consultants.</description>
+        <label>Corporate Payments Read to External Marketing</label>
+        <sharedTo>
+            <group>Virtual_External_Marketing</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Virtual_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Customer_Success</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Citgo Opportunities Shared with the Customer Success Group</description>
+        <label>Customer Success</label>
+        <sharedTo>
+            <group>Customer_Success_Grou</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Citgo_Sales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>DirectOTRSalesMgrs</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Direct OTR Sales Mgrs</label>
+        <sharedTo>
+            <group>DirectOTRSalesMgrs</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>DirectorDirectOTRSales</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>EFS_Mastercard_Sales</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>EFS Mastercard Sales</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>EFS_Mastercard_Management</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>EFS_Mastercard_Management</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Esso_Sales</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Esso Sales</label>
+        <sharedTo>
+            <group>Esso_Sales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Esso_Sales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>ExxonTeam</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Exxon Team</label>
+        <sharedTo>
+            <group>ExxonTeam</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>ExxonTeam</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>InsideSales</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Inside Sales</label>
+        <sharedTo>
+            <group>InsideSales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>InsideSales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>InsideSales138161</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Inside Sales</label>
+        <sharedTo>
+            <group>InsideSales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>InsideSalesManager</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>InsideSalesDataEntry</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Inside Sales-Data Entry</label>
+        <sharedTo>
+            <group>InsideSalesDataEntry</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>InsideSales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>InsideSalesManager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Inside Sales Manager</label>
+        <sharedTo>
+            <group>InsideSalesManager</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>InsideSales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Inside_Sales_w_Branded</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>This rule shares all the opportunities owned by the Branded sales group with inside sales.</description>
+        <label>Inside Sales w Branded</label>
+        <sharedTo>
+            <group>InsideSales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Branded_Sales_Group</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>JeffStuck</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Jeff Stuck</label>
+        <sharedTo>
+            <group>JeffStuck</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>AMSAReps</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>LearningandDevelopmentA</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Learning and DevelopmentA</label>
+        <sharedTo>
+            <role>LearningandDevelopment</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>CPSTeams</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Marathon_Sales</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Marathon Sales</label>
+        <sharedTo>
+            <group>Marathon_Sales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Marathon_Sales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Mastercard</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Mastercard</label>
+        <sharedTo>
+            <group>Mastercard</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Mastercard</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Merchant_Team</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Merchant Team</label>
+        <sharedTo>
+            <group>Merchant_Team</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Merchant_Team</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>OTR_Implementation_East</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>o	OTR Implementation Role should have read/write access to Opportunities where Owner Role is OTR IS Sales Manager - East and subordinates or OTR IS Sales Manager - West and subordinates</description>
+        <label>OTR Implementation East</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>OTR_Implementation_Manager</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>DirectorDirectOTRSales</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>OTR_Implementation_West</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>OTR Implementation Role should have read/write access to Opportunities where Owner Role is OTR IS Sales Manager - East and subordinates or OTR IS Sales Manager - West and subordinates</description>
+        <label>OTR Implementation West</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>OTR_Implementation_Manager</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>OTR_IS_Sales_Manager_West</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>OTR_Regional_Sales_East_to_East</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>OTR Regional Sales - East to East</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_East</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_East</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>OTR_Regional_Sales_East_to_West</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>OTR Regional Sales - East to West</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_West</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_East</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>OTR_Regional_Sales_West_to_East</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>OTR Regional Sales - West to East</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_East</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_West</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>OTR_Regional_Sales_West_to_West</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>OTR Regional Sales - West to West</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_West</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>OTR_Regional_Sales_Manager_West</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Opportunity_CS_Team_Access</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Enables CS team to attach files to Opportunities</description>
+        <label>Opportunity CS Team Access</label>
+        <sharedTo>
+            <group>Wex_Europe_Customer_Services</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Wex_Europe_Commercial</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>QuikTrip_partner_user</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>QuikTrip partner user</label>
+        <sharedTo>
+            <portalRole>QuikTripCorporateOfficePartnerUser</portalRole>
+        </sharedTo>
+        <sharedFrom>
+            <portalRole>QuikTripCorporateOfficePartnerUser</portalRole>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>STC_Created</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>STC Created</label>
+        <sharedTo>
+            <portalRoleAndSubordinates>STCInternationalCorpPartnerManager</portalRoleAndSubordinates>
+        </sharedTo>
+        <sharedFrom>
+            <portalRoleAndSubordinates>STCInternationalCorpPartnerManager</portalRoleAndSubordinates>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SmallBusinessSalesMgrEastA</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Small Business Sales Mgr EastA</label>
+        <sharedTo>
+            <role>VPMerchantandChannelPartner</role>
+        </sharedTo>
+        <sharedFrom>
+            <group>InsideSales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Small_Business</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Small Business</label>
+        <sharedTo>
+            <group>SmallBusiness</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>SmallBusiness</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SunocoTeam</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Sunoco Team</label>
+        <sharedTo>
+            <group>SunocoTeam</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>SunocoTeam</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Telematics</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Telematics</label>
+        <sharedTo>
+            <group>Telematics</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>WEXUniversal</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Telematics138161</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Telematics</label>
+        <sharedTo>
+            <group>Telematics</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Telematics</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Telematics138162</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Telematics</label>
+        <sharedTo>
+            <group>Telematics</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>CPSTeams</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Telematics138163</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Telematics</label>
+        <sharedTo>
+            <group>Telematics</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>InsideSales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Virtual_All_Onboarding</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share All Virtual Opportunities with Onboarding and Relationship Manager teams.</description>
+        <label>Virtual All Onboarding</label>
+        <sharedTo>
+            <group>Virtual_All_Onboarding</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Virtual_Users</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>WEXSmart</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>WEXSmart</label>
+        <sharedTo>
+            <group>WEXSmart</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>AccountExecutive</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>WEXUniversal</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>WEX Universal</label>
+        <sharedTo>
+            <group>WEXUniversal</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>WEXUniversal</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>WEX_Asia_Group</fullName>
+        <accessLevel>Edit</accessLevel>
+        <description>Share read/write on WEX Asia Opportunities</description>
+        <label>WEX Asia Group</label>
+        <sharedTo>
+            <group>WEX_Asia</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>WEX_Asia</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Wawa_Sales</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Wawa Sales`</label>
+        <sharedTo>
+            <group>Wawa_Sales</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>Wawa_Sales</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Wexsmart_w_Exxon</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Wexsmart w/Exxon</label>
+        <sharedTo>
+            <group>WEXSmart</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>ExxonTeam</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>eapp_admins</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>eapp admins</label>
+        <sharedTo>
+            <group>Online_App_Administrators</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>ForsevaApplGuestUser</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>share_Guest_with_faye</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>share Guest with faye</label>
+        <sharedTo>
+            <group>User_Faye_Gotten</group>
+        </sharedTo>
+        <sharedFrom>
+            <group>ForsevaApplGuestUser</group>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

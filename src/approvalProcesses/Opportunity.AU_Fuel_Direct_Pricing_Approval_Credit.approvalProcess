@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <submitter>AUS_Managing_Dir</submitter>
+        <type>roleSubordinatesInternal</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>CloseDate</field>
+        <field>Account</field>
+        <field>Amount</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>true</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>peter.vanshaik@wexaustralia.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>If Team Leader Pricing Approval is needed, push to Sales Leader for approval.
+
+Note: Sales Leader may seek clarification/guidance etc via Chatter.</description>
+        <entryCriteria>
+            <formula>Team_Leader_Pricing_Approval_Needed__c = TRUE</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>1 - Needs Team Leader Approval</label>
+        <name>X1_Needs_Team_Leader_Approval</name>
+    </approvalStep>
+    <description>Used for AU Fuel Direct pricing approval prior to passing to Credit for assessment.
+For Credit users.</description>
+    <emailTemplate>AU_Email_Templates/AU_Fuel_Direct_Pricing_Approval_Notification</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND(
+ Record_Type_Name__c = &apos;AU Fuel Direct&apos;,
+ $Profile.Name = &apos;AU Credit User&apos;
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>AU_Opportunity_Pricing_Approval</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>AU_Pricing_Approval_Received_to_TRUE</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Opportunity_Status_to_Pricing_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>AU_Opportunity_Pricing_Rejected</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>AU_Pricing_Approval_Received_to_FALSE</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>Opportunity_Status_to_Pricing_Declined</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>AU_Opportunity_Status_to_In_Progress</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
+            <name>AU_Pricing_Approval_Received_to_FALSE</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>AU Fuel Direct Pricing Approval (Credit)</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <postTemplate>AU_Fuel_Direct_Opportunity_Pricing_Approval</postTemplate>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

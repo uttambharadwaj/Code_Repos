@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Account__c</fullName>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Transactions</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>Corporate_Parent_Account_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.ParentId</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Corporate Parent Account ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Last_Processed_Date__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Last Processed Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Parent_Account_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>Account__r.Parent.ParentId</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Parent Account ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Processed_Date_Month__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASE(MONTH(Last_Processed_Date__c),
+1, &quot;January&quot;,
+2, &quot;February&quot;,
+3, &quot;March&quot;, 
+4, &quot;April&quot;, 
+5, &quot;May&quot;, 
+6, &quot;June&quot;,
+7, &quot;July&quot;,
+8, &quot;August&quot;,
+9, &quot;September&quot;,
+10, &quot;October&quot;,
+11, &quot;November&quot;,
+12, &quot;December&quot;,
+&quot;None&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Processed Date Month</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Processed_Date_Year__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text( YEAR( Last_Processed_Date__c ) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Processed Date Year</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Record_Source_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Record Source ID</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Summary_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>true</externalId>
+        <label>Summary ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Amount_Transferred__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Amount Transferred</label>
+        <summarizedField>Transaction_Summary_Detail__c.Amount_Transferred__c</summarizedField>
+        <summaryForeignKey>Transaction_Summary_Detail__c.Transaction_Summary__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Carrier_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This field contains a summary of the carrier revenue of the related transaction summary detail records.</inlineHelpText>
+        <label>Total Carrier Revenue</label>
+        <summarizedField>Transaction_Summary_Detail__c.Carrier_Revenue__c</summarizedField>
+        <summaryForeignKey>Transaction_Summary_Detail__c.Transaction_Summary__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Merchant_Revenue__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>This field contains a summary of the merchant revenue of the related transaction summary detail records.</inlineHelpText>
+        <label>Total Merchant Revenue</label>
+        <summarizedField>Transaction_Summary_Detail__c.Merchant_Revenue__c</summarizedField>
+        <summaryForeignKey>Transaction_Summary_Detail__c.Transaction_Summary__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Revenue_2__c</fullName>
+        <description>Used 2 to mirror the API Name from EFS org</description>
+        <externalId>false</externalId>
+        <label>Total Revenue</label>
+        <summarizedField>Transaction_Summary_Detail__c.Revenue__c</summarizedField>
+        <summaryForeignKey>Transaction_Summary_Detail__c.Transaction_Summary__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Transaction__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Transaction</label>
+        <summarizedField>Transaction_Summary_Detail__c.Transaction__c</summarizedField>
+        <summaryForeignKey>Transaction_Summary_Detail__c.Transaction_Summary__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+</CustomObject>

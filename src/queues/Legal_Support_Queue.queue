@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>Legal Support Queue</name>
+    <queueMembers>
+        <roles>
+            <role>Legal_Contract_Request</role>
+        </roles>
+        <users>
+            <user>ann.randall@wexinc.com</user>
+            <user>anna.gannon@wexinc.com</user>
+            <user>heidi.brilhante@wexinc.com</user>
+            <user>jon.dowell@efsllc.com</user>
+            <user>maurine.quayle@efsllc.com</user>
+            <user>nicole.ducharme@wexinc.com</user>
+            <user>peter.heissenbuttel@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Case</sobjectType>
+    </queueSobject>
+</Queue>

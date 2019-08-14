@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <email>virtualpayments@wexinc.com</email>
+    <name>Mastercard Web Queue</name>
+    <queueMembers>
+        <publicGroups>
+            <publicGroup>Mastercard</publicGroup>
+        </publicGroups>
+        <users>
+            <user>allison.sovetsky@wexinc.com</user>
+            <user>mona.downey@wexinc.com</user>
+            <user>systemaccess@wexinc.com</user>
+            <user>pardot@wexinc.com</user>
+            <user>renata.caine@wexinc.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>

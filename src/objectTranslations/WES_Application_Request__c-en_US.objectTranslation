@@ -1,0 +1,3697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>WES Application Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>WES Application Requests</value>
+    </caseValues>
+    <fields>
+        <label><!-- Name(s) of account holder(s) --></label>
+        <name>AccountHoldersName__c</name>
+    </fields>
+    <fields>
+        <help><!-- All Account Billing Address fields in one place --></help>
+        <label><!-- Account Billing Address --></label>
+        <name>Account_Billing_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Billing Email --></label>
+        <name>Account_Billing_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invoice Frequency --></label>
+        <name>Account_Billing_Frequency__c</name>
+        <picklistValues>
+            <masterLabel>Bi-Monthly</masterLabel>
+            <translation><!-- Bi-Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Daily</masterLabel>
+            <translation><!-- Daily --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Monthly</masterLabel>
+            <translation><!-- Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Weekly</masterLabel>
+            <translation><!-- Weekly --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Billing Plan --></label>
+        <name>Account_Billing_Plan__c</name>
+        <picklistValues>
+            <masterLabel>1 day after invoice date - CHQ</masterLabel>
+            <translation><!-- 1 day after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1 day after invoice date - DD</masterLabel>
+            <translation><!-- 1 day after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 15 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15 days after invoice date - DD</masterLabel>
+            <translation><!-- 15 days after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 16 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16 days after invoice date - DD</masterLabel>
+            <translation><!-- 16 days after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>30 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 30 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>30 days after invoice date - DD</masterLabel>
+            <translation><!-- 30 days after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>31 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 31 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>31 days after invoice date - DD</masterLabel>
+            <translation><!-- 31 days after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>45 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 45 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>45 days after invoice date - DD</masterLabel>
+            <translation><!-- 45 days after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>46 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 46 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>46 days after invoice date - DD</masterLabel>
+            <translation><!-- 46 days after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 5 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 days after invoice date - DD</masterLabel>
+            <translation><!-- 5 days after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>60 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 60 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>60 days after invoice date - DD</masterLabel>
+            <translation><!-- 60 days after invoice date - DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>62 days after invoice date - CHQ</masterLabel>
+            <translation><!-- 62 days after invoice date - CHQ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>62 days after invoice date - DD</masterLabel>
+            <translation><!-- 62 days after invoice date - DD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Class of Buyer --></label>
+        <name>Account_Class_of_Buyer__c</name>
+        <picklistValues>
+            <masterLabel>Commercial</masterLabel>
+            <translation><!-- Commercial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Domestic</masterLabel>
+            <translation><!-- Domestic --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government</masterLabel>
+            <translation><!-- Government --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal</masterLabel>
+            <translation><!-- Personal --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Credit Plan --></label>
+        <name>Account_Credit_Plan__c</name>
+        <picklistValues>
+            <masterLabel>Alert 80% - Late Fee 0% - Credit Autolock</masterLabel>
+            <translation><!-- Alert 80% - Late Fee 0% - Credit Autolock --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alert 80% - Late Fee 1.5% - Autolock</masterLabel>
+            <translation><!-- Alert 80% - Late Fee 1.5% - Autolock --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alert 80% - Late Fee 2% - Autolock</masterLabel>
+            <translation><!-- Alert 80% - Late Fee 2% - Autolock --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Alert - No Late Fee - No Autolock</masterLabel>
+            <translation><!-- No Alert - No Late Fee - No Autolock --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Customer Type --></label>
+        <name>Account_Customer_Type__c</name>
+        <picklistValues>
+            <masterLabel>0 - VIP/Government</masterLabel>
+            <translation><!-- 0 - VIP/Government --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>1 - General Exclusion</masterLabel>
+            <translation><!-- 1 - General Exclusion --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 - Standard</masterLabel>
+            <translation><!-- 3 - Standard --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Account ISO Country Code --></label>
+        <name>Account_ISO_Country_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Id --></label>
+        <name>Account_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Industry --></label>
+        <name>Account_Industry__c</name>
+        <picklistValues>
+            <masterLabel>Accommodation and Food Services</masterLabel>
+            <translation><!-- Accommodation and Food Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Accounting/Business Services</masterLabel>
+            <translation><!-- Accounting/Business Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Administrative and Support Services</masterLabel>
+            <translation><!-- Administrative and Support Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Advertising</masterLabel>
+            <translation><!-- Advertising --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aerospace &amp; Defence</masterLabel>
+            <translation><!-- Aerospace &amp; Defence --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agricultural &amp; Farm Machinery</masterLabel>
+            <translation><!-- Agricultural &amp; Farm Machinery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agricultural Products</masterLabel>
+            <translation><!-- Agricultural Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agriculture</masterLabel>
+            <translation><!-- Agriculture --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agriculture, Forestry and Fishing</masterLabel>
+            <translation><!-- Agriculture, Forestry and Fishing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Agriculture,Forestry, Fishing (01-09)</masterLabel>
+            <translation><!-- Agriculture,Forestry, Fishing (01-09) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Air Freight &amp; Logistics</masterLabel>
+            <translation><!-- Air Freight &amp; Logistics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Airlines</masterLabel>
+            <translation><!-- Airlines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Airport Services</masterLabel>
+            <translation><!-- Airport Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Alternative Carriers</masterLabel>
+            <translation><!-- Alternative Carriers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Aluminum</masterLabel>
+            <translation><!-- Aluminum --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Apparel</masterLabel>
+            <translation><!-- Apparel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Apparel Retail</masterLabel>
+            <translation><!-- Apparel Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Apparel, Accessories &amp; Luxury Goods</masterLabel>
+            <translation><!-- Apparel, Accessories &amp; Luxury Goods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Application Software</masterLabel>
+            <translation><!-- Application Software --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Arts and Recreation Services</masterLabel>
+            <translation><!-- Arts and Recreation Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asset Management &amp; Custody Banks</masterLabel>
+            <translation><!-- Asset Management &amp; Custody Banks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auto Parts &amp; Equipment</masterLabel>
+            <translation><!-- Auto Parts &amp; Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Automobile Manufacturers</masterLabel>
+            <translation><!-- Automobile Manufacturers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Automotive Retail</masterLabel>
+            <translation><!-- Automotive Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Banking</masterLabel>
+            <translation><!-- Banking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Banking/Finance</masterLabel>
+            <translation><!-- Banking/Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Biotechnology</masterLabel>
+            <translation><!-- Biotechnology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Brewers</masterLabel>
+            <translation><!-- Brewers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Broadcasting</masterLabel>
+            <translation><!-- Broadcasting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Building Products</masterLabel>
+            <translation><!-- Building Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cable &amp; Satellite</masterLabel>
+            <translation><!-- Cable &amp; Satellite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Car Hire</masterLabel>
+            <translation><!-- Car Hire --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Care Homes</masterLabel>
+            <translation><!-- Care Homes --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Casinos &amp; Gaming</masterLabel>
+            <translation><!-- Casinos &amp; Gaming --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Catalog Retail</masterLabel>
+            <translation><!-- Catalog Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Charity</masterLabel>
+            <translation><!-- Charity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Chemicals</masterLabel>
+            <translation><!-- Chemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Coal &amp; Consumable Fuels</masterLabel>
+            <translation><!-- Coal &amp; Consumable Fuels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commercial Printing</masterLabel>
+            <translation><!-- Commercial Printing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Commodity Chemicals</masterLabel>
+            <translation><!-- Commodity Chemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Communications</masterLabel>
+            <translation><!-- Communications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Communications Equipment</masterLabel>
+            <translation><!-- Communications Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Community Services</masterLabel>
+            <translation><!-- Community Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Computer &amp; Electronics Retail</masterLabel>
+            <translation><!-- Computer &amp; Electronics Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Conferences and Events</masterLabel>
+            <translation><!-- Conferences and Events --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Construction</masterLabel>
+            <translation><!-- Construction --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Construction &amp; Engineering</masterLabel>
+            <translation><!-- Construction &amp; Engineering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Construction (15-17)</masterLabel>
+            <translation><!-- Construction (15-17) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Construction Machinery &amp; Heavy Trucks</masterLabel>
+            <translation><!-- Construction Machinery &amp; Heavy Trucks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Construction Materials</masterLabel>
+            <translation><!-- Construction Materials --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consulting</masterLabel>
+            <translation><!-- Consulting --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer</masterLabel>
+            <translation><!-- Consumer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer Electronics</masterLabel>
+            <translation><!-- Consumer Electronics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer Finance</masterLabel>
+            <translation><!-- Consumer Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Courier</masterLabel>
+            <translation><!-- Courier --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Data Processing &amp; Outsourced Services</masterLabel>
+            <translation><!-- Data Processing &amp; Outsourced Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Department Stores</masterLabel>
+            <translation><!-- Department Stores --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distillers &amp; Vintners</masterLabel>
+            <translation><!-- Distillers &amp; Vintners --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Distributors</masterLabel>
+            <translation><!-- Distributors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diversified Banks</masterLabel>
+            <translation><!-- Diversified Banks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diversified Capital Markets</masterLabel>
+            <translation><!-- Diversified Capital Markets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diversified Chemicals</masterLabel>
+            <translation><!-- Diversified Chemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diversified Metals &amp; Mining</masterLabel>
+            <translation><!-- Diversified Metals &amp; Mining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diversified REITs</masterLabel>
+            <translation><!-- Diversified REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diversified Real Estate Activities</masterLabel>
+            <translation><!-- Diversified Real Estate Activities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Diversified Support Services</masterLabel>
+            <translation><!-- Diversified Support Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drug Retail</masterLabel>
+            <translation><!-- Drug Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ecommerce</masterLabel>
+            <translation><!-- Ecommerce --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education</masterLabel>
+            <translation><!-- Education --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education Services</masterLabel>
+            <translation><!-- Education Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Education and Training</masterLabel>
+            <translation><!-- Education and Training --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electric Utilities</masterLabel>
+            <translation><!-- Electric Utilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electrical Components &amp; Equipment</masterLabel>
+            <translation><!-- Electrical Components &amp; Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electronic Components</masterLabel>
+            <translation><!-- Electronic Components --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electronic Equipment &amp; Instruments</masterLabel>
+            <translation><!-- Electronic Equipment &amp; Instruments --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electronic Manufacturing Services</masterLabel>
+            <translation><!-- Electronic Manufacturing Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Electronics</masterLabel>
+            <translation><!-- Electronics --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Energy</masterLabel>
+            <translation><!-- Energy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Engineering</masterLabel>
+            <translation><!-- Engineering --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Entertainment</masterLabel>
+            <translation><!-- Entertainment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environmental</masterLabel>
+            <translation><!-- Environmental --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Environmental &amp; Facilities Services</masterLabel>
+            <translation><!-- Environmental &amp; Facilities Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Estate Agents</masterLabel>
+            <translation><!-- Estate Agents --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fertilizers &amp; Agricultural Chemicals</masterLabel>
+            <translation><!-- Fertilizers &amp; Agricultural Chemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance</masterLabel>
+            <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance, Insurance, Real Estate (60-67)</masterLabel>
+            <translation><!-- Finance, Insurance, Real Estate (60-67) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial and Insurance Services</masterLabel>
+            <translation><!-- Financial and Insurance Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food &amp; Beverage</masterLabel>
+            <translation><!-- Food &amp; Beverage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food Distributors</masterLabel>
+            <translation><!-- Food Distributors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Food Retail</masterLabel>
+            <translation><!-- Food Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Footwear</masterLabel>
+            <translation><!-- Footwear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Forest Products</masterLabel>
+            <translation><!-- Forest Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gaming</masterLabel>
+            <translation><!-- Gaming --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gas Utilities</masterLabel>
+            <translation><!-- Gas Utilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>General Merchandise Stores</masterLabel>
+            <translation><!-- General Merchandise Stores --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gift Cards</masterLabel>
+            <translation><!-- Gift Cards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gold</masterLabel>
+            <translation><!-- Gold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government</masterLabel>
+            <translation><!-- Government --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Care Distributors</masterLabel>
+            <translation><!-- Health Care Distributors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Care Equipment</masterLabel>
+            <translation><!-- Health Care Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Care Facilities</masterLabel>
+            <translation><!-- Health Care Facilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Care REITs</masterLabel>
+            <translation><!-- Health Care REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Care Services</masterLabel>
+            <translation><!-- Health Care Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Care Supplies</masterLabel>
+            <translation><!-- Health Care Supplies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Care Technology</masterLabel>
+            <translation><!-- Health Care Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Health Care and Social Assistance</masterLabel>
+            <translation><!-- Health Care and Social Assistance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Healthcare</masterLabel>
+            <translation><!-- Healthcare --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heavy Electrical Equipment</masterLabel>
+            <translation><!-- Heavy Electrical Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Highways &amp; Railtracks</masterLabel>
+            <translation><!-- Highways &amp; Railtracks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Entertainment Software</masterLabel>
+            <translation><!-- Home Entertainment Software --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Furnishings</masterLabel>
+            <translation><!-- Home Furnishings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Home Improvement Retail</masterLabel>
+            <translation><!-- Home Improvement Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homebuilding</masterLabel>
+            <translation><!-- Homebuilding --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Homefurnishing Retail</masterLabel>
+            <translation><!-- Homefurnishing Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hospitality</masterLabel>
+            <translation><!-- Hospitality --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotel &amp; Resort REITs</masterLabel>
+            <translation><!-- Hotel &amp; Resort REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hotels, Resorts &amp; Cruise Lines</masterLabel>
+            <translation><!-- Hotels, Resorts &amp; Cruise Lines --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Household Appliances</masterLabel>
+            <translation><!-- Household Appliances --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Household Products</masterLabel>
+            <translation><!-- Household Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Housewares &amp; Specialties</masterLabel>
+            <translation><!-- Housewares &amp; Specialties --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Human Resource &amp; Employment Services</masterLabel>
+            <translation><!-- Human Resource &amp; Employment Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hypermarkets &amp; Super Centers</masterLabel>
+            <translation><!-- Hypermarkets &amp; Super Centers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IT Consulting &amp; Other Services</masterLabel>
+            <translation><!-- IT Consulting &amp; Other Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial Conglomerates</masterLabel>
+            <translation><!-- Industrial Conglomerates --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial Gases</masterLabel>
+            <translation><!-- Industrial Gases --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial Machinery</masterLabel>
+            <translation><!-- Industrial Machinery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Industrial REITs</masterLabel>
+            <translation><!-- Industrial REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insurance</masterLabel>
+            <translation><!-- Insurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insurance Brokers</masterLabel>
+            <translation><!-- Insurance Brokers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrated Oil &amp; Gas</masterLabel>
+            <translation><!-- Integrated Oil &amp; Gas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Integrated Telecommunication Services</masterLabel>
+            <translation><!-- Integrated Telecommunication Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internet Retail</masterLabel>
+            <translation><!-- Internet Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Internet Software &amp; Services</masterLabel>
+            <translation><!-- Internet Software &amp; Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Investment Banking &amp; Brokerage</masterLabel>
+            <translation><!-- Investment Banking &amp; Brokerage --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal</masterLabel>
+            <translation><!-- Legal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Leisure Facilities</masterLabel>
+            <translation><!-- Leisure Facilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Leisure Products</masterLabel>
+            <translation><!-- Leisure Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Life &amp; Health Insurance</masterLabel>
+            <translation><!-- Life &amp; Health Insurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Life Sciences Tools &amp; Services</masterLabel>
+            <translation><!-- Life Sciences Tools &amp; Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Machinery</masterLabel>
+            <translation><!-- Machinery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Managed Health Care</masterLabel>
+            <translation><!-- Managed Health Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturing</masterLabel>
+            <translation><!-- Manufacturing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manufacturing (20-39)</masterLabel>
+            <translation><!-- Manufacturing (20-39) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marine</masterLabel>
+            <translation><!-- Marine --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marine Ports &amp; Services</masterLabel>
+            <translation><!-- Marine Ports &amp; Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Research</masterLabel>
+            <translation><!-- Market Research --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media</masterLabel>
+            <translation><!-- Media --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Media (Film)</masterLabel>
+            <translation><!-- Media (Film) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medical Insurance</masterLabel>
+            <translation><!-- Medical Insurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Metal &amp; Glass Containers</masterLabel>
+            <translation><!-- Metal &amp; Glass Containers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Metal Recycling</masterLabel>
+            <translation><!-- Metal Recycling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mining</masterLabel>
+            <translation><!-- Mining --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mortgage REITs</masterLabel>
+            <translation><!-- Mortgage REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Motorcycle Manufacturers</masterLabel>
+            <translation><!-- Motorcycle Manufacturers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Movies &amp; Entertainment</masterLabel>
+            <translation><!-- Movies &amp; Entertainment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Sector Holdings</masterLabel>
+            <translation><!-- Multi-Sector Holdings --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-Utilities</masterLabel>
+            <translation><!-- Multi-Utilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Multi-line Insurance</masterLabel>
+            <translation><!-- Multi-line Insurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nonclassifiable Establishments (99)</masterLabel>
+            <translation><!-- Nonclassifiable Establishments (99) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Available</masterLabel>
+            <translation><!-- Not Available --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not For Profit</masterLabel>
+            <translation><!-- Not For Profit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTA</masterLabel>
+            <translation><!-- OTA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Office REITs</masterLabel>
+            <translation><!-- Office REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Office Services &amp; Supplies</masterLabel>
+            <translation><!-- Office Services &amp; Supplies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil &amp; Gas Drilling</masterLabel>
+            <translation><!-- Oil &amp; Gas Drilling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil &amp; Gas Equipment &amp; Services</masterLabel>
+            <translation><!-- Oil &amp; Gas Equipment &amp; Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil &amp; Gas Exploration &amp; Production</masterLabel>
+            <translation><!-- Oil &amp; Gas Exploration &amp; Production --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil &amp; Gas Refining &amp; Marketing</masterLabel>
+            <translation><!-- Oil &amp; Gas Refining &amp; Marketing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oil &amp; Gas Storage &amp; Transportation</masterLabel>
+            <translation><!-- Oil &amp; Gas Storage &amp; Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Diversified Financial Services</masterLabel>
+            <translation><!-- Other Diversified Financial Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other Services</masterLabel>
+            <translation><!-- Other Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaged Foods &amp; Meats</masterLabel>
+            <translation><!-- Packaged Foods &amp; Meats --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paper Packaging</masterLabel>
+            <translation><!-- Paper Packaging --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Paper Products</masterLabel>
+            <translation><!-- Paper Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Personal Products</masterLabel>
+            <translation><!-- Personal Products --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pharmaceuticals</masterLabel>
+            <translation><!-- Pharmaceuticals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Power Producers &amp; Energy Traders</masterLabel>
+            <translation><!-- Power Producers &amp; Energy Traders --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Precious Metals &amp; Minerals</masterLabel>
+            <translation><!-- Precious Metals &amp; Minerals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Primary Industries</masterLabel>
+            <translation><!-- Primary Industries --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Print/Publishing</masterLabel>
+            <translation><!-- Print/Publishing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Property</masterLabel>
+            <translation><!-- Property --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Property &amp; Casualty Insurance</masterLabel>
+            <translation><!-- Property &amp; Casualty Insurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Administration (91-97)</masterLabel>
+            <translation><!-- Public Administration (91-97) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Public Administration and Safety</masterLabel>
+            <translation><!-- Public Administration and Safety --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Publishing</masterLabel>
+            <translation><!-- Publishing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Railroads</masterLabel>
+            <translation><!-- Railroads --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Real Estate Development</masterLabel>
+            <translation><!-- Real Estate Development --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Real Estate Operating Companies</masterLabel>
+            <translation><!-- Real Estate Operating Companies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Real Estate Services</masterLabel>
+            <translation><!-- Real Estate Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recreation</masterLabel>
+            <translation><!-- Recreation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recreation/Sport</masterLabel>
+            <translation><!-- Recreation/Sport --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional Banks</masterLabel>
+            <translation><!-- Regional Banks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reinsurance</masterLabel>
+            <translation><!-- Reinsurance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Renewable Electricity</masterLabel>
+            <translation><!-- Renewable Electricity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rental, Hiring and Real Estate Services</masterLabel>
+            <translation><!-- Rental, Hiring and Real Estate Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Research &amp; Consulting Services</masterLabel>
+            <translation><!-- Research &amp; Consulting Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Residential REITs</masterLabel>
+            <translation><!-- Residential REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Restaurants</masterLabel>
+            <translation><!-- Restaurants --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retail</masterLabel>
+            <translation><!-- Retail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retail REITs</masterLabel>
+            <translation><!-- Retail REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Retail Trade</masterLabel>
+            <translation><!-- Retail Trade --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rewards &amp; Incentives</masterLabel>
+            <translation><!-- Rewards &amp; Incentives --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Security &amp; Alarm Services</masterLabel>
+            <translation><!-- Security &amp; Alarm Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semiconductor Equipment</masterLabel>
+            <translation><!-- Semiconductor Equipment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Semiconductors</masterLabel>
+            <translation><!-- Semiconductors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Services (70-89)</masterLabel>
+            <translation><!-- Services (70-89) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Shipping</masterLabel>
+            <translation><!-- Shipping --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Silver</masterLabel>
+            <translation><!-- Silver --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Soft Drinks</masterLabel>
+            <translation><!-- Soft Drinks --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialized Consumer Services</masterLabel>
+            <translation><!-- Specialized Consumer Services --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialized Finance</masterLabel>
+            <translation><!-- Specialized Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialized REITs</masterLabel>
+            <translation><!-- Specialized REITs --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialty Chemicals</masterLabel>
+            <translation><!-- Specialty Chemicals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Specialty Stores</masterLabel>
+            <translation><!-- Specialty Stores --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Staffing</masterLabel>
+            <translation><!-- Staffing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Steel</masterLabel>
+            <translation><!-- Steel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Systems Software</masterLabel>
+            <translation><!-- Systems Software --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>TPA</masterLabel>
+            <translation><!-- TPA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tech Hardware, Storage &amp; Peripherals</masterLabel>
+            <translation><!-- Tech Hardware, Storage &amp; Peripherals --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technology</masterLabel>
+            <translation><!-- Technology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technology Distributors</masterLabel>
+            <translation><!-- Technology Distributors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Telecommunications</masterLabel>
+            <translation><!-- Telecommunications --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Textiles</masterLabel>
+            <translation><!-- Textiles --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thrifts &amp; Mortgage Finance</masterLabel>
+            <translation><!-- Thrifts &amp; Mortgage Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ticket Agencies</masterLabel>
+            <translation><!-- Ticket Agencies --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tires &amp; Rubber</masterLabel>
+            <translation><!-- Tires &amp; Rubber --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tobacco</masterLabel>
+            <translation><!-- Tobacco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tourism</masterLabel>
+            <translation><!-- Tourism --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trading Companies &amp; Distributors</masterLabel>
+            <translation><!-- Trading Companies &amp; Distributors --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trans,Comm,Electric,Gas,Sanitary (40-49)</masterLabel>
+            <translation><!-- Trans,Comm,Electric,Gas,Sanitary (40-49) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transport, Postal and Warehousing</masterLabel>
+            <translation><!-- Transport, Postal and Warehousing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Transportation</masterLabel>
+            <translation><!-- Transportation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel</masterLabel>
+            <translation><!-- Travel --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel - DMC</masterLabel>
+            <translation><!-- Travel - DMC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel - OTA</masterLabel>
+            <translation><!-- Travel - OTA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel - TMC</masterLabel>
+            <translation><!-- Travel - TMC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Travel - Tour Operators</masterLabel>
+            <translation><!-- Travel - Tour Operators --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trucking</masterLabel>
+            <translation><!-- Trucking --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Utilities</masterLabel>
+            <translation><!-- Utilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warehouse/Distribution</masterLabel>
+            <translation><!-- Warehouse/Distribution --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Warranty</masterLabel>
+            <translation><!-- Warranty --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Water Utilities</masterLabel>
+            <translation><!-- Water Utilities --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale</masterLabel>
+            <translation><!-- Wholesale --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale Trade</masterLabel>
+            <translation><!-- Wholesale Trade --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wholesale Trade (50-51)</masterLabel>
+            <translation><!-- Wholesale Trade (50-51) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wireless Telecommunication Services</masterLabel>
+            <translation><!-- Wireless Telecommunication Services --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Account Legacy Id --></label>
+        <name>Account_Legacy_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mail Indicator --></label>
+        <name>Account_Mail_Indicator__c</name>
+        <picklistValues>
+            <masterLabel>Courier to Customer</masterLabel>
+            <translation><!-- Courier to Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Post to Customer</masterLabel>
+            <translation><!-- Post to Customer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Mobile Phone --></label>
+        <name>Account_Mobile_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number of Employees --></label>
+        <name>Account_Number_of_Employees__c</name>
+    </fields>
+    <fields>
+        <label><!-- Account Parent Account --></label>
+        <name>Account_Parent_Account__c</name>
+        <relationshipLabel><!-- WES Application Requests (Account Parent Account) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Payment Terms --></label>
+        <name>Account_Payment_Days__c</name>
+        <picklistValues>
+            <masterLabel>14</masterLabel>
+            <translation><!-- 14 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>15</masterLabel>
+            <translation><!-- 15 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>16</masterLabel>
+            <translation><!-- 16 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>21</masterLabel>
+            <translation><!-- 21 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>25</masterLabel>
+            <translation><!-- 25 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>28</masterLabel>
+            <translation><!-- 28 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>30</masterLabel>
+            <translation><!-- 30 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40</masterLabel>
+            <translation><!-- 40 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>45</masterLabel>
+            <translation><!-- 45 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>60</masterLabel>
+            <translation><!-- 60 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>65</masterLabel>
+            <translation><!-- 65 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>7</masterLabel>
+            <translation><!-- 7 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Percent Secured --></label>
+        <name>Account_Percent_Secured__c</name>
+    </fields>
+    <fields>
+        <label><!-- Secondary Mobile Phone --></label>
+        <name>Account_Secondary_Mobile_Phone__c</name>
+    </fields>
+    <fields>
+        <help><!-- The related Account for this Application Request --></help>
+        <label><!-- Company --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- WES Application Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Adverse Indicators --></label>
+        <name>Adverse_Indicators__c</name>
+        <picklistValues>
+            <masterLabel>Bankruptcy</masterLabel>
+            <translation><!-- Bankruptcy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CCJ – satisfied</masterLabel>
+            <translation><!-- CCJ – satisfied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CCJ – unsatisfied</masterLabel>
+            <translation><!-- CCJ – unsatisfied --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CVA</masterLabel>
+            <translation><!-- CVA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IVA</masterLabel>
+            <translation><!-- IVA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overdue accounts / returns</masterLabel>
+            <translation><!-- Overdue accounts / returns --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Strike off action</masterLabel>
+            <translation><!-- Strike off action --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Agent Name --></label>
+        <name>Agent_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Agent User ID --></label>
+        <name>Agent_User_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Anyone else need to Authorize DD Mandate --></label>
+        <name>AnyoneelseneedtoAuthorizeDDMandate__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- # of App Contacts Completed --></label>
+        <name>AppContactsCompleted__c</name>
+    </fields>
+    <fields>
+        <label><!-- # App Contacts --></label>
+        <name>AppContacts__c</name>
+    </fields>
+    <fields>
+        <help><!-- Requires the following info: Valid Velocity Profile name, Monthly Fuel Volume, Vehicle Type, # of Vehicles, Opp Campaign, Lead Source, --></help>
+        <label><!-- Application Info Complete? --></label>
+        <name>ApplicationDetailsComplete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Decline Reason --></label>
+        <name>Application_Decline_Reason__c</name>
+        <picklistValues>
+            <masterLabel>AML Failed</masterLabel>
+            <translation><!-- AML Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adverse Info from internet</masterLabel>
+            <translation><!-- Adverse Info from internet --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adverse Info on Commercial Report</masterLabel>
+            <translation><!-- Adverse Info on Commercial Report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adverse Info on Consumer Report</masterLabel>
+            <translation><!-- Adverse Info on Consumer Report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Adverse Info within the Fuel Card Industry</masterLabel>
+            <translation><!-- Adverse Info within the Fuel Card Industry --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Applicant is Bankrupt</masterLabel>
+            <translation><!-- Applicant is Bankrupt --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Applicant not willing to pay by DD</masterLabel>
+            <translation><!-- Applicant not willing to pay by DD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Photo ID</masterLabel>
+            <translation><!-- Awaiting Photo ID --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting correct bank details</masterLabel>
+            <translation><!-- Awaiting correct bank details --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting customer/sales to confirm details on application i.e. card embossing</masterLabel>
+            <translation><!-- Awaiting customer/sales to confirm details on application i.e. card embossing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Based in Isle of Man</masterLabel>
+            <translation><!-- Based in Isle of Man --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CCJ&apos;s against company or individual</masterLabel>
+            <translation><!-- CCJ&apos;s against company or individual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Company has proposal to strike off / been dissolved</masterLabel>
+            <translation><!-- Company has proposal to strike off / been dissolved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Cancelled / Application on HOld</masterLabel>
+            <translation><!-- Customer Cancelled / Application on HOld --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer has no fixed abode</masterLabel>
+            <translation><!-- Customer has no fixed abode --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director/s of companies in administration/liquidation/proposal to strike off etc.</masterLabel>
+            <translation><!-- Director/s of companies in administration/liquidation/proposal to strike off etc. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director/s or owner/partners not electoral register</masterLabel>
+            <translation><!-- Director/s or owner/partners not electoral register --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Dormant Company</masterLabel>
+            <translation><!-- Dormant Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Duplicated Application</masterLabel>
+            <translation><!-- Duplicated Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Existing customer within group</masterLabel>
+            <translation><!-- Existing customer within group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Risk on Schufa</masterLabel>
+            <translation><!-- High Risk on Schufa --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>IVA against company or applicant</masterLabel>
+            <translation><!-- IVA against company or applicant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incorrect Product</masterLabel>
+            <translation><!-- Incorrect Product --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invalid SEPA Account</masterLabel>
+            <translation><!-- Invalid SEPA Account --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Lack of Response</masterLabel>
+            <translation><!-- Lack of Response --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Late Payments (from Credit Reference Agency Report)</masterLabel>
+            <translation><!-- Late Payments (from Credit Reference Agency Report) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal Enforcements</masterLabel>
+            <translation><!-- Legal Enforcements --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Linked to another company with previous/recent payment problems within group</masterLabel>
+            <translation><!-- Linked to another company with previous/recent payment problems within group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Max Credit Limit within Group</masterLabel>
+            <translation><!-- Max Credit Limit within Group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>NSSO&apos;s</masterLabel>
+            <translation><!-- NSSO&apos;s --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New business, low social capital</masterLabel>
+            <translation><!-- New business, low social capital --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New business, no directors listed</masterLabel>
+            <translation><!-- New business, no directors listed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Insurance Approved</masterLabel>
+            <translation><!-- No Insurance Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Valid VOSA license</masterLabel>
+            <translation><!-- No Valid VOSA license --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overdue Accounts/Returns</masterLabel>
+            <translation><!-- Overdue Accounts/Returns --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Overdue/Reminder sent as Utility Bill from applicant</masterLabel>
+            <translation><!-- Overdue/Reminder sent as Utility Bill from applicant --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Poor Accounts</masterLabel>
+            <translation><!-- Poor Accounts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Previous/Recent payment problems within group</masterLabel>
+            <translation><!-- Previous/Recent payment problems within group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Previously with Legal Department</masterLabel>
+            <translation><!-- Previously with Legal Department --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recent Gazette listing on company filing history</masterLabel>
+            <translation><!-- Recent Gazette listing on company filing history --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Recently declined within group</masterLabel>
+            <translation><!-- Recently declined within group --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Require new Trade Reference</masterLabel>
+            <translation><!-- Require new Trade Reference --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Security Concerns</masterLabel>
+            <translation><!-- Security Concerns --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Status Change</masterLabel>
+            <translation><!-- Status Change --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trade Reference unable to verify details</masterLabel>
+            <translation><!-- Trade Reference unable to verify details --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to complete security call</masterLabel>
+            <translation><!-- Unable to complete security call --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to confirm details</masterLabel>
+            <translation><!-- Unable to confirm details --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to contact regarding paying a deposity</masterLabel>
+            <translation><!-- Unable to contact regarding paying a deposity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to locate on credit Agency Report</masterLabel>
+            <translation><!-- Unable to locate on credit Agency Report --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to match with external source</masterLabel>
+            <translation><!-- Unable to match with external source --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to perform credit checks (i.e. applying for UK cards, American company)</masterLabel>
+            <translation><!-- Unable to perform credit checks (i.e. applying for UK cards, American company) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwilling to accept payment terms</masterLabel>
+            <translation><!-- Unwilling to accept payment terms --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwilling to accept strict credit limit</masterLabel>
+            <translation><!-- Unwilling to accept strict credit limit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unwilling to provide accounts</masterLabel>
+            <translation><!-- Unwilling to provide accounts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Waiting for more accounts ot be filed</masterLabel>
+            <translation><!-- Waiting for more accounts ot be filed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Application Final Date --></label>
+        <name>Application_Final_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Risk Grade --></label>
+        <name>Application_Risk_Grade__c</name>
+        <picklistValues>
+            <masterLabel>0 - Limited Assessment</masterLabel>
+            <translation><!-- 0 - Limited Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 - Very Low</masterLabel>
+            <translation><!-- 2 - Very Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 - Low</masterLabel>
+            <translation><!-- 3 - Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4 - Medium</masterLabel>
+            <translation><!-- 4 - Medium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 - High</masterLabel>
+            <translation><!-- 5 - High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6 - Very High</masterLabel>
+            <translation><!-- 6 - Very High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>9 - Under Exception</masterLabel>
+            <translation><!-- 9 - Under Exception --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Application Status Team --></label>
+        <name>Application_Status_Team__c</name>
+    </fields>
+    <fields>
+        <label><!-- Application Status --></label>
+        <name>Application_Status__c</name>
+        <picklistValues>
+            <masterLabel>Accepted</masterLabel>
+            <translation><!-- Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Assignment</masterLabel>
+            <translation><!-- Awaiting Assignment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Credit Check</masterLabel>
+            <translation><!-- Awaiting Credit Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Further Information</masterLabel>
+            <translation><!-- Awaiting Further Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Awaiting Security Check</masterLabel>
+            <translation><!-- Awaiting Security Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Being Credit Checked</masterLabel>
+            <translation><!-- Being Credit Checked --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Draft</masterLabel>
+            <translation><!-- Draft --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Higher Authority</masterLabel>
+            <translation><!-- Higher Authority --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Returned from Sales</masterLabel>
+            <translation><!-- Returned from Sales --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales to Obtain Further Information</masterLabel>
+            <translation><!-- Sales to Obtain Further Information --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to Process</masterLabel>
+            <translation><!-- Unable to Process --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Application Type --></label>
+        <name>Application_Type__c</name>
+        <picklistValues>
+            <masterLabel>Lite</masterLabel>
+            <translation><!-- Lite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Short</masterLabel>
+            <translation><!-- Short --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Application --></label>
+        <name>Application__c</name>
+        <picklistValues>
+            <masterLabel>SF</masterLabel>
+            <translation><!-- SF --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Application decision date --></label>
+        <name>Application_decision_date__c</name>
+    </fields>
+    <fields>
+        <help><!-- Notes about this approval --></help>
+        <label><!-- Approval Notes --></label>
+        <name>Approval_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Approval Status --></label>
+        <name>Approval_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approval 3rd</masterLabel>
+            <translation><!-- Approval 3rd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved 1st</masterLabel>
+            <translation><!-- Approved 1st --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved 2nd</masterLabel>
+            <translation><!-- Approved 2nd --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined</masterLabel>
+            <translation><!-- Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Approval</masterLabel>
+            <translation><!-- Pending Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Withdrawn</masterLabel>
+            <translation><!-- Withdrawn --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Are you Primary Contact? --></label>
+        <name>AreyouPrimaryContact__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Assess End Time --></label>
+        <name>Assess_End_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Assess Start Time --></label>
+        <name>Assess_Start_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Authorized to set up Direct Debit? --></label>
+        <name>AuthorizedSetupDirectDebit__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Auto-Assign Queue --></label>
+        <name>AutoAssignQueue__c</name>
+        <picklistValues>
+            <masterLabel>WES Credit (auto-assign)</masterLabel>
+            <translation><!-- WES Credit (auto-assign) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Bank Account # Validity --></label>
+        <name>BankAccountNumValidity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Manager Name --></label>
+        <name>BankManagerName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bespoke Setup Required? --></label>
+        <name>BespokeSetupRequired__c</name>
+    </fields>
+    <fields>
+        <label><!-- Biggest Vehicle --></label>
+        <name>BiggestVehicle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Business Entity Type --></label>
+        <name>Business_Entity_Type__c</name>
+    </fields>
+    <fields>
+        <help><!-- Total number of Fuel Cards with different velocity profiles than the default or overide on the application. --></help>
+        <label><!-- # of Cards with different Vel Profiles --></label>
+        <name>CardsWithDiffVelProfiles__c</name>
+    </fields>
+    <fields>
+        <label><!-- Client Name --></label>
+        <name>Client_Name__c</name>
+        <picklistValues>
+            <masterLabel>ExxonMobil Guam</masterLabel>
+            <translation><!-- ExxonMobil Guam --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ExxonMobil Hong Kong</masterLabel>
+            <translation><!-- ExxonMobil Hong Kong --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ExxonMobil Saipan</masterLabel>
+            <translation><!-- ExxonMobil Saipan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>ExxonMobil Singapore</masterLabel>
+            <translation><!-- ExxonMobil Singapore --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Companies House Check --></label>
+        <name>Companies_House_Check__c</name>
+        <picklistValues>
+            <masterLabel>Fail</masterLabel>
+            <translation><!-- Fail --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pass</masterLabel>
+            <translation><!-- Pass --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Companies House Match --></label>
+        <name>Companies_House_Match__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checks required fields based on their Business Entity Type --></help>
+        <label><!-- Company Info Complete? --></label>
+        <name>CompanyInfoComplete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Financials Attached --></label>
+        <name>Company_Financials_Attached__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company IFCS Record ID --></label>
+        <name>Company_IFCS_Record_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Name --></label>
+        <name>Company_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Owner --></label>
+        <name>Company_Owner__c</name>
+        <relationshipLabel><!-- Owner for WES Application Request --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Company Registration # --></label>
+        <name>Company_Reg_Num__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company registration number --></label>
+        <name>Company_registration_number__c</name>
+    </fields>
+    <fields>
+        <help><!-- Primary Contact required fields must be complete and Owner fields as well if sole proprietor. Must include name Title. --></help>
+        <label><!-- Contact Info Complete? --></label>
+        <name>ContactInfoComplete__c</name>
+    </fields>
+    <fields>
+        <label><!-- Create Velocity Account --></label>
+        <name>CreateVelocityAccount__c</name>
+    </fields>
+    <fields>
+        <help><!-- Fuel Card Packs with Driver/VRN along with Card Defaults for each card type must be entered before Fuel Cards can be created. --></help>
+        <label><!-- Create Fuel Cards --></label>
+        <name>Create_Fuel_Cards__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Agent Assigned --></label>
+        <name>CreditAgentAssigned__c</name>
+        <relationshipLabel><!-- WES Application Requests (Credit Agent Assigned) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Credit Insurance Decision Date --></label>
+        <name>CreditInsuranceDecisionDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Insurance Decisions --></label>
+        <name>CreditInsuranceDecisions__c</name>
+        <picklistValues>
+            <masterLabel>Approved in full</masterLabel>
+            <translation><!-- Approved in full --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Approved with Conditions</masterLabel>
+            <translation><!-- Approved with Conditions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined</masterLabel>
+            <translation><!-- Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partially approved</masterLabel>
+            <translation><!-- Partially approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Referred</masterLabel>
+            <translation><!-- Referred --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Credit Level Request Approved --></label>
+        <name>CreditLevelRequestApproved__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Limit Formula --></label>
+        <name>CreditLimitFormula__c</name>
+    </fields>
+    <fields>
+        <help><!-- Manually entered by Credit Analyst --></help>
+        <label><!-- Credit Authorised Limit --></label>
+        <name>Credit_Authorised_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit BureWES Results --></label>
+        <name>Credit_BureWES_Results__c</name>
+    </fields>
+    <fields>
+        <help><!-- Visible only to Credit --></help>
+        <label><!-- Credit Decision Comments --></label>
+        <name>Credit_Decision_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Credit Decision --></label>
+        <name>Credit_Decision__c</name>
+        <picklistValues>
+            <masterLabel>Accepted</masterLabel>
+            <translation><!-- Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Approval</masterLabel>
+            <translation><!-- Pending Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rejected</masterLabel>
+            <translation><!-- Rejected --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unable to Process</masterLabel>
+            <translation><!-- Unable to Process --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Visible only to Credit Team --></help>
+        <label><!-- Credit Insurance Comments --></label>
+        <name>Credit_Insurance_Comments__c</name>
+    </fields>
+    <fields>
+        <help><!-- Pence per Litre --></help>
+        <label><!-- Current Price --></label>
+        <name>CurrentPrice__c</name>
+    </fields>
+    <fields>
+        <help><!-- These options are selected on the related Opportunity. --></help>
+        <label><!-- How they currently buy fuel? --></label>
+        <name>Currently_Buy_Fuel__c</name>
+    </fields>
+    <fields>
+        <label><!-- DD Mandate Complete Timestamp --></label>
+        <name>DDMandateCompleteTimestamp__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checks to see if DD Mandate has been successfully completed. --></help>
+        <label><!-- DD Mandate Complete? --></label>
+        <name>DDMandateComplete__c</name>
+    </fields>
+    <fields>
+        <help><!-- If phone, must complete DD Mandate Script.
+If Hard-Copy, must attach file and complete Name of Signatory. --></help>
+        <label><!-- DD Mandate Method --></label>
+        <name>DD_Mandate_Method__c</name>
+        <picklistValues>
+            <masterLabel>Hard-copy</masterLabel>
+            <translation><!-- Hard-copy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phone</masterLabel>
+            <translation><!-- Phone --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- DNB Credit Limit Recommendation --></label>
+        <name>DNB_Credit_Limit_Recommendation__c</name>
+    </fields>
+    <fields>
+        <label><!-- DNB Failure Score --></label>
+        <name>DNB_Failure_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- DNB Risk --></label>
+        <name>DNB_Risk__c</name>
+    </fields>
+    <fields>
+        <label><!-- DUNS Number --></label>
+        <name>DUNS_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Date Open --></label>
+        <name>Date_Open__c</name>
+    </fields>
+    <fields>
+        <label><!-- Decision --></label>
+        <name>Decision__c</name>
+        <picklistValues>
+            <masterLabel>Approved in full</masterLabel>
+            <translation><!-- Approved in full --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partially approved</masterLabel>
+            <translation><!-- Partially approved --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Default Additional Embossed Line --></label>
+        <name>Default_Additional_Embossed_Line__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default Card Type --></label>
+        <name>Default_Card_Type__c</name>
+        <picklistValues>
+            <masterLabel>EDC</masterLabel>
+            <translation><!-- EDC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Esso</masterLabel>
+            <translation><!-- Esso --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UK Fuels</masterLabel>
+            <translation><!-- UK Fuels --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Diesel used per month (Litres) --></label>
+        <name>Diesel_per_month_Litres__c</name>
+    </fields>
+    <fields>
+        <label><!-- Diesel used per month (GBP) --></label>
+        <name>Diesel_used_per_month_GBP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Diiference within 5 days --></label>
+        <name>Diiference_within_5_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Distributor Code --></label>
+        <name>Distributor_Code__c</name>
+        <picklistValues>
+            <masterLabel>0 Esso (WEX) VAS Iso - (Esso International)</masterLabel>
+            <translation><!-- 0 Esso (WEX) VAS Iso - (Esso International) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>361 Esso (WEX) Non-Vas Iso - (Esso National)</masterLabel>
+            <translation><!-- 361 Esso (WEX) Non-Vas Iso - (Esso National) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Dunning Classification --></label>
+        <name>Dunning_Classification__c</name>
+        <picklistValues>
+            <masterLabel>Employee Card</masterLabel>
+            <translation><!-- Employee Card --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government Body</masterLabel>
+            <translation><!-- Government Body --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medio Customer</masterLabel>
+            <translation><!-- Medio Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Reseller</masterLabel>
+            <translation><!-- Reseller --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Standard Customer</masterLabel>
+            <translation><!-- Standard Customer --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Duty Exemption Letter --></label>
+        <name>Duty_Exemption_Letter__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of EDC Card Packs --></label>
+        <name>EDCCardPacks__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of EDC Cards --></label>
+        <name>EDCCards__c</name>
+    </fields>
+    <fields>
+        <label><!-- E-Business/OLS? --></label>
+        <name>E_Business_OLS__c</name>
+        <picklistValues>
+            <masterLabel>N</masterLabel>
+            <translation><!-- N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y</masterLabel>
+            <translation><!-- Y --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Electronic Marketing Flag --></label>
+        <name>Electronic_Marketing_Flag__c</name>
+        <picklistValues>
+            <masterLabel>N</masterLabel>
+            <translation><!-- N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y</masterLabel>
+            <translation><!-- Y --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Enquiry Source IFCS Id --></label>
+        <name>EnquirySourceID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enquiry Source --></label>
+        <name>Enquiry_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Equifax Score --></label>
+        <name>Equifax_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Esso Card Packs --></label>
+        <name>EssoCardPacks__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Esso Cards --></label>
+        <name>EssoCards__c</name>
+    </fields>
+    <fields>
+        <label><!-- Existing Account Check --></label>
+        <name>ExistingAccountCheck__c</name>
+        <picklistValues>
+            <masterLabel>Clear</masterLabel>
+            <translation><!-- Clear --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Existing Application</masterLabel>
+            <translation><!-- Existing Application --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Existing Company</masterLabel>
+            <translation><!-- Existing Company --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Failed Security Check --></label>
+        <name>Failed_Security_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Comments --></label>
+        <name>FeeComments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Override Comments --></label>
+        <name>FeeOverrideComments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fee Profile --></label>
+        <name>FeeProfile__c</name>
+        <picklistValues>
+            <masterLabel>A - All Fees</masterLabel>
+            <translation><!-- A - All Fees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>B - Some Fees</masterLabel>
+            <translation><!-- B - Some Fees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>C - Few Fees</masterLabel>
+            <translation><!-- C - Few Fees --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>D - No Fees</masterLabel>
+            <translation><!-- D - No Fees --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Date of final decision (i.e., approved, declined, withdrawn, closed) --></help>
+        <label><!-- Final Status Date --></label>
+        <name>Final_Status_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Financial Statement --></label>
+        <name>Financial_Statement__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fraud Check --></label>
+        <name>FraudCheck__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>N/A</masterLabel>
+            <translation><!-- N/A --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Passed</masterLabel>
+            <translation><!-- Passed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Fraud Risk --></label>
+        <name>Fraud_Risk__c</name>
+    </fields>
+    <fields>
+        <label><!-- From Radius? --></label>
+        <name>From_Radius__c</name>
+    </fields>
+    <fields>
+        <help><!-- Checks to see if all Fuel Card Packs have Driver / VRN and that there the Fuel Cards created match the number needed based on the Card Types selected in the Card packs. --></help>
+        <label><!-- Fuel Card Info Complete? --></label>
+        <name>FuelCardInfoComplete__c</name>
+    </fields>
+    <fields>
+        <help><!-- This number must match # of Fuel Card Packs Requested to be able to proceed with Security Check. --></help>
+        <label><!-- # of Fuel Card Packs with Driver/VRN --></label>
+        <name>FuelCardPackswithDriverVRN__c</name>
+    </fields>
+    <fields>
+        <help><!-- This number automatically creates new Fuel Card packs with Default Card Type and Card Holder if the number needed is greater than the current number of card packs. --></help>
+        <label><!-- How many Fuel Card Packs to Generate? --></label>
+        <name>Fuel_Card_Packs__c</name>
+    </fields>
+    <fields>
+        <label><!-- Google Map --></label>
+        <name>GoogleMap__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Address Line 1 --></label>
+        <name>HistoricalAddressLine1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Address Line 2 --></label>
+        <name>HistoricalAddressLine2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Address Line 3 --></label>
+        <name>HistoricalAddressLine3__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Company Name --></label>
+        <name>HistoricalCompanyName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Company Number --></label>
+        <name>HistoricalCompanyNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Contact Name --></label>
+        <name>HistoricalContactName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Country --></label>
+        <name>HistoricalCountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical County --></label>
+        <name>HistoricalCounty__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Email --></label>
+        <name>HistoricalEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Mobile --></label>
+        <name>HistoricalMobile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Phone --></label>
+        <name>HistoricalPhone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Postcode --></label>
+        <name>HistoricalPostcode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Title --></label>
+        <name>HistoricalTitle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical Town --></label>
+        <name>HistoricalTown__c</name>
+    </fields>
+    <fields>
+        <label><!-- Historical VAT Number --></label>
+        <name>HistoricalVATNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Hold Expiration Date --></label>
+        <name>Hold_Expiration_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- How do you currently buy fuel? --></label>
+        <name>How_do_you_currently_buy_fuel__c</name>
+    </fields>
+    <fields>
+        <label><!-- IFCS Business Entity Code --></label>
+        <name>IFCS_Business_Entity_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- IFCS App Technical Details --></label>
+        <name>IFCS_Details__c</name>
+    </fields>
+    <fields>
+        <label><!-- IFCS Request Body --></label>
+        <name>IFCS_Request_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- IFCS Response --></label>
+        <name>IFCS_Response__c</name>
+    </fields>
+    <fields>
+        <label><!-- Integration Status Details --></label>
+        <name>IFCS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Insured Limit --></label>
+        <name>Insured_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Insurer --></label>
+        <name>Insurer__c</name>
+    </fields>
+    <fields>
+        <help><!-- Integration status detail from Genesis --></help>
+        <label><!-- Integration Status Detail --></label>
+        <name>Integration_Status_Detail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Integration Status --></label>
+        <name>Integration_Status__c</name>
+        <picklistValues>
+            <masterLabel>Account Creation Error</masterLabel>
+            <translation><!-- Account Creation Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Account Creation Success</masterLabel>
+            <translation><!-- Account Creation Success --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Add Cards Error</masterLabel>
+            <translation><!-- Add Cards Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Add Cards Success</masterLabel>
+            <translation><!-- Add Cards Success --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Success</masterLabel>
+            <translation><!-- Success --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Invoice Format --></label>
+        <name>Invoice_Format__c</name>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Postal Mail Interface</masterLabel>
+            <translation><!-- Postal Mail Interface --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Is Fee Override? --></label>
+        <name>IsFeeOverride__c</name>
+    </fields>
+    <fields>
+        <label><!-- Correspondence Language --></label>
+        <name>Language_Code__c</name>
+        <picklistValues>
+            <masterLabel>ENG</masterLabel>
+            <translation><!-- ENG --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Letter from Government --></label>
+        <name>Letter_from_Government__c</name>
+    </fields>
+    <fields>
+        <help><!-- Monthly Fuel Volume (Litres) / # of Vehicles --></help>
+        <label><!-- Litre spend per vehicle --></label>
+        <name>Litrespendpervehicle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Made DD Payments with account before? --></label>
+        <name>MadeDDPaymentswithaccountbefore__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Mailing Address --></label>
+        <name>Mailing_Address__c</name>
+    </fields>
+    <fields>
+        <help><!-- Set Petrol &amp; Diesel used per month (Litres) to sum total here. --></help>
+        <label><!-- Monthly Fuel Volume (Litres) --></label>
+        <name>MonthlyFuelVolumeLitres__c</name>
+    </fields>
+    <fields>
+        <help><!-- Company Name appearing on all Fuel cards (20 chars max) --></help>
+        <label><!-- Name appearing on Card --></label>
+        <name>NameOnCard__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of years trading --></label>
+        <name>Num_years_trading__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of EDC Defaults --></label>
+        <name>NumofEDCDefaults__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Esso Defaults --></label>
+        <name>NumofEssoDefaults__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of UK Fuels Defaults --></label>
+        <name>NumofUKFuelDefaults__c</name>
+    </fields>
+    <fields>
+        <label><!-- OBU Device Required? --></label>
+        <name>OBU_Device_Required__c</name>
+        <picklistValues>
+            <masterLabel>false</masterLabel>
+            <translation><!-- false --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>true</masterLabel>
+            <translation><!-- true --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Opp Biggest Vehicle --></label>
+        <name>OppBiggestVehicle__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Group Code --></label>
+        <name>Opportunity_Group_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- Set on the related Opportunity --></help>
+        <label><!-- Enquiry Source --></label>
+        <name>Opportunity_Lead_Source__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Partner --></label>
+        <name>Opportunity_Partner__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Product Type --></label>
+        <name>Opportunity_Product_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opportunity Rep Code --></label>
+        <name>Opportunity_Rep_Code__c</name>
+    </fields>
+    <fields>
+        <help><!-- The parent Opportunity of this Application Request --></help>
+        <label><!-- Opportunity --></label>
+        <name>Opportunity__c</name>
+        <relationshipLabel><!-- WES Application Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Overall Credit Limit --></label>
+        <name>Overall_Credit_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner / Assigned? --></label>
+        <name>Owner_Assigned__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner Profile Name --></label>
+        <name>Owner_Profile_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Owner User Role Name --></label>
+        <name>Owner_User_Role_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Account IFCS ID --></label>
+        <name>Parent_Account_IFCS_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Parent Account Name --></label>
+        <name>Parent_Account_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- Once all the sections are marked complete, press the &quot;Request Approval&quot; to begin security check process. This field will be checked once it&apos;s approved and will be passed to credit. --></help>
+        <label><!-- Passed Security Check? --></label>
+        <name>Passed_Security_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- Payment Method --></label>
+        <name>PaymentMethod__c</name>
+        <picklistValues>
+            <masterLabel>BANK TRANS</masterLabel>
+            <translation><!-- BANK TRANS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CHEQUE</masterLabel>
+            <translation><!-- CHEQUE --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>DD</masterLabel>
+            <translation><!-- DD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Payment Currency --></label>
+        <name>Payment_Currency__c</name>
+        <picklistValues>
+            <masterLabel>GBP</masterLabel>
+            <translation><!-- GBP --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Periodic Assessment --></label>
+        <name>Periodic_Assessment__c</name>
+    </fields>
+    <fields>
+        <label><!-- Petrol used per month (GBP) --></label>
+        <name>Petrol_used_per_month_GBP__c</name>
+    </fields>
+    <fields>
+        <label><!-- Petrol used per month (Litres) --></label>
+        <name>Petrol_used_per_month_Litres__c</name>
+    </fields>
+    <fields>
+        <label><!-- Policy Name --></label>
+        <name>Policy_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Positive Balance Account Credit --></label>
+        <name>Positive_Balance_Account_Credit__c</name>
+    </fields>
+    <fields>
+        <help><!-- Indicates if the Customer is to be set up as a Positive Balance Account. --></help>
+        <label><!-- Positive Balance Account --></label>
+        <name>Positive_Balance_Account__c</name>
+    </fields>
+    <fields>
+        <help><!-- Only required if the Account is to be set up in Positive Balance format. This is the limit of the Positive Balance Account. The maximum limit allowed is $1000. --></help>
+        <label><!-- Positive Balance Limit --></label>
+        <name>Positive_Balance_Limit__c</name>
+    </fields>
+    <fields>
+        <help><!-- Pence per Litre --></help>
+        <label><!-- Price Offered --></label>
+        <name>PriceOffered__c</name>
+    </fields>
+    <fields>
+        <label><!-- Price Type --></label>
+        <name>Price_Type__c</name>
+        <picklistValues>
+            <masterLabel>Fixed Weekly Price</masterLabel>
+            <translation><!-- Fixed Weekly Price --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Pricing Notes --></label>
+        <name>Pricing_Notes__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact Name --></label>
+        <name>Primary_Contact_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact Phone --></label>
+        <name>Primary_Contact_Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Primary Contact --></label>
+        <name>Primary_Contact__c</name>
+        <relationshipLabel><!-- Primary Contact for WES Application Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Primary Source Campaign ID --></label>
+        <name>Primary_Source_CampaignID__c</name>
+    </fields>
+    <fields>
+        <help><!-- Set on the related Opportunity --></help>
+        <label><!-- Primary Source Campaign --></label>
+        <name>Primary_Source_Campaign__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proceed with Invalid BAN --></label>
+        <name>Proceed_with_Invalid_BAN__c</name>
+    </fields>
+    <fields>
+        <help><!-- This field automatically gets checked if all fields needed to proceed with a security check are complete. --></help>
+        <label><!-- Proceed with Security Check? --></label>
+        <name>ProceedwithSecurityCheck__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product Type --></label>
+        <name>Product_Type__c</name>
+        <picklistValues>
+            <masterLabel>Esso + International UK (WEX)</masterLabel>
+            <translation><!-- Esso + International UK (WEX) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Esso + National UK (WEX)</masterLabel>
+            <translation><!-- Esso + National UK (WEX) --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Proof Of Address --></label>
+        <name>Proof_Of_Address__c</name>
+    </fields>
+    <fields>
+        <label><!-- Prospect Type --></label>
+        <name>Prospect_Type__c</name>
+        <picklistValues>
+            <masterLabel>Charity or Trust</masterLabel>
+            <translation><!-- Charity or Trust --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Government Body</masterLabel>
+            <translation><!-- Government Body --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>LLP</masterLabel>
+            <translation><!-- LLP --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Limited Company</masterLabel>
+            <translation><!-- Limited Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLC</masterLabel>
+            <translation><!-- PLC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partnership</masterLabel>
+            <translation><!-- Partnership --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sole Trader</masterLabel>
+            <translation><!-- Sole Trader --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Read guarantee? --></label>
+        <name>Readguarantee__c</name>
+        <picklistValues>
+            <masterLabel>Later</masterLabel>
+            <translation><!-- Later --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Now</masterLabel>
+            <translation><!-- Now --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- The following checks and fields must be complete before a credit decision can be made: Sense Check, Existing Account Check, Fraud Check, Periodic Assessment, Dunning Classification, Risk Category. --></help>
+        <label><!-- Ready to Accept? --></label>
+        <name>ReadyforCreditDecision__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason for Contract --></label>
+        <name>Reason_for_Contract__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Locked --></label>
+        <name>RecordLocked__c</name>
+    </fields>
+    <fields>
+        <label><!-- Record Source ID --></label>
+        <name>Record_Source_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Reason Type --></label>
+        <name>Reject_Type__c</name>
+        <picklistValues>
+            <masterLabel>Credit Reason</masterLabel>
+            <translation><!-- Credit Reason --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Non-Credit Reason</masterLabel>
+            <translation><!-- Non-Credit Reason --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Overall Credit Limit is &gt;= to the Required Credit Limit from Customer --></help>
+        <label><!-- Required Credit Limit Met? --></label>
+        <name>Required_Credit_Limit_Met__c</name>
+    </fields>
+    <fields>
+        <help><!-- Credit Limit Calculated based on Volume and Payment Terms --></help>
+        <label><!-- Required Credit Limit --></label>
+        <name>Required_Credit_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Revert To Status --></label>
+        <name>Revert_To_Status__c</name>
+        <picklistValues>
+            <masterLabel>Approved</masterLabel>
+            <translation><!-- Approved --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assigned For Assessment</masterLabel>
+            <translation><!-- Assigned For Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled</masterLabel>
+            <translation><!-- Cancelled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cancelled Follow Up</masterLabel>
+            <translation><!-- Cancelled Follow Up --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Complete</masterLabel>
+            <translation><!-- Complete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Credit Assessment</masterLabel>
+            <translation><!-- Credit Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined</masterLabel>
+            <translation><!-- Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined Initial</masterLabel>
+            <translation><!-- Declined Initial --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Error Referred</masterLabel>
+            <translation><!-- Error Referred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Fulfilled</masterLabel>
+            <translation><!-- Fulfilled --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Genesis Error</masterLabel>
+            <translation><!-- Genesis Error --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hold</masterLabel>
+            <translation><!-- Hold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>In Progress</masterLabel>
+            <translation><!-- In Progress --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incomplete</masterLabel>
+            <translation><!-- Incomplete --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Initiated</masterLabel>
+            <translation><!-- Initiated --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Letter Sent</masterLabel>
+            <translation><!-- Letter Sent --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Approval</masterLabel>
+            <translation><!-- Pending Approval --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Assessment</masterLabel>
+            <translation><!-- Pending Assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending CVS</masterLabel>
+            <translation><!-- Pending CVS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Customer</masterLabel>
+            <translation><!-- Pending Customer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Data Check</masterLabel>
+            <translation><!-- Pending Data Check --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending EMTC</masterLabel>
+            <translation><!-- Pending EMTC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Pending Puma Promo</masterLabel>
+            <translation><!-- Pending Puma Promo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>RPS Pending</masterLabel>
+            <translation><!-- RPS Pending --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Re-assessment</masterLabel>
+            <translation><!-- Re-assessment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Referred</masterLabel>
+            <translation><!-- Referred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales / Credit Review</masterLabel>
+            <translation><!-- Sales / Credit Review --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sent To IFCS</masterLabel>
+            <translation><!-- Sent To IFCS --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Withdrawn</masterLabel>
+            <translation><!-- Withdrawn --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Withdrawn Follow Up</masterLabel>
+            <translation><!-- Withdrawn Follow Up --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Risk Category --></label>
+        <name>RiskCategory__c</name>
+        <picklistValues>
+            <masterLabel>1 - Very Low</masterLabel>
+            <translation><!-- 1 - Very Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2 - Low</masterLabel>
+            <translation><!-- 2 - Low --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3 - Medium</masterLabel>
+            <translation><!-- 3 - Medium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4 - High</masterLabel>
+            <translation><!-- 4 - High --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5 - Very High</masterLabel>
+            <translation><!-- 5 - Very High --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Risk Category Formula --></label>
+        <name>Risk_Category_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Round_Robin_Queue_Position --></label>
+        <name>Round_Robin_Queue_Position__c</name>
+    </fields>
+    <fields>
+        <label><!-- Round_Robin_Queue --></label>
+        <name>Round_Robin_Queue__c</name>
+    </fields>
+    <fields>
+        <label><!-- SLA within 5 days --></label>
+        <name>SLA_within_5_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sales Agent Assigned --></label>
+        <lookupFilter>
+            <errorMessage><!-- You must select an active member of the WES Sales team. --></errorMessage>
+        </lookupFilter>
+        <name>Sales_Agent_Assigned__c</name>
+        <relationshipLabel><!-- WES Application Requests (Sales Agent Assigned) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Security Check Failure Reason --></label>
+        <name>Security_Check_Failure_Reason__c</name>
+        <picklistValues>
+            <masterLabel>Attachment required</masterLabel>
+            <translation><!-- Attachment required --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Incorrect VPC</masterLabel>
+            <translation><!-- Incorrect VPC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Insufficient note to credit</masterLabel>
+            <translation><!-- Insufficient note to credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Spelling / Typo</masterLabel>
+            <translation><!-- Spelling / Typo --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Security Date Received --></label>
+        <name>Security_Date_Received__c</name>
+    </fields>
+    <fields>
+        <label><!-- Security Date Requested --></label>
+        <name>Security_Date_Requested__c</name>
+    </fields>
+    <fields>
+        <label><!-- Security Document --></label>
+        <name>Security_Document__c</name>
+    </fields>
+    <fields>
+        <label><!-- Security Expiry Date --></label>
+        <name>Security_Expiry_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Security Limit --></label>
+        <name>Security_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Security Type --></label>
+        <name>Security_Type__c</name>
+        <picklistValues>
+            <masterLabel>3rd Party</masterLabel>
+            <translation><!-- 3rd Party --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Bank Guarantee</masterLabel>
+            <translation><!-- Bank Guarantee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cash Deposit</masterLabel>
+            <translation><!-- Cash Deposit --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Send App to IFCS --></label>
+        <name>Send_App_to_IFCS__c</name>
+    </fields>
+    <fields>
+        <label><!-- Send To WSS2 Failed --></label>
+        <name>Send_To_WSS2_Failed__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sense Check --></label>
+        <name>SenseCheck__c</name>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Passed</masterLabel>
+            <translation><!-- Passed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Must provide a reason if the sense checked Failed. --></help>
+        <label><!-- Sense Check Failure Reason --></label>
+        <name>Sense_Check_Failure_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sign Off Limit --></label>
+        <name>Sign_Off_Limit__c</name>
+    </fields>
+    <fields>
+        <label><!-- Signatory Role within Company --></label>
+        <name>SignatoryRole__c</name>
+        <picklistValues>
+            <masterLabel>Assistant/PA</masterLabel>
+            <translation><!-- Assistant/PA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Buyer</masterLabel>
+            <translation><!-- Buyer --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CEO</masterLabel>
+            <translation><!-- CEO --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Company secretary</masterLabel>
+            <translation><!-- Company secretary --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Director</masterLabel>
+            <translation><!-- Director --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Individual/Non Company</masterLabel>
+            <translation><!-- Individual/Non Company --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Manager</masterLabel>
+            <translation><!-- Manager --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Owner</masterLabel>
+            <translation><!-- Owner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Partner</masterLabel>
+            <translation><!-- Partner --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Trustee</masterLabel>
+            <translation><!-- Trustee --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- If checked, the round robin code will not execute for the lead. Use this checkbox when other activities has set the owner on the lead. --></help>
+        <label><!-- Skip Round Robin --></label>
+        <name>Skip_Round_Robin__c</name>
+    </fields>
+    <fields>
+        <label><!-- Staff Id --></label>
+        <name>Staff_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Team Assigned To? --></label>
+        <name>TeamAssignedTo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Team Assigned --></label>
+        <name>TeamAssigned__c</name>
+        <picklistValues>
+            <masterLabel>Credit</masterLabel>
+            <translation><!-- Credit --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sales</masterLabel>
+            <translation><!-- Sales --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- TimeLimitCode --></label>
+        <name>TimeLimitCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Card Packs --></label>
+        <name>Total_Card_Packs__c</name>
+    </fields>
+    <fields>
+        <help><!-- Calculated based on Card Types selected in Fuel Card Packs --></help>
+        <label><!-- Total Fuel Cards Needed --></label>
+        <name>Total_Fuel_Cards_Needed__c</name>
+    </fields>
+    <fields>
+        <help><!-- This number must match the &quot;Total Fuel Cards Needed&quot; to be able to proceed with a security check. Click the &quot;Create Fuel Cards&quot; if additional cards are needed. --></help>
+        <label><!-- Total Fuel Cards Completed --></label>
+        <name>Total_Fuel_Cards__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Security Value --></label>
+        <name>Total_Security_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Time In Queue --></label>
+        <name>Total_Time_In_Queue__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total time to Assess --></label>
+        <name>Total_time_to_Assess__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total time to decision --></label>
+        <name>Total_time_to_decision__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type of Mandate --></label>
+        <name>Type_of_Mandate__c</name>
+        <picklistValues>
+            <masterLabel>B2B</masterLabel>
+            <translation><!-- B2B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Core</masterLabel>
+            <translation><!-- Core --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Type of Vehicles --></label>
+        <name>TypeofVehicles__c</name>
+    </fields>
+    <fields>
+        <label><!-- TypeonMandate --></label>
+        <name>TypeonMandate__c</name>
+        <picklistValues>
+            <masterLabel>MT04</masterLabel>
+            <translation><!-- MT04 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <help><!-- Please can you confirm that your company holds an account at a UK Bank or Building Society? --></help>
+        <label><!-- UK Bank or Building Society? --></label>
+        <name>UKBankorBuildingSociety__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- # of UK Fuels Card Packs --></label>
+        <name>UKFuelsCardPacks__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of UK Fuels Cards --></label>
+        <name>UKFuelsCards__c</name>
+    </fields>
+    <fields>
+        <label><!-- UK Marketing Offers --></label>
+        <name>UK_Marketing_Offers__c</name>
+        <picklistValues>
+            <masterLabel>TBD</masterLabel>
+            <translation><!-- TBD --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Underwriters Acceptance --></label>
+        <name>Underwriters_Acceptance__c</name>
+    </fields>
+    <fields>
+        <label><!-- VAS Comments --></label>
+        <name>VAS_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- VAT Check --></label>
+        <name>VATCheck__c</name>
+    </fields>
+    <fields>
+        <label><!-- VAT Country Code --></label>
+        <name>VATCountryCode__c</name>
+        <picklistValues>
+            <masterLabel>GB</masterLabel>
+            <translation><!-- GB --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- VAT Reclaim Required? --></label>
+        <name>VAT_Reclaim__c</name>
+        <picklistValues>
+            <masterLabel>False</masterLabel>
+            <translation><!-- False --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>True</masterLabel>
+            <translation><!-- True --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- VAT Registration # --></label>
+        <name>VAT_Reg_Num__c</name>
+    </fields>
+    <fields>
+        <label><!-- Vehicle Registration Certificate --></label>
+        <name>Vehicle_Registration_Certificate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Velocity Account Email --></label>
+        <name>VelocityAccountEmail__c</name>
+    </fields>
+    <fields>
+        <label><!-- Velocity Profile Code --></label>
+        <name>VelocityProfileCode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Velocity Profile Name --></label>
+        <name>VelocityProfileName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Velocity Profile Override Comments --></label>
+        <name>VelocityProfileOverrideComments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Velocity Profile Override --></label>
+        <name>VelocityProfileOverride__c</name>
+    </fields>
+    <fields>
+        <label><!-- Velocity Profile --></label>
+        <name>VelocityProfile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Conversion Formula --></label>
+        <name>VolumeConversionFormula__c</name>
+    </fields>
+    <fields>
+        <label><!-- Volume Conversion --></label>
+        <name>Volume_Conversion__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Account Street Address --></label>
+        <name>WES_Bank_Account_Street__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Address Line 2 --></label>
+        <name>WES_Bank_Address_Line2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Address Line 3 --></label>
+        <name>WES_Bank_Address_Line3__c</name>
+    </fields>
+    <fields>
+        <help><!-- 2 Character Code --></help>
+        <label><!-- Bank County Code --></label>
+        <name>WES_Bank_County__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Name --></label>
+        <name>WES_Bank_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Postcode --></label>
+        <name>WES_Bank_Postcode__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Town / City --></label>
+        <name>WES_Bank_Town_City__c</name>
+    </fields>
+    <fields>
+        <label><!-- WES Credit Details --></label>
+        <name>WES_Credit_Details__c</name>
+        <relationshipLabel><!-- WES Application Requests --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Promotional Material Flag --></label>
+        <name>WES_Marketing_Offers__c</name>
+        <picklistValues>
+            <masterLabel>N</masterLabel>
+            <translation><!-- N --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Y</masterLabel>
+            <translation><!-- Y --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Weeks between Draw and Payment --></label>
+        <name>WeeksDrawPayment__c</name>
+    </fields>
+    <fields>
+        <label><!-- applicationTypeId --></label>
+        <name>applicationTypeId__c</name>
+        <picklistValues>
+            <masterLabel>0STAND</masterLabel>
+            <translation><!-- 0STAND --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Bank Account Name --></label>
+        <name>bankAccountName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Account Number --></label>
+        <name>bankAccountNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bank Country --></label>
+        <name>bankCountryCode__c</name>
+        <picklistValues>
+            <masterLabel>GB</masterLabel>
+            <translation><!-- GB --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Bank Sort Code --></label>
+        <name>bankIdentifier__c</name>
+    </fields>
+    <fields>
+        <label><!-- bankOriginatorId --></label>
+        <name>bankOriginatorId__c</name>
+        <picklistValues>
+            <masterLabel>856607</masterLabel>
+            <translation><!-- 856607 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- bankOriginatorName --></label>
+        <name>bankOriginatorName__c</name>
+        <picklistValues>
+            <masterLabel>WEX Europe Services UK</masterLabel>
+            <translation><!-- WEX Europe Services UK --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Bespoke Setup Comments --></label>
+        <name>bespokeSetUpcomments__c</name>
+    </fields>
+    <fields>
+        <label><!-- DD Mandate Complete Date --></label>
+        <name>dateofSignature__c</name>
+    </fields>
+    <fields>
+        <label><!-- ifcs_clientId --></label>
+        <name>ifcs_clientId__c</name>
+        <picklistValues>
+            <masterLabel>WES_GB</masterLabel>
+            <translation><!-- WES_GB --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Is International? --></label>
+        <name>isInternational__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- language isoCode --></label>
+        <name>language_isoCode__c</name>
+        <picklistValues>
+            <masterLabel>en</masterLabel>
+            <translation><!-- en --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Name of Signatory --></label>
+        <name>nameofSignature__c</name>
+    </fields>
+    <fields>
+        <label><!-- # of Vehicles --></label>
+        <name>ofVehicles__c</name>
+    </fields>
+    <fields>
+        <label><!-- paperlessDDI --></label>
+        <name>paperlessDDI__c</name>
+    </fields>
+    <fields>
+        <label><!-- requestID --></label>
+        <name>requestID__c</name>
+    </fields>
+    <fields>
+        <label><!-- requestedByBusinessNumber --></label>
+        <name>requestedByBusinessNumber__c</name>
+    </fields>
+    <fields>
+        <label><!-- Velocity Control IFCS Code --></label>
+        <name>velocityControlProfile__c</name>
+    </fields>
+    <layouts>
+        <layout>WES Application Request Layout</layout>
+        <sections>
+            <label><!-- Application Overview --></label>
+            <section>Application Overview</section>
+        </sections>
+        <sections>
+            <label><!-- Bank Details --></label>
+            <section>Bank Details</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Checks --></label>
+            <section>Credit Checks</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decision --></label>
+            <section>Credit Decision</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Enquiry Source --></label>
+            <section>Enquiry Source</section>
+        </sections>
+        <sections>
+            <label><!-- Fuel Card Details --></label>
+            <section>Fuel Card Details</section>
+        </sections>
+        <sections>
+            <label><!-- IFCS Fields --></label>
+            <section>IFCS Fields</section>
+        </sections>
+        <sections>
+            <label><!-- IFCS Technical Details --></label>
+            <section>IFCS Technical Details</section>
+        </sections>
+        <sections>
+            <label><!-- Invoice Preferences --></label>
+            <section>Invoice Preferences</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing --></label>
+            <section>Pricing</section>
+        </sections>
+        <sections>
+            <label><!-- Qualification Information --></label>
+            <section>Qualification Information</section>
+        </sections>
+        <sections>
+            <label><!-- Security Check --></label>
+            <section>Security Check</section>
+        </sections>
+        <sections>
+            <label><!-- Velocity Profile --></label>
+            <section>Velocity Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Velocity Setup --></label>
+            <section>Velocity Setup</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES Credit Application Request Layout</layout>
+        <sections>
+            <label><!-- Application Overview --></label>
+            <section>Application Overview</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Check --></label>
+            <section>Credit Check</section>
+        </sections>
+        <sections>
+            <label><!-- Credit Decision --></label>
+            <section>Credit Decision</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- D&amp;B / Equifax Checks --></label>
+            <section>D&amp;B / Equifax Checks</section>
+        </sections>
+        <sections>
+            <label><!-- Direct Debit Script and Details --></label>
+            <section>Direct Debit Script and Details</section>
+        </sections>
+        <sections>
+            <label><!-- Enquiry Source --></label>
+            <section>Enquiry Source</section>
+        </sections>
+        <sections>
+            <label><!-- Invoice Preferences --></label>
+            <section>Invoice Preferences</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing --></label>
+            <section>Pricing</section>
+        </sections>
+        <sections>
+            <label><!-- Qualification Information --></label>
+            <section>Qualification Information</section>
+        </sections>
+        <sections>
+            <label><!-- Velocity Profile --></label>
+            <section>Velocity Profile</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES Radius Historical Layout</layout>
+        <sections>
+            <label><!-- Application Contact --></label>
+            <section>Application Contact</section>
+        </sections>
+        <sections>
+            <label><!-- Company Information --></label>
+            <section>Company Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>WES Sales Application Request Layout</layout>
+        <sections>
+            <label><!-- Application Overview --></label>
+            <section>Application Overview</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Direct Debit Script and Details --></label>
+            <section>Direct Debit Script and Details</section>
+        </sections>
+        <sections>
+            <label><!-- Enquiry Source --></label>
+            <section>Enquiry Source</section>
+        </sections>
+        <sections>
+            <label><!-- Fuel Card Defaults --></label>
+            <section>Fuel Card Defaults</section>
+        </sections>
+        <sections>
+            <label><!-- Fuel Card Packs --></label>
+            <section>Fuel Card Packs</section>
+        </sections>
+        <sections>
+            <label><!-- Fuel Cards --></label>
+            <section>Fuel Cards</section>
+        </sections>
+        <sections>
+            <label><!-- Invoice Preferences --></label>
+            <section>Invoice Preferences</section>
+        </sections>
+        <sections>
+            <label><!-- Pricing --></label>
+            <section>Pricing</section>
+        </sections>
+        <sections>
+            <label><!-- Qualification Information --></label>
+            <section>Qualification Information</section>
+        </sections>
+        <sections>
+            <label><!-- Security Check --></label>
+            <section>Security Check</section>
+        </sections>
+        <sections>
+            <label><!-- Sense Check (From Credit) --></label>
+            <section>Sense Check (From Credit)</section>
+        </sections>
+        <sections>
+            <label><!-- Velocity Profile --></label>
+            <section>Velocity Profile</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Companies House Match --></label>
+        <name>Companies_House_Match</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Company Info Complete? --></label>
+        <name>Company_Info_Complete</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- DD Mandate Hardcopy Info --></label>
+        <name>DD_Mandate_Hardcopy_Info</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- DD Mandate Method --></label>
+        <name>DD_Mandate_Method</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- DD Mandate Phone Info --></label>
+        <name>DD_Mandate_Phone_Info</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Fuel Card Company Name --></label>
+        <name>Fuel_Card_Company_Name</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Security Check Fields --></label>
+        <name>Security_Check_Fields</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Company Owner --></label>
+        <name>Update_Company_Owner</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Contacts --></label>
+        <name>Update_Contacts</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Fuel Card Defaults --></label>
+        <name>Update_Fuel_Card_Defaults</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Fuel Card Packs --></label>
+        <name>Update_Fuel_Card_Packs</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Fuel Cards --></label>
+        <name>Update_Fuel_Cards</name>
+    </quickActions>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- You must submit an approval request for a Security Check before application can be sent to Credit. --></errorMessage>
+        <name>App_must_pass_security_check_to_progress</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Velocity Profile or Velocity Profile override must be set in order to pass the security check. --></errorMessage>
+        <name>Check_for_Velocity_Profile</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide a Credit Authorised Limit Amount when the Credit Decision is &quot;Accepted&quot; --></errorMessage>
+        <name>Credit_Auth_Req_when_Accepted_Decision</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Credit Decision must be &quot;Accepted&quot; or &quot;Pending Approval&quot; in order to enter an Authorised credit limit. --></errorMessage>
+        <name>Credit_Authorised_Limit_Criteria</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- All sections must be complete before Passed Security Check is marked True. --></errorMessage>
+        <name>Criteria_to_Pass_Security_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must enter a Credit Decision Comment when making a credit decision. --></errorMessage>
+        <name>Enter_Credit_decision_comments</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can  have only 1 Default Fuel card per Card Type.
+Please edit an existing Default Fuel card. --></errorMessage>
+        <name>Limit_1_Default_per_Card_Type</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide a decline reason when the Application is &quot;Reject&quot; or &quot;Unable to Process&quot;. --></errorMessage>
+        <name>Need_Decline_Reason</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must submit an Approval Request if the Number of Cards needed is above User&apos;s cards limit. --></errorMessage>
+        <name>Prevent_Accepting_App_if_above_Max_Cards</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Credit Authorised Limit or Number of cards requested is above your limit. Please set the Credit decision to Pending Approval in order to proceed. --></errorMessage>
+        <name>Prevent_Accepting_App_if_above_limit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Credit can&apos;t edit this Application because it is set to a status that only Sales can edit. --></errorMessage>
+        <name>Prevent_Credit_from_Editing</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- WES Credit users can&apos;t change the company on an application. --></errorMessage>
+        <name>Prevent_Credit_from_changing_Company</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit an application once it has been Accepted. Seek assistance from a System admin if the application needs to be resubmitted. --></errorMessage>
+        <name>Prevent_Editing_on_Accepted_Apps</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Sales can&apos;t edit this Application because it is set to a status that only Credit can edit. --></errorMessage>
+        <name>Prevent_Sales_from_Editing</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please provide comments when using the Velocity Profile Override. --></errorMessage>
+        <name>Provide_Comments_for_VP_Override</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must provide a Security Check Failure Reason --></errorMessage>
+        <name>Provide_Reason_Security_Check_Failed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Provide a reason why sense check Failed. --></errorMessage>
+        <name>Provide_Reason_if_Sense_Check_Fails</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The following checks and fields must be complete before an &quot;Accepted&quot; credit decision can be made: Sense Check, Existing Account Check, Fraud Check, Periodic Assessment, Dunning Classification, Risk Category. --></errorMessage>
+        <name>Ready_for_Credit_Decision</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Application must have a Credit Authorised Limit and Credit Decision Comment to be marked as &quot;Accepted&quot;. It must also include an OBU Device required answer. --></errorMessage>
+        <name>WES_Application_Acceptance_Reqs</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Can&apos;t change the Name of Signatory for a Phone DD Mandate. Must change the Primary Contact and complete the DD Mandate script successfully. --></errorMessage>
+        <name>WES_Cant_edit_Signatory_if_Phone_DD</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can only select queues that belong to WES. --></errorMessage>
+        <name>WES_Only_assign_to_WES_queues</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You must submit an Approval Request for the Security Request before it can be passed to Credit for Assignment. --></errorMessage>
+        <name>WES_Pass_Security_Check_before_Credit</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not change the Application Status to &quot;Awaiting Credit Check&quot;. You must get your manager&apos;s assistance to make this change. --></errorMessage>
+        <name>WES_Prevent_moving_back_to_Awaiting</name>
+    </validationRules>
+</CustomObjectTranslation>

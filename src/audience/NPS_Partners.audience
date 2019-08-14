@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Audience xmlns="http://soap.sforce.com/2006/04/metadata">
+    <audienceName>NPS Partners</audienceName>
+    <container>WEX Community</container>
+    <criterion>
+        <criterionValue>
+            <entityField>EmployeeNumber</entityField>
+            <entityType>User</entityType>
+            <fieldValue>426577</fieldValue>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>FieldBased</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>marathon partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>exxonmobil partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>gulf partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>murphy usa partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>phillips 66 partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>quiktrip partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>racetrac partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>sheetz partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>speedway partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>wawa partner user</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>citgo partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>sunoco partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>7-11 partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <criterion>
+        <criterionValue>
+            <profile>circlek partners</profile>
+        </criterionValue>
+        <operator>Equal</operator>
+        <type>Profile</type>
+    </criterion>
+    <formulaFilterType>AnyCriterionMatches</formulaFilterType>
+</Audience>

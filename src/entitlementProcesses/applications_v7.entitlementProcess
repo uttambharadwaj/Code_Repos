@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntitlementProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <SObjectType>Case</SObjectType>
+    <active>true</active>
+    <businessHours>Wex Europe CS Working Hours</businessHours>
+    <entryStartDateField>Case.CreatedDate</entryStartDateField>
+    <exitCriteriaFilterItems>
+        <field>Case.IsClosed</field>
+        <operation>equals</operation>
+        <value>true</value>
+    </exitCriteriaFilterItems>
+    <isVersionDefault>true</isVersionDefault>
+    <milestones>
+        <businessHours>Wex Europe CS Working Hours</businessHours>
+        <milestoneName>Case Accepted</milestoneName>
+        <minutesToComplete>120</minutesToComplete>
+        <timeTriggers>
+            <actions>
+                <name>Case.Case_Acceptance_Overdue_Bonnie</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Minutes</workflowTimeTriggerUnit>
+        </timeTriggers>
+        <timeTriggers>
+            <timeLength>-1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </timeTriggers>
+        <useCriteriaStartTime>false</useCriteriaStartTime>
+    </milestones>
+    <name>Applications</name>
+    <versionMaster>55270000000029P</versionMaster>
+    <versionNotes>Remove Milestones after Case Acceptance</versionNotes>
+    <versionNumber>7</versionNumber>
+</EntitlementProcess>

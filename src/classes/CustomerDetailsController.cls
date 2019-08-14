@@ -544,9 +544,15 @@ public without sharing class CustomerDetailsController {
     }
     
     @AuraEnabled 
-    public static String getContactId(String accountId, String contactRowId) {
-        
+    public static Id getContactId(String accountId, String contactRowId) {
+        System.debug('Entering getContactId for accountId '+accountId+' and contactRowId '+contactRowId);
         try {
+            String contactRowIdToUse = contactRowId;
+            if (contactRowId.contains('#')) {
+                contactRowIdToUse = contactRowId.split('#').get(0);
+            }
+            //List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
+            List<IntegrationRecord__c> serviceOperationsContacts = [SELECT Contact__r.ID FROM IntegrationRecord__c WHERE Contact_Row_ID__c =: contactRowIdToUse];
             
             List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
             
@@ -554,13 +560,15 @@ public without sharing class CustomerDetailsController {
             
             if(serviceOperationsContacts.size() > 0) {
                 
-                return serviceOperationsContacts[0].Id;
+                return serviceOperationsContacts[0].Contact__r.ID;
+                //Future once integration records are implemented
+                //return serviceOperationsContacts[0].Contact__r.ID;
                 
             }
             else {
                 
-                throw new customerDetailsException('Unable to retrieve contact ID.');
-                
+                System.debug('Unable to retrieve contact ID for rowId '+contactRowId);
+                return null;
             }
             
         }
@@ -576,6 +584,7 @@ public without sharing class CustomerDetailsController {
     
     @AuraEnabled
     public static Id upsertAccount(String customerDetailsJSON) {
+        Boolean accountNewToSalesforce = false;
         
         try {
             
@@ -600,20 +609,26 @@ public without sharing class CustomerDetailsController {
                     else {
                         
                         serviceOperationsAccount = new Account();
+                        accountNewToSalesforce = true;
+                    }
                         
+
+                    if(customerDetails.customerSegmentation != null && (customerDetails.customerSegmentation).isNumeric()) {
+                        serviceOperationsAccount.Customer_Segmentation__c = Integer.valueOf(customerDetails.customerSegmentation);
                     }
                     
+                    // Update all the fields of the account, if it didn't exist in Salesforce
+                    if (accountNewToSalesforce) {
                     // Tie our account to a program in SFDC, if it exists
                     List<Program__c> programs = [SELECT Id FROM Program__c WHERE Siebel_Program_Row_Id__c =: customerDetails.programId];
                     
                     if(programs.size() > 0) {
-                        serviceOperationsAccount.Program__c = programs[0].Id;    
+                            serviceOperationsAccount.Program__c = programs.get(0).Id;
                     }
                     else {
                         serviceOperationsAccount.Program__c = genericProgram;
                     }
                     
-                    // Update all the fields of the account, even if it exists
                     serviceOperationsAccount.Name = customerDetails.accountNm;
                     serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
                     serviceOperationsAccount.Acct_Row_Id__c = customerDetails.acctRowId;
@@ -621,10 +636,6 @@ public without sharing class CustomerDetailsController {
                     serviceOperationsAccount.Sponsor_Acct__c = customerDetails.spnrAccountNbr;
                     serviceOperationsAccount.PFS_REP__c = customerDetails.pfsRepNm;
                     
-                    if(customerDetails.customerSegmentation != null && (customerDetails.customerSegmentation).isNumeric()) {
-                        serviceOperationsAccount.Customer_Segmentation__c = Integer.valueOf(customerDetails.customerSegmentation);
-                    }
-
                     if (customerDetails.priorityLevel != null) {
                         serviceOperationsAccount.Priority_Level__c = customerDetails.priorityLevel;
                         serviceOperationsAccount.Priority_Level_Update_Date__c = System.now();
@@ -642,6 +653,9 @@ public without sharing class CustomerDetailsController {
                     }
                     else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('S')) {
                         serviceOperationsAccount.Status__c = 'Suspended';    
+                        } //If we sent the full-word status, use it
+                        else if(customerDetails.accountSts != null && !(String.isEmpty(customerDetails.accountSts))) {
+                            serviceOperationsAccount.Status__c = customerDetails.accountSts;
                     }
                     
                     serviceOperationsAccount.Platform__c = customerDetails.sourceSys;
@@ -685,6 +699,10 @@ public without sharing class CustomerDetailsController {
                         serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
                         serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
                     }
+                    } //accountNewToSalesforce
+
+                    //Upsert for convenience; if the account is new to Salesforce it will be an Insert, otherwise an Update but
+                    //we only update segmentation.
                     upsert serviceOperationsAccount;
                     
                     System.debug('### AcctId ' + serviceOperationsAccount.Id);
@@ -720,6 +738,7 @@ public without sharing class CustomerDetailsController {
         return customerDetails;
     }
 
+    //We only call this in a test method now, to simplify data setup.
     @AuraEnabled
     public static Id upsertContacts(Id accountId, String customerContactsJSON, String contactRowId) {
         
@@ -744,8 +763,8 @@ public without sharing class CustomerDetailsController {
                 
                 Contact contact = new Contact();
                 
-                if(existingServiceOperationsContacts != null && existingServiceOperationsContacts.containsKey(customerContact.ContactType + '#' + customerContact.RowId)) {
-                    contact.Id = existingServiceOperationsContacts.get(customerContact.ContactType + '#' + customerContact.RowId);
+                if(existingServiceOperationsContacts != null && existingServiceOperationsContacts.containsKey(customerContact.RowId)) {
+                    contact.Id = existingServiceOperationsContacts.get(customerContact.RowId);
                 }
                 
                 contact.FirstName = customerContact.FirstNm;
@@ -757,7 +776,7 @@ public without sharing class CustomerDetailsController {
                 }
                 contact.Fax = customerContact.FaxNbr;
                 contact.Phone = customerContact.PhoneNbr;
-                contact.WEX_Contact_ID__c = customerContact.ContactType + '#' + customerContact.RowId;
+                contact.WEX_Contact_ID__c = customerContact.RowId;
                 contact.AccountId = accountId;
                 contact.RecordTypeId = serviceOperationsContactRecordTypeId;
                 contact.Contact_Type__c = customerContact.ContactType;
@@ -840,14 +859,14 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
-    public static String attachToCase(String caseId, String contactRowId, String customerDetailsJSON, String customerContactsJSON) {
+    public static String attachToCase(String caseId, String contactRowId, String customerDetailsJSON) {
         
         try {
             
-            // Upsert the account and contacts
+            // Upsert the account (but not the contacts anymore)
             Id accountId = upsertAccount(customerDetailsJSON);
             
-            Id contactId = upsertContacts(accountId, customerContactsJSON, contactRowId);
+            Id contactId = getContactId(accountId, contactRowId);
             
             return innerAttachToCase(caseId, accountId, contactId, customerDetailsJSON);
             
@@ -861,11 +880,11 @@ public without sharing class CustomerDetailsController {
         }
         
     }
-
+    //We could simplify this and go to just the single attachToCase method, but that's more than I want to change for
+    //initial Account-Contact golive.  MHB 5/29/2019
     @AuraEnabled
-    public static String attachDummyContactToCase(String caseId, String contactRowId, String customerDetailsJSON, String customerContactsJSON) {
+    public static String attachDummyContactToCase(String caseId, String contactRowId, String customerDetailsJSON) {
 
-    // String customerContactsJSON is left in for ease of programming the helper; we aren't going to use it here. - MHB
         try {
             // Upsert the account and contacts
             Id accountId = upsertAccount(customerDetailsJSON);
@@ -898,6 +917,7 @@ public without sharing class CustomerDetailsController {
             serviceOperationsCase.Id = (ID) caseId;
         }
 
+        //todo: casts to (Id) below here are probably unnecessary since the parameters are declared as Id
         if (!String.isEmpty(accountId)) {
             List<Account> priorityLevels = [SELECT Id, Priority_Level__c FROM Account WHERE Id = :accountId];
             serviceOperationsCase.AccountId = (ID) accountId;
@@ -908,7 +928,7 @@ public without sharing class CustomerDetailsController {
         }
 
         if (!String.isEmpty(contactId)) {
-            serviceOperationsCase.ContactId = (ID) contactId;
+            serviceOperationsCase.ContactId = (Id) contactId;
         }
 
         try {

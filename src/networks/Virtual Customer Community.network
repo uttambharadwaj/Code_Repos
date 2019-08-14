@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Network xmlns="http://soap.sforce.com/2006/04/metadata">
+    <allowInternalUserLogin>false</allowInternalUserLogin>
+    <allowMembersToFlag>false</allowMembersToFlag>
+    <changePasswordTemplate>Virtual_Customer_Community/Forgot_password_template</changePasswordTemplate>
+    <communityRoles/>
+    <disableReputationRecordConversations>false</disableReputationRecordConversations>
+    <emailFooterText>Building 3, Chiswick Park, 566 Chiswick High Road,  London, W4 5YA</emailFooterText>
+    <emailSenderAddress>relationship.management@wexeurope.com</emailSenderAddress>
+    <emailSenderName>Wex Customer Community</emailSenderName>
+    <enableCustomVFErrorPageOverrides>false</enableCustomVFErrorPageOverrides>
+    <enableDirectMessages>false</enableDirectMessages>
+    <enableGuestChatter>false</enableGuestChatter>
+    <enableGuestFileAccess>false</enableGuestFileAccess>
+    <enableInvitation>false</enableInvitation>
+    <enableKnowledgeable>false</enableKnowledgeable>
+    <enableMemberVisibility>false</enableMemberVisibility>
+    <enableNicknameDisplay>false</enableNicknameDisplay>
+    <enablePrivateMessages>false</enablePrivateMessages>
+    <enableReputation>false</enableReputation>
+    <enableShowAllNetworkSettings>true</enableShowAllNetworkSettings>
+    <enableSiteAsContainer>true</enableSiteAsContainer>
+    <enableTalkingAboutStats>true</enableTalkingAboutStats>
+    <enableTopicAssignmentRules>false</enableTopicAssignmentRules>
+    <enableTopicSuggestions>true</enableTopicSuggestions>
+    <enableUpDownVote>false</enableUpDownVote>
+    <forgotPasswordTemplate>Virtual_Customer_Community/Forgot_password_template</forgotPasswordTemplate>
+    <gatherCustomerSentimentData>false</gatherCustomerSentimentData>
+    <networkMemberGroups>
+        <profile>Customer Community User</profile>
+        <profile>WEX Europe Marketing</profile>
+        <profile>CorporatePay Relationship Manager</profile>
+        <profile>CorporatePay Sales</profile>
+        <profile>CorporatePay Sales Manager</profile>
+        <profile>CorporatePay RM Team Manager</profile>
+        <profile>CorporatePay Customer Services Manager</profile>
+        <profile>CorporatePay Customer Services</profile>
+        <profile>AU Mastercard Operations</profile>
+        <profile>Admin</profile>
+    </networkMemberGroups>
+    <networkPageOverrides>
+        <changePasswordPageOverrideSetting>Standard</changePasswordPageOverrideSetting>
+        <forgotPasswordPageOverrideSetting>Designer</forgotPasswordPageOverrideSetting>
+        <homePageOverrideSetting>Designer</homePageOverrideSetting>
+        <loginPageOverrideSetting>Designer</loginPageOverrideSetting>
+        <selfRegProfilePageOverrideSetting>Designer</selfRegProfilePageOverrideSetting>
+    </networkPageOverrides>
+    <picassoSite>Virtual_Customer_Community_C</picassoSite>
+    <selfRegistration>false</selfRegistration>
+    <sendWelcomeEmail>true</sendWelcomeEmail>
+    <site>Virtual_Customer_Community</site>
+    <status>DownForMaintenance</status>
+    <tabs>
+        <defaultTab>home</defaultTab>
+        <standardTab>Chatter</standardTab>
+    </tabs>
+    <urlPathPrefix>CustomerCommunity</urlPathPrefix>
+    <welcomeTemplate>Virtual_Customer_Community/Virtual_Community_Welcome_email</welcomeTemplate>
+</Network>

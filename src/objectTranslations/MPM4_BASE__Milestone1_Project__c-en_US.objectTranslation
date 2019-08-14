@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Project WE</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Projects</value>
+    </caseValues>
+    <layouts>
+        <layout>Implementation Project</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Milestone Gannt View --></label>
+            <section>Milestone Gannt View</section>
+        </sections>
+        <sections>
+            <label><!-- Project Timeline --></label>
+            <section>Project Timeline</section>
+        </sections>
+        <sections>
+            <label><!-- Sales Engineer Timeline --></label>
+            <section>Sales Engineer Timeline</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Implementation Team Project Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Milestone Gannt View --></label>
+            <section>Milestone Gannt View</section>
+        </sections>
+        <sections>
+            <label><!-- Project Timeline --></label>
+            <section>Project Timeline</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Virtual NA Implementation Project Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Non-UI Configurations --></label>
+            <section>Non-UI Configurations</section>
+        </sections>
+        <sections>
+            <label><!-- Project Timeline --></label>
+            <section>Project Timeline</section>
+        </sections>
+        <sections>
+            <label><!-- Summary --></label>
+            <section>Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Timeline Date Durations --></label>
+            <section>Timeline Date Durations</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please complete the Handover Checklist, ticking Handover Checklist Complete or select status &quot;Not Required&quot; --></errorMessage>
+        <name>Handover_Checklist_Completed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please complete MCC Notes when MCC Controls is unchecked --></errorMessage>
+        <name>MCC_Notes_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please confirm the requested elements of the non-standard implementation. This summary will be emailed to the onboarding manager for this project. --></errorMessage>
+        <name>Non_Standard_Implementation_Details</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- The Project&apos;s stage cannot be moved beyond &apos;Stage 4 - Testing&apos; until QA Complete has been confirmed. --></errorMessage>
+        <name>QA_Approval_Before_Go_Live</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select the reason why the project was closed --></errorMessage>
+        <name>Reason_Closed</name>
+    </validationRules>
+</CustomObjectTranslation>

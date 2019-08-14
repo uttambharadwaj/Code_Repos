@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>Credit_Team_Should_See_Confidential_Documents</fullName>
+        <accessLevel>Read</accessLevel>
+        <description>All members of the Credit Team should see each others Confidential Documents</description>
+        <label>Credit Team Should See Confidential Documents</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>AU_Credit_Team_Leader</roleAndSubordinatesInternal>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>AU_Credit_Team_Leader</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

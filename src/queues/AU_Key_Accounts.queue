@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <email>corporate@wexaustralia.com</email>
+    <name>AU Key Accounts</name>
+    <queueMembers>
+        <roles>
+            <role>AU_Customer_Care_Team</role>
+        </roles>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>AU_Application_Request__c</sobjectType>
+    </queueSobject>
+</Queue>

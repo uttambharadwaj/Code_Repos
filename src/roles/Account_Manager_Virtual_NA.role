@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Read</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>AM - NA</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Account Manager Virtual NA</name>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>Account_Management_TL_Virtual_NA</parentRole>
+</Role>

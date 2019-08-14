@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <fields>
+        <fullName>WEX_Platform__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(Program__r.WEX_Platform__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>WEX Platform</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

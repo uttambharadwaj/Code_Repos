@@ -1,0 +1,698 @@
+<apex:page controller="BOCAToPDFController" renderAs="pdf" action="{!init}">
+    <html>
+        <head>
+			<style>
+            #termsandconditions {
+  				all: initial;
+  				* {
+    				all: unset;
+  				}
+			}
+            </style>
+        </head>
+        <body>
+            <apex:outputPanel rendered="{!applicationType == 'OnlineApplication__c'}">
+                <table id="mainGrid" style="width: 100%;">
+                    <tr>
+                        <td colspan="2">
+                            <img style="display: {!IF(brandingLogo != null, 'block', 'none')}; height: 100px !important;" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%">
+                            {!onlineApplicationOffer.Name}
+                        </td>
+                        <td width="50%" align="right">
+                            {!onlineApplication.Name}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+                <table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS;">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Applicant Information</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Legal_Business_Name__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Business_Street_Address__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Trade_Name__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Trade_Name__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Business_Address_Line_2__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Business_Address_Line_2__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Phone_Number__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Phone_Number__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.City__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.City__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Fax_Number__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Fax_Number__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.State__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.State__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Contact_First_Name__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Contact_First_Name__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Zip_Code__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Zip_code__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Contact_Last_Name__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Contact_Last_Name__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Number_of_Trucks__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Number_of_Trucks__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_Title__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.AO_Title__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Number_of_Drivers__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Number_Of_Drivers__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Email__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Email__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Team_Drivers_Slip_Seat__c.label}</td></tr>
+                                            <tr>
+                                                <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;
+                                                    <apex:outputText value="{!IF(onlineApplication.Team_Drivers_Slip_Seat__c == true, 'Yes', 'No')}" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Cell_Number__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Cell_Number__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                            <div style="page-break-after:always;">&nbsp;</div>
+                        </td>
+                    </tr>
+                </table>
+                <table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS;">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Business Information</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Federal_Tax_ID__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!("**"&right(onlineApplication.Federal_Tax_ID__c,4))}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Credit_Line_Requested__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Credit_Line_Requested__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">MC #, FF #, DOT #</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">
+                                                <apex:outputText value="{!onlineApplication.MC_FF_or_DOT__c}" rendered="{!onlineApplication.MC_FF_or_DOT__c != null}" />
+                                                <apex:outputText value="{!onlineApplication.MC_Number__c}" rendered="{!onlineApplication.MC_Number__c != null}" />
+                                                <apex:outputText value="{!onlineApplication.DOT_Number__c}" rendered="{!onlineApplication.DOT_Number__c != null}" />
+                                                <apex:outputText value="{!onlineApplication.FF_Number__c}" rendered="{!onlineApplication.FF_Number__c != null}" />
+                                                </td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Financial_Institution__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Financial_Institution__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Year_Established__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Year_Established__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Checking_Account_Number__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;**{!RIGHT(onlineApplication.Checking_Account_Number__c, 4)}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Type_of_Business__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Type_of_Business__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.ABA_Routing_Number__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;**{!RIGHT(onlineApplication.ABA_Routing_Number__c, 4)}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Business_Description__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Business_Description__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.DUNS__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.DUNS__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Name_of_Parent_Company__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Name_of_Parent_Company__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Promotional_Code__c .label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Promotional_Code__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+                <table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS;">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Payment Information</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Payment_Method__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Payment_Method__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Invoice_Delivery_Method__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Invoice_Delivery_Method__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0; display: {!IF(onlineApplication.Day_of_Payment__c != null, 'block', 'none')};">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Day_of_Payment__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Day_of_Payment__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Invoice_Delivery_Method_Email__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Invoice_Delivery_Method_Email__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <div style="page-break-after:always;">&nbsp;</div>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+                <table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS; display: {!IF(containsPG == true, 'block', 'none')};">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Account Guarantor</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_Address__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.AO_Address__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_Social_Security_Number__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!("**"&right(onlineApplication.AO_Social_Security_Number__c,4))}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_City__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.AO_City__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_Date_of_Birth__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.AO_Date_of_Birth__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_State__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.AO_State__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_Home_Phone_Number__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.AO_Home_Phone_Number__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_Zip_Code__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.AO_Zip_Code__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+                                            <tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.AO_Mobile_Number__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.AO_Mobile_Number__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+                <table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS;">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Card Information</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Number_of_Cards_Needed__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Number_of_Cards_Needed__c}</td></tr>
+                                        </table><br/>
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Embossing_Line_1_Company_Name__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Embossing_Line_1_Company_Name__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 20px;">
+                                            <tr><td style="font-size: 9pt;">Card Shipping Address</td></tr>
+                                            <tr>
+                                                <td style="padding: 4px 8px; vertical-align: top;">
+                                                    <apex:outputText value="{!onlineApplication.Card_Shipping_Attention__c}<br/>" escape="false" rendered="{!onlineApplication.Card_Shipping_Attention__c != null}" />
+                                                    {!onlineApplication.Card_Shipping_Address_Line_1__c}<br/>
+                                                    <apex:outputText value="{!onlineApplication.Card_Shipping_Address_Line_2__c}<br/>" escape="false" rendered="{!onlineApplication.Card_Shipping_Address_Line_2__c != null}" />
+                                                    {!onlineApplication.Card_Shipping_City__c}, {!onlineApplication.Card_Shipping_State__c}, {!onlineApplication.Card_Shipping_Postal_Code__c}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <!--
+							<div style="page-break-after:always;">&nbsp;</div>
+							-->
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+                <table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS; display: {!IF(onlineApplicationOffer.Enable_Card_Information__c == true, 'block', 'none')};">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Policy</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Daily_Fuel_Gallons__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Daily_Fuel_Gallons__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+										<table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Unit__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;
+                                                <apex:outputText value="{!IF(onlineApplication.Unit__c == true, 'Yes', 'No')}" /></td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Daily_DEF_Limit__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Daily_DEF_Limit__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+										<table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Trip__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;
+                                                <apex:outputText value="{!IF(onlineApplication.Trip__c == true, 'Yes', 'No')}" /></td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Daily_Cash_Limit__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Daily_Cash_Limit__c}</td></tr>
+                                        </table>
+                                    </td>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+										<table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Odometer__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;
+                                                <apex:outputText value="{!IF(onlineApplication.Odometer__c == true, 'Yes', 'No')}" />
+                                                </td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+							<div style="page-break-after:always;">&nbsp;</div>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+                <table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS;">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Other Products/Services</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr><td style="font-size: 9pt;">{!$ObjectType.OnlineApplication__c.fields.Other_Services__c.label}</td></tr>
+                                            <tr><td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">&nbsp;{!onlineApplication.Other_Services__c}</td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <!--
+							<div style="page-break-after:always;">&nbsp;</div>
+							-->
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+				<table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS; display: {!IF(onlineApplicationOffer.Enable_Authorized_Contacts__c == true, 'block', 'none')};">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Authorized Contacts</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr>
+                                                <td style="font-size: 9pt;">First Name</td>
+                                                <td style="font-size: 9pt;">Last Name</td>
+                                                <td style="font-size: 9pt;">Email</td>
+                                                <td style="font-size: 9pt;">Phone Number</td>
+                                              	<td style="font-size: 9pt;">Mobile Number</td>
+                                            </tr>
+                                            <apex:repeat value="{!onlineApplicationAuthorizedContacts}" var="contact">
+        	                                    <tr>
+    	                                            <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">{!contact.First_Name__c}</td>
+                                                    <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">{!contact.Last_Name__c}</td>
+                                                    <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">{!contact.Email__c}</td>
+                                                    <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">{!contact.Phone_Number__c}</td>
+                                                    <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">{!contact.Mobile_Number__c}</td>
+	                                            </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <!--
+							<div style="page-break-after:always;">&nbsp;</div>
+							-->
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+				<table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS; display: {!IF(onlineApplicationOffer.Enable_Driver_Unit_Information__c == true, 'block', 'none')};">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Driver Information</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr>
+                                                <td style="font-size: 9pt;">Name</td>
+                                                <td style="font-size: 9pt;">Driver ID</td>
+                                            </tr>
+                                            <apex:repeat value="{!onlineApplicationDrivers}" var="driver">
+        	                                    <tr>
+    	                                            <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">{!driver.Driver_Name__c}</td>
+                                                    <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">{!driver.Driver_ID__c}</td>
+	                                            </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+							<div style="page-break-after:always; display: {!IF(onlineApplication.Unit__c != true, 'block', 'none')}">&nbsp;</div>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+				<table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS; display: {!IF(AND(onlineApplicationOffer.Enable_Driver_Unit_Information__c == true, onlineApplication.Unit__c == true), 'block', 'none')};">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Unit Information</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%; padding-bottom: 10px;">
+                                        <table style="width: 100%; padding: 0 2px 0 0;">
+											<tr>
+                                                <td style="font-size: 9pt;">Unit #</td>
+                                            </tr>
+                                            <apex:repeat value="{!onlineApplicationUnits}" var="unit">
+        	                                    <tr>
+    	                                            <td style="border-bottom: 1px solid #cccccc; padding: 4px 8px;">{!unit.Name}</td>
+	                                            </tr>
+                                            </apex:repeat>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <!--
+							<div style="page-break-after:always;">&nbsp;</div>
+							-->
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+                <div style="page-break-after:always;">&nbsp;</div>
+                <p>
+                    Terms and Conditions Version: {!onlineApplicationOffer.Terms_and_Conditions_Version__c}
+                </p>
+                <table id="mainGrid" style="width: 100%; font-size: 10pt; font-family: Arial Unicode MS;">
+                    <tr>			                  
+                        <td>
+                            <table width="100%;">
+                                <tr>
+                                    <td style="{!program.Brand_Color_1__c} width: 100%; color: #fff; padding: 10px; font-size: 12pt; font-weight: 700;" colspan="2">Disclosure</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100%; padding-bottom: 10px;">
+                                        <apex:outputText value="{!onlineApplicationOffer.PG_Disclosure__c}" rendered="{!creditApp.PG_SSN__c != null}" />
+										<apex:outputText value="{!onlineApplicationOffer.Authorized_Signer_Disclosure__c}" rendered="{!creditApp.PG_SSN__c == null}" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/>
+                            <br/>
+                        </td>
+                    </tr>
+                </table>
+                <p>
+                    Application Signer IP: {!creditApp.IPAddress__c}
+                </p>
+            </apex:outputPanel>                                                                                        
+            <br/><br/>
+            <table id="mainGrid" style="width: 100%;">
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+            </table>
+        </body>
+    </html>
+</apex:page>

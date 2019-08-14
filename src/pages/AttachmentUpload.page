@@ -1,0 +1,264 @@
+<apex:page controller="AttachmentUploadController" showHeader="false" sidebar="false" applyHtmlTag="false" docType="html-5.0" standardStylesheets="false" action="{!init}">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>Add Attachment</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
+
+        <!-- Script -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+        <script src="{!URLFOR($Resource.AppiphonyJS, 'appiphony-lightning-js-master/dist/jquery.aljs-all-with-moment.min.js')}"></script>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js" />
+
+        <!-- Import the Design System style sheet -->
+        <apex:slds />
+
+        <style>
+            .attachButton {
+                border: 1px solid #bbc0c4;
+                background: #fff;
+                border-radius: 5px;
+                padding: 4px;
+                width: 140px;
+                font-size: 14px;
+                color: #707d95;
+                vertical-align: middle;
+                text-align: center;
+                cursor: pointer;
+                margin-top: -10px;
+                margin-bottom: 20px;
+            }
+
+            .warningMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #fbb439;
+            }
+
+            .confirmMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #32af5c;
+            }
+
+            .errorMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #e9696e;
+            }
+
+            .infoMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #3c97dd;
+            }
+
+            .warningMessage h4,
+            .confirmMessage h4,
+            .errorMessage h4,
+            .infoMessage h4 {
+                font-weight: bold;
+                padding-right: 4px;
+            }
+
+            .clearfix:after {
+                visibility: hidden;
+                display: block;
+                font-size: 0;
+                content: " ";
+                clear: both;
+                height: 0;
+            }
+            .clearfix { display: inline-block; }
+            /* start commented backslash hack \*/
+            * html .clearfix { height: 1%; }
+            .clearfix { display: block; }
+            /* close commented backslash hack */
+
+            .fieldErrorMessage.filled {
+                margin-top: 8px;
+                display: block;
+                color: #a94442;
+                font-size: 12px;
+                padding-left: 3px;
+            }
+            .errored-input{
+                color:#b21522 !important;
+            }
+            select.errored-input, input.errored-input, textarea.errored-input {
+                border: 1px solid #b21522 !important;
+                background: #fce1e0 !important;
+                color: #b21522 !important;
+                font-family:inherit !important;
+            }
+
+            .disabled-button {
+                background: #e9e9e9 !important;
+                pointer-events: none;
+                color: #ccc !important;
+                border: 1px solid #ccc !important;
+            }
+
+            a, a:hover, a:visited {
+                text-decoration: none !important;
+                outline: none !important;
+            }
+
+            .slds-spinner_container { display: none; min-height: 100vh !important; }
+        </style>
+
+        <script>
+            var $j = jQuery.noConflict();
+
+            var assetsLoc = '{!URLFOR($Asset.SLDS)}';
+
+            $j.aljsInit({
+                assetsLocation: assetsLoc,
+                scoped: true
+            });
+
+            $j(document).ready(function() {
+
+                overridePageMessages();
+
+                $j('[data-aljs="tabs"]').tabs();
+
+                $j('[data-aljs="popover"]').popover();
+
+                $j("[id$=attachmentBody]").on('change', function() {
+                    var filename = $j(this).val();
+                    filename = filename.replace(/.*[\/\\]/, '');
+                    $j("[id$=attachmentName]").val(filename);
+                    $j("[id$=visibleFileName]").val(filename);
+                });
+
+            });
+
+            function pageRerenderFunctions() {
+                $j('[data-aljs="popover"]').popover();
+            }
+
+            function overridePageMessages() {
+                var textureEffect = '';
+
+                $j('.warningM3').addClass('warningMessage');
+                $j('.confirmM3').addClass('confirmMessage');
+                $j('.errorM3').addClass('errorMessage');
+                $j('.infoM3').addClass('infoMessage');
+
+                $j('.errorM3').removeClass('errorM3');
+                $j('.confirmM3').removeClass('confirmM3');
+                $j('.infoM3').removeClass('infoM3');
+                $j('.warningM3').removeClass('warningM3');
+            }
+
+            function triggerFileBrowse() {
+                $j('[id$=attachmentBody]').click();
+            }
+
+            function validate() {
+                if($j("[id$=attachmentBody]").val() != null && $j("[id$=attachmentBody]").val() !== "") {
+                    uploadFile();
+                }
+                else {
+                    $j('[id$=errors]').css('display', 'block');
+                    $j('[id$=errors]').html('Please select a file to upload.');
+                }
+            }
+        </script>
+
+    </head>
+    <body onload="moveTo(0,0); resizeTo(600,725);">
+    <apex:form id="addAttachmentForm">
+        <apex:actionFunction name="uploadFile" action="{!uploadFile}" />
+        <apex:outputPanel id="addAttachment">
+            <div id="content" class="slds-scope slds-is-relative">
+                <!-- HEADER -->
+                <div class="slds-page-header">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/doctype-sprite/svg/symbols.svg#attachment')}"></use>
+                                    </svg>
+                                </div>
+
+                                <div class="slds-media__body">
+                                    <p class="slds-text-title--caps slds-line-height--reset">Upload Attachment</p>
+                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="SLDS Inc.">
+                                        <apex:outputText value="{!parentRecordType} - {!recordName}" escape="false" />
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <apex:pageMessages id="pageMessages" escape="false"></apex:pageMessages>
+                <apex:outputPanel rendered="{!confirmUpload == 'true'}">
+                    <br/><a class="slds-button slds-button_outline-brand" href="?parentRecordId={!parentRecordId}">Upload Another File</a>
+                </apex:outputPanel>
+                <apex:outputPanel rendered="{!hasError == false}">
+                    <article class="slds-card">
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <fieldset class="slds-form-element slds-form_compound">
+                                            <div class="slds-form-element__control">
+                                                <div class="slds-form-element__group">
+                                                    <div class="slds-form-element__row">
+                                                        <div class="slds-form-element slds-size_1-of-2">
+                                                            <label class="slds-form-element__label" for="input-01">File</label>
+                                                            <div class="slds-form-element__control">
+                                                                <input class="slds-input" type="text" id="visibleFileName" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-form-element slds-size_1-of-2">
+                                                            <label class="slds-form-element__label" for="input-01">&nbsp;</label>
+                                                            <div class="slds-form-element__control">
+                                                                <input type="button" value="Browse" onClick="javascript:triggerFileBrowse();" class="slds-button slds-button_outline-brand"  />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                        <apex:inputText value="{!attachmentName}" style="visibility: hidden; display: none;" id="attachmentName"/>
+                                        <apex:inputFile value="{!attachmentBody}" filename="{!attachmentName}" id="attachmentBody" style="visibility: hidden; display: none;"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article><br/>
+                    <input type="button" id="submitButton" value="Attach" onclick="validate()" class="slds-button slds-button_brand" />
+                    <div class="slds-spinner_container" id="spinner">
+                        <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+    </body>
+    </html>
+</apex:page>

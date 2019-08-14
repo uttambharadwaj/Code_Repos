@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <email>insidesalesleadershipnashville@wexinc.com</email>
+    <name>Large Fleet OTR Queue</name>
+    <queueMembers>
+        <users>
+            <user>hedwards@fleetone.com</user>
+            <user>jsawaya@fleetone.com</user>
+            <user>jpivo@fleetone.com</user>
+            <user>rnichols@fleetone.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Lead</sobjectType>
+    </queueSobject>
+</Queue>
