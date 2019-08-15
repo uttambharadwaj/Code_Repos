@@ -80,7 +80,7 @@ function pageLoadFunctions() {
         }
 
     }
-    
+
     // Fixing a load of picklist options
     $j("[id$=yearsInBusiness] option").eq('').text($Label.BOCA_Picklist_Choose_One);
     $j("[id$=physicalState] option").eq('').text($Label.BOCA_Picklist_Choose_One);
