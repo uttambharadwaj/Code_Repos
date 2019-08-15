@@ -4,14 +4,19 @@ public class CampaignCodeGenerator {
 
         Campaign_Code__c campaignCode;
         try {
-            campaignCode = [SELECT Id, Code_Used__c, Name FROM Campaign_Code__c WHERE Code_Used__c = FALSE AND Name != NULL LIMIT 1];
+            campaignCode = [
+                    SELECT Id, Code_Used__c, Name
+                    FROM Campaign_Code__c
+                    WHERE Code_Used__c = FALSE AND Name != NULL
+                    LIMIT 1
+            ];
         } catch (QueryException e) {
             createCampaignCodes();
-            return getCampaignCode();
+            return Limits.getQueries() == Limits.getLimitQueries() ? null : getCampaignCode();
         }
 
         campaignCode.Code_Used__c = true;
-        upsert campaignCode;
+        update campaignCode;
         return campaignCode.Name;
 
     }
@@ -20,12 +25,14 @@ public class CampaignCodeGenerator {
 
         Campaign_Code_Generator__c ccgSettings = Campaign_Code_Generator__c.getInstance();
 
+        List<Campaign_Code__c> campaignCodes = new List<Campaign_Code__c>();
         Set<String> generatedCampaignCodes = new Set<String>();
+        Set<String> existingCampaignCodes = new Set<String>();
+
         for (Integer i = 0; i < ccgSettings.Quantity__c; i++) {
             generatedCampaignCodes.add(generateCode((Integer) ccgSettings.Code_Length__c, ccgSettings.Characters__c));
         }
 
-        Set<String> existingCampaignCodes = new Set<String>();
         for (Campaign_Code__c campaignCode : [
                 SELECT Id, Code_Used__c, Name
                 FROM Campaign_Code__c
@@ -37,7 +44,6 @@ public class CampaignCodeGenerator {
         // Remove any existing codes from the generated list. Case sensitive.
         generatedCampaignCodes.removeAll(existingCampaignCodes);
 
-        List<Campaign_Code__c> campaignCodes = new List<Campaign_Code__c>();
         for (String code : generatedCampaignCodes) {
             campaignCodes.add(new Campaign_Code__c(Name = code));
         }
