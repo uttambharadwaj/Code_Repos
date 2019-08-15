@@ -63,4 +63,12 @@ public class TestClassDispatcher {
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
 
+    @isTest static void testPartnerBOCAToProspectControllerSend(){
+        //PartnerBOCAToProspectControllerTest.testPBPSend();
+    }
+
+    @isTest static void testPartnerBOCAToProspectControllerInit(){
+        PartnerBOCAToProspectControllerTest.testInits();
+    }
+
 }

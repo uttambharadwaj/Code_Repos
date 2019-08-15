@@ -1,12 +1,7 @@
 @isTest
 public with sharing class PartnerBOCAToProspectControllerTest {
 
-    public static void testPBP(){
-        //get stuff
-        //we need to do an init without a correct partner. assert fail
-        //we need to do an init with a correct partner
-        //we need to do an init with an action param 'confirm'. assert things
-        //we need to do an init with an action param 'unfounded'. assert fail
+    public static void testPBPSend(){
 
         //set up the page
         PageReference pbpPage = Page.PartnerBOCAToProspect;
@@ -67,46 +62,39 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         //make the controller so we can init
         PartnerBOCAToProspectController pbp1 = new PartnerBOCAToProspectController(); //test success init
 
-        pbpPage.getParameters().put('action', 'confirm');
-        PartnerBOCAToProspectController pbp2 = new PartnerBOCAToProspectController(); //test success init for confirm action
-
-        pbpPage.getParameters().put('action', 'nowaythisisarealactioncode');
-        PartnerBOCAToProspectController pbp3 = new PartnerBOCAToProspectController(); //test fail init for faulty action
-
-        pbpPage.getParameters().put('partner', 'nowaythisisarealpartnercode');
-        PartnerBOCAToProspectController pbp4 = new PartnerBOCAToProspectController(); //test fail for faulty partner
-
-        pbpPage.getParameters().put('partner', '');
-        PartnerBOCAToProspectController pbp5 = new PartnerBOCAToProspectController(); //test success init for no partner param
-
+        //currently five different results for an init
         Partner_BOCA_To_Prospect__c myPBP1;
         PageReference myPBP2;
         PageReference myPBP3;
         PageReference myPBP4;
         PageReference myPBP5;
 
-
         //test stuff
         Test.startTest();
-        //we need to do an init with a correct partner
-        pbp1.init();
+
+        pbp1.init(); //init with a correct partner
         myPBP1 = pbp1.partnerBOCAtoProspect;
 
-        myPBP2 = pbp2.init(); //we need to do an init with an action param 'confirm'. assert null
+        pbpPage.getParameters().put('action', 'confirm');
+        myPBP2 = pbp1.init(); //init with an action param 'confirm'. assert null
 
-        myPBP3 = pbp3.init(); //we need to do an init with an action param 'unfounded'. assert fail
+        pbpPage.getParameters().put('action', 'nowaythisisarealactioncode');
+        myPBP3 = pbp1.init(); //init with unfounded action param. assert fail
 
-        myPBP4 = pbp4.init(); //we need to do an init without a correct partner. assert fail
+        pbpPage.getParameters().put('partner', 'nowaythisisarealpartnercode');
+        myPBP4 = pbp1.init(); //init without a correct partner. assert fail
 
-        myPBP5 = pbp5.init(); //we need to do an init with a blank partner. assert null
+        pbpPage.getParameters().put('partner', null);
+        myPBP5 = pbp1.init(); //init with a blank partner. assert null
 
         Test.stopTest();
 
-        //assert stuff
+        //assert stuffs
         system.assertEquals('cow', myPBP1.First_Name__c); //pbp should update bc success
-        system.assertEquals(null, myPBP2); //init should be null
-        system.assert(myPBP3.getURL().contains('ExternalApplicationError'), 'It did not error as expected.'); //should error out with message
-        system.assert(myPBP4.getURL().contains('ExternalApplicationError'), 'It did not error as expected.'); //should error out with message
-        system.assertEquals(null, myPBP5); //pbp should be null
+        system.assertEquals('boi', myPBP1.Last_Name__c); //pbp should update bc success
+        system.assertEquals(null, myPBP2); //init should null
+        system.assert(myPBP3.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out with message
+        system.assert(myPBP4.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out with message
+        system.assertEquals(null, myPBP5); //pbp should null
     }
 }
