@@ -58,6 +58,9 @@
             $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
             $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
             $Label.Check_Sample = '{!JSENCODE($Resource.SampleCheck)}';
+            $Label.BOCA_Placeholder_Phone = '{!JSENCODE($Label.BOCA_Placeholder_Phone)}';
+            $Label.BOCA_Placeholder_Postal_Code = '{!JSENCODE($Label.BOCA_Placeholder_Postal_Code)}';
+
 
             window.boca_language_code = '{!languageCode}';
             window.card_program_name = '{!programParameter}';

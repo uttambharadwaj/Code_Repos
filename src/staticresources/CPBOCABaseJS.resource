@@ -43,20 +43,44 @@ function pageLoadFunctions() {
         $j("[id$=legalStructure] option[value='Other']").remove();
     }
 
-    $j('.phone').mask('999-999-9999');
     $j('.ssn').mask('000-00-0000');
     $j('.date').mask('00/00/0000');
-    $j('.postal').mask('00000-0000');
-    $j('.postalCanada').mask('A0A-0A0');
     $j('.cpf').mask('999.999.999-99', {reverse: true});
     $j('.money').mask('000,000,000', {reverse: true});
     $j('.prefilledMoney').mask('000,000,000,000', {reverse: true});
-    //$j('.prefilledMoney').mask('000,000,000,000.00', {reverse: true});
     $j('.dunsNumber').mask('000000000');
     $j('.taxPayerId').mask('000000000');
-    
     $j('.yearsInBusiness').mask('000');
-    
+
+    const myPhone = $j('.phone').val();
+    const myPostl = $j('.postal').val();
+    //some stuff just for US/CAN at the moment
+    if(isNA){
+        $j('.phone').mask('999-999-9999');
+        $j('.postal').mask('00000-0000');
+        $j('.postalCanada').mask('A0A-0A0');
+
+        if(myPhone == null || myPhone == '')
+            $j('.phone').attr('placeholder',$Label.BOCA_Placeholder_Phone);
+        if(myPostl == null){
+            $j('.postal').attr('placeholder',$Label.BOCA_Placeholder_Postal_Code);
+            $j('.postalCanada').attr('placeholder',$Label.BOCA_Placeholder_Postal_Code);
+        }
+
+    } else {
+        $j('.phone').unmask();
+        $j('.postal').unmask();
+        $j('.postalCanada').unmask();
+
+        if(myPhone == null || myPhone == '')
+            $j('.phone').removeAttr('placeholder');
+        if(myPostl == null){
+            $j('.postal').removeAttr('placeholder');
+            $j('.postalCanada').removeAttr('placeholder');
+        }
+
+    }
+
     // Fixing a load of picklist options
     $j("[id$=yearsInBusiness] option").eq('').text($Label.BOCA_Picklist_Choose_One);
     $j("[id$=physicalState] option").eq('').text($Label.BOCA_Picklist_Choose_One);
