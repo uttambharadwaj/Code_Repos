@@ -50,6 +50,7 @@ public class CampaignCodeGenerator {
         insert campaignCodes;
     }
 
+    @TestVisible
     private static String generateCode(Integer codeLength, String chars) {
 
         String randomCode = '';
