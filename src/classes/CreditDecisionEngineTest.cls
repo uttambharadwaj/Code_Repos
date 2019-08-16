@@ -192,7 +192,7 @@ public class CreditDecisionEngineTest {
             onlineApplication.Promotional_Code__c = 'promo12345';
             onlineApplication.State__c = 'IL';
             onlineApplication.Card_Shipping_State__c = 'IL';
-            onlineApplication.Status__c = 'App-Incomplete';
+            onlineApplication.Status__c = 'Cards Produced';
             onlineApplication.Trade_Name__c = 'Forseva LLC';
             onlineApplication.Trip__c = false;
             onlineApplication.Type_of_Business__c = 'Corporation';
