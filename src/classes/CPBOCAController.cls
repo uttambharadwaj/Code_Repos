@@ -8,6 +8,22 @@ public class CPBOCAController {
 
     public String tmSessionId { get; set; }
 
+    public String selectedCurrency {get;set;}
+
+    public List<SelectOption> currencyOptions {
+        get {
+            Set<String> allowedCurrency = new Set<String>{'AUD','CAD','EUR','GBP'};
+            List<SelectOption> myOptions = new List<SelectOption>();
+            Schema.DescribeFieldResult currencies = Opportunity.CurrencyIsoCode.getDescribe();
+            myOptions.add(new SelectOption('USD','USD'));
+            for(Schema.PicklistEntry currencyOption : currencies.getPicklistValues()){
+                if(allowedCurrency.contains(currencyOption.getValue()))
+                    myOptions.add(new SelectOption(currencyOption.getValue(), currencyOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
     public String userSessionId {
         get {
             return UserInfo.getSessionId();
@@ -80,7 +96,7 @@ public class CPBOCAController {
         }
     }
 
-    // Get the Sales Code if BOCA to Prospect    
+    // Get the Sales Code if BOCA to Prospect
     public String salesCode {
         get {
             return ApexPages.CurrentPage().getParameters().get('salescode');
@@ -169,7 +185,7 @@ public class CPBOCAController {
 
             if(brandingUtilities.isEmpty()) {
                 // If we don't get a default branding utility back, just return the first one in the list
-                // This is for backwards compatability until we get the new field in place.. 
+                // This is for backwards compatability until we get the new field in place..
                 List<BOCA_res__c> defaultBrandingUtility = [SELECT Id FROM BOCA_Res__c WHERE Program__c = :program.Id];
                 return defaultBrandingUtility[0].Id;
             }
@@ -237,7 +253,7 @@ public class CPBOCAController {
 
             // A lot of this will be able to be removed after we're
             // not having to support backwards compatability.. Path
-            // of least resistance.. 
+            // of least resistance..
             if(brandingUtility != null && !String.isEmpty(brandingUtility.Default_Disclosure__c)) {
                 sr = [SELECT Body FROM StaticResource WHERE Name = :brandingUtility.Default_Disclosure__c];
             }
@@ -252,7 +268,7 @@ public class CPBOCAController {
         }
     }
 
-    // Terms and conditions related to the program, 
+    // Terms and conditions related to the program,
     // or the branding utility override
     public String termsAndConditions {
         get {
@@ -305,7 +321,7 @@ public class CPBOCAController {
         }
 
         // This will always be the case, unless a Canadian
-        // application is being filled out. 
+        // application is being filled out.
         billingAddressSame = true;
     }
 
@@ -354,7 +370,7 @@ public class CPBOCAController {
 
                         // If we have a campaign program
                         // then set the campaign and campaignProgram
-                        // to be the results.. 
+                        // to be the results..
                         if (!campaignPrograms.isEmpty()){
                             campaign = campaigns[0];
                             campaignProgram = campaignPrograms[0];
@@ -374,7 +390,7 @@ public class CPBOCAController {
 
                 }
 
-                // Setup the default campaign and campaign program if they 
+                // Setup the default campaign and campaign program if they
                 // weren't found via the coupon code
                 if(program != null && campaign == null && campaignProgram == null) {
                     List<Campaign_Program__c> defaultCampaignPrograms = [SELECT Id, Campaign__c, Default__c, Terms_and_Conditions__c, Terms_and_Conditions_Header__c, Terms_and_Conditions_Footer__c FROM Campaign_Program__c WHERE Program__c = :program.Id and Language_Code__c = :languageCode and Default__c = true];
@@ -460,6 +476,9 @@ public class CPBOCAController {
 
             creditApp.Mailing_Country__c = 'US';
             creditApp.Guarantor_Country__c = 'US';
+
+            //basic oppty stuff
+            selectedCurrency = 'USD';
         }
 
         return null;
@@ -628,6 +647,8 @@ public class CPBOCAController {
 
             // Create/update the opportunity
             Opportunity opportunity = new Opportunity();
+
+            opportunity.CurrencyIsoCode = selectedCurrency;
 
             if(creditApp.Opportunity__c != null) {
                 opportunity.Id = creditApp.Opportunity__c;

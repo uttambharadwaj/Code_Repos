@@ -20,10 +20,6 @@ function pageLoadFunctions() {
     
     $j( "#accordion" ).accordion({ heightStyle: 'content', collapsible: true });
     
-    const myCountry = $j("[id$=physicalCountry]").val();
-    if(myCountry == 'US' || myCountry == 'CA') isNA = true;
-    else isNA = false;
-
     // Various transformations for the Canadian application
     if(boca_language_code === "en_ca" || boca_language_code === "fr_ca") {
         flipToProvince('state');
@@ -52,8 +48,13 @@ function pageLoadFunctions() {
     $j('.taxPayerId').mask('000000000');
     $j('.yearsInBusiness').mask('000');
 
+    const myCountry = $j("[id$=physicalCountry]").val();
+    if(myCountry == 'US' || myCountry == 'CA') isNA = true;
+    else isNA = false;
+
     const myPhone = $j('.phone').val();
     const myPostl = $j('.postal').val();
+
     //some stuff just for US/CAN at the moment
     if(isNA){
         $j('.phone').mask('999-999-9999');
@@ -71,6 +72,7 @@ function pageLoadFunctions() {
         $j('.phone').unmask();
         $j('.postal').unmask();
         $j('.postalCanada').unmask();
+        $j('.phone').attr('maxlength',20);
 
         if(myPhone == null || myPhone == '')
             $j('.phone').removeAttr('placeholder');
@@ -79,6 +81,16 @@ function pageLoadFunctions() {
             $j('.postalCanada').removeAttr('placeholder');
         }
 
+    }
+
+    const myCurrency = $j("[id$=preferredCurrency]").val();
+    const myMoney = $j('.money').val();
+    if(myCurrency == 'USD' || myCurrency == 'CAD'){
+        if(myMoney == null || myMoney == '')
+            $j('.money').attr('placeholder','$');
+    } else {
+        if(myMoney == null || myMoney == '')
+            $j('.money').removeAttr('placeholder');
     }
 
     // Fixing a load of picklist options
@@ -409,6 +421,11 @@ function validate(currentStep) {
              hasErrors = true;
          }
    	});
+
+   	if(!isNA){
+   	    var myPhone = $j('.phone').val().replace(/[\+\s]/g,'');
+   	    $j('.phone').val(myPhone);
+   	}
 
     if(hasErrors == false) { 
         $j('[id$=creditForm]').find('.step-button').addClass('disabled-button');

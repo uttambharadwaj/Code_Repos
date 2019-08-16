@@ -283,10 +283,19 @@
                                             <apex:InputField styleClass="styled-input" html-tabindex="9" id="title" label="" value="{!creditApp.Title__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
+                                            <apex:actionRegion>
+                                                <label class="styled-label" for="preferredCurrency">Preferred Currency <span class="styled-label-required">*</span></label>
+                                                <apex:selectList html-data-parsley-required="true" value="{!selectedCurrency}" id="preferredCurrency" styleClass="styled-input required" tabIndex="10" multiSelect="false" size="1">
+                                                    <apex:selectOptions value="{!currencyOptions}"/>
+                                                    <apex:actionSupport event="onchange" rerender="projectedMonthlySpend" onComplete="pageLoadFunctions()"/>
+                                                </apex:selectList>
+                                            </apex:actionRegion>
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="4">
                                             <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" html-placeholder="$" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" />
+                                            <apex:InputField required="true" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" />
                                         </div>
                                     </div>
                                 </div>
@@ -311,7 +320,7 @@
                                             <apex:actionRegion >
                                                 <apex:outputLabel for="physicalCountry" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} "/>
                                                 <apex:InputField styleClass="styled-input" id="physicalCountry" html-tabindex="11" value="{!creditApp.Physical_Country__c}">
-                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode" oncomplete="pageLoadFunctions()"/>
+                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode, stateRequired" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
@@ -319,11 +328,11 @@
                                             <apex:outputLabel for="physicalAddressLine1" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_1__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="12" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
+                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="11" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
                                             <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_2__c.label} (optional)"/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="13" id="physicalAddressLine2" label="" value="{!creditApp.Physical_Address_Line_2__c}" html-maxlength="100" />
+                                            <apex:InputField styleClass="styled-input" html-tabindex="12" id="physicalAddressLine2" label="" value="{!creditApp.Physical_Address_Line_2__c}" html-maxlength="100" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
                                             <apex:outputLabel for="physicalCity" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_City__c.label} ">
@@ -333,7 +342,11 @@
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="3">
                                             <apex:outputLabel for="physicalState" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.State_Province__c.label} ">
-                                                <span class="styled-label-required">*</span>
+                                                <apex:outputPanel id="stateRequired">
+                                                    <apex:outputPanel rendered="{!OR(creditApp.Physical_Country__c=='US',creditApp.Physical_Country__c=='CA',creditApp.Physical_Country__c=='')}">
+                                                        <span class="styled-label-required">*</span>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
                                             </apex:outputLabel>
                                             <apex:InputField required="true" styleClass="styled-input required" html-tabindex="15" id="physicalState" value="{!creditApp.Physical_State_Province__c}" />
                                         </div>
@@ -678,7 +691,7 @@
                             <div class="twelve columns clearfix">
                                 <div class="clearfix">
                                     <input type="button" class="step-button ge-click-appsubmit" onClick="validate({!currentStep});" value="{!$Label.BOCA_Button_Submit}"/>
-                                    <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
+                                    <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}"/>
                                 </div>
                             </div>
                         </apex:form>
