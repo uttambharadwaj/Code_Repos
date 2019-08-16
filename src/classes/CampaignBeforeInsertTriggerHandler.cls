@@ -5,8 +5,14 @@ public class CampaignBeforeInsertTriggerHandler extends TriggerHandlerBase {
     }
     private void assignCampaignCoupon(List<Campaign> campaignsList) {
 
-        for (Campaign campaign : campaignsList) {
-            campaign.Coupon_Code__c = CampaignCodeGenerator.getCampaignCode();
+        List<Campaign_Code__c> campaignCodes = CampaignCodeGenerator.getCampaignCode(campaignsList.size());
+
+        if (campaignCodes.size() >= campaignsList.size()) {
+
+            for (Integer i = 0; i < campaignsList.size(); i++) {
+                campaignsList[i].Coupon_Code__c = campaignCodes[i].Name;
+            }
+
         }
     }
 }

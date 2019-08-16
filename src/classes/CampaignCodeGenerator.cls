@@ -1,23 +1,29 @@
 public class CampaignCodeGenerator {
 
-    public static String getCampaignCode() {
-
-        Campaign_Code__c campaignCode;
-        try {
-            campaignCode = [
+    public static List<Campaign_Code__c> getCampaignCode() {
+        return getCampaignCode(1);
+    }
+    public static List<Campaign_Code__c> getCampaignCode(Integer numberOfCodes) {
+        List<Campaign_Code__c> usedCampaignCodes = new List<Campaign_Code__c>();
+        List<Campaign_Code__c> campaignCodes = [
                     SELECT Id, Code_Used__c, Name
                     FROM Campaign_Code__c
                     WHERE Code_Used__c = FALSE AND Name != NULL
-                    LIMIT 1
+                    LIMIT :numberOfCodes
             ];
-        } catch (QueryException e) {
-            createCampaignCodes();
-            return Limits.getQueries() == Limits.getLimitQueries() ? null : getCampaignCode();
+
+        if (campaignCodes.size() < numberOfCodes) {
+            createCampaignCodes(); // This should only get called once.
+            return Limits.getQueries() == Limits.getLimitQueries() ? null : getCampaignCode(numberOfCodes);
         }
 
-        campaignCode.Code_Used__c = true;
-        update campaignCode;
-        return campaignCode.Name;
+        for (Campaign_Code__c campaignCode : campaignCodes) {
+            campaignCode.Code_Used__c = true;
+            usedCampaignCodes.add(campaignCode);
+        }
+
+        update usedCampaignCodes;
+        return usedCampaignCodes;
 
     }
 

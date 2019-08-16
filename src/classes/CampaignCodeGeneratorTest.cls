@@ -24,16 +24,18 @@ public class CampaignCodeGeneratorTest {
     public static void test_getCode() {
 
         Test.startTest();
-        String code = CampaignCodeGenerator.getCampaignCode();
+        List<Campaign_Code__c> codes = CampaignCodeGenerator.getCampaignCode();
         Test.stopTest();
 
-        Campaign_Code__c campaignCode = [ SELECT Id, Code_Used__c FROM Campaign_Code__c WHERE Name = :code];
-
         // Assert that the method didn't return null
-        System.assertEquals(true, code != null);
+        System.assertEquals(true, codes != null);
+
+        List<Campaign_Code__c> campaignCodes = [ SELECT Id, Code_Used__c FROM Campaign_Code__c WHERE Id IN :codes];
 
         // Assert that code used flag was set true
-        System.assertEquals(true, campaignCode.Code_Used__c);
+        for (Campaign_Code__c campaignCode : campaignCodes) {
+            System.assertEquals(true, campaignCode.Code_Used__c);
+        }
 
     }
 }
