@@ -13,8 +13,7 @@ public class CampaignCodeGenerator {
             ];
 
         if (campaignCodes.size() < numberOfCodes) {
-            createCampaignCodes(); // This should only get called once.
-            return Limits.getQueries() == Limits.getLimitQueries() ? null : getCampaignCode(numberOfCodes);
+            return createCampaignCodes() ? getCampaignCode(numberOfCodes) : null; // Create additional codes
         }
 
         for (Campaign_Code__c campaignCode : campaignCodes) {
@@ -27,15 +26,20 @@ public class CampaignCodeGenerator {
 
     }
 
-    private static void createCampaignCodes() {
+    private static Boolean createCampaignCodes() {
+        return createCampaignCodes(1);
+    }
+
+    private static Boolean createCampaignCodes(Integer requestedAmount) {
 
         Campaign_Code_Generator__c ccgSettings = Campaign_Code_Generator__c.getInstance();
 
         List<Campaign_Code__c> campaignCodes = new List<Campaign_Code__c>();
         Set<String> generatedCampaignCodes = new Set<String>();
         Set<String> existingCampaignCodes = new Set<String>();
+        Integer codeQuantity = (Integer) ccgSettings.Quantity__c + requestedAmount;
 
-        for (Integer i = 0; i < ccgSettings.Quantity__c; i++) {
+        for (Integer i = 0; i < codeQuantity; i++) {
             generatedCampaignCodes.add(generateCode((Integer) ccgSettings.Code_Length__c, ccgSettings.Characters__c));
         }
 
@@ -53,7 +57,9 @@ public class CampaignCodeGenerator {
         for (String code : generatedCampaignCodes) {
             campaignCodes.add(new Campaign_Code__c(Name = code));
         }
+
         insert campaignCodes;
+        return campaignCodes.size() >= requestedAmount;
     }
 
     @TestVisible
