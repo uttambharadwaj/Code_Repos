@@ -477,7 +477,6 @@ public class CPBOCAController {
             creditApp.Mailing_Country__c = 'US';
             creditApp.Guarantor_Country__c = 'US';
 
-            //basic oppty stuff
             selectedCurrency = 'USD';
         }
 

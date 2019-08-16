@@ -9,6 +9,7 @@ $j(document).ready(function() {
 });
 
 function pageLoadFunctions() {
+
     $j(document).on( 'focus', ':input', function(){
         $j(this).attr('autocomplete', 'something-new');
     });
@@ -83,13 +84,12 @@ function pageLoadFunctions() {
 
     }
 
-    const myCurrency = $j("[id$=preferredCurrency]").val();
     const myMoney = $j('.money').val();
-    if(myCurrency == 'USD' || myCurrency == 'CAD'){
-        if(myMoney == null || myMoney == '')
+    if(myMoney == null || myMoney == ''){
+        const myCurrency = $j("[id$=preferredCurrency]").val();
+        if(myCurrency == 'USD' || myCurrency == 'CAD')
             $j('.money').attr('placeholder','$');
-    } else {
-        if(myMoney == null || myMoney == '')
+        else
             $j('.money').removeAttr('placeholder');
     }
 
