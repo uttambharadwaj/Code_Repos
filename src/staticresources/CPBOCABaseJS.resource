@@ -423,7 +423,7 @@ function validate(currentStep) {
    	});
 
    	if(!isNA){
-   	    var myPhone = $j('.phone').val().replace(/[\+\s]/g,'');
+   	    var myPhone = $j('.phone').val().replace(/[\+\s\-()]/g,'');
    	    $j('.phone').val(myPhone);
    	}
 
