@@ -42,7 +42,15 @@ public class TestClassDispatcher {
     @isTest static void testBOEntityBusinessProcesses(){
         BOEntityTriggerTest.testBusinessProcesses();
     }
-    
+
+    @isTest static void testPartnerBOCAToProspectControllerSend(){
+        PartnerBOCAToProspectControllerTest.testPBPSend();
+    }
+
+    @isTest static void testPartnerBOCAToProspectControllerInit(){
+        PartnerBOCAToProspectControllerTest.testInits();
+    }
+
     @isTest static void testAppRequestTriggerInserts() {
         AppRequestTriggerTest.testInsert();
     }
@@ -61,14 +69,6 @@ public class TestClassDispatcher {
 
     @isTest static void testBOProngTriggerValidations(){
         BOProngTriggerTest.testValidateNumberOfRecords();
-    }
-
-    @isTest static void testPartnerBOCAToProspectControllerSend(){
-        PartnerBOCAToProspectControllerTest.testPBPSend();
-    }
-
-    @isTest static void testPartnerBOCAToProspectControllerInit(){
-        PartnerBOCAToProspectControllerTest.testInits();
     }
 
 }
