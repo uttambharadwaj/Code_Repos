@@ -1,6 +1,12 @@
 @isTest
 private class UOpportunityShareTest {
 
+
+	@testSetup
+	static void setup(){
+		UtilityTestLoader.setAutomation(false);
+	}
+
     static testMethod void test_UOpportunityShare() {
     	
     	List<Opportunity> lstOpportunitiesToInsert = new List<Opportunity>();

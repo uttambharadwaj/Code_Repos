@@ -1,5 +1,10 @@
 @isTest public class LeadSplitTriggerTest {
-    
+
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     @isTest public static void LSTTest(){
         
         UserRole userRole = [SELECT Id FROM UserRole WHERE Name = 'Lead Development Role'];

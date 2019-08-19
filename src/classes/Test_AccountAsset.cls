@@ -22,6 +22,10 @@
 @isTest(seealldata=true)
 private class Test_AccountAsset {
 
+    static testMethod void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void myUnitTest() {
         // TO DO: implement unit test
         test.startTest();

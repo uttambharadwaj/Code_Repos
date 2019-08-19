@@ -9,6 +9,11 @@
 @isTest
 private class Test_LeadMarketing {
 
+	@testSetup
+	static void setup(){
+		UtilityTestLoader.setAutomation(false);
+	}
+
 	static testMethod void testLinking(){
 		
 		test.startTest();
