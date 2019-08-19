@@ -1,0 +1,2 @@
+ID,CP_Email_Template_ID__c,Default_Email_Template_ID__c,No_Reply_Email__c,OTR_Email_Template_ID__c,OTR_Resend_Template_ID__c,Partner_BOCA_To_Prospect_Template__c
+01I0g000000G1o5EAC,,00X0g000001o6GT,noreply@wexinc.com,00X0g000001Mztx,00X0g000001N6XF,00X0g000001oQKr
