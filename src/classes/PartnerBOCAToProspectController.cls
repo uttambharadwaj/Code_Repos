@@ -160,6 +160,24 @@ public class PartnerBOCAToProspectController {
                                 partnerBOCAtoProspect.Sales_Rep_Phone__c = ApexPages.currentPage().getParameters().get('repPhone');
                             }
 
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField1'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_1__c = ApexPages.currentPage().getParameters().get('partnerDataField1');
+                            }
+
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField2'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_2__c = ApexPages.currentPage().getParameters().get('partnerDataField2');
+                            }
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField3'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_3__c= ApexPages.currentPage().getParameters().get('partnerDataField3');
+                            }
+
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField4'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_4__c = ApexPages.currentPage().getParameters().get('partnerDataField4');
+                            }
+
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField5'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_5__c = ApexPages.currentPage().getParameters().get('partnerDataField5');
+                            }
                         }
 
                     } else if (action != null && action.equalsIgnoreCase('confirm')){
@@ -343,6 +361,11 @@ public class PartnerBOCAToProspectController {
         public String RepCode;
         public String RepPhone;
         public String OtherId;
+        public String PartnerDataField1;
+        public String PartnerDataField2;
+        public String PartnerDataField3;
+        public String PartnerDataField4;
+        public String PartnerDataField5;
 
         //constructor stuffs
         public ParAppTheWrapper(Partner_BOCA_To_Prospect__c myPBTP, PartnerBOCAToProspectController thisController){
@@ -361,6 +384,14 @@ public class PartnerBOCAToProspectController {
             this.RepCode = myPBTP.Sales_Rep_Code__c;
             this.RepPhone = myPBTP.Sales_Rep_Phone__c;
             this.OtherId = myPBTP.Partner_Opportunity_ID__c;
+
+            // https://jira.devtools.wexinc.com/browse/PSOBACKLOG-247
+            this.PartnerDataField1 = myPBTP.Partner_Data_Field_1__c;
+            this.PartnerDataField2 = myPBTP.Partner_Data_Field_2__c;
+            this.PartnerDataField3 = myPBTP.Partner_Data_Field_3__c;
+            this.PartnerDataField4 = myPBTP.Partner_Data_Field_4__c;
+            this.PartnerDataField5 = myPBTP.Partner_Data_Field_5__c;
+
             setObjectType();
         }
 
