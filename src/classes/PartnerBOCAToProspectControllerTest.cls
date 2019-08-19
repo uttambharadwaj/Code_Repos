@@ -82,7 +82,6 @@ public with sharing class PartnerBOCAToProspectControllerTest {
 
         //assert stuff
         system.assertEquals(null, pbpFail.bocaType, 'It found a BOCA type before it should have.');
-        //system.assertEquals(null, pbpFail.additionalPrograms, 'It found a possible program before it should have.');
         system.assertEquals(null, pbpFail.additionalOffers, 'It found a possible program offer before it should have.');
         system.assert(mypbpFail.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out with message
         system.assertEquals(mypbpOTRId.getsobjecttype().getDescribe().getName(), 'OnlineApplication__c', 'It did not create the expected application.');
@@ -90,7 +89,7 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         system.assertEquals(offerCount + 1, offerList.size(), 'It did not find the expected number of program offers.'); //plus one bc we also have a select option for 'choose one'
         system.assertEquals('OTR', pbpOTR.bocaType, 'It found a completely different BOCA type.');
         system.assertEquals(mypbpNAFId.getsobjecttype().getDescribe().getName(), 'WeFormObject__c', 'It did not create the expected application.');
-        system.assertEquals(null, pbpNAF.additionalOffers, 'It found a program offer for an Application Request record.');
+        system.assertEquals(null, pbpNAF.additionalOffers, 'It found an offer for an Application Request record.');
         system.assertEquals(mypbpCPId.getsobjecttype().getDescribe().getName(), 'CP_Application_Request__c', 'It did not create the expected application.');
         system.assertEquals(3, postEmailCount, 'It did not send the expected number of emails.');
     }
@@ -113,7 +112,7 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         Test.setCurrentPage(pbpPage);
 
         //make the controller so we can init
-        PartnerBOCAToProspectController pbp1 = new PartnerBOCAToProspectController(); //test success init
+        PartnerBOCAToProspectController pbp1 = new PartnerBOCAToProspectController();
 
         //currently five different results for an init
         Partner_BOCA_To_Prospect__c myPBP1;
@@ -146,8 +145,8 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         system.assertEquals('cow', myPBP1.First_Name__c); //pbp should update bc success
         system.assertEquals('boi', myPBP1.Last_Name__c); //pbp should update bc success
         system.assertEquals(null, myPBP2); //init should null
-        system.assert(myPBP3.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out with message
-        system.assert(myPBP4.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out with message
+        system.assert(myPBP3.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out
+        system.assert(myPBP4.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out
         system.assertEquals(null, myPBP5); //pbp should null
     }
 }
