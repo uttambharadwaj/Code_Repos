@@ -63,20 +63,20 @@ public class TestClassDispatcher {
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
 
-    @isTest static void testPartnerBOCAToProspectControllerSend(){
-        PartnerBOCAToProspectControllerTest.testPBPSend();
-    }
-
-    @isTest static void testPartnerBOCAToProspectControllerInit(){
-        PartnerBOCAToProspectControllerTest.testInits();
-    }
-
     @isTest static void testCampaignGetCode() {
         CampaignCodeGeneratorTest.test_getCode();
     }
 
     @isTest static void testCampaignCodeGenerate() {
         CampaignCodeGeneratorTest.test_generateCode();
+    }
+
+    @isTest static void testPartnerBOCAToProspectControllerSend(){
+        PartnerBOCAToProspectControllerTest.testPBPSend();
+    }
+
+    @isTest static void testPartnerBOCAToProspectControllerInit(){
+        PartnerBOCAToProspectControllerTest.testInits();
     }
 
 }
