@@ -2,7 +2,7 @@
 * PartnerBOCAToProspectController Class
 * Description: controller for PartnerBOCAToProspect page
 * Revision History: 5/24/2019   PSOBACKLOG-65 & IADJUDICAT-1186 build out for NAF and CP
-* TODO: in sendApplication, before try/catch, set a PageReference; use this pageReference in try/catch and return it after try/catch. test functionality. coverage should then be complete
+*
 *
 */
 public class PartnerBOCAToProspectController {
@@ -160,6 +160,24 @@ public class PartnerBOCAToProspectController {
                                 partnerBOCAtoProspect.Sales_Rep_Phone__c = ApexPages.currentPage().getParameters().get('repPhone');
                             }
 
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField1'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_1__c = ApexPages.currentPage().getParameters().get('partnerDataField1');
+                            }
+
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField2'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_2__c = ApexPages.currentPage().getParameters().get('partnerDataField2');
+                            }
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField3'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_3__c= ApexPages.currentPage().getParameters().get('partnerDataField3');
+                            }
+
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField4'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_4__c = ApexPages.currentPage().getParameters().get('partnerDataField4');
+                            }
+
+                            if (!String.isEmpty(ApexPages.currentPage().getParameters().get('partnerDataField5'))) {
+                                partnerBOCAtoProspect.Partner_Data_Field_5__c = ApexPages.currentPage().getParameters().get('partnerDataField5');
+                            }
                         }
 
                     } else if (action != null && action.equalsIgnoreCase('confirm')){
@@ -193,7 +211,7 @@ public class PartnerBOCAToProspectController {
     }
 
     public PageReference sendApplication() {
-
+        PageReference nextPage;
         try {
             //validate the partner sales code
             if(partnerBOCAtoProspect.Partner_Sales_Code__c != partner.External_Sales_Code__c) throw new partnerBOCAToProspectException('Verification Code does not match our records.');
@@ -263,13 +281,11 @@ public class PartnerBOCAToProspectController {
 
                 delete temporaryContact;
 
-                PageReference redirect = Page.PartnerBOCAToProspect;
-                redirect.getParameters().put('action', 'confirm');
-                redirect.getParameters().put('appId', myAppRecord.Id);
-                redirect.getParameters().put('partner', partnerParameter);
-                redirect.setRedirect(true);
-
-                return redirect;
+                nextPage = Page.PartnerBOCAToProspect;
+                nextPage.getParameters().put('action', 'confirm');
+                nextPage.getParameters().put('appId', myAppRecord.Id);
+                nextPage.getParameters().put('partner', partnerParameter);
+                nextPage.setRedirect(true);
 
             }
 
@@ -279,14 +295,12 @@ public class PartnerBOCAToProspectController {
 
             String errorNumber = WEXDEVErrorReporting.reportExternalError(APPLICATION_NAME, ApexPages.currentPage().getUrl(), e);
 
-            PageReference errorPage = Page.ExternalApplicationError;
-            errorPage.getParameters().put('errorCode', errorNumber);
-
-            return errorPage;
+            nextPage = Page.ExternalApplicationError;
+            nextPage.getParameters().put('errorCode', errorNumber);
 
         }
 
-        return null;
+        return nextPage;
 
     }
 
@@ -343,6 +357,11 @@ public class PartnerBOCAToProspectController {
         public String RepCode;
         public String RepPhone;
         public String OtherId;
+        public String PartnerDataField1;
+        public String PartnerDataField2;
+        public String PartnerDataField3;
+        public String PartnerDataField4;
+        public String PartnerDataField5;
 
         //constructor stuffs
         public ParAppTheWrapper(Partner_BOCA_To_Prospect__c myPBTP, PartnerBOCAToProspectController thisController){
@@ -361,6 +380,14 @@ public class PartnerBOCAToProspectController {
             this.RepCode = myPBTP.Sales_Rep_Code__c;
             this.RepPhone = myPBTP.Sales_Rep_Phone__c;
             this.OtherId = myPBTP.Partner_Opportunity_ID__c;
+
+            // https://jira.devtools.wexinc.com/browse/PSOBACKLOG-247
+            this.PartnerDataField1 = myPBTP.Partner_Data_Field_1__c;
+            this.PartnerDataField2 = myPBTP.Partner_Data_Field_2__c;
+            this.PartnerDataField3 = myPBTP.Partner_Data_Field_3__c;
+            this.PartnerDataField4 = myPBTP.Partner_Data_Field_4__c;
+            this.PartnerDataField5 = myPBTP.Partner_Data_Field_5__c;
+
             setObjectType();
         }
 
