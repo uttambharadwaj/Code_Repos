@@ -214,7 +214,7 @@ public class PartnerBOCAToProspectController {
         PageReference nextPage;
         try {
             //validate the partner sales code
-            //if(partnerBOCAtoProspect.Partner_Sales_Code__c != partner.External_Sales_Code__c) throw new partnerBOCAToProspectException('Verification Code does not match our records.');
+            if(partnerBOCAtoProspect.Partner_Sales_Code__c != partner.External_Sales_Code__c) throw new partnerBOCAToProspectException('Verification Code does not match our records.');
 
             //IADJUDICAT-1186 turn that partner boca into a wrapper, since we will map it to one of three boca types. mapping is prettier that way. plus there are values we have to build
             ParAppTheWrapper myWrapper = new ParAppTheWrapper(partnerBOCAtoProspect, this);

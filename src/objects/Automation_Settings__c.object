@@ -61,6 +61,14 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Disable_BOEntity_Trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disable BOEntity Trigger</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Disable_BOProng_Trigger__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
