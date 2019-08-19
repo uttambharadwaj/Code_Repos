@@ -47,9 +47,9 @@ global without sharing class LeadConversion
 		
         Lead l = new Lead(RecordTypeId = leadRT, Company = 'test', Lastname = 'test', Firstname = 'test');
         insert l;
-        
+        test.startTest();
         String result = LeadConversion.convertLead(l.Id);
-        
+        test.stopTest();
         System.assert(result.startsWith(sObjectType.Opportunity.getKeyPrefix()));
         
         result = LeadConversion.convertLead(null);
