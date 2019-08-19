@@ -1,6 +1,11 @@
 @isTest
 private class EchoTriggerTest {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
 	static testMethod void EchoTriggerTester() {
     try{
           

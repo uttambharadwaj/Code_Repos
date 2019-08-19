@@ -177,8 +177,8 @@ public class CPBOCAToProspectController {
 
                 System.debug('### Opportunity ID: ' + opportunityId);
 
-                List<Opportunity> opportunities = [SELECT Id, Opportunity.AccountId, Campaign_Program__r.Program__r.Name, Campaign_Program__r.Program__c, name, OwnerId, Application_Signer_City__c,
-                        Application_Signer_Address__c, Application_Signer_First_Name__c, Application_Signer_Last_Name__c, Application_Signer_Email_Address__c,
+                List<Opportunity> opportunities = [SELECT Id, Opportunity.AccountId, Campaign_Program__r.Program__r.Name, Campaign_Program__r.Program__c, name, Account.Industry,
+                        OwnerId, Application_Signer_City__c, Application_Signer_Address__c, Application_Signer_First_Name__c, Application_Signer_Last_Name__c, Application_Signer_Email_Address__c,
                         Application_Signer_Phone__c, Application_Signer_Zip_Code__c, Application_Signer__c, Application_Signer_title__c, Billing_City__c,
                         Billing_Contact_Email__c, Billing_Contact_Fax__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c,
                         Billing_Contact_Middle_Name__c, Billing_Contact_Phone__c, Annual_Income__c, Annual_Gross_Revenue__c, Average_Monthly_Fueling__c, Account_Phone__c,
@@ -299,6 +299,7 @@ public class CPBOCAToProspectController {
 
                 creditApp.Taxpayer_ID__c = opportunity.Tax_Payer_ID__c;
                 creditApp.DUNS_Number__c = opportunity.DUNS_Number__c;
+                creditApp.Industry__c = opportunity.Account.Industry;
 
                 upsert creditApp;
 
