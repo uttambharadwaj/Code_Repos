@@ -64,7 +64,7 @@ public class TestClassDispatcher {
     }
 
     @isTest static void testPartnerBOCAToProspectControllerSend(){
-        //PartnerBOCAToProspectControllerTest.testPBPSend();
+        PartnerBOCAToProspectControllerTest.testPBPSend();
     }
 
     @isTest static void testPartnerBOCAToProspectControllerInit(){

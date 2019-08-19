@@ -2,3 +2,5 @@ ID,NAME,PREFERRED_LANGUAGE_INDICATOR__C,T_C__C,FORM_TEMPLATE__C,BRAND_SHORT_NAME
 a0Z6C000000b6OSUAY,Test,ENG,BOCA_TNC,,,,,,,,,,,,,Cycle 1,
 a0Z0g00000GvTi5EAF,Test 2,ENU,WEX_BOCA_TNC,OTRBOCA,OTRTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,false,false,,,#ccc,#fff,OTR,,a050g00000IeabsAAB
 a0ZV00000024XsTMAU,Test 3,ENU,WEX_BOCA_TNC,OTRBOCA,SOMETEST,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,false,false,,,#ccc,#fff,OTR,Cycle 2,
+a0Z0g00000GvTi5EAG,Test 4,ENU,WEX_BOCA_TNC,CPBOCA,CPTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,CP Test BOCA,false,false,,,#ccc,#fff,CPBOCA,,a050g00000IeabsAAB
+a0Z0g00000GvTi5EAH,Test 5,ENU,WEX_BOCA_TNC,WexBOCA,NATESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,NAF Test BOCA,false,false,,,#ccc,#fff,Fuel Card,,a050g00000IeabsAAB

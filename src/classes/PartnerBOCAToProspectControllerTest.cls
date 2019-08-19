@@ -3,6 +3,15 @@ public with sharing class PartnerBOCAToProspectControllerTest {
 
     public static void testPBPSend(){
 
+        //we will test with a fun partner
+        Id howdyPartner = [SELECT Id FROM Partner__c WHERE Partner_Key__c = 'howdy' LIMIT 1].Id;
+
+        //we will need programs
+        Program__c otrProgram = [SELECT Id FROM Program__c WHERE Partner__c = :howdyPartner AND BOCA_Type__c = 'OTR' LIMIT 1];
+        Program__c nafProgram = [SELECT Id FROM Program__c WHERE Partner__c = :howdyPartner AND BOCA_Type__c = 'Fuel Card' LIMIT 1];
+        Program__c cpProgram = [SELECT Id FROM Program__c WHERE Partner__c = :howdyPartner AND BOCA_Type__c = 'CPBOCA' LIMIT 1];
+        OnlineApplicationOffer__c otrOffer = [SELECT Id FROM OnlineApplicationOffer__c WHERE Program__c = :otrProgram.Id LIMIT 1];
+
         //set up the page
         PageReference pbpPage = Page.PartnerBOCAToProspect;
         pbpPage.getParameters().put('partner','howdy'); //only required parameter
@@ -19,15 +28,45 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         Test.setCurrentPage(pbpPage);
 
         //make the controller and then pretend to have filled something out
-        PartnerBOCAToProspectController pbp = new PartnerBOCAToProspectController();
-        pbp.partnerBOCAtoProspect.Partner_Opportunity_ID__c = 'not really an oppty id';
-        pbp.partnerBOCAtoProspect.Sales_Rep_Code__c = 'reps digits go here';
-        pbp.partnerBOCAtoProspect.Partner_Sales_Code__c = 'not howdy';
+        PartnerBOCAToProspectController pbpFail = new PartnerBOCAToProspectController();
+        pbpFail.init();
+        pbpFail.partnerBOCAtoProspect.Partner_Opportunity_ID__c = 'not really an oppty id';
+        pbpFail.partnerBOCAtoProspect.Sales_Rep_Code__c = 'reps digits go here';
+        pbpFail.partnerBOCAtoProspect.Partner_Sales_Code__c = 'not howdy'; //will fail bc partner sales code does not match
+
+        PartnerBOCAToProspectController pbpOTR = new PartnerBOCAToProspectController();
+        pbpOTR.init();
+        pbpOTR.partnerBOCAtoProspect.Partner_Opportunity_ID__c = 'not really an oppty id';
+        pbpOTR.partnerBOCAtoProspect.Sales_Rep_Code__c = 'reps digits go here';
+        pbpOTR.partnerBOCAtoProspect.Partner_Sales_Code__c = 'salskid';
+        pbpOTR.selectedProgram = otrProgram.Id;
+        pbpOTR.selectedOffer = otrOffer.Id;
+
+        PartnerBOCAToProspectController pbpNAF = new PartnerBOCAToProspectController();
+        pbpNAF.init();
+        pbpNAF.partnerBOCAtoProspect.Partner_Opportunity_ID__c = 'not really an oppty id';
+        pbpNAF.partnerBOCAtoProspect.Sales_Rep_Code__c = 'reps digits go here';
+        pbpNAF.partnerBOCAtoProspect.Partner_Sales_Code__c = 'salskid';
+        pbpOTR.selectedProgram = nafProgram.Id;
+
+        PartnerBOCAToProspectController pbpCP = new PartnerBOCAToProspectController();
+        pbpCP.init();
+        pbpCP.partnerBOCAtoProspect.Partner_Opportunity_ID__c = 'not really an oppty id';
+        pbpCP.partnerBOCAtoProspect.Sales_Rep_Code__c = 'reps digits go here';
+        pbpCP.partnerBOCAtoProspect.Partner_Sales_Code__c = 'salskid';
+        pbpOTR.selectedProgram = cpProgram.Id;
+
+        PageReference mypbpFail;
+        PageReference mypbpOTR;
+        PageReference mypbpNAF;
+        PageReference mypbpCP;
 
         Test.startTest();
-        //we need to send application with incorrect sales code: assert error
-
-        //we need to send application with correct sales code. three times (three objects) : assert things:
+        mypbpFail = pbpFail.sendApplication();
+        mypbpOTR = pbpOTR.sendApplication();
+        mypbpNAF = pbpNAF.sendApplication();
+        mypbpCP = pbpCP.sendApplication();
+        Test.stopTest();
 
         /*
             assert correct object was created
@@ -35,10 +74,6 @@ public with sharing class PartnerBOCAToProspectControllerTest {
             assert email sent
             assert redirect
          */
-
-        //test stuff
-        Test.stopTest();
-
         //assert stuff
     }
 

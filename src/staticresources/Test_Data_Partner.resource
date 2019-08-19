@@ -1,2 +1,2 @@
 ID,NAME,PARTNER_KEY__C,EXTERNAL_SALES_CODE__C
-a050g00000IeabsAAB,Howdy Dudey,howdy,1A
+a050g00000IeabsAAB,Howdy Dudey,howdy,salskid
