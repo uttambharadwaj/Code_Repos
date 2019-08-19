@@ -43,14 +43,6 @@ public class TestClassDispatcher {
         BOEntityTriggerTest.testBusinessProcesses();
     }
 
-    @isTest static void testPartnerBOCAToProspectControllerSend(){
-        PartnerBOCAToProspectControllerTest.testPBPSend();
-    }
-
-    @isTest static void testPartnerBOCAToProspectControllerInit(){
-        PartnerBOCAToProspectControllerTest.testInits();
-    }
-
     @isTest static void testAppRequestTriggerInserts() {
         AppRequestTriggerTest.testInsert();
     }
@@ -69,6 +61,22 @@ public class TestClassDispatcher {
 
     @isTest static void testBOProngTriggerValidations(){
         BOProngTriggerTest.testValidateNumberOfRecords();
+    }
+
+    @isTest static void testPartnerBOCAToProspectControllerSend(){
+        PartnerBOCAToProspectControllerTest.testPBPSend();
+    }
+
+    @isTest static void testPartnerBOCAToProspectControllerInit(){
+        PartnerBOCAToProspectControllerTest.testInits();
+    }
+
+    @isTest static void testCampaignGetCode() {
+        CampaignCodeGeneratorTest.test_getCode();
+    }
+
+    @isTest static void testCampaignCodeGenerate() {
+        CampaignCodeGeneratorTest.test_generateCode();
     }
 
 }
