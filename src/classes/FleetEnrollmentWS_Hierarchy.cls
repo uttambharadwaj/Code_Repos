@@ -2,8 +2,8 @@
  * Created by dgilbert on 9/20/2018.
  * Revision History:    IADJUDICAT-1199 order by lastmodifieddate
  *                      IADJUDICAT-1200 restrict what goes to Account Activation queue--adding App Channel
- *                      NAFONBOARD-56   16/AUG/2019     MFarrell    added logic for which case is to be created next after bots close hierarchy case
- *                                                                  took code from prod, as prod did not match what was in bitbucket.
+ *                      NAFONBOARD-56   16/AUG/2019     MFarrell    Added logic for which case is to be created next after bots close hierarchy case
+ *                                                                  Updated class with code from prod, as prod did not match what was in bitbucket.
  */
 @RestResource(urlMapping='/FleetEnrollmentWS/HierarchyQueue/*')
 global with sharing class FleetEnrollmentWS_Hierarchy {
@@ -236,13 +236,14 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                 }
 
                 upsert cases;
-/*
+
                 // this section commented out as part of NAFONBOARD-56
 
                 // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
                 // least need a Program Template Account associated for das bots.
                 if(cases[0].Fleet_Enrollment__c == null) {
 
+/*
                     FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
 
                     fleetEnrollment.Program__c = cases[0].Opportunity__r.Campaign_Program__r.Program__c;
@@ -262,19 +263,23 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     }
 
                     insert fleetEnrollment;
+*/
+
+                    //NAFONBOARD-56
+                    List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c =: cases[0].Opportunity__c LIMIT 1];
 
                     List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id =: cases[0].App_Request_This_Case__c LIMIT 1];
 
-                    if(applicationRequests.size() > 0) {
+                    if(applicationRequests.size() > 0 && fleetEnrollments.size() > 0) {
 
-                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollment.Id;
+                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollments[0].Id;
 
                         upsert applicationRequests[0];
 
                     }
 
                 }
-*/
+
                 // Re-fetch the case after insert
                 cases = [SELECT Id, Opportunity__r.Campaign_Program__r.Program__r.BOCA_Type__c, Opportunity__r.Name, Opportunity__r.Owner.Alias,
                             App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c,
