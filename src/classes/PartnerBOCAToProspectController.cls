@@ -2,7 +2,7 @@
 * PartnerBOCAToProspectController Class
 * Description: controller for PartnerBOCAToProspect page
 * Revision History: 5/24/2019   PSOBACKLOG-65 & IADJUDICAT-1186 build out for NAF and CP
-* TODO: in sendApplication, before try/catch, set a PageReference; use this pageReference in try/catch and return it after try/catch. test functionality. coverage should then be complete
+*
 *
 */
 public class PartnerBOCAToProspectController {
@@ -211,10 +211,10 @@ public class PartnerBOCAToProspectController {
     }
 
     public PageReference sendApplication() {
-
+        PageReference nextPage;
         try {
             //validate the partner sales code
-            if(partnerBOCAtoProspect.Partner_Sales_Code__c != partner.External_Sales_Code__c) throw new partnerBOCAToProspectException('Verification Code does not match our records.');
+            //if(partnerBOCAtoProspect.Partner_Sales_Code__c != partner.External_Sales_Code__c) throw new partnerBOCAToProspectException('Verification Code does not match our records.');
 
             //IADJUDICAT-1186 turn that partner boca into a wrapper, since we will map it to one of three boca types. mapping is prettier that way. plus there are values we have to build
             ParAppTheWrapper myWrapper = new ParAppTheWrapper(partnerBOCAtoProspect, this);
@@ -281,13 +281,11 @@ public class PartnerBOCAToProspectController {
 
                 delete temporaryContact;
 
-                PageReference redirect = Page.PartnerBOCAToProspect;
-                redirect.getParameters().put('action', 'confirm');
-                redirect.getParameters().put('appId', myAppRecord.Id);
-                redirect.getParameters().put('partner', partnerParameter);
-                redirect.setRedirect(true);
-
-                return redirect;
+                nextPage = Page.PartnerBOCAToProspect;
+                nextPage.getParameters().put('action', 'confirm');
+                nextPage.getParameters().put('appId', myAppRecord.Id);
+                nextPage.getParameters().put('partner', partnerParameter);
+                nextPage.setRedirect(true);
 
             }
 
@@ -297,14 +295,12 @@ public class PartnerBOCAToProspectController {
 
             String errorNumber = WEXDEVErrorReporting.reportExternalError(APPLICATION_NAME, ApexPages.currentPage().getUrl(), e);
 
-            PageReference errorPage = Page.ExternalApplicationError;
-            errorPage.getParameters().put('errorCode', errorNumber);
-
-            return errorPage;
+            nextPage = Page.ExternalApplicationError;
+            nextPage.getParameters().put('errorCode', errorNumber);
 
         }
 
-        return null;
+        return nextPage;
 
     }
 
