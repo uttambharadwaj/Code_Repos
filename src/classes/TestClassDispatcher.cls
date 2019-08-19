@@ -71,12 +71,4 @@ public class TestClassDispatcher {
         CampaignCodeGeneratorTest.test_generateCode();
     }
 
-    @isTest static void testPartnerBOCAToProspectControllerSend(){
-        PartnerBOCAToProspectControllerTest.testPBPSend();
-    }
-
-    @isTest static void testPartnerBOCAToProspectControllerInit(){
-        PartnerBOCAToProspectControllerTest.testInits();
-    }
-
 }
