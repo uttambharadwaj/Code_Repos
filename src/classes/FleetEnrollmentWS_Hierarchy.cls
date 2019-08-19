@@ -2,6 +2,8 @@
  * Created by dgilbert on 9/20/2018.
  * Revision History:    IADJUDICAT-1199 order by lastmodifieddate
  *                      IADJUDICAT-1200 restrict what goes to Account Activation queue--adding App Channel
+ *                      NAFONBOARD-56   16/AUG/2019     MFarrell    Added logic for which case is to be created next after bots close hierarchy case
+ *                                                                  Updated class with code from prod, as prod did not match what was in bitbucket.
  */
 @RestResource(urlMapping='/FleetEnrollmentWS/HierarchyQueue/*')
 global with sharing class FleetEnrollmentWS_Hierarchy {
@@ -106,13 +108,13 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
         }
     }
 
-    global static Implementation_Automation_Setting__mdt callQueueSettings {
+    global static Implementation_Automation_Setting__mdt manualQueueSettings {
         get {
 
-            List<Implementation_Automation_Setting__mdt> callQueueSettings = [SELECT Id, Queue_Name__c FROM Implementation_Automation_Setting__mdt WHERE DeveloperName = 'NA_Fleet_Call_Queue'];
+            List<Implementation_Automation_Setting__mdt> manualQueueSettings = [SELECT Id, Queue_Name__c FROM Implementation_Automation_Setting__mdt WHERE DeveloperName = 'NA_Fleet_Parent_Queue'];
 
-            if (callQueueSettings.size() > 0) {
-                return callQueueSettings[0];
+            if (manualQueueSettings.size() > 0) {
+                return manualQueueSettings[0];
             }
 
             return null;
@@ -120,10 +122,10 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
         }
     }
 
-    global static Id callQueueId {
+    global static Id manualQueueId {
         get {
 
-            List<QueueSobject> queueSobjects = [SELECT QueueId FROM QueueSobject WHERE Queue.DeveloperName = :callQueueSettings.Queue_Name__c];
+            List<QueueSobject> queueSobjects = [SELECT QueueId FROM QueueSobject WHERE Queue.DeveloperName = :manualQueueSettings.Queue_Name__c];
 
             if (queueSobjects.size() > 0) {
                 return queueSobjects[0].QueueId;
@@ -235,18 +237,12 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 upsert cases;
 
+                // this section commented out as part of NAFONBOARD-56
 
                 // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
                 // least need a Program Template Account associated for das bots.
                 if(cases[0].Fleet_Enrollment__c == null) {
 
-                    List<FleetEnrollment__c> fleetEnrollment = [SELECT Id, Application_Request__c, Opportunity__c, Program__c, Program_Template_Account__c FROM FleetEnrollment__c WHERE Opportunity__c =: cases[0].opportunity__c LIMIT 1];
-
-                    if (fleetEnrollment.size() > 0) {
-                        fleetEnrollment[0].Application_Request__c = cases[0].App_Request_This_Case__c;
-
-                        update fleetEnrollment[0];
-                    }
 /*
                     FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
 
@@ -269,11 +265,14 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     insert fleetEnrollment;
 */
 
+                    //NAFONBOARD-56 - If app req doesn't have a related fleet enrollment, find the one on the oppty, and relate it to the app req.
+                    List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c =: cases[0].Opportunity__c LIMIT 1];
+
                     List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id =: cases[0].App_Request_This_Case__c LIMIT 1];
 
-                    if(applicationRequests.size() > 0) {
+                    if(applicationRequests.size() > 0 && fleetEnrollments.size() > 0) {
 
-                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollment[0].Id;
+                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollments[0].Id;
 
                         upsert applicationRequests[0];
 
@@ -282,16 +281,52 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                 }
 
                 // Re-fetch the case after insert
-                cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c, Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c, Opportunity__r.Campaign_Program__r.Program__c FROM Case WHERE Id = :caseId LIMIT 1];
+                cases = [SELECT Id, Opportunity__r.Campaign_Program__r.Program__r.BOCA_Type__c, Opportunity__r.Name, Opportunity__r.Owner.Alias,
+                            App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c,
+                            Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c,
+                            Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c,
+                            Opportunity__r.Campaign_Program__r.Program__c, App_Request_This_Case__r.Application_Channel__c,
+                            App_Request_This_Case__r.Fleet_Enrollment__r.Submit_Fleet_Data_Form_Used__c, Opportunity__r.Owner.UserRole.Name
+                        FROM Case
+                        WHERE Id = :caseId
+                        LIMIT 1];
+
                 //1200&1201 add app channel criteria
                 if (cases[0].Fleet_Enrollment__c != null &&
                         cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c == false &&
                         cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Association__c == null &&
-                        (cases[0].App_Request_This_Case__r.Application_Channel__c).equalsIgnoreCase('BOCA') &&
-                        cases[0].Opportunity__r.SourceSystem__c != null &&
-                        (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') &&
-                        cases[0].App_Request_This_Case__r.Sales_Person__r.Alias != null &&
-                        (cases[0].App_Request_This_Case__r.Sales_Person__r.Alias).equalsIgnoreCase('sinte')) {
+                        cases[0].Opportunity__r.Campaign_Program__r.Program__r.BOCA_Type__c != null &&
+                        !(cases[0].Opportunity__r.Campaign_Program__r.Program__r.BOCA_Type__c).equalsIgnoreCase('Revolver Card') &&
+                        //NAFONBOARD-56
+                        (
+                            (
+                                (cases[0].App_Request_This_Case__r.Application_Channel__c).equalsIgnoreCase('BOCA') &&
+                                cases[0].Opportunity__r.SourceSystem__c != null &&
+                                (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') &&
+                                cases[0].Opportunity__r.Owner.Alias != null &&
+                                (cases[0].Opportunity__r.Owner.Alias).equalsIgnoreCase('sinte')
+                            )
+                        ||
+                            (
+                                cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Submit_Fleet_Data_Form_Used__c == true &&
+                                ( //TODO: store roles in custom metadata, was not able to get that functioning in time to meet deadline
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('System Admin') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Sales Data Admin') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Team Leader') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Sales Rep') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales 2') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales 3') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Lead Development Role') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Chevron IS Inbound') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Chevron IS Outbound') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Shell Inbound Sales') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Shell Outbound Sale')
+                                )
+                            )
+                        )
+
+                    ) {
 
                     Case implementationCallCase = new Case();
 
@@ -315,10 +350,9 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     Case implementationCallCase = new Case();
 
                     implementationCallCase.ParentId = cases[0].ParentId;
-                    implementationCallCase.Subject = 'Implementation Call';
-                    implementationCallCase.Type = 'Implementation Call';
+                    implementationCallCase.Subject = 'Implementation Parent Case - ' + cases[0].Opportunity__r.Name;
                     implementationCallCase.Status = 'New';
-                    implementationCallCase.OwnerId = callQueueId;
+                    implementationCallCase.OwnerId = manualQueueId;
                     implementationCallCase.AccountId = cases[0].AccountId;
                     implementationCallCase.Opportunity__c = cases[0].Opportunity__c;
                     implementationCallCase.App_Request_This_Case__c = cases[0].App_Request_This_Case__c;

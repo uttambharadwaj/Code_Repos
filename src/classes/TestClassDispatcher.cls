@@ -11,6 +11,14 @@ public class TestClassDispatcher {
         UtilityTestLoader.loadTestData();
     }
 
+    @isTest static void testPartnerBOCAToProspectControllerSend(){
+        PartnerBOCAToProspectControllerTest.testPBPSend();
+    }
+
+    @isTest static void testPartnerBOCAToProspectControllerInit(){
+        PartnerBOCAToProspectControllerTest.testInits();
+    }
+
     @isTest static void testOpportunityTriggerAfterInsert() {
         OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnInsert();
     }

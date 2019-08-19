@@ -1,6 +1,7 @@
 @isTest
 private class UOpportunityTest {
 
+
     @testSetup
     static void setup(){
         UtilityTestLoader.setAutomation(false);

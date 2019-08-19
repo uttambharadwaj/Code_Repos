@@ -24,7 +24,13 @@ public with sharing class UTestData
 	//#####################################################################
 	//Standard Object Test Methods
 	//#####################################################################
-		
+
+
+	@testSetup
+	static void setup(){
+		UtilityTestLoader.setAutomation(false);
+	}
+
  	public class CustomException extends Exception {}
 
 	//Used to give consistent assert messages used to track down the assert issues

@@ -2,7 +2,7 @@
 * PartnerBOCAToProspectController Class
 * Description: controller for PartnerBOCAToProspect page
 * Revision History: 5/24/2019   PSOBACKLOG-65 & IADJUDICAT-1186 build out for NAF and CP
-*
+* TODO: in sendApplication, before try/catch, set a PageReference; use this pageReference in try/catch and return it after try/catch. test functionality. coverage should then be complete
 *
 */
 public class PartnerBOCAToProspectController {
@@ -261,7 +261,7 @@ public class PartnerBOCAToProspectController {
 
                 insert temporaryContact;
 
-                Messaging.reserveSingleEmailCapacity(1);
+                if(!Test.isRunningTest()) Messaging.reserveSingleEmailCapacity(1);
                 Messaging.SingleEmailMessage bocaEmail = new Messaging.SingleEmailMessage();
 
                 bocaEmail.setTemplateId(emailTemplateId);
