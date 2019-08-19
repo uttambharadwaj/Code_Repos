@@ -265,7 +265,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     insert fleetEnrollment;
 */
 
-                    //NAFONBOARD-56
+                    //NAFONBOARD-56 - If app req doesn't have a related fleet enrollment, find the one on the oppty, and relate it to the app req.
                     List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c =: cases[0].Opportunity__c LIMIT 1];
 
                     List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id =: cases[0].App_Request_This_Case__c LIMIT 1];
