@@ -301,6 +301,15 @@ public class CPBOCAToProspectController {
                 creditApp.DUNS_Number__c = opportunity.DUNS_Number__c;
                 creditApp.Industry__c = opportunity.Account.Industry;
 
+                creditApp.Guarantor_First_Name__c = opportunity.Guarantor_Name__c;
+                creditApp.Guarantor_Last_Name__c = opportunity.Guarantor_Last_Name__c;
+                creditApp.Guarantor_Residential_Address__c = opportunity.Guarantor_address_line_1__c;
+                creditApp.Guarantor_Residential_City__c = opportunity.Guarantor_City__c;
+                creditApp.Guarantor_Country__c = 'US'; // hard coded country until CA address available on BOCAs
+                creditApp.Guarantor_State_Province__c = opportunity.Guarantor_State__c;
+                creditApp.Guarantor_Residential_Postal_Code__c = opportunity.Guarantor_Zip_code__c;
+                creditApp.Guarantor_Residential_Phone__c = opportunity.Guarantor_home_phone__c;
+
                 upsert creditApp;
 
                 System.debug('### Disable PG: ' + disablePG);
