@@ -1,8 +1,13 @@
 @isTest
 private class Test_echoSignAgreementTrigger 
 {
- 
-    public static testMethod void Test1() 
+
+	@testSetup
+	static void setup(){
+		UtilityTestLoader.setAutomation(false);
+	}
+
+	public static testMethod void Test1()
 	{  		
 		Opportunity o = new Opportunity();
   		o.stagename = '1) Qualified';

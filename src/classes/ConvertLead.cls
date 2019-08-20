@@ -197,6 +197,7 @@ global with sharing class  ConvertLead implements Process.Plugin {
  
     static testMethod void basicTestwith() {
 
+        UtilityTestLoader.setAutomation(false);
         // Create dummy lead
         
         List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
@@ -231,6 +232,7 @@ global with sharing class  ConvertLead implements Process.Plugin {
  
     static testMethod void basicTestWithoutConvertedStatus() {
 
+        UtilityTestLoader.setAutomation(false);
         // Create dummy lead
         List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
   		
@@ -259,6 +261,7 @@ global with sharing class  ConvertLead implements Process.Plugin {
   * This test is to test the convert Lead with the Account ID specified
   */
        static testMethod void basicTestwithAccount() {
+           UtilityTestLoader.setAutomation(false);
 
 		List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
   		
@@ -301,6 +304,7 @@ global with sharing class  ConvertLead implements Process.Plugin {
   * This test is to test the convert Lead with the Company matching more than one existing Account Names
   */
        static testMethod void basicTestwithAccounts() {
+           UtilityTestLoader.setAutomation(false);
 
 		List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
   		
@@ -344,6 +348,7 @@ global with sharing class  ConvertLead implements Process.Plugin {
   */    
     static testMethod void errorTest() {
 
+        UtilityTestLoader.setAutomation(false);
         // Create dummy lead
         List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
   		
@@ -384,6 +389,7 @@ global with sharing class  ConvertLead implements Process.Plugin {
   */ 
         static testMethod void describeTest() {
 
+            UtilityTestLoader.setAutomation(false);
                 ConvertLead aLeadPlugin = new ConvertLead();
                 Process.PluginDescribeResult result = aLeadPlugin.describe();
                 

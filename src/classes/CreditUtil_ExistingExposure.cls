@@ -1,13 +1,17 @@
 /**
  * Created by dgilbert on 5/14/2018.
  * Refactored and added additional match criteria by lhowland on 5/1/2019.
- */
+*/
 
 /** The purpose of this class is to potentially find duplicate applications and accounts based on the current application being submitted.
      */
 public with sharing class CreditUtil_ExistingExposure {
 
     private static List<Id> appIds = new List<Id>();
+    // The list of application Status that we want to include in what we consider as existing exposure
+    private static List<String> NAFLEET_APP_STATUSES = new List<String>{'Application Complete,Decisioned,Implementation Complete,Pending Implementation'};
+    private static List<String> OTR_APP_STATUSES = new List<String>{'Closed/Fraud','Decisioned-Rereview','Pending Setup','Pending Setup Data','Pending Setup-Generic','Setup Complete','Cards Produced','Cards Shipped','Approved','Prepay','Prepay Requested','Declined','Audit Complete'};
+    private static List<String> CP_APP_STATUSES = new List<String>{'Application Complete','Cards Produced', 'Cards Shipped','Implementation Complete','Pending Implementation','Pending Setup Data','Pending Setup-Generic','Setup Complete','Audit Complete','Saved - Rereview'};
 
     /** Things have gotten a little complicated.
     * First a list of potentially duplicate applications are gathered. The business name and address need to be at least a 75% match to the
@@ -361,25 +365,28 @@ public with sharing class CreditUtil_ExistingExposure {
 
         List<List<SObject>> existingExposureApps = new List<List<SObject>>();
 
-        String onlineAppRequestQuery = 'FIND { searchString } IN ALL FIELDS RETURNING ' +
+        String onlineAppRequestQuery = 'FIND { searchString }IN ALL FIELDS RETURNING ' +
                 'OnlineApplication__c( ' +
                 'Id, Name, CreatedDate, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c, ' +
                 'IP_Address__c, AO_Social_Security_Number__c, Phone_Number__c, DNB_Resolved_DUNS__c, ' +
                 'Status__c, Credit_Decision__c, Federal_Tax_ID__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Credit_Line_Approved__c, Date_Decisioned__c, Submitted_to_Credit__c ' +
-                'WHERE Id NOT IN :appIds' +
-                ' ORDER BY Id), ' +
+                'WHERE Id NOT IN :appIds ' +
+                'AND Status__c IN :OTR_APP_STATUSES ' +
+                'ORDER BY Id), ' +
                 'Application_Request__c( ' +
                 'Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c, ' +
                 'App_Signer_IP_Address__c, Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, ' +
                 'Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c ' +
-                'WHERE Id NOT IN :appIds' +
-                ' ORDER BY Id), ' +
+                'WHERE Id NOT IN :appIds ' +
+                'AND Status__c IN :NAFLEET_APP_STATUSES ' +
+                'ORDER BY Id), ' +
                 'CP_Application_Request__c( ' +
-                'Id, Name, CreatedDate, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c,  ' +
+                'Id, Name, CreatedDate, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c, ' +
                 'Application_Signer_IP_Address__c, Guarantor_Social_Security_Number__c, Business_Phone__c, DNB_Resolved_DUNS__c, ' +
                 'Status__c, Credit_Decision__c, Taxpayer_ID__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Credit_Line_Approved__c, Application_Decisioned_Date__c ' +
-                'WHERE Id NOT IN :appIds' +
-                ' ORDER BY Id)';
+                'WHERE Id NOT IN :appIds ' +
+                'AND Status__c IN :CP_APP_STATUSES ' +
+                'ORDER BY Id)';
 
         searchVariables = UtilityClass.removeReservedChars(searchVariables);
         System.debug('queryForAllLOBs search variables: ' + searchVariables);

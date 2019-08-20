@@ -4,6 +4,11 @@
 @isTest
 private class Test_totalCommissionsBatch {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void myUnitTest() {
         
         

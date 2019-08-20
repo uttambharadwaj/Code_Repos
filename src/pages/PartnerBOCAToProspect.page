@@ -248,6 +248,25 @@
                                                         </div>
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
+                                                                <label class="slds-form-element__label"
+                                                                       for="salesRepEmail">Email *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="salesRepEmail" value="{!partnerBOCAtoProspect.Sales_Rep_Email__c}" html-data-parsley-required="true" html-data-parsley-type="email" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="salesRepPhone">Phone
+                                                                    Number *</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input phone" id="salesRepPhone" value="{!partnerBOCAtoProspect.Sales_Rep_Phone__c}" html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
+                                                                                     html-data-parsley-error-message="Please enter a valid phone number." />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
                                                                 <label class="slds-form-element__label" for="partnerOpptyId">Partner Opportunity ID</label>
                                                                 <div class="slds-form-element__control">
                                                                     <apex:inputField styleClass="slds-input" id="partnerOpptyId" value="{!partnerBOCAtoProspect.Partner_Opportunity_ID__c}" />
@@ -266,20 +285,41 @@
                                                         </div>
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
-                                                                <label class="slds-form-element__label"
-                                                                       for="salesRepEmail">Email *</label>
+                                                                <label class="slds-form-element__label" for="partnerDataField1">Partner Data Field 1</label>
                                                                 <div class="slds-form-element__control">
-                                                                    <apex:inputField styleClass="slds-input" id="salesRepEmail" value="{!partnerBOCAtoProspect.Sales_Rep_Email__c}" html-data-parsley-required="true" html-data-parsley-type="email" />
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField1" value="{!partnerBOCAtoProspect.Partner_Data_Field_1__c}" />
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="slds-p-around_x-small">
                                                             <div class="slds-form-element">
-                                                                <label class="slds-form-element__label" for="salesRepPhone">Phone
-                                                                    Number *</label>
+                                                                <label class="slds-form-element__label" for="partnerDataField2">Partner Data Field 2</label>
                                                                 <div class="slds-form-element__control">
-                                                                    <apex:inputField styleClass="slds-input phone" id="salesRepPhone" value="{!partnerBOCAtoProspect.Sales_Rep_Phone__c}" html-data-parsley-required="true" html-data-parsley-pattern="^[0-9]{3}-[0-9]{3}-[0-9]{4}$"
-                                                                                     html-data-parsley-error-message="Please enter a valid phone number." />
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField2" value="{!partnerBOCAtoProspect.Partner_Data_Field_2__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerDataField3">Partner Data Field 3</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField3" value="{!partnerBOCAtoProspect.Partner_Data_Field_3__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerDataField4">Partner Data Field 4</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField4" value="{!partnerBOCAtoProspect.Partner_Data_Field_4__c}" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="slds-p-around_x-small">
+                                                            <div class="slds-form-element">
+                                                                <label class="slds-form-element__label" for="partnerDataField5">Partner Data Field 5</label>
+                                                                <div class="slds-form-element__control">
+                                                                    <apex:inputField styleClass="slds-input" id="partnerDataField5" value="{!partnerBOCAtoProspect.Partner_Data_Field_5__c}" />
                                                                 </div>
                                                             </div>
                                                         </div>

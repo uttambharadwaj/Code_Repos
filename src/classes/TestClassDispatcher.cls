@@ -46,7 +46,7 @@ public class TestClassDispatcher {
     @isTest static void testBOEntityTriggerAfterUpdate1() {
         BOEntityTriggerTest.testCheckOpptyChangesAfterUpdate();
     }
-    
+
     @isTest static void testBOEntityBusinessProcesses(){
         BOEntityTriggerTest.testBusinessProcesses();
     }
@@ -58,11 +58,11 @@ public class TestClassDispatcher {
     @isTest static void testAppRequestTriggerUpdates(){
         AppRequestTriggerTest.testUpdate();
     }
-    
+
     @isTest static void testZuoraQuoteInserts(){
         ZQUQuoteTriggerTest.testZQUQuoteOnInsert();
     }
-    
+
     @isTest static void testZuoraQuoteUpdates(){
         ZQUQuoteTriggerTest.testZQUQuoteOnUpdate();
     }
