@@ -147,16 +147,19 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         myPBP4 = pbp1.init(); //init without a correct partner. assert fail
 
         pbpPage.getParameters().put('partner', null);
+        pbp1.partner = null;
         myPBP5 = pbp1.init(); //init with a blank partner. assert null
+        List<SelectOption> myPrograms = pbp1.additionalPrograms;
 
         Test.stopTest();
 
         //assert stuffs
-        system.assertEquals('cow', myPBP1.First_Name__c); //pbp should update bc success
-        system.assertEquals('boi', myPBP1.Last_Name__c); //pbp should update bc success
-        system.assertEquals(null, myPBP2); //init should null
+        system.assertEquals('cow', myPBP1.First_Name__c, 'The first name was not set.'); //pbp should update bc success
+        system.assertEquals('boi', myPBP1.Last_Name__c, 'The last name was not set.'); //pbp should update bc success
+        system.assertEquals(null, myPBP2, 'The confirm parameter did not confirm as expected.'); //init should null
         system.assert(myPBP3.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out
         system.assert(myPBP4.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out
-        system.assertEquals(null, myPBP5); //pbp should null
+        system.assertEquals(null, myPBP5, 'Stuff happened even without a partner parameter.'); //pbp should null
+        system.assertEquals(null, myPrograms, 'It found programs even without a partner parameter.'); //without a partner, should have no programs
     }
 }

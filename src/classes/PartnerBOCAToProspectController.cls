@@ -3,7 +3,6 @@
 * Description: controller for PartnerBOCAToProspect page
 * Revision History: 5/24/2019   PSOBACKLOG-65 & IADJUDICAT-1186 build out for NAF and CP
 *
-*
 */
 public class PartnerBOCAToProspectController {
 
