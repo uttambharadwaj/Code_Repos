@@ -11,6 +11,14 @@ public class TestClassDispatcher {
         UtilityTestLoader.loadTestData();
     }
 
+    @isTest static void testPartnerBOCAToProspectControllerSend(){
+        PartnerBOCAToProspectControllerTest.testPBPSend();
+    }
+
+    @isTest static void testPartnerBOCAToProspectControllerInit(){
+        PartnerBOCAToProspectControllerTest.testInits();
+    }
+
     @isTest static void testOpportunityTriggerAfterInsert() {
         OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnInsert();
     }
@@ -38,11 +46,11 @@ public class TestClassDispatcher {
     @isTest static void testBOEntityTriggerAfterUpdate1() {
         BOEntityTriggerTest.testCheckOpptyChangesAfterUpdate();
     }
-    
+
     @isTest static void testBOEntityBusinessProcesses(){
         BOEntityTriggerTest.testBusinessProcesses();
     }
-    
+
     @isTest static void testAppRequestTriggerInserts() {
         AppRequestTriggerTest.testInsert();
     }
@@ -50,17 +58,25 @@ public class TestClassDispatcher {
     @isTest static void testAppRequestTriggerUpdates(){
         AppRequestTriggerTest.testUpdate();
     }
-    
+
     @isTest static void testZuoraQuoteInserts(){
         ZQUQuoteTriggerTest.testZQUQuoteOnInsert();
     }
-    
+
     @isTest static void testZuoraQuoteUpdates(){
         ZQUQuoteTriggerTest.testZQUQuoteOnUpdate();
     }
 
     @isTest static void testBOProngTriggerValidations(){
         BOProngTriggerTest.testValidateNumberOfRecords();
+    }
+
+    @isTest static void testCampaignGetCode() {
+        CampaignCodeGeneratorTest.test_getCode();
+    }
+
+    @isTest static void testCampaignCodeGenerate() {
+        CampaignCodeGeneratorTest.test_generateCode();
     }
 
 }

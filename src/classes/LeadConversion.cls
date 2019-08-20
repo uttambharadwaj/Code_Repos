@@ -42,13 +42,14 @@ global without sharing class LeadConversion
 	
 	private static testmethod void myUnitTest()
 	{
+		UtilityTestLoader.setAutomation(false);
 		Id leadRT = [select Id from RecordType where sObjectType = 'Lead' and DeveloperName IN ('AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC') limit 1].Id;
 		
         Lead l = new Lead(RecordTypeId = leadRT, Company = 'test', Lastname = 'test', Firstname = 'test');
         insert l;
-        
+        test.startTest();
         String result = LeadConversion.convertLead(l.Id);
-        
+        test.stopTest();
         System.assert(result.startsWith(sObjectType.Opportunity.getKeyPrefix()));
         
         result = LeadConversion.convertLead(null);
