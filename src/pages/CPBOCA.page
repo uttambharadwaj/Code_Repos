@@ -58,6 +58,9 @@
             $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
             $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
             $Label.Check_Sample = '{!JSENCODE($Resource.SampleCheck)}';
+            $Label.BOCA_Placeholder_Phone = '{!JSENCODE($Label.BOCA_Placeholder_Phone)}';
+            $Label.BOCA_Placeholder_Postal_Code = '{!JSENCODE($Label.BOCA_Placeholder_Postal_Code)}';
+
 
             window.boca_language_code = '{!languageCode}';
             window.card_program_name = '{!programParameter}';
@@ -280,12 +283,19 @@
                                             <apex:InputField styleClass="styled-input" html-tabindex="9" id="title" label="" value="{!creditApp.Title__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
+                                            <apex:actionRegion>
+                                                <label class="styled-label" for="preferredCurrency">Preferred Currency <span class="styled-label-required">*</span></label>
+                                                <apex:selectList html-data-parsley-required="true" value="{!selectedCurrency}" id="preferredCurrency" styleClass="styled-input required" tabIndex="10" multiSelect="false" size="1">
+                                                    <apex:selectOptions value="{!currencyOptions}"/>
+                                                    <apex:actionSupport event="onchange" rerender="projectedMonthlySpend" onComplete="pageLoadFunctions()"/>
+                                                </apex:selectList>
+                                            </apex:actionRegion>
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="4">
                                             <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" html-placeholder="$" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}">
-                                                <apex:actionSupport event="onchange" reRender="bankContact"/>
-                                            </apex:InputField>
+                                            <apex:InputField required="true" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" />
                                         </div>
                                     </div>
                                 </div>
@@ -306,6 +316,14 @@
                                 </div>
                                 <div class="twelve columns clearfix">
                                     <div class="six columns clearfix">
+                                        <div class="twelve columns clearfix form-field" data-row="5">
+                                            <apex:actionRegion >
+                                                <apex:outputLabel for="physicalCountry" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} "/>
+                                                <apex:InputField styleClass="styled-input" id="physicalCountry" html-tabindex="11" value="{!creditApp.Physical_Country__c}">
+                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode, stateRequired" oncomplete="pageLoadFunctions()"/>
+                                                </apex:InputField>
+                                            </apex:actionRegion>
+                                        </div>
                                         <div class="twelve columns clearfix form-field" data-row="0">
                                             <apex:outputLabel for="physicalAddressLine1" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_1__c.label} ">
                                                 <span class="styled-label-required">*</span>
@@ -324,7 +342,11 @@
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="3">
                                             <apex:outputLabel for="physicalState" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.State_Province__c.label} ">
-                                                <span class="styled-label-required">*</span>
+                                                <apex:outputPanel id="stateRequired">
+                                                    <apex:outputPanel rendered="{!OR(creditApp.Physical_Country__c=='US',creditApp.Physical_Country__c=='CA',creditApp.Physical_Country__c=='')}">
+                                                        <span class="styled-label-required">*</span>
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
                                             </apex:outputLabel>
                                             <apex:InputField required="true" styleClass="styled-input required" html-tabindex="15" id="physicalState" value="{!creditApp.Physical_State_Province__c}" />
                                         </div>
@@ -333,14 +355,6 @@
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
                                             <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Physical_Country__c == null || creditApp.Physical_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="16" id="physicalPostalCode" label="" value="{!creditApp.Physical_Postal_Code__c}" html-maxlength="10" />
-                                        </div>
-                                        <div class="twelve columns clearfix form-field" data-row="5">
-                                            <apex:actionRegion >
-                                                <apex:outputLabel for="physicalCountry" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} "/>
-                                                <apex:InputField html-disabled="true" styleClass="styled-input" id="physicalCountry" value="{!creditApp.Physical_Country__c}">
-                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode" oncomplete="pageLoadFunctions()"/>
-                                                </apex:InputField>
-                                            </apex:actionRegion>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="6">
                                             <apex:actionRegion >
@@ -692,7 +706,7 @@
                             <div class="twelve columns clearfix">
                                 <div class="clearfix">
                                     <input type="button" class="step-button ge-click-appsubmit" onClick="validate({!currentStep});" value="{!$Label.BOCA_Button_Submit}"/>
-                                    <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
+                                    <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}"/>
                                 </div>
                             </div>
                         </apex:form>

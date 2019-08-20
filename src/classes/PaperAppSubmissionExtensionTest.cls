@@ -7,6 +7,8 @@ public class PaperAppSubmissionExtensionTest {
     @testSetup
     static void setup() {
 
+        UtilityTestLoader.setAutomation(false);
+
         Campaign campaign = new Campaign();
 
         //create campaign test data
@@ -59,12 +61,25 @@ public class PaperAppSubmissionExtensionTest {
 
         insert account;
 
+        OnlineApplicationOffer__c offer = new OnlineApplicationOffer__c( Name = 'test offer',
+                Application_Title__c = 'test applications',
+                EchoSign_User_Email__c = 'test@gmail.com',
+                Terms_and_Conditions_Version__c = 'test',
+                Complete_Later_Text__c = 'test later',
+                Complete_Later_Email_Title__c = 'test',
+                Complete_Later_Email_From__c = 'Fleet One',
+                Complete_Later_Email__c = 'Thanks',
+                Program__c = program.Id);
+
+        insert offer;
+
         User integrationUser = [SELECT Id FROM User WHERE Alias = 'sinte'];
 
         System.runAs(integrationUser) {
 
             Opportunity opportunity = new Opportunity();
             opportunity.Name = 'Testopp';
+            opportunity.Offer__c = offer.Id;
             opportunity.CloseDate = date.newInstance(2099, 1, 1);
             opportunity.StageName = '1';
             opportunity.Fleet_Size__c = 10;
@@ -87,16 +102,16 @@ public class PaperAppSubmissionExtensionTest {
 
         Test.startTest();
 
-        List<Opportunity> opptys = [SELECT Id from Opportunity LIMIT 1];
+        List<Opportunity> opptys = [SELECT Id, Offer__c, Offer__r.Program__c from Opportunity LIMIT 1];
         Id optyId = opptys[0].Id;
-        System.debug('TEMP opty Id in test: ' + optyId);
-
-        PaperAppSubmissionExtension controller = new PaperAppSubmissionExtension();
 
         PageReference paperBOCA = Page.PaperAppButton;
-        paperBOCA.getParameters().put('Id', optyId);
+        paperBOCA.getParameters().put('id', optyId);
         Test.setCurrentPage(paperBOCA);
 
+        PaperAppSubmissionExtension controller = new PaperAppSubmissionExtension();
+        controller.selectedOffer = opptys[0].Offer__c;
+        controller.selectedProgram = opptys[0].Offer__r.Program__c;
         paperBOCA = controller.buildURL();
 
         String programParam = paperBOCA.getParameters().get('pgm');
