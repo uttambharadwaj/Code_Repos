@@ -8,7 +8,7 @@ public class CPBOCAController {
 
     public String tmSessionId { get; set; }
 
-    public String selectedCurrency {get;set;}
+    public String selectedCurrency { get; set; }
 
     public List<SelectOption> currencyOptions {
         get {
