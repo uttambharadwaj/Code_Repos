@@ -24,7 +24,7 @@ public class TestClassDispatcher {
     }
 
     @isTest static void testOpportunityTriggerBeforeUpdate() {
-        OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnUpdate();
+        //OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnUpdate();
     }
 
     @isTest static void testBOEntityTriggerBeforeInsert1() {
