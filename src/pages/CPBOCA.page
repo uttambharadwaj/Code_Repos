@@ -1,5 +1,7 @@
 <!--
-    Revision History: 5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
+    Revision History:   5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
+                        20/Aug/2019 MFarrell - LCR-97
+
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="CPBOCAController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
@@ -515,6 +517,21 @@
                                                     </apex:outputLabel>
                                                     <apex:InputField required="true" id="finInst" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Financial_Institution__c}" />
                                                 </div>
+                                                <!-- LCR-97 -->
+                                                <apex:outputPanel id="bankContact" rendered="{!isUpmarket == true}">
+                                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                                        <apex:outputLabel for="bankContactName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact__c.label} ">
+                                                            <span class="styled-label-required">*</span>
+                                                        </apex:outputLabel>
+                                                        <apex:InputField required="true" id="bankContactName" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Bank_Contact__c}" />
+                                                    </div>
+                                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                                        <apex:outputLabel for="bankContactPhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact_Phone__c.label} ">
+                                                            <span class="styled-label-required">*</span>
+                                                        </apex:outputLabel>
+                                                        <apex:InputField required="true" id="bankContactPhone" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Bank_Contact_Phone__c}" />
+                                                    </div>
+                                                </apex:outputPanel>
                                                 <div class="twelve columns clearfix form-field" data-row="1">
                                                     <apex:outputLabel for="checkingAccountNumber" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Checking_Account_Number__c.label} ">
                                                         <span class="styled-label-required">*</span>

@@ -8,7 +8,7 @@ public class CPBOCAController {
 
     public String tmSessionId { get; set; }
 
-    public String selectedCurrency {get;set;}
+    public String selectedCurrency { get; set; }
 
     public List<SelectOption> currencyOptions {
         get {
@@ -161,6 +161,17 @@ public class CPBOCAController {
         get {
             if (creditApp != null) {
                 if (null != creditApp.Payment_Type__c && creditApp.Payment_Type__c.equalsIgnoreCase('ET')) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public Boolean isUpmarket {
+        get {
+            if (creditApp != null) {
+                if (creditApp.Projected_Monthly_Spend__c >= 150000) {
                     return true;
                 }
             }
@@ -424,7 +435,7 @@ public class CPBOCAController {
                             Beneficial_Owner_Entity__c, Beneficial_Owner_Status__c, Application_Stage__c, Status__c, Credit_Decision__c, Credit_Line_Approved__c,
                             ThreatMetrix_Session_ID__c, ThreatMetrix_Result__c, DNB_SBRI_Score__c, DNB_Lookup_Hits__c, Number_Of_Existing_Applications__c,
                             Number_of_Existing_Accounts__c, Lexis_Nexis_Check__c, DNB_SBRI_Check__c, Existing_Exposure_Check__c, ThreatMetrix_Check__c, Legal_Structure__c,
-                            Credit_Line_Recommendation__c, Credit_Decision_Recommendation__c, First_Name__c, Last_Name__c
+                            Credit_Line_Recommendation__c, Credit_Decision_Recommendation__c, First_Name__c, Last_Name__c, Bank_Contact_Phone__c, Bank_Contact__c
                     FROM CP_Application_Request__c WHERE Id =: partialCustomer and Application_Stage__c = 'Application' and Status__c = 'Sent to Prospect' LIMIT 1 ];
 
                     System.debug('Got the credit app: ' + creditApp.Id);
