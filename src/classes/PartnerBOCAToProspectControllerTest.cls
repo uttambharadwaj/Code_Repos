@@ -30,6 +30,11 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         pbpPage.getParameters().put('repEmail','johnwayne@example.com');
         pbpPage.getParameters().put('repPhone','719-266-2837');
         pbpPage.getParameters().put('partner','howdy'); //only required parameter
+        pbpPage.getParameters().put('partnerDataField1','Test1');
+        pbpPage.getParameters().put('partnerDataField2','Test2');
+        pbpPage.getParameters().put('partnerDataField3','Test3');
+        pbpPage.getParameters().put('partnerDataField4','Test4');
+        pbpPage.getParameters().put('partnerDataField5','Test5');
         Test.setCurrentPage(pbpPage);
 
         //make the controller and then pretend to have filled something out
@@ -109,6 +114,11 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         pbpPage.getParameters().put('repLastName','Wayne');
         pbpPage.getParameters().put('repEmail','johnwayne@example.com');
         pbpPage.getParameters().put('repPhone','719-266-2837');
+        pbpPage.getParameters().put('partnerDataField1','Test1');
+        pbpPage.getParameters().put('partnerDataField2','Test2');
+        pbpPage.getParameters().put('partnerDataField3','Test3');
+        pbpPage.getParameters().put('partnerDataField4','Test4');
+        pbpPage.getParameters().put('partnerDataField5','Test5');
         Test.setCurrentPage(pbpPage);
 
         //make the controller so we can init

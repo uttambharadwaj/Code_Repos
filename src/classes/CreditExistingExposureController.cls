@@ -66,7 +66,7 @@ public with sharing class CreditExistingExposureController {
         }
         else if(((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('CP_Application_Request__c')) {
 
-            List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Name, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State__c, Physical_Postal_Code__c,
+            List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Name, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c,
                     Business_Phone__c, Application_Signer_IP_Address__c, DNB_Resolved_DUNS__c, Taxpayer_ID__c, Guarantor_Social_Security_Number__c
             FROM CP_Application_Request__c WHERE Id =: applicationId];
 
@@ -77,7 +77,7 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.legalBusinessName = cpApplicationRequests[0].Company_Legal_Name__c;
                 existingExposureRequest.addressLine1 = cpApplicationRequests[0].Physical_Address_Line_1__c;
                 existingExposureRequest.city = cpApplicationRequests[0].Physical_City__c;
-                existingExposureRequest.state = cpApplicationRequests[0].Physical_State__c;
+                existingExposureRequest.state = cpApplicationRequests[0].Physical_State_Province__c;
                 existingExposureRequest.postalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 existingExposureRequest.ipAddress = cpApplicationRequests[0].Application_Signer_IP_Address__c;
                 existingExposureRequest.phone = cpApplicationRequests[0].Business_Phone__c;
