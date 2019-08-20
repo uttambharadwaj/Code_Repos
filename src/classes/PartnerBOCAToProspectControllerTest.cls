@@ -30,6 +30,11 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         pbpPage.getParameters().put('repEmail','johnwayne@example.com');
         pbpPage.getParameters().put('repPhone','719-266-2837');
         pbpPage.getParameters().put('partner','howdy'); //only required parameter
+        pbpPage.getParameters().put('partnerDataField1','Test1');
+        pbpPage.getParameters().put('partnerDataField2','Test2');
+        pbpPage.getParameters().put('partnerDataField3','Test3');
+        pbpPage.getParameters().put('partnerDataField4','Test4');
+        pbpPage.getParameters().put('partnerDataField5','Test5');
         Test.setCurrentPage(pbpPage);
 
         //make the controller and then pretend to have filled something out
@@ -109,6 +114,11 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         pbpPage.getParameters().put('repLastName','Wayne');
         pbpPage.getParameters().put('repEmail','johnwayne@example.com');
         pbpPage.getParameters().put('repPhone','719-266-2837');
+        pbpPage.getParameters().put('partnerDataField1','Test1');
+        pbpPage.getParameters().put('partnerDataField2','Test2');
+        pbpPage.getParameters().put('partnerDataField3','Test3');
+        pbpPage.getParameters().put('partnerDataField4','Test4');
+        pbpPage.getParameters().put('partnerDataField5','Test5');
         Test.setCurrentPage(pbpPage);
 
         //make the controller so we can init
@@ -137,16 +147,19 @@ public with sharing class PartnerBOCAToProspectControllerTest {
         myPBP4 = pbp1.init(); //init without a correct partner. assert fail
 
         pbpPage.getParameters().put('partner', null);
+        pbp1.partner = null;
         myPBP5 = pbp1.init(); //init with a blank partner. assert null
+        List<SelectOption> myPrograms = pbp1.additionalPrograms;
 
         Test.stopTest();
 
         //assert stuffs
-        system.assertEquals('cow', myPBP1.First_Name__c); //pbp should update bc success
-        system.assertEquals('boi', myPBP1.Last_Name__c); //pbp should update bc success
-        system.assertEquals(null, myPBP2); //init should null
+        system.assertEquals('cow', myPBP1.First_Name__c, 'The first name was not set.'); //pbp should update bc success
+        system.assertEquals('boi', myPBP1.Last_Name__c, 'The last name was not set.'); //pbp should update bc success
+        system.assertEquals(null, myPBP2, 'The confirm parameter did not confirm as expected.'); //init should null
         system.assert(myPBP3.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out
         system.assert(myPBP4.getURL().containsIgnoreCase('ExternalApplicationError'), 'It did not error as expected.'); //should error out
-        system.assertEquals(null, myPBP5); //pbp should null
+        system.assertEquals(null, myPBP5, 'Stuff happened even without a partner parameter.'); //pbp should null
+        system.assertEquals(null, myPrograms, 'It found programs even without a partner parameter.'); //without a partner, should have no programs
     }
 }
