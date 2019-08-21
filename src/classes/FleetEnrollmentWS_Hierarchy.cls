@@ -2,8 +2,9 @@
  * Created by dgilbert on 9/20/2018.
  * Revision History:    IADJUDICAT-1199 order by lastmodifieddate
  *                      IADJUDICAT-1200 restrict what goes to Account Activation queue--adding App Channel
- *                      NAFONBOARD-56   16/AUG/2019     MFarrell    Added logic for which case is to be created next after bots close hierarchy case
+ *                      16/AUG/2019     NAFONBOARD-56   MFarrell    Added logic for which case is to be created next after bots close hierarchy case
  *                                                                  Updated class with code from prod, as prod did not match what was in bitbucket.
+*                       21/Aug/2019     NAFONBOARD-76   MFarrell    Removing app channel and source system from routing criteria
  */
 @RestResource(urlMapping='/FleetEnrollmentWS/HierarchyQueue/*')
 global with sharing class FleetEnrollmentWS_Hierarchy {
@@ -300,15 +301,17 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                         //NAFONBOARD-56
                         (
                             (
-                                (cases[0].App_Request_This_Case__r.Application_Channel__c).equalsIgnoreCase('BOCA') &&
-                                cases[0].Opportunity__r.SourceSystem__c != null &&
-                                (cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') &&
+                                //NAFONBOARD-76 removing these criteria as they are no longer needed.
+                                //(cases[0].App_Request_This_Case__r.Application_Channel__c).equalsIgnoreCase('BOCA') &&
+                                //cases[0].Opportunity__r.SourceSystem__c != null &&
+                                //(cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') &&
                                 cases[0].Opportunity__r.Owner.Alias != null &&
                                 (cases[0].Opportunity__r.Owner.Alias).equalsIgnoreCase('sinte')
                             )
                         ||
                             (
                                 cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Submit_Fleet_Data_Form_Used__c == true &&
+                                cases[0].Opportunity__r.Owner.UserRole.Name != null &&
                                 ( //TODO: store roles in custom metadata, was not able to get that functioning in time to meet deadline
                                     (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('System Admin') ||
                                     (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Sales Data Admin') ||

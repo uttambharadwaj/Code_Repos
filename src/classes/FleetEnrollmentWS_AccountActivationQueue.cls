@@ -1,6 +1,8 @@
 /**
  * Created by dgilbert on 9/20/2018.
  * Revision History: IADJUDICAT-1199 order by lastmodifieddate
+ *                      21/Aug/2019 MFarrell    NAFONBOARD-75   Added check to see if app request is missing Fleet Enrollment record.
+ *
  */
 // TODO - The robots are coming.
 @RestResource(urlMapping='/FleetEnrollmentWS/AccountActivationQueue/*')
@@ -207,7 +209,10 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
 
         try {
 
-            List<Case> cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, Account_Activation_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c FROM Case WHERE Id = :caseId LIMIT 1];
+            List<Case> cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, Account_Activation_Completed__c,
+                    Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c
+                    FROM Case
+                    WHERE Id = :caseId LIMIT 1];
 
             if (cases.size() > 0) {
                 cases[0].Account_Activation_Completed__c = true;
@@ -226,6 +231,28 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
                 }
 
                 upsert cases;
+
+                //NAFONBOARD-75
+                //if app request made it this far without a fleet enrollment attached, find the fleet enrollment and attach it.
+                if(cases[0].Fleet_Enrollment__c == null) {
+                    List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c = :cases[0].Opportunity__c LIMIT 1];
+
+                    List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id = :cases[0].App_Request_This_Case__c LIMIT 1];
+
+                    if (applicationRequests.size() > 0 && fleetEnrollments.size() > 0) {
+
+                        applicationRequests[0].Fleet_Enrollment__c = fleetEnrollments[0].Id;
+
+                        upsert applicationRequests[0];
+
+                    }
+                }
+
+                // Re-fetch the case after insert
+                cases = [SELECT Id, App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, Account_Activation_Completed__c,
+                        Subject, Description, ParentId, AccountId, App_Request_This_Case__c, Opportunity__c, Fleet_Enrollment__c
+                FROM Case
+                WHERE Id = :caseId LIMIT 1];
 
                 List<FleetEnrollment_Contact__c> fleetEnrollmentContacts = [SELECT Id FROM FleetEnrollment_Contact__c WHERE Fleet_Enrollment__c =: cases[0].Fleet_Enrollment__c and Fleet_Enrollment__c != null];
                 List<FleetEnrollment_Driver__c> fleetEnrollmentDrivers = [SELECT Id FROM FleetEnrollment_Driver__c WHERE Fleet_Enrollment__c =: cases[0].Fleet_Enrollment__c and Fleet_Enrollment__c != null];
