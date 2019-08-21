@@ -1,6 +1,7 @@
 @isTest
 private class UOpportunityTest {
 
+
     @testSetup
     static void setup(){
         UtilityTestLoader.setAutomation(false);
@@ -12,15 +13,15 @@ private class UOpportunityTest {
         SetUpAccountSettings__mdt cmdt = [ SELECT developerName, subject__c FROM SetUpAccountSettings__mdt LIMIT 1 ];
 
         Account acct = new Account(
-            name = 'Test Account'
+                name = 'Test Account'
         );
 
         insert acct;
 
         Campaign cmpn = new Campaign(
-            name = 'Test Campaign',
-            isActive = true,
-            coupon_code__c = cmdt.developerName
+                name = 'Test Campaign',
+                isActive = true,
+                coupon_code__c = cmdt.developerName
         );
 
         insert cmpn;
@@ -31,21 +32,21 @@ private class UOpportunityTest {
 
         Test.setMock( HttpCalloutMock.class, new GenericHttpCalloutMockImpl( response ) );
 
-        Test.startTest();
 
         Opportunity oppty = new Opportunity(
-            name = 'Test Opportunity',
-            recordTYpeId = Opportunity.sObjectType.getDescribe().getRecordTypeInfosByName().get('Fuel Card').getRecordTypeId(),
-            accountId = acct.id,
-            closeDate = Date.today(),
-            amount = 100,
-            stageName = '5) Signed',
-            campaignId = cmpn.id,
-            error_log__c = 'Success'
+                name = 'Test Opportunity',
+                recordTYpeId = Opportunity.sObjectType.getDescribe().getRecordTypeInfosByName().get('Fuel Card').getRecordTypeId(),
+                accountId = acct.id,
+                closeDate = Date.today(),
+                amount = 100,
+                stageName = '5) Signed',
+                campaignId = cmpn.id,
+                error_log__c = 'Success'
         );
 
         insert oppty;
 
+        Test.startTest();
         update oppty;
 
         Test.stopTest();

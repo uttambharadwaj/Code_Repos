@@ -13,6 +13,11 @@
 @isTest
 private class AccountAndCardsToGenesis_ExConTest {
 
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     @isTest static void accountFails() {
         // Set up test data
         Schema.DescribeSObjectResult accountSobject = Account.SObjectType.getDescribe();

@@ -1,7 +1,12 @@
 @isTest
 private class Test_PartnersHomePageComponents {
-	
-	@isTest static void testCommonReports() {
+
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
+    @isTest static void testCommonReports() {
 		
 
 		CommHomePageSettings__c ch = new CommHomePageSettings__c();

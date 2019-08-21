@@ -5,6 +5,8 @@ public class WE_ProjxOppUpTest {
         @testSetup
         static void dataSetup() {
 
+            UtilityTestLoader.setAutomation(false);
+
             // create User
             User u = WE_TestDataUtility.createStandardUser();
 
