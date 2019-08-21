@@ -359,6 +359,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String latePaymentCounter { get; set; }
         @AuraEnabled public CustomerDetailsWSUtilv2.address mailingAddress { get; set; }
         @AuraEnabled public Boolean masterCardCustomer { get; set; }
+        @AuraEnabled public DateTime memberSinceDt  { get; set; }
         @AuraEnabled public Decimal monthlyCardFee { get; set; }
         @AuraEnabled public String monthlyCardFeeDescription { get; set; }
         @AuraEnabled public Decimal nsfFee { get; set; }
