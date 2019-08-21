@@ -265,89 +265,88 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Carrier_ID_Number__c != null) jsonPayload.writeStringField('carrier_id', onlineApplication.Carrier_ID_Number__c);
         if(onlineApplication.Application_Manager_ID__c != null) jsonPayload.writeStringField('app_id', onlineApplication.Application_Manager_ID__c);
 
-        // Start of "cardOrder"
-        jsonPayload.writeFieldName('cardOrder');
-        jsonPayload.writeStartObject();
+        if(onlineApplication.Carrier_ID_Number__c == null) {
+            // Start of "cardOrder"
+            jsonPayload.writeFieldName('cardOrder');
+            jsonPayload.writeStartObject();
 
-        jsonPayload.writeNumberField('policyNumber', 1);
-        if(onlineApplicationOffer.Card_Order_Type__c != null) jsonPayload.writeNumberField('orderType', Integer.valueOf(onlineApplicationOffer.Card_Order_Type__c));
-        if(onlineApplicationOffer.Card_Style__c != null) jsonPayload.writeNumberField('cardStyle', Integer.valueOf(onlineApplicationOffer.Card_Style__c));
-        if(onlineApplicationProgram.Card_Press_ID__c != null) jsonPayload.writeNumberField('cardpressId', Integer.valueOf(onlineApplicationProgram.Card_Press_ID__c));
-        // Certain Programs send additional cards to the customer.
-        if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
-        if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.Cards_per_1_Requested__c));
-        // if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
-        //    jsonPayload.writeStringField('shipToCountry', 'USA');
-        // }
-        // if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
-        //     jsonPayload.writeStringField('shipToCountry', 'CAN');
-        // }
-        if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('US')) {
-            jsonPayload.writeStringField('shipToCountry', 'USA');
-        }
-        if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('CA')) {
-            jsonPayload.writeStringField('shipToCountry', 'CA');
-        }
-        if(onlineApplicationOffer.Card_Shipping_Method__c != null) jsonPayload.writeStringField('shippingMethod', onlineApplicationOffer.Card_Shipping_Method__c);
-        if(onlineApplication.Embossing_Line_1_Company_Name__c != null) jsonPayload.writeStringField('embossedName', onlineApplication.Embossing_Line_1_Company_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_First_Name__c != null) jsonPayload.writeStringField('shipToFirst', onlineApplication.Card_Shipping_First_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_City__c != null) jsonPayload.writeStringField('shipToCity', onlineApplication.Card_Shipping_City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipToZip', onlineApplication.Card_Shipping_Postal_Code__c);
-        if(onlineApplication.Card_Shipping_Address_Line_1__c != null) jsonPayload.writeStringField('shipToAddress1', onlineApplication.Card_Shipping_Address_Line_1__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_Address_Line_2__c != null) jsonPayload.writeStringField('shipToAddress2', onlineApplication.Card_Shipping_Address_Line_2__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_Last_Name__c != null) jsonPayload.writeStringField('shipToLast', onlineApplication.Card_Shipping_Last_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        jsonPayload.writeStringField('rushProcessing', 'Y');
-        if(onlineApplication.Card_Shipping_State__c != null) jsonPayload.writeStringField('shipToState', onlineApplication.Card_Shipping_State__c);
-        jsonPayload.writeStringField('cardCarrier', 'N');
+            jsonPayload.writeNumberField('policyNumber', 1);
+            if(onlineApplicationOffer.Card_Order_Type__c != null) jsonPayload.writeNumberField('orderType', Integer.valueOf(onlineApplicationOffer.Card_Order_Type__c));
+            if(onlineApplicationOffer.Card_Style__c != null) jsonPayload.writeNumberField('cardStyle', Integer.valueOf(onlineApplicationOffer.Card_Style__c));
+            if(onlineApplicationProgram.Card_Press_ID__c != null) jsonPayload.writeNumberField('cardpressId', Integer.valueOf(onlineApplicationProgram.Card_Press_ID__c));
+            // Certain Programs send additional cards to the customer.
+            if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
+            if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.Cards_per_1_Requested__c));
+            // if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
+            //    jsonPayload.writeStringField('shipToCountry', 'USA');
+            // }
+            // if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
+            //     jsonPayload.writeStringField('shipToCountry', 'CAN');
+            // }
+            if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('US')) {
+                jsonPayload.writeStringField('shipToCountry', 'USA');
+            }
+            if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('CA')) {
+                jsonPayload.writeStringField('shipToCountry', 'CA');
+            }
+            if(onlineApplicationOffer.Card_Shipping_Method__c != null) jsonPayload.writeStringField('shippingMethod', onlineApplicationOffer.Card_Shipping_Method__c);
+            if(onlineApplication.Embossing_Line_1_Company_Name__c != null) jsonPayload.writeStringField('embossedName', onlineApplication.Embossing_Line_1_Company_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_First_Name__c != null) jsonPayload.writeStringField('shipToFirst', onlineApplication.Card_Shipping_First_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_City__c != null) jsonPayload.writeStringField('shipToCity', onlineApplication.Card_Shipping_City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipToZip', onlineApplication.Card_Shipping_Postal_Code__c);
+            if(onlineApplication.Card_Shipping_Address_Line_1__c != null) jsonPayload.writeStringField('shipToAddress1', onlineApplication.Card_Shipping_Address_Line_1__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_Address_Line_2__c != null) jsonPayload.writeStringField('shipToAddress2', onlineApplication.Card_Shipping_Address_Line_2__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_Last_Name__c != null) jsonPayload.writeStringField('shipToLast', onlineApplication.Card_Shipping_Last_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            jsonPayload.writeStringField('rushProcessing', 'Y');
+            if(onlineApplication.Card_Shipping_State__c != null) jsonPayload.writeStringField('shipToState', onlineApplication.Card_Shipping_State__c);
+            jsonPayload.writeStringField('cardCarrier', 'N');
 
-        // Start of "cards"
-        Integer cardIndex = 1;
+            // Start of "cards"
+            Integer cardIndex = 1;
 
-        jsonPayload.writeFieldName('cards');
-        jsonPayload.writeStartArray();
+            jsonPayload.writeFieldName('cards');
+            jsonPayload.writeStartArray();
 
-        for(OnlineApplicationDriverSetup__c onlineApplicationDriverSetup : onlineApplicationDriverSetups) {
+            for(OnlineApplicationDriverSetup__c onlineApplicationDriverSetup : onlineApplicationDriverSetups) {
 
-            if(onlineApplicationDriverSetup.Driver_ID__c != null && onlineApplicationDriverSetup.Driver_Name__c != null) {
+                if(onlineApplicationDriverSetup.Driver_ID__c != null && onlineApplicationDriverSetup.Driver_Name__c != null) {
 
-                jsonPayload.writeStartObject();
+                    jsonPayload.writeStartObject();
 
-                jsonPayload.writeNumberField('idx', cardIndex);
-                jsonPayload.writeFieldName('cardProps');
-                jsonPayload.writeStartArray();
+                    jsonPayload.writeNumberField('idx', cardIndex);
+                    jsonPayload.writeFieldName('cardProps');
+                    jsonPayload.writeStartArray();
 
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('key', 'drid');
-                jsonPayload.writeStringField('value', onlineApplicationDriverSetup.Driver_ID__c);
-                jsonPayload.writeEndObject();
+                    jsonPayload.writeStartObject();
+                    jsonPayload.writeStringField('key', 'drid');
+                    jsonPayload.writeStringField('value', onlineApplicationDriverSetup.Driver_ID__c);
+                    jsonPayload.writeEndObject();
 
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('key', 'name');
-                jsonPayload.writeStringField('value', onlineApplicationDriverSetup.Driver_Name__c);
-                jsonPayload.writeEndObject();
+                    jsonPayload.writeStartObject();
+                    jsonPayload.writeStringField('key', 'name');
+                    jsonPayload.writeStringField('value', onlineApplicationDriverSetup.Driver_Name__c);
+                    jsonPayload.writeEndObject();
 
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('key', 'defCardStatus');
-                jsonPayload.writeStringField('value', 'A');
-                jsonPayload.writeEndObject();
+                    jsonPayload.writeStartObject();
+                    jsonPayload.writeStringField('key', 'defCardStatus');
+                    jsonPayload.writeStringField('value', 'A');
+                    jsonPayload.writeEndObject();
 
-                jsonPayload.writeEndArray();
+                    jsonPayload.writeEndArray();
 
-                jsonPayload.writeEndObject();
+                    jsonPayload.writeEndObject();
 
-                cardIndex++;
+                    cardIndex++;
+
+                }
 
             }
 
-        }
+            jsonPayload.writeEndArray();
 
-        jsonPayload.writeEndArray();
+            jsonPayload.writeEndObject();
 
-        jsonPayload.writeEndObject();
-
-        // Left here...
-
-        if(onlineApplication.Carrier_ID_Number__c == null) {
+            // Left here...
 
             // Start of "carrier"
             jsonPayload.writeFieldName('carrier');
