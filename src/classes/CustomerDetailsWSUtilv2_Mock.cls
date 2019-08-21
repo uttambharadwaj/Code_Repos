@@ -181,6 +181,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     responseElement.return_x.highRiskCureDt = (Datetime)JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
                     responseElement.return_x.lastPaymentDt = (Datetime)JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
                     responseElement.return_x.masterCardCustomer = false;
+                    responseElement.return_x.memberSinceDt = (Datetime)JSON.deserialize('"2000-12-31T00:00:00-05:00"', Datetime.class);
                     responseElement.return_x.monthlyCardFee = 4;
                     responseElement.return_x.outOfNetworkPerTxnFee = 1.0;
                     responseElement.return_x.outOfNetworkProgramOrAccountRte = '0.25';
