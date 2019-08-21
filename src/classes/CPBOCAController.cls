@@ -168,7 +168,7 @@ public class CPBOCAController {
         }
     }
 
-    public Boolean isUpmarket {
+    public Boolean isUpMarket {
         get {
             if (creditApp != null) {
                 if (creditApp.Projected_Monthly_Spend__c >= 150000) {
@@ -177,6 +177,10 @@ public class CPBOCAController {
             }
             return false;
         }
+    }
+
+    public void doNothing() {
+
     }
 
     // Program for the BOCA

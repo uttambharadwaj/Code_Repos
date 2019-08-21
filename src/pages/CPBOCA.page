@@ -214,6 +214,7 @@
                         <apex:form id="creditForm">
                             <input type="hidden" value="{!isPGRequired}" id="isPGRequired" />
                             <input type="hidden" value="{!isBankInfoNeeded}" id="isBankInfoNeeded" />
+                            <input type="hidden" value="{!isUpMarket}" id="isUpMarket" />
                             <input type="hidden" id="country" name="country" value="US" />
                             <!--<input type="hidden" value="{!IF(OR(languageCode__c == 'en_ca', languageCode = 'fr_ca'), 'CA', 'US')}" id="country" name="country" />-->
                             <apex:actionFunction name="submitApplication" action="{!submitApplication}" rerender="" />
@@ -294,10 +295,14 @@
                                             </apex:actionRegion>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
-                                            <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" />
+                                            <apex:actionRegion>
+                                                <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
+                                                    <span class="styled-label-required">*</span>
+                                                </apex:outputLabel>
+                                                <apex:InputField required="true" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" >
+                                                    <apex:actionSupport event="onchange" action="{!doNothing}" reRender="bankContact" />
+                                                </apex:InputField>
+                                            </apex:actionRegion>
                                         </div>
                                     </div>
                                 </div>
@@ -470,7 +475,7 @@
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
                                                 <apex:InputField required="true" styleClass="styled-input required" html-tabindex="25" id="billingCycle" value="{!creditApp.Billing_Cycle__c}" >
-                                                    <apex:actionSupport event="onchange" action="{!setPaymentDefaults}" rerender="paymentDueDate,paymentType,bankInformation" oncomplete="pageLoadFunctions()"/>
+                                                    <apex:actionSupport event="onchange" action="{!setPaymentDefaults}" rerender="paymentDueDate,paymentType,bankInformation,bankContact" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
@@ -484,12 +489,12 @@
                                     </div>
                                     <div class="six columns clearfix">
                                         <div class="twelve columns clearfix form-field" data-row="2">
-                                            <apex:actionRegion >
+                                            <apex:actionRegion>
                                                 <apex:outputLabel for="paymentType" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Payment_Type__c.label} ">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
                                                 <apex:InputField required="{!creditApp.Billing_Cycle__c != null}" styleClass="styled-input required" html-tabindex="27" id="paymentType" value="{!creditApp.Payment_Type__c}">
-                                                    <apex:actionSupport event="onchange" rerender="bankInformation" oncomplete="pageLoadFunctions()"/>
+                                                    <apex:actionSupport event="onchange" rerender="bankInformation,bankContact" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
@@ -518,19 +523,21 @@
                                                     <apex:InputField required="true" id="finInst" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Financial_Institution__c}" />
                                                 </div>
                                                 <!-- LCR-97 -->
-                                                <apex:outputPanel id="bankContact" rendered="{!isUpmarket == true}">
-                                                    <div class="twelve columns clearfix form-field" data-row="0">
-                                                        <apex:outputLabel for="bankContactName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact__c.label} ">
-                                                            <span class="styled-label-required">*</span>
-                                                        </apex:outputLabel>
-                                                        <apex:InputField required="true" id="bankContactName" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Bank_Contact__c}" />
-                                                    </div>
-                                                    <div class="twelve columns clearfix form-field" data-row="0">
-                                                        <apex:outputLabel for="bankContactPhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact_Phone__c.label} ">
-                                                            <span class="styled-label-required">*</span>
-                                                        </apex:outputLabel>
-                                                        <apex:InputField required="true" id="bankContactPhone" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Bank_Contact_Phone__c}" />
-                                                    </div>
+                                                <apex:outputPanel id="bankContact">
+                                                    <apex:outputPanel rendered="{!isUpMarket == true}">
+                                                        <div class="twelve columns clearfix form-field" sdata-row="0" >
+                                                            <apex:outputLabel for="bankContactName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact__c.label} ">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputLabel>
+                                                            <apex:InputField required="true" id="bankContactName" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Bank_Contact__c}" html-maxlength="80" />
+                                                        </div>
+                                                        <div class="twelve columns clearfix form-field" data-row="0">
+                                                            <apex:outputLabel for="bankContactPhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact_Phone__c.label} ">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputLabel>
+                                                            <apex:InputField required="true" id="bankContactPhone" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-class="phone" label="" html-tabindex="28" value="{!creditApp.Bank_Contact_Phone__c}" html-maxlength="20" />
+                                                        </div>
+                                                    </apex:outputPanel>
                                                 </apex:outputPanel>
                                                 <div class="twelve columns clearfix form-field" data-row="1">
                                                     <apex:outputLabel for="checkingAccountNumber" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Checking_Account_Number__c.label} ">
