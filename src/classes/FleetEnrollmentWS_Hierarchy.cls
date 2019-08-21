@@ -300,7 +300,8 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                         !(cases[0].Opportunity__r.Campaign_Program__r.Program__r.BOCA_Type__c).equalsIgnoreCase('Revolver Card') &&
                         //NAFONBOARD-56
                         (
-                            (//NAFONBOARD-76 removing these criteria as they are no longer needed.
+                            (
+                                //NAFONBOARD-76 removing these criteria as they are no longer needed.
                                 //(cases[0].App_Request_This_Case__r.Application_Channel__c).equalsIgnoreCase('BOCA') &&
                                 //cases[0].Opportunity__r.SourceSystem__c != null &&
                                 //(cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') &&
@@ -310,7 +311,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                         ||
                             (
                                 cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Submit_Fleet_Data_Form_Used__c == true &&
-                                        cases[0].Opportunity__r.Owner.UserRole.Name != null &&
+                                cases[0].Opportunity__r.Owner.UserRole.Name != null &&
                                 ( //TODO: store roles in custom metadata, was not able to get that functioning in time to meet deadline
                                     (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('System Admin') ||
                                     (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Sales Data Admin') ||
