@@ -3,7 +3,8 @@
 * Created by dgilbert on 9/26/2018.
 *
 * Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name to FleetEnrollmentInternal Page.
-* Revision History: 22/Jul/2019 CJackson    NAFONBOARD-5    Esso Finders Fee derived from sales checklist.
+*                   22/Jul/2019 CJackson    NAFONBOARD-5    Esso Finders Fee derived from sales checklist.
+*                   21/Aug/2019 MFarrell    NAFONBOARD-77   We want to be able to pass 0's, changing != 0 to != null.
 *
 */
 
@@ -448,16 +449,16 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Customer_Carrier_Number__c = fleetEnrollmentInformation.customerCarrierNumber;
             }
 
-
-            if(fleetEnrollmentInformation.feeWaiversSetupFeeAmount != 0) fleetEnrollment.Setup_Fee__c = fleetEnrollmentInformation.feeWaiversSetupFeeAmount;
-            if(fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount != 0) fleetEnrollment.Card_Replacement_Duration__c = fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount;
-            if(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount != 0) fleetEnrollment.Monthly_Card_Charges__c = fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount;
-            if(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount != 0) fleetEnrollment.Monthly_Accounting_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount;
+            //NAFONBOARD-77 we want to be able to pass 0's, changing != 0 to != null.
+            if(fleetEnrollmentInformation.feeWaiversSetupFeeAmount != null) fleetEnrollment.Setup_Fee__c = fleetEnrollmentInformation.feeWaiversSetupFeeAmount;
+            if(fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount != null) fleetEnrollment.Card_Replacement_Duration__c = fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount;
+            if(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount != null) fleetEnrollment.Monthly_Card_Charges__c = fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount;
+            if(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount != null) fleetEnrollment.Monthly_Accounting_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount;
             if(!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate)) fleetEnrollment.Monthly_Accounting_Fee_Waive_Date__c = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate);
             if(!String.isBlank(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate)) fleetEnrollment.Card_Replacement_Fee_Waive_Date__c  = Date.parse(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate);
             if(!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate)) fleetEnrollment.Monthly_Card_Charges_Waive_Date__c  = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate);
-            if(fleetEnrollmentInformation.feeWaiversPaperFeeAmount != 0) fleetEnrollment.Paper_Fee__c = fleetEnrollmentInformation.feeWaiversPaperFeeAmount;
-            if(fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount != 0) fleetEnrollment.Monthly_Activity_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount;
+            if(fleetEnrollmentInformation.feeWaiversPaperFeeAmount != null) fleetEnrollment.Paper_Fee__c = fleetEnrollmentInformation.feeWaiversPaperFeeAmount;
+            if(fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount != null) fleetEnrollment.Monthly_Activity_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount;
 
             if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault) {
                 fleetEnrollment.Billing_Cycle__c = fleetEnrollmentInformation.selectedBillingCycle;
