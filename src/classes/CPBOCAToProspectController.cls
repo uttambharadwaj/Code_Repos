@@ -390,16 +390,16 @@ public class CPBOCAToProspectController {
                 }
 
                 if(!Test.isRunningTest() && mail != null) {
-                    /*List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+                    List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
                     if (!results.get(0).isSuccess()) {
                         throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
                     }
-                    else {*/
+                    else {
                         redirect = Page.BOCAToProspect;
                         redirect.getParameters().put('bocaToProspectConfirm', 'true');
                         redirect.setRedirect(true);
                         return redirect;
-                    //}
+                    }
                 }
             }
             else {

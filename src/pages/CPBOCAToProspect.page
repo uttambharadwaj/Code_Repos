@@ -364,6 +364,7 @@
                 <apex:pageMessages id="pageMessages" escape="false"></apex:pageMessages>
                 <apex:outputPanel rendered="{!hasError == false}">
 
+                    <!--BEGIN ACCOUNT INFORMATION-->
                     <article class="slds-card">
                         <div class="slds-card__header slds-grid">
                             <header class="slds-media slds-media--center slds-has-flexi-truncate">
@@ -427,6 +428,7 @@
                             </div>
                         </div>
                     </article>
+                    <!---END ACCOUNT INFORMATION--->
                     <article class="slds-card">
                         <div class="slds-card__header slds-grid">
                             <header class="slds-media slds-media--center slds-has-flexi-truncate">
