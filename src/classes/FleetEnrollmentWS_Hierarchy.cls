@@ -266,7 +266,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     insert fleetEnrollment;
 */
 
-                    //NAFONBOARD-56
+                    //NAFONBOARD-56 - If app req doesn't have a related fleet enrollment, find the one on the oppty, and relate it to the app req.
                     List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c =: cases[0].Opportunity__c LIMIT 1];
 
                     List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id =: cases[0].App_Request_This_Case__c LIMIT 1];
@@ -283,14 +283,14 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 // Re-fetch the case after insert
                 cases = [SELECT Id, Opportunity__r.Campaign_Program__r.Program__r.BOCA_Type__c, Opportunity__r.Name, Opportunity__r.Owner.Alias,
-                        App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c,
-                        Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c,
-                        Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c,
-                        Opportunity__r.Campaign_Program__r.Program__c, App_Request_This_Case__r.Application_Channel__c,
-                        App_Request_This_Case__r.Fleet_Enrollment__r.Submit_Fleet_Data_Form_Used__c, Opportunity__r.Owner.UserRole.Name
-                FROM Case
-                WHERE Id = :caseId
-                LIMIT 1];
+                            App_Request_This_Case__r.Fleet_Enrollment__r.Association__c, App_Request_This_Case__r.Fleet_Enrollment__r.Direct_Debit__c,
+                            Program_Template_Account__c, Hierarchy_Setup_Completed__c, Subject, Description, ParentId, AccountId, App_Request_This_Case__c,
+                            Opportunity__c, Opportunity__r.SourceSystem__c, App_Request_This_Case__r.Sales_Person__r.Alias, Fleet_Enrollment__c,
+                            Opportunity__r.Campaign_Program__r.Program__c, App_Request_This_Case__r.Application_Channel__c,
+                            App_Request_This_Case__r.Fleet_Enrollment__r.Submit_Fleet_Data_Form_Used__c, Opportunity__r.Owner.UserRole.Name
+                        FROM Case
+                        WHERE Id = :caseId
+                        LIMIT 1];
 
                 //1200&1201 add app channel criteria
                 if (cases[0].Fleet_Enrollment__c != null &&
@@ -300,35 +300,35 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                         !(cases[0].Opportunity__r.Campaign_Program__r.Program__r.BOCA_Type__c).equalsIgnoreCase('Revolver Card') &&
                         //NAFONBOARD-56
                         (
-                                (
-                                        //NAFONBOARD-76 removing these criteria as they are no longer needed.
-                                        //(cases[0].App_Request_This_Case__r.Application_Channel__c).equalsIgnoreCase('BOCA') &&
-                                        //cases[0].Opportunity__r.SourceSystem__c != null &&
-                                        //(cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') &&
-                                        cases[0].Opportunity__r.Owner.Alias != null &&
-                                        (cases[0].Opportunity__r.Owner.Alias).equalsIgnoreCase('sinte')
+                            (//NAFONBOARD-76 removing these criteria as they are no longer needed.
+                                //(cases[0].App_Request_This_Case__r.Application_Channel__c).equalsIgnoreCase('BOCA') &&
+                                //cases[0].Opportunity__r.SourceSystem__c != null &&
+                                //(cases[0].Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA') &&
+                                cases[0].Opportunity__r.Owner.Alias != null &&
+                                (cases[0].Opportunity__r.Owner.Alias).equalsIgnoreCase('sinte')
+                            )
+                        ||
+                            (
+                                cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Submit_Fleet_Data_Form_Used__c == true &&
+                                        cases[0].Opportunity__r.Owner.UserRole.Name != null &&
+                                ( //TODO: store roles in custom metadata, was not able to get that functioning in time to meet deadline
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('System Admin') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Sales Data Admin') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Team Leader') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Sales Rep') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales 2') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales 3') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Lead Development Role') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Chevron IS Inbound') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Chevron IS Outbound') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Shell Inbound Sales') ||
+                                    (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Shell Outbound Sale')
                                 )
-                                ||
-                                (
-                                        cases[0].App_Request_This_Case__r.Fleet_Enrollment__r.Submit_Fleet_Data_Form_Used__c == true &&
-                                                ( //TODO: store roles in custom metadata, was not able to get that functioning in time to meet deadline
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('System Admin') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Sales Data Admin') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Team Leader') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('IS Sales Rep') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales 2') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Fleet Outbound Channel Sales 3') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Lead Development Role') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Chevron IS Inbound') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Chevron IS Outbound') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Shell Inbound Sales') ||
-                                                (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Shell Outbound Sale')
-                                                )
-                                )
+                            )
                         )
 
-                        ) {
+                    ) {
 
                     Case implementationCallCase = new Case();
 

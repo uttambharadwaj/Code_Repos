@@ -12,6 +12,10 @@ public class CPBOCAToProspectController {
         set;
     }
 
+    public Account myAccount {get;set;}
+
+    public Account myInitialAccount;
+
     public String bocaToProspectConfirm {
         get {
             if(bocaToProspectConfirm == null) {
@@ -177,8 +181,8 @@ public class CPBOCAToProspectController {
 
                 System.debug('### Opportunity ID: ' + opportunityId);
 
-                List<Opportunity> opportunities = [SELECT Id, Opportunity.AccountId, Campaign_Program__r.Program__r.Name, Campaign_Program__r.Program__c, name, OwnerId, Application_Signer_City__c,
-                        Application_Signer_Address__c, Application_Signer_First_Name__c, Application_Signer_Last_Name__c, Application_Signer_Email_Address__c,
+                List<Opportunity> opportunities = [SELECT Id, Opportunity.AccountId, Campaign_Program__r.Program__r.Name, Campaign_Program__r.Program__c, name, Account.Industry,
+                        OwnerId, Application_Signer_City__c, Application_Signer_Address__c, Application_Signer_First_Name__c, Application_Signer_Last_Name__c, Application_Signer_Email_Address__c,
                         Application_Signer_Phone__c, Application_Signer_Zip_Code__c, Application_Signer__c, Application_Signer_title__c, Billing_City__c,
                         Billing_Contact_Email__c, Billing_Contact_Fax__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c,
                         Billing_Contact_Middle_Name__c, Billing_Contact_Phone__c, Annual_Income__c, Annual_Gross_Revenue__c, Average_Monthly_Fueling__c, Account_Phone__c,
@@ -194,6 +198,14 @@ public class CPBOCAToProspectController {
                 if(opportunities.size() > 0) {
 
                     opportunity = opportunities[0];
+
+                    myAccount = [SELECT Id, Name, Industry, Customer_s_Primary_Location__c, Customer_s_Primary_Travel_Location__c, Other_Transaction_Currencies__c, Primary_Transaction_Currency__c FROM Account WHERE Id = :opportunity.AccountId LIMIT 1];
+                    myInitialAccount = new Account();
+                    myInitialAccount.Industry = myAccount.Industry;
+                    myInitialAccount.Customer_s_Primary_Location__c = myAccount.Customer_s_Primary_Location__c;
+                    myInitialAccount.Customer_s_Primary_Travel_Location__c = myAccount.Customer_s_Primary_Travel_Location__c;
+                    myInitialAccount.Other_Transaction_Currencies__c = myAccount.Other_Transaction_Currencies__c;
+                    myInitialAccount.Primary_Transaction_Currency__c = myAccount.Primary_Transaction_Currency__c;
 
                     // Get the partner programs for the multi
                     if(opportunity.Campaign_Program__c != null && opportunity.Campaign_Program__r.Program__c != null) {
@@ -264,6 +276,12 @@ public class CPBOCAToProspectController {
 
             if(contact != null && salesRep != null && opportunity != null) {
 
+                if(myInitialAccount.Industry != myAccount.Industry ||
+                        myInitialAccount.Customer_s_Primary_Location__c != myAccount.Customer_s_Primary_Location__c ||
+                        myInitialAccount.Customer_s_Primary_Travel_Location__c != myAccount.Customer_s_Primary_Travel_Location__c ||
+                        myInitialAccount.Other_Transaction_Currencies__c != myAccount.Other_Transaction_Currencies__c ||
+                        myInitialAccount.Primary_Transaction_Currency__c != myAccount.Primary_Transaction_Currency__c) update myAccount;
+
                 CP_Application_Request__c creditApp = new CP_Application_Request__c();
 
                 creditApp.Application_Stage__c = 'Application';
@@ -299,6 +317,16 @@ public class CPBOCAToProspectController {
 
                 creditApp.Taxpayer_ID__c = opportunity.Tax_Payer_ID__c;
                 creditApp.DUNS_Number__c = opportunity.DUNS_Number__c;
+                creditApp.Industry__c = myAccount.Industry;
+
+                creditApp.Guarantor_First_Name__c = opportunity.Guarantor_Name__c;
+                creditApp.Guarantor_Last_Name__c = opportunity.Guarantor_Last_Name__c;
+                creditApp.Guarantor_Residential_Address__c = opportunity.Guarantor_address_line_1__c;
+                creditApp.Guarantor_Residential_City__c = opportunity.Guarantor_City__c;
+                creditApp.Guarantor_Country__c = 'US'; // hard coded country until CA address available on BOCAs
+                creditApp.Guarantor_State_Province__c = opportunity.Guarantor_State__c;
+                creditApp.Guarantor_Residential_Postal_Code__c = opportunity.Guarantor_Zip_code__c;
+                creditApp.Guarantor_Residential_Phone__c = opportunity.Guarantor_home_phone__c;
 
                 upsert creditApp;
 
