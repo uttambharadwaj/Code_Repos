@@ -1,5 +1,14 @@
 public class CPBOCAToProspectController {
 
+    public String applicationId {
+        get {
+            if (applicationId == null)
+                return ApexPages.CurrentPage().getParameters().get('applicationId');
+            return applicationId;
+        }
+        set;
+    }
+
     public String bocaToProspectId {
         get {
             if(bocaToProspectId == null) {
@@ -67,6 +76,47 @@ public class CPBOCAToProspectController {
     // JSON representation of selected additional programs
     public String selectedPrograms { get; set; }
 
+    public List<SelectOption> availablePrograms {
+        get {
+
+            List<SelectOption> availablePrograms = new List<SelectOption>();
+            availablePrograms.add(new SelectOption('', '-- Choose One--'));
+
+            //IADJUDICAT-1085 restrict partners to only their programs
+            Id partnerId = null;
+            /* uncomment this block when campaign program is in use. it will limit the programs displayed for inside sales reps.
+            //get partner from the program from the oppty
+            Campaign_Program__c cp = [SELECT Program__r.Partner__c FROM Campaign_Program__c WHERE Id = :opportunity.Campaign_Program__c LIMIT 1];
+            if(cp != null)
+                partnerId = cp.Program__r.Partner__c;
+            */
+
+            //get user info
+            Id uid = UserInfo.getUserId();
+
+            //from user get contact then account then program then partner
+            User u = [SELECT  profile.UserLicense.name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
+            Boolean isPartner = (u.profile.UserLicense.name == 'Partner Community') ? true : false;
+            if(isPartner)
+                partnerId = u.Contact.Account.Program__r.Partner__c;
+
+            //assemble the query for possible programs.
+            String myQuery = 'SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = \'CPBOCA\' and Publish_BOCA__c = true';
+            if(isPartner || (!isPartner && partnerId != null))
+                myQuery += ' AND Partner__c = :partnerId';
+            myQuery += ' ORDER BY Name ASC';
+            //if we have inside sales rep, or we have a partner AND a partnerid, add programs to drop down. if partner user but no partnerid, don't show anything
+            if(!isPartner || (isPartner && partnerId != null)){
+                for (Program__c program : database.query(myQuery)) {
+                    availablePrograms.add(new SelectOption(program.Id, program.Name));
+                }
+            }
+
+            return availablePrograms;
+        }
+    }
+
+    /* CDJ 8/22/2019 Commented out and added above block for availablePrograms*/
     public Map<String, String> additionalPrograms {
         get {
             return null;
@@ -161,8 +211,21 @@ public class CPBOCAToProspectController {
             }
             else {
 
+                if (applicationId != null) {
+
+                    List<CP_Application_Request__c> CPApplications = [SELECT Id, Opportunity__c, Program__c FROM CP_Application_Request__c WHERE Id =: applicationId];
+
+                    if(CPApplications.size() > 0) {
+                        opportunityId = CPApplications[0].Opportunity__c;
+                        selectedPrograms = CPApplications[0].Program__c;
+                    }
+
+                    customMessage = 'Please click the link below to correct your application and re-submit.';
+
+                }
+
                 if(bocaToProspectId != null) {
-                    List<BOCA_To_Prospect__c> bocaToProspects = [SELECT Id, Opportunity__c, WeFormObject__r.Program__r.BOCA_To_Prospect_Template__c, Additional_Programs__c FROM BOCA_To_Prospect__c WHERE Id =: bocaToProspectId LIMIT 1];
+                    List<BOCA_To_Prospect__c> bocaToProspects = [SELECT Id, Opportunity__c, WeFormObject__r.Program__r.BOCA_To_Prospect_Template__c, Additional_Programs__c, WeFormObject__r.Online_Application__r.External_Application_URL__c FROM BOCA_To_Prospect__c WHERE Id =: bocaToProspectId LIMIT 1];
 
                     if(bocaToProspects.size() > 0) {
                         bocaToProspect = bocaToProspects[0];
@@ -264,6 +327,8 @@ public class CPBOCAToProspectController {
 
             if(contact != null && salesRep != null && opportunity != null) {
 
+                Program__c program = WexBrandingController.getProgram(selectedPrograms);
+
                 CP_Application_Request__c creditApp = new CP_Application_Request__c();
 
                 creditApp.Application_Stage__c = 'Application';
@@ -301,19 +366,22 @@ public class CPBOCAToProspectController {
                 creditApp.DUNS_Number__c = opportunity.DUNS_Number__c;
                 creditApp.Industry__c = opportunity.Account.Industry;
 
-                creditApp.Guarantor_First_Name__c = opportunity.Guarantor_Name__c;
-                creditApp.Guarantor_Last_Name__c = opportunity.Guarantor_Last_Name__c;
-                creditApp.Guarantor_Residential_Address__c = opportunity.Guarantor_address_line_1__c;
-                creditApp.Guarantor_Residential_City__c = opportunity.Guarantor_City__c;
-                creditApp.Guarantor_Country__c = 'US'; // hard coded country until CA address available on BOCAs
-                creditApp.Guarantor_State_Province__c = opportunity.Guarantor_State__c;
-                creditApp.Guarantor_Residential_Postal_Code__c = opportunity.Guarantor_Zip_code__c;
-                creditApp.Guarantor_Residential_Phone__c = opportunity.Guarantor_home_phone__c;
-
                 upsert creditApp;
 
                 System.debug('### Disable PG: ' + disablePG);
                 System.debug('### Always PG: ' + alwaysRequirePG);
+
+                // Generating a security key and URL - need the resulting ID first..
+                Datetime dt = Datetime.now();
+                Long l = dt.getTime();
+
+                String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+
+                creditApp.Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
+
+                creditApp.External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&customer=' + creditApp.Id + '&key=' + creditApp.Application_Key__c;
+
+                upsert creditApp;
 
                 // Insert into our joiner object to enable tracking/etc
                 bocaToProspect = new BOCA_To_Prospect__c();
