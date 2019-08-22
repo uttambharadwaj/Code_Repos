@@ -148,6 +148,13 @@ public class CPBOCAToProspectController {
         }
     }
 
+    public String bocaToProspectResendTemplateId {
+        get {
+            BOCA_To_Prospect_Settings__c bocaToProspectSettings = BOCA_To_Prospect_Settings__c.getOrgDefaults();
+            return bocaToProspectSettings.OTR_Resend_Template_ID__c;
+        }
+    }
+
     public Boolean hasError {
         get {
             if (ApexPages.hasMessages()) return true;
@@ -277,6 +284,7 @@ public class CPBOCAToProspectController {
                         if(programs.size() > 0) {
                             programId = programs[0].Id;
                             partnerId = programs[0].Partner__c;
+                            selectedPrograms = programs[0].Id;
                             if(programs[0].Always_Require_PG__c == true) {
                                 disablePGToggle = true;
                             }
@@ -505,6 +513,171 @@ public class CPBOCAToProspectController {
         }
 
         return redirect;
+
+    }
+
+    public PageReference resendBOCAToProspect() {
+
+        PageReference redirect = null;
+
+        try {
+
+            List<CP_Application_Request__c> cpApplications = [SELECT Id, Application_Key__c, External_Application_URL__c, Program__r.Brand_Short_Name__c, Program__r.Form_Template__c, Opportunity__c, Opportunity__r.Beneficial_Owner_Entity__c FROM CP_Application_Request__c WHERE Id = :applicationId LIMIT 1];
+
+            if (cpApplications.size() > 0) {
+
+                // Set an application key if it isn't there
+                if (cpApplications[0].Application_Key__c == null) {
+
+                    Datetime dt = Datetime.now();
+                    Long l = dt.getTime();
+
+                    String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+
+                    cpApplications[0].Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
+                }
+
+                // Set the application URL, for ease of picking up in the e-mail
+                //if (onlineApplications[0].External_Application_URL__c == null) {
+                cpApplications[0].External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + cpApplications[0].Program__r.Form_Template__c + '?pgm=' + cpApplications[0].Program__r.Brand_Short_Name__c + '&customer=' + cpApplications[0].Id + '&key=' + cpApplications[0].Application_Key__c;
+                //}
+
+                // Kick the stage back to "Application/App-Incomplete"
+                cpApplications[0].Application_Stage__c = 'Application';
+                cpApplications[0].Status__c = 'App-Incomplete';
+
+                upsert cpApplications[0];
+
+                if (cpApplications[0].Opportunity__r.Beneficial_Owner_Entity__c != null) {
+
+                    // Clone Beneficial Owner Entity
+                    system.debug(cpApplications[0]);
+                    Id newBeneficialOwnerRecord = BeneficialOwnerUtilities.deepCloneBORecord(cpApplications[0].Opportunity__r.Beneficial_Owner_Entity__c);
+
+                    if (newBeneficialOwnerRecord != null) {
+
+                        List<Beneficial_Owner_Entity__c> newBOEntity = [SELECT Id, Save_For_Later_Date__c, Save_For_Later_Key__c, Save_For_Later_URL__c FROM Beneficial_Owner_Entity__c WHERE Id = :newBeneficialOwnerRecord LIMIT 1];
+
+                        if (newBOEntity.size() > 0) {
+
+                            String cacheControl = String.valueOf(DateTime.Now().format('yyyyMMddHHmmssFFF'));
+
+                            newBOEntity[0].Save_For_Later_URL__c = 'https://' + Label.External_Instance_URL + '/appl/BOCertification?applicationId=' + cpApplications[0].Id + '&formKey=' + cpApplications[0].Application_Key__c + '&entityId=' + newBOEntity[0].Id + '&cacheControl=' + cacheControl;
+                            newBOEntity[0].Save_For_Later_Key__c = cpApplications[0].Application_Key__c;
+                            newBOEntity[0].Save_For_Later_Date__c = Date.Today();
+                            newBOEntity[0].Record_Status__c = 'Awaiting Customer';
+
+                            upsert(newBOEntity[0]);
+
+                        }
+
+                        // Can't forget the children
+                        BeneficialOwnerUtilities.cloneProngsToNew(cpApplications[0].Opportunity__r.Beneficial_Owner_Entity__c, newBeneficialOwnerRecord);
+
+                    }
+
+                }
+
+            }
+
+
+            bocaToProspect = new BOCA_To_Prospect__c();
+
+            bocaToProspect.Opportunity__c = cpApplications[0].Opportunity__c;
+            bocaToProspect.Online_Application__c = applicationId;
+            bocaToProspect.Contact__c = contact.Id;
+
+            bocaToProspect.Last_Reminder_Sent__c = Date.today();
+            bocaToProspect.Custom_Message__c = customMessage;
+
+            upsert bocaToProspect;
+
+            Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+            mail.setTemplateId(bocaToProspectResendTemplateId);
+            mail.setWhatId(bocaToProspect.Id);
+            mail.setTargetObjectId(contact.Id);
+            mail.SetSaveAsActivity(false);
+            mail.setReplyTo(salesRep.Email);
+            mail.setSenderDisplayName(salesRep.Name);
+
+            String[] additionalContacts = new List<String>();
+
+            if (!String.isEmpty(selectedAdditionalContacts)) {
+                additionalContacts = (List<String>) JSON.deserialize(selectedAdditionalContacts, List<String>.class);
+            }
+
+            if (!String.isEmpty(ccEmail)) {
+                String[] ccAddresses = ccEmail.split(',');
+                for (Integer i = 0; i < ccAddresses.size(); i++) {
+                    additionalContacts.add((String.valueOf(ccAddresses[i])).replaceAll('(\\s+)', ' '));
+                }
+            }
+
+            if (additionalContacts.size() > 0) {
+                mail.setCCAddresses(additionalContacts);
+            }
+
+            if (attachments != null && !String.isEmpty(attachments)) {
+
+                List<String> fileAttachments = (List<String>) JSON.deserialize(attachments, List<String>.class);
+
+                List<Messaging.Emailfileattachment> emailAttachments = new List<Messaging.Emailfileattachment>();
+
+                for (String fileId : fileAttachments) {
+                    Document document = [SELECT Id, Name, Body, Type, IsInternalUseOnly FROM Document WHERE Id = :fileId];
+
+                    if (document != null && document.IsInternalUseOnly == false) {
+                        Messaging.Emailfileattachment emailFileAttachment = new Messaging.Emailfileattachment();
+                        emailFileAttachment.setFileName(document.Name + '.' + document.Type);
+                        emailFileAttachment.setBody(document.Body);
+                        emailAttachments.add(emailFileAttachment);
+                    }
+
+                }
+
+                if (emailAttachments.size() > 0) {
+                    mail.setFileAttachments(emailAttachments);
+                }
+            }
+
+            List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}, !Test.isRunningTest());
+            if((!results.get(0).isSuccess() && !Test.isRunningTest()) || (Test.isRunningTest() && Limits.getEmailInvocations()<1)) throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
+
+            Task reminderSentTask = new Task();
+
+            reminderSentTask.WhatId = bocaToProspect.Opportunity__c;
+            reminderSentTask.OwnerId = UserInfo.getUserId();
+            reminderSentTask.Status = 'Completed';
+            reminderSentTask.Subject = 'BOCA Re-sent To Prospect';
+            reminderSentTask.ActivityDate = Date.today();
+            reminderSentTask.Type = 'Email';
+            reminderSentTask.Activity_Type__c = 'Email';
+
+            insert reminderSentTask;
+
+            bocaToProspect.Last_Reminder_Sent__c = Date.today();
+
+            upsert bocaToProspect;
+
+
+            redirect = Page.OTRBOCAToProspect;
+            redirect.getParameters().put('bocaToProspectConfirm', 'true');
+            redirect.setRedirect(true);
+            return redirect;
+
+
+        } catch (Exception e) {
+
+            errorCode = logError(e);
+
+            redirect = Page.OTRBOCAToProspect;
+            redirect.getParameters().put('bocaToProspectConfirm', 'false');
+            redirect.getParameters().put('errorCode', errorCode);
+            redirect.setRedirect(true);
+            return redirect;
+
+        }
 
     }
 
