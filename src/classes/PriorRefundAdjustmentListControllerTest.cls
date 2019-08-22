@@ -52,9 +52,11 @@ private class PriorRefundAdjustmentListControllerTest {
                     (RecordTypeId = refundAdjustmentRecordTypes[Math.mod(i,2)],
                             Account__c = account.Id,
                             CaseNumber__c = testCase.Id,
+                            Total_Late_Fee__c = i*150,
                             Amount_Waived__c = i*150,
                             Approval_Status__c = approvalStatus,
                             Approver_Name__c   = tempUser,
+                            Department__c  = 'CS',
                             Decision_Date__c   = decisionDate
                     );
             System.debug('### RefAdj '+i+': '+refadj);
