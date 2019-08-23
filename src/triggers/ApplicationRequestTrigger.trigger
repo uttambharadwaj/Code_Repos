@@ -2,7 +2,6 @@ trigger ApplicationRequestTrigger on Application_Request__c (before insert, befo
     
     List<Application_Request__c> records = trigger.isDelete ? trigger.old : trigger.new;
 
-
     if(trigger.isBefore)
     {
         if(trigger.isInsert)
