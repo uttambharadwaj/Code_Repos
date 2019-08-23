@@ -294,13 +294,13 @@
                                                 </apex:selectList>
                                             </apex:actionRegion>
                                         </div>
-                                        <div class="twelve columns clearfix form-field" data-row="4">
+                                        <div class="twelve columns clearfix form-field" data-row="1">
                                             <apex:actionRegion>
                                                 <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
                                                 <apex:InputField required="true" styleClass="styled-input required money" html-tabindex="10" id="projectedMonthlySpend" html-maxlength="100" value="{!creditApp.Projected_Monthly_Spend__c}" >
-                                                    <apex:actionSupport event="onchange" action="{!doNothing}" reRender="bankContact" />
+                                                    <apex:actionSupport event="onchange" reRender="bankContact, legalEntityFields" />
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
@@ -389,6 +389,44 @@
                                             </apex:outputLabel>
                                             <apex:InputField required="true" styleClass="styled-input required taxPayerId" html-tabindex="18" id="taxpayerID" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="10" />
                                         </div>
+                                        <apex:outputPanel id="legalEntityFields">
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <apex:actionRegion>
+                                                    <label class="styled-label" for="legalCountry">Legal Entity Country
+                                                        <apex:outputPanel rendered="{!isUpmarket}">
+                                                            <span class="styled-label-required">*</span>
+                                                        </apex:outputPanel>
+                                                    </label>
+                                                    <apex:selectList required="{!isUpMarket}" value="{!selectedCountry}" id="legalCountry" styleClass="styled-input {!IF(isUpMarket, 'required', '')}" tabIndex="19" multiSelect="false" size="1">
+                                                        <apex:selectOptions value="{!countryOptions}"/>
+                                                        <apex:actionSupport event="onchange" reRender="legalStateFields"/>
+                                                    </apex:selectList>
+                                                </apex:actionRegion>
+                                            </div>
+                                            <div class="twelve columns clearfix form-field" data-row="3">
+                                                <apex:outputPanel id="legalStateFields">
+                                                    <apex:outputPanel rendered="{!OR(selectedCountry=='US',selectedCountry=='CA')}">
+                                                        <label class="styled-label" for="legalState">Legal Entity State/Province
+                                                            <apex:outputPanel rendered="{!isUpmarket}">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputPanel>
+                                                        </label>
+                                                        <apex:selectList required="{!isUpMarket}" value="{!selectedState}" id="legalState" styleClass="styled-input  {!IF(isUpMarket, 'required', '')}" tabIndex="19" multiSelect="false" size="1">
+                                                            <apex:selectOptions value="{!stateOptions}"/>
+                                                            <apex:actionSupport event="onchange" rerender="legalState"/>
+                                                        </apex:selectList>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!AND(selectedCountry!='US',selectedCountry!='CA')}">
+                                                        <label class="styled-label" for="legalState2">Legal Entity State/Province
+                                                            <apex:outputPanel rendered="{!isUpmarket}">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputPanel>
+                                                        </label>
+                                                        <apex:InputText required="{!isUpMarket}" styleClass="styled-input {!IF(isUpMarket, 'required', '')}" tabindex="35" id="legalState2" value="{!selectedState}" />
+                                                    </apex:outputPanel>
+                                                </apex:outputPanel>
+                                            </div>
+                                        </apex:outputPanel>
                                     </div>
                                 </div>
                             </fieldset>
