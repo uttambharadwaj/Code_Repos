@@ -687,15 +687,15 @@ public class BOCertificationController {
                             boEntity.Save_For_Later_URL__c = 'https://' + Label.External_Instance_URL + '/appl/BOCertification?lang=' + languageCode + '&eappId=' + onlineApplication.Id + '&formKey=' + boEntity.Save_For_Later_Key__c + '&entityId=' + boEntity.Id + '&cacheControl=' + cacheControl;
                         }
 
-                        if(boEntity.Correspondence_Contact__c == null) {
+                        if(boEntity.Correspondence_Contact__c == null && onlineApplication.Contact_Name__c != null) {
 
                             String[] name = onlineApplication.Contact_Name__c.split(' ');
 
-                            Contact correspodenceContact = new Contact(FirstName = name[0], LastName = name[1], Email = onlineApplication.Email__c);
+                            Contact correspondenceContact = new Contact(FirstName = name[0], LastName = name[1], Email = onlineApplication.Email__c);
 
-                            insert correspodenceContact;
+                            insert correspondenceContact;
 
-                            boEntity.Correspondence_Contact__c = correspodenceContact.Id;
+                            boEntity.Correspondence_Contact__c = correspondenceContact.Id;
 
                         }
 
