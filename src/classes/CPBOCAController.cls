@@ -24,6 +24,40 @@ public class CPBOCAController {
         }
     }
 
+    //display countries for cp app request. they will be used at account level. wrong? pretty much. but let's be wrong all the way.
+    public List<SelectOption> countryOptions {
+        get {
+            List<SelectOption> myOptions = new List<SelectOption>();
+            Schema.DescribeFieldResult countries = CP_Application_Request__c.Physical_Country__c.getDescribe();
+            myOptions.add(new SelectOption('','-- Choose One --'));
+            for(Schema.PicklistEntry countryOption : countries.getPicklistValues()){
+                myOptions.add(new SelectOption(countryOption.getValue(), countryOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
+    //display states for cp app request. they will be used at account level. wrong? pretty much. but let's be wrong all the way.
+    public List<SelectOption> stateOptions {
+        get {
+            List<SelectOption> myOptions = new List<SelectOption>();
+            Set<String> provinces = new Set<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
+            Schema.DescribeFieldResult states = CP_Application_Request__c.Physical_State_Province__c.getDescribe();
+            myOptions.add(new SelectOption('','-- Choose One --'));
+            for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
+                if(selectedCountry == 'CA' && provinces.contains(stateOption.getValue()))
+                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
+                else if(selectedCountry == 'US' && !provinces.contains(stateOption.getValue()))
+                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
+    public String selectedCountry {get;set;}
+
+    public String selectedState {get;set;}
+
     public String userSessionId {
         get {
             return UserInfo.getSessionId();
@@ -351,7 +385,7 @@ public class CPBOCAController {
             return wexBOCAError;
         }
         else {
-
+            selectedCountry = 'US';
             Id programId = WexBrandingController.getProgramIdByBrandShortName(programParameter);
 
             if(programId != null) {
@@ -611,6 +645,9 @@ public class CPBOCAController {
 
             // Create/update the account
             Account account = new Account();
+
+            account.Legal_Entity_Country__c = selectedCountry;
+            account.Legal_Entity_State__c = selectedState;
 
             if(creditApp.Account__c != null) {
                 account.Id = creditApp.Account__c;
