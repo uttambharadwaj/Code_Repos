@@ -753,7 +753,12 @@ public class BOCertificationController {
 
                                 if(!saveForLater) {
 
-                                    boOwnerProng.Date_Of_Birth__c = Date.parse(boOwner.dateOfBirth);
+                                    // If the date is invalid(05/40/1999) Date.parse throws a TypeException
+                                    try {
+                                        boOwnerProng.Date_Of_Birth__c = boOwner.dateOfBirth != null ? Date.parse(boOwner.dateOfBirth) : null;
+                                    } catch (Exception e) {
+                                        throw new bocddException(String.valueOf(e));
+                                    }
                                     if(boOwner.socialSecurityNumber != null) { boOwnerProng.Social_Security_Number__c = boOwner.socialSecurityNumber; }
                                     if(boOwner.passportNumber != null) { boOwnerProng.Passport_Number_Other_Government_ID__c = boOwner.passportNumber; }
                                     if(boOwner.countryOfIssue != null && !(boOwner.countryOfIssue).equalsIgnoreCase('#')) { boOwnerProng.Country_Of_Issue__c = boOwner.countryOfIssue; }
@@ -791,8 +796,12 @@ public class BOCertificationController {
                         // per higher level direction
                         if(!saveForLater) {
 
-                            boControllerProng.Date_Of_Birth__c = Date.parse(boController.dateOfBirth);
-
+                            // If the date is invalid(05/40/1999) Date.parse throws a TypeException
+                            try {
+                                boControllerProng.Date_Of_Birth__c = boController.dateOfBirth != null ? Date.parse(boController.dateOfBirth) : null;
+                            } catch (Exception e) {
+                                throw new bocddException(String.valueOf(e));
+                            }
                             if(boController.socialSecurityNumber != null) { boControllerProng.Social_Security_Number__c = boController.socialSecurityNumber; }
                             if(boController.passportNumber != null) { boControllerProng.Passport_Number_Other_Government_ID__c = boController.passportNumber; }
                             if(boController.countryOfIssue != null && !(boController.countryOfIssue).equalsIgnoreCase('#')) { boControllerProng.Country_Of_Issue__c = boController.countryOfIssue; }
