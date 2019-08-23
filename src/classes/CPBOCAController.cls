@@ -24,11 +24,10 @@ public class CPBOCAController {
         }
     }
 
-    //display countries for cp app request. they will be used at account level. wrong? pretty much. but let's be wrong all the way.
     public List<SelectOption> countryOptions {
         get {
             List<SelectOption> myOptions = new List<SelectOption>();
-            Schema.DescribeFieldResult countries = CP_Application_Request__c.Physical_Country__c.getDescribe();
+            Schema.DescribeFieldResult countries = Account.Legal_Entity_Country__c.getDescribe();
             myOptions.add(new SelectOption('','-- Choose One --'));
             for(Schema.PicklistEntry countryOption : countries.getPicklistValues()){
                 myOptions.add(new SelectOption(countryOption.getValue(), countryOption.getValue()));
@@ -37,12 +36,11 @@ public class CPBOCAController {
         }
     }
 
-    //display states for cp app request. they will be used at account level. wrong? pretty much. but let's be wrong all the way.
     public List<SelectOption> stateOptions {
         get {
             List<SelectOption> myOptions = new List<SelectOption>();
             Set<String> provinces = new Set<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
-            Schema.DescribeFieldResult states = CP_Application_Request__c.Physical_State_Province__c.getDescribe();
+            Schema.DescribeFieldResult states = Account.Legal_Entity_State__c.getDescribe();
             myOptions.add(new SelectOption('','-- Choose One --'));
             for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
                 if(selectedCountry == 'CA' && provinces.contains(stateOption.getValue()))
