@@ -1,9 +1,10 @@
 /**
  * Created by dgilbert on 9/20/2018.
- * Revision History: IADJUDICAT-1199 order by lastmodifieddate
+ * Revision History:    IADJUDICAT-1199 order by lastmodifieddate
  *                      21/Aug/2019 MFarrell    NAFONBOARD-75   Added check to see if app request is missing Fleet Enrollment record.
  *
  */
+
 // TODO - The robots are coming.
 @RestResource(urlMapping='/FleetEnrollmentWS/AccountActivationQueue/*')
 global with sharing class FleetEnrollmentWS_AccountActivationQueue {
@@ -244,7 +245,6 @@ global with sharing class FleetEnrollmentWS_AccountActivationQueue {
                         applicationRequests[0].Fleet_Enrollment__c = fleetEnrollments[0].Id;
 
                         upsert applicationRequests[0];
-
                     }
                 }
 
