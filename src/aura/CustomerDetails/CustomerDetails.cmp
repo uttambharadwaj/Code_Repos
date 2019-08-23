@@ -327,7 +327,7 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
-                                    {!v.customerDetails.memberSinceDt}
+                                    <lightning:formattedDateTime value="{!v.customerDetails.memberSinceDt}" />
                                     <aura:if isTrue="{!v.customerDetails.memberSinceDt == null|| v.customerDetails.memberSinceDt == ' '}">N/A</aura:if>
                                 </div>
                             </div>
