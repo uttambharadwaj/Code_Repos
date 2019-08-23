@@ -427,40 +427,6 @@
                                                 </apex:outputPanel>
                                             </div>
                                         </apex:outputPanel>
-                                            <!--
-                                            <div class="twelve columns clearfix form-field" data-row="1">
-                                                <apex:actionRegion >
-                                                    <label class="styled-label" for="legalCountry">Legal Entity Country </label>
-                                                    <apex:outputPanel rendered="{!creditApp.Projected_Monthly_Spend__c>150000}">
-                                                        <span class="styled-label-required">*</span>
-                                                    </apex:outputPanel>
-                                                    <apex:selectList html-data-parsley-required="true" value="{!selectedCountry}" id="legalCountry" styleClass="styled-input required" tabIndex="19" multiSelect="false" size="1">
-                                                        <apex:selectOptions value="{!countryOptions}"/>
-                                                        <apex:actionSupport event="onchange" rerender="legalState"/>
-                                                    </apex:selectList>
-                                                </apex:actionRegion>
-                                            </div>
-                                            <div class="twelve columns clearfix form-field" data-row="3">
-                                                <apex:outputPanel rendered="{!OR(selectedCountry=='US',selectedCountry=='CA',selectedCountry=='')}">
-                                                    <label class="styled-label" for="legalState">Legal Entity State/Province
-                                                        <apex:outputPanel rendered="{!creditApp.Projected_Monthly_Spend__c>150000}">
-                                                            <span class="styled-label-required">*</span>
-                                                        </apex:outputPanel>
-                                                    </label>
-                                                    <apex:selectList html-data-parsley-required="true" value="{!selectedState}" id="legalState" styleClass="styled-input required" tabIndex="19" multiSelect="false" size="1">
-                                                        <apex:selectOptions value="{!countryOptions}"/>
-                                                        <apex:actionSupport event="onchange" rerender="legalState"/>
-                                                    </apex:selectList>
-                                                </apex:outputPanel>
-                                                <apex:outputPanel rendered="{!AND(selectedCountry!='US',selectedCountry!='CA',selectedCountry!='')}">
-                                                    <label class="styled-label" for="legalState2">Legal Entity State/Province
-                                                        <apex:outputPanel rendered="{!creditApp.Projected_Monthly_Spend__c>150000}">
-                                                            <span class="styled-label-required">*</span>
-                                                        </apex:outputPanel>
-                                                    </label>
-                                                    <apex:InputText required="true" styleClass="styled-input required date" tabindex="35" id="legalState2" value="{!selectedState}" />
-                                                </apex:outputPanel>
-                                            </div>-->
                                     </div>
                                 </div>
                             </fieldset>
