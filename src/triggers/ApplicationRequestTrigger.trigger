@@ -8,13 +8,56 @@ trigger ApplicationRequestTrigger on Application_Request__c (before insert, befo
         if(trigger.isInsert)
         {
             UApplicationRequest.communityUserStampData(records);
+            Map<Id, Id> arToOpptyMap = new Map<Id, Id>();
+
+            for(Application_Request__c ar : records) {
+                arToOpptyMap.put(ar.Opportunity__c, ar.Id);
+            }
+
+            List<FleetEnrollment__c> fleetEnrollments = [
+                    SELECT id, Opportunity__c, Opportunity_Number__c, Application_Request__c
+                    FROM FleetEnrollment__c
+                    WHERE Opportunity__c IN : arToOpptyMap.keySet()
+                    LIMIT 1
+            ];
 
             for(Application_Request__c applicationRequest : records) {
                 if (applicationRequest.Sales_Person__c == null) {
                     applicationRequest.Sales_Person__c = UserInfo.getUserId();
                 }
+                if (applicationRequest.Fleet_Enrollment__c == null && fleetEnrollments.size() > 0) {
+                    applicationRequest.Fleet_Enrollment__c = fleetEnrollments[0].Id;
+                }
+            }
+        }
+
+        if(trigger.isUpdate) {
+
+            Map<Id, Id> arToOpptyMap = new Map<Id, Id>();
+
+            for(Application_Request__c ar : records) {
+                arToOpptyMap.put(ar.Opportunity__c, ar.Id);
             }
 
+            List<FleetEnrollment__c> fleetEnrollments = [
+                    SELECT id, Opportunity__c, Opportunity_Number__c, Application_Request__c
+                    FROM FleetEnrollment__c
+                    WHERE Opportunity__c IN : arToOpptyMap.keySet()
+                    LIMIT 1
+            ];
+
+            for(Application_Request__c applicationRequest : records) {
+                if (fleetEnrollments.size() > 0 && applicationRequest.Fleet_Enrollment__c != null && fleetEnrollments[0].Opportunity_Number__c == null && applicationRequest.Siebel_Oppty__c != null) {
+                    fleetEnrollments[0].Opportunity_Number__c = applicationRequest.Siebel_Oppty__c;
+                }
+                if (fleetEnrollments.size() > 0 && fleetEnrollments[0].Application_Request__c == null) {
+                    fleetEnrollments[0].Application_Request__c = applicationRequest.Id;
+                }
+                if (fleetEnrollments.size() > 0 && fleetEnrollments[0].Debug_Application_Parameter__c == null) {
+                    fleetEnrollments[0].Debug_Application_Parameter__c = applicationRequest.Id;
+                }
+            }
+            upsert fleetEnrollments[0];
         }
     }
     else if(trigger.isAfter)

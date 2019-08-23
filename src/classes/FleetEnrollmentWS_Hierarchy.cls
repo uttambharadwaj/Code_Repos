@@ -4,7 +4,7 @@
  *                      IADJUDICAT-1200 restrict what goes to Account Activation queue--adding App Channel
  *                      16/AUG/2019     NAFONBOARD-56   MFarrell    Added logic for which case is to be created next after bots close hierarchy case
  *                                                                  Updated class with code from prod, as prod did not match what was in bitbucket.
-*                       21/Aug/2019     NAFONBOARD-76   MFarrell    Removing app channel and source system from routing criteria
+ *                      21/Aug/2019     NAFONBOARD-76   MFarrell    Removing app channel and source system from routing criteria
  */
 @RestResource(urlMapping='/FleetEnrollmentWS/HierarchyQueue/*')
 global with sharing class FleetEnrollmentWS_Hierarchy {
@@ -238,12 +238,11 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 upsert cases;
 
-                // this section commented out as part of NAFONBOARD-56
+                // this section commented out as part of NAFONBOARD-80
 
                 // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
                 // least need a Program Template Account associated for das bots.
                 if(cases[0].Fleet_Enrollment__c == null) {
-
 /*
                     FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
 
@@ -264,19 +263,39 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                     }
 
                     insert fleetEnrollment;
+
 */
-
                     //NAFONBOARD-56 - If app req doesn't have a related fleet enrollment, find the one on the oppty, and relate it to the app req.
-                    List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c =: cases[0].Opportunity__c LIMIT 1];
+                    List<FleetEnrollment__c> fleetEnrollments = [
+                            SELECT Id, Opportunity__c, Opportunity_Number__c, Application_Request__c, Debug_Application_Parameter__c, Debug_Opportunity_Parameter__c
+                            FROM FleetEnrollment__c
+                            WHERE Opportunity__c =: cases[0].Opportunity__c
+                            LIMIT 1
+                    ];
 
-                    List<Application_Request__c> applicationRequests = [SELECT Id, Fleet_Enrollment__c FROM Application_Request__c WHERE Id =: cases[0].App_Request_This_Case__c LIMIT 1];
+                    List<Application_Request__c> applicationRequests = [
+                            SELECT Id, Fleet_Enrollment__c, Siebel_Oppty__c
+                            FROM Application_Request__c
+                            WHERE Id =: cases[0].App_Request_This_Case__c
+                            LIMIT 1
+                    ];
 
-                    if(applicationRequests.size() > 0 && fleetEnrollments.size() > 0) {
+                    if(applicationRequests.size() > 0 && fleetEnrollments.size() > 0 && applicationRequests[0].Fleet_Enrollment__c == null) {
 
                         applicationRequests[0].Fleet_Enrollment__c = fleetEnrollments[0].Id;
 
                         upsert applicationRequests[0];
 
+/*
+// NAFONBOARD-80 this is now done in the ApplicationRequestTrigger, so it will get handled when we upsert the app request above.
+                        if (fleetEnrollments[0].Application_Request__c == null) {
+                            fleetEnrollments[0].Application_Request__c = applicationRequests[0].Id;
+                            if (fleetEnrollments[0].Debug_Application_Parameter__c == null) fleetEnrollments[0].Debug_Application_Parameter__c = applicationRequests[0].Id;
+                            if (applicationRequests[0].Siebel_Oppty__c != null) fleetEnrollments[0].Opportunity_Number__c = applicationRequests[0].Siebel_Oppty__c;
+
+                            upsert fleetEnrollments[0];
+                        }
+*/
                     }
 
                 }
