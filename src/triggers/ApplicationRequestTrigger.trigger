@@ -56,7 +56,13 @@ trigger ApplicationRequestTrigger on Application_Request__c (before insert, befo
                     fleetEnrollments[0].Debug_Application_Parameter__c = applicationRequest.Id;
                 }
             }
-            upsert fleetEnrollments[0];
+            if (fleetEnrollments.size() > 0) {
+                try {
+                    upsert fleetEnrollments[0];
+                } catch (DmlException e) {
+                    System.debug('Error Inserting FleetEnrollment Records: ' + e.getMessage());
+                }
+            }
         }
     }
     else if(trigger.isAfter)
