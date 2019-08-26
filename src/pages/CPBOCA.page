@@ -1,6 +1,8 @@
 <!--
     Revision History:   5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
-                        20/Aug/2019 MFarrell - LCR-97
+                        20/Aug/2019 MFarrell    LCR-97
+                        26/AUG/2019 MFarrell    LCR-109 added required to checking account information fields.
+
 
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="CPBOCAController" action="{!init}" language="{!languageCode}">
@@ -286,7 +288,7 @@
                                             <apex:InputField styleClass="styled-input" html-tabindex="9" id="title" label="" value="{!creditApp.Title__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
-                                            <apex:actionRegion>
+                                            <apex:actionRegion >
                                                 <label class="styled-label" for="preferredCurrency">Preferred Currency <span class="styled-label-required">*</span></label>
                                                 <apex:selectList html-data-parsley-required="true" value="{!selectedCurrency}" id="preferredCurrency" styleClass="styled-input required" tabIndex="10" multiSelect="false" size="1">
                                                     <apex:selectOptions value="{!currencyOptions}"/>
@@ -295,7 +297,7 @@
                                             </apex:actionRegion>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:actionRegion>
+                                            <apex:actionRegion >
                                                 <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
@@ -391,7 +393,7 @@
                                         </div>
                                         <apex:outputPanel id="legalEntityFields">
                                             <div class="twelve columns clearfix form-field" data-row="1">
-                                                <apex:actionRegion>
+                                                <apex:actionRegion >
                                                     <label class="styled-label" for="legalCountry">Legal Entity Country
                                                         <apex:outputPanel rendered="{!isUpmarket}">
                                                             <span class="styled-label-required">*</span>
@@ -527,7 +529,7 @@
                                     </div>
                                     <div class="six columns clearfix">
                                         <div class="twelve columns clearfix form-field" data-row="2">
-                                            <apex:actionRegion>
+                                            <apex:actionRegion >
                                                 <apex:outputLabel for="paymentType" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Payment_Type__c.label} ">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
@@ -582,7 +584,7 @@
                                                         <span class="styled-label-required">*</span>
                                                         <i class="fa fa-question-circle help-circle check-image" required="true" aria-hidden="true" title="Sample Check Image"></i>
                                                     </apex:outputLabel>
-                                                    <apex:InputField styleClass="styled-input numbers" required="true" id="checkingAccountNumber" html-tabindex="29" label="" value="{!creditApp.Checking_Account_Number__c}" html-maxlength="14"/>
+                                                    <apex:InputField styleClass="styled-input required numbers" required="true" id="checkingAccountNumber" html-tabindex="29" label="" value="{!creditApp.Checking_Account_Number__c}" html-maxlength="14"/>
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="3">
                                                     <label for="verifyCheckingAccountNumber" class="styled-label">
@@ -590,7 +592,7 @@
                                                         <span class="styled-label-required">*</span>
                                                         <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i>
                                                     </label>
-                                                    <input type="text" class="styled-input numbers" id="verifyCheckingAccountNumber" required="true" tabindex="30" maxlength="14" />
+                                                    <input type="text" class="styled-input required numbers" id="verifyCheckingAccountNumber" required="true" tabindex="30" maxlength="14" />
                                                 </div>
                                             </div>
                                             <div class="six columns clearfix">
