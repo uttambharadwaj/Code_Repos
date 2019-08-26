@@ -36,11 +36,12 @@ public class CPBOCAController {
         }
     }
 
+    //have to get states from a different field on a different object bc our legal state needs to be free text for sales reps bc why do things right when we can do them fast
     public List<SelectOption> stateOptions {
         get {
             List<SelectOption> myOptions = new List<SelectOption>();
             Set<String> provinces = new Set<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
-            Schema.DescribeFieldResult states = Account.Legal_Entity_State__c.getDescribe();
+            Schema.DescribeFieldResult states = OnlineApplication__c.State__c.getDescribe();
             myOptions.add(new SelectOption('','-- Choose One --'));
             for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
                 if(selectedCountry == 'CA' && provinces.contains(stateOption.getValue()))
