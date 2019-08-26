@@ -1,7 +1,7 @@
 public class FleetEnrollmentUtils {
 
     public static Map<Id, List<SObject>> listToFleetIdMap(List<SObject> fleetDataRecords) {
-        System.debug(fleetDataRecords.getSObjectType());
+
         Map<Id, List<SObject>> fleetDataMap = new Map<Id, List<SObject>>();
         for (SObject fleetDataRecord : fleetDataRecords) {
 
