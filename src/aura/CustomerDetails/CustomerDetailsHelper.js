@@ -654,7 +654,6 @@
         //Create the data table data
                 var i = 1;
         		var dataTableTxns = transactionMap.map(authlog => {
-                    console.log("### authlog="+JSON.stringify(authlog));
 				var siteInfo = authlog.merchantSite + String.fromCharCode(10);
 				if (authlog.merchantAddress != null) {
 					if (authlog.merchantAddress.orgName != null) siteInfo = siteInfo + authlog.merchantAddress.orgName + String.fromCharCode(10);
@@ -1155,7 +1154,6 @@
             caseId : component.get("v.caseId"),
             contactRowId : component.get("v.contactRowId"),
             customerDetailsJSON : JSON.stringify(component.get("v.customerDetails")),
-            customerContactsJSON : JSON.stringify(component.get("v.customerContacts"))
         });
         
         action.setCallback(this, function(response) {

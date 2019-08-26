@@ -3,18 +3,39 @@ public class CustomerDetailsTest {
 
     @testSetup
     static void setupTestData() {
+        Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+        CustomerDetailsWSUtilv2.customerDetails details = CustomerDetailsController.getCustomerDetails('9100000000000','',null);
+        String jsonAccountString = JSON.serialize(details);
+        System.debug('### jsonAccountString='+jsonAccountString);
+        List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts('9100000000000');
 
-        UtilityTestLoader.setAutomation(false);
-    
+        String contactJsonString = JSON.serialize(contacts);
+        System.debug('### contactJsonString='+contactJsonString);
+
+        //todo: restore this
+        //UtilityTestLoader.setAutomation(false);
+
         Id genericProgramId;
+        Id genericPartnerId;
+        String programRowId;
 
-        List<Program__c> genericPrograms = [SELECT Id FROM Program__c WHERE RecordType.Name = 'CPS Program' AND Brand_Short_Name__c = 'WEXGeneric'];
+        List<Program__c> genericPrograms = [SELECT Id, Siebel_Program_Row_Id__c, Partner__c FROM Program__c WHERE RecordType.Name = 'CPS Program' AND Brand_Short_Name__c = 'WEXGeneric'];
 
         System.debug('### Generic Program search returns '+genericPrograms);
         if (genericPrograms.size() > 0) {
             genericProgramId = genericPrograms[0].Id;
+            genericPartnerId = genericPrograms[0].Partner__c;
+            programRowId = genericPrograms[0].Siebel_Program_Row_Id__c;
         }
         else {
+            programRowId =  '1-12N3P99';
+
+            Partner__c partner = new Partner__c();
+            partner.Name = 'WEXGeneric';
+
+            insert partner;
+
+            genericPartnerId = partner.Id;
 
             Program__c program = new Program__c();
 
@@ -32,20 +53,75 @@ public class CustomerDetailsTest {
             program.Analytics_Head_Block__c = '';
             program.Brand_Color_1__c = '#ccc';
             program.Brand_Color_2__c = '#fff';
+            program.Siebel_Program_Row_Id__c = programRowId;
+            program.Partner__c = genericPartnerId;
 
             insert program;
             genericProgramId = program.Id;
         }
 
+        if (genericPartnerId == null) {
+            Partner__c partner = new Partner__c();
+            partner.Name = 'WEXGeneric';
+
+            insert partner;
+
+            genericPartnerId = partner.Id;
+
+            Program__c program = [SELECT Id, Partner__c FROM Program__c WHERE Id =: genericProgramId];
+            program.Partner__c = genericPartnerId;
+            update program;
+
+        }
+
+        Id accountId =  CustomerDetailsController.upsertAccount(jsonAccountString);
+
+        Id contactId = CustomerDetailsController.upsertContacts(accountId,contactJsonString,'1-1ZZZZZ');
+
+        /* todo reinstate this
+        IntegrationRecord__c integrationRecord = new IntegrationRecord__c();
+        integrationRecord.Contact__c = contactId;
+        integrationRecord.Account__c = accountId;
+        integrationRecord.Contact_Row_Id__c = '1-1ZZZZZ';
+        insert integrationRecord;
+
+         */
+
+        System.debug('Upserted contactId = '+contactId);
+
+        Priority_Level_Servicing_Rule__c servicingRule = new Priority_Level_Servicing_Rule__c();
+        servicingRule.Partner__c = genericPartnerId;
+        servicingRule.Name = 'Generic A';
+        servicingRule.Priority_Level__c = 'A';
+        servicingRule.Priority_Level_Rule_Detail__c = 'This customer is awesome!';
+
+        insert servicingRule;
+
         Customer_Dashboard_Services__c CDS = Customer_Dashboard_Services__c.getOrgDefaults();
         System.debug('### CDS Before='+CDS);
 
-        CDS.Customer_Details_EndPoint__c = 'https://webservices-dev.wexinc.com/SalesforceCustomerServices/ProxyServices/CustomerDetails';
+        CDS.Customer_Details_EndPoint__c = 'https://nafleet-dit.wexapi.com/salesforcecustomerservices';
         CDS.API_Timeout_ms__c = 120000;
         CDS.Generic_Program__c = genericProgramId;
         System.debug('### CDS After='+CDS);
 
         upsert CDS;
+
+        Support_Operation_Settings__c sos =Support_Operation_Settings__c.getOrgDefaults();
+        sos.ContactDriverRecordID__c = '0030g00002CDTUz';
+        upsert sos;
+
+        List<Contact> genericContacts = [SELECT Id FROM Contact  WHERE RecordType.Name = 'Service Operations'  AND WEX_Contact_ID__c = '0030g00002CDTUz'];
+        if (genericContacts.size() == 0) {
+            Contact dummyDriverContact = new Contact();
+            dummyDriverContact.FirstName = 'Generic';
+            dummyDriverContact.LastName = 'Driver';
+            dummyDriverContact.Phone = '207-773-8171';
+            dummyDriverContact.AccountId = accountId;
+            dummyDriverContact.WEX_Contact_ID__c = '0030g00002CDTUz';
+            insert dummyDriverContact;
+    }
+
     }
 
     public static String getGenerateTimeStamp()
@@ -124,13 +200,13 @@ public class CustomerDetailsTest {
             );
             upsert xCase;
 
-            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, 'Contact#1-1ZZZZZ', JSON.serialize(customerDetails), JSON.serialize(contacts));
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZZ', JSON.serialize(customerDetails));
             System.debug('### ContactID=' + contactId);
 
             Support_Operation_Settings__c sos = CustomerDetailsController.getSupportOperationsSettings();
             String dummyDriverId = sos.ContactDriverRecordID__c;
 
-            Id dummyDrivercontactId = CustomerDetailsController.attachToCase(null, dummyDriverId, JSON.serialize(customerDetails), JSON.serialize(contacts));
+            Id dummyDrivercontactId = CustomerDetailsController.attachDummyContactToCase(null, dummyDriverId, JSON.serialize(customerDetails));
             System.debug('### dummyDrivercontactId=' + dummyDrivercontactId);
 
             String accountIdString = CustomerDetailsController.getAccountId('9100000000000');
@@ -139,7 +215,7 @@ public class CustomerDetailsTest {
             String accountNumber = CustomerDetailsController.getAccountNumber(accountIdString);
             System.debug('### accountNumber=' + accountNumber);
 
-            String contactIdString = CustomerDetailsController.getContactId(accountIdString, 'Contact#1-1ZZZZZ');
+            String contactIdString = CustomerDetailsController.getContactId(accountIdString, '1-1ZZZZZ');
             System.debug('### contactIdString=' + contactIdString);
 
             Test.stopTest();
@@ -197,13 +273,13 @@ public class CustomerDetailsTest {
             );
             upsert xCase;
 
-            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, 'Contact#1-1ZZZZZ', JSON.serialize(customerDetails), JSON.serialize(contacts));
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZZ', JSON.serialize(customerDetails));
             System.debug('### ContactID=' + contactId);
 
             Support_Operation_Settings__c sos = CustomerDetailsController.getSupportOperationsSettings();
             String dummyDriverId = sos.ContactDriverRecordID__c;
 
-            Id dummyDrivercontactId = CustomerDetailsController.attachToCase(null, dummyDriverId, JSON.serialize(customerDetails), JSON.serialize(contacts));
+            Id dummyDrivercontactId = CustomerDetailsController.attachDummyContactToCase(null, dummyDriverId, JSON.serialize(customerDetails));
             System.debug('### dummyDrivercontactId=' + dummyDrivercontactId);
 
             String accountIdString = CustomerDetailsController.getAccountId('9100000000000');
@@ -212,8 +288,12 @@ public class CustomerDetailsTest {
             String accountNumber = CustomerDetailsController.getAccountNumber(accountIdString);
             System.debug('### accountNumber=' + accountNumber);
 
-            String contactIdString = CustomerDetailsController.getContactId(accountIdString, 'Contact#1-1ZZZZZ');
+            Id contactIdString = CustomerDetailsController.getContactId(accountIdString, '1-1ZZZZZ');
             System.debug('### contactIdString=' + contactIdString);
+
+            String servicingRule = CustomerDetailsController.getPriorityLevelServicingRule(customerDetails.programId,'A');
+            System.assertEquals(servicingRule,'This customer is awesome!');
+            System.debug('### servicingRule=' + servicingRule);
 
             Test.stopTest();
         }
@@ -236,6 +316,44 @@ public class CustomerDetailsTest {
             CustomerDetailsWSUtilv2.payments payments =  CustomerDetailsController.getPayments(accountNumberToTest,sourceSys);
             System.debug('### PaymentHistory' + payments.paymentHistory);
             System.debug('### PaymentDetails' + payments.paymentDetails);
+
+            Test.stopTest();
+        }
+    }
+
+    static testMethod void testGetRefundsWithAccount() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+            String accountNumberToTest = '9100000000000';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            CustomerDetailsWSUtilv2.RefundAdjustmentDTO refundsResponse =  CustomerDetailsController.getRefunds(accountNumberToTest);
+            System.debug('### Refunds' + refundsResponse);
+
+            Test.stopTest();
+        }
+    }
+
+    static testMethod void testGetAdjustmentsWithAccount() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+            String accountNumberToTest = '9100000000000';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            CustomerDetailsWSUtilv2.RefundAdjustmentDTO adjustmentsResponse =  CustomerDetailsController.getAdjustments(accountNumberToTest);
+            System.debug('### Adjustments' + adjustmentsResponse);
 
             Test.stopTest();
         }
@@ -327,6 +445,9 @@ public class CustomerDetailsTest {
 
             }
 
+            String servicingRule = CustomerDetailsController.getPriorityLevelServicingRule('NOSUCHPROGRAM','Z');
+            System.assertEquals(servicingRule,'Servicing Rule not available; refer to documentation');
+
             Test.stopTest();
         }
 
@@ -381,6 +502,70 @@ public class CustomerDetailsTest {
 
                 if (invoices.errorMsg != null)
                     throw new AuraHandledException(invoices.errorMsg) ;
+
+            }
+            catch(Exception e) {
+
+                Boolean expectedExceptionThrown = e.getMessage().contains('Unable to retrieve') ? true : false;
+
+                System.debug('### Exception: ' + e);
+
+                System.assertEquals(expectedExceptionThrown, false);
+
+            }
+            Test.stopTest();
+        }
+    }
+
+    static testMethod void testGetRefundsWithoutAccount() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            try {
+
+                CustomerDetailsWSUtilv2.RefundAdjustmentDTO refunds = CustomerDetailsController.getRefunds('0000');
+
+                if (refunds.errorMsg != null)
+                    throw new AuraHandledException(refunds.errorMsg) ;
+
+            }
+            catch(Exception e) {
+
+                Boolean expectedExceptionThrown = e.getMessage().contains('Unable to retrieve') ? true : false;
+
+                System.debug('### Exception: ' + e);
+
+                System.assertEquals(expectedExceptionThrown, false);
+
+            }
+            Test.stopTest();
+        }
+    }
+
+    static testMethod void testGetAdjustmentsWithoutAccount() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            try {
+
+                CustomerDetailsWSUtilv2.RefundAdjustmentDTO Adjustments = CustomerDetailsController.getAdjustments('0000');
+
+                if (Adjustments.errorMsg != null)
+                    throw new AuraHandledException(Adjustments.errorMsg) ;
 
             }
             catch(Exception e) {
