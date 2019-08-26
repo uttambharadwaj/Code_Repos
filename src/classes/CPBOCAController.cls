@@ -30,6 +30,14 @@ public class CPBOCAController {
         }
     }
 
+    public Boolean showTNC{
+        get{
+            if(UserInfo.getSessionId() == null) return true;
+            if(ApexPages.CurrentPage().getParameters().get('tnc') != null) return true;
+            return false;
+        }
+    }
+
     // Get Template
     public String currentPageName {
         get {
