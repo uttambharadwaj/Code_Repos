@@ -2,7 +2,6 @@ trigger ApplicationRequestTrigger on Application_Request__c (before insert, befo
     
     List<Application_Request__c> records = trigger.isDelete ? trigger.old : trigger.new;
 
-
     if(trigger.isBefore)
     {
         if(trigger.isInsert)
@@ -15,7 +14,7 @@ trigger ApplicationRequestTrigger on Application_Request__c (before insert, befo
             }
 
             List<FleetEnrollment__c> fleetEnrollments = [
-                    SELECT id, Opportunity__c, Opportunity_Number__c, Application_Request__c
+                    SELECT id, Opportunity__c, Opportunity_Number__c, Application_Request__c, Debug_Application_Parameter__c
                     FROM FleetEnrollment__c
                     WHERE Opportunity__c IN : arToOpptyMap.keySet()
                     LIMIT 1
@@ -40,7 +39,7 @@ trigger ApplicationRequestTrigger on Application_Request__c (before insert, befo
             }
 
             List<FleetEnrollment__c> fleetEnrollments = [
-                    SELECT id, Opportunity__c, Opportunity_Number__c, Application_Request__c
+                    SELECT id, Opportunity__c, Opportunity_Number__c, Application_Request__c, Debug_Application_Parameter__c
                     FROM FleetEnrollment__c
                     WHERE Opportunity__c IN : arToOpptyMap.keySet()
                     LIMIT 1
@@ -57,7 +56,13 @@ trigger ApplicationRequestTrigger on Application_Request__c (before insert, befo
                     fleetEnrollments[0].Debug_Application_Parameter__c = applicationRequest.Id;
                 }
             }
-            upsert fleetEnrollments[0];
+            if (fleetEnrollments.size() > 0) {
+                try {
+                    upsert fleetEnrollments[0];
+                } catch (DmlException e) {
+                    System.debug('Error Inserting FleetEnrollment Records: ' + e.getMessage());
+                }
+            }
         }
     }
     else if(trigger.isAfter)
