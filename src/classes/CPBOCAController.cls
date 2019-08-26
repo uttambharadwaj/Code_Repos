@@ -1,3 +1,9 @@
+/*
+*
+*   Revision History:   26/AUG/2019     MFarrell    LRC-97      Added donothing method and isUpMarket boolean.
+*
+*/
+
 public class CPBOCAController {
 
     // Credit application object
@@ -30,10 +36,42 @@ public class CPBOCAController {
         }
     }
 
+    public List<SelectOption> countryOptions {
+        get {
+            List<SelectOption> myOptions = new List<SelectOption>();
+            Schema.DescribeFieldResult countries = Account.Legal_Entity_Country__c.getDescribe();
+            myOptions.add(new SelectOption('','-- Choose One --'));
+            for(Schema.PicklistEntry countryOption : countries.getPicklistValues()){
+                myOptions.add(new SelectOption(countryOption.getValue(), countryOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
+    //have to get states from a different field on a different object bc our legal state needs to be free text for sales reps bc why do things right when we can do them fast
+    public List<SelectOption> stateOptions {
+        get {
+            List<SelectOption> myOptions = new List<SelectOption>();
+            Set<String> provinces = new Set<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
+            Schema.DescribeFieldResult states = OnlineApplication__c.State__c.getDescribe();
+            myOptions.add(new SelectOption('','-- Choose One --'));
+            for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
+                if(selectedCountry == 'CA' && provinces.contains(stateOption.getValue()))
+                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
+                else if(selectedCountry == 'US' && !provinces.contains(stateOption.getValue()))
+                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
+    public String selectedCountry {get;set;}
+
+    public String selectedState {get;set;}
+
     public Boolean showTNC{
         get{
-            if(UserInfo.getSessionId() == null) return true;
-            if(ApexPages.CurrentPage().getParameters().get('tnc') != null) return true;
+            if(UserInfo.getSessionId() == null && (!ApexPages.CurrentPage().getParameters().containsKey('tnc') || ApexPages.CurrentPage().getParameters().get('tnc') != '000')) return true;
             return false;
         }
     }
@@ -174,6 +212,21 @@ public class CPBOCAController {
             }
             return false;
         }
+    }
+
+    public Boolean isUpMarket {
+        get {
+            if (creditApp != null) {
+                if (creditApp.Projected_Monthly_Spend__c >= 150000) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public void doNothing() {
+
     }
 
     // Program for the BOCA
@@ -344,7 +397,7 @@ public class CPBOCAController {
             return wexBOCAError;
         }
         else {
-
+            selectedCountry = 'US';
             Id programId = WexBrandingController.getProgramIdByBrandShortName(programParameter);
 
             if(programId != null) {
@@ -432,7 +485,7 @@ public class CPBOCAController {
                             Beneficial_Owner_Entity__c, Beneficial_Owner_Status__c, Application_Stage__c, Status__c, Credit_Decision__c, Credit_Line_Approved__c,
                             ThreatMetrix_Session_ID__c, ThreatMetrix_Result__c, DNB_SBRI_Score__c, DNB_Lookup_Hits__c, Number_Of_Existing_Applications__c,
                             Number_of_Existing_Accounts__c, Lexis_Nexis_Check__c, DNB_SBRI_Check__c, Existing_Exposure_Check__c, ThreatMetrix_Check__c, Legal_Structure__c,
-                            Credit_Line_Recommendation__c, Credit_Decision_Recommendation__c, First_Name__c, Last_Name__c
+                            Credit_Line_Recommendation__c, Credit_Decision_Recommendation__c, First_Name__c, Last_Name__c, Bank_Contact_Phone__c, Bank_Contact__c
                     FROM CP_Application_Request__c WHERE Id =: partialCustomer and Application_Stage__c = 'Application' and Status__c = 'Sent to Prospect' LIMIT 1 ];
 
                     System.debug('Got the credit app: ' + creditApp.Id);
@@ -604,6 +657,9 @@ public class CPBOCAController {
 
             // Create/update the account
             Account account = new Account();
+
+            account.Legal_Entity_Country__c = selectedCountry;
+            account.Legal_Entity_State__c = selectedState;
 
             if(creditApp.Account__c != null) {
                 account.Id = creditApp.Account__c;
