@@ -1,6 +1,6 @@
 //revision history https://gist.github.com/aplssf/1ecf170c0393f9a10504/revisions
 trigger WE_ProjxOppUp on Opportunity (before update) {
-    
+/*
     //retrieve all Record Types (names & Ids) from org
     Map<String, Schema.RecordTypeInfo> RT = Opportunity.SObjectType.getDescribe().getRecordTypeInfosByName();
     //retrieve all values from list Custom Setting
@@ -133,5 +133,5 @@ trigger WE_ProjxOppUp on Opportunity (before update) {
                 }
             }
         }
-    }
+    }*/
 }
