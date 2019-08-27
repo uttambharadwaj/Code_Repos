@@ -21,6 +21,8 @@ public class CPBOCAToProspectController {
         set;
     }
 
+    public Boolean hideTNC {get; set;}
+
     public Account myAccount {get;set;}
 
     public Account myInitialAccount;
@@ -120,7 +122,6 @@ public class CPBOCAToProspectController {
         }
     }
 
-    /* CDJ 8/22/2019 Commented out and added above block for availablePrograms*/
     public Map<String, String> additionalPrograms {
         get {
             return null;
@@ -151,7 +152,7 @@ public class CPBOCAToProspectController {
     public String bocaToProspectResendTemplateId {
         get {
             BOCA_To_Prospect_Settings__c bocaToProspectSettings = BOCA_To_Prospect_Settings__c.getOrgDefaults();
-            return bocaToProspectSettings.OTR_Resend_Template_ID__c;
+            return bocaToProspectSettings.CP_Resend_Template_ID__c;
         }
     }
 
@@ -196,7 +197,7 @@ public class CPBOCAToProspectController {
     public void init() {
 
         try {
-
+            hideTNC = false;
             if(bocaToProspectConfirm != null && !String.isEmpty(bocaToProspectConfirm)) {
 
                 if(bocaToProspectConfirm.equals('true')) {
@@ -236,7 +237,7 @@ public class CPBOCAToProspectController {
                 }
 
                 if(bocaToProspectId != null) {
-                    List<BOCA_To_Prospect__c> bocaToProspects = [SELECT Id, Opportunity__c, WeFormObject__r.Program__r.BOCA_To_Prospect_Template__c, Additional_Programs__c, WeFormObject__r.Online_Application__r.External_Application_URL__c FROM BOCA_To_Prospect__c WHERE Id =: bocaToProspectId LIMIT 1];
+                    List<BOCA_To_Prospect__c> bocaToProspects = [SELECT Id, Opportunity__c, CorporatePayments_Application_Request__r.Program__r.BOCA_To_Prospect_Template__c, Additional_Programs__c, CorporatePayments_Application_Request__r.External_Application_URL__c FROM BOCA_To_Prospect__c WHERE Id =: bocaToProspectId LIMIT 1];
 
                     if(bocaToProspects.size() > 0) {
                         bocaToProspect = bocaToProspects[0];
@@ -253,8 +254,8 @@ public class CPBOCAToProspectController {
 
                 List<Opportunity> opportunities = [SELECT Id, Opportunity.AccountId, Campaign_Program__r.Program__r.Name, Campaign_Program__r.Program__c, name, Account.Industry,
                         OwnerId, Application_Signer_City__c, Application_Signer_Address__c, Application_Signer_First_Name__c, Application_Signer_Last_Name__c, Application_Signer_Email_Address__c,
-                        Application_Signer_Phone__c, Application_Signer_Zip_Code__c, Application_Signer__c, Application_Signer_title__c, Billing_City__c,
-                        Billing_Contact_Email__c, Billing_Contact_Fax__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c,
+                        Application_Signer_Phone__c, Application_Signer_Zip_Code__c, Application_Signer__c, Application_Signer_title__c, Billing_City__c, Billing_Cycle__c,
+                        Billing_Contact_Email__c, Billing_Contact_Fax__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Credit_Line_Requested__c,
                         Billing_Contact_Middle_Name__c, Billing_Contact_Phone__c, Annual_Income__c, Annual_Gross_Revenue__c, Average_Monthly_Fueling__c, Account_Phone__c,
                         Average_Monthly_Expenses__c, Billing_Contact__c, Billing_Country__c, Billing_Street__c, Billing_Street_Line_2__c, Billing_State__c, Billing_Zip_Postal_Code__c, City__c,
                         DUNS_Number__c, Doing_Business_As__c, Fiscal_Year_Starts__c, Fleet_Size__c, Legal_Structure__c, Number_Fleet_Vehicles__c, coupon_code__c, Tax_Payer_ID__c,
@@ -360,6 +361,10 @@ public class CPBOCAToProspectController {
                 creditApp.Application_Stage__c = 'Application';
                 creditApp.Status__c = 'Sent to Prospect';
 
+                creditApp.First_Name__c = contact.FirstName;
+                creditApp.Last_Name__c = contact.LastName;
+                creditApp.Email__c = contact.Email;
+
                 creditApp.Account__c = opportunity.AccountId;
                 creditApp.Opportunity__c = opportunity.Id;
                 creditApp.Program__c = opportunity.Campaign_Program__r.Program__c;
@@ -370,11 +375,8 @@ public class CPBOCAToProspectController {
                 creditApp.Doing_Business_As__c = opportunity.Doing_Business_As__c;
 
                 creditApp.Legal_Structure__c = opportunity.Legal_Structure__c;
-                creditApp.Years_in_Business__c = String.valueOf(opportunity.Years_In_Business__c);
-
-                creditApp.First_Name__c = contact.FirstName;
-                creditApp.Last_Name__c = contact.LastName;
-                creditApp.Email__c = contact.Email;
+                //Convert to whole numbers because Opty uses two decimal places
+                creditApp.Years_in_Business__c = String.valueOf(opportunity.Years_In_Business__c).substringBefore('.');
 
 //                creditApp.Billing_Address_Line_1__c = opportunity.Billing_Street__c;
 //                creditApp.Billing_Address_Line_2__c = opportunity.Billing_Street_Line_2__c;
@@ -385,12 +387,15 @@ public class CPBOCAToProspectController {
                 creditApp.Physical_Address_Line_1__c = opportunity.Physical_Street__c;
                 creditApp.Physical_Address_Line_2__c = opportunity.Physical_Street_Line_2__c;
                 creditApp.Physical_City__c = opportunity.Physical_City__c;
-                creditApp.Physical_State__c = opportunity.Physical_State__c;
+                creditApp.Physical_State_Province__c = opportunity.Physical_State__c;
                 creditApp.Physical_Postal_Code__c = opportunity.Physical_Zip_Postal_Code__c;
+                creditApp.Business_Phone__c = String.isEmpty(opportunity.Account_Phone__c) ? '' : opportunity.Account_Phone__c.replaceAll('[^0-9]', '');
 
                 creditApp.Taxpayer_ID__c = opportunity.Tax_Payer_ID__c;
                 creditApp.DUNS_Number__c = opportunity.DUNS_Number__c;
                 creditApp.Industry__c = myAccount.Industry;
+                creditApp.Projected_Monthly_Spend__c = opportunity.Credit_Line_Requested__c;
+                creditApp.Billing_Cycle__c = opportunity.Billing_Cycle__c;
 
                 creditApp.Guarantor_First_Name__c = opportunity.Guarantor_Name__c;
                 creditApp.Guarantor_Last_Name__c = opportunity.Guarantor_Last_Name__c;
@@ -414,8 +419,9 @@ public class CPBOCAToProspectController {
 
                 creditApp.Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
 
-                creditApp.External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&customer=' + creditApp.Id + '&key=' + creditApp.Application_Key__c;
-
+                String myURL = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&customer=' + creditApp.Id + '&key=' + creditApp.Application_Key__c;
+                if(hideTNC) myURL += '&tnc=000';
+                creditApp.External_Application_URL__c = myURL;
                 upsert creditApp;
 
                 // Insert into our joiner object to enable tracking/etc
@@ -539,7 +545,12 @@ public class CPBOCAToProspectController {
 
                 // Set the application URL, for ease of picking up in the e-mail
                 //if (onlineApplications[0].External_Application_URL__c == null) {
-                cpApplications[0].External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + cpApplications[0].Program__r.Form_Template__c + '?pgm=' + cpApplications[0].Program__r.Brand_Short_Name__c + '&customer=' + cpApplications[0].Id + '&key=' + cpApplications[0].Application_Key__c;
+                String myURL = 'https://' + Label.External_Instance_URL + '/creditapplication/' + cpApplications[0].Program__r.Form_Template__c + '?customer=' + cpApplications[0].Id;
+                if (cpApplications[0].Program__r.Brand_Short_Name__c != null) myURL += '&pgm=' + cpApplications[0].Program__r.Brand_Short_Name__c;
+                if (cpApplications[0].Application_Key__c != null) myURL += '&key=' + cpApplications[0].Application_Key__c;
+
+                cpApplications[0].External_Application_URL__c = myURL;
+
                 //}
 
                 // Kick the stage back to "Application/App-Incomplete"
