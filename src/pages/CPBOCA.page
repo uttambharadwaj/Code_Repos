@@ -714,7 +714,7 @@
                                     </fieldset>
                                 </apex:outputPanel>
                             </apex:outputPanel>
-                            <apex:outputPanel rendered="{!userSessionId == null}">
+                            <apex:outputPanel rendered="{!showTNC}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
                                         <i class="far fa-file-alt"></i>&nbsp;&nbsp;{!$Label.BOCA_TnC}
