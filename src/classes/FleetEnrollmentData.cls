@@ -1,6 +1,6 @@
 public class FleetEnrollmentData {
 
-    public static void fleetEnrollmentDataInserted(List<SObject> fleetDatas) {
+    public static void fleetEnrollmentDataUpdated(List<SObject> fleetDatas) {
 
         List<FleetEnrollment__c> fleetEnrollmentsToUpdate = new List<FleetEnrollment__c>();
         Set<Id> fleetEnrollmentIds = new Set<Id>();
