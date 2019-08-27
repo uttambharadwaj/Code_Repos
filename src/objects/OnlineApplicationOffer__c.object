@@ -1756,6 +1756,17 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Enable_BOCDD_for_Parent_funded__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>https://jira.devtools.wexinc.com/browse/PSOBACKLOG-249</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Funding must be Parent Funded</inlineHelpText>
+        <label>Enable BOCDD for Parent funded</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Enable_Card_Information__c</fullName>
         <defaultValue>true</defaultValue>
         <description>For Fleet Enrollment - Enable the collection of card information</description>
@@ -3480,6 +3491,16 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <searchFilterFields>NAME</searchFilterFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>BOCDD_for_Parent_Funding</fullName>
+        <active>true</active>
+        <description>https://jira.devtools.wexinc.com/browse/PSOBACKLOG-249
+
+If BOCDD is checked, Funding must be Parent Funding</description>
+        <errorConditionFormula>AND(Enable_BOCDD_for_Parent_funded__c, NOT(ISPICKVAL(Funding__c, &apos;Parent Funded&apos;)))</errorConditionFormula>
+        <errorDisplayField>Funding__c</errorDisplayField>
+        <errorMessage>Enable BOCDD for Parent Funded must be left unchecked when Funded is not Parent Funded</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
     <webLinks>
         <fullName>Add_Branding_Attachment</fullName>

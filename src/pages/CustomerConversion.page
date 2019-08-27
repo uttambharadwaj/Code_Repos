@@ -57,9 +57,9 @@
 
         <style>
             .header { {!program.Brand_Color_1__c} }
-            
+
             .header { {!program.BPAV_Form_Header_Color__c} }
-            
+
             {!overrideCSS}
         </style>
 
@@ -71,11 +71,11 @@
             <div class="row">
                 <div class="col-md-8">
                     <div id="branding">
-                    	<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
+                        <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
                         <h1 class="brand-name">
                             <apex:outputText escape="false" value="{!program.Brand_Long_Name__c}" rendered="{!brandingUtility.Conversion_Form_Display_Name__c == null}" />
-                        	<apex:outputText escape="false" value="{!brandingUtility.Conversion_Form_Display_Name__c}" rendered="{!brandingUtility.Conversion_Form_Display_Name__c != null}" />
-                        </h1>    
+                            <apex:outputText escape="false" value="{!brandingUtility.Conversion_Form_Display_Name__c}" rendered="{!brandingUtility.Conversion_Form_Display_Name__c != null}" />
+                        </h1>
                     </div>
                 </div>
                 <div class="col-md-4 call">
@@ -95,10 +95,10 @@
                 <div class="row">
                     <div class="col-lg-12" style="text-align: right;">
                         <apex:outputPanel rendered="{!IF(AND(languageCode == 'fr_ca', CONTAINS(availableLanguages, 'en_ca')), true, false)}">
-                            <a href="?lang=en_ca&cacheControl={!cacheControl}"><button class="language-button">English?</button></a>
+                            <a href="?lang=en_ca&cacheControl={!cacheControl}&pgm={!program.Brand_Short_Name__c}"><button class="language-button">English?</button></a>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!IF(AND(languageCode == 'en_ca', CONTAINS(availableLanguages, 'fr_ca')), true, false)}">
-                            <a href="?lang=fr_ca&cacheControl={!cacheControl}"><button class="language-button">Français?</button></a>
+                            <a href="?lang=fr_ca&cacheControl={!cacheControl}&pgm={!program.Brand_Short_Name__c}"><button class="language-button">Français?</button></a>
                         </apex:outputPanel>
                     </div>
                 </div>
@@ -149,9 +149,9 @@
                                     </div>
                                 </div>
                                 <div class="col-md-1">
-                                        <i class="fa fa-question-circle helpIcon" aria-hidden="true"
-                                                            style="color: rgba(18,100,170,.9); font-size: 16px; margin-top: 15px; margin-left: -10px; display: {!IF(brandingUtility.Conversion_Form_Previous_Account_Help__c != null, 'in-line', 'none')};"
-                                                            title="{!brandingUtility.Conversion_Form_Previous_Account_Help__c}"></i>  
+                                    <i class="fa fa-question-circle helpIcon" aria-hidden="true"
+                                       style="color: rgba(18,100,170,.9); font-size: 16px; margin-top: 15px; margin-left: -10px; display: {!IF(brandingUtility.Conversion_Form_Previous_Account_Help__c != null, 'in-line', 'none')};"
+                                       title="{!brandingUtility.Conversion_Form_Previous_Account_Help__c}"></i>
                                 </div>
                             </div>
                             <div class="row">
@@ -520,15 +520,15 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="container d-flex h-100">
-    					<div class="row justify-content-center align-self-center align-items-center">
-     						{!$Label.BPAV_Powered_By}
-                        	<img style="max-height: 30px; margin-left: 10px; margin-top: -6px;" src="{!URLFOR($Resource.ESSOConversionAssets, 'ESSOConversionAssets/WEXLogo.png')}" />
-    					</div>
-					</div>
+                        <div class="row justify-content-center align-self-center align-items-center">
+                            {!$Label.BPAV_Powered_By}
+                            <img style="max-height: 30px; margin-left: 10px; margin-top: -6px;" src="{!URLFOR($Resource.ESSOConversionAssets, 'ESSOConversionAssets/WEXLogo.png')}" />
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-9" style='border-left: 1px solid #555; padding-left: 100px;'>
                     <div class="row vertical-align">
-                    	<apex:outputText escape="false" value="{!brandingUtility.Conversion_Form_Disclaimer__c}" />
+                        <apex:outputText escape="false" value="{!brandingUtility.Conversion_Form_Disclaimer__c}" />
                     </div>
                 </div>
             </div>

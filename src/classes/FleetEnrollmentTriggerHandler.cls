@@ -8,11 +8,15 @@ public class FleetEnrollmentTriggerHandler {
         
         for(FleetEnrollment__c fleetEnrollment : newFleetEnrollments) {
             
-            if(!String.isEmpty(fleetEnrollment.Opportunity_Number__c)) {
-            	List<Application_Request__c> applicationRequests = [SELECT Id FROM Application_Request__c WHERE Siebel_Oppty__c =: fleetEnrollment.Opportunity_Number__c and CreatedDate = LAST_N_DAYS:90];
+            if(fleetEnrollment.Application_Request__c == null) {
+            	List<Application_Request__c> applicationRequests = [SELECT Id, Opportunity__c, Siebel_Oppty__c FROM Application_Request__c WHERE (Opportunity__c =: fleetEnrollment.Opportunity__c OR Opportunity__c =: fleetEnrollment.Debug_Opportunity_Parameter__c) AND CreatedDate = LAST_N_DAYS:90];
                 
                 if(!applicationRequests.isEmpty()) {
                     fleetEnrollment.Application_Request__c = applicationRequests[0].Id;
+                    fleetEnrollment.Debug_Application_Parameter__c = applicationRequests[0].Id;
+                    if(applicationRequests[0].Siebel_Oppty__c != null) {
+                        fleetEnrollment.Opportunity_Number__c = applicationRequests[0].Siebel_Oppty__c;
+                    }
                 }
             }
             else if(String.isEmpty(fleetEnrollment.Opportunity_Number__c) && !String.isEmpty(fleetEnrollment.Application_Request__c)) { 

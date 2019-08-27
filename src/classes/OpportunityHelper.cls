@@ -42,15 +42,15 @@ public class OpportunityHelper {
                         Billing_Contact_Email__c, Billing_Contact_Phone__c
                 FROM Opportunity
                 WHERE Id IN :opptyIds
-            ];
-            for (Opportunity o : opptyList) {
-                opptyToProgramMap.put(o.campaign_program__r.program__c, o.id);
-            }
+        ];
+        for (Opportunity o : opptyList) {
+            opptyToProgramMap.put(o.campaign_program__r.program__c, o.id);
+        }
         // Find all Program Template Accounts for the Programs associated with the oppty list
         List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = true AND Program__c IN : opptyToProgramMap.keySet()];
-            for (Program_Template_Account__c pta : programTemplateAccounts) {
-                programTemplateToProgramMap.put(pta.program__c, pta.Id);
-            }
+        for (Program_Template_Account__c pta : programTemplateAccounts) {
+            programTemplateToProgramMap.put(pta.program__c, pta.Id);
+        }
 
         // create new FleetEnrollment__c record for each opportunity, add records to feList
         for (Opportunity opp : opptyList) {
@@ -92,7 +92,7 @@ public class OpportunityHelper {
     }
 
     private static void updateFleetEnrollment(Set<Id> opptyIds) {
-
+/*
         List<FleetEnrollment__c> feUpdateList = new List<FleetEnrollment__c>();
         Map<Id, Id> opptyToProgramMap = new Map<Id, Id>();
         Map<Id, Id> programTemplateToProgramMap = new Map<Id, Id>();
@@ -107,6 +107,7 @@ public class OpportunityHelper {
         for (Program_Template_Account__c pta : programTemplateAccounts) {
             programTemplateToProgramMap.put(pta.program__c, pta.Id);
         }
+
 
         // Keep FleetEnrollment in sync with Oppty
         for (FleetEnrollment__c fe : [
@@ -136,6 +137,7 @@ public class OpportunityHelper {
             feUpdateList.add(fe);
         }
 
+
         if (feUpdateList.size() > 0) {
             try {
                 update feUpdateList;
@@ -143,7 +145,7 @@ public class OpportunityHelper {
                 System.debug('Error Updating FleetEnrollment Records: ' + e.getMessage());
             }
         }
-
+*/
     }
 
 }

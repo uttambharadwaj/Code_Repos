@@ -345,7 +345,8 @@ public class BOCAFormTriggerHandler {
         // Create Application Requests or Online Application based on the Form Template selected (OTR_BOCA or WexBOCA)
         try{
 
-            List<FleetEnrollment__c> fleetEnrollment = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Id =: opportunity.Id LIMIT 1];
+            //NAFONBOARD-80 this is now handled in the ApplicationRequestTrigger
+            //List<FleetEnrollment__c> fleetEnrollment = [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Id =: opportunity.Id LIMIT 1];
 
             Application_Request__c applicationRequest = new Application_Request__c();
             //if revolver set the record type
@@ -359,9 +360,12 @@ public class BOCAFormTriggerHandler {
 
             applicationRequest.Opportunity__c = opportunity.Id;
 
+            //NAFONBOARD-80 this is now handled in the ApplicationRequestTrigger
+            /*
             if ( fleetEnrollment.size() > 0 ) {
                 applicationRequest.Fleet_Enrollment__c = fleetEnrollment[0].id;
             }
+            */
 
             applicationRequest.Source_System_Text__c = 'BOCA';
 
