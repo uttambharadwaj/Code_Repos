@@ -1,7 +1,7 @@
 @isTest
 public class CPProjectsTriggerTest {
 
-    static testMethod void testCPProjectsTrigger() {
+/*    static testMethod void testCPProjectsTrigger() {
         
         CP_Projects__c cpProjects = new CP_Projects__c();
         
@@ -13,6 +13,6 @@ public class CPProjectsTriggerTest {
         
         upsert cpProjects;
         
-    }
+    }*/
     
 }

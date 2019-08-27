@@ -1,7 +1,7 @@
 @isTest
 private class Test_Commission_Opportunity {
 
-    @testSetup
+/*    @testSetup
     static void setup(){
         UtilityTestLoader.setAutomation(false);
     }
@@ -15,5 +15,5 @@ private class Test_Commission_Opportunity {
 	
     Opportunity opportunity = new Opportunity(Name = 'SSS',CloseDate = System.today(),StageName = 'SSS', RecordTypeId = oppRT);
     insert opportunity;
-  }
+  }*/
 }

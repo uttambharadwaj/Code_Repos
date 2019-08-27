@@ -2,13 +2,13 @@
 private class UOpportunityShareTest {
 
 
-	@testSetup
+/*	@testSetup
 	static void setup(){
 		UtilityTestLoader.setAutomation(false);
 	}
 
 	static testMethod void test_UOpportunityShare() {
-/*
+*//*
 		List<Opportunity> lstOpportunitiesToInsert = new List<Opportunity>();
 		List<Opportunity> lstOpportunitiesToUpdate = new List<Opportunity>();
 		List<User> lstUsersToInsert = new List<User>();
@@ -101,5 +101,5 @@ private class UOpportunityShareTest {
 			lstOpportunitiesToUpdate.add(lstOpportunitywithCommunityUser[0]);
 		}
 		update lstOpportunitiesToUpdate;
-	*/}
+	*//*}*/
 }

@@ -2,7 +2,7 @@
 @isTest
 public class WE_OppMasterTriggerTest {
 
-    @testSetup
+/*    @testSetup
     static void setup(){
         UtilityTestLoader.setAutomation(false);
     }
@@ -33,5 +33,5 @@ public class WE_OppMasterTriggerTest {
             //update opps;
             Test.stopTest();
         }
-    }
+    }*/
 }

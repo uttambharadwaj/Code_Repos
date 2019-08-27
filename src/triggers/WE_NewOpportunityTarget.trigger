@@ -1,6 +1,6 @@
 //revision history https://gist.github.com/aplssf/5424f76c9ec41ca9428a/revisions
 trigger WE_NewOpportunityTarget on Opportunity (after insert) {
-    
+/*
     List<WEID__c> weids = WEID__c.getall().values();
     Set<Id> validRecordTypeIds = new Set<Id>();
     
@@ -25,7 +25,7 @@ trigger WE_NewOpportunityTarget on Opportunity (after insert) {
         //check that Opportunity record type is valid
         if(validRecordTypeIds.contains(o.RecordTypeId))
         {
-            identifiers.add(/*o.Identifier__c*/null);
+            identifiers.add(*//*o.Identifier__c*//*null);
             oppIds.add(o);
             system.debug('oppIds size is ' + oppIds.size());
         }      
@@ -47,7 +47,7 @@ trigger WE_NewOpportunityTarget on Opportunity (after insert) {
             TargetxOpp__c j = new TargetxOpp__c();
             
             // fetch Id of Target record, based on Opportunity identifier
-            Id t1 = targets.get(/*opp.Identifier__c*/null);
+            Id t1 = targets.get(*//*opp.Identifier__c*//*null);
             system.debug('t1 contains ' + t1);
             
             j.Opportunity__c = opp.Id;
@@ -73,5 +73,5 @@ trigger WE_NewOpportunityTarget on Opportunity (after insert) {
                 }
             }
         }
-    }
+    }*/
 }
