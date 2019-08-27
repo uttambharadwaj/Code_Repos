@@ -1,4 +1,5 @@
 trigger ProgramBeforeInsertUpdate on Program__c (before insert, before update) {
+    if(TriggerFactory.disabledTriggers(Program__c.sObjectType)) return;
 	Program__c pgm = Trigger.new[0];
     WEXProgramUtility util = new WEXProgramUtility();
     

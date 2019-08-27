@@ -605,10 +605,10 @@
                                     </div>
                                     <div class="twelve columns clearfix">
                                         <apex:outputText rendered="{!IF(program.WEX_Platform__c == 'CoreCard', true, false)}">
-                                            Your driver will be required to enter the number that matches the assigned card. Driver number can be a maximum of 12 digits. Additional drivers may be added online upon account activatiorequired="true"n.
+                                            Your driver will be required to enter the number that matches the assigned card. Driver number can be a maximum of 12 digits. Additional drivers may be added online upon account activation.
                                         </apex:outputText>
                                         <apex:outputText rendered="{!IF(program.WEX_Platform__c != 'CoreCard', true, false)}">
-                                            Your driver will be required to enter the number that matches the assigned card. Driver number can be a maximum of 12 digits. Additional drivers may be added via eManager upon account activatiorequired="true"n.
+                                            Your driver will be required to enter the number that matches the assigned card. Driver number can be a maximum of 12 digits. Additional drivers may be added via eManager upon account activation.
                                         </apex:outputText>
                                     </div>
                                     <div class="twelve columns clearfix">

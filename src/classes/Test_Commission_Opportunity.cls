@@ -1,7 +1,13 @@
 @isTest
 private class Test_Commission_Opportunity {
-  
-  @isTest
+
+/*    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
+
+    @isTest
   private static void Test_Trigger() {
   	List<String> AU_Opp_RTs = new List<String>{'AU_Fuel_Card_Business','AU_Fuel_Card_Individual','AU_Fuel_Merchant'};
 		
@@ -9,5 +15,5 @@ private class Test_Commission_Opportunity {
 	
     Opportunity opportunity = new Opportunity(Name = 'SSS',CloseDate = System.today(),StageName = 'SSS', RecordTypeId = oppRT);
     insert opportunity;
-  }
+  }*/
 }

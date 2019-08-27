@@ -320,6 +320,19 @@
                             </div>  
                         </div>
                     </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Member Since Date</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    <lightning:formattedDateTime value="{!v.customerDetails.memberSinceDt}" />
+                                    <aura:if isTrue="{!v.customerDetails.memberSinceDt == null|| v.customerDetails.memberSinceDt == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
             </div>
@@ -950,15 +963,15 @@
                                     <div class="slds-truncate">
                                         <div class="slds-button-group" role="group">
                                             <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.contactType + '#' + contact.rowId}" onclick="{!c.popToCase}">New Case</button>
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.rowId}" onclick="{!c.popToCase}">New Case</button>
                                             </aura:if>
                                             <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
                                                 <!-- This is the update for a specific case that is passed in -->
-                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.contactType + '#' + contact.rowId}" onclick="{!c.popToCase}">Update Case</button>
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.rowId}" onclick="{!c.popToCase}">Update Case</button>
                                             </aura:if>
                                             <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
                                                 <!-- This will open the modal-->
-                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.contactType + '#' + contact.rowId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.rowId}" onclick="{!c.openCaseModal}">Update Case</button>
                                             </aura:if>
                                         </div>
                                     </div>

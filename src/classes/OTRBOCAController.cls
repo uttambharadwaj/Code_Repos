@@ -875,7 +875,7 @@ public class OTRBOCAController {
                 }
 
                 if (onlineApplicationOffer != null && onlineApplicationOffer.Funding__c != null && (onlineApplicationOffer.Funding__c).equalsIgnoreCase('Parent Funded')) {
-                    isBOExempt = true;
+                    isBOExempt = !onlineApplicationOffer.Enable_BOCDD_for_Parent_funded__c;
                 }
 
                 if (isBOExempt) {

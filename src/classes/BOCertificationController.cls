@@ -687,15 +687,15 @@ public class BOCertificationController {
                             boEntity.Save_For_Later_URL__c = 'https://' + Label.External_Instance_URL + '/appl/BOCertification?lang=' + languageCode + '&eappId=' + onlineApplication.Id + '&formKey=' + boEntity.Save_For_Later_Key__c + '&entityId=' + boEntity.Id + '&cacheControl=' + cacheControl;
                         }
 
-                        if(boEntity.Correspondence_Contact__c == null) {
+                        if(boEntity.Correspondence_Contact__c == null && onlineApplication.Contact_Name__c != null) {
 
                             String[] name = onlineApplication.Contact_Name__c.split(' ');
 
-                            Contact correspodenceContact = new Contact(FirstName = name[0], LastName = name[1], Email = onlineApplication.Email__c);
+                            Contact correspondenceContact = new Contact(FirstName = name[0], LastName = name[1], Email = onlineApplication.Email__c);
 
-                            insert correspodenceContact;
+                            insert correspondenceContact;
 
-                            boEntity.Correspondence_Contact__c = correspodenceContact.Id;
+                            boEntity.Correspondence_Contact__c = correspondenceContact.Id;
 
                         }
 
@@ -753,7 +753,12 @@ public class BOCertificationController {
 
                                 if(!saveForLater) {
 
-                                    boOwnerProng.Date_Of_Birth__c = Date.parse(boOwner.dateOfBirth);
+                                    // If the date is invalid(05/40/1999) Date.parse throws a TypeException
+                                    try {
+                                        boOwnerProng.Date_Of_Birth__c = boOwner.dateOfBirth != null ? Date.parse(boOwner.dateOfBirth) : null;
+                                    } catch (Exception e) {
+                                        throw new bocddException(String.valueOf(e));
+                                    }
                                     if(boOwner.socialSecurityNumber != null) { boOwnerProng.Social_Security_Number__c = boOwner.socialSecurityNumber; }
                                     if(boOwner.passportNumber != null) { boOwnerProng.Passport_Number_Other_Government_ID__c = boOwner.passportNumber; }
                                     if(boOwner.countryOfIssue != null && !(boOwner.countryOfIssue).equalsIgnoreCase('#')) { boOwnerProng.Country_Of_Issue__c = boOwner.countryOfIssue; }
@@ -791,8 +796,12 @@ public class BOCertificationController {
                         // per higher level direction
                         if(!saveForLater) {
 
-                            boControllerProng.Date_Of_Birth__c = Date.parse(boController.dateOfBirth);
-
+                            // If the date is invalid(05/40/1999) Date.parse throws a TypeException
+                            try {
+                                boControllerProng.Date_Of_Birth__c = boController.dateOfBirth != null ? Date.parse(boController.dateOfBirth) : null;
+                            } catch (Exception e) {
+                                throw new bocddException(String.valueOf(e));
+                            }
                             if(boController.socialSecurityNumber != null) { boControllerProng.Social_Security_Number__c = boController.socialSecurityNumber; }
                             if(boController.passportNumber != null) { boControllerProng.Passport_Number_Other_Government_ID__c = boController.passportNumber; }
                             if(boController.countryOfIssue != null && !(boController.countryOfIssue).equalsIgnoreCase('#')) { boControllerProng.Country_Of_Issue__c = boController.countryOfIssue; }

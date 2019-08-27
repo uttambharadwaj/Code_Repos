@@ -1,6 +1,12 @@
 @isTest
 private class Test_LeadEloquaPass
 {
+
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     /*
     @isTest static void eloquaPass()
     {

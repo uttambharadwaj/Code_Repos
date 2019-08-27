@@ -37,16 +37,9 @@ public class TriggerFactory{
     check custom settings to see if triggers are turned off
     check for all triggers turned off (for dataloading) or just this object
     */
-    private static Boolean disabledTriggers(Schema.sObjectType soType){
+    public static Boolean disabledTriggers(Schema.sObjectType soType){
         //this isrunningtest try/catch block is only needed until all tests convert to inserting Automation Settings. delete when tests are properly converted
-        if(Test.isRunningTest()){
-            try{
-                Automation_Settings__c mySetting = Automation_Settings__c.getOrgDefaults();
-            } catch (Exception e){
-                return false;
-            }
-        }
-        Automation_Settings__c setting = Automation_Settings__c.getOrgDefaults();
+        Automation_Settings__c setting = Automation_Settings__c.getInstance();
         if(setting.Disable_Apex_Triggers__c) return True;
 
         String fieldName = 'Disable_' + getObjTypeName(soType) + '_Trigger__c';

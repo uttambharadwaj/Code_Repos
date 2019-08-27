@@ -2,6 +2,11 @@
 @isTest
 public class WE_MasterOpportunityTriggerTest {
 
+/*    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void testTrigger() {
         User u = WE_TestDataUtility.createStandardUser();
 
@@ -22,6 +27,6 @@ public class WE_MasterOpportunityTriggerTest {
             }
             update opps;
         }
-    }
+    }*/
 
 }

@@ -1,7 +1,12 @@
 // revision history https://gist.github.com/aplssf/0d7aa2ec27247e808b1e/revisions
 @isTest
 public class WE_OppMasterTriggerTest {
-    
+
+/*    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testMethod void testTrigger(){
         
         User u = WE_TestDataUtility.createStandardUser();
@@ -28,5 +33,5 @@ public class WE_OppMasterTriggerTest {
             //update opps;
             Test.stopTest();
         }
-    }
+    }*/
 }

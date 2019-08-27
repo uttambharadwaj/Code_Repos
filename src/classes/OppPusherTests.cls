@@ -21,12 +21,12 @@
  */
 @isTest
 private class OppPusherTests {
- private static sObject[] OpptyList; 
+/* private static sObject[] OpptyList;
  private static List<Opportunity> testOpptys = new List<Opportunity>();
 
     static testMethod void myOppUnitTest() {
         // 22-May-2014 Manu Erwin (Salesforce.com) Commented out to deploy Rel 14.2
-        /*
+        *//*
         // TO DO: implement unit test
         // create an oppty
         Opportunity oTestOppty=createOppty('testOppty');
@@ -63,7 +63,7 @@ private class OppPusherTests {
         
         //clean up
         cleanOpptys();
-        */
+        *//*
     }
     
     private static Opportunity createOppty(String sOppName) {
@@ -84,5 +84,5 @@ private class OppPusherTests {
             delete oIterator;       
         }
         testOpptys.clear();
-    }   
+    }  */
 }

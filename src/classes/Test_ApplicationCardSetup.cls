@@ -22,7 +22,12 @@
 @isTest
 private class Test_ApplicationCardSetup {
 
-       
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
+
+
     static testMethod void testConvertOTRToAccountContactOpportunity() {
         
         Test.startTest();

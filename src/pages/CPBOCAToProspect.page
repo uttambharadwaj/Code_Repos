@@ -305,6 +305,10 @@
                 }
             }
 
+            function toggleTNC(myTNC){
+                $j("[id$=withholdTNC]").val(myTNC.checked);
+            }
+
             function validateOnSubmit() {
                 var errorCount = 0;
 
@@ -364,6 +368,71 @@
                 <apex:pageMessages id="pageMessages" escape="false"></apex:pageMessages>
                 <apex:outputPanel rendered="{!hasError == false}">
 
+                    <!--BEGIN ACCOUNT INFORMATION-->
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon--small">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#account')}"></use>
+                                    </svg>
+                                </div>
+                                <div class="slds-media__body slds-truncate">
+                                    <a href="javascript:void(0);" class="slds-text-link--reset">
+                                        <span class="slds-text-heading--small">Account Information</span>
+                                    </a>
+                                </div>
+                            </header>
+                        </div>
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-form-element">
+                                            <label class="slds-form-element__label" for="input-id-01">Industry</label>
+                                            <apex:actionRegion >
+                                                <div class="slds-form-element__control">
+                                                    <apex:inputField styleClass="slds-input" id="accountName" value="{!myAccount.Industry}">
+                                                        <apex:actionSupport event="onchange" rerender="extraAccountFields"/>
+                                                    </apex:inputField>
+                                                </div>
+                                            </apex:actionRegion>
+                                        </div><br/>
+                                        <apex:outputPanel id="extraAccountFields">
+                                            <apex:outputPanel rendered="{!myAccount.Industry == 'OTA'}">
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-id-01">Primary Location</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" id="accountLocation" value="{!myAccount.Customer_s_Primary_Location__c}"/>
+                                                    </div>
+                                                </div><br/>
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-id-01">Primary Travel Location</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" id="accountTravel" value="{!myAccount.Customer_s_Primary_Travel_Location__c}"/>
+                                                    </div>
+                                                </div><br/>
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-id-01">Primary Transaction Currency</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" id="accountTransaction" value="{!myAccount.Primary_Transaction_Currency__c}"/>
+                                                    </div>
+                                                </div><br/>
+                                                <div class="slds-form-element">
+                                                    <label class="slds-form-element__label" for="input-id-01">Other Transaction Currency</label>
+                                                    <div class="slds-form-element__control">
+                                                        <apex:inputText styleClass="slds-input" id="accountCurrencies" value="{!myAccount.Other_Transaction_Currencies__c}"/>
+                                                    </div>
+                                                </div><br/>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <!---END ACCOUNT INFORMATION--->
                     <article class="slds-card">
                         <div class="slds-card__header slds-grid">
                             <header class="slds-media slds-media--center slds-has-flexi-truncate">
@@ -410,6 +479,36 @@
                                                 </div>
                                             </fieldset><br/>
                                         </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!disablePGToggle == false}">
+                                            <legend class="slds-form-element__legend slds-form-element__label">Additional Options</legend>
+                                            <div class="slds-form-element__control">
+                                                        <span class="slds-checkbox">
+                                                            <input type="checkbox" id="disablePG" name="disablePG" />
+                                                            <label class="slds-checkbox__label" for="disablePG">
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label">Disable Personal Guarantor</span>
+                                                            </label>
+                                                        </span>
+                                            </div>
+                                            <div class="slds-form-element__control">
+                                                        <span class="slds-checkbox">
+                                                            <input type="checkbox" id="alwaysRequirePG" name="alwaysRequirePG" />
+                                                            <label class="slds-checkbox__label" for="alwaysRequirePG">
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label">Require Personal Guarantor</span>
+                                                            </label>
+                                                        </span>
+                                            </div>
+                                        </apex:outputPanel>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <input type="checkbox" id="hideTNC" name="label" checked="" onclick="toggleTNC(this)"/>
+                                                <label class="slds-checkbox__label" for="hideTNC">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">Withhold TNC</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -506,13 +605,13 @@
                                                         <apex:repeat value="{!additionalContacts}" var="additionalContact">
                                                             <tr>
                                                                 <td>
-                                                                        	<span class="slds-checkbox">
-                                                                        		<input type="checkbox" id="contact-{!additionalContact.ContactId}" class="contact" value="{!additionalContact.Contact.Email}" />
-                                                                        		<label class="slds-checkbox__label" for="contact-{!additionalContact.ContactId}">
-                                                                            		<span class="slds-checkbox_faux"></span>
-                                                                            		<span class="slds-form-element__label"></span>
-                                                                        		</label>
-                                                                    		</span>
+                                                                            <span class="slds-checkbox">
+                                                                                <input type="checkbox" id="contact-{!additionalContact.ContactId}" class="contact" value="{!additionalContact.Contact.Email}" />
+                                                                                <label class="slds-checkbox__label" for="contact-{!additionalContact.ContactId}">
+                                                                                    <span class="slds-checkbox_faux"></span>
+                                                                                    <span class="slds-form-element__label"></span>
+                                                                                </label>
+                                                                            </span>
                                                                 </td>
                                                                 <td>{!additionalContact.Contact.FirstName} {!additionalContact.Contact.LastName}</td>
                                                                 <td>{!additionalContact.Role}</td>
@@ -571,12 +670,13 @@
                                 </div>
                             </div>
                         </div>
-                    </article>	<br/>
+                    </article>  <br/>
                     <apex:inputHidden value="{!selectedAdditionalContacts}" id="selectedAdditionalContacts" />
                     <apex:inputHidden value="{!selectedPrograms}" id="selectedPrograms"/>
                     <apex:inputHidden value="{!attachments}" id="attachmentsList"/>
                     <apex:inputHidden value="{!disablePG}" id="disablePG-APEX"/>
                     <apex:inputHidden value="{!alwaysRequirePG}" id="alwaysRequirePG-APEX"/>
+                    <apex:inputHidden value="{!hideTNC}" id="withholdTNC"/>
                     <apex:inputHidden value="{!bocaToProspectId}" id="bocaToProspectId"/>
                     <input type="button" id="submitButton" value="Send Application" onclick="validateOnSubmit()" class="attachButton" />
                     <div class="slds-spinner_container" id="spinner">

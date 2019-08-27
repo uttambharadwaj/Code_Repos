@@ -1,7 +1,13 @@
 @isTest
 private class Test_i2iSearch {
 
-    static testMethod void test_SearchPage() {
+	@testSetup
+	static void setup(){
+		UtilityTestLoader.setAutomation(false);
+	}
+
+
+	static testMethod void test_SearchPage() {
         
         
         
