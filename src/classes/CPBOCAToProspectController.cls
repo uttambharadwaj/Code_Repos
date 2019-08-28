@@ -59,7 +59,9 @@ public class CPBOCAToProspectController {
 
     public String salesRepName {
         get {
-            return salesRep.Name;
+            if (salesRep != null)
+                return salesRep.Name;
+            return null;
         }
         set;
     }
