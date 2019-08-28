@@ -1,6 +1,9 @@
 @isTest
 private class EMAP_Invoice_Trigger_Test {
-
+	@testSetup
+	static void setup(){
+		UtilityTestLoader.setAutomation(false);
+	}
     static testMethod void InvoiceTriggerTest() {
 
     	Program__c prog = TestDatatUtility.getProgram1();

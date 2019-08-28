@@ -1,6 +1,9 @@
 @isTest
 private class EMAP_AutoAccountSusReact_BatchJob_Test {
-
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
     static testMethod void AutoAccountSusReact_BatchJob_Test() {
 
         Program__c SPProg = TestDatatUtility.getProgram2();

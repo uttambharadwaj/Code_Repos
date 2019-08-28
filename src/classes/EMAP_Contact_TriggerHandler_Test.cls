@@ -1,6 +1,9 @@
 @isTest
 public with sharing class EMAP_Contact_TriggerHandler_Test {
-    
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
     static testMethod void testEMAP_Contact_Trigger(){
         
         User user= TestDatatUtility.createUser();
