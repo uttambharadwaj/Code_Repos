@@ -69,38 +69,6 @@ public class CPBOCAController {
         }
     }
 
-    public List<SelectOption> countryOptions {
-        get {
-            List<SelectOption> myOptions = new List<SelectOption>();
-            Schema.DescribeFieldResult countries = Account.Legal_Entity_Country__c.getDescribe();
-            myOptions.add(new SelectOption('','-- Choose One --'));
-            for(Schema.PicklistEntry countryOption : countries.getPicklistValues()){
-                myOptions.add(new SelectOption(countryOption.getValue(), countryOption.getValue()));
-            }
-            return myOptions;
-        }
-    }
-
-    //have to get states from a different field on a different object bc our legal state needs to be free text for sales reps bc why do things right when we can do them fast
-    public List<SelectOption> stateOptions {
-        get {
-            List<SelectOption> myOptions = new List<SelectOption>();
-            Set<String> provinces = new Set<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
-            Schema.DescribeFieldResult states = OnlineApplication__c.State__c.getDescribe();
-            myOptions.add(new SelectOption('','-- Choose One --'));
-            for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
-                if(selectedCountry == 'CA' && provinces.contains(stateOption.getValue()))
-                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
-                else if(selectedCountry == 'US' && !provinces.contains(stateOption.getValue()))
-                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
-            }
-            return myOptions;
-        }
-    }
-
-    public String selectedCountry {get;set;}
-
-    public String selectedState {get;set;}
 
     public Boolean showTNC{
         get{
