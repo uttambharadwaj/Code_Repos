@@ -1,5 +1,14 @@
 public class CPBOCAToProspectController {
 
+    public String applicationId {
+        get {
+            if (applicationId == null)
+                return ApexPages.CurrentPage().getParameters().get('applicationId');
+            return applicationId;
+        }
+        set;
+    }
+
     public String bocaToProspectId {
         get {
             if(bocaToProspectId == null) {
@@ -11,6 +20,8 @@ public class CPBOCAToProspectController {
         }
         set;
     }
+
+    public Boolean hideTNC {get; set;}
 
     public Account myAccount {get;set;}
 
@@ -71,6 +82,46 @@ public class CPBOCAToProspectController {
     // JSON representation of selected additional programs
     public String selectedPrograms { get; set; }
 
+    public List<SelectOption> availablePrograms {
+        get {
+
+            List<SelectOption> availablePrograms = new List<SelectOption>();
+            availablePrograms.add(new SelectOption('', '-- Choose One--'));
+
+            //IADJUDICAT-1085 restrict partners to only their programs
+            Id partnerId = null;
+            /* uncomment this block when campaign program is in use. it will limit the programs displayed for inside sales reps.
+            //get partner from the program from the oppty
+            Campaign_Program__c cp = [SELECT Program__r.Partner__c FROM Campaign_Program__c WHERE Id = :opportunity.Campaign_Program__c LIMIT 1];
+            if(cp != null)
+                partnerId = cp.Program__r.Partner__c;
+            */
+
+            //get user info
+            Id uid = UserInfo.getUserId();
+
+            //from user get contact then account then program then partner
+            User u = [SELECT  profile.UserLicense.name, Contact.Account.Program__r.Partner__c FROM User WHERE Id = :uid LIMIT 1];
+            Boolean isPartner = (u.profile.UserLicense.name == 'Partner Community') ? true : false;
+            if(isPartner)
+                partnerId = u.Contact.Account.Program__r.Partner__c;
+
+            //assemble the query for possible programs.
+            String myQuery = 'SELECT Id, Name FROM Program__c WHERE BOCA_Type__c = \'CPBOCA\' and Publish_BOCA__c = true';
+            if(isPartner || (!isPartner && partnerId != null))
+                myQuery += ' AND Partner__c = :partnerId';
+            myQuery += ' ORDER BY Name ASC';
+            //if we have inside sales rep, or we have a partner AND a partnerid, add programs to drop down. if partner user but no partnerid, don't show anything
+            if(!isPartner || (isPartner && partnerId != null)){
+                for (Program__c program : database.query(myQuery)) {
+                    availablePrograms.add(new SelectOption(program.Id, program.Name));
+                }
+            }
+
+            return availablePrograms;
+        }
+    }
+
     public Map<String, String> additionalPrograms {
         get {
             return null;
@@ -95,6 +146,13 @@ public class CPBOCAToProspectController {
             BOCA_To_Prospect_Settings__c bocaToProspectSettings = BOCA_To_Prospect_Settings__c.getOrgDefaults();
 
             return bocaToProspectSettings.CP_Email_Template_ID__c;
+        }
+    }
+
+    public String bocaToProspectResendTemplateId {
+        get {
+            BOCA_To_Prospect_Settings__c bocaToProspectSettings = BOCA_To_Prospect_Settings__c.getOrgDefaults();
+            return bocaToProspectSettings.CP_Resend_Template_ID__c;
         }
     }
 
@@ -139,7 +197,7 @@ public class CPBOCAToProspectController {
     public void init() {
 
         try {
-
+            hideTNC = false;
             if(bocaToProspectConfirm != null && !String.isEmpty(bocaToProspectConfirm)) {
 
                 if(bocaToProspectConfirm.equals('true')) {
@@ -165,8 +223,21 @@ public class CPBOCAToProspectController {
             }
             else {
 
+                if (applicationId != null) {
+
+                    List<CP_Application_Request__c> CPApplications = [SELECT Id, Opportunity__c, Program__c FROM CP_Application_Request__c WHERE Id =: applicationId];
+
+                    if(CPApplications.size() > 0) {
+                        opportunityId = CPApplications[0].Opportunity__c;
+                        selectedPrograms = CPApplications[0].Program__c;
+                    }
+
+                    customMessage = 'Please click the link below to correct your application and re-submit.';
+
+                }
+
                 if(bocaToProspectId != null) {
-                    List<BOCA_To_Prospect__c> bocaToProspects = [SELECT Id, Opportunity__c, WeFormObject__r.Program__r.BOCA_To_Prospect_Template__c, Additional_Programs__c FROM BOCA_To_Prospect__c WHERE Id =: bocaToProspectId LIMIT 1];
+                    List<BOCA_To_Prospect__c> bocaToProspects = [SELECT Id, Opportunity__c, CorporatePayments_Application_Request__r.Program__r.BOCA_To_Prospect_Template__c, Additional_Programs__c, CorporatePayments_Application_Request__r.External_Application_URL__c FROM BOCA_To_Prospect__c WHERE Id =: bocaToProspectId LIMIT 1];
 
                     if(bocaToProspects.size() > 0) {
                         bocaToProspect = bocaToProspects[0];
@@ -183,8 +254,8 @@ public class CPBOCAToProspectController {
 
                 List<Opportunity> opportunities = [SELECT Id, Opportunity.AccountId, Campaign_Program__r.Program__r.Name, Campaign_Program__r.Program__c, name, Account.Industry,
                         OwnerId, Application_Signer_City__c, Application_Signer_Address__c, Application_Signer_First_Name__c, Application_Signer_Last_Name__c, Application_Signer_Email_Address__c,
-                        Application_Signer_Phone__c, Application_Signer_Zip_Code__c, Application_Signer__c, Application_Signer_title__c, Billing_City__c,
-                        Billing_Contact_Email__c, Billing_Contact_Fax__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c,
+                        Application_Signer_Phone__c, Application_Signer_Zip_Code__c, Application_Signer__c, Application_Signer_title__c, Billing_City__c, Billing_Cycle__c,
+                        Billing_Contact_Email__c, Billing_Contact_Fax__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Credit_Line_Requested__c,
                         Billing_Contact_Middle_Name__c, Billing_Contact_Phone__c, Annual_Income__c, Annual_Gross_Revenue__c, Average_Monthly_Fueling__c, Account_Phone__c,
                         Average_Monthly_Expenses__c, Billing_Contact__c, Billing_Country__c, Billing_Street__c, Billing_Street_Line_2__c, Billing_State__c, Billing_Zip_Postal_Code__c, City__c,
                         DUNS_Number__c, Doing_Business_As__c, Fiscal_Year_Starts__c, Fleet_Size__c, Legal_Structure__c, Number_Fleet_Vehicles__c, coupon_code__c, Tax_Payer_ID__c,
@@ -214,6 +285,7 @@ public class CPBOCAToProspectController {
                         if(programs.size() > 0) {
                             programId = programs[0].Id;
                             partnerId = programs[0].Partner__c;
+                            selectedPrograms = programs[0].Id;
                             if(programs[0].Always_Require_PG__c == true) {
                                 disablePGToggle = true;
                             }
@@ -282,10 +354,16 @@ public class CPBOCAToProspectController {
                         myInitialAccount.Other_Transaction_Currencies__c != myAccount.Other_Transaction_Currencies__c ||
                         myInitialAccount.Primary_Transaction_Currency__c != myAccount.Primary_Transaction_Currency__c) update myAccount;
 
+                Program__c program = WexBrandingController.getProgram(selectedPrograms);
+
                 CP_Application_Request__c creditApp = new CP_Application_Request__c();
 
                 creditApp.Application_Stage__c = 'Application';
                 creditApp.Status__c = 'Sent to Prospect';
+
+                creditApp.First_Name__c = contact.FirstName;
+                creditApp.Last_Name__c = contact.LastName;
+                creditApp.Email__c = contact.Email;
 
                 creditApp.Account__c = opportunity.AccountId;
                 creditApp.Opportunity__c = opportunity.Id;
@@ -297,11 +375,8 @@ public class CPBOCAToProspectController {
                 creditApp.Doing_Business_As__c = opportunity.Doing_Business_As__c;
 
                 creditApp.Legal_Structure__c = opportunity.Legal_Structure__c;
-                creditApp.Years_in_Business__c = String.valueOf(opportunity.Years_In_Business__c);
-
-                creditApp.First_Name__c = contact.FirstName;
-                creditApp.Last_Name__c = contact.LastName;
-                creditApp.Email__c = contact.Email;
+                //Convert to whole numbers because Opty uses two decimal places
+                creditApp.Years_in_Business__c = String.valueOf(opportunity.Years_In_Business__c).substringBefore('.');
 
 //                creditApp.Billing_Address_Line_1__c = opportunity.Billing_Street__c;
 //                creditApp.Billing_Address_Line_2__c = opportunity.Billing_Street_Line_2__c;
@@ -312,12 +387,15 @@ public class CPBOCAToProspectController {
                 creditApp.Physical_Address_Line_1__c = opportunity.Physical_Street__c;
                 creditApp.Physical_Address_Line_2__c = opportunity.Physical_Street_Line_2__c;
                 creditApp.Physical_City__c = opportunity.Physical_City__c;
-                creditApp.Physical_State__c = opportunity.Physical_State__c;
+                creditApp.Physical_State_Province__c = opportunity.Physical_State__c;
                 creditApp.Physical_Postal_Code__c = opportunity.Physical_Zip_Postal_Code__c;
+                creditApp.Business_Phone__c = String.isEmpty(opportunity.Account_Phone__c) ? '' : opportunity.Account_Phone__c.replaceAll('[^0-9]', '');
 
                 creditApp.Taxpayer_ID__c = opportunity.Tax_Payer_ID__c;
                 creditApp.DUNS_Number__c = opportunity.DUNS_Number__c;
                 creditApp.Industry__c = myAccount.Industry;
+                creditApp.Projected_Monthly_Spend__c = opportunity.Credit_Line_Requested__c;
+                creditApp.Billing_Cycle__c = opportunity.Billing_Cycle__c;
 
                 creditApp.Guarantor_First_Name__c = opportunity.Guarantor_Name__c;
                 creditApp.Guarantor_Last_Name__c = opportunity.Guarantor_Last_Name__c;
@@ -332,6 +410,19 @@ public class CPBOCAToProspectController {
 
                 System.debug('### Disable PG: ' + disablePG);
                 System.debug('### Always PG: ' + alwaysRequirePG);
+
+                // Generating a security key and URL - need the resulting ID first..
+                Datetime dt = Datetime.now();
+                Long l = dt.getTime();
+
+                String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+
+                creditApp.Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
+
+                String myURL = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&customer=' + creditApp.Id + '&key=' + creditApp.Application_Key__c;
+                if(hideTNC) myURL += '&tnc=000';
+                creditApp.External_Application_URL__c = myURL;
+                upsert creditApp;
 
                 // Insert into our joiner object to enable tracking/etc
                 bocaToProspect = new BOCA_To_Prospect__c();
@@ -428,6 +519,176 @@ public class CPBOCAToProspectController {
         }
 
         return redirect;
+
+    }
+
+    public PageReference resendBOCAToProspect() {
+
+        PageReference redirect = null;
+
+        try {
+
+            List<CP_Application_Request__c> cpApplications = [SELECT Id, Application_Key__c, External_Application_URL__c, Program__r.Brand_Short_Name__c, Program__r.Form_Template__c, Opportunity__c, Opportunity__r.Beneficial_Owner_Entity__c FROM CP_Application_Request__c WHERE Id = :applicationId LIMIT 1];
+
+            if (cpApplications.size() > 0) {
+
+                // Set an application key if it isn't there
+                if (cpApplications[0].Application_Key__c == null) {
+
+                    Datetime dt = Datetime.now();
+                    Long l = dt.getTime();
+
+                    String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+
+                    cpApplications[0].Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
+                }
+
+                // Set the application URL, for ease of picking up in the e-mail
+                //if (onlineApplications[0].External_Application_URL__c == null) {
+                String myURL = 'https://' + Label.External_Instance_URL + '/creditapplication/' + cpApplications[0].Program__r.Form_Template__c + '?customer=' + cpApplications[0].Id;
+                if (cpApplications[0].Program__r.Brand_Short_Name__c != null) myURL += '&pgm=' + cpApplications[0].Program__r.Brand_Short_Name__c;
+                if (cpApplications[0].Application_Key__c != null) myURL += '&key=' + cpApplications[0].Application_Key__c;
+
+                cpApplications[0].External_Application_URL__c = myURL;
+
+                //}
+
+                // Kick the stage back to "Application/App-Incomplete"
+                cpApplications[0].Application_Stage__c = 'Application';
+                cpApplications[0].Status__c = 'App-Incomplete';
+
+                upsert cpApplications[0];
+
+                if (cpApplications[0].Opportunity__r.Beneficial_Owner_Entity__c != null) {
+
+                    // Clone Beneficial Owner Entity
+                    system.debug(cpApplications[0]);
+                    Id newBeneficialOwnerRecord = BeneficialOwnerUtilities.deepCloneBORecord(cpApplications[0].Opportunity__r.Beneficial_Owner_Entity__c);
+
+                    if (newBeneficialOwnerRecord != null) {
+
+                        List<Beneficial_Owner_Entity__c> newBOEntity = [SELECT Id, Save_For_Later_Date__c, Save_For_Later_Key__c, Save_For_Later_URL__c FROM Beneficial_Owner_Entity__c WHERE Id = :newBeneficialOwnerRecord LIMIT 1];
+
+                        if (newBOEntity.size() > 0) {
+
+                            String cacheControl = String.valueOf(DateTime.Now().format('yyyyMMddHHmmssFFF'));
+
+                            newBOEntity[0].Save_For_Later_URL__c = 'https://' + Label.External_Instance_URL + '/appl/BOCertification?applicationId=' + cpApplications[0].Id + '&formKey=' + cpApplications[0].Application_Key__c + '&entityId=' + newBOEntity[0].Id + '&cacheControl=' + cacheControl;
+                            newBOEntity[0].Save_For_Later_Key__c = cpApplications[0].Application_Key__c;
+                            newBOEntity[0].Save_For_Later_Date__c = Date.Today();
+                            newBOEntity[0].Record_Status__c = 'Awaiting Customer';
+
+                            upsert(newBOEntity[0]);
+
+                        }
+
+                        // Can't forget the children
+                        BeneficialOwnerUtilities.cloneProngsToNew(cpApplications[0].Opportunity__r.Beneficial_Owner_Entity__c, newBeneficialOwnerRecord);
+
+                    }
+
+                }
+
+            }
+
+
+            bocaToProspect = new BOCA_To_Prospect__c();
+
+            bocaToProspect.Opportunity__c = cpApplications[0].Opportunity__c;
+            bocaToProspect.Online_Application__c = applicationId;
+            bocaToProspect.Contact__c = contact.Id;
+
+            bocaToProspect.Last_Reminder_Sent__c = Date.today();
+            bocaToProspect.Custom_Message__c = customMessage;
+
+            upsert bocaToProspect;
+
+            Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+
+            mail.setTemplateId(bocaToProspectResendTemplateId);
+            mail.setWhatId(bocaToProspect.Id);
+            mail.setTargetObjectId(contact.Id);
+            mail.SetSaveAsActivity(false);
+            mail.setReplyTo(salesRep.Email);
+            mail.setSenderDisplayName(salesRep.Name);
+
+            String[] additionalContacts = new List<String>();
+
+            if (!String.isEmpty(selectedAdditionalContacts)) {
+                additionalContacts = (List<String>) JSON.deserialize(selectedAdditionalContacts, List<String>.class);
+            }
+
+            if (!String.isEmpty(ccEmail)) {
+                String[] ccAddresses = ccEmail.split(',');
+                for (Integer i = 0; i < ccAddresses.size(); i++) {
+                    additionalContacts.add((String.valueOf(ccAddresses[i])).replaceAll('(\\s+)', ' '));
+                }
+            }
+
+            if (additionalContacts.size() > 0) {
+                mail.setCCAddresses(additionalContacts);
+            }
+
+            if (attachments != null && !String.isEmpty(attachments)) {
+
+                List<String> fileAttachments = (List<String>) JSON.deserialize(attachments, List<String>.class);
+
+                List<Messaging.Emailfileattachment> emailAttachments = new List<Messaging.Emailfileattachment>();
+
+                for (String fileId : fileAttachments) {
+                    Document document = [SELECT Id, Name, Body, Type, IsInternalUseOnly FROM Document WHERE Id = :fileId];
+
+                    if (document != null && document.IsInternalUseOnly == false) {
+                        Messaging.Emailfileattachment emailFileAttachment = new Messaging.Emailfileattachment();
+                        emailFileAttachment.setFileName(document.Name + '.' + document.Type);
+                        emailFileAttachment.setBody(document.Body);
+                        emailAttachments.add(emailFileAttachment);
+                    }
+
+                }
+
+                if (emailAttachments.size() > 0) {
+                    mail.setFileAttachments(emailAttachments);
+                }
+            }
+
+            List<Messaging.SendEmailResult> results = Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail}, !Test.isRunningTest());
+            if((!results.get(0).isSuccess() && !Test.isRunningTest()) || (Test.isRunningTest() && Limits.getEmailInvocations()<1)) throw new bocaToProspectException(String.valueOf(results.get(0).getErrors()[0]));
+
+            Task reminderSentTask = new Task();
+
+            reminderSentTask.WhatId = bocaToProspect.Opportunity__c;
+            reminderSentTask.OwnerId = UserInfo.getUserId();
+            reminderSentTask.Status = 'Completed';
+            reminderSentTask.Subject = 'BOCA Re-sent To Prospect';
+            reminderSentTask.ActivityDate = Date.today();
+            reminderSentTask.Type = 'Email';
+            reminderSentTask.Activity_Type__c = 'Email';
+
+            insert reminderSentTask;
+
+            bocaToProspect.Last_Reminder_Sent__c = Date.today();
+
+            upsert bocaToProspect;
+
+
+            redirect = Page.OTRBOCAToProspect;
+            redirect.getParameters().put('bocaToProspectConfirm', 'true');
+            redirect.setRedirect(true);
+            return redirect;
+
+
+        } catch (Exception e) {
+
+            errorCode = logError(e);
+
+            redirect = Page.OTRBOCAToProspect;
+            redirect.getParameters().put('bocaToProspectConfirm', 'false');
+            redirect.getParameters().put('errorCode', errorCode);
+            redirect.setRedirect(true);
+            return redirect;
+
+        }
 
     }
 

@@ -1,6 +1,6 @@
 @isTest
 public class EMAP_Account_TriggerHandler_Test {
-    
+    /*
         static testMethod void testEMAP_Account_Trigger(){
             
             Program__c prog = TestDatatUtility.getProgram1();
@@ -71,5 +71,5 @@ public class EMAP_Account_TriggerHandler_Test {
             Test.stopTest();
                         
         }
-    
+    */
 }

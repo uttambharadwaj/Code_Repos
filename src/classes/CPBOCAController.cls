@@ -69,6 +69,14 @@ public class CPBOCAController {
         }
     }
 
+
+    public Boolean showTNC{
+        get{
+            if(UserInfo.getSessionId() == null && (!ApexPages.CurrentPage().getParameters().containsKey('tnc') || ApexPages.CurrentPage().getParameters().get('tnc') != '000')) return true;
+            return false;
+        }
+    }
+
     // Get Template
     public String currentPageName {
         get {
@@ -471,14 +479,15 @@ public class CPBOCAController {
             if(partialCustomer != null) {
                 try{
                     creditApp = [SELECT Id, Account__c, Opportunity__c, Company_Legal_Name__c, Doing_Business_As__c, Years_In_Business__c, Credit_Line_Requested__c,
-                            Physical_Address_Line_1__c, Physical_Address_Line_2__c, Physical_City__c, Physical_State__c, Physical_Postal_Code__c, Physical_Country__c,
-                            Taxpayer_ID__c, DUNS_Number__c, Email__c, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c,
+                            Physical_Address_Line_1__c, Physical_Address_Line_2__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c, Physical_Country__c,
+                            Taxpayer_ID__c, DUNS_Number__c, Email__c, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c, Business_Phone__c,
                             Guarantor_Residential_City__c, Guarantor_Residential_State__c, Guarantor_Residential_Postal_Code__c, Guarantor_Country__c,
                             Guarantor_Social_Security_Number__c, Guarantor_Date_of_Birth__c, Guarantor_Residential_Phone__c, Guarantor_Mobile_Phone__c,
                             Beneficial_Owner_Entity__c, Beneficial_Owner_Status__c, Application_Stage__c, Status__c, Credit_Decision__c, Credit_Line_Approved__c,
                             ThreatMetrix_Session_ID__c, ThreatMetrix_Result__c, DNB_SBRI_Score__c, DNB_Lookup_Hits__c, Number_Of_Existing_Applications__c,
                             Number_of_Existing_Accounts__c, Lexis_Nexis_Check__c, DNB_SBRI_Check__c, Existing_Exposure_Check__c, ThreatMetrix_Check__c, Legal_Structure__c,
-                            Credit_Line_Recommendation__c, Credit_Decision_Recommendation__c, First_Name__c, Last_Name__c, Bank_Contact_Phone__c, Bank_Contact__c
+                            Credit_Line_Recommendation__c, Credit_Decision_Recommendation__c, First_Name__c, Last_Name__c, Bank_Contact_Phone__c, Bank_Contact__c,
+                            Projected_Monthly_Spend__c, Billing_Cycle__c
                     FROM CP_Application_Request__c WHERE Id =: partialCustomer and Application_Stage__c = 'Application' and Status__c = 'Sent to Prospect' LIMIT 1 ];
 
                     System.debug('Got the credit app: ' + creditApp.Id);

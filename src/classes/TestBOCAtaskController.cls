@@ -1,7 +1,7 @@
 @isTest
 public class TestBOCAtaskController {
 
-
+/*
     @testSetup public static void setupData(){
         
         UtilityTestLoader.setAutomation(false);
@@ -153,5 +153,5 @@ public class TestBOCAtaskController {
         
         
     }
-    
+    */
 }

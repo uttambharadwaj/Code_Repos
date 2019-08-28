@@ -1,5 +1,5 @@
 trigger OpportunityValidator on Opportunity (before insert, before update) {
-
+/*
     Set<String> recordTypeNames = new Set<String>{'AU Fuel Direct','AU Fuel Merchant'};
     Map<String, Schema.RecordTypeInfo> rts = new Map<String, Schema.RecordTypeInfo>();
     rts = Opportunity.SObjectType.getDescribe().getRecordTypeInfosByName();
@@ -17,5 +17,5 @@ trigger OpportunityValidator on Opportunity (before insert, before update) {
     }
     if(!optys.isEmpty())
         OpportunityUtility.removeCarriageReturnsFromOpty(optys);
-    
+    */
 }

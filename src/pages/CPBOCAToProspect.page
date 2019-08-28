@@ -305,6 +305,10 @@
                 }
             }
 
+            function toggleTNC(myTNC){
+                $j("[id$=withholdTNC]").val(myTNC.checked);
+            }
+
             function validateOnSubmit() {
                 var errorCount = 0;
 
@@ -386,8 +390,8 @@
                                 <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
                                     <div class="slds-media__body">
                                         <div class="slds-form-element">
-                                            <label class="slds-form-element__label" for="input-id-01">{!myAccount.Name} Information</label>
-                                            <apex:actionRegion>
+                                            <label class="slds-form-element__label" for="input-id-01">Industry</label>
+                                            <apex:actionRegion >
                                                 <div class="slds-form-element__control">
                                                     <apex:inputField styleClass="slds-input" id="accountName" value="{!myAccount.Industry}">
                                                         <apex:actionSupport event="onchange" rerender="extraAccountFields"/>
@@ -496,6 +500,15 @@
                                                         </span>
                                             </div>
                                         </apex:outputPanel>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-checkbox">
+                                                <input type="checkbox" id="hideTNC" name="label" checked="" onclick="toggleTNC(this)"/>
+                                                <label class="slds-checkbox__label" for="hideTNC">
+                                                    <span class="slds-checkbox_faux"></span>
+                                                    <span class="slds-form-element__label">Withhold TNC</span>
+                                                </label>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -592,13 +605,13 @@
                                                         <apex:repeat value="{!additionalContacts}" var="additionalContact">
                                                             <tr>
                                                                 <td>
-                                                                        	<span class="slds-checkbox">
-                                                                        		<input type="checkbox" id="contact-{!additionalContact.ContactId}" class="contact" value="{!additionalContact.Contact.Email}" />
-                                                                        		<label class="slds-checkbox__label" for="contact-{!additionalContact.ContactId}">
-                                                                            		<span class="slds-checkbox_faux"></span>
-                                                                            		<span class="slds-form-element__label"></span>
-                                                                        		</label>
-                                                                    		</span>
+                                                                            <span class="slds-checkbox">
+                                                                                <input type="checkbox" id="contact-{!additionalContact.ContactId}" class="contact" value="{!additionalContact.Contact.Email}" />
+                                                                                <label class="slds-checkbox__label" for="contact-{!additionalContact.ContactId}">
+                                                                                    <span class="slds-checkbox_faux"></span>
+                                                                                    <span class="slds-form-element__label"></span>
+                                                                                </label>
+                                                                            </span>
                                                                 </td>
                                                                 <td>{!additionalContact.Contact.FirstName} {!additionalContact.Contact.LastName}</td>
                                                                 <td>{!additionalContact.Role}</td>
@@ -657,12 +670,13 @@
                                 </div>
                             </div>
                         </div>
-                    </article>	<br/>
+                    </article>  <br/>
                     <apex:inputHidden value="{!selectedAdditionalContacts}" id="selectedAdditionalContacts" />
                     <apex:inputHidden value="{!selectedPrograms}" id="selectedPrograms"/>
                     <apex:inputHidden value="{!attachments}" id="attachmentsList"/>
                     <apex:inputHidden value="{!disablePG}" id="disablePG-APEX"/>
                     <apex:inputHidden value="{!alwaysRequirePG}" id="alwaysRequirePG-APEX"/>
+                    <apex:inputHidden value="{!hideTNC}" id="withholdTNC"/>
                     <apex:inputHidden value="{!bocaToProspectId}" id="bocaToProspectId"/>
                     <input type="button" id="submitButton" value="Send Application" onclick="validateOnSubmit()" class="attachButton" />
                     <div class="slds-spinner_container" id="spinner">

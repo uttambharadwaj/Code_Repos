@@ -54,7 +54,7 @@ public class CPBOCAToProspectComponentController {
 
     public void init() {
 
-        List<BOCA_To_Prospect__c> bocaToProspects = [SELECT Id, Always_Require_PG__c, Disable_PG__c, CorporatePayments_Application_Request__c, CorporatePayments_Application_Request__r.Program__c, CorporatePayments_Application_Request__r.Program__r.BOCA_Type__c, Additional_Programs__c, Custom_Message__c, Contact__r.FirstName, Opportunity__r.Owner.FirstName FROM BOCA_To_Prospect__c WHERE Id = :bocaToProspectId LIMIT 1];
+        List<BOCA_To_Prospect__c> bocaToProspects = [SELECT Id, Always_Require_PG__c, Disable_PG__c, CorporatePayments_Application_Request__c, CorporatePayments_Application_Request__r.Program__c, CorporatePayments_Application_Request__r.Program__r.BOCA_Type__c, Additional_Programs__c, Custom_Message__c, Contact__r.FirstName, Opportunity__r.Owner.FirstName, CorporatePayments_Application_Request__r.External_Application_URL__c FROM BOCA_To_Prospect__c WHERE Id = :bocaToProspectId LIMIT 1];
 
         System.debug('### ' + bocaToProspects);
 
@@ -65,7 +65,7 @@ public class CPBOCAToProspectComponentController {
 
         if(bocaToProspect != null && programId != null) {
 
-            List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Program__r.Form_Template__c, Program__r.Brand_Short_Name__c, Program__r.BOCA_Sell_Sheet__c FROM CP_Application_Request__c WHERE Id = :bocaToProspect.CorporatePayments_Application_Request__c LIMIT 1];
+            List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Program__r.Form_Template__c, Program__r.Brand_Short_Name__c, Program__r.BOCA_Sell_Sheet__c, External_Application_URL__c FROM CP_Application_Request__c WHERE Id = :bocaToProspect.CorporatePayments_Application_Request__c LIMIT 1];
 
             if(cpApplicationRequests.size() > 0) {
                 cpApplicationRequest = cpApplicationRequests[0];

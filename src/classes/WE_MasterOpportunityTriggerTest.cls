@@ -2,7 +2,7 @@
 @isTest
 public class WE_MasterOpportunityTriggerTest {
 
-    @testSetup
+/*    @testSetup
     static void setup(){
         UtilityTestLoader.setAutomation(false);
     }
@@ -27,6 +27,6 @@ public class WE_MasterOpportunityTriggerTest {
             }
             update opps;
         }
-    }
+    }*/
 
 }

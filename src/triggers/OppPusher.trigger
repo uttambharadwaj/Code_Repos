@@ -1,5 +1,5 @@
 trigger OppPusher on Opportunity (before update) {
-Date dNewCloseDate;
+/*Date dNewCloseDate;
 Date dOldCloseDate;
 Boolean bPushed=false;
 
@@ -26,5 +26,5 @@ for (Opportunity oIterator : Trigger.new) { //Bulk trigger handler so that you c
         oIterator.PushCount__c++;           
         }
     }
-}
+}*/
 }

@@ -1,6 +1,6 @@
 public class WE_NewOpportunityTarget {
 //  class can be removed from production
-
+/*
     Map<Id, Opportunity> newOpps;
     List<Opportunity> opps = new List<Opportunity>();
     Set<String> identifiers = new Set<String>();
@@ -87,5 +87,5 @@ public class WE_NewOpportunityTarget {
                 }
             }    
         }
-    }
+    }*/
 }

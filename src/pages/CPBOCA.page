@@ -350,7 +350,7 @@
                                             <apex:InputField required="true" styleClass="styled-input required" html-tabindex="14" id="physicalCity" value="{!creditApp.Physical_City__c}" html-maxlength="50"/>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="3">
-                                            <apex:outputLabel for="physicalState" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.State_Province__c.label} ">
+                                            <apex:outputLabel for="physicalState" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_State_Province__c.label} ">
                                                 <apex:outputPanel id="stateRequired">
                                                     <apex:outputPanel rendered="{!OR(creditApp.Physical_Country__c=='US',creditApp.Physical_Country__c=='CA',creditApp.Physical_Country__c=='')}">
                                                         <span class="styled-label-required">*</span>
@@ -714,7 +714,7 @@
                                     </fieldset>
                                 </apex:outputPanel>
                             </apex:outputPanel>
-                            <apex:outputPanel rendered="{!userSessionId == null}">
+                            <apex:outputPanel rendered="{!showTNC}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
                                         <i class="far fa-file-alt"></i>&nbsp;&nbsp;{!$Label.BOCA_TnC}
