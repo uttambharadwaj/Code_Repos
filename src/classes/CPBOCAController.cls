@@ -1,5 +1,6 @@
 /*
 *
+*   Revision History:   26/AUG/2019     CJackson    LRC-86      Multiple changes to support implementation of CP BOCA.
 *   Revision History:   26/AUG/2019     MFarrell    LRC-97      Added donothing method and isUpMarket boolean.
 *
 */
@@ -478,7 +479,7 @@ public class CPBOCAController {
             // Check to see if it's a BOCA to Prospect - otherwise setup a new app
             if(partialCustomer != null) {
                 try{
-                    creditApp = [SELECT Id, Account__c, Opportunity__c, Company_Legal_Name__c, Doing_Business_As__c, Years_In_Business__c, Credit_Line_Requested__c,
+                    creditApp = [SELECT Id, Account__c, Opportunity__c, Company_Legal_Name__c, Doing_Business_As__c, Years_In_Business__c, Credit_Limit__c,
                             Physical_Address_Line_1__c, Physical_Address_Line_2__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c, Physical_Country__c,
                             Taxpayer_ID__c, DUNS_Number__c, Email__c, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c, Business_Phone__c,
                             Guarantor_Residential_City__c, Guarantor_Residential_State__c, Guarantor_Residential_Postal_Code__c, Guarantor_Country__c,

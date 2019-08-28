@@ -1,3 +1,9 @@
+/*
+*
+*   Revision History:   26/AUG/2019     CJackson    LRC-86      Multiple changes to support implementation of CP BOCA.
+*
+*/
+
 public class CPBOCAToProspectController {
 
     public String applicationId {
@@ -257,7 +263,7 @@ public class CPBOCAToProspectController {
                 List<Opportunity> opportunities = [SELECT Id, Opportunity.AccountId, Campaign_Program__r.Program__r.Name, Campaign_Program__r.Program__c, name, Account.Industry,
                         OwnerId, Application_Signer_City__c, Application_Signer_Address__c, Application_Signer_First_Name__c, Application_Signer_Last_Name__c, Application_Signer_Email_Address__c,
                         Application_Signer_Phone__c, Application_Signer_Zip_Code__c, Application_Signer__c, Application_Signer_title__c, Billing_City__c, Billing_Cycle__c,
-                        Billing_Contact_Email__c, Billing_Contact_Fax__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Credit_Line_Requested__c,
+                        Billing_Contact_Email__c, Billing_Contact_Fax__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Credit_Limit__c,
                         Billing_Contact_Middle_Name__c, Billing_Contact_Phone__c, Annual_Income__c, Annual_Gross_Revenue__c, Average_Monthly_Fueling__c, Account_Phone__c,
                         Average_Monthly_Expenses__c, Billing_Contact__c, Billing_Country__c, Billing_Street__c, Billing_Street_Line_2__c, Billing_State__c, Billing_Zip_Postal_Code__c, City__c,
                         DUNS_Number__c, Doing_Business_As__c, Fiscal_Year_Starts__c, Fleet_Size__c, Legal_Structure__c, Number_Fleet_Vehicles__c, coupon_code__c, Tax_Payer_ID__c,
@@ -396,7 +402,7 @@ public class CPBOCAToProspectController {
                 creditApp.Taxpayer_ID__c = opportunity.Tax_Payer_ID__c;
                 creditApp.DUNS_Number__c = opportunity.DUNS_Number__c;
                 creditApp.Industry__c = myAccount.Industry;
-                creditApp.Projected_Monthly_Spend__c = opportunity.Credit_Line_Requested__c;
+                creditApp.Projected_Monthly_Spend__c = opportunity.Credit_Limit__c;
                 creditApp.Billing_Cycle__c = opportunity.Billing_Cycle__c;
 
                 creditApp.Guarantor_First_Name__c = opportunity.Guarantor_Name__c;
