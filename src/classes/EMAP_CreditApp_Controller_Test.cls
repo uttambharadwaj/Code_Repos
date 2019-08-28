@@ -1,6 +1,9 @@
 @istest
 private class EMAP_CreditApp_Controller_Test{
-
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
 static testMethod void DupeChecktest(){
 
        

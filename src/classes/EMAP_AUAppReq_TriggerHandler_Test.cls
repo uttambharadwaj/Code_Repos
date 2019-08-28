@@ -1,6 +1,9 @@
 @istest
 public class EMAP_AUAppReq_TriggerHandler_Test{
-
+   @testSetup
+   static void setup(){
+      UtilityTestLoader.setAutomation(false);
+   }
      static testMethod void TestAuAppReq(){
             
         user US= TestDatatUtility.createUser();

@@ -1,6 +1,9 @@
 @isTest
 private class EMAP_RiskFlagBatchJob_Test{
-
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
     public static String CRON_EXP = '0 0 0 15 3 ? 2022';
 
 

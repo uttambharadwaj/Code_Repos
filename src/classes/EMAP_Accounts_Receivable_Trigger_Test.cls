@@ -2,7 +2,7 @@
 private class EMAP_Accounts_Receivable_Trigger_Test {
 
     static testMethod void AccountReceivableTriggerTest() {
-    	
+		UtilityTestLoader.setAutomation(false);
     	Program__c prog = TestDatatUtility.getProgram1();
     	prog.AOT_Amount__c = 250;
     	insert prog;

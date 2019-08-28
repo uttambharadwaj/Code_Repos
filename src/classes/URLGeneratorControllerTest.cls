@@ -3,7 +3,7 @@ private class URLGeneratorControllerTest{
 
     @IsTest
     public static void testURLGeneratorController() {
-    
+    UtilityTestLoader.setAutomation(false);
         Test.setCurrentPageReference(new PageReference('Page.URLGenerator'));
         System.currentPageReference().getParameters().put('parentProgram', 'Test');
 
