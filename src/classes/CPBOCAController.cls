@@ -1,5 +1,6 @@
 /*
 *
+*   Revision History:   26/AUG/2019     CJackson    LRC-86      Multiple changes to support implementation of CP BOCA.
 *   Revision History:   26/AUG/2019     MFarrell    LRC-97      Added donothing method and isUpMarket boolean.
 *
 */
@@ -14,7 +15,7 @@ public class CPBOCAController {
 
     public String tmSessionId { get; set; }
 
-    public String selectedCurrency {get;set;}
+    public String selectedCurrency { get; set; }
 
     public List<SelectOption> currencyOptions {
         get {
@@ -27,12 +28,6 @@ public class CPBOCAController {
                     myOptions.add(new SelectOption(currencyOption.getValue(), currencyOption.getValue()));
             }
             return myOptions;
-        }
-    }
-
-    public String userSessionId {
-        get {
-            return UserInfo.getSessionId();
         }
     }
 
@@ -68,6 +63,13 @@ public class CPBOCAController {
     public String selectedCountry {get;set;}
 
     public String selectedState {get;set;}
+
+    public String userSessionId {
+        get {
+            return UserInfo.getSessionId();
+        }
+    }
+
 
     public Boolean showTNC{
         get{
