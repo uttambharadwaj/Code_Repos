@@ -3,13 +3,7 @@ public class FleetEnrollmentData {
     public static void fleetEnrollmentDataUpdated(List<SObject> fleetDatas) {
 
         List<FleetEnrollment__c> fleetEnrollmentsToUpdate = new List<FleetEnrollment__c>();
-        Set<Id> fleetEnrollmentIds = new Set<Id>();
-
-        // Get all fleetenrollment__c ids
-        for (SObject fleetData : fleetDatas) {
-            fleetEnrollmentIds.add((Id) fleetData.get('Fleet_Enrollment__c'));
-        }
-
+        Set<Id> fleetEnrollmentIds = FleetEnrollmentUtils.listToFleetIdMap(fleetDatas).keySet();
         Map<Id, Boolean> fleetEnrollmentHasData = FleetEnrollmentUtils.hasFleetEnrollmentData(fleetEnrollmentIds);
 
         for (FleetEnrollment__c fleetEnrollment : [
