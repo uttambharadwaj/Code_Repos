@@ -8,7 +8,7 @@ public with sharing class CPBOCAToProspectTest {
     static void setupData(){
 
         UtilityTestLoader.setAutomation(false);
-    
+
         // Revisit this later..
         BOCA_IDS__C bocaId = BOCAtestDataUtility.getBOCAids();
         insert bocaId;
@@ -113,8 +113,25 @@ public with sharing class CPBOCAToProspectTest {
 
         System.runAs(user) {
 
-            Opportunity opportunity = new Opportunity(name= 'TestOpp',closedate= date.newinstance(2099,1,1),stagename='1) Qualified', fleet_size__c = 10, ownerId = user.id, sourcesystem__c = 'test', CampaignId = campaign.Id, Campaign_Program__c = campaignProgram.Id);
+            Account account = new account();
+
+            account.name = 'TestAcc';
+
+            insert account;
+
+            Opportunity opportunity = new Opportunity();
+
+            opportunity.Name = 'TestOpp';
+            opportunity.AccountId = account.Id;
+            opportunity.CloseDate = Date.newinstance(2099,1,1);
+            opportunity.StageName = '1) Qualified';
+            opportunity.Fleet_Size__c = 10;
+            opportunity.OwnerId = user.Id;
+            opportunity.SourceSystem__c = 'test';
             opportunity.Fueling_Methos__c = 'BP';
+            opportunity.CampaignId = campaign.Id;
+            opportunity.Campaign_Program__c = campaignProgram.Id;
+            opportunity.Years_In_Business__c = 5;
 
             insert opportunity;
 
@@ -176,7 +193,7 @@ public with sharing class CPBOCAToProspectTest {
 
             TestUtils.enable_isRunningTest = true;
 
-            Opportunity opportunity = [SELECT Id FROM Opportunity WHERE Name = 'TestOpp'];
+            Opportunity opportunity = [SELECT Id, OwnerId FROM Opportunity WHERE Name = 'TestOpp'];
 
             // Test with opportunity
             PageReference cpBOCAToProspect = Page.CPBOCAToProspect;
@@ -204,6 +221,10 @@ public with sharing class CPBOCAToProspectTest {
 
             PageReference bocaToProspectRedirect = cpbocaToProspectController.bocaToProspect();
 
+            List<user> salesReps = [SELECT Id, Name, FirstName, LastName, Email, Phone, Sales_Code__c FROM User WHERE Id =: opportunity.OwnerId LIMIT 1];
+            System.debug('Opportunity Id: ' + opportunity.Id);
+            System.debug('SalesRep: ' + Opportunity.OwnerId);
+            System.debug('SalesRep Name: ' + salesReps[0].Name);
             System.assertNotEquals(null, cpbocaToProspectController.salesRepName);
 
             // Test the components
