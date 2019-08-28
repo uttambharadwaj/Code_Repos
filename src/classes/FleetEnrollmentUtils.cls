@@ -1,5 +1,11 @@
 public class FleetEnrollmentUtils {
 
+
+    /**
+    * Purpose: Convert a list of fleet enrollment data into a map where the key is the id of the fleet enrollment record
+    * Input: Accepts any object with the field FleetEnrollment__c or Parentid that is SObjectType FleetEnrollment__c
+    * Output: Map<Id, List<SObject>> where Id is the FleetEnrollment__c and List<SObject> are the records from the input
+    */
     public static Map<Id, List<SObject>> listToFleetIdMap(List<SObject> fleetDataRecords) {
 
         Map<Id, List<SObject>> fleetDataMap = new Map<Id, List<SObject>>();
@@ -17,9 +23,16 @@ public class FleetEnrollmentUtils {
     }
 
     public static Boolean hasFleetEnrollmentData(Id fleetEnrollmentId) {
-        return hasFleetEnrollmentData(new Set<Id>{fleetEnrollmentId}).get(fleetEnrollmentId);
+        return hasFleetEnrollmentData(new Set<Id>{
+                fleetEnrollmentId
+        }).get(fleetEnrollmentId);
     }
 
+    /**
+    * Purpose: Contains logic to determine if the fleet enrollment records have fleet data
+    * Input: Accepts set of FleetEnrollment__c ids
+    * Output: Map<Id, Boolean> where Id is FleetEnrollment__c and the Boolean is whether or not the record has fleet data
+    */
     public static Map<Id, Boolean> hasFleetEnrollmentData(Set<Id> fleetEnrollmentIds) {
 
         Map<Id, Boolean> hasFleetEnrollmentDataMap = new Map<Id, Boolean>();

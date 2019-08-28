@@ -1,5 +1,11 @@
 public class FleetEnrollmentData {
 
+    /**
+    * Purpose: When data related to a fleetenrollment__c is updated, this function is called to determine if the checkbox
+    * Has_Fleet_Enrollment_Data__c should be checked or unchecked.
+    *
+    * Input: Accepts any object with the field Fleet_Enrollment__c or Parentid that is SObjectType FleetEnrollment__c
+    */
     public static void fleetEnrollmentDataUpdated(List<SObject> fleetDatas) {
 
         List<FleetEnrollment__c> fleetEnrollmentsToUpdate = new List<FleetEnrollment__c>();

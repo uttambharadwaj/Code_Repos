@@ -4,9 +4,9 @@ public class AttachmentAfterInsertTriggerHandler extends TriggerHandlerBase {
         fleetEnrollmentHandler((List<Attachment>) tp.newList);
     }
 
+    // Get any attachments with a Fleet_Enrollment__c parent
     private static void fleetEnrollmentHandler(List<Attachment> attachments) {
 
-        // Get any attachments with a Fleet_Enrollment__c parent
         List<Attachment> fleetEnrollmentAttachments = new List<Attachment>();
         for (Attachment attachment : attachments) {
 
