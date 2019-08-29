@@ -389,7 +389,11 @@ public virtual class FleetEnrollmentController {
         try {
 
             if (!String.isEmpty(applicationRequestParameter)) {
-                List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c = :applicationRequestParameter and CreatedBy.Alias = 'guest'];
+                List<FleetEnrollment__c> fleetEnrollments = [
+                        SELECT Id
+                        FROM FleetEnrollment__c
+                        WHERE Application_Request__c = :applicationRequestParameter
+                            AND Has_Fleet_Enrollment_Data__c = TRUE];
 
                 if (fleetEnrollments.size() > 0) {
                     throw new FleetEnrollmentException('Your information has already been submitted.');
@@ -397,7 +401,11 @@ public virtual class FleetEnrollmentController {
 
                 // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
                 // but not pre-filling any of the existing information!
-                fleetEnrollments = [SELECT Id, Opportunity_Number__c FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter and CreatedBy.Alias != 'guest'];
+                fleetEnrollments = [
+                        SELECT Id, Opportunity_Number__c
+                        FROM FleetEnrollment__c
+                        WHERE Application_Request__c =: applicationRequestParameter
+                            AND Has_Fleet_Enrollment_Data__c != TRUE];
 
                 if(fleetEnrollments.size() > 0) {
 
@@ -407,7 +415,11 @@ public virtual class FleetEnrollmentController {
             }
 
             if (!String.isEmpty(opportunityParameter)) {
-                List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity_Number__c = :opportunityParameter and CreatedBy.Alias = 'guest'];
+                List<FleetEnrollment__c> fleetEnrollments = [
+                        SELECT Id
+                        FROM FleetEnrollment__c
+                        WHERE Opportunity_Number__c = :opportunityParameter
+                            AND Has_Fleet_Enrollment_Data__c = TRUE];
 
                 if (fleetEnrollments.size() > 0) {
                     throw new FleetEnrollmentException('Your information has already been submitted.');
@@ -415,7 +427,11 @@ public virtual class FleetEnrollmentController {
 
                 // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
                 // but not pre-filling any of the existing information!
-                fleetEnrollments = [SELECT Id, Opportunity_Number__c FROM FleetEnrollment__c WHERE (Opportunity_Number__c =: opportunityParameter or Opportunity__c =: opportunityParameter) and CreatedBy.Alias != 'guest'];
+                fleetEnrollments = [
+                        SELECT Id, Opportunity_Number__c
+                        FROM FleetEnrollment__c
+                        WHERE (Opportunity_Number__c =: opportunityParameter OR Opportunity__c =: opportunityParameter)
+                            AND Has_Fleet_Enrollment_Data__c != TRUE];
 
                 if(fleetEnrollments.size() > 0) {
 
