@@ -19,6 +19,10 @@ public class TestClassDispatcher {
         PartnerBOCAToProspectControllerTest.testInits();
     }
 
+    @isTest static void testCampaignProgramDelete(){
+        CmpgnProgramTriggerTest.testCampaignProgramDelete();
+    }
+
     @isTest static void testOpportunityTriggerAfterInsert() {
         OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnInsert();
     }
