@@ -399,8 +399,8 @@ public virtual class FleetEnrollmentController {
                     throw new FleetEnrollmentException('Your information has already been submitted.');
                 }
 
-                // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
-                // but not pre-filling any of the existing information!
+                // find existing FleetEnrollment record from when opportunity was created
+                // but without pre-filling any of the existing information!
                 fleetEnrollments = [
                         SELECT Id, Opportunity_Number__c
                         FROM FleetEnrollment__c
@@ -425,8 +425,8 @@ public virtual class FleetEnrollmentController {
                     throw new FleetEnrollmentException('Your information has already been submitted.');
                 }
 
-                // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
-                // but not pre-filling any of the existing information!
+                // find existing FleetEnrollment record from when opportunity was created
+                // but without pre-filling any of the existing information!
                 fleetEnrollments = [
                         SELECT Id, Opportunity_Number__c
                         FROM FleetEnrollment__c
