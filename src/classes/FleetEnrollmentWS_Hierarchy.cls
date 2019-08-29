@@ -5,7 +5,8 @@
  *                      16/AUG/2019     NAFONBOARD-56   MFarrell    Added logic for which case is to be created next after bots close hierarchy case
  *                                                                  Updated class with code from prod, as prod did not match what was in bitbucket.
  *                      21/Aug/2019     NAFONBOARD-76   MFarrell    Removing app channel and source system from routing criteria
- *                      27/AUG/2019     NAFONBOARD-86   MFarrell    Changing logic from NAFONBOARD-56
+ *                      27/AUG/2019     NAFONBOARD-86   MFarrell    Changing logic from NAFONBOARD-56 & changed role logic to custom metadata
+ *                      28/AUG/2019     NAFONBOARD-83   MFarrell    Added outside sales roles logic
  */
 @RestResource(urlMapping='/FleetEnrollmentWS/HierarchyQueue/*')
 global with sharing class FleetEnrollmentWS_Hierarchy {
@@ -240,11 +241,9 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 upsert cases;
 
-                // If there is no Fleet Enrollment and we're headed for the next queue, we at the very
-                // least need a Program Template Account associated for das bots.
+                //NAFONBOARD-56 - If app req doesn't have a related fleet enrollment, find the one on the oppty, and relate it to the app req.
                 if(cases[0].Fleet_Enrollment__c == null) {
 
-                    //NAFONBOARD-56 - If app req doesn't have a related fleet enrollment, find the one on the oppty, and relate it to the app req.
                     List<FleetEnrollment__c> fleetEnrollments = [
                             SELECT Id, Opportunity__c, Opportunity_Number__c, Application_Request__c, Debug_Application_Parameter__c, Debug_Opportunity_Parameter__c
                             FROM FleetEnrollment__c
@@ -282,15 +281,24 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                 //NAFONBOARD-86 - added roles to custom metadata
                 Map<String, String> isRolesMap = new Map<String, String>();
-                List<Implementation_Automation_Setting__mdt> insideSalesRoles = [
+                //NAFONBOARD-83 - added outside sales roles
+                Map<String, String> outsideRolesMap = new Map<String, String>();
+
+                List<Implementation_Automation_Setting__mdt> SalesRoles = [
                         SELECT Id, DeveloperName, Role_Name__c, Type__c, Role_Group__c
                         FROM Implementation_Automation_Setting__mdt
-                        WHERE Type__c = 'Role' AND Role_Group__c ='IS Sales'
+                        WHERE Type__c = 'Role'
                 ];
 
-                if (insideSalesRoles.size() > 0) {
-                    for (Implementation_Automation_Setting__mdt IAS : insideSalesRoles ) {
-                        isRolesMap.put(IAS.Role_Name__c, IAS.DeveloperName);
+                if (SalesRoles.size() > 0) {
+                    for (Implementation_Automation_Setting__mdt IAS : SalesRoles ) {
+                        if (IAS.Role_Group__c == 'IS Sales'){
+                            isRolesMap.put(IAS.Role_Name__c, IAS.DeveloperName);
+                        }
+
+                        if (IAS.Role_Group__c == 'Outside Sales') {
+                            outsideRolesMap.put(IAS.Role_Name__c, IAS.DeveloperName);
+                        }
                     }
                 }
 
@@ -326,6 +334,7 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
                             (cases[0].Opportunity__r.Owner.UserRole.Name).equalsIgnoreCase('Shell Outbound Sale')
                         )
  */
+                    //If owner is sinte or part of the IS Sales Group, head to the Activation Queue next!
                     ) {
 
                     Case implementationCallCase = new Case();
@@ -345,7 +354,9 @@ global with sharing class FleetEnrollmentWS_Hierarchy {
 
                     insert implementationCallCase;
 
-                } else {
+                //NAFONBOARD-83 - if owner is part of the outside sales group then we stop after the hierarchy case.
+                //if owner is not IS Sales or Outside Sales, then head to the Parent Queue.
+                } else if (outsideRolesMap.isEmpty() || !outsideRolesMap.containsKey(cases[0].Opportunity__r.Owner.UserRole.Name)) {
 
                     Case implementationCallCase = new Case();
 
