@@ -176,7 +176,7 @@ Revision History:   4/26/2019 IADJUDICAT-1164 added comments around credit decis
                         <!--BEGIN APPLICATION BEING PROCESSED SECTION-->
                         <apex:outputPanel rendered="{!IF(AND(program.Disable_Instant_Decisioning__c == false, decisioningCompleted == false), true, false)}">
                             <script>
-                                $j('body').loadingModal({text: 'Your application is being processed. Please do not push the back button or leave this screen.', 'animation': 'wanderingCubes'});
+                                $j('body').loadingModal({text: '{!$Label.BOCA_Application_Processing}', 'animation': 'wanderingCubes'});
                             </script>
                             <apex:actionPoller action="{!checkStatusOfApplication}" interval="5" enabled="{!decisioningCompleted == false}" rerender="creditDecision, fleetEnrollment, confirmNum"/>
                         </apex:outputPanel>
