@@ -37,23 +37,33 @@ public class FleetEnrollmentUtils {
     public static Map<Id, Boolean> hasFleetEnrollmentData(Set<Id> fleetEnrollmentIds) {
 
         Map<Id, Boolean> hasFleetEnrollmentDataMap = new Map<Id, Boolean>();
+        Map<Id, List<FleetEnrollment_Contact__c>> fleetEnrollmentContacts = new Map<Id, List<FleetEnrollment_Contact__c>>();
+        Map<Id, List<FleetEnrollment_Driver__c>> fleetEnrollmentDrivers = new Map<Id, List<FleetEnrollment_Driver__c>>();
+        Map<Id, List<FleetEnrollment_Vehicle__c>> fleetEnrollmentVehicles = new Map<Id, List<FleetEnrollment_Vehicle__c>>();
 
-        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Association__c FROM FleetEnrollment__c WHERE Id IN :fleetEnrollmentIds];
-        Map<Id, List<FleetEnrollment_Contact__c>> fleetEnrollmentContacts = listToFleetIdMap([SELECT Id,Fleet_Enrollment__c FROM FleetEnrollment_Contact__c WHERE Fleet_Enrollment__c IN :fleetEnrollments AND Fleet_Enrollment__c != NULL]);
-        Map<Id, List<FleetEnrollment_Driver__c>> fleetEnrollmentDrivers = listToFleetIdMap([SELECT Id,Fleet_Enrollment__c FROM FleetEnrollment_Driver__c WHERE Fleet_Enrollment__c IN :fleetEnrollments AND Fleet_Enrollment__c != NULL]);
-        Map<Id, List<FleetEnrollment_Vehicle__c>> fleetEnrollmentVehicles = listToFleetIdMap([SELECT Id,Fleet_Enrollment__c FROM FleetEnrollment_Vehicle__c WHERE Fleet_Enrollment__c IN :fleetEnrollments AND Fleet_Enrollment__c != NULL]);
-        Map<Id, List<Attachment>> fleetEnrollmentAttachments = listToFleetIdMap([SELECT Id,ParentId FROM Attachment WHERE ParentId IN :fleetEnrollments AND ParentId != NULL]);
+        Map<Id, FleetEnrollment__c> fleetEnrollments = new Map<Id, FleetEnrollment__c>([SELECT Id, Association__c FROM FleetEnrollment__c WHERE Id IN :fleetEnrollmentIds AND Association__c = NULL]);
+        Map<Id, List<Attachment>> fleetEnrollmentAttachments = listToFleetIdMap([SELECT Id,ParentId FROM Attachment WHERE ParentId IN :fleetEnrollmentIds AND ParentId != NULL]);
 
-        for (FleetEnrollment__c fleetEnrollment : fleetEnrollments) {
+        // Determine if additional data is needed for any of the fleetEnrollmentIds
+        Set<Id> fleetEnrollmentsNoAttachments = fleetEnrollmentIds.clone();
+        fleetEnrollmentsNoAttachments.removeAll(fleetEnrollmentAttachments.keyset());
 
-            Boolean hasContactDriverVehicle = fleetEnrollmentContacts.get(fleetEnrollment.Id) != null &&
-                    fleetEnrollmentDrivers.get(fleetEnrollment.Id) != null &&
-                    fleetEnrollmentVehicles.get(fleetEnrollment.Id) != null;
+        if (!fleetEnrollmentsNoAttachments.isEmpty()) {
+            fleetEnrollmentContacts = listToFleetIdMap([SELECT Id,Fleet_Enrollment__c FROM FleetEnrollment_Contact__c WHERE Fleet_Enrollment__c IN :fleetEnrollmentsNoAttachments AND Fleet_Enrollment__c != NULL]);
+            fleetEnrollmentDrivers = listToFleetIdMap([SELECT Id,Fleet_Enrollment__c FROM FleetEnrollment_Driver__c WHERE Fleet_Enrollment__c IN :fleetEnrollmentsNoAttachments AND Fleet_Enrollment__c != NULL]);
+            fleetEnrollmentVehicles = listToFleetIdMap([SELECT Id,Fleet_Enrollment__c FROM FleetEnrollment_Vehicle__c WHERE Fleet_Enrollment__c IN :fleetEnrollmentsNoAttachments AND Fleet_Enrollment__c != NULL]);
+        }
 
-            Boolean hasAttachments = fleetEnrollmentAttachments.get(fleetEnrollment.Id) != null;
-            Boolean hasFleetData = fleetEnrollment.Association__c == null && (hasAttachments || hasContactDriverVehicle);
+        for (Id fleetEnrollmentId : fleetEnrollmentIds) {
 
-            hasFleetEnrollmentDataMap.put(fleetEnrollment.Id, hasFleetData);
+            Boolean hasContactDriverVehicle = fleetEnrollmentContacts.get(fleetEnrollmentId) != null &&
+                    fleetEnrollmentDrivers.get(fleetEnrollmentId) != null &&
+                    fleetEnrollmentVehicles.get(fleetEnrollmentId) != null;
+
+            Boolean hasAttachments = fleetEnrollments.get(fleetEnrollmentId) != null && fleetEnrollmentAttachments.get(fleetEnrollmentId) != null;
+            Boolean hasFleetData = fleetEnrollments.get(fleetEnrollmentId) != null && (hasAttachments || hasContactDriverVehicle);
+
+            hasFleetEnrollmentDataMap.put(fleetEnrollmentId, hasFleetData);
 
         }
 
