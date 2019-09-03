@@ -5,6 +5,7 @@
 * Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name to FleetEnrollmentInternal Page.
 *                   22/Jul/2019 CJackson    NAFONBOARD-5    Esso Finders Fee derived from sales checklist.
 *                   21/Aug/2019 MFarrell    NAFONBOARD-77   We want to be able to pass 0's, changing != 0 to != null.
+*                   30/Aug/2019 MFarrell    NAFONBOARD-82   Updated dataSheetFolder name to custom label & added applicationRequest null checks.
 *
 */
 
@@ -14,7 +15,7 @@ public with sharing class FleetEnrollmentInternalController {
 
     public Id dataSheetFolder {
         get {
-            List<Folder> folders = [SELECT Id FROM Folder WHERE DeveloperName = 'Fleet_Implementation_Data_Sheets'];
+            List<Folder> folders = [SELECT Id FROM Folder WHERE DeveloperName = :System.Label.Fleet_Data_Sheet_Folder];
 
             if(folders.size() > 0) {
                 return folders[0].Id;
@@ -553,7 +554,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.overnightCardsFileBody != null) {
                     Attachment managerApproval = new Attachment();
-                    if(applicationRequest.Siebel_Oppty__c != null) {
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
                         managerApproval.Name = applicationRequest.Siebel_Oppty__c + '_OvernightCardApproval_' + fleetEnrollmentInformation.overnightCardsFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
                     else {
@@ -566,7 +567,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.feeWaiversTFSFileBody != null) {
                     Attachment tfsSchedule = new Attachment();
-                    if(applicationRequest.Siebel_Oppty__c != null) {
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
                         tfsSchedule.Name = applicationRequest.Siebel_Oppty__c + '_TFS_' + fleetEnrollmentInformation.feeWaiversTFSFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
                     else {
@@ -579,7 +580,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.fleetDataFileBody != null) {
                     Attachment fleetEnrollmentData = new Attachment();
-                    if(applicationRequest.Siebel_Oppty__c != null) {
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
                         fleetEnrollmentData.Name = applicationRequest.Siebel_Oppty__c + '_FleetData_' + fleetEnrollmentInformation.fleetDataFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
                     else {
@@ -592,7 +593,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (fleetEnrollmentInformation.directDebitFileBody != null) {
                     Attachment directDebitData = new Attachment();
-                    if(applicationRequest.Siebel_Oppty__c != null) {
+                    if(applicationRequest != null && applicationRequest.Siebel_Oppty__c != null) {
                         directDebitData.Name = applicationRequest.Siebel_Oppty__c + '_DirectDebit_' + fleetEnrollmentInformation.directDebitFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
                     else {
