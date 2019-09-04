@@ -34,7 +34,7 @@ global class CreditDecisionEngineNA {
                         Personal_Guarantor_Mailing_Zip__c, Personal_Guarantor_SSN__c, PG_Required__c, Physical_City__c, Physical_State__c, Physical_Street__c, Requested_Credit_Limit__c,
                         Physical_Zip_Postal_Code__c, Program__c, Running_Credit_Decisioning__c, Sanctions_Business_Check__c, Sanctions_Business_Result_ID__c,
                         Sanctions_Individual_Check__c, Sanctions_Individual_Result_ID__c, Tax_Payer_ID_number__c, ThreatMetrix_Session_ID__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Result__c,
-                        Physical_Country__c, Fraud_Flag__c, DNB_Match_Score__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c
+                        Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c
                 FROM Application_Request__c
                 WHERE Id = :naApplicationId
         ];
@@ -304,7 +304,6 @@ global class CreditDecisionEngineNA {
                 naApplication.DNB_State_Match_Data_Profile__c  = dnbDirectMatchResponse.matchCandidates[0].StateMatchDataProfile;
                 naApplication.DNB_Postal_Code_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchDataProfile;
                 naApplication.DNB_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].MatchGradeText;
-                naApplication.WEX_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].WEXMatchScore;
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     naApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
                 }
@@ -414,14 +413,6 @@ global class CreditDecisionEngineNA {
                 dnbDirectMatchRequest.SingleResolution = false;
                 dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
-            }
-
-            // Trust but verify
-            if ((null != naApplication.Tax_Payer_ID_number__c && null != naApplication.Bureau_Tax_ID__c) && naApplication.Tax_Payer_ID_number__c.equals(naApplication.Bureau_Tax_ID__c)) {
-                naApplication.DNB_Match_Score__c = 100;
-            } else {
-                naApplication.DNB_Match_Score__c = JaroWinklerDistance.getScore((naApplication.Opportunity_Name_Text__c).replaceAll('[^0-9A-Za-z]',''), (dnbDirectMatchRequest.SubjectName).replaceAll('[^0-9A-Za-z]',''));
-                System.debug('Match Score: ' + naApplication.DNB_Match_Score__c);
             }
 
             // GIACT
