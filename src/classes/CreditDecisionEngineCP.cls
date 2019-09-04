@@ -32,7 +32,7 @@ global class CreditDecisionEngineCP {
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
                         Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c,
                         Doing_Business_As__c, Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State_Province__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c,
-                        DNB_Resolved_DUNS__c
+                        DNB_Resolved_DUNS__c, BPAV_Check__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
         ];
@@ -44,6 +44,7 @@ global class CreditDecisionEngineCP {
             cpApplication.Running_Credit_Decisioning__c = true;
 
             // ThreatMetrix
+            System.debug('Running ThreamMetrix...');
             if ((cpApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {
 
                 // If the application hasn't yet been integrated
@@ -98,6 +99,7 @@ global class CreditDecisionEngineCP {
                 cpApplication.ThreatMetrix_Result__c = 'Pass';
             }
 
+            System.debug('Running Lexis Nexis...');
             if (cpApplication.Guarantor_Social_Security_Number__c != null) {
 
                 // LexisNexis Check
@@ -129,6 +131,7 @@ global class CreditDecisionEngineCP {
                 }
 
                 // Lexis Nexis Bridger Check - Individual
+                System.debug('Running LN Bridger Individual...');
                 CreditWS_LexisNexisBridger.LexisNexisBridgerIndividualRequest lexisNexisBridgerIndividualRequest = new CreditWS_LexisNexisBridger.LexisNexisBridgerIndividualRequest();
 
                 lexisNexisBridgerIndividualRequest.firstName = cpApplication.Guarantor_First_Name__c;
@@ -165,6 +168,7 @@ global class CreditDecisionEngineCP {
             }
 
             // Lexis Nexis Bridger Check - Business
+            System.debug('Running LN Bridger Business...');
             CreditWS_LexisNexisBridger.LexisNexisBridgerBusinessRequest lexisNexisBridgerBusinessRequest = new CreditWS_LexisNexisBridger.LexisNexisBridgerBusinessRequest();
 
             lexisNexisBridgerBusinessRequest.companyName = cpApplication.Company_Legal_Name__c;
@@ -191,6 +195,7 @@ global class CreditDecisionEngineCP {
             }
 
             // Lexis Nexis RDP - SBA
+            System.debug('Running LN RDP - SBA...');
             CreditWS_LexisNexisRDP.LexisNexisSBARequest lexisNexisSBARequest = new CreditWS_LexisNexisRDP.LexisNexisSBARequest();
 
             lexisNexisSBARequest.companyName = cpApplication.Company_Legal_Name__c;
@@ -221,6 +226,7 @@ global class CreditDecisionEngineCP {
             cpApplication.Lexis_Nexis_Custom_Model_Score__c = lexisNexisSBAResponse.fraudScore;
 
             // Lexis Nexis - BIID
+            System.debug('Running LN BIID...');
             CreditWS_LexisNexisRDP.LexisNexisBIIDRequest lexisNexisBIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisBIIDRequest();
 
             lexisNexisBIIDRequest.applicationId = cpApplication.Id;
@@ -284,6 +290,7 @@ global class CreditDecisionEngineCP {
             }
 
             // DNB Resolution
+            System.debug('Running DNB Matching...');
             CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest();
 
             dnbDirectMatchRequest.SingleResolution = true;
@@ -315,9 +322,10 @@ global class CreditDecisionEngineCP {
                 }
 
                 // Execute BREeze for pre-processing
-                BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('CPCreditDecisioningDNBMatch', new List<SObject>{cpApplication});
+                System.debug('Running DNB BPAV...');
+                BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('CPCreditDecisioningBPAVMatch', new List<SObject>{cpApplication});
 
-                if(breezeResults.records != null && breezeResults.records[0].get('DNB_Resolution_Check__c') != null && (breezeResults.records[0].get('DNB_Resolution_Check__c').toString()).equalsIgnoreCase('Passed')) {
+                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
 
                     cpApplication.DUNS_Number__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
 
@@ -444,6 +452,7 @@ global class CreditDecisionEngineCP {
             }
 
             // Existing Exposure - Application/Account Exposure
+            System.debug('Running Existing Exposure...');
             CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
             existingExposureRequest.applicationId = cpApplication.Id;
             existingExposureRequest.applicationName = cpApplication.Name;
@@ -483,6 +492,7 @@ global class CreditDecisionEngineCP {
             }
 
             // GIACT
+            System.debug('Running GIACT...');
             if(!String.isBlank(cpApplication.ABA_Routing_Number__c) && !String.isBlank(cpApplication.Checking_Account_Number__c)) {
 
                 CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
@@ -553,9 +563,11 @@ global class CreditDecisionEngineCP {
                         && (cpApp.Opportunity__r.Pull_PG_Credit__c == null || cpApp.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))) {
 
                     if (cpApp.Guarantor_Country__c == null || (cpApp.Guarantor_Country__c).equalsIgnoreCase('US')) {
+                        System.debug('Running Experian...');
                         CreditDecisionEngineQueueable.runExperianPGChecks(cpApp.Id);
 
                     } else if (cpApp.Guarantor_Country__c != null && (cpApp.Guarantor_Country__c).equalsIgnoreCase('CA')) {
+                        System.debug('Running Equifax...');
                         CreditDecisionEngineQueueable.runEquifaxPGChecks(cpApp.Id);
                     }
                 }
