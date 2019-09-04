@@ -44,13 +44,12 @@ function pageLoadFunctions() {
 
     $j("[id$=state] option").eq('').text('--Choose One--');
     $j("[id$=exemptFromMotorFuelsTax] option").eq('').text('--Choose One--');
-    $j("[id$=legalStructure] option").eq('').text('--Choose One--');
+    $j("[id$=legalStructure] option:contains('--None--')").text('--Choose One--');
     $j("[id$=legalStructure] option:contains('Limited Liability Company')").text('Limited Liability Company (LLC)');
     $j("[id$=fiscalYearStarts ] option").eq('').remove();
 
     $j("[id$=businessState] option").eq('').text('--Choose One--');
     $j("[id$=paymentMethod] option").eq('').text('--Choose One--');
-    $j("[id$=legalStructure] option").eq('').text('--Choose One--');
     $j("[id$=pgState] option").eq('').text('--Choose One--');
     $j("[id$=billingCycle] option").eq('').text('--Choose One--');
     $j("[id$=invoiceDeliveryMethod] option").eq('').text('--Choose One--');
