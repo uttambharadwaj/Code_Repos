@@ -595,14 +595,12 @@ public without sharing class OTRSetupController {
                     replyTo = String.valueOf(singleBocaId.get('Email_Address_Noreply__c'));
                 }
 
-                List<RecordType> contactRecordTypes = [SELECT Id FROM RecordType WHERE SobjectType = 'Contact' AND DeveloperName IN ('F1_Contact')];
-
                 Contact temporaryContact = new Contact();
 
                 temporaryContact.FirstName = onlineApplication.Contact_First_Name__c;
                 temporaryContact.LastName = onlineApplication.Contact_Last_Name__c;
                 temporaryContact.Email = onlineApplication.Email__c;
-                temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
+                temporaryContact.RecordTypeId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
 
                 insert temporaryContact;
 

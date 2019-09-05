@@ -895,14 +895,12 @@ public class CPBOCAController {
             replyTo = String.valueOf(singleBocaId.get('Email_Address_Noreply__c'));
         }
 
-        List<RecordType> contactRecordTypes = [select Id from RecordType where sObjectType = 'Contact' and DeveloperName IN ('F1_Contact')];
-
         Contact temporaryContact = new Contact();
 
         temporaryContact.FirstName = creditApp.First_Name__c;
         temporaryContact.LastName = creditApp.Last_Name__c;
         temporaryContact.Email = creditApp.Email__c;
-        temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
+        temporaryContact.RecordTypeId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
 
         insert temporaryContact;
 

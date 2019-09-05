@@ -108,7 +108,7 @@ public with sharing class OnlineApplicationParameters {
         
         Id rId = null;
         try {
-        	rId = [select Id from RecordType where SObjectType = 'Contact' and Name = 'F1_Contact'].Id;
+        	rId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
         }
         catch(Exception e) {}
         return rId;

@@ -238,8 +238,6 @@ public class SendBeneficialOwnerFormController {
             //confirmation.setTemplateId(brandingUtility.Email_Template_ID__c);
             confirmation.setWhatId(boEntity.Id);
             
-            List<RecordType> contactRecordTypes = [select Id from RecordType where sObjectType = 'Contact' and DeveloperName IN ('F1_Contact')];
-            
             Contact temporaryContact = null;
             
             if(newContact != null) {
@@ -249,7 +247,7 @@ public class SendBeneficialOwnerFormController {
                 temporaryContact.FirstName = newContact.firstName;
                 temporaryContact.LastName = newContact.lastName;
                 temporaryContact.Email = newContact.emailAddress;
-                temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
+                temporaryContact.RecordTypeId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
                 
                 insert temporaryContact;
                 
