@@ -395,28 +395,31 @@ public virtual class FleetEnrollmentController {
                         FROM FleetEnrollment__c
                         WHERE Application_Request__c = :applicationRequestParameter];
 
-                List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
-                List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
+                if (fleetEnrollments.size() >0) {
 
-                for (FleetEnrollment__c fe : fleetEnrollments) {
-                    if (fe.Has_Fleet_Enrollment_Data__c = true) {
-                        feWithFleetData.add(fe);
-                    } else {
-                        feWithoutFleetData.add(fe);
+                    List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
+                    List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
+
+                    for (FleetEnrollment__c fe : fleetEnrollments) {
+                        if (fe.Has_Fleet_Enrollment_Data__c = true) {
+                            feWithFleetData.add(fe);
+                        } else {
+                            feWithoutFleetData.add(fe);
+                        }
                     }
-                }
 
-                if (feWithFleetData.size() > 0) {
-                    throw new FleetEnrollmentException('Your information has already been submitted.');
-                }
+                    if (feWithFleetData.size() > 0) {
+                        throw new FleetEnrollmentException('Your information has already been submitted.');
+                    }
 
-                // find existing FleetEnrollment record from when opportunity was created
-                // but without pre-filling any of the existing information!
+                    // find existing FleetEnrollment record from when opportunity was created
+                    // but without pre-filling any of the existing information!
 
-                if(feWithoutFleetData.size() > 0) {
+                    if (feWithoutFleetData.size() > 0) {
 
-                    fleetEnrollment.Id = feWithoutFleetData[0].Id;
+                        fleetEnrollment.Id = feWithoutFleetData[0].Id;
 
+                    }
                 }
             }
 
@@ -427,28 +430,31 @@ public virtual class FleetEnrollmentController {
                         FROM FleetEnrollment__c
                         WHERE Opportunity_Number__c = :opportunityParameter];
 
-                List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
-                List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
+                if (fleetEnrollments.size() >0) {
 
-                for (FleetEnrollment__c fe : fleetEnrollments) {
-                    if (fe.Has_Fleet_Enrollment_Data__c = true) {
-                        feWithFleetData.add(fe);
-                    } else {
-                        feWithoutFleetData.add(fe);
+                    List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
+                    List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
+
+                    for (FleetEnrollment__c fe : fleetEnrollments) {
+                        if (fe.Has_Fleet_Enrollment_Data__c = true) {
+                            feWithFleetData.add(fe);
+                        } else {
+                            feWithoutFleetData.add(fe);
+                        }
                     }
-                }
 
-                if (feWithFleetData.size() > 0) {
-                    throw new FleetEnrollmentException('Your information has already been submitted.');
-                }
+                    if (feWithFleetData.size() > 0) {
+                        throw new FleetEnrollmentException('Your information has already been submitted.');
+                    }
 
-                // find existing FleetEnrollment record from when opportunity was created
-                // but without pre-filling any of the existing information!
+                    // find existing FleetEnrollment record from when opportunity was created
+                    // but without pre-filling any of the existing information!
 
-                if(feWithoutFleetData.size() > 0) {
+                    if (feWithoutFleetData.size() > 0) {
 
-                    fleetEnrollment.Id = feWithoutFleetData[0].Id;
+                        fleetEnrollment.Id = feWithoutFleetData[0].Id;
 
+                    }
                 }
             }
 
