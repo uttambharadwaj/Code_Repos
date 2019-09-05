@@ -756,9 +756,8 @@ public virtual class FleetEnrollmentController {
                     }
 
                 }
-                insert newFleetContacts;
-
             }
+            insert newFleetContacts;
 
             // Insert vehicles
             if(fleetVehicles.size() > 0) {
