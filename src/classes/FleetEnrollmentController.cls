@@ -688,6 +688,7 @@ public virtual class FleetEnrollmentController {
             upsert fleetEnrollment;
 
             // Insert contacts
+            List<FleetEnrollment_Contact__c> newFleetContacts = new List<FleetEnrollment_Contact__c>();
 
             // The first contact is always the billing contact
             FleetEnrollment_Contact__c primaryFleetContact = new FleetEnrollment_Contact__c();
@@ -698,7 +699,7 @@ public virtual class FleetEnrollmentController {
             primaryFleetContact.Email__c = fleetEnrollment.Billing_Email__c;
             primaryFleetContact.Phone__c = fleetEnrollment.Billing_Phone__c;
 
-            insert primaryFleetContact;
+            newFleetContacts.add(primaryFleetContact);
 
             // Add additional contacts
             if(fleetContacts.size() > 0) {
@@ -716,17 +717,18 @@ public virtual class FleetEnrollmentController {
                         newFleetContact.Email__c = fleetContacts.get(i).Email;
                         newFleetContact.Phone__c = fleetContacts.get(i).Phone;
 
-                        insert newFleetContact;
+                        newFleetContacts.add(newFleetContact);
 
                     }
 
                 }
+                insert newFleetContacts;
 
             }
 
             // Insert vehicles
             if(fleetVehicles.size() > 0) {
-
+                List<FleetEnrollment_Vehicle__c> newFleetVehicles = new List<FleetEnrollment_Vehicle__c>();
                 for(Integer i = 0; i < fleetVehicles.size(); i++) {
 
                     FleetEnrollment_Vehicle__c newFleetVehicle = new FleetEnrollment_Vehicle__c();
@@ -745,18 +747,17 @@ public virtual class FleetEnrollmentController {
                     if(program.Fleet_Enrollment_Enable_Universal_PL__c == true && fleetVehicles.get(i).selectedAcceptanceOption != '#') {
                         newFleetVehicle.Acceptance__c = fleetVehicles.get(i).selectedAcceptanceOption;
                     }
-
-                    insert newFleetVehicle;
+                    newFleetVehicles.add(newFleetVehicle);
 
                 }
-
+                insert newFleetVehicles;
             }
 
             if(program.Fleet_Enrollment_Disable_Driver_Page__c == false) {
 
                 // Insert drivers
                 if(fleetDrivers.size() > 0) {
-
+                    List<FleetEnrollment_Driver__c> newFleetDrivers = new List<FleetEnrollment_Driver__c>();
                     for(Integer i = 0; i < fleetDrivers.size(); i++) {
 
                         if(!String.isEmpty(fleetDrivers.get(i).firstName) && !String.isEmpty(fleetDrivers.get(i).lastName)) {
@@ -777,15 +778,15 @@ public virtual class FleetEnrollmentController {
                             if(program.Fleet_Enrollment_Enable_Universal_PL__c == true && fleetDrivers.get(i).selectedAcceptanceOption != '#') {
                                 newFleetDriver.Acceptance__c = fleetDrivers.get(i).selectedAcceptanceOption;
                             }
-                            
+
                             if(fleetEnrollment.Driver_ID_Random__c == true) {
                                 newFleetDriver.Driver_ID__c = 'Random';
                             }
-
-                            insert newFleetDriver;
+                            newFleetDrivers.add(newFleetDriver);
                         }
 
                     }
+                    insert newFleetDrivers;
 
                 }
 
