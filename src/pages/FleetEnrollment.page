@@ -1166,14 +1166,13 @@
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
-                            <!--TODO: Make esso premium plus only-->
-                            <div class="twelve columns clearfix">
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
                                 Print an optional third line to help identify your cards (20 character maximum, including spaces, with no special characters).
                             </div>
-                            <div class="twelve columns clearfix">
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
                                 &nbsp;
                             </div>
-                            <div class="twelve columns clearfix">
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
                                 <apex:inputText maxlength="20" id="embossingOption3" onkeyup="updateThirdLine(this.value)" value="{!fleetEnrollment.Embossing_Third_Line__c}" styleClass="styledInput noSpecialChars" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Embossing_Third_Line__c.label}"/>
                             </div>
                             <div class="twelve columns clearfix">
@@ -1611,10 +1610,10 @@
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
-                            <div class="twelve columns clearfix">
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
                                 <b>Optional Third Line: </b> {!IF(fleetEnrollment.Embossing_Third_Line__c == null, 'None', fleetEnrollment.Embossing_Third_Line__c)}
                             </div>
-                            <div class="twelve columns clearfix">
+                            <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
                                 &nbsp;
                             </div>
                         </apex:outputPanel>
