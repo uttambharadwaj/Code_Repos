@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,11 +89,41 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>SaveEdit</actionName>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -43,6 +133,15 @@
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
@@ -379,6 +478,11 @@
                     <default>false</default>
                     <label>CPBOCA</label>
                 </value>
+                <value>
+                    <fullName>TAG</fullName>
+                    <default>false</default>
+                    <label>TAG</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -477,6 +581,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Brand_Long_Name_fr_CA__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Brand Long Name fr CA</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Brand_Short_Name__c</fullName>
         <caseSensitive>false</caseSensitive>
         <encryptionScheme>None</encryptionScheme>
@@ -502,6 +618,68 @@
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>CP_BOCA_Financials_Needed__c</fullName>
+        <description>Drives what financials are asked for on the CP BOCA</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Drives what financials are asked for on the CP BOCA</inlineHelpText>
+        <label>CP BOCA Financials Needed</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Direct_Debit_Form__c</fullName>
+                    <default>false</default>
+                    <label>Direct_Debit_Form__c</label>
+                </value>
+                <value>
+                    <fullName>Voided_Check__c</fullName>
+                    <default>false</default>
+                    <label>Voided_Check__c</label>
+                </value>
+                <value>
+                    <fullName>Copy_of_Driver_s_License__c</fullName>
+                    <default>false</default>
+                    <label>Copy_of_Driver_s_License__c</label>
+                </value>
+                <value>
+                    <fullName>Audited_Financials__c</fullName>
+                    <default>false</default>
+                    <label>Audited_Financials__c</label>
+                </value>
+                <value>
+                    <fullName>Copy of Driver&apos;s License</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Copy of Driver&apos;s License</label>
+                </value>
+                <value>
+                    <fullName>Direct Debit form</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Direct Debit form</label>
+                </value>
+                <value>
+                    <fullName>Voided Check</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Voided Check</label>
+                </value>
+                <value>
+                    <fullName>Audited Financials</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>XXXXAudited Financials</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
         <fullName>Card_Order_Type__c</fullName>
         <externalId>false</externalId>
         <label>Card Order Type</label>
@@ -513,6 +691,11 @@
             <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
                 <value>
                     <fullName>2</fullName>
                     <default>false</default>
@@ -534,6 +717,16 @@
                     <label>21</label>
                 </value>
                 <value>
+                    <fullName>30</fullName>
+                    <default>false</default>
+                    <label>30</label>
+                </value>
+                <value>
+                    <fullName>31</fullName>
+                    <default>false</default>
+                    <label>31</label>
+                </value>
+                <value>
                     <fullName>35</fullName>
                     <default>false</default>
                     <label>35</label>
@@ -542,16 +735,6 @@
                     <fullName>36</fullName>
                     <default>false</default>
                     <label>36</label>
-                </value>
-                <value>
-                    <fullName>31</fullName>
-                    <default>false</default>
-                    <label>31</label>
-                </value>
-                <value>
-                    <fullName>30</fullName>
-                    <default>false</default>
-                    <label>30</label>
                 </value>
                 <value>
                     <fullName>51</fullName>
@@ -573,6 +756,11 @@
             <restricted>true</restricted>
             <valueSetDefinition>
                 <sorted>false</sorted>
+                <value>
+                    <fullName>0</fullName>
+                    <default>false</default>
+                    <label>0</label>
+                </value>
                 <value>
                     <fullName>1</fullName>
                     <default>false</default>
@@ -623,378 +811,16 @@
     </fields>
     <fields>
         <fullName>Card_Style__c</fullName>
+        <description>sent to AppManager as cardStyle; free text field as there will be hundreds of values</description>
+        <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Card Style</label>
+        <length>3</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetDefinition>
-                <sorted>false</sorted>
-                <value>
-                    <fullName>1</fullName>
-                    <default>false</default>
-                    <label>1</label>
-                </value>
-                <value>
-                    <fullName>25</fullName>
-                    <default>false</default>
-                    <label>25</label>
-                </value>
-                <value>
-                    <fullName>35</fullName>
-                    <default>false</default>
-                    <label>35</label>
-                </value>
-                <value>
-                    <fullName>36</fullName>
-                    <default>false</default>
-                    <label>36</label>
-                </value>
-                <value>
-                    <fullName>38</fullName>
-                    <default>false</default>
-                    <label>38</label>
-                </value>
-                <value>
-                    <fullName>43</fullName>
-                    <default>false</default>
-                    <label>43</label>
-                </value>
-                <value>
-                    <fullName>50</fullName>
-                    <default>false</default>
-                    <label>50</label>
-                </value>
-                <value>
-                    <fullName>60</fullName>
-                    <default>false</default>
-                    <label>60</label>
-                </value>
-                <value>
-                    <fullName>97</fullName>
-                    <default>false</default>
-                    <label>97</label>
-                </value>
-                <value>
-                    <fullName>114</fullName>
-                    <default>false</default>
-                    <label>114</label>
-                </value>
-                <value>
-                    <fullName>122</fullName>
-                    <default>false</default>
-                    <label>122</label>
-                </value>
-                <value>
-                    <fullName>139</fullName>
-                    <default>false</default>
-                    <label>139</label>
-                </value>
-                <value>
-                    <fullName>159</fullName>
-                    <default>false</default>
-                    <label>159</label>
-                </value>
-                <value>
-                    <fullName>182</fullName>
-                    <default>false</default>
-                    <label>182</label>
-                </value>
-                <value>
-                    <fullName>198</fullName>
-                    <default>false</default>
-                    <label>198</label>
-                </value>
-                <value>
-                    <fullName>200</fullName>
-                    <default>false</default>
-                    <label>200</label>
-                </value>
-                <value>
-                    <fullName>201</fullName>
-                    <default>false</default>
-                    <label>201</label>
-                </value>
-                <value>
-                    <fullName>202</fullName>
-                    <default>false</default>
-                    <label>202</label>
-                </value>
-                <value>
-                    <fullName>203</fullName>
-                    <default>false</default>
-                    <label>203</label>
-                </value>
-                <value>
-                    <fullName>204</fullName>
-                    <default>false</default>
-                    <label>204</label>
-                </value>
-                <value>
-                    <fullName>205</fullName>
-                    <default>false</default>
-                    <label>205</label>
-                </value>
-                <value>
-                    <fullName>206</fullName>
-                    <default>false</default>
-                    <label>206</label>
-                </value>
-                <value>
-                    <fullName>207</fullName>
-                    <default>false</default>
-                    <label>207</label>
-                </value>
-                <value>
-                    <fullName>208</fullName>
-                    <default>false</default>
-                    <label>208</label>
-                </value>
-                <value>
-                    <fullName>209</fullName>
-                    <default>false</default>
-                    <label>209</label>
-                </value>
-                <value>
-                    <fullName>210</fullName>
-                    <default>false</default>
-                    <label>210</label>
-                </value>
-                <value>
-                    <fullName>211</fullName>
-                    <default>false</default>
-                    <label>211</label>
-                </value>
-                <value>
-                    <fullName>212</fullName>
-                    <default>false</default>
-                    <label>212</label>
-                </value>
-                <value>
-                    <fullName>215</fullName>
-                    <default>false</default>
-                    <label>215</label>
-                </value>
-                <value>
-                    <fullName>216</fullName>
-                    <default>false</default>
-                    <label>216</label>
-                </value>
-                <value>
-                    <fullName>217</fullName>
-                    <default>false</default>
-                    <label>217</label>
-                </value>
-                <value>
-                    <fullName>218</fullName>
-                    <default>false</default>
-                    <label>218</label>
-                </value>
-                <value>
-                    <fullName>219</fullName>
-                    <default>false</default>
-                    <label>219</label>
-                </value>
-                <value>
-                    <fullName>220</fullName>
-                    <default>false</default>
-                    <label>220</label>
-                </value>
-                <value>
-                    <fullName>221</fullName>
-                    <default>false</default>
-                    <label>221</label>
-                </value>
-                <value>
-                    <fullName>222</fullName>
-                    <default>false</default>
-                    <label>222</label>
-                </value>
-                <value>
-                    <fullName>223</fullName>
-                    <default>false</default>
-                    <label>223</label>
-                </value>
-                <value>
-                    <fullName>224</fullName>
-                    <default>false</default>
-                    <label>224</label>
-                </value>
-                <value>
-                    <fullName>225</fullName>
-                    <default>false</default>
-                    <label>225</label>
-                </value>
-                <value>
-                    <fullName>226</fullName>
-                    <default>false</default>
-                    <label>226</label>
-                </value>
-                <value>
-                    <fullName>227</fullName>
-                    <default>false</default>
-                    <label>227</label>
-                </value>
-                <value>
-                    <fullName>228</fullName>
-                    <default>false</default>
-                    <label>228</label>
-                </value>
-                <value>
-                    <fullName>229</fullName>
-                    <default>false</default>
-                    <label>229</label>
-                </value>
-                <value>
-                    <fullName>230</fullName>
-                    <default>false</default>
-                    <label>230</label>
-                </value>
-                <value>
-                    <fullName>231</fullName>
-                    <default>false</default>
-                    <label>231</label>
-                </value>
-                <value>
-                    <fullName>232</fullName>
-                    <default>false</default>
-                    <label>232</label>
-                </value>
-                <value>
-                    <fullName>233</fullName>
-                    <default>false</default>
-                    <label>233</label>
-                </value>
-                <value>
-                    <fullName>234</fullName>
-                    <default>false</default>
-                    <label>234</label>
-                </value>
-                <value>
-                    <fullName>235</fullName>
-                    <default>false</default>
-                    <label>235</label>
-                </value>
-                <value>
-                    <fullName>236</fullName>
-                    <default>false</default>
-                    <label>236</label>
-                </value>
-                <value>
-                    <fullName>237</fullName>
-                    <default>false</default>
-                    <label>237</label>
-                </value>
-                <value>
-                    <fullName>239</fullName>
-                    <default>false</default>
-                    <label>239</label>
-                </value>
-                <value>
-                    <fullName>240</fullName>
-                    <default>false</default>
-                    <label>240</label>
-                </value>
-                <value>
-                    <fullName>241</fullName>
-                    <default>false</default>
-                    <label>241</label>
-                </value>
-                <value>
-                    <fullName>242</fullName>
-                    <default>false</default>
-                    <label>242</label>
-                </value>
-                <value>
-                    <fullName>244</fullName>
-                    <default>false</default>
-                    <label>244</label>
-                </value>
-                <value>
-                    <fullName>245</fullName>
-                    <default>false</default>
-                    <label>245</label>
-                </value>
-                <value>
-                    <fullName>246</fullName>
-                    <default>false</default>
-                    <label>246</label>
-                </value>
-                <value>
-                    <fullName>249</fullName>
-                    <default>false</default>
-                    <label>249</label>
-                </value>
-                <value>
-                    <fullName>250</fullName>
-                    <default>false</default>
-                    <label>250</label>
-                </value>
-                <value>
-                    <fullName>251</fullName>
-                    <default>false</default>
-                    <label>251</label>
-                </value>
-                <value>
-                    <fullName>252</fullName>
-                    <default>false</default>
-                    <label>252</label>
-                </value>
-                <value>
-                    <fullName>253</fullName>
-                    <default>false</default>
-                    <label>253</label>
-                </value>
-                <value>
-                    <fullName>254</fullName>
-                    <default>false</default>
-                    <label>254</label>
-                </value>
-                <value>
-                    <fullName>256</fullName>
-                    <default>false</default>
-                    <label>256</label>
-                </value>
-                <value>
-                    <fullName>257</fullName>
-                    <default>false</default>
-                    <label>257</label>
-                </value>
-                <value>
-                    <fullName>258</fullName>
-                    <default>false</default>
-                    <label>258</label>
-                </value>
-                <value>
-                    <fullName>259</fullName>
-                    <default>false</default>
-                    <label>259</label>
-                </value>
-                <value>
-                    <fullName>260</fullName>
-                    <default>false</default>
-                    <label>260</label>
-                </value>
-                <value>
-                    <fullName>261</fullName>
-                    <default>false</default>
-                    <label>261</label>
-                </value>
-                <value>
-                    <fullName>263</fullName>
-                    <default>false</default>
-                    <label>263</label>
-                </value>
-                <value>
-                    <fullName>293</fullName>
-                    <default>false</default>
-                    <label>293</label>
-                </value>
-            </valueSetDefinition>
-        </valueSet>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Card_Type__c</fullName>
@@ -1032,6 +858,11 @@
                     <fullName>42</fullName>
                     <default>false</default>
                     <label>42</label>
+                </value>
+                <value>
+                    <fullName>27</fullName>
+                    <default>false</default>
+                    <label>27</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -1595,6 +1426,56 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
+        <fullName>Default_Fleet_Data_Sheets__c</fullName>
+        <description>API name of the documents listed under the Fleet Data Sheets library.</description>
+        <externalId>false</externalId>
+        <label>Default Fleet Data Sheet</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Fleet_Services_Fleet_Data_Shell_xlsx</fullName>
+                    <default>false</default>
+                    <label>Fleet_Services_Fleet_Data_Shell_xlsx</label>
+                </value>
+                <value>
+                    <fullName>Fleet_Services_Fleet_Data_ExxonMobil_xlsx</fullName>
+                    <default>false</default>
+                    <label>Fleet_Services_Fleet_Data_ExxonMobil_xlsx</label>
+                </value>
+                <value>
+                    <fullName>Fleet_Services_Fleet_Data_Enterprise_xlsx</fullName>
+                    <default>false</default>
+                    <label>Fleet_Services_Fleet_Data_Enterprise_xlsx</label>
+                </value>
+                <value>
+                    <fullName>Fleet_Services_Fleet_Data_Fleet_Services_xlsx</fullName>
+                    <default>false</default>
+                    <label>Fleet_Services_Fleet_Data_Fleet_Services_xlsx</label>
+                </value>
+                <value>
+                    <fullName>Fleet_Services_Fleet_Data_multiple_card_types_one_program_MAVERIK_xlsx</fullName>
+                    <default>false</default>
+                    <label>Fleet_Services_Fleet_Data_multiple_card_types_one_program_MAVERIK_xlsx</label>
+                </value>
+                <value>
+                    <fullName>Fleet_Services_Fleet_Data_MAVERIK_xlsx</fullName>
+                    <default>false</default>
+                    <label>Fleet_Services_Fleet_Data_MAVERIK_xlsx</label>
+                </value>
+                <value>
+                    <fullName>Fleet_Services_Fleet_Data_WEX_xlsx</fullName>
+                    <default>false</default>
+                    <label>Fleet_Services_Fleet_Data_WEX_xlsx</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Default_Hierarchy_Level__c</fullName>
         <description>Default Hierarchy Level used for IN-RGY</description>
         <externalId>false</externalId>
@@ -1700,6 +1581,19 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Finders_Fee__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Finders Fee</label>
+        <referenceTo>Finders_Fee__c</referenceTo>
+        <relationshipLabel>Programs</relationshipLabel>
+        <relationshipName>Programs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Fleet_Available_Billing_Cycles__c</fullName>
         <externalId>false</externalId>
         <label>Available Billing Cycles</label>
@@ -1735,6 +1629,26 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>Cycle 6</fullName>
                     <default>false</default>
                     <label>Cycle 6</label>
+                </value>
+                <value>
+                    <fullName>Cycle 8</fullName>
+                    <default>false</default>
+                    <label>Cycle 8</label>
+                </value>
+                <value>
+                    <fullName>Cycle 10</fullName>
+                    <default>false</default>
+                    <label>Cycle 10</label>
+                </value>
+                <value>
+                    <fullName>Cycle 11</fullName>
+                    <default>false</default>
+                    <label>Cycle 11</label>
+                </value>
+                <value>
+                    <fullName>Cycle 12</fullName>
+                    <default>false</default>
+                    <label>Cycle 12</label>
                 </value>
                 <value>
                     <fullName>Cycle 14</fullName>
@@ -1825,6 +1739,18 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Fleet_Data_Capture_Email_Template_fr_CA__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Fleet Data Capture Email Template fr_CA</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Fleet_Data_Capture_Form_Delivery__c</fullName>
         <externalId>false</externalId>
         <label>Fleet Card Delivery Timeframe</label>
@@ -1889,6 +1815,26 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>Cycle 6</fullName>
                     <default>false</default>
                     <label>Cycle 6</label>
+                </value>
+                <value>
+                    <fullName>Cycle 8</fullName>
+                    <default>false</default>
+                    <label>Cycle 8</label>
+                </value>
+                <value>
+                    <fullName>Cycle 10</fullName>
+                    <default>false</default>
+                    <label>Cycle 10</label>
+                </value>
+                <value>
+                    <fullName>Cycle 11</fullName>
+                    <default>false</default>
+                    <label>Cycle 11</label>
+                </value>
+                <value>
+                    <fullName>Cycle 12</fullName>
+                    <default>false</default>
+                    <label>Cycle 12</label>
                 </value>
                 <value>
                     <fullName>Cycle 14</fullName>
@@ -2154,6 +2100,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <default>false</default>
                     <label>194136</label>
                 </value>
+                <value>
+                    <fullName>194143</fullName>
+                    <default>false</default>
+                    <label>194143</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -2195,6 +2146,19 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Lockbox_Value__c</fullName>
+        <description>sent as lockbox in app manager integration</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Lockbox Value</label>
+        <length>13</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Logo_Image_ID__c</fullName>
@@ -2275,6 +2239,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>157330</fullName>
                     <default>false</default>
                     <label>157330</label>
+                </value>
+                <value>
+                    <fullName>158985</fullName>
+                    <default>false</default>
+                    <label>158985</label>
                 </value>
                 <value>
                     <fullName>160109</fullName>
@@ -2372,6 +2341,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <label>301119</label>
                 </value>
                 <value>
+                    <fullName>306186</fullName>
+                    <default>false</default>
+                    <label>306186</label>
+                </value>
+                <value>
                     <fullName>306598</fullName>
                     <default>false</default>
                     <label>306598</label>
@@ -2380,6 +2354,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>306721</fullName>
                     <default>false</default>
                     <label>306721</label>
+                </value>
+                <value>
+                    <fullName>308385</fullName>
+                    <default>false</default>
+                    <label>308385</label>
                 </value>
                 <value>
                     <fullName>311825</fullName>
@@ -2392,14 +2371,29 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <label>313098</label>
                 </value>
                 <value>
+                    <fullName>313565</fullName>
+                    <default>false</default>
+                    <label>313565</label>
+                </value>
+                <value>
                     <fullName>314057</fullName>
                     <default>false</default>
                     <label>314057</label>
                 </value>
                 <value>
+                    <fullName>314493</fullName>
+                    <default>false</default>
+                    <label>314493</label>
+                </value>
+                <value>
                     <fullName>315732</fullName>
                     <default>false</default>
                     <label>315732</label>
+                </value>
+                <value>
+                    <fullName>316683</fullName>
+                    <default>false</default>
+                    <label>316683</label>
                 </value>
                 <value>
                     <fullName>318789</fullName>
@@ -2660,6 +2654,20 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
+        <fullName>Partner_Territory__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Used for EFS App Manager Integration</description>
+        <externalId>false</externalId>
+        <label>Partner Territory</label>
+        <referenceTo>Account_Ownership__c</referenceTo>
+        <relationshipLabel>Programs</relationshipLabel>
+        <relationshipName>Programs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Partner__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>The partner this Program belongs to, which is used for grouping programs together.</description>
@@ -2747,6 +2755,102 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Price_Book__c</fullName>
+        <externalId>false</externalId>
+        <label>Price Book</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>F1 &amp; EFS Partner</fullName>
+                    <default>false</default>
+                    <label>F1 &amp; EFS Partner</label>
+                </value>
+                <value>
+                    <fullName>EFS Products</fullName>
+                    <default>false</default>
+                    <label>EFS Products</label>
+                </value>
+                <value>
+                    <fullName>Fleet Price Book</fullName>
+                    <default>false</default>
+                    <label>Fleet Price Book</label>
+                </value>
+                <value>
+                    <fullName>F1 OTR Pricebook</fullName>
+                    <default>false</default>
+                    <label>F1 OTR Pricebook</label>
+                </value>
+                <value>
+                    <fullName>Truckers Products</fullName>
+                    <default>false</default>
+                    <label>Truckers Products</label>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                    <label>N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Program_Card_Type__c</fullName>
+        <description>card type for use in app manager integration</description>
+        <externalId>false</externalId>
+        <label>Program Card Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>EFS</fullName>
+                    <default>false</default>
+                    <label>EFS</label>
+                </value>
+                <value>
+                    <fullName>FPST</fullName>
+                    <default>false</default>
+                    <label>FPST</label>
+                </value>
+                <value>
+                    <fullName>KNT</fullName>
+                    <default>false</default>
+                    <label>KNT</label>
+                </value>
+                <value>
+                    <fullName>MCDB</fullName>
+                    <default>false</default>
+                    <label>MCDB</label>
+                </value>
+                <value>
+                    <fullName>MCFL</fullName>
+                    <default>false</default>
+                    <label>MCFL</label>
+                </value>
+                <value>
+                    <fullName>SMRT</fullName>
+                    <default>false</default>
+                    <label>SMRT</label>
+                </value>
+                <value>
+                    <fullName>TCH</fullName>
+                    <default>false</default>
+                    <label>TCH</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Program_Name__c</fullName>
         <externalId>false</externalId>
         <label>Program Name</label>
@@ -2820,6 +2924,18 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Publish BOCA</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Publish_Fleet_Data_Capture_Form_1_1__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When checked, the 1:1 Fleet Enrollment form will be offered after BOCA submission.
+This is referenced in the WexBOCAConfirmation VF Page</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the 1:1 Fleet Enrollment form will be offered after BOCA submission.</inlineHelpText>
+        <label>Publish Fleet Data Capture Form 1:1</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -3061,6 +3177,61 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <default>false</default>
                     <label>46</label>
                 </value>
+                <value>
+                    <fullName>03</fullName>
+                    <default>false</default>
+                    <label>03</label>
+                </value>
+                <value>
+                    <fullName>37</fullName>
+                    <default>false</default>
+                    <label>37</label>
+                </value>
+                <value>
+                    <fullName>38</fullName>
+                    <default>false</default>
+                    <label>38</label>
+                </value>
+                <value>
+                    <fullName>39</fullName>
+                    <default>false</default>
+                    <label>39</label>
+                </value>
+                <value>
+                    <fullName>40</fullName>
+                    <default>false</default>
+                    <label>40</label>
+                </value>
+                <value>
+                    <fullName>41</fullName>
+                    <default>false</default>
+                    <label>41</label>
+                </value>
+                <value>
+                    <fullName>42</fullName>
+                    <default>false</default>
+                    <label>42</label>
+                </value>
+                <value>
+                    <fullName>43</fullName>
+                    <default>false</default>
+                    <label>43</label>
+                </value>
+                <value>
+                    <fullName>45</fullName>
+                    <default>false</default>
+                    <label>45</label>
+                </value>
+                <value>
+                    <fullName>47</fullName>
+                    <default>false</default>
+                    <label>47</label>
+                </value>
+                <value>
+                    <fullName>48</fullName>
+                    <default>false</default>
+                    <label>48</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -3069,6 +3240,17 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Station Card Available</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Sync_to_MC__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>When this field is checked that record will be synched to MC. The rules for this are in BREEZE.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When this field is checked that record will be synched to MC. The rules for this are in BREEZE.</inlineHelpText>
+        <label>Sync to Marketing Cloud</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -3150,6 +3332,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>BOCA_TNC_FEE_799</fullName>
                     <default>false</default>
                     <label>BOCA_TNC_FEE_799</label>
+                </value>
+                <value>
+                    <fullName>BOCA_TNC_MrGas</fullName>
+                    <default>false</default>
+                    <label>BOCA_TNC_MrGas</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3327,6 +3514,18 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
+        <fullName>X18_Character_id__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>18 Character Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>url__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -3341,6 +3540,8 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <fullName>All_w_Created_Date</fullName>
         <columns>Form_Template__c</columns>
         <columns>NAME</columns>
+        <columns>Partner__c</columns>
+        <columns>BOCA_Form_Link__c</columns>
         <columns>Personal_Guarantee_URL__c</columns>
         <columns>Siebel_L1_Account_Number__c</columns>
         <columns>CREATED_DATE</columns>
@@ -3350,8 +3551,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <columns>OBJECT_ID</columns>
         <columns>Email_From_Name__c</columns>
         <columns>RECORDTYPE</columns>
+        <columns>WEX_Platform__c</columns>
+        <columns>BOCA_Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All w Created Date</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>EMAP_Programs</fullName>
@@ -3376,11 +3580,12 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <columns>NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>Brand_Short_Name__c</field>
+            <field>NAME</field>
             <operation>contains</operation>
-            <value>WEXFleet</value>
+            <value>Flex</value>
         </filters>
         <label>FlexCard Programs</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Published_OTR_BOCA_Programs</fullName>
@@ -3433,6 +3638,7 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <columns>Always_Require_PG__c</columns>
         <columns>Disable_Instant_Decisioning__c</columns>
         <columns>Siebel_L1_Account_Number__c</columns>
+        <columns>BOCA_Form_Link__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>URL_Generator_Group__c</field>
@@ -3544,6 +3750,25 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CP_BOCA_Financials_Needed__c</picklist>
+            <values>
+                <fullName>Audited_Financials%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copy_of_Driver_s_License%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct_Debit_Form%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voided_Check%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Card_Order_Type__c</picklist>
             <values>
                 <fullName>2</fullName>
@@ -3609,297 +3834,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>72</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Card_Style__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>114</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>122</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>139</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>159</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>182</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>198</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>200</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>201</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>202</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>203</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>204</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>205</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>206</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>207</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>208</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>209</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>210</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>211</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>212</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>215</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>216</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>217</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>218</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>219</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>220</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>221</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>222</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>223</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>224</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>225</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>226</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>227</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>228</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>229</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>230</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>231</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>232</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>233</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>234</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>235</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>236</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>237</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>239</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>240</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>241</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>242</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>244</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>245</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>246</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>249</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>250</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>251</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>252</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>253</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>254</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>256</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>257</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>258</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>259</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>260</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>261</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>263</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>293</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>38</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>43</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>50</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>60</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>97</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4815,6 +4749,64 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Price_Book__c</picklist>
+            <values>
+                <fullName>EFS Products</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 %26 EFS Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 OTR Pricebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truckers Products</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Program_Card_Type__c</picklist>
+            <values>
+                <fullName>EFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FPST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KNT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCDB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCFL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMRT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TCH</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Program_Name__c</picklist>
             <values>
                 <fullName>GU Fleet Card</fullName>
@@ -4887,11 +4879,55 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>03</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>44</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5113,6 +5149,25 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CP_BOCA_Financials_Needed__c</picklist>
+            <values>
+                <fullName>Audited_Financials%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copy_of_Driver_s_License%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct_Debit_Form%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voided_Check%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Card_Order_Type__c</picklist>
             <values>
                 <fullName>2</fullName>
@@ -5178,297 +5233,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>72</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Card_Style__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>114</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>122</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>139</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>159</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>182</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>198</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>200</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>201</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>202</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>203</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>204</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>205</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>206</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>207</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>208</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>209</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>210</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>211</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>212</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>215</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>216</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>217</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>218</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>219</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>220</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>221</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>222</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>223</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>224</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>225</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>226</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>227</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>228</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>229</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>230</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>231</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>232</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>233</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>234</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>235</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>236</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>237</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>239</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>240</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>241</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>242</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>244</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>245</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>246</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>249</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>250</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>251</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>252</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>253</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>254</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>256</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>257</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>258</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>259</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>260</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>261</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>263</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>293</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>38</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>43</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>50</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>60</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>97</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6388,6 +6152,64 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Price_Book__c</picklist>
+            <values>
+                <fullName>EFS Products</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 %26 EFS Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 OTR Pricebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truckers Products</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Program_Card_Type__c</picklist>
+            <values>
+                <fullName>EFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FPST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KNT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCDB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCFL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMRT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TCH</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Program_Name__c</picklist>
             <values>
                 <fullName>GU Fleet Card</fullName>
@@ -6460,11 +6282,55 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>03</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>44</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6686,6 +6552,25 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CP_BOCA_Financials_Needed__c</picklist>
+            <values>
+                <fullName>Audited_Financials%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copy_of_Driver_s_License%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct_Debit_Form%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voided_Check%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Card_Order_Type__c</picklist>
             <values>
                 <fullName>2</fullName>
@@ -6751,297 +6636,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>72</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Card_Style__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>114</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>122</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>139</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>159</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>182</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>198</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>200</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>201</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>202</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>203</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>204</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>205</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>206</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>207</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>208</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>209</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>210</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>211</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>212</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>215</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>216</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>217</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>218</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>219</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>220</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>221</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>222</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>223</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>224</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>225</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>226</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>227</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>228</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>229</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>230</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>231</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>232</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>233</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>234</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>235</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>236</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>237</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>239</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>240</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>241</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>242</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>244</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>245</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>246</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>249</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>250</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>251</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>252</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>253</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>254</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>256</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>257</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>258</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>259</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>260</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>261</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>263</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>293</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>38</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>43</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>50</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>60</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>97</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7949,6 +7543,64 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Price_Book__c</picklist>
+            <values>
+                <fullName>EFS Products</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 %26 EFS Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 OTR Pricebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truckers Products</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Program_Card_Type__c</picklist>
+            <values>
+                <fullName>EFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FPST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KNT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCDB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCFL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMRT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TCH</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Program_Name__c</picklist>
             <values>
                 <fullName>GU Fleet Card</fullName>
@@ -8021,11 +7673,55 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>03</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>44</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8242,6 +7938,25 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CP_BOCA_Financials_Needed__c</picklist>
+            <values>
+                <fullName>Audited_Financials%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copy_of_Driver_s_License%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct_Debit_Form%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voided_Check%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Card_Order_Type__c</picklist>
             <values>
                 <fullName>2</fullName>
@@ -8307,297 +8022,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>72</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Card_Style__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>114</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>122</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>139</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>159</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>182</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>198</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>200</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>201</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>202</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>203</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>204</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>205</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>206</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>207</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>208</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>209</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>210</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>211</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>212</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>215</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>216</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>217</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>218</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>219</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>220</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>221</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>222</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>223</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>224</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>225</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>226</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>227</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>228</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>229</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>230</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>231</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>232</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>233</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>234</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>235</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>236</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>237</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>239</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>240</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>241</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>242</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>244</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>245</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>246</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>249</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>250</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>251</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>252</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>253</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>254</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>256</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>257</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>258</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>259</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>260</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>261</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>263</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>293</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>38</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>43</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>50</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>60</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>97</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8949,6 +8373,18 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Cycle 10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 12</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Cycle 14</fullName>
                 <default>false</default>
             </values>
@@ -8978,6 +8414,10 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>Cycle 6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9025,6 +8465,18 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>Cycle 10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 12</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Cycle 14</fullName>
                 <default>false</default>
             </values>
@@ -9054,6 +8506,10 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>Cycle 6</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 8</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9517,6 +8973,64 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Price_Book__c</picklist>
+            <values>
+                <fullName>EFS Products</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 %26 EFS Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 OTR Pricebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truckers Products</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Program_Card_Type__c</picklist>
+            <values>
+                <fullName>EFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FPST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KNT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCDB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCFL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMRT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TCH</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Program_Name__c</picklist>
             <values>
                 <fullName>GU Fleet Card</fullName>
@@ -9589,11 +9103,55 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>03</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>44</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9625,6 +9183,10 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>BOCA_TNC_FEE_799</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BOCA_TNC_MrGas</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9822,7 +9384,30 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>CP_BOCA_Financials_Needed__c</picklist>
+            <values>
+                <fullName>Audited_Financials%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Copy_of_Driver_s_License%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Direct_Debit_Form%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Voided_Check%5F%5Fc</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Card_Order_Type__c</picklist>
+            <values>
+                <fullName>1</fullName>
+                <default>false</default>
+            </values>
             <values>
                 <fullName>2</fullName>
                 <default>false</default>
@@ -9863,6 +9448,10 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <picklistValues>
             <picklist>Card_Press_ID__c</picklist>
             <values>
+                <fullName>0</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>1</fullName>
                 <default>false</default>
             </values>
@@ -9891,297 +9480,6 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Card_Style__c</picklist>
-            <values>
-                <fullName>1</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>114</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>122</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>139</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>159</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>182</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>198</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>200</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>201</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>202</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>203</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>204</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>205</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>206</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>207</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>208</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>209</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>210</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>211</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>212</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>215</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>216</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>217</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>218</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>219</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>220</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>221</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>222</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>223</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>224</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>225</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>226</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>227</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>228</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>229</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>230</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>231</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>232</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>233</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>234</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>235</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>236</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>237</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>239</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>240</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>241</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>242</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>244</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>245</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>246</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>249</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>25</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>250</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>251</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>252</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>253</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>254</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>256</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>257</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>258</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>259</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>260</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>261</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>263</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>293</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>35</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>36</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>38</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>43</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>50</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>60</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>97</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Card_Type__c</picklist>
             <values>
                 <fullName>1</fullName>
@@ -10189,6 +9487,10 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>2</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>27</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10741,6 +10043,10 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <fullName>194136</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>194143</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>Parent_Carrier_ID__c</picklist>
@@ -10778,6 +10084,10 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
             <values>
                 <fullName>157330</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>158985</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10857,11 +10167,19 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>306186</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>306598</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>306721</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>308385</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10873,11 +10191,23 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>313565</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>314057</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>314493</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>315732</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>316683</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11097,6 +10427,64 @@ Number of Cards sent to LLC = 10</inlineHelpText>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Price_Book__c</picklist>
+            <values>
+                <fullName>EFS Products</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 %26 EFS Partner</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>F1 OTR Pricebook</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Price Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>N%2FA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Truckers Products</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Program_Card_Type__c</picklist>
+            <values>
+                <fullName>EFS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>FPST</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>KNT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCDB</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>MCFL</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>SMRT</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>TCH</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Program_Name__c</picklist>
             <values>
                 <fullName>GU Fleet Card</fullName>
@@ -11169,11 +10557,55 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                 <default>false</default>
             </values>
             <values>
+                <fullName>03</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>37</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>38</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>39</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>40</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>41</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>42</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>43</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>44</fullName>
                 <default>false</default>
             </values>
             <values>
+                <fullName>45</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>46</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>47</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>48</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11318,6 +10750,16 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <searchResultsAdditionalFields>WEX_Platform__c</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Only_One_Fleet_Form_Can_Be_Published</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+Publish_Fleet_Data_Capture_Form__c = true,
+Publish_Fleet_Data_Capture_Form_1_1__c = true
+)</errorConditionFormula>
+        <errorDisplayField>Publish_Fleet_Data_Capture_Form_1_1__c</errorDisplayField>
+        <errorMessage>Only One Fleet Data Capture Form Can Be Published Per Program.</errorMessage>
+    </validationRules>
     <visibility>Public</visibility>
     <webLinks>
         <fullName>Add_Branding_Attachment</fullName>
