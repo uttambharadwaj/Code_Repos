@@ -429,13 +429,9 @@ public without sharing class OTRSetupController {
                 onlineApplication.Daily_DEF_Limit__c = 0;
             }
 
-            if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true) {
+            if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true && userSessionId == null) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-Complete';
-            } else if (userSessionId != null) {
-                // if it's a paper app being submitted, this needs to go to credit for manual review
-                onlineApplication.Application_Stage__c = 'Application';
-                onlineApplication.Status__c = 'Saved-PaperApp';
             } else if(onlineApplicationOffer.Funding__c == 'Parent Funded') {
                 onlineApplication.Application_Stage__c = 'Implementation';
                 onlineApplication.Status__c = 'Pending Setup';

@@ -83,4 +83,15 @@ public class TestClassDispatcher {
         CampaignCodeGeneratorTest.test_generateCode();
     }
 
+    @isTest static void testUpdateFleetEnrollmentHasData() {
+        FleetEnrollmentDataTest.test_fleetEnrollmentHasData();
+    }
+
+    @isTest static void testUpdateFleetEnrollmentMissingData() {
+        FleetEnrollmentDataTest.test_fleetEnrollmentMissingData();
+    }
+
+    @isTest static void testHasFleetEnrollmentData() {
+        FleetEnrollmentUtilsTest.test_hasFleetEnrollmentData();
+    }
 }
