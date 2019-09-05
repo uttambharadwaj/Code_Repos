@@ -389,53 +389,65 @@ public virtual class FleetEnrollmentController {
         try {
 
             if (!String.isEmpty(applicationRequestParameter)) {
-                List<FleetEnrollment__c> fleetEnrollments = [
-                        SELECT Id
-                        FROM FleetEnrollment__c
-                        WHERE Application_Request__c = :applicationRequestParameter
-                            AND Has_Fleet_Enrollment_Data__c = TRUE];
 
-                if (fleetEnrollments.size() > 0) {
+                List<FleetEnrollment__c> fleetEnrollments = [
+                        SELECT Id, Has_Fleet_Enrollment_Data__c
+                        FROM FleetEnrollment__c
+                        WHERE Application_Request__c = :applicationRequestParameter];
+
+                List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
+                List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
+
+                for (FleetEnrollment__c fe : fleetEnrollments) {
+                    if (fe.Has_Fleet_Enrollment_Data__c = true) {
+                        feWithFleetData.add(fe);
+                    } else {
+                        feWithoutFleetData.add(fe);
+                    }
+                }
+
+                if (feWithFleetData.size() > 0) {
                     throw new FleetEnrollmentException('Your information has already been submitted.');
                 }
 
                 // find existing FleetEnrollment record from when opportunity was created
                 // but without pre-filling any of the existing information!
-                fleetEnrollments = [
-                        SELECT Id, Opportunity_Number__c
-                        FROM FleetEnrollment__c
-                        WHERE Application_Request__c =: applicationRequestParameter
-                            AND Has_Fleet_Enrollment_Data__c != TRUE];
 
-                if(fleetEnrollments.size() > 0) {
+                if(feWithoutFleetData.size() > 0) {
 
-                    fleetEnrollment.Id = fleetEnrollments[0].Id;
+                    fleetEnrollment.Id = feWithoutFleetData[0].Id;
 
                 }
             }
 
             if (!String.isEmpty(opportunityParameter)) {
+
                 List<FleetEnrollment__c> fleetEnrollments = [
                         SELECT Id
                         FROM FleetEnrollment__c
-                        WHERE Opportunity_Number__c = :opportunityParameter
-                            AND Has_Fleet_Enrollment_Data__c = TRUE];
+                        WHERE Opportunity_Number__c = :opportunityParameter];
 
-                if (fleetEnrollments.size() > 0) {
+                List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
+                List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
+
+                for (FleetEnrollment__c fe : fleetEnrollments) {
+                    if (fe.Has_Fleet_Enrollment_Data__c = true) {
+                        feWithFleetData.add(fe);
+                    } else {
+                        feWithoutFleetData.add(fe);
+                    }
+                }
+
+                if (feWithFleetData.size() > 0) {
                     throw new FleetEnrollmentException('Your information has already been submitted.');
                 }
 
                 // find existing FleetEnrollment record from when opportunity was created
                 // but without pre-filling any of the existing information!
-                fleetEnrollments = [
-                        SELECT Id, Opportunity_Number__c
-                        FROM FleetEnrollment__c
-                        WHERE (Opportunity_Number__c =: opportunityParameter OR Opportunity__c =: opportunityParameter)
-                            AND Has_Fleet_Enrollment_Data__c != TRUE];
 
-                if(fleetEnrollments.size() > 0) {
+                if(feWithoutFleetData.size() > 0) {
 
-                    fleetEnrollment.Id = fleetEnrollments[0].Id;
+                    fleetEnrollment.Id = feWithoutFleetData[0].Id;
 
                 }
             }
