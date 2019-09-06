@@ -7,11 +7,11 @@ public virtual class FleetEnrollmentController {
 
     public String confirmationNumber { get; set; }
     public String printToken { get; set; }
-    public String languageCode { 
+    public String languageCode {
         get {
             return ApexPages.CurrentPage().getParameters().get('lang');
-        } 
-    }    
+        }
+    }
 
     // URL Parameters to fetch
     public String opportunityParameter {
@@ -283,7 +283,7 @@ public virtual class FleetEnrollmentController {
         public String selectedCardControlOption;
         public String selectedPromptOption { get; set; }
         public String selectedAcceptanceOption { get; set; }
-        
+
         public String getSelectedCardControlOption() {
             return selectedCardControlOption;
         }
@@ -343,7 +343,7 @@ public virtual class FleetEnrollmentController {
         maxStep = 5;
         currentStep = 1;
         showPreview = false;
-        
+
         cardShippingSameAsBillingAddress = true;
 
         if(currentPage != null) {
@@ -388,39 +388,38 @@ public virtual class FleetEnrollmentController {
 
         try {
 
-            if (!String.isEmpty(applicationRequestParameter)) {
-                List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c = :applicationRequestParameter and CreatedBy.Alias = 'guest'];
+            if (!String.isEmpty(applicationRequestParameter) || !String.isEmpty(opportunityParameter) ) {
+
+                List<FleetEnrollment__c> fleetEnrollments = [
+                        SELECT Id, Has_Fleet_Enrollment_Data__c
+                        FROM FleetEnrollment__c
+                        WHERE Application_Request__c = :applicationRequestParameter OR Opportunity_Number__c = :opportunityParameter];
 
                 if (fleetEnrollments.size() > 0) {
-                    throw new FleetEnrollmentException('Your information has already been submitted.');
-                }
 
-                // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
-                // but not pre-filling any of the existing information!
-                fleetEnrollments = [SELECT Id, Opportunity_Number__c FROM FleetEnrollment__c WHERE Application_Request__c =: applicationRequestParameter and CreatedBy.Alias != 'guest'];
+                    List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
+                    List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
 
-                if(fleetEnrollments.size() > 0) {
+                    for (FleetEnrollment__c fe : fleetEnrollments) {
+                        if (fe.Has_Fleet_Enrollment_Data__c == true) {
+                            feWithFleetData.add(fe);
+                        } else {
+                            feWithoutFleetData.add(fe);
+                        }
+                    }
 
-                    fleetEnrollment.Id = fleetEnrollments[0].Id;
+                    if (feWithFleetData.size() > 0) {
+                        throw new FleetEnrollmentException('Your information has already been submitted.');
+                    }
 
-                }
-            }
+                    // find existing FleetEnrollment record from when opportunity was created
+                    // but without pre-filling any of the existing information!
 
-            if (!String.isEmpty(opportunityParameter)) {
-                List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Opportunity_Number__c = :opportunityParameter and CreatedBy.Alias = 'guest'];
+                    if (feWithoutFleetData.size() > 0) {
 
-                if (fleetEnrollments.size() > 0) {
-                    throw new FleetEnrollmentException('Your information has already been submitted.');
-                }
+                        fleetEnrollment.Id = feWithoutFleetData[0].Id;
 
-                // Check to see if the Sales Rep has submitted something already per IADJUDICAT-639
-                // but not pre-filling any of the existing information!
-                fleetEnrollments = [SELECT Id, Opportunity_Number__c FROM FleetEnrollment__c WHERE (Opportunity_Number__c =: opportunityParameter or Opportunity__c =: opportunityParameter) and CreatedBy.Alias != 'guest'];
-
-                if(fleetEnrollments.size() > 0) {
-
-                    fleetEnrollment.Id = fleetEnrollments[0].Id;
-
+                    }
                 }
             }
 
@@ -604,7 +603,7 @@ public virtual class FleetEnrollmentController {
     public PageReference setDIDLength() {
 
         System.debug('### DID Length: ' + selectedDIDLength);
-        
+
         return null;
 
     }
@@ -668,13 +667,16 @@ public virtual class FleetEnrollmentController {
             String key = EncodingUtil.convertToHex(crypto.generateAesKey(128));
             fleetEnrollment.Print_Token__c = key.substring(0, 25);
 
+            //commenting out because a siebel ID should not be assigned to the opportunity ID.
+            /*
             if(!String.isEmpty(opportunityParameter)) {
                 if(checkOpportunityParameter == false) {
-                fleetEnrollment.Opportunity_Number__c = opportunityParameter;
+                    fleetEnrollment.Opportunity_Number__c = opportunityParameter;
                 }
                 fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
                 fleetEnrollment.Opportunity__c = opportunityParameter;
             }
+			*/
 
             if(selectedDriverIdOption.equalsIgnoreCase('random')) {
                 fleetEnrollment.Driver_ID_Random__c = true;
@@ -688,6 +690,7 @@ public virtual class FleetEnrollmentController {
             upsert fleetEnrollment;
 
             // Insert contacts
+            List<FleetEnrollment_Contact__c> newFleetContacts = new List<FleetEnrollment_Contact__c>();
 
             // The first contact is always the billing contact
             FleetEnrollment_Contact__c primaryFleetContact = new FleetEnrollment_Contact__c();
@@ -698,7 +701,7 @@ public virtual class FleetEnrollmentController {
             primaryFleetContact.Email__c = fleetEnrollment.Billing_Email__c;
             primaryFleetContact.Phone__c = fleetEnrollment.Billing_Phone__c;
 
-            insert primaryFleetContact;
+            newFleetContacts.add(primaryFleetContact);
 
             // Add additional contacts
             if(fleetContacts.size() > 0) {
@@ -716,17 +719,17 @@ public virtual class FleetEnrollmentController {
                         newFleetContact.Email__c = fleetContacts.get(i).Email;
                         newFleetContact.Phone__c = fleetContacts.get(i).Phone;
 
-                        insert newFleetContact;
+                        newFleetContacts.add(newFleetContact);
 
                     }
 
                 }
-
             }
+            insert newFleetContacts;
 
             // Insert vehicles
             if(fleetVehicles.size() > 0) {
-
+                List<FleetEnrollment_Vehicle__c> newFleetVehicles = new List<FleetEnrollment_Vehicle__c>();
                 for(Integer i = 0; i < fleetVehicles.size(); i++) {
 
                     FleetEnrollment_Vehicle__c newFleetVehicle = new FleetEnrollment_Vehicle__c();
@@ -745,18 +748,17 @@ public virtual class FleetEnrollmentController {
                     if(program.Fleet_Enrollment_Enable_Universal_PL__c == true && fleetVehicles.get(i).selectedAcceptanceOption != '#') {
                         newFleetVehicle.Acceptance__c = fleetVehicles.get(i).selectedAcceptanceOption;
                     }
-
-                    insert newFleetVehicle;
+                    newFleetVehicles.add(newFleetVehicle);
 
                 }
-
+                insert newFleetVehicles;
             }
 
             if(program.Fleet_Enrollment_Disable_Driver_Page__c == false) {
 
                 // Insert drivers
                 if(fleetDrivers.size() > 0) {
-
+                    List<FleetEnrollment_Driver__c> newFleetDrivers = new List<FleetEnrollment_Driver__c>();
                     for(Integer i = 0; i < fleetDrivers.size(); i++) {
 
                         if(!String.isEmpty(fleetDrivers.get(i).firstName) && !String.isEmpty(fleetDrivers.get(i).lastName)) {
@@ -777,15 +779,15 @@ public virtual class FleetEnrollmentController {
                             if(program.Fleet_Enrollment_Enable_Universal_PL__c == true && fleetDrivers.get(i).selectedAcceptanceOption != '#') {
                                 newFleetDriver.Acceptance__c = fleetDrivers.get(i).selectedAcceptanceOption;
                             }
-                            
+
                             if(fleetEnrollment.Driver_ID_Random__c == true) {
                                 newFleetDriver.Driver_ID__c = 'Random';
                             }
-
-                            insert newFleetDriver;
+                            newFleetDrivers.add(newFleetDriver);
                         }
 
                     }
+                    insert newFleetDrivers;
 
                 }
 
@@ -814,7 +816,7 @@ public virtual class FleetEnrollmentController {
             PageReference errorPage = Page.ExternalApplicationError;
             errorPage.getParameters().put('errorCode', errorNumber);
             errorPage.getParameters().put('pgm', programParameter);
-            errorPage.getParameters().put('lang', languageCode);            
+            errorPage.getParameters().put('lang', languageCode);
             return errorPage;
         }
 
