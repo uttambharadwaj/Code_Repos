@@ -328,7 +328,7 @@ global class CreditWS_LexisNexis {
 
                 Task creditTask = new Task();
 
-                creditTask.RecordTypeId = [SELECT Id, SobjectType, Name FROM RecordType WHERE Name = 'General' and SobjectType = 'Task' LIMIT 1].Id;
+                creditTask.RecordTypeId = UtilityClass.getRecordTypeByName(Task.getSObjectType(),'General');
                 creditTask.Subject = 'BO Info Returned';
                 creditTask.WhatId = boEntity.Opportunity__c;
                 creditTask.Description = 'BO Info Gathered & Verified via Lexis/Nexis';

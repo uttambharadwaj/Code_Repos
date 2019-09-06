@@ -1208,17 +1208,7 @@ public class UGears
 	    		throw new CustomException('USObject.getRecordTypeId - A recordTypeName value is required');
 	    	}
 	    	
-	    	List<RecordType> records = [select Id from RecordType where SObjectType = :sObjectType and Name = :recordTypeName];
-	    	
-	    	Id recordTypeId = null;
-	    	
-	    	if(records.size() > 0)
-	    	{
-	    		//Grab the first. This should always be one
-	    		recordTypeId = records[0].Id;
-	    	}
-	    	
-	    	return recordTypeId;    	
+	    	return UtilityClass.getRecordTypeByName(sObjectType,recordTypeName);;
 	    }
 	    
 	    public Map<Id, RecordType> getRecordTypeMap(String sObjectType)

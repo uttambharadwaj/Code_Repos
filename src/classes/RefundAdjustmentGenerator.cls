@@ -7,7 +7,6 @@ public with sharing class RefundAdjustmentGenerator {
 
 
     public static List<RefundAdjustment> getRefundsOrAdjustments(String wexAccountNbr, String recordTypeName) {
-        RecordType recordType = [SELECT Id, DeveloperName FROM RecordType WHERE SobjectType = 'Refund_Adjustment__c' AND DeveloperName =: recordTypeName];
         CustomerDetailsWSUtilv2.RefundAdjustmentDTO dto;
         List<RefundAdjustment> result = new List<RefundAdjustment>();
         if ('Refund'.equals(recordTypeName)) {
@@ -19,7 +18,7 @@ public with sharing class RefundAdjustmentGenerator {
 
         if (dto.refundAdjustments != null && dto.refundAdjustments.size()>0) {
         for (CustomerDetailsWSUtilv2.refundAdjustment x : dto.refundAdjustments) {
-            result.add(convertDtoRefadjToApexRefadj(x, recordType.Id));
+            result.add(convertDtoRefadjToApexRefadj(x, UtilityClass.getRecTypeByDevName('Refund_Adjustment__c',recordTypeName)));
         }
         }
         return result;

@@ -19,8 +19,7 @@ trigger EchoRevolverTrigger on Opportunity (after update) {
                     
                     Application_Request__c app = new Application_Request__c();
                     
-                    recordType appType = [SELECT Name, Id FROM recordType WHERE sobjecttype = 'Application_Request__c' and name ='Revolver Application'];
-                    app.RecordTypeId = appType.id;
+                    app.RecordTypeId = UtilityClass.getRecordTypeByName(Application_Request__c.getSObjectType(),'Revolver Application');
                     
                     app.Account_Name__c = o.AccountId;
                     app.Opportunity__c = o.Id;
@@ -46,8 +45,7 @@ trigger EchoRevolverTrigger on Opportunity (after update) {
                     
                     //create a new contact for the PG
                     contact PG = new contact();
-                    recordType conType = [SELECT Name, Id FROM recordType WHERE sobjecttype = 'Contact' and name ='Revolver'];
-                    PG.RecordTypeId = conType.ID;
+                    PG.RecordTypeId = UtilityClass.getRecordTypeByName(Contact.getSObjectType(),'Revolver');
                     
                     PG.AccountId = o.AccountId;
                     PG.FirstName = o.Billing_Contact_First_Name__c;

@@ -176,6 +176,14 @@ global class UtilityClass {
         return Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
     }
 
+    //get bunch of record type ids using developer name...no query!
+    public static Set<Id> getRecTypeByDevName(String objName, List<String> recTypeNames){
+        Set<Id> myIds = new Set<Id>();
+        for(String s : recTypeNames)
+            myIds.add(Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(s).getRecordTypeId());
+        return myIds;
+    }
+
     //get a record type using just object name and record type name
     public static String getRecordTypeByName(SObjectType objType, String recTypeName) {
         if(objType.getDescribe().getRecordTypeInfosByName().get(recTypeName) != null)

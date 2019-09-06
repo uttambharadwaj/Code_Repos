@@ -2,9 +2,7 @@ trigger FindNearbyAccounts_KeepTidy on Account (before update) {
 	
 	Set<Id> AU_Acc_RTs = new Set<Id>();
 	
-	for(RecordType rt : [select Id from RecordType where sObjectType = 'Account' and DeveloperName IN ('AU_Fuel_Customer')])
-		AU_Acc_RTs.add(rt.Id);
-		
+	AU_Acc_RTs.add(UtilityClass.getRecTypeByDevName('Account', 'AU_Fuel_Customer'));
      for(Integer k=0; k<Trigger.new.size(); k++)
      {
      	if(!AU_Acc_RTs.contains(Trigger.new[k].RecordTypeId))
