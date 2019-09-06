@@ -1,4 +1,5 @@
 trigger EchoRevolverTrigger on Opportunity (after update) {
+    if(TriggerFactory.disabledTriggers(Opportunity.sObjectType)) return;
     List<Application_Request__c> apps = new List<Application_Request__c>();
     Boolean isApp = false;
     

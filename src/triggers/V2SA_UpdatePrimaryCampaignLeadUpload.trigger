@@ -1,5 +1,5 @@
 trigger V2SA_UpdatePrimaryCampaignLeadUpload on Lead (before insert) {
-
+	if(TriggerFactory.disabledTriggers(Lead.sObjectType)) return;
 Set<Id> AU_Lead_RTs = UtilityClass.getRecTypeByDevName('Lead',new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'});
 	
  	Set<Id> SetOfIds = new Set<Id>();
