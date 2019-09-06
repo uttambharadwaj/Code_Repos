@@ -1780,6 +1780,16 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
+        <fullName>Fleet_Data_Third_Line_Embossing__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Toggles third line embossing on fleet enrollments</description>
+        <externalId>false</externalId>
+        <label>Fleet Data Third Line Embossing</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Fleet_Default_Billing_Cycle__c</fullName>
         <externalId>false</externalId>
         <label>Default Billing Cycle</label>
