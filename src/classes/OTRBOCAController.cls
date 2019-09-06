@@ -768,6 +768,10 @@ public class OTRBOCAController {
 
             if (campaign == null) {
                 opportunity.Promotional_Code__c = onlineApplicationOffer.Promotional_Code__c;
+            }
+            // Enable_Promotional_Code__c is used to display the promo code box to the user. If it's true and the user entered a value keep that value.
+            else if (onlineApplicationOffer.Enable_Promotional_Code__c && String.isNotEmpty(onlineApplicationOffer.Promotional_Code__c)) {
+                opportunity.Promotional_Code__c = onlineApplicationOffer.Promotional_Code__c;
             } else {
                 opportunity.Promotional_Code__c = campaign.Coupon_Code__c;
             }
