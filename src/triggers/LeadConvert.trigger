@@ -1,5 +1,5 @@
 trigger LeadConvert on Lead (after update) {
- 
+	if(TriggerFactory.disabledTriggers(Lead.sObjectType)) return;
   if (Trigger.new.size() == 1) 
   {
  		Set<Id> AU_Lead_RTs = UtilityClass.getRecTypeByDevName('Lead', new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'});

@@ -1208,7 +1208,7 @@ public class UGears
 	    		throw new CustomException('USObject.getRecordTypeId - A recordTypeName value is required');
 	    	}
 	    	
-	    	return UtilityClass.getRecordTypeByName(sObjectType,recordTypeName);;
+	    	return UtilityClass.getRecordTypeByName(Schema.getGlobalDescribe().get(sObjectType),recordTypeName);
 	    }
 	    
 	    public Map<Id, RecordType> getRecordTypeMap(String sObjectType)
