@@ -7,11 +7,11 @@ public virtual class FleetEnrollmentController {
 
     public String confirmationNumber { get; set; }
     public String printToken { get; set; }
-    public String languageCode { 
+    public String languageCode {
         get {
             return ApexPages.CurrentPage().getParameters().get('lang');
-        } 
-    }    
+        }
+    }
 
     // URL Parameters to fetch
     public String opportunityParameter {
@@ -283,7 +283,7 @@ public virtual class FleetEnrollmentController {
         public String selectedCardControlOption;
         public String selectedPromptOption { get; set; }
         public String selectedAcceptanceOption { get; set; }
-        
+
         public String getSelectedCardControlOption() {
             return selectedCardControlOption;
         }
@@ -343,7 +343,7 @@ public virtual class FleetEnrollmentController {
         maxStep = 5;
         currentStep = 1;
         showPreview = false;
-        
+
         cardShippingSameAsBillingAddress = true;
 
         if(currentPage != null) {
@@ -388,55 +388,20 @@ public virtual class FleetEnrollmentController {
 
         try {
 
-            if (!String.isEmpty(applicationRequestParameter)) {
+            if (!String.isEmpty(applicationRequestParameter) || !String.isEmpty(opportunityParameter) ) {
 
                 List<FleetEnrollment__c> fleetEnrollments = [
                         SELECT Id, Has_Fleet_Enrollment_Data__c
                         FROM FleetEnrollment__c
-                        WHERE Application_Request__c = :applicationRequestParameter];
+                        WHERE Application_Request__c = :applicationRequestParameter OR Opportunity__c = :opportunityParameter];
 
-                if (fleetEnrollments.size() >0) {
-
-                    List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
-                    List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
-
-                    for (FleetEnrollment__c fe : fleetEnrollments) {
-                        if (fe.Has_Fleet_Enrollment_Data__c = true) {
-                            feWithFleetData.add(fe);
-                        } else {
-                            feWithoutFleetData.add(fe);
-                        }
-                    }
-
-                    if (feWithFleetData.size() > 0) {
-                        throw new FleetEnrollmentException('Your information has already been submitted.');
-                    }
-
-                    // find existing FleetEnrollment record from when opportunity was created
-                    // but without pre-filling any of the existing information!
-
-                    if (feWithoutFleetData.size() > 0) {
-
-                        fleetEnrollment.Id = feWithoutFleetData[0].Id;
-
-                    }
-                }
-            }
-
-            if (!String.isEmpty(opportunityParameter)) {
-
-                List<FleetEnrollment__c> fleetEnrollments = [
-                        SELECT Id
-                        FROM FleetEnrollment__c
-                        WHERE Opportunity_Number__c = :opportunityParameter];
-
-                if (fleetEnrollments.size() >0) {
+                if (fleetEnrollments.size() > 0) {
 
                     List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
                     List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
 
                     for (FleetEnrollment__c fe : fleetEnrollments) {
-                        if (fe.Has_Fleet_Enrollment_Data__c = true) {
+                        if (fe.Has_Fleet_Enrollment_Data__c == true) {
                             feWithFleetData.add(fe);
                         } else {
                             feWithoutFleetData.add(fe);
@@ -638,7 +603,7 @@ public virtual class FleetEnrollmentController {
     public PageReference setDIDLength() {
 
         System.debug('### DID Length: ' + selectedDIDLength);
-        
+
         return null;
 
     }
@@ -704,7 +669,7 @@ public virtual class FleetEnrollmentController {
 
             if(!String.isEmpty(opportunityParameter)) {
                 if(checkOpportunityParameter == false) {
-                fleetEnrollment.Opportunity_Number__c = opportunityParameter;
+                    fleetEnrollment.Opportunity_Number__c = opportunityParameter;
                 }
                 fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
                 fleetEnrollment.Opportunity__c = opportunityParameter;
@@ -848,7 +813,7 @@ public virtual class FleetEnrollmentController {
             PageReference errorPage = Page.ExternalApplicationError;
             errorPage.getParameters().put('errorCode', errorNumber);
             errorPage.getParameters().put('pgm', programParameter);
-            errorPage.getParameters().put('lang', languageCode);            
+            errorPage.getParameters().put('lang', languageCode);
             return errorPage;
         }
 
