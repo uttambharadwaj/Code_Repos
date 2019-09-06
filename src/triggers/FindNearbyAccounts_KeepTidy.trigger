@@ -1,5 +1,5 @@
 trigger FindNearbyAccounts_KeepTidy on Account (before update) {
-	
+	if(TriggerFactory.disabledTriggers(Account.sObjectType)) return;
 	Set<Id> AU_Acc_RTs = new Set<Id>();
 	
 	AU_Acc_RTs.add(UtilityClass.getRecTypeByDevName('Account', 'AU_Fuel_Customer'));
