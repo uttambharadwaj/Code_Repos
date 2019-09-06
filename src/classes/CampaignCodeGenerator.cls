@@ -13,7 +13,7 @@ public class CampaignCodeGenerator {
             ];
 
         if (campaignCodes.size() < numberOfCodes) {
-            return createCampaignCodes() ? getCampaignCode(numberOfCodes) : null; // Create additional codes
+            return createCampaignCodes() ? getCampaignCode(numberOfCodes) : new List<Campaign_Code__c>(); // Create additional codes
         }
 
         for (Campaign_Code__c campaignCode : campaignCodes) {
@@ -33,6 +33,7 @@ public class CampaignCodeGenerator {
     private static Boolean createCampaignCodes(Integer requestedAmount) {
 
         Campaign_Code_Generator__c ccgSettings = Campaign_Code_Generator__c.getInstance();
+        if (ccgSettings.Quantity__c == null || ccgSettings.Code_Length__c == null || ccgSettings.Characters__c == null) return false;
 
         List<Campaign_Code__c> campaignCodes = new List<Campaign_Code__c>();
         Set<String> generatedCampaignCodes = new Set<String>();
