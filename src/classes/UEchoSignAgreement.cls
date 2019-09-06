@@ -47,7 +47,7 @@ public class UEchoSignAgreement {
         if(outForSigs.size() > 0)
         {
         
-            id recordTypeId = [select id, name from recordType where sobjectType = 'Task' and name = 'General'].id;
+            id recordTypeId = UtilityClass.getRecordTypeByName(Task.getSObjectType(),'General');
         
             List <Task> tasksToCreate = new List <Task>();
         

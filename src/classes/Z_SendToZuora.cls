@@ -160,7 +160,7 @@ public class Z_SendToZuora {
 
         if (subscriptionResult == '' && subscriptionShippingResult == ''){
             quote.zqu__Status__c = 'Customer Approved';
-            quote.RecordTypeId  = [select Id from RecordType where Name = 'Customer Approved' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+            quote.RecordTypeId  = UtilityClass.getRecordTypeByName(zqu__Quote__c.getSObjectType(), 'Customer Approved');
             quote.zqu__ZuoraAccountID__c = accountResult;
             quote.zqu__Customer_Acceptance_Date__c = Date.today();
             update quote;
