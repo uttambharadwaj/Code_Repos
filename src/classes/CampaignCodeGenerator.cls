@@ -82,7 +82,7 @@ public class CampaignCodeGenerator {
                 randomNumber += indexOfAlphaStart;
             }
 
-            else if (randomNumber >= indexOfAlphaStart) {
+            if (randomNumber >= indexOfAlphaStart) {
                 sequentialAlphaCount = sequentialAlphaCount >= 2 ? 0 : sequentialAlphaCount + 1;
             }
 
