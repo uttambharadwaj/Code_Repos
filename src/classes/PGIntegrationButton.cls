@@ -133,7 +133,7 @@ global with sharing class PGIntegrationButton {
             System.debug('Corporate Payments App ID: ' + appID);
             List<CP_Application_Request__c> appInfo = [
                     SELECT Id, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c, Guarantor_Residential_City__c, Guarantor_Residential_State__c,
-                            Guarantor_Residential_Postal_Code__c, Guarantor_Residential_Phone__c, Guarantor_Date_of_Birth__c, Guarantor_Social_Security_Number__c, Guarantor_Residential_Country__c,
+                            Guarantor_Residential_Postal_Code__c, Guarantor_Residential_Phone__c, Guarantor_Date_of_Birth__c, Guarantor_Social_Security_Number__c, Guarantor_Country__c,
                             Legal_Structure__c, PG_FICO_Score__c, Inquiry_Address_High_Risk__c, Security_Statement_on_Report__c, On_File_Address_High_Risk__c, PG_Data__c
                     FROM CP_Application_Request__c
                     where Id = :appID
@@ -141,7 +141,7 @@ global with sharing class PGIntegrationButton {
 
             if (appInfo.size() == 1) {
 
-                if (appInfo[0].Guarantor_Residential_Country__c != null && appInfo[0].Guarantor_Residential_Country__c.equalsIgnoreCase('US')) {
+                if (appInfo[0].Guarantor_Country__c != null && appInfo[0].Guarantor_Country__c.equalsIgnoreCase('US')) {
 
                     CreditWS_Experian.ExperianRequest experianRequest = new CreditWS_Experian.ExperianRequest();
                     CP_Application_Request__c app = null;
@@ -192,7 +192,7 @@ global with sharing class PGIntegrationButton {
                         System.debug('Issue with data for Experian callout for application Id: ' + appId);
                     }
                 }
-                else if (appInfo[0].Guarantor_Residential_Country__c != null && appInfo[0].Guarantor_Residential_Country__c.equalsIgnoreCase('CA')) {
+                else if (appInfo[0].Guarantor_Country__c != null && appInfo[0].Guarantor_Country__c.equalsIgnoreCase('CA')) {
 
                     CreditWS_Equifax.EquifaxRequest equifaxRequest = new CreditWS_Equifax.EquifaxRequest();
                     CP_Application_Request__c app = null;
