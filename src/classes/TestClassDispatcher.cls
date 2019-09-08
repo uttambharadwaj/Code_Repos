@@ -79,4 +79,8 @@ public class TestClassDispatcher {
         CampaignCodeGeneratorTest.test_generateCode();
     }
 
+    @isTest static void testCampaignProgramDelete(){
+        CmpgnProgramTriggerTest.testCampaignProgramDelete();
+    }
+
 }

@@ -667,7 +667,7 @@ public virtual class FleetEnrollmentController {
             String key = EncodingUtil.convertToHex(crypto.generateAesKey(128));
             fleetEnrollment.Print_Token__c = key.substring(0, 25);
 
-            //commenting out because a siebel ID should not be assigned to the opportunity ID.
+            //commenting out because a siebel ID should not be assigned to the opportunity ID - was causing test class failures
             /*
             if(!String.isEmpty(opportunityParameter)) {
                 if(checkOpportunityParameter == false) {
