@@ -393,7 +393,7 @@ public virtual class FleetEnrollmentController {
                 List<FleetEnrollment__c> fleetEnrollments = [
                         SELECT Id, Has_Fleet_Enrollment_Data__c
                         FROM FleetEnrollment__c
-                        WHERE Application_Request__c = :applicationRequestParameter OR Opportunity_Number__c = :opportunityParameter];
+                        WHERE Application_Request__c = :applicationRequestParameter OR Opportunity__c = :opportunityParameter];
 
                 if (fleetEnrollments.size() > 0) {
 
@@ -824,14 +824,12 @@ public virtual class FleetEnrollmentController {
 
     public void sendEmail(){
 
-        List<RecordType> contactRecordTypes = [select Id from RecordType where sObjectType = 'Contact' and DeveloperName IN ('F1_Contact')];
-
         Contact temporaryContact = new Contact();
 
         temporaryContact.FirstName = fleetEnrollment.Billing_Contact_First_Name__c;
         temporaryContact.LastName = fleetEnrollment.Billing_Contact_Last_Name__c;
         temporaryContact.Email = fleetEnrollment.Billing_Email__c;
-        temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
+        temporaryContact.RecordTypeId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
 
         insert temporaryContact;
 

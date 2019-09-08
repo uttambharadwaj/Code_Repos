@@ -1,6 +1,9 @@
 @isTest
 private class EMAP_Credit_Assessment_Controller_Test {
-
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
     static testMethod void myUnitTest() {
         
         Account acc =TestDatatUtility.getAccount();

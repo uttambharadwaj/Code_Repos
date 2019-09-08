@@ -1,6 +1,9 @@
 @isTest
 private class EMAP_Bank_Trade_ReferenceTriggerHan_Test {
-
+	@testSetup
+	static void setup(){
+		UtilityTestLoader.setAutomation(false);
+	}
     static testMethod void myUnitTest() {
     	Account varAcc  = TestDatatUtility.getAccount();
     	insert varAcc;

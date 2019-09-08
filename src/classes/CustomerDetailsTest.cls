@@ -12,8 +12,7 @@ public class CustomerDetailsTest {
         String contactJsonString = JSON.serialize(contacts);
         System.debug('### contactJsonString='+contactJsonString);
 
-        //todo: restore this
-        //UtilityTestLoader.setAutomation(false);
+        UtilityTestLoader.setAutomation(false);
 
         Id genericProgramId;
         Id genericPartnerId;
@@ -120,7 +119,7 @@ public class CustomerDetailsTest {
             dummyDriverContact.AccountId = accountId;
             dummyDriverContact.WEX_Contact_ID__c = '0030g00002CDTUz';
             insert dummyDriverContact;
-    }
+        }
 
     }
 

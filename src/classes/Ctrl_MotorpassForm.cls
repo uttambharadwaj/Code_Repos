@@ -124,17 +124,11 @@ public without sharing class Ctrl_MotorpassForm
         }
         option = opt1;
         
-        // Query the Lead Recordtypes
-        Map<String,Id> map_Lead_RTs = new Map<String,Id>();
-        for(RecordType rt : [select Id,DeveloperName from RecordType where sObjectType = 'Lead' and DeveloperName IN ('AU_Fuel_Application_Individual','AU_Fuel_Business')])
-            map_Lead_RTs.put(rt.DeveloperName,rt.Id);
-        
-       
         // assign recordtype based on the option selected
         if(option == 'Individual')
-            theLead.RecordTypeId = map_Lead_RTs.get('AU_Fuel_Application_Individual');
+            theLead.RecordTypeId = UtilityClass.getRecTypeByDevName('Lead','AU_Fuel_Application_Individual');
         else
-            theLead.RecordTypeId = map_Lead_RTs.get('AU_Fuel_Business');
+            theLead.RecordTypeId = UtilityClass.getRecTypeByDevName('Lead','AU_Fuel_Business');
             
         motorpass               = opt2;
         theLead.AU_Card_Type__c = opt2;

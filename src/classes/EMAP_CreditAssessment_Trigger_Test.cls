@@ -1,6 +1,9 @@
 @istest
 private class EMAP_CreditAssessment_Trigger_Test{
-
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
     static testMethod void CreditAssessmentValidate(){
         
         User user= TestDatatUtility.createUser();

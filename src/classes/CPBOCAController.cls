@@ -1,5 +1,6 @@
 /*
 *
+*   Revision History:   26/AUG/2019     CJackson    LRC-86      Multiple changes to support implementation of CP BOCA.
 *   Revision History:   26/AUG/2019     MFarrell    LRC-97      Added donothing method and isUpMarket boolean.
 *
 */
@@ -69,38 +70,6 @@ public class CPBOCAController {
         }
     }
 
-    public List<SelectOption> countryOptions {
-        get {
-            List<SelectOption> myOptions = new List<SelectOption>();
-            Schema.DescribeFieldResult countries = Account.Legal_Entity_Country__c.getDescribe();
-            myOptions.add(new SelectOption('','-- Choose One --'));
-            for(Schema.PicklistEntry countryOption : countries.getPicklistValues()){
-                myOptions.add(new SelectOption(countryOption.getValue(), countryOption.getValue()));
-            }
-            return myOptions;
-        }
-    }
-
-    //have to get states from a different field on a different object bc our legal state needs to be free text for sales reps bc why do things right when we can do them fast
-    public List<SelectOption> stateOptions {
-        get {
-            List<SelectOption> myOptions = new List<SelectOption>();
-            Set<String> provinces = new Set<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
-            Schema.DescribeFieldResult states = OnlineApplication__c.State__c.getDescribe();
-            myOptions.add(new SelectOption('','-- Choose One --'));
-            for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
-                if(selectedCountry == 'CA' && provinces.contains(stateOption.getValue()))
-                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
-                else if(selectedCountry == 'US' && !provinces.contains(stateOption.getValue()))
-                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
-            }
-            return myOptions;
-        }
-    }
-
-    public String selectedCountry {get;set;}
-
-    public String selectedState {get;set;}
 
     public Boolean showTNC{
         get{
@@ -510,7 +479,7 @@ public class CPBOCAController {
             // Check to see if it's a BOCA to Prospect - otherwise setup a new app
             if(partialCustomer != null) {
                 try{
-                    creditApp = [SELECT Id, Account__c, Opportunity__c, Company_Legal_Name__c, Doing_Business_As__c, Years_In_Business__c, Credit_Line_Requested__c,
+                    creditApp = [SELECT Id, Account__c, Opportunity__c, Company_Legal_Name__c, Doing_Business_As__c, Years_In_Business__c, Credit_Limit__c,
                             Physical_Address_Line_1__c, Physical_Address_Line_2__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c, Physical_Country__c,
                             Taxpayer_ID__c, DUNS_Number__c, Email__c, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Residential_Address__c, Business_Phone__c,
                             Guarantor_Residential_City__c, Guarantor_Residential_State__c, Guarantor_Residential_Postal_Code__c, Guarantor_Country__c,
@@ -926,14 +895,12 @@ public class CPBOCAController {
             replyTo = String.valueOf(singleBocaId.get('Email_Address_Noreply__c'));
         }
 
-        List<RecordType> contactRecordTypes = [select Id from RecordType where sObjectType = 'Contact' and DeveloperName IN ('F1_Contact')];
-
         Contact temporaryContact = new Contact();
 
         temporaryContact.FirstName = creditApp.First_Name__c;
         temporaryContact.LastName = creditApp.Last_Name__c;
         temporaryContact.Email = creditApp.Email__c;
-        temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
+        temporaryContact.RecordTypeId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
 
         insert temporaryContact;
 

@@ -1,6 +1,9 @@
 @isTest
 private class EMAP_RiskFlag_Controller_Test {
-
+  @testSetup
+  static void setup(){
+    UtilityTestLoader.setAutomation(false);
+  }
     static testMethod void myUnitTest() {
       
       Account acc =TestDatatUtility.getAccount();

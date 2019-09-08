@@ -1,10 +1,7 @@
 trigger ContactValidator on Contact(before insert, before update) {
- 	
- 	Set<Id> AU_Contact_RTs = new Set<Id>();
+	if(TriggerFactory.disabledTriggers(Contact.sObjectType)) return;
+ 	Set<Id> AU_Contact_RTs = UtilityClass.getRecTypeByDevName('Contact',new List<String>{'AU_Contact'});
 	
-	for(RecordType rt : [select Id from RecordType where sObjectType = 'Contact' and DeveloperName IN ('AU_Contact')])
-		AU_Contact_RTs.add(rt.Id);
-		
 	List<Contact> contacts = new List<Contact>();
     for(Contact c : Trigger.new)
     {

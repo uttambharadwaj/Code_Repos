@@ -52,10 +52,9 @@ public with sharing class Z_Agreement_TriggerHandler {
       // Check to see if the agreement was rejected and set it back to 'New' so the quote can be edited and resent
       if (a.echosign_dev1__Status__c != oldAsMap.get(a.Id).echosign_dev1__Status__c && a.echosign_dev1__Status__c == 'Cancelled / Declined') {
         if (a.Quote__c != null) { 
-          RecordType defaultRt = [select Id from RecordType where Name = 'Default' and SobjectType = 'zqu__Quote__c' limit 1];
-          qMap.get(a.Quote__c).zqu__Status__c = 'New'; 
+          qMap.get(a.Quote__c).zqu__Status__c = 'New';
           qMap.get(a.Quote__c).Approved__c = false;
-          qMap.get(a.Quote__c).RecordTypeId = defaultRt.Id;
+          qMap.get(a.Quote__c).RecordTypeId = UtilityClass.getRecordTypeByName(zqu__Quote__c.getSObjectType(), 'Default');
         }    
       } 
     }
