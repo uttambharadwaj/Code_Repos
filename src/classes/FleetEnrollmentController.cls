@@ -667,6 +667,8 @@ public virtual class FleetEnrollmentController {
             String key = EncodingUtil.convertToHex(crypto.generateAesKey(128));
             fleetEnrollment.Print_Token__c = key.substring(0, 25);
 
+            //commenting out because a siebel ID should not be assigned to the opportunity ID - was causing test class failures
+            /*
             if(!String.isEmpty(opportunityParameter)) {
                 if(checkOpportunityParameter == false) {
                     fleetEnrollment.Opportunity_Number__c = opportunityParameter;
@@ -674,6 +676,7 @@ public virtual class FleetEnrollmentController {
                 fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
                 fleetEnrollment.Opportunity__c = opportunityParameter;
             }
+			*/
 
             if(selectedDriverIdOption.equalsIgnoreCase('random')) {
                 fleetEnrollment.Driver_ID_Random__c = true;

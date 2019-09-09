@@ -141,6 +141,8 @@ global with sharing class createAndAttachPDF implements Process.Plugin {
  */
     
         static testMethod void basicTest() {
+
+        UtilityTestLoader.setAutomation(false);
 		
 		List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
   		
@@ -176,6 +178,7 @@ global with sharing class createAndAttachPDF implements Process.Plugin {
         */        
         static testMethod void negativeTest() {
 
+        UtilityTestLoader.setAutomation(false);
 
         createAndAttachPDF aPdfPlugin = new createAndAttachPDF();
         Map<String,Object> inputParams = new Map<String,Object>();
@@ -200,6 +203,8 @@ global with sharing class createAndAttachPDF implements Process.Plugin {
   * This test is to test the describe() method
   */ 
         static testMethod void describeTest() {
+
+                UtilityTestLoader.setAutomation(false);
 
                 createAndAttachPDF aPdfPlugin = new createAndAttachPDF();
                 Process.PluginDescribeResult result = aPdfPlugin.describe();
