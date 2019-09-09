@@ -10,9 +10,12 @@ public class CampaignBeforeInsertTriggerHandler extends TriggerHandlerBase {
         if (campaignCodes.size() >= campaignsList.size()) {
 
             for (Integer i = 0; i < campaignsList.size(); i++) {
-                campaignsList[i].Coupon_Code__c = campaignCodes[i].Name;
-            }
 
+                if (campaignsList[i].Coupon_Code__c == null) {
+                    campaignsList[i].Coupon_Code__c = campaignCodes[i].Name;
+                }
+
+            }
         }
     }
 }
