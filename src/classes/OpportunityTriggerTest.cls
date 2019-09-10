@@ -152,11 +152,8 @@ public class OpportunityTriggerTest {
         o7.AccountId = o7InitAccount;
         
         Test.startTest();
-        //UOpportunity.programAccountProcessedIds.clear();
-        //UOpportunity.programAccountInsertIds.clear();
         Test.setMock(HTTPCalloutMock.Class, new Test_i2iHttpCallOutMock());
         insert new List<Opportunity>{o2,o3,o4,o5,o6,o7};
-        //insert o5;
         Test.stopTest();
 
         //getStageId in before insert should update the sales stage id
@@ -208,17 +205,6 @@ public class OpportunityTriggerTest {
     }
 
     public static void testOpportunityDelete(){
-        /*
-        AD needs:
-            processDelete
-                have to create globalsettings
-                the gs integration_user_id__c needs to be current user
-                delete record
-                assert deleted_records_stage__c record created with this record id
-                assert record has proper record type
-                assert delete source is manual
-                assert delete initiated by is i2i
-         */
         Opportunity o = [SELECT Id FROM Opportunity LIMIT 1];
 
         Test.startTest();
