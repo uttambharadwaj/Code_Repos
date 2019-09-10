@@ -1,50 +1,35 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Salesforce Bi-Weekly Production Release 9/12/19</fullName>
+    <description>https://docs.google.com/document/d/1v_nlxKmDrm8kLSjKesPjjt7qnpB9AEFUKirkq16qZd8/edit</description>
     <types>
-        <members>*</members>
+        <members>DataLoaderBatch</members>
+        <members>OpportunityTriggerTest</members>
+        <members>TestClassDispatcher</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>*</members>
-        <name>ApexComponent</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>ApexTestSuite</name>
-    </types>
-    <types>
-        <members>*</members>
+        <members>UOpportunity</members>
         <name>ApexTrigger</name>
     </types>
     <types>
-        <members>*</members>
-        <name>AuraDefinitionBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>LightningComponentBundle</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>LightningExperienceTheme</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>NamedCredential</name>
-    </types>
-    <types>
-        <members>*</members>
-        <name>StaticResource</name>
-    </types>
-    <types>
-        <members>Test_Data_Configuration.FleetEnrollment_Contact_Test_Data</members>
-        <members>Test_Data_Configuration.FleetEnrollment_Driver_Test_Data</members>
-        <members>Test_Data_Configuration.FleetEnrollment_Vehicle_Test_Data</members>
+        <members>Test_Data_Configuration.Test_Data_Account_2</members>
+        <members>Test_Data_Configuration.Test_Data_Campaign_2</members>
+        <members>Test_Data_Configuration.Test_Data_Default_Campaigns</members>
+        <members>Test_Data_Configuration.Test_Data_Global_Settings</members>
         <name>CustomMetadata</name>
     </types>
-    <version>42.0</version>
+    <types>
+        <members>Test_Data_Account</members>
+        <members>Test_Data_Account_2</members>
+        <members>Test_Data_Campaign</members>
+        <members>Test_Data_Campaign_2</members>
+        <members>Test_Data_Campaign_Program</members>
+        <members>Test_Data_Default_Campaigns</members>
+        <members>Test_Data_Global_Settings</members>
+        <members>Test_Data_Opportunity</members>
+        <members>Test_Data_Program</members>
+        <name>StaticResource</name>
+    </types>
+    <version>45.0</version>
 </Package>
