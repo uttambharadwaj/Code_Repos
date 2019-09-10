@@ -31,17 +31,10 @@ global class AccountWS_EFSAppManager {
     @future(callout=true)
     public static void integrateOnlineApplication_Future(Id onlineApplicationId) {
 
-        ID recordId = onlineApplicationId;
-
-        DescribeSObjectResult describeResult = recordId.getSObjectType().getDescribe();
-        List<String> fieldNames = new List<String>( describeResult.fields.getMap().keySet() );
-
-        System.debug(fieldNames);
-
-        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = :recordId ' + ' LIMIT 1 ';
+        String myQuery = onlineAppQuery(onlineApplicationId);
 
         // return generic list of sobjects or typecast to expected type
-        List<OnlineApplication__c> records = Database.query( query );
+        List<OnlineApplication__c> records = Database.query(myQuery);
 
         if(records.size() > 0) {
 
@@ -53,20 +46,27 @@ global class AccountWS_EFSAppManager {
 
     webservice static void testIntegrationFromButton(Id onlineApplicationId) {
 
+        String myQuery = onlineAppQuery(onlineApplicationId);
+
+        // return generic list of sobjects or typecast to expected type
+        List<OnlineApplication__c> records = Database.query(myQuery);
+
+        integrateOnlineApplication(records[0]);
+
+    }
+
+    public static String onlineAppQuery(Id onlineApplicationId){
         ID recordId = onlineApplicationId;
 
         DescribeSObjectResult describeResult = recordId.getSObjectType().getDescribe();
         List<String> fieldNames = new List<String>( describeResult.fields.getMap().keySet() );
+        fieldNames.add('Opportunity__r.SBQQ__PrimaryQuote__c');
 
         System.debug(fieldNames);
 
-        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = :recordId ' + ' LIMIT 1 ';
+        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = \'' + recordId + '\' LIMIT 1 ';
 
-        // return generic list of sobjects or typecast to expected type
-        List<OnlineApplication__c> records = Database.query( query );
-
-        integrateOnlineApplication(records[0]);
-
+        return query;
     }
 
     public class appManagerException extends Exception {}
@@ -207,7 +207,6 @@ global class AccountWS_EFSAppManager {
         Account onlineApplicationAccount = null;
         Account onlineApplicationParentAccount = null;
         Program__c onlineApplicationProgram = null;
-        Opportunity onlineApplicationOpportunity = null;
         OnlineApplicationOffer__c onlineApplicationOffer = null;
 
         Set<String> selectedOtherServices = new Set<String>();
@@ -244,9 +243,7 @@ global class AccountWS_EFSAppManager {
             WHERE Id =: onlineapplication.Program__c];
         }
 
-        if(onlineApplication.Opportunity__c != null) {
-            onlineApplicationOpportunity = [SELECT Id FROM Opportunity WHERE Id =: onlineApplication.Opportunity__c];
-        }
+        CardFees myFees = new CardFees(onlineApplication);
 
         List<OnlineApplicationDriverSetup__c> onlineApplicationDriverSetups = [SELECT Id, Driver_Name__c, Driver_ID__c FROM OnlineApplicationDriverSetup__c WHERE Online_Application__c =: onlineApplication.Id];
 
@@ -604,14 +601,14 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
         jsonPayload.writeStringField('fee_id', '118');
-        if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
-        jsonPayload.writeStringField('fee_level', '1');
+        if(myFees.driverFee != null) jsonPayload.writeStringField('fee_amt', myFees.driverFee);
+        jsonPayload.writeStringField('fee_level', '2');
         jsonPayload.writeStringField('fee_type', '1');
-        jsonPayload.writeStringField('fee_max_times_per', '3');
-        jsonPayload.writeStringField('fee_max_times', '1');
-        //TODO why is this PST Card Fee in the payload twice? -lhowland
-        // if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
-//        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
+        jsonPayload.writeStringField('fee_max_times_per', '4');
+        jsonPayload.writeStringField('fee_max_times', '0');
+        jsonPayload.writeStringField('fee_min_start_per','4');
+        jsonPayload.writeStringField('fee_min_start','0');
+//        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null)  jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
 //        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
         jsonPayload.writeEndObject();
@@ -644,6 +641,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('is_master', 'N');
         if(onlineApplicationOffer.Card_Type__c != null) jsonPayload.writeStringField('card_type', onlineApplicationOffer.Card_Type__c);
         if(onlineApplicationOffer.Card_Style__c != null) jsonPayload.writeStringField('card_style', onlineApplicationOffer.Card_Style__c);
+        if(onlineApplication.Prompt_Type__c != null) jsonPayload.writeStringField('PromptCode', onlineApplication.Prompt_Type__c);
         // Certain Programs send additional cards to the customer.carefu
         if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
         if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.Cards_per_1_Requested__c));
@@ -861,6 +859,45 @@ global class AccountWS_EFSAppManager {
         public String status { get; set; }
         public String clientId { get; set; }
 
+    }
+
+    public class CardFees{
+        public String driverFee;
+
+        public CardFees(OnlineApplication__c onlineApplication){
+            if(onlineApplication.Opportunity__c != null) {
+                if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null){
+                    //get the fees based on quotelines. ideal.
+                    List<SBQQ__QuoteLine__c> onlineAppQuoteLines = [SELECT Id, (SELECT Id,Requested_Price__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__c LIMIT 1].SBQQ__LineItems__r;
+                    setFees(onlineAppQuoteLines);
+                } else {
+                    //get the fees based on OLI. not ideal.
+                    List<Id> productIds = new List<Id>();
+                    for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
+                        productIds.add(oli.Product2Id);
+                    List<SBQQ__ProductOption__c> productOptions = [SELECT Id, SBQQ__UnitPrice__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'];
+                    setFees(productOptions);
+                }
+
+            }
+        }
+
+        private void setFees(List<SBQQ__QuoteLine__c> qlis){
+            if(qlis.size()>0){
+                for(SBQQ__QuoteLine__c ql : qlis){
+                    this.driverFee = String.valueof(ql.Requested_Price__c);
+                }
+
+            }
+        }
+
+        private void setFees(List<SBQQ__ProductOption__c> pos){
+            if(pos.size()>0){
+                for(SBQQ__ProductOption__c po : pos) {
+                    this.driverFee = String.valueof(po.SBQQ__UnitPrice__c);
+                }
+            }
+        }
     }
 
 }
