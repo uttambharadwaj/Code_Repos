@@ -46,6 +46,16 @@ global class AccountWS_EFSAppManager {
         integrateOnlineApplication(records[0]);
     }
     public static String onlineAppQuery(Id onlineApplicationId){
+        String myQuery = onlineAppQuery(onlineApplicationId);
+
+        // return generic list of sobjects or typecast to expected type
+        List<OnlineApplication__c> records = Database.query(myQuery);
+
+        integrateOnlineApplication(records[0]);
+
+    }
+
+    public static String onlineAppQuery(Id onlineApplicationId){
         ID recordId = onlineApplicationId;
         DescribeSObjectResult describeResult = recordId.getSObjectType().getDescribe();
         List<String> fieldNames = new List<String>( describeResult.fields.getMap().keySet() );
@@ -192,7 +202,6 @@ global class AccountWS_EFSAppManager {
         Account onlineApplicationAccount = null;
         Account onlineApplicationParentAccount = null;
         Program__c onlineApplicationProgram = null;
-        Opportunity onlineApplicationOpportunity = null;
         OnlineApplicationOffer__c onlineApplicationOffer = null;
         SBQQ__Quote__c onlineAppQuote = null;
         List<SBQQ__QuoteLine__c> onlineAppQuoteLines = null;
@@ -231,17 +240,6 @@ global class AccountWS_EFSAppManager {
             onlineApplicationProgram = [SELECT Id,  Card_Press_ID__c, Partner_Territory__r.Name
             FROM Program__c
             WHERE Id =: onlineapplication.Program__c];
-        }
-
-        // OTRONBOARD-55
-        if(onlineApplication.Opportunity__c != null) {
-            onlineApplicationOpportunity = [SELECT Id, SBQQ__PrimaryQuote__c FROM Opportunity WHERE Id = :onlineApplication.Opportunity__c];
-        }
-        if(onlineApplicationOpportunity.SBQQ__PrimaryQuote__c != null) {
-            onlineAppQuote = [SELECT Id FROM SBQQ__Quote__c WHERE Id = :onlineApplicationOpportunity.SBQQ__PrimaryQuote__c LIMIT 1];
-        }
-        if(onlineAppQuote != null) {
-            onlineAppQuoteLines = [SELECT Id FROM SBQQ__QuoteLine__c WHERE SBQQ__Quote__c = :onlineAppQuote.Id];
         }
 
         CardFees myFees = new CardFees(onlineApplication);
@@ -611,9 +609,9 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('fee_type', '1');
         jsonPayload.writeStringField('fee_max_times_per', '3');
         jsonPayload.writeStringField('fee_max_times', '1');
-        //TODO why is this PST Card Fee in the payload twice? -lhowland
-        // if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
-//        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
+        jsonPayload.writeStringField('fee_min_start_per','4');
+        jsonPayload.writeStringField('fee_min_start','0');
+//        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null)  jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
 //        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
         jsonPayload.writeEndObject();
@@ -646,6 +644,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('is_master', 'N');
         //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Card_Type__c != null) jsonPayload.writeStringField('card_type', onlineApplicationOffer.Card_Type__c);
         //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Card_Style__c != null) jsonPayload.writeStringField('card_style', onlineApplicationOffer.Card_Style__c);
+        if(onlineApplication.Prompt_Type__c != null) jsonPayload.writeStringField('PromptCode', onlineApplication.Prompt_Type__c);
         if(onlineApplication.Prompt_Type__c != null) jsonPayload.writeStringField('PromptCode', onlineApplication.Prompt_Type__c);
         // Certain Programs send additional cards to the customer.carefu
         //OTRONBOARD-34 (future release) if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
@@ -865,21 +864,21 @@ global class AccountWS_EFSAppManager {
     }
 
     public class CardFees{
-        public String mcShippingFee;
-        public String mcEmbossingFee;
+        public String driverFee;
+		public String mcShippingFee;
 
         public CardFees(OnlineApplication__c onlineApplication){
             if(onlineApplication.Opportunity__c != null) {
                 if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null){
                     //get the fees based on quotelines. ideal.
-                    List<SBQQ__QuoteLine__c> onlineAppQuoteLines = [SELECT Id, (SELECT Id,Requested_Price__c, SBQQ__CustomerTotal__c, SBQQ__ProductName__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__c LIMIT 1].SBQQ__LineItems__r;
+                    List<SBQQ__QuoteLine__c> onlineAppQuoteLines = [SELECT Id, (SELECT Id,Requested_Price__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__c LIMIT 1].SBQQ__LineItems__r;
                     setFees(onlineAppQuoteLines);
                 } else {
                     //get the fees based on OLI. not ideal.
                     List<Id> productIds = new List<Id>();
                     for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
                         productIds.add(oli.Product2Id);
-                    List<SBQQ__ProductOption__c> productOptions = [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductName__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'];
+                    List<SBQQ__ProductOption__c> productOptions = [SELECT Id, SBQQ__UnitPrice__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'];
                     setFees(productOptions);
                 }
 
@@ -887,20 +886,23 @@ global class AccountWS_EFSAppManager {
         }
 
         private void setFees(List<SBQQ__QuoteLine__c> qlis){
-            if(qlis.size()> 0 && (qlis[0].SBQQ__ProductName__c).equalsIgnoreCase('MASTERCARD SHIPPING')) {
-                this.mcShippingFee = String.valueOf(qlis[0].Requested_Price__c);
-            }
-            if(qlis.size()> 0 && (qlis[0].SBQQ__ProductName__c).equalsIgnoreCase('MASTERCARD EMBOSSING')) {
-                this.mcEmbossingFee = String.valueOf(qlis[0].Requested_Price__c);
+            if(qlis.size()>0){
+                for(SBQQ__QuoteLine__c ql : qlis){
+                    this.driverFee = String.valueof(ql.Requested_Price__c);
+					this.mcShippingFee = String.valueof(ql.Requested_Price__c);
+					this.mcEmbossingFee = String.valueof(ql.Requested_Price__c);
+                }
+
             }
         }
 
         private void setFees(List<SBQQ__ProductOption__c> pos){
-            if(pos.size()>0 && (pos[0].SBQQ__ProductName__c).equalsIgnoreCase('MASTERCARD SHIPPING')) {
-                this.mcShippingFee = String.valueOf(pos[0].SBQQ__UnitPrice__c);
-            }
-            if(pos.size()>0 && (pos[0].SBQQ__ProductName__c).equalsIgnoreCase('MASTERCARD EMBOSSING')) {
-                this.mcEmbossingFee = String.valueOf(pos[0].SBQQ__UnitPrice__c);
+            if(pos.size()>0){
+                for(SBQQ__ProductOption__c po : pos) {
+                    this.driverFee = String.valueof(po.SBQQ__UnitPrice__c);
+					this.mcShippingFee = String.valueof(po.Requested_Price__c);
+					this.mcEmbossingFee = String.valueof(po.Requested_Price__c);
+                }
             }
         }
     }
