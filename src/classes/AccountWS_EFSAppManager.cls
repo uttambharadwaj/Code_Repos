@@ -29,46 +29,29 @@ global class AccountWS_EFSAppManager {
 
     }
 
-    // Future method for Callout #1
+// Future method for Callout #1
     @future(callout=true)
     public static void integrateOnlineApplication_Future(Id onlineApplicationId) {
-
-        ID recordId = onlineApplicationId;
-
-        DescribeSObjectResult describeResult = recordId.getSObjectType().getDescribe();
-        List<String> fieldNames = new List<String>( describeResult.fields.getMap().keySet() );
-
-        System.debug(fieldNames);
-
-        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = :recordId ' + ' LIMIT 1 ';
-
+        String myQuery = onlineAppQuery(onlineApplicationId);
         // return generic list of sobjects or typecast to expected type
-        List<OnlineApplication__c> records = Database.query( query );
-
+        List<OnlineApplication__c> records = Database.query(myQuery);
         if(records.size() > 0) {
-
             integrateOnlineApplication(records[0]);
-
         }
-
     }
-
     webservice static void testIntegrationFromButton(Id onlineApplicationId) {
-
+        String myQuery = onlineAppQuery(onlineApplicationId);
+        // return generic list of sobjects or typecast to expected type
+        List<OnlineApplication__c> records = Database.query(myQuery);
+        integrateOnlineApplication(records[0]);
+    }
+    public static String onlineAppQuery(Id onlineApplicationId){
         ID recordId = onlineApplicationId;
-
         DescribeSObjectResult describeResult = recordId.getSObjectType().getDescribe();
         List<String> fieldNames = new List<String>( describeResult.fields.getMap().keySet() );
-
-        System.debug(fieldNames);
-
-        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = :recordId ' + ' LIMIT 1 ';
-
-        // return generic list of sobjects or typecast to expected type
-        List<OnlineApplication__c> records = Database.query( query );
-
-        integrateOnlineApplication(records[0]);
-
+        fieldNames.add('Opportunity__r.SBQQ__PrimaryQuote__c');
+        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = \'' + recordId + '\' LIMIT 1 ';
+        return query;
     }
 
     public class appManagerException extends Exception {}
@@ -235,8 +218,8 @@ global class AccountWS_EFSAppManager {
                     Funding__c, Limit_Method__c, PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c,
                     PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c, Approval_Type__c, Primary_Contact_Email_Address__c,
                     Create_Letter__c, Notice_Delivery__c
-                    /* OTRONBOARD-34 (future changes) Account_Descriptor__c, Card_Shipping_Method__c, Card_Style__c, Card_Type__c, Cards_per_1_Requested__c,
-                    Child_Funded_Issuer_ID__c, Parent_Funded_Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c, Card_Order_Type__c, Statement_Type__c, Customer_Type__c */
+            /* OTRONBOARD-34 (future changes) Account_Descriptor__c, Card_Shipping_Method__c, Card_Style__c, Card_Type__c, Cards_per_1_Requested__c,
+            Child_Funded_Issuer_ID__c, Parent_Funded_Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c, Card_Order_Type__c, Statement_Type__c, Customer_Type__c */
             // OTRONBOARD-33 && OTRONBOARD-29
             // Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c, Mcode_Monthly_Account_Fee__c, Mcode_Monthly_Account_Fee_Value__c, Monthly_Account_Fee__c, Monthly_Account_Fee_Value__c
             FROM OnlineApplicationOffer__c
@@ -245,16 +228,23 @@ global class AccountWS_EFSAppManager {
 
         if(onlineApplication.Program__c != null) {
             // OTRONBOARD-34 (future changes) onlineApplicationProgram = [SELECT Id,  Card_Press_ID__c, Lockbox_Value__c, Partner_Territory__r.Name
-            onlineApplicationProgram = [SELECT Id,  Card_Press_ID__c, Partner_Territory__r.Name, Name
+            onlineApplicationProgram = [SELECT Id,  Card_Press_ID__c, Partner_Territory__r.Name
             FROM Program__c
             WHERE Id =: onlineapplication.Program__c];
         }
 
+        // OTRONBOARD-55
         if(onlineApplication.Opportunity__c != null) {
-            onlineApplicationOpportunity = [SELECT Id, SBQQ__PrimaryQuote__c FROM Opportunity WHERE Id =: onlineApplication.Opportunity__c];
+            onlineApplicationOpportunity = [SELECT Id, SBQQ__PrimaryQuote__c FROM Opportunity WHERE Id = :onlineApplication.Opportunity__c];
+        }
+        if(onlineApplicationOpportunity.SBQQ__PrimaryQuote__c != null) {
             onlineAppQuote = [SELECT Id FROM SBQQ__Quote__c WHERE Id = :onlineApplicationOpportunity.SBQQ__PrimaryQuote__c LIMIT 1];
+        }
+        if(onlineAppQuote != null) {
             onlineAppQuoteLines = [SELECT Id FROM SBQQ__QuoteLine__c WHERE SBQQ__Quote__c = :onlineAppQuote.Id];
         }
+
+        CardFees myFees = new CardFees(onlineApplication);
 
         List<OnlineApplicationDriverSetup__c> onlineApplicationDriverSetups = [SELECT Id, Driver_Name__c, Driver_ID__c FROM OnlineApplicationDriverSetup__c WHERE Online_Application__c =: onlineApplication.Id];
 
@@ -407,8 +397,8 @@ global class AccountWS_EFSAppManager {
             //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
             //OTRONBOARD-55 Shipping and Embossing Fees
-            if(onlineApplication.Name.equalsIgnoreCase('MASTERCARD')) jsonPayload.writeStringField('shipping_fees', '1');
-            if(onlineApplication.Name.equalsIgnoreCase('MASTERCARD')) jsonPayload.writeStringField('mcfee', '1');
+            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fees', myFees.mcShippingFee);
+            if(myFees.mcEmbossingFee != null) jsonPayload.writeStringField('mcfee', myFees.mcEmbossingFee);
 
             // End of "carrier"
             jsonPayload.writeEndObject();
@@ -871,6 +861,47 @@ global class AccountWS_EFSAppManager {
         public String status { get; set; }
         public String clientId { get; set; }
 
+    }
+
+    public class CardFees{
+        public String mcShippingFee;
+        public String mcEmbossingFee;
+
+        public CardFees(OnlineApplication__c onlineApplication){
+            if(onlineApplication.Opportunity__c != null) {
+                if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null){
+                    //get the fees based on quotelines. ideal.
+                    List<SBQQ__QuoteLine__c> onlineAppQuoteLines = [SELECT Id, (SELECT Id,Requested_Price__c, SBQQ__CustomerTotal__c, SBQQ__ProductName__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__c LIMIT 1].SBQQ__LineItems__r;
+                    setFees(onlineAppQuoteLines);
+                } else {
+                    //get the fees based on OLI. not ideal.
+                    List<Id> productIds = new List<Id>();
+                    for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
+                        productIds.add(oli.Product2Id);
+                    List<SBQQ__ProductOption__c> productOptions = [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductName__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'];
+                    setFees(productOptions);
+                }
+
+            }
+        }
+
+        private void setFees(List<SBQQ__QuoteLine__c> qlis){
+            if(qlis.size()> 0 && (qlis[0].SBQQ__ProductName__c).equalsIgnoreCase('MASTERCARD SHIPPING')) {
+                this.mcShippingFee = String.valueOf(qlis[0].Requested_Price__c);
+            }
+            if(qlis.size()> 0 && (qlis[0].SBQQ__ProductName__c).equalsIgnoreCase('MASTERCARD EMBOSSING')) {
+                this.mcEmbossingFee = String.valueOf(qlis[0].Requested_Price__c);
+            }
+        }
+
+        private void setFees(List<SBQQ__ProductOption__c> pos){
+            if(pos.size()>0 && (pos[0].SBQQ__ProductName__c).equalsIgnoreCase('MASTERCARD SHIPPING')) {
+                this.mcShippingFee = String.valueOf(pos[0].SBQQ__UnitPrice__c);
+            }
+            if(pos.size()>0 && (pos[0].SBQQ__ProductName__c).equalsIgnoreCase('MASTERCARD EMBOSSING')) {
+                this.mcEmbossingFee = String.valueOf(pos[0].SBQQ__UnitPrice__c);
+            }
+        }
     }
 
 }
