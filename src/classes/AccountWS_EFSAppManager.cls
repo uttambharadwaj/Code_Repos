@@ -243,8 +243,6 @@ global class AccountWS_EFSAppManager {
             WHERE Id =: onlineapplication.Program__c];
         }
 
-        CardFees myFees = new CardFees(onlineApplication);
-
         List<OnlineApplicationDriverSetup__c> onlineApplicationDriverSetups = [SELECT Id, Driver_Name__c, Driver_ID__c FROM OnlineApplicationDriverSetup__c WHERE Online_Application__c =: onlineApplication.Id];
 
         List<OnlineApplicationUnitNumber__c> onlineApplicationUnitNumbers = [SELECT Id, Name FROM OnlineApplicationUnitNumber__c WHERE Online_Application__c =: onlineApplication.Id];
@@ -601,11 +599,11 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
         jsonPayload.writeStringField('fee_id', '118');
-        if(myFees.driverFee != null) jsonPayload.writeStringField('fee_amt', myFees.driverFee);
-        jsonPayload.writeStringField('fee_level', '2');
+        if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
+        jsonPayload.writeStringField('fee_level', '1');
         jsonPayload.writeStringField('fee_type', '1');
-        jsonPayload.writeStringField('fee_max_times_per', '4');
-        jsonPayload.writeStringField('fee_max_times', '0');
+        jsonPayload.writeStringField('fee_max_times_per', '3');
+        jsonPayload.writeStringField('fee_max_times', '1');
         jsonPayload.writeStringField('fee_min_start_per','4');
         jsonPayload.writeStringField('fee_min_start','0');
 //        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null)  jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
