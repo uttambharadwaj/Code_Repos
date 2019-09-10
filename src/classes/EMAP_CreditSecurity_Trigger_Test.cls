@@ -1,5 +1,9 @@
 @istest
 private class EMAP_CreditSecurity_Trigger_Test{
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
     static testMethod void CreditSecurityTest(){
         Account acc = TestDatatUtility.getAccount();
         //insert acc;

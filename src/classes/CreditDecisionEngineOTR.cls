@@ -34,7 +34,7 @@ global class CreditDecisionEngineOTR {
                         Opportunity__r.SourceSystem__c, Account__r.Name, Trade_Name__c, Federal_Tax_ID__c, Card_Shipping_Address_Line_1__c, Card_Shipping_City__c, Card_Shipping_State__c,
                         Card_Shipping_Postal_Code__c, Email__c, Phone_Number__c, IP_Address__c, Credit_Line_Requested__c, Application_Signer_IP__c, DNB_Credit_Line_Recommendation__c,
                         DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DNB_Resolution_Check__c, DOT_Number__c, DNB_Resolved_DUNS__c,
-                        Business_Address_Line_2__c, DNB_Match_Score__c, WEX_Match_Score__c, Bureau_Tax_ID__c, Offer__r.Funding__c
+                        Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c
                 FROM OnlineApplication__c
                 WHERE Id = :onlineApplicationId
         ];
@@ -301,17 +301,16 @@ global class CreditDecisionEngineOTR {
                 onlineApplication.DNB_State_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StateMatchDataProfile;
                 onlineApplication.DNB_Postal_Code_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchDataProfile;
                 onlineApplication.DNB_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].MatchGradeText;
-                onlineApplication.WEX_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].WEXMatchScore;
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     onlineApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
                 }
 
                 // Execute BREeze for pre-processing
-                BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('OTRCreditDecisioningDNBMatch', new List<SObject>{
+                BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('OTRCreditDecisioningBPAVMatch', new List<SObject>{
                         onlineApplication
                 });
 
-                if (breezeResults.records != null && breezeResults.records[0].get('DNB_Resolution_Check__c') != null && (breezeResults.records[0].get('DNB_Resolution_Check__c').toString()).equalsIgnoreCase('Passed')) {
+                if (breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
 
                     System.debug('Running DNB...');
                     onlineApplication.DUNS__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
@@ -429,14 +428,6 @@ global class CreditDecisionEngineOTR {
                 dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
 
-            }
-
-            // Trust but verify
-            if ((null != onlineApplication.Federal_Tax_ID__c && null != onlineApplication.Bureau_Tax_ID__c) && onlineApplication.Federal_Tax_ID__c.equals(onlineApplication.Bureau_Tax_ID__c)) {
-                onlineApplication.DNB_Match_Score__c = 100;
-            } else {
-                onlineApplication.DNB_Match_Score__c = JaroWinklerDistance.getScore((onlineApplication.Legal_Business_Name__c).replaceAll('[^0-9A-Za-z]',''), (dnbDirectMatchRequest.SubjectName).replaceAll('[^0-9A-Za-z]',''));
-                System.debug('Match Score: ' + onlineApplication.DNB_Match_Score__c);
             }
 
             // SAFER

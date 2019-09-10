@@ -8,6 +8,8 @@ public class InvocableSendEmailTemplateTest {
     @testSetup
     static void setup(){
 
+        UtilityTestLoader.setAutomation(false);
+
         Account acc = new Account(Name='Entirely Vindictive Industries, LLC', TickerSymbol='EVIL');
         insert acc;
 

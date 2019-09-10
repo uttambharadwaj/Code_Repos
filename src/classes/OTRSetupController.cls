@@ -429,13 +429,9 @@ public without sharing class OTRSetupController {
                 onlineApplication.Daily_DEF_Limit__c = 0;
             }
 
-            if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true) {
+            if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true && userSessionId == null) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-Complete';
-            } else if (userSessionId != null) {
-                // if it's a paper app being submitted, this needs to go to credit for manual review
-                onlineApplication.Application_Stage__c = 'Application';
-                onlineApplication.Status__c = 'Saved-PaperApp';
             } else if(onlineApplicationOffer.Funding__c == 'Parent Funded') {
                 onlineApplication.Application_Stage__c = 'Implementation';
                 onlineApplication.Status__c = 'Pending Setup';
@@ -595,14 +591,12 @@ public without sharing class OTRSetupController {
                     replyTo = String.valueOf(singleBocaId.get('Email_Address_Noreply__c'));
                 }
 
-                List<RecordType> contactRecordTypes = [SELECT Id FROM RecordType WHERE SobjectType = 'Contact' AND DeveloperName IN ('F1_Contact')];
-
                 Contact temporaryContact = new Contact();
 
                 temporaryContact.FirstName = onlineApplication.Contact_First_Name__c;
                 temporaryContact.LastName = onlineApplication.Contact_Last_Name__c;
                 temporaryContact.Email = onlineApplication.Email__c;
-                temporaryContact.RecordTypeId = contactRecordTypes[0].Id;
+                temporaryContact.RecordTypeId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
 
                 insert temporaryContact;
 

@@ -97,10 +97,10 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                     } else {
                         creditLineRequestedWithTrucks = oa.Number_of_Trucks__c * 2500;
                     }
-                    if (creditLineRequested < creditLineRequestedWithTrucks) {
+                    if (creditLineRequested > creditLineRequestedWithTrucks) {
                         creditLineRequested = creditLineRequestedWithTrucks;
                     }
-                    System.debug('requested credit line - after choosing higher of requested vs with trucks adj: ' + creditLineRequested);
+                    System.debug('requested credit line - after evaluating truck calculation: ' + creditLineRequested);
 
                     // If a PG has been pulled, calculate the recommended credit line based on consumer PG information
                     if (oa.PG_Required__c && null != oa.PG_High_Credit_Amount__c) {

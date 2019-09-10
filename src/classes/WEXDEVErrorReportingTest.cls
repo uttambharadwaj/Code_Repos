@@ -7,7 +7,7 @@ public class WEXDEVErrorReportingTest {
 
     @testSetup
     static void setupData() {
-
+UtilityTestLoader.setAutomation(false);
         Program__c program = new Program__c();
 
         program.Name = 'TestBOCA';

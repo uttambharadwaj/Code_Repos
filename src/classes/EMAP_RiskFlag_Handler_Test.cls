@@ -1,6 +1,9 @@
 @isTest
 private class EMAP_RiskFlag_Handler_Test {
-
+        @testSetup
+        static void setup(){
+                UtilityTestLoader.setAutomation(false);
+        }
     static testMethod void RiskFlag_HandlerTest() {
         
             Program__c prog = TestDatatUtility.getProgram1();

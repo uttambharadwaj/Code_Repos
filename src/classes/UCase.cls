@@ -212,13 +212,8 @@ public class UCase
             return;
         }
 
-        Id recordTypeId = null;
+        Id recordTypeId = UtilityClass.getRecTypeByDevName('Case','Service_Operations');
         Id templateId = null;
-
-        for (RecordType rt :[SELECT Id FROM RecordType WHERE SobjectType = 'Case' AND RecordType.DeveloperName = 'Service_Operations'])
-        {
-            recordTypeId = rt.Id;
-        }
 
         for(EmailTemplate et :[SELECT Id FROM EmailTemplate WHERE DeveloperName = 'CS_Survey_Request'])
         {
@@ -506,7 +501,7 @@ public class UCase
         Boolean isUpdate = oldMap != null;
         Set<Id> toProcess = new Set<Id> ();
         Id templateId = null;
-        Id recordTypeId = null;
+        Id recordTypeId = UtilityClass.getRecTypeByDevName('Case','Fleet_Implementation');
 
         for (GlobalSettings__c setting :[SELECT CaseCloseEmailAlert__c FROM GlobalSettings__c LIMIT 1])
         {
@@ -517,11 +512,6 @@ public class UCase
         {
             System.debug('GlobalSettings__c.CaseCloseEmailAlert__c not specified; skipping UCase.sendCaseCloseEmailToOpportunityOwner()');
             return;
-        }
-
-        for (RecordType rt :[SELECT Id FROM RecordType WHERE DeveloperName = 'Fleet_Implementation'])
-        {
-            recordTypeId = rt.Id;
         }
 
         if (recordTypeId == null)

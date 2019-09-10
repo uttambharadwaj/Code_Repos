@@ -1,6 +1,9 @@
 @isTest
 private class EMAP_OneTimeBatchJob_Test {
-
+    @testSetup
+    static void setup(){
+        UtilityTestLoader.setAutomation(false);
+    }
     static testMethod void OneTimeBatchJob_Test() {
         
         Program__c program = TestDatatUtility.getProgram4();

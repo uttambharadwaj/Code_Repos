@@ -328,6 +328,26 @@
                     <default>false</default>
                     <label>Cycle 01</label>
                 </value>
+                <value>
+                    <fullName>Cycle 8</fullName>
+                    <default>false</default>
+                    <label>Cycle 8</label>
+                </value>
+                <value>
+                    <fullName>Cycle 10</fullName>
+                    <default>false</default>
+                    <label>Cycle 10</label>
+                </value>
+                <value>
+                    <fullName>Cycle 11</fullName>
+                    <default>false</default>
+                    <label>Cycle 11</label>
+                </value>
+                <value>
+                    <fullName>Cycle 12</fullName>
+                    <default>false</default>
+                    <label>Cycle 12</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -783,6 +803,18 @@
         </valueSet>
     </fields>
     <fields>
+        <fullName>Embossing_Third_Line__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Embossing Third Line</label>
+        <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Finders_Fee__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Finders Fee entered from Sales Checklist. Should not be editable once it&apos;s been entered.</description>
@@ -810,6 +842,16 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Has_Fleet_Enrollment_Data__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Checkbox that is updated when fleet enrollment data has been created.</description>
+        <externalId>false</externalId>
+        <label>Has Fleet Enrollment Data</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Hierarchy_Needed__c</fullName>
@@ -1689,11 +1731,27 @@ This is used to determine where we route implementation cases.</description>
         <picklistValues>
             <picklist>Billing_Cycle__c</picklist>
             <values>
+                <fullName>Cycle 10</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 11</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 12</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Cycle 3</fullName>
                 <default>false</default>
             </values>
             <values>
                 <fullName>Cycle 4</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cycle 8</fullName>
                 <default>false</default>
             </values>
             <values>

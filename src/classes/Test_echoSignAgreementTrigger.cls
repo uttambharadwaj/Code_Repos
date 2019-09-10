@@ -2,7 +2,7 @@
 private class Test_echoSignAgreementTrigger 
 {
 
-/*	@testSetup
+	@testSetup
 	static void setup(){
 		UtilityTestLoader.setAutomation(false);
 	}
@@ -25,5 +25,5 @@ private class Test_echoSignAgreementTrigger
   		update e;
   		
   		
-  	}*/
+  	}
 }

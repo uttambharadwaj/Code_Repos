@@ -61,6 +61,14 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Disable_Attachment_Trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disable Attachment Trigger</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Disable_BOProng_Trigger__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -202,6 +210,30 @@
         <description>Disables Escalation Rules</description>
         <externalId>false</externalId>
         <label>Disable Escalation Rules</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_FleetEnrollmentContact_Trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disable FleetEnrollmentContact Trigger</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_FleetEnrollmentDriver_Trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disable FleetEnrollmentDriver Trigger</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Disable_FleetEnrollmentVehicle_Trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disable FleetEnrollmentVehicle Trigger</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

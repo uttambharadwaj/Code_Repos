@@ -722,12 +722,9 @@ public without sharing class OnlineApplication {
         a.Branch_Zip_Code__c = m_oa.Branch_Zip_Code__c;
         a.ABA_Routing_Number__c = m_oa.ABA_Routing_Number__c;
         a.Checking_Account_Number__c = m_oa.Checking_Account_Number__c;
-        List<RecordType> aTypes = [select id from RecordType where SObjectType = 'Account' and Name = 'Fleet Account'];
-        if(aTypes.size() == 1) {
-            a.RecordTypeId = aTypes[0].Id;
-        }
-        
-        upsert a;        
+        a.RecordTypeId  = UtilityClass.getRecordTypeByName(Account.getSObjectType(), 'Fleet Account');
+
+        upsert a;
         m_oa.Account__c = a.Id;
         update m_oa;
         
@@ -823,10 +820,7 @@ public without sharing class OnlineApplication {
         o.Credit_Line_Requested__c = m_oa.Credit_Line_Requested__c;
         o.Day_of_Payment__c = m_oa.Day_of_Payment__c;
 
-        List<RecordType> oTypes = [select id from RecordType where SObjectType = 'Opportunity' and Name = 'Fleet Card'];
-        if(oTypes.size() == 1) {
-            o.RecordTypeId = oTypes[0].Id;
-        }
+        o.RecordTypeId = UtilityClass.getRecordTypeByName(Opportunity.getSObjectType(),'Fleet Card');
 
         OnlineApplicationOffer__c off = [select Id, Card_Program__c from OnlineApplicationOffer__c where Id = :m_oa.Offer__c];
         o.Card_Program__c = off.Card_Program__c;

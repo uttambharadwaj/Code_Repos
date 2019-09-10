@@ -120,7 +120,7 @@ public class UAccount {
     public static void checkCompaniesHouseIntegration(List<Account> records, Map<Id, Account> oldMap) {
 
         if (!System.isFuture()) {
-            Id rectypeid = [SELECT Id FROM RecordType WHERE SObjectType = 'Account' AND DeveloperName = 'WES_Accounts' LIMIT 1].Id;
+            Id rectypeid = UtilityClass.getRecTypeByDevName('Account','WES_Accounts');
             Set<Id> accIds = new Set<Id> ();
             Boolean isInsert = oldMap == null;
             for (Account acct : records) {

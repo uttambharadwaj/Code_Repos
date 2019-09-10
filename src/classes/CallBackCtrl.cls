@@ -118,9 +118,7 @@ public without sharing class CallBackCtrl
             // create a task against the person account
             Task t = new Task(WhoID = l.Id, Subject = 'Call back requested', Type='Call');
             
-            List<RecordType> taskRT = [select Id from RecordType where sObjectType = 'Task' and DeveloperName = 'AU_Task_Record_Type' limit 1];
-            if(taskRT != null && !taskRT.isEmpty())
-                t.RecordTypeId = taskRT[0].Id;
+            t.RecordTypeId = UtilityClass.getRecTypeByDevName('Task','AU_Task_Record_Type');
                 
             t.Description = '';
                 
