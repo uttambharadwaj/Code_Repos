@@ -19,16 +19,20 @@ public class TestClassDispatcher {
         PartnerBOCAToProspectControllerTest.testInits();
     }
 
-    @isTest static void testCampaignProgramDelete(){
-        CmpgnProgramTriggerTest.testCampaignProgramDelete();
-    }
-
     @isTest static void testOpportunityTriggerAfterInsert() {
         OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnInsert();
     }
 
     @isTest static void testOpportunityTriggerBeforeUpdate() {
         //OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnUpdate();
+    }
+
+    @isTest static void testOpptyTriggerInsert(){
+        OpportunityTriggerTest.testOpportunityInsert();
+    }
+
+    @isTest static void testOpptyTriggerDelete(){
+        OpportunityTriggerTest.testOpportunityDelete();
     }
 
     @isTest static void testBOEntityTriggerBeforeInsert1() {
@@ -74,7 +78,7 @@ public class TestClassDispatcher {
     @isTest static void testBOProngTriggerValidations(){
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
-
+/*
     @isTest static void testCampaignGetCode() {
         CampaignCodeGeneratorTest.test_getCode();
     }
@@ -82,16 +86,9 @@ public class TestClassDispatcher {
     @isTest static void testCampaignCodeGenerate() {
         CampaignCodeGeneratorTest.test_generateCode();
     }
-
-    @isTest static void testUpdateFleetEnrollmentHasData() {
-        FleetEnrollmentDataTest.test_fleetEnrollmentHasData();
+*/
+    @isTest static void testCampaignProgramDelete(){
+        CmpgnProgramTriggerTest.testCampaignProgramDelete();
     }
-
-    @isTest static void testUpdateFleetEnrollmentMissingData() {
-        FleetEnrollmentDataTest.test_fleetEnrollmentMissingData();
-    }
-
-    @isTest static void testHasFleetEnrollmentData() {
-        FleetEnrollmentUtilsTest.test_hasFleetEnrollmentData();
-    }
+    
 }

@@ -17,6 +17,7 @@ global class DataLoaderBatch implements Database.Batchable<String>,
     private static Boolean firstExecution;
     private static Test_Data_Configuration__mdt tdc;
     private static Test_Data_Configuration__mdt currentTestConfig = null;
+    private static Set<String> userMethods = new Set<String>{'profileid','userid'};
 
     // This constructor is called by the DataLoaderBatch itself in order to insert the next object
     global DataLoaderBatch (Integer pcmt, Map<String, Map<String, String>> idMap) {
@@ -204,19 +205,30 @@ global class DataLoaderBatch implements Database.Batchable<String>,
 
     //take the field api name, take the field value, return appropriate value as a string
     public static String getTheValue(Schema.DescribeFieldResult currentFieldSchema, String currentFieldValue){
+        if (!String.isBlank(currentFieldValue)) {
+            if(userMethods.contains(string.valueof(currentFieldValue))) {
+                switch on currentFieldValue{
+                    when 'userid'{
+                        return UserInfo.getUserId();
+                    }
+                    when 'profileid'{
+                        return UserInfo.getProfileId();
+                    }
+                }
+            }
+        }
         if (currentFieldSchema.getType() == Schema.DisplayType.Reference){
             if('RecordTypeId'.equalsIgnoreCase(currentFieldSchema.getName())) {
                 return currentFieldValue;
             }
-            if (!String.isBlank(currentFieldValue)) {
-                if('current'.equalsIgnoreCase(currentFieldValue) &&
-                        ('user'.equalsIgnoreCase(currentFieldSchema.getReferenceTo()[0].getDescribe().getName()) ||
-                                'group'.equalsIgnoreCase(currentFieldSchema.getReferenceTo()[0].getDescribe().getName()))){
-                    return UserInfo.getUserId();
-                }
-                //do some lookup logic
-                return doLookupLogic(currentFieldValue);
+            //TODO: fix references in static resources so that 'current' is instead using 'userid' as above
+            if('current'.equalsIgnoreCase(currentFieldValue) &&
+                    ('user'.equalsIgnoreCase(currentFieldSchema.getReferenceTo()[0].getDescribe().getName()) ||
+                            'group'.equalsIgnoreCase(currentFieldSchema.getReferenceTo()[0].getDescribe().getName()))){
+                return UserInfo.getUserId();
             }
+            //do some lookup logic
+            return doLookupLogic(currentFieldValue);
         }
         return currentFieldValue;
     }
