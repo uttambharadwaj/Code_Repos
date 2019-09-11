@@ -8,7 +8,7 @@ public with sharing class EmailMessageTriggerHelper {
 
     public static void updateSurveySentField(List<EmailMessage> messages, Map<Id, EmailMessage> oldMap) {
 
-        RecordType caseRecordType = [SELECT Id FROM RecordType WHERE SobjectType = 'Case' AND RecordType.DeveloperName = 'Service_Operations'];
+        Id caseRecordTypeId = UtilityClass.getRecTypeByDevName('Case','Service_Operations');
 
         List<Case> caseList = new List<Case>();
         Set<Id> caseIds = new Set<Id>();
@@ -27,7 +27,7 @@ public with sharing class EmailMessageTriggerHelper {
             if (cases.containsKey(message.ParentId)) {
                 Case parentCase = cases.get(message.ParentId);
                 if (parentCase != null) {
-                    if (parentCase.RecordTypeId == caseRecordType.Id && parentCase.Service_Program_Survey_Sent__c == false) {
+                    if (parentCase.RecordTypeId == caseRecordTypeId && parentCase.Service_Program_Survey_Sent__c == false) {
                         String surveyLink = parentCase.Service_Survey_Transactional_link__c.escapeHtml4();
                         if (message.HtmlBody.contains(surveyLink)) {
                             parentCase.Service_Program_Survey_Sent__c = true;

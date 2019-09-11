@@ -766,7 +766,11 @@ public class OTRBOCAController {
             }
             opportunity.Annual_Revenue__c = 0.00;
 
-            if (campaign == null) {
+            // Enable_Promotional_Code__c is used to display the promo code box to the user. If it's true and the user entered a value keep that value.
+            if (onlineApplicationOffer.Enable_Promotional_Code__c && String.isNotEmpty(onlineApplication.Promotional_Code__c)) {
+                opportunity.Promotional_Code__c = onlineApplication.Promotional_Code__c;
+            }
+            else if (campaign == null) {
                 opportunity.Promotional_Code__c = onlineApplicationOffer.Promotional_Code__c;
             } else {
                 opportunity.Promotional_Code__c = campaign.Coupon_Code__c;
@@ -919,7 +923,11 @@ public class OTRBOCAController {
             onlineApplication.IP_Address__c = ipAddress;
             onlineApplication.Application_Signer_IP__c = ipAddress;
 
-            if(campaign != null) {
+            // Enable_Promotional_Code__c is used to display the promo code box to the user. If it's true and the user entered a value keep that value.
+            if (onlineApplicationOffer.Enable_Promotional_Code__c && String.isNotEmpty(onlineApplication.Promotional_Code__c)) {
+                opportunity.Promotional_Code__c = onlineApplication.Promotional_Code__c;
+            }
+            else if(campaign != null) {
                 onlineApplication.Promotional_Code__c = campaign.Coupon_Code__c;
             }
             else if(onlineApplicationOffer != null) {

@@ -62,11 +62,8 @@ public class WESApplicationRequestTriggerHandler {
         if (!System.isFuture()) {
             Set<Id> reqIds = new Set<Id> ();
             Boolean isInsert = oldMap == null;
-            Id recTypeId;
-            List<RecordType> recTypeList = [SELECT Id FROM RecordType WHERE sObjectType = 'WES_Application_Request__c' AND DeveloperName = 'WES_Limited_Company' LIMIT 1];
-            if (!recTypeList.isEmpty()) {
-                recTypeId = recTypeList[0].Id;
-            }
+            Id recTypeId = UtilityClass.getRecTypeByDevName('WES_Application_Request__c','WES_Limited_Company');
+
             for (WES_Application_Request__c req : records) {
                 if ( !DNBIntegration.processedIds.contains(req.Id)
                         && req.RecordTypeId == recTypeId

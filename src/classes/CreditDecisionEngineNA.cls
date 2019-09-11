@@ -34,7 +34,7 @@ global class CreditDecisionEngineNA {
                         Personal_Guarantor_Mailing_Zip__c, Personal_Guarantor_SSN__c, PG_Required__c, Physical_City__c, Physical_State__c, Physical_Street__c, Requested_Credit_Limit__c,
                         Physical_Zip_Postal_Code__c, Program__c, Running_Credit_Decisioning__c, Sanctions_Business_Check__c, Sanctions_Business_Result_ID__c,
                         Sanctions_Individual_Check__c, Sanctions_Individual_Result_ID__c, Tax_Payer_ID_number__c, ThreatMetrix_Session_ID__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Result__c,
-                        Physical_Country__c, Fraud_Flag__c, DNB_Match_Score__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c
+                        Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c
                 FROM Application_Request__c
                 WHERE Id = :naApplicationId
         ];
@@ -48,6 +48,7 @@ global class CreditDecisionEngineNA {
             }
 
             // ThreatMetrix
+            System.debug('Running ThreatMetrix....');
             if ((naApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {
 
                 // If the application hasn't yet been integrated
@@ -102,6 +103,7 @@ global class CreditDecisionEngineNA {
                 naApplication.ThreatMetrix_Result__c = 'Pass';
             }
 
+            System.debug('Running Lexis Nexis....');
             if (naApplication.Personal_Guarantor_SSN__c != null) {
 
                 // LexisNexis Check
@@ -133,6 +135,7 @@ global class CreditDecisionEngineNA {
                 }
 
                 // Lexis Nexis Bridger Check - Individual
+                System.debug('Running LN Bridger Individual....');
                 CreditWS_LexisNexisBridger.LexisNexisBridgerIndividualRequest lexisNexisBridgerIndividualRequest = new CreditWS_LexisNexisBridger.LexisNexisBridgerIndividualRequest();
 
                 lexisNexisBridgerIndividualRequest.firstName = naApplication.Personal_Guarantor_First_Name__c;
@@ -169,6 +172,7 @@ global class CreditDecisionEngineNA {
             }
 
             // Lexis Nexis Bridger Check - Business
+            System.debug('Running LN Bridger Business....');
             CreditWS_LexisNexisBridger.LexisNexisBridgerBusinessRequest lexisNexisBridgerBusinessRequest = new CreditWS_LexisNexisBridger.LexisNexisBridgerBusinessRequest();
 
             lexisNexisBridgerBusinessRequest.companyName = naApplication.Opportunity_Name_Text__c;
@@ -195,6 +199,7 @@ global class CreditDecisionEngineNA {
             }
 
             // Lexis Nexis RDP - SBA
+            System.debug('Running LN RDP - SBA....');
             CreditWS_LexisNexisRDP.LexisNexisSBARequest lexisNexisSBARequest = new CreditWS_LexisNexisRDP.LexisNexisSBARequest();
 
             lexisNexisSBARequest.companyName = naApplication.Opportunity_Name_Text__c;
@@ -225,6 +230,7 @@ global class CreditDecisionEngineNA {
             naApplication.Lexis_Nexis_Custom_Model_Score__c = lexisNexisSBAResponse.fraudScore;
 
             // Lexis Nexis - BIID
+            System.debug('Running LN BIID....');
             CreditWS_LexisNexisRDP.LexisNexisBIIDRequest lexisNexisBIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisBIIDRequest();
 
             lexisNexisBIIDRequest.applicationId = naApplication.Id;
@@ -290,6 +296,7 @@ global class CreditDecisionEngineNA {
             }
 
             // DNB Resolution. IADJUDCIAT-739 use a constructor for apprequests
+            System.debug('Running DNB Matching....');
             CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest(naApplication);
 
             CreditWS_DNB.DNBDirect_MatchResponse dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
@@ -304,15 +311,15 @@ global class CreditDecisionEngineNA {
                 naApplication.DNB_State_Match_Data_Profile__c  = dnbDirectMatchResponse.matchCandidates[0].StateMatchDataProfile;
                 naApplication.DNB_Postal_Code_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchDataProfile;
                 naApplication.DNB_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].MatchGradeText;
-                naApplication.WEX_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].WEXMatchScore;
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     naApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
                 }
 
                 // Execute BREeze for pre-processing
-                BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('NACreditDecisioningDNBMatch', new List<SObject>{naApplication});
+                System.debug('Running DNB BPAV....');
+                BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('NACreditDecisioningBPAVMatch', new List<SObject>{naApplication});
 
-                if(breezeResults.records != null && breezeResults.records[0].get('DNB_Resolution_Check__c') != null && (breezeResults.records[0].get('DNB_Resolution_Check__c').toString()).equalsIgnoreCase('Passed')) {
+                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
 
                     naApplication.DUNS_Number__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
 
@@ -416,15 +423,8 @@ global class CreditDecisionEngineNA {
 
             }
 
-            // Trust but verify
-            if ((null != naApplication.Tax_Payer_ID_number__c && null != naApplication.Bureau_Tax_ID__c) && naApplication.Tax_Payer_ID_number__c.equals(naApplication.Bureau_Tax_ID__c)) {
-                naApplication.DNB_Match_Score__c = 100;
-            } else {
-                naApplication.DNB_Match_Score__c = JaroWinklerDistance.getScore((naApplication.Opportunity_Name_Text__c).replaceAll('[^0-9A-Za-z]',''), (dnbDirectMatchRequest.SubjectName).replaceAll('[^0-9A-Za-z]',''));
-                System.debug('Match Score: ' + naApplication.DNB_Match_Score__c);
-            }
-
             // GIACT
+            System.debug('Running GIACT....');
             if(!String.isBlank(naApplication.Checking_Account_Number__c) && !String.isBlank(naApplication.ABA_Routing_Number__c)) {
 
                 CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
@@ -467,6 +467,7 @@ global class CreditDecisionEngineNA {
             }
 
             // Existing Exposure - Application/Account Exposure
+            System.debug('Running Existing Exposure....');
             CreditUtil_ExistingExposure.ExistingExposureRequest existingExposureRequest = new CreditUtil_ExistingExposure.ExistingExposureRequest();
             existingExposureRequest.applicationId = naApplication.Id;
             existingExposureRequest.applicationName = naApplication.Name;
@@ -527,9 +528,11 @@ global class CreditDecisionEngineNA {
                         && !TestUtils.isRunningTest()) {
 
                     if(appRequest.Personal_Guarantor_Mailing_Country__c == null || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('US') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('United States')) {
+                        System.debug('Running Edxperian....');
                         CreditDecisionEngineQueueable.runExperianPGChecks(naApplications[0].Id);
                     }
                     else if (appRequest.Personal_Guarantor_Mailing_Country__c != null && (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('CA') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('Canada')) {
+                        System.debug('Running Equifax....');
                         CreditDecisionEngineQueueable.runEquifaxPGChecks(appRequest.Id);
                     }
                 }

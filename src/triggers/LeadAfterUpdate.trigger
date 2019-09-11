@@ -2,13 +2,10 @@
 * Forseva online application code.
 */
 trigger LeadAfterUpdate on Lead (after update) {
-
-	Set<Id> AU_Lead_RTs = new Set<Id>();
+	if(TriggerFactory.disabledTriggers(Lead.sObjectType)) return;
+	Set<Id> AU_Lead_RTs = UtilityClass.getRecTypeByDevName('Lead', new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'});
 	
-	for(RecordType rt : [select Id from RecordType where sObjectType = 'Lead' and DeveloperName IN ('AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC')])
-		AU_Lead_RTs.add(rt.Id);
-		
-    List<Id> leadIds = new List<Id>();
+	List<Id> leadIds = new List<Id>();
     for(Lead l : Trigger.new)
     {
     	if(!AU_Lead_RTs.contains(l.RecordTypeId))

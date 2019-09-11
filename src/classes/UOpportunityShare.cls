@@ -96,35 +96,46 @@ public with sharing class UOpportunityShare {
 		}
 		
 		// iterating over user to get the account id
-        for(User  objuser :[    SELECT Id,AccountId,ContactId
-                                FROM User
-                                WHERE ContactId IN : setOfExternalContactId]) {
-                                    
-            mapContactIdToUserId.put(objuser.ContactId, objuser.Id);
+        if(setOfExternalContactId.size()>0) {
+            for (User objuser : [
+                    SELECT Id,AccountId,ContactId
+                    FROM User
+                    WHERE ContactId IN :setOfExternalContactId
+            ]) {
+
+                mapContactIdToUserId.put(objuser.ContactId, objuser.Id);
+            }
         }
 		
 		
 		 // Get all users who created Opportunities
-		 
-        for(User objuser : [  SELECT Id, AccountId, ContactId
-                              FROM User 
-                              WHERE isActive = true AND (Id IN : mapOfOppIdToCreatedById.values() OR Id IN : setChnagedOwnerId OR Id IN : setOldOwnerIds OR Id IN : mapContactIdToUserId.values())]) { // update owner
-            // if Partner users will Account
-            if(objuser.AccountId != null) {                         
-                
-                mapUserIdToAccountId.put(objuser.Id, objuser.AccountId);
-                mapUserIdToUser.put(objuser.Id, objuser);
-            }
-        }
-        
-        // Cross verify whether the user is Partner user or not                      
-        for(Account objAccount : [  SELECT Id, IsPartner 
-                                    FROM Account
-                                    WHERE Id IN : mapUserIdToAccountId.values()]) {
-            
-            if(objAccount.IsPartner) {
-                
-                setPartnerAccountIds.add(objAccount.Id);
+		 if(mapOfOppIdToCreatedById.size()>0 || setChnagedOwnerId.size()>0 || setOldOwnerIds.size()>0 || mapContactIdToUserId.size()>0) {
+             for (User objuser : [
+                     SELECT Id, AccountId, ContactId
+                     FROM User
+                     WHERE isActive = true AND (Id IN :mapOfOppIdToCreatedById.values() OR Id IN :setChnagedOwnerId OR Id IN :setOldOwnerIds OR Id IN :mapContactIdToUserId.values())
+             ]) { // update owner
+                 // if Partner users will Account
+                 if (objuser.AccountId != null) {
+
+                     mapUserIdToAccountId.put(objuser.Id, objuser.AccountId);
+                     mapUserIdToUser.put(objuser.Id, objuser);
+                 }
+             }
+         }
+
+        // Cross verify whether the user is Partner user or not
+        if(mapUserIdToAccountId.size()>0) {
+            for (Account objAccount : [
+                    SELECT Id, IsPartner
+                    FROM Account
+                    WHERE Id IN :mapUserIdToAccountId.values()
+            ]) {
+
+                if (objAccount.IsPartner) {
+
+                    setPartnerAccountIds.add(objAccount.Id);
+                }
             }
         }
         

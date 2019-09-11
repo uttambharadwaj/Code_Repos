@@ -384,7 +384,7 @@ public class CPBOCAToProspectController {
 
                 creditApp.Legal_Structure__c = opportunity.Legal_Structure__c;
                 //Convert to whole numbers because Opty uses two decimal places
-                creditApp.Years_in_Business__c = String.valueOf(opportunity.Years_In_Business__c).substringBefore('.');
+                if(opportunity.Years_In_Business__c != null) creditApp.Years_in_Business__c = String.valueOf(opportunity.Years_In_Business__c).substringBefore('.');
 
 //                creditApp.Billing_Address_Line_1__c = opportunity.Billing_Street__c;
 //                creditApp.Billing_Address_Line_2__c = opportunity.Billing_Street_Line_2__c;

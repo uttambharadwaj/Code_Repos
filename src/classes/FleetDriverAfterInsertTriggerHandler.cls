@@ -1,0 +1,6 @@
+public class FleetDriverAfterInsertTriggerHandler extends TriggerHandlerBase {
+
+    public override void mainEntry(TriggerParameters tp) {
+        FleetEnrollmentData.fleetEnrollmentDataUpdated((List<FleetEnrollment_Driver__c>) tp.newList);
+    }
+}
