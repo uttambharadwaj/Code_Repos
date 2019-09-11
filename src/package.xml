@@ -1,35 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Salesforce Bi-Weekly Production Release 9/12/19</fullName>
-    <description>https://docs.google.com/document/d/1v_nlxKmDrm8kLSjKesPjjt7qnpB9AEFUKirkq16qZd8/edit</description>
     <types>
-        <members>DataLoaderBatch</members>
-        <members>OpportunityTriggerTest</members>
+        <members>CampaignBeforeInsertTriggerHandler</members>
+        <members>CampaignCodeGenerator</members>
+        <members>CampaignCodeGeneratorTest</members>
+        <members>CampaignTriggerDispatcher</members>
         <members>TestClassDispatcher</members>
         <name>ApexClass</name>
     </types>
     <types>
-        <members>UOpportunity</members>
-        <name>ApexTrigger</name>
-    </types>
-    <types>
-        <members>Test_Data_Configuration.Test_Data_Account_2</members>
-        <members>Test_Data_Configuration.Test_Data_Campaign_2</members>
-        <members>Test_Data_Configuration.Test_Data_Default_Campaigns</members>
-        <members>Test_Data_Configuration.Test_Data_Global_Settings</members>
+        <members>Test_Data_Configuration.Campain_Code_Test_Data</members>
         <name>CustomMetadata</name>
     </types>
     <types>
-        <members>Test_Data_Account</members>
-        <members>Test_Data_Account_2</members>
-        <members>Test_Data_Campaign</members>
-        <members>Test_Data_Campaign_2</members>
-        <members>Test_Data_Campaign_Program</members>
-        <members>Test_Data_Default_Campaigns</members>
-        <members>Test_Data_Global_Settings</members>
-        <members>Test_Data_Opportunity</members>
-        <members>Test_Data_Program</members>
+        <members>Automation_Settings__c</members>
+        <members>Campaign_Code_Generator__c</members>
+        <members>Campaign</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Test_Data_Campaign_Code</members>
         <name>StaticResource</name>
     </types>
-    <version>45.0</version>
+    <types>
+        <members>CampaignTrigger</members>
+        <name>ApexTrigger</name>
+    </types>
+    <version>46.0</version>
 </Package>

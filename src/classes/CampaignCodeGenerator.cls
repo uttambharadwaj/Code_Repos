@@ -1,41 +1,10 @@
 public class CampaignCodeGenerator {
 
-    public static List<Campaign_Code__c> getCampaignCode() {
-        return getCampaignCode(1);
-    }
-    public static List<Campaign_Code__c> getCampaignCode(Integer numberOfCodes) {
-        List<Campaign_Code__c> usedCampaignCodes = new List<Campaign_Code__c>();
-        List<Campaign_Code__c> campaignCodes = [
-                    SELECT Id, Code_Used__c, Name
-                    FROM Campaign_Code__c
-                    WHERE Code_Used__c = FALSE AND Name != NULL
-                    LIMIT :numberOfCodes
-            ];
-
-        if (campaignCodes.size() < numberOfCodes) {
-            return createCampaignCodes() ? getCampaignCode(numberOfCodes) : new List<Campaign_Code__c>(); // Create additional codes
-        }
-
-        for (Campaign_Code__c campaignCode : campaignCodes) {
-            campaignCode.Code_Used__c = true;
-            usedCampaignCodes.add(campaignCode);
-        }
-
-        update usedCampaignCodes;
-        return usedCampaignCodes;
-
-    }
-
-    private static Boolean createCampaignCodes() {
-        return createCampaignCodes(1);
-    }
-
-    private static Boolean createCampaignCodes(Integer requestedAmount) {
+    public static List<String> createCampaignCodes(Integer requestedAmount) {
 
         Campaign_Code_Generator__c ccgSettings = Campaign_Code_Generator__c.getInstance();
-        if (ccgSettings.Quantity__c == null || ccgSettings.Code_Length__c == null || ccgSettings.Characters__c == null) return false;
+        if (ccgSettings.Quantity__c == null || ccgSettings.Code_Length__c == null || ccgSettings.Characters__c == null) return new List<String>();
 
-        List<Campaign_Code__c> campaignCodes = new List<Campaign_Code__c>();
         Set<String> generatedCampaignCodes = new Set<String>();
         Set<String> existingCampaignCodes = new Set<String>();
         Integer codeQuantity = (Integer) ccgSettings.Quantity__c + requestedAmount;
@@ -44,23 +13,17 @@ public class CampaignCodeGenerator {
             generatedCampaignCodes.add(generateCode((Integer) ccgSettings.Code_Length__c, ccgSettings.Characters__c));
         }
 
-        for (Campaign_Code__c campaignCode : [
-                SELECT Id, Code_Used__c, Name
-                FROM Campaign_Code__c
-                WHERE Name IN :generatedCampaignCodes
+        for (Campaign campaign : [
+                SELECT Id, Coupon_Code__c
+                FROM Campaign
+                WHERE Coupon_Code__c IN :generatedCampaignCodes
         ]) {
-            existingCampaignCodes.add(campaignCode.Name);
+            existingCampaignCodes.add(campaign.Coupon_Code__c);
         }
 
         // Remove any existing codes from the generated list. Case sensitive.
         generatedCampaignCodes.removeAll(existingCampaignCodes);
-
-        for (String code : generatedCampaignCodes) {
-            campaignCodes.add(new Campaign_Code__c(Name = code));
-        }
-
-        insert campaignCodes;
-        return campaignCodes.size() >= requestedAmount;
+        return new List<String>(generatedCampaignCodes);
     }
 
     @TestVisible
