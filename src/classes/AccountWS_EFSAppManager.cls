@@ -11,7 +11,8 @@
 *                   03/Jul/2019 MFarrell    OTRONBOARD-57   moving fields from program -> offer... because why not
 *                   31/Jul/2019 CJackson    OTRONBOARD-78   Update ShipToCountry to CA for EFS
 *                   30/Aug/2019 CJackson    OTRONBOARD-71   Added Parent Funded Only Flag
-*                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing
+*                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing (Sprint 19.18)
+*                   11/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing (Sprint 19.19)
 */
 global class AccountWS_EFSAppManager {
 
@@ -44,15 +45,6 @@ global class AccountWS_EFSAppManager {
         // return generic list of sobjects or typecast to expected type
         List<OnlineApplication__c> records = Database.query(myQuery);
         integrateOnlineApplication(records[0]);
-    }
-    public static String onlineAppQuery(Id onlineApplicationId){
-        String myQuery = onlineAppQuery(onlineApplicationId);
-
-        // return generic list of sobjects or typecast to expected type
-        List<OnlineApplication__c> records = Database.query(myQuery);
-
-        integrateOnlineApplication(records[0]);
-
     }
 
     public static String onlineAppQuery(Id onlineApplicationId){
@@ -864,21 +856,21 @@ global class AccountWS_EFSAppManager {
     }
 
     public class CardFees{
-        public String driverFee;
-		public String mcShippingFee;
+        public String mcShippingFee;
+        public String mcEmbossingFee;
 
         public CardFees(OnlineApplication__c onlineApplication){
             if(onlineApplication.Opportunity__c != null) {
                 if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null){
                     //get the fees based on quotelines. ideal.
-                    List<SBQQ__QuoteLine__c> onlineAppQuoteLines = [SELECT Id, (SELECT Id,Requested_Price__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__c LIMIT 1].SBQQ__LineItems__r;
+                    List<SBQQ__QuoteLine__c> onlineAppQuoteLines = [SELECT Id, (SELECT Id,Requested_Price__c, SBQQ__CustomerTotal__c, SBQQ__ProductName__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__c LIMIT 1].SBQQ__LineItems__r;
                     setFees(onlineAppQuoteLines);
                 } else {
                     //get the fees based on OLI. not ideal.
                     List<Id> productIds = new List<Id>();
                     for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
                         productIds.add(oli.Product2Id);
-                    List<SBQQ__ProductOption__c> productOptions = [SELECT Id, SBQQ__UnitPrice__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'];
+                    List<SBQQ__ProductOption__c> productOptions = [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductName__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'];
                     setFees(productOptions);
                 }
 
@@ -886,23 +878,16 @@ global class AccountWS_EFSAppManager {
         }
 
         private void setFees(List<SBQQ__QuoteLine__c> qlis){
-            if(qlis.size()>0){
-                for(SBQQ__QuoteLine__c ql : qlis){
-                    this.driverFee = String.valueof(ql.Requested_Price__c);
-					this.mcShippingFee = String.valueof(ql.Requested_Price__c);
-					this.mcEmbossingFee = String.valueof(ql.Requested_Price__c);
-                }
-
+            for(SBQQ__QuoteLine__c ql : qlis) {
+                if(ql.SBQQ__ProductName__c == 'SHIPPING FEE CODE') this.mcShippingFee = String.valueOf(ql.Requested_Price__c);
+                if(ql.SBQQ__ProductName__c == 'EMBOSSING FEE CODE') this.mcEmbossingFee = String.valueOf(ql.Requested_Price__c);
             }
         }
 
         private void setFees(List<SBQQ__ProductOption__c> pos){
-            if(pos.size()>0){
-                for(SBQQ__ProductOption__c po : pos) {
-                    this.driverFee = String.valueof(po.SBQQ__UnitPrice__c);
-					this.mcShippingFee = String.valueof(po.Requested_Price__c);
-					this.mcEmbossingFee = String.valueof(po.Requested_Price__c);
-                }
+            for(SBQQ__ProductOption__c po : pos) {
+                if(po.SBQQ__ProductName__c == 'SHIPPING FEE CODE') this.mcShippingFee = String.valueOf(po.SBQQ__UnitPrice__c);
+                if(po.SBQQ__ProductName__c == 'EMBOSSING FEE CODE') this.mcEmbossingFee = String.valueOf(po.SBQQ__UnitPrice__c);
             }
         }
     }
