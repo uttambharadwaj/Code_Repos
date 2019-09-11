@@ -2,7 +2,7 @@
  * Created by mfarrell on 2019-09-07.
  */
 
-public class AppRequstAfterInsertTriggerHandler extends TriggerHandlerBase {
+public class AppRequestAfterInsertTriggerHandler extends TriggerHandlerBase {
 
     public override void mainEntry(TriggerParameters tp) {
 

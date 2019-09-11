@@ -37,7 +37,7 @@ public class AppRequestTriggerDispatcher extends TriggerDispatcherBase {
         if(isAfterInsertProcessing) execute(null, tp, TriggerParameters.TriggerEvent.afterInsert);
         else {
             isAfterInsertProcessing = true;
-            execute(new AppRequstAfterInsertTriggerHandler(), tp, TriggerParameters.TriggerEvent.afterInsert);
+            execute(new AppRequestAfterInsertTriggerHandler(), tp, TriggerParameters.TriggerEvent.afterInsert);
             isAfterInsertProcessing = false;
         }
     }
