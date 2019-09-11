@@ -1,10 +1,10 @@
 public class FleetEnrollmentTriggerHandler {
 
+    /*
     public FleetEnrollmentTriggerHandler() {
         
     }
 
-    /*
     public void tieToApplicationRequest(FleetEnrollment__c[] newFleetEnrollments) {
         
         for(FleetEnrollment__c fleetEnrollment : newFleetEnrollments) {
