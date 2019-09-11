@@ -382,7 +382,7 @@ public class BOCertificationController {
 
                 if(!String.isEmpty(cpAppId) || (applicationId != null && (applicationType).equalsIgnoreCase('CP_Application_Request__c'))) {
 
-                    List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Opportunity__c, Account__c, Legal_Structure__c, Beneficial_Owner_Entity__c, First_Name__c, Last_Name__c, Email__c FROM CP_Application_Request__c WHERE Id =: cpAppId and Beneficial_Owner_Entity__c = null];
+                    List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Opportunity__c, Account__c, Legal_Structure__c, Beneficial_Owner_Entity__c, First_Name__c, Last_Name__c, Email__c, Credit_Line_Requested__c FROM CP_Application_Request__c WHERE Id =: cpAppId and Beneficial_Owner_Entity__c = null];
 
                     if(cpApplicationRequests.size() > 0) {
 
@@ -931,12 +931,18 @@ public class BOCertificationController {
                 cpApplicationRequest.Status__c = 'Pending Decision';
                 upsert cpApplicationRequest;
 
-                PageReference cpConfirmation = Page.CPBOCAConfirmation;
-                cpConfirmation.getParameters().put('id', cpApplicationRequest.Id);
-                cpConfirmation.getParameters().put('pgm', programParameter);
-                cpConfirmation.getParameters().put('lang', languageCode);
-                cpConfirmation.setRedirect(true);
-                return cpConfirmation;
+                PageReference nextPage;
+                if (cpApplicationRequest.Credit_Line_Requested__c!=null && cpApplicationRequest.Credit_Line_Requested__c >= 150000) {
+                    nextPage = Page.CPBOCAFinancials;
+                } else {
+                    nextPage = Page.CPBOCAConfirmation;
+                }
+                
+                nextPage.getParameters().put('id', cpApplicationRequest.Id);
+                nextPage.getParameters().put('pgm', programParameter);
+                nextPage.getParameters().put('lang', languageCode);
+                nextPage.setRedirect(true);
+                return nextPage;
 
             }
             else {
