@@ -3,13 +3,19 @@ public class FleetEnrollmentTriggerHandler {
     public FleetEnrollmentTriggerHandler() {
         
     }
-    
+
+    /*
     public void tieToApplicationRequest(FleetEnrollment__c[] newFleetEnrollments) {
         
         for(FleetEnrollment__c fleetEnrollment : newFleetEnrollments) {
             
             if(fleetEnrollment.Application_Request__c == null) {
-            	List<Application_Request__c> applicationRequests = [SELECT Id, Opportunity__c, Siebel_Oppty__c FROM Application_Request__c WHERE (Opportunity__c =: fleetEnrollment.Opportunity__c OR Opportunity__c =: fleetEnrollment.Debug_Opportunity_Parameter__c) AND CreatedDate = LAST_N_DAYS:90];
+            	List<Application_Request__c> applicationRequests = [
+                        SELECT Id, Opportunity__c, Siebel_Oppty__c
+                        FROM Application_Request__c
+                        WHERE (Opportunity__c =: fleetEnrollment.Opportunity__c
+                            OR Opportunity__c =: fleetEnrollment.Debug_Opportunity_Parameter__c)
+                        AND CreatedDate = LAST_N_DAYS:90];
                 
                 if(!applicationRequests.isEmpty()) {
                     fleetEnrollment.Application_Request__c = applicationRequests[0].Id;
@@ -30,6 +36,7 @@ public class FleetEnrollmentTriggerHandler {
         }
         
     }
+
     
     // Sorta misleading.. The case doesn't get created until the application is in
     // stage 6.. so we're really telling the Application Request what the enrollment
@@ -49,5 +56,7 @@ public class FleetEnrollmentTriggerHandler {
         }
         
     }
+
+     */
     
 }

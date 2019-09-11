@@ -1,5 +1,5 @@
 trigger FleetEnrollmentTrigger on FleetEnrollment__c (before insert, after insert) {
-    
+    /*
     Fleet_Enrollment_Settings__c FES = Fleet_Enrollment_Settings__c.getOrgDefaults();
     
     if(FES.Enable_Siebel_Opportunity_Update__c == false) {
@@ -24,4 +24,6 @@ trigger FleetEnrollmentTrigger on FleetEnrollment__c (before insert, after inser
             System.debug('Can\'t tie to implementation case..');
         }
     }
+
+     */
 }

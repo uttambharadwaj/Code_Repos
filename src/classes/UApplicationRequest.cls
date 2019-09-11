@@ -1,5 +1,5 @@
 public class UApplicationRequest {
-	
+	/*
 	public static void communityUserStampData(List<Application_Request__c> records)
 	{	//currently only for before insert trigger
 		
@@ -37,4 +37,6 @@ public class UApplicationRequest {
 		}
 
 	}
+
+ */
 }

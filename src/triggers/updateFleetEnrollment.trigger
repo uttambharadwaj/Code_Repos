@@ -1,5 +1,5 @@
 trigger updateFleetEnrollment on Application_Request__c (after update) {
-
+/*
     Fleet_Enrollment_Settings__c FES = Fleet_Enrollment_Settings__c.getOrgDefaults();
     
     if(FES.Enable_Siebel_Opportunity_Update__c == false) {
@@ -31,5 +31,7 @@ trigger updateFleetEnrollment on Application_Request__c (after update) {
          system.debug('ERROR: FleetEnrollment error is: ' + ex.getMessage());
         }
     }
+
+ */
     
 }

@@ -6,18 +6,27 @@ public class OpportunityHelper {
 
     // After Insert, Before Update
     // check for FleetEnrollment__c record on creation of Fuel Card Opportunity
-    public static void checkFleetEnrollment(List<Opportunity> opptyList) {
+    public static void checkFleetEnrollment(List<Opportunity> opptyList, Map<Id, Opportunity> opptyOldMap) {
         Set<Id> opptyIds = new Set<Id>();
         Set<Id> feIds = new Set<Id>();
 
-        for (Opportunity opp : OpptyList) {
+        for (Opportunity opp : opptyList) {
             if (opp.RecordTypeId == Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Fuel Card').getRecordTypeId())
                 opptyIds.add(opp.id);
         }
 
         if (opptyIds.size() > 0) {
-            for (FleetEnrollment__c fe : [SELECT Id, Opportunity__c FROM FleetEnrollment__c where Opportunity__c IN : opptyIds]) {
-                feIds.add(fe.id);
+            List<Opportunity> opptyUpdatedList = new List<Opportunity>();
+            for (Opportunity op : opptyUpdatedList) {
+                if (op.Campaign_Program__c != opptyOldMap.get(op.Id).Campaign_Program__c
+                        || op.Siebel_Opportunity__c != opptyOldMap.get(op.Id).Siebel_Opportunity__c) {
+                    opptyUpdatedList.add(op);
+                }
+            }
+            if (opptyUpdatedList.size() > 0) {
+                for (FleetEnrollment__c fe : [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c IN :opptyIds]) {
+                    feIds.add(fe.id);
+                }
             }
         }
 
@@ -47,7 +56,7 @@ public class OpportunityHelper {
             opptyToProgramMap.put(o.campaign_program__r.program__c, o.id);
         }
         // Find all Program Template Accounts for the Programs associated with the oppty list
-        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = true AND Program__c IN : opptyToProgramMap.keySet()];
+        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = TRUE AND Program__c IN : opptyToProgramMap.keySet()];
         for (Program_Template_Account__c pta : programTemplateAccounts) {
             programTemplateToProgramMap.put(pta.program__c, pta.Id);
         }
@@ -92,7 +101,7 @@ public class OpportunityHelper {
     }
 
     private static void updateFleetEnrollment(Set<Id> opptyIds) {
-/*
+
         List<FleetEnrollment__c> feUpdateList = new List<FleetEnrollment__c>();
         Map<Id, Id> opptyToProgramMap = new Map<Id, Id>();
         Map<Id, Id> programTemplateToProgramMap = new Map<Id, Id>();
@@ -121,9 +130,10 @@ public class OpportunityHelper {
                 FROM FleetEnrollment__c
                 WHERE Opportunity__c IN :opptyIds]
         ) {
-            if (fe.Program__c != fe.Opportunity__r.Campaign_Program__r.Program__c)
+            if (fe.Program__c != fe.Opportunity__r.Campaign_Program__r.Program__c) {
                 fe.Program__c = fe.Opportunity__r.Campaign_Program__r.Program__c;
                 fe.Program_Template_Account__c = programTemplateToProgramMap.get(fe.Opportunity__r.Campaign_Program__r.Program__c);
+            }
             if (fe.Opportunity__r.Siebel_Opportunity__c != null && fe.Opportunity_Number__c == null) fe.Opportunity_Number__c = fe.Opportunity__r.Siebel_Opportunity__c;
             if (fe.Opportunity__r.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c != null && fe.Billing_Cycle__c == null) fe.Billing_Cycle__c = fe.Opportunity__r.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c;
             if (fe.Opportunity__r.Billing_Contact_First_Name__c != null && fe.Billing_Contact_First_Name__c == null) fe.Billing_Contact_First_Name__c = fe.Opportunity__r.Billing_Contact_First_Name__c;
@@ -137,7 +147,6 @@ public class OpportunityHelper {
             feUpdateList.add(fe);
         }
 
-
         if (feUpdateList.size() > 0) {
             try {
                 update feUpdateList;
@@ -145,7 +154,6 @@ public class OpportunityHelper {
                 System.debug('Error Updating FleetEnrollment Records: ' + e.getMessage());
             }
         }
-*/
     }
 
 }
