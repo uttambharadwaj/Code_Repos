@@ -17,6 +17,41 @@ public class CPBOCAController {
 
     public String selectedCurrency { get; set; }
 
+    public String userId {
+        get{
+            return ApexPages.CurrentPage().getParameters().get('uid');
+        }
+    }
+
+    public Boolean useUpmarket {
+        get {
+            if(userId != null){
+                Set<Id> assigned = new Map<Id, PermissionSet>([
+                        SELECT Id FROM PermissionSet
+                        WHERE Id IN (
+                                SELECT PermissionSetId
+                                FROM PermissionSetAssignment
+                                WHERE AssigneeId = :userId
+                        )
+                ]).keySet();
+                for(CustomPermission cp : [
+                        SELECT DeveloperName FROM CustomPermission
+                        WHERE Id IN (
+                                SELECT SetupEntityId
+                                FROM SetupEntityAccess
+                                WHERE SetupEntityType = 'CustomPermission'
+                                AND ParentId IN :assigned
+                        )
+                ]){
+                    if(cp.DeveloperName == 'Upmarket_Stuffs'){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
     public List<SelectOption> currencyOptions {
         get {
             Set<String> allowedCurrency = new Set<String>{'AUD','CAD','EUR','GBP'};
@@ -846,6 +881,7 @@ public class CPBOCAController {
                     PageReference boCertification = Page.BOCertification;
                     boCertification.getParameters().put('pgm', program.Brand_Short_Name__c);
                     boCertification.getParameters().put('cpAppId', creditAppId);
+                    if(userId != null) boCertification.getParameters().put('uid', userId);
                     return boCertification;
 
                 }
