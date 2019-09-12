@@ -31,7 +31,7 @@ public class AppRequestTriggerTest {
         system.assertNotEquals(ar1.CreatedDate, ar1.LastModifiedDate, 'It failed to future.');
         system.assertEquals(ar1.Fleet_Enrollment__c, fe1.Id, 'Fleet Enrollment was not set on the App Req');
 
-        ar2 = [SELECT External_Referred_by__c, External_Referring_Contact__c, Fleet_Enrollment__c, Forward_Application_to_Credit__c, Sales_Person__c FROM Application_Request__c WHERE Id=:ar2.Id LIMIT 1];
+        ar2 = [SELECT External_Referred_by__c, External_Referring_Contact__c, Forward_Application_to_Credit__c, Sales_Person__c FROM Application_Request__c WHERE Id=:ar2.Id LIMIT 1];
         system.assertEquals(o2.External_Referred_By_Account_Name__c, ar2.External_Referred_by__c, 'The stamp logic did not do the thing.');
         system.assertEquals(o2.External_Referred_By__c, ar2.External_Referring_Contact__c, 'The stamp logic did not do the thing.');
         system.assertEquals(UserInfo.getUserId(), ar2.Sales_Person__c, 'The salesperson should be you but is not.');
