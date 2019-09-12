@@ -7,8 +7,15 @@ public class OpportunityHelper {
     public static void createFleetEnrollment(List<Opportunity> opptys) {
 
         List<FleetEnrollment__c> feCreateList = new List<FleetEnrollment__c>();
+        Set<Opportunity> fuelCardOpptyIds = new Set<Opportunity>();
         Map<Id, Id> opptyToProgramMap = new Map<Id, Id>();
         Map<Id, Id> programTemplateToProgramMap = new Map<Id, Id>();
+
+        for (Opportunity opp : opptys) {
+            if (opp.RecordTypeId == UtilityClass.getRecordTypeByName(Opportunity.getSObjectType(), 'Fuel Card')) {
+                fuelCardOpptyIds.add(opp);
+            }
+        }
 
         // Find all Program in the list of opptys
         List<Opportunity> opptyList = [
@@ -17,11 +24,12 @@ public class OpportunityHelper {
                         Billing_Street__c, Billing_Street_Line_2__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c,
                         Billing_Contact_Email__c, Billing_Contact_Phone__c
                 FROM Opportunity
-                WHERE Id IN :opptys
+                WHERE Id IN :fuelCardOpptyIds
         ];
         for (Opportunity o : opptyList) {
             opptyToProgramMap.put(o.campaign_program__r.program__c, o.id);
         }
+
         // Find all Program Template Accounts for the Programs associated with the oppty list
         List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = TRUE AND Program__c IN :opptyToProgramMap.keySet()];
         for (Program_Template_Account__c pta : programTemplateAccounts) {
