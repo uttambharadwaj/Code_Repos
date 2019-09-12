@@ -1,4 +1,5 @@
 trigger updateFleetEnrollment on Application_Request__c (after update) {
+
 /*
     Fleet_Enrollment_Settings__c FES = Fleet_Enrollment_Settings__c.getOrgDefaults();
     

@@ -12,19 +12,13 @@ public class AppRequestAfterUpdateTriggerHandler extends TriggerHandlerBase {
 
     private static void appReqAfterUpdateCreditDecision(List<Application_Request__c> appRequestList, Map<Id,Application_Request__c> arOldMap) {
 
-        for (Application_Request__c applicationRequest : appRequestList) {
-            Application_Request__c old = arOldMap.get(applicationRequest.Id);
+        Set<Id> arids = AppRequestAndFinallyTriggerHandler.appsForCreditDecision;
 
-            if (System.IsBatch() == false && System.isFuture() == false && (old.Forward_Application_to_Credit__c == null || !(old.Forward_Application_to_Credit__c).equalsIgnoreCase('Yes')) && applicationRequest.Forward_Application_to_Credit__c != null && (applicationRequest.Forward_Application_to_Credit__c).equals('Yes')) {
-                CreditDecisionEngineNA.runNADecisioningProcessFuture(applicationRequest.Id);
-            }
+        for (Application_Request__c ar : appRequestList) {
+            Application_Request__c old = arOldMap.get(ar.Id);
 
-            // if Compliance of Fraud had to make a decision on the application, then decisioing needs to be re-run
-            if (System.IsBatch() == false && System.isFuture() == false && ((old.Compliance_Decision__c != null && !(old.Compliance_Decision__c).equalsIgnoreCase(applicationRequest.Compliance_Decision__c)) || (old.Fraud_Decision__c != null && !(old.Fraud_Decision__c).equalsIgnoreCase(applicationRequest.Fraud_Decision__c)))
-                    && (applicationRequest.Application_Stage__c).equalsIgnoreCase('Adjudication')
-                    && (applicationRequest.Status__c).equalsIgnoreCase('Pending Decision') && CreditDecisionEngineNA.decisionEngineRunning == false) {
-
-                CreditDecisionEngineNA.runNADecisioningProcessFuture(applicationRequest.Id);
+            if (!System.IsBatch() && !System.isFuture() && AppRequestHelper.compareFields(ar, old)){
+                arids.add(ar.Id); // pass to the andFinally handler for processing in an effort to avoid the off chance of performing two decisions consecutively.
             }
         }
     }

@@ -1,4 +1,5 @@
 trigger FleetEnrollmentTrigger on FleetEnrollment__c (before insert, after insert) {
+
     /*
     Fleet_Enrollment_Settings__c FES = Fleet_Enrollment_Settings__c.getOrgDefaults();
     

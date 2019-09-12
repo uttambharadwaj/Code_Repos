@@ -26,7 +26,6 @@ public class AppRequestTriggerDispatcher extends TriggerDispatcherBase {
         }
     }
 
-
     /**
     * @description Called by the trigger framework to carry out the actions after the record(s) are created. If there is an
     *               existing call running on the same context, the rentrant call will utilize the handler that was created
@@ -67,6 +66,12 @@ public class AppRequestTriggerDispatcher extends TriggerDispatcherBase {
             execute(new AppRequestAfterUpdateTriggerHandler(), tp, TriggerParameters.TriggerEvent.afterUpdate);
             isAfterUpdateProcessing = false;
         }
+    }
+
+    public virtual override void andFinally() {
+
+        AppRequestAndFinallyTriggerHandler.andFinallyMain();
+
     }
 
 }
