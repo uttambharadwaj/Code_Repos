@@ -14,6 +14,36 @@ public class BOCertificationController {
         }
     }
 
+    public Boolean useUpmarket {
+        get {
+            Id userId = ApexPages.CurrentPage().getParameters().get('uid');
+            if(userId != null){
+                Set<Id> assigned = new Map<Id, PermissionSet>([
+                        SELECT Id FROM PermissionSet
+                        WHERE Id IN (
+                                SELECT PermissionSetId
+                                FROM PermissionSetAssignment
+                                WHERE AssigneeId = :userId
+                        )
+                ]).keySet();
+                for(CustomPermission cp : [
+                        SELECT DeveloperName FROM CustomPermission
+                        WHERE Id IN (
+                                SELECT SetupEntityId
+                                FROM SetupEntityAccess
+                                WHERE SetupEntityType = 'CustomPermission'
+                                AND ParentId IN :assigned
+                        )
+                ]){
+                    if(cp.DeveloperName == 'Upmarket_Stuffs'){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
     public String applicationType {
         get {
             if(applicationId != null) {
@@ -932,7 +962,7 @@ public class BOCertificationController {
                 upsert cpApplicationRequest;
 
                 PageReference nextPage;
-                if (cpApplicationRequest.Credit_Line_Requested__c!=null && cpApplicationRequest.Credit_Line_Requested__c >= 150000) {
+                if (useUpmarket && cpApplicationRequest.Credit_Line_Requested__c!=null && cpApplicationRequest.Credit_Line_Requested__c >= 150000) {
                     nextPage = Page.CPBOCAFinancials;
                 } else {
                     nextPage = Page.CPBOCAConfirmation;
