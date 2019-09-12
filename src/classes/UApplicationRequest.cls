@@ -1,4 +1,7 @@
 public class UApplicationRequest {
+
+	// this was moved to a process builder
+
 	/*
 	public static void communityUserStampData(List<Application_Request__c> records)
 	{	//currently only for before insert trigger
