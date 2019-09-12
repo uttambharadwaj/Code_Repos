@@ -764,7 +764,7 @@ public class WexBOCAController {
                     
                     creditapp.Lead__c = partialLeadRecord.Id;
                     creditApp.status__c = 'lead';
-                    creditApp.Communications_Preference__c = 'English';
+                    creditApp.Communications_Preference__c = brandingUtility.ISO_code__c.equalsIgnoreCase('fr_ca') ? 'French' : 'English';
                     
                     creditApp.TM_Session_ID__c = tmSessionId;
                     
