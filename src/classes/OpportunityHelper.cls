@@ -4,35 +4,18 @@
 
 public class OpportunityHelper {
 
-    // After Insert, Before Update
-    // check for FleetEnrollment__c record on creation of Fuel Card Opportunity
-    public static void checkFleetEnrollment(List<Opportunity> opptyList) {
-        Set<Id> opptyIds = new Set<Id>();
-        Set<Id> feIds = new Set<Id>();
-
-        for (Opportunity opp : OpptyList) {
-            if (opp.RecordTypeId == Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Fuel Card').getRecordTypeId())
-                opptyIds.add(opp.id);
-        }
-
-        if (opptyIds.size() > 0) {
-            for (FleetEnrollment__c fe : [SELECT Id, Opportunity__c FROM FleetEnrollment__c where Opportunity__c IN : opptyIds]) {
-                feIds.add(fe.id);
-            }
-        }
-
-        if (feIds.size() > 0) {
-            updateFleetEnrollment(opptyIds);
-        } else {
-            createFleetEnrollment(opptyIds);
-        }
-    }
-
-    private static void createFleetEnrollment(Set<ID> opptyIds) {
+    public static void createFleetEnrollment(List<Opportunity> opptys) {
 
         List<FleetEnrollment__c> feCreateList = new List<FleetEnrollment__c>();
+        Set<Opportunity> fuelCardOpptyIds = new Set<Opportunity>();
         Map<Id, Id> opptyToProgramMap = new Map<Id, Id>();
         Map<Id, Id> programTemplateToProgramMap = new Map<Id, Id>();
+
+        for (Opportunity opp : opptys) {
+            if (opp.RecordTypeId == UtilityClass.getRecordTypeByName(Opportunity.getSObjectType(), 'Fuel Card')) {
+                fuelCardOpptyIds.add(opp);
+            }
+        }
 
         // Find all Program in the list of opptys
         List<Opportunity> opptyList = [
@@ -41,13 +24,14 @@ public class OpportunityHelper {
                         Billing_Street__c, Billing_Street_Line_2__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c,
                         Billing_Contact_Email__c, Billing_Contact_Phone__c
                 FROM Opportunity
-                WHERE Id IN :opptyIds
+                WHERE Id IN :fuelCardOpptyIds
         ];
         for (Opportunity o : opptyList) {
             opptyToProgramMap.put(o.campaign_program__r.program__c, o.id);
         }
+
         // Find all Program Template Accounts for the Programs associated with the oppty list
-        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = true AND Program__c IN : opptyToProgramMap.keySet()];
+        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = TRUE AND Program__c IN :opptyToProgramMap.keySet()];
         for (Program_Template_Account__c pta : programTemplateAccounts) {
             programTemplateToProgramMap.put(pta.program__c, pta.Id);
         }
@@ -90,62 +74,4 @@ public class OpportunityHelper {
             }
         }
     }
-
-    private static void updateFleetEnrollment(Set<Id> opptyIds) {
-/*
-        List<FleetEnrollment__c> feUpdateList = new List<FleetEnrollment__c>();
-        Map<Id, Id> opptyToProgramMap = new Map<Id, Id>();
-        Map<Id, Id> programTemplateToProgramMap = new Map<Id, Id>();
-
-        // Find all Program in the list of opptys
-        List<Opportunity> opptyList = [SELECT Id, Campaign_Program__c, Campaign_Program__r.Program__c FROM Opportunity WHERE Id IN :opptyIds];
-        for (Opportunity o : opptyList) {
-            opptyToProgramMap.put(o.campaign_program__r.program__c, o.id);
-        }
-        // Find all Program Template Accounts for the Programs associated with the oppty list
-        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = true AND Program__c IN : opptyToProgramMap.keySet()];
-        for (Program_Template_Account__c pta : programTemplateAccounts) {
-            programTemplateToProgramMap.put(pta.program__c, pta.Id);
-        }
-
-
-        // Keep FleetEnrollment in sync with Oppty
-        for (FleetEnrollment__c fe : [
-                SELECT Id, Opportunity__c, Opportunity__r.Campaign_Program__r.Program__c, Program__c, Program_Template_Account__c, Opportunity_Number__c,
-                        Billing_Cycle__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Address_Line_1__c, Billing_City__c,
-                        Billing_State__c, Billing_Postal_Code__c, Billing_Email__c, Billing_Phone__c,
-                        Opportunity__r.Siebel_Opportunity__c, Opportunity__r.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c,
-                        Opportunity__r.Billing_Contact_First_Name__c, Opportunity__r.Billing_Contact_Last_Name__c, Opportunity__r.Billing_Street__c,
-                        Opportunity__r.Billing_City__c, Opportunity__r.Billing_State__c, Opportunity__r.Billing_Zip_Postal_Code__c,
-                        Opportunity__r.Billing_Contact_Email__c, Opportunity__r.Billing_Contact_Phone__c
-                FROM FleetEnrollment__c
-                WHERE Opportunity__c IN :opptyIds]
-        ) {
-            if (fe.Program__c != fe.Opportunity__r.Campaign_Program__r.Program__c)
-                fe.Program__c = fe.Opportunity__r.Campaign_Program__r.Program__c;
-                fe.Program_Template_Account__c = programTemplateToProgramMap.get(fe.Opportunity__r.Campaign_Program__r.Program__c);
-            if (fe.Opportunity__r.Siebel_Opportunity__c != null && fe.Opportunity_Number__c == null) fe.Opportunity_Number__c = fe.Opportunity__r.Siebel_Opportunity__c;
-            if (fe.Opportunity__r.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c != null && fe.Billing_Cycle__c == null) fe.Billing_Cycle__c = fe.Opportunity__r.Campaign_Program__r.Program__r.Fleet_Default_Billing_Cycle__c;
-            if (fe.Opportunity__r.Billing_Contact_First_Name__c != null && fe.Billing_Contact_First_Name__c == null) fe.Billing_Contact_First_Name__c = fe.Opportunity__r.Billing_Contact_First_Name__c;
-            if (fe.Opportunity__r.Billing_Contact_Last_Name__c != null && fe.Billing_Contact_Last_Name__c == null) fe.Billing_Contact_Last_Name__c = fe.Opportunity__r.Billing_Contact_Last_Name__c;
-            if (fe.Opportunity__r.Billing_Street__c != null && fe.Billing_Address_Line_1__c == null) fe.Billing_Address_Line_1__c = fe.Opportunity__r.Billing_Street__c;
-            if (fe.Opportunity__r.Billing_City__c != null && fe.Billing_City__c == null) fe.Billing_City__c = fe.Opportunity__r.Billing_City__c;
-            if (fe.Opportunity__r.Billing_State__c != null && fe.Billing_State__c == null) fe.Billing_State__c = fe.Opportunity__r.Billing_State__c;
-            if (fe.Opportunity__r.Billing_Zip_Postal_Code__c != null && fe.Billing_Postal_Code__c == null) fe.Billing_Postal_Code__c = fe.Opportunity__r.Billing_Zip_Postal_Code__c;
-            if (fe.Opportunity__r.Billing_Contact_Email__c != null && fe.Billing_Email__c == null) fe.Billing_Email__c = fe.Opportunity__r.Billing_Contact_Email__c;
-            if (fe.Opportunity__r.Billing_Contact_Phone__c != null && fe.Billing_Phone__c == null) fe.Billing_Phone__c = fe.Opportunity__r.Billing_Contact_Phone__c;
-            feUpdateList.add(fe);
-        }
-
-
-        if (feUpdateList.size() > 0) {
-            try {
-                update feUpdateList;
-            } catch (DmlException e) {
-                System.debug('Error Updating FleetEnrollment Records: ' + e.getMessage());
-            }
-        }
-*/
-    }
-
 }
