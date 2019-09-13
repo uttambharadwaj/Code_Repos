@@ -265,7 +265,7 @@
                                             <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Company_Name}" styleClass="styled-input required" required="true" html-tabindex="5" id="companyName" label="" value="{!creditApp.Company_Name__c}" html-maxlength="40" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="doingBusinessAs" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Doing Business As (optional)', $ObjectType.WeFormObject__c.fields.Doing_Business_As__c.label)}"/>
+                                            <apex:outputLabel for="doingBusinessAs" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Doing Business As', $ObjectType.WeFormObject__c.fields.Doing_Business_As__c.label)} {!$Label.Optional}"/>
                                             <apex:InputField styleClass="styled-input" html-tabindex="6" label="" id="doingBusinessAs" value="{!creditApp.Doing_Business_As__c}" html-maxlength="50" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
@@ -319,7 +319,7 @@
                                             <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" required="true" html-tabindex="1" id="physicalAddress" html-maxlength="40" value="{!creditApp.Business_Street_Address__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Company Address Line 2 (optional)', $ObjectType.WeFormObject__c.fields.Address_Line_2__c.label)}"/>
+                                            <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Company Address Line 2', $ObjectType.WeFormObject__c.fields.Address_Line_2__c.label)} {!$Label.Optional}"/>
                                             <apex:InputField styleClass="styled-input" html-tabindex="2" id="physicalAddressLine2" html-maxlength="40" value="{!creditApp.Address_Line_2__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
@@ -473,7 +473,7 @@
                                                     <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" html-tabindex="22" id="billingAddress1" value="{!creditApp.Billing_Street_Address__c}" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="7">
-                                                    <apex:outputLabel for="billingAddress2" styleClass="styled-label" value="{!$ObjectType.WeFormObject__c.fields.Billing_Address_Line_2__c.label} (optional) "/>
+                                                    <apex:outputLabel for="billingAddress2" styleClass="styled-label" value="{!$ObjectType.WeFormObject__c.fields.Billing_Address_Line_2__c.label} {!$Label.Optional} "/>
                                                     <apex:InputField styleClass="styled-input" html-tabindex="23" id="billingAddress2" value="{!creditApp.Billing_Address_Line_2__c}" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="8">
