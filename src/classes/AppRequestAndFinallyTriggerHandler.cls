@@ -6,18 +6,17 @@ public class AppRequestAndFinallyTriggerHandler {
 
     public static void andFinallyMain() {
 
-        system.debug('*** Hey! You! Im in andFinally!');
         runDecision(); // run app decisioning on ids from After Update Trigger
         clearVariables(); // clear set after decisioning
 
     }
 
-    public static Set<Id> appsForCreditDecision = new Set<Id>();
+    private static Set<Id> arIds = AppRequestTriggerDispatcher.appsForCreditDecision;
 
     private static void runDecision() {
 
-        if (appsForCreditDecision.size() > 0) {
-            for (Id arId : appsForCreditDecision) {
+        if (arIds.size() > 0) {
+            for (Id arId : arIds) {
                 CreditDecisionEngineNA.runNADecisioningProcessFuture(arId);
             }
         }
@@ -26,7 +25,7 @@ public class AppRequestAndFinallyTriggerHandler {
 
     private static void clearVariables() {
 
-        appsForCreditDecision.clear();
+        arIds.clear();
 
     }
 

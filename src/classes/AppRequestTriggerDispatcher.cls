@@ -68,6 +68,8 @@ public class AppRequestTriggerDispatcher extends TriggerDispatcherBase {
         }
     }
 
+    public static Set<Id> appsForCreditDecision = new Set<Id>();
+
     public virtual override void andFinally() {
 
         AppRequestAndFinallyTriggerHandler.andFinallyMain();
