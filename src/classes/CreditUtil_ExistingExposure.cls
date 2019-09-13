@@ -213,7 +213,7 @@ public with sharing class CreditUtil_ExistingExposure {
         }
 
         if (request.duns != null) {
-            onlineAppRequestSearchVariables += ' OR ' + formatDUNs(request.duns);
+            onlineAppRequestSearchVariables += ' OR ' + request.duns;
         }
 
         if (request.pgSSN != null) {
@@ -230,7 +230,7 @@ public with sharing class CreditUtil_ExistingExposure {
                 ' OR ' + request.ipAddress + ' OR ' + request.phone.replaceAll('\\D','');
 
         if (request.duns != null) {
-            cpAppRequestSearchVariables += ' OR ' + formatDUNs(request.duns);
+            cpAppRequestSearchVariables += ' OR ' + request.duns;
         }
 
         if (request.pgSSN != null) {
@@ -274,7 +274,7 @@ public with sharing class CreditUtil_ExistingExposure {
                     ' OR ' + request.ipAddress;
 
             if (request.duns != null) {
-                appRequestSearchVariables += ' OR ' + formatDUNs(request.duns);
+                appRequestSearchVariables += ' OR ' + request.duns;
             }
 
             finalList = queryForAllLOBs(appRequestSearchVariables);
