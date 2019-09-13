@@ -11,9 +11,9 @@ public class AppRequestAndFinallyTriggerHandler {
 
     }
 
-    private static Set<Id> arIds = AppRequestTriggerDispatcher.appsForCreditDecision;
-
     private static void runDecision() {
+
+        Set<Id> arIds = AppRequestTriggerDispatcher.appsForCreditDecision;
 
         if (arIds.size() > 0) {
             for (Id arId : arIds) {
@@ -25,7 +25,7 @@ public class AppRequestAndFinallyTriggerHandler {
 
     private static void clearVariables() {
 
-        arIds.clear();
+        AppRequestTriggerDispatcher.appsForCreditDecision.clear();
 
     }
 
