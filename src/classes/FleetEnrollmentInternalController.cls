@@ -65,8 +65,6 @@ public with sharing class FleetEnrollmentInternalController {
 
     public Opportunity opportunity { get; set; }
 
-    public Account myAccounts { get; set; }
-
     public Account myFormAccount { get; set; }
 
     public String myInitialAccountShortName;
