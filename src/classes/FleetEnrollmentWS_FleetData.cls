@@ -1,6 +1,9 @@
 /**
  * Created by dgilbert on 9/20/2018.
- */
+ *
+* Revision History: 11/Sep/2019 CJackson    NAFONBOARD-96   API contains the Account Short Name.
+*
+*/
 @RestResource(urlMapping='/FleetEnrollmentWS/FleetData/*')
 global with sharing class FleetEnrollmentWS_FleetData {
 
@@ -24,8 +27,9 @@ global with sharing class FleetEnrollmentWS_FleetData {
         String fleetEnrollmentId = RestContext.request.params.get('id');
 
         try {
-
-            List<FleetEnrollment__c> fleetEnrollments = Database.query(' SELECT ' + String.join(new List<String>((FleetEnrollment__c.getSObjectType().getDescribe()).fields.getMap().keySet()), ',') + ' FROM ' + FleetEnrollment__c.getSObjectType().getDescribe().getName() + ' WHERE ' + ' id = :fleetEnrollmentId ' + ' LIMIT 1 ');
+            List <String> fleetFields = new List<String>((FleetEnrollment__c.getSObjectType().getDescribe()).fields.getMap().keySet());
+            fleetFields.add('Opportunity__r.Account.Account_Short_Name__c');
+            List<FleetEnrollment__c> fleetEnrollments = Database.query(' SELECT ' + String.join(fleetFields, ',') + ' FROM ' + FleetEnrollment__c.getSObjectType().getDescribe().getName() + ' WHERE ' + ' id = :fleetEnrollmentId ' + ' LIMIT 1 ');
 
             if (fleetEnrollments.size() > 0) {
 

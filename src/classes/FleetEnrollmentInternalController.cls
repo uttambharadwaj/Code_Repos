@@ -6,6 +6,7 @@
 *                   22/Jul/2019 CJackson    NAFONBOARD-5    Esso Finders Fee derived from sales checklist.
 *                   21/Aug/2019 MFarrell    NAFONBOARD-77   We want to be able to pass 0's, changing != 0 to != null.
 *                   30/Aug/2019 MFarrell    NAFONBOARD-82   Updated dataSheetFolder name to custom label & added applicationRequest null checks.
+*                   11/Sep/2019 CJackson    NAFONBOARD-96   API contains the Account Short Name.
 *
 */
 
@@ -63,6 +64,10 @@ public with sharing class FleetEnrollmentInternalController {
     }
 
     public Opportunity opportunity { get; set; }
+
+    public Account myFormAccount { get; set; }
+
+    public String myInitialAccountShortName;
 
     public Application_Request__c applicationRequest { get; set; }
 
@@ -300,7 +305,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (opportunityId != null) {
 
-                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name, Campaign_Program__r.Program__r.Finders_Fee__c FROM Opportunity WHERE Id = :opportunityId];
+                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name, Campaign_Program__r.Program__r.Finders_Fee__c, AccountId FROM Opportunity WHERE Id = :opportunityId];
 
                     if (opportunities.size() == 1) {
 
@@ -324,13 +329,13 @@ public with sharing class FleetEnrollmentInternalController {
                         } else {
                             embossingNameBlank = true;
                             if (opportunity.Name.length() > 30) {
-                                FleetEnrollment.Embossing_Company_Name__c = opportunity.Name.substring(0, 30);
+                                fleetEnrollment.Embossing_Company_Name__c = opportunity.Name.substring(0, 30);
                             } else {
-                                FleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
+                                fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
                             }
                         }
 
-                        FleetEnrollment.Submit_Fleet_Data_Form_Used__c = true;
+                        fleetEnrollment.Submit_Fleet_Data_Form_Used__c = true;
 
                         if (opportunity.Campaign_Program__r.Program__c != null) {
 
@@ -343,6 +348,17 @@ public with sharing class FleetEnrollmentInternalController {
                             }
 
                         }
+
+                        //NAFONBOARD-96 Get Account Name and Short Name (use Short Name if available)
+                        myFormAccount = new Account();
+
+                        List<Account> myAccounts = [SELECT Id, Name, Account_Short_Name__c FROM Account WHERE Id =: opportunity.AccountId];
+
+                        myInitialAccountShortName = myAccounts[0].Account_Short_Name__c;
+                        myFormAccount.Id = myAccounts[0].Id;
+                        myFormAccount.Account_Short_Name__c = myAccounts[0].Name;
+                        if(myAccounts[0].Account_Short_Name__c != null) myFormAccount.Account_Short_Name__c = myAccounts[0].Account_Short_Name__c;
+                        if(myFormAccount.Account_Short_Name__c.length() > 30) myFormAccount.Account_Short_Name__c = myFormAccount.Account_Short_Name__c.substring(0, 30);
 
                         //Get finder fee ID from Program to use as default for new Fleet Enrollment Form record
                         if (opportunity.Campaign_Program__r.Program__r.Finders_Fee__c != null) {
@@ -616,6 +632,8 @@ public with sharing class FleetEnrollmentInternalController {
                     directDebitCheckData.ParentId = fleetEnrollment.Id;
                     insert directDebitCheckData;
                 }
+
+                if (myFormAccount.Account_Short_Name__c != myInitialAccountShortName) update myFormAccount;
 
                 System.debug(fleetEnrollmentInformation.fleetEnrollmentContacts);
 
