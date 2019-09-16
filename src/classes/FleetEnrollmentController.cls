@@ -388,12 +388,13 @@ public virtual class FleetEnrollmentController {
 
         try {
 
-            if (!String.isEmpty(applicationRequestParameter) || !String.isEmpty(opportunityParameter) ) {
+            //if this comes through BOCA there is an app request parameter
+            if (!String.isEmpty(applicationRequestParameter)) {
 
                 List<FleetEnrollment__c> fleetEnrollments = [
                         SELECT Id, Has_Fleet_Enrollment_Data__c
                         FROM FleetEnrollment__c
-                        WHERE Application_Request__c = :applicationRequestParameter OR Opportunity__c = :opportunityParameter];
+                        WHERE Application_Request__c = :applicationRequestParameter];
 
                 if (fleetEnrollments.size() > 0) {
 
@@ -409,7 +410,44 @@ public virtual class FleetEnrollmentController {
                     }
 
                     if (feWithFleetData.size() > 0) {
-                        throw new FleetEnrollmentException('Your information has already been submitted.');
+                        throw new fleetEnrollmentException('Your information has already been submitted.');
+                    }
+
+                    // find existing FleetEnrollment record from when opportunity was created
+                    // but without pre-filling any of the existing information!
+
+                    if (feWithoutFleetData.size() > 0) {
+
+                        fleetEnrollment.Id = feWithoutFleetData[0].Id;
+
+                    }
+                }
+            }
+
+            //if this comes from an external marketing database it may have a siebel ID in the oppty parameter, and no app req parameter
+            if (String.isEmpty(applicationRequestParameter) && !String.isEmpty(opportunityParameter)) {
+
+
+                List<FleetEnrollment__c> fleetEnrollments = [
+                        SELECT Id, Has_Fleet_Enrollment_Data__c
+                        FROM FleetEnrollment__c
+                        WHERE Opportunity_Number__c = :opportunityParameter];
+
+                if (fleetEnrollments.size() > 0) {
+
+                    List<FleetEnrollment__c> feWithFleetData = new List<FleetEnrollment__c>();
+                    List<FleetEnrollment__c> feWithoutFleetData = new List<FleetEnrollment__c>();
+
+                    for (FleetEnrollment__c fe : fleetEnrollments) {
+                        if (fe.Has_Fleet_Enrollment_Data__c == true) {
+                            feWithFleetData.add(fe);
+                        } else {
+                            feWithoutFleetData.add(fe);
+                        }
+                    }
+
+                    if (feWithFleetData.size() > 0) {
+                        throw new fleetEnrollmentException('Your information has already been submitted.');
                     }
 
                     // find existing FleetEnrollment record from when opportunity was created
@@ -667,16 +705,14 @@ public virtual class FleetEnrollmentController {
             String key = EncodingUtil.convertToHex(crypto.generateAesKey(128));
             fleetEnrollment.Print_Token__c = key.substring(0, 25);
 
-            //commenting out because a siebel ID should not be assigned to the opportunity ID - was causing test class failures
-            /*
             if(!String.isEmpty(opportunityParameter)) {
                 if(checkOpportunityParameter == false) {
                     fleetEnrollment.Opportunity_Number__c = opportunityParameter;
+                } else {
+                    fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
+                    fleetEnrollment.Opportunity__c = opportunityParameter;
                 }
-                fleetEnrollment.Debug_Opportunity_Parameter__c = opportunityParameter;
-                fleetEnrollment.Opportunity__c = opportunityParameter;
             }
-			*/
 
             if(selectedDriverIdOption.equalsIgnoreCase('random')) {
                 fleetEnrollment.Driver_ID_Random__c = true;
