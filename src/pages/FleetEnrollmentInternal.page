@@ -2,6 +2,7 @@
 -
 - Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name.
 -                   11/Sep/2019 CJackson    NAFONBOARD-96   Added Account Short Name.
+					 16/Sep/2019 JArbegast	NAFONBOARD-92   Shipping Option Approval expansion
 -
 -->
 
@@ -221,6 +222,7 @@
 			var $j = jQuery.noConflict();
 
 			var assetsLoc = '{!URLFOR($Asset.SLDS)}';
+			var bypassShippingApproval=false; //nafonboard-92
 
 			$j.aljsInit({
 				assetsLocation: assetsLoc,
@@ -234,6 +236,8 @@
 				$j('[data-aljs="tabs"]').tabs();
 
 				$j('[data-aljs="popover"]').popover();
+
+				bypassShippingApproval = {!program.Bypass_Shipping_Approval__c}; //nafonboard-92
 
 				pageRerenderFunctions();
 
@@ -286,9 +290,9 @@
 			function setShipOption(shipOptionElement){
 				const myShipOption = $j(shipOptionElement).val();
 				console.log(myShipOption);
-				if(myShipOption == 'Overnight') shipOvernight = true;
+				if(myShipOption != 'Standard') shipOvernight = true; //nafonboard-92
 				else shipOvernight = false;
-				if(shipOvernight && billWex) $j('[id$=attachOvernightCardsApproval]').css('display', 'block');
+				if(shipOvernight && billWex && !bypassShippingApproval) $j('[id$=attachOvernightCardsApproval]').css('display', 'block'); //nafonboard-92
 				else $j('[id$=attachOvernightCardsApproval]').css('display', 'none');
 			}
 
@@ -297,7 +301,7 @@
 				if ($j(triggeringElement).prop('checked')) {
 					if(elementId == 'attachOvernightCardsApproval'){
 						billWex = true;
-						if(shipOvernight)
+						if(shipOvernight && !bypassShippingApproval) //nafonboard-92
 							$j('[id$=attachOvernightCardsApproval]').css('display', 'block');
 					} else {
 						billWex = false;
@@ -616,7 +620,8 @@
 															<div class="slds-form-element slds-size_1-of-1">
 																<span class="slds-checkbox">
 																	<label class="slds-checkbox__label">
-																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillPartner" value="{!fleetEnrollmentInformation.overnightCardsBillPartner}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards');"/>
+																		<!--nafonboard-92 add togglesection-->
+																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillPartner" value="{!fleetEnrollmentInformation.overnightCardsBillPartner}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards'); toggleSection(this, 'attachOvernightCardsApproval');"/>
 																		<span class="slds-checkbox_faux"></span>
 																		<span class="slds-form-element__label">Bill Partner</span>
 																	</label><br/>
