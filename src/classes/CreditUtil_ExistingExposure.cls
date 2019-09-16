@@ -360,6 +360,15 @@ public with sharing class CreditUtil_ExistingExposure {
         return appRequestWithPhoneOrTaxMatch;
     }
 
+    /**
+       DUNS Numbers are stored from the DNBi file into the FSC_Existing_Exposure__c table in the format XX XXX XXXX, however, they are collected in the format XXXXXXXXX on the credit app.
+       Must add da spaces.
+     */
+    private static String formatDUNs(String duns) {
+
+        return duns.substring(0,2) + ' ' + duns.substring(2,5) + ' ' + duns.substring(5,9);
+    }
+
 
     private static List<List<SObject>> queryForAllLOBs(String searchVariables) {
 
@@ -415,7 +424,7 @@ public with sharing class CreditUtil_ExistingExposure {
         String accountSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
 
         if (request.duns != null) {
-            accountSearchVariables += ' OR ' + request.duns;
+            accountSearchVariables += ' OR ' + formatDUNs(request.duns);
         }
 
         String accountQuery = 'FIND { searchString } IN ALL FIELDS RETURNING FSC_Existing_Exposure__c( ' +
@@ -431,12 +440,15 @@ public with sharing class CreditUtil_ExistingExposure {
 
         for(FSC_Existing_Exposure__c existingAccount : existingExposureAccounts) {
 
+            String formattedDUNs = '';
+            if (request.duns != null) formattedDUNs = formatDUNs(request.duns);
+
             if(JaroWinklerDistance.getScore(request.legalBusinessName, existingAccount.Business_Name__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.addressLine1, existingAccount.Address__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.city, existingAccount.City__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.state, existingAccount.State_Province__c ) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.postalCode, existingAccount.Postal_Code__c) >= 0.75
-                    || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingAccount.DUNS_Number__c)) == 1.00)) {
+                    || (request.duns != null && (JaroWinklerDistance.getScore(formattedDUNs, existingAccount.DUNS_Number__c)) == 1.00)) {
 
                 ExistingExposureAccounts existingExposureAccountMatch = new ExistingExposureAccounts();
 
