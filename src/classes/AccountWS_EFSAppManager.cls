@@ -593,7 +593,7 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
         jsonPayload.writeStringField('fee_id', MONTHLY_FEE);
-        if(myFees.driverFee != null) jsonPayload.writeStringField('fee_amt', myFees.driverFee);
+        if(myFees.monthlyFee != null) jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
         jsonPayload.writeStringField('fee_level', '2');
         jsonPayload.writeStringField('fee_type', '1');
         jsonPayload.writeStringField('fee_max_times_per', '4');
@@ -853,7 +853,7 @@ global class AccountWS_EFSAppManager {
     }
 
     public class CardFees{
-        public String driverFee;
+        public String monthlyFee;
         public String mcShippingFee;
         public String mcEmbossingFee;
 
@@ -865,7 +865,7 @@ global class AccountWS_EFSAppManager {
                     for(SBQQ__QuoteLine__c ql : [SELECT Id, (SELECT Id,Requested_Price__c, SBQQ__ProductCode__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c LIMIT 1].SBQQ__LineItems__r)
                         if(ql.Requested_Price__c != null) productOptionMap.put(ql.SBQQ__ProductCode__c,ql.Requested_Price__c);
                 }
-                if(this.driverFee == null || this.mcShippingFee == null || this.mcEmbossingFee == null){
+                if(this.monthlyFee == null || this.mcShippingFee == null || this.mcEmbossingFee == null){
                     //get the fees based on OLI. not ideal.
                     List<Id> productIds = new List<Id>();
                     //get the product bundles
@@ -873,7 +873,7 @@ global class AccountWS_EFSAppManager {
                         productIds.add(oli.Product2Id);
                     //for each bundle, get the options and create a map of product code to unitprice
                     for(SBQQ__ProductOption__c po : [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'])
-                        if(po.SBQQ__UnitPrice__c != null) productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c); //bundles should not be reusing product codes so this way will work. for now.
+                        if(!productOptionMap.containsKey(po.SBQQ__ProductCode__c) && po.SBQQ__UnitPrice__c != null) productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c); //bundles should not be reusing product codes so this way will work. for now.
                 }
                 setFees(productOptionMap);
             }
@@ -881,7 +881,7 @@ global class AccountWS_EFSAppManager {
 
         private void setFees(Map<String,Decimal> poMap){
             if(poMap.size()>0){
-                if(poMap.containsKey(MONTHLY_FEE)) this.driverFee = String.valueOf(poMap.get(MONTHLY_FEE));
+                if(this.monthlyFee == null && poMap.containsKey(MONTHLY_FEE)) this.monthlyFee = String.valueOf(poMap.get(MONTHLY_FEE));
                // if(this.mcShippingFee == null) this.mcShippingFee = String.valueof(po.SBQQ__UnitPrice__c);
                // if(this.mcEmbossingFee == null) this.mcEmbossingFee = String.valueof(po.SBQQ__UnitPrice__c);
             }
