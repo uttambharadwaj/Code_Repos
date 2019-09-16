@@ -1,7 +1,8 @@
 <!--
 -
-- Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name
-					16/Sep/2019 JArbegast	NAFONBOARD-92   Shipping Option Approval expansion
+- Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name.
+-                   11/Sep/2019 CJackson    NAFONBOARD-96   Added Account Short Name.
+					 16/Sep/2019 JArbegast	NAFONBOARD-92   Shipping Option Approval expansion
 -
 -->
 
@@ -475,6 +476,13 @@
 												{!opportunity.Billing_City__c}, {!opportunity.Billing_State__c}
 												<br/>
 												{!opportunity.Billing_Zip_Postal_Code__c}<br/>
+											</dd>
+
+											<!-- NAFONBOARD-96 -->
+											<dt class="slds-item_label slds-text-color_weak"  title="Second Label">Account Short Name:</dt>
+											<dd class="slds-item_detail" title="Description for second label">
+												<apex:inputField styleClass="slds-input" id="accountShortName" value="{!myFormAccount.Account_Short_Name__c}" html-maxlength="30"/>
+												<p style="font-size:10px">Limit 30 characters</p>
 											</dd>
 										</dl>
 										<br/>
