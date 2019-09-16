@@ -45,7 +45,7 @@ public class AppRequestBeforeUpdateTriggerHandler extends TriggerHandlerBase {
                         fe.Application_Request__c = arToOpptyMap.get(fe.Opportunity__c);
                     }
                     if (fe.Debug_Application_Parameter__c == null) {
-                        fe.Debug_Application_Parameter__c =arToOpptyMap.get(fe.Opportunity__c);
+                        fe.Debug_Application_Parameter__c = arToOpptyMap.get(fe.Opportunity__c);
                     }
                 }
 
