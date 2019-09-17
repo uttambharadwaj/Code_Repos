@@ -40,6 +40,9 @@ public class BOCertificationController {
                     }
                 }
             }
+            else if (program.Use_Upmarket__c) {
+                return true;
+            }
             return false;
         }
     }
