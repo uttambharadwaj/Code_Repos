@@ -29,7 +29,9 @@ public class AppRequestBeforeUpdateTriggerHandler extends TriggerHandlerBase {
             }
 
             for (FleetEnrollment__c fe : [
-                    SELECT Id, Opportunity__c, Opportunity_Number__c, Application_Request__c, Debug_Application_Parameter__c
+                    SELECT Id, Opportunity__c, Opportunity_Number__c, Application_Request__c, Debug_Application_Parameter__c,
+                            Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Address_Line_1__c, Billing_Address_Line_2__c,
+                            Billing_City__c, Billing_State__c, Billing_Postal_Code__c
                     FROM FleetEnrollment__c
                     WHERE Opportunity__c IN :arToOpptyMap.keySet()])
             {
@@ -46,6 +48,22 @@ public class AppRequestBeforeUpdateTriggerHandler extends TriggerHandlerBase {
                     }
                     if (fe.Debug_Application_Parameter__c == null) {
                         fe.Debug_Application_Parameter__c = arToOpptyMap.get(fe.Opportunity__c);
+                    }
+                    //NAFONBOARD-95 - get the billing address from the application instead of the oppty and set it to the fleet enrollment record to keep the bots happy.
+                    if (arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_Street__c != null && fe.Billing_Address_Line_1__c == null) {
+                        fe.Billing_Address_Line_1__c = arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_Street__c;
+                    }
+                    if (arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_Street_Line_2__c != null && fe.Billing_Address_Line_2__c == null) {
+                        fe.Billing_Address_Line_2__c = arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_Street_Line_2__c;
+                    }
+                    if (arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_City__c != null && fe.Billing_City__c == null) {
+                        fe.Billing_City__c = arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_City__c;
+                    }
+                    if (arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_State__c != null && fe.Billing_State__c == null) {
+                        fe.Billing_State__c = arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_State__c;
+                    }
+                    if (arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_Zip_Postal_Code__c != null && fe.Billing_Postal_Code__c == null) {
+                        fe.Billing_Postal_Code__c = arUpdatedMap.get(arToOpptyMap.get(fe.Opportunity__c)).Billing_Zip_Postal_Code__c;
                     }
                 }
 
