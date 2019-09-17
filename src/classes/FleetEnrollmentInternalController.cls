@@ -220,7 +220,7 @@ public with sharing class FleetEnrollmentInternalController {
 
                 for (String option : (program.Fleet_Available_Billing_Cycles__c).split(';')) {
 
-                    if(option != 'Cycle 4')
+                    //if(option != 'Cycle 4')
                         availableBillingCycles.add(new SelectOption(option, option));
 
                 }
@@ -466,24 +466,37 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Customer_Carrier_Number__c = fleetEnrollmentInformation.customerCarrierNumber;
             }
 
-            //NAFONBOARD-77 we want to be able to pass 0's, changing != 0 to != null.
-            if(fleetEnrollmentInformation.feeWaiversSetupFeeAmount != null) fleetEnrollment.Setup_Fee__c = fleetEnrollmentInformation.feeWaiversSetupFeeAmount;
-            if(fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount != null) fleetEnrollment.Card_Replacement_Duration__c = fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount;
-            if(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount != null) fleetEnrollment.Monthly_Card_Charges__c = fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount;
-            if(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount != null) fleetEnrollment.Monthly_Accounting_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount;
-            if(!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate)) fleetEnrollment.Monthly_Accounting_Fee_Waive_Date__c = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate);
-            if(!String.isBlank(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate)) fleetEnrollment.Card_Replacement_Fee_Waive_Date__c  = Date.parse(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate);
-            if(!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate)) fleetEnrollment.Monthly_Card_Charges_Waive_Date__c  = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate);
-            if(fleetEnrollmentInformation.feeWaiversPaperFeeAmount != null) fleetEnrollment.Paper_Fee__c = fleetEnrollmentInformation.feeWaiversPaperFeeAmount;
-            if(fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount != null) fleetEnrollment.Monthly_Activity_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount;
-
-            if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault) {
-                fleetEnrollment.Billing_Cycle__c = fleetEnrollmentInformation.selectedBillingCycle;
-            } else {
-                fleetEnrollment.Billing_Cycle__c = program.Fleet_Default_Billing_Cycle__c;
+            //NAFONBOARD-108 only update the values if the checkbox on the form is checked.
+            if (fleetEnrollmentInformation.feeWaivers == true) {
+                //NAFONBOARD-77 we want to be able to pass 0's, changing != 0 to != null.
+                if (fleetEnrollmentInformation.feeWaiversSetupFee == true) {
+                    if (fleetEnrollmentInformation.feeWaiversSetupFeeAmount != null) fleetEnrollment.Setup_Fee__c = fleetEnrollmentInformation.feeWaiversSetupFeeAmount;
+                }
+                if (fleetEnrollmentInformation.feeWaiversCardReplacementDuration == true) {
+                    if (fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount != null) fleetEnrollment.Card_Replacement_Duration__c = fleetEnrollmentInformation.feeWaiversCardReplacementDurationAmount;
+                    if (!String.isBlank(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate)) fleetEnrollment.Card_Replacement_Fee_Waive_Date__c = Date.parse(fleetEnrollmentInformation.feeWaiversCardReplacementDurationFeeEndDate);
+                }
+                if (fleetEnrollmentInformation.feeWaiversMonthlyCardCharges == true) {
+                    if (fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount != null) fleetEnrollment.Monthly_Card_Charges__c = fleetEnrollmentInformation.feeWaiversMonthlyCardChargesAmount;
+                    if (!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate)) fleetEnrollment.Monthly_Card_Charges_Waive_Date__c = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyCardChargesFeeEndDate);
+                }
+                if (fleetEnrollmentInformation.feeWaiversMonthlyAccountingFee == true) {
+                    if (fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount != null) fleetEnrollment.Monthly_Accounting_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeAmount;
+                    if (!String.isBlank(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate)) fleetEnrollment.Monthly_Accounting_Fee_Waive_Date__c = Date.parse(fleetEnrollmentInformation.feeWaiversMonthlyAccountingFeeEndDate);
+                }
+                if (fleetEnrollmentInformation.feeWaiversMonthlyActivityFee == true) {
+                    if (fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount != null) fleetEnrollment.Monthly_Activity_Fee__c = fleetEnrollmentInformation.feeWaiversMonthlyActivityFeeAmount;
+                }
+                if (fleetEnrollmentInformation.feeWaiversPaperFee == true) {
+                    if (fleetEnrollmentInformation.feeWaiversPaperFeeAmount != null) fleetEnrollment.Paper_Fee__c = fleetEnrollmentInformation.feeWaiversPaperFeeAmount;
+                }
             }
 
-            if (fleetEnrollmentInformation.association) {
+            if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                fleetEnrollment.Billing_Cycle__c = fleetEnrollmentInformation.selectedBillingCycle;
+            }
+
+            if (fleetEnrollmentInformation.association == true) {
                 fleetEnrollment.Association__c = fleetEnrollmentInformation.selectedAssociation;
             }
 
@@ -491,11 +504,14 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Direct_Debit__c = true;
             }
 
-            fleetEnrollment.Hierarchy_Needed__c = fleetEnrollmentInformation.hierarchyNeeded;
+            if (fleetEnrollmentInformation.hierarchyNeeded == true) {
+                fleetEnrollment.Hierarchy_Needed__c = true;
+            }
+
 
             fleetEnrollment.Station_Card__c = fleetEnrollmentInformation.stationCard;
 
-//            fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
+            //fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
 
             fleetEnrollment.Billing_Full_Name__c = opportunity.Billing_Contact_First_Name__c + ' ' + opportunity.Billing_Contact_Last_Name__c;
             fleetEnrollment.Billing_Email__c = opportunity.Billing_Contact_Email__c;
@@ -512,12 +528,6 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Card_Shipping_City__c = fleetEnrollmentInformation.cardShippingCity;
                 fleetEnrollment.Card_Shipping_State__c = fleetEnrollmentInformation.cardShippingState;
                 fleetEnrollment.Card_Shipping_Postal_Code__c = fleetEnrollmentInformation.cardShippingPostalCode;
-            } else {
-                fleetEnrollment.Card_Shipping_Attention__c = opportunity.Billing_Contact_First_Name__c + ' ' + opportunity.Billing_Contact_Last_Name__c;
-                fleetEnrollment.Card_Shipping_Address_Line_1__c = opportunity.Billing_Street__c;
-                fleetEnrollment.Card_Shipping_City__c = opportunity.Billing_City__c;
-                fleetEnrollment.Card_Shipping_State__c = opportunity.Billing_State__c;
-                fleetEnrollment.Card_Shipping_Postal_Code__c = opportunity.Billing_Zip_Postal_Code__c;
             }
 
             if(fleetEnrollmentInformation.specialShippingAddress) {
@@ -549,12 +559,12 @@ public with sharing class FleetEnrollmentInternalController {
 
             if(fleetEnrollmentInformation.association == true) {
 
-                programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c and Usage_Type__c = :fleetEnrollment.Usage_Type__c and Program__c = :program.Id and Association__c =: fleetEnrollmentInformation.selectedAssociation];
+                programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c AND Usage_Type__c = :fleetEnrollment.Usage_Type__c AND Program__c = :program.Id AND Association__c =: fleetEnrollmentInformation.selectedAssociation];
 
             }
             else {
 
-                programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c and Usage_Type__c = :fleetEnrollment.Usage_Type__c and Program__c = :program.Id];
+                programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c AND Usage_Type__c = :fleetEnrollment.Usage_Type__c AND Program__c = :program.Id];
 
             }
 
