@@ -40,6 +40,7 @@
             var location_code = "{!locationCode}";
             var page_name = "App-Page1";
             var card_program = "{!programParameter}";
+            var language = "{!languageCode}";
             document.cookie = "debug_logs=debug_logs;domain=.force.com";
 
             $j = jQuery.noConflict();
@@ -265,7 +266,7 @@
                                             <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Company_Name}" styleClass="styled-input required" required="true" html-tabindex="5" id="companyName" label="" value="{!creditApp.Company_Name__c}" html-maxlength="40" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="doingBusinessAs" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Doing Business As', $ObjectType.WeFormObject__c.fields.Doing_Business_As__c.label)} {!$Label.Optional}"/>
+                                            <apex:outputLabel for="doingBusinessAs" value="{!IF(languageCode == 'en_us', 'Doing Business As', $ObjectType.WeFormObject__c.fields.Doing_Business_As__c.label)} {!$Label.Optional}"/>
                                             <apex:InputField styleClass="styled-input" html-tabindex="6" label="" id="doingBusinessAs" value="{!creditApp.Doing_Business_As__c}" html-maxlength="50" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
