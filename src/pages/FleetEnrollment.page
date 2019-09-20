@@ -757,7 +757,7 @@
                             <apex:outputPanel rendered="{!currentStep != 2}">
                                 <div id="cardImage">
                                     <!--PSOBACKLOG-76-->
-                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/><img src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
+                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/>
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!currentStep == 2}">
