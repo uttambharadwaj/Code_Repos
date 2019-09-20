@@ -54,14 +54,8 @@ public class FleetEnrollmentController2 extends FleetEnrollmentController{
             setCardShippingSame();
         }
 
-        if(currentStep == 2 && program.Fleet_Enrollment_Disable_Driver_Page__c == true) {
-            currentStep = currentStep + 1;
-        }
-        else {
-            currentStep = currentStep + 1;
-        }
-
         if(currentStep == 2) {
+            currentStep += 1;
             setupFleetVehicles();
         }
 
