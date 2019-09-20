@@ -49,6 +49,8 @@ public with sharing class FleetEnrollmentInternalController {
         }
     }
 
+    public Boolean needsManagerApproval{get;set;}
+
     public String errorCode {
         get {
             return ApexPages.currentPage().getParameters().get('errorCode');
@@ -121,7 +123,6 @@ public with sharing class FleetEnrollmentInternalController {
         get {
             List<SelectOption> availableCardShippingOptions = new List<SelectOption>();
             availableCardShippingOptions.add(new SelectOption('', '--- Choose One ---'));
-
             if (program != null && program.Available_Card_Shipping_Options__c != null) {
 
                 for (String option : (program.Available_Card_Shipping_Options__c).split(';')) {
@@ -382,6 +383,9 @@ public with sharing class FleetEnrollmentInternalController {
                             fleetEnrollment.Application_Request__c = applicationRequest.Id;
 
                         }
+
+                        Integer i = [SELECT count() FROM Attachment WHERE ParentId=:fleetEnrollment.Id AND Name LIKE '%_OvernightCardApproval_%' LIMIT 1];
+                        needsManagerApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? false : true;
 
                     } else {
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Unable to find Opportunity!'));
