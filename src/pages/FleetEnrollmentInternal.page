@@ -1139,7 +1139,7 @@
 												</div>
 											</div>
 											<div class="slds-form-element__row" id="attachOvernightCardsApproval" style="display: none; margin-bottom: 10px;">
-												<apex:outputPanel rendered="{!needsManagerApproval}">
+												<apex:outputPanel rendered="{!!bypassApproval}">
 													<div class="slds-form-element slds-size_1-of-1">
 														<div class="slds-form-element__control">
 															<button class="slds-button slds-button_neutral" type="button" onclick="javascript:triggerFileBrowse('overnightCardsFileBody', 'overnightCardsFileName', 'visibleOvernightCardsFileName');">

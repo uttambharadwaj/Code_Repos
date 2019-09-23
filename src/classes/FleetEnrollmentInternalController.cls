@@ -49,8 +49,6 @@ public with sharing class FleetEnrollmentInternalController {
         }
     }
 
-    public Boolean needsManagerApproval{get;set;}
-
     public String errorCode {
         get {
             return ApexPages.currentPage().getParameters().get('errorCode');
@@ -391,7 +389,7 @@ public with sharing class FleetEnrollmentInternalController {
                         }
 
                         Integer i = [SELECT count() FROM Attachment WHERE ParentId=:fleetEnrollment.Id AND Name LIKE '%_OvernightCardApproval_%' LIMIT 1];
-                        needsManagerApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? false : true;
+
                         bypassApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? true : false;
 
                         if (fleetEnrollmentInformation.overnightCardsBillCustomer!=null && fleetEnrollmentInformation.overnightCardsBillCustomer) {
