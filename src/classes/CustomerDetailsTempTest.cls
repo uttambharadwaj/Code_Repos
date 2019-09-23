@@ -2,7 +2,7 @@
 public class CustomerDetailsTempTest {
 
     static testMethod void testOldCustomerDetailsWSDL() {
-        
+
 		new CustomerDetailsWSUtil.WexGeneralFault_element();
 		new CustomerDetailsWSUtil.accountSearchResponse();
 		new CustomerDetailsWSUtil.Address();
@@ -30,7 +30,7 @@ public class CustomerDetailsTempTest {
 		new CustomerDetailsWSUtil.updateSalesforceIDResponse();
 		new CustomerDetailsWSUtil.accountSearchResult();
 		new CustomerDetailsWSUtil.CustomerDetailsSOAPQSPort();
-        
+
     }
     
 }
