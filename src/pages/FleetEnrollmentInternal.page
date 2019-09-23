@@ -244,13 +244,12 @@
 			});
 
 			function pageLoadShipCheck(){
-				bypassShippingApproval = {!program.Bypass_Shipping_Approval__c}; //nafonboard-92
-				const initShipToPar = $j('[id$=overnightCardsBillPartner]').val();
-				const initShipToWex = $j('[id$=overnightCardsBillWex]').val();
-				const initShipping = $j('[id$=attachOvernightCardsApproval]').val();
-				if(!bypassShippingApproval){
-					if (initShipToPar == 'Partner' || initShipToWex == 'Wex') billWex = true;
-					//if (initShipping != null && initShipping != 'Standard') shipOvernight = true;
+				bypassShippingApproval = $j('[id$=bypassHidden]').val(); //nafonboard-92
+				const billTo = $j('[id$=billToHidden]').val();
+				const shipping = $j('[id$=shippingHidden]').val();
+				if(!!bypassShippingApproval){
+					if (billTo == 'Partner' || billTo == 'Wex') billWex = true;
+					if (shipping != null && shipping != 'Standard') shipOvernight = true;
 					if(billWex && shipOvernight) $j('[id$=attachOvernightCardsApproval]').css('display', 'block');
 				}
 
@@ -305,7 +304,7 @@
 				console.log(myShipOption);
 				if(myShipOption != 'Standard') shipOvernight = true; //nafonboard-92
 				else shipOvernight = false;
-				if(shipOvernight && billWex && !bypassShippingApproval) $j('[id$=attachOvernightCardsApproval]').css('display', 'block'); //nafonboard-92
+				if(shipOvernight && billWex && !!bypassShippingApproval) $j('[id$=attachOvernightCardsApproval]').css('display', 'block'); //nafonboard-92
 				else $j('[id$=attachOvernightCardsApproval]').css('display', 'none');
 			}
 
@@ -314,7 +313,7 @@
 				if ($j(triggeringElement).prop('checked')) {
 					if(elementId == 'attachOvernightCardsApproval'){
 						billWex = true;
-						if(shipOvernight && !bypassShippingApproval) //nafonboard-92
+						if(shipOvernight && !!bypassShippingApproval) //nafonboard-92
 							$j('[id$=attachOvernightCardsApproval]').css('display', 'block');
 					} else {
 						billWex = false;
@@ -402,6 +401,11 @@
 	</head>
 	<body onload="moveTo(0,0); resizeTo(600,725);">
 	<apex:form id="fleetImplementationForm" enctype="multipart/form-data">
+		<!--add some inputhidden stuff right here for initialpageload-->
+		<apex:inputHidden value="{!billTo}" id="billToHidden"/>
+		<apex:inputHidden value="{!shipping}" id="shippingHidden"/>
+		<apex:inputHidden value="{!bypassApproval}" id="bypassHidden"/>
+
 		<apex:actionRegion id="area51" renderRegionOnly="false">
 			<apex:actionFunction name="submitForm" action="{!submitForm}" />
 		</apex:actionRegion>
@@ -606,7 +610,7 @@
 															<div class="slds-form-element slds-size_1-of-1">
 																<label class="slds-form-element__label" for="text-input-id-1">Shipping Option</label>
 																<div class="slds-form-element__control">
-																	<apex:selectList id=''html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedCardShippingOption}" styleClass="slds-input" multiSelect="false" size="1" onChange="javascript:setShipOption(this)">
+																	<apex:selectList id="myselectlistid" html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedCardShippingOption}" styleClass="slds-input" multiSelect="false" size="1" onChange="javascript:setShipOption(this)">
 																		<apex:selectOptions value="{!availableCardShippingOptions}"/>
 																	</apex:selectList>
 																</div>

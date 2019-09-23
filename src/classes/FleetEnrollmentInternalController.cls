@@ -65,6 +65,12 @@ public with sharing class FleetEnrollmentInternalController {
         }
     }
 
+    public Boolean bypassApproval {get;set;}
+
+    public String billTo {get;set;}
+
+    public String shipping {get;set;}
+
     public Opportunity opportunity { get; set; }
 
     public Account myFormAccount { get; set; }
@@ -386,6 +392,19 @@ public with sharing class FleetEnrollmentInternalController {
 
                         Integer i = [SELECT count() FROM Attachment WHERE ParentId=:fleetEnrollment.Id AND Name LIKE '%_OvernightCardApproval_%' LIMIT 1];
                         needsManagerApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? false : true;
+                        bypassApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? true : false;
+
+                        if (fleetEnrollmentInformation.overnightCardsBillCustomer!=null && fleetEnrollmentInformation.overnightCardsBillCustomer) {
+                            billTo= 'Customer';
+                        }
+                        if (fleetEnrollmentInformation.overnightCardsBillPartner!=null && fleetEnrollmentInformation.overnightCardsBillPartner) {
+                            billTo= 'Partner';
+                        }
+                        if (fleetEnrollmentInformation.overnightCardsBillWEX!=null && fleetEnrollmentInformation.overnightCardsBillWEX) {
+                            billTo= 'WEX';
+                        }
+
+                        shipping = fleetEnrollmentInformation.selectedCardShippingOption;
 
                     } else {
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Unable to find Opportunity!'));
