@@ -189,8 +189,9 @@ public class CreditWS_Experian {
 
             // ILN5420 is custom Premier Attribute
             if ((description.Code__c).equalsIgnoreCase('ILN5420')) {
+
                 // if ILN5420 is all 9's then need to use alternative attribute for high credit amount value
-                if ((description.Code__c).startsWith('9999')) {
+                if (value.startsWith('9999')) {
                     useREH5420 = true;
                 } else {
                     pgHighCredit = Integer.valueOf(value);
