@@ -468,7 +468,7 @@ public class BOCAFormTriggerHandler {
 
             if(f.Confirmation_Email_Sent__c == false && f.Confirmation_Email_Template__c != null) {
 
-                sendConfirmationEmail(f.Id, contact.Id, f.Confirmation_Email_Template__c);
+                sendConfirmationEmail(f.Id, contact.Id, f.Confirmation_Email_Template__c, f.Communications_Preference__c);
 
                 f.Confirmation_Email_Sent__c = true;
 
@@ -497,9 +497,14 @@ public class BOCAFormTriggerHandler {
         }
 
     }
-    
+
     @future
     public static void sendConfirmationEmail(Id creditAppId, Id contactId, Id templateId) {
+        sendConfirmationEmail(creditAppId, contactId, templateId, 'english');
+    }
+
+    @future
+    public static void sendConfirmationEmail(Id creditAppId, Id contactId, Id templateId, String lang) {
         
         System.debug('### ' + creditAppId);
         System.debug('### ' + contactId);
@@ -516,6 +521,12 @@ public class BOCAFormTriggerHandler {
         if(!bocaIdMap.isEmpty()){
             singleBocaId = bocaIdMap.get('BOCA IDS');
             replyTo = String.valueOf(singleBocaId.get('Email_Address_Noreply__c'));
+
+            // Currently to translate a email DisplayName you have to create a new org-wide address.
+            if (lang == 'french') {
+                Integer atPos = replyTo.indexOf('@');
+                replyTo = replyTo.left(atPos) + '+fr' + replyTo.right(replyTo.length() - atPos);
+            }
         }
         
         Messaging.reserveSingleEmailCapacity(1);

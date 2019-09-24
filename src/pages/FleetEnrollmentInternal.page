@@ -1,6 +1,8 @@
 <!--
 -
 - Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name.
+-                   11/Sep/2019 CJackson    NAFONBOARD-96   Added Account Short Name.
+					 16/Sep/2019 JArbegast	NAFONBOARD-92   Shipping Option Approval expansion
 -
 -->
 
@@ -220,6 +222,7 @@
 			var $j = jQuery.noConflict();
 
 			var assetsLoc = '{!URLFOR($Asset.SLDS)}';
+			var bypassShippingApproval=false; //nafonboard-92
 
 			$j.aljsInit({
 				assetsLocation: assetsLoc,
@@ -234,9 +237,23 @@
 
 				$j('[data-aljs="popover"]').popover();
 
+				pageLoadShipCheck();
+
 				pageRerenderFunctions();
 
 			});
+
+			function pageLoadShipCheck(){
+				bypassShippingApproval = $j('[id$=bypassHidden]').val(); //nafonboard-92
+				const billTo = $j('[id$=billToHidden]').val();
+				const shipping = $j('[id$=shippingHidden]').val();
+				if(!!bypassShippingApproval){
+					if (billTo == 'Partner' || billTo == 'Wex') billWex = true;
+					if (shipping != null && shipping != 'Standard') shipOvernight = true;
+					if(billWex && shipOvernight) $j('[id$=attachOvernightCardsApproval]').css('display', 'block');
+				}
+
+			}
 
 			function pageRerenderFunctions() {
 				$j('[data-aljs="popover"]').popover();
@@ -285,9 +302,9 @@
 			function setShipOption(shipOptionElement){
 				const myShipOption = $j(shipOptionElement).val();
 				console.log(myShipOption);
-				if(myShipOption == 'Overnight') shipOvernight = true;
+				if(myShipOption != 'Standard') shipOvernight = true; //nafonboard-92
 				else shipOvernight = false;
-				if(shipOvernight && billWex) $j('[id$=attachOvernightCardsApproval]').css('display', 'block');
+				if(shipOvernight && billWex && !!bypassShippingApproval) $j('[id$=attachOvernightCardsApproval]').css('display', 'block'); //nafonboard-92
 				else $j('[id$=attachOvernightCardsApproval]').css('display', 'none');
 			}
 
@@ -296,7 +313,7 @@
 				if ($j(triggeringElement).prop('checked')) {
 					if(elementId == 'attachOvernightCardsApproval'){
 						billWex = true;
-						if(shipOvernight)
+						if(shipOvernight && !!bypassShippingApproval) //nafonboard-92
 							$j('[id$=attachOvernightCardsApproval]').css('display', 'block');
 					} else {
 						billWex = false;
@@ -384,6 +401,11 @@
 	</head>
 	<body onload="moveTo(0,0); resizeTo(600,725);">
 	<apex:form id="fleetImplementationForm" enctype="multipart/form-data">
+		<!--add some inputhidden stuff right here for initialpageload-->
+		<apex:inputHidden value="{!billTo}" id="billToHidden"/>
+		<apex:inputHidden value="{!shipping}" id="shippingHidden"/>
+		<apex:inputHidden value="{!bypassApproval}" id="bypassHidden"/>
+
 		<apex:actionRegion id="area51" renderRegionOnly="false">
 			<apex:actionFunction name="submitForm" action="{!submitForm}" />
 		</apex:actionRegion>
@@ -471,6 +493,13 @@
 												{!opportunity.Billing_City__c}, {!opportunity.Billing_State__c}
 												<br/>
 												{!opportunity.Billing_Zip_Postal_Code__c}<br/>
+											</dd>
+
+											<!-- NAFONBOARD-96 -->
+											<dt class="slds-item_label slds-text-color_weak"  title="Second Label">Account Short Name:</dt>
+											<dd class="slds-item_detail" title="Description for second label">
+												<apex:inputField styleClass="slds-input" id="accountShortName" value="{!myFormAccount.Account_Short_Name__c}" html-maxlength="30"/>
+												<p style="font-size:10px">Limit 30 characters</p>
 											</dd>
 										</dl>
 										<br/>
@@ -581,7 +610,7 @@
 															<div class="slds-form-element slds-size_1-of-1">
 																<label class="slds-form-element__label" for="text-input-id-1">Shipping Option</label>
 																<div class="slds-form-element__control">
-																	<apex:selectList html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedCardShippingOption}" styleClass="slds-input" multiSelect="false" size="1" onChange="javascript:setShipOption(this)">
+																	<apex:selectList id="myselectlistid" html-data-parsley-required="true" value="{!fleetEnrollmentInformation.selectedCardShippingOption}" styleClass="slds-input" multiSelect="false" size="1" onChange="javascript:setShipOption(this)">
 																		<apex:selectOptions value="{!availableCardShippingOptions}"/>
 																	</apex:selectList>
 																</div>
@@ -608,7 +637,8 @@
 															<div class="slds-form-element slds-size_1-of-1">
 																<span class="slds-checkbox">
 																	<label class="slds-checkbox__label">
-																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillPartner" value="{!fleetEnrollmentInformation.overnightCardsBillPartner}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards');"/>
+																		<!--nafonboard-92 add togglesection-->
+																		<apex:inputCheckbox styleclass="slds-input" id="overnightCardsBillPartner" value="{!fleetEnrollmentInformation.overnightCardsBillPartner}" html-data-checkbox-group="overnightCards" onChange="toggleCheckboxGroup(this, 'overnightCards'); toggleSection(this, 'attachOvernightCardsApproval');"/>
 																		<span class="slds-checkbox_faux"></span>
 																		<span class="slds-form-element__label">Bill Partner</span>
 																	</label><br/>
@@ -1109,19 +1139,22 @@
 												</div>
 											</div>
 											<div class="slds-form-element__row" id="attachOvernightCardsApproval" style="display: none; margin-bottom: 10px;">
-												<div class="slds-form-element slds-size_1-of-1">
-													<div class="slds-form-element__control">
-														<button class="slds-button slds-button_neutral" type="button" onclick="javascript:triggerFileBrowse('overnightCardsFileBody', 'overnightCardsFileName', 'visibleOvernightCardsFileName');">
-															<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
-																<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
-															</svg>
-															Attach Overnight Cards Approval
-														</button>
-														<input type="text" class="form-control styled-input" id="visibleOvernightCardsFileName" style="pointer-events: none; border: 0; padding-left: 20px;" />
-														<apex:inputText value="{!fleetEnrollmentInformation.overnightCardsFileName}" style="visibility: hidden;" id="overnightCardsFileName" html-data-parsley-required="true" html-data-parsley-error-message="Please attach overnight card shipping approval." html-data-parsley-errors-container=".attachmentsErrorSection"/>
-														<apex:inputFile value="{!fleetEnrollmentInformation.overnightCardsFileBody}" filename="{!fleetEnrollmentInformation.overnightCardsFileName}" id="overnightCardsFileBody" style="visibility: hidden;"/>
+												<apex:outputPanel rendered="{!!bypassApproval}">
+													<div class="slds-form-element slds-size_1-of-1">
+														<div class="slds-form-element__control">
+															<button class="slds-button slds-button_neutral" type="button" onclick="javascript:triggerFileBrowse('overnightCardsFileBody', 'overnightCardsFileName', 'visibleOvernightCardsFileName');">
+																<svg class="slds-button__icon slds-button__icon_left" aria-hidden="true">
+																	<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#upload')}"></use>
+																</svg>
+																Attach Manager Approval
+															</button>
+															<input type="text" class="form-control styled-input" id="visibleOvernightCardsFileName" style="pointer-events: none; border: 0; padding-left: 20px;" />
+															<!--nafonboard-92 change error message since this is no longer just overnight -->
+															<apex:inputText value="{!fleetEnrollmentInformation.overnightCardsFileName}" style="visibility: hidden;" id="overnightCardsFileName" html-data-parsley-required="true" html-data-parsley-error-message="Please attach manager approval." html-data-parsley-errors-container=".attachmentsErrorSection"/>
+															<apex:inputFile value="{!fleetEnrollmentInformation.overnightCardsFileBody}" filename="{!fleetEnrollmentInformation.overnightCardsFileName}" id="overnightCardsFileBody" style="visibility: hidden;"/>
+														</div>
 													</div>
-												</div>
+												</apex:outputPanel>
 											</div>
 											<div class="slds-form-element__row" id="attachTailoredFeeSchedule" style="display: none; margin-bottom: 10px;">
 												<div class="slds-form-element slds-size_1-of-1">

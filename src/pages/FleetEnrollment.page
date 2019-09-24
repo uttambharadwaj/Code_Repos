@@ -1,8 +1,8 @@
 <!--
 *   Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
-<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentController" action="{!init}">
-    <html>
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentController" action="{!init}" language="{!languageCode}">
+    <html lang="{!languageCode}">
     <head>
         <!-- Meta! -->
         <meta name="viewport" content="width=device-width" />
@@ -757,7 +757,7 @@
                             <apex:outputPanel rendered="{!currentStep != 2}">
                                 <div id="cardImage">
                                     <!--PSOBACKLOG-76-->
-                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/><img src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
+                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/>
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!currentStep == 2}">

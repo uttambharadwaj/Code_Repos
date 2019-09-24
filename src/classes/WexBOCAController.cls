@@ -764,7 +764,7 @@ public class WexBOCAController {
                     
                     creditapp.Lead__c = partialLeadRecord.Id;
                     creditApp.status__c = 'lead';
-                    creditApp.Communications_Preference__c = 'English';
+                    creditApp.Communications_Preference__c = brandingUtility.ISO_code__c.equalsIgnoreCase('fr_ca') ? 'French' : 'English';
                     
                     creditApp.TM_Session_ID__c = tmSessionId;
                     
@@ -901,6 +901,7 @@ public class WexBOCAController {
             // Additional information
             creditApp.Confirmation_Email_Sent__c = false;
             creditApp.Confirmation_Email_Template__c = brandingUtility.Email_Template_ID__c;
+            creditApp.Program_Display_Name__c = brandingUtility.Program_Name__c;
             creditApp.IPAddress__c = ipAddress;
             creditApp.TM_Session_ID__c = tmSessionId;
             creditApp.Location_Code__c = locationCode;

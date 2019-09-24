@@ -1,6 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
     <enableEnhancedLookup>true</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableLicensing>false</enableLicensing>
+    <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>Account__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Account</label>
+        <referenceTo>Account</referenceTo>
+        <relationshipName>Programs</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>EstimatedSubscriptionOpportunityTM__c</fullName>
+        <externalId>false</externalId>
+        <formula>(TotalSubscriptions__c /  IF(Total_Number_of_Units__c = 0, 1, Total_Number_of_Units__c) )*  Total_Number_of_Units__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Estimated Subscription Opportunity (TM)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Card_OpportunityTE__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Card Opportunity (T&amp;E)</label>
+        <summarizedField>T_E_Program__c.of_Cards__c</summarizedField>
+        <summaryForeignKey>T_E_Program__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Card_Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Card Opportunity (Fleet)</label>
+        <summarizedField>FleetCard_Program__c.Number_of_Cards__c</summarizedField>
+        <summaryForeignKey>FleetCard_Program__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_PC_Card_Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Card Opportunity (PC Card)</label>
+        <summarizedField>PC_Card_Program__c.of_Cards__c</summarizedField>
+        <summaryForeignKey>PC_Card_Program__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Spend_OpportunityPC__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Spend Opportunity (PC Card)</label>
+        <summarizedField>PC_Card_Program__c.Total_Spend__c</summarizedField>
+        <summaryForeignKey>PC_Card_Program__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Estimated_Spend_Opportunity__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Spend Opportunity (T&amp;E)</label>
+        <summarizedField>T_E_Program__c.Total_Spend__c</summarizedField>
+        <summaryForeignKey>T_E_Program__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Sum_of_Site__c</fullName>
+        <externalId>false</externalId>
+        <label>Total # of Sites (SCM)</label>
+        <summarizedField>SCM_Solution__c.of_Sites__c</summarizedField>
+        <summaryForeignKey>SCM_Solution__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>TotalSubscriptions__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Subscriptions</label>
+        <summarizedField>Telematics_Program__c.Monthly_Subscription_Unit__c</summarizedField>
+        <summaryForeignKey>Telematics_Program__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Gallons__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Volume Opportunity (Fleet)</label>
+        <summarizedField>FleetCard_Program__c.Total_Gallons__c</summarizedField>
+        <summaryForeignKey>FleetCard_Program__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Number_of_Units__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimated Unit Opportunity (Telematics)</label>
+        <summarizedField>Telematics_Program__c.Number_of_Units__c</summarizedField>
+        <summaryForeignKey>Telematics_Program__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_of_Sites_CardLock__c</fullName>
+        <externalId>false</externalId>
+        <label>Total # of Sites (CardLock)</label>
+        <summarizedField>CardLock__c.of_Sites__c</summarizedField>
+        <summaryForeignKey>CardLock__c.Program__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <label>Competitive Detail</label>
     <listViews>
         <fullName>All</fullName>
         <columns>Account__c</columns>
@@ -19,4 +196,13 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <nameField>
+        <displayFormat>A-{0000000}</displayFormat>
+        <label>Asset Number</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Competitive Details</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
 </CustomObject>
