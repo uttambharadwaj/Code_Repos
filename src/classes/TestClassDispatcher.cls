@@ -78,15 +78,15 @@ public class TestClassDispatcher {
     @isTest static void testBOProngTriggerValidations(){
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
-/*
-    @isTest static void testCampaignGetCode() {
-        CampaignCodeGeneratorTest.test_getCode();
+
+    @isTest static void testCreateCampaignCode() {
+        CampaignCodeGeneratorTest.test_createCampaignCode();
     }
 
     @isTest static void testCampaignCodeGenerate() {
         CampaignCodeGeneratorTest.test_generateCode();
     }
-*/
+
     @isTest static void testCampaignProgramDelete(){
         CmpgnProgramTriggerTest.testCampaignProgramDelete();
     }
