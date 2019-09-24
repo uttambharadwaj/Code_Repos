@@ -199,12 +199,7 @@ if(result == true) {
 nextStep();
 }
 else {
-if(getParameterByName('lang') === 'fr_ca') {
-    $j('[id$=previousAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage filled" style="padding-top: 3px; padding-bottom: 3px;">Veuillez entrer un num&eacute;ro de client &agrave; 10 chiffres.</div>');
-}
-else {
-    $j('[id$=previousAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage filled" style="padding-top: 3px; padding-bottom: 3px;">Please enter a valid 10-digit customer number.</div>');
-}
+    $j('[id$=previousAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage filled" style="padding-top: 3px; padding-bottom: 3px;">'+$Label.Account_Number_Error+'</div>');
 
 $j('[id$=previousAccountNumber]').on('click', function() {
     $j(this).removeClass("erroredInput");

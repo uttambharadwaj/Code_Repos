@@ -53,6 +53,7 @@
             window.$Label = window.$Label || {};
             $Label.Conversion_Key = '{!program.Conversion_Key__c}';
             $Label.Language_Code = '{!languageCode}';
+            $Label.Account_Number_Error = '{!IF(brandingUtility.Conversion_Form_Account_Error_Test__c != null, brandingUtility.Conversion_Form_Account_Error_Test__c, 'Please enter a valid account number (' + previousAccountNumberLength + ' digits).')}';
         </script>
 
         <style>
