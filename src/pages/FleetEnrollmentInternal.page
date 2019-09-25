@@ -492,6 +492,8 @@
 												{!opportunity.Billing_Street__c}<br/>
 												{!opportunity.Billing_City__c}, {!opportunity.Billing_State__c}
 												<br/>
+												{!opportunity.Billing_Country__c}
+												<br/>
 												{!opportunity.Billing_Zip_Postal_Code__c}<br/>
 											</dd>
 

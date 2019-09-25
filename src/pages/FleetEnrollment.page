@@ -169,6 +169,42 @@
                 return true;
             }
 
+            function flipToProvince(id) {
+
+                var provinces = ['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'];
+
+                $j("[id$=" + id + "] option").each(function() {
+                    if($j(this).val() !== '' && $j.inArray($j(this).val(), provinces) == -1) {
+                        $j(this).remove();
+                    }
+                });
+
+                var currentValues = new Array();
+
+                $j("[id$=" + id + "] option").each(function() {
+                    currentValues.push($j(this).val());
+                });
+
+                console.log(currentValues);
+
+                for(var i = 0; i < provinces.length; i++) {
+                    if($j.inArray(provinces[i], currentValues) == -1) {
+                        $j("[id$=" + id + "]").append($j('<option>', { value: provinces[i], text: provinces[i] }));
+                    }
+                }
+
+            }
+
+            function validateCanadianPostalCode(value) {
+                if(value !== "") {
+                    var characterReg = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/i;
+                    if(!characterReg.test(value)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
             function validatePostalCode(value) {
                 if(value !== "") {
                     var characterReg = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
@@ -260,9 +296,16 @@
                             $j('[id$=billingEmail]').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid Email</div>'); errorCount++;
                         }
 
-                        if(!validatePostalCode($j('[id$=billingPostalCode]').val())) {
-                            $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid Postal Code</div>'); errorCount++;
+                        if(boca_language_code === "en_ca" || boca_language_code === "fr_ca") {
+                            if($j('[id$=billingPostalCode]').val() != null && $j('[id$=billingPostalCode]').val() !== "" && !validateCanadianPostalCode($j('[id$=billingPostalCode]').val())) {
+                                $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Postal_Code + '</div>'); errorCount++;
+                            }
+                        } else {
+                            if($j('[id$=billingPostalCode]').val() != null && $j('[id$=billingPostalCode]').val() !== "" &&!validatePostalCode($j('[id$=billingPostalCode]').val())) {
+                                $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid Postal Code</div>'); errorCount++;
+                            }
                         }
+
 
                         // For each fleet contact, validate that all fields are filled in and they are valid phone/email
                         $j('[id$=fleetContact]').find('.fleetContact').each(function(index) {
@@ -425,6 +468,9 @@
                     return self.indexOf(value) === index;
                 });
             }
+
+            window.fe_language_code = '{!languageCode}';
+
         </script>
 
         <style>
@@ -961,6 +1007,13 @@
                                     <apex:inputText maxlength="20" value="{!fleetEnrollment.Billing_Postal_Code__c}" id="billingPostalCode" styleClass="postal styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Postal_Code__c.label}"/>
                                 </div>
                             </div>
+                            <script>
+                                if(fe_language_code === 'en_ca' || fe_language_code == 'fr_ca') {
+                                    flipToProvince('billingState');
+                                }
+                                $j("[id$=billingState] option").eq('').text('{!JSENCODE($Label.BOCA_Picklist_Choose_One)}');
+                                pageLoadFunctions();
+                            </script>
                         </apex:outputPanel>
                         <apex:outputPanel id="shippingContact" rendered="{!currentStep == 1}">
                             <div class="twelve columns clearfix">
