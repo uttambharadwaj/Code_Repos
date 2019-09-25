@@ -221,10 +221,10 @@
                 var needAssistance = "";
 
                 if(crd !== "") {
-                    needAssistance = "<br/><b>Need Assistance?</b> Call {!program.Implementation_Team_Number__c}";
+          needAssistance = "<br/>{!$Label.Fleet_Need_Assistance} {!program.Implementation_Team_Number__c}";
                 }
 
-                $j('[id$=fleetEnrollmentForm]').find('.stepErrors').css('display', 'block').html('<p><b>Please correct the following error(s):</b></p><ul></ul>' + needAssistance);
+        $j('[id$=fleetEnrollmentForm]').find('.stepErrors').css('display', 'block').html('<p><b>{!$Label.Fleet_Please_correct_errors}</b></p><ul></ul>' + needAssistance);
 
                 var errors = errorMessages.unique();
 
@@ -269,61 +269,61 @@
                         // Catch all to check for required fields
                         $j('[id$=fleetEnrollmentForm]').find('.required').each(function() {
                             if($j(this).val() === null || $j(this).val() === "" || $j(this).val() === "#") {
-                                errorMessages.push('Please fill in all required fields');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
                                 if($j(this).next('.helpIcon').length > 0) {
-                                    $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
                                 else {
-                                    $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
                             }
                         });
 
                         if(!validatePhone($j('[id$=billingPhone]').val())) {
-                            $j('[id$=billingPhone]').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid Phone</div>'); errorCount++;
+              $j('[id$=billingPhone]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Phone}</div>'); errorCount++;
                         }
 
                         if(!validateEmail($j('[id$=billingEmail]').val())) {
-                            $j('[id$=billingEmail]').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid Email</div>'); errorCount++;
+              $j('[id$=billingEmail]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Email}</div>'); errorCount++;
                         }
 
                         if(!validatePostalCode($j('[id$=billingPostalCode]').val())) {
-                            $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid Postal Code</div>'); errorCount++;
+              $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Postal_Code}</div>'); errorCount++;
                         }
 
                         // For each fleet contact, validate that all fields are filled in and they are valid phone/email
                         $j('[id$=fleetContact]').find('.fleetContact').each(function(index) {
                             if($j(this).find('.fleetContactFirstName').val() === "" && ($j(this).find('.fleetContactLastName').val() !== "" || $j(this).find('.fleetContactEmail').val() !== "" || $j(this).find('.fleetContactPhone').val() !== "")) {
-                                errorMessages.push('Please fill in all required fields');
-                                $j(this).find('.fleetContactFirstName').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                $j(this).find('.fleetContactFirstName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
                                 errorCount++;
                             }
 
                             if($j(this).find('.fleetContactLastName').val() === "" && ($j(this).find('.fleetContactFirstName').val() !== "" || $j(this).find('.fleetContactEmail').val() !== "" || $j(this).find('.fleetContactPhone').val() !== "")) {
-                                errorMessages.push('Please fill in all required fields');
-                                $j(this).find('.fleetContactLastName').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                $j(this).find('.fleetContactLastName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
                                 errorCount++;
                             }
 
                             if(($j(this).find('.fleetContactFirstName').val() !== "" || $j(this).find('.fleetContactLastName').val() !== "")&& $j(this).find('.fleetContactEmail').val() === "") {
-                                errorMessages.push('Please fill in all required fields');
-                                $j(this).find('.fleetContactEmail').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                $j(this).find('.fleetContactEmail').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
                                 errorCount++;
                             }
                             else if(!validateEmail($j(this).find('.fleetContactEmail').val())) {
-                                errorMessages.push('Please fill in all required fields');
-                                $j(this).find('.fleetContactEmail').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid Email</div>');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                $j(this).find('.fleetContactEmail').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Email}</div>');
                                 errorCount++;
                             }
 
                             if(($j(this).find('.fleetContactFirstName').val() !== "" || $j(this).find('.fleetContactLastName').val() !== "") && $j(this).find('.fleetContactPhone').val() === "") {
-                                errorMessages.push('Please fill in all required fields');
-                                $j(this).find('.fleetContactPhone').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                $j(this).find('.fleetContactPhone').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>');
                                 errorCount++;
                             }
                             else if(!validatePhone($j(this).find('.fleetContactPhone').val())) {
-                                errorMessages.push('Please fill in all required fields');
-                                $j(this).find('.fleetContactPhone').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid Phone</div>');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                $j(this).find('.fleetContactPhone').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Phone}</div>');
                                 errorCount++;
                             }
                         });
@@ -334,18 +334,18 @@
                         // Catch all to check for required fields
                         $j('[id$=fleetEnrollmentForm]').find('.required').each(function() {
                             if($j(this).val() === null || $j(this).val() === "") {
-                                errorMessages.push('Please fill in all required fields');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
                                 if($j(this).next('.helpIcon').length > 0) {
-                                    $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
                                 else {
-                                    $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
                             }
                         });
 
                         if($j('[id$=numberOfCards]').val() !== "" && !validateNumberOfCards($j('[id$=numberOfCards]').val())) {
-                            $j('[id$=numberOfCards]').addClass('erroredInput').after('<div class="fieldErrorMessage">Please enter a value between 1 and 30</div>'); errorCount++;
+              $j('[id$=numberOfCards]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Please_enter_a_value_between_1_and_30}</div>'); errorCount++;
                         }
 
                     }
@@ -355,12 +355,12 @@
                         $j('[id$=fleetEnrollmentForm]').find('.required').each(function() {
                             console.log($j(this).attr('class'));
                             if($j(this).val() === null || $j(this).val() === "") {
-                                errorMessages.push('Please fill in all required fields');
+                errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
                                 if($j(this).next('.helpIcon').length > 0) {
-                                    $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="vehicleFieldErrorMessage">Required</div>'); errorCount++;
+                  $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="vehicleFieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
                                 else {
-                                    $j(this).addClass('erroredInput').after('<div class="vehicleFieldErrorMessage">Required</div>'); errorCount++;
+                  $j(this).addClass('erroredInput').after('<div class="vehicleFieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
                             }
                         });
@@ -373,7 +373,7 @@
                             if($j(this).find('.firstName').val() !== "") { numberOfDrivers++; }
                         });
                         if(numberOfDrivers == 0) {
-                            errorMessages.push('At least one driver is required');
+              errorMessages.push('{!$Label.Fleet_At_least_one_driver_is_required}');
                             errorCount++;
                         }
 
@@ -381,39 +381,39 @@
                             if($j(this).find('.driverIdRequired').length > 0) {
                                 if($j(this).find('.lastName').val() === "" && ($j(this).find('.firstName').val() !== "" || $j(this).find('.driverIdRequired').val() !== "")) {
                                     console.log('hit 1');
-                                    errorMessages.push('Please fill in all required fields');
-                                    $j(this).find('.lastName').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                  $j(this).find('.lastName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
 
                                 if($j(this).find('.firstName').val() === "" && ($j(this).find('.lastName').val() !== "" || $j(this).find('.driverIdRequired').val() !== "")) {
                                     console.log('hit 2');
-                                    errorMessages.push('Please fill in all required fields');
-                                    $j(this).find('.firstName').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                  $j(this).find('.firstName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
 
                                 if(($j(this).find('.firstName').val() !== "" || $j(this).find('.lastName').val() !== "") && $j(this).find('.driverIdRequired').val() === "") {
                                     console.log('hit 3');
-                                    errorMessages.push('Please fill in all required fields');
-                                    $j(this).find('.driverId').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                  $j(this).find('.driverId').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
 
                                 if($j('input[name=driverIdOption]:checked').val() == "custom" && !validateDriverId($j(this).find('.driverIdRequired').val())) {
                                     console.log('hit 4');
-                                    errorMessages.push('Please enter a valid ' + didLength + '-digit driver ID');
+                  errorMessages.push('{!$Label.Fleet_Please_enter_a_valid_driver_ID_1} ' + didLength + '{!$Label.Fleet_Please_enter_a_valid_driver_ID_2}');
                                     $j(this).find('.driverId').addClass('erroredInput').after('<div class="fieldErrorMessage">Invalid</div>'); errorCount++;
                                 }
                             }
                             else {
                                 if($j(this).find('.lastName').val() === "" && $j(this).find('.firstName').val() !== "") {
                                     console.log('hit 1');
-                                    errorMessages.push('Please fill in all required fields');
-                                    $j(this).find('.lastName').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                  $j(this).find('.lastName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
 
                                 if($j(this).find('.firstName').val() === "" && $j(this).find('.lastName').val() !== "") {
                                     console.log('hit 2');
-                                    errorMessages.push('Please fill in all required fields');
-                                    $j(this).find('.firstName').addClass('erroredInput').after('<div class="fieldErrorMessage">Required</div>'); errorCount++;
+                  errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
+                  $j(this).find('.firstName').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
                                 }
                             }
                         });
@@ -429,9 +429,9 @@
 
                             for(i = 0; i < driverIdValues.length; i++) {
                                 if (sortedDriverIdValues[i + 1] == sortedDriverIdValues[i]) {
-                                    errorMessages.push('Please ensure each driver ID is unique.');
+                  errorMessages.push('{!$Label.Fleet_Please_ensure_each_driver_ID_is_unique}');
                                     $j('[id$=driverDetails]').find('.driverIdRequired').each(function() {
-                                        $j(this).filter(function() { return this.value == sortedDriverIdValues[i]; }).addClass('erroredInput').after('<div class="fieldErrorMessage">Not Unique</div>'); errorCount++; ;
+                    $j(this).filter(function () { return this.value == sortedDriverIdValues[i]; }).addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Not_Unique}</div>'); errorCount++;;
                                     });
                                 }
                             }
@@ -676,13 +676,14 @@
                 #cardImage { text-align: center; width: 100%; margin: 30px auto 0 auto; overflow: visible; height: 20px; }
                 #cardImage img { max-width: 220px; position: relative; z-index: 100; pointer-events: none; }
 
-                .step { margin: 6px 6px 0 0; height: 54px; float: left; width: 118px; background: #eee; line-height: 5px; }
+                .step { margin: 6px 6px 0 0; height: 70px; float: left; width: 118px; background: #eee; line-height: 5px; }
+
                 .stepExpanded { width: 118px; background: #eee; line-height: 5px; width: 140px; padding-left: 9px; }
                 .step-clickable { cursor: pointer; }
                 .stepIndicatorActive { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-arrow.png')}) no-repeat; width: 34px; height: 43px; margin-top: 4px; margin-left: 1px; }
             .stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
             .stepIndicatorIncomplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle.png')}) no-repeat; width: 34px; height: 43px; margin-top: 8px; margin-left: 1px; }
-            .stepDescription { float: left; font-size: 12px; line-height: 5px; font-size: 12px; letter-spacing: -0.07em; margin-top: 17px; width: 80px; }
+            .stepDescription { float: left; font-size: 12px; line-height: 10px; letter-spacing: -0.10em; margin-top: 17px; width: 80px; }
             .stepDescription p { margin: 0 0 8px 1px; }
             .step:first-child { margin-left: 6px; }
             .step:last-child { margin-right: 0px; }
@@ -749,7 +750,7 @@
     <div id="header">
         <div class="container">
             <div class="row">
-                <div id="programName" class="six columns">{!brandingUtility.Program_Name__c}</div>
+                <div id="programName" class="six columns">{!program.Brand_Long_Name__c}</div>
                 <div id="contactUs" class="six columns">
                     <apex:outputText rendered="{!creditLineAmount != null}">
                         Questions? Call {!program.Implementation_Team_Number__c}
@@ -764,18 +765,14 @@
                 <div class="four columns">
                     <div id="welcomeMessage">
                         <apex:outputText rendered="{!creditLineAmount != null}">
-                            <h2>Congratulations!</h2>
-                            <p>You've been approved</p>
-                            <p>Credit line: <apex:outputText value="{0, number, $###,###,###}">
+                <apex:outputText value="{!$Label.Fleet_Approved_1}" escape="false" />
+                <apex:outputText value="{0, number, $###,###,###}">
                                     <apex:param value="{!creditLineAmount}"/>
                                 </apex:outputText>
-                            </p>
-                            <p>Please take a few minutes to set up your account and receive your new cards!!</p>
+                <apex:outputText value="{!$Label.Fleet_Approved_2}" escape="false" />
                         </apex:outputText>
                         <apex:outputText rendered="{!creditLineAmount == null}">
-                            <h2>Thank you for applying!</h2>
-                            <p>&nbsp;</p>
-                            <p><b>Next Step: </b>Please provide vehicle and driver information for your account set up.</p>
+                <apex:outputText value="{!$Label.Fleet_Thankyou_Applying}" escape="false" />
                             <apex:outputText rendered="{!currentStep != 2}">
                                 <p>&nbsp;</p>
                             </apex:outputText>
@@ -783,8 +780,7 @@
                         <apex:outputPanel id="staticCardImage">
                             <apex:outputPanel rendered="{!currentStep != 2}">
                                 <div id="cardImage">
-                                    <!--PSOBACKLOG-76-->
-                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/>
+                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" />
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!currentStep == 2}">
@@ -831,31 +827,34 @@
                                 <div onclick="{!IF(AND(currentStep > 1), 'goToStep(1);', '')}" class="step {!IF(AND(currentStep == 1), 'stepActive', '')} {!IF(AND(currentStep > 1), 'step-clickable', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
                                     <div class="{!IF(AND(currentStep == 1), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 1), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 1), 'stepIndicatorIncomplete', '')}"></div>
                                     <div class="stepDescription">
-                                        <p>Step 1:</p><p><b>your company</b></p>
+                      <apex:outputText value="{!$Label.Step_1_your_company}" escape="false" />
                                     </div>
                                 </div>
                                 <div onclick="{!IF(AND(currentStep > 2), 'goToStep(2);', '')}" class="step {!IF(AND(currentStep == 2), 'stepActive', '')} {!IF(AND(currentStep > 2), 'step-clickable', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
                                     <div class="{!IF(AND(currentStep == 2), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 2), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 2), 'stepIndicatorIncomplete', '')}"></div>
                                     <div class="stepDescription">
-                                        <p>Step 2:</p><p><b>card printing</b></p>
+                      <apex:outputText value="{!$Label.Step_2_card_printing}" escape="false" />
                                     </div>
                                 </div>
                                 <div onclick="{!IF(AND(currentStep > 3), 'goToStep(3);', '')}" class="step {!IF(AND(currentStep == 3), 'stepActive', '')} {!IF(AND(currentStep > 3), 'step-clickable', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
                                     <div class="{!IF(AND(currentStep != null, currentStep == 3), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 3), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 3), 'stepIndicatorIncomplete', '')}"></div>
                                     <div class="stepDescription">
-                                        <p>Step 3:</p><p><b>vehicle details</b></p>
+                      <apex:outputText value="{!$Label.Step_3_vehicle_details}" escape="false" />
                                     </div>
                                 </div>
                                 <div onclick="{!IF(AND(currentStep > 4), 'goToStep(4);', '')}" class="step {!IF(AND(currentStep == 4), 'stepActive', '')} {!IF(AND(currentStep > 4), 'step-clickable', '')}" style="display: {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c == false, 'block', 'none')};">
                                     <div class="{!IF(AND(currentStep == 4), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 4), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 4), 'stepIndicatorIncomplete', '')}"></div>
                                     <div class="stepDescription">
-                                        <p>Step 4:</p><p><b>driver details</b></p>
+                      <apex:outputText value="{!$Label.Step_4_driver_details}" escape="false" />
                                     </div>
                                 </div>
                                 <div class="step {!IF(AND(currentStep == 5), 'stepActive', '')} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c, 'stepExpanded', '')}">
                                     <div class="{!IF(AND(currentStep == 5), 'stepIndicatorActive', '')} {!IF(AND(currentStep > 5), 'stepIndicatorComplete', '')} {!IF(AND(currentStep < 5), 'stepIndicatorIncomplete', '')}"></div>
                                     <div class="stepDescription">
-                                        <p>Step {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c == false, '5', '4')}:</p><p><b>summary</b></p>
+                      <p>{!$Label.Fleet_Step} {!IF(program.Fleet_Enrollment_Disable_Driver_Page__c == false, '5', '4')}:</p>
+                      <p>
+                        <b>{!$Label.Fleet_summary}</b>
+                      </p>
                                     </div>
                                 </div>
                             </div>
