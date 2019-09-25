@@ -31,6 +31,8 @@
 
             var didLength= "{!selectedDIDLength}";
 
+            var language = "{!languageCode}";
+
             document.cookie = "debug_logs=debug_logs;domain=.force.com";
 
             $j(document).ready(function() {
@@ -88,7 +90,32 @@
                 $j('[id$=billingLastName]').on('keyup', function() { $j('[id$=primaryFleetContactLastName]').val($j(this).val()); });
                 $j('[id$=billingEmail]').on('keyup', function() { $j('[id$=primaryFleetContactEmail]').val($j(this).val()); });
                 $j('[id$=billingPhone]').on('keyup', function() { $j('[id$=primaryFleetContactPhone]').val($j(this).val()); });
+                if(language === "en_ca" || language === "fr_ca") {
+                    flipToProvince('billingState');
+                }
 
+            }
+
+            function flipToProvince(id) {
+                var provinces = ['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'];
+                $j("[id$=" + id + "] option").each(function() {
+                    if($j(this).val() !== '' && $j.inArray($j(this).val(), provinces) == -1) {
+                        $j(this).remove();
+                    }
+                });
+
+                var currentValues = new Array();
+
+                $j("[id$=" + id + "] option").each(function() {
+                    currentValues.push($j(this).val());
+                });
+
+                for(var i = 0; i < provinces.length; i++) {
+                    if($j.inArray(provinces[i], currentValues) == -1) {
+                        $j("[id$=" + id + "]").append($j('<option>', { value: provinces[i], text: provinces[i] }));
+                    }
+                }
+                $j("[id$=billingState] option").eq('').text('{!JSENCODE($Label.BOCA_Picklist_Choose_One)}');
             }
 
             function disableSubmit() {
