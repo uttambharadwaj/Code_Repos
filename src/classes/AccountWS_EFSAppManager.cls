@@ -16,7 +16,9 @@
 global class AccountWS_EFSAppManager {
 
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
-    public final static String MONTHLY_FEE = '118';
+    public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
+    public final static String SHIPPING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
+    public final static String EMBOSSING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
 
     public static Boolean integrationRunning { get; set; }
 
@@ -384,7 +386,7 @@ global class AccountWS_EFSAppManager {
             //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
             //OTRONBOARD-55 Shipping and Embossing Fees
-            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fees', myFees.mcShippingFee);
+            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fee', myFees.mcShippingFee);
             if(myFees.mcEmbossingFee != null) jsonPayload.writeStringField('mcfee', myFees.mcEmbossingFee);
 
             // End of "carrier"
@@ -882,8 +884,8 @@ global class AccountWS_EFSAppManager {
         private void setFees(Map<String,Decimal> poMap){
             if(poMap.size()>0){
                 if(this.monthlyFee == null && poMap.containsKey(MONTHLY_FEE)) this.monthlyFee = String.valueOf(poMap.get(MONTHLY_FEE));
-               // if(this.mcShippingFee == null) this.mcShippingFee = String.valueof(po.SBQQ__UnitPrice__c);
-               // if(this.mcEmbossingFee == null) this.mcEmbossingFee = String.valueof(po.SBQQ__UnitPrice__c);
+                if(this.mcShippingFee == null && poMap.containsKey(SHIPPING_FEE)) this.mcShippingFee = String.valueOf(poMap.get(SHIPPING_FEE));
+                if(this.mcEmbossingFee == null && poMap.containsKey(EMBOSSING_FEE)) this.mcEmbossingFee = String.valueOf(poMap.get(EMBOSSING_FEE));
             }
         }
     }
