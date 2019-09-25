@@ -77,6 +77,8 @@ public virtual class FleetEnrollmentController {
     // Branding - Elements from the specified program
     public Program__c program { get; set; }
 
+    public BOCA_Res__c brandingUtility { get; set; }
+
     public Program_Template_Account__c programTemplateAccount { get; set; }
 
     public String configuredDIDLength {
@@ -468,7 +470,7 @@ public virtual class FleetEnrollmentController {
             if(programId != null) {
 
                 program = WexBrandingController.getProgram(programId);
-
+                brandingUtility = WexBrandingController.getBrandingUtilRecordByProgramId(programId, languageCode);
                 System.debug('### ' + program);
 
                 if(program != null && (program.Publish_Fleet_Data_Capture_Form__c != false || program.Publish_Fleet_Data_Capture_Form_1_1__c != false)) {

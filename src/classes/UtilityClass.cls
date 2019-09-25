@@ -146,6 +146,12 @@ global class UtilityClass {
         return searchVariables;
     }
 
+    // SELECT * Query Builder
+    public static String selectStar(String sobjectName) {
+        Set<String> fieldNames = Schema.describeSObjects(new List<String> {sobjectName})[0].fields.getMap().keyset();
+        List<String> iterableFields = new List<String>(fieldNames);
+        return String.format('SELECT {0} FROM {1} ', new List<String> {String.join(iterableFields, ','), sobjectName});
+    }
     /**************************END QUERY UTILITIES****************************/
 
     /******************************MISCELLANEOUS******************************/
