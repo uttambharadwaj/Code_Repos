@@ -222,6 +222,11 @@ public with sharing class CreditWS_LexisNexisRDP {
                             lexisNexisBIIDResponse.biidScore = Integer.valueOf(parameterDetail.Values[0].Value);
 
                         }
+                        else if((parameterDetail.Group_x).equalsIgnoreCase('COMPREHENSIVE_VERIFICATION_INDEX') && (parameterDetail.Name).equalsIgnoreCase('CVI')) {
+
+                            lexisNexisBIIDResponse.cviScore = Integer.valueOf(parameterDetail.Values[0].Value);
+
+                        }
                     }
                 }
             }
