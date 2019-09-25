@@ -198,21 +198,17 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             HTTPResponse httpResponse = http.send(httpRequest);
 
-            System.debug(httpResponse.getBody());
+            System.debug('Lexis Nexis RDP repsonse body: ' + httpResponse.getBody());
 
             CreditWSUtil_LexisNexisBIID response = CreditWSUtil_LexisNexisBIID.parse(CreditWS_LexisNexisRDP.jsonKeywordSafeReplace(httpResponse.getBody(), false));
 
-            System.debug(response);
+            System.debug('Lexis Nexis RDP response: ' + response);
 
             if(response != null) {
 
                 for(CreditWSUtil_LexisNexisBIID.cls_Products product : response.Products) {
 
-                    if(!String.isEmpty(product.ExecutedStepName) && (product.ExecutedStepName).equalsIgnoreCase('Decision')) {
-
-                        lexisNexisBIIDResponse.biidWorkflowResult = product.ProductStatus;
-
-                    }
+                    lexisNexisBIIDResponse.biidWorkflowResult = product.ProductStatus;
 
                     for(CreditWSUtil_LexisNexisBIID.cls_ParameterDetails parameterDetail : product.ParameterDetails) {
 
@@ -226,15 +222,14 @@ public with sharing class CreditWS_LexisNexisRDP {
                             lexisNexisBIIDResponse.biidScore = Integer.valueOf(parameterDetail.Values[0].Value);
 
                         }
+                        else if((parameterDetail.Group_x).equalsIgnoreCase('COMPREHENSIVE_VERIFICATION_INDEX') && (parameterDetail.Name).equalsIgnoreCase('CVI')) {
 
+                            lexisNexisBIIDResponse.cviScore = Integer.valueOf(parameterDetail.Values[0].Value);
+
+                        }
                     }
-
                 }
-
-
-
             }
-
 
         } catch (Exception e) {
 
@@ -510,7 +505,7 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             CreditWSUtil_LexisNexisSBA.SmallBusinessAnalyticsResponse smallBusinessAnalyticsResponse = lexisNexisSBACalloutSOAP.SmallBusinessAnalytics(smallBusinessAnalyticsRequestElement.User_x, smallBusinessAnalyticsRequestElement.Options, smallBusinessAnalyticsRequestElement.SearchBy);
 
-            System.debug(smallBusinessAnalyticsResponse);
+            System.debug('Lexis Nexis SBA response: ' + smallBusinessAnalyticsResponse);
 
             try {
 

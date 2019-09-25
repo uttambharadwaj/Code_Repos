@@ -16,6 +16,9 @@
 global class AccountWS_EFSAppManager {
 
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
+    public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
+    public final static String SHIPPING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
+    public final static String EMBOSSING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
 
     public static Boolean integrationRunning { get; set; }
 
@@ -29,7 +32,7 @@ global class AccountWS_EFSAppManager {
 
     }
 
-// Future method for Callout #1
+    // Future method for Callout #1
     @future(callout=true)
     public static void integrateOnlineApplication_Future(Id onlineApplicationId) {
         String myQuery = onlineAppQuery(onlineApplicationId);
@@ -45,16 +48,6 @@ global class AccountWS_EFSAppManager {
         List<OnlineApplication__c> records = Database.query(myQuery);
         integrateOnlineApplication(records[0]);
     }
-    public static String onlineAppQuery(Id onlineApplicationId){
-        String myQuery = onlineAppQuery(onlineApplicationId);
-
-        // return generic list of sobjects or typecast to expected type
-        List<OnlineApplication__c> records = Database.query(myQuery);
-
-        integrateOnlineApplication(records[0]);
-
-    }
-
     public static String onlineAppQuery(Id onlineApplicationId){
         ID recordId = onlineApplicationId;
         DescribeSObjectResult describeResult = recordId.getSObjectType().getDescribe();
@@ -203,8 +196,6 @@ global class AccountWS_EFSAppManager {
         Account onlineApplicationParentAccount = null;
         Program__c onlineApplicationProgram = null;
         OnlineApplicationOffer__c onlineApplicationOffer = null;
-        SBQQ__Quote__c onlineAppQuote = null;
-        List<SBQQ__QuoteLine__c> onlineAppQuoteLines = null;
 
         Set<String> selectedOtherServices = new Set<String>();
         if(onlineApplication.Other_Services__c != null) {
@@ -395,7 +386,7 @@ global class AccountWS_EFSAppManager {
             //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
             //OTRONBOARD-55 Shipping and Embossing Fees
-            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fees', myFees.mcShippingFee);
+            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fee', myFees.mcShippingFee);
             if(myFees.mcEmbossingFee != null) jsonPayload.writeStringField('mcfee', myFees.mcEmbossingFee);
 
             // End of "carrier"
@@ -603,12 +594,12 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStartObject();
 
         jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
-        jsonPayload.writeStringField('fee_id', '118');
-        if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
-        jsonPayload.writeStringField('fee_level', '1');
+        jsonPayload.writeStringField('fee_id', MONTHLY_FEE);
+        if(myFees.monthlyFee != null) jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
+        jsonPayload.writeStringField('fee_level', '2');
         jsonPayload.writeStringField('fee_type', '1');
-        jsonPayload.writeStringField('fee_max_times_per', '3');
-        jsonPayload.writeStringField('fee_max_times', '1');
+        jsonPayload.writeStringField('fee_max_times_per', '4');
+        jsonPayload.writeStringField('fee_max_times', '0');
         jsonPayload.writeStringField('fee_min_start_per','4');
         jsonPayload.writeStringField('fee_min_start','0');
 //        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null)  jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
@@ -864,45 +855,37 @@ global class AccountWS_EFSAppManager {
     }
 
     public class CardFees{
-        public String driverFee;
-		public String mcShippingFee;
+        public String monthlyFee;
+        public String mcShippingFee;
+        public String mcEmbossingFee;
 
         public CardFees(OnlineApplication__c onlineApplication){
             if(onlineApplication.Opportunity__c != null) {
+                Map<String,Decimal> productOptionMap = new Map<String,Decimal>();
                 if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null){
                     //get the fees based on quotelines. ideal.
-                    List<SBQQ__QuoteLine__c> onlineAppQuoteLines = [SELECT Id, (SELECT Id,Requested_Price__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__c LIMIT 1].SBQQ__LineItems__r;
-                    setFees(onlineAppQuoteLines);
-                } else {
+                    for(SBQQ__QuoteLine__c ql : [SELECT Id, (SELECT Id,Requested_Price__c, SBQQ__ProductCode__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c LIMIT 1].SBQQ__LineItems__r)
+                        if(ql.Requested_Price__c != null) productOptionMap.put(ql.SBQQ__ProductCode__c,ql.Requested_Price__c);
+                }
+                if(this.monthlyFee == null || this.mcShippingFee == null || this.mcEmbossingFee == null){
                     //get the fees based on OLI. not ideal.
                     List<Id> productIds = new List<Id>();
+                    //get the product bundles
                     for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
                         productIds.add(oli.Product2Id);
-                    List<SBQQ__ProductOption__c> productOptions = [SELECT Id, SBQQ__UnitPrice__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'];
-                    setFees(productOptions);
+                    //for each bundle, get the options and create a map of product code to unitprice
+                    for(SBQQ__ProductOption__c po : [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'])
+                        if(!productOptionMap.containsKey(po.SBQQ__ProductCode__c) && po.SBQQ__UnitPrice__c != null) productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c); //bundles should not be reusing product codes so this way will work. for now.
                 }
-
+                setFees(productOptionMap);
             }
         }
 
-        private void setFees(List<SBQQ__QuoteLine__c> qlis){
-            if(qlis.size()>0){
-                for(SBQQ__QuoteLine__c ql : qlis){
-                    this.driverFee = String.valueof(ql.Requested_Price__c);
-					this.mcShippingFee = String.valueof(ql.Requested_Price__c);
-					this.mcEmbossingFee = String.valueof(ql.Requested_Price__c);
-                }
-
-            }
-        }
-
-        private void setFees(List<SBQQ__ProductOption__c> pos){
-            if(pos.size()>0){
-                for(SBQQ__ProductOption__c po : pos) {
-                    this.driverFee = String.valueof(po.SBQQ__UnitPrice__c);
-					this.mcShippingFee = String.valueof(po.Requested_Price__c);
-					this.mcEmbossingFee = String.valueof(po.Requested_Price__c);
-                }
+        private void setFees(Map<String,Decimal> poMap){
+            if(poMap.size()>0){
+                if(this.monthlyFee == null && poMap.containsKey(MONTHLY_FEE)) this.monthlyFee = String.valueOf(poMap.get(MONTHLY_FEE));
+                if(this.mcShippingFee == null && poMap.containsKey(SHIPPING_FEE)) this.mcShippingFee = String.valueOf(poMap.get(SHIPPING_FEE));
+                if(this.mcEmbossingFee == null && poMap.containsKey(EMBOSSING_FEE)) this.mcEmbossingFee = String.valueOf(poMap.get(EMBOSSING_FEE));
             }
         }
     }

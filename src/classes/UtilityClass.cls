@@ -5,8 +5,9 @@
 * Description: methods used by all the classes to go here. this allows for complete consistency across the org
 * Revision History: 5/1/2019    generateAppKey, getFieldMapping methods, sendEmail methods
 *                   5/24/2019   get, getObjName, getRecTypeByDevName
-* Revision History:: 6/03/2019  escapeReservedChars, removeReservedChars
+*                   6/03/2019   escapeReservedChars, removeReservedChars
 *                   6/18/2019   going to fix test classes. in interim....do the unthinkable!
+*                   11/Sep/2019     MFarrell    added null check to "get bunch of record type ids using developer name"
 */
 global class UtilityClass {
 
@@ -179,8 +180,11 @@ global class UtilityClass {
     //get bunch of record type ids using developer name...no query!
     public static Set<Id> getRecTypeByDevName(String objName, List<String> recTypeNames){
         Set<Id> myIds = new Set<Id>();
-        for(String s : recTypeNames)
-            myIds.add(Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(s).getRecordTypeId());
+        for(String s : recTypeNames) {
+            if(Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(s) != null) {
+                myIds.add(Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(s).getRecordTypeId());
+            }
+        }
         return myIds;
     }
 

@@ -1,5 +1,11 @@
 trigger ApplicationRequestTrigger on Application_Request__c (before insert, before update, after insert, after update) {
-    
+    TriggerFactory.createTriggerDispatcher(Application_Request__c.sObjectType);
+}
+
+/*
+trigger ApplicationRequestTrigger on Application_Request__c (before insert, before update, after insert, after update) {
+
+
     List<Application_Request__c> records = trigger.isDelete ? trigger.old : trigger.new;
 
     if(trigger.isBefore)
@@ -99,3 +105,4 @@ trigger ApplicationRequestTrigger on Application_Request__c (before insert, befo
     }
     
 }
+*/
