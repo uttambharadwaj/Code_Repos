@@ -13,6 +13,7 @@
 *                   30/Aug/2019 CJackson    OTRONBOARD-71   Added Parent Funded Only Flag
 *                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing
 *                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on OnlineApplicationOffer__c now sets ach_allowed
+*                                           OTRONBOARD-93   if Credit_Line_Approved__c is null, send 0
 *
 */
 
@@ -106,7 +107,7 @@ global class AccountWS_EFSAppManager {
                     //otronboard-59
                     OnlineApplicationOffer__c onlineApplicationOffer;
                     if(onlineApplication.Offer__c != null){
-                        onlineApplicationOffer = [SELECT Id, Funding__c FROM OnlineApplicationOffer__c WHERE Id = :onlineApplication.Offer__c LIMIT 1];
+                        onlineApplicationOffer = [SELECT Id, Funding__c, Online_Pay__c FROM OnlineApplicationOffer__c WHERE Id = :onlineApplication.Offer__c LIMIT 1];
                     }
 
                     // Send the payload to Ogden LLC
@@ -700,7 +701,12 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('unit_of_measure', 'G');
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('credit_line_type', 'Open Line');
-        if(onlineApplication.Credit_Line_Approved__c != null) jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
+        //If credit line approved field is null, EFS would like us to send a 0 instead.
+        if(onlineApplication.Credit_Line_Approved__c != null) {
+            jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
+        } else {
+            jsonPayload.writeNumberField('credit_line_amount', 0);
+        }
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Auto Draft')) jsonPayload.writeStringField('payment_method', 'ACH Draft');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Online Payment')) jsonPayload.writeStringField('payment_method', 'None');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Internet Pay')) jsonPayload.writeStringField('payment_method', 'None');
@@ -789,7 +795,7 @@ global class AccountWS_EFSAppManager {
             if (onlineApplicationOffer.Limit_Method__c != null) jsonPayload.writeStringField('limit_method', onlineApplicationOffer.Limit_Method__c);
             if (onlineApplicationOffer.Daily_Cash_Limit__c != null) jsonPayload.writeNumberField('daily_cash_limit', Integer.valueOf(onlineApplicationOffer.Daily_Cash_Limit__c));
             if (onlineApplicationOffer.Daily_MC_Limit__c != null) jsonPayload.writeNumberField('daily_mc_limit', Integer.valueOf(onlineApplicationOffer.Daily_MC_Limit__c));
-            if (onlineApplicationOffer.Cash_Limit__c != null) jsonPayload.WriteNumberField('cash_limit', Integer.valueOf(onlineApplicationOffer.Cash_Limit__c));
+            if (onlineApplicationOffer.Cash_Limit__c != null) jsonPayload.writeNumberField('cash_limit', Integer.valueOf(onlineApplicationOffer.Cash_Limit__c));
             if (onlineApplicationOffer.MC_Limit__c != null) jsonPayload.writeNumberField('mc_limit', Integer.valueOf(onlineApplicationOffer.MC_Limit__c));
             if (onlineApplicationOffer.Trans_Limit__c != null) jsonPayload.writeNumberField('trans_limit', Integer.valueOf(onlineApplicationOffer.Trans_Limit__c));
             if (onlineApplicationOffer.ATM_Use__c == true) jsonPayload.writeStringField('atm_use', 'Y');
