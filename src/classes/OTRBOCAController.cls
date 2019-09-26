@@ -5,10 +5,11 @@ Test Classes:       OTRBOCATest
 Last Coverage:      60%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
                     4/10/2019 Jason Arbegast IADJUDICAT-966 added break in a for loop
-                    05/06/2019  Michael Farrell     IADJUDICAT-1157     populated tmSessionId variable
-                    06/21/2019  Michael Farrell     PSOBACKLOG-226      added Offer__c lookup field to opportunity for CPQ
-                    07/30/2019 JA OTRONBOARD-59 add existing carrier id
-                    09/16/2019 Leela Howland PSOBACKLOG-259 excluding PG required for paper apps
+                    05/06/2019      Michael Farrell     IADJUDICAT-1157     populated tmSessionId variable
+                    06/21/2019      Michael Farrell     PSOBACKLOG-226      added Offer__c lookup field to opportunity for CPQ
+                    07/30/2019      JA                  OTRONBOARD-59   add existing carrier id
+                    09/16/2019      Leela Howland       PSOBACKLOG-259  excluding PG required for paper apps
+                    26/Sep/2019     MFarrell            OTRONBOARD-88   Added account look up criteria
 
  */
 
@@ -604,7 +605,18 @@ public class OTRBOCAController {
 
             if(carrierID != null && carrierID != ''){
                 Boolean carrierNotFound = true;
-                for(Account a : [SELECT Id,(SELECT Id, Program__c, Opportunity__r.Primary_Contact__c, Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c FROM Online_Applications__r) FROM Account WHERE Carrier_ID__c = :carrierID]) {
+                //OTRONBOARD-88 - added AND statement after WHERE for additional account field matching fun
+                for(Account a : [SELECT Id, (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c, Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c FROM Online_Applications__r)
+                                    FROM Account
+                                    WHERE Carrier_ID__c = :carrierID
+                                    AND (
+                                            (Name = :onlineApplication.Legal_Business_Name__c AND Phone = :onlineApplication.Phone_Number__c)
+                                            OR
+                                            (Name = :onlineApplication.Legal_Business_Name__c AND BillingStreet = :onlineApplication.Business_Street_Address__c)
+                                            OR
+                                            (BillingStreet = :onlineApplication.Business_Street_Address__c AND Phone = :onlineApplication.Phone_Number__c)
+                                        )
+                ]) {
                     for (OnlineApplication__c oa : a.Online_Applications__r) {
                         if (oa.Program__c == program.Id) {
                             carrierNotFound = false;
