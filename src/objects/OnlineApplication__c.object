@@ -5,7 +5,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -13,7 +33,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -21,7 +61,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -29,7 +89,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
@@ -37,7 +117,27 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <formFactor>Small</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Large</formFactor>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -3390,6 +3490,16 @@ Used to trigger welcome emails from Online Application</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Conversion_Account__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Used to indicate if this Online Application is a conversion from one Offer to another</description>
+        <externalId>false</externalId>
+        <label>Conversion Account</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Country__c</fullName>
         <externalId>false</externalId>
         <label>Country</label>
@@ -3585,7 +3695,9 @@ Used to trigger welcome emails from Online Application</description>
     </fields>
     <fields>
         <fullName>Credit_Line_Check__c</fullName>
+        <description>Based on the Credit_Line_Variance__c field and the Risk Grade, we determine if the recommended credit line meets compliance requirements.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Based on credit line requested - credit line recommendation (the absolute value variance between the two) and risk grade (a lower variance is allowed for RG 4).</inlineHelpText>
         <label>Credit Line Check</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -3648,6 +3760,21 @@ Used to trigger welcome emails from Online Application</description>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Credit_Line_Variance__c</fullName>
+        <description>The absolute value of the credit line requested by the applicant minus the credit line recommended</description>
+        <externalId>false</externalId>
+        <formula>IF(Credit_Line_Requested__c &gt; 0, ABS(Credit_Line_Requested__c - Credit_Line_Recommendation__c),0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Credit Line Variance</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Credit_Queue__c</fullName>
@@ -3980,7 +4107,9 @@ Used to trigger welcome emails from Online Application</description>
     </fields>
     <fields>
         <fullName>DNB_SBRI_Check__c</fullName>
+        <description>This rule isn&apos;t to verify the business, it&apos;s to verify we made a possible match with DNB. BPAV Check verifies the business information given back to us from DNB.</description>
         <externalId>false</externalId>
+        <inlineHelpText>This rule isn&apos;t to verify the business, it&apos;s to verify we made a possible match with DNB. BPAV Check verifies the business information given back to us from DNB.</inlineHelpText>
         <label>DNB Check</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -4103,6 +4232,7 @@ Used to trigger welcome emails from Online Application</description>
         <fullName>Daily_Amount_Requested__c</fullName>
         <description>App Manager integration; daily amount requested</description>
         <externalId>false</externalId>
+        <inlineHelpText>Daily overall dollar limit available to your cardholders (resets every night at midnight Central time)</inlineHelpText>
         <label>Daily Amount Requested</label>
         <precision>8</precision>
         <required>false</required>
@@ -4176,7 +4306,7 @@ Used to trigger welcome emails from Online Application</description>
         <fullName>Daily_Transactions__c</fullName>
         <description>App Manager integration; number of daily transactions requested</description>
         <externalId>false</externalId>
-        <inlineHelpText>help text for daily transactions</inlineHelpText>
+        <inlineHelpText>Number of daily card swipes you would like your cardholders to use (resets every night at midnight Central time)</inlineHelpText>
         <label># of Daily Transactions</label>
         <precision>3</precision>
         <required>false</required>
@@ -6076,6 +6206,7 @@ Replaced by &quot;Days of Payment&quot;</description>
         <fullName>Monthly_Amount_Requested__c</fullName>
         <description>App Manager integration; monthly amount requested</description>
         <externalId>false</externalId>
+        <inlineHelpText>Monthly overall dollar limit available to your cardholders (cycle is Sunday-Saturday)</inlineHelpText>
         <label>Monthly Amount Requested</label>
         <precision>8</precision>
         <required>false</required>
@@ -6089,6 +6220,7 @@ Replaced by &quot;Days of Payment&quot;</description>
         <fullName>Monthly_Transactions__c</fullName>
         <description>App Manager integration; number of monthly transactions requested</description>
         <externalId>false</externalId>
+        <inlineHelpText>Number of monthly card swipes you would like your cardholders to use (resets at first of every month)</inlineHelpText>
         <label># of Monthly Transactions</label>
         <precision>6</precision>
         <required>false</required>
@@ -7082,10 +7214,11 @@ Replaced by &quot;Days of Payment&quot;</description>
     </fields>
     <fields>
         <fullName>PlusChek__c</fullName>
-        <description>Number of PlusCheks to send.</description>
+        <description>Number of PlusCheks to send.
+Updated from PlusCheck (Cherwell Incident 700998 / PSOBACKLOG-261)</description>
         <externalId>false</externalId>
         <inlineHelpText>Number of PlusCheks to send.</inlineHelpText>
-        <label>PlusChek #</label>
+        <label># of Checks Needed</label>
         <precision>6</precision>
         <required>false</required>
         <scale>0</scale>
@@ -7224,6 +7357,41 @@ Replaced by &quot;Days of Payment&quot;</description>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prompt_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Prompt Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>ID/Odometer</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>Unit/Odometer</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>Odometer Only</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>No prompts</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
     </fields>
     <fields>
         <fullName>Referred_by_External_Account__c</fullName>
@@ -7577,6 +7745,7 @@ Replaced by &quot;Days of Payment&quot;</description>
         <fullName>Scales_Limit__c</fullName>
         <description>App Manager integration; scales limit requested</description>
         <externalId>false</externalId>
+        <inlineHelpText>$ amount you&apos;d like available to your cardholders for scaling</inlineHelpText>
         <label>Scales Limit</label>
         <precision>10</precision>
         <required>false</required>
@@ -8785,11 +8954,11 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <type>DateTime</type>
     </fields>
     <fields>
-        <fullName>Team_Drivers_Slip_Seat__c</fullName>
+        <fullName>Sync_to_MC__c</fullName>
         <defaultValue>false</defaultValue>
+        <description>When checked the record will sync to MC.  The rules are set up in Breeze.</description>
         <externalId>false</externalId>
-        <inlineHelpText>If checked then the Credit Line Requested will default to $3500 * # of trucks, if not checked then $2500 * # of trucks.</inlineHelpText>
-        <label>Team Drivers / Slip Seat</label>
+        <label>Sync to Marketing Cloud</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -9179,6 +9348,7 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <fullName>Weekly_Amount_Requested__c</fullName>
         <description>App Manager integration; weekly amount requested</description>
         <externalId>false</externalId>
+        <inlineHelpText>Weekly overall dollar limit available to your cardholders (cycle is Sunday-Saturday)</inlineHelpText>
         <label>Weekly Amount Requested</label>
         <precision>8</precision>
         <required>false</required>
@@ -9192,6 +9362,7 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <fullName>Weekly_Transactions__c</fullName>
         <description>App Manager integration; number of weekly transactions requested</description>
         <externalId>false</externalId>
+        <inlineHelpText>Number of weekly card swipes you would like your cardholders to use (cycle is Sunday-Saturday)</inlineHelpText>
         <label># of Weekly Transactions</label>
         <precision>5</precision>
         <required>false</required>
@@ -9575,6 +9746,40 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <sharedTo>
             <group>Global_Sales_Operations</group>
             <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Admiral_Merchants</fullName>
+        <columns>App_Created__c</columns>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Offer__c</columns>
+        <columns>Status__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Onboarding_Rep__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer__c</field>
+            <operation>equals</operation>
+            <value>AdmiralUSFuelMC-CT3.0,AdmiralUSDebitMC-CT6.5,AdmiralCANFuel-CT1.0</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>App-Incomplete,Saved-Incomplete,Closed/Lost</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notEqual</operation>
+            <value>Expansion</value>
+        </filters>
+        <label>Onboarding Admiral Merchants US</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>OTR_Implementation</role>
+            <role>OTR_Implementation_Manager</role>
+            <role>OTR_New_Account_Onboarding</role>
+            <role>OTR_New_Account_Onboarding_TL</role>
         </sharedTo>
     </listViews>
     <listViews>
@@ -9998,6 +10203,47 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>C_H_Robinson_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>C.H. Robinson</value>
+        </filters>
+        <label>C.H. Robinson Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>C_H_Robinson_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>C_H_Robinson_Trade_Credit_eApps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>C.H. Robinson</value>
+        </filters>
+        <label>C.H. Robinson Trade Credit eApps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>C_H_Robinson_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Cannot_Run_Decisioning</fullName>
         <columns>In_Progress_User__c</columns>
         <columns>NAME</columns>
@@ -10253,6 +10499,47 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Daseke_Logistics_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Daseke</value>
+        </filters>
+        <label>Daseke Logistics Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>Daseke_Logistics_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Daseke_Logistics_Trade_Credit_eApps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>Daseke</value>
+        </filters>
+        <label>Daseke Logistics Trade Credit eApps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>Daseke_Logistics_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Declined_Need_Sales_Follow_Up</fullName>
         <columns>NAME</columns>
         <columns>Account__c</columns>
@@ -10271,6 +10558,47 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <label>Declined - Need Sales Follow Up</label>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EFS_Testing_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>EFS Testing</value>
+        </filters>
+        <label>EFS Testing Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>EFS_Testing_Community</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>EFS_Testing_Trade_Credit_eApps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>EFS Testing</value>
+        </filters>
+        <label>EFS Testing Trade Credit eApps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>EFS_Testing_Community</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -10294,6 +10622,49 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <language>en_US</language>
         <sharedTo>
             <group>Partner_User_England</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>England_Review</fullName>
+        <columns>NAME</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>GIACT_Verify_Response_Code_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>Fraud_Recommendation__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>5/1/2019 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>England</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <filters>
+            <field>Fraud_Recommendation__c</field>
+            <operation>equals</operation>
+            <value>Recommend Review,Recommend Decline</value>
+        </filters>
+        <label>England - Review</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -10445,6 +10816,40 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>FTS_Amy_All_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>FTS_Account__c</columns>
+        <columns>Rush__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Offer__c</columns>
+        <columns>Account__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Onboarding_Rep__c</field>
+            <operation>equals</operation>
+            <value>Amy Shelton</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2019 12:00 AM</value>
+        </filters>
+        <label>FTS Amy All Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>FTS_Onboarding</group>
+            <role>EFS_Partner_Sales_Role</role>
+            <role>OTR_New_Account_Onboarding</role>
+            <role>OTR_New_Account_Onboarding_TL</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>FTS_Expansion</fullName>
         <columns>NAME</columns>
         <columns>Rush__c</columns>
@@ -10489,6 +10894,53 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Rush__c</columns>
         <columns>Status__c</columns>
         <columns>OWNER.ALIAS</columns>
+        <columns>Beneficial_Owner_Status__c</columns>
+        <columns>Onboarding_Rep__c</columns>
+        <columns>App_Number__c</columns>
+        <columns>Offer__c</columns>
+        <columns>Account__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>Program__c</columns>
+        <columns>Number_of_Cards_Needed__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name__c</field>
+            <operation>startsWith</operation>
+            <value>TBS</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Application,Adjudication,Credit Follow-up,Implementation</value>
+        </filters>
+        <filters>
+            <field>Beneficial_Owner_Status__c</field>
+            <operation>equals</operation>
+            <value>Failed</value>
+        </filters>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2019 12:00 AM</value>
+        </filters>
+        <label>FTS TBS Apps BOE Failed</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>FTS_Onboarding</group>
+            <role>EFS_Partner_Sales_Role</role>
+            <role>OTR_New_Account_Onboarding</role>
+            <role>OTR_New_Account_Onboarding_TL</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>FTS_Onboarding1</fullName>
+        <columns>NAME</columns>
+        <columns>Rush__c</columns>
+        <columns>Status__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>Beneficial_Owner_Status__c</columns>
         <columns>Onboarding_Rep__c</columns>
         <columns>App_Number__c</columns>
         <columns>Offer__c</columns>
@@ -10502,11 +10954,6 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <field>OWNER.ALIAS</field>
             <operation>equals</operation>
             <value>rhigh,mwats,kscro,awhit</value>
-        </filters>
-        <filters>
-            <field>Application_Stage__c</field>
-            <operation>equals</operation>
-            <value>Implementation,Expansion</value>
         </filters>
         <filters>
             <field>Status__c</field>
@@ -10528,8 +10975,34 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>FTS_Pending_Set_Up</fullName>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>FTS_Account__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>Onboarding_Rep__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Onboarding_Rep__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <filters>
+            <field>OWNER.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>scroggins,high,watson</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Setup Data</value>
+        </filters>
+        <label>FTS Pending Set Up w/ Issue</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>FTS_Tina_All_Apps</fullName>
         <columns>NAME</columns>
+        <columns>FTS_Account__c</columns>
         <columns>Rush__c</columns>
         <columns>Status__c</columns>
         <columns>OWNER.ALIAS</columns>
@@ -10538,9 +11011,10 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Offer__c</columns>
         <columns>Account__c</columns>
         <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
         <columns>Date_Decisioned__c</columns>
-        <columns>Program__c</columns>
-        <columns>Number_of_Cards_Needed__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Onboarding_Rep__c</field>
@@ -11322,6 +11796,47 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>MHC_Financial_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>MHC Financial</value>
+        </filters>
+        <label>MHC Financial Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>MHC_Financial_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>MHC_Financial_Trade_Credit_eApps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>MHC Financial</value>
+        </filters>
+        <label>MHC Financial Trade Credit eApps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>MHC_Financial_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>My_Approved_Applications</fullName>
         <columns>NAME</columns>
         <columns>AO_Name__c</columns>
@@ -11438,6 +11953,89 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>New_Sales_View_Faye_All_Partners</fullName>
+        <columns>NAME</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>GIACT_Verify_Response_Code_Name__c</columns>
+        <columns>GIACT_Failure_Next_Steps__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>Fraud_Recommendation__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>4/1/2019 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>England,trans-alliance,Knight,CSI,Roady</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <label>New Sales View - Faye All Partners</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Sales_View_Faye_All_Partners1</fullName>
+        <columns>NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>GIACT_Verify_Response_Code_Name__c</columns>
+        <columns>GIACT_Failure_Next_Steps__c</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>Fraud_Recommendation__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>LAST_UPDATE</field>
+            <operation>greaterThan</operation>
+            <value>9/1/2019 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>rts,England,trans-alliance,Knight,CSI,Roady</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <filters>
+            <field>OWNER.ALIAS</field>
+            <operation>equals</operation>
+            <value>fgott,pcann,jlowr</value>
+        </filters>
+        <label>App Delays Burriss Team</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>New_Sales_View_NAT_Elimination6</fullName>
         <columns>NAME</columns>
         <columns>Offer__c</columns>
@@ -11448,8 +12046,10 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Credit_Line_Requested__c</columns>
         <columns>Decision_Comments__c</columns>
         <columns>GIACT_Verify_Response_Code_Name__c</columns>
+        <columns>GIACT_Failure_Next_Steps__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>Internal_Info__c</columns>
+        <columns>Fraud_Recommendation__c</columns>
         <columns>LAST_UPDATE</columns>
         <columns>UPDATEDBY_USER.ALIAS</columns>
         <filterScope>Everything</filterScope>
@@ -11698,6 +12298,7 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
     <listViews>
         <fullName>New_Sales_View_RTS_Apps_All</fullName>
         <columns>NAME</columns>
+        <columns>OWNER.ALIAS</columns>
         <columns>Offer__c</columns>
         <columns>Legal_Business_Name__c</columns>
         <columns>Application_Stage__c</columns>
@@ -11719,12 +12320,12 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <filters>
             <field>Application_Title__c</field>
             <operation>startsWith</operation>
-            <value>RTS</value>
+            <value>rts</value>
         </filters>
         <filters>
             <field>Application_Stage__c</field>
-            <operation>notContain</operation>
-            <value>expansion</value>
+            <operation>notEqual</operation>
+            <value>Expansion</value>
         </filters>
         <label>New Sales View - RTS Apps All</label>
         <language>en_US</language>
@@ -11806,6 +12407,44 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <value>expansion</value>
         </filters>
         <label>New Sales View - Roady&apos;s</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>New_Sales_View_Trucker_Path</fullName>
+        <columns>NAME</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Beneficial_Owner_Status__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>GIACT_Verify_Response_Code_Name__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2019 12:00 AM</value>
+        </filters>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>contains</operation>
+            <value>Trucker Path</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notContain</operation>
+            <value>expansion</value>
+        </filters>
+        <label>New Sales View - Trucker Path</label>
         <language>en_US</language>
         <sharedTo>
             <group>All_F1_Internal_Users</group>
@@ -12205,6 +12844,110 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>Onboarding_Admiral_Merchants_CAN</fullName>
+        <columns>App_Created__c</columns>
+        <columns>NAME</columns>
+        <columns>Account__c</columns>
+        <columns>Offer__c</columns>
+        <columns>Status__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Onboarding_Rep__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer__c</field>
+            <operation>equals</operation>
+            <value>AdmiralCANDebit-CT2.5,AdmiralCANFuel-CT1.0</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>App-Incomplete,Saved-Incomplete</value>
+        </filters>
+        <label>Onboarding Admiral Merchants CAN</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>OTR_Implementation</role>
+            <role>OTR_Implementation_Manager</role>
+            <role>OTR_New_Account_Onboarding</role>
+            <role>OTR_New_Account_Onboarding_TL</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Onboarding_JB_Hunt</fullName>
+        <columns>NAME</columns>
+        <columns>Carrier_ID_Number__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>Status__c</columns>
+        <columns>Internal_Info__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>Credit_Line_Approved__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>GIACT_Response_Code__c</columns>
+        <columns>GIACT_Failure_Next_Steps__c</columns>
+        <columns>GIACT_Response_Message__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>LAST_ACTIVITY</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer__c</field>
+            <operation>equals</operation>
+            <value>J.B. Hunt 360 Carrier Program</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>notEqual</operation>
+            <value>App-Incomplete,Saved-Incomplete,Closed/Lost</value>
+        </filters>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>notEqual</operation>
+            <value>Expansion</value>
+        </filters>
+        <filters>
+            <field>Credit_Line_Approved__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>Onboarding JB Hunt</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>OTR_Implementation</role>
+            <role>OTR_Implementation_Manager</role>
+            <role>OTR_New_Account_Onboarding</role>
+            <role>OTR_New_Account_Onboarding_TL</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Onboarding_Trucker_Path</fullName>
+        <columns>NAME</columns>
+        <columns>Carrier_ID_Number__c</columns>
+        <columns>Account__c</columns>
+        <columns>Number_of_Cards_Needed__c</columns>
+        <columns>Status__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Onboarding_Rep__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Pending Setup</value>
+        </filters>
+        <filters>
+            <field>Offer__c</field>
+            <operation>equals</operation>
+            <value>Trucker Path Fuel Card</value>
+        </filters>
+        <label>Onboarding Trucker Path</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>OTR_Implementation</role>
+            <role>OTR_Implementation_Manager</role>
+            <role>OTR_New_Account_Onboarding</role>
+            <role>OTR_New_Account_Onboarding_TL</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Orange_CC_Trade_Credit_eApps</fullName>
         <columns>NAME</columns>
         <columns>Application_Title__c</columns>
@@ -12351,6 +13094,65 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <sharedTo>
             <allInternalUsers></allInternalUsers>
             <group>Parikh_Financial_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Partner_Adjudication</fullName>
+        <booleanFilter>1 AND 2 AND (3 OR 4 OR 5) AND 6 AND 7</booleanFilter>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>NAME</columns>
+        <columns>Status__c</columns>
+        <columns>Offer__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>Fraud_Recommendation__c</columns>
+        <columns>Decision_Comments__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Credit_Recommendation__c</columns>
+        <columns>GIACT_Check__c</columns>
+        <columns>Fraud_Decision__c</columns>
+        <columns>LAST_UPDATE</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication</value>
+        </filters>
+        <filters>
+            <field>Offer_Credit_Review_Path__c</field>
+            <operation>equals</operation>
+            <value>0,1</value>
+        </filters>
+        <filters>
+            <field>Fraud_Recommendation__c</field>
+            <operation>equals</operation>
+            <value>Recommend Approve</value>
+        </filters>
+        <filters>
+            <field>Fraud_Decision__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>Fraud_Recommendation__c</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>Credit_Recommendation__c</field>
+            <operation>notEqual</operation>
+            <value>Recommend Approve</value>
+        </filters>
+        <filters>
+            <field>Offer__c</field>
+            <operation>notContain</operation>
+            <value>FedEx,Edge,Jerue,J.B. Hunt</value>
+        </filters>
+        <label>Partner Adjudication</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
@@ -12680,6 +13482,47 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <allPartnerUsers></allPartnerUsers>
             <group>All_F1_Internal_Users</group>
             <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QuickChek_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>QuickChek</value>
+        </filters>
+        <label>QuickChek Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>QuickChek_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>QuickChek_Trade_Credit_eApps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>QuickChek</value>
+        </filters>
+        <label>QuickChek Trade Credit eApps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>QuickChek_Partners_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -13756,6 +14599,46 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>WEX_CPS_Demo_Apps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Offer_Name_WF_TXT__c</field>
+            <operation>startsWith</operation>
+            <value>WEX CPS Demo</value>
+        </filters>
+        <label>WEX CPS Demo Apps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WEX_CPS_Demo</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>WEX_CPS_Demo_Trade_Credit_eApps</fullName>
+        <columns>NAME</columns>
+        <columns>Application_Title__c</columns>
+        <columns>Account__c</columns>
+        <columns>Application_Stage__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Title__c</field>
+            <operation>startsWith</operation>
+            <value>WEX CPS Demo</value>
+        </filters>
+        <label>WEX CPS Demo Trade Credit eApps</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>WEX_CPS_Demo</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>WF1_Admins_All_Status</fullName>
         <columns>NAME</columns>
         <columns>Legal_Business_Name__c</columns>
@@ -14113,18 +14996,19 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <columns>Submitted_to_Credit__c</columns>
         <columns>NAME</columns>
         <columns>Status__c</columns>
+        <columns>Conversion_Account__c</columns>
         <columns>In_Progress__c</columns>
         <columns>In_Progress_User__c</columns>
         <columns>Fraud_Recommendation__c</columns>
         <columns>Decision_Comments__c</columns>
         <columns>Fraud_Decision__c</columns>
         <columns>Credit_Line_Requested__c</columns>
-        <columns>Forte_Response_Message__c</columns>
+        <columns>Credit_Decision__c</columns>
         <columns>Legal_Business_Name__c</columns>
         <columns>Offer__c</columns>
         <columns>Credit_Recommendation__c</columns>
-        <columns>Credit_Decision__c</columns>
-        <columns>Offer_Credit_Review_Path__c</columns>
+        <columns>GIACT_Check__c</columns>
+        <columns>Fraud_Decision__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Application_Stage__c</field>
@@ -14152,8 +15036,8 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </filters>
         <filters>
             <field>Credit_Recommendation__c</field>
-            <operation>notEqual</operation>
-            <value>Recommend Approve</value>
+            <operation>equals</operation>
+            <value>Recommend Approve,Recommend Review,Recommend Decline</value>
         </filters>
         <filters>
             <field>Offer__c</field>
@@ -14494,6 +15378,45 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>X2_Adjudication_Default_C_H_Robinson</fullName>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Trade_Name__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication,Credit Follow-up</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Credit-Incomplete</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>2. Adjudication Default - C.H. Robinson</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+            <group>C_H_Robinson_Partners_Group</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>X2_Adjudication_Default_CenterFire</fullName>
         <columns>Application_Title__c</columns>
         <columns>Legal_Business_Name__c</columns>
@@ -14766,6 +15689,84 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <language>en_US</language>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X2_Adjudication_Default_Daseke_Logisti</fullName>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Trade_Name__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication,Credit Follow-up</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Credit-Incomplete</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>2. Adjudication Default - Daseke Logisti</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+            <group>Daseke_Logistics_Partners_Group</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X2_Adjudication_Default_EFS_Testing</fullName>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Trade_Name__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication,Credit Follow-up</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Credit-Incomplete</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>2. Adjudication Default - EFS Testing</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+            <group>EFS_Testing_Community</group>
+            <group>SystemAdmins</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -15489,6 +16490,45 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>X2_Adjudication_Default_MHC_Financial</fullName>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Trade_Name__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication,Credit Follow-up</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Credit-Incomplete</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>2. Adjudication Default - MHC Financial</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+            <group>MHC_Financial_Partners_Group</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>X2_Adjudication_Default_NASTC</fullName>
         <columns>Application_Title__c</columns>
         <columns>Legal_Business_Name__c</columns>
@@ -15836,6 +16876,45 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         <sharedTo>
             <group>All_F1_Internal_Users</group>
             <group>Phoenix_Capital_Partners_Group</group>
+            <group>SystemAdmins</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X2_Adjudication_Default_QuickChek</fullName>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Trade_Name__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication,Credit Follow-up</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Credit-Incomplete</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>2. Adjudication Default - QuickChek</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+            <group>QuickChek_Partners_Group</group>
             <group>SystemAdmins</group>
         </sharedTo>
     </listViews>
@@ -16345,6 +17424,45 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <group>All_F1_Internal_Users</group>
             <group>SystemAdmins</group>
             <group>Vero_Business_Capital_LLC</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X2_Adjudication_Default_WEX_CPS_Demo</fullName>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>In_Progress_User__c</columns>
+        <columns>In_Progress__c</columns>
+        <columns>Status__c</columns>
+        <columns>App_Created__c</columns>
+        <columns>Submitted_to_Credit__c</columns>
+        <columns>Date_Decisioned__c</columns>
+        <columns>Credit_Decision__c</columns>
+        <columns>Trade_Name__c</columns>
+        <columns>Credit_Line_Requested__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Adjudication,Credit Follow-up</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Decisioned,Credit-Incomplete</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>2. Adjudication Default - WEX CPS Demo</label>
+        <language>en_US</language>
+        <sharedTo>
+            <group>All_F1_Internal_Users</group>
+            <group>SystemAdmins</group>
+            <group>WEX_CPS_Demo</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -16977,6 +18095,44 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>X4_Card_Prod_Default_C_H_Robinson</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_to_Card_Services__c</columns>
+        <columns>Cards_Shipped_Date__c</columns>
+        <columns>Ship_Cards_To__c</columns>
+        <columns>Contact_Name__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cards Produced,Cards Shipped</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>4. Card Prod Default - C.H. Robinson</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>All_F1_Internal_Users</group>
+            <group>C_H_Robinson_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>X4_Card_Prod_Default_CenterFire</fullName>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <columns>Application_Title__c</columns>
@@ -17126,6 +18282,82 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <allInternalUsers></allInternalUsers>
             <group>All_F1_Internal_Users</group>
             <group>CoreFund_Capital_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X4_Card_Prod_Default_Daseke_Logistics</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_to_Card_Services__c</columns>
+        <columns>Cards_Shipped_Date__c</columns>
+        <columns>Ship_Cards_To__c</columns>
+        <columns>Contact_Name__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cards Produced,Cards Shipped</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>4. Card Prod Default - Daseke Logistics</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>All_F1_Internal_Users</group>
+            <group>Daseke_Logistics_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X4_Card_Prod_Default_EFS_Testing</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_to_Card_Services__c</columns>
+        <columns>Cards_Shipped_Date__c</columns>
+        <columns>Ship_Cards_To__c</columns>
+        <columns>Contact_Name__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cards Produced,Cards Shipped</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>4. Card Prod Default - EFS Testing</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>All_F1_Internal_Users</group>
+            <group>EFS_Testing_Community</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -17775,6 +19007,44 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>X4_Card_Prod_Default_MHC_Financial</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_to_Card_Services__c</columns>
+        <columns>Cards_Shipped_Date__c</columns>
+        <columns>Ship_Cards_To__c</columns>
+        <columns>Contact_Name__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cards Produced,Cards Shipped</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>4. Card Prod Default - MHC Financial</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>All_F1_Internal_Users</group>
+            <group>MHC_Financial_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>X4_Card_Prod_Default_NASTC</fullName>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <columns>Application_Title__c</columns>
@@ -18114,6 +19384,44 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
             <allInternalUsers></allInternalUsers>
             <group>All_F1_Internal_Users</group>
             <group>Phoenix_Capital_Partners_Group</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>X4_Card_Prod_Default_QuickChek</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_to_Card_Services__c</columns>
+        <columns>Cards_Shipped_Date__c</columns>
+        <columns>Ship_Cards_To__c</columns>
+        <columns>Contact_Name__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cards Produced,Cards Shipped</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>4. Card Prod Default - QuickChek</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>All_F1_Internal_Users</group>
+            <group>QuickChek_Partners_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -18611,6 +19919,44 @@ Legal_Business_Name__c &amp; BR() &amp; &quot;Attn:&quot; &amp;  AO_Name__c &amp
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>X4_Card_Prod_Default_WEX_CPS_Demo</fullName>
+        <booleanFilter>1 AND 2 AND 3</booleanFilter>
+        <columns>Application_Title__c</columns>
+        <columns>Legal_Business_Name__c</columns>
+        <columns>NAME</columns>
+        <columns>F1_Account_Number__c</columns>
+        <columns>Status__c</columns>
+        <columns>Submitted_to_Card_Services__c</columns>
+        <columns>Cards_Shipped_Date__c</columns>
+        <columns>Ship_Cards_To__c</columns>
+        <columns>Contact_Name__c</columns>
+        <columns>Phone_Number__c</columns>
+        <columns>OWNER.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Application_Stage__c</field>
+            <operation>equals</operation>
+            <value>Implementation</value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operation>equals</operation>
+            <value>Cards Produced,Cards Shipped</value>
+        </filters>
+        <filters>
+            <field>App_Created__c</field>
+            <operation>equals</operation>
+            <value>LAST_N_DAYS:30</value>
+        </filters>
+        <label>4. Card Prod Default - WEX CPS Demo</label>
+        <language>en_US</language>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+            <group>All_F1_Internal_Users</group>
+            <group>WEX_CPS_Demo</group>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>X4_Card_Prod_Default_Xfactors</fullName>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <columns>Application_Title__c</columns>
@@ -19062,6 +20408,17 @@ ISPICKVAL(Credit_Decision__c, &quot;Approved-Secured&quot;) &amp;&amp; Prepaid__
 )</errorConditionFormula>
         <errorDisplayField>AO_Date_of_Birth__c</errorDisplayField>
         <errorMessage>You must be at least 18 years old to apply for a fleet card</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Cannot_Change_Offer_or_Credit_Line</fullName>
+        <active>true</active>
+        <description>This prevents users with the &quot;WEX EFS OTR Sales&quot; profile from editing the Credit Line Requested unless it is a new app.</description>
+        <errorConditionFormula>AND(
+NOT(ISNEW()),
+$User.ProfileId = &quot;00e70000000xEHg&quot;,
+ISCHANGED( Credit_Line_Requested__c )
+)</errorConditionFormula>
+        <errorMessage>Credit Line Requested Cannot Be Changed After Application Creation.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Checking_Account_Confirm</fullName>
