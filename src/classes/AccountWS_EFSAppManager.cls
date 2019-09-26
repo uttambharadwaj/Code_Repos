@@ -12,7 +12,7 @@
 *                   31/Jul/2019 CJackson    OTRONBOARD-78   Update ShipToCountry to CA for EFS
 *                   30/Aug/2019 CJackson    OTRONBOARD-71   Added Parent Funded Only Flag
 *                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing
-*                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on Offer__c now sets ach_allowed
+*                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on OnlineApplicationOffer__c now sets ach_allowed
 *
 */
 
