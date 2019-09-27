@@ -599,6 +599,11 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>1</label>
+                </value>
+                <value>
                     <fullName>2</fullName>
                     <default>false</default>
                     <label>2</label>
@@ -1081,6 +1086,11 @@
                     <default>false</default>
                     <label>336</label>
                 </value>
+                <value>
+                    <fullName>353</fullName>
+                    <default>false</default>
+                    <label>353</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -1251,6 +1261,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>194143</fullName>
                     <default>false</default>
                     <label>194143</label>
+                </value>
+                <value>
+                    <fullName>194147</fullName>
+                    <default>false</default>
+                    <label>194147</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -2128,6 +2143,18 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Offer_Logo__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE(&apos;https://&apos; &amp; $Label.External_Instance_URL &amp; &apos;/creditapplication/servlet/servlet.FileDownload?file=&apos; &amp; Email_Template_Logo__c, &apos;Logo&apos;, 100, 200)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Offer Logo</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Offer_Phone_Number__c</fullName>
         <description>Use this on email communications if there isn&apos;t a salesperson</description>
         <encryptionScheme>None</encryptionScheme>
@@ -2150,6 +2177,15 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Online_Pay__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Online Pay</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Other_Services__c</fullName>
@@ -2986,6 +3022,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <default>false</default>
                     <label>700315</label>
                 </value>
+                <value>
+                    <fullName>330062</fullName>
+                    <default>false</default>
+                    <label>330062</label>
+                </value>
             </valueSetDefinition>
         </valueSet>
     </fields>
@@ -3080,6 +3121,11 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>194143</fullName>
                     <default>false</default>
                     <label>194143</label>
+                </value>
+                <value>
+                    <fullName>194147</fullName>
+                    <default>false</default>
+                    <label>194147</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3220,6 +3266,51 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         </valueSet>
     </fields>
     <fields>
+        <fullName>Price_Book__c</fullName>
+        <externalId>false</externalId>
+        <label>Price Book</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>F1 &amp; EFS Partners</fullName>
+                    <default>false</default>
+                    <label>F1 &amp; EFS Partners</label>
+                </value>
+                <value>
+                    <fullName>EFS Products</fullName>
+                    <default>false</default>
+                    <label>EFS Products</label>
+                </value>
+                <value>
+                    <fullName>Fleet Price Book</fullName>
+                    <default>false</default>
+                    <label>Fleet Price Book</label>
+                </value>
+                <value>
+                    <fullName>F1 OTR Pricebook</fullName>
+                    <default>false</default>
+                    <label>F1 OTR Pricebook</label>
+                </value>
+                <value>
+                    <fullName>Truckers Products</fullName>
+                    <default>false</default>
+                    <label>Truckers Products</label>
+                </value>
+                <value>
+                    <fullName>N/A</fullName>
+                    <default>false</default>
+                    <label>N/A</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Primary_Contact_Email_Address__c</fullName>
         <description>Sent to App Manager as EmailAddress</description>
         <encryptionScheme>None</encryptionScheme>
@@ -3289,6 +3380,42 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Prompt_Type__c</fullName>
+        <description>for use in EFS integration</description>
+        <externalId>false</externalId>
+        <label>Prompt Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>1</fullName>
+                    <default>false</default>
+                    <label>ID/Odometer</label>
+                </value>
+                <value>
+                    <fullName>2</fullName>
+                    <default>false</default>
+                    <label>Unit/Odometer</label>
+                </value>
+                <value>
+                    <fullName>3</fullName>
+                    <default>false</default>
+                    <label>Odometer Only</label>
+                </value>
+                <value>
+                    <fullName>4</fullName>
+                    <default>false</default>
+                    <label>No prompts</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>3</visibleLines>
     </fields>
     <fields>
         <fullName>Send_to_App_Manager__c</fullName>
@@ -3499,7 +3626,7 @@ Number of Cards sent to LLC = 10</inlineHelpText>
 If BOCDD is checked, Funding must be Parent Funding</description>
         <errorConditionFormula>AND(Enable_BOCDD_for_Parent_funded__c, NOT(ISPICKVAL(Funding__c, &apos;Parent Funded&apos;)))</errorConditionFormula>
         <errorDisplayField>Funding__c</errorDisplayField>
-        <errorMessage>Enable BOCDD for Parent Funded must be left unchecked when Funded is not Parent Funded</errorMessage>
+        <errorMessage>Enable BOCDD for Parent Funded must be left unchecked when funding is not set to Parent Funded</errorMessage>
     </validationRules>
     <visibility>Public</visibility>
     <webLinks>

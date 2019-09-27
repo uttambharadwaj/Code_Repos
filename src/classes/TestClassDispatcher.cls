@@ -78,17 +78,49 @@ public class TestClassDispatcher {
     @isTest static void testBOProngTriggerValidations(){
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
-/*
-    @isTest static void testCampaignGetCode() {
-        CampaignCodeGeneratorTest.test_getCode();
+
+    @isTest static void testCreateCampaignCode() {
+        CampaignCodeGeneratorTest.test_createCampaignCode();
     }
 
     @isTest static void testCampaignCodeGenerate() {
         CampaignCodeGeneratorTest.test_generateCode();
     }
-*/
+
     @isTest static void testCampaignProgramDelete(){
         CmpgnProgramTriggerTest.testCampaignProgramDelete();
     }
     
+    @isTest static void testAttachmentUploadPass(){
+        AttachmentUploadControllerTest.testGoodUpload();
+    }
+    
+    @isTest static void testAttachmentUploadFail(){
+        AttachmentUploadControllerTest.testFailUpload();
+    }
+    
+    @isTest static void testAttachmentUploadBlah(){
+        AttachmentUploadControllerTest.testNoUpload();
+    }
+    
+    @isTest static void testFleetEnrollmentOneToOne(){
+        FleetEnrollmentController2Test.testFleetEnrollmentOneToOne();
+    }
+
+    @isTest static void testContactUnsubscribeContact(){
+        ContactUnsubscribeControllerTest.testContactUnsubscribe();
+    }
+
+    @isTest static void testContactUnsubscribeLead(){
+        ContactUnsubscribeControllerTest.testLeadUnsubscribe();
+    }
+
+    @isTest static void testExperianPGQueuableGood(){
+        CreditUtilQueueable_ExperianPGTest.testGoodRequests();
+    }
+
+    @isTest static void testExperianPGQueuableBad(){
+        CreditUtilQueueable_ExperianPGTest.testBadRequests();
+    }
+
 }

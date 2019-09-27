@@ -444,11 +444,11 @@
             #header {
                 width: 100%;
             {!program.Brand_Color_1__c}
-            min-height: 50px;
-            border-top: 3px solid #FEC524;
-            color: #fff;
-            line-height: 50px;
-            display: none;
+                min-height: 50px;
+                border-top: 3px solid #FEC524;
+                color: #fff;
+                line-height: 50px;
+                display: none;
             }
 
             #programName {
@@ -654,68 +654,68 @@
                 .stepExpanded { width: 118px; background: #eee; line-height: 5px; width: 140px; padding-left: 9px; }
                 .step-clickable { cursor: pointer; }
                 .stepIndicatorActive { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-arrow.png')}) no-repeat; width: 34px; height: 43px; margin-top: 4px; margin-left: 1px; }
-            .stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
-            .stepIndicatorIncomplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle.png')}) no-repeat; width: 34px; height: 43px; margin-top: 8px; margin-left: 1px; }
-            .stepDescription { float: left; font-size: 12px; line-height: 10px; letter-spacing: -0.10em; margin-top: 17px; width: 80px; }
-            .stepDescription p { margin: 0 0 8px 1px; }
-            .step:first-child { margin-left: 6px; }
-            .step:last-child { margin-right: 0px; }
-            .stepActive { background: #fec524; }
-            /* Card Image/Steps Section - END */
+                .stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
+                .stepIndicatorIncomplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle.png')}) no-repeat; width: 34px; height: 43px; margin-top: 8px; margin-left: 1px; }
+                .stepDescription { float: left; font-size: 12px; line-height: 10px; letter-spacing: -0.10em; margin-top: 17px; width: 80px; }
+                .stepDescription p { margin: 0 0 8px 1px; }
+                .step:first-child { margin-left: 6px; }
+                .step:last-child { margin-right: 0px; }
+                .stepActive { background: #fec524; }
+                /* Card Image/Steps Section - END */
 
-            /* Content Section - START */
-            #content #leftBar {
-                padding-top: 100px;
-                display: block;
-            }
+                /* Content Section - START */
+                #content #leftBar {
+                    padding-top: 100px;
+                    display: block;
+                }
 
-            #leftBar .notification { background: #333; color: #eee; padding: 15px 20px; width: 250px; margin: 0 auto; }
-            #leftBar .notification p { margin: 0; }
+                #leftBar .notification { background: #333; color: #eee; padding: 15px 20px; width: 250px; margin: 0 auto; }
+                #leftBar .notification p { margin: 0; }
 
-            #content .mobileMessages {
-                display: none;
-            }
-            #theform {
-                margin-top: 30px;
-            }
+                #content .mobileMessages {
+                    display: none;
+                }
+                #theform {
+                    margin-top: 30px;
+                }
 
-            .stepErrors { display: none; background: #f2dede; border: 1px solid #ebccd1; margin: 14px 0 14px 0; color: #a94442; padding: 20px; line-height: 15px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-            .stepErrors ul { margin: 0; padding: 0 0 0 20px; list-style-type: circle; }
-            .erroredInput { border: 1px solid #ebccd1; background: #f2dede; }
+                .stepErrors { display: none; background: #f2dede; border: 1px solid #ebccd1; margin: 14px 0 14px 0; color: #a94442; padding: 20px; line-height: 15px; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+                .stepErrors ul { margin: 0; padding: 0 0 0 20px; list-style-type: circle; }
+                .erroredInput { border: 1px solid #ebccd1; background: #f2dede; }
 
-            .checkbox-label { display: block; padding-left: 15px; text-indent: -15px; font-weight: normal !important; }
-            .checkbox { width: 13px; height: 13px; padding: 0; margin:0; vertical-align: bottom; position: relative; top: -2px; *overflow: hidden; }
+                .checkbox-label { display: block; padding-left: 15px; text-indent: -15px; font-weight: normal !important; }
+                .checkbox { width: 13px; height: 13px; padding: 0; margin:0; vertical-align: bottom; position: relative; top: -2px; *overflow: hidden; }
 
-            .helpIcon { vertical-align: middle; white-space: pre-line; }
-            .vehicleHelpIcon { margin-left: 4px; }
+                .helpIcon { vertical-align: middle; white-space: pre-line; }
+                .vehicleHelpIcon { margin-left: 4px; }
 
-            .addButton { background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-plus.png')}) no-repeat; height: 32px; padding-left: 32px; line-height: 32px; }
+                .addButton { background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-plus.png')}) no-repeat; height: 32px; padding-left: 32px; line-height: 32px; }
 
-            .fullNextButton { font-family: 'Open Sans', serif; font-weight: 700 !important; width: 100%; text-decoration: none; background: #fec524 !important; width: 100%; padding: 10px 0 10px 15px; font-size: 12px !important; text-transform: uppercase; color: #333; border: 0 !important; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-            .partialNextButton { font-family: 'Open Sans', serif; font-weight: 700 !important; background: #fec524 !important; border-radius: 0 !important; border: 0 !important; color: #333 !important; font-size: 12px !important; }
-            .partialPreviousButton { font-family: 'Open Sans', serif; font-weight: 700 !important; width: 100%; text-decoration: none; background: #eee !important; width: 100%; padding: 10px 0 10px 15px; font-size: 12px; text-transform: uppercase; color: #333; border: 0 !important; border-radius: 0 !important; text-align: center; }
-            .fullNextButton:hover, .partialNextButton:hover, .partialPreviousButton:hover { color: #333 !important; }
+                .fullNextButton { font-family: 'Open Sans', serif; font-weight: 700 !important; width: 100%; text-decoration: none; background: #fec524 !important; width: 100%; padding: 10px 0 10px 15px; font-size: 12px !important; text-transform: uppercase; color: #333; border: 0 !important; text-align: center; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+                .partialNextButton { font-family: 'Open Sans', serif; font-weight: 700 !important; background: #fec524 !important; border-radius: 0 !important; border: 0 !important; color: #333 !important; font-size: 12px !important; }
+                .partialPreviousButton { font-family: 'Open Sans', serif; font-weight: 700 !important; width: 100%; text-decoration: none; background: #eee !important; width: 100%; padding: 10px 0 10px 15px; font-size: 12px; text-transform: uppercase; color: #333; border: 0 !important; border-radius: 0 !important; text-align: center; }
+                .fullNextButton:hover, .partialNextButton:hover, .partialPreviousButton:hover { color: #333 !important; }
 
-            .vehicleTable, .driverTable { table-layout: fixed; width: 100%; border: 1px solid #ccc; }
-            .vehicleTable th,  .driverTable th { background: #eee; color: #777; padding: 3px 0px 3px 4px; border-right: 1px solid #ccc; }
-            .vehicleTable td,  .driverTable td { width: 10% !important; padding: 4px 5px 4px 8px; border-right: 1px solid #ccc; }
-            /* Content Section - END */
+                .vehicleTable, .driverTable { table-layout: fixed; width: 100%; border: 1px solid #ccc; }
+                .vehicleTable th,  .driverTable th { background: #eee; color: #777; padding: 3px 0px 3px 4px; border-right: 1px solid #ccc; }
+                .vehicleTable td,  .driverTable td { width: 10% !important; padding: 4px 5px 4px 8px; border-right: 1px solid #ccc; }
+                /* Content Section - END */
 
-            .fleetVehicle { margin-bottom: 4px; }
-            .fleetVehicle:last-child { border-bottom: 0; margin: 0; }
-            .fleetVehicleSpacer { padding: 4px 0; display: block; }
+                .fleetVehicle { margin-bottom: 4px; }
+                .fleetVehicle:last-child { border-bottom: 0; margin: 0; }
+                .fleetVehicleSpacer { padding: 4px 0; display: block; }
 
-            .fleetContactSeperator { border-top: 1px solid #ddd; padding: 2px 0; margin-bottom: 14px; }
-            .fleetContactSeperator:last-child { display: none; }
+                .fleetContactSeperator { border-top: 1px solid #ddd; padding: 2px 0; margin-bottom: 14px; }
+                .fleetContactSeperator:last-child { display: none; }
 
-            .mobileFleetVehicleSpacer { border-top: 1px solid #ddd; padding: 2px 0; margin-bottom: 14px; }
-            .mobileFleetVehicleSpacer:last-child { display: none; }
+                .mobileFleetVehicleSpacer { border-top: 1px solid #ddd; padding: 2px 0; margin-bottom: 14px; }
+                .mobileFleetVehicleSpacer:last-child { display: none; }
 
-            .disabled-button { background: #e9e9e9 !important; pointer-events: none; color: #ccc !important; border: 1px solid #ccc !important;}
+                .disabled-button { background: #e9e9e9 !important; pointer-events: none; color: #ccc !important; border: 1px solid #ccc !important;}
 
-            .ui-tooltip { white-space: pre-line; }
+                .ui-tooltip { white-space: pre-line; }
 
-            .errorSpacer { padding: 2px 0; }
+                .errorSpacer { padding: 2px 0; }
             }
         </style>
     </head>

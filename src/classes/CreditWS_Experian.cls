@@ -152,54 +152,58 @@ public class CreditWS_Experian {
 
         if (children.isEmpty()) {
             extraExperianData += ': ' + node.getText() + '\n';
+        } else if(children[0].getName().equalsIgnoreCase('Attribute')) {
+            // pull Premier Attributes out into a separate field
+            populatePremierAttributes(children);
         } else {
             for (Dom.XmlNode child : children) {
-                // pull Premier Attributes out into a separate field
-                if (child.getName().equalsIgnoreCase('Attribute')) {
-                    populatePremierAttributes(child);
-                }
-                else {
-                    extraExperianData += child.getName();
-                    if (!child.getChildElements().isEmpty()) {
-                        extraExperianData += collectChildrenData(child, extraExperianData);
-                    } else {
-                        extraExperianData += ': ' + child.getText() + '\n';
-                    }
+                extraExperianData += child.getName();
+                if (!child.getChildElements().isEmpty()) {
+                    extraExperianData += collectChildrenData(child, extraExperianData);
+                } else {
+                    extraExperianData += ': ' + child.getText() + '\n';
                 }
             }
         }
         return extraExperianData;
     }
 
-    private static void populatePremierAttributes(Dom.XmlNode attribute) {
+    private static void populatePremierAttributes(List<Dom.XmlNode> attributes) {
 
-        String code = attribute.getChildElement('Name',NAMESPACE).getText();
-        String value = attribute.getChildElement('Value',NAMESPACE).getText();
         Boolean useREH5420 = false;
+        Integer reh5420;
+        Map<String, String> epadMap = new Map<String, String>();
 
-        // created for reporting
-        premierAttributeCodes += code + ':' + value + ',';
+        for(Experian_Premier_Attributes_Description__mdt epad : [SELECT Code__c, Description__c FROM Experian_Premier_Attributes_Description__mdt])
+            epadMap.put(epad.Code__c, epad.Description__c);
 
-        List<Experian_Premier_Attributes_Description__mdt> premierAttributesDescriptions = [SELECT Id, Code__c, Description__c
-        FROM Experian_Premier_Attributes_Description__mdt
-        WHERE Code__c =: code];
+        for(Dom.XmlNode child : attributes){ 
 
-        for (Experian_Premier_Attributes_Description__mdt description : premierAttributesDescriptions) {
-            premierAttributes += description.Description__c + '\n' + value + '\n \n';
+            String code = child.getChildElement('Name',NAMESPACE).getText();
+            String value = child.getChildElement('Value',NAMESPACE).getText();
+        
+            // created for reporting
+            premierAttributeCodes += code + ':' + value + ',';
+
+            if(epadMap.containsKey(code))
+                premierAttributes += epadMap.get(code) + '\n' + value + '\n \n';
 
             // ILN5420 is custom Premier Attribute
-            if ((description.Code__c).equalsIgnoreCase('ILN5420')) {
+            if (code.equalsIgnoreCase('ILN5420')) {
                 // if ILN5420 is all 9's then need to use alternative attribute for high credit amount value
-                if ((description.Code__c).startsWith('9999')) {
+                if (value.startsWith('9999')) {
                     useREH5420 = true;
                 } else {
                     pgHighCredit = Integer.valueOf(value);
                 }
-            }
-            if ((description.Code__c).equalsIgnoreCase('REH5420') && useREH5420) {
-                pgHighCredit = Integer.valueOf(value);
+            } else if (code.equalsIgnoreCase('REH5420')) {
+                reh5420 = Integer.valueOf(value);
             }
         }
+
+        if(reh5420 != null && useREH5420)
+            pgHighCredit = reh5420;
+
     }
 
     private static void populateFraudIndicators(Dom.XmlNode fraudServices) {

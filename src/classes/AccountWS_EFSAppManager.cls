@@ -12,11 +12,16 @@
 *                   31/Jul/2019 CJackson    OTRONBOARD-78   Update ShipToCountry to CA for EFS
 *                   30/Aug/2019 CJackson    OTRONBOARD-71   Added Parent Funded Only Flag
 *                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing
+*                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on OnlineApplicationOffer__c now sets ach_allowed
+*
 */
+
 global class AccountWS_EFSAppManager {
 
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
-    public final static String MONTHLY_FEE = '118';
+    public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
+    public final static String SHIPPING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
+    public final static String EMBOSSING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
 
     public static Boolean integrationRunning { get; set; }
 
@@ -384,7 +389,7 @@ global class AccountWS_EFSAppManager {
             //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
             //OTRONBOARD-55 Shipping and Embossing Fees
-            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fees', myFees.mcShippingFee);
+            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fee', myFees.mcShippingFee);
             if(myFees.mcEmbossingFee != null) jsonPayload.writeStringField('mcfee', myFees.mcEmbossingFee);
 
             // End of "carrier"
@@ -730,7 +735,11 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStringField('products', 'ALL');
         jsonPayload.writeStringField('cash_apply_type', 'INVOICE MATCH');
-        jsonPayload.writeStringField('ach_allowed', 'Y');
+        if(onlineApplicationOffer.Online_Pay__c != null && onlineApplicationOffer.Online_Pay__c == true) {
+            jsonPayload.writeStringField('ach_allowed', 'Y');
+        } else {
+            jsonPayload.writeStringField('ach_allowed', 'N');
+        }
         jsonPayload.writeStringField('received_via', 'SFORCE');
         if(onlineApplication.Business_Street_Address__c != null) jsonPayload.writeStringField('billing_address1', onlineApplication.Business_Street_Address__c.replaceAll('[^a-zA-Z0-9 -]', ''));
         if(onlineApplication.City__c != null) jsonPayload.writeStringField('billing_city', onlineApplication.City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
@@ -882,8 +891,8 @@ global class AccountWS_EFSAppManager {
         private void setFees(Map<String,Decimal> poMap){
             if(poMap.size()>0){
                 if(this.monthlyFee == null && poMap.containsKey(MONTHLY_FEE)) this.monthlyFee = String.valueOf(poMap.get(MONTHLY_FEE));
-               // if(this.mcShippingFee == null) this.mcShippingFee = String.valueof(po.SBQQ__UnitPrice__c);
-               // if(this.mcEmbossingFee == null) this.mcEmbossingFee = String.valueof(po.SBQQ__UnitPrice__c);
+                if(this.mcShippingFee == null && poMap.containsKey(SHIPPING_FEE)) this.mcShippingFee = String.valueOf(poMap.get(SHIPPING_FEE));
+                if(this.mcEmbossingFee == null && poMap.containsKey(EMBOSSING_FEE)) this.mcEmbossingFee = String.valueOf(poMap.get(EMBOSSING_FEE));
             }
         }
     }
