@@ -1122,7 +1122,7 @@
                 <div id="programName" class="six columns">{!program.Brand_Long_Name__c}</div>
                 <div id="contactUs" class="six columns">
                     <apex:outputText rendered="{!creditLineAmount != null}">
-              {!$Label.Questions_Call} {!program.Implementation_Team_Number__c}
+                        {!$Label.Questions_Call} {!program.Implementation_Team_Number__c}
                     </apex:outputText>
                 </div>
             </div>
@@ -1374,7 +1374,7 @@
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix sectionHeader">
-                  {!$Label.Fleet_Card_Shipping_Address}
+                                {!$Label.Fleet_Card_Shipping_Address}
                             </div>
                             <div class="twelve columns clearfix">
                                 &nbsp;
@@ -1386,7 +1386,7 @@
                                         <apex:actionSupport event="onchange" action="{!setCardShippingSame}"
                                                             rerender="cardShippingAddress"/>
                                     </apex:inputCheckbox>
-                    {!$Label.Fleet_Card_Shipping_Address_Same}
+                                     {!$Label.Fleet_Card_Shipping_Address_Same}
                                 </label>
                             </div>
                             <apex:outputPanel id="cardShippingAddress">
@@ -1589,7 +1589,7 @@
                         </apex:outputPanel>
                         <apex:outputPanel id="reportingOptions" rendered="{!currentStep == 2}">
                             <div class="twelve columns clearfix sectionHeader">
-                  {!$Label.Fleet_Reporting_Options}
+                                {!$Label.Fleet_Reporting_Options}
                             </div>
                             <div class="twelve columns clearfix">
                                 &nbsp;
@@ -1688,8 +1688,8 @@
                                             </div>
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'block', 'none')};">
                                                 <apex:inputText maxlength="17" required="false" value="{!fleetVehicle.vehicleDescription}" styleClass="styledVehicleInput vehicleDescription {!IF(fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description', 'required', '')}" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.label}"/>
-                          <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.InlineHelpText}"
-                           value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
+                                                    <apex:image style="width: 16px;" styleClass="helpIcon" title="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.InlineHelpText}"
+                                                        value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" rendered="{!VALUE(num) == 0}" />
                                             </div>
                                             <div class="four columns vehicleField clearfix" style="margin: 0 12px 0 0; display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'block', 'none')};">
                                                 <apex:inputText maxlength="8" required="false" value="{!fleetVehicle.licensePlate}" styleClass="styledVehicleInput licensePlate {!IF(fleetEnrollment.Embossing_Second_Line__c == 'License Plate', 'required', '')}" html-placeholder="{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.label}"/>
@@ -1735,16 +1735,16 @@
                             </div>
                             <div class="twelve columns clearfix">
                                 <apex:outputPanel rendered="{!VALUE(num) < 30}">
-                    <apex:commandLink style="width: 140px;" styleClass="addButton" oncomplete="pageRerenderFunctions(false)" action="{!addNewFleetVehicle}"
-                     rerender="vehicleDetails" type="image/png" value="{!$Label.Add_Another_Vehicle}">
+                                    <apex:commandLink style="width: 140px;" styleClass="addButton" oncomplete="pageRerenderFunctions(false)" action="{!addNewFleetVehicle}"
+                                        rerender="vehicleDetails" type="image/png" value="{!$Label.Add_Another_Vehicle}">
                                     </apex:commandLink>
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!VALUE(num) >= 30 && creditLineAmount != null}">
-                    <p>{!$Label.Fleet_Added_30_Vehicles}</p>
-                    <p>{!program.Implementation_Team_Number__c} {!$Label.Fleet_MonFri}</p>
+                                    <p>{!$Label.Fleet_Added_30_Vehicles}</p>
+                                    <p>{!program.Implementation_Team_Number__c} {!$Label.Fleet_MonFri}</p>
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!VALUE(num) >= 30 && creditLineAmount == null}">
-                    <p>{!$Label.Fleet_Allows_30_Vehicles}</p>
+                                    <p>{!$Label.Fleet_Allows_30_Vehicles}</p>
                                 </apex:outputPanel>
                             </div>
                         </apex:outputPanel>
