@@ -1322,13 +1322,13 @@
                         <apex:actionFunction name="rerenderReportingOptions" action="{!doNothing}" rerender="reportingOptions" />
                         <apex:outputPanel id="billingContact" rendered="{!currentStep == 1}">
                             <div class="twelve columns clearfix sectionHeader">
-                  {!$Label.Fleet_Billing_Information}
+                                {!$Label.Fleet_Billing_Information}
                             </div>
                             <div class="twelve columns clearfix">
 
                             </div>
                             <div class="twelve columns clearfix">
-                  {!$Label.For_invoicing_billing_inquiries_accounts_payable_etc}
+                                {!$Label.For_invoicing_billing_inquiries_accounts_payable_etc}
                             </div>
                             <div class="twelve columns clearfix">
 
