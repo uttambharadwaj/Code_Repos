@@ -12,7 +12,10 @@
 *                   31/Jul/2019 CJackson    OTRONBOARD-78   Update ShipToCountry to CA for EFS
 *                   30/Aug/2019 CJackson    OTRONBOARD-71   Added Parent Funded Only Flag
 *                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing
+*                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on OnlineApplicationOffer__c now sets ach_allowed
+*
 */
+
 global class AccountWS_EFSAppManager {
 
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
@@ -732,7 +735,11 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStringField('products', 'ALL');
         jsonPayload.writeStringField('cash_apply_type', 'INVOICE MATCH');
-        jsonPayload.writeStringField('ach_allowed', 'Y');
+        if(onlineApplicationOffer.Online_Pay__c != null && onlineApplicationOffer.Online_Pay__c == true) {
+            jsonPayload.writeStringField('ach_allowed', 'Y');
+        } else {
+            jsonPayload.writeStringField('ach_allowed', 'N');
+        }
         jsonPayload.writeStringField('received_via', 'SFORCE');
         if(onlineApplication.Business_Street_Address__c != null) jsonPayload.writeStringField('billing_address1', onlineApplication.Business_Street_Address__c.replaceAll('[^a-zA-Z0-9 -]', ''));
         if(onlineApplication.City__c != null) jsonPayload.writeStringField('billing_city', onlineApplication.City__c.replaceAll('[^a-zA-Z0-9 -]', ''));

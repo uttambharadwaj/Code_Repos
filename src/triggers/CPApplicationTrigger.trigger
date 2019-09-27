@@ -3,7 +3,7 @@
  */
 
 trigger CPApplicationTrigger on CP_Application_Request__c (before insert, before update, after update, after insert) {
-
+    if(TriggerFactory.disabledTriggers(CP_Application_Request__c.sObjectType)) return;
     for (CP_Application_Request__c cpApp : Trigger.new) {
 
         if (cpApp != null) {

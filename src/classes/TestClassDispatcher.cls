@@ -115,4 +115,12 @@ public class TestClassDispatcher {
         ContactUnsubscribeControllerTest.testLeadUnsubscribe();
     }
 
+    @isTest static void testExperianPGQueuableGood(){
+        CreditUtilQueueable_ExperianPGTest.testGoodRequests();
+    }
+
+    @isTest static void testExperianPGQueuableBad(){
+        CreditUtilQueueable_ExperianPGTest.testBadRequests();
+    }
+
 }
