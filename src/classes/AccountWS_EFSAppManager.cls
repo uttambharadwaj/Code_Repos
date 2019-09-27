@@ -13,9 +13,10 @@
 *                   30/Aug/2019 CJackson    OTRONBOARD-71   Added Parent Funded Only Flag
 *                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing
 *                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on OnlineApplicationOffer__c now sets ach_allowed
-*                                           OTRONBOARD-93   if Credit_Line_Approved__c is null, send 0
+*                                           OTRONBOARD-93   if Credit_Line_Approved__c or Credit_Line_Requested__c are null, send 0 instead of null
 *
 */
+
 
 global class AccountWS_EFSAppManager {
 
@@ -726,7 +727,11 @@ global class AccountWS_EFSAppManager {
 */
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('req_credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('req_credit_line_type', 'Open Line');
-        if(onlineApplication.Credit_Line_Requested__c != null) jsonPayload.writeNumberField('req_credit_line_amt', onlineApplication.Credit_Line_Requested__c);
+        if(onlineApplication.Credit_Line_Requested__c != null) {
+            jsonPayload.writeNumberField('req_credit_line_amt', onlineApplication.Credit_Line_Requested__c);
+        } else {
+            jsonPayload.writeNumberField('req_credit_line_amt', 0);
+        }
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Auto Draft')) jsonPayload.writeStringField('req_payment_method', 'ACH Draft');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Online Payment')) jsonPayload.writeStringField('req_payment_method', 'None');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Internet Pay')) jsonPayload.writeStringField('req_payment_method', 'None');
