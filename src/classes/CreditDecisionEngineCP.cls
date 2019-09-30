@@ -553,14 +553,16 @@ global class CreditDecisionEngineCP {
             }
 
 //             Run counter-offer processes
-            cpApplications = [SELECT Id, PG_Required__c, Guarantor_Country__c, Opportunity__r.Pull_PG_Credit__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];
+            cpApplications = [SELECT Id, PG_Required__c, Guarantor_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];
 
             if (cpApplications.size() > 0 && !TestUtils.isRunningTest()) {
 
                 CP_Application_Request__c cpApp = cpApplications[0];
 
                 if (cpApp.PG_Required__c == true
-                        && (cpApp.Opportunity__r.Pull_PG_Credit__c == null || cpApp.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))) {
+                        && (cpApp.Opportunity__r.Pull_PG_Credit__c == null || cpApp.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))
+                        && cpApp.PG_FICO_Score__c == null // the PG's credit has not already been run
+                        && !TestUtils.isRunningTest()) {
 
                     if (cpApp.Guarantor_Country__c == null || (cpApp.Guarantor_Country__c).equalsIgnoreCase('US')) {
                         System.debug('Running Experian...');
