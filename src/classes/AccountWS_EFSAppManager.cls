@@ -245,9 +245,9 @@ global class AccountWS_EFSAppManager {
         }
 
         if(onlineApplication.Program__c != null) {
-            [SELECT Id,  Card_Press_ID__c, Lockbox_Value__c, Partner_Territory__r.Name
+            onlineApplicationProgram = [SELECT Id,  Card_Press_ID__c, Lockbox_Value__c, Partner_Territory__r.Name
             FROM Program__c
-            WHERE Id =: onlineapplication.Program__c];
+            WHERE Id =: onlineapplication.Program__c LIMIT 1];
         }
 
         CardFees myFees = new CardFees(onlineApplication);
