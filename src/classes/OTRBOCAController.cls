@@ -603,20 +603,28 @@ public class OTRBOCAController {
             Contact pgContact = new Contact();
             Database.upsertResult result;
 
-            if(carrierID != null && carrierID != ''){
+            if(carrierID != null && carrierID != '') {
+                //OTRONBOARD-88 count how many account fields match the application in the following for loop.
+                Integer matchingAccFields = 0;
+                //how many account fields are required to match
+                Integer requiredMatchingAccFields = 2;
                 Boolean carrierNotFound = true;
-                //OTRONBOARD-88 - added AND statement after WHERE for additional account field matching fun
-                for(Account a : [SELECT Id, (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c, Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c FROM Online_Applications__r)
+
+                for(Account a : [SELECT Id,
+                                    (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
+                                        Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
+                                        FROM Online_Applications__r)
                                     FROM Account
-                                    WHERE Carrier_ID__c = :carrierID
-                                    AND (
-                                            (Name = :onlineApplication.Legal_Business_Name__c AND Phone = :onlineApplication.Phone_Number__c)
-                                            OR
-                                            (Name = :onlineApplication.Legal_Business_Name__c AND BillingStreet = :onlineApplication.Business_Street_Address__c)
-                                            OR
-                                            (BillingStreet = :onlineApplication.Business_Street_Address__c AND Phone = :onlineApplication.Phone_Number__c)
-                                        )
-                ]) {
+                                    WHERE Carrier_ID__c = :carrierID]) {
+                    if(a.Name == onlineApplication.Legal_Business_Name__c) {
+                        matchingAccFields ++;
+                    }
+                    if(a.BillingStreet == onlineApplication.Business_Street_Address__c) {
+                        matchingAccFields ++;
+                    }
+                    if(a.Phone == onlineApplication.Phone_Number__c) {
+                        matchingAccFields ++;
+                    }
                     for (OnlineApplication__c oa : a.Online_Applications__r) {
                         if (oa.Program__c == program.Id) {
                             carrierNotFound = false;
@@ -630,9 +638,12 @@ public class OTRBOCAController {
                         }
                     }
                 }
-                if(carrierNotFound)
+                if(carrierNotFound) {
                     throw new creditApplicationException('Carrier ID not found or no prior applications');
-
+                }
+                if(matchingAccFields < requiredMatchingAccFields) {
+                    throw new creditApplicationException('Application Business Name, Street Address, or Phone Number does not match existing Carrier ID');
+                }
             }
 
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
