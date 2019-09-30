@@ -618,6 +618,9 @@ public class OTRBOCAController {
                                     WHERE Carrier_ID__c = :carrierID]) {
                     //start counting how many account fields match the corresponding application field
                     Integer matchingAccFields = 0;
+                    //set value to true so that each iteration can restart the process
+                    accountNotMatched = true;
+
                     if(a.Name == onlineApplication.Legal_Business_Name__c) {
                         matchingAccFields ++;
                     }
