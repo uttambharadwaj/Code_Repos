@@ -13,7 +13,8 @@
 *                   30/Aug/2019 CJackson    OTRONBOARD-71   Added Parent Funded Only Flag
 *                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing
 *                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on OnlineApplicationOffer__c now sets ach_allowed
-*
+*                                           OTRONBOARD-93   if Credit_Line_Approved__c or Credit_Line_Requested__c are null, and the offer is parent funded, send 0 instead of null.
+*                                                           moved these fields to the contract section of the payload.
 */
 
 global class AccountWS_EFSAppManager {
@@ -732,8 +733,6 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('unit_of_measure', 'G');
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('credit_line_type', 'Open Line');
-        //todo MUST send credit line approved, if it's null set to 0
-        if(onlineApplication.Credit_Line_Approved__c != null) jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Auto Draft')) jsonPayload.writeStringField('payment_method', 'ACH Draft');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Online Payment')) jsonPayload.writeStringField('payment_method', 'None');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Internet Pay')) jsonPayload.writeStringField('payment_method', 'None');
@@ -753,7 +752,6 @@ global class AccountWS_EFSAppManager {
 */
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('req_credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('req_credit_line_type', 'Open Line');
-        if(onlineApplication.Credit_Line_Requested__c != null) jsonPayload.writeNumberField('req_credit_line_amt', onlineApplication.Credit_Line_Requested__c);
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Auto Draft')) jsonPayload.writeStringField('req_payment_method', 'ACH Draft');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Online Payment')) jsonPayload.writeStringField('req_payment_method', 'None');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Internet Pay')) jsonPayload.writeStringField('req_payment_method', 'None');
@@ -829,11 +827,25 @@ global class AccountWS_EFSAppManager {
             if (onlineApplicationOffer.ATM_Use__c == false) jsonPayload.writeStringField('atm_use', 'N');
         }
 
+        if(onlineApplication.Credit_Line_Approved__c != null) {
+            jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
+            //if offer is parent funded, and credit line requested is null, then we send 0.
+        } else if ( onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Requested__c == null) {
+            jsonPayload.writeNumberField('credit_line_amount', 0);
+        }
+
+        if(onlineApplication.Credit_Line_Requested__c != null) {
+            jsonPayload.writeNumberField('req_credit_line_amt', onlineApplication.Credit_Line_Requested__c);
+            //if offer is parent funded, and credit line requested is null, then we send 0.
+        } else if (onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Requested__c == null){
+            jsonPayload.writeNumberField('req_credit_line_amt', 0);
+        }
+
         // OTRONBOARD-30
-        if(onlineApplicationOffer.approval_type__c != null) jsonPayload.writeStringField('approval_type', onlineApplicationOffer.Approval_Type__c);
-        if(onlineApplicationOffer.primary_contact_email_address__c != null) jsonPayload.writeStringField('email_address', onlineApplicationOffer.Primary_Contact_Email_Address__c);
-        if(onlineApplicationOffer.create_letter__c != null) jsonPayload.writeStringField('create_letter', onlineApplicationOffer.Create_Letter__c);
-        if(onlineApplicationOffer.notice_delivery__c != null) jsonPayload.writeStringField('notice_delivery', onlineApplicationOffer.Notice_Delivery__c);
+        if(onlineApplicationOffer.Approval_Type__c != null) jsonPayload.writeStringField('approval_type', onlineApplicationOffer.Approval_Type__c);
+        if(onlineApplicationOffer.Primary_Contact_Email_Address__c != null) jsonPayload.writeStringField('email_address', onlineApplicationOffer.Primary_Contact_Email_Address__c);
+        if(onlineApplicationOffer.Create_Letter__c != null) jsonPayload.writeStringField('create_letter', onlineApplicationOffer.Create_Letter__c);
+        if(onlineApplicationOffer.Notice_Delivery__c != null) jsonPayload.writeStringField('notice_delivery', onlineApplicationOffer.Notice_Delivery__c);
 
         // Per Gaylon and Justine - we're always going to send this.
         if(onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('fuel_and_cash', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Fuel_Cash__c));
@@ -841,16 +853,16 @@ global class AccountWS_EFSAppManager {
         if(selectedOtherServices != null && selectedOtherServices.contains('ATM') && onlineApplicationOffer.PSR_ATM_Limit__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null){
                 if(onlineApplication.Carrier_ID_Number__c != null){
-                    jsonPayload.writeNumberField('atm_limit', integer.valueof(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
+                    jsonPayload.writeNumberField('atm_limit', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
                 } else {
-                    jsonPayload.writeNumberField('atm_limit', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
+                    jsonPayload.writeNumberField('atm_limit', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
                 }
 
             }
         }
 
         if(selectedOtherServices != null && selectedOtherServices.contains('Money Codes and ATM') && onlineApplicationOffer.PSR_Money_Code__c != null) {
-            if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('money_codes', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Money_Code__c));
+            if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('money_codes', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Money_Code__c));
         }
 
         if(selectedOtherServices != null && selectedOtherServices.contains('Scales') && onlineApplicationOffer.PSR_Scales__c != null) {

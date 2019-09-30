@@ -5,10 +5,11 @@ Test Classes:       OTRBOCATest
 Last Coverage:      60%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
                     4/10/2019 Jason Arbegast IADJUDICAT-966 added break in a for loop
-                    05/06/2019  Michael Farrell     IADJUDICAT-1157     populated tmSessionId variable
-                    06/21/2019  Michael Farrell     PSOBACKLOG-226      added Offer__c lookup field to opportunity for CPQ
-                    07/30/2019 JA OTRONBOARD-59 add existing carrier id
-                    09/16/2019 Leela Howland PSOBACKLOG-259 excluding PG required for paper apps
+                    05/06/2019      Michael Farrell     IADJUDICAT-1157     populated tmSessionId variable
+                    06/21/2019      Michael Farrell     PSOBACKLOG-226      added Offer__c lookup field to opportunity for CPQ
+                    07/30/2019      JA                  OTRONBOARD-59   add existing carrier id
+                    09/16/2019      Leela Howland       PSOBACKLOG-259  excluding PG required for paper apps
+                    26/Sep/2019     MFarrell            OTRONBOARD-88   Added account look up criteria
 
  */
 
@@ -602,25 +603,61 @@ public class OTRBOCAController {
             Contact pgContact = new Contact();
             Database.upsertResult result;
 
-            if(carrierID != null && carrierID != ''){
+            if(carrierID != null && carrierID != '') {
+                //OTRONBOARD-88 do we have an account that matches the requested criteria
+                Boolean accountNotMatched = true;
+                //OTRONBOARD-88 how many account fields are required to match the application
+                Integer requiredMatchingAccFields = 2;
                 Boolean carrierNotFound = true;
-                for(Account a : [SELECT Id,(SELECT Id, Program__c, Opportunity__r.Primary_Contact__c, Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c FROM Online_Applications__r) FROM Account WHERE Carrier_ID__c = :carrierID]) {
-                    for (OnlineApplication__c oa : a.Online_Applications__r) {
-                        if (oa.Program__c == program.Id) {
-                            carrierNotFound = false;
-                            //need to get account and contact informations
-                            account.Id = a.Id;
-                            primaryContact.Id = oa.Opportunity__r.Primary_Contact__c;
-                            pgContact.Id = oa.Personal_Guarantor__c;
-                            pgContact.FirstName = oa.Personal_Guarantor__r.FirstName;
-                            pgContact.LastName = oa.Personal_Guarantor__r.LastName;
-                            break;
-                        }
-                    }
-                }
-                if(carrierNotFound)
-                    throw new creditApplicationException('Carrier ID not found or no prior applications');
 
+                for(Account a : [SELECT Id,
+                                    (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
+                                        Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
+                                        FROM Online_Applications__r)
+                                    FROM Account
+                                    WHERE Carrier_ID__c = :carrierID]) {
+                    //start counting how many account fields match the corresponding application field
+                    Integer matchingAccFields = 0;
+                    //set value to true so that each iteration can restart the process
+                    accountNotMatched = true;
+
+                    if(a.Name == onlineApplication.Legal_Business_Name__c) {
+                        matchingAccFields ++;
+                    }
+                    if(a.BillingStreet == onlineApplication.Business_Street_Address__c) {
+                        matchingAccFields ++;
+                    }
+                    if(a.Phone == onlineApplication.Phone_Number__c) {
+                        matchingAccFields ++;
+                    }
+                    //if we matched enough fields, continue to the next step
+                    if(matchingAccFields >= requiredMatchingAccFields) {
+                        //set boolean so we know that we have a matching account
+                        accountNotMatched = false;
+                        for (OnlineApplication__c oa : a.Online_Applications__r) {
+                            if (oa.Program__c == program.Id) {
+                                carrierNotFound = false;
+                                //need to get account and contact informations
+                                account.Id = a.Id;
+                                primaryContact.Id = oa.Opportunity__r.Primary_Contact__c;
+                                pgContact.Id = oa.Personal_Guarantor__c;
+                                pgContact.FirstName = oa.Personal_Guarantor__r.FirstName;
+                                pgContact.LastName = oa.Personal_Guarantor__r.LastName;
+                                break;
+                            }
+                        }
+                    } else {
+                        //account does not match the required criteria, move on to the next one in the loop.
+                        continue;
+                    }
+
+                }
+                if(carrierNotFound) {
+                    throw new creditApplicationException('Carrier ID not found or no prior applications');
+                }
+                if(accountNotMatched) {
+                    throw new creditApplicationException('Application Business Name, Street Address, or Phone Number does not match existing Carrier ID');
+                }
             }
 
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
