@@ -516,7 +516,7 @@ global class CreditDecisionEngineNA {
 
 
             // Run counter-offer processes
-            naApplications = [SELECT Id, PG_Required__c, Personal_Guarantor__c, Personal_Guarantor_Mailing_Country__c, Opportunity__r.Pull_PG_Credit__c FROM Application_Request__c WHERE Id = :naApplicationId];
+            naApplications = [SELECT Id, PG_Required__c, Personal_Guarantor__c, Personal_Guarantor_Mailing_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM Application_Request__c WHERE Id = :naApplicationId];
 
             if (naApplications.size() > 0) {
 
@@ -525,6 +525,7 @@ global class CreditDecisionEngineNA {
                 if (appRequest.PG_Required__c == true
                         && appRequest.Personal_Guarantor__c != null
                         && (appRequest.Opportunity__r.Pull_PG_Credit__c == null || appRequest.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))
+                        && appRequest.PG_FICO_Score__c == null // the PG's credit has not already been run
                         && !TestUtils.isRunningTest()) {
 
                     if(appRequest.Personal_Guarantor_Mailing_Country__c == null || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('US') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('United States')) {
