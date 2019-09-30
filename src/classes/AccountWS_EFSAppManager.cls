@@ -247,7 +247,7 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Program__c != null) {
             onlineApplicationProgram = [SELECT Id,  Card_Press_ID__c, Lockbox_Value__c, Partner_Territory__r.Name
             FROM Program__c
-            WHERE Id =: onlineapplication.Program__c LIMIT 1];
+            WHERE Id =: onlineApplication.Program__c LIMIT 1];
         }
 
         CardFees myFees = new CardFees(onlineApplication);
@@ -499,6 +499,11 @@ global class AccountWS_EFSAppManager {
 
         }
 */
+        if(onlineApplicationOffer.Online_Pay__c != null && onlineApplicationOffer.Online_Pay__c == true) {
+            jsonPayload.writeStringField('ach_allowed', 'Y');
+        } else {
+            jsonPayload.writeStringField('ach_allowed', 'N');
+        }
         jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('payrollDebit', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
@@ -766,11 +771,6 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStringField('products', 'ALL');
         jsonPayload.writeStringField('cash_apply_type', 'INVOICE MATCH');
-        if(onlineApplicationOffer.Online_Pay__c != null && onlineApplicationOffer.Online_Pay__c == true) {
-            jsonPayload.writeStringField('ach_allowed', 'Y');
-        } else {
-            jsonPayload.writeStringField('ach_allowed', 'N');
-        }
         jsonPayload.writeStringField('received_via', 'SFORCE');
         if(onlineApplication.Business_Street_Address__c != null) jsonPayload.writeStringField('billing_address1', onlineApplication.Business_Street_Address__c.replaceAll('[^a-zA-Z0-9 -]', ''));
         if(onlineApplication.City__c != null) jsonPayload.writeStringField('billing_city', onlineApplication.City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
