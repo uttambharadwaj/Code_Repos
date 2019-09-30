@@ -15,7 +15,6 @@
 *                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on OnlineApplicationOffer__c now sets ach_allowed
 *                                           OTRONBOARD-93   if Credit_Line_Approved__c or Credit_Line_Requested__c are null, and the offer is parent funded, send 0 instead of null.
 *                                                           moved these fields to the contract section of the payload.
-*
 */
 
 global class AccountWS_EFSAppManager {
