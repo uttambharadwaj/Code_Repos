@@ -554,7 +554,7 @@ global class CreditDecisionEngineOTR {
             }
 
             // Run counter-offer processes
-            onlineApplications = [SELECT Id, PG_Required__c, AO_Country__c, Opportunity__r.Pull_PG_Credit__c FROM OnlineApplication__c WHERE Id = :onlineApplicationId LIMIT 1];
+            onlineApplications = [SELECT Id, PG_Required__c, AO_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_Score__c FROM OnlineApplication__c WHERE Id = :onlineApplicationId LIMIT 1];
 
             if (onlineApplications.size() > 0) {
 
@@ -562,6 +562,7 @@ global class CreditDecisionEngineOTR {
 
                 if (onlineApp.PG_Required__c == true
                         && (onlineApp.Opportunity__r.Pull_PG_Credit__c == null || onlineApp.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))
+                        && onlineApp.PG_Score__c == null // the PG's credit has not already been run
                         && !TestUtils.isRunningTest()) {
 
                     if(onlineApp.AO_Country__c == null || (onlineApp.AO_Country__c).equalsIgnoreCase('US')) {

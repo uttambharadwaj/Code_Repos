@@ -610,7 +610,6 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeEndObject();
 
-        // TODO need to ask Regina or Tiana if this section should be updated to say 'Smartfunds Payroll' or 'Smartfunds Non-payroll' because there is no product called just 'Smartfunds' -lhowland
         if(onlineApplication.Other_Services__c != null && (onlineApplication.Other_Services__c).contains('SmartFunds')) {
 
             jsonPayload.writeStartObject();
@@ -700,6 +699,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStringField('unit_of_measure', 'G');
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('credit_line_type', 'Open Line');
+        //todo MUST send credit line approved, if it's null set to 0
         if(onlineApplication.Credit_Line_Approved__c != null) jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Auto Draft')) jsonPayload.writeStringField('payment_method', 'ACH Draft');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Online Payment')) jsonPayload.writeStringField('payment_method', 'None');
