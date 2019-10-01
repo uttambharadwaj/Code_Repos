@@ -611,11 +611,11 @@ public class OTRBOCAController {
                 Boolean carrierNotFound = true;
 
                 for(Account a : [SELECT Id, Name, BillingStreet, Phone,
-                (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
-                        Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
-                FROM Online_Applications__r)
-                FROM Account
-                WHERE Carrier_ID__c = :carrierID]) {
+                                    (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
+                                            Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
+                                    FROM Online_Applications__r)
+                                    FROM Account
+                                    WHERE Carrier_ID__c = :carrierID]) {
                     //start counting how many account fields match the corresponding application field
                     Integer matchingAccFields = 0;
                     //set value to true so that each iteration can restart the process
