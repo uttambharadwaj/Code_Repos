@@ -860,7 +860,7 @@ global class AccountWS_EFSAppManager {
         // Per Gaylon and Justine - we're always going to send this.
         if(onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('fuel_and_cash', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Fuel_Cash__c));
 
-        if(selectedOtherServices != null && selectedOtherServices.contains('ATM') && onlineApplicationOffer.PSR_ATM_Limit__c != null) {
+        if(selectedOtherServices != null && selectedOtherServices.contains('atm') && onlineApplicationOffer.PSR_ATM_Limit__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null){
                 if(onlineApplication.Carrier_ID_Number__c != null){
                     jsonPayload.writeNumberField('atm_limit', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
@@ -871,15 +871,13 @@ global class AccountWS_EFSAppManager {
             }
         }
 
-        if(selectedOtherServices != null && selectedOtherServices.contains('Money Codes and ATM') && onlineApplicationOffer.PSR_Money_Code__c != null) {
+        if(selectedOtherServices != null && selectedOtherServices.contains('money codes and atm') && onlineApplicationOffer.PSR_Money_Code__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('money_codes', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Money_Code__c));
         }
 
-        if(selectedOtherServices != null && selectedOtherServices.contains('Scales') && onlineApplicationOffer.PSR_Scales__c != null) {
+        if(selectedOtherServices != null && selectedOtherServices.contains('scales') && onlineApplicationOffer.PSR_Scales__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('scales', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Scales__c));
         }
-
-        if(selectedOtherServices != null && selectedOtherServices.contains(''))
 
         // End of "contract"
         jsonPayload.writeEndObject();
