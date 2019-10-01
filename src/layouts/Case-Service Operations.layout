@@ -83,6 +83,26 @@
                 <behavior>Edit</behavior>
                 <field>Service_Alert__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Priority_Level__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>G_Tag__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Region__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Vehicle_Card_No__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>VIN__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -234,6 +254,10 @@
                 <behavior>Edit</behavior>
                 <field>Service_Program_Survey_Sent__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Bot_RPA7_Used__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -264,49 +288,64 @@
     <platformActionList>
         <actionListContext>Record</actionListContext>
         <platformActionListItems>
-            <actionName>SendEmail</actionName>
+            <actionName>Case.Send_Case_Email</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>0</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Case.Send_Case_Email</actionName>
+            <actionName>Case.Update_Case</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>1</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Case.Update_Case</actionName>
+            <actionName>Case.Close_Case</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>2</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>Case.Close_Case</actionName>
+            <actionName>FeedItem.TextPost</actionName>
             <actionType>QuickAction</actionType>
             <sortOrder>3</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
-            <actionName>FeedItem.TextPost</actionName>
-            <actionType>QuickAction</actionType>
-            <sortOrder>4</sortOrder>
-        </platformActionListItems>
-        <platformActionListItems>
             <actionName>ChangeOwnerOne</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>5</sortOrder>
+            <sortOrder>4</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Edit</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>6</sortOrder>
+            <sortOrder>5</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>Clone</actionName>
             <actionType>StandardButton</actionType>
-            <sortOrder>7</sortOrder>
+            <sortOrder>6</sortOrder>
         </platformActionListItems>
         <platformActionListItems>
             <actionName>ChangeRecordType</actionName>
             <actionType>StandardButton</actionType>
+            <sortOrder>7</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Case.Close_Case_Sales_Ops</actionName>
+            <actionType>QuickAction</actionType>
             <sortOrder>8</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Case.GSA_After_Hours</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>9</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Case.GSA_Roadside</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>10</sortOrder>
+        </platformActionListItems>
+        <platformActionListItems>
+            <actionName>Case.New_Refund_or_Adjustment</actionName>
+            <actionType>QuickAction</actionType>
+            <sortOrder>11</sortOrder>
         </platformActionListItems>
     </platformActionList>
     <quickActionList>
@@ -331,6 +370,15 @@
         <quickActionListItems>
             <quickActionName>Case.Close_Case</quickActionName>
         </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Case.Close_Case_Sales_Ops</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Case.GSA_After_Hours</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Case.GSA_Roadside</quickActionName>
+        </quickActionListItems>
     </quickActionList>
     <relatedContent>
         <relatedContentItems>
@@ -350,6 +398,19 @@
         <fields>NAME</fields>
         <fields>Vehicle_Card__c</fields>
         <relatedList>Fraud_Purchase_Device__c.Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>RECORDTYPE</fields>
+        <fields>Total_Late_Fee__c</fields>
+        <fields>Amount_Waived__c</fields>
+        <fields>Approval_Status__c</fields>
+        <fields>Approver_Name__c</fields>
+        <fields>Approval_Comment__c</fields>
+        <fields>Decision_Date__c</fields>
+        <relatedList>Refund_Adjustment__c.CaseNumber__c</relatedList>
+        <sortField>Decision_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
@@ -394,6 +455,10 @@
         <relatedList>RelatedAttachmentList</relatedList>
     </relatedLists>
     <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Driver_Action__c.CaseNumber__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <fields>MILESTONETYPE.MILESTONE</fields>
         <fields>CASEMILESTONE.TARGET_DATE</fields>
         <fields>CASEMILESTONE.COMPLETION_DATE</fields>
@@ -405,14 +470,13 @@
     <relatedLists>
         <fields>CASES.CASE_NUMBER</fields>
         <fields>CASES.SUBJECT</fields>
-        <fields>Onboarding_Participant__c</fields>
-        <fields>Target_Completion_Date__c</fields>
         <fields>CASES.TYPE</fields>
         <fields>CASES.STATUS</fields>
-        <fields>Location__c</fields>
-        <fields>Hire_Date__c</fields>
-        <fields>User__c</fields>
-        <fields>Onboarding_Status__c</fields>
+        <fields>Class_Start_Date_del__c</fields>
+        <fields>OWNER_NAME</fields>
+        <fields>CASES.CLOSED_DATE</fields>
+        <fields>Business_Unit__c</fields>
+        <fields>Send_Survey__c</fields>
         <relatedList>RelatedChildCaseList</relatedList>
     </relatedLists>
     <relatedLists>
