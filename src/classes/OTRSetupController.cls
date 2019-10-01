@@ -643,7 +643,7 @@ public without sharing class OTRSetupController {
             }
 
             onlineApplication.PDF_Token__c = '';
-            AccountWS_EFSAppManager.integrationRunning = true;
+            AccountWS_EFSAppManager.integrationRunning = true; //adding this so it doesn't get queued up again; submitForm is called first and will queue it up initially
             upsert onlineApplication;
 
         } catch (Exception e) {
