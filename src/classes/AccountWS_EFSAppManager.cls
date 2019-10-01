@@ -436,16 +436,20 @@ global class AccountWS_EFSAppManager {
                 Boolean hasPayroll = selectedOtherServices.contains('payroll');
                 switch on myContract.Funding_Option__c {
                     when 'ATM' {
-                        if (hasPayroll) jsonPayload.writeBooleanField('payrollAtm', true); else jsonPayload.writeBooleanField('Atm', true);
+                        if (hasPayroll) jsonPayload.writeBooleanField('payrollAtm', true);
+                        else jsonPayload.writeBooleanField('Atm', true);
                     }
                     when 'Register Check' {
-                        if (hasPayroll) jsonPayload.writeBooleanField('payrollChk', true); else jsonPayload.writeBooleanField('Chk', true);
+                        if (hasPayroll) jsonPayload.writeBooleanField('payrollChk', true);
+                        else jsonPayload.writeBooleanField('Chk', true);
                     }
                     when 'ACH Transfer' {
-                        if (hasPayroll) jsonPayload.writeBooleanField('payrollAch', true); else jsonPayload.writeBooleanField('Ach', true);
+                        if (hasPayroll) jsonPayload.writeBooleanField('payrollAch', true);
+                        else jsonPayload.writeBooleanField('Ach', true);
                     }
                     when 'Debit Use' {
-                        if (hasPayroll) jsonPayload.writeBooleanField('payrollDebit', true); else jsonPayload.writeBooleanField('Debit', true);
+                        if (hasPayroll) jsonPayload.writeBooleanField('payrollDebit', true);
+                        else jsonPayload.writeBooleanField('Debit', true);
                     }
                 }
             }
