@@ -966,7 +966,7 @@
                                 <apex:inputText maxlength="100" value="{!fleetEnrollment.Billing_Address_Line_1__c}" id="billingAddress1" styleClass="styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_1__c.label}"/>
                             </div>
                             <div class="twelve columns clearfix">
-                                <apex:inputText maxlength="100" value="{!fleetEnrollment.Billing_Address_Line_2__c}" styleClass="styledInput" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_2__c.label} (optional)"/>
+                                <apex:inputText maxlength="100" value="{!fleetEnrollment.Billing_Address_Line_2__c}" styleClass="styledInput" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_2__c.label} {!$Label.Optional}"/>
                             </div>
                             <div class="twelve columns clearfix">
                                 <div class="four columns">
