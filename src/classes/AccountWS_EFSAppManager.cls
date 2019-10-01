@@ -103,15 +103,15 @@ global class AccountWS_EFSAppManager {
                 List<Contract__c> myContracts = new List<Contract__c>{null};
                 if(onlineApplication.Carrier_ID_Number__c != null)
                     myContracts = [SELECT Id, Funding_Option__c FROM Contract__c WHERE Online_Application__c = :onlineApplication.Id];
+                if(myContracts.size()==0) myContracts.add(null);
 
                 List<Attachment> attachList = new List<Attachment>();
                 List<HttpRequest> myPayloads = new List<HttpRequest>();
-                if(myContracts.size()==0) myContracts.add(new Contract__c());
 
                 for(Integer i=0;i<myContracts.size();i++){
 
-                    Contract__c oneContract = (myContracts[i].Id == null) ? null : myContracts[i];
-
+                    Contract__c oneContract = (myContracts[i]);
+                    system.debug(oneContract);
                     String firstPayload = buildPayload_callout1(onlineApplication, loginResponse.clientId, oneContract);
 
                     if(firstPayload != null) {
@@ -220,7 +220,7 @@ global class AccountWS_EFSAppManager {
         Set<String> selectedOtherServices = new Set<String>();
         if(onlineApplication.Other_Services__c != null) {
             for(String product : (onlineApplication.Other_Services__c).split(';')) {
-                selectedOtherServices.add(product);
+                selectedOtherServices.add(product.toLowerCase());
             }
         }
 
@@ -429,6 +429,32 @@ global class AccountWS_EFSAppManager {
 
         if(onlineApplication.Funding__c == 'Parent Funded')jsonPayload.writeStringField('dont_do_oracle', 'Y');
 
+        //who knows what values to send to EFS? nobody!
+        if(selectedOtherServices != null){
+            if(selectedOtherServices.contains('smartfunds') &&
+                myContract != null && myContract.Funding_Option__c != null) {
+                Boolean hasPayroll = selectedOtherServices.contains('payroll');
+                switch on myContract.Funding_Option__c {
+                    when 'ATM' {
+                        if (hasPayroll) jsonPayload.writeBooleanField('payrollAtm', true); else jsonPayload.writeBooleanField('Atm', true);
+                    }
+                    when 'Register Check' {
+                        if (hasPayroll) jsonPayload.writeBooleanField('payrollChk', true); else jsonPayload.writeBooleanField('Chk', true);
+                    }
+                    when 'ACH Transfer' {
+                        if (hasPayroll) jsonPayload.writeBooleanField('payrollAch', true); else jsonPayload.writeBooleanField('Ach', true);
+                    }
+                    when 'Debit Use' {
+                        if (hasPayroll) jsonPayload.writeBooleanField('payrollDebit', true); else jsonPayload.writeBooleanField('Debit', true);
+                    }
+                }
+            }
+            if(selectedOtherServices.contains('fleet mastercard'))
+                jsonPayload.writeStringField('mc_fleet','Y');
+        }
+
+        if(selectedOtherServices != null)
+
         // Start of "policy"
         jsonPayload.writeFieldName('policy');
         jsonPayload.writeStartObject();
@@ -456,23 +482,7 @@ global class AccountWS_EFSAppManager {
             if (onlineApplication.Funding_Options__c.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Debit Use');
         }
         */
-        //who knows what values to send to EFS? nobody!
-        if(myContract != null && myContract.Funding_Option__c != null){
-            switch on myContract.Funding_Option__c{
-                when 'ATM'{
-                    jsonPayload.writeBooleanField('payrollAtm', true);
-                }
-                when 'Register Check'{
-                    jsonPayload.writeBooleanField('payrollChk', true);
-                }
-                when 'ACH Transfer'{
-                    jsonPayload.writeBooleanField('payrollAch', true);
-                }
-                when 'Debit Use'{
-                    jsonPayload.writeBooleanField('payrollDebit', true);
-                }
-            }
-        }
+
         /*
         //this can be deleted after secondary stuff is verified...not sure if we need to send 'false'
         if (onlineApplication.Funding_Options__c != null) {
@@ -499,6 +509,11 @@ global class AccountWS_EFSAppManager {
 
         }
 */
+        if(onlineApplicationOffer.Online_Pay__c != null && onlineApplicationOffer.Online_Pay__c == true) {
+            jsonPayload.writeStringField('ach_allowed', 'Y');
+        } else {
+            jsonPayload.writeStringField('ach_allowed', 'N');
+        }
         jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('payrollDebit', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
@@ -766,11 +781,6 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStringField('products', 'ALL');
         jsonPayload.writeStringField('cash_apply_type', 'INVOICE MATCH');
-        if(onlineApplicationOffer.Online_Pay__c != null && onlineApplicationOffer.Online_Pay__c == true) {
-            jsonPayload.writeStringField('ach_allowed', 'Y');
-        } else {
-            jsonPayload.writeStringField('ach_allowed', 'N');
-        }
         jsonPayload.writeStringField('received_via', 'SFORCE');
         if(onlineApplication.Business_Street_Address__c != null) jsonPayload.writeStringField('billing_address1', onlineApplication.Business_Street_Address__c.replaceAll('[^a-zA-Z0-9 -]', ''));
         if(onlineApplication.City__c != null) jsonPayload.writeStringField('billing_city', onlineApplication.City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
@@ -868,6 +878,8 @@ global class AccountWS_EFSAppManager {
         if(selectedOtherServices != null && selectedOtherServices.contains('Scales') && onlineApplicationOffer.PSR_Scales__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('scales', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Scales__c));
         }
+
+        if(selectedOtherServices != null && selectedOtherServices.contains(''))
 
         // End of "contract"
         jsonPayload.writeEndObject();
