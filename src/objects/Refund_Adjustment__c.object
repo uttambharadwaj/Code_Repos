@@ -143,7 +143,7 @@
     <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
-    <description>Captures Refund and Adjustment requests made by Customer Service, RSLPO and SaveDesk.</description>
+    <description>Captures Refund and Adjustment requests made by Customer Service and RSLPO.</description>
     <enableActivities>true</enableActivities>
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
@@ -207,7 +207,7 @@
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Address 1</label>
-        <length>50</length>
+        <length>100</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -219,7 +219,7 @@
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
         <label>Address 2</label>
-        <length>50</length>
+        <length>100</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -431,7 +431,7 @@
         <fullName>EntryType__c</fullName>
         <description>ONCR for subtractions, ONDR for additions</description>
         <externalId>false</externalId>
-        <formula>IF( Amount__c &gt;0, &quot;ONCR&quot;,&quot;ONDR&quot;)</formula>
+        <formula>IF( Amount__c &lt;=0, &quot;ONCR&quot;,&quot;ONDR&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>EntryType</label>
         <required>false</required>
@@ -850,19 +850,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Old_State__c</fullName>
-        <externalId>false</externalId>
-        <label>Old State</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetName>US_States</valueSetName>
-        </valueSet>
-    </fields>
-    <fields>
         <fullName>Reason_Comment__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -981,7 +968,7 @@
         <fullName>Unified_Fee_Code__c</fullName>
         <description>Condenses the Refund Code and Adjustment Fee Code into a single column for reporting</description>
         <externalId>false</externalId>
-        <formula>IF( RecordType.Name = &apos;Adjustment&apos;, TEXT(Fee_Code__c) , TEXT(Refund_Code__c))</formula>
+        <formula>IF( RecordType.Name = &apos;Adjustment&apos;,  TEXT(Fee_Code__c) ,  TEXT(Refund_Code__c) )</formula>
         <label>Unified Fee Code</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1018,14 +1005,81 @@
         <columns>Decision_Date__c</columns>
         <columns>UPDATEDBY_USER</columns>
         <columns>LAST_UPDATE</columns>
+        <columns>Funder__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Approval_Status__c</field>
             <operation>equals</operation>
             <value>Pending,Approved,Held,Denied</value>
         </filters>
+        <filters>
+            <field>Account_Number__c</field>
+            <operation>equals</operation>
+            <value>9100004482297</value>
+        </filters>
         <label>All</label>
-        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>CS_Adjustments_Needing_Approval</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Account_Number__c</columns>
+        <columns>Name__c</columns>
+        <columns>Unified_Fee_Code__c</columns>
+        <columns>Reason_Description__c</columns>
+        <columns>Amount_Waived__c</columns>
+        <columns>Reason_Comment__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Department__c</columns>
+        <columns>Approval_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending,Held</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Refund_Adjustment__c.Adjustment</value>
+        </filters>
+        <filters>
+            <field>Department__c</field>
+            <operation>equals</operation>
+            <value>CS</value>
+        </filters>
+        <label>CS Adjustments Needing Approval</label>
+    </listViews>
+    <listViews>
+        <fullName>CS_Refunds_Needing_Approval</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Account_Number__c</columns>
+        <columns>Name__c</columns>
+        <columns>Unified_Fee_Code__c</columns>
+        <columns>Reason_Description__c</columns>
+        <columns>Amount_Waived__c</columns>
+        <columns>Reason_Comment__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Department__c</columns>
+        <columns>Approval_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending,Held</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Refund_Adjustment__c.Refund</value>
+        </filters>
+        <filters>
+            <field>Department__c</field>
+            <operation>equals</operation>
+            <value>CS</value>
+        </filters>
+        <label>CS Refunds Needing Approval</label>
     </listViews>
     <listViews>
         <fullName>Need_Approval</fullName>
@@ -1044,14 +1098,159 @@
         <filters>
             <field>Approval_Status__c</field>
             <operation>equals</operation>
-            <value>Pending,Held,Denied</value>
+            <value>Pending,Held</value>
         </filters>
         <filters>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>Refund_Adjustment__c.Adjustment</value>
         </filters>
+        <filters>
+            <field>CREATEDBY_USER</field>
+            <operation>contains</operation>
+        </filters>
         <label>Adjustments Needing Approval</label>
+    </listViews>
+    <listViews>
+        <fullName>Receivables_Adjustments_Needing_Approval</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Account_Number__c</columns>
+        <columns>Name__c</columns>
+        <columns>Unified_Fee_Code__c</columns>
+        <columns>Reason_Description__c</columns>
+        <columns>Amount_Waived__c</columns>
+        <columns>Reason_Comment__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Department__c</columns>
+        <columns>Approval_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending,Held</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Refund_Adjustment__c.Adjustment</value>
+        </filters>
+        <filters>
+            <field>Department__c</field>
+            <operation>equals</operation>
+            <value>SRS,RSLPO</value>
+        </filters>
+        <label>Receivables Adjustments Needing Approval</label>
+        <sharedTo>
+            <role>Receivables</role>
+            <role>Receivables_Manager</role>
+            <role>SystemAdmin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Receivables_Refunds_Needing_Approval</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Account_Number__c</columns>
+        <columns>Name__c</columns>
+        <columns>Unified_Fee_Code__c</columns>
+        <columns>Reason_Description__c</columns>
+        <columns>Amount_Waived__c</columns>
+        <columns>Reason_Comment__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Department__c</columns>
+        <columns>Approval_Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Pending,Held</value>
+        </filters>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Refund_Adjustment__c.Refund</value>
+        </filters>
+        <filters>
+            <field>Department__c</field>
+            <operation>equals</operation>
+            <value>SRS,RSLPO</value>
+        </filters>
+        <label>Receivables Refunds Needing Approval</label>
+        <sharedTo>
+            <role>Receivables</role>
+            <role>Receivables_Manager</role>
+            <role>SystemAdmin</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>Refund_Adjustments_Without_Department</fullName>
+        <columns>NAME</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>Account__c</columns>
+        <columns>Amount__c</columns>
+        <columns>Department__c</columns>
+        <columns>Approval_Status__c</columns>
+        <columns>Approver_Name__c</columns>
+        <columns>Decision_Date__c</columns>
+        <columns>Create_Date__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Amount__c</field>
+            <operation>lessThan</operation>
+            <value>-500</value>
+        </filters>
+        <filters>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </filters>
+        <filters>
+            <field>Approver_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Andrew Dean</value>
+        </filters>
+        <filters>
+            <field>Approver_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Clayton Bergloff</value>
+        </filters>
+        <filters>
+            <field>Approver_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Kathleen Doten</value>
+        </filters>
+        <filters>
+            <field>Approver_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Christopher Lloyd</value>
+        </filters>
+        <filters>
+            <field>Approver_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Natasha Sant</value>
+        </filters>
+        <filters>
+            <field>Approver_Name__c</field>
+            <operation>notEqual</operation>
+            <value>David Whitton</value>
+        </filters>
+        <filters>
+            <field>Approver_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Melinda Singleton</value>
+        </filters>
+        <filters>
+            <field>Approver_Name__c</field>
+            <operation>notEqual</operation>
+            <value>Ninna Wilson</value>
+        </filters>
+        <label>Refund-Adjustments Without Department</label>
+        <sharedTo>
+            <group>Serv_Ops_Management_Reports</group>
+            <group>Serv_Ops_Receivables</group>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Refunds_Needing_Approval</fullName>
@@ -1065,6 +1264,7 @@
         <columns>Reason_Comment__c</columns>
         <columns>CREATEDBY_USER</columns>
         <columns>Department__c</columns>
+        <columns>Approval_Status__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Approval_Status__c</field>
@@ -1271,241 +1471,6 @@
             </values>
             <values>
                 <fullName>LATE</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Old_State__c</picklist>
-            <values>
-                <fullName>AK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AZ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>FM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ID</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ME</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ND</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NJ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PW</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>RI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WY</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -1726,241 +1691,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Old_State__c</picklist>
-            <values>
-                <fullName>AK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>AZ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>DE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>FL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>FM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>GU</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>HI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ID</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>IN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>KY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>LA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ME</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MO</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MP</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>ND</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NJ</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NM</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NY</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OH</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OK</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>OR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PW</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>RI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SC</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TN</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>TX</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>VT</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WI</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WV</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>WY</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Refund_Code__c</picklist>
             <values>
                 <fullName>ESCH</fullName>
@@ -2009,15 +1739,19 @@
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
-        <fullName>CustomerSvcApprovalLimits</fullName>
+        <fullName>Customer_Service_Approval_Limits</fullName>
         <active>true</active>
-        <description>Enforces Customer Service approval limits for Refunds and Adjustments</description>
+        <description>Asserts approval matrix for Customer Service records</description>
         <errorConditionFormula>AND(TEXT(Department__c ) = &apos;CS&apos;,
- TEXT(Approval_Status__c) = &apos;Approved&apos;,
-OR(
-Amount_Waived__c &gt; 500000,
-AND( Amount_Waived__c &gt; 50000, NOT( $Permission.Ref_Adj_Approval_Dept_1_Group_1 ))))</errorConditionFormula>
-        <errorMessage>You do not have permission to approve this amount.</errorMessage>
+TEXT(Approval_Status__c) = &apos;Approved&apos;,
+NOT ( OR ($Permission.CS_Sr_Associate, $Permission.CS_Team_Lead, $Permission.CS_Sr_Team_Lead, $Permission.CS_Manager )),
+OR (
+AND (Amount_Waived__c &gt; 1000, NOT ( OR ($Permission.CS_Team_Lead, $Permission.CS_Sr_Team_Lead, $Permission.CS_Manager ))),
+AND (Amount_Waived__c &gt; 25000, NOT ( $Permission.CS_Manager )),
+Amount_Waived__c &gt; 100000
+)
+)</errorConditionFormula>
+        <errorMessage>You do not have permission to approve this request.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Denied_approval_requires_comment</fullName>
@@ -2025,6 +1759,21 @@ AND( Amount_Waived__c &gt; 50000, NOT( $Permission.Ref_Adj_Approval_Dept_1_Group
         <description>Forces Approval Comment to be not blank if requested approval is Denied.</description>
         <errorConditionFormula>AND( ISPICKVAL(Approval_Status__c , &apos;Denied&apos;), OR(ISNULL( Approval_Comment__c ),ISBLANK(Approval_Comment__c)))</errorConditionFormula>
         <errorMessage>Denial of requests requires that a comment be entered.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>RSLPO_SRS_Approval_Limits</fullName>
+        <active>true</active>
+        <description>Enforces approval limits for Receivables Refunds and Adjustments</description>
+        <errorConditionFormula>AND( OR (TEXT(Department__c ) = &apos;SRS&apos;,TEXT(Department__c ) = &apos;RSLPO&apos;),
+TEXT(Approval_Status__c) = &apos;Approved&apos;,
+NOT ( OR ($Permission.RSLPO_Sr_Associate, $Permission.RSLPO_Team_Lead, $Permission.RSLPO_Sr_Team_Lead, $Permission.RSLPO_Manager )),
+OR (
+AND (Amount_Waived__c &gt; 1000, NOT ( OR ($Permission.RSLPO_Team_Lead, $Permission.RSLPO_Sr_Team_Lead, $Permission.RSLPO_Manager ))),
+AND (Amount_Waived__c &gt; 25000, NOT ( $Permission.RSLPO_Manager )),
+Amount_Waived__c &gt; 100000
+)
+)</errorConditionFormula>
+        <errorMessage>You do not have permission to approve this request.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Total_fee_GTE_waived_amount</fullName>

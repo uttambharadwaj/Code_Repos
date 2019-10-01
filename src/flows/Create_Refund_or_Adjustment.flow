@@ -1,37 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <actionCalls>
-        <name>Get_prior_records_from_database</name>
-        <label>Get prior records from database</label>
-        <locationX>924</locationX>
-        <locationY>51</locationY>
-        <actionName>RefundAdjustmentOldDataPuller</actionName>
+        <description>Gets the aggregate totals from Oracle</description>
+        <name>Get_Totals_From_Oracle</name>
+        <label>Get Totals From Oracle</label>
+        <locationX>912</locationX>
+        <locationY>50</locationY>
+        <actionName>GetRefundAdjustmentTotals</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Are_there_prior_Refunds_or_Adjustments</targetReference>
         </connector>
         <inputParameters>
-            <name>recordTypeName</name>
+            <name>recordType</name>
             <value>
-                <elementReference>PriorEntriesRequest.recordTypeName</elementReference>
+                <elementReference>RecordType.DeveloperName</elementReference>
             </value>
         </inputParameters>
         <inputParameters>
-            <name>wexAccountNbr</name>
+            <name>wexAcctNbr</name>
             <value>
-                <elementReference>PriorEntriesRequest.wexAccountNbr</elementReference>
+                <elementReference>ParentAccount.Wex_Account__c</elementReference>
             </value>
         </inputParameters>
         <outputParameters>
-            <assignToReference>PriorEntries</assignToReference>
-            <name>output</name>
+            <assignToReference>OracleSummaryData.errorMsg</assignToReference>
+            <name>errorMsg</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>MostRecentRequest.amount</assignToReference>
+            <name>mostRecentAmount</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>MostRecentRequest.approvalStatus</assignToReference>
+            <name>mostRecentApprovalStatus</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>OracleSummaryData.mostRecentCodeDescription</assignToReference>
+            <name>mostRecentCodeDescription</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>MostRecentRequest.createdDate</assignToReference>
+            <name>mostRecentCreatedDate</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>MostRecentRequest.department</assignToReference>
+            <name>mostRecentDepartment</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>MostRecentRequest.reasonComment</assignToReference>
+            <name>mostRecentReason</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>MostRecentRequest.Name</assignToReference>
+            <name>mostRecentSubmitter</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>WaiverRequestsGrantedSum</assignToReference>
+            <name>totalFeesRefunded</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>WaiverRequestsSum</assignToReference>
+            <name>totalFeesRequested</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>CountOfWaiverRequests</assignToReference>
+            <name>totalRequests</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>OracleSummaryData.totalRequestsApproved</assignToReference>
+            <name>totalRequestsApproved</name>
+        </outputParameters>
+        <outputParameters>
+            <assignToReference>PendingHeldWaiverRequestsSum</assignToReference>
+            <name>totalRequestsPending</name>
         </outputParameters>
     </actionCalls>
     <assignments>
         <name>Aggregate_Approved_Waivers</name>
         <label>Aggregate Approved Waivers</label>
-        <locationX>1384</locationX>
-        <locationY>639</locationY>
+        <locationX>1677</locationX>
+        <locationY>435</locationY>
         <assignmentItems>
             <assignToReference>WaiverRequestsGrantedSum</assignToReference>
             <operator>Add</operator>
@@ -46,8 +95,8 @@
     <assignments>
         <name>Aggregate_Pending_and_Held_Totals</name>
         <label>Aggregate Pending and Held Totals</label>
-        <locationX>1315</locationX>
-        <locationY>797</locationY>
+        <locationX>1479</locationX>
+        <locationY>495</locationY>
         <assignmentItems>
             <assignToReference>PendingHeldWaiverRequestsSum</assignToReference>
             <operator>Add</operator>
@@ -62,8 +111,8 @@
     <assignments>
         <name>Assign_Adjustment_Code</name>
         <label>Assign Adjustment Code</label>
-        <locationX>1213</locationX>
-        <locationY>600</locationY>
+        <locationX>722</locationX>
+        <locationY>529</locationY>
         <assignmentItems>
             <assignToReference>RefundAdjustment.Fee_Code__c</assignToReference>
             <operator>Assign</operator>
@@ -83,95 +132,62 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Assign_Adjustment_Code_Retention</name>
-        <label>Assign Adjustment Code (Retention)</label>
-        <locationX>665</locationX>
-        <locationY>465</locationY>
+        <name>Assign_Most_Recent_Record_Values_to_Display_Variables</name>
+        <label>Assign Most Recent Record Values to Display Variables</label>
+        <locationX>1894</locationX>
+        <locationY>435</locationY>
         <assignmentItems>
-            <assignToReference>RefundAdjustment.Fee_Code__c</assignToReference>
+            <assignToReference>MostRecentRequest.amount</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Adjustment_Code_retention_Lookup</elementReference>
+                <elementReference>Most_Recent_Request.Amount_Waived__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>RefundAdjustment.Reason_Description__c</assignToReference>
+            <assignToReference>MostRecentRequest.approvalStatus</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>Adjustment_Reason_Lookup_Retention</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Create_Adjustment</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Auto_Approval</name>
-        <label>Assign Auto-Approval</label>
-        <locationX>256</locationX>
-        <locationY>623</locationY>
-        <assignmentItems>
-            <assignToReference>RefundAdjustment.Approver_Name__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>CurrentUserId</elementReference>
+                <elementReference>Most_Recent_Request.Approval_Status__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>RefundAdjustment.Approval_Status__c</assignToReference>
+            <assignToReference>MostRecentRequest.createdDate</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>Approved</stringValue>
+                <elementReference>Most_Recent_Request.CreatedDate</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>RefundAdjustment.Decision_Date__c</assignToReference>
+            <assignToReference>MostRecentRequest.department</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>$Flow.CurrentDateTime</elementReference>
+                <elementReference>Most_Recent_Request.Department__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>RefundAdjustment.Approval_Comment__c</assignToReference>
+            <assignToReference>MostRecentRequest.reasonComment</assignToReference>
             <operator>Assign</operator>
             <value>
-                <stringValue>*** Automatically approved</stringValue>
+                <elementReference>Most_Recent_Request.Reason_Comment__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>MostRecentRequest.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>MostRecentRequestUser.Name</elementReference>
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>Create_Refund_or_Adjustment_Record</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <description>Creates the request object to send to the web service to see prior Refunds or Adjustments</description>
-        <name>Create_Prior_Records_Request</name>
-        <label>Create Prior Records Request</label>
-        <locationX>739</locationX>
-        <locationY>50</locationY>
-        <assignmentItems>
-            <assignToReference>PriorEntriesRequest.recordTypeName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>RecordType.DeveloperName</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>PriorEntriesRequest.wexAccountNbr</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>ParentAccount.Wex_Account__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Get_Prior_Refunds_and_Adjustments</targetReference>
+            <targetReference>GetTotalAggregates</targetReference>
         </connector>
     </assignments>
     <assignments>
         <description>Create Refund/Adjustment record variable to hold the goodies</description>
         <name>Create_Record_Variable</name>
         <label>Create Record Variable</label>
-        <locationX>1214</locationX>
-        <locationY>236</locationY>
+        <locationX>1062</locationX>
+        <locationY>225</locationY>
         <assignmentItems>
             <assignToReference>RefundAdjustment.Account__c</assignToReference>
             <operator>Assign</operator>
@@ -218,7 +234,7 @@
             <assignToReference>RefundAdjustment.Funder__c</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>ParentAccount.Funder__c</elementReference>
+                <elementReference>Parent_Case.Funder_Business_Unit__c</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -261,103 +277,10 @@
         </connector>
     </assignments>
     <assignments>
-        <name>Generate_Retention_Adjustment_Picklist</name>
-        <label>Generate Retention Adjustment Picklist</label>
-        <locationX>826</locationX>
-        <locationY>359</locationY>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>LFGDW_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>LFTRM_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>CRDFEE_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>PSFEE_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>SMBAL_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>PMCFEE_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>RAFEE_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>ACTSET_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>IMGDW_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>ONLFEE_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>OVRNGT_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>AdjustmentCodePicklist</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>FUTCRED_choice</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Select_Adjustment_Code_Retention</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
         <name>GetTotalAggregates</name>
         <label>GetTotalAggregates</label>
-        <locationX>1625</locationX>
-        <locationY>593</locationY>
+        <locationX>1767</locationX>
+        <locationY>599</locationY>
         <assignmentItems>
             <assignToReference>CountOfWaiverRequests</assignToReference>
             <operator>Add</operator>
@@ -379,8 +302,8 @@
     <assignments>
         <name>Grab_Most_Recent_Record</name>
         <label>Grab Most Recent Record</label>
-        <locationX>1722</locationX>
-        <locationY>205</locationY>
+        <locationX>1893</locationX>
+        <locationY>127</locationY>
         <assignmentItems>
             <assignToReference>Most_Recent_Request</assignToReference>
             <operator>Assign</operator>
@@ -390,6 +313,22 @@
         </assignmentItems>
         <connector>
             <targetReference>Get_Most_Recent_Requesting_User</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Hold_for_500</name>
+        <label>Hold for &gt; $500</label>
+        <locationX>258</locationX>
+        <locationY>588</locationY>
+        <assignmentItems>
+            <assignToReference>RefundAdjustment.Approval_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Held</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Refund_or_Adjustment_Record</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -497,27 +436,11 @@
         </value>
     </choices>
     <choices>
-        <name>AddRecord</name>
-        <choiceText>&lt;span style=&quot;font-size: 18px;&quot;&gt;Continue to Add&lt;/span&gt;</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>Continue</stringValue>
-        </value>
-    </choices>
-    <choices>
         <name>Adjustment_choice</name>
         <choiceText>Adjustment</choiceText>
         <dataType>String</dataType>
         <value>
             <elementReference>Adjustment</elementReference>
-        </value>
-    </choices>
-    <choices>
-        <name>ANC_choice</name>
-        <choiceText>ANC - ANCILLARY FEE</choiceText>
-        <dataType>String</dataType>
-        <value>
-            <stringValue>ANC</stringValue>
         </value>
     </choices>
     <choices>
@@ -850,8 +773,9 @@
         </value>
     </choices>
     <choices>
+        <description>Used to select the Lightning popup of all refunds or adjustments found.</description>
         <name>SEE_ALL_PRIOR_choice</name>
-        <choiceText>&lt;span style=&quot;font-size: 18px;&quot;&gt;See All Prior Requests&lt;/span&gt;</choiceText>
+        <choiceText>&lt;span style=&quot;font-size: 18px;&quot;&gt;See Prior Requests&lt;/span&gt;</choiceText>
         <dataType>String</dataType>
         <value>
             <stringValue>See_Priors</stringValue>
@@ -914,14 +838,14 @@
     <decisions>
         <name>Are_there_prior_Refunds_or_Adjustments</name>
         <label>Are there prior Refunds or Adjustments?</label>
-        <locationX>1021</locationX>
-        <locationY>54</locationY>
+        <locationX>1056</locationX>
+        <locationY>52</locationY>
         <defaultConnector>
-            <targetReference>Get_Prior_Refunds_or_Adjustments_Aggregates</targetReference>
+            <targetReference>Are_there_records_in_Salesforce</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Prior Records Found</defaultConnectorLabel>
         <rules>
-            <name>No_Prior_Records_Found</name>
+            <name>No_Items_Found</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>Prior_Refunds_or_Adjustments</leftValueReference>
@@ -931,16 +855,42 @@
                 </rightValue>
             </conditions>
             <conditions>
-                <leftValueReference>PriorEntries</leftValueReference>
+                <leftValueReference>CountOfWaiverRequests</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Create_Record_Variable</targetReference>
+            </connector>
+            <label>No Items Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Don&apos;t perform the aggregate loop if there weren&apos;t Salesforce records to consider.</description>
+        <name>Are_there_records_in_Salesforce</name>
+        <label>Are there records in Salesforce?</label>
+        <locationX>1295</locationX>
+        <locationY>14</locationY>
+        <defaultConnector>
+            <targetReference>Get_Prior_Refunds_or_Adjustments_Aggregates</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Salesforce records; perform aggregation</defaultConnectorLabel>
+        <rules>
+            <name>No_Salesforce_Records</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Prior_Refunds_or_Adjustments</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <elementReference>Yes</elementReference>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Create_Record_Variable</targetReference>
+                <targetReference>Prior_Requests_Screen</targetReference>
             </connector>
-            <label>No Prior Records Found</label>
+            <label>No Salesforce Records</label>
         </rules>
     </decisions>
     <decisions>
@@ -949,7 +899,7 @@
         <locationX>248</locationX>
         <locationY>393</locationY>
         <defaultConnector>
-            <targetReference>Create_Refund_or_Adjustment_Record</targetReference>
+            <targetReference>Hold_for_500</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Needs Approval</defaultConnectorLabel>
         <rules>
@@ -963,42 +913,16 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_Auto_Approval</targetReference>
+                <targetReference>Create_Refund_or_Adjustment_Record</targetReference>
             </connector>
-            <label>Auto-Approve</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <description>Checks to see if the user is a Retention (Save Desk) user to set the proper adjustment reason list</description>
-        <name>Is_Retention_User</name>
-        <label>Retention User?</label>
-        <locationX>971</locationX>
-        <locationY>361</locationY>
-        <defaultConnector>
-            <targetReference>Select_Adjustment_Code</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Not Retention User</defaultConnectorLabel>
-        <rules>
-            <name>Retention_User</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Your_Department</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>SAVEDESK_choice</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Generate_Retention_Adjustment_Picklist</targetReference>
-            </connector>
-            <label>Retention User</label>
+            <label>Pending Submission</label>
         </rules>
     </decisions>
     <decisions>
         <name>Is_this_the_first_trip_through</name>
         <label>Is this the first trip through?</label>
-        <locationX>1681</locationX>
-        <locationY>22</locationY>
+        <locationX>1752</locationX>
+        <locationY>16</locationY>
         <defaultConnector>
             <targetReference>GetTotalAggregates</targetReference>
         </defaultConnector>
@@ -1022,8 +946,8 @@
     <decisions>
         <name>Post_List_Screen_Decision</name>
         <label>Post-List Screen Decision</label>
-        <locationX>646</locationX>
-        <locationY>764</locationY>
+        <locationX>1179</locationX>
+        <locationY>730</locationY>
         <defaultConnector>
             <targetReference>Request_Abandoned</targetReference>
         </defaultConnector>
@@ -1048,7 +972,7 @@
         <name>Prior_Records_Decision</name>
         <label>Prior Records Decision</label>
         <locationX>1394</locationX>
-        <locationY>275</locationY>
+        <locationY>365</locationY>
         <defaultConnector>
             <targetReference>Request_Abandoned</targetReference>
         </defaultConnector>
@@ -1088,10 +1012,10 @@
         <description>Assign the record type name based on the prior check box.</description>
         <name>Record_Type_Selection</name>
         <label>Record Type Selection</label>
-        <locationX>970</locationX>
-        <locationY>186</locationY>
+        <locationX>872</locationX>
+        <locationY>227</locationY>
         <defaultConnector>
-            <targetReference>Is_Retention_User</targetReference>
+            <targetReference>Select_Adjustment_Code</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Choose Adjustment</defaultConnectorLabel>
         <rules>
@@ -1113,12 +1037,12 @@
     <decisions>
         <name>WasTheRequestGranted</name>
         <label>What is the request status?</label>
-        <locationX>1560</locationX>
-        <locationY>701</locationY>
+        <locationX>1591</locationX>
+        <locationY>702</locationY>
         <defaultConnector>
             <targetReference>Get_Prior_Refunds_or_Adjustments_Aggregates</targetReference>
         </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <defaultConnectorLabel>Request was Denied</defaultConnectorLabel>
         <rules>
             <name>Request_Was_Granted</name>
             <conditionLogic>and</conditionLogic>
@@ -1157,7 +1081,7 @@
             <label>Request is Pending or Held</label>
         </rules>
     </decisions>
-    <description>Final touches</description>
+    <description>EAPT-334: Rearrange Refund Code picklist</description>
     <dynamicChoiceSets>
         <name>Adjustment_codes</name>
         <dataType>Picklist</dataType>
@@ -1166,24 +1090,6 @@
         <picklistField>Fee_Code__c</picklistField>
         <picklistObject>Refund_Adjustment__c</picklistObject>
     </dynamicChoiceSets>
-    <dynamicChoiceSets>
-        <name>RefundCode_old</name>
-        <dataType>Picklist</dataType>
-        <displayField xsi:nil="true"/>
-        <object xsi:nil="true"/>
-        <picklistField>Refund_Code__c</picklistField>
-        <picklistObject>Refund_Adjustment__c</picklistObject>
-    </dynamicChoiceSets>
-    <formulas>
-        <name>Adjustment_Code_retention_Lookup</name>
-        <dataType>String</dataType>
-        <expression>LEFT({!Adjustment_code_retention},find(&quot; &quot;,{!Adjustment_code_retention})-1)</expression>
-    </formulas>
-    <formulas>
-        <name>Adjustment_Reason_Lookup_Retention</name>
-        <dataType>String</dataType>
-        <expression>RIGHT({!Adjustment_code_retention}, len({!Adjustment_code_retention} )-(find(&quot; &quot;,{!Adjustment_code_retention})+2))</expression>
-    </formulas>
     <formulas>
         <name>AdjustmentCodeLookup</name>
         <dataType>String</dataType>
@@ -1193,16 +1099,6 @@
         <name>AdjustmentReasonLookup</name>
         <dataType>String</dataType>
         <expression>RIGHT({!Adjustment_code_non_retention}, len({!Adjustment_code_non_retention} )-(find(&quot; &quot;,{!Adjustment_code_non_retention})+2))</expression>
-    </formulas>
-    <formulas>
-        <name>CodeLookup</name>
-        <dataType>String</dataType>
-        <expression>LEFT({!Temp_Adjustment_code},find(&quot; &quot;,{!Temp_Adjustment_code})-1)</expression>
-    </formulas>
-    <formulas>
-        <name>CurrentUserId</name>
-        <dataType>String</dataType>
-        <expression>{!$User.Id}</expression>
     </formulas>
     <formulas>
         <description>Now minus 18 months, for querying prior refunds and adjustments</description>
@@ -1219,7 +1115,7 @@
     <formulas>
         <name>Recent_Prior_Record_Hyperlink</name>
         <dataType>String</dataType>
-        <expression>&quot;&lt;a href=&apos;/&quot; &amp; {!Most_Recent_Request.Id} &amp; &quot;&apos; target=&apos;_parent&apos;&gt;link&lt;/a&gt;&quot;</expression>
+        <expression>IF({!Most_Recent_Request.Id} &lt;&gt; NULL, &quot;(&lt;a href=&apos;/&quot; &amp; {!Most_Recent_Request.Id} &amp; &quot;&apos; target=&apos;_parent&apos;&gt;link&lt;/a&gt;)&quot;,&quot;&quot;)</expression>
     </formulas>
     <formulas>
         <description>Returns Waived for Adjustments, Refunded for Refunds</description>
@@ -1237,25 +1133,14 @@
         <dataType>String</dataType>
         <expression>LEFT({!Refund_Code},find(&quot; &quot;,{!Refund_Code})-1)</expression>
     </formulas>
-    <formulas>
-        <description>Display approval status of the refund or adjustment.</description>
-        <name>StatusConfirmation</name>
-        <dataType>String</dataType>
-        <expression>IF(ISBLANK(TEXT({!RefundAdjustment.Approval_Status__c})),&quot;PENDING&quot;,TEXT({!RefundAdjustment.Approval_Status__c}))</expression>
-    </formulas>
-    <formulas>
-        <name>Validate_requested_adjustment_value</name>
-        <dataType>Boolean</dataType>
-        <expression>{!Requested_Adjustment_Amount} &lt;= {!Actual_Fee_Amount}</expression>
-    </formulas>
     <interviewLabel>Create Refund or Adjustment {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Create Refund or Adjustment</label>
     <loops>
         <description>Gets summary data the old fashioned way....</description>
         <name>Get_Prior_Refunds_or_Adjustments_Aggregates</name>
         <label>Get Prior Refunds or Adjustments Aggregates</label>
-        <locationX>1554</locationX>
-        <locationY>14</locationY>
+        <locationX>1590</locationX>
+        <locationY>16</locationY>
         <assignNextValueToReference>Current_Prior_refadj</assignNextValueToReference>
         <collectionReference>Prior_Refunds_or_Adjustments</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -1284,7 +1169,7 @@
         <name>Create_Refund_or_Adjustment_Record</name>
         <label>Create Refund or Adjustment Record</label>
         <locationX>53</locationX>
-        <locationY>451</locationY>
+        <locationY>453</locationY>
         <connector>
             <targetReference>Get_Record_Name</targetReference>
         </connector>
@@ -1319,7 +1204,6 @@
         <queriedFields>Status__c</queriedFields>
         <queriedFields>Platform__c</queriedFields>
         <queriedFields>Account_Status_Date__c</queriedFields>
-        <queriedFields>Funder__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Case_Data</name>
@@ -1343,6 +1227,7 @@
         <queriedFields>AccountId</queriedFields>
         <queriedFields>ContactId</queriedFields>
         <queriedFields>CreatedDate</queriedFields>
+        <queriedFields>Funder_Business_Unit__c</queriedFields>
     </recordLookups>
     <recordLookups>
         <name>Get_Contact_Data</name>
@@ -1351,7 +1236,7 @@
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Create_Prior_Records_Request</targetReference>
+            <targetReference>Get_Prior_Refunds_and_Adjustments</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -1371,11 +1256,11 @@
     <recordLookups>
         <name>Get_Most_Recent_Requesting_User</name>
         <label>Get Most Recent Requesting User</label>
-        <locationX>1721</locationX>
-        <locationY>357</locationY>
+        <locationX>1894</locationX>
+        <locationY>294</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>GetTotalAggregates</targetReference>
+            <targetReference>Assign_Most_Recent_Record_Values_to_Display_Variables</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -1392,11 +1277,11 @@
     <recordLookups>
         <name>Get_Prior_Refunds_and_Adjustments</name>
         <label>Get Prior Refunds and Adjustments</label>
-        <locationX>830</locationX>
+        <locationX>775</locationX>
         <locationY>50</locationY>
         <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_prior_records_from_database</targetReference>
+            <targetReference>Get_Totals_From_Oracle</targetReference>
         </connector>
         <filters>
             <field>Account__c</field>
@@ -1492,13 +1377,6 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>DeveloperName</queriedFields>
     </recordLookups>
-    <recordUpdates>
-        <name>Update_Refund_Adjustment</name>
-        <label>Update Refund / Adjustment</label>
-        <locationX>88</locationX>
-        <locationY>218</locationY>
-        <inputReference>RefundAdjustment</inputReference>
-    </recordUpdates>
     <screens>
         <name>ChooseRecordType</name>
         <label>Refund/Adjustment: Choose Record Type</label>
@@ -1554,7 +1432,7 @@
     <screens>
         <name>Create_Adjustment</name>
         <label>Create Adjustment</label>
-        <locationX>567</locationX>
+        <locationX>572</locationX>
         <locationY>529</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -1607,7 +1485,12 @@ Adjustment Code: {!RefundAdjustment.Fee_Code__c} - {!RefundAdjustment.Reason_Des
             <name>Comments</name>
             <fieldText>Comments</fieldText>
             <fieldType>LargeTextArea</fieldType>
+            <helpText>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 0, 0);&quot;&gt;Maximum 255 Characters. &lt;/b&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;If more detail is needed please use the comments on the associated Case.&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>false</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;Maximum 255 Characters in Comments.&lt;/b&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression>LEN({!Comments}) &lt;=255</formulaExpression>
+            </validationRule>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -1615,7 +1498,7 @@ Adjustment Code: {!RefundAdjustment.Fee_Code__c} - {!RefundAdjustment.Reason_Des
     <screens>
         <name>Create_Refund</name>
         <label>Create Refund</label>
-        <locationX>566</locationX>
+        <locationX>569</locationX>
         <locationY>274</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
@@ -1657,11 +1540,11 @@ Adjustment Code: {!RefundAdjustment.Fee_Code__c} - {!RefundAdjustment.Reason_Des
         </fields>
         <fields>
             <name>Refund_Code</name>
-            <choiceReferences>ESCH_choice</choiceReferences>
+            <choiceReferences>REFND_choice</choiceReferences>
             <choiceReferences>MISAP_choice</choiceReferences>
             <choiceReferences>OTHER_choice</choiceReferences>
             <choiceReferences>OVERPY_choice</choiceReferences>
-            <choiceReferences>REFND_choice</choiceReferences>
+            <choiceReferences>ESCH_choice</choiceReferences>
             <choiceReferences>TERM_choice</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Refund Code</fieldText>
@@ -1672,7 +1555,12 @@ Adjustment Code: {!RefundAdjustment.Fee_Code__c} - {!RefundAdjustment.Reason_Des
             <name>Refund_Note</name>
             <fieldText>Refund Note</fieldText>
             <fieldType>LargeTextArea</fieldType>
+            <helpText>&lt;p&gt;&lt;b style=&quot;background-color: rgb(255, 255, 255); color: rgb(255, 0, 0);&quot;&gt;Maximum 255 characters.&lt;/b&gt;  &lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);&quot;&gt;If more detail is needed please use the comments on the associated Case.&lt;/span&gt;&lt;/p&gt;</helpText>
             <isRequired>false</isRequired>
+            <validationRule>
+                <errorMessage>&lt;p&gt;&lt;b style=&quot;color: rgb(255, 0, 0);&quot;&gt;Maximum 255 characters in Refund Note.&lt;/b&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression>LEN({!Refund_Note}) &lt;=255</formulaExpression>
+            </validationRule>
         </fields>
         <fields>
             <name>Account_Info_display</name>
@@ -1688,8 +1576,8 @@ Attn: {!CaseContact.FirstName} {!CaseContact.LastName}
     <screens>
         <name>Prior_Refunds_and_Adjustments_screen</name>
         <label>Prior Refunds and Adjustments</label>
-        <locationX>790</locationX>
-        <locationY>656</locationY>
+        <locationX>1317</locationX>
+        <locationY>564</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1729,8 +1617,8 @@ Attn: {!CaseContact.FirstName} {!CaseContact.LastName}
     <screens>
         <name>Prior_Requests_Screen</name>
         <label>Prior Requests</label>
-        <locationX>1402</locationX>
-        <locationY>118</locationY>
+        <locationX>1404</locationX>
+        <locationY>229</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -1744,7 +1632,7 @@ Attn: {!CaseContact.FirstName} {!CaseContact.LastName}
         </fields>
         <fields>
             <name>Most_recent_Request_textbox</name>
-            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Most Recent Request&lt;/b&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt; ({!Recent_Prior_Record_Hyperlink}):&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Last Request was on: &lt;b&gt;{!Most_Recent_Request.CreatedDate}&lt;/b&gt; From &lt;b&gt;{!Most_Recent_Request.Department__c}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Last Submitter was: &lt;b&gt;{!MostRecentRequestUser.Name}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Last Comment: &lt;b&gt;{!Most_Recent_Request.Reason_Comment__c}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;font-size: 14px;&quot;&gt;Most Recent Request&lt;/b&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt; {!Recent_Prior_Record_Hyperlink}:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Last Request was on : &lt;b&gt;{!MostRecentRequest.createdDate}&lt;/b&gt;  From &lt;b&gt;{!MostRecentRequest.department}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Last Submitter was: &lt;b&gt;{!MostRecentRequest.Name}&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Last Comment: &lt;b&gt;{!MostRecentRequest.reasonComment}&lt;/b&gt;&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <fields>
@@ -1763,10 +1651,10 @@ Attn: {!CaseContact.FirstName} {!CaseContact.LastName}
     <screens>
         <name>Request_Abandoned</name>
         <label>Request Abandoned</label>
-        <locationX>1110</locationX>
-        <locationY>793</locationY>
+        <locationX>1413</locationX>
+        <locationY>808</locationY>
         <allowBack>true</allowBack>
-        <allowFinish>false</allowFinish>
+        <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>Abandon_textbox</name>
@@ -1780,8 +1668,8 @@ Attn: {!CaseContact.FirstName} {!CaseContact.LastName}
         <description>Select Adjustment with non-Retention codes</description>
         <name>Select_Adjustment_Code</name>
         <label>Select Adjustment Code</label>
-        <locationX>1213</locationX>
-        <locationY>356</locationY>
+        <locationX>878</locationX>
+        <locationY>529</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1797,7 +1685,6 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         </fields>
         <fields>
             <name>Adjustment_code_non_retention</name>
-            <choiceReferences>ANC_choice</choiceReferences>
             <choiceReferences>LFGDW_choice</choiceReferences>
             <choiceReferences>LFTRM_choice</choiceReferences>
             <choiceReferences>OPER_choice</choiceReferences>
@@ -1832,72 +1719,8 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <screens>
-        <name>Select_Adjustment_Code_Retention</name>
-        <label>Select Adjustment Code</label>
-        <locationX>667</locationX>
-        <locationY>356</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>true</allowPause>
-        <connector>
-            <targetReference>Assign_Adjustment_Code_Retention</targetReference>
-        </connector>
-        <fields>
-            <name>Account_Nbr_Display</name>
-            <fieldText>Account Number: {!ParentAccount.Wex_Account__c}</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Account_Name_display</name>
-            <fieldText>Account Name: {!ParentAccount.Name}</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>FunderInfo_display</name>
-            <fieldText>Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account_Status_Date__c}</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <fields>
-            <name>Adjustment_code_retention</name>
-            <choiceReferences>LFGDW_choice</choiceReferences>
-            <choiceReferences>LFTRM_choice</choiceReferences>
-            <choiceReferences>CRDFEE_choice</choiceReferences>
-            <choiceReferences>PSFEE_choice</choiceReferences>
-            <choiceReferences>SMBAL_choice</choiceReferences>
-            <choiceReferences>PMCFEE_choice</choiceReferences>
-            <choiceReferences>RAFEE_choice</choiceReferences>
-            <choiceReferences>ACTSET_choice</choiceReferences>
-            <choiceReferences>IMGDW_choice</choiceReferences>
-            <choiceReferences>ONLFEE_choice</choiceReferences>
-            <choiceReferences>OVRNGT_choice</choiceReferences>
-            <choiceReferences>FUTCRED_choice</choiceReferences>
-            <choiceReferences>Adjustment_codes</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Adjustment code</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
     <startElementReference>ChooseRecordType</startElementReference>
-    <status>Draft</status>
-    <variables>
-        <name>Adjustment_Type_Picklist</name>
-        <dataType>Picklist</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <description>Hopefully will be the list of picklist choices for Adjustment reason codes</description>
-        <name>AdjustmentCodePicklist</name>
-        <dataType>Picklist</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
+    <status>Active</status>
     <variables>
         <name>CaseContact</name>
         <dataType>SObject</dataType>
@@ -1926,14 +1749,6 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <objectType>Refund_Adjustment__c</objectType>
     </variables>
     <variables>
-        <name>Current_RefAdj</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Refund_Adjustment__c</objectType>
-    </variables>
-    <variables>
         <name>Most_Recent_Request</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -1942,12 +1757,28 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <objectType>Refund_Adjustment__c</objectType>
     </variables>
     <variables>
+        <name>MostRecentRequest</name>
+        <apexClass>RefundAdjustment</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>MostRecentRequestUser</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>User</objectType>
+    </variables>
+    <variables>
+        <name>OracleSummaryData</name>
+        <apexClass>RefundAdjustmentTotals</apexClass>
+        <dataType>Apex</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>Parent_Case</name>
@@ -1977,52 +1808,12 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         </value>
     </variables>
     <variables>
-        <name>Prior_Refunds_and_Adjustments_Display</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
         <name>Prior_Refunds_or_Adjustments</name>
         <dataType>SObject</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Refund_Adjustment__c</objectType>
-    </variables>
-    <variables>
-        <description>Entries from old Access database</description>
-        <name>PriorEntries</name>
-        <apexClass>RefundAdjustment</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>PriorEntriesRequest</name>
-        <apexClass>RefundAdjustmentRequest</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>PriorEntriesRequestList</name>
-        <apexClass>RefundAdjustmentRequest</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>true</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>PriorEntriesResult</name>
-        <apexClass>RefundAdjustmentResult</apexClass>
-        <dataType>Apex</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>recordId</name>
@@ -2046,44 +1837,6 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <isInput>false</isInput>
         <isOutput>false</isOutput>
         <objectType>Refund_Adjustment__c</objectType>
-    </variables>
-    <variables>
-        <name>Temp_Adjustment_code</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>Temp_adjustment_reason</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>Temp_Case</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>Case</objectType>
-    </variables>
-    <variables>
-        <name>TempRecordType</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>RecordType</objectType>
-    </variables>
-    <variables>
-        <name>TempRecordUser</name>
-        <dataType>SObject</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <objectType>User</objectType>
     </variables>
     <variables>
         <name>WaiverRequestsGrantedSum</name>
