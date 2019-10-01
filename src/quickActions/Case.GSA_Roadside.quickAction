@@ -22,7 +22,7 @@
     </fieldOverrides>
     <fieldOverrides>
         <field>GSA_Region__c</field>
-        <formula>IF(NOT(ISBLANK(Case.Region__c)),Case.Region__c,IF(AND(LEFT( UPPER(Case.Account.Name),3) = &apos;GSA&apos;,FIND(&apos;REGION&apos;,UPPER(Case.Account.Name))&gt;0),&apos;REG &apos;&amp;RIGHT(Case.Account.Name,LEN(Case.Account.Name)-(FIND(&apos;REGION&apos;,UPPER(Case.Account.Name))+6)),&apos;&apos;))</formula>
+        <formula>IF(NOT(ISBLANK(Case.Region__c)),Case.Region__c,IF(AND(LEFT( UPPER(Case.Account.Name),3) = &apos;GSA&apos;,FIND(&apos;REGION&apos;,UPPER(Case.Account.Name))&gt;0),IF(FIND(&apos;RENTAL&apos;,UPPER(Case.Account.Name))&gt;0,&apos;RNT &apos;,&apos;&apos;)&amp;&apos;REG &apos;&amp;RIGHT(Case.Account.Name,LEN(Case.Account.Name)-(FIND(&apos;REGION&apos;,UPPER(Case.Account.Name))+6)),&apos;&apos;))</formula>
     </fieldOverrides>
     <fieldOverrides>
         <field>Product_Auth_Class__c</field>
