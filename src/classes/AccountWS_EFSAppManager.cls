@@ -457,8 +457,6 @@ global class AccountWS_EFSAppManager {
                 jsonPayload.writeStringField('mc_fleet','Y');
         }
 
-        if(selectedOtherServices != null)
-
         // Start of "policy"
         jsonPayload.writeFieldName('policy');
         jsonPayload.writeStartObject();
