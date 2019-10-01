@@ -610,7 +610,7 @@ public class OTRBOCAController {
                 Integer requiredMatchingAccFields = 2;
                 Boolean carrierNotFound = true;
 
-                for(Account a : [SELECT Id,
+                for(Account a : [SELECT Id, Name, BillingStreet, Phone,
                                     (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
                                         Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
                                         FROM Online_Applications__r)
