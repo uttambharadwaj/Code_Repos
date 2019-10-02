@@ -7,8 +7,7 @@ public with sharing class SelectedSizeWorkaround {
 
     public selectedSizeWorkaround(ApexPages.StandardSetController controller) {
         setCon = controller;
-        ((Refund_Adjustment__c)(setCon.getRecord())).Approver_Name__c = UserInfo.getUserId();
-        ((Refund_Adjustment__c)(setCon.getRecord())).Decision_Date__c = System.now();
+        
     }
 
     public integer getMySelectedSize() {
@@ -18,16 +17,9 @@ public with sharing class SelectedSizeWorkaround {
         return setCon.getRecords().size();
     }
 
-    public List<SelectOption> getApprovalOptions() {
-        List<SelectOption> newApprovalOptions = new List<SelectOption>();
-        newApprovalOptions.add(new SelectOption('Pending','Pending',true)); //That last boolean is isDisabled.
-        newApprovalOptions.add(new SelectOption('Approved','Approved'));
-        newApprovalOptions.add(new SelectOption('Held','Held'));
-        newApprovalOptions.add(new SelectOption('Denied','Denied'));
-        return newApprovalOptions;
-    }
-
     public PageReference updateRecords() {
+        ((Refund_Adjustment__c)(setCon.getRecord())).Approver_Name__c = UserInfo.getUserId();
+        ((Refund_Adjustment__c)(setCon.getRecord())).Decision_Date__c = System.now();
         return setCon.save();
     }
 }

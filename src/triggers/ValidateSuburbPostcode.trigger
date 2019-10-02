@@ -6,6 +6,10 @@
 
 trigger ValidateSuburbPostcode on Lead (before insert, before update)
 {
+
+    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
+    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Lead_Automation__c) { return; }
+
     // trigger should fire only for Leads with Australian record types
     
     Set<String> AU_Lead_RTs = new Set<String>();

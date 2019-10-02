@@ -4,7 +4,7 @@
 * Initial Date: 5/14/2019
 * Description:  creates dispatcher and dispatches events to appropriate handlers
 *               dispatchers created with Type API, so no registration needed for each dispatcher
-* Revision History:
+* Revision History: 
 */
 
 public class TriggerFactory{
@@ -14,7 +14,8 @@ public class TriggerFactory{
     private static final Map<String, String> objTypeMap = new Map<String,String>{'Beneficial_Owner_Entity__c'=>'BOEntity',
     'Beneficial_Owner_Prong__c'=>'BOProng',
     'Application_Request__c'=>'AppRequest',
-    'FleetEnrollment__c'=>'FleetEnroll'};
+    'FleetEnrollment__c'=>'FleetEnroll',
+    'Campaign_Program__c'=>'CmpgnProgram'};
 
     /*
     * description Creates the appropriate dispatcher and dispatches the trigger event to the dispatcher's event handler method.
@@ -38,8 +39,8 @@ public class TriggerFactory{
     check for all triggers turned off (for dataloading) or just this object
     */
     public static Boolean disabledTriggers(Schema.sObjectType soType){
-        //this isrunningtest try/catch block is only needed until all tests convert to inserting Automation Settings. delete when tests are properly converted
-        Automation_Settings__c setting = Automation_Settings__c.getInstance();
+        
+        Automation_Settings__c setting = Automation_Settings__c.getOrgDefaults();
         if(setting.Disable_Apex_Triggers__c) return True;
 
         String fieldName = 'Disable_' + getObjTypeName(soType) + '_Trigger__c';

@@ -30,9 +30,9 @@ public with sharing class Z_Agreement_TriggerHandler {
     for (echosign_dev1__SIGN_Agreement__c a : newAs) {
         // We don't want the status/record type changed if the quote has already been sent to the vendor/Zuora
         if(a.Quote__c != null) {
-        	if((qMap.get(a.Quote__c).zqu__Status__c).equalsIgnoreCase('Issued Order')) {
-            	continue;
-        	}
+            if((qMap.get(a.Quote__c).zqu__Status__c).equalsIgnoreCase('Issued Order')) {
+                continue;
+            }
         }
         
       // If the new status doesn't equal the old status, and it's signed, then set Customer Approval

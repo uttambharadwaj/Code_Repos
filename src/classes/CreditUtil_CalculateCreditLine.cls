@@ -390,6 +390,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                 }
             }
         } else if (riskGrade.equals('3') || riskGrade.equals('4')) {
+            System.debug('TEMP risk grade 3 or 4');
             if (creditLineRequested <= 10000) {
                 ar.Credit_Line_Recommendation__c = creditLineRequested;
             } else if (creditLineRequested > 10000 && creditLineRequested <= 150000) {

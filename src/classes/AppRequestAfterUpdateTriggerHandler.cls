@@ -19,7 +19,7 @@ public class AppRequestAfterUpdateTriggerHandler extends TriggerHandlerBase {
 
             if (!System.IsBatch() && !System.isFuture() && AppRequestHelper.compareFields(ar, old)) {
                 arids.add(ar.Id);   // pass to a set in the TriggerDispatcher for processing.
-                // This is to avoid the possibility of an AfterInsert and AfterUpdate entering the credit engine twice in the same execution.
+                                    // This is to avoid the possibility of an AfterInsert and AfterUpdate entering the credit engine twice in the same execution.
             }
         }
 

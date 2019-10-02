@@ -1,6 +1,3 @@
-<!--
-	Revision History: 5/14/2019 PSOBACKLOG-76 ADA Compliance-Images
--->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="ExternalApplicationErrorController" action="{!init}">
     <html>
         <head>
@@ -61,12 +58,10 @@
                         <div class="twelve columns">
                             <center>
                                 <apex:outputPanel rendered="{!brandingLogo != null}">
-                                    <!--PSOBACKLOG-76-->
-                                    <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="Logo"/>
+                                    <img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}"/>
                                 </apex:outputPanel>
                                 <apex:outputPanel rendered="{!brandingLogo == null}">
-                                    <!--PSOBACKLOG-76-->
-                                    <img class="logo" src="{!URLFOR($Resource.WEXLogo)}" alt="Wex Logo"/>
+                                    <img class="logo" src="{!URLFOR($Resource.WEXLogo)}"/>
                                 </apex:outputPanel>
                             </center>
                         </div>

@@ -33,7 +33,11 @@
                             <tr>
                                 <td class="inner contents" style="padding-top:20px;padding-bottom:10px;padding-right:150px;padding-left:150px;width:100%;text-align:left;" >
                                     <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
-
+										
+                                        <tr>   
+                                    	    <td class="innerm" style="background-color:#828282;text-align:center;border-bottom-width:3px;border-bottom-style:solid;border-bottom-color:#fff;padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;color:#ffffff;font-size:26px;" >It's easy to get started!</td>
+                                        </tr>
+                                        
 										<tr>
                                            
                                             <td class="innerm" style="background-color:#ededed;text-align:center;border-bottom-width:3px;border-bottom-style:solid;border-bottom-color:#fff;padding-top:10px;padding-bottom:10px;padding-right:10px;padding-left:10px;" >

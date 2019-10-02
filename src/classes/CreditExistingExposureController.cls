@@ -40,7 +40,7 @@ public with sharing class CreditExistingExposureController {
             List<OnlineApplication__c> onlineApplications = [SELECT Id, Name, Legal_Business_Name__c, Business_Street_Address__c, Business_Address_Line_2__c,
                     City__c, State__c, Zip_Code__c, Federal_Tax_ID__c, DNB_Resolved_DUNS__c, Phone_Number__c, IP_Address__c, AO_Social_Security_Number__c
             FROM OnlineApplication__c WHERE Id =: applicationId];
-
+         
             if(onlineApplications.size() == 1) {
 
                 existingExposureRequest.applicationId = applicationId;
@@ -84,6 +84,8 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.duns = cpApplicationRequests[0].DNB_Resolved_DUNS__c;
                 existingExposureRequest.taxID = cpApplicationRequests[0].Taxpayer_ID__c;
                 existingExposureRequest.pgSSN = cpApplicationRequests[0].Guarantor_Social_Security_Number__c;
+                
+                System.debug('TEMP ip address in controller: ' + existingExposureRequest.ipAddress);
 
                 originalRequest = existingExposureRequest.clone();
 

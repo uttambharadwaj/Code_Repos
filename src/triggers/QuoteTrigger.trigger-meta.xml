@@ -3,7 +3,7 @@
     <apiVersion>36.0</apiVersion>
     <packageVersions>
         <majorNumber>6</majorNumber>
-        <minorNumber>54</minorNumber>
+        <minorNumber>61</minorNumber>
         <namespace>zqu</namespace>
     </packageVersions>
     <status>Active</status>

@@ -21,11 +21,11 @@ public class BOEntityTriggerTest {
 
         //Asserts for Before Insert logic on mapping parents
         Beneficial_Owner_Entity__c myBOE = [SELECT Id, Legal_Structure__c FROM Beneficial_Owner_Entity__c WHERE Id =:boe.Id];
-        system.assertEquals(o.Legal_Structure__c, myBOE.Legal_Structure__c, 'The legal structure went off the rails.');
+        system.assertEquals(o.Legal_Structure__c, myBOE.Legal_Structure__c);
 
         //Asserts for After Insert logic on update opportunity
         Opportunity myOppty = [SELECT Id, Beneficial_Owner_Entity__c FROM Opportunity WHERE Id=:o.Id];
-        system.assertEquals(boe.Id, myOppty.Beneficial_Owner_Entity__c, 'The oppty should have a fun new BOE.');
+        system.assertEquals(boe.Id, myOppty.Beneficial_Owner_Entity__c);
 
     }
 
@@ -68,12 +68,12 @@ public class BOEntityTriggerTest {
         Beneficial_Owner_Entity__c myBOE2 = [SELECT Id, Verification_Status__c, Legal_Structure__c, RecordType.Name FROM Beneficial_Owner_Entity__c WHERE Id =:boe2.Id];
         Beneficial_Owner_Entity__c myBOE3 = [SELECT Id, Verification_Status__c, Legal_Structure__c, RecordType.Name FROM Beneficial_Owner_Entity__c WHERE Id =:boe3.Id];
         
-        system.assertEquals('Exempted', myBOE.Verification_Status__c, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Exempted', myBOE2.Verification_Status__c, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Exempted', myBOE3.Verification_Status__c, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Fuel Card - Locked', myBOE.RecordType.Name, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Fleet Card - Locked', myBOE2.RecordType.Name, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Factoring - Locked', myBOE3.RecordType.Name, 'Exemption status logic did not work as expected.');
+        system.assertEquals('Exempted', myBOE.Verification_Status__c);
+        system.assertEquals('Exempted', myBOE2.Verification_Status__c);
+        system.assertEquals('Exempted', myBOE3.Verification_Status__c);
+        system.assertEquals('Fuel Card - Locked', myBOE.RecordType.Name);
+        system.assertEquals('Fleet Card - Locked', myBOE2.RecordType.Name);
+        system.assertEquals('Factoring - Locked', myBOE3.RecordType.Name);
     }
 
     public static void testLegalStructureBeforeInsertFail(){
@@ -97,8 +97,8 @@ public class BOEntityTriggerTest {
         }
         Test.stopTest();
         
-        System.Assert(myError.contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'), 'It did not fail as expected.');
-        System.Assert(myError.contains(parentFail), 'The thing failed to fail as expected.');
+        System.Assert(myError.contains('FIELD_CUSTOM_VALIDATION_EXCEPTION'));
+        System.Assert(myError.contains(parentFail));        
     }
 
     public static void testUpdateExemptionStatusBeforeUpdate() {
@@ -122,12 +122,12 @@ public class BOEntityTriggerTest {
         boe3.Certified_By__c='Test';
         boe4.Certified_By__c='Test';
         
-        system.assertNotEquals('Exempted', boe2.Verification_Status__c, 'Something updated the record before it should have.');
-        system.assertNotEquals('Exempted', boe3.Verification_Status__c, 'Something updated the record before it should have.');
-        system.assertNotEquals('Exempted', boe4.Verification_Status__c, 'Something updated the record before it should have.');
-        system.assertNotEquals('Fuel Card - Locked', boe2.RecordType.Name, 'Something updated the record before it should have.');
-        system.assertNotEquals('Fleet Card - Locked', boe3.RecordType.Name, 'Something updated the record before it should have.');
-        system.assertNotEquals('Factoring - Locked', boe4.RecordType.Name, 'Something updated the record before it should have.');
+        system.assertNotEquals('Exempted', boe2.Verification_Status__c);
+        system.assertNotEquals('Exempted', boe3.Verification_Status__c);
+        system.assertNotEquals('Exempted', boe4.Verification_Status__c);
+        system.assertNotEquals('Fuel Card - Locked', boe2.RecordType.Name);
+        system.assertNotEquals('Fleet Card - Locked', boe3.RecordType.Name);
+        system.assertNotEquals('Factoring - Locked', boe4.RecordType.Name);
 
         Test.startTest();
         update new List<Beneficial_Owner_Entity__c>{boe2,boe3,boe4};
@@ -137,12 +137,12 @@ public class BOEntityTriggerTest {
         Beneficial_Owner_Entity__c myBOE3 = [SELECT Id, Verification_Status__c, RecordType.Name FROM Beneficial_Owner_Entity__c WHERE Id =:boe3.Id];
         Beneficial_Owner_Entity__c myBOE4 = [SELECT Id, Verification_Status__c, RecordType.Name FROM Beneficial_Owner_Entity__c WHERE Id =:boe4.Id];
         
-        system.assertEquals('Exempted', myBOE2.Verification_Status__c, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Exempted', myBOE3.Verification_Status__c, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Exempted', myBOE4.Verification_Status__c, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Fuel Card - Locked', myBOE2.RecordType.Name, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Fleet Card - Locked', myBOE3.RecordType.Name, 'Exemption status logic did not work as expected.');
-        system.assertEquals('Factoring - Locked', myBOE4.RecordType.Name, 'Exemption status logic did not work as expected.');
+        system.assertEquals('Exempted', myBOE2.Verification_Status__c);
+        system.assertEquals('Exempted', myBOE3.Verification_Status__c);
+        system.assertEquals('Exempted', myBOE4.Verification_Status__c);
+        system.assertEquals('Fuel Card - Locked', myBOE2.RecordType.Name);
+        system.assertEquals('Fleet Card - Locked', myBOE3.RecordType.Name);
+        system.assertEquals('Factoring - Locked', myBOE4.RecordType.Name);
     }
 
     public static void testCheckOpptyChangesAfterUpdate() {
@@ -159,7 +159,7 @@ public class BOEntityTriggerTest {
 
         Opportunity myOpp = [SELECT Id, Beneficial_Owner_Entity__c FROM Opportunity WHERE Id =:o2.Id LIMIT 1];
         
-        system.assertEquals(boe.Id, myOpp.Beneficial_Owner_Entity__c, 'The oppty should have a fun new BOE.');
+        system.assertEquals(boe.Id, myOpp.Beneficial_Owner_Entity__c);
     }
     
     //this test is for business processes converted FROM a trigger but now being processed outside of Apex (Process Builder). no code coverage value.
@@ -168,7 +168,7 @@ public class BOEntityTriggerTest {
         Account a = [SELECT Id, Preferred_Language__c FROM Account WHERE Name = 'Test' LIMIT 1];
         Opportunity o = [SELECT Id FROM Opportunity WHERE Name = 'Test Oppty' LIMIT 1];
         Beneficial_Owner_Entity__c boInit = [SELECT Id, Record_Status__c FROM Beneficial_Owner_Entity__c WHERE Opportunity__c = :o.Id LIMIT 1];
-        system.assertEquals(boInit.Record_Status__c, 'Active', 'Something updated the BOE before it should have.');
+        system.assertEquals(boInit.Record_Status__c, 'Active');
 
         Beneficial_Owner_Entity__c boe = new Beneficial_Owner_Entity__c();
         boe.Account__c=a.Id;
@@ -182,11 +182,11 @@ public class BOEntityTriggerTest {
         test.stopTest();
 
         boe = [SELECT Id, Language_Preference__c, Record_Status__c FROM Beneficial_Owner_Entity__c WHERE Id = :boe.Id LIMIT 1];
-        system.assertEquals(boe.Language_Preference__c, a.Preferred_Language__c, 'Something languaged wrong.');
-        system.assertEquals(boe.Record_Status__c, 'Active', 'The status was unexpectedly changed.');
+        system.assertEquals(boe.Language_Preference__c, a.Preferred_Language__c);
+        system.assertEquals(boe.Record_Status__c, 'Active');
         
         boInit = [SELECT Id, Record_Status__c FROM Beneficial_Owner_Entity__c WHERE Id = :boInit.Id LIMIT 1];
-        system.assertEquals(boInit.Record_Status__c, 'Archived', 'Something wonkied in the trigger/process builder.');
+        system.assertEquals(boInit.Record_Status__c, 'Archived');
 
     }
 

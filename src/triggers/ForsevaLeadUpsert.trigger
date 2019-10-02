@@ -1,7 +1,10 @@
 /**
 * Forseva online application code.
 */
-trigger ForsevaLeadUpsert on Lead (after insert) {	  
+trigger ForsevaLeadUpsert on Lead (after insert) {
+
+    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
+    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Lead_Automation__c) { return; }
 
     List<Id> leadList = new List<Id>();
     List<Id> cardProgramList = new List<Id>();    

@@ -5,7 +5,7 @@ private class EchoTriggerTest {
     static void setup(){
         UtilityTestLoader.setAutomation(false);
     }
-
+    
 	static testMethod void EchoTriggerTester() {
     try{
           

@@ -1,4 +1,3 @@
-
 /**
 * @description This class extends the TriggerDispatcherBase to provide the dispatching functionality for the trigger actions
 *               on the Opportunity object. The event handlers support allowing and preventing actions for reentrant scenarios.

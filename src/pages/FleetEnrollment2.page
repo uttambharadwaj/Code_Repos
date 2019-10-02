@@ -1,4 +1,4 @@
-    <!--
+<!--
     *   Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
     -->
     <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentController" extensions="FleetEnrollmentController2"

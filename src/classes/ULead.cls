@@ -1791,5 +1791,11 @@ public class ULead {
         
 
     }
-    
+
+    public static void executeBREeze(List<Lead> records, Map<Id, Lead> oldMap) {
+        BREeze.processRules.ruleDataSet rds = new BREeze.processRules.ruleDataSet();
+        rds.records = records;
+        rds.oldMap = oldMap;
+        BREeze.ProcessRules.processRuleLogic('MC_Leads_Sync_to_Marketing_Cloud', false, rds);
+    }
 }

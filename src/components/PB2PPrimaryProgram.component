@@ -23,7 +23,7 @@
                             Hi {!partnerBOCAToProspect.First_Name__c},
                         </p>
                         <p style="line-height: 22px;">
-                            Thank you for your interest in<strong>&nbsp;<apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></strong>.  I think you'll find our programto be an ideal solution for your company’s fuel management needs.
+                            Thank you for your interest in<strong>&nbsp;<apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></strong>.  I think you'll find our program to be an ideal solution for your company’s fuel management needs.
                         </p>
                     </td>
                 </tr>

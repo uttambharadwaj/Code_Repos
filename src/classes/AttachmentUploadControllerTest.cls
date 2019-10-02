@@ -37,7 +37,7 @@ public class AttachmentUploadControllerTest {
         system.assertEquals(initialCount+1,finalCount,'It did not attach the expected number of attachments');
         system.assertEquals('Program',auc.parentRecordType,'Hmmm it found the wrong label');
         system.assertEquals('true',auc.confirmUpload,'It did not set the parameter as expected');
-        system.assertEquals(myName,auc.recordName,'It did not set the name as expected');
+        system.assertEquals(myName,auc.recordName,'Id did not set the name as expected');
         system.assert(auc.hasError,'It did not provide a message');
         system.assertEquals(1,msgList.size(),'It has the wrong number of messages');
         system.assertEquals(ApexPages.Severity.CONFIRM,msgList[0].getSeverity(),'It has the wrong severity level');

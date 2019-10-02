@@ -23,9 +23,13 @@
                         <td class="cell">{!fleetEnrollment.Opportunity_Number__c}</td>
                     </tr>
                 	<tr class="odd-row">
-                        <td class="cell"><b>Billing Full Name:</b></td>
-                        <td class="cell">{!fleetEnrollment.Billing_Full_Name__c}</td>
+                        <td class="cell"><b>Billing First Name:</b></td>
+                        <td class="cell">{!fleetEnrollment.Billing_Contact_First_Name__c}</td>
                     </tr>
+					<tr class="odd-row">
+						<td class="cell"><b>Billing Last Name:</b></td>
+						<td class="cell">{!fleetEnrollment.Billing_Contact_Last_Name__c}</td>
+					</tr>
                     <tr class="even-row">
                         <td class="cell"><b>Billing Address:</b></td>
                         <td class="cell">{!fleetEnrollment.Billing_Address_Line_1__c}</td>
@@ -57,6 +61,38 @@
                 </tbody>
             </table>
         <br/><br/>
+	<table class="table">
+		<thead>
+		<th class="header" colspan="2">Card Shipping Information</th>
+		</thead>
+		<tbody>
+		<tr class="odd-row">
+			<td class="cell"><b>Attention</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_Attention__c}</td>
+		</tr>
+		<tr class="even-row">
+			<td class="cell"><b>Card Shipping Address:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_Address_Line_1__c}</td>
+		</tr>
+		<tr class="odd-row">
+			<td class="cell"><b>Card Shipping Address Line 2:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_Address_Line_2__c}</td>
+		</tr>
+		<tr class="even-row">
+			<td class="cell"><b>Card Shipping City:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_City__c}</td>
+		</tr>
+		<tr class="odd-row">
+			<td class="cell"><b>Card Shipping State:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_State__c}</td>
+		</tr>
+		<tr class="even-row">
+			<td class="cell"><b>Card Shipping Postal Code:</b></td>
+			<td class="cell">{!fleetEnrollment.Card_Shipping_Postal_Code__c}</td>
+		</tr>
+		</tbody>
+	</table>
+	<br/><br/>
     		<table class="table">
 				<thead>
                 	<th class="header" colspan="3">Authorized Contacts</th>
@@ -70,7 +106,8 @@
                     <apex:variable var="rowCounter" value="2" />
                     <apex:repeat var="fleetContact" value="{!fleetEnrollmentContacts}">
                     	<tr class="{!IF(MOD(VALUE(rowCounter), 2) == 0, 'even-row', 'odd-row')}">
-                        	<td class="cell">{!fleetContact.Full_Name__c}</td>
+                        	<td class="cell">{!fleetContact.First_Name__c}</td>
+							<td class="cell">{!fleetContact.Last_Name__c}</td>
                             <td class="cell">{!fleetContact.Phone__c}</td>
                             <td class="cell">{!fleetContact.Email__c}</td>
                         </tr>

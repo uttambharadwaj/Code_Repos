@@ -270,8 +270,15 @@ public with sharing class Email
                         
         List<String> l1 = msg.ToAddresses;
         List<String> l2 = msg.CcAddresses;
-        List<String> l3 = msg.BccAddresses;                
+        List<String> l3 = msg.BccAddresses;     
+        
+        try {
         
         msg.send();
+            
+        }
+        catch(Exception e) {
+            System.debug('Sorryz');
+        }
     }    
 }

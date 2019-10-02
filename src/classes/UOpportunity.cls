@@ -18,6 +18,9 @@
  * ************************************************************/
 public class UOpportunity {
 
+    public static Set<Id> programAccountProcessedIds = new Set<Id> ();
+    public static Set<Id> programAccountInsertIds = new Set<Id> ();
+
     // trigger EchoTrigger on Opportunity (before update, after update) {
     // just the after update piece
 
@@ -962,4 +965,208 @@ public class UOpportunity {
         return message;
     }
 
+    public static void checkProgramAccount (List<Opportunity> records, Map <Id, Opportunity> oldMap)
+    {
+        Map<Id, Opportunity> oppMap = new Map<Id, Opportunity>();
+        for (Opportunity opp : records) {
+            if (!programAccountProcessedIds.contains(opp.Id) && 
+                (programAccountInsertIds.contains(opp.Id) ||
+                (oldMap!=null && opp.Campaign_Program__c!=null && opp.Campaign_Program__c != oldMap.get(opp.Id).Campaign_Program__c
+                    && opp.AccountId == oldMap.get(opp.Id).AccountId))) {
+                oppMap.put(opp.Id, opp);
+                programAccountProcessedIds.add(opp.Id);
+            }
+        }
+
+        if (!oppMap.isEmpty()) {
+            Id acctRecTypeId = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('CPS_Accounts').getRecordTypeId();
+            Map<Id, Opportunity> qualifiedOppMap = new Map<Id, Opportunity>();
+            Map<Id, Id> existingAccMap = new Map<Id, Id>();
+            Map<Id, String> existingAccNames = new Map<Id, String>();
+            Map<Id, Id> existingParentAccMap = new Map<Id, Id>();
+            Set<Id> cmpPrgIds = new Set<Id>();
+            for (Opportunity opp: [SELECT Id, AccountId, Account.Name, Account.ParentId FROM Opportunity WHERE Id IN : oppMap.keySet()
+                                    AND Account.RecordTypeId = :acctRecTypeId
+                                    AND Account.Is_Program_Account__c = true
+                                    AND Account.ParentId != null]) {
+                qualifiedOppMap.put(opp.Id, oppMap.get(opp.Id));
+                existingAccMap.put(opp.Id, opp.AccountId);
+                existingAccNames.put(opp.Id, opp.Account.Name);
+                existingParentAccMap.put(opp.Id, opp.Account.ParentId);
+                cmpPrgIds.add(oppMap.get(opp.Id).Campaign_Program__c);
+            }
+
+            if (!qualifiedOppMap.isEmpty()) {
+                Map<Id, Id> cmpPrgMap = new Map<Id, Id>();
+                Map<Id, Campaign_Program__c> campaignPrograms = new Map<Id, Campaign_Program__c>([SELECT Id, Program__c, Program__r.Partner__c FROM Campaign_Program__c WHERE Id IN : cmpPrgIds]);
+                for (Campaign_Program__c cmp : campaignPrograms.values()) {
+                    cmpPrgMap.put(cmp.Id, cmp.Program__c);
+                }
+
+                Map<String, Id> programAccMap = new Map<String, Id>();
+                Map<Id, Id> singleChildAcctMap1 = new Map<Id, Id>();
+                Map<Id, Id> singleChildAcctMap2 = new Map<Id, Id>();
+                for (Account acc : [SELECT Id, ParentId, Program__c FROM Account WHERE //Program__c IN : cmpPrgMap.values()
+                                    RecordTypeId = :acctRecTypeId
+                                    AND Is_Program_Account__c = true
+                                    AND ParentId IN : existingParentAccMap.values()]) {
+                        programAccMap.put(acc.ParentId + '$' + acc.Program__c, acc.Id);
+                        if (singleChildAcctMap1.get(acc.ParentId)==null) {
+                            singleChildAcctMap1.put(acc.ParentId, acc.Id);
+                            singleChildAcctMap2.put(acc.ParentId, acc.Id);
+                        } else if (singleChildAcctMap2.containsKey(acc.ParentId)) {
+                            singleChildAcctMap2.remove(acc.ParentId);
+                        }
+                }
+
+                Map<Id, Id> newAccMap = new Map<Id, Id>();
+                Map<Id, Account> oppNewAccMap = new Map<Id, Account>();
+                Map<Id, Account> oppSingleAccMap = new Map<Id, Account>();
+                for (Opportunity opp : qualifiedOppMap.values()) {
+                    Id parentAccId = existingParentAccMap.get(opp.Id);
+                    Id pgm = cmpPrgMap.get(opp.Campaign_Program__c);
+                    if (programAccMap.get(parentAccId + '$' + pgm)!=null) {  //found existing program account
+                        opp.AccountId = programAccMap.get(parentAccId + '$' + pgm);  //move opportunities to existing accounts
+                        newAccMap.put(opp.Id,  opp.AccountId);
+                    } else if (singleChildAcctMap2.containsKey(parentAccId)) {
+                        Account acc = new Account(Id = singleChildAcctMap2.get(parentAccId));
+                        acc.Program__c = pgm;
+                        acc.Partner_Name__c = campaignPrograms.get(opp.Campaign_Program__c).Program__r.Partner__c;
+                        oppSingleAccMap.put(opp.Id, acc);
+                        existingAccMap.remove(opp.Id);
+                        qualifiedOppMap.remove(opp.Id);
+                    } else {  //create new program account
+                        Account acc = new Account();
+                        acc.Name = existingAccNames.get(opp.Id);
+                        acc.RecordTypeId = acctRecTypeId;
+                        acc.Is_Program_Account__c = true;
+                        acc.Program__c = pgm;
+                        acc.Partner_Name__c = campaignPrograms.get(opp.Campaign_Program__c).Program__r.Partner__c;
+                        acc.ParentId = parentAccId;
+                        oppNewAccMap.put(opp.Id, acc);
+                    }
+                }
+
+                insert oppNewAccMap.values();
+                update oppSingleAccMap.values();
+
+                for (Opportunity opp : qualifiedOppMap.values()) { //move opportunities to newly created accounts
+                    if (oppNewAccMap.get(opp.Id)!=null) {
+                        opp.AccountId = oppNewAccMap.get(opp.Id).Id;
+                        newAccMap.put(opp.Id,  opp.AccountId);
+                    }
+                }
+
+                //clone contacts from old program accounts to new program accounts if they don't already exist
+                Map<Id, List<Contact>> existingAccContactMap = new Map<Id, List<Contact>>();
+                Map<Id, List<Contact>> newAccContactMap = new Map<Id, List<Contact>>();
+                List<Id> existingAccIds = existingAccMap.values();
+                List<Id> newAccIds = newAccMap.values();
+
+                List<String> contactFields = new List<String>();
+                List<FieldSetMember> fieldsToClone = SObjectType.Contact.fieldSets.Opportunity_Program_Account_Clone_Fields.getFields();
+                for (FieldSetMember field : fieldsToClone) {
+                    contactFields.add(field.getFieldPath());
+                }
+                String contactsQuery = 'SELECT ' + contactFields.get(0); 
+                for (Integer i=1; i < contactFields.size(); i++) {
+                    contactsQuery += ', ' + contactFields.get(i);
+                }
+                contactsQuery += ' FROM Contact WHERE AccountId IN : existingAccIds OR AccountId IN : newAccIds';
+
+                for (Contact ct : Database.query(contactsQuery)) {                
+                    if (existingAccIds.contains(ct.AccountId)) {
+                        if (existingAccContactMap.get(ct.AccountId)!=null) {
+                            List<Contact> ctList = existingAccContactMap.get(ct.AccountId);
+                            ctList.add(ct);
+                            existingAccContactMap.put(ct.AccountId, ctList);
+                        } else {
+                            existingAccContactMap.put(ct.AccountId,  new List<Contact>{ct});
+                        }
+                    } else {
+                        if (newAccContactMap.get(ct.AccountId)!=null) {
+                            List<Contact> ctList = newAccContactMap.get(ct.AccountId);
+                            ctList.add(ct);
+                            newAccContactMap.put(ct.AccountId, ctList);
+                        } else {
+                            newAccContactMap.put(ct.AccountId,  new List<Contact>{ct});
+                        }
+                    }
+                }
+
+                List<Contact> cloneContacts = new List<Contact>();
+                Map<Id, Id> cloneContactAcctMap = new Map<Id, Id>();
+                for (Opportunity opp : qualifiedOppMap.values()) {
+                    Id existingAccId = existingAccMap.get(opp.Id);
+                    Id newAccId = newAccMap.get(opp.Id);
+                    List<Contact> existingCtList = existingAccContactMap.get(existingAccId);
+                    List<Contact> newCtList = newAccContactMap.get(newAccId);
+                    Set<String> nameEmails = new Set<String>();
+                    if (newCtList!=null) {
+                        for (Contact ct : newCtList) {
+                            nameEmails.add(ct.FirstName + '$' + ct.LastName + '$' + ct.Email);
+                        }
+                    }
+                    if (existingCtList!=null) {
+                        for (Contact ct : existingCtList) {
+                            if (!nameEmails.contains(ct.FirstName + '$' + ct.LastName + '$' + ct.Email)) {
+                                cloneContacts.add(ct);
+                                cloneContactAcctMap.put(existingAccId, newAccId);
+                            }
+                        }
+                    }
+                }
+
+                if (!cloneContacts.isEmpty()) {
+                    List<Contact> clonedCtList = cloneContacts.deepClone();
+                    for (Contact ct : clonedCtList) {
+                        ct.AccountId = cloneContactAcctMap.get(ct.AccountId);
+                    }
+
+                    insert clonedCtList;
+                }
+            }
+        }
+    }
+
+    public static void updateProgramAccount (List<Opportunity> records, Map <Id, Opportunity> oldMap) {
+        boolean isInsert = (oldMap == null);
+        Set<Id> oppIds = new Set<Id>();
+        for (Opportunity opp : records) {
+            if (isInsert && opp.Campaign_Program__c!=null) {
+                    oppIds.add(opp.Id);
+            }
+        }
+
+        if (!oppIds.isEmpty()) {
+            Id acctRecTypeId = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('CPS_Accounts').getRecordTypeId();
+            Map<Id, Account> accMap = new Map<Id, Account>();
+            Map<Id, Opportunity> oppMap = new Map<Id, Opportunity>();
+
+            for (Opportunity opp: [SELECT Id, AccountId, Account.Program__c, Campaign_Program__r.Program__c FROM Opportunity WHERE Id IN : oppIds
+                                   AND Account.RecordTypeId = :acctRecTypeId
+                                  ]) {
+                if (opp.Campaign_Program__r.Program__c!=null) {
+                    if (opp.Account.Program__c==null) {
+                        Account acc = new Account(Id = opp.AccountId);
+                        acc.Program__c = opp.Campaign_Program__r.Program__c;
+                        accMap.put(opp.AccountId, acc);
+                    } else if (opp.Campaign_Program__r.Program__c != opp.Account.Program__c) {
+                        oppMap.put(opp.Id, opp);
+                        programAccountInsertIds.add(opp.Id);
+                    }
+                }
+            }
+
+            update accMap.values();
+            update oppMap.values(); //trigger checkProgramAccount logic
+        }
+    }
+    
+    public static void executeBREeze(List<Opportunity> records, Map<Id, Opportunity> oldMap) {
+        BREeze.processRules.ruleDataSet rds = new BREeze.processRules.ruleDataSet();
+        rds.records = records;
+        rds.oldMap = oldMap;
+        BREeze.ProcessRules.processRuleLogic('MC_Opportunity_Sync_to_Marketing_Cloud', false, rds);
+    }
 }

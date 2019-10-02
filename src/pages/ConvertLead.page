@@ -58,12 +58,12 @@
                                 processAccountChange();
                             }
                         </script>
-                        <span class="lookupInput">
+                        <!--<span class="lookupInput">
                             <apex:inputtext style="display:none;" value="{!temp_acclkid_lkold}" id="acclkid" />
                             <a title=" Lookup (New Window)" onclick="setLastMousePosition(event)" id="acclkid_lkwgt" href="javascript: openLookup('/_ui/common/data/LookupPage?lkpr={!Lead.Id}&lkfm=editPage&lknm={!$Component.acclkid}&leadconv=1&lktp=' + getElementByIdCS('{!$Component.acclkid_lktp}').value,670,'1','&lksrch=' + escapeUTF(getElementByIdCS('{!$Component.acclkid}').value.substring(0, 80)))">
                                 <img title=" Lookup (New Window)" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onblur="this.className = 'lookupIcon';" class="lookupIcon" alt=" Lookup (New Window)" src="/s.gif"/>
                             </a>
-                        </span>
+                        </span>-->
                     </apex:outputPanel>             
                 </apex:pageblocksectionitem>
                 
@@ -97,7 +97,7 @@
                             processContactChange();
                         }
                         </script>
-                        <apex:outputpanel rendered="{!selectcontact}">
+                        <!--<apex:outputpanel rendered="{!selectcontact}">
                         <span class="lookupInput">
                             <apex:inputtext style="display:none;" value="{!temp_conlkid_lkold}" id="conlkid"/>
                             <a title=" Lookup (New Window)" onclick="setLastMousePosition(event)" id="conlkid_lkwgt" 
@@ -105,7 +105,7 @@
                                 <img title=" Lookup (New Window)" onmouseover="this.className = 'lookupIconOn';this.className = 'lookupIconOn';" onmouseout="this.className = 'lookupIcon';this.className = 'lookupIcon';" onfocus="this.className = 'lookupIconOn';" onblur="this.className = 'lookupIcon';" class="lookupIcon" alt=" Lookup (New Window)" src="/s.gif"/>
                             </a>
                         </span>
-                        </apex:outputpanel>
+                        </apex:outputpanel>-->
                     </apex:outputPanel>
                 </apex:pageblocksectionitem>                                                            
                 <apex:pageblocksectionitem >

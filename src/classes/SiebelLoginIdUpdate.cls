@@ -4,6 +4,7 @@ private class SiebelLoginIdUpdate
 
     static testMethod void verifySiebelLoginIdUpdateTrigger()
     {
+    UtilityTestLoader.setAutomation(false);
     
         test.startTest();
 

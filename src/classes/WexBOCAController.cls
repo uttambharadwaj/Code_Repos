@@ -899,9 +899,13 @@ public class WexBOCAController {
             }
             
             // Additional information
+            program.Resources__c = brandingUtility.id;
+            update program;
+
             creditApp.Confirmation_Email_Sent__c = false;
             creditApp.Confirmation_Email_Template__c = brandingUtility.Email_Template_ID__c;
             creditApp.Program_Display_Name__c = brandingUtility.Program_Name__c;
+            creditApp.Branding_Utility__c = brandingUtility.id;
             creditApp.IPAddress__c = ipAddress;
             creditApp.TM_Session_ID__c = tmSessionId;
             creditApp.Location_Code__c = locationCode;

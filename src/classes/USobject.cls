@@ -86,7 +86,10 @@ public class USobject {
 						TaskRelation newTr = new TaskRelation();
 						newTr.TaskId = tr.TaskId;
 						newTr.RelationId = winningbylosing.get(tr.RelationId);
-						toinsert.add(newTR);
+						if (!existingTaskRelations.contains(newTr.RelationId+'-'+newTr.TaskId)) {
+							toinsert.add(newTR);
+							existingTaskRelations.add(newTr.RelationId+'-'+newTr.TaskId);
+						}
 					}
 					
 					system.debug('-- toinsert tasks: ' + toinsert);

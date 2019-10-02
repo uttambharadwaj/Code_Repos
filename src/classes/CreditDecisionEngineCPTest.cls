@@ -6,7 +6,6 @@
 *
 */
 
-
 @isTest
 public class CreditDecisionEngineCPTest {
 
@@ -14,7 +13,7 @@ public class CreditDecisionEngineCPTest {
     static void setupUser() {
 
         UtilityTestLoader.setAutomation(false);
-    
+
         Account offerAccount = new Account();
         offerAccount.Name = 'TestAccount-01';
 
@@ -143,7 +142,7 @@ public class CreditDecisionEngineCPTest {
                 CP_Application_Request__c cpApplication = new CP_Application_Request__c();
                 cpApplication.Opportunity__c = opportunity.Id;
                 cpApplication.Email__c = 'dcraigmile@forseva.com';
-                cpApplication.Company_Legal_Name__c = 'Company Name';
+                cpApplication.Company_Legal_Name__c = '';
                 cpApplication.First_Name__c = 'Testy';
                 cpApplication.Last_Name__c = 'McTesterson';
                 cpApplication.Years_in_Business__c = '5';
@@ -312,14 +311,12 @@ public class CreditDecisionEngineCPTest {
 
             Test.setCurrentPage(creditExistingExposure);
 
-            // must fix in results because using SOSL
-            Id[] fixedSearchResults = new id[new Map<id, CP_Application_Request__c>(cpApplications).keySet()];
-            Test.setFixedSearchResults(fixedSearchResults);
-
             CreditExistingExposureController fdoac = new CreditExistingExposureController();
 
             fdoac.init();
 
+            System.debug('duplication Account size = ' + fdoac.duplicateAccounts.size());
+            System.debug('duplication Applications size = ' + fdoac.duplicateApplications.size());
             System.assert(fdoac.duplicateAccounts.size() == 0);
             System.assert(fdoac.duplicateApplications.size() >= 0);
 

@@ -1,0 +1,182 @@
+<aura:component controller="WEXCTIAdapterController"
+                implements="force:hasRecordId,flexipage:availableForAllPageTypes,force:appHostable,lightning:isUrlAddressable" access="global">
+    <ltng:require scripts="{!$Resource.JQueryLightning}"/>
+    <ltng:require scripts="{!$Resource.XML2JSON}"/>
+    <ltng:require scripts="{!$Resource.Axios}" />
+    <ltng:require scripts="{!$Resource.Stanza}" afterScriptsLoaded="{!c.doInit}"/>
+    
+    <lightning:spinner aura:id="loadingSpinner" class="full-height slds-hide"/>
+    <lightning:utilityBarAPI aura:id="WEXCTIAdapter" />
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"/>
+    
+    <!-- Getting User Information for pre-fill -->
+    <aura:attribute name="userRecord" type="Object"/>
+    <aura:attribute name="ctiSettings" type="Object"/>
+    <aura:attribute name="ctiPOPSettings" type="Object"/>
+
+    <aura:attribute name="ani" type="String"/>
+    <aura:attribute name="accountNumber" type="String"/>
+    <aura:attribute name="cardNumber" type="String"/>
+    <aura:attribute name="LOB" type="String"/>
+    <aura:attribute name="sessionId" type="String"/>
+    <aura:attribute name="accountDetails" type="Object"/>
+
+    <aura:attribute name="loggedIn" type="Boolean"/>
+    <aura:attribute name="presenceType" type="String"/>
+    <aura:attribute name="presenceTypeText" type="String"/>
+
+    <aura:attribute name="username" type="String"/>
+    <aura:attribute name="password" type="String"/>
+	<aura:attribute name="extension" type="String"/>
+
+    <aura:attribute name="showError" type="Boolean"/>
+    <aura:attribute name="errorMessage" type="String"/>
+    
+    <aura:attribute name="callerType" type="String"/>
+    <aura:attribute name="ivrFunction" type="String"/>
+    <aura:attribute name="dId" type="String"/>
+    <aura:attribute name="language" type="String"/>
+    
+    <aura:attribute name="gadgetEnabled" type="boolean"/>
+    <aura:attribute name="boshURL" type="String"/>
+    <aura:attribute name="finesseAPIUrl" type="String"/>
+    <aura:attribute name="popMinimizeTime" type="Integer"/>
+    <aura:attribute name="userNameSuffix" type="String"/>
+    <aura:attribute name="searchResults" type="String"/>
+    <aura:attribute name="searchResultsText" type="String"/>
+    <aura:attribute name="showMatchedText" type="Boolean"/>
+    <aura:attribute name="ctiPopFlow" type="String"/>
+
+    <lightning:workspaceAPI aura:id="workspace"/>
+    <aura:if isTrue="{!v.gadgetEnabled == false}">
+        <div class="slds-grid slds-var-p-around_large">
+            <div class="slds-col slds-size_1-of-1">
+            	<p class="slds-align_absolute-center">This feature is not enabled for your user.</p>
+            </div>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.gadgetEnabled == true}">
+    <aura:if isTrue="{!v.showError == true}">
+        <div class="slds-grid slds-var-p-around_small">
+            <div class="slds-col slds-size_1-of-1">
+                <div class="slds-theme_error slds-var-p-around_small">
+                    <p class="slds-align_absolute-center">{!v.errorMessage}</p>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+
+    
+    <aura:if isTrue="{!v.loggedIn != true}">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-1 slds-var-p-around_large">
+                <form class="slds-form--stacked">
+                    <div class="slds-text-heading_small"><i class="fas fa-phone-square-alt" style="font-size: 18px; color: #cf102d; font-weight: bold;"></i>&nbsp;&nbsp;Login</div>
+                    <div class="slds-text-body_small slds-p-top_small slds-p-bottom_small">Please login with your Cisco Finesse credentials!</div>
+                    <lightning:input aura:id="loginForm" label="Username"
+                                     name="username"
+                                     value="{!v.username}"
+                                     required="true"/>
+                    <lightning:input aura:id="loginForm" label="Password"
+                                     name="password"
+                                     value="{!v.password}"
+                                     type="password"
+                                     required="true"/>
+                    <lightning:button label="Login"
+                                      class="slds-m-top--medium"
+                                      variant="brand"
+                                      iconName="utility:success"
+                                      onclick="{!c.performLogin}"/> 
+                    
+                </form>
+            </div>
+        </div>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.loggedIn == true}">
+        <div class="slds-grid">
+            <div class="{!'slds-col slds-size_1-of-1 slds-var-p-around_small ' + v.presenceType}">
+                <div class="slds-text-heading_small slds-float_left" style="text-transform: capitalize; margin-left: 10px; margin-top: 3px;">
+                    <p>{!(v.extension != '' ? v.extension + ' - ': '') } {!v.presenceTypeText}</p>
+                </div>
+            </div>           
+        </div>
+        
+        <aura:if isTrue="{!v.showMatchedText}">
+            <div class="slds-grid">
+                <div class="{!'slds-col slds-size_1-of-1 slds-var-p-around_small ' + v.searchResults}">
+                        <div class="slds-text-heading_small slds-float_left" style="text-transform: capitalize; margin-left: 20px; margin-top: 6px;">{!v.searchResultsText}</div>
+                </div>
+            </div>
+        </aura:if>   
+
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-1 slds-var-p-around_large">
+                <aura:if isTrue="{!v.ani == null}">
+                    <div style="min-height: 200px; width: 100%; text-align: center; margin-top: 20px; padding-top: 20px;">
+                        <i style="font-size: 32px;" class="fas fa-spinner fa-pulse"></i><br/><br/>
+                        Waiting for call...
+                    </div>
+                </aura:if>
+                <aura:if isTrue="{!v.ani != null}">
+                    <div style="min-height: 200px; width: 100%;">
+                        <lightning:tile label="Call Information">
+                            <aura:set attribute="media">
+                                <lightning:icon iconName="standard:call"/>
+                            </aura:set>
+                            <dl class="slds-dl_horizontal">
+                                <dt class="slds-dl_horizontal__label">
+                                    <p class="slds-truncate" title="Phone Number">Phone Number:</p>
+                                </dt>
+                                <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                    <p class="slds-truncate" title="Salesforce">{!v.ani}</p>
+                                </dd>
+                                <dt class="slds-dl_horizontal__label">
+                                    <p class="slds-truncate" title="Account/Card">Account Number:</p>
+                                </dt>
+                                <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                    <p class="slds-truncate" title="salesforce-ux@salesforce.com">{!v.accountNumber}</p>
+                                </dd>                              
+                                
+                            </dl>
+                        </lightning:tile>
+                        <aura:if isTrue="{!v.accountDetails == null}">
+                            <i style="font-size: 32px;" class="fas fa-spinner fa-pulse"></i><br/>
+                            <b>Searching for customer...</b>
+                        </aura:if>
+                        <aura:if isTrue="{!v.accountDetails != null}">
+                            <lightning:tile label="Customer Information">
+                                <aura:set attribute="media">
+                                    <lightning:icon iconName="standard:avatar"/>
+                                </aura:set>
+                                <dl class="slds-dl_horizontal">
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Company">Name:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="Salesforce">{!v.accountDetails.companyName}</p>
+                                    </dd>
+                                    <dt class="slds-dl_horizontal__label">
+                                        <p class="slds-truncate" title="Email">WEX Account #:</p>
+                                    </dt>
+                                    <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                                        <p class="slds-truncate" title="salesforce-ux@salesforce.com">{!v.accountDetails.wexAccountNumber}</p>
+                                    </dd>
+                                </dl>
+                            </lightning:tile>
+                        </aura:if>
+                    </div>
+                </aura:if>                                
+            </div>
+        </div>
+        <div class="slds-grid slds-grid--vertical-align-end">
+  <div class="slds-var-p-around_large"><lightning:button label="Logout" iconName="utility:logout"
+                                      class="slds-m-top--medium"
+                                      variant="destructive"
+                                      onclick="{!c.performLogout}"/></div>
+</div>
+    </aura:if>
+        
+        </aura:if>
+</aura:component>

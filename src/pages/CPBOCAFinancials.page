@@ -229,7 +229,7 @@
                                     {!$Label.BOCA_Application_Errors}
                                 </div>
                             </div>
-                            <apex:form id="creditForm">
+                            <apex:form id="someForm">
                                 <apex:actionFunction name="uploadFile" action="{!uploadFile}" />
                                 <apex:actionFunction name="submitApplication" action="{!submitApplication}" />  
                                 <!-- rerender=""  -->
@@ -258,7 +258,7 @@
                                                 <apex:outputLabel for="stockExchange" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Stock_Exchange__c.label} ">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <apex:selectList required="true" size="1" styleClass="styled-input required" id="stockExchange" value="{!creditApp.Stock_Exchange__c}">
+                                                <apex:selectList size="1" styleClass="styled-input required" id="stockExchange" value="{!creditApp.Stock_Exchange__c}">
                                                     <apex:selectOptions value="{!stockExchangeList}" />
                                                 </apex:selectList>
                                             </div>
@@ -266,17 +266,19 @@
                                         <div class="six columns clearfix">
                                             <div class="twelve columns clearfix form-field" data-row="0">
                                                 <apex:outputLabel for="statementType" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Financial_Statement_Type__c.label} ">
+                                                    <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <apex:selectList size="1" styleClass="styled-select-full" id="statementType" value="{!creditApp.Financial_Statement_Type__c}">
+                                                <apex:selectList size="1" styleClass="styled-select-full required" id="statementType" value="{!creditApp.Financial_Statement_Type__c}">
                                                     <apex:selectOptions value="{!statementTypeList}" />
                                                 </apex:selectList>
                                             </div>
                                             <apex:outputPanel id="financialsInfo">
                                             <div class="twelve columns clearfix form-field" data-row="1">
                                                 <apex:outputLabel for="financialsCompletedFor" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Financials_Completed_For__c.label} ">
+                                                    <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
                                                 <apex:actionRegion >
-                                                <apex:selectList size="1" styleClass="styled-select-full" id="financialsCompletedFor" value="{!creditApp.Financials_Completed_For__c}">
+                                                <apex:selectList size="1" styleClass="styled-select-full required" id="financialsCompletedFor" value="{!creditApp.Financials_Completed_For__c}">
                                                     <apex:selectOptions value="{!financialsCompletedForList}" />
                                                     <apex:actionSupport action="{!clearContractingEntityCountry}" event="onchange" rerender="financialsInfo" >
                                                     </apex:actionSupport>
@@ -289,11 +291,12 @@
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
                                                     <apex:actionRegion >
-                                                        <apex:selectList size="1" styleClass="styled-select-full required" id="contractingEntityCountry" value="{!creditApp.Country_of_Contacting_Entity__c}">
-                                                            <apex:selectOptions value="{!contractingEntityCountryList}" />
-                                                            <apex:actionSupport action="{!clearContractingEntityCountryOther}" event="onchange" rerender="contractingEntityPanel">
-                                                            </apex:actionSupport>
-                                                        </apex:selectList>
+                                                    <apex:selectList size="1" styleClass="styled-select-full required" id="contractingEntityCountry" value="{!creditApp.Country_of_Contacting_Entity__c}">
+                                                        <apex:selectOptions value="{!contractingEntityCountryList}" />
+                                                        <apex:actionSupport action="{!clearContractingEntityCountryOther}" event="onchange" rerender="contractingEntityPanel"
+                                                            >
+                                                        </apex:actionSupport>
+                                                    </apex:selectList>
                                                     </apex:actionRegion>
                                                 </div>
                                                 <apex:outputPanel id="contractingEntityCountryOtherPanel" rendered="{!creditApp.Country_of_Contacting_Entity__c == 'Other'}">
@@ -302,7 +305,7 @@
                                                             <span class="styled-label-required">*</span>
                                                         </apex:outputLabel>
                                                         <apex:InputField styleClass="styled-input required" id="contractingEntityCountryOther" value="{!creditApp.Country_of_Contracting_Entity_Other__c}"
-                                                        />
+                                                        /> 
                                                     </div>
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
@@ -330,7 +333,7 @@
                                                 <div class="twelve columns clearfix form-field" data-row="0">
                                                     <div class="six columns clearfix form-field" data-row="0">
                                                         <label class="styled-label">
-                                                            <apex:inputCheckbox id="documentType" value="{!creditApp[doc.fieldName]}" disabled="true" /> &nbsp;{!$ObjectType.CP_Application_Request__c.fields[doc.fieldName].label}
+                                                            <apex:inputCheckbox id="documentType" value="{!creditApp[doc.fieldName]}" /> &nbsp;{!$ObjectType.CP_Application_Request__c.fields[doc.fieldName].label}
                                                         </label>
                                                     </div>
                                                     <div class="six columns clearfix form-field" data-row="0">
@@ -343,6 +346,7 @@
                                                         />
                                                         <input type="button" class="" onClick="upload(this);" value="Attach" style="float: left !important;"
                                                         />  
+                                                        <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
                                                     </div>
                                                 </div>
                                                 </apex:repeat>

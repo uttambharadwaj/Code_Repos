@@ -38,45 +38,45 @@
     </head>
 
     <apex:pageMessages id="msgs" />
-    <apex:form id="PaperAppProgramSelection">
-        <apex:outputPanel rendered="{!hasError == false}">
-            <article class="slds-card">
-                <div class="slds-card__header slds-grid">
-                    <header class="slds-media slds-media--center slds-has-flexi-truncate">
-                        <div class="slds-media__body slds-truncate">
-                            <span class="slds-text-heading--small">Program Information</span>
-                        </div>
-                    </header>
-                </div>
-                <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
-                    <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
-                        <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
-                            <div class="slds-media__body">
-                                <div class="slds-form-element">
-                                    <label class="slds-form-element__label" for="input-id-01">Program</label>
-                                    <div class="slds-form-element__control">
-                                        <apex:selectlist id="selectedProgram" styleClass="slds-select required" value="{!selectedProgram}" size="1" html-data-parsley-required="true">
-                                            <apex:actionSupport event="onchange" action="{!doNothing}" reRender="selectedOffer"/>
-                                            <apex:selectOptions value="{!availablePrograms}" />
-                                        </apex:selectlist>
-                                    </div>
-                                </div><br/>
-                                <div class="slds-form-element">
-                                    <label class="slds-form-element__label" for="input-id-01">Offer</label>
-                                    <div class="slds-form-element__control">
-                                        <apex:selectlist id="selectedOffer" styleClass="slds-select required" value="{!selectedOffer}" size="1" html-data-parsley-required="true">
-                                            <apex:selectOptions value="{!availableOffers}" />
-                                        </apex:selectlist>
-                                    </div>
-                                </div><br/>
+        <apex:form id="PaperAppProgramSelection">           
+            <apex:outputPanel rendered="{!hasError == false}">
+                <article class="slds-card">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                            <div class="slds-media__body slds-truncate">
+                                <span class="slds-text-heading--small">Program Information</span>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                        <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                <div class="slds-media__body">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="input-id-01">Program</label>
+                                        <div class="slds-form-element__control">
+                                            <apex:selectlist id="selectedProgram" styleClass="slds-select required" value="{!selectedProgram}" size="1" html-data-parsley-required="true">
+                                                <apex:actionSupport event="onchange" action="{!doNothing}" reRender="selectedOffer"/>
+                                                <apex:selectOptions value="{!availablePrograms}" />
+                                            </apex:selectlist>
+                                        </div>
+                                    </div><br/>
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="input-id-01">Offer</label>
+                                        <div class="slds-form-element__control">
+                                            <apex:selectlist id="selectedOffer" styleClass="slds-select required" value="{!selectedOffer}" size="1" html-data-parsley-required="true">
+                                                <apex:selectOptions value="{!availableOffers}" />
+                                            </apex:selectlist>
+                                        </div>
+                                    </div><br/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </article>
-            <br />
-            <apex:commandButton styleClass="submitButton" value="Submit" action="{!buildURL}" />
-        </apex:outputPanel>
-    </apex:form>
+                </article>
+                <br />
+                <apex:commandButton styleClass="submitButton" value="Submit" action="{!buildURL}" />
+            </apex:outputPanel>
+        </apex:form>
     </html>
 </apex:page>
