@@ -1,8 +1,5 @@
 trigger AccountValidator on Account (before insert, before update) {
 
-    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Account_Automation__c) { return; }
-
     Set<Id> AU_Acc_RTs = new Set<Id>();
     
     //for(RecordType rt : [select Id from RecordType where sObjectType = 'Account' and DeveloperName IN ('AU_Fuel_Customer', 'EMAP_Fuel_Accounts')]){

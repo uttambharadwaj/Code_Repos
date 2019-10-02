@@ -204,7 +204,7 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             System.debug('Lexis Nexis RDP response: ' + response);
 
-              if(response != null) {
+            if(response != null) {
 
                 for(CreditWSUtil_LexisNexisBIID.cls_Products product : response.Products) {
 
@@ -505,7 +505,7 @@ public with sharing class CreditWS_LexisNexisRDP {
 
             CreditWSUtil_LexisNexisSBA.SmallBusinessAnalyticsResponse smallBusinessAnalyticsResponse = lexisNexisSBACalloutSOAP.SmallBusinessAnalytics(smallBusinessAnalyticsRequestElement.User_x, smallBusinessAnalyticsRequestElement.Options, smallBusinessAnalyticsRequestElement.SearchBy);
 
-            System.debug(smallBusinessAnalyticsResponse);
+            System.debug('Lexis Nexis SBA response: ' + smallBusinessAnalyticsResponse);
 
             try {
 

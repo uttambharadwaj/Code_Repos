@@ -1,8 +1,4 @@
 trigger CreditAssesmentInsertTrigger on Account ( after update) {
-
-    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Account_Automation__c) { return; }
-
                 list<ID> accountids = new list<ID>();
                  Id rtId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('WES Accounts').getRecordTypeId();
                 for(account acct :trigger.new)

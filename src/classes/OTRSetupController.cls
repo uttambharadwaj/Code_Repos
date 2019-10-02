@@ -1,4 +1,4 @@
-/*
+ /*
 Description:        Controller Class for OTRSetup VF Page
                     (Page 2 of Online Application for OTRBOCA)
 Test Classes:       OTRBOCATest

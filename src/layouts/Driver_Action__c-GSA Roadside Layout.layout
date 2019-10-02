@@ -47,7 +47,7 @@
                 <field>Driver_Name__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
+                <behavior>Edit</behavior>
                 <field>GSA_Region__c</field>
             </layoutItems>
             <layoutItems>

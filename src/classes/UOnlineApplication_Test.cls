@@ -1,7 +1,6 @@
 @isTest
 private class UOnlineApplication_Test {
 
-    /*
     static testMethod void myUnitTest() {
         // TO DO: implement unit test
         
@@ -95,7 +94,6 @@ private class UOnlineApplication_Test {
 		system.assert(dmlExceptionObj instanceOf system.Dmlexception);
 		Test.stopTest(); 
     }
-*/
     
     private static User newUser( ID profileId, String firstName, String lastName, String email ) {
         Integer rand = Math.round( Math.random() * 1000 );

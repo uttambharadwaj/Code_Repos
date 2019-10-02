@@ -6,8 +6,8 @@ public class PaperAppSubmissionExtensionTest {
 
     @testSetup
     static void setup() {
-        
-        UtilityTestLoader.setAutomation(false); 
+
+        UtilityTestLoader.setAutomation(false);
 
         Campaign campaign = new Campaign();
 
@@ -60,17 +60,17 @@ public class PaperAppSubmissionExtensionTest {
         account.Phone = '3123334444';
 
         insert account;
-        
+
         OnlineApplicationOffer__c offer = new OnlineApplicationOffer__c( Name = 'test offer',
-             Application_Title__c = 'test applications',
-             EchoSign_User_Email__c = 'test@gmail.com',
-             Terms_and_Conditions_Version__c = 'test',
-             Complete_Later_Text__c = 'test later',
-             Complete_Later_Email_Title__c = 'test',
-             Complete_Later_Email_From__c = 'Fleet One',
-             Complete_Later_Email__c = 'Thanks',
-             Program__c = program.Id);
-        
+                Application_Title__c = 'test applications',
+                EchoSign_User_Email__c = 'test@gmail.com',
+                Terms_and_Conditions_Version__c = 'test',
+                Complete_Later_Text__c = 'test later',
+                Complete_Later_Email_Title__c = 'test',
+                Complete_Later_Email_From__c = 'Fleet One',
+                Complete_Later_Email__c = 'Thanks',
+                Program__c = program.Id);
+
         insert offer;
 
         User integrationUser = [SELECT Id FROM User WHERE Alias = 'sinte'];

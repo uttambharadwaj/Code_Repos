@@ -1,8 +1,5 @@
 trigger CaseFetchUserRole on Case (before insert, before update) {
 
-    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Case_Automation__c) { return; }
-
     Case currentCase = trigger.new[0];
     Id recTypeId = currentCase.RecordTypeId;
     

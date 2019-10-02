@@ -11,10 +11,6 @@
 
 trigger EMAP_Contact_Trigger on Contact (after insert, after update) 
 {
-
-    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Contact_Automation__c) { return; }
-    
     if(trigger.isAfter)
     {
         if(trigger.isInsert)

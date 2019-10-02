@@ -17,7 +17,7 @@ public class BOCAtaskController {
 //        jsonList = '';
 //        for(Schema.PicklistEntry r : p){
 //            v.add( r.getLabel() );
-//        } 
+//        }
 //        jsonList = JSON.serialize(v);
 //    }
 //

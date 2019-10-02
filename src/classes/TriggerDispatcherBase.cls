@@ -3,11 +3,11 @@
 * Author: Jason Arbegast
 * Initial Date: 5/14/2019
 * Description:  implements ITriggerDispatcher to implement methods as needed
-* Revision History: 
+* Revision History:
 */
 
-public virtual class TriggerDispatcherBase implements ITriggerDispatcher { 
-    
+public virtual class TriggerDispatcherBase implements ITriggerDispatcher {
+
     private static ITriggerHandler beforeInserthandler;
     private static ITriggerHandler beforeUpdatehandler;
     private static ITriggerHandler beforeDeleteHandler;
@@ -16,60 +16,60 @@ public virtual class TriggerDispatcherBase implements ITriggerDispatcher {
     private static ITriggerHandler afterDeleteHandler;
     private static ITriggerHandler afterUndeleteHandler;
 
-    
-    /* 
+
+    /*
     * description: called prior to execution of a before trigger event
-    *               to load any lookup data or cache the data, put that code here. 
+    *               to load any lookup data or cache the data, put that code here.
     */
     public virtual void bulkBefore() {}
 
-    /* 
-    * description: called prior to execution of an after trigger event. 
+    /*
+    * description: called prior to execution of an after trigger event.
     */
     public virtual void bulkAfter() {}
 
-    /* 
+    /*
     * description: called for records to be inserted during a BEFORE trigger.
     */
     public virtual void beforeInsert(TriggerParameters tp) {}
 
-    /* 
+    /*
     * description: called for records to be updated during a BEFORE trigger.
     */
     public virtual void beforeUpdate(TriggerParameters tp) {}
 
-    /* 
+    /*
     * description: called for records to be deleted during a BEFORE trigger.
     */
     public virtual void beforeDelete(TriggerParameters tp) {}
 
-    /* 
-    * description: called for records inserted during an AFTER trigger. Always put field validation 
-    *               in the 'After' methods in case another trigger has modified any values. The record is 'read only' 
+    /*
+    * description: called for records inserted during an AFTER trigger. Always put field validation
+    *               in the 'After' methods in case another trigger has modified any values. The record is 'read only'
     *               at this point.
     */
-    public virtual void afterInsert(TriggerParameters tp) {} 
+    public virtual void afterInsert(TriggerParameters tp) {}
 
-    /* 
+    /*
     * description: called iteratively for each record updated during an AFTER trigger.
     */
     public virtual void afterUpdate(TriggerParameters tp) {}
 
-    /* 
+    /*
     * description: called iteratively for each record deleted during an AFTER trigger.
     */
     public virtual void afterDelete(TriggerParameters tp) {}
-    
-    /* 
-    * description: called prior to execution of a AFTER UNDELETE trigger. 
+
+    /*
+    * description: called prior to execution of a AFTER UNDELETE trigger.
     */
     public virtual void afterUnDelete(TriggerParameters tp) {}
-    
+
     public virtual void andFinally() {}
-    
-    /* 
-    * description: Called by event handlers. 
-    *               If this is the first call in the context, create a new instance of the appropriate handler and execute the mainEntry method. 
+
+    /*
+    * description: Called by event handlers.
+    *               If this is the first call in the context, create a new instance of the appropriate handler and execute the mainEntry method.
     *               If there is an existing call running on the same context, uses the existing handler instance created by the original call
     *               and executes the inProgressEntry method.
     *

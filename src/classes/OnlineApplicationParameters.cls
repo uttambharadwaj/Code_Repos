@@ -108,7 +108,7 @@ public with sharing class OnlineApplicationParameters {
         
         Id rId = null;
         try {
-            rId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
+        	rId = UtilityClass.getRecTypeByDevName('Contact','F1_Contact');
         }
         catch(Exception e) {}
         return rId;

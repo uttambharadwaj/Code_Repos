@@ -44,7 +44,7 @@ public class PaperAppSubmissionExtension {
             WHERE Id = :optyId
             LIMIT 1
     ];
-    
+
     public PageReference init() {
 
         //get user info
@@ -55,47 +55,48 @@ public class PaperAppSubmissionExtension {
         isPartner = (u.profile.UserLicense.name == 'Partner Community') ? true : false;
         if (isPartner) {
             partnerId = u.Contact.Account.Program__r.Partner__c;
-        }        
-        return null;           
+        }
+        return null;
     }
 
     public PageReference buildURL() {
-        
+
         //Update offer
         try {
             oppties[0].offer__c = selectedOffer;
-    
-            upsert oppties;           
-        
-			// Attempt to build the URL        
+
+            upsert oppties;
+
+            // Attempt to build the URL
             if (oppties.size() > 0) {
-    
+
                 String accountId = oppties[0].AccountId;
                 Id otrProgram = null;
-               // if ( oppties[0].Offer__c != null && oppties[0].Offer__r.Program__c != null) {
+                // temporarily removing this functionality until more time to perfect flow 8/13/19
+                // if ( oppties[0].Offer__c != null && oppties[0].Offer__r.Program__c != null) {
                 //    otrProgram = oppties[0].Offer__r.Program__c;
-              //  } else 
-                    if ( selectedProgram != null ) {
+                //  } else
+                if ( selectedProgram != null ) {
                     otrProgram = selectedProgram;
                 }
-    
+
                 system.debug('OTR Program: ' + otrProgram);
                 system.debug('OTR Offer: ' + oppties[0].Offer__c);
                 system.debug('selectedOffer: ' + selectedOffer);
                 system.debug('selectedProgram: ' + selectedProgram);
-                
+
                 if (otrProgram != null) {
                     List<OnlineApplicationOffer__c> offers = [SELECT Id, Program__c FROM OnlineApplicationOffer__c WHERE Id = :oppties[0].Offer__c];
-    
+
                     if (offers.size() > 0) {
-    
+
                         List<Program__c> programs = [SELECT Id, Brand_Short_Name__c, Form_Template__c FROM Program__c WHERE Id = :offers[0].Program__c];
                         if (programs.size() > 0) {
-                            String brandShortName = programs[0].Brand_Short_Name__c;                         
+                            String brandShortName = programs[0].Brand_Short_Name__c;
                             String formTemplate = programs[0].Form_Template__c;
-    
+
                             if (formTemplate != null && brandShortName != null) {
-                                PageReference paperAppSubmission = Page.OTRBOCA;                           
+                                PageReference paperAppSubmission = Page.OTRBOCA;
                                 paperAppSubmission.getParameters().put('pgm', brandShortName);
                                 paperAppSubmission.getParameters().put('optyId', optyId);
                                 paperAppSubmission.getParameters().put('accntId', accountId);
@@ -112,7 +113,7 @@ public class PaperAppSubmissionExtension {
                 }
             }
         } catch (Exception e) {
-          System.debug('### ERROR - Line: ' + e.getLineNumber() + ' - ' + e.getMessage());
+            System.debug('### ERROR - Line: ' + e.getLineNumber() + ' - ' + e.getMessage());
 
             PageReference errorPage = Page.ExternalApplicationError;
             if (partnerId != null) {
@@ -121,7 +122,7 @@ public class PaperAppSubmissionExtension {
 
             return errorPage;
         }
-        return null;       
+        return null;
     }
 
     public List<SelectOption> AvailablePrograms {

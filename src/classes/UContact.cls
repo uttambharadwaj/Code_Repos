@@ -287,11 +287,4 @@ public class UContact {
 		
 		if(contactstodelete.size()>0) delete contactstodelete.values();
 	}
-    
-    public static void executeBREeze(List<Contact> records, Map<Id, Contact> oldMap) {
-        BREeze.processRules.ruleDataSet rds = new BREeze.processRules.ruleDataSet();
-        rds.records = records;
-        rds.oldMap = oldMap;
-        BREeze.ProcessRules.processRuleLogic('MC_Contacts_Sync_to_Marketing_Cloud', false, rds);
-    }
 }

@@ -757,7 +757,7 @@
                             <apex:outputPanel rendered="{!currentStep != 2}">
                                 <div id="cardImage">
                                     <!--PSOBACKLOG-76-->
-                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/><img src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
+                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card"/>
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!currentStep == 2}">
@@ -1040,7 +1040,6 @@
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix">
-<!--Translate-->
                                 Person(s) authorized to speak with Customer Service on behalf of your account. This individual(s) will be able to make changes to your fuel account.
                             </div>
                             <div class="twelve columns clearfix">
@@ -1145,7 +1144,6 @@
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix">
-<!--                                Translate-->
                                 Your company name will be printed on your cards. Please enter your company name as you would like it to appear. (20 character maximum, including spaces, with no special characters).
                             </div>
                             <div class="twelve columns clearfix">
@@ -1155,7 +1153,6 @@
                                 <apex:inputText maxlength="20" id="companyName" onkeyup="updateCompanyName(this.value)" value="{!fleetEnrollment.Embossing_Company_Name__c}" styleClass="styledInput required noSpecialChars" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Company_Name__c.label}"/>
                             </div>
                             <div class="twelve columns clearfix">
-<!--                                translate-->
                                 Print a second line to help identify your cards (20 characters maximum, including spaces, no special characters).
                             </div>
                             <div class="twelve columns clearfix">
@@ -1170,7 +1167,6 @@
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
-<!--                                translate-->
                                 Print an optional third line to help identify your cards (20 character maximum, including spaces, with no special characters).
                             </div>
                             <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
@@ -1190,7 +1186,6 @@
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
-<!--                            translate-->
                             <p>Check off any optional fields below which you would like to see on your reports. Reports will include the cards' second line of printing, if selected.</p>
                             <div class="twelve columns clearfix">
                                 <div class="twelve columns clearfix">

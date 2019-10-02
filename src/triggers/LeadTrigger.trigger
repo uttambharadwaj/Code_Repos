@@ -11,10 +11,6 @@
 
 trigger LeadTrigger on Lead (before insert, before update, after insert, after delete, after update) 
 {
-
-	Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-	if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Lead_Automation__c) { return; }
-
 	List<Lead> records = trigger.isDelete ? trigger.old : trigger.new;
 
 	if(trigger.isBefore)
@@ -30,8 +26,6 @@ trigger LeadTrigger on Lead (before insert, before update, after insert, after d
 			Ulead.findCampaignByCouponCode(records);
 
 			ULead.communityUserStampData(records);
-			//ULead.setDefaultPricingCampaign(records, trigger.oldmap);
-			ULead.executeBREeze(records, trigger.oldMap);			
 		}
 		else if(trigger.isUpdate)
 		{
@@ -42,8 +36,6 @@ trigger LeadTrigger on Lead (before insert, before update, after insert, after d
 			ULead.linktoContactAccount(records, trigger.oldmap);
 			
 			ULead.eloquaPassParent(records, trigger.oldmap);
-			//ULead.setDefaultPricingCampaign(records, trigger.oldmap);
-			ULead.executeBREeze(records, trigger.oldMap);			
 		}
 		else if(trigger.isDelete)
 		{
@@ -64,7 +56,7 @@ trigger LeadTrigger on Lead (before insert, before update, after insert, after d
 		    ULead.mergei2iParentDuplicates(records, trigger.oldmap);
 		    
 		    ULeadShare.communityCheckSharing(records, trigger.oldMap);
-			LeadTriggerHandler.createRelatedTaskAndNote(records, trigger.oldMap);			
+			LeadTriggerHandler.createRelatedTaskAndNote(records, trigger.oldMap);
 		}
 		else if(trigger.isUpdate)
 		{
@@ -81,7 +73,7 @@ trigger LeadTrigger on Lead (before insert, before update, after insert, after d
 		    UCampaignMember.setOpportunity(records, trigger.oldMap);
 			
 			ULeadShare.communityCheckSharing(records, trigger.oldMap);
-			LeadTriggerHandler.createRelatedTaskAndNote(records, trigger.oldMap);						
+			LeadTriggerHandler.createRelatedTaskAndNote(records, trigger.oldMap);
 		}
 		else if(trigger.isDelete)
 		{

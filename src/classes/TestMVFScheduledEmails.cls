@@ -1,7 +1,7 @@
 @isTest
 public class TestMVFScheduledEmails {
 
-    
+
     @testSetup
     static void setup(){
         UtilityTestLoader.setAutomation(false);

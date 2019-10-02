@@ -98,7 +98,7 @@ public without sharing class CallBackCtrl
             l.AU_Sales_Channel__c = 'Internet SF';
             //Setting the Employer name if "Individual"
             if(Motorpass.option == 'Individual')
-                l.AU_Company__c=l.Company;
+            	l.AU_Company__c=l.Company;
                 
                 // set Product name
                 if(Motorpass.theLead.AU_Card_Type__c == 'Motorpass')
@@ -160,8 +160,6 @@ public without sharing class CallBackCtrl
     
     private static testmethod void myUnitTest()
     {
-        UtilityTestLoader.setAutomation(false);
-
         Id leadRT = [select Id,DeveloperName from RecordType where sObjectType = 'Lead' and DeveloperName IN ('AU_Fuel_Application_Individual') limit 1].Id;
         
         CallBackCtrl controller = new CallBackCtrl();

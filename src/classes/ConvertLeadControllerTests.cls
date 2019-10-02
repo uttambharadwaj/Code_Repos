@@ -276,7 +276,7 @@ private class ConvertLeadControllerTests
     }
     */
 	//Tests lead convert with no opp or task but matching account
-	/*static testMethod void test5()
+	static testMethod void test5()
 	{
 		Integer testNumber = 5;
 
@@ -332,7 +332,7 @@ private class ConvertLeadControllerTests
 		List<Contact> contacts = [select Id from Contact where Id = :leads[0].ConvertedContactId and AccountId = :leads[0].ConvertedAccountId];
 
 		System.assertEquals(numberOfLeads, contacts.size(), UTestData.getAssertMessage(testNumber, 5));
-	}*/
+	}
 
 	//Test cancel
 	static testMethod void test6()
@@ -364,7 +364,7 @@ private class ConvertLeadControllerTests
 
 	//Tests lead convert with no opp or task but matching account and contact
 	//** new -phillip
-	/*static testMethod void test7()
+	static testMethod void test7()
 	{
 		Integer testNumber = 7;
 
@@ -404,7 +404,7 @@ private class ConvertLeadControllerTests
                 contacts[i].LastName = leads[i].LastName;
               }
             }*/
-		/*insert contacts;
+		insert contacts;
 
 		leads[0].Related_Account__c = accounts[0].Id;
 		//insert leads;
@@ -448,10 +448,10 @@ private class ConvertLeadControllerTests
 		List<Contact> convertedcontacts = [select Id from Contact where Id = :leads[0].ConvertedContactId and AccountId = :leads[0].ConvertedAccountId];
 
 		System.assertEquals(numberOfLeads, convertedcontacts.size(), UTestData.getAssertMessage(testNumber, 5));
-	}*/
+	}
 
 
-	/*static testmethod void test8() {
+	static testmethod void test8() {
 
 		Integer testNumber = 1;
 
@@ -506,5 +506,5 @@ private class ConvertLeadControllerTests
 		ConvertLeadController.ConvertDestination cdn2 = ConvertLeadController.ConvertDestination.OPPORTUNITY;
 		ConvertLeadController.ConvertDestination cdn3 = ConvertLeadController.ConvertDestination.CONTACT;
 
-	}*/
+	}
 }

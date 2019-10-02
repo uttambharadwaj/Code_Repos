@@ -134,12 +134,11 @@ global with sharing class submitForApproval implements Process.Plugin {
 
  */   
         static testMethod void basicTest() {
-        UtilityTestLoader.setAutomation(false);
-
-        List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
-        
-        Id leadRT = [select Id from RecordType where sObjectType = 'Lead' and DeveloperName NOT IN :AU_Lead_RTs limit 1].Id;
-        
+		
+		List<String> AU_Lead_RTs = new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'};
+  		
+  		Id leadRT = [select Id from RecordType where sObjectType = 'Lead' and DeveloperName NOT IN :AU_Lead_RTs limit 1].Id;
+  		
         // Create dummy lead
         Lead testLead = new Lead(Company='Test Lead',FirstName='John',LastName='Doe', RecordTypeId = leadRT);
         insert testLead;
@@ -165,8 +164,7 @@ global with sharing class submitForApproval implements Process.Plugin {
  * -ve test. This tests the fact that bad ids or non-existant IDs will always result in an ERROR status
  */ 
         static testMethod void negativeTest() {
-        UtilityTestLoader.setAutomation(false);
-
+        
         submitForApproval anApprovalPlugin = new submitForApproval();
         Map<String,Object> inputParams = new Map<String,Object>();
         Map<String,Object> outputParams = new Map<String,Object>();

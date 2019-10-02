@@ -247,57 +247,64 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                 </div>
                                 <div class="twelve columns clearfix">
                                     <div class="six columns clearfix">
+                                        <apex:outputPanel rendered="{!OR(onlineApplicationOffer.Funding__c == 'Parent Funded',onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract')}">
+                                            <div class="twelve columns clearfix form-field" data-row="0">
+                                                <apex:outputLabel for="carrierID" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Existing Carrier ID', $Label.OTR_Carrier_ID)}"/>
+                                                <apex:inputText styleClass="styled-input" label="" tabindex="1" id="carrierID" value="{!carrierID}" maxlength="30" html-autocomplete="off">
+                                                </apex:inputText>
+                                            </div>
+                                        </apex:outputPanel>
                                         <div class="twelve columns clearfix form-field" data-row="0">
                                             <apex:actionRegion >
                                                 <apex:outputLabel for="companyName" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Company Legal Name', $ObjectType.OnlineApplication__c.fields.Legal_Business_Name__c.label)}">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Company_Name}" styleClass="styled-input required" required="true" label="" html-tabindex="1" id="companyName" value="{!onlineApplication.Legal_Business_Name__c}" html-maxlength="30" html-autocomplete="off">
+                                                <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Company_Name}" styleClass="styled-input required" required="true" label="" html-tabindex="2" id="companyName" value="{!onlineApplication.Legal_Business_Name__c}" html-maxlength="30" html-autocomplete="off">
                                                     <apex:actionSupport event="onchange" action="{!doNothing}" rerender="none" />
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
                                             <apex:outputLabel for="doingBusinessAs" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Doing Business As', $ObjectType.OnlineApplication__c.fields.Trade_Name__c.label)}"/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="2" label="" id="doingBusinessAs" value="{!onlineApplication.Trade_Name__c}" html-maxlength="30" />
+                                            <apex:InputField styleClass="styled-input" html-tabindex="3" label="" id="doingBusinessAs" value="{!onlineApplication.Trade_Name__c}" html-maxlength="30" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
                                             <apex:outputLabel for="phone" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Business Phone', $ObjectType.OnlineApplication__c.fields.Phone_Number__c.label)} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" required="true" tabindex="3" id="phone" label="" value="{!onlineApplication.Phone_Number__c}" maxlength="20" />
+                                            <apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" required="true" tabindex="4" id="phone" label="" value="{!onlineApplication.Phone_Number__c}" maxlength="20" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
                                             <apex:outputLabel for="fax" styleClass="styled-label" value="Business Fax"/>
-                                            <apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="4" id="fax" label="" value="{!onlineApplication.Fax_Number__c}" maxlength="20" />
+                                            <apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="5" id="fax" label="" value="{!onlineApplication.Fax_Number__c}" maxlength="20" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="3">
                                             <apex:outputLabel for="firstName" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'First Name', $ObjectType.OnlineApplication__c.fields.Contact_First_Name__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required" html-tabindex="5" id="firstName" required="true" label="" value="{!onlineApplication.Contact_First_Name__c}" html-maxlength="40" />
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="6" id="firstName" required="true" label="" value="{!onlineApplication.Contact_First_Name__c}" html-maxlength="40" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
                                             <apex:outputLabel for="lastName" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Last Name', $ObjectType.OnlineApplication__c.fields.Contact_Last_Name__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required" html-tabindex="6" id="lastName" required="true" label="" value="{!onlineApplication.Contact_Last_Name__c}" html-maxlength="40" />
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="7" id="lastName" required="true" label="" value="{!onlineApplication.Contact_Last_Name__c}" html-maxlength="40" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="5">
                                             <apex:outputLabel for="title" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Title', $ObjectType.OnlineApplication__c.fields.AO_Title__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required" html-tabindex="7" id="title" required="true" label="" value="{!onlineApplication.AO_Title__c}" />
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="8" id="title" required="true" label="" value="{!onlineApplication.AO_Title__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="6">
                                             <apex:outputLabel for="emailAddress" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Email Address', $ObjectType.OnlineApplication__c.fields.Email__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required email" html-tabindex="8" required="true" id="emailAddress" label="" value="{!onlineApplication.Email__c}" html-autocomplete="off" />
+                                            <apex:InputField styleClass="styled-input required email" html-tabindex="9" required="true" id="emailAddress" label="" value="{!onlineApplication.Email__c}" html-autocomplete="off" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="7">
                                             <apex:outputLabel for="mobilePhone" styleClass="styled-label" value="Mobile Phone"/>
-                                            <apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="9" id="mobilePhone" label="" value="{!onlineApplication.Cell_Number__c}" maxlength="20" />
+                                            <apex:InputText html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" tabindex="10" id="mobilePhone" label="" value="{!onlineApplication.Cell_Number__c}" maxlength="20" />
                                         </div>
                                     </div>
                                     <div class="six columns clearfix">
@@ -319,29 +326,29 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                             <apex:outputLabel for="physicalAddress" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Business Physical Address', $ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" required="true" html-tabindex="10" id="physicalAddress" html-maxlength="40" value="{!onlineApplication.Business_Street_Address__c}" />
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" required="true" html-tabindex="11" id="physicalAddress" html-maxlength="40" value="{!onlineApplication.Business_Street_Address__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
                                             <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Address Line 2', $ObjectType.OnlineApplication__c.fields.Business_Address_Line_2__c.label)}"/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="11" id="physicalAddressLine2" html-maxlength="40" value="{!onlineApplication.Business_Address_Line_2__c}" />
+                                            <apex:InputField styleClass="styled-input" html-tabindex="12" id="physicalAddressLine2" html-maxlength="40" value="{!onlineApplication.Business_Address_Line_2__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="3">
                                             <apex:outputLabel for="city" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'City', $ObjectType.OnlineApplication__c.fields.City__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required" html-tabindex="12" id="city" required="true" label="" value="{!onlineApplication.City__c}" html-maxlength="40" />
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="13" id="city" required="true" label="" value="{!onlineApplication.City__c}" html-maxlength="40" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
                                             <apex:outputLabel for="state" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'State / Province', $ObjectType.OnlineApplication__c.fields.State__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField styleClass="styled-input required" html-tabindex="13" id="state" required="true" value="{!onlineApplication.State__c}" />
+                                            <apex:InputField styleClass="styled-input required" html-tabindex="14" id="state" required="true" value="{!onlineApplication.State__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="5">
                                             <apex:outputLabel for="postalCode" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Postal Code', $ObjectType.OnlineApplication__c.fields.Zip_Code__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required" required="true" html-tabindex="13" html-class="{!IF(onlineApplication.Country__c == null || onlineApplication.Country__c = 'US', 'postal', 'postalCanada')}" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required" required="true" html-tabindex="14" html-class="{!IF(onlineApplication.Country__c == null || onlineApplication.Country__c = 'US', 'postal', 'postalCanada')}" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />
                                             <!--<apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input {!IF(isPG, 'required', '')} postal" html-tabindex="44" id="postalCode" value="{!onlineApplication.Zip_Code__c}" html-maxlength="10" />-->
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="6">
@@ -503,7 +510,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     <apex:outputLabel for="creditLineRequested" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Credit Line Requested', $ObjectType.OnlineApplication__c.fields.Credit_Line_Requested__c.label)} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField styleClass="styled-input required" required="true" html-tabindex="30" html-class="money" id="creditLineRequested" value="{!onlineApplication.Credit_Line_Requested__c}"  html-maxlength="8"/>
+                                                    <apex:InputField styleClass="styled-input required" required="true" html-tabindex="30" html-class="money" id="creditLineRequested" value="{!onlineApplication.Credit_Line_Requested__c}"  html-maxlength="9"/>
                                                 </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
@@ -764,13 +771,13 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                         &nbsp;
                                     </div>
                                     <script type="text/javascript">
-                                    (function(){
-                                        var elems = document.querySelectorAll('.required');
-                                        for (var i = 0; i < elems.length; i++) {
-                                            elems[i].required = true;
-                                        }
-                                    })();
-                                </script>
+                                        (function(){
+                                            var elems = document.querySelectorAll('.required');
+                                            for (var i = 0; i < elems.length; i++) {
+                                                elems[i].required = true;
+                                            }
+                                        })();
+                                    </script>
                                 </apex:outputPanel>
 
                             </apex:outputPanel>

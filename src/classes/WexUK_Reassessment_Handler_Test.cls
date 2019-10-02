@@ -1,9 +1,5 @@
 @isTest
 Private class WexUK_Reassessment_Handler_Test {
-@testSetup
-static void setup(){
-   UtilityTestLoader.setAutomation(false);
-}
 
     static  testmethod void mytestClassMethod() {
 

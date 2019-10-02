@@ -119,7 +119,7 @@ public class CustomerDetailsTest {
             dummyDriverContact.AccountId = accountId;
             dummyDriverContact.WEX_Contact_ID__c = '0030g00002CDTUz';
             insert dummyDriverContact;
-    }
+        }
 
     }
 

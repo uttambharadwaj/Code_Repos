@@ -8,7 +8,7 @@ public with sharing class CPBOCAToProspectTest {
     static void setupData(){
 
         UtilityTestLoader.setAutomation(false);
-    
+
         // Revisit this later..
         BOCA_IDS__C bocaId = BOCAtestDataUtility.getBOCAids();
         insert bocaId;
@@ -114,13 +114,13 @@ public with sharing class CPBOCAToProspectTest {
         System.runAs(user) {
 
             Account account = new account();
-            
+
             account.name = 'TestAcc';
-            
+
             insert account;
-            
+
             Opportunity opportunity = new Opportunity();
-            
+
             opportunity.Name = 'TestOpp';
             opportunity.AccountId = account.Id;
             opportunity.CloseDate = Date.newinstance(2099,1,1);

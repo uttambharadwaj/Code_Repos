@@ -1,7 +1,7 @@
 /*
 Revision History:   4/26/2019 IADJUDICAT-1164 if instant adjudication is disabled, set decisioncomplete to true so that fleet enrollment appears
                     03/Jul/2019     MFarrell    NAFONBOARD-43   Added Publish_Fleet_Data_Capture_Form_1_1__c to Program SOQL
-                    
+
 */
 public class WexBOCAConfirmationController {
 

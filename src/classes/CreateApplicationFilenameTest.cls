@@ -29,7 +29,7 @@ private class CreateApplicationFilenameTest {
 
     	Opportunity opp = new Opportunity(name='Test', RecordTypeId = oppRT);
     	
-		ENZ__FTPAttachment__c attachment = new ENZ__FTPAttachment__c(); 
+		ENZ__FTPAttachment__c attachment = new ENZ__FTPAttachment__c();
 		
 		attachment.ENZ__Opportunity__c = opp.Id;
 		

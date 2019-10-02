@@ -311,23 +311,14 @@ global without sharing class TransactionDisputeController {
         if (accountSearchResult.accountList != null && accountSearchResult.accountList.size() > 0) {
 
             for (CustomerDetailsWSUtilv2.accountSearchDTO accountSearchDTO : accountSearchResult.accountList) {
-                
-                System.debug(accountSearchDTO.spnrAcctNbr);
-                System.debug(accountSearchDTO.acctSts);
-                System.debug(accountSearchDTO.pgmRowId);
 
                 if (!String.isBlank(accountSearchDTO.spnrAcctNbr) && (accountSearchDTO.spnrAcctNbr).equalsIgnoreCase(accountNumber) && !String.isBlank(accountSearchDTO.acctSts) && (accountSearchDTO.acctSts).equalsIgnoreCase('Active')) {
 
-                    System.debug('Here');
-                    
                     Set<String> programRowIDs = new Set<String>{
-                            '1-5UJ7D7', '1-3PR9L6W', '1-5VD2FQ', '1-3FJ9JP1', '1-1K31R7M'
+                            '1-5UJ7D7', '1-3PR9L6W', '1-5VD2FQ', '1-3FJ9JP1'
                     };
 
                     if (accountSearchDTO.pgmRowId != null && programRowIDs.contains(accountSearchDTO.pgmRowId)) {
-                        
-                        System.debug('Here');
-                        
                         return true;
                     }
 
@@ -466,8 +457,8 @@ global without sharing class TransactionDisputeController {
 
             }
 
-            // Get contact although it doesn't seem to be used - MHB 5/29/2019 RAVEN-768
-            Id contactId = CustomerDetailsController.getContactId(accountId,focusedContactRowId);
+            // Upsert Contacts
+            Id contactId = CustomerDetailsController.upsertContacts(accountId, JSON.serialize(contacts), focusedContactRowId);
 
             // Create Case
 

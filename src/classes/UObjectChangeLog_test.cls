@@ -1,10 +1,6 @@
 @isTest  
 private class UObjectChangeLog_test{
-  @testSetup
-static void setup(){
-   UtilityTestLoader.setAutomation(false);
-}
-
+  
     static testmethod void testupdateOwner()
     {
         Id leadRecordTypeId = Sobjecttype.Lead.getRecordTypeInfosByName().get('Fleet Lead').getRecordTypeId();

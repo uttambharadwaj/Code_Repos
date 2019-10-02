@@ -152,7 +152,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Application_Request__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -452,12 +452,6 @@
     <label>Partner BOCA To Prospect</label>
     <listViews>
         <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>Company_Name__c</columns>
-        <columns>Application_Request__c</columns>
-        <columns>Online_Application__c</columns>
-        <columns>CP_Application_Request__c</columns>
-        <columns>WeFormObject__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

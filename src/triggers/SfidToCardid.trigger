@@ -1,18 +1,18 @@
 trigger SfidToCardid on Lead (before insert,before update) {
     if(TriggerFactory.disabledTriggers(Lead.sObjectType)) return;
-    Set<Id> AU_Lead_RTs = UtilityClass.getRecTypeByDevName('Lead',new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_VCC'});
-    
-    List<String> SfIDs = new List<string>();
+	Set<Id> AU_Lead_RTs = UtilityClass.getRecTypeByDevName('Lead',new List<String>{'AU_Fuel_Application_Individual','AU_Fuel_Business','AU_Fuel_Merchant','AU_Fuel_Prepaid','AU_VCC'});
+	
+	List<String> SfIDs = new List<string>();
     for(Lead  L : Trigger.new)
     {
-        if(!AU_Lead_RTs.contains(L.RecordTypeId))
-        {
-            if(L.Card_Program_ID__c != null && L.Card_Program_ID__c != '')
-            {
-                SfIDs.add( L.Card_Program_ID__c);
-               
-            }
-        }
+    	if(!AU_Lead_RTs.contains(L.RecordTypeId))
+    	{
+	        if(L.Card_Program_ID__c != null && L.Card_Program_ID__c != '')
+	        {
+	            SfIDs.add( L.Card_Program_ID__c);
+	           
+	        }
+    	}
         
     }
 
@@ -33,7 +33,7 @@ trigger SfidToCardid on Lead (before insert,before update) {
     
      for(Lead  L : Trigger.new)
     {
-        if(!AU_Lead_RTs.contains(L.RecordTypeId))
+    	if(!AU_Lead_RTs.contains(L.RecordTypeId))
         {
        // if(L.Initial_Contact_Method__c != null && L.Initial_Contact_Method__c ==  'Webform')
         //{

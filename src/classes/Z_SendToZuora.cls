@@ -18,54 +18,54 @@ public class Z_SendToZuora {
         
         zqu__Quote__c quote = [
             SELECT
-                Id,
-                zqu__Number__c,
-                zqu__Account__c,
-                zqu__Account__r.Id,
-                PrimaryAccountNumber__c,
-                PrimaryAccountName__c,
-                PrimarySource__c,
-                PrimaryCreditLimit__c,
-                PrimaryAddress1__c,
-                PrimaryAddress2__c,
-                PrimaryCity__c,
-                PrimaryState__c,
-                PrimaryZip__c,
-                PrimaryContact__c,
-                PrimaryPhone__c,
-                PrimaryEmail__c,
-                zqu__Tax_Exempt__c,
-                zqu__Certificate_Id__c,
-                SecondaryAccountNumber__c,
-                SecondaryAccountName__c,
-                SecondarySource__c,
-                SecondaryCreditLimit__c,
-                SecondaryAddress1__c,
-                SecondaryAddress2__c,
-                SecondaryCity__c,
-                SecondaryState__c,
-                SecondaryZip__c,
-                SecondaryContact__c,
-                SecondaryPhone__c,
-                SecondaryEmail__c,
-                SecondaryTaxExempt__c,
-                SecondaryCertificateId__c,
-                zqu__Opportunity__r.Name,
+            	Id,
+            	zqu__Number__c,
+            	zqu__Account__c,
+            	zqu__Account__r.Id,
+            	PrimaryAccountNumber__c,
+            	PrimaryAccountName__c,
+            	PrimarySource__c,
+            	PrimaryCreditLimit__c,
+            	PrimaryAddress1__c,
+            	PrimaryAddress2__c,
+            	PrimaryCity__c,
+            	PrimaryState__c,
+            	PrimaryZip__c,
+            	PrimaryContact__c,
+            	PrimaryPhone__c,
+            	PrimaryEmail__c,
+            	zqu__Tax_Exempt__c,
+            	zqu__Certificate_Id__c,
+            	SecondaryAccountNumber__c,
+            	SecondaryAccountName__c,
+            	SecondarySource__c,
+            	SecondaryCreditLimit__c,
+            	SecondaryAddress1__c,
+            	SecondaryAddress2__c,
+            	SecondaryCity__c,
+            	SecondaryState__c,
+            	SecondaryZip__c,
+            	SecondaryContact__c,
+            	SecondaryPhone__c,
+            	SecondaryEmail__c,
+            	SecondaryTaxExempt__c,
+            	SecondaryCertificateId__c,
+            	zqu__Opportunity__r.Name,
                 RecordTypeId,
                 zqu__Status__c,
                 QuoteNumber__c,
-                zqu__ZuoraAccountID__c
+            	zqu__ZuoraAccountID__c
             FROM
-                zqu__Quote__c
+				zqu__Quote__c
             WHERE
-                Id = :quoteId
+            	Id = :quoteId
         ];
         Account account = 
             [
                 SELECT
                     Id,
-                    Name,
-                    BillingContactName__c
+                	Name,
+                	BillingContactName__c
                 FROM
                     Account
                 WHERE
@@ -74,77 +74,77 @@ public class Z_SendToZuora {
         List<Shipment__c> shipments = 
             [
                 SELECT
-                    Id,
-                    Address_Line_1__c,
-                    Address_Line_2__c,
-                    City__c,
-                    State__c,
-                    Zip__c
+                	Id,
+                	Address_Line_1__c,
+                	Address_Line_2__c,
+                	City__c,
+                	State__c,
+                	Zip__c
                 FROM
-                    Shipment__c
+                	Shipment__c
                 Where
-                    Quote__r.Id = :quote.Id
+                	Quote__r.Id = :quote.Id
             ];
         List<Shipment_Charge_Group__c> chargeGroups = 
             [
                 SELECT
-                    Id,
-                    Shipment__c,
-                    Shipment__r.Id,
-                    Shipment__r.Address_Line_1__c,
-                    Shipment__r.Address_Line_2__c,
-                    Shipment__r.City__c,
-                    Shipment__r.State__c,
-                    Shipment__r.Zip__c,
-                    Shipment__r.Shipping_Contact__c,
-                    Effective_Price__c,
-                    Quantity__c,
-                    RatePlanChargeId__c,
-                    RatePlanId__c,
+                	Id,
+                	Shipment__c,
+                	Shipment__r.Id,
+                	Shipment__r.Address_Line_1__c,
+                	Shipment__r.Address_Line_2__c,
+                	Shipment__r.City__c,
+                	Shipment__r.State__c,
+                	Shipment__r.Zip__c,
+                	Shipment__r.Shipping_Contact__c,
+                	Effective_Price__c,
+                	Quantity__c,
+                	RatePlanChargeId__c,
+                	RatePlanId__c,
                     ProductCategory__c,
-                    ChargeType__c,
-                    ServiceTerm__c,
-                    ProductRatePlanCharge__r.zqu__ProductRatePlan__r.NonRecurringPaymentTerm__c,
-                    Shipment_Cost__c,
-                    Shipping_Carrier__c,
-                    Shipping_Carrier_Zuora_Id__c,
-                    Shipping_Service__c,
-                    Shipping_Service_Zuora_Id__c
+                	ChargeType__c,
+                	ServiceTerm__c,
+                	ProductRatePlanCharge__r.zqu__ProductRatePlan__r.NonRecurringPaymentTerm__c,
+                	Shipment_Cost__c,
+                	Shipping_Carrier__c,
+                	Shipping_Carrier_Zuora_Id__c,
+                	Shipping_Service__c,
+                	Shipping_Service_Zuora_Id__c
                 FROM
-                    Shipment_Charge_Group__c
+                	Shipment_Charge_Group__c
                 WHERE
-                    Shipment__r.Quote__r.Id = :quote.Id
+                	Shipment__r.Quote__r.Id = :quote.Id
             ];
         List<Shipment_Charge__c> charges = 
             [
                 SELECT
-                    Id,
-                    Shipment__c,
-                    Shipment__r.Id,
-                    Shipment__r.Address_Line_1__c,
-                    Shipment__r.Address_Line_2__c,
-                    Shipment__r.City__c,
-                    Shipment__r.State__c,
-                    Shipment__r.Zip__c,
-                    Shipment__r.Shipping_Contact__c,
-                    Effective_Price__c,
-                    Quantity__c,
-                    RatePlanChargeId__c,
-                    RatePlanId__c,
+                	Id,
+                	Shipment__c,
+                	Shipment__r.Id,
+                	Shipment__r.Address_Line_1__c,
+                	Shipment__r.Address_Line_2__c,
+                	Shipment__r.City__c,
+                	Shipment__r.State__c,
+                	Shipment__r.Zip__c,
+                	Shipment__r.Shipping_Contact__c,
+                	Effective_Price__c,
+                	Quantity__c,
+                	RatePlanChargeId__c,
+                	RatePlanId__c,
                     ProductCategory__c,
-                    Product_Name__c,
-                    ChargeType__c,
-                    ServiceTerm__c,
-                    ProductRatePlanCharge__r.zqu__ProductRatePlan__r.NonRecurringPaymentTerm__c,
-                    Shipment_Cost__c,
-                    ShipmentChargeGroup__r.Shipping_Carrier__c,
-                    ShipmentChargeGroup__r.Shipping_Carrier_Id__c,
-                    ShipmentChargeGroup__r.Shipping_Service__c,
-                    ShipmentChargeGroup__r.Shipping_Service_Id__c
+                	Product_Name__c,
+                	ChargeType__c,
+                	ServiceTerm__c,
+                	ProductRatePlanCharge__r.zqu__ProductRatePlan__r.NonRecurringPaymentTerm__c,
+                	Shipment_Cost__c,
+                	ShipmentChargeGroup__r.Shipping_Carrier__c,
+                	ShipmentChargeGroup__r.Shipping_Carrier_Id__c,
+                	ShipmentChargeGroup__r.Shipping_Service__c,
+                	ShipmentChargeGroup__r.Shipping_Service_Id__c
                 FROM
-                    Shipment_Charge__c
+                	Shipment_Charge__c
                 WHERE
-                    Shipment__r.Quote__r.Id = :quote.Id
+                	Shipment__r.Quote__r.Id = :quote.Id
             ];
         System.debug(charges);
         Shipment_Charge__c firstShipmentCharge = charges.remove(0);
@@ -263,7 +263,7 @@ public class Z_SendToZuora {
         
         so.GenerateInvoice = false;
         so.ProcessPayments = false;
-        
+		
         while (!chargeGroups.isEmpty()){
             list<Zuora.zApi.SubscribeRequest> subReqList = new List<Zuora.zApi.SubscribeRequest>();
             
@@ -278,7 +278,7 @@ public class Z_SendToZuora {
                 
                 if (((chargeGroups.get(0)).ProductCategory__c).contains('Hardware') || ((chargeGroups.get(0)).ProductCategory__c).contains('Harnesses')){
                     System.debug('Charges: ' + chargeGroups.get(0));
-                    
+                	
                     subRequest.SubscriptionData = createZShippingSubscriptionData(quote, chargeGroups.remove(0));
                     subRequest.SubscribeOptions = so;
                     subReqList.add(subRequest);
@@ -340,9 +340,9 @@ public class Z_SendToZuora {
         String[] names = new String[]{'Test', 'Name'};
         
         
-        zContact.setValue('FirstName', names[0]);
+	    zContact.setValue('FirstName', names[0]);
         if (names.size() > 2){
-            zContact.setValue('LastName', names[0]);
+	        zContact.setValue('LastName', names[0]);
         } else{
             zContact.setValue('LastName', names[1]);
         }
@@ -403,7 +403,7 @@ public class Z_SendToZuora {
         if((charge.ChargeType__c).equalsignorecase('Recurring')){
             //Recurring Evergreen
             if(charge.ServiceTerm__c == 1){
-                zSubscription.setValue('TermType', 'EVERGREEN');
+            	zSubscription.setValue('TermType', 'EVERGREEN');
             //Recurring Until End of Term
             }else{
                 zSubscription.setValue('TermType', 'TERMED');
@@ -414,7 +414,7 @@ public class Z_SendToZuora {
         }else{
             //Recurring Evergreen
             if(charge.ProductRatePlanCharge__r.zqu__ProductRatePlan__r.NonRecurringPaymentTerm__c == 'NOT'){
-                zSubscription.setValue('TermType', 'EVERGREEN');
+            	zSubscription.setValue('TermType', 'EVERGREEN');
             //Non Recurring
             }else if(charge.ServiceTerm__c == 1){
                 zSubscription.setValue('TermType', 'TERMED');

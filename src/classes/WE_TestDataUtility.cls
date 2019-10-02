@@ -5,7 +5,7 @@ public class WE_TestDataUtility {
 
   public static User createStandardUser() {
 
-  Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
+  Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator - Wex Europe'];
 
     // create User
     User u = new User();

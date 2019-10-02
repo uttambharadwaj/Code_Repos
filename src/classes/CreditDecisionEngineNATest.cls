@@ -164,6 +164,9 @@ public with sharing class CreditDecisionEngineNATest {
             applicationRequest.Checking_Account_Number__c = '123456789';
             applicationRequest.ABA_Routing_Number__c = '123456789';
 
+            applicationRequest.Checking_Account_Number__c = '123456789';
+            applicationRequest.ABA_Routing_Number__c = '123456789';
+
             insert applicationRequest;
 
         }
@@ -428,6 +431,18 @@ public with sharing class CreditDecisionEngineNATest {
 
             ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
             System.assertEquals(9000, ar);
+
+            // Risk Grade 3 or 4
+            // credit line recommendation set below the minimum of $500
+            applicationRequests[0].PG_Required__c = true;
+            applicationRequests[0].Risk_Grade__c = '4';
+            applicationRequests[0].Requested_Credit_Limit__c = '100';
+            applicationRequests[0].PG_High_Credit_Amount__c = 5000;
+
+            upsert applicationRequests[0];
+
+            ar = (Decimal) cuccl.getFunctionValue(null, new Application_Request__c(Id = applicationRequests[0].Id), 'String', 'String', 'String', applicationRequests[0].Id);
+            System.assertEquals(500, ar);
 
             cuccl.postProcess();
 

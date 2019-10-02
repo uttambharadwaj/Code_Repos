@@ -198,7 +198,7 @@ public class OTRBOCATest {
         onlineApplication.Year_Established__c = '1980';
         onlineApplication.Zip_Code__c = '60606';
         onlineApplication.OwnerId = UserInfo.getUserId();
-//        onlineApplication.Day_of_Payment__c = 'Monday;Tuesday';
+        //onlineApplication.Day_of_Payment__c = 'Monday;Tuesday';
 //        onlineApplication.Payment_Method__c = 'Auto Draft';
         onlineApplication.ThreatMetrix_Request_ID__c = '123456789';
         onlineApplication.Program__c = program.Id;

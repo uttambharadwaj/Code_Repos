@@ -1,8 +1,5 @@
 trigger WexUK_Account_Trigger on Account (after insert, before insert,  after update, before update) {
 
-    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Account_Automation__c) { return; }
-
     List<Account> acctlist = new List<Account>();
     List<Account> oldAccontList = new List<Account>();
 

@@ -1,7 +1,4 @@
 trigger WE_AcctSubmitAppEntitlement on Account (after insert) {
-
-    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Account_Automation__c) { return; }
     
     List<WEID__c> weids = WEID__c.getall().values();
     Set<Id> validRecordTypeIds = new Set<Id>();

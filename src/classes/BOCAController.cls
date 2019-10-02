@@ -107,7 +107,7 @@ public class BOCAController{
     //is insufficient information to put together a branded BOCA (pgm/campaign_program)
 
     public PageReference initBrandCheck(){
-        
+
         PageReference redirect = new PageReference('/apex/WexBOCA');
         redirect.getParameters().put('pgm', ApexPages.CurrentPage().getParameters().get('pgm'));
         redirect.getParameters().put('customer', ApexPages.CurrentPage().getParameters().get('customer'));
@@ -117,9 +117,9 @@ public class BOCAController{
         redirect.getParameters().put('priority', ApexPages.CurrentPage().getParameters().get('priority'));
         redirect.setRedirect(true);
         return redirect;
-        
+
     }
-    
+
     //
     //    public PageReference CreditApplicationError(){
     //        String errorCode = ApexPages.CurrentPage().getParameters().get('errorCode');

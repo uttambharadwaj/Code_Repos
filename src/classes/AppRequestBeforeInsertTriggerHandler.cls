@@ -16,13 +16,13 @@ public class AppRequestBeforeInsertTriggerHandler extends TriggerHandlerBase {
         Map<Id, Id> feToOpptyMap = new Map<Id, Id>();
 
         for (Application_Request__c ar : appRequestList) {
-            if(ar.Opportunity__c!=null)arToOpptyMap.put(ar.Opportunity__c, ar.Id);
+            arToOpptyMap.put(ar.Opportunity__c, ar.Id);
         }
 
         for (FleetEnrollment__c fe : [SELECT Id, Opportunity__c FROM FleetEnrollment__c WHERE Opportunity__c IN :arToOpptyMap.keySet()]) {
             feToOpptyMap.put(fe.Opportunity__c, fe.Id);
         }
-        
+
         for (Application_Request__c applicationRequest : appRequestList) {
 
             if (applicationRequest.Sales_Person__c == null) {
@@ -33,5 +33,5 @@ public class AppRequestBeforeInsertTriggerHandler extends TriggerHandlerBase {
             }
         }
     }
-    
+
 }

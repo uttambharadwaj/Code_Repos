@@ -3,92 +3,11 @@ public with sharing class TransactionDisputeControllerTest {
 
     @testSetup
     static void setup(){
-    
-        //Copied from CustomerDetailsTest
-        Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
-        CustomerDetailsWSUtilv2.customerDetails details = CustomerDetailsController.getCustomerDetails('9100000000000','',null);
-        String jsonAccountString = JSON.serialize(details);
-        System.debug('### jsonAccountString='+jsonAccountString);
-        List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts('9100000000000');
-                UtilityTestLoader.setAutomation(false);
-
-        String contactJsonString = JSON.serialize(contacts);
-        System.debug('### contactJsonString='+contactJsonString);
-
-        Id genericProgramId;
-        Id genericPartnerId;
-        String programRowId;
-
-        List<Program__c> genericPrograms = [SELECT Id, Siebel_Program_Row_Id__c, Partner__c FROM Program__c WHERE RecordType.Name = 'CPS Program' AND Brand_Short_Name__c = 'WEXGeneric'];
-
-        System.debug('### Generic Program search returns '+genericPrograms);
-        if (genericPrograms.size() > 0) {
-            genericProgramId = genericPrograms[0].Id;
-            genericPartnerId = genericPrograms[0].Partner__c;
-            programRowId = genericPrograms[0].Siebel_Program_Row_Id__c;
-        }
-        else {
-            programRowId =  '1-12N3P99';
-
-            Partner__c partner = new Partner__c();
-            partner.Name = 'WEXGeneric';
-
-            insert partner;
-
-            genericPartnerId = partner.Id;
-
-            Program__c program = new Program__c();
-
-            program.Name = 'WEXGeneric';
-            program.Form_Template__c = 'WEXGeneric';
-            program.Brand_Short_Name__c = 'WEXGeneric';
-            program.Preferred_Language_Indicator__c = 'ENU';
-            program.Custom_Email_Header_URL__c = 'http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg';
-            program.Brand_Heading__c = 'Time is money. Use WEX and save both.';
-            program.Brand_Long_Name__c = 'Test BOCA';
-            program.Upload_Pricing_Data_Flag__c = false;
-            program.Auto_Send_BOCA_to_Siebel__c = false;
-            program.T_C__c = 'WEX_BOCA_TNC';
-            program.Analytics_Body_Block__c = '';
-            program.Analytics_Head_Block__c = '';
-            program.Brand_Color_1__c = '#ccc';
-            program.Brand_Color_2__c = '#fff';
-            program.Siebel_Program_Row_Id__c = programRowId;
-            program.Partner__c = genericPartnerId;
-
-            insert program;
-            genericProgramId = program.Id;
-        }
-
-        if (genericPartnerId == null) {
-            Partner__c partner = new Partner__c();
-            partner.Name = 'WEXGeneric';
-
-            insert partner;
-
-            genericPartnerId = partner.Id;
-
-            Program__c program = [SELECT Id, Partner__c FROM Program__c WHERE Id =: genericProgramId];
-            program.Partner__c = genericPartnerId;
-            update program;
-
-        }
-
-        Id accountId =  CustomerDetailsController.upsertAccount(jsonAccountString);
-
-        Id contactId = CustomerDetailsController.upsertContacts(accountId,contactJsonString,'1-1ZZZZZ');
-        
-        IntegrationRecord__c integrationRecord = new IntegrationRecord__c();
-        integrationRecord.Contact__c = contactId;
-        integrationRecord.Account__c = accountId;
-        integrationRecord.Contact_Row_Id__c = '1-1ZZZZZ';
-        insert integrationRecord;
-
-        System.debug('Upserted contactId = '+contactId);
+        UtilityTestLoader.setAutomation(false);
     }
 
     static testMethod void testTransactionDisputeForm() {
-system.debug('testtransactiondisputeform');
+
         TestUtils.enable_isRunningTest = true;
 
         Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
@@ -126,6 +45,8 @@ system.debug('testtransactiondisputeform');
         System.assert(transactionDisputeController.todaysDate != null);
         System.assert(transactionDisputeController.previousStep == false);
         System.assert(transactionDisputeController.nextStep == false);
+
+        System.assert(transactionDisputeController.physicalAddress != null);
 
         transactionDisputeController.selectedStep = '2';
 

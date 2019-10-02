@@ -1,6 +1,6 @@
 /*
 Description:        Test class for Campaign Program Trigger
-Revision History: 
+Revision History:
 */
 @isTest
 public class CmpgnProgramTriggerTest {

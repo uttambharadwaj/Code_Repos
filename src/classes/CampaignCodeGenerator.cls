@@ -4,7 +4,7 @@ public class CampaignCodeGenerator {
 
         Campaign_Code_Generator__c ccgSettings = Campaign_Code_Generator__c.getInstance();
         if (ccgSettings.Quantity__c == null || ccgSettings.Code_Length__c == null || ccgSettings.Characters__c == null) return new List<String>();
-        
+
         Set<String> generatedCampaignCodes = new Set<String>();
         Set<String> existingCampaignCodes = new Set<String>();
         Integer codeQuantity = (Integer) ccgSettings.Quantity__c + requestedAmount;

@@ -391,11 +391,10 @@ public virtual class FleetEnrollmentController {
             //if this comes through BOCA there is an app request parameter
             if (!String.isEmpty(applicationRequestParameter)) {
 
-                //find the related fleet enrollment record check for application ID or oppty ID in the event one is missing on the FE record.
                 List<FleetEnrollment__c> fleetEnrollments = [
                         SELECT Id, Has_Fleet_Enrollment_Data__c
                         FROM FleetEnrollment__c
-                        WHERE Application_Request__c = :applicationRequestParameter OR Opportunity__c = :opportunityParameter];
+                        WHERE Application_Request__c = :applicationRequestParameter];
 
                 if (fleetEnrollments.size() > 0) {
 

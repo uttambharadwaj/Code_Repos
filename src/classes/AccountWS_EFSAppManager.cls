@@ -5,10 +5,20 @@
 * Author: Derek Gilbert
 * Initial Date: 3/20/2018
 *
+* Revision History: 04/Jun/2019 MFarrell    OTRONBOARD-35   New Fields added to contract section
+*                   24/Jun/2019 MFarrell    OTRONBOARD-30   Moar Fields added to contract section
+*                   25/Jun/2019 JArbegast   OTRONBOARD-44   Still not enough fields
+*                   03/Jul/2019 MFarrell    OTRONBOARD-57   moving fields from program -> offer... because why not
+*                   31/Jul/2019 CJackson    OTRONBOARD-78   Update ShipToCountry to CA for EFS
+*                   30/Aug/2019 CJackson    OTRONBOARD-71   Added Parent Funded Only Flag
+*                   04/Sep/2019 CJackson    OTRONBOARD-55   Payload Fees: Shipping and Embossing
 */
 global class AccountWS_EFSAppManager {
 
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
+    public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
+    public final static String SHIPPING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
+    public final static String EMBOSSING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
 
     public static Boolean integrationRunning { get; set; }
 
@@ -25,43 +35,26 @@ global class AccountWS_EFSAppManager {
     // Future method for Callout #1
     @future(callout=true)
     public static void integrateOnlineApplication_Future(Id onlineApplicationId) {
-
-        ID recordId = onlineApplicationId;
-
-        DescribeSObjectResult describeResult = recordId.getSObjectType().getDescribe();
-        List<String> fieldNames = new List<String>( describeResult.fields.getMap().keySet() );
-
-        System.debug(fieldNames);
-
-        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = :recordId ' + ' LIMIT 1 ';
-
+        String myQuery = onlineAppQuery(onlineApplicationId);
         // return generic list of sobjects or typecast to expected type
-        List<OnlineApplication__c> records = Database.query( query );
-
+        List<OnlineApplication__c> records = Database.query(myQuery);
         if(records.size() > 0) {
-
             integrateOnlineApplication(records[0]);
-
         }
-
     }
-
     webservice static void testIntegrationFromButton(Id onlineApplicationId) {
-
+        String myQuery = onlineAppQuery(onlineApplicationId);
+        // return generic list of sobjects or typecast to expected type
+        List<OnlineApplication__c> records = Database.query(myQuery);
+        integrateOnlineApplication(records[0]);
+    }
+    public static String onlineAppQuery(Id onlineApplicationId){
         ID recordId = onlineApplicationId;
-
         DescribeSObjectResult describeResult = recordId.getSObjectType().getDescribe();
         List<String> fieldNames = new List<String>( describeResult.fields.getMap().keySet() );
-
-        System.debug(fieldNames);
-
-        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = :recordId ' + ' LIMIT 1 ';
-
-        // return generic list of sobjects or typecast to expected type
-        List<OnlineApplication__c> records = Database.query( query );
-
-        integrateOnlineApplication(records[0]);
-
+        fieldNames.add('Opportunity__r.SBQQ__PrimaryQuote__c');
+        String query = ' SELECT ' + String.join( fieldNames, ',' ) + ' FROM ' + describeResult.getName() + ' WHERE ' + ' id = \'' + recordId + '\' LIMIT 1 ';
+        return query;
     }
 
     public class appManagerException extends Exception {}
@@ -105,6 +98,13 @@ global class AccountWS_EFSAppManager {
                 String firstPayload = buildPayload_callout1(onlineApplication, loginResponse.clientId);
 
                 if(firstPayload != null) {
+
+
+                    //otronboard-59
+                    OnlineApplicationOffer__c onlineApplicationOffer;
+                    if(onlineApplication.Offer__c != null){
+                        onlineApplicationOffer = [SELECT Id, Funding__c FROM OnlineApplicationOffer__c WHERE Id = :onlineApplication.Offer__c LIMIT 1];
+                    }
 
                     // Send the payload to Ogden LLC
                     http = new Http();
@@ -195,7 +195,6 @@ global class AccountWS_EFSAppManager {
         Account onlineApplicationAccount = null;
         Account onlineApplicationParentAccount = null;
         Program__c onlineApplicationProgram = null;
-        Opportunity onlineApplicationOpportunity = null;
         OnlineApplicationOffer__c onlineApplicationOffer = null;
 
         Set<String> selectedOtherServices = new Set<String>();
@@ -215,16 +214,26 @@ global class AccountWS_EFSAppManager {
         }
 
         if(onlineApplication.Offer__c != null) {
-            onlineApplicationOffer = [SELECT Id, Setup_Fee__c, Tier_ID__c, PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c, PSR_Scales__c FROM OnlineApplicationOffer__c WHERE Id =: onlineApplication.Offer__c LIMIT 1];
+            onlineApplicationOffer = [SELECT Id, ATM_Use__c, Cash_Limit__c, Daily_Cash_Limit__c, Daily_MC_Limit__c,
+                    Funding__c, Limit_Method__c, PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c,
+                    PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c, Approval_Type__c, Primary_Contact_Email_Address__c,
+                    Create_Letter__c, Notice_Delivery__c
+            /* OTRONBOARD-34 (future changes) Account_Descriptor__c, Card_Shipping_Method__c, Card_Style__c, Card_Type__c, Cards_per_1_Requested__c,
+            Child_Funded_Issuer_ID__c, Parent_Funded_Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c, Card_Order_Type__c, Statement_Type__c, Customer_Type__c */
+            // OTRONBOARD-33 && OTRONBOARD-29
+            // Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c, Mcode_Monthly_Account_Fee__c, Mcode_Monthly_Account_Fee_Value__c, Monthly_Account_Fee__c, Monthly_Account_Fee_Value__c
+            FROM OnlineApplicationOffer__c
+            WHERE Id =: onlineApplication.Offer__c LIMIT 1];
         }
 
         if(onlineApplication.Program__c != null) {
-            onlineApplicationProgram = [SELECT Id, Statement_Type__c, Customer_Type__c, Card_Press_ID__c, Card_Order_Type__c, Card_Shipping_Method__c, Card_Style__c, Card_Type__c, Cards_per_1_Requested__c, Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c FROM Program__c WHERE Id =: onlineapplication.Program__c];
+            // OTRONBOARD-34 (future changes) onlineApplicationProgram = [SELECT Id,  Card_Press_ID__c, Lockbox_Value__c, Partner_Territory__r.Name
+            onlineApplicationProgram = [SELECT Id,  Card_Press_ID__c, Partner_Territory__r.Name
+            FROM Program__c
+            WHERE Id =: onlineapplication.Program__c];
         }
 
-        if(onlineApplication.Opportunity__c != null) {
-            onlineApplicationOpportunity = [SELECT Id FROM Opportunity WHERE Id =: onlineApplication.Opportunity__c];
-        }
+        CardFees myFees = new CardFees(onlineApplication);
 
         List<OnlineApplicationDriverSetup__c> onlineApplicationDriverSetups = [SELECT Id, Driver_Name__c, Driver_ID__c FROM OnlineApplicationDriverSetup__c WHERE Online_Application__c =: onlineApplication.Id];
 
@@ -243,89 +252,88 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Carrier_ID_Number__c != null) jsonPayload.writeStringField('carrier_id', onlineApplication.Carrier_ID_Number__c);
         if(onlineApplication.Application_Manager_ID__c != null) jsonPayload.writeStringField('app_id', onlineApplication.Application_Manager_ID__c);
 
-        // Start of "cardOrder"
-        jsonPayload.writeFieldName('cardOrder');
-        jsonPayload.writeStartObject();
+        if(onlineApplication.Carrier_ID_Number__c == null) {
+            // Start of "cardOrder"
+            jsonPayload.writeFieldName('cardOrder');
+            jsonPayload.writeStartObject();
 
-        jsonPayload.writeNumberField('policyNumber', 1);
-        if(onlineApplicationProgram.Card_Order_Type__c != null) jsonPayload.writeNumberField('orderType', Integer.valueOf(onlineApplicationProgram.Card_Order_Type__c));
-        if(onlineApplicationProgram.Card_Style__c != null) jsonPayload.writeNumberField('cardStyle', Integer.valueOf(onlineApplicationProgram.Card_Style__c));
-        if(onlineApplicationProgram.Card_Press_ID__c != null) jsonPayload.writeNumberField('cardpressId', Integer.valueOf(onlineApplicationProgram.Card_Press_ID__c));
-        // Certain Programs send additional cards to the customer.
-        if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationProgram.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
-        if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationProgram.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationProgram.Cards_per_1_Requested__c));
-        // if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
-        //    jsonPayload.writeStringField('shipToCountry', 'USA');
-        // }
-        // if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
-        //     jsonPayload.writeStringField('shipToCountry', 'CAN');
-        // }
-        if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('US')) {
-            jsonPayload.writeStringField('shipToCountry', 'USA');
-        }
-        if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('CA')) {
-            jsonPayload.writeStringField('shipToCountry', 'CA');
-        }
-        if(onlineApplicationProgram.Card_Shipping_Method__c != null) jsonPayload.writeStringField('shippingMethod', onlineApplicationProgram.Card_Shipping_Method__c);
-        if(onlineApplication.Embossing_Line_1_Company_Name__c != null) jsonPayload.writeStringField('embossedName', onlineApplication.Embossing_Line_1_Company_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_First_Name__c != null) jsonPayload.writeStringField('shipToFirst', onlineApplication.Card_Shipping_First_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_City__c != null) jsonPayload.writeStringField('shipToCity', onlineApplication.Card_Shipping_City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipToZip', onlineApplication.Card_Shipping_Postal_Code__c);
-        if(onlineApplication.Card_Shipping_Address_Line_1__c != null) jsonPayload.writeStringField('shipToAddress1', onlineApplication.Card_Shipping_Address_Line_1__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_Address_Line_2__c != null) jsonPayload.writeStringField('shipToAddress2', onlineApplication.Card_Shipping_Address_Line_2__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        if(onlineApplication.Card_Shipping_Last_Name__c != null) jsonPayload.writeStringField('shipToLast', onlineApplication.Card_Shipping_Last_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
-        jsonPayload.writeStringField('rushProcessing', 'Y');
-        if(onlineApplication.Card_Shipping_State__c != null) jsonPayload.writeStringField('shipToState', onlineApplication.Card_Shipping_State__c);
-        jsonPayload.writeStringField('cardCarrier', 'N');
+            jsonPayload.writeNumberField('policyNumber', 1);
+            //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Card_Order_Type__c != null) jsonPayload.writeNumberField('orderType', Integer.valueOf(onlineApplicationOffer.Card_Order_Type__c));
+            //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Card_Style__c != null) jsonPayload.writeNumberField('cardStyle', Integer.valueOf(onlineApplicationOffer.Card_Style__c));
+            //OTRONBOARD-34 (future release) if(onlineApplicationProgram.Card_Press_ID__c != null) jsonPayload.writeNumberField('cardpressId', Integer.valueOf(onlineApplicationProgram.Card_Press_ID__c));
+            // Certain Programs send additional cards to the customer.
+            //OTRONBOARD-34 (future release) if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
+            //OTRONBOARD-34 (future release) if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.Cards_per_1_Requested__c));
+            // if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
+            //    jsonPayload.writeStringField('shipToCountry', 'USA');
+            // }
+            // if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
+            //     jsonPayload.writeStringField('shipToCountry', 'CAN');
+            // }
+            if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('US')) {
+                jsonPayload.writeStringField('shipToCountry', 'USA');
+            }
+            if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('CA')) {
+                jsonPayload.writeStringField('shipToCountry', 'CA');
+            }
+            //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Card_Shipping_Method__c != null) jsonPayload.writeStringField('shippingMethod', onlineApplicationOffer.Card_Shipping_Method__c);
+            if(onlineApplication.Embossing_Line_1_Company_Name__c != null) jsonPayload.writeStringField('embossedName', onlineApplication.Embossing_Line_1_Company_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_First_Name__c != null) jsonPayload.writeStringField('shipToFirst', onlineApplication.Card_Shipping_First_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_City__c != null) jsonPayload.writeStringField('shipToCity', onlineApplication.Card_Shipping_City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipToZip', onlineApplication.Card_Shipping_Postal_Code__c);
+            if(onlineApplication.Card_Shipping_Address_Line_1__c != null) jsonPayload.writeStringField('shipToAddress1', onlineApplication.Card_Shipping_Address_Line_1__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_Address_Line_2__c != null) jsonPayload.writeStringField('shipToAddress2', onlineApplication.Card_Shipping_Address_Line_2__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            if(onlineApplication.Card_Shipping_Last_Name__c != null) jsonPayload.writeStringField('shipToLast', onlineApplication.Card_Shipping_Last_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
+            jsonPayload.writeStringField('rushProcessing', 'Y');
+            if(onlineApplication.Card_Shipping_State__c != null) jsonPayload.writeStringField('shipToState', onlineApplication.Card_Shipping_State__c);
+            jsonPayload.writeStringField('cardCarrier', 'N');
 
-        // Start of "cards"
-        Integer cardIndex = 1;
+            // Start of "cards"
+            Integer cardIndex = 1;
 
-        jsonPayload.writeFieldName('cards');
-        jsonPayload.writeStartArray();
+            jsonPayload.writeFieldName('cards');
+            jsonPayload.writeStartArray();
 
-        for(OnlineApplicationDriverSetup__c onlineApplicationDriverSetup : onlineApplicationDriverSetups) {
+            for(OnlineApplicationDriverSetup__c onlineApplicationDriverSetup : onlineApplicationDriverSetups) {
 
-            if(onlineApplicationDriverSetup.Driver_ID__c != null && onlineApplicationDriverSetup.Driver_Name__c != null) {
+                if(onlineApplicationDriverSetup.Driver_ID__c != null && onlineApplicationDriverSetup.Driver_Name__c != null) {
 
-                jsonPayload.writeStartObject();
+                    jsonPayload.writeStartObject();
 
-                jsonPayload.writeNumberField('idx', cardIndex);
-                jsonPayload.writeFieldName('cardProps');
-                jsonPayload.writeStartArray();
+                    jsonPayload.writeNumberField('idx', cardIndex);
+                    jsonPayload.writeFieldName('cardProps');
+                    jsonPayload.writeStartArray();
 
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('key', 'drid');
-                jsonPayload.writeStringField('value', onlineApplicationDriverSetup.Driver_ID__c);
-                jsonPayload.writeEndObject();
+                    jsonPayload.writeStartObject();
+                    jsonPayload.writeStringField('key', 'drid');
+                    jsonPayload.writeStringField('value', onlineApplicationDriverSetup.Driver_ID__c);
+                    jsonPayload.writeEndObject();
 
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('key', 'name');
-                jsonPayload.writeStringField('value', onlineApplicationDriverSetup.Driver_Name__c);
-                jsonPayload.writeEndObject();
+                    jsonPayload.writeStartObject();
+                    jsonPayload.writeStringField('key', 'name');
+                    jsonPayload.writeStringField('value', onlineApplicationDriverSetup.Driver_Name__c);
+                    jsonPayload.writeEndObject();
 
-                jsonPayload.writeStartObject();
-                jsonPayload.writeStringField('key', 'defCardStatus');
-                jsonPayload.writeStringField('value', 'A');
-                jsonPayload.writeEndObject();
+                    jsonPayload.writeStartObject();
+                    jsonPayload.writeStringField('key', 'defCardStatus');
+                    jsonPayload.writeStringField('value', 'A');
+                    jsonPayload.writeEndObject();
 
-                jsonPayload.writeEndArray();
+                    jsonPayload.writeEndArray();
 
-                jsonPayload.writeEndObject();
+                    jsonPayload.writeEndObject();
 
-                cardIndex++;
+                    cardIndex++;
+
+                }
 
             }
 
-        }
+            jsonPayload.writeEndArray();
 
-        jsonPayload.writeEndArray();
+            jsonPayload.writeEndObject();
 
-        jsonPayload.writeEndObject();
-
-        // Left here...
-
-        if(onlineApplication.Carrier_ID_Number__c == null) {
+            // Left here...
 
             // Start of "carrier"
             jsonPayload.writeFieldName('carrier');
@@ -353,9 +361,13 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeStringField('status', 'A');
             if(onlineApplication.Number_of_Trucks__c != null) jsonPayload.writeNumberField('company_vehicles', onlineApplication.Number_of_Trucks__c);
             if(onlineApplication.Number_of_Trucks__c != null) jsonPayload.writeNumberField('owner_op_vehicles', onlineApplication.Number_of_Trucks__c);
+            // If Online App Territory Code is present, always send that
             if(onlineApplication.Territory_Code__c != null) jsonPayload.writeStringField('sales_territory', onlineApplication.Territory_Code__c);
-            if(onlineApplication.Territory_Code__c == null) jsonPayload.writeStringField('sales_territory', 'UN');
-            if(onlineApplicationProgram.Issuer_Group__c != null) jsonPayload.writeStringField('credit_group_id', onlineApplicationProgram.Issuer_Group__c);
+            //If Online App Territory Code is null, send territory from the program.
+            if(onlineApplicationProgram.Partner_Territory__r.Name != null && onlineApplication.Territory_Code__c == null) jsonPayload.writeStringField('sales_territory', onlineApplicationProgram.Partner_Territory__r.Name);
+            //If Online App and Program are null, send default.
+            if(onlineApplicationProgram.Partner_Territory__r.Name == null && onlineApplication.Territory_Code__c == null) jsonPayload.writeStringField('sales_territory', 'UN');
+            //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Issuer_Group__c != null) jsonPayload.writeStringField('credit_group_id', onlineApplicationOffer.Issuer_Group__c);
             if(onlineApplication.Card_Shipping_Address_Line_1__c != null) jsonPayload.writeStringField('shipping_address1', onlineApplication.Card_Shipping_Address_Line_1__c.replaceAll('[^a-zA-Z0-9 -]', ''));
             if(onlineApplication.Card_Shipping_City__c != null) jsonPayload.writeStringField('shipping_city', onlineApplication.Card_Shipping_City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
             if(onlineApplication.Card_Shipping_State__c != null) jsonPayload.writeStringField('shipping_state', onlineApplication.Card_Shipping_State__c);
@@ -368,9 +380,14 @@ global class AccountWS_EFSAppManager {
             if(onlineApplication.Card_Shipping_Country__c != null) jsonPayload.writeStringField('shipping_country', onlineApplication.Card_Shipping_Country__c);
             if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipping_zip', onlineApplication.Card_Shipping_Postal_Code__c);
             if(onlineApplication.Federal_Tax_ID__c != null) jsonPayload.writeStringField('tax_id', onlineApplication.Federal_Tax_ID__c);
-            if(onlineApplicationProgram !=null && onlineApplicationProgram.Parent_Carrier_ID__c != null) jsonPayload.writeStringField('original_parent_carrier_id', onlineApplicationProgram.Parent_Carrier_ID__c);
+            //OTRONBOARD-34 (future release) if(onlineApplicationProgram !=null && onlineApplicationOffer.Parent_Carrier_ID__c != null) jsonPayload.writeStringField('original_parent_carrier_id', onlineApplicationOffer.Parent_Carrier_ID__c);
+//            else jsonPayload.writeNullField('original_parent_carrier_id');
             jsonPayload.writeStringField('parent_type', 'group');
-            if(onlineApplicationProgram.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationProgram.Customer_Type__c);
+            //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
+            if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
+            //OTRONBOARD-55 Shipping and Embossing Fees
+            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fee', myFees.mcShippingFee);
+            if(myFees.mcEmbossingFee != null) jsonPayload.writeStringField('mcfee', myFees.mcEmbossingFee);
 
             // End of "carrier"
             jsonPayload.writeEndObject();
@@ -386,6 +403,9 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStartObject();
 
         jsonPayload.writeStringField('application_id', onlineApplication.ID);
+        //otronboard-59
+        if(onlineApplication.Carrier_ID_Number__c != null)
+            jsonPayload.writeNumberField('linkSecondaryThreshold', 100);
 
         // Start of "policy"
         jsonPayload.writeFieldName('policy');
@@ -395,12 +415,52 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeFieldName('header');
         jsonPayload.writeStartObject();
-        jsonPayload.writeStringField('description', 'Default Policy');
+        if(onlineApplication.Carrier_ID_Number__c != null){
+            jsonPayload.writeStringField('description', 'New Policy');
+        } else {
+            jsonPayload.writeStringField('description', 'Default Policy');
+        }
         jsonPayload.writeBooleanField('handEnter', false);
         jsonPayload.writeNumberField('payrollContractId', 0);
-        jsonPayload.writeBooleanField('payrollAtm', false);
+        if(onlineApplication.Funding__c == 'Parent Funded')jsonPayload.writeStringField('dont_do_oracle', 'Y');
+        // todo replace these falses with the value of OnlineApplication__c.Funding_Options__c
+        /*jsonPayload.writeBooleanField('payrollAtm', false);
         jsonPayload.writeBooleanField('payrollChk', false);
         jsonPayload.writeBooleanField('payrollAch', false);
+
+        if (onlineApplication.Funding_Options__c != null) {
+            if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'ATM');
+            if (onlineApplication.Funding_Options__c.contains('Register Check')) jsonPayload.writeStringField('payrollChk', 'Register Check');
+            if (onlineApplication.Funding_Options__c.contains('ACH Transfer')) jsonPayload.writeStringField('payrollAch', 'ACH Transfer');
+            if (onlineApplication.Funding_Options__c.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Debit Use');
+        }
+        */
+        //who knows what values to send to EFS? nobody!
+        if (onlineApplication.Funding_Options__c != null) {
+            if (onlineApplication.Funding_Options__c.contains('ATM')){
+                jsonPayload.writeBooleanField('payrollAtm', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollAtm', false);
+            }
+            if (onlineApplication.Funding_Options__c.contains('Register Check')){
+                jsonPayload.writeBooleanField('payrollChk', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollChk', false);
+            }
+            if (onlineApplication.Funding_Options__c.contains('ACH Transfer')){
+                jsonPayload.writeBooleanField('payrollAch', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollAch', false);
+            }
+
+            if (onlineApplication.Funding_Options__c.contains('Debit Use')){
+                jsonPayload.writeBooleanField('payrollDebit', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollDebit', false);
+            }
+
+        }
+
         jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('payrollDebit', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
@@ -411,7 +471,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeFieldName('limits');
         jsonPayload.writeStartArray();
 
-        if(onlineApplication.Daily_Fuel_Gallons__c != null) {
+        if (onlineApplication.Daily_Fuel_Gallons__c != null) {
             jsonPayload.writeStartObject();
             jsonPayload.writeStringField('limitId', 'DSL');
             jsonPayload.writeNumberField('limit', onlineApplication.Daily_Fuel_Gallons__c);
@@ -422,7 +482,7 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeEndObject();
         }
 
-        if(onlineApplication.Daily_Cash_Limit__c != null) {
+        if (onlineApplication.Daily_Cash_Limit__c != null) {
             jsonPayload.writeStartObject();
             jsonPayload.writeStringField('limitId', 'CADV');
             jsonPayload.writeNumberField('limit', onlineApplication.Daily_Cash_Limit__c);
@@ -431,7 +491,7 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeEndObject();
         }
 
-        if(onlineApplication.Daily_DEF_Limit__c != null) {
+        if (onlineApplication.Daily_DEF_Limit__c != null) {
             jsonPayload.writeStartObject();
             jsonPayload.writeStringField('limitId', 'DEF');
             jsonPayload.writeNumberField('limit', onlineApplication.Daily_DEF_Limit__c);
@@ -442,7 +502,7 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeEndObject();
         }
 
-        if(onlineApplication.Daily_Fuel_Gallons__c != null) {
+        if (onlineApplication.Daily_Fuel_Gallons__c != null) {
             jsonPayload.writeStartObject();
             jsonPayload.writeStringField('limitId', 'ULSD');
             jsonPayload.writeNumberField('limit', onlineApplication.Daily_Fuel_Gallons__c);
@@ -460,28 +520,28 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeFieldName('infos');
         jsonPayload.writeStartArray();
 
-        if(onlineApplication.Odometer__c == true) {
+        if (onlineApplication.Odometer__c == true) {
             jsonPayload.writeStartObject();
             jsonPayload.writeStringField('infoId', 'ODRD');
             jsonPayload.writeStringField('validationType', 'NUMERIC');
             jsonPayload.writeEndObject();
         }
 
-        if(onlineApplication.Trip__c == true) {
+        if (onlineApplication.Trip__c == true) {
             jsonPayload.writeStartObject();
             jsonPayload.writeStringField('infoId', 'TRIP');
             jsonPayload.writeStringField('validationType', 'ALPHANUMERIC');
             jsonPayload.writeEndObject();
         }
 
-        if(onlineApplication.Unit__c == true && onlineApplicationUnitNumbers.size() > 0) {
+        if (onlineApplication.Unit__c == true && onlineApplicationUnitNumbers.size() > 0) {
             jsonPayload.writeStartObject();
             jsonPayload.writeStringField('infoId', 'UNIT');
             jsonPayload.writeStringField('validationType', 'INFO_POOL');
             jsonPayload.writeFieldName('poolValues');
             jsonPayload.writeStartArray();
 
-            for(OnlineApplicationUnitNumber__c unitNumber : onlineApplicationUnitNumbers) {
+            for (OnlineApplicationUnitNumber__c unitNumber : onlineApplicationUnitNumbers) {
 
                 jsonPayload.writeString(unitNumber.Name);
 
@@ -494,6 +554,35 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeEndArray();
         // End of "infos"
 
+        // Start of refresh limits
+        jsonPayload.writeFieldName('refreshLimits');
+        jsonPayload.writeStartObject();
+        if (onlineApplication.Daily_Amount_Requested__c != null) jsonPayload.writeNumberField('dailyAmount', onlineApplication.Daily_Amount_Requested__c);
+        if (onlineApplication.Daily_Transactions__c != null) jsonPayload.writeNumberField('dailyCount', onlineApplication.Daily_Transactions__c);
+        if (onlineApplication.Monthly_Amount_Requested__c != null) jsonPayload.writeNumberField('monthlyAmount', onlineApplication.Monthly_Amount_Requested__c);
+        if (onlineApplication.Monthly_Transactions__c != null) jsonPayload.writeNumberField('monthlyCount', onlineApplication.Monthly_Transactions__c);
+        if (onlineApplication.Weekly_Amount_Requested__c != null) jsonPayload.writeNumberField('weeklyAmount', onlineApplication.Weekly_Amount_Requested__c);
+        if (onlineApplication.Weekly_Transactions__c != null) jsonPayload.writeNumberField('weeklyCount', onlineApplication.Weekly_Transactions__c);
+        jsonPayload.writeEndObject();
+        // End of "refresh limits"
+
+        //start merchant category codes
+        if (onlineApplication.Allowed_Merchant_Categories__c != null) {
+            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', onlineApplication.Allowed_Merchant_Categories__c.contains('All Merchants'));
+            jsonPayload.writeFieldName('merchantCategoryCodes');
+            jsonPayload.writeStartArray();
+            for (String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')) {
+                if (s.isNumeric())
+                    jsonPayload.writeNumber(Integer.valueOf(s));
+            }
+            jsonPayload.writeEndArray();
+        } else {
+            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', false);
+        }
+        //end merchant category codes
+
+        //if(onlineApplication.Scales_Limit__c != null) jsonPayload.writeNumberField('scalesLimit', onlineApplication.Scales_Limit__c);
+
         jsonPayload.writeEndObject();
         // End of "policy"
 
@@ -505,15 +594,20 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeStartObject();
 
         jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
-        jsonPayload.writeStringField('fee_id', '118');
-        if(onlineApplicationOffer != null && onlineApplicationOffer.PSR_Card_Fee__c != null) jsonPayload.writeStringField('fee_amt', String.valueOf(onlineApplicationOffer.PSR_Card_Fee__c));
-        jsonPayload.writeStringField('fee_level', '1');
+        jsonPayload.writeStringField('fee_id', MONTHLY_FEE);
+        if(myFees.monthlyFee != null) jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
+        jsonPayload.writeStringField('fee_level', '2');
         jsonPayload.writeStringField('fee_type', '1');
-        jsonPayload.writeStringField('fee_max_times_per', '3');
-        jsonPayload.writeStringField('fee_max_times', '1');
+        jsonPayload.writeStringField('fee_max_times_per', '4');
+        jsonPayload.writeStringField('fee_max_times', '0');
+        jsonPayload.writeStringField('fee_min_start_per','4');
+        jsonPayload.writeStringField('fee_min_start','0');
+//        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null)  jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
+//        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
         jsonPayload.writeEndObject();
 
+        // TODO need to ask Regina or Tiana if this section should be updated to say 'Smartfunds Payroll' or 'Smartfunds Non-payroll' because there is no product called just 'Smartfunds' -lhowland
         if(onlineApplication.Other_Services__c != null && (onlineApplication.Other_Services__c).contains('SmartFunds')) {
 
             jsonPayload.writeStartObject();
@@ -539,11 +633,13 @@ global class AccountWS_EFSAppManager {
         if(onlineApplicationAccount.Name != null) jsonPayload.writeStringField('contract_name', onlineApplicationAccount.Name);
         if(onlineApplicationOffer.Tier_ID__c != null) jsonPayload.writeStringField('tier_id', onlineApplicationOffer.Tier_ID__c);
         jsonPayload.writeStringField('is_master', 'N');
-        if(onlineApplicationProgram.Card_Type__c != null) jsonPayload.writeStringField('card_type', onlineApplicationProgram.Card_Type__c);
-        if(onlineApplicationProgram.Card_Style__c != null) jsonPayload.writeStringField('card_style', onlineApplicationProgram.Card_Style__c);
-        // Certain Programs send additional cards to the customer.
-        if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationProgram.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
-        if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationProgram.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationProgram.Cards_per_1_Requested__c));
+        //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Card_Type__c != null) jsonPayload.writeStringField('card_type', onlineApplicationOffer.Card_Type__c);
+        //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Card_Style__c != null) jsonPayload.writeStringField('card_style', onlineApplicationOffer.Card_Style__c);
+        if(onlineApplication.Prompt_Type__c != null) jsonPayload.writeStringField('PromptCode', onlineApplication.Prompt_Type__c);
+        if(onlineApplication.Prompt_Type__c != null) jsonPayload.writeStringField('PromptCode', onlineApplication.Prompt_Type__c);
+        // Certain Programs send additional cards to the customer.carefu
+        //OTRONBOARD-34 (future release) if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
+        //OTRONBOARD-34 (future release) if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.Cards_per_1_Requested__c));
         if(onlineApplication.Date_Decisioned__c != null) jsonPayload.writeStringField('approved_date', String.valueOf(onlineApplication.Date_Decisioned__c.format('yyyy-MM-dd')));
         if(onlineApplication.Direct_Bill_Only__c != null && onlineApplication.Direct_Bill_Only__c == false) jsonPayload.writeStringField('direct_bill', 'N');
         if(onlineApplication.Direct_Bill_Only__c != null && onlineApplication.Direct_Bill_Only__c == true) jsonPayload.writeStringField('direct_bill', 'Y');
@@ -552,13 +648,16 @@ global class AccountWS_EFSAppManager {
         if(onlineApplicationAccount.Preferred_Language__c == null) { jsonPayload.writeStringField('language', '1'); }
         if(onlineApplication.Terms_ID__c != null) jsonPayload.writeStringField('terms', onlineApplication.Terms_ID__c);
         if(onlineApplication.Cycle_ID__c != null) jsonPayload.writeStringField('cycle_code', onlineApplication.Cycle_ID__c);
-        if(onlineApplicationProgram.Issuer_ID__c != null) jsonPayload.writeStringField('issuer_id', onlineApplicationProgram.Issuer_ID__c);
-        if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
-            jsonPayload.writeStringField('lockbox', '53');
+
+        /*OTRONBOARD-34 (future release)
+        if(onlineApplication.Carrier_ID_Number__c != null && onlineApplicationOffer.Child_Funded_Issuer_ID__c != null) {
+            jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Child_Funded_Issuer_ID__c);
+        } else {
+            if(onlineApplicationOffer.Child_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('contract.issuer_id', onlineApplicationOffer.Child_Funded_Issuer_ID__c);
+            if(onlineApplicationOffer.Parent_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Parent_Funded_Issuer_ID__c);
         }
-        if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
-            jsonPayload.writeStringField('lockbox', '80');
-        }
+         */
+        //OTRONBOARD-34 (future release) if(onlineApplicationProgram.Lockbox_Value__c != null) jsonPayload.writeStringField('lockbox', onlineApplicationProgram.Lockbox_Value__c);
 
         if(onlineApplication.Prepaid__c == true) {
             jsonPayload.writeStringField('mgr_code', '1DRW');
@@ -581,10 +680,12 @@ global class AccountWS_EFSAppManager {
             }
         }
 
+        //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Account_Descriptor__c != null) jsonPayload.writeStringField('mgr_code', onlineApplicationOffer.Account_Descriptor__c);
+
         jsonPayload.writeStringField('service_charge', 'Y');
         jsonPayload.writeStringField('late_payment', 'Y');
         jsonPayload.writeStringField('invoice_close_method', 'Y');
-        if(onlineApplicationProgram.Statement_Type__c != null) jsonPayload.writeStringField('stmt_format', onlineApplicationProgram.Statement_Type__c);
+        //OTRONBOARD-34 (future release) if(onlineApplicationOffer.Statement_Type__c != null) jsonPayload.writeStringField('stmt_format', onlineApplicationOffer.Statement_Type__c);
         jsonPayload.writeStringField('print_statement', 'N');
         if((onlineApplication.Invoice_Delivery_Method__c).equals('Internet')) jsonPayload.writeStringField('statement_dist_type', 'R');
         if(!(onlineApplication.Invoice_Delivery_Method__c).equals('Internet')) jsonPayload.writeStringField('statement_dist_type', 'E');
@@ -606,7 +707,14 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Western Union')) jsonPayload.writeStringField('payment_method', 'Wire');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Faxed Electronichek')) jsonPayload.writeStringField('payment_method', 'Check');
         if(onlineApplication.Payment_Frequency__c != null) jsonPayload.writeStringField('payment_frequency', onlineApplication.Payment_Frequency__c);
-
+/*
+        if(onlineApplication.Payment_Terms__c != null) jsonPayload.writeStringField('ZZZREQUESTED_TERMS', onlineApplication.Payment_Terms__c);
+        if(onlineApplication.Billing_Cycle__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE', onlineApplication.Billing_Cycle__c);
+        if(onlineApplication.Payment_Method_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_METHOD_APPROVED', onlineApplication.Payment_Method_Approved__c);
+        if(onlineApplication.Payment_Frequency_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_FREQUENCY_APPROVED', onlineApplication.Payment_Frequency_Approved__c);
+        if(onlineApplication.Terms_Approved__c != null) jsonPayload.writeStringField('ZZZTERMS_APPROVED', onlineApplication.Terms_Approved__c);
+        if(onlineApplication.Billing_Cycle_Approved__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE_APPROVED', onlineApplication.Billing_Cycle_Approved__c   );
+*/
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('req_credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('req_credit_line_type', 'Open Line');
         if(onlineApplication.Credit_Line_Requested__c != null) jsonPayload.writeNumberField('req_credit_line_amt', onlineApplication.Credit_Line_Requested__c);
@@ -650,12 +758,8 @@ global class AccountWS_EFSAppManager {
         //if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
         //  jsonPayload.writeStringField('shipping_country', 'C');
         //}
-        if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('US')) {
-            jsonPayload.writeStringField('shipToCountry', 'U');
-        }
-        if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('CA')) {
-            jsonPayload.writeStringField('shipToCountry', 'C');
-        }
+        if(onlineApplication.Card_Shipping_Country__c.equalsIgnoreCase('US')) jsonPayload.writeStringField('shipToCountry', 'U');
+        if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('CA')) jsonPayload.writeStringField('shipToCountry', 'C');
         if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipping_zip', onlineApplication.Card_Shipping_Postal_Code__c);
         // if(onlineApplication.Contact_Name__c != null) jsonPayload.writeStringField('contract_contact_name', onlineApplication.Contact_Name__c);
         if(onlineApplication.Contact_Name__c != null) jsonPayload.writeStringField('contract_contact_name', onlineApplication.Contact_First_Name__c + ' ' + onlineApplication.Contact_Last_Name__c);
@@ -673,24 +777,60 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Prepaid__c != true) jsonPayload.writeStringField('payment_credit_hold', 'N');
         if(onlineApplication.Phone_Number__c != null) jsonPayload.writeStringField('shipping_phone', onlineApplication.Phone_Number__c);
         if(onlineApplication.Fax_Number__c != null) jsonPayload.writeStringField('shipping_fax', onlineApplication.Fax_Number__c);
+        // OTRONBOARD-35 If Offer is Parent Funded, send these fields.
+        if(onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded') {
+            if (onlineApplicationOffer.Limit_Method__c != null) jsonPayload.writeStringField('limit_method', onlineApplicationOffer.Limit_Method__c);
+            if (onlineApplicationOffer.Daily_Cash_Limit__c != null) jsonPayload.writeNumberField('daily_cash_limit', Integer.valueOf(onlineApplicationOffer.Daily_Cash_Limit__c));
+            if (onlineApplicationOffer.Daily_MC_Limit__c != null) jsonPayload.writeNumberField('daily_mc_limit', Integer.valueOf(onlineApplicationOffer.Daily_MC_Limit__c));
+            if (onlineApplicationOffer.Cash_Limit__c != null) jsonPayload.WriteNumberField('cash_limit', Integer.valueOf(onlineApplicationOffer.Cash_Limit__c));
+            if (onlineApplicationOffer.MC_Limit__c != null) jsonPayload.writeNumberField('mc_limit', Integer.valueOf(onlineApplicationOffer.MC_Limit__c));
+            if (onlineApplicationOffer.Trans_Limit__c != null) jsonPayload.writeNumberField('trans_limit', Integer.valueOf(onlineApplicationOffer.Trans_Limit__c));
+            if (onlineApplicationOffer.ATM_Use__c == true) jsonPayload.writeStringField('atm_use', 'Y');
+            if (onlineApplicationOffer.ATM_Use__c == false) jsonPayload.writeStringField('atm_use', 'N');
+        }
+
+        // OTRONBOARD-30
+        if(onlineApplicationOffer.approval_type__c != null) jsonPayload.writeStringField('approval_type', onlineApplicationOffer.Approval_Type__c);
+        if(onlineApplicationOffer.primary_contact_email_address__c != null) jsonPayload.writeStringField('email_address', onlineApplicationOffer.Primary_Contact_Email_Address__c);
+        if(onlineApplicationOffer.create_letter__c != null) jsonPayload.writeStringField('create_letter', onlineApplicationOffer.Create_Letter__c);
+        if(onlineApplicationOffer.notice_delivery__c != null) jsonPayload.writeStringField('notice_delivery', onlineApplicationOffer.Notice_Delivery__c);
 
         // Per Gaylon and Justine - we're always going to send this.
         if(onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('fuel_and_cash', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Fuel_Cash__c));
 
-        if(selectedOtherServices != null && selectedOtherServices.contains('ATM')) {
-            if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('atm_limit', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
+        if(selectedOtherServices != null && selectedOtherServices.contains('ATM') && onlineApplicationOffer.PSR_ATM_Limit__c != null) {
+            if (onlineApplication.Number_of_Cards_Needed__c != null){
+                if(onlineApplication.Carrier_ID_Number__c != null){
+                    jsonPayload.writeNumberField('atm_limit', integer.valueof(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
+                } else {
+                    jsonPayload.writeNumberField('atm_limit', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
+                }
+
+            }
         }
 
-        if(selectedOtherServices != null && selectedOtherServices.contains('Money Codes and ATM')) {
+        if(selectedOtherServices != null && selectedOtherServices.contains('Money Codes and ATM') && onlineApplicationOffer.PSR_Money_Code__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('money_codes', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Money_Code__c));
         }
 
-        if(selectedOtherServices != null && selectedOtherServices.contains('Scales')) {
+        if(selectedOtherServices != null && selectedOtherServices.contains('Scales') && onlineApplicationOffer.PSR_Scales__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('scales', (onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Scales__c));
         }
 
         // End of "contract"
         jsonPayload.writeEndObject();
+
+        // Start of offer"
+        //jsonPayload.writeFieldName('offer');
+        //jsonPayload.writeStartObject();
+
+        //if(onlineApplicationOffer.Notice_Type_1__c != null) jsonPayload.writeStringField('ZZZNOTICE_TYPE_1_VALUE', onlineApplicationOffer.Notice_Type_1__c);
+        //if(onlineApplicationOffer.Notice_Type_1_Value__c != null) jsonPayload.writeNumberField('ZZZNOTICE_TYPE_1_VALUE', onlineApplicationOffer.Notice_Type_1_Value__c);
+        //if(onlineApplicationOffer.Notice_Type_2__c != null) jsonPayload.writeStringField('ZZZNOTICE_TYPE_2', onlineApplicationOffer.Notice_Type_2__c);
+        //if(onlineApplicationOffer.Notice_Type_2_Value__c != null) jsonPayload.writeNumberField('ZZZNOTICE_TYPE_2_VALUE', onlineApplicationOffer.Notice_Type_2_Value__c);
+
+        // End of "offer"
+        //jsonPayload.writeEndObject();
 
         if(onlineApplication.Carrier_ID_Number__c == null) {
             jsonPayload.writeEndArray();
@@ -712,6 +852,42 @@ global class AccountWS_EFSAppManager {
         public String status { get; set; }
         public String clientId { get; set; }
 
+    }
+
+    public class CardFees{
+        public String monthlyFee;
+        public String mcShippingFee;
+        public String mcEmbossingFee;
+
+        public CardFees(OnlineApplication__c onlineApplication){
+            if(onlineApplication.Opportunity__c != null) {
+                Map<String,Decimal> productOptionMap = new Map<String,Decimal>();
+                if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null){
+                    //get the fees based on quotelines. ideal.
+                    for(SBQQ__QuoteLine__c ql : [SELECT Id, (SELECT Id,Requested_Price__c, SBQQ__ProductCode__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c LIMIT 1].SBQQ__LineItems__r)
+                        if(ql.Requested_Price__c != null) productOptionMap.put(ql.SBQQ__ProductCode__c,ql.Requested_Price__c);
+                }
+                if(this.monthlyFee == null || this.mcShippingFee == null || this.mcEmbossingFee == null){
+                    //get the fees based on OLI. not ideal.
+                    List<Id> productIds = new List<Id>();
+                    //get the product bundles
+                    for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
+                        productIds.add(oli.Product2Id);
+                    //for each bundle, get the options and create a map of product code to unitprice
+                    for(SBQQ__ProductOption__c po : [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'])
+                        if(!productOptionMap.containsKey(po.SBQQ__ProductCode__c) && po.SBQQ__UnitPrice__c != null) productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c); //bundles should not be reusing product codes so this way will work. for now.
+                }
+                setFees(productOptionMap);
+            }
+        }
+
+        private void setFees(Map<String,Decimal> poMap){
+            if(poMap.size()>0){
+                if(this.monthlyFee == null && poMap.containsKey(MONTHLY_FEE)) this.monthlyFee = String.valueOf(poMap.get(MONTHLY_FEE));
+                if(this.mcShippingFee == null && poMap.containsKey(SHIPPING_FEE)) this.mcShippingFee = String.valueOf(poMap.get(SHIPPING_FEE));
+                if(this.mcEmbossingFee == null && poMap.containsKey(EMBOSSING_FEE)) this.mcEmbossingFee = String.valueOf(poMap.get(EMBOSSING_FEE));
+            }
+        }
     }
 
 }

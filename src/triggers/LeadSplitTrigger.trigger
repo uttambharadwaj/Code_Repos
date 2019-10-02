@@ -1,7 +1,4 @@
 trigger LeadSplitTrigger on Lead (before insert, before update, after update) {
-
-    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Lead_Automation__c) { return; }
     
     ConvertLeadSettings__c convertLeadSettings = ConvertLeadSettings__c.getOrgDefaults();
     

@@ -2,8 +2,6 @@
 global class UOnlineApplicationTest implements HttpCalloutMock {
 
 	@isTest static void testForteIntegrationCallout() {
-        
-        UtilityTestLoader.setAutomation(false);
 
 		OnlineApplicationOffer__c oao = createCompleteSavedOffer(OnlineApplication.LOCAL);
 		OnlineApplication__c oa = getOnlineApplication(oao.Id);

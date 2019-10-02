@@ -23,9 +23,7 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplicationOffer.Name = 'TestOffer-01';
         onlineApplicationOffer.ATM_Use__c = true;
         onlineApplicationOffer.Application_Title__c = 'TestTitle';
-        onlineApplicationOffer.approval_type__c = 'Letter Type';
         onlineApplicationOffer.Cash_Limit__c = 1;
-        onlineApplicationOffer.Create_Letter__c = 'ACH Debit';
         onlineApplicationOffer.Complete_Later_Text__c = 'Test';
         onlineApplicationOffer.BOCA_Default_Offer__c = true;
         onlineApplicationOffer.Daily_Cash_Limit__c = 1;
@@ -45,8 +43,6 @@ public class AccountWS_EFSAppManagerTest {
         //onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c = 0;
         //onlineApplicationOffer.Monthly_Account_Fee__c = true;
         //onlineApplicationOffer.Monthly_Account_Fee_Value__c = 0;
-        onlineApplicationOffer.Notice_Delivery__c = 'Email';
-        onlineApplicationOffer.Primary_Contact_Email_Address__c = 'test@test.com';
         onlineApplicationOffer.PSR_ATM_Limit__c = 1.00;
         onlineApplicationOffer.PSR_Card_Fee__c = 1.00;
         onlineApplicationOffer.PSR_Fuel_Cash__c = 1.00;
@@ -55,7 +51,17 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplicationOffer.PSR_Scales__c = 1.00;
         onlineApplicationOffer.Trans_Limit__c = 1;
         onlineApplicationOffer.Terms_and_Conditions_Version__c = 'TestVersion-01';
-
+        onlineApplicationOffer.Cards_per_1_Requested__c = 1;
+        onlineApplicationOffer.Card_Shipping_Method__c = '1';
+        onlineApplicationOffer.Card_Style__c = '1';
+        onlineApplicationOffer.Card_Type__c = '1';
+        onlineApplicationOffer.Parent_Funded_Issuer_ID__c = '1';
+        onlineApplicationOffer.Child_Funded_Issuer_ID__c = '1';
+        onlineApplicationOffer.Issuer_Group__c = '1';
+        onlineApplicationOffer.Parent_Carrier_ID__c = '1';
+        onlineApplicationOffer.Card_Order_Type__c = '1';
+        onlineApplicationOffer.Statement_Type__c = '1';
+        onlineApplicationOffer.Customer_Type__c = '1';
 
         insert onlineApplicationOffer;
 
@@ -216,7 +222,7 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplication.Odometer__c = true;
         onlineApplication.Offer__c = onlineApplicationOffer.Id;
         onlineApplication.Other_Services__c = 'SmartFunds;ATM;Money Codes and ATM;Scales';
-//      onlineApplication.Payment_Method__c = 'Customer ACH';
+//        onlineApplication.Payment_Method__c = 'Customer ACH';
         onlineApplication.Phone_Number__c = '3123339999';
         onlineApplication.Product_Type__c = 'OTR';
         onlineApplication.Promotional_Code__c = 'promo12345';
@@ -230,8 +236,8 @@ public class AccountWS_EFSAppManagerTest {
         onlineApplication.Year_Established__c = '1980';
         onlineApplication.Zip_Code__c = '60606';
         onlineApplication.OwnerId = UserInfo.getUserId();
-//      onlineApplication.Day_of_Payment__c = 'Monday;Tuesday';
-// 		onlineApplication.Payment_Method__c = 'Auto Draft';
+        //onlineApplication.Day_of_Payment__c = 'Monday;Tuesday';
+//        onlineApplication.Payment_Method__c = 'Auto Draft';
         onlineApplication.ThreatMetrix_Request_ID__c = '123456789';
         onlineApplication.Program__c = program.Id;
         onlineApplication.Account__c = offerAccount.Id;

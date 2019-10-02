@@ -7,9 +7,6 @@
 trigger CardDetailAssociation on Lead (after update) 
 {
 	// trigger should fire only for Leads with Australian record types
-
-	Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-	if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Lead_Automation__c) { return; }
 	
 	Set<Id> AU_Lead_RTs = new Set<Id>();
 	

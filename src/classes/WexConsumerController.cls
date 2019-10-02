@@ -517,8 +517,6 @@ public class WexConsumerController {
     @future
     public static void sendConfirmationEmail(Id creditAppId, Id contactId, Id templateId) {
         
-        try {
-        
         System.debug('### ' + creditAppId);
         System.debug('### ' + contactId);
         System.debug('### ' + templateId);
@@ -554,11 +552,6 @@ public class WexConsumerController {
         
         if(!Test.isRunningTest()){
             Messaging.sendEmail(new Messaging.SingleEmailMessage[] {confirmation});
-        }
-            
-        }
-        catch(Exception e) {
-            System.debug('Jason - I am your father...');
         }
         
     }

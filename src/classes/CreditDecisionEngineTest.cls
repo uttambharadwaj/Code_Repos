@@ -42,7 +42,7 @@ public class CreditDecisionEngineTest {
         Campaign campaign = new Campaign();
 
         //create campaign test data
-        campaign.Coupon_Code__c = 'T99999';
+        campaign.Coupon_Code__c = 'TESTCOUPONX';
         campaign.Name = 'OTRTestCampaign';
         campaign.Type = 'Online Form';
         campaign.Status = 'In Progress';
@@ -258,7 +258,7 @@ public class CreditDecisionEngineTest {
             onlineApplications[0].Credit_Line_Requested__c = 9000;
             onlineApplications[0].DNB_Credit_Line_Recommendation__c = 9000;
             onlineApplications[0].DNB_CSAD_High_Credit__c = 15000;
-            onlineApplications[0].Number_of_Trucks__c = 20;
+            onlineApplications[0].Number_of_Trucks__c = 1;
             upsert onlineApplications[0];
 
             Decimal oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
@@ -367,23 +367,23 @@ public class CreditDecisionEngineTest {
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
             System.assertEquals(5000, oa);
 
-            // Number of trucks effect credit recommendation 
+            // Number of trucks effect credit recommendation (offering them more than they requested)
             onlineApplications[0].PG_Score__c = 751;
-            onlineApplications[0].Number_of_Trucks__c = 1;  // resulting in reducing "requested" credit to 2500
+            onlineApplications[0].Number_of_Trucks__c = 3;  // resulting in upping "requested" credit to 7500
             onlineApplications[0].Credit_Line_Requested__c = 5000;
             onlineApplications[0].PG_High_Credit_Amount__c = 11000;
             upsert onlineApplications[0];
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
-            System.assertEquals(2500, oa);
+            System.assertEquals(7500, oa);
 
             // Number of trucks effect credit recommendation and is a slip seat (offering them more than they requested)
-            onlineApplications[0].Team_Drivers_Slip_Seat__c = true; // resulting in reducing "requested" creit to 3500
+            onlineApplications[0].Team_Drivers_Slip_Seat__c = true; // resulting in upping "requested" creit to 10500
             onlineApplications[0].Credit_Line_Requested__c = 5000;
             upsert onlineApplications[0];
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
-            System.assertEquals(3500, oa);
+            System.assertEquals(10500, oa);
 
             /** TEST FOR BOTH COMMERCIAL AND CONSUMER */
 
@@ -452,7 +452,7 @@ public class CreditDecisionEngineTest {
 
     static testMethod void testExistingExposure() {
 
-        List<OnlineApplication__c> onlineApplications = [SELECT Id, Status__c FROM OnlineApplication__c];
+        List<OnlineApplication__c> onlineApplications = [SELECT Id FROM OnlineApplication__c];
 
         if (onlineApplications.size() > 0) {
 

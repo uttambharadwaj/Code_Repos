@@ -30,8 +30,7 @@ public class AppRequestBeforeUpdateTriggerHandler extends TriggerHandlerBase {
 
             for (FleetEnrollment__c fe : [
                     SELECT Id, Opportunity__c, Opportunity_Number__c, Application_Request__c, Debug_Application_Parameter__c,
-                            Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Address_Line_1__c, Billing_Address_Line_2__c,
-                            Billing_City__c, Billing_State__c, Billing_Postal_Code__c
+                            Billing_Address_Line_1__c, Billing_Address_Line_2__c, Billing_City__c, Billing_State__c, Billing_Postal_Code__c
                     FROM FleetEnrollment__c
                     WHERE Opportunity__c IN :arToOpptyMap.keySet()])
             {

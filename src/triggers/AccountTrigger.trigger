@@ -11,9 +11,6 @@
 
 trigger AccountTrigger on Account (after delete, before delete,after insert, after update, before insert, before update) 
 {
-    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Account_Automation__c) { return; }
-
     List<Account> records = trigger.isDelete ? trigger.old : trigger.new;
 
     if(trigger.isBefore)
@@ -21,13 +18,10 @@ trigger AccountTrigger on Account (after delete, before delete,after insert, aft
         if(trigger.isInsert)
         {
             UAccount.truckersGenerateMemIdAndPassword(records, trigger.oldmap);
-			UAccount.executeBREeze(records, trigger.oldMap);                        
         }
         else if(trigger.isUpdate)
         {
             UAccount.truckersGenerateMemIdAndPassword(records, trigger.oldmap);
-            UAccount.parentSalesAccounts(records, trigger.oldmap);            
-			UAccount.executeBREeze(records, trigger.oldMap);                        
         }
         else if(trigger.isDelete)
         {

@@ -106,12 +106,13 @@ private class Test_CommunityUserStampData {
 
             insert ar;
         }
-        
+        */
 
         system.assertNotEquals([Select Id from Application_Request__c
                                 Where External_Referred_by__c!=null AND
                                 External_Referring_Contact__c != null].size(),0);
-*/
+
+
     }
 
     @isTest

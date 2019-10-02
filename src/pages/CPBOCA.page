@@ -297,7 +297,6 @@
                                                     </apex:selectList>
                                                 </apex:actionRegion>
                                             </div>
-                                            </apex:outputPanel>
                                             <div class="twelve columns clearfix form-field" data-row="1">
                                                 <apex:actionRegion >
                                                     <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
@@ -308,7 +307,7 @@
                                                     </apex:InputField>
                                                 </apex:actionRegion>
                                             </div>
-                                        
+                                        </apex:outputPanel>
                                     </div>
                                 </div>
                             </fieldset>
