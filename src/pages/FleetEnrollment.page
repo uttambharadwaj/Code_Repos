@@ -111,7 +111,6 @@
 
             function updateCardControlOptions(obj) {
                 console.log($j(obj).val());
-                console.log($j(obj));
                 if($j(obj).attr('row-id') == 0) {
                     $j('[id$=vehicleDetails]').find('.fleetVehicle').find('.selectedCardControlOption').each(function() {
                         if($j(this).val() === null) {
