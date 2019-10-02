@@ -52,8 +52,7 @@ public class WexBrandingController {
         return getBrandingUtilRecordByProgramId(programId, null);
     }
     public static BOCA_res__c getBrandingUtilRecordByProgramId(Id programId, String language) {
-        //List<BOCA_res__c> brandingUtilities = [SELECT Id FROM BOCA_Res__c WHERE Program__c = :program.Id and BOCA_Default__c = true];
-        //List<BOCA_res__c> brandingUtilities = [SELECT Id FROM BOCA_res__c WHERE Program__c = :program.Id AND ISO_code__c = :languageCode];
+
         String query = UtilityClass.selectStar('BOCA_Res__c') + 'WHERE Program__c = :programId AND ';
         query += language != null ? 'ISO_Code__c = :language' : 'BOCA_Default__c = true';
 
@@ -177,25 +176,6 @@ public class WexBrandingController {
 
         return null;
 
-    }
-
-    public static Id getCreditCardOneToOne(Id programId){
-        try {
-
-            transient Attachment logo = [SELECT Id, Name, Body FROM Attachment where ParentId = :programId AND Name = :'ui-credit-card-one-to-one.png' LIMIT 1];
-            system.debug(logo);
-            if(logo != null)
-                return logo.Id;
-
-
-
-        } catch (Exception e) {
-
-            return getCreditCardNotTextImageId(programId);
-
-        }
-
-        return null;
     }
 
     public static Id getBPAVLogoId(Id programId) {
