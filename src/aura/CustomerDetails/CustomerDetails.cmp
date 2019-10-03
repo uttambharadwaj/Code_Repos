@@ -250,7 +250,7 @@
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
                                     {!v.customerDetails.driverCount}
-                                    <aura:if isTrue="{!v.customerDetails.driverCount == null}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.driverCount == null}">Refer to Source</aura:if>
                                 </div>
                             </div>  
                         </div>
@@ -276,7 +276,7 @@
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
                                     {!v.customerDetails.vehicleCount}
-                                    <aura:if isTrue="{!v.customerDetails.vehicleCount == null}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.vehicleCount == null}">Refer to Source</aura:if>
                                 </div>
                             </div>  
                         </div>
