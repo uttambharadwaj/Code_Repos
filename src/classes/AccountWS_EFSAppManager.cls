@@ -217,10 +217,12 @@ global class AccountWS_EFSAppManager {
         Program__c onlineApplicationProgram = null;
         OnlineApplicationOffer__c onlineApplicationOffer = null;
 
+        Boolean hasSmartfunds = false;
         Set<String> selectedOtherServices = new Set<String>();
         if(onlineApplication.Other_Services__c != null) {
             for(String product : (onlineApplication.Other_Services__c).split(';')) {
                 selectedOtherServices.add(product.toLowerCase());
+                if(product.containsIgnoreCase('smartfunds')) hasSmartfunds = true;
             }
         }
 
@@ -431,9 +433,9 @@ global class AccountWS_EFSAppManager {
 
         //who knows what values to send to EFS? nobody!
         if(selectedOtherServices != null){
-            if(selectedOtherServices.contains('smartfunds') &&
-                myContract != null && myContract.Funding_Option__c != null) {
-                Boolean hasPayroll = selectedOtherServices.contains('payroll');
+            if(hasSmartfunds &&
+                    myContract != null && myContract.Funding_Option__c != null) {
+                Boolean hasPayroll = selectedOtherServices.contains('smartfunds payroll');
                 switch on myContract.Funding_Option__c {
                     when 'ATM' {
                         if (hasPayroll) jsonPayload.writeBooleanField('payrollAtm', true);
@@ -841,8 +843,8 @@ global class AccountWS_EFSAppManager {
 
         if(onlineApplication.Credit_Line_Approved__c != null) {
             jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
-            //if offer is parent funded, and credit line requested is null, then we send 0.
-        } else if ( onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Requested__c == null) {
+            //if offer is parent funded, and credit line approved is null, then we send 0.
+        } else if ( onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Approved__c == null) {
             jsonPayload.writeNumberField('credit_line_amount', 0);
         }
 
