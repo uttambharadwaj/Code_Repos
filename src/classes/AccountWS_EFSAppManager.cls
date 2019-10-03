@@ -841,15 +841,15 @@ global class AccountWS_EFSAppManager {
 
         if(onlineApplication.Credit_Line_Approved__c != null) {
             jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
-            //if offer is parent funded, and credit line requested is null, then we send 0.
-        } else if ( onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Requested__c == null) {
+            //if offer is parent funded, and credit line approved is null, then we send 0.
+        } else if (onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Approved__c == null) {
             jsonPayload.writeNumberField('credit_line_amount', 0);
         }
 
         if(onlineApplication.Credit_Line_Requested__c != null) {
             jsonPayload.writeNumberField('req_credit_line_amt', onlineApplication.Credit_Line_Requested__c);
             //if offer is parent funded, and credit line requested is null, then we send 0.
-        } else if (onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Requested__c == null){
+        } else if (onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Requested__c == null) {
             jsonPayload.writeNumberField('req_credit_line_amt', 0);
         }
 
