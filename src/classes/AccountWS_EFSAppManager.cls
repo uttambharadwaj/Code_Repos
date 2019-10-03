@@ -217,10 +217,12 @@ global class AccountWS_EFSAppManager {
         Program__c onlineApplicationProgram = null;
         OnlineApplicationOffer__c onlineApplicationOffer = null;
 
+        Boolean hasSmartfunds = false;
         Set<String> selectedOtherServices = new Set<String>();
         if(onlineApplication.Other_Services__c != null) {
             for(String product : (onlineApplication.Other_Services__c).split(';')) {
                 selectedOtherServices.add(product.toLowerCase());
+                if(product.containsIgnoreCase('smartfunds')) hasSmartfunds = true;
             }
         }
 
@@ -431,9 +433,9 @@ global class AccountWS_EFSAppManager {
 
         //who knows what values to send to EFS? nobody!
         if(selectedOtherServices != null){
-            if(selectedOtherServices.contains('smartfunds') &&
-                myContract != null && myContract.Funding_Option__c != null) {
-                Boolean hasPayroll = selectedOtherServices.contains('payroll');
+            if(hasSmartfunds &&
+                    myContract != null && myContract.Funding_Option__c != null) {
+                Boolean hasPayroll = selectedOtherServices.contains('smartfunds payroll');
                 switch on myContract.Funding_Option__c {
                     when 'ATM' {
                         if (hasPayroll) jsonPayload.writeBooleanField('payrollAtm', true);
