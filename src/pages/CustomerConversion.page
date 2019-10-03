@@ -335,10 +335,23 @@
                                                 <label><b>{!$Label.BPAV_Postal_Code}</b></label><br/>
                                                 <apex:InputField id="physicalPostalCode"
                                                                  styleClass="styled-input form-control {!IF(OR(languageCode == 'fr_ca', languageCode == 'en_ca'), 'postalCanada', 'postal')}"
-                                                                 html-data-parsley-required="true" html-tabindex="13" html-data-parsley-pattern="[0-9]{5}(?:[-\s][0-9]{4})?"
+                                                                 html-data-parsley-required="true" html-tabindex="13" html-data-parsley-validate-zipcode=""
                                                                  html-data-parsley-error-message="{!$Label.BOCA_Invalid_Postal_Code}"
                                                                  value="{!conversionData.Physical_Postal_Code__c}" style="text-transform: uppercase;" />
                                             </div>
+                                            <script>
+                                                var language = "{!languageCode}";
+                                                window.Parsley.addValidator('validateZipcode', {
+                                                    validateString: function(value) {
+                                                        if (language.includes('_ca') && /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/i.test(value)) { // Canada Postal Code Format
+                                                            return true;
+                                                        } else if (/^(\d{5}([\-]\d{4})?)$/.test(value)) { // United States Zip Code Format
+                                                            return true;
+                                                        } else {
+                                                            return false;
+                                                        }
+                                                    }});
+                                            </script>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -394,7 +407,7 @@
                                                     <label><b>{!$Label.BPAV_Postal_Code}</b></label><br/>
                                                     <apex:InputField id="mailingPostalCode"
                                                                      styleClass="styled-input form-control {!IF(OR(languageCode == 'fr_ca', languageCode == 'en_ca'), 'postalCanada', 'postal')}"
-                                                                     html-data-parsley-required="true" html-tabindex="19" html-data-parsley-pattern="[0-9]{5}(?:[-\s][0-9]{4})?"
+                                                                     html-data-parsley-required="true" html-tabindex="19" html-data-parsley-validate-zipcode=""
                                                                      html-data-parsley-error-message="{!$Label.BOCA_Invalid_Postal_Code}"
                                                                      value="{!conversionData.Mailing_Postal_Code__c}" style="text-transform: uppercase;" />
                                                 </div>

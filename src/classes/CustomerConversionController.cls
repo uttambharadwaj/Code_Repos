@@ -320,6 +320,7 @@ global with sharing class CustomerConversionController {
                 PageReference conversionConfirmation = Page.CustomerConversion;
                 conversionConfirmation.getParameters().put('confirmationNumber', conversionConfirmationNumber);
                 conversionConfirmation.getParameters().put('pgm', program.Brand_Short_Name__c);
+                conversionConfirmation.getParameters().put('lang', languageCode);
                 conversionConfirmation.setRedirect(true);
                 return conversionConfirmation;
 
