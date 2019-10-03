@@ -654,6 +654,7 @@
         //Create the data table data
                 var i = 1;
         		var dataTableTxns = transactionMap.map(authlog => {
+                    console.log("### authlog="+JSON.stringify(authlog));
 				var siteInfo = authlog.merchantSite + String.fromCharCode(10);
 				if (authlog.merchantAddress != null) {
 					if (authlog.merchantAddress.orgName != null) siteInfo = siteInfo + authlog.merchantAddress.orgName + String.fromCharCode(10);
