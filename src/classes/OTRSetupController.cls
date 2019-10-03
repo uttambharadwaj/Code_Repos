@@ -1,4 +1,4 @@
- /*
+/*
 Description:        Controller Class for OTRSetup VF Page
                     (Page 2 of Online Application for OTRBOCA)
 Test Classes:       OTRBOCATest
@@ -231,7 +231,7 @@ public without sharing class OTRSetupController {
             if (!String.isEmpty(customerParameter)) {
 
                 List<OnlineApplication__c> onlineApplications = [
-                        SELECT Id, Name, Program__c, Offer__c, Other_Services__c, Invoice_Delivery_Method_Email__c, Credit_Line_Requested__c, Billing_Cycle__c, Invoice_Delivery_Method__c,
+                        SELECT Id, Name, Account__c, Program__c, Offer__c, Other_Services__c, Invoice_Delivery_Method_Email__c, Credit_Line_Requested__c, Billing_Cycle__c, Invoice_Delivery_Method__c,
                                 Business_Street_Address__c, City__c, State__c, Country__c, Zip_Code__c, Number_of_Cards_Needed__c, Embossing_Line_1_Company_Name__c, Number_of_Drivers__c,
                                 Driver__c, Odometer__c, Trip__c, Unit__c, ATM__c, PlusCheks__c, Daily_Fuel_Gallons__c, Daily_Fuel_Limit__c, Daily_Cash_Limit__c, Daily_DEF_Limit__c, Daily_Misc_Limit__c, Business_Address_Line_2__c,
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
@@ -443,7 +443,7 @@ public without sharing class OTRSetupController {
 
             onlineApplication.Number_of_Cards_Needed__c = numberOfCards;
 
-            if (selectedOtherServices != null) {
+            if (selectedOtherServices != null && selectedOtherServices != '') {
                 onlineApplication.Other_Services__c = selectedOtherServices.replaceAll(',',';');
             }
 
@@ -451,8 +451,9 @@ public without sharing class OTRSetupController {
                 onlineApplication.Allowed_Merchant_Categories__c = selectedMerch.replaceAll(',',';');
             }
 
-            if (selectedFundingOptions != null) {
+            if (selectedFundingOptions != null && selectedFundingOptions != '' && onlineApplication.Carrier_ID_Number__c != null) {
                 onlineApplication.Funding_Options__c = selectedFundingOptions.replaceAll(',',';');
+                createContracts(onlineApplication);
             }
 
             upsert onlineApplication;
@@ -642,7 +643,7 @@ public without sharing class OTRSetupController {
             }
 
             onlineApplication.PDF_Token__c = '';
-
+            AccountWS_EFSAppManager.integrationRunning = true; //adding this so it doesn't get queued up again; submitForm is called first and will queue it up initially
             upsert onlineApplication;
 
         } catch (Exception e) {
@@ -658,6 +659,24 @@ public without sharing class OTRSetupController {
         }
         return redirect;
 
+    }
+
+    private static void createContracts(OnlineApplication__c onlineApp){
+        List<Contract__c> myContracts = new List<Contract__c>();
+        Map<String, Contract__c> contractMap = new Map<String, Contract__c>();
+        for(Contract__c c : [SELECT Id, Funding_Option__c FROM Contract__c WHERE Online_Application__c = :onlineApp.Id])
+            contractMap.put(c.Funding_Option__c, c);
+        List<String> myOptions = onlineApp.Funding_Options__c.split(';');
+        for(String s : myOptions){
+            Contract__c myContract;
+            if(contractMap.containsKey(s)) myContract = contractMap.get(s);
+            else myContract = new Contract__c();
+            myContract.Funding_Option__c = s;
+            myContract.Online_Application__c = onlineApp.Id;
+            myContract.Account__c = onlineApp.Account__c;
+            myContracts.add(myContract);
+        }
+        upsert myContracts;
     }
 
 }
