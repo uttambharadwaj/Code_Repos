@@ -611,11 +611,11 @@ public class OTRBOCAController {
                 Boolean carrierNotFound = true;
 
                 for(Account a : [SELECT Id, Name, BillingStreet, Phone,
-                (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
-                        Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
-                FROM Online_Applications__r)
-                FROM Account
-                WHERE Carrier_ID__c = :carrierID]) {
+                                    (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
+                                            Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
+                                    FROM Online_Applications__r)
+                                    FROM Account
+                                    WHERE Carrier_ID__c = :carrierID]) {
                     //start counting how many account fields match the corresponding application field
                     Integer matchingAccFields = 0;
                     //set value to true so that each iteration can restart the process
@@ -626,12 +626,12 @@ public class OTRBOCAController {
                     }
                     System.debug('Acc Name: ' + a.Name + ' vs App Legal Business Name: ' + onlineApplication.Legal_Business_Name__c + ' Match counter after Account: ' + matchingAccFields);
 
-                    if(a.BillingStreet != null && a.BillingStreet == onlineApplication.Business_Street_Address__c) {
+                    if(a.BillingStreet == onlineApplication.Business_Street_Address__c) {
                         matchingAccFields ++;
                     }
                     System.debug('Acc BillingStreet: ' + a.BillingStreet + ' vs App Address Line 1: ' + onlineApplication.Business_Street_Address__c + ' Match counter after Address: ' + matchingAccFields);
 
-                    if(a.Phone != null && a.Phone.replaceAll('\\D','') == onlineApplication.Phone_Number__c.replaceAll('\\D','')) {
+                    if(a.Phone.replaceAll('\\D','') == onlineApplication.Phone_Number__c.replaceAll('\\D','')) {
                         matchingAccFields ++;
                     }
                     System.debug('Acc Phone: ' + a.Phone + ' vs App Phone: ' + onlineApplication.Phone_Number__c + 'Match counter after Phone: ' + matchingAccFields);

@@ -443,7 +443,7 @@ public without sharing class OTRSetupController {
 
             onlineApplication.Number_of_Cards_Needed__c = numberOfCards;
 
-            if (selectedOtherServices != null) {
+            if (selectedOtherServices != null && selectedOtherServices != '') {
                 onlineApplication.Other_Services__c = selectedOtherServices.replaceAll(',',';');
             }
 
@@ -451,7 +451,7 @@ public without sharing class OTRSetupController {
                 onlineApplication.Allowed_Merchant_Categories__c = selectedMerch.replaceAll(',',';');
             }
 
-            if (selectedFundingOptions != null) {
+            if (selectedFundingOptions != null && selectedFundingOptions != '' && onlineApplication.Carrier_ID_Number__c != null) {
                 onlineApplication.Funding_Options__c = selectedFundingOptions.replaceAll(',',';');
                 createContracts(onlineApplication);
             }
@@ -643,7 +643,7 @@ public without sharing class OTRSetupController {
             }
 
             onlineApplication.PDF_Token__c = '';
-
+            AccountWS_EFSAppManager.integrationRunning = true; //adding this so it doesn't get queued up again; submitForm is called first and will queue it up initially
             upsert onlineApplication;
 
         } catch (Exception e) {
