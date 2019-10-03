@@ -468,7 +468,7 @@ public class BOCAFormTriggerHandler {
 
             if(f.Confirmation_Email_Sent__c == false && f.Confirmation_Email_Template__c != null) {
 
-                sendConfirmationEmail(f.Id, contact.Id, f.Confirmation_Email_Template__c, f.Communications_Preference__c);
+                sendConfirmationEmail(f.Id, contact.Id, f.Confirmation_Email_Template__c, f.Branding_Utility__c);
 
                 f.Confirmation_Email_Sent__c = true;
 
@@ -500,11 +500,11 @@ public class BOCAFormTriggerHandler {
 
     @future
     public static void sendConfirmationEmail(Id creditAppId, Id contactId, Id templateId) {
-        sendConfirmationEmail(creditAppId, contactId, templateId, 'english');
+        sendConfirmationEmail(creditAppId, contactId, templateId, null);
     }
 
     @future
-    public static void sendConfirmationEmail(Id creditAppId, Id contactId, Id templateId, String lang) {
+    public static void sendConfirmationEmail(Id creditAppId, Id contactId, Id templateId, Id brandingUtilityId) {
         
         System.debug('### ' + creditAppId);
         System.debug('### ' + contactId);
@@ -515,17 +515,28 @@ public class BOCAFormTriggerHandler {
         bocaIdMap = BOCA_IDs__c.getAll();
         
         BOCA_IDs__c singleBocaId = new BOCA_IDs__c();
-        
+
         String replyTo = '';
-        
+        String brandingLanguage = 'en_us';
+
+        if (brandingUtilityId != null) {
+
+            BOCA_res__c brandingUtility = [SELECT Id, ISO_Code__c FROM BOCA_res__c WHERE Id = :brandingUtilityId];
+            if (String.isNotEmpty(brandingUtility.ISO_code__c)) {
+                brandingLanguage = brandingUtility.ISO_code__c;
+            }
+        }
+
         if(!bocaIdMap.isEmpty()){
             singleBocaId = bocaIdMap.get('BOCA IDS');
             replyTo = String.valueOf(singleBocaId.get('Email_Address_Noreply__c'));
 
-            // Currently to translate a email DisplayName you have to create a new org-wide address.
-            if (lang == 'french') {
+            // Sets the replyto noreply+LANGUAGE@wexinc.com - This is so that the email display name can be translated.
+            // If additional languages are needed, an org-wide default needs to first be created following correct format
+            // Example: noreply+fr@wexinc.com
+            if (brandingLanguage == 'fr_ca') {
                 Integer atPos = replyTo.indexOf('@');
-                replyTo = replyTo.left(atPos) + '+fr' + replyTo.right(replyTo.length() - atPos);
+                replyTo = replyTo.left(atPos) + '+' + brandingLanguage.substringBefore('_') + replyTo.right(replyTo.length() - atPos);
             }
         }
         
