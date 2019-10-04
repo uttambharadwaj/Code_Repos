@@ -218,11 +218,13 @@ global class AccountWS_EFSAppManager {
         OnlineApplicationOffer__c onlineApplicationOffer = null;
 
         Boolean hasSmartfunds = false;
+        Boolean hasMastercard = false;
         Set<String> selectedOtherServices = new Set<String>();
         if(onlineApplication.Other_Services__c != null) {
             for(String product : (onlineApplication.Other_Services__c).split(';')) {
                 selectedOtherServices.add(product.toLowerCase());
                 if(product.containsIgnoreCase('smartfunds')) hasSmartfunds = true;
+                if(product.containsIgnoreCase('mastercard')) hasMastercard = true;
             }
         }
 
@@ -612,15 +614,17 @@ global class AccountWS_EFSAppManager {
         // End of "infos"
 
         // Start of refresh limits
-        jsonPayload.writeFieldName('refreshLimits');
-        jsonPayload.writeStartObject();
-        if (onlineApplication.Daily_Amount_Requested__c != null) jsonPayload.writeNumberField('dailyAmount', onlineApplication.Daily_Amount_Requested__c);
-        if (onlineApplication.Daily_Transactions__c != null) jsonPayload.writeNumberField('dailyCount', onlineApplication.Daily_Transactions__c);
-        if (onlineApplication.Monthly_Amount_Requested__c != null) jsonPayload.writeNumberField('monthlyAmount', onlineApplication.Monthly_Amount_Requested__c);
-        if (onlineApplication.Monthly_Transactions__c != null) jsonPayload.writeNumberField('monthlyCount', onlineApplication.Monthly_Transactions__c);
-        if (onlineApplication.Weekly_Amount_Requested__c != null) jsonPayload.writeNumberField('weeklyAmount', onlineApplication.Weekly_Amount_Requested__c);
-        if (onlineApplication.Weekly_Transactions__c != null) jsonPayload.writeNumberField('weeklyCount', onlineApplication.Weekly_Transactions__c);
-        jsonPayload.writeEndObject();
+        if(hasMastercard) {
+            jsonPayload.writeFieldName('refreshLimits');
+            jsonPayload.writeStartObject();
+            if (onlineApplication.Daily_Amount_Requested__c != null) jsonPayload.writeNumberField('dailyAmount', onlineApplication.Daily_Amount_Requested__c);
+            if (onlineApplication.Daily_Transactions__c != null) jsonPayload.writeNumberField('dailyCount', onlineApplication.Daily_Transactions__c);
+            if (onlineApplication.Monthly_Amount_Requested__c != null) jsonPayload.writeNumberField('monthlyAmount', onlineApplication.Monthly_Amount_Requested__c);
+            if (onlineApplication.Monthly_Transactions__c != null) jsonPayload.writeNumberField('monthlyCount', onlineApplication.Monthly_Transactions__c);
+            if (onlineApplication.Weekly_Amount_Requested__c != null) jsonPayload.writeNumberField('weeklyAmount', onlineApplication.Weekly_Amount_Requested__c);
+            if (onlineApplication.Weekly_Transactions__c != null) jsonPayload.writeNumberField('weeklyCount', onlineApplication.Weekly_Transactions__c);
+            jsonPayload.writeEndObject();
+        }
         // End of "refresh limits"
 
         //start merchant category codes
@@ -648,21 +652,23 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStartArray();
 
-        jsonPayload.writeStartObject();
+        if(myFees.monthlyFee != null && Integer.valueOf(myFees.monthlyFee) > 0) {
+            jsonPayload.writeStartObject();
 
-        jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
-        jsonPayload.writeStringField('fee_id', MONTHLY_FEE);
-        if(myFees.monthlyFee != null) jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
-        jsonPayload.writeStringField('fee_level', '2');
-        jsonPayload.writeStringField('fee_type', '1');
-        jsonPayload.writeStringField('fee_max_times_per', '4');
-        jsonPayload.writeStringField('fee_max_times', '0');
-        jsonPayload.writeStringField('fee_min_start_per','4');
-        jsonPayload.writeStringField('fee_min_start','0');
-//        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null)  jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
-//        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
+            jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
+            jsonPayload.writeStringField('fee_id', MONTHLY_FEE);
+            jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
+            jsonPayload.writeStringField('fee_level', '2');
+            jsonPayload.writeStringField('fee_type', '1');
+            jsonPayload.writeStringField('fee_max_times_per', '4');
+            jsonPayload.writeStringField('fee_max_times', '0');
+            jsonPayload.writeStringField('fee_min_start_per', '4');
+            jsonPayload.writeStringField('fee_min_start', '0');
+            //        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null)  jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
+            //        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
-        jsonPayload.writeEndObject();
+            jsonPayload.writeEndObject();
+        }
 
         if(onlineApplication.Other_Services__c != null && (onlineApplication.Other_Services__c).contains('SmartFunds')) {
 
@@ -844,7 +850,7 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Credit_Line_Approved__c != null) {
             jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
             //if offer is parent funded, and credit line approved is null, then we send 0.
-        } else if (onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Approved__c == null) {
+        } else if ( onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c == 'Parent Funded' && onlineApplication.Credit_Line_Approved__c == null) {
             jsonPayload.writeNumberField('credit_line_amount', 0);
         }
 
