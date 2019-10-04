@@ -41,7 +41,7 @@ public class TriggerFactory{
     */
     public static Boolean disabledTriggers(Schema.sObjectType soType){
         
-        Automation_Settings__c setting = Automation_Settings__c.getOrgDefaults();
+        Automation_Settings__c setting = Automation_Settings__c.getInstance();
         if(setting.Disable_Apex_Triggers__c) return True;
 
         String fieldName = 'Disable_' + getObjTypeName(soType) + '_Trigger__c';
