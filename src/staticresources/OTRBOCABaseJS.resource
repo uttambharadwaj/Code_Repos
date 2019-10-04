@@ -591,7 +591,7 @@ function validateFleetForm() {
         }
     });
 
-    var otherServices = $j('[id$=otherServicesOffer]').val();
+    var otherServices = $j('[id$=selectedOtherServices]').val();
 
     if( (otherServices.includes('SmartFunds Payroll') || otherServices.includes('Smartfunds Non-Payroll'))  && (selectedFundingOptions == null || selectedFundingOptions.length < 1)) {
         $j('[id$=fundingOptions]').addClass('erroredInput').after('<div class="fieldErrorMessage">You must select at least one Funding Option.</div>');
