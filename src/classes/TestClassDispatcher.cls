@@ -78,15 +78,15 @@ public class TestClassDispatcher {
     @isTest static void testBOProngTriggerValidations(){
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
-
-    @isTest static void testCreateCampaignCode() {
-        CampaignCodeGeneratorTest.test_createCampaignCode();
+/*
+    @isTest static void testCampaignGetCode() {
+        CampaignCodeGeneratorTest.test_getCode();
     }
 
     @isTest static void testCampaignCodeGenerate() {
         CampaignCodeGeneratorTest.test_generateCode();
     }
-
+*/
     @isTest static void testCampaignProgramDelete(){
         CmpgnProgramTriggerTest.testCampaignProgramDelete();
     }
@@ -121,6 +121,14 @@ public class TestClassDispatcher {
 
     @isTest static void testExperianPGQueuableBad(){
         CreditUtilQueueable_ExperianPGTest.testBadRequests();
+    }
+
+    @isTest static void testCreditDecisionServiceGood(){
+        WSUtil_WSS2_CreditDecisionServiceTest.testGoodUpdate();
+    }
+
+    @isTest static void testCreditDecisionServiceBad(){
+        WSUtil_WSS2_CreditDecisionServiceTest.testBadUpdate();
     }
 
 }

@@ -1,61 +1,39 @@
 @isTest
-public class MockCalloutGenerator {
+public class MockCalloutGenerator implements HttpCalloutMock {
 
     private static final String EXPERIAN_REQUEST_ENDPOINT = 'experian_endpoint_returned_from_login_verification';
     private static final String NO_ENDPOINT_FOUND_FAILURE = 'the_requested_endpoint_was_not_found_so_this_fails';
 
-    public static MockRequest makeRequest(String myRequest){
-        switch on myRequest{
-            when 'basic'{
-                return new MockRequest(200,'Success','GoodBody',null); //code,status,body,headers
-            }
-            when 'expGood'{
-                return new MockRequest(200,'Success',getExpGoodBody(),null);
-            }
-            when 'expLogin'{
-                return new MockRequest(200,'Success',EXPERIAN_REQUEST_ENDPOINT,null);
-            }
-            when else {
-                return new MockRequest(555,'Failure',Blob.valueOf('Man, you are one pathetic loser. No offense.'),null);
-            }
-        }
+    public Map<String, HttpCalloutMock> requests;
 
+    public MockCalloutGenerator(String myRequest){
+        makeRequests(new Set<String>{myRequest});
     }
 
-    public static MockMultiRequest makeRequest(Set<String> myRequests){
-        Map<String, String> myMap = new Map<String, String>();
+    public MockCalloutGenerator(Set<String> myRequests){
+        makeRequests(myRequests);
+    }
+
+    private void makeRequests(Set<String> myRequests){
+        MockRequest myNull = new MockRequest(555,'Failure',Blob.valueOf('Man, you are one pathetic loser. No offense.'),null);
+        this.requests = new Map<String, HttpCalloutMock>{NO_ENDPOINT_FOUND_FAILURE=>myNull};
         for(String s : myRequests){
             switch on s{
                 when 'expGood'{
-                    myMap.put(EXPERIAN_REQUEST_ENDPOINT, s);
+                    this.requests.put(EXPERIAN_REQUEST_ENDPOINT, new MockRequest(200,'Success',getExpGoodBody(),null));
                 }
                 when 'expLogin'{
-                    Credit_Decision_Engine_Endpoints__mdt myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Experian_Toolkit'];
-                    myMap.put(myEndpoint.Endpoint_URL__c, s);
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Experian_Toolkit' LIMIT 1].Endpoint_URL__c;
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',EXPERIAN_REQUEST_ENDPOINT,null));   
                 }
             }
         }
-        return new MockMultiRequest(myMap);
     }
 
-    public class MockMultiRequest implements HttpCalloutMock{
-        Map<String, HttpCalloutMock> requests;
-
-        public MockMultiRequest(Map<String, HttpCalloutMock> requests){
-            this.requests = requests;
-        }
-
-        public MockMultiRequest(Map<String, String> requests){
-            this.requests = new Map<String, HttpCalloutMock>{NO_ENDPOINT_FOUND_FAILURE=>null};
-            for(String s : requests.keySet())
-                this.requests.put(s, makeRequest(requests.get(s)));
-        }
-
-        public HTTPResponse respond(HTTPRequest req){
-            HttpCalloutMock myMock = requests.get(req.getEndpoint());
-            if(myMock == null) myMock = requests.get(NO_ENDPOINT_FOUND_FAILURE);
-            return myMock.respond(req);
-        }
+    public HTTPResponse respond(HTTPRequest req){
+        HttpCalloutMock myMock = requests.get(req.getEndpoint());
+        if(myMock == null) myMock = requests.get(NO_ENDPOINT_FOUND_FAILURE);
+        return myMock.respond(req);
     }
 
     public class MockRequest implements HttpCalloutMock{
@@ -93,9 +71,9 @@ public class MockCalloutGenerator {
             }
             return myResponse;
         }
-
     }
 
+    //todo: move this to a static resource? or new apex class? 
     public static String getExpGoodBody(){
         String s = '<?xml version=\"1.0\" standalone=\"no\"?>'+
                     '<NetConnectResponse xmlns=\"http://www.experian.com/NetConnectResponse\">'+
