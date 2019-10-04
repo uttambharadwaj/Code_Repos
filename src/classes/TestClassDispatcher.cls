@@ -79,8 +79,8 @@ public class TestClassDispatcher {
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
 
-    @isTest static void testCampaignGetCode() {
-        CampaignCodeGeneratorTest.test_getCode();
+    @isTest static void testCreateCampaignCode() {
+        CampaignCodeGeneratorTest.test_createCampaignCode();
     }
 
     @isTest static void testCampaignCodeGenerate() {
