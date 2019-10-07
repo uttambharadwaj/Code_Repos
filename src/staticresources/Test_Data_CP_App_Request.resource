@@ -1,0 +1,4 @@
+ID,OPPORTUNITY__C,APPLICATION_STAGE__C,STATUS__C,COMPLIANCE_DECISION__C,PG_Required__c,Legal_Structure__c,Guarantor_Date_of_Birth__c,Guarantor_Social_Security_Number__c,Guarantor_First_Name__c,Guarantor_Last_Name__c,Guarantor_Residential_Address__c,Guarantor_Residential_City__c,Guarantor_State_Province__c,Guarantor_Residential_Postal_Code__c,Guarantor_Residential_Phone__c
+a0V180000016mO4EAI,0066C000005chKeQAI,Adjudication,Pending Decision,Decline,FALSE,Corporation,today-7500,111-11-1111,Frederick,Krueger,123 Main Street,King,NC,27201,1115551234
+a0V180000016mPKEAY,00618000009d3nFAAQ,Adjudication,Pending Decision,Decline,TRUE,Partnership,today-7500,111-11-1111,Maurice,Moss,123 Main Street,King,NC,27201,1115551234
+a0V5C000000gZdpUAE,0065C000004jwHkQAI,Adjudication,Pending Decision,Decline,TRUE,Corporation,today-7500,111-11-1111,Peter,File,123 Main Street,King,NC,27201,1115551234

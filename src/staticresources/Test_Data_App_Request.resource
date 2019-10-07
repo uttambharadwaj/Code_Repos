@@ -1,4 +1,4 @@
-ID,SALES_STAGE__C,OPPORTUNITY__C,SIEBEL_OPPTY__C,APPLICATION_STAGE__C,STATUS__C,COMPLIANCE_DECISION__C
-a0V180000016mO4EAI,04 - Application Received,0066C000005chKeQAI,,Adjudication,Pending Decision,Declined
-a0V180000016mPKEAY,04 - Application Received,00618000009d3nFAAQ,,Adjudication,Pending Decision,Declined
-a0V5C000000gZdpUAE,04 - Application Received,0065C000004jwHkQAI,Test,Adjudication,Pending Decision,Declined
+ID,SALES_STAGE__C,OPPORTUNITY__C,SIEBEL_OPPTY__C,APPLICATION_STAGE__C,STATUS__C,COMPLIANCE_DECISION__C,PG_Required__c,Legal_Structure__c,PERSONAL_GUARANTOR__C
+a0V180000016mO4EAI,04 - Application Received,0066C000005chKeQAI,,Adjudication,Pending Decision,Declined,FALSE,,0031800000YHoOZAA2
+a0V180000016mPKEAY,04 - Application Received,00618000009d3nFAAQ,,Adjudication,Pending Decision,Declined,TRUE,Proprietorship,0031800000YHoOZAA3
+a0V5C000000gZdpUAE,04 - Application Received,0065C000004jwHkQAI,Test,Adjudication,Pending Decision,Declined,TRUE,,0031800000YHoOZAA4

@@ -178,6 +178,19 @@
                     <a href="/home/home.jsp"><button class="slds-button slds-button_brand">Back to Salesforce</button></a>
                 </div>
         </div>
+
+
+        <div id="content" class="slds-scope slds-is-relative slds-container_large slds-container_center slds-p-around_xx-large">
+            <div class="slds-grid slds-grid_align-center">
+                <div class="slds-col slds-size_1-of-1">
+                    <div class="slds-text-heading_medium"><Strong>Announcement!</Strong></div>
+                    <br/>
+                    <apex:outputText value="{!$Label.SFDC_Support_Announcement_Message}" escape="false" />
+                </div>
+            </div>
+        </div>
+
+
             <div id="content" class="slds-scope slds-is-relative slds-container_large slds-container_center slds-p-around_xx-large">
                 <apex:outputPanel rendered="{!action == 'home'}">
                     <div class="slds-grid slds-grid_align-center">

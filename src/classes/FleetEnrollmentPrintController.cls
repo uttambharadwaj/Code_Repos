@@ -2,12 +2,20 @@ public class FleetEnrollmentPrintController {
 
     public String fleetEnrollmentId { get; set; }
     public String printToken { get; set; }
-    
+    public String languageCode {
+        get {
+            return ApexPages.CurrentPage().getParameters().get('lang');
+        }
+    }
+
     public FleetEnrollment__c fleetEnrollment {
         get { 
-        	FleetEnrollment__c fleetEnrollment = [SELECT Id, Billing_Full_Name__c, Billing_Phone__c, Billing_Email__c, Billing_Address_Line_1__c, Billing_Address_Line_2__c, 
+            FleetEnrollment__c fleetEnrollment = [
+                    SELECT Id, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Phone__c, Billing_Email__c, Billing_Address_Line_1__c, Billing_Address_Line_2__c,
                                                   Billing_City__c, Billing_State__c, Billing_Postal_Code__c, Company_Name__c, Confirmation_Number__c, Embossing_Company_Name__c, Embossing_Second_Line__c, 
-                                                  Driver_ID_Random__c, Number_Of_Vehicles__c, Program__c, Report_VehicleId__c, Reporting_Dept__c, Report_LicensePlt__c, Report_VehicleDesc__c  
+                            Number_Of_Vehicles__c, Opportunity_Number__c, Program__c, Report_VehicleId__c, Reporting_Dept__c, Report_LicensePlt__c, Report_VehicleDesc__c,
+                            Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c,
+                            Card_Shipping_Attention__c, Driver_ID_Random__c
                                                   FROM FleetEnrollment__c WHERE Id = :fleetEnrollmentId and Print_Token__c = :printToken];
             return fleetEnrollment;
         }
@@ -15,7 +23,7 @@ public class FleetEnrollmentPrintController {
     
     public List<FleetEnrollment_Contact__c> fleetEnrollmentContacts {
         get {
-            List<FleetEnrollment_Contact__c> fleetEnrollmentContacts = [SELECT Full_Name__c, Email__c, Phone__c FROM FleetEnrollment_Contact__c WHERE Fleet_Enrollment__c = :fleetEnrollment.Id];
+            List<FleetEnrollment_Contact__c> fleetEnrollmentContacts = [SELECT First_Name__c, Last_Name__c, Email__c, Phone__c FROM FleetEnrollment_Contact__c WHERE Fleet_Enrollment__c = :fleetEnrollment.Id];
             return fleetEnrollmentContacts;
         }
     }

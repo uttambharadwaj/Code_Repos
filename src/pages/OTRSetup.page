@@ -314,24 +314,26 @@
 
                             <!--BEGIN AVAILABLE PRODUCTS SECTION-->
                             <apex:outputPanel rendered="{!IF(OR(CONTAINS(onlineApplicationOffer.Other_Services__c, 'SmartFunds Payroll'), CONTAINS(onlineApplicationOffer.Other_Services__c, 'Smartfunds Non-Payroll')), true, false)}">
-                                <div class="twelve columns clearfix">
-                                    <b>Funding Options</b>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <fieldset class="slds-form-element">
-                                    <div class="slds-form-element__control" id="fundingOptions">
-                                        <apex:repeat value="{!fundingOptions}" var="funOpt" id="repeatFun">
-                                            <div class="slds-checkbox three columns">
-                                                <label class="styled-label" for="{!funOpt.value}">{!funOpt.label}</label>
-                                                <input type="checkbox" id="{!funOpt.value}" class="fundingOptions" name="myFunOpt" value="{!funOpt.value}" onchange="changeSelectedFunOptions(this)"/>
-                                            </div>
-                                        </apex:repeat>
+                                <div id="transferOptions" style="display:none;">
+                                    <div class="twelve columns clearfix">
+                                        <b>Funding Options</b>
                                     </div>
-                                </fieldset>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <fieldset class="slds-form-element">
+                                        <div class="slds-form-element__control" id="fundingOptions">
+                                            <apex:repeat value="{!fundingOptions}" var="funOpt" id="repeatFun">
+                                                <div class="slds-checkbox three columns">
+                                                    <label class="styled-label" for="{!funOpt.value}">{!funOpt.label}</label>
+                                                    <input type="checkbox" id="{!funOpt.value}" class="fundingOptions" name="myFunOpt" value="{!funOpt.value}" onchange="changeSelectedFunOptions(this)"/>
+                                                </div>
+                                            </apex:repeat>
+                                        </div>
+                                    </fieldset>
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!otherServicesSize != 0}">

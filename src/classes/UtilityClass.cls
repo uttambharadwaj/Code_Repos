@@ -8,7 +8,8 @@
 *                   6/03/2019   escapeReservedChars, removeReservedChars
 *                   6/18/2019   going to fix test classes. in interim....do the unthinkable!
 *                   11/Sep/2019     MFarrell    added null check to "get bunch of record type ids using developer name"
-*/
+*                   10/01/2019  JHarrell Added getProvinces and getPicklistMap
+* */
 global class UtilityClass {
 
     /***************************ERROR LOG UTILITIES***************************/
@@ -60,6 +61,21 @@ global class UtilityClass {
     //get field mapping data with bare minimum requirements
     public static Field_Mapping_Parent__mdt getFieldMapping(String destObjName, String sourceObjName){
         return getFieldMapping(destObjName, sourceObjName, null);
+    }
+
+    // Given an object and field name, return a Map<String, String> where the key is the value and the value is the label. Useful for picklist translations
+    public static Map<String, String> getPicklistMap(String objName, String fieldName) {
+
+        Map<String, String> picklistEntries = new Map<String, String>();
+
+        SObjectType sObjType = ((SObject) Type.forName(objName).newInstance()).getSObjectType();
+        List<Schema.pickListEntry> pickListEntryList = sObjType.getDescribe().Fields.getMap().get(fieldName).getDescribe().getPicklistValues();
+
+        for (Schema.PicklistEntry pickListEntry : pickListEntryList) {
+            picklistEntries.put(pickListEntry.getValue(), pickListEntry.getLabel());
+        }
+
+        return picklistEntries;
     }
     /**************************END FIELD MAPPING UTILITIES********************/
 
@@ -146,6 +162,12 @@ global class UtilityClass {
         return searchVariables;
     }
 
+    // SELECT * Query Builder
+    public static String selectStar(String sobjectName) {
+        Set<String> fieldNames = Schema.describeSObjects(new List<String> {sobjectName})[0].fields.getMap().keyset();
+        List<String> iterableFields = new List<String>(fieldNames);
+        return String.format('SELECT {0} FROM {1} ', new List<String> {String.join(iterableFields, ','), sobjectName});
+    }
     /**************************END QUERY UTILITIES****************************/
 
     /******************************MISCELLANEOUS******************************/
@@ -193,6 +215,18 @@ global class UtilityClass {
         if(objType.getDescribe().getRecordTypeInfosByName().get(recTypeName) != null)
             return objType.getDescribe().getRecordTypeInfosByName().get(recTypeName).getRecordTypeId();
         return null;
+    }
+
+    //get provinces
+    public static List<String> getProvinces(String country) {
+
+        List<String> provinces = new List<String>();
+
+        if (country.equalsIgnoreCase('canada')) {
+            provinces = new List<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
+        }
+
+        return provinces;
     }
     /**************************END MISCELLANEOUS******************************/
 

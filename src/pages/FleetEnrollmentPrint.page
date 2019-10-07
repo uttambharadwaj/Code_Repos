@@ -1,4 +1,4 @@
-<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentPrintController">
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentPrintController" language="{!languageCode}">
 <html>
 <head>
     <!-- Meta! -->
@@ -87,9 +87,21 @@
         }
         
         .vehicleTable, .driverTable { width: 100%; border: 1px solid #ccc; }
-		.vehicleTable th,  .driverTable th { background: #eee; color: #777; padding: 3px 0 3px 8px; border-right: 1px solid #ccc; }
-		.vehicleTable td,  .driverTable td { width: 10% !important; padding: 4px 5px 4px 8px; border-right: 1px solid #ccc; }
+			.vehicleTable th,
+			.driverTable th {
+				background: #eee;
+				color: #777;
+				padding: 3px 0 3px 8px;
+				border-right: 1px solid #ccc;
+			}
         
+			.vehicleTable td,
+			.driverTable td {
+				width: 10% !important;
+				padding: 4px 5px 4px 8px;
+				border-right: 1px solid #ccc;
+			}
+
         .sectionHeader { padding: 10px 0; font-size: 16px; text-transform: uppercase; font-weight: bold !important; border-bottom: 1px solid #ddd; margin-bottom: 10px; }
         /* Content Section - END */
 
@@ -170,15 +182,18 @@
             	</h2>
 			</div>
             <div style="float: right;">
-            	Confirmation Number: {!fleetEnrollment.Confirmation_Number__c}
+          {!$Label.Fleet_Confirmation_Number} {!fleetEnrollment.Confirmation_Number__c}
             </div>
 		</div>
 		<div class="sectionHeader">
-           	Billing Information
+        {!$Label.Fleet_Billing_Information}
         </div>
 		<div class="twelve columns clearfix">
-        	<apex:outputText value="{!fleetEnrollment.Billing_Full_Name__c}" /><br/>
-            <apex:outputText value="{!fleetEnrollment.Billing_Email__c}"/><br/>
+		<apex:outputText value="{!fleetEnrollment.Billing_Contact_First_Name__c}" />&nbsp;
+        <apex:outputText value="{!fleetEnrollment.Billing_Contact_Last_Name__c}" />
+				<br/>
+				<apex:outputText value="{!fleetEnrollment.Billing_Email__c}" />
+        <br/>
             <apex:outputText value="{!fleetEnrollment.Billing_Phone__c}"/>
         </div>
         <div class="twelve columns clearfix">
@@ -194,91 +209,110 @@
         <div class="twelve columns clearfix">			
 				&nbsp;
         </div>
+			<div class="sectionHeader">
+				{!$Label.Fleet_Card_Shipping_Information}
+			</div>
+			<div class="twelve columns clearfix">
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_Attention__c}" />
+				<br/>
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_Address_Line_1__c}" />
+				<br/>
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_Address_Line_2__c}" />
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_City__c}," />&nbsp;
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_State__c}" />&nbsp;
+				<apex:outputText value="{!fleetEnrollment.Card_Shipping_Postal_Code__c}" />
+			</div>
+			<div class="twelve columns clearfix">
+				&nbsp;
+			</div>
 		<div class="twelve columns clearfix sectionHeader">
-               	Fleet Contacts    
+        {!$Label.Fleet_Contacts}
         </div>
 		<div class="twelve columns clearfix">
             <apex:dataTable styleClass="driverTable" value="{!fleetEnrollmentContacts}" var="fleetEnrollmentContact">
-				<apex:column style="width: 40%;" headerValue="Full Name">
-					<apex:outputText value="{!fleetEnrollmentContact.Full_Name__c}" />
+          <apex:column style="width: 40%;" headerValue="{!$Label.First_Name}">
+            <apex:outputText value="{!fleetEnrollmentContact.First_Name__c}" />
 				</apex:column>
-				<apex:column style="width: 40%;" headerValue="Email">
+          <apex:column style="width: 40%;" headerValue="{!$Label.Last_Name}">
+            <apex:outputText value="{!fleetEnrollmentContact.Last_Name__c}" />
+          </apex:column>
+          <apex:column style="width: 40%;" headerValue="{!$Label.Email}">
 					<apex:outputText value="{!fleetEnrollmentContact.Email__c}" />
 				</apex:column>
-				<apex:column style="width: 20%;" headerValue="Phone">
+          <apex:column style="width: 20%;" headerValue="{!$Label.Phone}">
 					<apex:outputText value="{!fleetEnrollmentContact.Phone__c}" />
 				</apex:column>
 			</apex:dataTable>
 		</div>
         <br/>
 		<div class="twelve columns clearfix sectionHeader">
-           	Card Embossing     
+        {!$Label.Fleet_Card_Embossing}
         </div>
         <div class="twelve columns clearfix">
-			<b>Number Of Vehicles: </b> {!fleetEnrollment.Number_Of_Vehicles__c}
+        <b>{!$Label.Fleet_Number_of_Vehicles}: </b> {!fleetEnrollment.Number_Of_Vehicles__c}
 		</div>
         <div class="twelve columns clearfix">			
 			&nbsp;
         </div>
         <div class="twelve columns clearfix">
-			<b>Company Name: </b> {!fleetEnrollment.Embossing_Company_Name__c}
+        <b>{!$Label.Fleet_Company_Name}: </b> {!fleetEnrollment.Embossing_Company_Name__c}
 		</div>
         <div class="twelve columns clearfix">			
 			&nbsp;
         </div>
         <div class="twelve columns clearfix">
-			<b>Optional Printing: </b> {!fleetEnrollment.Embossing_Second_Line__c}
+        <b>{!$Label.Optional_printing}: </b> {!fleetEnrollment.Embossing_Second_Line__c}
 		</div>
         <div class="twelve columns clearfix">			
 			&nbsp;
         </div>
 		<div class="twelve columns clearfix sectionHeader">
-          	Reporting Options
+        {!$Label.Fleet_Reporting_Options}
         </div>
 		<div class="twelve columns clearfix">
-			<b>Additional Fields:</b>
+        <b>{!$Label.Fleet_Additional_Fields}</b>
         </div><br/>
         <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == true}">
 			<div class="twelve columns clearfix" style="padding-left: 10px;">
-				Department
+          {!$Label.Department}
 			</div><br/>
         </apex:outputPanel>
         <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleDesc__c == true}">
             <div class="twelve columns clearfix" style="padding-left: 10px;">
-				Vehicle Description
+          {!$Label.Vehicle_Description}
 			</div><br/>
         </apex:outputPanel>
         <apex:outputPanel rendered="{!fleetEnrollment.Report_LicensePlt__c == true}">
            	<div class="twelve columns clearfix" style="padding-left: 10px;">
-				License Plate
+          {!$Label.License_Plate}
 			</div><br/>
 		</apex:outputPanel>
         <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleId__c == true}">
           	<div class="twelve columns clearfix" style="padding-left: 10px;">
-				Company Vehicle ID
+          {!$Label.Company_Vehicle_ID}
 			</div>
         </apex:outputPanel>
         <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == false && fleetEnrollment.Report_VehicleDesc__c == false && fleetEnrollment.Report_LicensePlt__c == false && fleetEnrollment.Report_VehicleId__c == false}">
            	<div class="twelve columns clearfix" style="padding-left: 10px;">
-				None
+          {!$Label.Fleet_None}
 			</div>
         </apex:outputPanel>
         <div class="twelve columns clearfix">			
 			&nbsp;
         </div>
 		<div class="twelve columns clearfix sectionHeader">
-          	 Vehicle Reporting Details and Card Controls
+        {!$Label.Fleet_Vehicle_Reporting_Details}
         </div>
 		<div class="twelve columns clearfix">
             <table class="vehicleTable" id="vehicleTable">
     			<thead>
-    				<th style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">Vehicle Id</th>
-        			<th>Card Controls</th>
-        			<th style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">Department</th>
-        			<th style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">Vehicle Description</th>
-        			<th style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">Plate #</th>
-					<th style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">Prompt Option</th>
-        			<th style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">Acceptance</th>
+            <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!$Label.Fleet_Vehicle_Id}</th>
+            <th>{!$Label.Card_Controls}</th>
+            <th style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!$Label.Department}</th>
+            <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!$Label.Vehicle_Description}</th>
+            <th style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!$Label.Fleet_Plate}</th>
+            <th style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Prompt_Option}</th>
+            <th style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Acceptance}</th>
     			</thead>
     			<tbody>
         			<apex:repeat value="{!fleetEnrollmentVehicles}" var="fleetEnrollmentVehicle">
@@ -298,14 +332,14 @@
         <br/>
         <apex:outputPanel rendered="{!program.Fleet_Enrollment_Disable_Driver_Page__c == false}">
 			<div class="twelve columns clearfix sectionHeader">
-	        	Driver Details
+          {!$Label.Fleet_Driver_Details}
     	    </div>
 			<div class="twelve columns clearfix">
                 <table class="driverTable" id="driverTable">
     				<thead>
-    					<th>First Name</th>
-        				<th>Last Name</th>
-        				<th style="display: {!IF(fleetEnrollment.Driver_ID_Random__c == true, 'none', 'table-cell')}">Driver ID #</th>
+              <th>{!$Label.First_Name}</th>
+              <th>{!$Label.Last_Name}</th>
+              <th style="display: {!IF(fleetEnrollment.Driver_ID_Random__c == true, 'none', 'table-cell')}">{!$Label.Fleet_Driver_ID}</th>
     				</thead>
     				<tbody>
         				<apex:repeat value="{!fleetEnrollmentDrivers}" var="fleetEnrollmentDriver">

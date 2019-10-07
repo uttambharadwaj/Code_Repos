@@ -25,13 +25,13 @@
         ]);
 
         component.set("v.caseHistoryColumnList", [
+            {label: "Create Date", fieldName: "CreatedDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: "false"}, sortable: true},
             {label: "Last Modified", fieldName: "LastModifiedDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: "false"}, sortable: true},
             {label: "Case Number", fieldName: "Anchor", type: "url", typeAttributes: {label:{fieldName: "CaseNumber"}, target:"_self"}, sortable: true},
             {label: "Status", fieldName: "Status", type: "text", sortable: true},
             {label: "Origin", fieldName: "Origin", type: "text", sortable: true},
             {label: "Contact", fieldName: "Contact_Name", type: "text", sortable: true},
             {label: "Subject", fieldName: "Subject", type: "text", sortable: true},
-            {label: "Case Type", fieldName: "RecordType_Name", type: "text"},
             {label: "Owner", fieldName: "Owner_Name", type: "text", sortable: true},
             {label: "Dept.", fieldName: "Department__c", type: "text", sortable: true}
         ]);

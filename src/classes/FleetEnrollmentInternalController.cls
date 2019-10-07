@@ -272,10 +272,24 @@ public with sharing class FleetEnrollmentInternalController {
             List<SelectOption> availableStateOptions = new List<SelectOption>();
             availableStateOptions.add(new SelectOption('', '--- Choose One ---'));
 
-            Schema.DescribeFieldResult stateOptions = WeFormObject__c.Billing_State__c.getDescribe();
-            List<Schema.PicklistEntry> picklistEntries = stateOptions.getPicklistValues();
-            for (Schema.PicklistEntry picklistValue : picklistEntries) {
-                availableStateOptions.add(new SelectOption(picklistValue.getLabel(), picklistValue.getLabel()));
+            // check billing state on the opportunity
+            if(opportunity.Billing_Country__c != null && opportunity.Billing_Country__c == 'CA') {
+
+                //if canada - build picklist of provinces
+                Set<String> caProvinceList = new Set<String> {
+                        'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'
+                };
+                for (String province : caProvinceList) {
+                    availableStateOptions.add(new SelectOption(province, province));
+                }
+
+            } else {
+                //else build pick list of US states from WeFormObject billing state picklist
+                Schema.DescribeFieldResult stateOptions = WeFormObject__c.Billing_State__c.getDescribe();
+                List<Schema.PicklistEntry> picklistEntries = stateOptions.getPicklistValues();
+                for (Schema.PicklistEntry picklistValue : picklistEntries) {
+                    availableStateOptions.add(new SelectOption(picklistValue.getLabel(), picklistValue.getLabel()));
+                }
             }
 
             return availableStateOptions;
@@ -310,7 +324,14 @@ public with sharing class FleetEnrollmentInternalController {
 
                 if (opportunityId != null) {
 
-                    List<Opportunity> opportunities = [SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c, Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name, Campaign_Program__r.Program__r.Finders_Fee__c, AccountId FROM Opportunity WHERE Id = :opportunityId];
+                    List<Opportunity> opportunities = [
+                            SELECT Id, Opportunity_Number__c, Name, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Street__c,
+                                    Billing_City__c, Billing_State__c, Billing_Zip_Postal_Code__c, Billing_Contact_Email__c, Billing_Contact_Phone__c,
+                                    Billing_Country__c, Campaign.Allow_Monthly_Accounting_Fee_Waiver__c, Campaign_Program__r.Program__c, Campaign.Name,
+                                    Campaign_Program__r.Program__r.Finders_Fee__c, AccountId
+                            FROM Opportunity
+                            WHERE Id = :opportunityId
+                    ];
 
                     if (opportunities.size() == 1) {
 
@@ -320,7 +341,11 @@ public with sharing class FleetEnrollmentInternalController {
 
                         fleetEnrollment = new FleetEnrollment__c();
 
-                        List<FleetEnrollment__c> fleetEnrollments = [SELECT Id, Embossing_Company_Name__c FROM FleetEnrollment__c WHERE Opportunity__c =: opportunity.Id or Debug_Opportunity_Parameter__c=:opportunity.Id];
+                        List<FleetEnrollment__c> fleetEnrollments = [
+                                SELECT Id, Embossing_Company_Name__c
+                                FROM FleetEnrollment__c
+                                WHERE Opportunity__c =: opportunity.Id OR Debug_Opportunity_Parameter__c=:opportunity.Id
+                        ];
 
                         if(fleetEnrollments.size() > 0) {
                             fleetEnrollment.Id = fleetEnrollments[0].Id;
@@ -540,6 +565,7 @@ public with sharing class FleetEnrollmentInternalController {
             fleetEnrollment.Billing_Address_Line_1__c = opportunity.Billing_Street__c;
             fleetEnrollment.Billing_City__c = opportunity.Billing_City__c;
             fleetEnrollment.Billing_State__c = opportunity.Billing_State__c;
+            fleetEnrollment.Billing_Country__c = opportunity.Billing_Country__c;
             fleetEnrollment.Billing_Postal_Code__c = opportunity.Billing_Zip_Postal_Code__c;
 
             if (fleetEnrollmentInformation.alternateCardShippingAddress) {

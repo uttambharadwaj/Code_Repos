@@ -12,7 +12,13 @@ public class FleetEnrollmentConfirmationController {
         }
     }
     
-    public FleetEnrollment__c fleetEnrollment { 
+    public String languageCode {
+        get {
+            return ApexPages.CurrentPage().getParameters().get('lang');
+        }
+    }
+
+    public FleetEnrollment__c fleetEnrollment {
         get {
             FleetEnrollment__c fleetEnrollment = [SELECT Id, Credit_Line_Amount__c, Confirmation_Number__c, Credit_Approved__c, Program__c FROM FleetEnrollment__c WHERE Print_Token__c = :printToken and Id = :applicantId];
             return fleetEnrollment;
