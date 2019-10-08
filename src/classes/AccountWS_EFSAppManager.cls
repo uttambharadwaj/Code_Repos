@@ -889,6 +889,8 @@ global class AccountWS_EFSAppManager {
             if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('scales', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Scales__c));
         }
 
+        if(myFees.atmWithdrawalFee != null) jsonPayload.writeNumberField('ATM-DENIAL-FEE', Integer.valueOf(myFees.atmWithdrawalFee));
+
         // End of "contract"
         jsonPayload.writeEndObject();
 
