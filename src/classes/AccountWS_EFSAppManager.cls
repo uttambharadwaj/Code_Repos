@@ -19,10 +19,12 @@
 
 global class AccountWS_EFSAppManager {
 
+    //likely todo: create a custom metadata to store these fee codes and other fee-based info
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
     public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
-    public final static String SHIPPING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
-    public final static String EMBOSSING_FEE = 'TBD_JUSTINE'; //Replace this text with the actual code when EFS provides it
+    public final static String SHIPPING_FEE = '24'; //value for testing only: Replace this with the actual code when EFS provides it
+    public final static String EMBOSSING_FEE = '434'; //value for testing only: Replace this with the actual code when EFS provides it
+    public final static String ATM_WITHDRAWAL_FEE = '105';
 
     public static Boolean integrationRunning { get; set; }
 
@@ -435,8 +437,7 @@ global class AccountWS_EFSAppManager {
 
         //who knows what values to send to EFS? nobody!
         if(selectedOtherServices != null){
-            if(hasSmartfunds &&
-                    myContract != null && myContract.Funding_Option__c != null) {
+            if(myContract != null && myContract.Funding_Option__c != null) {
                 Boolean hasPayroll = selectedOtherServices.contains('smartfunds payroll');
                 switch on myContract.Funding_Option__c {
                     when 'ATM' {
@@ -515,11 +516,6 @@ global class AccountWS_EFSAppManager {
 
         }
 */
-        if(onlineApplicationOffer.Online_Pay__c != null && onlineApplicationOffer.Online_Pay__c == true) {
-            jsonPayload.writeStringField('ach_allowed', 'Y');
-        } else {
-            jsonPayload.writeStringField('ach_allowed', 'N');
-        }
         jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('payrollDebit', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
@@ -614,7 +610,7 @@ global class AccountWS_EFSAppManager {
         // End of "infos"
 
         // Start of refresh limits
-        if(hasMastercard) {
+        if(hasMastercard){
             jsonPayload.writeFieldName('refreshLimits');
             jsonPayload.writeStartObject();
             if (onlineApplication.Daily_Amount_Requested__c != null) jsonPayload.writeNumberField('dailyAmount', onlineApplication.Daily_Amount_Requested__c);
@@ -652,9 +648,8 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStartArray();
 
-        if(myFees.monthlyFee != null && Integer.valueOf(myFees.monthlyFee) > 0) {
+        if(myFees.monthlyFee != null && Integer.valueOf(myFees.monthlyFee) > 0){
             jsonPayload.writeStartObject();
-
             jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
             jsonPayload.writeStringField('fee_id', MONTHLY_FEE);
             jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
@@ -714,8 +709,8 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Carrier_ID_Number__c != null && onlineApplicationOffer.Child_Funded_Issuer_ID__c != null) {
             jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Child_Funded_Issuer_ID__c);
         } else {
-            if(onlineApplicationOffer.Child_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('contract.issuer_id', onlineApplicationOffer.Child_Funded_Issuer_ID__c);
-            if(onlineApplicationOffer.Parent_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Parent_Funded_Issuer_ID__c);
+            if(onlineApplicationOffer.Child_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Child_Funded_Issuer_ID__c);
+            else if(onlineApplicationOffer.Parent_Funded_Issuer_ID__c != null) jsonPayload.writeStringField('issuer_id', onlineApplicationOffer.Parent_Funded_Issuer_ID__c);
         }
 
         if(onlineApplicationProgram.Lockbox_Value__c != null) jsonPayload.writeStringField('lockbox', onlineApplicationProgram.Lockbox_Value__c);
@@ -741,6 +736,11 @@ global class AccountWS_EFSAppManager {
             }
         }
 
+        if(onlineApplicationOffer.Online_Pay__c != null && onlineApplicationOffer.Online_Pay__c == true) {
+            jsonPayload.writeStringField('ach_allowed', 'Y');
+        } else {
+            jsonPayload.writeStringField('ach_allowed', 'N');
+        }
         if(onlineApplicationOffer.Account_Descriptor__c != null) jsonPayload.writeStringField('mgr_code', onlineApplicationOffer.Account_Descriptor__c);
 
         jsonPayload.writeStringField('service_charge', 'Y');
@@ -930,24 +930,37 @@ global class AccountWS_EFSAppManager {
         public String monthlyFee;
         public String mcShippingFee;
         public String mcEmbossingFee;
+        public String atmWithdrawalFee;
 
         public CardFees(OnlineApplication__c onlineApplication){
             if(onlineApplication.Opportunity__c != null) {
                 Map<String,Decimal> productOptionMap = new Map<String,Decimal>();
+                Map<String,Decimal> productStndrdMap = new Map<String,Decimal>();
                 if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null){
                     //get the fees based on quotelines. ideal.
                     for(SBQQ__QuoteLine__c ql : [SELECT Id, (SELECT Id,Requested_Price__c, SBQQ__ProductCode__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c LIMIT 1].SBQQ__LineItems__r)
                         if(ql.Requested_Price__c != null) productOptionMap.put(ql.SBQQ__ProductCode__c,ql.Requested_Price__c);
                 }
-                if(this.monthlyFee == null || this.mcShippingFee == null || this.mcEmbossingFee == null){
+                setFees(productOptionMap);
+                if(this.monthlyFee == null || this.mcShippingFee == null || this.mcEmbossingFee == null){ //seems like this may need to be redone
                     //get the fees based on OLI. not ideal.
-                    List<Id> productIds = new List<Id>();
+                    Set<Id> productIds = new Set<Id>();
                     //get the product bundles
                     for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
                         productIds.add(oli.Product2Id);
                     //for each bundle, get the options and create a map of product code to unitprice
-                    for(SBQQ__ProductOption__c po : [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees'])
-                        if(!productOptionMap.containsKey(po.SBQQ__ProductCode__c) && po.SBQQ__UnitPrice__c != null) productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c); //bundles should not be reusing product codes so this way will work. for now.
+                    for(SBQQ__ProductOption__c po : [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c, SBQQ__ConfiguredSKU__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees']) {
+                        if (!productOptionMap.containsKey(po.SBQQ__ProductCode__c) && po.SBQQ__UnitPrice__c != null && po.SBQQ__UnitPrice__c > 0) {
+                            productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c);
+                            productIds.remove(po.SBQQ__ConfiguredSKU__c);
+                        }
+                    }
+                    if(productIds.size()>0){
+                        //get the base level product price. this will be the default if no option exists
+                        for(PriceBookEntry pbe : [SELECT Id, UnitPrice, ProductCode FROM PricebookEntry WHERE Product2Id IN :productIds])
+                            if(!productOptionMap.containsKey(pbe.ProductCode) || pbe.PriceBook2.Name == 'F1 & EFS Partners')
+                                productOptionMap.put(pbe.ProductCode, pbe.UnitPrice);
+                    }
                 }
                 setFees(productOptionMap);
             }
@@ -958,6 +971,7 @@ global class AccountWS_EFSAppManager {
                 if(this.monthlyFee == null && poMap.containsKey(MONTHLY_FEE)) this.monthlyFee = String.valueOf(poMap.get(MONTHLY_FEE));
                 if(this.mcShippingFee == null && poMap.containsKey(SHIPPING_FEE)) this.mcShippingFee = String.valueOf(poMap.get(SHIPPING_FEE));
                 if(this.mcEmbossingFee == null && poMap.containsKey(EMBOSSING_FEE)) this.mcEmbossingFee = String.valueOf(poMap.get(EMBOSSING_FEE));
+                if(this.atmWithdrawalFee == null && poMap.containsKey(ATM_WITHDRAWAL_FEE)) this.atmWithdrawalFee = String.valueOf(poMap.get(ATM_WITHDRAWAL_FEE));
             }
         }
     }
