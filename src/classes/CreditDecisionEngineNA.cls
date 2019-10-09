@@ -268,7 +268,6 @@ global class CreditDecisionEngineNA {
                 // set result in object
                 naApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
                 naApplication.Lexis_Nexis_BIID_Score__c = lexisNexisBIIDResponse.biidScore;
-                naApplication.Lexis_Nexis_CVI_Score__c = lexisNexisBIIDResponse.cviScore;
 
                 // If we fail, go to Fraud Point
                 if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && naApplication.Personal_Guarantor__c != null) {
@@ -290,6 +289,7 @@ global class CreditDecisionEngineNA {
                     naApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
                     naApplication.Lexis_Nexis_FraudPoint_Result__c = (lexisNexisIIDResponse.fraudPointWorkflowResult).capitalize();
                     naApplication.Lexis_Nexis_IID_Result__c = (lexisNexisIIDResponse.iidWorkflowResult).capitalize();
+                    naApplication.Lexis_Nexis_CVI_Score__c = lexisNexisIIDResponse.cviScore;
 
                 }
 
@@ -516,7 +516,7 @@ global class CreditDecisionEngineNA {
 
 
             // Run counter-offer processes
-            naApplications = [SELECT Id, PG_Required__c, Personal_Guarantor__c, Personal_Guarantor_Mailing_Country__c, Opportunity__r.Pull_PG_Credit__c FROM Application_Request__c WHERE Id = :naApplicationId];
+            naApplications = [SELECT Id, PG_Required__c, Personal_Guarantor__c, Personal_Guarantor_Mailing_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM Application_Request__c WHERE Id = :naApplicationId];
 
             if (naApplications.size() > 0) {
 
@@ -525,6 +525,7 @@ global class CreditDecisionEngineNA {
                 if (appRequest.PG_Required__c == true
                         && appRequest.Personal_Guarantor__c != null
                         && (appRequest.Opportunity__r.Pull_PG_Credit__c == null || appRequest.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))
+                        && appRequest.PG_FICO_Score__c == null // the PG's credit has not already been run
                         && !TestUtils.isRunningTest()) {
 
                     if(appRequest.Personal_Guarantor_Mailing_Country__c == null || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('US') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('United States')) {

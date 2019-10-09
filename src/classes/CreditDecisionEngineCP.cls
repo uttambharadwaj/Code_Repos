@@ -262,7 +262,6 @@ global class CreditDecisionEngineCP {
                 // set result in object
                 cpApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
                 cpApplication.Lexis_Nexis_BIID_Score__c = lexisNexisBIIDResponse.biidScore;
-                cpApplication.Lexis_Nexis_CVI_Score__c = lexisNexisBIIDResponse.cviScore;
 
                 // If we fail, go to Fraud Point
                 if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && !String.isEmpty(cpApplication.Guarantor_Social_Security_Number__c)) {
@@ -284,6 +283,7 @@ global class CreditDecisionEngineCP {
                     cpApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
                     cpApplication.Lexis_Nexis_FraudPoint_Result__c = (lexisNexisIIDResponse.fraudPointWorkflowResult).capitalize();
                     cpApplication.Lexis_Nexis_IID_Result__c = (lexisNexisIIDResponse.iidWorkflowResult).capitalize();
+                    cpApplication.Lexis_Nexis_CVI_Score__c = lexisNexisIIDResponse.cviScore;
 
                 }
 
@@ -553,14 +553,16 @@ global class CreditDecisionEngineCP {
             }
 
 //             Run counter-offer processes
-            cpApplications = [SELECT Id, PG_Required__c, Guarantor_Country__c, Opportunity__r.Pull_PG_Credit__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];
+            cpApplications = [SELECT Id, PG_Required__c, Guarantor_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];
 
             if (cpApplications.size() > 0 && !TestUtils.isRunningTest()) {
 
                 CP_Application_Request__c cpApp = cpApplications[0];
 
                 if (cpApp.PG_Required__c == true
-                        && (cpApp.Opportunity__r.Pull_PG_Credit__c == null || cpApp.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))) {
+                        && (cpApp.Opportunity__r.Pull_PG_Credit__c == null || cpApp.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))
+                        && cpApp.PG_FICO_Score__c == null // the PG's credit has not already been run
+                        && !TestUtils.isRunningTest()) {
 
                     if (cpApp.Guarantor_Country__c == null || (cpApp.Guarantor_Country__c).equalsIgnoreCase('US')) {
                         System.debug('Running Experian...');

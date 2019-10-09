@@ -591,9 +591,9 @@ function validateFleetForm() {
         }
     });
 
-    var otherServices = $j('[id$=otherServicesOffer]').val();
+    var otherServices = $j('[id$=selectedOtherServicesValue]').val();
 
-    if( (otherServices.includes('SmartFunds Payroll') || otherServices.includes('Smartfunds Non-Payroll'))  && (selectedFundingOptions == null || selectedFundingOptions.length < 1)) {
+    if(otherServices != null && otherServices.length > 0 && (selectedFundingOptions == null || selectedFundingOptions.length < 1)) {
         $j('[id$=fundingOptions]').addClass('erroredInput').after('<div class="fieldErrorMessage">You must select at least one Funding Option.</div>');
         $j('[id$=fundingOptions]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
         hasErrors = true;
@@ -719,9 +719,11 @@ function prodSelection(myProduct){
         selectedProducts.splice(myIndex,1);
     }
     $j("[id$=selectedOtherServicesValue]").val(selectedProducts);
-
-    if(selectedProducts.join(";").includes('Fleet MasterCard') || selectedProducts.join(";").includes('SmartFunds') || selectedProducts.join(";").includes('Smartfunds'))
-        $j("[id$=allowedMerchantCategories").show();
-    else
-        $j("[id$=allowedMerchantCategories").hide();
+    if(selectedProducts.length > 0) $j("[id$=transferOptions]").show();
+    else $j("[id$=transferOptions]").hide();
+    if(selectedProducts.join(";").includes('Fleet MasterCard') || selectedProducts.join(";").includes('SmartFunds') || selectedProducts.join(";").includes('Smartfunds')) {
+        $j("[id$=allowedMerchantCategories]").show();
+    } else {
+        $j("[id$=allowedMerchantCategories]").hide();
+    }
 }

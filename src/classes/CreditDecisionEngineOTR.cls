@@ -255,7 +255,6 @@ global class CreditDecisionEngineOTR {
                 // set result in object
                 onlineApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
                 onlineApplication.Lexis_Nexis_BIID_Score__c = lexisNexisBIIDResponse.biidScore;
-                onlineApplication.Lexis_Nexis_CVI_Score__c = lexisNexisBIIDResponse.cviScore;
 
                 // If we fail, go to Fraud Point
                 if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && !String.isEmpty(onlineApplication.AO_Address__c) && !String.isEmpty(onlineApplication.AO_City__c)
@@ -278,6 +277,7 @@ global class CreditDecisionEngineOTR {
                     onlineApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
                     onlineApplication.Lexis_Nexis_FraudPoint_Result__c = (lexisNexisIIDResponse.fraudPointWorkflowResult).capitalize();
                     onlineApplication.Lexis_Nexis_IID_Result__c = (lexisNexisIIDResponse.iidWorkflowResult).capitalize();
+                    onlineApplication.Lexis_Nexis_CVI_Score__c = lexisNexisIIDResponse.cviScore;
 
                 }
 
@@ -554,7 +554,7 @@ global class CreditDecisionEngineOTR {
             }
 
             // Run counter-offer processes
-            onlineApplications = [SELECT Id, PG_Required__c, AO_Country__c, Opportunity__r.Pull_PG_Credit__c FROM OnlineApplication__c WHERE Id = :onlineApplicationId LIMIT 1];
+            onlineApplications = [SELECT Id, PG_Required__c, AO_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_Score__c FROM OnlineApplication__c WHERE Id = :onlineApplicationId LIMIT 1];
 
             if (onlineApplications.size() > 0) {
 
@@ -562,6 +562,7 @@ global class CreditDecisionEngineOTR {
 
                 if (onlineApp.PG_Required__c == true
                         && (onlineApp.Opportunity__r.Pull_PG_Credit__c == null || onlineApp.Opportunity__r.Pull_PG_Credit__c.equalsIgnoreCase('Yes'))
+                        && onlineApp.PG_Score__c == null // the PG's credit has not already been run
                         && !TestUtils.isRunningTest()) {
 
                     if(onlineApp.AO_Country__c == null || (onlineApp.AO_Country__c).equalsIgnoreCase('US')) {

@@ -313,7 +313,7 @@
                             <!--END CARD INFORMATION SECTION-->
 
                             <!--BEGIN AVAILABLE PRODUCTS SECTION-->
-                            <apex:outputPanel rendered="{!IF(OR(CONTAINS(onlineApplicationOffer.Other_Services__c, 'SmartFunds Payroll'), CONTAINS(onlineApplicationOffer.Other_Services__c, 'Smartfunds Non-Payroll')), true, false)}">
+                            <div id="transferOptions" style="display:none;">
                                 <div class="twelve columns clearfix">
                                     <b>Funding Options</b>
                                 </div>
@@ -333,7 +333,7 @@
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
-                            </apex:outputPanel>
+                            </div>
                             <apex:outputPanel rendered="{!otherServicesSize != 0}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">

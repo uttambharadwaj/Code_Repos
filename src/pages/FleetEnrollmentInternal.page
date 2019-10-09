@@ -262,6 +262,7 @@
 				$j('.ssn').mask('000-00-0000');
 				$j('.date').mask('00/00/0000');
 				$j('.postal').mask('00000-0000');
+				$j('.postalCanada').mask('A0A-0A0');
 				$j('.money').mask('A', {
 					translation: {
 						'A': {pattern: /[0-9\\.,]+/, recursive: true}
@@ -271,6 +272,11 @@
 				$j('.datePicker').datepicker();
 
 
+				if(country.toUpperCase() == "CA") {
+					$j(".postal").each(function() {
+						$j(this).addClass('postalCanada').removeClass('postal');
+					});
+				}
 			}
 
 			function triggerFileBrowse(targetFileElement, targetFileNameElement, visibleFileNameElement) {
@@ -396,6 +402,8 @@
 				}
 			}
 
+			window.country = '{!Opportunity.Billing_Country__c}';
+
 		</script>
 
 	</head>
@@ -491,6 +499,8 @@
 												<br/>
 												{!opportunity.Billing_Street__c}<br/>
 												{!opportunity.Billing_City__c}, {!opportunity.Billing_State__c}
+												<br/>
+												{!opportunity.Billing_Country__c}
 												<br/>
 												{!opportunity.Billing_Zip_Postal_Code__c}<br/>
 											</dd>
@@ -932,7 +942,7 @@
 														</div>
 														<div class="slds-form-element__row">
 															<div class="slds-form-element slds-size_1-of-1">
-																<label class="slds-form-element__label" for="text-input-id-1">State</label>
+																<label class="slds-form-element__label" for="text-input-id-1">State / Province</label>
 																<div class="slds-form-element__control">
 																	<apex:selectList html-data-parsley-required="true" styleClass="slds-input" multiSelect="false" size="1" value="{!fleetEnrollmentInformation.cardShippingState}">
 																		<apex:selectOptions value="{!availableStateOptions}" />
@@ -1000,7 +1010,7 @@
 														</div>
 														<div class="slds-form-element__row">
 															<div class="slds-form-element slds-size_1-of-1">
-																<label class="slds-form-element__label" for="text-input-id-1">State</label>
+																<label class="slds-form-element__label" for="text-input-id-1">State / Province</label>
 																<div class="slds-form-element__control">
 																	<apex:selectList html-data-parsley-required="true" styleClass="slds-input" multiSelect="false" size="1" value="{!fleetEnrollmentInformation.specialShippingState}">
 																		<apex:selectOptions value="{!availableStateOptions}" />
