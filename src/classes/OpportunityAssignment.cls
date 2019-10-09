@@ -1,7 +1,12 @@
 public with sharing class OpportunityAssignment {
 
     @InvocableMethod(label='Opportunity Assignment Handler')
-    public static void applicationRequestDeniedHandler(List<Application_Request__c> deniedApplicationRequests) {
+    public static void applicationRequestDeniedDispatcher(List<Application_Request__c> deniedApplicationRequests) {
+        applicationRequestDeniedHandler(new Map<Id, SObject>(deniedApplicationRequests).keySet());
+    }
+
+    @Future
+    private static void applicationRequestDeniedHandler(Set<Id> deniedApplicationRequests) {
 
         List<Application_Request__c> criteriaMetApplicationRequests = new List<Application_Request__c>();
         List<String> allRoles = new List<String>();
@@ -10,7 +15,7 @@ public with sharing class OpportunityAssignment {
         for (Application_Request__c applicationRequest : [
                 SELECT Id,Opportunity__c,Decline_Letter_Types__c, Fraud_Flag__c, Opportunity__r.Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c,Opportunity__r.Opportunity_Number__c, Opportunity__r.Campaign_Program__r.Program__r.Enable_Opportunity_Auto_Assignment__c, Opportunity__r.Owner.Alias, Opportunity__r.StageName
                 FROM application_request__c
-                WHERE id IN :new Map<Id, SObject>(deniedApplicationRequests).keySet()
+                WHERE id IN :deniedApplicationRequests
         ]) {
 
             if (applicationRequest.Opportunity__c != null && applicationRequest.Opportunity__r.Campaign_Program__c != null && applicationRequest.Opportunity__r.Campaign_Program__r.Program__c != null) {
@@ -18,14 +23,13 @@ public with sharing class OpportunityAssignment {
                 Boolean autoAssignmentEnabled = applicationRequest.Opportunity__r.Campaign_Program__r.Program__r.Enable_Opportunity_Auto_Assignment__c;
                 if (autoAssignmentEnabled) {
 
-                    Boolean opportunityOwnerIsIntegrations = applicationRequest.Opportunity__r.owner.alias == 'sinte';
+                    Boolean opportunityOwnerIsIntegrations = applicationRequest.Opportunity__r.owner.alias != 'sinte';
                     Boolean notDeclinedAppLetterType = applicationRequest.Decline_Letter_Types__c != 'Declined Application';
                     Boolean opportunityStageSigned = applicationRequest.Opportunity__r.StageName == '5) Signed';
                     Boolean fraudCheckFalse = applicationRequest.Fraud_Flag__c == false;
-
-                    if (opportunityOwnerIsIntegrations && notDeclinedAppLetterType && opportunityStageSigned && fraudCheckFalse) {
+                    Boolean hasRoleAssignment = applicationRequest.Opportunity__r.Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c != null;
+                    if (opportunityOwnerIsIntegrations && notDeclinedAppLetterType && opportunityStageSigned && fraudCheckFalse && hasRoleAssignment) {
                         criteriaMetApplicationRequests.add(applicationRequest);
-                        // TODO Figure out how to handle empty Opportunity_Role_Assignment__c
                         allRoles.add(applicationRequest.Opportunity__r.Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c);
                         allOpportunityIds.add(applicationRequest.Opportunity__c);
                     }
@@ -39,7 +43,8 @@ public with sharing class OpportunityAssignment {
 
     private static void opportunityAssignments(List<Application_Request__c> applicationRequests, List<String> allRoles, List<Id> allOpportunityIds) {
         List<Opportunity> opportunitiesToUpdate = new List<Opportunity>();
-        Map<String, List<User>> userRoleMap = new Map<String, List<User>>();
+        Map<String, List<User>> userRoleMap = new Map<String, List<User>>(); // Key: Users Role Name Value: User
+        Map<String, Opportunity_Assignments__c> opportunityAssignmentMap = new Map<String, Opportunity_Assignments__c>(); // Key: Role Name Value: Opt Assignment Record
 
         // Get all needed user roles/users in a map where the key is the role.
         for (User user : [
@@ -56,21 +61,62 @@ public with sharing class OpportunityAssignment {
             userRoleMap.get(user.UserRole.Name).add(user);
         }
 
+        // Get all needed Opportunity Assignments
+        for (Opportunity_Assignments__c opportunityAssignment : [
+                SELECT Id, Name, Last_Assigned_User__c
+                FROM Opportunity_Assignments__c
+                WHERE Name IN :allRoles
+        ]) {
+            opportunityAssignmentMap.put(opportunityAssignment.Name, opportunityAssignment);
+        }
+
         // Get all needed opportunities
-        Map<Id, Opportunity> opportunityMap = new Map<Id, Opportunity>([ SELECT Id, OwnerId, Opportunity_Number__c, Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c FROM Opportunity WHERE Id IN :allOpportunityIds]);
+        Map<Id, Opportunity> opportunityMap = new Map<Id, Opportunity>([SELECT Id, OwnerId, Opportunity_Number__c, Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c FROM Opportunity WHERE Id IN :allOpportunityIds]);
 
         for (Application_Request__c applicationRequest : applicationRequests) {
 
             Opportunity opportunity = opportunityMap.get(applicationRequest.Opportunity__c);
-            List<User> roleUsers = userRoleMap.get(opportunity.Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c);
+            String userRole = opportunity.Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c;
+            List<User> roleUsers = userRoleMap.get(userRole);
 
-            Integer optNumber = Integer.valueOf(opportunity.Opportunity_Number__c.substringAfter('-'));
 
-            optNumber = Math.mod(optNumber, roleUsers.size());
-            opportunity.OwnerId = roleUsers[optNumber].Id;
+            if (opportunityAssignmentMap.get(userRole) == null) {
+                opportunityAssignmentMap.put(userRole, new Opportunity_Assignments__c(Name = userRole));
+            }
+
+            Opportunity_Assignments__c opportunityAssignment = opportunityAssignmentMap.get(userRole);
+            Integer indexOfNextUser = getLastUserIndex(roleUsers, opportunityAssignment.Last_Assigned_User__c) +1;
+
+            opportunity.OwnerId = roleUsers[indexOfNextUser].Id;
+            opportunityAssignment.Last_Assigned_User__c = roleUsers[indexOfNextUser].Id;
+            System.debug('assign user: ' + roleUsers[indexOfNextUser]);
+            System.debug(roleUsers);
+            opportunityAssignmentMap.put(userRole, opportunityAssignment);
 
             opportunitiesToUpdate.add(opportunity);
         }
-        update opportunitiesToUpdate;
+        try {
+            upsert opportunityAssignmentMap.values();
+            update opportunitiesToUpdate;
+        } catch (Exception e) {
+            System.debug(e);
+            insert UtilityClass.logInternalError(e, '', 'OpportunityAssignment', false, '', String.valueOf(new Map<Id, SObject>(applicationRequests).keySet()));
+        }
+    }
+
+    private static Integer getLastUserIndex(List<User> users, Id lastAssignedUser) {
+
+        if (lastAssignedUser != null) {
+            Integer count = 0;
+
+            for (User user : users) {
+
+                if (user.id == lastAssignedUser) {
+                    return count >= users.size()-1 ? -1 : count;
+                }
+                count++;
+            }
+        }
+        return -1;
     }
 }

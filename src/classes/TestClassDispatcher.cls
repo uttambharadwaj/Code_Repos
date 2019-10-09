@@ -90,19 +90,19 @@ public class TestClassDispatcher {
     @isTest static void testCampaignProgramDelete(){
         CmpgnProgramTriggerTest.testCampaignProgramDelete();
     }
-    
+
     @isTest static void testAttachmentUploadPass(){
         AttachmentUploadControllerTest.testGoodUpload();
     }
-    
+
     @isTest static void testAttachmentUploadFail(){
         AttachmentUploadControllerTest.testFailUpload();
     }
-    
+
     @isTest static void testAttachmentUploadBlah(){
         AttachmentUploadControllerTest.testNoUpload();
     }
-    
+
     @isTest static void testFleetEnrollmentOneToOne(){
         FleetEnrollmentController2Test.testFleetEnrollmentOneToOne();
     }
@@ -121,6 +121,10 @@ public class TestClassDispatcher {
 
     @isTest static void testExperianPGQueuableBad(){
         CreditUtilQueueable_ExperianPGTest.testBadRequests();
+    }
+
+    @isTest static void testAppRequestMeetsCriteria(){
+        OpportunityAssignmentTest.test_appRequestMeetsCriteria();
     }
 
 }
