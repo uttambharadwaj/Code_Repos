@@ -959,8 +959,8 @@ global class AccountWS_EFSAppManager {
                     }
                     if(productIds.size()>0){
                         //get the base level product price. this will be the default if no option exists
-                        for(PriceBookEntry pbe : [SELECT Id, UnitPrice, ProductCode FROM PricebookEntry WHERE Product2Id IN :productIds])
-                            if(!productOptionMap.containsKey(pbe.ProductCode) || pbe.PriceBook2.Name == 'F1 & EFS Partners')
+                        for(PriceBookEntry pbe : [SELECT Id, UnitPrice, ProductCode, PriceBook2.IsStandard FROM PricebookEntry WHERE Product2Id IN :productIds AND Pricebook2.IsStandard = true])
+                            if(!productOptionMap.containsKey(pbe.ProductCode))
                                 productOptionMap.put(pbe.ProductCode, pbe.UnitPrice);
                     }
                 }
