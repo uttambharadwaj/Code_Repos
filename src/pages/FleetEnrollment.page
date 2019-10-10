@@ -736,8 +736,8 @@
     <div id="header">
         <div class="container">
             <div class="row">
-                <div id="programName" class="six columns">{!brandingUtility.Program_Name__c}</div>
-                <div id="contactUs" class="six columns">
+                <div id="programName" class="seven columns">{!brandingUtility.Program_Name__c}</div>
+                <div id="contactUs" class="five columns">
                     <apex:outputText rendered="{!creditLineAmount != null}">
                         {!$Label.Questions_Call} {!program.Implementation_Team_Number__c}
                     </apex:outputText>
