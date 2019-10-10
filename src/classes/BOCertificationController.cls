@@ -754,6 +754,10 @@ public class BOCertificationController {
                     }
                     else if(saveForLater && formKey != null) { boEntity.Save_For_Later_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/BOCertification?pgm=' + programParameter + '&lang=' + languageCode + '&entityId=' + boEntity.Id + '&formKey=' + formKey + '&cacheControl=' + cacheControl; }
 
+                    if (userSessionId != null) {
+                        boEntity.Paper_App__c = true;
+                    }
+
                     result = Database.upsert(boEntity);
                     if(result.isSuccess()){
 
