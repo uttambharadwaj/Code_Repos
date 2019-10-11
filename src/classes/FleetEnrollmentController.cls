@@ -135,7 +135,15 @@ public virtual class FleetEnrollmentController {
             return picklistValues;
         }
     }
-
+    public String embossingOptionsMap {
+        get {
+            Map<String, String> selectOptions = new Map<String, String>();
+            for (SelectOption selectOption : embossingOptions) {
+                selectOptions.put(selectOption.getValue(), selectOption.getLabel());
+            }
+            return JSON.serialize(selectOptions);
+        }
+    }
     // Local picklists
     public List<SelectOption> embossingOptions {
         get {

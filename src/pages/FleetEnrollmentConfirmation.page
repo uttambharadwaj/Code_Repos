@@ -189,15 +189,15 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
             /* Subheader Section - END */
 
             /* Card Image/Steps Section - START */
-        	#steps { height: 86px; display: block; }
+        	#steps { height: 102px; display: block; }
         
         	#cardImage { text-align: center; width: 100%; margin: 60px auto 0 auto; overflow: visible; height: 20px; }
         	#cardImage img { max-width: 220px; position: relative; z-index: 100; pointer-events: none; }
         
-        	.step { margin: 6px 6px 0 0; height: 54px; float: left; width: 118px; background: #eee; line-height: 5px; }
+        	.step { margin: 6px 6px 0 0; height: 70px; float: left; width: 118px; background: #eee; line-height: 5px; }
         	.step1to1 { margin: 6px 6px 0 0; height: 54px; float: left; width: 200px; background: #eee; line-height: 5px; }
             .stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
-        	.stepDescription { float: left; font-size: 12px; line-height: 5px; font-size: 12px; letter-spacing: -0.07em; margin-top: 17px; width: 80px; }
+        	.stepDescription { float: left; font-size: 12px; line-height: 10px; letter-spacing: -0.10em; margin-top: 17px; width: 80px; }
         	.stepDescription p { margin: 0 0 8px 1px; }
         	.step:first-child { margin-left: 6px; }
 			.step:last-child { margin-right: 0px; }

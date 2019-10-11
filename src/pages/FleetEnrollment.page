@@ -142,7 +142,8 @@
 
             function updateSecondLine(value) {
                 if(!(value === "None") && !(value === "#")) {
-                    $j('[id$=card-description]').html(value);
+                    var translationMap = JSON.parse('{!embossingOptionsMap}');
+                    $j('[id$=card-description]').html(translationMap[value]);
                 }
                 else {
                     $j('[id$=card-description]').html("");
