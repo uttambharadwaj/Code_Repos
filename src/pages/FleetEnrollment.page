@@ -1002,6 +1002,7 @@
                             </div>
                             <apex:outputPanel id="cardShippingAddress">
                                 <apex:outputPanel rendered="{!cardShippingSameAsBillingAddress == false}">
+                                    <script>pageRerenderFunctions()</script>
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>
@@ -1021,7 +1022,7 @@
                                         <apex:inputText maxlength="100"
                                                         value="{!fleetEnrollment.Card_Shipping_Address_Line_2__c}"
                                                         styleClass="styledInput"
-                                                        html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Card_Shipping_Address_Line_2__c.label} (optional)"/>
+                                                        html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Card_Shipping_Address_Line_2__c.label} {!$Label.Optional}"/>
                                     </div>
                                     <div class="twelve columns clearfix">
                                         <div class="four columns">
