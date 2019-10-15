@@ -142,7 +142,7 @@
 
             function updateSecondLine(value) {
                 if(!(value === "None") && !(value === "#")) {
-                    var translationMap = JSON.parse('{!embossingOptionsMap}');
+                    var translationMap = JSON.parse('{!embossingOptionsSerialized}');
                     $j('[id$=card-description]').html(translationMap[value]);
                 }
                 else {
@@ -1683,13 +1683,13 @@
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix">
-                                  <b>{!$Label.Optional_printing}: </b> {!IF(selectedEmbossingOption == '#', '$Label.Fleet_None', fleetEnrollment.Embossing_Second_Line__c)}
+                                  <b>{!$Label.Optional_printing}: </b> {!IF(selectedEmbossingOption == '#', $Label.Fleet_None, embossingOptionsMap[fleetEnrollment.Embossing_Second_Line__c])}
                             </div>
                             <div class="twelve columns clearfix">
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
-                                <b>{!$Label.Fleet_Optional_Third_Line}: </b> {!IF(fleetEnrollment.Embossing_Third_Line__c == null, '$Label.Fleet_None', fleetEnrollment.Embossing_Third_Line__c)}
+                                <b>{!$Label.Fleet_Optional_Third_Line}: </b> {!IF(fleetEnrollment.Embossing_Third_Line__c == null, $Label.Fleet_None, fleetEnrollment.Embossing_Third_Line__c)}
                             </div>
                             <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
                                 &nbsp;
@@ -1724,17 +1724,17 @@
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleDesc__c == true}">
                                 <div class="twelve columns clearfix" style="padding-left: 10px;">
-                                    {!$Label.Vehicle_Description}
+                                    {!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.label}
                                 </div><br/>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!fleetEnrollment.Report_LicensePlt__c == true}">
                                 <div class="twelve columns clearfix" style="padding-left: 10px;">
-                                    {!$Label.License_Plate}
+                                    {!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.label}
                                 </div><br/>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!fleetEnrollment.Report_VehicleId__c == true}">
                                 <div class="twelve columns clearfix" style="padding-left: 10px;">
-                                    {!$Label.Company_Vehicle_ID}
+                                    {!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.label}
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!fleetEnrollment.Reporting_Dept__c == false && fleetEnrollment.Report_VehicleDesc__c == false && fleetEnrollment.Report_LicensePlt__c == false && fleetEnrollment.Report_VehicleId__c == false}">
@@ -1765,11 +1765,11 @@
                             <div class="twelve columns clearfix">
                                 <table class="vehicleTable" id="vehicleTable">
                                     <thead>
-                                      <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!$Label.Fleet_Vehicle_Id}</th>
+                                      <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Customer_Vehicle_ID__c.label}</th>
                                       <th>{!$Label.Card_Controls}</th>
                                       <th style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!$Label.Department}</th>
-                                      <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!$Label.Vehicle_Description}</th>
-                                      <th style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!$Label.Fleet_Plate}</th>
+                                      <th style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!$ObjectType.FleetEnrollment_Vehicle__c.fields.Vehicle_Description__c.label}</th>
+                                      <th style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!$ObjectType.FleetEnrollment_Vehicle__c.fields.License_Plate__c.label}</th>
                                       <th style="display: {!IF(program.Fleet_Enrollment_Enable_Prompt_Options__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Prompt_Option}</th>
                                       <th style="display: {!IF(program.Fleet_Enrollment_Enable_Universal_PL__c == true, 'table-cell', 'none')};">{!$Label.Fleet_Acceptance}</th>
                                     </thead>

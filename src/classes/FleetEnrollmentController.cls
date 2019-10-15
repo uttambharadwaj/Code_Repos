@@ -135,13 +135,18 @@ public virtual class FleetEnrollmentController {
             return picklistValues;
         }
     }
-    public String embossingOptionsMap {
+    public String embossingOptionsSerialized {
+        get {
+            return JSON.serialize(embossingOptionsMap);
+        }
+    }
+    public Map<String, String> embossingOptionsMap {
         get {
             Map<String, String> selectOptions = new Map<String, String>();
             for (SelectOption selectOption : embossingOptions) {
                 selectOptions.put(selectOption.getValue(), selectOption.getLabel());
             }
-            return JSON.serialize(selectOptions);
+            return selectOptions;
         }
     }
     // Local picklists
@@ -901,15 +906,20 @@ public virtual class FleetEnrollmentController {
         Messaging.reserveSingleEmailCapacity(1);
         Messaging.SingleEmailMessage confirmation = new Messaging.SingleEmailMessage();
 
-        confirmation.setTemplateId(program.Fleet_Data_Capture_Email_Template__c);
+        Id templateId = (brandingUtility != null && brandingUtility.FleetEnrollment_Email_Template_Id__c != null) ? brandingUtility.FleetEnrollment_Email_Template_Id__c : program.Fleet_Data_Capture_Email_Template__c;
+        confirmation.setTemplateId(templateId);
         confirmation.setWhatId(fleetEnrollment.Id);
         confirmation.setTargetObjectId(temporaryContact.id);
         confirmation.setSaveAsActivity(false);
-        confirmation.setReplyTo('noreply@wexinc.com');
 
+        String replyTo = 'noreply@wexinc.com';
+        if (languageCode.equalsIgnoreCase('fr_ca')) {
+            replyTo = 'noreply+fr@wexinc.com';
+        }
+        confirmation.setReplyTo(replyTo);
         for(OrgWideEmailAddress owa : [select id, Address, DisplayName from OrgWideEmailAddress])
         {
-            if(owa.Address.contains('noreply@wexinc.com')) {
+            if(owa.Address.contains(replyTo)) {
                 confirmation.setOrgWideEmailAddressId(owa.id);
             }
         }
