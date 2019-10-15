@@ -178,7 +178,8 @@ function validatePostalCode(value) {
 
 function validateTaxpayerId(value) {
     if(value !== "") {
-		var characterReg = /(^\d{9}$)/;
+
+		var characterReg = boca_language_code.contains('_ca') ? /^[a-z0-9]+$/i : /(^\d{9}$)/;
 		if(!characterReg.test(value)) {
     		return false;
 		}

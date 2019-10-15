@@ -367,7 +367,7 @@
                                             <apex:outputLabel for="taxpayerId" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Taxpayer ID', $ObjectType.WeFormObject__c.fields.Taxpayer_ID__c.label)} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Taxpayer_ID}" styleClass="styled-input required" required="true" html-tabindex="8" id="taxpayerId" label="" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="9" />
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Taxpayer_ID}" styleClass="styled-input required" required="true" html-tabindex="8" id="taxpayerId" label="" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="15" />
                                         </div>
                                         <apex:outputPanel rendered="{!IF(program.BOCA_Type__c == 'Revolver Card', true, false)}">
                                             <div class="twelve columns clearfix form-field" data-row="1">
