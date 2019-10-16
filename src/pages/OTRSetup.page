@@ -196,7 +196,7 @@
                         <apex:form id="bocaForm">
                             <apex:inputHidden value="{!selectedOtherServices}" id="selectedOtherServicesValue" />
                             <apex:inputHidden value="{!selectedFundingOptions}" id="selectedFundingOptionsValue" />
-							<apex:inputHidden value="{!otherServicesString}" id="otherServicesOffer" />
+                            <apex:inputHidden value="{!otherServicesString}" id="otherServicesOffer" />
                             <apex:inputHidden value="{!selectedMerch}" id="selectedMerchValue" />
                             <apex:actionFunction name="generatePDFandConfirm" action="{!generatePDFandConfirm}" rerender="" />
                             <apex:actionFunction name="submitForm" action="{!submitForm}" oncomplete="generatePDFandConfirm()" rerender="" />
@@ -312,28 +312,6 @@
                             </div>
                             <!--END CARD INFORMATION SECTION-->
 
-                            <!--BEGIN AVAILABLE PRODUCTS SECTION-->
-                            <div id="transferOptions" style="display:none;">
-                                <div class="twelve columns clearfix">
-                                    <b>Funding Options</b>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                                <fieldset class="slds-form-element">
-                                    <div class="slds-form-element__control" id="fundingOptions">
-                                        <apex:repeat value="{!fundingOptions}" var="funOpt" id="repeatFun">
-                                            <div class="slds-checkbox three columns">
-                                                <label class="styled-label" for="{!funOpt.value}">{!funOpt.label}</label>
-                                                <input type="checkbox" id="{!funOpt.value}" class="fundingOptions" name="myFunOpt" value="{!funOpt.value}" onchange="changeSelectedFunOptions(this)"/>
-                                            </div>
-                                        </apex:repeat>
-                                    </div>
-                                </fieldset>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
-                                </div>
-                            </div>
                             <apex:outputPanel rendered="{!otherServicesSize != 0}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
@@ -431,7 +409,7 @@
                                     &nbsp;
                                 </div>
 
-                                <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-*->
+                                <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-->
                                 <div class="twelve columns clearfix form-field styled-panel">
                                     <div class="twelve columns clearfix">
                                         &nbsp;
@@ -496,7 +474,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-*-END REFRESH LIMITS SUBSECTION-->
+                                <!--END REFRESH LIMITS SUBSECTION-->
 
                                 <!--BEGIN OTHER LIMITS SUBSECTION-->
                                 <div class="twelve columns clearfix form-field styled-panel">
