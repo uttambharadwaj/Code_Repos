@@ -1298,4 +1298,44 @@ return emailMessages;
 
 		addValueToSObjects(leads, keyValueMap);
 	}
+
+	public static Campaign createCampaign(Boolean isInsert) {
+		Campaign camp = new Campaign();
+		camp.Name = 'Test Campaign';
+		camp.Marketing_Code__c = 'Wex';
+
+		if (isInsert == true) {
+			insert camp;
+		}
+		return camp;
+	}
+
+	public static Lead createParentLead(Boolean isInsert) {
+		Lead l = new Lead();
+		l.Company = 'Parent Company';
+		l.FirstName = 'Parent';
+		l.LastName = 'Lead';
+		l.Status = 'New';
+		l.Country = 'US';
+		l.RecordTypeId = Schema.SObjectType.Lead.getRecordTypeInfosByName().get('Parent Lead').getRecordTypeId();
+
+		if (isInsert == true) {
+			insert l;
+		}
+		return l;
+	}
+
+	public static Lead createChildLead(Boolean isInsert) {
+		Lead l = new Lead();
+		l.Company = 'Child Company';
+		l.FirstName = 'Child';
+		l.LastName = 'Lead';
+		l.Status = 'New';
+		l.Country = 'US';
+
+		if (isInsert == true) {
+			insert l;
+		}
+		return l;
+	}
 }
