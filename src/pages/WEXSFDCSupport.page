@@ -248,11 +248,11 @@
                                                 </a>
                                             </h2>
                                         </div>
-                                        <div class="slds-no-flex">
-                                            <a href="?action=newCase">
-                                                <button class="slds-button slds-button_brand">New</button>
-                                            </a>
-                                        </div>
+<!--                                        <div class="slds-no-flex">-->
+<!--                                            <a href="?action=newCase">-->
+<!--                                                <button class="slds-button slds-button_brand">New</button>-->
+<!--                                            </a>-->
+<!--                                        </div>-->
                                     </header>
                                 </div>
                                 <div class="slds-card__body slds-card__body_inner">
@@ -384,7 +384,8 @@
                 </apex:outputPanel>
                 
                 <!-- PAGE ONE: START -->
-                <apex:form id="newCaseForm" rendered="{!action == 'newCase'}">
+<!--                <apex:form id="newCaseForm" rendered="{!action == 'newCase'}">-->
+                    <apex:form id="newCaseForm" rendered="{!true == false}">
                     <input type="hidden" value="{!isIssue}" id="isIssue" />
                     <input type="hidden" name="newCase" value="/apex/WEXSFDCSupport?action=newCase"/>
                     <apex:actionFunction name="stepContinue" action="{!nextStep}" rerender="newCaseForm"/>
