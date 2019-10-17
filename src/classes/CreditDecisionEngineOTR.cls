@@ -300,7 +300,6 @@ global class CreditDecisionEngineOTR {
 
                         // having the SAFER Carrier ID populated will signify it's good to use for BPAV
                         if (matchPercentage >= .75) {
-                            System.debug('TEMP Made it in here woot');
                             onlineApplication.SAFER_Carrier__c = saferCarriers[0].Id;
                         }
                     }
