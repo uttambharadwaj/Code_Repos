@@ -179,7 +179,10 @@ function validatePostalCode(value) {
 function validateTaxpayerId(value) {
     if(value !== "") {
 
-		var characterReg = boca_language_code.contains('_ca') ? /^[a-z0-9]+$/i : /(^\d{9}$)/;
+        var characterReg = /(^\d{9}$)/;
+        if(boca_language_code === "en_ca" || boca_language_code === "fr_ca") {
+            characterReg = /^[a-z0-9]+$/i;
+        }
 		if(!characterReg.test(value)) {
     		return false;
 		}
