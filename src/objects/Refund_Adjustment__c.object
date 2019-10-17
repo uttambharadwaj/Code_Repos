@@ -396,7 +396,7 @@
         <fullName>Department__c</fullName>
         <externalId>false</externalId>
         <label>Department</label>
-        <required>false</required>
+        <required>true</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -422,6 +422,7 @@
                 <value>
                     <fullName>SAVEDESK</fullName>
                     <default>false</default>
+                    <isActive>false</isActive>
                     <label>Retention</label>
                 </value>
             </valueSetDefinition>
@@ -884,6 +885,11 @@
             <valueSetDefinition>
                 <sorted>false</sorted>
                 <value>
+                    <fullName>REFND</fullName>
+                    <default>true</default>
+                    <label>Check Refund</label>
+                </value>
+                <value>
                     <fullName>ESCH</fullName>
                     <default>false</default>
                     <label>Escheatment</label>
@@ -902,11 +908,6 @@
                     <fullName>OVRPY</fullName>
                     <default>false</default>
                     <label>Overpay</label>
-                </value>
-                <value>
-                    <fullName>REFND</fullName>
-                    <default>false</default>
-                    <label>Check Refund</label>
                 </value>
                 <value>
                     <fullName>TERM</fullName>
@@ -1320,10 +1321,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>SAVEDESK</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SRS</fullName>
                 <default>false</default>
             </values>
@@ -1536,10 +1533,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>SAVEDESK</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>SRS</fullName>
                 <default>false</default>
             </values>
@@ -1739,13 +1732,21 @@
     </searchLayouts>
     <sharingModel>ControlledByParent</sharingModel>
     <validationRules>
+        <fullName>Cannot_Change_an_Approved_or_Denied_Item</fullName>
+        <active>true</active>
+        <description>Once a refund or adjustment has been approved or denied, it cannot be changed.</description>
+        <errorConditionFormula>OR( ISPICKVAL(PRIORVALUE( Approval_Status__c),&quot;Approved&quot; ),
+ISPICKVAL(PRIORVALUE( Approval_Status__c),&quot;Denied&quot; ))</errorConditionFormula>
+        <errorMessage>Refund/Adjustment entries cannot be changed once they have been Approved or Denied.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Customer_Service_Approval_Limits</fullName>
         <active>true</active>
         <description>Asserts approval matrix for Customer Service records</description>
         <errorConditionFormula>AND(TEXT(Department__c ) = &apos;CS&apos;,
 TEXT(Approval_Status__c) = &apos;Approved&apos;,
-NOT ( OR ($Permission.CS_Sr_Associate, $Permission.CS_Team_Lead, $Permission.CS_Sr_Team_Lead, $Permission.CS_Manager )),
 OR (
+NOT ( OR ($Permission.CS_Sr_Associate, $Permission.CS_Team_Lead, $Permission.CS_Sr_Team_Lead, $Permission.CS_Manager )),
 AND (Amount_Waived__c &gt; 1000, NOT ( OR ($Permission.CS_Team_Lead, $Permission.CS_Sr_Team_Lead, $Permission.CS_Manager ))),
 AND (Amount_Waived__c &gt; 25000, NOT ( $Permission.CS_Manager )),
 Amount_Waived__c &gt; 100000
@@ -1761,13 +1762,20 @@ Amount_Waived__c &gt; 100000
         <errorMessage>Denial of requests requires that a comment be entered.</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Department_and_Comment_Cant_be_Blank</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR(ISBLANK(TEXT(Department__c)),
+ LEN(TRIM( Reason_Comment__c)) = 0)</errorConditionFormula>
+        <errorMessage>Department and Comment cannot be empty,</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>RSLPO_SRS_Approval_Limits</fullName>
         <active>true</active>
         <description>Enforces approval limits for Receivables Refunds and Adjustments</description>
         <errorConditionFormula>AND( OR (TEXT(Department__c ) = &apos;SRS&apos;,TEXT(Department__c ) = &apos;RSLPO&apos;),
 TEXT(Approval_Status__c) = &apos;Approved&apos;,
-NOT ( OR ($Permission.RSLPO_Sr_Associate, $Permission.RSLPO_Team_Lead, $Permission.RSLPO_Sr_Team_Lead, $Permission.RSLPO_Manager )),
 OR (
+NOT ( OR ($Permission.RSLPO_Sr_Associate, $Permission.RSLPO_Team_Lead, $Permission.RSLPO_Sr_Team_Lead, $Permission.RSLPO_Manager )),
 AND (Amount_Waived__c &gt; 1000, NOT ( OR ($Permission.RSLPO_Team_Lead, $Permission.RSLPO_Sr_Team_Lead, $Permission.RSLPO_Manager ))),
 AND (Amount_Waived__c &gt; 25000, NOT ( $Permission.RSLPO_Manager )),
 Amount_Waived__c &gt; 100000
@@ -1779,7 +1787,7 @@ Amount_Waived__c &gt; 100000
         <fullName>Total_fee_GTE_waived_amount</fullName>
         <active>true</active>
         <description>For adjustments, validate that the amount waived is no greater than the fee charged.</description>
-        <errorConditionFormula>AND( RecordType.Name   =   &quot;Adjustment&quot;, Amount_Waived__c  &gt;  Total_Late_Fee__c )</errorConditionFormula>
+        <errorConditionFormula>AND( RecordType.Name   =   &quot;Adjustment&quot;, OR((Amount_Waived__c  &gt;  Total_Late_Fee__c ),(ISBLANK(Total_Late_Fee__c))))</errorConditionFormula>
         <errorMessage>Amount Waived must not exceed the Total Fee Charged</errorMessage>
     </validationRules>
     <visibility>Public</visibility>

@@ -1081,7 +1081,7 @@
             <label>Request is Pending or Held</label>
         </rules>
     </decisions>
-    <description>EAPT-334: Rearrange Refund Code picklist</description>
+    <description>Remove Retention as Department option (not in use)</description>
     <dynamicChoiceSets>
         <name>Adjustment_codes</name>
         <dataType>Picklist</dataType>
@@ -1401,7 +1401,6 @@
             <name>Your_Department</name>
             <choiceReferences>CS_Choice</choiceReferences>
             <choiceReferences>SRS_choice</choiceReferences>
-            <choiceReferences>RSLPO_choice</choiceReferences>
             <choiceReferences>SAVEDESK_choice</choiceReferences>
             <dataType>String</dataType>
             <defaultSelectedChoiceReference>CS_Choice</defaultSelectedChoiceReference>
@@ -1719,8 +1718,14 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>ChooseRecordType</startElementReference>
-    <status>Active</status>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>ChooseRecordType</targetReference>
+        </connector>
+    </start>
+    <status>Draft</status>
     <variables>
         <name>CaseContact</name>
         <dataType>SObject</dataType>
