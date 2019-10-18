@@ -1,4 +1,4 @@
-public with sharing class OpportunityAssignment {
+public class OpportunityAssignment {
 
     @InvocableMethod(label='Opportunity Assignment Handler')
     public static void applicationRequestDeniedHandler(List<Application_Request__c> deniedApplicationRequests) {
