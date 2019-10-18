@@ -36,6 +36,7 @@ trigger LeadTrigger on Lead (before insert, before update, after insert, after d
 			ULead.linktoContactAccount(records, trigger.oldmap);
 			
 			ULead.eloquaPassParent(records, trigger.oldmap);
+			ULead.setMarketable(records, trigger.oldMap);
 		}
 		else if(trigger.isDelete)
 		{
