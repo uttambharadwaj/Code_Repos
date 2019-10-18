@@ -73,7 +73,7 @@ public without sharing class CustomerDetailsController {
 
         try {
 
-            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, toLabel(Status), LastModifiedDate, toLabel(Origin), Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay ORDER BY LastModifiedDate DESC];
+            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, toLabel(Status), CreatedDate, LastModifiedDate, toLabel(Origin), Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay ORDER BY LastModifiedDate DESC];
 
             return cases;
 
@@ -94,7 +94,7 @@ public without sharing class CustomerDetailsController {
 
         try {
 
-            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, Status, LastModifiedDate, Origin, Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay AND IsClosed = FALSE ORDER BY LastModifiedDate DESC LIMIT 5];
+            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, Status,  LastModifiedDate, Origin, Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay AND IsClosed = FALSE ORDER BY LastModifiedDate DESC LIMIT 5];
             System.debug('### getExistingOpenCases found '+cases.size());
 
             return cases;

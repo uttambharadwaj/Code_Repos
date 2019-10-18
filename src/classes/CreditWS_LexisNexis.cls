@@ -49,13 +49,13 @@ global class CreditWS_LexisNexis {
 
         if(passedBeneficialEntityId != null) {
 
-            List<Beneficial_Owner_Entity__c> beneficialOwnerEntity = [SELECT Id, No_Beneficial_Owners__c, Record_Status__c, Verification_Status__c, Certified_By__c, Certified_Date__c, Legal_Structure__c FROM Beneficial_Owner_Entity__c WHERE Id =: passedBeneficialEntityId];
+            List<Beneficial_Owner_Entity__c> beneficialOwnerEntity = [SELECT Id, No_Beneficial_Owners__c, Record_Status__c, Verification_Status__c, Certified_By__c, Certified_Date__c, Legal_Structure__c, Paper_App__c FROM Beneficial_Owner_Entity__c WHERE Id =: passedBeneficialEntityId];
 
             if(beneficialOwnerEntity.size() > 0) {
 
                 if(!(beneficialOwnerEntity[0].Record_Status__c).equalsIgnoreCase('Archived') && !(beneficialOwnerEntity[0].Verification_Status__c).equalsIgnoreCase('Exempted') && !(beneficialOwnerEntity[0].Verification_Status__c).equalsIgnoreCase('Passed')) {
 
-                    if(beneficialOwnerEntity[0].Certified_By__c == null || beneficialOwnerEntity[0].Certified_Date__c == null) {
+                    if((beneficialOwnerEntity[0].Certified_By__c == null || beneficialOwnerEntity[0].Certified_Date__c == null) && !beneficialOwnerEntity[0].Paper_App__c) {
 
                         ApexPages.addMessage(new ApexPages.message(ApexPages.Severity.ERROR, 'Please ensure you have the Certified By and Certified Date fields filled in before running verification!'));
 

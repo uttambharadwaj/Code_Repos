@@ -22,7 +22,6 @@
 
         <script>
             $j = jQuery.noConflict();
-
             var crd = "{!creditLineAmount}";
 
             var test = "{!program.Fleet_Enrollment_Enable_Universal_PL__c}";
@@ -31,18 +30,17 @@
 
             var didLength= "{!selectedDIDLength}";
 
-            var language = "{!languageCode}";
+            var language = "{!languageCode}" ? "{!languageCode}" : "en_us";
 
             document.cookie = "debug_logs=debug_logs;domain=.force.com";
 
-            $j(document).ready(function() {
+            function previewImage() {
                 pageRerenderFunctions(false);
                 var previewImage = document.getElementById("brandingCard");
-                if(previewImage != null && previewImage.complete){
+                if (previewImage != null && previewImage.complete) {
                     hidePreview();
                 }
-            });
-
+            }
             function updateDIDLength(value) {
 
                 console.log('Here ' + value);
@@ -58,7 +56,16 @@
                     content: function(callback) { callback($j(this).prop('title').replace(/\|/g, '<br />')); }
                 });
 
-                if(resetScroll) {
+                if(language === "en_ca" || language === "fr_ca") {
+
+                    if ($j("[id$=billingState] option")) {
+                        $j(".postal").each(function () {
+                            $j(this).addClass('postalCanada').removeClass('postal');
+                        });
+                    }
+                }
+
+                if(resetScroll)  {
                     document.querySelector("#header").scrollIntoView();
                 }
 
@@ -74,6 +81,7 @@
 
                 $j('.phone').mask('999-999-9999');
                 $j('.postal').mask('00000-0000');
+                $j('.postalCanada').mask('A0A-0A0');
                 $j('.driverId4').mask('0000');
                 $j('.driverId6').mask('000000');
                 $j('.noSpecialChars').mask('Z', { translation: {'Z': { pattern: /[a-zA-Z0-9\ ]/, recursive: true } } });
@@ -173,7 +181,8 @@
 
             function validatePostalCode(value) {
                 if(value !== "") {
-                    var characterReg = /(^\d{5}$)|(^\d{5}-\d{4}$)/;
+                    // Canadian, otherwise US
+                    var characterReg = language.includes('_ca') ? /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/i : /(^\d{5}$)|(^\d{5}-\d{4}$)/;
                     if(!characterReg.test(value)) {
                         return false;
                     }
@@ -572,9 +581,9 @@
 
             .movingCardImage { position: fixed; padding-left: 20px; width: 260px; }
             .movingCardImage img { width: 260px; margin: 0 auto; }
-            #card-company-name{ position:absolute; top:114px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
-            #card-description{ position:absolute; top:128px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
-            #card-embossing-third-line{ position:absolute; top:142px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
+            #card-company-name{ position:absolute; top:124px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
+            #card-description{ position:absolute; top:134px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
+            #card-embossing-third-line{ position:absolute; top:144px; left: 28px; font-family: 'OCRBStd'; font-size:.8em; text-shadow: 1px 1px 2px rgba(0, 0, 0, 1); color: #d9d9d9; text-align: left; text-transform: uppercase; }
             .ui-tooltip { white-space: pre-line; }
 
             .mobileFleetVehicleSpacer { padding: 10px 0; display: block; }
@@ -723,11 +732,11 @@
             }
         </style>
     </head>
-    <body>
+    <body onload="previewImage()">
     <div id="header">
         <div class="container">
             <div class="row">
-                <div id="programName" class="six columns">{!program.Brand_Long_Name__c}</div>
+                <div id="programName" class="six columns">{!brandingUtility.Program_Name__c}</div>
                 <div id="contactUs" class="six columns">
                     <apex:outputText rendered="{!creditLineAmount != null}">
                         {!$Label.Questions_Call} {!program.Implementation_Team_Number__c}
@@ -757,7 +766,7 @@
                         <apex:outputPanel id="staticCardImage">
                             <apex:outputPanel rendered="{!currentStep != 2}">
                                 <div id="cardImage">
-                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
+                                    <img id="brandingCard" src="{!URLFOR($Action.Attachment.Download, brandingCard)}"/>
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!currentStep == 2}">
@@ -954,7 +963,7 @@
                                 <apex:inputText maxlength="100" value="{!fleetEnrollment.Billing_Address_Line_1__c}" id="billingAddress1" styleClass="styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_1__c.label}"/>
                             </div>
                             <div class="twelve columns clearfix">
-                                <apex:inputText maxlength="100" value="{!fleetEnrollment.Billing_Address_Line_2__c}" styleClass="styledInput" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_2__c.label} (optional)"/>
+                                <apex:inputText maxlength="100" value="{!fleetEnrollment.Billing_Address_Line_2__c}" styleClass="styledInput" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_2__c.label} {!$Label.Optional}"/>
                             </div>
                             <div class="twelve columns clearfix">
                                 <div class="four columns">
@@ -1174,7 +1183,7 @@
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
-                                Print an optional third line to help identify your cards (20 character maximum, including spaces, with no special characters).
+                                {!$Label.Fleet_Optional_Third_Line}
                             </div>
                             <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
                                 &nbsp;
@@ -1678,7 +1687,7 @@
                                 &nbsp;
                             </div>
                             <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
-                                <b>Optional Third Line: </b> {!IF(fleetEnrollment.Embossing_Third_Line__c == null, 'None', fleetEnrollment.Embossing_Third_Line__c)}
+                                <b>{!$Label.Fleet_Optional_Third_Line}: </b> {!IF(fleetEnrollment.Embossing_Third_Line__c == null, '$Label.Fleet_None', fleetEnrollment.Embossing_Third_Line__c)}
                             </div>
                             <div class="twelve columns clearfix" style="display: {!IF(program.Fleet_Data_Third_Line_Embossing__c == true, 'block', 'none')};">
                                 &nbsp;
@@ -1766,7 +1775,9 @@
                                     <apex:repeat value="{!fleetVehicles}" var="fleetVehicle">
                                         <tr>
                                             <td style="display: {!IF(OR(fleetEnrollment.Report_VehicleId__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Company Vehicle ID'), 'table-cell', 'none')};">{!fleetVehicle.companyVehicleId}</td>
-                                            <td>{!fleetVehicle.selectedCardControlOption}</td>
+                                            <td>
+                                                <apex:outputText value="{!cardControlOptionDisplayMap[fleetVehicle.selectedCardControlOption]}"/>
+                                            </td>
                                             <td style="display: {!IF(fleetEnrollment.Reporting_Dept__c == true, 'table-cell', 'none')};">{!fleetVehicle.vehicleDepartment}</td>
                                             <td style="display: {!IF(OR(fleetEnrollment.Report_VehicleDesc__c == true, fleetEnrollment.Embossing_Second_Line__c == 'Vehicle Description'), 'table-cell', 'none')};">{!fleetVehicle.vehicleDescription}</td>
                                             <td style="display: {!IF(OR(fleetEnrollment.Report_LicensePlt__c == true, fleetEnrollment.Embossing_Second_Line__c == 'License Plate'), 'table-cell', 'none')};">{!fleetVehicle.licensePlate}</td>

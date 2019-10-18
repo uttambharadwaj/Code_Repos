@@ -717,7 +717,7 @@
         <fullName>Reporting_Date__c</fullName>
         <description>GSA wants reports to run Monday-Sunday, Salesforce&apos;s Last Week filter runs Sunday-Saturday, so this is used in reporting to make the Last Week filter work properly. Keep hidden.</description>
         <externalId>false</externalId>
-        <formula>CaseNumber__r.LastModifiedDate-1</formula>
+        <formula>CreatedDate -1</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Reporting Date</label>
         <required>false</required>

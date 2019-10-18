@@ -222,11 +222,6 @@ public with sharing class CreditWS_LexisNexisRDP {
                             lexisNexisBIIDResponse.biidScore = Integer.valueOf(parameterDetail.Values[0].Value);
 
                         }
-                        else if((parameterDetail.Group_x).equalsIgnoreCase('COMPREHENSIVE_VERIFICATION_INDEX') && (parameterDetail.Name).equalsIgnoreCase('CVI')) {
-
-                            lexisNexisBIIDResponse.cviScore = Integer.valueOf(parameterDetail.Values[0].Value);
-
-                        }
                     }
                 }
             }
@@ -348,13 +343,17 @@ public with sharing class CreditWS_LexisNexisRDP {
 
                     if (product.ParameterDetails != null) {
 
+
                         for (CreditWSUtil_LexisNexisIID.cls_ParameterDetails parameterDetails : product.ParameterDetails) {
 
                             if (!String.isBlank(parameterDetails.Group_x) && !String.isBlank(parameterDetails.Name)
                                     && (parameterDetails.Group_x).equalsIgnoreCase('FRAUD_POINT') && (parameterDetails.Name).equalsIgnoreCase('LexID')) {
 
                                 lexisNexisIIDResponse.fraudPointScore = Integer.valueOf(parameterDetails.Values[0].Value);
+                            }
+                            if((parameterDetails.Group_x).equalsIgnoreCase('COMPREHENSIVE_VERIFICATION_INDEX') && (parameterDetails.Name).equalsIgnoreCase('CVI')) {
 
+                                lexisNexisIIDResponse.cviScore = Integer.valueOf(parameterDetails.Values[0].Value);
                             }
 
                         }
@@ -557,7 +556,6 @@ public with sharing class CreditWS_LexisNexisRDP {
 
         public String biidWorkflowResult { get; set; }
         public Integer biidScore { get; set; }
-        public Integer cviScore { get; set; }
 
         public LexisNexisBIIDResponse() {
 
@@ -591,6 +589,7 @@ public with sharing class CreditWS_LexisNexisRDP {
         public String iidWorkflowResult { get; set; }
         public String fraudPointWorkflowResult { get; set; }
         public Integer fraudPointScore { get; set; }
+        public Integer cviScore { get; set; }
 
         public LexisNexisIIDResponse() {
 

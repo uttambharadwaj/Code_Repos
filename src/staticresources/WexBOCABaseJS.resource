@@ -178,7 +178,11 @@ function validatePostalCode(value) {
 
 function validateTaxpayerId(value) {
     if(value !== "") {
-		var characterReg = /(^\d{9}$)/;
+
+        var characterReg = /(^\d{9}$)/;
+        if(boca_language_code === "en_ca" || boca_language_code === "fr_ca") {
+            characterReg = /^[a-z0-9]+$/i;
+        }
 		if(!characterReg.test(value)) {
     		return false;
 		}
@@ -218,7 +222,7 @@ function validateDateOfBirth(value) {
 
 function validatePOBox(value) {
 	if(value !== "") {
-        var characterReg = /\bP(ost|ostal)?([ \.]*(O|0)(ffice)?)?([ \.]*Box)?\b/i;;
+        var characterReg = /(?:P(?:ost(?:al)?)?[\.\-\s]*(?:(?:O(?:ffice)?[\.\-\s]*)?B(?:ox|in|\b|\d)|o(?:ffice|\b)(?:[-\s]*\d)|code)|box[-\s\b]*\d)/i;
         console.log(characterReg.test(value));
         if(characterReg.test(value)) {
         	return false;     

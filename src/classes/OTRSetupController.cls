@@ -237,7 +237,7 @@ public without sharing class OTRSetupController {
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
                                 Opportunity__r.CampaignId, Contact_Last_Name__c, Email__c, Contact_First_Name__c, Phone_Number__c, Cell_Number__c, Opportunity__r.Campaign_Program__c,
                                 Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c, Allowed_Merchant_Categories__c, Daily_Amount_Requested__c, Daily_Transactions__c,
-                                Monthly_Amount_Requested__c, Monthly_Transactions__c, Weekly_Amount_Requested__c, Weekly_Transactions__c, Scales_Limit__c
+                                Monthly_Amount_Requested__c, Monthly_Transactions__c, Weekly_Amount_Requested__c, Weekly_Transactions__c, Scales_Limit__c, Carrier_ID_Number__c
                         FROM OnlineApplication__c
                         WHERE Id = :customerParameter AND Status__c = 'App-Incomplete'
                         LIMIT 1
@@ -429,10 +429,10 @@ public without sharing class OTRSetupController {
                 onlineApplication.Daily_DEF_Limit__c = 0;
             }
 
-            if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true && userSessionId == null) {
+            if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-Complete';
-            } else if(onlineApplicationOffer.Funding__c == 'Parent Funded') {
+            } else if(onlineApplicationOffer.Funding__c == 'Parent Funded' || onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract') {
                 onlineApplication.Application_Stage__c = 'Implementation';
                 onlineApplication.Status__c = 'Pending Setup';
             } else {
