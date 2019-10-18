@@ -19,7 +19,7 @@ public class OpportunityAssignment {
                 if (autoAssignmentEnabled) {
 
                     // Assignment criteria
-                    Boolean opportunityOwnerIsIntegrations = applicationRequest.Opportunity__r.owner.alias != 'sinte';
+                    Boolean opportunityOwnerIsIntegrations = applicationRequest.Opportunity__r.owner.alias == 'sinte';
                     Boolean notDeclinedAppLetterType = applicationRequest.Decline_Letter_Types__c != 'Declined Application';
                     Boolean opportunityStageSigned = applicationRequest.Opportunity__r.StageName == '5) Signed';
                     Boolean fraudCheckFalse = applicationRequest.Fraud_Flag__c == false;
