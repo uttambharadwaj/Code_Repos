@@ -133,7 +133,7 @@ public with sharing class RefundAdjustmentTriggerTest {
 
     private static User getTestUser() {
         Profile profile = [SELECT Id FROM Profile WHERE Name = 'Service Operations Agent'];
-        List<UserRole> roles = [SELECT Id FROM UserRole WHERE Name IN ('Contact Center','NA Customer Service')];
+        List<UserRole> roles = [SELECT Id FROM UserRole WHERE Name IN ('Contact Center')];
         UserRole role = roles[0];
         String nowString = getGenerateTimeStamp();
 
@@ -159,7 +159,7 @@ public with sharing class RefundAdjustmentTriggerTest {
 
     private static User getApproverUser() {
         Profile profile = [SELECT Id FROM Profile WHERE Name = 'Service Operations Manager'];
-        List<UserRole> roles = [SELECT Id FROM UserRole WHERE Name IN ('Contact Center','NA Customer Service')];
+        List<UserRole> roles = [SELECT Id FROM UserRole WHERE Name IN ('Contact Center')];
         UserRole role = roles[0];
         String nowString = getGenerateTimeStamp();
 
