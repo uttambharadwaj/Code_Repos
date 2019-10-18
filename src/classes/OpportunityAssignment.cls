@@ -57,6 +57,7 @@ public class OpportunityAssignment {
 
             userRoleMap.get(user.UserRole.Name).add(user);
         }
+        if (userRoleMap.isEmpty()) return;
 
         // Get all needed Opportunity Assignments
         for (Opportunity_Assignments__c opportunityAssignment : [
