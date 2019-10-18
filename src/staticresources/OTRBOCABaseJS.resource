@@ -173,7 +173,6 @@ function validateYearEstablished(value) {
 }
 
 function validatePOBox(value) {
-    console.log('validating po box');
     if(value !== "") {
         var characterReg = /(?:P(?:ost(?:al)?)?[\.\-\s]*(?:(?:O(?:ffice)?[\.\-\s]*)?B(?:ox|in|\b|\d)|o(?:ffice|\b)(?:[-\s]*#*[-\s]*\d)|code)|box[-\s\b]*\d)/i;
         console.log(characterReg.test(value));
@@ -294,15 +293,13 @@ function validateBOCA() {
 
     $j('[id$=bocaForm]').find('.date').each(function() {
         if($j(this).val() != null && !validateDateOfBirth($j(this).val())) {
-            console.log('in date of birth');
             $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Date + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
             hasErrors = true;
         }
     });
-    console.log('before .address');
+
     $j('[id$=bocaForm]').find('.address').each(function() {
-        console.log('in .address');
         if($j(this).val() != null && !validatePOBox($j(this).val())) {
             $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_PO_Box_Warning + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
@@ -315,8 +312,6 @@ function validateBOCA() {
         $j('[id$=yearsInBusiness]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
         hasErrors = true;
     }
-
-    console.log($j('[id$=checkingAccountNumber]').length);
 
     if($j('[id$=checkingAccountNumber]').length > 0 && $j('[id$=checkingAccountNumber]').val() !== "" && ($j('[id$=checkingAccountNumber]').val().length < 5 || $j('[id$=checkingAccountNumber]').val().length > 14)) {
         $j('[id$=checkingAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">Please enter a valid checking account number.</div>');
