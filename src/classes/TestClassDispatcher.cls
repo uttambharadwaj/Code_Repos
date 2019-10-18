@@ -123,8 +123,8 @@ public class TestClassDispatcher {
         CreditUtilQueueable_ExperianPGTest.testBadRequests();
     }
 
-    @isTest static void testAppRequestMeetsCriteria(){
-        OpportunityAssignmentTest.test_appRequestMeetsCriteria();
+    @isTest static void testOpportunityAutoAssignment(){
+        OpportunityAssignmentTest.test_opportunityAutoAssignment();
     }
 
 }
