@@ -631,64 +631,6 @@ public class OTRBOCAController {
                     throw new creditApplicationException('Carrier ID not found');
                 }
 
-//                for(Account a : [SELECT Id, Name, BillingStreet, Phone,
-//                (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
-//                        Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
-//                FROM Online_Applications__r)
-//                FROM Account
-//                WHERE Carrier_ID__c = :carrierID]) {
-//                    //start counting how many account fields match the corresponding application field
-//                    Integer matchingAccFields = 0;
-//                    //set value to true so that each iteration can restart the process
-//                    accountNotMatched = true;
-//
-//                    if(a.Name != null && a.Name == onlineApplication.Legal_Business_Name__c) {
-//                        matchingAccFields ++;
-//                    }
-//                    System.debug('Acc Name: ' + a.Name + ' vs App Legal Business Name: ' + onlineApplication.Legal_Business_Name__c + ' Match counter after Account: ' + matchingAccFields);
-//
-//                    if(a.BillingStreet != null && a.BillingStreet == onlineApplication.Business_Street_Address__c) {
-//                        matchingAccFields ++;
-//                    }
-//                    System.debug('Acc BillingStreet: ' + a.BillingStreet + ' vs App Address Line 1: ' + onlineApplication.Business_Street_Address__c + ' Match counter after Address: ' + matchingAccFields);
-//
-//                    if(a.Phone != null && a.Phone.replaceAll('\\D','') == onlineApplication.Phone_Number__c.replaceAll('\\D','')) {
-//                        matchingAccFields ++;
-//                    }
-//                    System.debug('Acc Phone: ' + a.Phone + ' vs App Phone: ' + onlineApplication.Phone_Number__c + 'Match counter after Phone: ' + matchingAccFields);
-//
-//                    System.debug('Final count of matching fields: ' + matchingAccFields);
-//                    System.debug('Required Matching Fields: ' + requiredMatchingAccFields);
-//
-//                    //if we matched enough fields, continue to the next step
-//                    if(matchingAccFields >= requiredMatchingAccFields) {
-//                        //set boolean so we know that we have a matching account
-//                        accountNotMatched = false;
-//                        //iterate over online applications related to the account to see if one exists for this program
-//                        for (OnlineApplication__c oa : a.Online_Applications__r) {
-//                            if (oa.Program__c == program.Id) {
-//                                carrierNotFound = false;
-//                                //need to get account and contact informations
-//                                account.Id = a.Id;
-//                                primaryContact.Id = oa.Opportunity__r.Primary_Contact__c;
-//                                pgContact.Id = oa.Personal_Guarantor__c;
-//                                pgContact.FirstName = oa.Personal_Guarantor__r.FirstName;
-//                                pgContact.LastName = oa.Personal_Guarantor__r.LastName;
-//                                break;
-//                            }
-//                        }
-//                    } else {
-//                        //account does not match the required criteria, move on to the next one in the loop, if one exists
-//                        continue;
-//                    }
-//
-//                }
-//                if(accountNotMatched) {
-//                    throw new creditApplicationException('Application Business Name, Street Address, or Phone Number does not match existing Carrier ID');
-//                }
-//                if(carrierNotFound) {
-//                    throw new creditApplicationException('Carrier ID not found');
-//                }
             }
 
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
