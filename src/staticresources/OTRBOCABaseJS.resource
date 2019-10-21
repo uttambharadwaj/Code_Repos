@@ -174,7 +174,7 @@ function validateYearEstablished(value) {
 
 function validatePOBox(value) {
     if(value !== "") {
-        var characterReg = /(?:P(?:ost(?:al)?)?[\.\-\s]*(?:(?:O(?:ffice)?[\.\-\s]*)?B(?:ox|in|\b|\d)|o(?:ffice|\b)(?:[-\s]*\d)|code)|box[-\s\b]*\d)/i;
+        var characterReg = /(?:P(?:ost(?:al)?)?[\.\-\s]*(?:(?:O(?:ffice)?[\.\-\s]*)?B(?:ox|in|\b|\d)|o(?:ffice|\b)(?:[-\s]*#*[-\s]*\d)|code)|box[-\s\b]*\d)/i;
         console.log(characterReg.test(value));
         if(characterReg.test(value)) {
             return false;
@@ -312,8 +312,6 @@ function validateBOCA() {
         $j('[id$=yearsInBusiness]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
         hasErrors = true;
     }
-
-    console.log($j('[id$=checkingAccountNumber]').length);
 
     if($j('[id$=checkingAccountNumber]').length > 0 && $j('[id$=checkingAccountNumber]').val() !== "" && ($j('[id$=checkingAccountNumber]').val().length < 5 || $j('[id$=checkingAccountNumber]').val().length > 14)) {
         $j('[id$=checkingAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">Please enter a valid checking account number.</div>');

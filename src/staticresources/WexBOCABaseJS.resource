@@ -222,7 +222,7 @@ function validateDateOfBirth(value) {
 
 function validatePOBox(value) {
 	if(value !== "") {
-        var characterReg = /(?:P(?:ost(?:al)?)?[\.\-\s]*(?:(?:O(?:ffice)?[\.\-\s]*)?B(?:ox|in|\b|\d)|o(?:ffice|\b)(?:[-\s]*\d)|code)|box[-\s\b]*\d)/i;
+        var characterReg = /(?:P(?:ost(?:al)?)?[\.\-\s]*(?:(?:O(?:ffice)?[\.\-\s]*)?B(?:ox|in|\b|\d)|o(?:ffice|\b)(?:[-\s]*#*[-\s]*\d)|code)|box[-\s\b]*\d)/i;
         console.log(characterReg.test(value));
         if(characterReg.test(value)) {
         	return false;     
@@ -327,6 +327,10 @@ function validate(currentStep) {
         
         if(!validatePOBox($j('[id$=physicalAddress]').val())) {
             $j('[id$=physicalAddress]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_PO_Box_Warning + '</div>'); errorCount++;
+        }
+
+        if(!validatePOBox($j('[id$=physicalAddressLine2]').val())) {
+            $j('[id$=physicalAddressLine2]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_PO_Box_Warning + '</div>'); errorCount++;
         }
         
         if($j('[id$=averageMonthlyFuelExpenses]').val() !== "" && !(parseFloat($j('[id$=averageMonthlyFuelExpenses]').val().replace(/,/g,'')) > 0)) {

@@ -309,11 +309,11 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                             <apex:outputLabel for="physicalAddress" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Business Physical Address', $ObjectType.OnlineApplication__c.fields.Business_Street_Address__c.label)}">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" required="true" html-tabindex="11" id="physicalAddress" html-maxlength="40" value="{!onlineApplication.Business_Street_Address__c}" />
+                                            <apex:InputField html-placeholder="{!$Label.BOCA_Placeholder_Physical_Address}" styleClass="styled-input required" required="true" html-tabindex="11" id="physicalAddress" html-maxlength="40" html-class="address" value="{!onlineApplication.Business_Street_Address__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
                                             <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Address Line 2', $ObjectType.OnlineApplication__c.fields.Business_Address_Line_2__c.label)}"/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="12" id="physicalAddressLine2" html-maxlength="40" value="{!onlineApplication.Business_Address_Line_2__c}" />
+                                            <apex:InputField styleClass="styled-input" html-tabindex="12" id="physicalAddressLine2" html-maxlength="40" html-class="address" value="{!onlineApplication.Business_Address_Line_2__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="3">
                                             <apex:outputLabel for="city" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'City', $ObjectType.OnlineApplication__c.fields.City__c.label)}">
