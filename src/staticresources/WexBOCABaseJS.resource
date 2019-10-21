@@ -328,6 +328,10 @@ function validate(currentStep) {
         if(!validatePOBox($j('[id$=physicalAddress]').val())) {
             $j('[id$=physicalAddress]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_PO_Box_Warning + '</div>'); errorCount++;
         }
+
+        if(!validatePOBox($j('[id$=physicalAddressLine2]').val())) {
+            $j('[id$=physicalAddressLine2]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_PO_Box_Warning + '</div>'); errorCount++;
+        }
         
         if($j('[id$=averageMonthlyFuelExpenses]').val() !== "" && !(parseFloat($j('[id$=averageMonthlyFuelExpenses]').val().replace(/,/g,'')) > 0)) {
             $j('[id$=averageMonthlyFuelExpenses]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Amount + '</div>'); errorCount++;
