@@ -131,4 +131,8 @@ public class TestClassDispatcher {
         WSUtil_WSS2_CreditDecisionServiceTest.testBadUpdate();
     }
 
+    @isTest static void testOpportunityAutoAssignment(){
+        OpportunityAssignmentTest.test_opportunityAutoAssignment();
+    }
+
 }
