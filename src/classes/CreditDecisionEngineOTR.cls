@@ -283,6 +283,29 @@ global class CreditDecisionEngineOTR {
 
             }
 
+            // SAFER
+            System.debug('Running SAFER Matching...');
+
+            if (onlineApplication.DOT_Number__c != null && !onlineApplication.DOT_Number__c.equals('')) {
+                List<SAFER_Carrier__c> saferCarriers = [SELECT Id, DOT_Number__c, Name from SAFER_Carrier__c where DOT_Number__c = :onlineApplication.DOT_Number__c];
+
+                if (saferCarriers.size() > 0) {
+
+                    Double matchPercentage = 0;
+
+                    if (saferCarriers[0].Name != null) {
+                        // validate business name
+                        matchPercentage = JaroWinklerDistance.getScore(onlineApplication.Legal_Business_Name__c, saferCarriers[0].Name);
+                        System.debug('SAFER Name Match Percentage: ' + matchPercentage);
+
+                        // having the SAFER Carrier ID populated will signify it's good to use for BPAV
+                        if (matchPercentage >= .75) {
+                            onlineApplication.SAFER_Carrier__c = saferCarriers[0].Id;
+                        }
+                    }
+                }
+            }
+
             // DNB Resolution
             System.debug('Running DNB Matching...');
 
@@ -428,15 +451,6 @@ global class CreditDecisionEngineOTR {
                 dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
 
-            }
-
-            // SAFER
-            if (onlineApplication.DOT_Number__c != null && !onlineApplication.DOT_Number__c.equals('')) {
-                List<SAFER_Carrier__c> saferCarriers = [SELECT Id, DOT_Number__c from SAFER_Carrier__c where DOT_Number__c =: onlineApplication.DOT_Number__c];
-
-                if (saferCarriers.size() > 0) {
-                    onlineApplication.SAFER_Carrier__c = saferCarriers[0].Id;
-                }
             }
 
             // Existing Exposure - Application/Account Exposure

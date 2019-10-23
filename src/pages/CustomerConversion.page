@@ -276,10 +276,10 @@
                                                             style="color: rgba(18,100,170,.9);"
                                                             title="{!$Label.BPAV_TIN_Help}"></i></label><br/>
                                                 <apex:InputField id="taxpayerId"
-                                                                 styleClass="styled-input form-control tin"
+                                                                 styleClass="styled-input required"
                                                                  html-data-parsley-required="true"
-                                                                 html-data-parsley-type="digits"
-                                                                 html-data-parsley-minlength="9" html-max-length="9"
+                                                                 html-data-parsley-type="{!IF(OR(languageCode == 'fr_ca', languageCode == 'en_ca'), 'alphanum', 'digits')}"
+                                                                 html-data-parsley-minlength="9" html-maxlength="{!IF(OR(languageCode == 'fr_ca', languageCode == 'en_ca'), 15, 9)}"
                                                                  html-tabindex="8"
                                                                  html-data-parsley-error-message="{!$Label.BOCA_Invalid_Tax_ID}"
                                                                  value="{!conversionData.Taxpayer_ID_EIN__c}"/>

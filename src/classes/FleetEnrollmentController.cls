@@ -10,10 +10,11 @@ public virtual class FleetEnrollmentController {
     public Map<String, String> cardControlOptionDisplayMap { get; set; }
     public String languageCode {
         get {
-            return ApexPages.CurrentPage().getParameters().get('lang');
+            return ApexPages.CurrentPage().getParameters().get('lang') == null ? 'en_'+billingCountry : ApexPages.CurrentPage().getParameters().get('lang');
         }
     }
 
+    public String billingCountry { get; set; }
     // URL Parameters to fetch
     public String opportunityParameter {
         get {
@@ -117,7 +118,7 @@ public virtual class FleetEnrollmentController {
     public List<SelectOption> availableStateSelectOptions {
         get {
             List<SelectOption> picklistValues = new List<SelectOption>();
-            picklistValues.add(new SelectOption('#', Label.Billing_State));
+            picklistValues.add(new SelectOption('#', SObjectType.FleetEnrollment__c.fields.Billing_State__c.label));
 
             if (languageCode != null && languageCode.contains('_ca')) { // Canada
 
@@ -134,7 +135,20 @@ public virtual class FleetEnrollmentController {
             return picklistValues;
         }
     }
-
+    public String embossingOptionsSerialized {
+        get {
+            return JSON.serialize(embossingOptionsMap);
+        }
+    }
+    public Map<String, String> embossingOptionsMap {
+        get {
+            Map<String, String> selectOptions = new Map<String, String>();
+            for (SelectOption selectOption : embossingOptions) {
+                selectOptions.put(selectOption.getValue(), selectOption.getLabel());
+            }
+            return selectOptions;
+        }
+    }
     // Local picklists
     public List<SelectOption> embossingOptions {
         get {
@@ -404,6 +418,11 @@ public virtual class FleetEnrollmentController {
             //if this comes through BOCA there is an app request parameter
             if (!String.isEmpty(applicationRequestParameter)) {
 
+                List<Application_Request__c> applicationRequests = [SELECT Id, Billing_Country__c FROM Application_Request__c WHERE Id = :applicationRequestParameter];
+                if (!applicationRequests.isEmpty() && applicationRequests[0].Billing_Country__c != null) {
+                    billingCountry = applicationRequests[0].Billing_Country__c.toLowerCase();
+                }
+
                 List<FleetEnrollment__c> fleetEnrollments = [
                         SELECT Id, Has_Fleet_Enrollment_Data__c
                         FROM FleetEnrollment__c
@@ -442,7 +461,7 @@ public virtual class FleetEnrollmentController {
 
 
                 List<FleetEnrollment__c> fleetEnrollments = [
-                        SELECT Id, Has_Fleet_Enrollment_Data__c
+                        SELECT Id, Has_Fleet_Enrollment_Data__c, Opportunity__r.Billing_Country__c
                         FROM FleetEnrollment__c
                         WHERE Opportunity_Number__c = :opportunityParameter];
 
@@ -469,7 +488,9 @@ public virtual class FleetEnrollmentController {
                     if (feWithoutFleetData.size() > 0) {
 
                         fleetEnrollment.Id = feWithoutFleetData[0].Id;
-
+                        if (feWithoutFleetData[0].Opportunity__c != null && feWithoutFleetData[0].Opportunity__r.Billing_Country__c != null) {
+                            billingCountry = feWithoutFleetData[0].Opportunity__r.Billing_Country__c.toLowerCase();
+                        }
                     }
                 }
             }
@@ -885,15 +906,20 @@ public virtual class FleetEnrollmentController {
         Messaging.reserveSingleEmailCapacity(1);
         Messaging.SingleEmailMessage confirmation = new Messaging.SingleEmailMessage();
 
-        confirmation.setTemplateId(program.Fleet_Data_Capture_Email_Template__c);
+        Id templateId = (brandingUtility != null && brandingUtility.FleetEnrollment_Email_Template_Id__c != null) ? brandingUtility.FleetEnrollment_Email_Template_Id__c : program.Fleet_Data_Capture_Email_Template__c;
+        confirmation.setTemplateId(templateId);
         confirmation.setWhatId(fleetEnrollment.Id);
         confirmation.setTargetObjectId(temporaryContact.id);
         confirmation.setSaveAsActivity(false);
-        confirmation.setReplyTo('noreply@wexinc.com');
 
+        String replyTo = 'noreply@wexinc.com';
+        if (languageCode.equalsIgnoreCase('fr_ca')) {
+            replyTo = 'noreply+fr@wexinc.com';
+        }
+        confirmation.setReplyTo(replyTo);
         for(OrgWideEmailAddress owa : [select id, Address, DisplayName from OrgWideEmailAddress])
         {
-            if(owa.Address.contains('noreply@wexinc.com')) {
+            if(owa.Address.contains(replyTo)) {
                 confirmation.setOrgWideEmailAddressId(owa.id);
             }
         }
