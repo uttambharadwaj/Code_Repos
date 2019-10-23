@@ -498,17 +498,23 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeBooleanField('handEnter', false);
         jsonPayload.writeNumberField('payrollContractId', 0);
         if(selectedOtherServices != null){
-            if(selectedOtherServices.contains('ATM')) jsonPayload.writeBooleanField('payrollAtm', true);
-            else jsonPayload.writeBooleanField('payrollAtm', false);
+            if (selectedOtherServices.contains('atm')) {
+                jsonPayload.writeBooleanField('payrollAtm', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollAtm', false);
+            }
 
-            if(selectedOtherServices.contains('Register Check')) jsonPayload.writeBooleanField('payrollChk', true);
-            else jsonPayload.writeBooleanField('payrollChk', false);
+            if (selectedOtherServices.contains('register check')) {
+                jsonPayload.writeBooleanField('payrollChk', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollChk', false);
+            }
 
             if(selectedOtherServices.contains('fleet_mastercard')) jsonPayload.writeStringField('mc_fleet','Y');
 
             if(hasSmartfunds){
-                if(selectedOtherServices.contains('ACH Transfer')) jsonPayload.writeBooleanField('payrollAch', true);
-                if(selectedOtherServices.contains('Debit Use')) jsonPayload.writeBooleanField('payrollDebit', true);
+                if(selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
+                if(selectedOtherServices.contains('debit Use')) jsonPayload.writeBooleanField('payrollDebit', true);
             }
         }
 
@@ -559,7 +565,6 @@ global class AccountWS_EFSAppManager {
         }
 */
         jsonPayload.writeBooleanField('payrollWire', false);
-        jsonPayload.writeBooleanField('payrollDebit', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
         jsonPayload.writeBooleanField('defCardMgdNonFuel', false);
         jsonPayload.writeEndObject();
