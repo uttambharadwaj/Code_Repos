@@ -48,7 +48,7 @@
         $Label.BOCA_Invalid_Tax_ID = '{!JSENCODE($Label.BOCA_Invalid_Tax_ID)}';
         $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
         $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
-    
+        window.boca_language_code = '{!languageCode}';
         console.log('{!tmSessionId}');
     </script>
     

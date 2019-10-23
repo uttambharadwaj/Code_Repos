@@ -255,7 +255,6 @@ global class CreditDecisionEngineOTR {
                 // set result in object
                 onlineApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
                 onlineApplication.Lexis_Nexis_BIID_Score__c = lexisNexisBIIDResponse.biidScore;
-                onlineApplication.Lexis_Nexis_CVI_Score__c = lexisNexisBIIDResponse.cviScore;
 
                 // If we fail, go to Fraud Point
                 if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && !String.isEmpty(onlineApplication.AO_Address__c) && !String.isEmpty(onlineApplication.AO_City__c)
@@ -278,9 +277,33 @@ global class CreditDecisionEngineOTR {
                     onlineApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
                     onlineApplication.Lexis_Nexis_FraudPoint_Result__c = (lexisNexisIIDResponse.fraudPointWorkflowResult).capitalize();
                     onlineApplication.Lexis_Nexis_IID_Result__c = (lexisNexisIIDResponse.iidWorkflowResult).capitalize();
+                    onlineApplication.Lexis_Nexis_CVI_Score__c = lexisNexisIIDResponse.cviScore;
 
                 }
 
+            }
+
+            // SAFER
+            System.debug('Running SAFER Matching...');
+
+            if (onlineApplication.DOT_Number__c != null && !onlineApplication.DOT_Number__c.equals('')) {
+                List<SAFER_Carrier__c> saferCarriers = [SELECT Id, DOT_Number__c, Name from SAFER_Carrier__c where DOT_Number__c = :onlineApplication.DOT_Number__c];
+
+                if (saferCarriers.size() > 0) {
+
+                    Double matchPercentage = 0;
+
+                    if (saferCarriers[0].Name != null) {
+                        // validate business name
+                        matchPercentage = JaroWinklerDistance.getScore(onlineApplication.Legal_Business_Name__c, saferCarriers[0].Name);
+                        System.debug('SAFER Name Match Percentage: ' + matchPercentage);
+
+                        // having the SAFER Carrier ID populated will signify it's good to use for BPAV
+                        if (matchPercentage >= .75) {
+                            onlineApplication.SAFER_Carrier__c = saferCarriers[0].Id;
+                        }
+                    }
+                }
             }
 
             // DNB Resolution
@@ -428,15 +451,6 @@ global class CreditDecisionEngineOTR {
                 dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
 
-            }
-
-            // SAFER
-            if (onlineApplication.DOT_Number__c != null && !onlineApplication.DOT_Number__c.equals('')) {
-                List<SAFER_Carrier__c> saferCarriers = [SELECT Id, DOT_Number__c from SAFER_Carrier__c where DOT_Number__c =: onlineApplication.DOT_Number__c];
-
-                if (saferCarriers.size() > 0) {
-                    onlineApplication.SAFER_Carrier__c = saferCarriers[0].Id;
-                }
             }
 
             // Existing Exposure - Application/Account Exposure

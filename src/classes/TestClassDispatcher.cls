@@ -123,4 +123,16 @@ public class TestClassDispatcher {
         CreditUtilQueueable_ExperianPGTest.testBadRequests();
     }
 
+    @isTest static void testCreditDecisionServiceGood(){
+        WSUtil_WSS2_CreditDecisionServiceTest.testGoodUpdate();
+    }
+
+    @isTest static void testCreditDecisionServiceBad(){
+        WSUtil_WSS2_CreditDecisionServiceTest.testBadUpdate();
+    }
+
+    @isTest static void testOpportunityAutoAssignment(){
+        OpportunityAssignmentTest.test_opportunityAutoAssignment();
+    }
+
 }

@@ -1,7 +1,8 @@
 <!--
 Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
 -->
-<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentConfirmationController">
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentConfirmationController"
+    language="{!languageCode}">
 <html>
 <head>
     <!-- Meta! -->
@@ -188,15 +189,15 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
             /* Subheader Section - END */
 
             /* Card Image/Steps Section - START */
-        	#steps { height: 86px; display: block; }
+        	#steps { height: 102px; display: block; }
         
         	#cardImage { text-align: center; width: 100%; margin: 60px auto 0 auto; overflow: visible; height: 20px; }
         	#cardImage img { max-width: 220px; position: relative; z-index: 100; pointer-events: none; }
         
-        	.step { margin: 6px 6px 0 0; height: 54px; float: left; width: 118px; background: #eee; line-height: 5px; }
+        	.step { margin: 6px 6px 0 0; height: 70px; float: left; width: 118px; background: #eee; line-height: 5px; }
         	.step1to1 { margin: 6px 6px 0 0; height: 54px; float: left; width: 200px; background: #eee; line-height: 5px; }
             .stepIndicatorComplete { pointer-events: none; float: left; background: url({!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-circle_check.png')}) no-repeat; width: 34px; height: 43px; margin-top: 11px; margin-left: 1px; }
-        	.stepDescription { float: left; font-size: 12px; line-height: 5px; font-size: 12px; letter-spacing: -0.07em; margin-top: 17px; width: 80px; }
+        	.stepDescription { float: left; font-size: 12px; line-height: 10px; letter-spacing: -0.10em; margin-top: 17px; width: 80px; }
         	.stepDescription p { margin: 0 0 8px 1px; }
         	.step:first-child { margin-left: 6px; }
 			.step:last-child { margin-right: 0px; }
@@ -213,7 +214,7 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                 <div id="programName" class="six columns">{!program.Brand_Long_Name__c}</div>
                 <div id="contactUs" class="six columns">
 					<apex:outputText rendered="{!fleetEnrollment.Credit_Line_Amount__c != null}">
-                        Questions? Call {!program.Implementation_Team_Number__c}
+                            {!$Label.Questions_Call} {!program.Implementation_Team_Number__c}
                     </apex:outputText>
 				</div>
             </div>
@@ -225,22 +226,22 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                 <div class="four columns">
                     <div id="welcomeMessage">
                         <apex:outputText rendered="{!fleetEnrollment.Credit_Approved__c == true}">
-							<h2>Congratulations!</h2>
-        	    			<p>You've been approved</p>
-    	        			<p>Credit line: <apex:outputText value="{0, number, $###,###,###}">
+                                <apex:outputText value="{!$Label.Fleet_Approved_Confirmation}" escape="false" />
+                                <p>{!$Label.Fleet_Credit_line}
+                                    <apex:outputText value="{0, number, $###,###,###}">
 	    									<apex:param value="{!fleetEnrollment.Credit_Line_Amount__c}"/>
 										</apex:outputText>
 							</p>			
 						</apex:outputText>
 						<apex:outputText rendered="{!fleetEnrollment.Credit_Approved__c == false}">
-            	    		<h2 style="margin-top: 20px;">Thank you for applying!</h2>
-                            <p>&nbsp;</p>
-                            <p>&nbsp;</p>
+                                <h2 style="margin-top: 20px;">{!$Label.Thank_you_for_applying}</h2>
+                                <p> </p>
+                                <p> </p>
 						</apex:outputText>
                         <apex:outputPanel id="staticCardImage">
 							<div id="cardImage">
 								<!--PSOBACKLOG-76-->
-	                        	<img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} Card Image"/>
+                                    <img src="{!URLFOR($Action.Attachment.Download, brandingCard)}" alt="{!program.Brand_Long_Name__c} {!$Label.Fleet_Card_Image}" />
 							</div>
 						</apex:outputPanel>
                     </div>
@@ -248,7 +249,8 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                 <div class="eight columns" id="pageImage">
                 	<apex:outputPanel id="subHeaderImage">
 						<!--PSOBACKLOG-76-->
-						<apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}" alt="Lander Graphic Image"/>
+                            <apex:image style="pointer-events: none; width: 627px;" url="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/lander-graphic.png')}"
+                                alt="{!$Label.Fleet_Lander_Graphic_Image}" /> />
 					</apex:outputPanel>
                 </div>
             </div>
@@ -266,53 +268,31 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                             <div class="step">
                                	<div class="stepIndicatorComplete"></div>
                                	<div class="stepDescription">
-                               		<p>Step 1:</p><p><b>your company</b></p>
+                                        <apex:outputText value="{!$Label.Step_1_your_company}" escape="false" />
                                	</div>
                             </div>
                             <div class="step">
                                	<div class="stepIndicatorComplete"></div>
                                	<div class="stepDescription">
-                               		<p>Step 2:</p><p><b>embossing</b></p>
+                                        <apex:outputText value="{!$Label.Fleet_Step_2_embossing}" escape="false" />
                                	</div>
                             </div>
                             <div class="step">
                                	<div class="stepIndicatorComplete"></div>
                                	<div class="stepDescription">
-                               		<p>Step 3:</p><p><b>vehicle details</b></p>
+                                        <apex:outputText value="{!$Label.Step_3_vehicle_details}" escape="false" />
                                	</div>
                             </div>
                             <div class="step">
                                	<div class="stepIndicatorComplete"></div>
                                	<div class="stepDescription">
-                               		<p>Step 4:</p><p><b>driver details</b></p>
+                                        <apex:outputText value="{!$Label.Step_4_driver_details}" escape="false" />
                                	</div>
                             </div>
                             <div class="step">
                                 <div class="stepIndicatorComplete"></div>
                                 <div class="stepDescription">
-                                	<p>Step 5:</p><p><b>summary</b></p>
-                            	</div>
-                        	</div>
-						</div>
-					</apex:outputPanel>
-                    <apex:outputPanel id="stepDisplay1to1" rendered="{!program.Publish_Fleet_Data_Capture_Form_1_1__c}">
-                        <div>
-                            <div class="step1to1">
-                                <div class="stepIndicatorComplete"></div>
-                                <div class="stepDescription">
-                                    <p>Step 1:</p><p><b>your company</b></p>
-                                </div>
-                            </div>
-                            <div class="step1to1">
-                                <div class="stepIndicatorComplete"></div>
-                                <div class="stepDescription">
-                                    <p>Step 2:</p><p><b>vehicle details</b></p>
-                                </div>
-                            </div>
-                            <div class="step1to1">
-                                <div class="stepIndicatorComplete"></div>
-                                <div class="stepDescription">
-                                    <p>Step 3:</p><p><b>summary</b></p>
+                                        <apex:outputText value="{!$Label.Fleet_Step_5_summary}" escape="false" />
                                 </div>
                             </div>
                         </div>
@@ -331,36 +311,38 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
 						<apex:outputPanel rendered="{!fleetEnrollment.Credit_Approved__c == true}">
                         	<div class="twelve columns clearfix">
                         		<h3>
-	                            	Thank you for submitting your information.
+                                    {!$Label.Fleet_Thank_you_for_submitting}
     	                	   	</h3>
                     	    </div>
                 	        <div class="twelve columns clearfix">
-            	            	Your confirmation number is: {!fleetEnrollment.Confirmation_Number__c} 
-                                [<a href="javascript:window.open('/FleetEnrollment/FleetEnrollmentPrint?id={!applicantId}&token={!printToken}', '_blank', 'location=yes,height=800,width=600,scrollbars=yes');">Print Confirmation</a>]<br/><br/>  
+                                {!$Label.Fleet_Your_confirmation_number_is} {!fleetEnrollment.Confirmation_Number__c} [
+                                <a href="javascript:window.open('/FleetEnrollment/FleetEnrollmentPrint?id={!applicantId}&token={!printToken}&lang={!languageCode}', '_blank', 'location=yes,height=800,width=600,scrollbars=yes');">{!$Label.Fleet_Print_Confirmation}</a>]
+                                <br/>
+                                <br/>
         	                </div>
     	                    <div class="twelve columns clearfix">
-	                        	Your cards will arrive by mail in {!program.Fleet_Data_Capture_Form_Delivery__c} days. Your cards will be active and ready for use when they arrive.<br/><br/>  
+                                {!$Label.Fleet_Your_cards_will_arrive_1} {!program.Fleet_Data_Capture_Form_Delivery__c} {!$Label.Fleet_Your_card_will_arrive_2}
+                                <br/>
+                                <br/>
                             </div>
                             <div class="twelve columns clearfix">
-                               	Over the next 2 weeks, we'll send you 4 important emails about your card program:<br/><br/>
-                                <b>Email 1</b> will confirm your driver IDs<br/>
-								<b>Email 2</b> will provide details on your card account's features and benefits<br/>
-								<b>Email 3</b> will walk you through online registration and downloading our mobile app<br/>
-                	            <b>Email 4</b> will provide details on your invoice and reports
+                                <apex:outputText value="{!$Label.Fleet_Over_the_next_2_weeks}" escape="false" />
             	            </div>
 						</apex:outputPanel>
 						<apex:outputPanel rendered="{!fleetEnrollment.Credit_Approved__c == false}">
 	                    	<div class="twelve columns clearfix">
 								<h3>
-	                        	   	Thank you for submitting your information.
+                                    {!$Label.Fleet_Thank_you_for_submitting}
     	                		</h3>
                     	    </div>
                 	        <div class="twelve columns clearfix">
-            	                Your confirmation number is: {!fleetEnrollment.Confirmation_Number__c}
-                            	[<a href="javascript:window.open('/FleetEnrollment/FleetEnrollmentPrint?id={!applicantId}&token={!printToken}', '_blank', 'location=yes,height=800,width=600,scrollbars=yes');">Print Confirmation</a>]<br/><br/>  
+                                {!$Label.Fleet_Your_confirmation_number_is} {!fleetEnrollment.Confirmation_Number__c} [
+                                <a href="javascript:window.open('/FleetEnrollment/FleetEnrollmentPrint?id={!applicantId}&token={!printToken}&lang={!languageCode}', '_blank', 'location=yes,height=800,width=600,scrollbars=yes');">{!$Label.Fleet_Print_Confirmation}</a>]
+                                <br/>
+                                <br/>
         	                </div>
     	    	            <div class="twelve columns clearfix">
-	            	    	    Your application is being reviewed and we will update you by email within 5 business days.
+                                {!$Label.Fleet_Your_application_is_being_reviewed}
                 	      	</div>
 						</apex:outputPanel>
                 </div>

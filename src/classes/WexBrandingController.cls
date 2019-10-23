@@ -46,6 +46,25 @@ public class WexBrandingController {
 
     }
 
+
+    // Get the branding utility RECORD for a given program id
+    public static BOCA_res__c getBrandingUtilRecordByProgramId(Id programId) {
+        return getBrandingUtilRecordByProgramId(programId, null);
+    }
+    public static BOCA_res__c getBrandingUtilRecordByProgramId(Id programId, String language) {
+
+        String query = UtilityClass.selectStar('BOCA_Res__c') + 'WHERE Program__c = :programId AND ';
+        query += language != null ? 'ISO_Code__c = :language' : 'BOCA_Default__c = true';
+
+        List<BOCA_res__c> brandingUtilities = Database.query(query);
+        if (brandingUtilities.isEmpty()) {
+            query = UtilityClass.selectStar('BOCA_Res__c') + 'WHERE Program__c = :programId AND BOCA_Default__c = true';
+            brandingUtilities = Database.query(query);
+        }
+
+        return brandingUtilities.isEmpty() ? null : brandingUtilities[0];
+    }
+
     public static Id getBrandingUtilityByProgramId(Id programId, String languageCode) {
 
         List<BOCA_res__c> brandingUtilities = [SELECT Id FROM BOCA_res__c WHERE Program__c = :programId AND ISO_code__c = :languageCode];
