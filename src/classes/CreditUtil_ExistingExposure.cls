@@ -5,12 +5,12 @@
 
 /** The purpose of this class is to potentially find duplicate applications and accounts based on the current application being submitted.
      */
-public with sharing class CreditUtil_ExistingExposure {
+public without sharing class CreditUtil_ExistingExposure {
 
     private static List<Id> appIds = new List<Id>();
     // The list of application Status that we want to include in what we consider as existing exposure
-    private static List<String> NAFLEET_APP_STATUSES = new List<String>{'Application Complete','Decisioned','Implementation Complete', 'Pending Implementation'};
-    private static List<String> OTR_APP_STATUSES = new List<String>{'Closed/Fraud','Decisioned-Rereview','Pending Setup','Pending Setup Data','Pending Setup-Generic','Setup Complete','Cards Produced','Cards Shipped','Approved','Prepay','Prepay Requested','Declined','Audit Complete'};
+    private static List<String> NAFLEET_APP_STATUSES = new List<String>{'Application Complete', 'Decisioned', 'Implementation Complete', 'Pending Implementation'};
+    private static List<String> OTR_APP_STATUSES = new List<String>{'Closed/Fraud','Decisioned-Rereview', 'Decisioned', 'Pending Setup','Pending Setup Data','Pending Setup-Generic','Setup Complete','Cards Produced','Cards Shipped','Approved','Prepay','Prepay Requested','Declined','Audit Complete'};
     private static List<String> CP_APP_STATUSES = new List<String>{'Application Complete','Cards Produced', 'Cards Shipped','Implementation Complete','Pending Implementation','Pending Setup Data','Pending Setup-Generic','Setup Complete','Audit Complete','Saved - Rereview'};
 
     /** Things have gotten a little complicated.
@@ -266,7 +266,7 @@ public with sharing class CreditUtil_ExistingExposure {
             existingExposureApps.addAll(appRequestWIthPGSSNMatch);
             existingExposureApps.addAll(appRequestWithPhoneOrTaxMatch);
 
-            // Remove duplicates
+            // Remove duplicates`
             uniqueExistingExposureApps = new Set<SObject>(existingExposureApps);
 
             // Lastly, query for the Application Requests that match the remaining existing exposure criteria
