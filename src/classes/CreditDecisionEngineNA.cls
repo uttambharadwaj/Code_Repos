@@ -480,6 +480,7 @@ global class CreditDecisionEngineNA {
             existingExposureRequest.phone = naApplication.Business_Phone_Number__c;
             existingExposureRequest.taxID = naApplication.Tax_Payer_ID_number__c;
             existingExposureRequest.duns = naApplication.DNB_Resolved_DUNS__c;
+            existingExposureRequest.pgSSN = naApplication.Personal_Guarantor_SSN__c;
             existingExposureRequest.ipAddress = naApplication.App_Signer_IP_Address__c;
 
             List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
