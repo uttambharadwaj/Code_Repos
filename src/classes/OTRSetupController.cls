@@ -423,6 +423,8 @@ public without sharing class OTRSetupController {
     // Re-factor with upserts of set, with all or nothing
     public PageReference submitForm() {
 
+        System.debug('TEMP got inside submit form, current status: ' + onlineApplication.Status__c);
+
         try {
 
             if (program.WEX_Platform__c != null && (program.WEX_Platform__c).equalsIgnoreCase('CoreCard')) {
@@ -441,6 +443,8 @@ public without sharing class OTRSetupController {
                 onlineApplication.Submitted_to_Credit__c = Datetime.now();
             }
 
+            System.debug('TEMP status post IFs: ' + onlineApplication.Status__c);
+
             onlineApplication.Number_of_Cards_Needed__c = numberOfCards;
 
             if (selectedOtherServices != null && selectedOtherServices != '') {
@@ -451,10 +455,9 @@ public without sharing class OTRSetupController {
                 onlineApplication.Allowed_Merchant_Categories__c = selectedMerch.replaceAll(',',';');
             }
 
-            if (selectedFundingOptions != null && selectedFundingOptions != '' && onlineApplication.Carrier_ID_Number__c != null) {
-                onlineApplication.Funding_Options__c = selectedFundingOptions.replaceAll(',',';');
-                createContracts(onlineApplication);
-            }
+            onlineApplication.Funding_Options__c = onlineApplicationOffer.Available_Funding_Options__c;
+
+            if(onlineApplicationOffer.Funding__c != null && onlineApplicationOffer.Funding__c.containsIgnoreCase('secondary')) createContract(onlineApplication);
 
             upsert onlineApplication;
 
@@ -661,22 +664,14 @@ public without sharing class OTRSetupController {
 
     }
 
-    private static void createContracts(OnlineApplication__c onlineApp){
-        List<Contract__c> myContracts = new List<Contract__c>();
+    private static void createContract(OnlineApplication__c onlineApp){
         Map<String, Contract__c> contractMap = new Map<String, Contract__c>();
-        for(Contract__c c : [SELECT Id, Funding_Option__c FROM Contract__c WHERE Online_Application__c = :onlineApp.Id])
-            contractMap.put(c.Funding_Option__c, c);
-        List<String> myOptions = onlineApp.Funding_Options__c.split(';');
-        for(String s : myOptions){
-            Contract__c myContract;
-            if(contractMap.containsKey(s)) myContract = contractMap.get(s);
-            else myContract = new Contract__c();
-            myContract.Funding_Option__c = s;
-            myContract.Online_Application__c = onlineApp.Id;
-            myContract.Account__c = onlineApp.Account__c;
-            myContracts.add(myContract);
-        }
-        upsert myContracts;
+        List<Contract__c> cList = [SELECT Id FROM Contract__c WHERE Online_Application__c = :onlineApp.Id LIMIT 1];
+        Contract__c myContract = (cList.size()>0) ? cList[0] : new Contract__c();
+        myContract.Online_Application__c = onlineApp.Id;
+        myContract.Account__c = onlineApp.Account__c;
+
+        insert myContract;
     }
 
 }

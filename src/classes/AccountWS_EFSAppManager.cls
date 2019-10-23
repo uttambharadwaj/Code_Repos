@@ -22,8 +22,8 @@ global class AccountWS_EFSAppManager {
     //likely todo: create a custom metadata to store these fee codes and other fee-based info
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
     public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
-    public final static String SHIPPING_FEE = '24'; //value for testing only: Replace this with the actual code when EFS provides it
-    public final static String EMBOSSING_FEE = '434'; //value for testing only: Replace this with the actual code when EFS provides it
+    public final static String SHIPPING_FEE = '704'; //mastercard shipping fee
+    public final static String EMBOSSING_FEE = '705'; //mastercard embossing fee
     public final static String ATM_WITHDRAWAL_FEE = '105';
 
     public static Boolean integrationRunning { get; set; }
@@ -100,32 +100,61 @@ global class AccountWS_EFSAppManager {
 
             } else {
 
-                String myPayload = buildPayload_callout1(onlineApplication, loginResponse.clientId);
+                //here we do our for loop on contracts
+                List<Contract__c> myContracts = new List<Contract__c>{null};
+                if(onlineApplication.Carrier_ID_Number__c != null)
+                    myContracts = [SELECT Id, Funding_Option__c FROM Contract__c WHERE Online_Application__c = :onlineApplication.Id];
+                if(myContracts.size()==0) myContracts.add(null);
 
-                if(myPayload != null) {
+                List<Attachment> attachList = new List<Attachment>();
+                List<HttpRequest> myPayloads = new List<HttpRequest>();
 
-                    // Send the payload to Ogden LLC
-                    http = new Http();
+                for(Integer i=0;i<myContracts.size();i++){
 
-                    httpRequest = new HttpRequest();
+                    Contract__c oneContract = (myContracts[i]);
+                    system.debug(oneContract);
+                    String firstPayload = buildPayload_callout1(onlineApplication, loginResponse.clientId, oneContract);
 
-                    httpRequest.setBody(myPayload);
+                    if(firstPayload != null) {
 
-                    // If child, then contract
-                    // else, then carrier
-                    if(onlineApplication.Carrier_ID_Number__c != null) {
-                        httpRequest.setEndpoint(settings.Endpoint__c + '/ogden-platform-ws/api/salesforce/v3/provision/contract');
+                        DateTime today = DateTime.now();
+                        String dateStr =  today.format('MM-dd-yyyy_hh-mm-ss');
+
+                        Blob myBlob = Blob.valueof(firstPayload);
+                        Attachment a;
+                        if(oneContract != null) a = new Attachment(parentid=oneContract.Id, Name = 'json_payload' + dateStr + '.txt' , Body = myBlob );
+                        else a = new Attachment(parentid=onlineApplication.Id, Name = 'json_payload' + dateStr + '.txt' , Body = myBlob );
+                        attachList.add(a);
+
+                        // Send the payload to Ogden LLC
+                        http = new Http();
+
+                        httpRequest = new HttpRequest();
+
+                        httpRequest.setBody(firstPayload);
+
+                        // If child, then contract
+                        // else, then carrier
+                        if(onlineApplication.Carrier_ID_Number__c != null) {
+                            httpRequest.setEndpoint(settings.Endpoint__c + '/ogden-platform-ws/api/salesforce/v3/provision/contract');
+                        }
+                        else {
+                            httpRequest.setEndpoint(settings.Endpoint__c + '/ogden-platform-ws/api/salesforce/v3/provision/carrier');
+                        }
+                        httpRequest.setTimeout(120000);
+                        httpRequest.setMethod('POST');
+                        httpRequest.setHeader('Accept', 'application/json');
+                        httpRequest.setHeader('Content-Type', 'application/json');
+
+                        myPayloads.add(httpRequest);
                     }
-                    else {
-                        httpRequest.setEndpoint(settings.Endpoint__c + '/ogden-platform-ws/api/salesforce/v3/provision/carrier');
-                    }
-                    httpRequest.setTimeout(120000);
-                    httpRequest.setMethod('POST');
-                    httpRequest.setHeader('Accept', 'application/json');
-                    httpRequest.setHeader('Content-Type', 'application/json');
+                }
 
-                    httpResponse = new HttpResponse();
-                    httpResponse = http.send(httpRequest);
+                List<HttpResponse> myResponses = new List<HttpResponse>();
+                for(HttpRequest hr : myPayloads)
+                    myResponses.add(http.send(httpRequest));
+
+                for(HttpResponse hr : myResponses){
 
                     if(httpResponse.getStatusCode() == 200) {
 
@@ -161,19 +190,13 @@ global class AccountWS_EFSAppManager {
 
                         httpResponse = http.send(httpRequest);
 
-                    } else {
+                    }
+                    else {
                         throw new appManagerException('integrateOnlineApplication: Error connecting to App Manager: ' + httpResponse.getBody());
                     }
 
-                    DateTime today = DateTime.now();
-                    String dateStr =  today.format('MM-dd-yyyy_hh-mm-ss');
-
-                    Blob myBlob = Blob.valueof(myPayload);
-                    Attachment a = new Attachment(parentid=onlineApplication.Id, Name = 'json_payload' + dateStr + '.txt' , Body = myBlob );
-
-                    insert a;
-
                 }
+                insert attachList;
             }
 
         }
@@ -188,7 +211,7 @@ global class AccountWS_EFSAppManager {
     }
 
     // Callout #1 - Integrate Contract/Carrier payloads to Application Manager
-    public static String buildPayload_callout1(OnlineApplication__c onlineApplication, String clientId) {
+    public static String buildPayload_callout1(OnlineApplication__c onlineApplication, String clientId, Contract__c myContract) {
 
         Account onlineApplicationAccount = null;
         Account onlineApplicationParentAccount = null;
@@ -240,7 +263,11 @@ global class AccountWS_EFSAppManager {
         if(onlineApplicationOffer.Funding__c.containsIgnoreCase('Parent')){
             if(onlineApplicationOffer.Funding__c.containsIgnoreCase('Secondary')){
                 if(onlineApplication.Carrier_ID_Number__c == null) treatAsParent = true;
-                else treatAsAChild = true;
+                else {
+                    //now to see if this is a parent/secondary for an existing carrier
+                    if(isInitialPayload(onlineApplication)) treatAsParent = true; //already sent this application once
+                    else treatAsAChild = true; //haven't sent this application yet
+                }
             } else {
                 treatAsParent = true;
             }
@@ -415,10 +442,13 @@ global class AccountWS_EFSAppManager {
         }
         jsonPayload.writeStartObject();
 
-        jsonPayload.writeStringField('application_id', onlineApplication.ID);
+        if(myContract != null) jsonPayload.writeStringField('application_id',myContract.Id);
+        else jsonPayload.writeStringField('application_id', onlineApplication.ID);
         //otronboard-59
-        if(onlineApplication.Carrier_ID_Number__c != null)
-            jsonPayload.writeNumberField('linkSecondaryThreshold', 100);
+        if(onlineApplication.Carrier_ID_Number__c != null) {
+            jsonPayload.writeNumberField('link_secondary_threshold', 100);
+            jsonPayload.writeStringField('link_as_secondary', 'Y');
+        }
 
         if(treatAsParent)jsonPayload.writeStringField('dont_do_oracle', 'Y');
 
@@ -455,8 +485,8 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeFieldName('policy');
         jsonPayload.writeStartObject();
 
-        Integer polNum = treatAsAChild ? 2 : 1;
-        jsonPayload.writeNumberField('policyNumber', polNum);
+        Integer polNumber = onlineApplication.Carrier_ID_Number__c == null ? 1 : 2;
+        jsonPayload.writeNumberField('policyNumber', polNumber);
 
         jsonPayload.writeFieldName('header');
         jsonPayload.writeStartObject();
@@ -467,16 +497,38 @@ global class AccountWS_EFSAppManager {
         }
         jsonPayload.writeBooleanField('handEnter', false);
         jsonPayload.writeNumberField('payrollContractId', 0);
-        String myOpts = onlineApplicationOffer.Available_Funding_Options__c;
-        if(myOpts.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'Y');
-        else jsonPayload.writeStringField('payrollAtm', 'N');
-        if(myOpts.contains('Register Check')) jsonPayload.writeStringField('payrollChk', 'Y');
-        else jsonPayload.writeStringField('payrollChk', 'N');
-        if(myOpts.contains('ACH Transfer')) jsonPayload.writeStringField('payrollAch', 'Y');
-        else jsonPayload.writeStringField('payrollAch', 'N');
-        if(myOpts.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Y');
-        else jsonPayload.writeStringField('payrollDebit', 'N');
+        if(selectedOtherServices != null){
+            if (selectedOtherServices.contains('atm')) {
+                jsonPayload.writeBooleanField('payrollAtm', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollAtm', false);
+            }
 
+            if (selectedOtherServices.contains('register check')) {
+                jsonPayload.writeBooleanField('payrollChk', true);
+            } else {
+                jsonPayload.writeBooleanField('payrollChk', false);
+            }
+
+            if(selectedOtherServices.contains('fleet_mastercard')) jsonPayload.writeStringField('mc_fleet','Y');
+
+            if(hasSmartfunds){
+                if(selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
+                if(selectedOtherServices.contains('debit Use')) jsonPayload.writeBooleanField('payrollDebit', true);
+            }
+        }
+
+        /*
+        String myOpts = onlineApplicationOffer.Available_Funding_Options__c;
+        if(myOpts.contains('ATM')) jsonPayload.writeBooleanField('payrollAtm', true);
+        else jsonPayload.writeBooleanField('payrollAtm', false);
+        if(myOpts.contains('Register Check')) jsonPayload.writeBooleanField('payrollChk', true);
+        else jsonPayload.writeBooleanField('payrollChk', false);
+        if(myOpts.contains('ACH Transfer')) jsonPayload.writeBooleanField('payrollAch', true);
+        else jsonPayload.writeBooleanField('payrollAch', false);
+        if(myOpts.contains('Debit Use')) jsonPayload.writeBooleanField('payrollDebit', true);
+        else jsonPayload.writeBooleanField('payrollDebit', false);
+        */
         /*
         if (onlineApplication.Funding_Options__c != null) {
             if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'ATM');
@@ -513,7 +565,6 @@ global class AccountWS_EFSAppManager {
         }
 */
         jsonPayload.writeBooleanField('payrollWire', false);
-        jsonPayload.writeBooleanField('payrollDebit', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
         jsonPayload.writeBooleanField('defCardMgdNonFuel', false);
         jsonPayload.writeEndObject();
@@ -737,7 +788,8 @@ global class AccountWS_EFSAppManager {
         } else {
             jsonPayload.writeStringField('ach_allowed', 'N');
         }
-        if(onlineApplicationOffer.Account_Descriptor__c != null) jsonPayload.writeStringField('mgr_code', onlineApplicationOffer.Account_Descriptor__c);
+        if(treatAsParent) jsonPayload.writeStringField('mgr_code', 'wire');
+        else if(onlineApplicationOffer.Account_Descriptor__c != null) jsonPayload.writeStringField('mgr_code', onlineApplicationOffer.Account_Descriptor__c);
 
         jsonPayload.writeStringField('service_charge', 'Y');
         jsonPayload.writeStringField('late_payment', 'Y');
@@ -747,30 +799,42 @@ global class AccountWS_EFSAppManager {
         if((onlineApplication.Invoice_Delivery_Method__c).equals('Internet')) jsonPayload.writeStringField('statement_dist_type', 'R');
         if(!(onlineApplication.Invoice_Delivery_Method__c).equals('Internet')) jsonPayload.writeStringField('statement_dist_type', 'E');
         if(onlineApplication.Invoice_Delivery_Method_Email__c != null) jsonPayload.writeStringField('statement_email', onlineApplication.Invoice_Delivery_Method_Email__c);
-        if(onlineApplication.ABA_Routing_Number__c != null) jsonPayload.writeStringField('bank_routing_number', onlineApplication.ABA_Routing_Number__c);
-        if(onlineApplication.Checking_Account_Number__c != null) jsonPayload.writeStringField('bank_account_number', onlineApplication.Checking_Account_Number__c);
+        if(!treatAsParent && onlineApplication.ABA_Routing_Number__c != null) jsonPayload.writeStringField('bank_routing_number', onlineApplication.ABA_Routing_Number__c);
+        if(!treatAsParent && onlineApplication.Checking_Account_Number__c != null) jsonPayload.writeStringField('bank_account_number', onlineApplication.Checking_Account_Number__c);
         jsonPayload.writeStringField('bank_account_type', 'D');
         if(onlineApplicationAccount.CurrencyIsoCode != null) jsonPayload.writeStringField('currency', onlineApplicationAccount.CurrencyIsoCode);
         jsonPayload.writeStringField('unit_of_measure', 'G');
-        if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('credit_line_type', 'Draw Down');
-        if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('credit_line_type', 'Open Line');
-        if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Auto Draft')) jsonPayload.writeStringField('payment_method', 'ACH Draft');
-        if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Online Payment')) jsonPayload.writeStringField('payment_method', 'None');
-        if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Internet Pay')) jsonPayload.writeStringField('payment_method', 'None');
-        if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Customer Initiated ACH')) jsonPayload.writeStringField('payment_method', 'Wire');
-        if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Customer ACH')) jsonPayload.writeStringField('payment_method', 'Wire');
-        if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Wire')) jsonPayload.writeStringField('payment_method', 'Wire');
-        if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Western Union')) jsonPayload.writeStringField('payment_method', 'Wire');
-        if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Faxed Electronichek')) jsonPayload.writeStringField('payment_method', 'Check');
-        if(onlineApplication.Payment_Frequency__c != null) jsonPayload.writeStringField('payment_frequency', onlineApplication.Payment_Frequency__c);
-/*
-        if(onlineApplication.Payment_Terms__c != null) jsonPayload.writeStringField('ZZZREQUESTED_TERMS', onlineApplication.Payment_Terms__c);
-        if(onlineApplication.Billing_Cycle__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE', onlineApplication.Billing_Cycle__c);
-        if(onlineApplication.Payment_Method_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_METHOD_APPROVED', onlineApplication.Payment_Method_Approved__c);
-        if(onlineApplication.Payment_Frequency_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_FREQUENCY_APPROVED', onlineApplication.Payment_Frequency_Approved__c);
-        if(onlineApplication.Terms_Approved__c != null) jsonPayload.writeStringField('ZZZTERMS_APPROVED', onlineApplication.Terms_Approved__c);
-        if(onlineApplication.Billing_Cycle_Approved__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE_APPROVED', onlineApplication.Billing_Cycle_Approved__c   );
-*/
+        if(treatAsParent) jsonPayload.writeStringField('credit_line_type','None');
+        else if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('credit_line_type', 'Draw Down');
+        else if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('credit_line_type', 'Open Line');
+        if(treatAsParent){
+            jsonPayload.writeStringField('payment_method', 'wire');
+            jsonPayload.writeStringField('payment_frequency', 'DAILY');
+        } else {
+            if (onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Auto Draft')) jsonPayload.writeStringField('payment_method', 'ACH Draft');
+            if (onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Online Payment')) jsonPayload.writeStringField('payment_method', 'None');
+            if (onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Internet Pay')) jsonPayload.writeStringField('payment_method', 'None');
+            if (onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Customer Initiated ACH')) jsonPayload.writeStringField('payment_method', 'Wire');
+            if (onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Customer ACH')) jsonPayload.writeStringField('payment_method', 'Wire');
+            if (onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Wire')) jsonPayload.writeStringField('payment_method', 'Wire');
+            if (onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Western Union')) jsonPayload.writeStringField('payment_method', 'Wire');
+            if (onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Faxed Electronichek')) jsonPayload.writeStringField('payment_method', 'Check');
+            if(onlineApplication.Payment_Frequency__c != null) jsonPayload.writeStringField('payment_frequency', onlineApplication.Payment_Frequency__c);
+        }
+
+        if(treatAsParent){
+            jsonPayload.writeStringField('billing_cycle', 'daily');
+            jsonPayload.writeStringField('payment_terms', 'net10');
+        } else {
+            if(onlineApplication.Billing_Cycle__c != null) jsonPayload.writeStringField('billing_cycle', onlineApplication.Billing_Cycle__c);
+            if(onlineApplication.Payment_Terms__c != null) jsonPayload.writeStringField('payment_terms', onlineApplication.Payment_Terms__c);
+        }
+//
+//        if(onlineApplication.Payment_Method_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_METHOD_APPROVED', onlineApplication.Payment_Method_Approved__c);
+//        if(onlineApplication.Payment_Frequency_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_FREQUENCY_APPROVED', onlineApplication.Payment_Frequency_Approved__c);
+//        if(onlineApplication.Terms_Approved__c != null) jsonPayload.writeStringField('ZZZTERMS_APPROVED', onlineApplication.Terms_Approved__c);
+//        if(onlineApplication.Billing_Cycle_Approved__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE_APPROVED', onlineApplication.Billing_Cycle_Approved__c   );
+
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('req_credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('req_credit_line_type', 'Open Line');
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Auto Draft')) jsonPayload.writeStringField('req_payment_method', 'ACH Draft');
@@ -839,15 +903,12 @@ global class AccountWS_EFSAppManager {
             if (onlineApplicationOffer.Cash_Limit__c != null) jsonPayload.WriteNumberField('cash_limit', Integer.valueOf(onlineApplicationOffer.Cash_Limit__c));
             if (onlineApplicationOffer.MC_Limit__c != null) jsonPayload.writeNumberField('mc_limit', Integer.valueOf(onlineApplicationOffer.MC_Limit__c));
             if (onlineApplicationOffer.Trans_Limit__c != null) jsonPayload.writeNumberField('trans_limit', Integer.valueOf(onlineApplicationOffer.Trans_Limit__c));
-            if (onlineApplicationOffer.ATM_Use__c == true) jsonPayload.writeStringField('atm_allowed', 'Y');
-            if (onlineApplicationOffer.ATM_Use__c == false) jsonPayload.writeStringField('atm_allowed', 'N');
         }
 
-        if(onlineApplication.Credit_Line_Approved__c != null) {
-            jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
-            //if offer is parent funded, and credit line approved is null, then we send 0.
-        } else if (treatAsParent && onlineApplication.Credit_Line_Approved__c == null) {
+        if(treatAsParent){
             jsonPayload.writeNumberField('credit_line_amount', 0);
+        } else if(onlineApplication.Credit_Line_Approved__c != null) {
+            jsonPayload.writeNumberField('credit_line_amount', onlineApplication.Credit_Line_Approved__c);
         }
 
         if(onlineApplication.Credit_Line_Requested__c != null) {
@@ -885,9 +946,12 @@ global class AccountWS_EFSAppManager {
             if (onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('scales', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Scales__c));
         }
 
-        if(myFees.atmWithdrawalFee != null) jsonPayload.writeNumberField('ATM-DENIAL-FEE', Integer.valueOf(myFees.atmWithdrawalFee));
-        if(onlineApplicationOffer.Available_Funding_Options__c.contains('Register Check')) jsonPayload.writeStringField('reg_check_flag', 'Y');
+        if(treatAsParent && myFees.atmWithdrawalFee != null) jsonPayload.writeNumberField('ATM-DENIAL-FEE', Integer.valueOf(myFees.atmWithdrawalFee));
+        if(selectedOtherServices != null && selectedOtherServices.contains('Register Check')) jsonPayload.writeStringField('reg_check_flag', 'Y');
         else jsonPayload.writeStringField('reg_check_flag', 'N');
+
+        if (selectedOtherServices != null && selectedOtherServices.contains('ATM')) jsonPayload.writeStringField('atm_allowed', 'Y');
+        else jsonPayload.writeStringField('atm_allowed', 'N');
 
         // End of "contract"
         jsonPayload.writeEndObject();
@@ -926,6 +990,15 @@ global class AccountWS_EFSAppManager {
 
     }
 
+    //take in the online application if this is parent/secondary funded. determine if this application has been sent to efs (treat it as a child) or not (treat it as a parent)
+    private static Boolean isInitialPayload(OnlineApplication__c onlineApp){
+        Set<Id> mySet =new Set<Id>{onlineApp.Id};
+        mySet.addAll(new Map<Id,Contract__c>([SELECT Id FROM Contract__c WHERE Online_Application__c = :onlineApp.Id]).keySet());
+        Integer myCount = [SELECT count() FROM Attachment WHERE ParentId IN :mySet AND Name LIKE 'json_payload%'];
+        if(myCount > 0) return false;
+        return true;
+    }
+
     public class CardFees{
         public String monthlyFee;
         public String mcShippingFee;
@@ -945,19 +1018,22 @@ global class AccountWS_EFSAppManager {
                 if(this.monthlyFee == null || this.mcShippingFee == null || this.mcEmbossingFee == null){ //seems like this may need to be redone
                     //get the fees based on OLI. not ideal.
                     Set<Id> productIds = new Set<Id>();
+                    Set<Id> productIds2 = new Set<Id>();
                     //get the product bundles
                     for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
                         productIds.add(oli.Product2Id);
                     //for each bundle, get the options and create a map of product code to unitprice
-                    for(SBQQ__ProductOption__c po : [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c, SBQQ__ConfiguredSKU__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees']) {
-                        if (!productOptionMap.containsKey(po.SBQQ__ProductCode__c) && po.SBQQ__UnitPrice__c != null && po.SBQQ__UnitPrice__c > 0) {
-                            productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c);
-                            productIds.remove(po.SBQQ__ConfiguredSKU__c);
+                    for(SBQQ__ProductOption__c po : [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c, SBQQ__OptionalSKU__c, SBQQ__ConfiguredSKU__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees']) {
+                        if (!productOptionMap.containsKey(po.SBQQ__ProductCode__c)){
+                            if(po.SBQQ__UnitPrice__c != null && po.SBQQ__UnitPrice__c > 0)
+                                productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c);
+                            else
+                                    productIds2.add(po.SBQQ__OptionalSKU__c);
                         }
                     }
-                    if(productIds.size()>0){
-                        //get the base level product price. this will be the default if no option exists
-                        for(PriceBookEntry pbe : [SELECT Id, UnitPrice, ProductCode, PriceBook2.IsStandard FROM PricebookEntry WHERE Product2Id IN :productIds AND Pricebook2.IsStandard = true])
+                    if(productIds2.size()>0){
+                        //get the base level product price. this will be the default if no option override exists
+                        for(PriceBookEntry pbe : [SELECT Id, UnitPrice, ProductCode, PriceBook2.IsStandard FROM PricebookEntry WHERE Product2Id IN :productIds2 AND Pricebook2.IsStandard = true])
                             if(!productOptionMap.containsKey(pbe.ProductCode))
                                 productOptionMap.put(pbe.ProductCode, pbe.UnitPrice);
                     }
