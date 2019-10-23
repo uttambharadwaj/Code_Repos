@@ -266,7 +266,7 @@ public without sharing class CreditUtil_ExistingExposure {
             existingExposureApps.addAll(appRequestWIthPGSSNMatch);
             existingExposureApps.addAll(appRequestWithPhoneOrTaxMatch);
 
-            // Remove duplicates`
+            // Remove duplicates
             uniqueExistingExposureApps = new Set<SObject>(existingExposureApps);
 
             // Lastly, query for the Application Requests that match the remaining existing exposure criteria
