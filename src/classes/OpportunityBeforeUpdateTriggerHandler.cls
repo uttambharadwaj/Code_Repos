@@ -6,6 +6,12 @@ public class OpportunityBeforeUpdateTriggerHandler extends TriggerHandlerBase {
 
     public override void mainEntry(TriggerParameters tp) {
 
+        UOpportunity.getStageId(tp.newList, (Map<Id, Opportunity>) tp.oldMap);
+        UOpportunity.echoBefore(tp.newList, (Map<Id, Opportunity>) tp.oldMap);
+        UOpportunity.setContactRoles(tp.newList);
+        UOpportunity.checkProgramAccount(tp.newList, (Map<Id, Opportunity>) tp.oldMap);
+        UOpportunity.executeBREeze(tp.newList, (Map<Id, Opportunity>) tp.oldMap);
+
         checkFleetEnrollment((List<Opportunity>) tp.newList, (Map<Id, Opportunity>) tp.oldMap); // create new or update existing FleetEnrollment__c on Fuel Card Oppty
 
     }

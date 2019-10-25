@@ -1,17 +1,15 @@
-/*
- * Created by MFarrell on 7/23/2019.
+/**
+ * Created by mfarrell on 2019-10-25.
  */
 
-public class OpportunityAfterInsertTriggerHandler extends TriggerHandlerBase{
+public class OpportunityAfterUpdateTriggerHandler extends TriggerHandlerBase {
 
     public override void mainEntry(TriggerParameters tp) {
 
+        UOpportunity.echoAfter(tp.newList, (Map<Id, Opportunity>) tp.oldMap);
         UOpportunity.createCommission(tp.newList, (Map<Id, Opportunity>) tp.oldMap);
         UOpportunityShare.communityCheckSharing (tp.newList, (Map<Id, Opportunity>) tp.oldMap);
         UOpportunity.createTasks(tp.newList, (Map<Id, Opportunity>) tp.oldMap);
-        UOpportunity.updateProgramAccount(tp.newList, (Map<Id, Opportunity>) tp.oldMap);
-
-        OpportunityHelper.createFleetEnrollment((List<Opportunity>) tp.newList); // create fleet enrollment record.
 
     }
 

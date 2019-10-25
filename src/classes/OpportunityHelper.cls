@@ -6,7 +6,6 @@ public class OpportunityHelper {
 
     public static void createFleetEnrollment(List<Opportunity> opptys) {
 
-        List<FleetEnrollment__c> feCreateList = new List<FleetEnrollment__c>();
         Set<Opportunity> fuelCardOpptyIds = new Set<Opportunity>();
         Map<Id, Id> opptyToProgramMap = new Map<Id, Id>();
         Map<Id, Id> programTemplateToProgramMap = new Map<Id, Id>();
@@ -27,16 +26,16 @@ public class OpportunityHelper {
                 WHERE Id IN :fuelCardOpptyIds
         ];
         for (Opportunity o : opptyList) {
-            opptyToProgramMap.put(o.campaign_program__r.program__c, o.id);
+            opptyToProgramMap.put(o.Campaign_Program__r.Program__c, o.Id);
         }
 
         // Find all Program Template Accounts for the Programs associated with the oppty list
         List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = TRUE AND Program__c IN :opptyToProgramMap.keySet()];
         for (Program_Template_Account__c pta : programTemplateAccounts) {
-            programTemplateToProgramMap.put(pta.program__c, pta.Id);
+            programTemplateToProgramMap.put(pta.Program__c, pta.Id);
         }
 
-        // create new FleetEnrollment__c record for each opportunity, add records to feList
+        // create new FleetEnrollment__c record for each opportunity, add records to feSet to limit duplicates
         for (Opportunity opp : opptyList) {
             FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
             fleetEnrollment.Opportunity__c = opp.Id;
@@ -44,7 +43,7 @@ public class OpportunityHelper {
             fleetEnrollment.Program_Template_Account__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c);
             fleetEnrollment.Debug_Opportunity_Parameter__c = opp.Id;
             fleetEnrollment.Status__c = 'New';
-            if (opp.name.length() > 30) {
+            if (opp.Name.length() > 30) {
                 fleetEnrollment.Embossing_Company_Name__c = opp.Name.substring(0, 30);
             } else {
                 fleetEnrollment.Embossing_Company_Name__c = opp.Name;
@@ -59,19 +58,12 @@ public class OpportunityHelper {
             if (opp.Billing_Zip_Postal_Code__c != null) fleetEnrollment.Billing_Postal_Code__c = opp.Billing_Zip_Postal_Code__c;
             if (opp.Billing_Contact_Email__c != null) fleetEnrollment.Billing_Email__c = opp.Billing_Contact_Email__c;
             if (opp.Billing_Contact_Phone__c != null) fleetEnrollment.Billing_Phone__c = opp.Billing_Contact_Phone__c;
-            if (Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal') != null)
-                fleetEnrollment.RecordTypeId = Schema.Sobjecttype.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal').getRecordTypeId();
-
-            feCreateList.add(fleetEnrollment);
-
-        }
-
-        if (feCreateList.size() > 0) {
-            try {
-                insert feCreateList;
-            } catch (DmlException e) {
-                System.debug('Error Inserting FleetEnrollment Records: ' + e.getMessage());
+            if (Schema.SObjectType.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal') != null) {
+                fleetEnrollment.RecordTypeId = Schema.SObjectType.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal').getRecordTypeId();
             }
+            OpportunityTriggerDispatcher.feNoDuplicatesSet.add(fleetEnrollment);
         }
+
     }
+
 }
