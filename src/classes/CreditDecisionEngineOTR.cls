@@ -33,7 +33,7 @@ global class CreditDecisionEngineOTR {
                         DUNS__c, PG_Required__c, Type_of_Business__c, AO_Home_Phone_Number__c, Program__c, CreatedBy.Alias, Fraud_Flag__c, Previous_Fraud__c, Opportunity__c,
                         Opportunity__r.SourceSystem__c, Account__r.Name, Trade_Name__c, Federal_Tax_ID__c, Card_Shipping_Address_Line_1__c, Card_Shipping_City__c, Card_Shipping_State__c,
                         Card_Shipping_Postal_Code__c, Email__c, Phone_Number__c, IP_Address__c, Credit_Line_Requested__c, Application_Signer_IP__c, DNB_Credit_Line_Recommendation__c,
-                        DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DNB_Resolution_Check__c, DOT_Number__c, DNB_Resolved_DUNS__c,
+                        DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DOT_Number__c, DNB_Resolved_DUNS__c,
                         Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c
                 FROM OnlineApplication__c
                 WHERE Id = :onlineApplicationId
@@ -190,6 +190,7 @@ global class CreditDecisionEngineOTR {
             }
 
             // Lexis Nexis RDP - SBA
+            System.debug('Running Lexis Nexis RDP...');
             CreditWS_LexisNexisRDP.LexisNexisSBARequest lexisNexisSBARequest = new CreditWS_LexisNexisRDP.LexisNexisSBARequest();
 
             lexisNexisSBARequest.companyName = onlineApplication.Legal_Business_Name__c;
@@ -450,7 +451,10 @@ global class CreditDecisionEngineOTR {
                 dnbDirectMatchRequest.SingleResolution = false;
                 dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
 
-
+                System.debug('Failed to verify business via DNB, attempt to user SAFER...');
+                BREeze.ProcessRules.processRuleLogic('OTRCreditDecisioningBPAVMatch', new List<SObject>{
+                        onlineApplication
+                });
             }
 
             // Existing Exposure - Application/Account Exposure
