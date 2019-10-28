@@ -10,7 +10,7 @@ private class SiebelLoginIdUpdate
         Account acc = new Account(Name='Account 1',Industry='what',Type='hello');
         insert acc;
 
-        Campaign cam = new Campaign(Name='Cam 1',Coupon_Code__c='what',Type='Acquire',Status='Planned',Drop_Date__c=date.today());
+        Campaign cam = new Campaign(Name='Cam 1',Coupon_Code__c='test134',Type='Acquire',Status='Planned',Drop_Date__c=date.today());
         insert cam;
 
         List <User> UserList1 = new List <User> ([Select Id from User where Id != '00570000001Lkjs' and isActive = true LIMIT 1]);

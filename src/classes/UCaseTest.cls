@@ -64,7 +64,7 @@ private class UCaseTest {
 
         Schema.DescribeSObjectResult caseSobject = Case.SObjectType.getDescribe();
         Map<String, Schema.RecordTypeInfo> caseRtMapByName = caseSobject.getRecordTypeInfosByName();
-        Id caId = caseRtMapByName.get('Virtual Credit CS').getRecordTypeId();
+        //Id caId = caseRtMapByName.get('Virtual Credit CS').getRecordTypeId();
 
         List<Case> actCases = UTestData.getCases(acts);
 
@@ -72,7 +72,7 @@ private class UCaseTest {
             c.AccountId = null;
             c.Origin = 'Email';
             c.SuppliedEmail = 'user1@test.com';
-            c.RecordTypeId = caId;
+            //c.RecordTypeId = caId;
             c.SuppliedName = 'john smith';
             c.Reason = 'test';
         }
@@ -124,7 +124,7 @@ private class UCaseTest {
 
         Schema.DescribeSObjectResult caseSobject = Case.SObjectType.getDescribe();
         Map<String, Schema.RecordTypeInfo> caseRtMapByName = caseSobject.getRecordTypeInfosByName();
-        Id caId = caseRtMapByName.get('Virtual Credit CS').getRecordTypeId();
+        //Id caId = caseRtMapByName.get('Virtual Credit CS').getRecordTypeId();
 
         List<Case> actCases = UTestData.getCases(acts);
 
@@ -132,7 +132,7 @@ private class UCaseTest {
             c.AccountId = null;
             c.Origin = 'Email';
             c.SuppliedEmail = 'user1@test.com';
-            c.RecordTypeId = caId;
+            //c.RecordTypeId = caId;
             c.SuppliedName = 'john smith';
             c.Reason = 'test';
         }
@@ -151,7 +151,7 @@ private class UCaseTest {
             c.AccountId = null;
             c.Origin = 'Email';
             c.SuppliedEmail = 'user1@test.com';
-            c.RecordTypeId = caId;
+            //c.RecordTypeId = caId;
             c.SuppliedName = 'john smith';
             c.Reason = 'test';
         }
@@ -165,8 +165,8 @@ private class UCaseTest {
         List<Contact> newContact = UTestData.getContacts(acts);
         insert newContact;
 
-        ct[0].FirstName = 'Updated';
-        update ct;
+        //ct[0].FirstName = 'Updated';
+        //update ct;
 
 
         //system.assertEquals(actCasesLatest[0].AccountId, acts[0].Id);
