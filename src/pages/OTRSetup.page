@@ -342,7 +342,7 @@
                                 </div>
 
                                 <!--BEGIN ALLOWED MERCHANT CATEGORIES SUBSECTION-->
-                                <div id="allowedMerchantCategories" style="display:none;">
+                                <div id="allowedMerchantCategories">
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>
