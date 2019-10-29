@@ -220,6 +220,7 @@ global class AccountWS_EFSAppManager {
         OnlineApplicationOffer__c onlineApplicationOffer = null;
         Boolean hasSmartfunds = false;
         Boolean hasMastercard = false;
+        Boolean hasATM = false;
         Set<String> selectedOtherServices = new Set<String>();
 
         // Grabbing additional data
@@ -242,9 +243,10 @@ global class AccountWS_EFSAppManager {
         }
         if(onlineApplication.Other_Services__c != null) {
             for(String product : (onlineApplication.Other_Services__c).split(';')) {
-                selectedOtherServices.add(product.toLowerCase());
+                selectedOtherServices.add(product.replaceAll('[^a-zA-Z0-9]', '').toLowerCase());
                 if(product.containsIgnoreCase('smartfunds')) hasSmartfunds = true;
                 if(product.containsIgnoreCase('mastercard')) hasMastercard = true;
+                if(product.containsIgnoreCase('atm')) hasATM = true;
             }
         }
         if(hasMastercard != true && onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('mastercard')) {
@@ -402,8 +404,7 @@ global class AccountWS_EFSAppManager {
             if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipping_zip', onlineApplication.Card_Shipping_Postal_Code__c);
             if(onlineApplication.Federal_Tax_ID__c != null) jsonPayload.writeStringField('tax_id', onlineApplication.Federal_Tax_ID__c);
             if(onlineApplicationOffer != null && onlineApplicationOffer.Parent_Carrier_ID__c != null) jsonPayload.writeStringField('original_parent_carrier_id', onlineApplicationOffer.Parent_Carrier_ID__c);
-
-//            else jsonPayload.writeNullField('original_parent_carrier_id');
+                //else jsonPayload.writeNullField('original_parent_carrier_id');
             jsonPayload.writeStringField('parent_type', 'group');
             if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
@@ -454,7 +455,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeBooleanField('handEnter', false);
         jsonPayload.writeNumberField('payrollContractId', 0);
         if(selectedOtherServices != null){
-            if (selectedOtherServices.contains('atm')) {
+            if (hasATM) {
                 jsonPayload.writeBooleanField('payrollAtm', true);
             } else {
                 jsonPayload.writeBooleanField('payrollAtm', false);
@@ -470,7 +471,7 @@ global class AccountWS_EFSAppManager {
 
             if(hasSmartfunds){
                 if(selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
-                if(selectedOtherServices.contains('debit Use')) jsonPayload.writeBooleanField('payrollDebit', true);
+                if(selectedOtherServices.contains('debit use')) jsonPayload.writeBooleanField('payrollDebit', true);
             }
         }
 
@@ -842,7 +843,7 @@ global class AccountWS_EFSAppManager {
         // Per Gaylon and Justine - we're always going to send this.
         if(onlineApplication.Number_of_Cards_Needed__c != null) jsonPayload.writeNumberField('fuel_and_cash', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_Fuel_Cash__c));
 
-        if(selectedOtherServices != null && selectedOtherServices.contains('atm') && onlineApplicationOffer.PSR_ATM_Limit__c != null) {
+        if(selectedOtherServices != null && hasATM && onlineApplicationOffer.PSR_ATM_Limit__c != null) {
             if (onlineApplication.Number_of_Cards_Needed__c != null){
                 if(onlineApplication.Carrier_ID_Number__c != null){
                     jsonPayload.writeNumberField('atm_limit', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.PSR_ATM_Limit__c));
@@ -865,7 +866,7 @@ global class AccountWS_EFSAppManager {
         if(selectedOtherServices != null && selectedOtherServices.contains('Register Check')) jsonPayload.writeStringField('reg_check_flag', 'Y');
         else jsonPayload.writeStringField('reg_check_flag', 'N');
 
-        if (selectedOtherServices != null && selectedOtherServices.contains('ATM')) jsonPayload.writeStringField('atm_allowed', 'Y');
+        if (selectedOtherServices != null && hasATM) jsonPayload.writeStringField('atm_allowed', 'Y');
         else jsonPayload.writeStringField('atm_allowed', 'N');
 
         // End of "contract"
