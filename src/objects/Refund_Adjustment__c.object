@@ -153,7 +153,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Account_Number__c</fullName>
         <externalId>false</externalId>
@@ -337,6 +337,7 @@
     </fields>
     <fields>
         <fullName>CaseNumber__c</fullName>
+        <deleteConstraint>Restrict</deleteConstraint>
         <externalId>false</externalId>
         <label>Case</label>
         <lookupFilter>
@@ -345,19 +346,17 @@
             <filterItems>
                 <field>Case.RecordTypeId</field>
                 <operation>equals</operation>
-                <value>Service Operations, VAS - Retention</value>
+                <value>Service Operations, VAS - Retention, VAS - Retention, Service Operations</value>
             </filterItems>
             <isOptional>false</isOptional>
         </lookupFilter>
         <referenceTo>Case</referenceTo>
         <relationshipLabel>Refunds/Adjustments</relationshipLabel>
         <relationshipName>Refunds_Adjustments</relationshipName>
-        <relationshipOrder>0</relationshipOrder>
-        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <required>true</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>City__c</fullName>
@@ -1730,7 +1729,7 @@
         <searchResultsAdditionalFields>Total_Late_Fee__c</searchResultsAdditionalFields>
         <searchResultsCustomButtons>Approve</searchResultsCustomButtons>
     </searchLayouts>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>Cannot_Change_an_Approved_or_Denied_Item</fullName>
         <active>true</active>

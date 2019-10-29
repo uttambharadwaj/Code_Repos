@@ -38,12 +38,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Address1__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Address2__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -68,7 +68,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Approver_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -78,12 +78,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Bank_ABA__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.City__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -93,7 +93,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Decision_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -113,7 +113,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Fleet_Bank_Account__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -138,7 +138,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Negotiated__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -148,7 +148,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Reason_Description__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -158,7 +158,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.State__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -168,12 +168,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Total_Late_Fee__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -183,7 +183,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Refund_Adjustment__c.Zip__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -191,10 +191,10 @@
     <label>RefAdj CS Manager</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
-        <allowDelete>true</allowDelete>
+        <allowDelete>false</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
+        <modifyAllRecords>false</modifyAllRecords>
         <object>Case</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
