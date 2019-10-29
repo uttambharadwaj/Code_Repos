@@ -15,16 +15,16 @@
 *                   26/Sep/2019 MFarrell    OTRONBOARD-32   Online_Pay__c field on OnlineApplicationOffer__c now sets ach_allowed
 *                                           OTRONBOARD-93   if Credit_Line_Approved__c or Credit_Line_Requested__c are null, and the offer is parent funded, send 0 instead of null.
 *                                                           moved these fields to the contract section of the payload.
+*                   29/10/2019 MFarrell     EFS             moved fees to custom metadata... because we all know it's going to change eventually.
 */
 
 global class AccountWS_EFSAppManager {
 
-    //likely todo: create a custom metadata to store these fee codes and other fee-based info
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
-    public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
-    public final static String SHIPPING_FEE = '704'; //mastercard shipping fee
-    public final static String EMBOSSING_FEE = '705'; //mastercard embossing fee
-    public final static String ATM_WITHDRAWAL_FEE = '105';
+//    public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
+//    public final static String SHIPPING_FEE = '704'; //mastercard shipping fee
+//    public final static String EMBOSSING_FEE = '705'; //mastercard embossing fee
+//    public final static String ATM_WITHDRAWAL_FEE = '105';
 
     public static Boolean integrationRunning { get; set; }
 
@@ -102,17 +102,18 @@ global class AccountWS_EFSAppManager {
 
                 //here we do our for loop on contracts
                 List<Contract__c> myContracts = new List<Contract__c>{null};
-                if(onlineApplication.Carrier_ID_Number__c != null)
+                if (onlineApplication.Carrier_ID_Number__c != null) {
                     myContracts = [SELECT Id, Funding_Option__c FROM Contract__c WHERE Online_Application__c = :onlineApplication.Id];
-                if(myContracts.size()==0) myContracts.add(null);
+                }
+                if (myContracts.size()==0) myContracts.add(null);
 
                 List<Attachment> attachList = new List<Attachment>();
                 List<HttpRequest> myPayloads = new List<HttpRequest>();
 
-                for(Integer i=0;i<myContracts.size();i++){
+                for(Integer i = 0; i < myContracts.size(); i++) {
 
                     Contract__c oneContract = (myContracts[i]);
-                    system.debug(oneContract);
+                    System.debug('contract for first payload' + oneContract);
                     String firstPayload = buildPayload_callout1(onlineApplication, loginResponse.clientId, oneContract);
 
                     if(firstPayload != null) {
@@ -228,6 +229,9 @@ global class AccountWS_EFSAppManager {
                 if(product.containsIgnoreCase('mastercard')) hasMastercard = true;
             }
         }
+        if(hasMastercard = false && onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('mastercard')) {
+            hasMastercard = true;
+        }
 
         // Grabbing additional data
         if(onlineApplication.Account__c != null) {
@@ -244,7 +248,6 @@ global class AccountWS_EFSAppManager {
                     PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c, Approval_Type__c, Primary_Contact_Email_Address__c, Available_Funding_Options__c,
                     Create_Letter__c, Notice_Delivery__c, Online_Pay__c,Card_Style__c,Cards_per_1_Requested__c,Card_Shipping_Method__c,Card_Type__c,Account_Descriptor__c,
                     Child_Funded_Issuer_ID__c, Parent_Funded_Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c, Card_Order_Type__c, Statement_Type__c, Customer_Type__c
-            //Notice_Type_1__c, Notice_Type_1_Value__c, Notice_Type_2__c, Notice_Type_2_Value__c, Mcode_Monthly_Account_Fee__c, Mcode_Monthly_Account_Fee_Value__c, Monthly_Account_Fee__c, Monthly_Account_Fee_Value__c
             FROM OnlineApplicationOffer__c
             WHERE Id =: onlineApplication.Offer__c LIMIT 1];
         }
@@ -299,16 +302,9 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeNumberField('policyNumber', 1);
             if(onlineApplicationOffer.Card_Order_Type__c != null) jsonPayload.writeNumberField('orderType', Integer.valueOf(onlineApplicationOffer.Card_Order_Type__c));
             if(onlineApplicationOffer.Card_Style__c != null) jsonPayload.writeNumberField('cardStyle', Integer.valueOf(onlineApplicationOffer.Card_Style__c));
-            //if(onlineApplicationProgram.Card_Press_ID__c != null) jsonPayload.writeNumberField('cardpressId', Integer.valueOf(onlineApplicationProgram.Card_Press_ID__c));
             // Certain Programs send additional cards to the customer.
             if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
             if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('orderQty', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.Cards_per_1_Requested__c));
-            // if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
-            //    jsonPayload.writeStringField('shipToCountry', 'USA');
-            // }
-            // if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
-            //     jsonPayload.writeStringField('shipToCountry', 'CAN');
-            // }
             if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('US')) {
                 jsonPayload.writeStringField('shipToCountry', 'USA');
             }
@@ -382,19 +378,12 @@ global class AccountWS_EFSAppManager {
             if(onlineApplication.Business_Street_Address__c != null) jsonPayload.writeStringField('mailing_address1', onlineApplication.Business_Street_Address__c.replaceAll('[^a-zA-Z0-9 -]', ''));
             if(onlineApplication.City__c != null) jsonPayload.writeStringField('mailing_city', onlineApplication.City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
             if(onlineApplication.State__c != null) jsonPayload.writeStringField('mailing_state', onlineApplication.State__c);
-            //if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
-            //    jsonPayload.writeStringField('mailing_country', 'US');
-            //}
-            //if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
-            //    jsonPayload.writeStringField('mailing_country', 'CA');
-            //}
             if(onlineApplication.Country__c != null) jsonPayload.writeStringField('mailing_country', onlineApplication.Country__c);
             if(onlineApplication.Zip_Code__c != null) jsonPayload.writeStringField('mailing_zip', onlineApplication.Zip_Code__c);
             if(onlineApplication.Date_Decisioned__c != null) jsonPayload.writeStringField('approved_date', String.valueOf(onlineApplication.Date_Decisioned__c.format('yyyy-MM-dd')));
             if(onlineApplication.Phone_Number__c != null) jsonPayload.writeStringField('phone', onlineApplication.Phone_Number__c);
             if(onlineApplication.Fax_Number__c != null) jsonPayload.writeStringField('fax', onlineApplication.Fax_Number__c);
             if(onlineApplication.Email__c != null) jsonPayload.writeStringField('email', onlineApplication.Email__c);
-            // if(onlineApplication.Contact_Name__c != null) jsonPayload.writeStringField('contact_name', onlineApplication.Contact_Name__c);
             if(onlineApplication.Contact_First_Name__c != null && onlineApplication.Contact_Last_Name__c != null) jsonPayload.writeStringField('contact_name', onlineApplication.Contact_First_Name__c.replaceAll('[^a-zA-Z0-9 -]', '') + ' ' + onlineApplication.Contact_Last_Name__c.replaceAll('[^a-zA-Z0-9 -]', ''));
             if(onlineApplication.AO_Title__c != null) jsonPayload.writeStringField('contact_position', onlineApplication.AO_Title__c);
             jsonPayload.writeStringField('status', 'A');
@@ -410,12 +399,6 @@ global class AccountWS_EFSAppManager {
             if(onlineApplication.Card_Shipping_Address_Line_1__c != null) jsonPayload.writeStringField('shipping_address1', onlineApplication.Card_Shipping_Address_Line_1__c.replaceAll('[^a-zA-Z0-9 -]', ''));
             if(onlineApplication.Card_Shipping_City__c != null) jsonPayload.writeStringField('shipping_city', onlineApplication.Card_Shipping_City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
             if(onlineApplication.Card_Shipping_State__c != null) jsonPayload.writeStringField('shipping_state', onlineApplication.Card_Shipping_State__c);
-            //if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
-            //    jsonPayload.writeStringField('shipping_country', 'US');
-            //}
-            //if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
-            //    jsonPayload.writeStringField('shipping_country', 'CA');
-            //}
             if(onlineApplication.Card_Shipping_Country__c != null) jsonPayload.writeStringField('shipping_country', onlineApplication.Card_Shipping_Country__c);
             if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipping_zip', onlineApplication.Card_Shipping_Postal_Code__c);
             if(onlineApplication.Federal_Tax_ID__c != null) jsonPayload.writeStringField('tax_id', onlineApplication.Federal_Tax_ID__c);
@@ -426,7 +409,7 @@ global class AccountWS_EFSAppManager {
             if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
             //OTRONBOARD-55 Shipping and Embossing Fees
-            if(myFees.mcShippingFee != null) jsonPayload.writeStringField('shipping_fee', myFees.mcShippingFee);
+            if(myFees.mcOvernightShippingFee != null) jsonPayload.writeStringField('shipping_fee', myFees.mcOvernightShippingFee);
             if(myFees.mcEmbossingFee != null) jsonPayload.writeStringField('mcfee', myFees.mcEmbossingFee);
 
             // End of "carrier"
@@ -442,8 +425,11 @@ global class AccountWS_EFSAppManager {
         }
         jsonPayload.writeStartObject();
 
-        if(myContract != null) jsonPayload.writeStringField('application_id',myContract.Id);
-        else jsonPayload.writeStringField('application_id', onlineApplication.ID);
+        if(myContract != null) {
+            jsonPayload.writeStringField('application_id', myContract.Id);
+        } else {
+            jsonPayload.writeStringField('application_id', onlineApplication.Id);
+        }
         //otronboard-59
         if(onlineApplication.Carrier_ID_Number__c != null) {
             jsonPayload.writeNumberField('link_secondary_threshold', 100);
@@ -451,35 +437,6 @@ global class AccountWS_EFSAppManager {
         }
 
         if(treatAsParent)jsonPayload.writeStringField('dont_do_oracle', 'Y');
-
-        //who knows what values to send to EFS? nobody!
-        /*
-        if(selectedOtherServices != null){
-            if(myContract != null && myContract.Funding_Option__c != null) {
-                Boolean hasPayroll = selectedOtherServices.contains('smartfunds payroll');
-                switch on myContract.Funding_Option__c {
-                    when 'ATM' {
-                        if (hasPayroll) jsonPayload.writeBooleanField('payrollAtm', true);
-                        else jsonPayload.writeBooleanField('Atm', true);
-                    }
-                    when 'Register Check' {
-                        if (hasPayroll) jsonPayload.writeBooleanField('payrollChk', true);
-                        else jsonPayload.writeBooleanField('Chk', true);
-                    }
-                    when 'ACH Transfer' {
-                        if (hasPayroll) jsonPayload.writeBooleanField('payrollAch', true);
-                        else jsonPayload.writeBooleanField('Ach', true);
-                    }
-                    when 'Debit Use' {
-                        if (hasPayroll) jsonPayload.writeBooleanField('payrollDebit', true);
-                        else jsonPayload.writeBooleanField('Debit', true);
-                    }
-                }
-            }
-            if(selectedOtherServices.contains('fleet mastercard'))
-                jsonPayload.writeStringField('mc_fleet','Y');
-        }
-        */
 
         // Start of "policy"
         jsonPayload.writeFieldName('policy');
@@ -510,7 +467,7 @@ global class AccountWS_EFSAppManager {
                 jsonPayload.writeBooleanField('payrollChk', false);
             }
 
-            if(selectedOtherServices.contains('fleet_mastercard')) jsonPayload.writeStringField('mc_fleet','Y');
+            if(selectedOtherServices.contains('fleet mastercard')) jsonPayload.writeStringField('mc_fleet','Y');
 
             if(hasSmartfunds){
                 if(selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
@@ -518,52 +475,6 @@ global class AccountWS_EFSAppManager {
             }
         }
 
-        /*
-        String myOpts = onlineApplicationOffer.Available_Funding_Options__c;
-        if(myOpts.contains('ATM')) jsonPayload.writeBooleanField('payrollAtm', true);
-        else jsonPayload.writeBooleanField('payrollAtm', false);
-        if(myOpts.contains('Register Check')) jsonPayload.writeBooleanField('payrollChk', true);
-        else jsonPayload.writeBooleanField('payrollChk', false);
-        if(myOpts.contains('ACH Transfer')) jsonPayload.writeBooleanField('payrollAch', true);
-        else jsonPayload.writeBooleanField('payrollAch', false);
-        if(myOpts.contains('Debit Use')) jsonPayload.writeBooleanField('payrollDebit', true);
-        else jsonPayload.writeBooleanField('payrollDebit', false);
-        */
-        /*
-        if (onlineApplication.Funding_Options__c != null) {
-            if (onlineApplication.Funding_Options__c.contains('ATM')) jsonPayload.writeStringField('payrollAtm', 'ATM');
-            if (onlineApplication.Funding_Options__c.contains('Register Check')) jsonPayload.writeStringField('payrollChk', 'Register Check');
-            if (onlineApplication.Funding_Options__c.contains('ACH Transfer')) jsonPayload.writeStringField('payrollAch', 'ACH Transfer');
-            if (onlineApplication.Funding_Options__c.contains('Debit Use')) jsonPayload.writeStringField('payrollDebit', 'Debit Use');
-        }
-        */
-
-        /*
-        //this can be deleted after secondary stuff is verified...not sure if we need to send 'false'
-        if (onlineApplication.Funding_Options__c != null) {
-            if (onlineApplication.Funding_Options__c.contains('ATM')){
-                jsonPayload.writeBooleanField('payrollAtm', true);
-            } else {
-                jsonPayload.writeBooleanField('payrollAtm', false);
-            }
-            if (onlineApplication.Funding_Options__c.contains('Register Check')){
-                jsonPayload.writeBooleanField('payrollChk', true);
-            } else {
-                jsonPayload.writeBooleanField('payrollChk', false);
-            }
-            if (onlineApplication.Funding_Options__c.contains('ACH Transfer')){
-                jsonPayload.writeBooleanField('payrollAch', true);
-            } else {
-                jsonPayload.writeBooleanField('payrollAch', false);
-            }
-            if (onlineApplication.Funding_Options__c.contains('Debit Use')){
-                jsonPayload.writeBooleanField('payrollDebit', true);
-            } else {
-                jsonPayload.writeBooleanField('payrollDebit', false);
-            }
-
-        }
-*/
         jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
         jsonPayload.writeBooleanField('defCardMgdNonFuel', false);
@@ -657,7 +568,7 @@ global class AccountWS_EFSAppManager {
         // End of "infos"
 
         // Start of refresh limits
-        if(hasMastercard){
+        if(hasMastercard) {
             jsonPayload.writeFieldName('refreshLimits');
             jsonPayload.writeStartObject();
             if (onlineApplication.Daily_Amount_Requested__c != null) jsonPayload.writeNumberField('dailyAmount', onlineApplication.Daily_Amount_Requested__c);
@@ -671,24 +582,43 @@ global class AccountWS_EFSAppManager {
         // End of "refresh limits"
 
         //start merchant category codes
-        if (onlineApplication.Allowed_Merchant_Categories__c != null) {
-            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', onlineApplication.Allowed_Merchant_Categories__c.contains('All Merchants'));
+        //if all merchants is selected, send true and 999999
+        if (onlineApplication.Allowed_Merchant_Categories__c != null && onlineApplication.Allowed_Merchant_Categories__c.contains('All Merchants')) {
+            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', true);
+            jsonPayload.writeNumberField('merchantCategoryCodes', 999999);
+            //if select merchants are selected, send false and each merchant code.
+        } else if (onlineApplication.Allowed_Merchant_Categories__c != null) {
+            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', false);
             jsonPayload.writeFieldName('merchantCategoryCodes');
             jsonPayload.writeStartArray();
             for (String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')) {
-                if (s.isNumeric())
+                if (s.isNumeric()) {
                     jsonPayload.writeNumber(Integer.valueOf(s));
+                }
             }
             jsonPayload.writeEndArray();
-        } else {
-            jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', false);
         }
         //end merchant category codes
 
-        //if(onlineApplication.Scales_Limit__c != null) jsonPayload.writeNumberField('scalesLimit', onlineApplication.Scales_Limit__c);
-
         jsonPayload.writeEndObject();
         // End of "policy"
+
+        // Start of carrier fees
+        jsonPayload.writeFieldName('carrier_fees');
+
+        jsonPayload.writeStartArray();
+
+        if(myFees.mcLocationFee != null && Integer.valueOf(myFees.mcLocationFee) > 0) {
+            jsonPayload.writeStartObject();
+
+                jsonPayload.writeStringField('loc_type', 'MCLO');
+                jsonPayload.writeNumberField('carr_fee', Decimal.valueOf(myFees.mcLocationFee));
+
+            jsonPayload.writeEndObject();
+        }
+
+        jsonPayload.writeEndArray();
+        // End of carrier fees
 
         // Start driver fees
         jsonPayload.writeFieldName('driver_fees');
@@ -697,8 +627,9 @@ global class AccountWS_EFSAppManager {
 
         if(myFees.monthlyFee != null && Integer.valueOf(myFees.monthlyFee) > 0){
             jsonPayload.writeStartObject();
+
             jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
-            jsonPayload.writeStringField('fee_id', MONTHLY_FEE);
+            jsonPayload.writeStringField('fee_id', myFees.monthlyPC);
             jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
             jsonPayload.writeStringField('fee_level', '2');
             jsonPayload.writeStringField('fee_type', '1');
@@ -706,8 +637,6 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeStringField('fee_max_times', '0');
             jsonPayload.writeStringField('fee_min_start_per', '4');
             jsonPayload.writeStringField('fee_min_start', '0');
-            //        if (onlineApplicationOffer.Mcode_Monthly_Account_Fee__c && onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c != null)  jsonPayload.writeNumberField('ZZZMCODE_FEE_VALUE', onlineApplicationOffer.Mcode_Monthly_Account_Fee_Value__c);
-            //        if (onlineApplicationOffer.Monthly_Account_Fee__c && onlineApplicationOffer.Monthly_Account_Fee_Value__c != null) jsonPayload.writeNumberField('ZZZMONHTLY_FEE_VALUE', onlineApplicationOffer.Monthly_Account_Fee_Value__c);
 
             jsonPayload.writeEndObject();
         }
@@ -733,7 +662,7 @@ global class AccountWS_EFSAppManager {
         jsonPayload.writeEndArray();
         // End driver fees
 
-
+        if(hasMastercard) jsonPayload.writeStringField('velocity_enable', 'Y');
         if(onlineApplicationAccount.Name != null) jsonPayload.writeStringField('contract_name', onlineApplicationAccount.Name);
         if(onlineApplicationOffer.Tier_ID__c != null) jsonPayload.writeStringField('tier_id', onlineApplicationOffer.Tier_ID__c);
         jsonPayload.writeStringField('is_master', 'N');
@@ -741,7 +670,7 @@ global class AccountWS_EFSAppManager {
         if(onlineApplicationOffer.Card_Style__c != null) jsonPayload.writeStringField('card_style', onlineApplicationOffer.Card_Style__c);
         if(onlineApplication.Prompt_Type__c != null) jsonPayload.writeStringField('PromptCode', onlineApplication.Prompt_Type__c);
         if(onlineApplication.Prompt_Type__c != null) jsonPayload.writeStringField('PromptCode', onlineApplication.Prompt_Type__c);
-        // Certain Programs send additional cards to the customer.carefu
+        // Certain Programs send additional cards to the customer
         if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c == null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c));
         if(onlineApplication.Number_of_Cards_Needed__c != null && onlineApplicationOffer.Cards_per_1_Requested__c != null) jsonPayload.writeNumberField('num_of_cards_to_create', Integer.valueOf(onlineApplication.Number_of_Cards_Needed__c * onlineApplicationOffer.Cards_per_1_Requested__c));
         if(onlineApplication.Date_Decisioned__c != null) jsonPayload.writeStringField('approved_date', String.valueOf(onlineApplication.Date_Decisioned__c.format('yyyy-MM-dd')));
@@ -829,11 +758,6 @@ global class AccountWS_EFSAppManager {
             if(onlineApplication.Billing_Cycle__c != null) jsonPayload.writeStringField('billing_cycle', onlineApplication.Billing_Cycle__c);
             if(onlineApplication.Payment_Terms__c != null) jsonPayload.writeStringField('payment_terms', onlineApplication.Payment_Terms__c);
         }
-//
-//        if(onlineApplication.Payment_Method_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_METHOD_APPROVED', onlineApplication.Payment_Method_Approved__c);
-//        if(onlineApplication.Payment_Frequency_Approved__c != null) jsonPayload.writeStringField('ZZZPAY_FREQUENCY_APPROVED', onlineApplication.Payment_Frequency_Approved__c);
-//        if(onlineApplication.Terms_Approved__c != null) jsonPayload.writeStringField('ZZZTERMS_APPROVED', onlineApplication.Terms_Approved__c);
-//        if(onlineApplication.Billing_Cycle_Approved__c != null) jsonPayload.writeStringField('ZZZBILLING_CYCLE_APPROVED', onlineApplication.Billing_Cycle_Approved__c   );
 
         if(onlineApplication.Prepaid__c == true) jsonPayload.writeStringField('req_credit_line_type', 'Draw Down');
         if(onlineApplication.Prepaid__c == false) jsonPayload.writeStringField('req_credit_line_type', 'Open Line');
@@ -861,7 +785,6 @@ global class AccountWS_EFSAppManager {
         if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
             jsonPayload.writeStringField('billing_country', 'C');
         }
-        // ?? if(onlineApplication.Country__c != null) jsonPayload.writeStringField('billing_country', onlineApplication.Country__c);
         if(onlineApplication.Zip_Code__c != null) jsonPayload.writeStringField('billing_zip', onlineApplication.Zip_Code__c);
         if(onlineApplication.Phone_Number__c != null) jsonPayload.writeStringField('billing_phone', onlineApplication.Phone_Number__c);
         if(onlineApplication.Cell_Number__c != null) jsonPayload.writeStringField('billing_cell', onlineApplication.Cell_Number__c);
@@ -870,16 +793,9 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Card_Shipping_Address_Line_1__c != null) jsonPayload.writeStringField('shipping_address1', onlineApplication.Card_Shipping_Address_Line_1__c.replaceAll('[^a-zA-Z0-9 -]', ''));
         if(onlineApplication.Card_Shipping_City__c != null) jsonPayload.writeStringField('shipping_city', onlineApplication.Card_Shipping_City__c.replaceAll('[^a-zA-Z0-9 -]', ''));
         if(onlineApplication.Card_Shipping_State__c != null) jsonPayload.writeStringField('shipping_state', onlineApplication.Card_Shipping_State__c);
-        //if(onlineApplicationAccount.Physical_Country__c == null || (onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('US'))) {
-        //  jsonPayload.writeStringField('shipping_country', 'U');
-        //}
-        //if(onlineApplicationAccount.Physical_Country__c != null && (onlineApplicationAccount.Physical_Country__c).equalsIgnoreCase('CA')) {
-        //  jsonPayload.writeStringField('shipping_country', 'C');
-        //}
         if(onlineApplication.Card_Shipping_Country__c.equalsIgnoreCase('US')) jsonPayload.writeStringField('shipToCountry', 'U');
         if((onlineApplication.Card_Shipping_Country__c).equalsIgnoreCase('CA')) jsonPayload.writeStringField('shipToCountry', 'C');
         if(onlineApplication.Card_Shipping_Postal_Code__c != null) jsonPayload.writeStringField('shipping_zip', onlineApplication.Card_Shipping_Postal_Code__c);
-        // if(onlineApplication.Contact_Name__c != null) jsonPayload.writeStringField('contract_contact_name', onlineApplication.Contact_Name__c);
         if(onlineApplication.Contact_Name__c != null) jsonPayload.writeStringField('contract_contact_name', onlineApplication.Contact_First_Name__c + ' ' + onlineApplication.Contact_Last_Name__c);
         if(onlineApplication.Contact_First_Name__c != null) jsonPayload.writeStringField('bill_to_fname', onlineApplication.Contact_First_Name__c);
         if(onlineApplication.Contact_Last_Name__c != null) jsonPayload.writeStringField('bill_to_lname', onlineApplication.Contact_Last_Name__c);
@@ -900,7 +816,7 @@ global class AccountWS_EFSAppManager {
             if (onlineApplicationOffer.Limit_Method__c != null) jsonPayload.writeStringField('limit_method', onlineApplicationOffer.Limit_Method__c);
             if (onlineApplicationOffer.Daily_Cash_Limit__c != null) jsonPayload.writeNumberField('daily_cash_limit', Integer.valueOf(onlineApplicationOffer.Daily_Cash_Limit__c));
             if (onlineApplicationOffer.Daily_MC_Limit__c != null) jsonPayload.writeNumberField('daily_mc_limit', Integer.valueOf(onlineApplicationOffer.Daily_MC_Limit__c));
-            if (onlineApplicationOffer.Cash_Limit__c != null) jsonPayload.WriteNumberField('cash_limit', Integer.valueOf(onlineApplicationOffer.Cash_Limit__c));
+            if (onlineApplicationOffer.Cash_Limit__c != null) jsonPayload.writeNumberField('cash_limit', Integer.valueOf(onlineApplicationOffer.Cash_Limit__c));
             if (onlineApplicationOffer.MC_Limit__c != null) jsonPayload.writeNumberField('mc_limit', Integer.valueOf(onlineApplicationOffer.MC_Limit__c));
             if (onlineApplicationOffer.Trans_Limit__c != null) jsonPayload.writeNumberField('trans_limit', Integer.valueOf(onlineApplicationOffer.Trans_Limit__c));
         }
@@ -956,18 +872,6 @@ global class AccountWS_EFSAppManager {
         // End of "contract"
         jsonPayload.writeEndObject();
 
-        // Start of offer"
-        //jsonPayload.writeFieldName('offer');
-        //jsonPayload.writeStartObject();
-
-        //if(onlineApplicationOffer.Notice_Type_1__c != null) jsonPayload.writeStringField('ZZZNOTICE_TYPE_1_VALUE', onlineApplicationOffer.Notice_Type_1__c);
-        //if(onlineApplicationOffer.Notice_Type_1_Value__c != null) jsonPayload.writeNumberField('ZZZNOTICE_TYPE_1_VALUE', onlineApplicationOffer.Notice_Type_1_Value__c);
-        //if(onlineApplicationOffer.Notice_Type_2__c != null) jsonPayload.writeStringField('ZZZNOTICE_TYPE_2', onlineApplicationOffer.Notice_Type_2__c);
-        //if(onlineApplicationOffer.Notice_Type_2_Value__c != null) jsonPayload.writeNumberField('ZZZNOTICE_TYPE_2_VALUE', onlineApplicationOffer.Notice_Type_2_Value__c);
-
-        // End of "offer"
-        //jsonPayload.writeEndObject();
-
         if(onlineApplication.Carrier_ID_Number__c == null) {
             jsonPayload.writeEndArray();
         }
@@ -999,57 +903,165 @@ global class AccountWS_EFSAppManager {
         return true;
     }
 
-    public class CardFees{
-        public String monthlyFee;
-        public String mcShippingFee;
-        public String mcEmbossingFee;
-        public String atmWithdrawalFee;
+    public class CardFees {
 
-        public CardFees(OnlineApplication__c onlineApplication){
+        List<OTR_App_Manager_Payload_Fees__mdt> productCodes = [
+                SELECT Id, DeveloperName, Product_Code__c
+                FROM OTR_App_Manager_Payload_Fees__mdt
+        ];
+
+        //product code variables pulled from custom meta data
+        public String achAccountTransferPC;
+        public String atmWithdrawalPC;
+        public String smartFundsATMDeclinePC;
+        public String smartFundsPointofSalePC;
+        public String smartFundsATMBalanceInquiryPC;
+        public String checkPC;
+        public String smartFundsEFSNetworkDebitPC;
+        public String loadPC;
+        public String smartFundsMasterCardNetworkDebitPC;
+        public String monthlyPC;
+        public String scalesInNetworkPC;
+        public String mcOvernightShippingPC;
+        public String mcEmbossingPC;
+        public String mcLocationPC;
+
+        //fee variables which are pulled from either the quote or the opportunity line item using the product code variables
+        public String achAccountTransferFee;
+        public String atmWithdrawalFee;
+        public String smartFundsATMDeclineFee;
+        public String smartFundsPointofSaleFee;
+        public String smartFundsATMBalanceInquiryFee;
+        public String checkFee;
+        public String smartFundsEFSNetworkDebitFee;
+        public String loadFee;
+        public String smartFundsMasterCardNetworkDebitFee;
+        public String monthlyFee;
+        public String scalesInNetworkFee;
+        public String mcOvernightShippingFee;
+        public String mcEmbossingFee;
+        public String mcLocationFee;
+
+        public CardFees(OnlineApplication__c onlineApplication) {
             if(onlineApplication.Opportunity__c != null) {
                 Map<String,Decimal> productOptionMap = new Map<String,Decimal>();
                 Map<String,Decimal> productStndrdMap = new Map<String,Decimal>();
-                if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null){
+
+                if(onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c != null) {
                     //get the fees based on quotelines. ideal.
-                    for(SBQQ__QuoteLine__c ql : [SELECT Id, (SELECT Id,Requested_Price__c, SBQQ__ProductCode__c FROM SBQQ__LineItems__r) FROM SBQQ__Quote__c WHERE Id = :onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c LIMIT 1].SBQQ__LineItems__r)
-                        if(ql.Requested_Price__c != null) productOptionMap.put(ql.SBQQ__ProductCode__c,ql.Requested_Price__c);
+                    for (SBQQ__QuoteLine__c ql : [  SELECT Id,
+                    (   SELECT Id, Requested_Price__c, SBQQ__ProductCode__c
+                        FROM SBQQ__LineItems__r)
+                        FROM SBQQ__Quote__c
+                        WHERE Id = :onlineApplication.Opportunity__r.SBQQ__PrimaryQuote__c LIMIT 1].SBQQ__LineItems__r) {
+                        if (ql.Requested_Price__c != null) {
+                            productOptionMap.put(ql.SBQQ__ProductCode__c, ql.Requested_Price__c);
+                        }
+                    }
                 }
+
+                System.debug('lets try to set some fees by using a quote...!');
+
                 setFees(productOptionMap);
-                if(this.monthlyFee == null || this.mcShippingFee == null || this.mcEmbossingFee == null){ //seems like this may need to be redone
+
+                if (this.monthlyFee == null || this.mcOvernightShippingFee == null || this.mcEmbossingFee == null) {  //TODO: seems like this may need to be redone
                     //get the fees based on OLI. not ideal.
                     Set<Id> productIds = new Set<Id>();
                     Set<Id> productIds2 = new Set<Id>();
                     //get the product bundles
-                    for(OpportunityLineItem oli : [SELECT Product2Id FROM OpportunityLineItem WHERE OpportunityId = :onlineApplication.Opportunity__c])
+                    for (OpportunityLineItem oli : [    SELECT Product2Id
+                                                        FROM OpportunityLineItem
+                                                        WHERE OpportunityId = :onlineApplication.Opportunity__c]) {
                         productIds.add(oli.Product2Id);
+                    }
                     //for each bundle, get the options and create a map of product code to unitprice
-                    for(SBQQ__ProductOption__c po : [SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c, SBQQ__OptionalSKU__c, SBQQ__ConfiguredSKU__c FROM SBQQ__ProductOption__c WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees']) {
-                        if (!productOptionMap.containsKey(po.SBQQ__ProductCode__c)){
-                            if(po.SBQQ__UnitPrice__c != null && po.SBQQ__UnitPrice__c > 0)
+                    for (SBQQ__ProductOption__c po : [  SELECT Id, SBQQ__UnitPrice__c, SBQQ__ProductCode__c, SBQQ__OptionalSKU__c, SBQQ__ConfiguredSKU__c
+                                                        FROM SBQQ__ProductOption__c
+                                                        WHERE SBQQ__ConfiguredSKU__c IN :productIds AND SBQQ__Feature__r.Name = 'Fees']) {
+                        if (!productOptionMap.containsKey(po.SBQQ__ProductCode__c)) {
+                            if (po.SBQQ__UnitPrice__c != null && po.SBQQ__UnitPrice__c > 0) {
                                 productOptionMap.put(po.SBQQ__ProductCode__c, po.SBQQ__UnitPrice__c);
-                            else
-                                    productIds2.add(po.SBQQ__OptionalSKU__c);
+                            } else {
+                                productIds2.add(po.SBQQ__OptionalSKU__c);
+                            }
                         }
                     }
-                    if(productIds2.size()>0){
+                    if(productIds2.size() > 0) {
                         //get the base level product price. this will be the default if no option override exists
-                        for(PriceBookEntry pbe : [SELECT Id, UnitPrice, ProductCode, PriceBook2.IsStandard FROM PricebookEntry WHERE Product2Id IN :productIds2 AND Pricebook2.IsStandard = true])
-                            if(!productOptionMap.containsKey(pbe.ProductCode))
+                        for (PricebookEntry pbe : [ SELECT Id, UnitPrice, ProductCode, Pricebook2.IsStandard
+                                                    FROM PricebookEntry
+                                                    WHERE Product2Id IN :productIds2 AND Pricebook2.IsStandard = TRUE]) {
+                            if (!productOptionMap.containsKey(pbe.ProductCode)) {
                                 productOptionMap.put(pbe.ProductCode, pbe.UnitPrice);
+                            }
+                        }
                     }
                 }
+
+                System.debug('lets try to set some fees by using opportunity line items...!');
+
                 setFees(productOptionMap);
             }
         }
 
-        private void setFees(Map<String,Decimal> poMap){
-            if(poMap.size()>0){
-                if(this.monthlyFee == null && poMap.containsKey(MONTHLY_FEE)) this.monthlyFee = String.valueOf(poMap.get(MONTHLY_FEE));
-                if(this.mcShippingFee == null && poMap.containsKey(SHIPPING_FEE)) this.mcShippingFee = String.valueOf(poMap.get(SHIPPING_FEE));
-                if(this.mcEmbossingFee == null && poMap.containsKey(EMBOSSING_FEE)) this.mcEmbossingFee = String.valueOf(poMap.get(EMBOSSING_FEE));
-                if(this.atmWithdrawalFee == null && poMap.containsKey(ATM_WITHDRAWAL_FEE)) this.atmWithdrawalFee = String.valueOf(poMap.get(ATM_WITHDRAWAL_FEE));
+        private void setFees(Map<String,Decimal> poMap) {
+
+            //set the Product Code variables
+            if(productCodes.size() > 0) {
+                for (OTR_App_Manager_Payload_Fees__mdt fees : productCodes) {
+                    if (fees.DeveloperName.equalsIgnoreCase('ACH_Account_Transfer_Fee')) achAccountTransferPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('ATM_Withdrawl_Fee')) atmWithdrawalPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('SmartFunds_ATM_Decline_Fee')) smartFundsATMDeclinePC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('SmartFunds_Point_of_Sale_Fee')) smartFundsPointofSalePC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('SmartFunds_ATM_Balance_Inquiry_Fee')) smartFundsATMBalanceInquiryPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('Check_Fee')) checkPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('SmartFunds_EFS_Network_Debit_Fee')) smartFundsEFSNetworkDebitPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('Load_Fee')) loadPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('SmartFunds_MasterCard_Network_Debit_Fee')) smartFundsMasterCardNetworkDebitPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('Monthly_Fee')) monthlyPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('Scales_In_Network_Fee')) scalesInNetworkPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('MC_Overnight_Shipping_Fee')) mcOvernightShippingPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('MC_Embossing_Fee')) mcEmbossingPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('MC_Location_Fee')) mcLocationPC = fees.Product_Code__c;
+                }
+
             }
+
+            //set the fee variables using the product code and a map
+            if(poMap.size()>0) {
+                if(this.monthlyFee == null && poMap.containsKey(monthlyPC)) this.monthlyFee = String.valueOf(poMap.get(monthlyPC));
+                if(this.mcOvernightShippingFee == null && poMap.containsKey(mcOvernightShippingPC)) this.mcOvernightShippingFee = String.valueOf(poMap.get(mcOvernightShippingPC));
+                if(this.mcEmbossingFee == null && poMap.containsKey(mcEmbossingPC)) this.mcEmbossingFee = String.valueOf(poMap.get(mcEmbossingPC));
+                if(this.atmWithdrawalFee == null && poMap.containsKey(atmWithdrawalPC)) this.atmWithdrawalFee = String.valueOf(poMap.get(atmWithdrawalPC));
+                if(this.achAccountTransferFee == null && poMap.containsKey(achAccountTransferPC)) this.achAccountTransferFee = String.valueOf(poMap.get(achAccountTransferPC));
+                if(this.smartFundsATMDeclineFee == null && poMap.containsKey(smartFundsATMDeclinePC)) this.smartFundsATMDeclineFee = String.valueOf(poMap.get(smartFundsATMDeclinePC));
+                if(this.smartFundsPointofSaleFee == null && poMap.containsKey(smartFundsPointofSalePC)) this.smartFundsPointofSaleFee = String.valueOf(poMap.get(smartFundsPointofSalePC));
+                if(this.smartFundsATMBalanceInquiryFee == null && poMap.containsKey(smartFundsATMBalanceInquiryPC)) this.smartFundsATMBalanceInquiryFee = String.valueOf(poMap.get(smartFundsATMBalanceInquiryPC));
+                if(this.checkFee == null && poMap.containsKey(checkPC)) this.checkFee = String.valueOf(poMap.get(checkPC));
+                if(this.smartFundsEFSNetworkDebitFee == null && poMap.containsKey(smartFundsEFSNetworkDebitPC)) this.smartFundsEFSNetworkDebitFee = String.valueOf(poMap.get(smartFundsEFSNetworkDebitPC));
+                if(this.loadFee == null && poMap.containsKey(loadPC)) this.loadFee = String.valueOf(poMap.get(loadPC));
+                if(this.smartFundsMasterCardNetworkDebitFee == null && poMap.containsKey(smartFundsMasterCardNetworkDebitPC)) this.smartFundsMasterCardNetworkDebitFee = String.valueOf(poMap.get(smartFundsMasterCardNetworkDebitPC));
+                if(this.scalesInNetworkFee == null && poMap.containsKey(scalesInNetworkPC)) this.scalesInNetworkFee = String.valueOf(poMap.get(scalesInNetworkPC));
+                if(this.mcLocationFee == null && poMap.containsKey(mcLocationPC)) this.mcLocationFee = String.valueOf(poMap.get(mcLocationPC));
+
+            }
+
+            System.debug('dear fees, are you there?');
+            System.debug('Monthly Fee: ' + this.monthlyFee);
+            System.debug('MC Shipping Fee: ' + this.mcOvernightShippingFee);
+            System.debug('MC Embossing Fee: ' + this.mcEmbossingFee);
+            System.debug('ATM Withdrawl Fee: ' + this.atmWithdrawalFee);
+            System.debug('achAccountTransferFee: ' + this.achAccountTransferFee);
+            System.debug('smartFundsATMDeclineFee: ' + this.smartFundsATMDeclineFee);
+            System.debug('smartFundsPointofSaleFee: ' + this.smartFundsPointofSaleFee);
+            System.debug('smartFundsATMBalanceInquiryFee: ' + this.smartFundsATMBalanceInquiryFee);
+            System.debug('checkFee: ' + this.checkFee);
+            System.debug('smartFundsEFSNetworkDebitFee: ' + this.smartFundsEFSNetworkDebitFee);
+            System.debug('loadFee: ' + this.loadFee);
+            System.debug('smartFundsMasterCardNetworkDebitFee: ' + this.smartFundsMasterCardNetworkDebitFee);
+            System.debug('scalesInNetworkFee: ' + this.scalesInNetworkFee);
+            System.debug('mcLocationFee: ' + this.mcLocationFee);
+
         }
     }
-
 }
