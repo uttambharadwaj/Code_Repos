@@ -50,7 +50,9 @@ private class RefundsAdjustmentsBulkActionTest {
                             Amount_Waived__c = i*150,
                             Approval_Status__c = approvalStatus,
                             Approver_Name__c   = tempUser,
-                            Decision_Date__c   = decisionDate
+                            Decision_Date__c   = decisionDate,
+                            Department__c = 'CS',
+                            Reason_Comment__c = 'Test comment'
                     );
             System.debug('### RefAdj '+i+': '+refadj);
             insert refadj;
