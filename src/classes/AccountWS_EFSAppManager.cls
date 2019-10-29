@@ -218,20 +218,9 @@ global class AccountWS_EFSAppManager {
         Account onlineApplicationParentAccount = null;
         Program__c onlineApplicationProgram = null;
         OnlineApplicationOffer__c onlineApplicationOffer = null;
-
         Boolean hasSmartfunds = false;
         Boolean hasMastercard = false;
         Set<String> selectedOtherServices = new Set<String>();
-        if(onlineApplication.Other_Services__c != null) {
-            for(String product : (onlineApplication.Other_Services__c).split(';')) {
-                selectedOtherServices.add(product.toLowerCase());
-                if(product.containsIgnoreCase('smartfunds')) hasSmartfunds = true;
-                if(product.containsIgnoreCase('mastercard')) hasMastercard = true;
-            }
-        }
-        if(hasMastercard = false && onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('mastercard')) {
-            hasMastercard = true;
-        }
 
         // Grabbing additional data
         if(onlineApplication.Account__c != null) {
@@ -247,9 +236,19 @@ global class AccountWS_EFSAppManager {
                     Funding__c, Limit_Method__c, PSR_ATM_Limit__c, PSR_Card_Fee__c, PSR_Fuel_Cash__c, PSR_Marketing_Fee__c, PSR_Money_Code__c,
                     PSR_Scales__c, MC_Limit__c, Setup_Fee__c, Trans_Limit__c, Tier_ID__c, Approval_Type__c, Primary_Contact_Email_Address__c, Available_Funding_Options__c,
                     Create_Letter__c, Notice_Delivery__c, Online_Pay__c,Card_Style__c,Cards_per_1_Requested__c,Card_Shipping_Method__c,Card_Type__c,Account_Descriptor__c,
-                    Child_Funded_Issuer_ID__c, Parent_Funded_Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c, Card_Order_Type__c, Statement_Type__c, Customer_Type__c
+                    Child_Funded_Issuer_ID__c, Parent_Funded_Issuer_ID__c, Issuer_Group__c, Parent_Carrier_ID__c, Card_Order_Type__c, Statement_Type__c, Customer_Type__c, Product_Type__c
             FROM OnlineApplicationOffer__c
             WHERE Id =: onlineApplication.Offer__c LIMIT 1];
+        }
+        if(onlineApplication.Other_Services__c != null) {
+            for(String product : (onlineApplication.Other_Services__c).split(';')) {
+                selectedOtherServices.add(product.toLowerCase());
+                if(product.containsIgnoreCase('smartfunds')) hasSmartfunds = true;
+                if(product.containsIgnoreCase('mastercard')) hasMastercard = true;
+            }
+        }
+        if(hasMastercard != true && onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('mastercard')) {
+            hasMastercard = true;
         }
 
         if(onlineApplication.Program__c != null) {
