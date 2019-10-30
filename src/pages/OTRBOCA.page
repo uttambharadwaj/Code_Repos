@@ -1,8 +1,9 @@
 <!--
 Description:        OTRBOCA VF Page (Page 1 of Online Application for OTRBOCA)
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
-                    5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
-                    5/28/2019 MFarrell - PSOBACKLOG-55 Updated rendered and redendered statements.
+                    5/9/2019                        PSOBACKLOG-76 ADA Compliance-Images
+                    5/28/2019       MFarrell    -   PSOBACKLOG-55 Updated rendered and redendered statements.
+                    30/OCT/2019     MFarrell    -   Existing Carrier ID field and parent/secondary rendering
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">

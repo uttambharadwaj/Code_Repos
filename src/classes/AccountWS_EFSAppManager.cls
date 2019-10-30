@@ -106,6 +106,7 @@ global class AccountWS_EFSAppManager {
                     myContracts = [SELECT Id, Funding_Option__c FROM Contract__c WHERE Online_Application__c = :onlineApplication.Id];
                 }
                 if (myContracts.size()==0) myContracts.add(null);
+                System.debug('Contract List: ' + myContracts);
 
                 List<Attachment> attachList = new List<Attachment>();
                 List<HttpRequest> myPayloads = new List<HttpRequest>();
@@ -113,7 +114,6 @@ global class AccountWS_EFSAppManager {
                 for(Integer i = 0; i < myContracts.size(); i++) {
 
                     Contract__c oneContract = (myContracts[i]);
-                    System.debug('contract for first payload' + oneContract);
                     String firstPayload = buildPayload_callout1(onlineApplication, loginResponse.clientId, oneContract);
 
                     if(firstPayload != null) {
@@ -165,7 +165,7 @@ global class AccountWS_EFSAppManager {
 
                         //OgdenPayloadResponse payload = (OgdenPayloadResponse) json.deserialize(httpResponse.getBody(), OgdenPayloadResponse.class);
 
-                        if(payloadResponse != null && payloadResponse.get('success') != null) {
+                        if(payloadResponse != null && payloadResponse.get('status') == 'success') {
                             onlineApplication.Sent_To_Application_Manager__c = true;
                         }
 
