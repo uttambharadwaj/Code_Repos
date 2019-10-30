@@ -15,25 +15,5 @@ Trigger RefundAdjustmentTrigger on Refund_Adjustment__c (before insert, before u
         {
             RefundAdjustmentTriggerHelper.updateRefAdj(records,Trigger.oldMap, UserInfo.getUserId());
         }
-        /*else if(Trigger.isDelete == true)
-        {
-        }*/
     }
-   /* else
-            if(Trigger.isAfter == true)
-            {
-                if(Trigger.isInsert == true)
-                {
-                }
-                else if(Trigger.isUpdate == true)
-                {
-                }
-                *//*else if(Trigger.isDelete == true)
-                {
-                }
-                else if(Trigger.isUndelete == true)
-                {
-                }*//*
-            }*/
-
 }

@@ -57,7 +57,8 @@ private class PriorRefundAdjustmentListControllerTest {
                             Approval_Status__c = approvalStatus,
                             Approver_Name__c   = tempUser,
                             Department__c  = 'CS',
-                            Decision_Date__c   = decisionDate
+                            Decision_Date__c   = decisionDate,
+                            Reason_Comment__c = 'Test comment'
                     );
             System.debug('### RefAdj '+i+': '+refadj);
             insert refadj;

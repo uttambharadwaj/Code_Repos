@@ -48,6 +48,7 @@ private class RefundsAdjustmentsInstantApproverTest {
                             Account__c = account.Id,
                             CaseNumber__c = testCase.Id,
                             Amount_Waived__c = i*150,
+                            Total_Late_Fee__c = i*150,
                             Approval_Status__c = approvalStatus,
                             Department__c = 'CS',
                             Approver_Name__c   = tempUser,
