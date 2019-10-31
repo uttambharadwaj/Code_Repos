@@ -408,9 +408,6 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeStringField('parent_type', 'group');
             if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
-            //OTRONBOARD-55 Shipping and Embossing Fees
-            if(myFees.mcOvernightShippingFee != null) jsonPayload.writeStringField('shipping_fee', myFees.mcOvernightShippingFee);
-            if(myFees.mcEmbossingFee != null) jsonPayload.writeStringField('mcfee', myFees.mcEmbossingFee);
 
             // End of "carrier"
             jsonPayload.writeEndObject();
@@ -625,18 +622,18 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStartArray();
 
-        if(myFees.monthlyFee != null && Integer.valueOf(myFees.monthlyFee) > 0){
+        if(myFees.monthlyFee != null && myFees.monthlyFee != '') {
             jsonPayload.writeStartObject();
 
-            jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
-            jsonPayload.writeStringField('fee_id', myFees.monthlyPC);
-            jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
-            jsonPayload.writeStringField('fee_level', '2');
-            jsonPayload.writeStringField('fee_type', '1');
-            jsonPayload.writeStringField('fee_max_times_per', '4');
-            jsonPayload.writeStringField('fee_max_times', '0');
-            jsonPayload.writeStringField('fee_min_start_per', '4');
-            jsonPayload.writeStringField('fee_min_start', '0');
+                jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
+                jsonPayload.writeStringField('fee_id', myFees.monthlyPC);
+                jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
+                jsonPayload.writeStringField('fee_level', '2');
+                jsonPayload.writeStringField('fee_type', '1');
+                jsonPayload.writeStringField('fee_max_times_per', '4');
+                jsonPayload.writeStringField('fee_max_times', '0');
+                jsonPayload.writeStringField('fee_min_start_per', '4');
+                jsonPayload.writeStringField('fee_min_start', '0');
 
             jsonPayload.writeEndObject();
         }
@@ -645,19 +642,52 @@ global class AccountWS_EFSAppManager {
 
             jsonPayload.writeStartObject();
 
-            jsonPayload.writeStringField('description', 'D FEE REGULAR CHECK');
-            jsonPayload.writeStringField('fee_id', '112');
-            jsonPayload.writeStringField('fee_amt', '2.50');
-            jsonPayload.writeStringField('fee_level', '1');
-            jsonPayload.writeStringField('fee_type', '1');
-            jsonPayload.writeStringField('fee_max_times_per', '4');
-            jsonPayload.writeStringField('fee_max_times', '0');
-            jsonPayload.writeStringField('fee_min_times_per', '4');
-            jsonPayload.writeStringField('fee_min_times', '0');
+                jsonPayload.writeStringField('description', 'D FEE REGULAR CHECK');
+                jsonPayload.writeStringField('fee_id', '112');
+                jsonPayload.writeStringField('fee_amt', '2.50');
+                jsonPayload.writeStringField('fee_level', '1');
+                jsonPayload.writeStringField('fee_type', '1');
+                jsonPayload.writeStringField('fee_max_times_per', '4');
+                jsonPayload.writeStringField('fee_max_times', '0');
+                jsonPayload.writeStringField('fee_min_times_per', '4');
+                jsonPayload.writeStringField('fee_min_times', '0');
 
             jsonPayload.writeEndObject();
 
         }
+
+        if(myFees.mcOvernightShippingFee != null && myFees.mcOvernightShippingFee != '') {
+            jsonPayload.writeStartObject();
+
+                jsonPayload.writeStringField('description', 'MC FEE OVERNIGHT CARD SHIPMENT');
+                jsonPayload.writeStringField('fee_id', myFees.mcOvernightShippingPC);
+                jsonPayload.writeStringField('fee_amt', myFees.mcOvernightShippingFee);
+                jsonPayload.writeStringField('fee_level', '3');
+                jsonPayload.writeStringField('fee_type', '1');
+                jsonPayload.writeStringField('fee_max_times_per', '4');
+                jsonPayload.writeStringField('fee_max_times', '4');
+//                jsonPayload.writeStringField('fee_min_times_per', '4');
+//                jsonPayload.writeStringField('fee_min_times', '0');
+
+            jsonPayload.writeEndObject();
+        }
+
+        if(myFees.mcEmbossingFee != null && myFees.mcEmbossingFee != '') {
+            jsonPayload.writeStartObject();
+
+                jsonPayload.writeStringField('description', 'MC FEE SAME DAY EMBOSSING');
+                jsonPayload.writeStringField('fee_id', myFees.mcEmbossingPC);
+                jsonPayload.writeStringField('fee_amt', myFees.mcEmbossingFee);
+                jsonPayload.writeStringField('fee_level', '3');
+                jsonPayload.writeStringField('fee_type', '1');
+                jsonPayload.writeStringField('fee_max_times_per', '4');
+                jsonPayload.writeStringField('fee_max_times', '4');
+//                jsonPayload.writeStringField('fee_min_times_per', '4');
+//                jsonPayload.writeStringField('fee_min_times', '0');
+
+            jsonPayload.writeEndObject();
+        }
+
 
         jsonPayload.writeEndArray();
         // End driver fees
