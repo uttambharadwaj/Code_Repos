@@ -608,11 +608,11 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStartArray();
 
-        if(myFees.mcLocationFee != null && Integer.valueOf(myFees.mcLocationFee) > 0) {
+        if(myFees.mcLocationFee != null && myFees.mcLocationFee != '') {
             jsonPayload.writeStartObject();
 
                 jsonPayload.writeStringField('loc_type', 'MCLO');
-                jsonPayload.writeNumberField('carr_fee', Decimal.valueOf(myFees.mcLocationFee));
+                jsonPayload.writeStringField('carr_fee', myFees.mcLocationFee);
 
             jsonPayload.writeEndObject();
         }
@@ -942,6 +942,10 @@ global class AccountWS_EFSAppManager {
         public String mcEmbossingFee;
         public String mcLocationFee;
 
+        public Set<String> feeSet = new Set<String>{achAccountTransferFee, atmWithdrawalFee, smartFundsATMDeclineFee, smartFundsPointofSaleFee,
+                smartFundsATMBalanceInquiryFee, checkFee, smartFundsEFSNetworkDebitFee, loadFee, smartFundsMasterCardNetworkDebitFee, monthlyFee,
+                scalesInNetworkFee, mcOvernightShippingFee, mcEmbossingFee, mcLocationFee};
+
         public CardFees(OnlineApplication__c onlineApplication) {
             if(onlineApplication.Opportunity__c != null) {
                 Map<String,Decimal> productOptionMap = new Map<String,Decimal>();
@@ -964,7 +968,7 @@ global class AccountWS_EFSAppManager {
 
                 setFees(productOptionMap);
 
-                if (this.monthlyFee == null || this.mcOvernightShippingFee == null || this.mcEmbossingFee == null) {  //TODO: seems like this may need to be redone
+                if (this.feeSet.contains(null)) {
                     //get the fees based on OLI. not ideal.
                     Set<Id> productIds = new Set<Id>();
                     Set<Id> productIds2 = new Set<Id>();
