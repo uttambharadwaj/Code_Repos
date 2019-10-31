@@ -16,6 +16,7 @@
 *                                           OTRONBOARD-93   if Credit_Line_Approved__c or Credit_Line_Requested__c are null, and the offer is parent funded, send 0 instead of null.
 *                                                           moved these fields to the contract section of the payload.
 *                   29/10/2019 MFarrell     EFS             moved fees to custom metadata... because we all know it's going to change eventually.
+*
 */
 
 global class AccountWS_EFSAppManager {
@@ -665,9 +666,7 @@ global class AccountWS_EFSAppManager {
                 jsonPayload.writeStringField('fee_level', '3');
                 jsonPayload.writeStringField('fee_type', '1');
                 jsonPayload.writeStringField('fee_max_times_per', '4');
-                jsonPayload.writeStringField('fee_max_times', '4');
-//                jsonPayload.writeStringField('fee_min_times_per', '4');
-//                jsonPayload.writeStringField('fee_min_times', '0');
+                jsonPayload.writeStringField('fee_min_start_per', '4');
 
             jsonPayload.writeEndObject();
         }
@@ -681,9 +680,7 @@ global class AccountWS_EFSAppManager {
                 jsonPayload.writeStringField('fee_level', '3');
                 jsonPayload.writeStringField('fee_type', '1');
                 jsonPayload.writeStringField('fee_max_times_per', '4');
-                jsonPayload.writeStringField('fee_max_times', '4');
-//                jsonPayload.writeStringField('fee_min_times_per', '4');
-//                jsonPayload.writeStringField('fee_min_times', '0');
+                jsonPayload.writeStringField('fee_min_start_per', '4');
 
             jsonPayload.writeEndObject();
         }
