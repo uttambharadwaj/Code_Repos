@@ -174,7 +174,7 @@ function validateYearEstablished(value) {
 
 function validatePOBox(value) {
     if(value !== "") {
-        var characterReg = /(?:P(?:ost(?:al)?)?[\.\-\s]*(?:(?:O(?:ffice)?[\.\-\s]*)?B(?:ox|in|\b|\d)|o(?:ffice|\b)(?:[-\s]*#*[-\s]*\d)|code)|box[-\s\b]*\d)/i;
+        var characterReg = /(?:P(?:ost(?:al)?)?[\.\-\s]*(?:(?:O(?:ffice)?[\.\-\s]*)?B(?:ox|in|\b|\d)|o(?:ffice|\b)(?:[-\s]*\d)|code)|box[-\s\b]*\d)/i;
         console.log(characterReg.test(value));
         if(characterReg.test(value)) {
             return false;
@@ -312,6 +312,8 @@ function validateBOCA() {
         $j('[id$=yearsInBusiness]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
         hasErrors = true;
     }
+
+    console.log($j('[id$=checkingAccountNumber]').length);
 
     if($j('[id$=checkingAccountNumber]').length > 0 && $j('[id$=checkingAccountNumber]').val() !== "" && ($j('[id$=checkingAccountNumber]').val().length < 5 || $j('[id$=checkingAccountNumber]').val().length > 14)) {
         $j('[id$=checkingAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">Please enter a valid checking account number.</div>');
@@ -588,15 +590,15 @@ function validateFleetForm() {
             hasErrors = true;
         }
     });
-/*
-    var otherServices = $j('[id$=selectedOtherServicesValue]').val();
+    /*
+        var otherServices = $j('[id$=selectedOtherServicesValue]').val();
 
-    if(otherServices != null && otherServices.length > 0 && (selectedFundingOptions == null || selectedFundingOptions.length < 1)) {
-        $j('[id$=fundingOptions]').addClass('erroredInput').after('<div class="fieldErrorMessage">You must select at least one Funding Option.</div>');
-        $j('[id$=fundingOptions]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-        hasErrors = true;
-    }
-*/
+        if(otherServices != null && otherServices.length > 0 && (selectedFundingOptions == null || selectedFundingOptions.length < 1)) {
+            $j('[id$=fundingOptions]').addClass('erroredInput').after('<div class="fieldErrorMessage">You must select at least one Funding Option.</div>');
+            $j('[id$=fundingOptions]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
+            hasErrors = true;
+        }
+    */
     console.log(hasErrors);
 
     if(hasErrors) {
@@ -719,9 +721,11 @@ function prodSelection(myProduct){
     $j("[id$=selectedOtherServicesValue]").val(selectedProducts);
     //if(selectedProducts.length > 0) $j("[id$=transferOptions]").show();
     //else $j("[id$=transferOptions]").hide();
-    if(selectedProducts.join(";").includes('Fleet MasterCard') || selectedProducts.join(";").includes('SmartFunds') || selectedProducts.join(";").includes('Smartfunds')) {
+    if(selectedProducts.length > 0 && selectedProducts.join(";").includes('MasterCard')) {
         $j("[id$=allowedMerchantCategories]").show();
+        $j("[id$=refreshingLimits]").show();
     } else {
         $j("[id$=allowedMerchantCategories]").hide();
+        $j("[id$=refreshingLimits]").hide();
     }
 }

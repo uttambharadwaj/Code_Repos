@@ -473,6 +473,7 @@ global class AccountWS_EFSAppManager {
             }
         }
 
+
         jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
         jsonPayload.writeBooleanField('defCardMgdNonFuel', false);
@@ -583,17 +584,20 @@ global class AccountWS_EFSAppManager {
         //if all merchants is selected, send true and 999999
         if (onlineApplication.Allowed_Merchant_Categories__c != null && onlineApplication.Allowed_Merchant_Categories__c.contains('All Merchants')) {
             jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', true);
-            jsonPayload.writeNumberField('merchantCategoryCodes', 999999);
+            jsonPayload.writeFieldName('merchantCategoryCodes');
+            jsonPayload.writeStartArray();
+                jsonPayload.writeNumber(999999);
+            jsonPayload.writeEndArray();
             //if select merchants are selected, send false and each merchant code.
         } else if (onlineApplication.Allowed_Merchant_Categories__c != null) {
             jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', false);
             jsonPayload.writeFieldName('merchantCategoryCodes');
             jsonPayload.writeStartArray();
-            for (String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')) {
-                if (s.isNumeric()) {
-                    jsonPayload.writeNumber(Integer.valueOf(s));
+                for (String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')) {
+                    if (s.isNumeric()) {
+                        jsonPayload.writeNumber(Integer.valueOf(s));
+                    }
                 }
-            }
             jsonPayload.writeEndArray();
         }
         //end merchant category codes
@@ -893,8 +897,8 @@ global class AccountWS_EFSAppManager {
         if(selectedOtherServices != null && selectedOtherServices.contains('Register Check')) jsonPayload.writeStringField('reg_check_flag', 'Y');
         else jsonPayload.writeStringField('reg_check_flag', 'N');
 
-        if (selectedOtherServices != null && hasATM) jsonPayload.writeStringField('atm_allowed', 'Y');
-        else jsonPayload.writeStringField('atm_allowed', 'N');
+        //per Katey/Tiana we always want to send Y
+        jsonPayload.writeStringField('atm_allowed', 'Y');
 
         // End of "contract"
         jsonPayload.writeEndObject();

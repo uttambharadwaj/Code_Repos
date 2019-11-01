@@ -34,6 +34,7 @@
             document.cookie ="debug_logs=debug_logs;domain=.force.com";
 
             $j = jQuery.noConflict();
+            $j("[id$=allowedMerchantCategories]").hide();
 
             // Any labels need to be defined in this bridge in order
             // for the JS to pick them up
@@ -312,6 +313,7 @@
                             </div>
                             <!--END CARD INFORMATION SECTION-->
 
+                            <!--START AVAILABLE PRODUCTS SECTION-->
                             <apex:outputPanel rendered="{!otherServicesSize != 0}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
@@ -329,60 +331,20 @@
                                 </div>
                                 <div class="twelve columns clearfix form-field styled-panel">
                                     <fieldset class="slds-form-element">
-                                        <legend class="slds-form-element__legend slds-form-element__label">Available Products</legend>
+                                        <legend class="slds-form-element__legend slds-form-element__label">Available Products / Services</legend>
                                         <apex:repeat value="{!otherServicesOptions}" var="otherService">
                                             <div class="slds-form-element__control">
                                                 <div class="slds-checkbox columns four">
-                                                    <label class="styled-label" for="{!otherService.value}">{!otherService.label}</label>
-                                                    <input type="checkbox" id="{!otherService.value}" value="{!otherService.value}" onchange="prodSelection(this)"/>
+                                                    <label class="styled-label" for="{!otherService.value}">
+                                                        <input type="checkbox" id="{!otherService.value}" value="{!otherService.value}" checked="" onchange="prodSelection(this)"/>
+                                                        <span class="slds-checkbox_faux"></span>
+                                                        <span class="slds-form-element__label">{!otherService.label}</span>
+                                                    </label>
                                                 </div>
                                             </div>
                                         </apex:repeat>
                                     </fieldset>
                                 </div>
-
-                                <!--BEGIN ALLOWED MERCHANT CATEGORIES SUBSECTION-->
-                                <div id="allowedMerchantCategories">
-                                    <div class="twelve columns clearfix">
-                                        &nbsp;
-                                    </div>
-                                    <div>
-                                        <fieldset class="slds-form-element">
-                                            <legend class="slds-form-element__legend slds-form-element__label">Fueling Categories</legend>
-                                            <div>
-                                                <div class="six columns clearfix form-field">
-                                                    <div class="slds-form-element__control">
-                                                        <div class="slds-checkbox">
-                                                            <label class="styled-label" for="allFuel">Select All Fueling Categories</label>
-                                                            <input type="checkbox" id="allFuel" class="merchCats" name="allTheFuel" value="All Fueling Categories" onClick="allFuelSelect(this)"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="six columns clearfix form-field">
-                                                    <div class="slds-form-element__control">
-                                                        <div class="slds-checkbox">
-                                                            <label class="styled-label" for="allMerch">All Merchants
-                                                                <apex:image style="width: 16px;" title="{!$Label.OTRSetupHelpAllMerch}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="All Merchant Help"/>
-                                                            </label>
-                                                            <input type="checkbox" id="allMerch" class="allMerchCat" name="allTheMerch" value="All Merchants" onClick="allMerchants(this)"/>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <apex:repeat value="{!merchCats}" var="myCat" id="catRepeat">
-                                                <div class="slds-form-element__control">
-                                                    <div class="slds-checkbox columns offset-by-one">
-                                                        <label class="styled-label" for="{!myCat.value}">{!myCat.label}
-                                                            <apex:image style="width: 16px;" title="{!$Label[myCat.helps]}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="All Merchant Help"/>
-                                                        </label>
-                                                        <input type="checkbox" id="{!myCat.value}" class="merchCats" name="myMerch" value="{!myCat.value}" onchange="merchSelection(this)"/>
-                                                    </div>
-                                                </div>
-                                            </apex:repeat>
-                                        </fieldset>
-                                    </div>
-                                </div>
-                                <!--END ALLOWED MERCHANT CATEGORIES SUBSECTION-->
 
                             </apex:outputPanel>
                             <!--END AVAILABLE PRODUCTS SECTION-->
@@ -409,26 +371,72 @@
                                     &nbsp;
                                 </div>
 
+                                <!--BEGIN ALLOWED MERCHANT CATEGORIES SUBSECTION-->
+                                <div id="allowedMerchantCategories" style="{!if(onlineApplicationOffer.Product_Type__c == 'MasterCard', "", "display: none")}">
+                                    <div class="twelve columns clearfix">
+                                        &nbsp;
+                                    </div>
+                                    <div>
+                                        <fieldset class="slds-form-element">
+                                            <legend class="slds-form-element__legend slds-form-element__label">Fueling Categories</legend>
+                                            <div>
+                                                <div class="six columns clearfix form-field">
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-checkbox">
+                                                            <label class="styled-label" for="allFuel">
+                                                                <input type="checkbox" id="allFuel" class="merchCats" name="allTheFuel" value="All Fueling Categories" onClick="allFuelSelect(this)"/>
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label">Select All Fueling Categories</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="six columns clearfix form-field">
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-checkbox">
+                                                            <label class="styled-label" for="allMerch">
+                                                                <input type="checkbox" id="allMerch" class="allMerchCat" name="allTheMerch" value="All Merchants" onClick="allMerchants(this)"/>
+                                                                <span class="slds-checkbox_faux"></span>
+                                                                <span class="slds-form-element__label">All Merchants</span>
+                                                                <apex:image style="width: 16px;" title="{!$Label.OTRSetupHelpAllMerch}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="All Merchant Help"/>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <apex:repeat value="{!merchCats}" var="myCat" id="catRepeat">
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-checkbox columns offset-by-one">
+                                                        <label class="styled-label" for="{!myCat.value}">
+                                                            <input type="checkbox" id="{!myCat.value}" class="merchCats" name="myMerch" value="{!myCat.value}" onchange="merchSelection(this)"/>
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label">{!myCat.label}</span>
+                                                            <apex:image style="width: 16px;" title="{!$Label[myCat.helps]}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="All Merchant Help"/>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </apex:repeat>
+                                        </fieldset>
+                                    </div>
+                                </div>
+
+                                <!--END ALLOWED MERCHANT CATEGORIES SUBSECTION-->
+
                                 <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-->
-                                <div class="twelve columns clearfix form-field styled-panel">
+                                <div id="refreshingLimits" class="twelve columns clearfix form-field styled-panel" style="{!if(onlineApplicationOffer.Product_Type__c == 'MasterCard', "", "display: none")}">
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>
                                     <div class="twelve columns clearfix">
-                                        <b>Limits</b>
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        &nbsp;
-                                    </div>
-                                    <div class="twelve columns clearfix">
-                                        Policy limits will reset at midnight Central Standard Time.
+                                        <p class="styled-label"><strong>Limits</strong><br />
+                                            Policy limits will reset at midnight Central Standard Time.</p>
                                     </div>
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>
                                     <div class="twelve columns clearfix">
                                         <div class="four columns clearfix form-field">
-                                            Daily Limit
+                                            <p class="styled-label" style="text-align:center">Daily Limit</p>
                                             <div>
                                                 <apex:outputLabel for="dailyTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Daily_Transactions__c.label}">
                                                     <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Daily_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Daily Transaction Help"/>
@@ -443,7 +451,7 @@
                                             </div>
                                         </div>
                                         <div class="four columns clearfix form-field">
-                                            Weekly Limit
+                                            <p class="styled-label" style="text-align:center">Weekly Limit</p>
                                             <div>
                                                 <apex:outputLabel for="weekTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Weekly_Transactions__c.label}">
                                                     <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Weekly_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Weekly Transaction Help"/>
@@ -458,7 +466,7 @@
                                             </div>
                                         </div>
                                         <div class="four columns clearfix form-field">
-                                            Monthly Limit
+                                            <p class="styled-label" style="text-align:center">Monthly Limit</p>
                                             <div>
                                                 <apex:outputLabel for="monthTrans" styleClass="styled-label" value="{!$ObjectType.OnlineApplication__c.fields.Monthly_Transactions__c.label}">
                                                     <apex:image style="width: 16px;" title="{!$ObjectType.OnlineApplication__c.fields.Monthly_Transactions__c.InlineHelpText}" styleClass="helpIcon" value="{!URLFOR($Resource.FDCFAssets, 'FDCFAssets/icon-question.png')}" alt="Monthly Transaction Help"/>
@@ -529,10 +537,7 @@
 
                                 <!--BEGIN PROMPTS SUBSECTION-->
                                 <div class="twelve columns clearfix">
-                                    <b>Prompts</b>
-                                </div>
-                                <div class="twelve columns clearfix">
-                                    &nbsp;
+                                    <p class="styled-label"><strong>Prompts</strong></p>
                                 </div>
                                 <div class="twelve columns clearfix form-field styled-panel">
                                     <div class="four columns clearfix" style="display: {!IF(cardType == 'unit', 'none', 'block')};">
