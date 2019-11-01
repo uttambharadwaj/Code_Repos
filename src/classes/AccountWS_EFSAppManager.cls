@@ -244,7 +244,7 @@ global class AccountWS_EFSAppManager {
         }
         if(onlineApplication.Other_Services__c != null) {
             for(String product : (onlineApplication.Other_Services__c).split(';')) {
-                selectedOtherServices.add(product.replaceAll('[^a-zA-Z0-9]', '').toLowerCase());
+                selectedOtherServices.add(product.toLowerCase());
                 if(product.containsIgnoreCase('smartfunds')) hasSmartfunds = true;
                 if(product.containsIgnoreCase('mastercard')) hasMastercard = true;
                 if(product.containsIgnoreCase('atm')) hasATM = true;
