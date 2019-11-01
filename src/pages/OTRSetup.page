@@ -34,7 +34,6 @@
             document.cookie ="debug_logs=debug_logs;domain=.force.com";
 
             $j = jQuery.noConflict();
-            $j("[id$=allowedMerchantCategories]").hide();
 
             // Any labels need to be defined in this bridge in order
             // for the JS to pick them up
