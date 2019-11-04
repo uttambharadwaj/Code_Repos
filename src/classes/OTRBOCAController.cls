@@ -1037,6 +1037,10 @@ public class OTRBOCAController {
                 onlineApplication.Status__c = 'App-Incomplete';
             }
 
+            if (carrierID != null) {
+                onlineApplication.Existing_Carrier_ID__c = carrierID;
+            }
+
             result = Database.upsert(onlineApplication, false);
             if (!result.isSuccess()) {
                 throw new creditApplicationException('Critical error inserting the Online Application: ' + result.getErrors());
