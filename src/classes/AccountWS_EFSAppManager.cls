@@ -16,6 +16,7 @@
 *                                           OTRONBOARD-93   if Credit_Line_Approved__c or Credit_Line_Requested__c are null, and the offer is parent funded, send 0 instead of null.
 *                                                           moved these fields to the contract section of the payload.
 *                   29/10/2019 MFarrell     EFS             moved fees to custom metadata... because we all know it's going to change eventually.
+*
 */
 
 global class AccountWS_EFSAppManager {
@@ -243,7 +244,7 @@ global class AccountWS_EFSAppManager {
         }
         if(onlineApplication.Other_Services__c != null) {
             for(String product : (onlineApplication.Other_Services__c).split(';')) {
-                selectedOtherServices.add(product.replaceAll('[^a-zA-Z0-9]', '').toLowerCase());
+                selectedOtherServices.add(product.toLowerCase());
                 if(product.containsIgnoreCase('smartfunds')) hasSmartfunds = true;
                 if(product.containsIgnoreCase('mastercard')) hasMastercard = true;
                 if(product.containsIgnoreCase('atm')) hasATM = true;
@@ -408,9 +409,6 @@ global class AccountWS_EFSAppManager {
             jsonPayload.writeStringField('parent_type', 'group');
             if(onlineApplicationOffer.Customer_Type__c != null) jsonPayload.writeStringField('customer_type', onlineApplicationOffer.Customer_Type__c);
             if(onlineApplicationOffer.Funding__c != null) jsonPayload.writeStringField('relationship_type', onlineApplicationOffer.Funding__c);
-            //OTRONBOARD-55 Shipping and Embossing Fees
-            if(myFees.mcOvernightShippingFee != null) jsonPayload.writeStringField('shipping_fee', myFees.mcOvernightShippingFee);
-            if(myFees.mcEmbossingFee != null) jsonPayload.writeStringField('mcfee', myFees.mcEmbossingFee);
 
             // End of "carrier"
             jsonPayload.writeEndObject();
@@ -474,6 +472,7 @@ global class AccountWS_EFSAppManager {
                 if(selectedOtherServices.contains('debit use')) jsonPayload.writeBooleanField('payrollDebit', true);
             }
         }
+
 
         jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
@@ -585,17 +584,20 @@ global class AccountWS_EFSAppManager {
         //if all merchants is selected, send true and 999999
         if (onlineApplication.Allowed_Merchant_Categories__c != null && onlineApplication.Allowed_Merchant_Categories__c.contains('All Merchants')) {
             jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', true);
-            jsonPayload.writeNumberField('merchantCategoryCodes', 999999);
+            jsonPayload.writeFieldName('merchantCategoryCodes');
+            jsonPayload.writeStartArray();
+                jsonPayload.writeNumber(999999);
+            jsonPayload.writeEndArray();
             //if select merchants are selected, send false and each merchant code.
         } else if (onlineApplication.Allowed_Merchant_Categories__c != null) {
             jsonPayload.writeBooleanField('allowAllMerchantCategoryCodes', false);
             jsonPayload.writeFieldName('merchantCategoryCodes');
             jsonPayload.writeStartArray();
-            for (String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')) {
-                if (s.isNumeric()) {
-                    jsonPayload.writeNumber(Integer.valueOf(s));
+                for (String s : onlineApplication.Allowed_Merchant_Categories__c.split(';')) {
+                    if (s.isNumeric()) {
+                        jsonPayload.writeNumber(Integer.valueOf(s));
+                    }
                 }
-            }
             jsonPayload.writeEndArray();
         }
         //end merchant category codes
@@ -608,11 +610,11 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStartArray();
 
-        if(myFees.mcLocationFee != null && Integer.valueOf(myFees.mcLocationFee) > 0) {
+        if(myFees.mcLocationFee != null && myFees.mcLocationFee != '') {
             jsonPayload.writeStartObject();
 
                 jsonPayload.writeStringField('loc_type', 'MCLO');
-                jsonPayload.writeNumberField('carr_fee', Decimal.valueOf(myFees.mcLocationFee));
+                jsonPayload.writeStringField('carr_fee', myFees.mcLocationFee);
 
             jsonPayload.writeEndObject();
         }
@@ -625,18 +627,18 @@ global class AccountWS_EFSAppManager {
 
         jsonPayload.writeStartArray();
 
-        if(myFees.monthlyFee != null && Integer.valueOf(myFees.monthlyFee) > 0){
+        if(myFees.monthlyFee != null && myFees.monthlyFee != '') {
             jsonPayload.writeStartObject();
 
-            jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
-            jsonPayload.writeStringField('fee_id', myFees.monthlyPC);
-            jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
-            jsonPayload.writeStringField('fee_level', '2');
-            jsonPayload.writeStringField('fee_type', '1');
-            jsonPayload.writeStringField('fee_max_times_per', '4');
-            jsonPayload.writeStringField('fee_max_times', '0');
-            jsonPayload.writeStringField('fee_min_start_per', '4');
-            jsonPayload.writeStringField('fee_min_start', '0');
+                jsonPayload.writeStringField('description', 'Monthly Usage Card Fee');
+                jsonPayload.writeStringField('fee_id', myFees.monthlyPC);
+                jsonPayload.writeStringField('fee_amt', myFees.monthlyFee);
+                jsonPayload.writeStringField('fee_level', '2');
+                jsonPayload.writeStringField('fee_type', '1');
+                jsonPayload.writeStringField('fee_max_times_per', '4');
+                jsonPayload.writeStringField('fee_max_times', '0');
+                jsonPayload.writeStringField('fee_min_start_per', '4');
+                jsonPayload.writeStringField('fee_min_start', '0');
 
             jsonPayload.writeEndObject();
         }
@@ -645,19 +647,48 @@ global class AccountWS_EFSAppManager {
 
             jsonPayload.writeStartObject();
 
-            jsonPayload.writeStringField('description', 'D FEE REGULAR CHECK');
-            jsonPayload.writeStringField('fee_id', '112');
-            jsonPayload.writeStringField('fee_amt', '2.50');
-            jsonPayload.writeStringField('fee_level', '1');
-            jsonPayload.writeStringField('fee_type', '1');
-            jsonPayload.writeStringField('fee_max_times_per', '4');
-            jsonPayload.writeStringField('fee_max_times', '0');
-            jsonPayload.writeStringField('fee_min_times_per', '4');
-            jsonPayload.writeStringField('fee_min_times', '0');
+                jsonPayload.writeStringField('description', 'D FEE REGULAR CHECK');
+                jsonPayload.writeStringField('fee_id', '112');
+                jsonPayload.writeStringField('fee_amt', '2.50');
+                jsonPayload.writeStringField('fee_level', '1');
+                jsonPayload.writeStringField('fee_type', '1');
+                jsonPayload.writeStringField('fee_max_times_per', '4');
+                jsonPayload.writeStringField('fee_max_times', '0');
+                jsonPayload.writeStringField('fee_min_times_per', '4');
+                jsonPayload.writeStringField('fee_min_times', '0');
 
             jsonPayload.writeEndObject();
 
         }
+
+        if(myFees.mcOvernightShippingFee != null && myFees.mcOvernightShippingFee != '') {
+            jsonPayload.writeStartObject();
+
+                jsonPayload.writeStringField('description', 'MC FEE OVERNIGHT CARD SHIPMENT');
+                jsonPayload.writeStringField('fee_id', myFees.mcOvernightShippingPC);
+                jsonPayload.writeStringField('fee_amt', myFees.mcOvernightShippingFee);
+                jsonPayload.writeStringField('fee_level', '3');
+                jsonPayload.writeStringField('fee_type', '1');
+                jsonPayload.writeStringField('fee_max_times_per', '4');
+                jsonPayload.writeStringField('fee_min_start_per', '4');
+
+            jsonPayload.writeEndObject();
+        }
+
+        if(myFees.mcEmbossingFee != null && myFees.mcEmbossingFee != '') {
+            jsonPayload.writeStartObject();
+
+                jsonPayload.writeStringField('description', 'MC FEE SAME DAY EMBOSSING');
+                jsonPayload.writeStringField('fee_id', myFees.mcEmbossingPC);
+                jsonPayload.writeStringField('fee_amt', myFees.mcEmbossingFee);
+                jsonPayload.writeStringField('fee_level', '3');
+                jsonPayload.writeStringField('fee_type', '1');
+                jsonPayload.writeStringField('fee_max_times_per', '4');
+                jsonPayload.writeStringField('fee_min_start_per', '4');
+
+            jsonPayload.writeEndObject();
+        }
+
 
         jsonPayload.writeEndArray();
         // End driver fees
@@ -866,8 +897,8 @@ global class AccountWS_EFSAppManager {
         if(selectedOtherServices != null && selectedOtherServices.contains('Register Check')) jsonPayload.writeStringField('reg_check_flag', 'Y');
         else jsonPayload.writeStringField('reg_check_flag', 'N');
 
-        if (selectedOtherServices != null && hasATM) jsonPayload.writeStringField('atm_allowed', 'Y');
-        else jsonPayload.writeStringField('atm_allowed', 'N');
+        //per Katey/Tiana we always want to send Y
+        jsonPayload.writeStringField('atm_allowed', 'Y');
 
         // End of "contract"
         jsonPayload.writeEndObject();
@@ -942,6 +973,10 @@ global class AccountWS_EFSAppManager {
         public String mcEmbossingFee;
         public String mcLocationFee;
 
+        public Set<String> feeSet = new Set<String>{achAccountTransferFee, atmWithdrawalFee, smartFundsATMDeclineFee, smartFundsPointofSaleFee,
+                smartFundsATMBalanceInquiryFee, checkFee, smartFundsEFSNetworkDebitFee, loadFee, smartFundsMasterCardNetworkDebitFee, monthlyFee,
+                scalesInNetworkFee, mcOvernightShippingFee, mcEmbossingFee, mcLocationFee};
+
         public CardFees(OnlineApplication__c onlineApplication) {
             if(onlineApplication.Opportunity__c != null) {
                 Map<String,Decimal> productOptionMap = new Map<String,Decimal>();
@@ -964,7 +999,7 @@ global class AccountWS_EFSAppManager {
 
                 setFees(productOptionMap);
 
-                if (this.monthlyFee == null || this.mcOvernightShippingFee == null || this.mcEmbossingFee == null) {  //TODO: seems like this may need to be redone
+                if (this.feeSet.contains(null)) {
                     //get the fees based on OLI. not ideal.
                     Set<Id> productIds = new Set<Id>();
                     Set<Id> productIds2 = new Set<Id>();
