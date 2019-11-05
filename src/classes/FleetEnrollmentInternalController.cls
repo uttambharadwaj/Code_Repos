@@ -96,7 +96,9 @@ public with sharing class FleetEnrollmentInternalController {
     }
 
     // NAFONBOARD-44
-    public boolean embossingNameBlank { get; set; }
+    public Boolean embossingNameBlank { get; set; }
+
+    public Boolean billingCycleBlank = false;
 
     public Id internalRecordType {
         get {
@@ -228,7 +230,7 @@ public with sharing class FleetEnrollmentInternalController {
                 for (String option : (program.Fleet_Available_Billing_Cycles__c).split(';')) {
 
                     //if(option != 'Cycle 4')
-                        availableBillingCycles.add(new SelectOption(option, option));
+                    availableBillingCycles.add(new SelectOption(option, option));
 
                 }
 
@@ -344,13 +346,16 @@ public with sharing class FleetEnrollmentInternalController {
                         fleetEnrollment = new FleetEnrollment__c();
 
                         List<FleetEnrollment__c> fleetEnrollments = [
-                                SELECT Id, Embossing_Company_Name__c
+                                SELECT Id, Embossing_Company_Name__c, Billing_Cycle__c
                                 FROM FleetEnrollment__c
                                 WHERE Opportunity__c =: opportunity.Id OR Debug_Opportunity_Parameter__c=:opportunity.Id
                         ];
 
                         if(fleetEnrollments.size() > 0) {
                             fleetEnrollment.Id = fleetEnrollments[0].Id;
+                            if (fleetEnrollments[0].Billing_Cycle__c == null) {
+                                billingCycleBlank = true;
+                            }
                         } else {
                             fleetEnrollment.Opportunity__c = opportunity.Id;
                         }
@@ -366,6 +371,7 @@ public with sharing class FleetEnrollmentInternalController {
                                 fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
                             }
                         }
+
 
                         fleetEnrollment.Submit_Fleet_Data_Form_Used__c = true;
 
@@ -542,7 +548,7 @@ public with sharing class FleetEnrollmentInternalController {
 
             if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
                 fleetEnrollment.Billing_Cycle__c = fleetEnrollmentInformation.selectedBillingCycle;
-            } else {
+            } else if (billingCycleBlank && program.Fleet_Default_Billing_Cycle__c != null) {
                 fleetEnrollment.Billing_Cycle__c = program.Fleet_Default_Billing_Cycle__c;
             }
 
