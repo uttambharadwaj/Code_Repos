@@ -431,6 +431,7 @@ public without sharing class OTRSetupController {
                 onlineApplication.Daily_DEF_Limit__c = 0;
             }
 
+            // paper apps are identified by having a user session id
             if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true || userSessionId != null) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-Complete';
