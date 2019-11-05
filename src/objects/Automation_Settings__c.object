@@ -141,6 +141,14 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Disable_OpportunityContactRole_Trigger__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Disable OpportunityContactRole Trigger</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Disable_CorteraCPR_Trigger__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
