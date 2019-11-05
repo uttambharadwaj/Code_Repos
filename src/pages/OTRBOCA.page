@@ -1,8 +1,9 @@
 <!--
 Description:        OTRBOCA VF Page (Page 1 of Online Application for OTRBOCA)
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
-                    5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
-                    5/28/2019 MFarrell - PSOBACKLOG-55 Updated rendered and redendered statements.
+                    5/9/2019                        PSOBACKLOG-76 ADA Compliance-Images
+                    5/28/2019       MFarrell    -   PSOBACKLOG-55 Updated rendered and redendered statements.
+                    30/OCT/2019     MFarrell    -   Existing Carrier ID field and parent/secondary rendering
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
@@ -230,10 +231,12 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                 </div>
                                 <div class="twelve columns clearfix">
                                     <div class="six columns clearfix">
-                                        <apex:outputPanel rendered="{!OR(onlineApplicationOffer.Funding__c == 'Parent Funded', onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract')}">
+                                        <apex:outputPanel rendered="{!onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract'}">
                                             <div class="twelve columns clearfix form-field" data-row="0">
-                                                <apex:outputLabel for="carrierID" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Existing Carrier ID', $Label.OTR_Carrier_ID)}"/>
-                                                <apex:inputText styleClass="styled-input" label="" tabindex="1" id="carrierID" value="{!carrierID}" maxlength="30" html-autocomplete="off">
+                                                <apex:outputLabel for="carrierID" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Existing Carrier ID', $Label.OTR_Carrier_ID)}">
+                                                    <i class="fa fa-question-circle help-circle helpIcon" aria-hidden="true" title="{!$Label.OTRBOCA_ExistingCarrierIDHelp}"></i>
+                                                </apex:outputLabel>
+                                                <apex:inputText styleClass="styled-input" label="" tabindex="1" id="carrierID" value="{!carrierID}" maxlength="6" html-autocomplete="off">
                                                 </apex:inputText>
                                             </div>
                                         </apex:outputPanel>

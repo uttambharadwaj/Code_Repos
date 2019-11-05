@@ -49,6 +49,8 @@ public with sharing class FleetEnrollmentInternalController {
         }
     }
 
+    public Boolean needsManagerApproval{get;set;}
+
     public String errorCode {
         get {
             return ApexPages.currentPage().getParameters().get('errorCode');
@@ -94,7 +96,9 @@ public with sharing class FleetEnrollmentInternalController {
     }
 
     // NAFONBOARD-44
-    public boolean embossingNameBlank { get; set; }
+    public Boolean embossingNameBlank { get; set; }
+
+    public Boolean billingCycleBlank = false;
 
     public Id internalRecordType {
         get {
@@ -226,7 +230,7 @@ public with sharing class FleetEnrollmentInternalController {
                 for (String option : (program.Fleet_Available_Billing_Cycles__c).split(';')) {
 
                     //if(option != 'Cycle 4')
-                        availableBillingCycles.add(new SelectOption(option, option));
+                    availableBillingCycles.add(new SelectOption(option, option));
 
                 }
 
@@ -342,13 +346,16 @@ public with sharing class FleetEnrollmentInternalController {
                         fleetEnrollment = new FleetEnrollment__c();
 
                         List<FleetEnrollment__c> fleetEnrollments = [
-                                SELECT Id, Embossing_Company_Name__c
+                                SELECT Id, Embossing_Company_Name__c, Billing_Cycle__c
                                 FROM FleetEnrollment__c
                                 WHERE Opportunity__c =: opportunity.Id OR Debug_Opportunity_Parameter__c=:opportunity.Id
                         ];
 
                         if(fleetEnrollments.size() > 0) {
                             fleetEnrollment.Id = fleetEnrollments[0].Id;
+                            if (fleetEnrollments[0].Billing_Cycle__c == null) {
+                                billingCycleBlank = true;
+                            }
                         } else {
                             fleetEnrollment.Opportunity__c = opportunity.Id;
                         }
@@ -364,6 +371,7 @@ public with sharing class FleetEnrollmentInternalController {
                                 fleetEnrollment.Embossing_Company_Name__c = opportunity.Name;
                             }
                         }
+
 
                         fleetEnrollment.Submit_Fleet_Data_Form_Used__c = true;
 
@@ -414,7 +422,7 @@ public with sharing class FleetEnrollmentInternalController {
                         }
 
                         Integer i = [SELECT count() FROM Attachment WHERE ParentId=:fleetEnrollment.Id AND Name LIKE '%_OvernightCardApproval_%' LIMIT 1];
-
+                        needsManagerApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? false : true;
                         bypassApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? true : false;
 
                         if (fleetEnrollmentInformation.overnightCardsBillCustomer!=null && fleetEnrollmentInformation.overnightCardsBillCustomer) {
@@ -540,6 +548,8 @@ public with sharing class FleetEnrollmentInternalController {
 
             if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
                 fleetEnrollment.Billing_Cycle__c = fleetEnrollmentInformation.selectedBillingCycle;
+            } else if (billingCycleBlank && program.Fleet_Default_Billing_Cycle__c != null) {
+                fleetEnrollment.Billing_Cycle__c = program.Fleet_Default_Billing_Cycle__c;
             }
 
             if (fleetEnrollmentInformation.association == true) {
@@ -550,10 +560,7 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Direct_Debit__c = true;
             }
 
-            if (fleetEnrollmentInformation.hierarchyNeeded == true) {
-                fleetEnrollment.Hierarchy_Needed__c = true;
-            }
-
+            fleetEnrollment.Hierarchy_Needed__c = fleetEnrollmentInformation.hierarchyNeeded;
 
             fleetEnrollment.Station_Card__c = fleetEnrollmentInformation.stationCard;
 
@@ -575,6 +582,12 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Card_Shipping_City__c = fleetEnrollmentInformation.cardShippingCity;
                 fleetEnrollment.Card_Shipping_State__c = fleetEnrollmentInformation.cardShippingState;
                 fleetEnrollment.Card_Shipping_Postal_Code__c = fleetEnrollmentInformation.cardShippingPostalCode;
+            } else {
+                fleetEnrollment.Card_Shipping_Attention__c = opportunity.Billing_Contact_First_Name__c + ' ' + opportunity.Billing_Contact_Last_Name__c;
+                fleetEnrollment.Card_Shipping_Address_Line_1__c = opportunity.Billing_Street__c;
+                fleetEnrollment.Card_Shipping_City__c = opportunity.Billing_City__c;
+                fleetEnrollment.Card_Shipping_State__c = opportunity.Billing_State__c;
+                fleetEnrollment.Card_Shipping_Postal_Code__c = opportunity.Billing_Zip_Postal_Code__c;
             }
 
             if(fleetEnrollmentInformation.specialShippingAddress) {

@@ -4704,6 +4704,19 @@ Replaced by &quot;Days of Payment&quot;</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Existing_Carrier_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Carrier ID supplied by customer during BOCA</inlineHelpText>
+        <label>Existing Carrier ID</label>
+        <length>6</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Existing_Exposure_Check__c</fullName>
         <externalId>false</externalId>
         <label>Existing Exposure Check</label>
