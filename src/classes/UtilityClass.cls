@@ -228,6 +228,18 @@ global class UtilityClass {
 
         return provinces;
     }
+
+    public static Database.LeadConvertResult convertLead(Id leadId, Boolean createOpportunity) {
+
+        Database.LeadConvert leadConvert = new database.LeadConvert();
+        leadConvert.setLeadId(leadId);
+        Leadconvert.setConvertedStatus('Qualified');
+        Leadconvert.setDoNotCreateOpportunity(!createOpportunity);
+        Database.LeadConvertResult leadConvertResult = Database.convertLead(Leadconvert);
+
+        return leadConvertResult;
+    }
+
     /**************************END MISCELLANEOUS******************************/
 
     public static void testHelper(){
