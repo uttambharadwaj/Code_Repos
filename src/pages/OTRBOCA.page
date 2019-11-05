@@ -218,6 +218,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                         </div>
                         <apex:form id="bocaForm">
                             <input type="hidden" value="{!isPG}" id="isPG" />
+                            <input type="hidden" value="{!userSessionId}" id="userSessionId" />
                             <apex:actionFunction name="submitApplication" action="{!submitApplication}" rerender="" />
                             <apex:actionFunction name="saveApplication" action="{!saveApplication}" rerender="" />
                             <apex:outputPanel >
