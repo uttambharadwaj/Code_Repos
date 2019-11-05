@@ -61,7 +61,7 @@ public class OpportunityHelper {
             if (Schema.SObjectType.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal') != null) {
                 fleetEnrollment.RecordTypeId = Schema.SObjectType.FleetEnrollment__c.getRecordTypeInfosByName().get('Internal').getRecordTypeId();
             }
-            //OpportunityTriggerDispatcher.feNoDuplicatesSet.add(fleetEnrollment);
+            OpportunityTriggerDispatcher.feNoDuplicatesSet.add(fleetEnrollment);
         }
 
     }
