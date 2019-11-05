@@ -49,6 +49,8 @@ public with sharing class FleetEnrollmentInternalController {
         }
     }
 
+    public Boolean needsManagerApproval{get;set;}
+
     public String errorCode {
         get {
             return ApexPages.currentPage().getParameters().get('errorCode');
@@ -414,7 +416,7 @@ public with sharing class FleetEnrollmentInternalController {
                         }
 
                         Integer i = [SELECT count() FROM Attachment WHERE ParentId=:fleetEnrollment.Id AND Name LIKE '%_OvernightCardApproval_%' LIMIT 1];
-
+                        needsManagerApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? false : true;
                         bypassApproval = (i>0 || program.Bypass_Shipping_Approval__c) ? true : false;
 
                         if (fleetEnrollmentInformation.overnightCardsBillCustomer!=null && fleetEnrollmentInformation.overnightCardsBillCustomer) {
@@ -540,6 +542,8 @@ public with sharing class FleetEnrollmentInternalController {
 
             if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
                 fleetEnrollment.Billing_Cycle__c = fleetEnrollmentInformation.selectedBillingCycle;
+            } else {
+                fleetEnrollment.Billing_Cycle__c = program.Fleet_Default_Billing_Cycle__c;
             }
 
             if (fleetEnrollmentInformation.association == true) {
@@ -550,10 +554,7 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Direct_Debit__c = true;
             }
 
-            if (fleetEnrollmentInformation.hierarchyNeeded == true) {
-                fleetEnrollment.Hierarchy_Needed__c = true;
-            }
-
+            fleetEnrollment.Hierarchy_Needed__c = fleetEnrollmentInformation.hierarchyNeeded;
 
             fleetEnrollment.Station_Card__c = fleetEnrollmentInformation.stationCard;
 
@@ -575,6 +576,12 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Card_Shipping_City__c = fleetEnrollmentInformation.cardShippingCity;
                 fleetEnrollment.Card_Shipping_State__c = fleetEnrollmentInformation.cardShippingState;
                 fleetEnrollment.Card_Shipping_Postal_Code__c = fleetEnrollmentInformation.cardShippingPostalCode;
+            } else {
+                fleetEnrollment.Card_Shipping_Attention__c = opportunity.Billing_Contact_First_Name__c + ' ' + opportunity.Billing_Contact_Last_Name__c;
+                fleetEnrollment.Card_Shipping_Address_Line_1__c = opportunity.Billing_Street__c;
+                fleetEnrollment.Card_Shipping_City__c = opportunity.Billing_City__c;
+                fleetEnrollment.Card_Shipping_State__c = opportunity.Billing_State__c;
+                fleetEnrollment.Card_Shipping_Postal_Code__c = opportunity.Billing_Zip_Postal_Code__c;
             }
 
             if(fleetEnrollmentInformation.specialShippingAddress) {
