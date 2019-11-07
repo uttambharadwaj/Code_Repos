@@ -96,11 +96,13 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
                     Integer truckCalc = 2500;
                     Integer truckCalcSlipSeat = 3500;
-                    // use the truck limits set at the offer level, if they are blank use the 2500/2500 as defaults
+                    // use the truck limits set at the offer level, if they are blank use the 2500/3500 as defaults
                     if (offers.size() > 0) {
-                        truckCalc = Integer.valueOf(offers[0].Credit_Limit_Per_Truck__c);
-                        truckCalcSlipSeat = Integer.valueOf(offers[0].Credit_Limit_Per_Truck_Slip_Seat__c);
-                        System.debug('Offer truck limit: ' + offers[0].Credit_Limit_Per_Truck__c + '  and truck limit for slip seat: ' + offers[0].Credit_Limit_Per_Truck_Slip_Seat__c);
+                        if (null != offers[0].Credit_Limit_Per_Truck__c && null != offers[0].Credit_Limit_Per_Truck_Slip_Seat__c) {
+                            truckCalc = Integer.valueOf(offers[0].Credit_Limit_Per_Truck__c);
+                            truckCalcSlipSeat = Integer.valueOf(offers[0].Credit_Limit_Per_Truck_Slip_Seat__c);
+                            System.debug('Offer truck limit: ' + offers[0].Credit_Limit_Per_Truck__c + '  and truck limit for slip seat: ' + offers[0].Credit_Limit_Per_Truck_Slip_Seat__c);
+                        }
                     }
 
                     if (oa.Team_Drivers_Slip_Seat__c) {
