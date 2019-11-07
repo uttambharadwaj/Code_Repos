@@ -76,7 +76,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                 System.debug(so.Id);
 
                 List<OnlineApplication__c> onlineApplications = [
-                        SELECT Id,Credit_Line_Recommendation__c,DNB_Credit_Line_Recommendation__c,Credit_Line_Requested__c,Risk_Grade__c,Decision_Comments__c,
+                        SELECT Id,Credit_Line_Recommendation__c,DNB_Credit_Line_Recommendation__c,Credit_Line_Requested__c,Risk_Grade__c,Decision_Comments__c, Offer__c,
                                 DNB_CSAD_High_Credit__c,DNB_SBFE_High_Credit__c,Team_Drivers_Slip_Seat__c,Number_of_Trucks__c,PG_Required__c,PG_High_Credit_Amount__c,PG_Score__c
                         FROM OnlineApplication__c
                         WHERE Id = :so.Id
@@ -92,10 +92,23 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                     System.debug('requested credit line - original requested: ' + creditLineRequested);
 
                     // Update the credit line requested based on the number of trucks
+                    List<OnlineApplicationOffer__c> offers = [ SELECT Id, Credit_Limit_Per_Truck__c, Credit_Limit_Per_Truck_Slip_Seat__c FROM OnlineApplicationOffer__c where Id = :onlineApplications[0].Offer__c ];
+
+                    Integer truckCalc = 2500;
+                    Integer truckCalcSlipSeat = 3500;
+                    // use the truck limits set at the offer level, if they are blank use the 2500/3500 as defaults
+                    if (offers.size() > 0) {
+                        if (null != offers[0].Credit_Limit_Per_Truck__c && null != offers[0].Credit_Limit_Per_Truck_Slip_Seat__c) {
+                            truckCalc = Integer.valueOf(offers[0].Credit_Limit_Per_Truck__c);
+                            truckCalcSlipSeat = Integer.valueOf(offers[0].Credit_Limit_Per_Truck_Slip_Seat__c);
+                            System.debug('Offer truck limit: ' + offers[0].Credit_Limit_Per_Truck__c + '  and truck limit for slip seat: ' + offers[0].Credit_Limit_Per_Truck_Slip_Seat__c);
+                        }
+                    }
+
                     if (oa.Team_Drivers_Slip_Seat__c) {
-                        creditLineRequestedWithTrucks = oa.Number_of_Trucks__c * 3500;
+                        creditLineRequestedWithTrucks = oa.Number_of_Trucks__c * truckCalcSlipSeat;
                     } else {
-                        creditLineRequestedWithTrucks = oa.Number_of_Trucks__c * 2500;
+                        creditLineRequestedWithTrucks = oa.Number_of_Trucks__c * truckCalc;
                     }
                     if (creditLineRequested > creditLineRequestedWithTrucks) {
                         creditLineRequested = creditLineRequestedWithTrucks;
@@ -112,11 +125,11 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                     }
 
                     // For any given credit line recommendation, a minimum credit line of 2500 is required (Slip Seat minimum is 3500)
-                    if (oa.Credit_Line_Recommendation__c < 3500 && oa.Credit_Line_Recommendation__c != 0 && oa.Team_Drivers_Slip_Seat__c) {
-                        oa.Credit_Line_Recommendation__c = 3500;
+                    if (oa.Credit_Line_Recommendation__c < truckCalcSlipSeat && oa.Credit_Line_Recommendation__c != 0 && oa.Team_Drivers_Slip_Seat__c) {
+                        oa.Credit_Line_Recommendation__c = truckCalcSlipSeat;
                     }
-                    if (oa.Credit_Line_Recommendation__c < 2500 && oa.Credit_Line_Recommendation__c != 0) {
-                        oa.Credit_Line_Recommendation__c = 2500;
+                    if (oa.Credit_Line_Recommendation__c < truckCalc && oa.Credit_Line_Recommendation__c != 0) {
+                        oa.Credit_Line_Recommendation__c = truckCalc;
                     }
 
                     return oa.Credit_Line_Recommendation__c;
