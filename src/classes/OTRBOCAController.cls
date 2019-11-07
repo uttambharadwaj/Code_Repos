@@ -710,32 +710,6 @@ public class OTRBOCAController {
 //            }
 
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
-            String convertedOpportunityId, convertedContactId, convertedAccountId;
-
-            // Check if there's a passed in lead
-            if (passedInLead != null) {
-
-                if (passedInLead.ConvertedOpportunityId == null) { // Lead has not yet been converted
-
-                    Database.LeadConvertResult leadConvertResult = UtilityClass.convertLead(passedInLead.Id, true);
-                    if (leadConvertResult.isSuccess()) {
-
-                        convertedAccountId = leadConvertResult.getAccountId();
-                        convertedContactId = leadConvertResult.getContactId();
-                        convertedOpportunityId = leadConvertResult.getOpportunityId();
-
-                    } else {
-                        System.debug('Failed to convert lead.');
-                        // TODO Prolly should put some actual logging here..
-                    }
-                } else { // Lead has already been converted
-
-                    convertedAccountId = passedInLead.ConvertedAccountId;
-                    convertedContactId = passedInLead.ConvertedContactId;
-                    convertedOpportunityId = passedInLead.ConvertedOpportunityId;
-
-                }
-            }
 
             if (account.Id == null) {
                 if (Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account') != null) {
@@ -746,8 +720,8 @@ public class OTRBOCAController {
                     account.Id = accountId;
                 } else if (onlineApplication.Account__c != null) {
                     account.Id = onlineApplication.Account__c;
-                } else if (convertedAccountId != null) {
-                    account.Id = convertedAccountId;
+                } else if (passedInLead != null && passedInLead.ConvertedAccountId != null) {
+                    account.Id = passedInLead.ConvertedAccountId;
                 }
 
                 if (onlineApplication.Account__c == null) {
@@ -788,8 +762,8 @@ public class OTRBOCAController {
             if(primaryContact.Id == null) {
 
                 // Create Primary Contact
-                if (convertedContactId != null) {
-                    primaryContact.Id = convertedContactId;
+                if (passedInLead != null && passedInLead.ConvertedContactId != null) {
+                    primaryContact.Id = passedInLead.ConvertedContactId;
                 }
                 primaryContact.AccountId = account.Id;
 
@@ -855,8 +829,8 @@ public class OTRBOCAController {
                 opportunity.Id = optyId;
             } else if (onlineApplication.Opportunity__c != null) {
                 opportunity.Id = onlineApplication.Opportunity__c;
-            } else if (convertedOpportunityId != null) {
-                opportunity.Id = convertedOpportunityId;
+            } else if (passedInLead != null && passedInLead.ConvertedOpportunityId != null) {
+                opportunity.Id = passedInLead.ConvertedOpportunityId;
             }
 
             if (Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Fleet Card') != null) {
@@ -1123,6 +1097,11 @@ public class OTRBOCAController {
             System.debug('### Online Application: ' + onlineApplication.Id);
 
             System.debug('### Online Application Dump: ' + onlineApplication);
+
+            // Convert the passed in lead and relate it back to the account, contact, and opportunity.
+            if (passedInLead != null && passedInLead.ConvertedOpportunityId == null) {
+                UtilityClass.convertPassedInLead(passedInLead.Id, account.Id, primaryContact.Id, opportunity.Id);
+            }
 
             if (!isBOExempt && beneficialOwnerSettings.Enable_Upfront_Collection__c == true) {
 
