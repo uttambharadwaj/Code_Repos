@@ -617,20 +617,36 @@ public with sharing class FleetEnrollmentInternalController {
 
             List<Program_Template_Account__c> programTemplateAccounts = null;
 
-            if(fleetEnrollmentInformation.association == true) {
-
-                programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c AND Usage_Type__c = :fleetEnrollment.Usage_Type__c AND Program__c = :program.Id AND Association__c =: fleetEnrollmentInformation.selectedAssociation];
-
+            // did the sales rep select an association and a new billing cycle?
+            if(fleetEnrollmentInformation.association == true && fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                programTemplateAccounts = [ SELECT Id
+                                            FROM Program_Template_Account__c
+                                            WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
+                                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                                                AND Association__c =: fleetEnrollmentInformation.selectedAssociation
+                                                AND Program__c = :program.Id];
+            // did the sales rep only select an association?
+            } else if (fleetEnrollmentInformation.association == true) {
+                programTemplateAccounts = [ SELECT Id
+                                            FROM Program_Template_Account__c
+                                            WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
+                                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                                                AND Association__c =: fleetEnrollmentInformation.selectedAssociation
+                                                AND Program__c = :program.Id];
+            // did the sales rep only select a new billing cycle?
+            } else if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                programTemplateAccounts = [ SELECT Id
+                                            FROM Program_Template_Account__c
+                                            WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
+                                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                                                AND Program__c = :program.Id];
             }
-            else {
 
-                programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c AND Usage_Type__c = :fleetEnrollment.Usage_Type__c AND Program__c = :program.Id];
-
-            }
-
+            // if we're changing the program template account to something different than default
             if (programTemplateAccounts.size() > 0) {
                 fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
-            } else {
+            // if program template account is blank, and we didn't change it, set to the program default
+            } else if (fleetEnrollment.Program_Template_Account__c == null) {
                 fleetEnrollment.Program_Template_Account__c = WexBrandingController.getDefaultAccountTemplateByProgram(program.Id);
             }
 
