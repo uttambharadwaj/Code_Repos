@@ -623,7 +623,7 @@ public with sharing class FleetEnrollmentInternalController {
                                             FROM Program_Template_Account__c
                                             WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
                                                 AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                                                AND Association__c =: fleetEnrollmentInformation.selectedAssociation
+                                                AND Association__c = :fleetEnrollmentInformation.selectedAssociation
                                                 AND Program__c = :program.Id];
             // did the sales rep only select an association?
             } else if (fleetEnrollmentInformation.association == true) {
@@ -631,7 +631,7 @@ public with sharing class FleetEnrollmentInternalController {
                                             FROM Program_Template_Account__c
                                             WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
                                                 AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                                                AND Association__c =: fleetEnrollmentInformation.selectedAssociation
+                                                AND Association__c = :fleetEnrollmentInformation.selectedAssociation
                                                 AND Program__c = :program.Id];
             // did the sales rep only select a new billing cycle?
             } else if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
@@ -639,6 +639,7 @@ public with sharing class FleetEnrollmentInternalController {
                                             FROM Program_Template_Account__c
                                             WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
                                                 AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                                                AND Association__c = :fleetEnrollment.Association__c
                                                 AND Program__c = :program.Id];
             }
 
