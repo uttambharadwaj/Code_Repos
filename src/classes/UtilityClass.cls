@@ -39,6 +39,37 @@ global class UtilityClass {
         String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128)); //get salty
         return EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
     }
+
+    // Convert the passed in lead.
+    @Future
+    public static void convertPassedInLead(Id leadId, Id accountId, Id contactId, Id opportunityId) {
+
+
+        Database.LeadConvert leadConvert = new database.LeadConvert();
+
+        leadConvert.setLeadId(leadId);
+        leadConvert.setAccountId(accountId);
+        leadConvert.setContactId(contactId);
+        leadConvert.setOpportunityId(opportunityId);
+        leadconvert.setConvertedStatus('Qualified');
+
+        try {
+            User defaultOwner = [SELECT Id FROM User WHERE Alias = 'sinte'];
+            leadconvert.setOwnerId(defaultOwner.Id);
+            Database.LeadConvertResult leadConvertResult = Database.convertLead(leadconvert);
+
+            if (leadConvertResult.isSuccess()) {
+                System.debug('Converted Lead');
+            } else {
+                System.debug('Failed to convert lead.');
+                // logError(new creditappException('Failed to convert Lead'));
+                // TODO Prolly should put some actual logging here..
+            }
+        } catch (Exception e) {
+            System.debug(e);
+            // TODO Prolly should put some actual logging here..
+        }
+    }
     /***************************END BOCA UTILITIES****************************/
 
     /***************************FIELD MAPPING UTILITIES***********************/
@@ -227,17 +258,6 @@ global class UtilityClass {
         }
 
         return provinces;
-    }
-
-    public static Database.LeadConvertResult convertLead(Id leadId, Boolean createOpportunity) {
-
-        Database.LeadConvert leadConvert = new database.LeadConvert();
-        leadConvert.setLeadId(leadId);
-        Leadconvert.setConvertedStatus('Qualified');
-        Leadconvert.setDoNotCreateOpportunity(!createOpportunity);
-        Database.LeadConvertResult leadConvertResult = Database.convertLead(Leadconvert);
-
-        return leadConvertResult;
     }
 
     /**************************END MISCELLANEOUS******************************/

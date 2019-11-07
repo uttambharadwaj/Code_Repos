@@ -877,15 +877,6 @@ public class WexBOCAController {
                                 creditApp.SalesRep__c = passedInLead.OwnerId;
                             }
                         }
-
-                        Database.LeadConvertResult leadConvertResult = UtilityClass.convertLead(passedInLead.Id, true);
-
-                        if (leadConvertResult.isSuccess()) {
-                            creditApp.Opportunity__c = leadConvertResult.getOpportunityId();
-                        } else {
-                            System.debug('Failed to convert lead.');
-                            // TODO Prolly should put some actual logging here..
-                        }
                     }
                 }
             }
@@ -952,17 +943,18 @@ public class WexBOCAController {
 
                 System.debug('Credit App Id: ' + creditAppId);
 
-                // Need to refactor the MVF stuff..
-                if(passedInLead != null && passedInLead.ConvertedOpportunityId == null) {
-                    System.debug('Marking Lead Record As Qualified: ' + passedInLead.Id);
+                // Convert the passed in lead and relate it back to the weform account, contact, and opportunity.
+                if (passedInLead != null && passedInLead.ConvertedOpportunityId == null) {
 
-                    // Swap owner to sinte to remove from omni-channel
-                    User integrationUser = [SELECT Id FROM User WHERE Alias = 'sinte'];
+                    WeFormObject__c weForm = [
+                            SELECT Id, Opportunity__r.AccountId, Opportunity__r.Primary_Contact__c, Opportunity__c
+                            FROM WeFormObject__c
+                            WHERE Id = :creditAppId
+                    ];
 
-                    passedInLead.Status = 'Qualified';
-                    passedInLead.OwnerId = integrationUser.Id;
-
-                    upsert passedInLead;
+                    if (weForm.Opportunity__c != null) {
+                        UtilityClass.convertPassedInLead(passedInLead.Id, weForm.Opportunity__r.AccountId, weForm.Opportunity__r.Primary_Contact__c, weForm.Opportunity__c);
+                    }
                 }
 
                 if((creditApp.Status__c).equalsIgnoreCase('bo-needed')) {
