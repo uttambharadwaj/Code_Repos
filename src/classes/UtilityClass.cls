@@ -62,12 +62,10 @@ global class UtilityClass {
                 System.debug('Converted Lead');
             } else {
                 System.debug('Failed to convert lead.');
-                // logError(new creditappException('Failed to convert Lead'));
-                // TODO Prolly should put some actual logging here..
+
             }
         } catch (Exception e) {
-            System.debug(e);
-            // TODO Prolly should put some actual logging here..
+            insert logInternalError(e, '', 'UtilityClass.convertPassedInLead', false, '', 'Lead:' + leadId + ' Account:' + accountId + ' Contact:' + contactId + ' Opportunity:' + opportunityId);
         }
     }
     /***************************END BOCA UTILITIES****************************/
