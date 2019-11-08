@@ -919,6 +919,32 @@
         </rules>
     </decisions>
     <decisions>
+        <description>Determines if the Case has an Account attached.  If not, go to a warning screen and exit the flow.</description>
+        <name>Is_Account_Null</name>
+        <label>Is Account Null?</label>
+        <locationX>182</locationX>
+        <locationY>2</locationY>
+        <defaultConnector>
+            <targetReference>ChooseRecordType</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Account_Is_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Parent_Case.AccountId</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <elementReference>Yes</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Account_Is_Null_Screen</targetReference>
+            </connector>
+            <label>Account Is Null</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Is_this_the_first_trip_through</name>
         <label>Is this the first trip through?</label>
         <locationX>1752</locationX>
@@ -1081,7 +1107,7 @@
             <label>Request is Pending or Held</label>
         </rules>
     </decisions>
-    <description>EAPT-334: Rearrange Refund Code picklist</description>
+    <description>EAPT-703; Update workflow to exit if no Account is attached to Case.</description>
     <dynamicChoiceSets>
         <name>Adjustment_codes</name>
         <dataType>Picklist</dataType>
@@ -1179,8 +1205,8 @@
         <description>Get Account info based on the Account in the parent Case</description>
         <name>Get_Account_Data</name>
         <label>Get Account Data</label>
-        <locationX>533</locationX>
-        <locationY>50</locationY>
+        <locationX>566</locationX>
+        <locationY>117</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Contact_Data</targetReference>
@@ -1208,11 +1234,11 @@
     <recordLookups>
         <name>Get_Case_Data</name>
         <label>Get Case Data</label>
-        <locationX>420</locationX>
-        <locationY>50</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <locationX>86</locationX>
+        <locationY>76</locationY>
+        <assignNullValuesIfNoRecordsFound>true</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Account_Data</targetReference>
+            <targetReference>Is_Account_Null</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -1232,8 +1258,8 @@
     <recordLookups>
         <name>Get_Contact_Data</name>
         <label>Get Contact Data</label>
-        <locationX>650</locationX>
-        <locationY>50</locationY>
+        <locationX>663</locationX>
+        <locationY>16</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Prior_Refunds_and_Adjustments</targetReference>
@@ -1352,11 +1378,11 @@
         <description>Get the record type from SF</description>
         <name>Get_Record_type</name>
         <label>Get Record Type</label>
-        <locationX>310</locationX>
-        <locationY>50</locationY>
+        <locationX>465</locationX>
+        <locationY>1</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Case_Data</targetReference>
+            <targetReference>Get_Account_Data</targetReference>
         </connector>
         <filters>
             <field>DeveloperName</field>
@@ -1378,10 +1404,27 @@
         <queriedFields>DeveloperName</queriedFields>
     </recordLookups>
     <screens>
+        <description>Exit screen if flow is started with no Account attached to the case.</description>
+        <name>Account_Is_Null_Screen</name>
+        <label>Account Is Null</label>
+        <locationX>186</locationX>
+        <locationY>201</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Null_Account_Text_Box</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;color: rgb(247, 1, 1);&quot;&gt;This case does not have an Account attached.  Please attach an Account and then restart the Refunds / Adjustments process.&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>ChooseRecordType</name>
         <label>Refund/Adjustment: Choose Record Type</label>
-        <locationX>187</locationX>
-        <locationY>50</locationY>
+        <locationX>337</locationX>
+        <locationY>86</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -1402,7 +1445,6 @@
             <choiceReferences>CS_Choice</choiceReferences>
             <choiceReferences>SRS_choice</choiceReferences>
             <choiceReferences>RSLPO_choice</choiceReferences>
-            <choiceReferences>SAVEDESK_choice</choiceReferences>
             <dataType>String</dataType>
             <defaultSelectedChoiceReference>CS_Choice</defaultSelectedChoiceReference>
             <fieldText>Your Department?</fieldText>
@@ -1719,7 +1761,13 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>ChooseRecordType</startElementReference>
+    <start>
+        <locationX>8</locationX>
+        <locationY>3</locationY>
+        <connector>
+            <targetReference>Get_Case_Data</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>CaseContact</name>
