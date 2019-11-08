@@ -1,6 +1,6 @@
 public class WexBOCAController {
 
-   	public Beneficial_Owner_Settings__c beneficialOwnerSettings {
+    public Beneficial_Owner_Settings__c beneficialOwnerSettings {
         get {
             return Beneficial_Owner_Settings__c.getOrgDefaults();
         }
@@ -326,10 +326,10 @@ public class WexBOCAController {
 
             // Setup the program
             List<Program__c> programs = [SELECT Id, Live_Person_Code__c, Publish_BOCA__c, Custom_Email_Header_URL__c,
-                                         Analytics_Body_Block__c, Analytics_Head_Block__c, Peoplesoft_rel_code__c,
-                                         Upload_Pricing_Data_Flag__c, T_C__c, Brand_Long_Name__c, BOCA_Disclaimer__c,
-                                         Inside_Sales_Phone_Number__c, Brand_Color_1__c, Brand_Color_2__c, Confirmation_Info__c, BOCA_Type__c, Always_Require_PG__c
-                                         FROM Program__c WHERE Brand_Short_Name__c = :programParameter and Form_Template__c = :currentPageName];
+                    Analytics_Body_Block__c, Analytics_Head_Block__c, Peoplesoft_rel_code__c,
+                    Upload_Pricing_Data_Flag__c, T_C__c, Brand_Long_Name__c, BOCA_Disclaimer__c,
+                    Inside_Sales_Phone_Number__c, Brand_Color_1__c, Brand_Color_2__c, Confirmation_Info__c, BOCA_Type__c, Always_Require_PG__c
+            FROM Program__c WHERE Brand_Short_Name__c = :programParameter and Form_Template__c = :currentPageName];
 
             // If we have a program, then set it, otherwise, redirect to error page
             if(!programs.isEmpty()) {
@@ -367,18 +367,18 @@ public class WexBOCAController {
 
                 if(!brandingUtilities.isEmpty()) {
                     brandingUtility = [SELECT Id, Program_Name__c, Brand_Heading__c, Brand_Tagline__c,
-                                       PG_Disclosure__c, Terms_And_Conditions__c, Default_Disclosure__c,
-                                       Email_Template_ID__c, SideBar__c, Side_Panel_Title__c, ISO_code__c, Country_Code__c
-                                       FROM BOCA_res__c WHERE Id = :brandingUtilities[0].Id];
+                            PG_Disclosure__c, Terms_And_Conditions__c, Default_Disclosure__c,
+                            Email_Template_ID__c, SideBar__c, Side_Panel_Title__c, ISO_code__c, Country_Code__c
+                    FROM BOCA_res__c WHERE Id = :brandingUtilities[0].Id];
                 }
             }
 
             // Default to the default branding utility if the language code was not found, or none was passed in
             if(brandingUtility == null) {
                 brandingUtility = [SELECT Id, Program_Name__c, Brand_Heading__c, Brand_Tagline__c,
-                                   PG_Disclosure__c, Terms_And_Conditions__c, Default_Disclosure__c,
-                                   Email_Template_ID__c, SideBar__c, Side_Panel_Title__c, ISO_code__c, Country_Code__c
-                                   FROM BOCA_res__c WHERE Id = :defaultBrandingUtility];
+                        PG_Disclosure__c, Terms_And_Conditions__c, Default_Disclosure__c,
+                        Email_Template_ID__c, SideBar__c, Side_Panel_Title__c, ISO_code__c, Country_Code__c
+                FROM BOCA_res__c WHERE Id = :defaultBrandingUtility];
 
                 languageCode = brandingUtility.ISO_code__c;
             }
@@ -465,22 +465,22 @@ public class WexBOCAController {
             if(isPartial && partialCustomer != null) {
                 try{
                     creditApp = [SELECT togglePG__c, ABA_Routing_Number__c, Address_Line_2__c, Annual_Gross_Revenue__c,
-                                 Authorization__c, Authorization_agreement_Signature__c,
-                                 Authorize__c, Authorized_officer__c, Avg_Monthly_Fuel_Service_Expenses__c, Billing_Address_Line_2__c,
-                                 Billing_City__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Email__c, Billing_Fax__c,
-                                 Billing_Mobile_Phone__c, Billing_Phone__c, Billing_State__c, Billing_Street_Address__c, Billing_Zip_Code__c, Business_Phone__c,
-                                 Business_Street_Address__c, Business_fax__c, Campaign_Program_ID__c,  City__c, Company_Name__c,
-                                 DUNS_Number__c, Date_of_Birth__c, Day_of_Payment__c, Doing_Business_As__c,
-                                 Email__c, Employee_Id__c, Estimated_Monthly_Vehicle_Expenses__c, External_Sales_Id__c, Financial_Institution__c,
-                                 First_Name__c, Fiscal_Year_Starts__c, Fleet_Size__c, Guarantor_Annual_Income__c,
-                                 How_did_you_hear_about_this_offer__c, Id, IsDeleted, Is_business_exempt_from_Motor_Fuels_Tax__c,
-                                 Last_Name__c, Legal_Structure__c, Location_Code__c, Mobile_Phone__c, Name, Non_Std_Neg_Fee__c, Online_Application_Status__c, Opportunity__c,
-                                 OwnerId, PG_Residential_City__c, PG_Residential_Phone__c, PG_Residential_State__c, PG_Residential_Street_Address__c,
-                                 PG_Residential_Zip__c, Paperless_Flag__c, Payment_Method__c, Program_Id__c, Program__c, Promotional_Code__c,
-                                 RecordTypeId, Sales_Id__c, Sales_Rep_Email__c, Sales_Rep_Phone__c, Same_as_Business_Address__c,
-                                 Signer_s_Email__c, Signer_s_First_Name__c, Signer_s_Last_Name__c, Signer_s_Phone__c, State__c,
-                                 Years_in_Business__c, Zip_code__c, isPG__c, message__c,
-                                 signer_title__c, status__c FROM WeFormObject__c WHERE Id =: partialCustomer LIMIT 1 ];
+                            Authorization__c, Authorization_agreement_Signature__c,
+                            Authorize__c, Authorized_officer__c, Avg_Monthly_Fuel_Service_Expenses__c, Billing_Address_Line_2__c,
+                            Billing_City__c, Billing_Contact_First_Name__c, Billing_Contact_Last_Name__c, Billing_Email__c, Billing_Fax__c,
+                            Billing_Mobile_Phone__c, Billing_Phone__c, Billing_State__c, Billing_Street_Address__c, Billing_Zip_Code__c, Business_Phone__c,
+                            Business_Street_Address__c, Business_fax__c, Campaign_Program_ID__c,  City__c, Company_Name__c,
+                            DUNS_Number__c, Date_of_Birth__c, Day_of_Payment__c, Doing_Business_As__c,
+                            Email__c, Employee_Id__c, Estimated_Monthly_Vehicle_Expenses__c, External_Sales_Id__c, Financial_Institution__c,
+                            First_Name__c, Fiscal_Year_Starts__c, Fleet_Size__c, Guarantor_Annual_Income__c,
+                            How_did_you_hear_about_this_offer__c, Id, IsDeleted, Is_business_exempt_from_Motor_Fuels_Tax__c,
+                            Last_Name__c, Legal_Structure__c, Location_Code__c, Mobile_Phone__c, Name, Non_Std_Neg_Fee__c, Online_Application_Status__c, Opportunity__c,
+                            OwnerId, PG_Residential_City__c, PG_Residential_Phone__c, PG_Residential_State__c, PG_Residential_Street_Address__c,
+                            PG_Residential_Zip__c, Paperless_Flag__c, Payment_Method__c, Program_Id__c, Program__c, Promotional_Code__c,
+                            RecordTypeId, Sales_Id__c, Sales_Rep_Email__c, Sales_Rep_Phone__c, Same_as_Business_Address__c,
+                            Signer_s_Email__c, Signer_s_First_Name__c, Signer_s_Last_Name__c, Signer_s_Phone__c, State__c,
+                            Years_in_Business__c, Zip_code__c, isPG__c, message__c,
+                            signer_title__c, status__c FROM WeFormObject__c WHERE Id =: partialCustomer LIMIT 1 ];
 
                     System.debug('Got the credit app: ' + creditApp.Id);
 
@@ -501,11 +501,11 @@ public class WexBOCAController {
                         }
                     }
                     else if(creditApp != null && (creditApp.status__c).equalsIgnoreCase('bo-needed')) {
-                    	PageReference beneficialOwner = Page.BOCertification;
-                		beneficialOwner.getParameters().put('weFormId', creditApp.Id);
-                		beneficialOwner.getParameters().put('lang', languageCode);
-                		beneficialOwner.setRedirect(true);
-                		return beneficialOwner;
+                        PageReference beneficialOwner = Page.BOCertification;
+                        beneficialOwner.getParameters().put('weFormId', creditApp.Id);
+                        beneficialOwner.getParameters().put('lang', languageCode);
+                        beneficialOwner.setRedirect(true);
+                        return beneficialOwner;
                     }
                     else {
                         // This clears up the dreaded "314 error" when someone tries to access the BOCA to Prospect
@@ -579,16 +579,16 @@ public class WexBOCAController {
     public List<Campaign_Pricing__c> getCampaignPricing(String peoplesoftRelationshipCode, String couponCode) {
 
         List<Campaign_Pricing__c> pricingList = [SELECT nbr_billing_cyles__c,contract_rate_pct__c,
-                                                 contract_margin__c, Contract_Rate_Type__c,
-                                                 coup_code__c, Coupon_Status__c, days_to_pay__c, fixed_late_fee__c,
-                                                 is_Active__c, late_fee_type__c, minimum_payment_percentage__c,over_limit_fee__c,
-                                                 paper_delivery_fee__c,pct_late_fee__c, pen_rate_pct__c, penalty_margin__c,
-                                                 penalty_rate_ceiling__c, Penalty_Rate_Type__c, prime_rate__c,prime_rate_effective_date__c,
-                                                 promo_add_prime__c, promo_periods__c, promotional_rate__c, Peoplesoft_rel_code__c,
-                                                 return_payment_fee__c, risk_code__c
-                                                 FROM Campaign_Pricing__c
-                                                 WHERE Peoplesoft_rel_code__c = :peoplesoftRelationshipCode
-                                                 and coup_code__c = :couponCode];
+                contract_margin__c, Contract_Rate_Type__c,
+                coup_code__c, Coupon_Status__c, days_to_pay__c, fixed_late_fee__c,
+                is_Active__c, late_fee_type__c, minimum_payment_percentage__c,over_limit_fee__c,
+                paper_delivery_fee__c,pct_late_fee__c, pen_rate_pct__c, penalty_margin__c,
+                penalty_rate_ceiling__c, Penalty_Rate_Type__c, prime_rate__c,prime_rate_effective_date__c,
+                promo_add_prime__c, promo_periods__c, promotional_rate__c, Peoplesoft_rel_code__c,
+                return_payment_fee__c, risk_code__c
+        FROM Campaign_Pricing__c
+        WHERE Peoplesoft_rel_code__c = :peoplesoftRelationshipCode
+        and coup_code__c = :couponCode];
         if(pricingList.size() > 0) {
             return pricingList;
         }
@@ -638,21 +638,21 @@ public class WexBOCAController {
 
         //Test condition for Prime Rate Effective Date
         if((campaignPricing.contract_margin__c.equalsIgnoreCase('Y')) && (campaignPricing.Contract_Rate_Type__c.equalsIgnoreCase('Variable')) && (campaignPricing.penalty_margin__c.equalsIgnoreCase('Y')) &&
-           campaignPricing.Penalty_Rate_Type__c.equalsIgnoreCase('Variable')){
-               primeDate = 'Variable rates are based on the Prime Rate as of ' + campaignPricing.prime_rate_effective_date__c.format();
-           }
+                campaignPricing.Penalty_Rate_Type__c.equalsIgnoreCase('Variable')){
+            primeDate = 'Variable rates are based on the Prime Rate as of ' + campaignPricing.prime_rate_effective_date__c.format();
+        }
         if((campaignPricing.contract_margin__c.equalsIgnoreCase('Y')) && (campaignPricing.Contract_Rate_Type__c.equalsIgnoreCase('Variable')) && (campaignPricing.penalty_margin__c.equalsIgnoreCase('N')) &&
-           campaignPricing.Penalty_Rate_Type__c.equalsIgnoreCase('Fixed')){
-               primeDate = 'Variable rates are based on the Prime Rate as of ' + campaignPricing.prime_rate_effective_date__c.format();
-           }
+                campaignPricing.Penalty_Rate_Type__c.equalsIgnoreCase('Fixed')){
+            primeDate = 'Variable rates are based on the Prime Rate as of ' + campaignPricing.prime_rate_effective_date__c.format();
+        }
         if((campaignPricing.contract_margin__c.equalsIgnoreCase('N')) && (campaignPricing.Contract_Rate_Type__c.equalsIgnoreCase('Fixed')) && (campaignPricing.penalty_margin__c.equalsIgnoreCase('Y')) &&
-           campaignPricing.Penalty_Rate_Type__c.equalsIgnoreCase('Variable')){
-               primeDate = 'Variable rates are based on the Prime Rate as of  ' + campaignPricing.prime_rate_effective_date__c.format();
-           }
+                campaignPricing.Penalty_Rate_Type__c.equalsIgnoreCase('Variable')){
+            primeDate = 'Variable rates are based on the Prime Rate as of  ' + campaignPricing.prime_rate_effective_date__c.format();
+        }
         if((campaignPricing.contract_margin__c.equalsIgnoreCase('N')) && (campaignPricing.Contract_Rate_Type__c.equalsIgnoreCase('Fixed')) && (campaignPricing.penalty_margin__c.equalsIgnoreCase('N')) &&
-           campaignPricing.Penalty_Rate_Type__c.equalsIgnoreCase('Fixed')){
-               primeDate = 'N/A';
-           }
+                campaignPricing.Penalty_Rate_Type__c.equalsIgnoreCase('Fixed')){
+            primeDate = 'N/A';
+        }
 
         //Test Condition For Fixed Late Fee
         if((campaignPricing.risk_code__c.equalsIgnoreCase('No')) && (campaignPricing.late_fee_type__c.equalsIgnoreCase('P'))){
@@ -697,9 +697,9 @@ public class WexBOCAController {
         return pricing;
     }
 
-	// Refactored as part of BOCDD
-	// - Added Lead to WeFormObject
-	// - Reversed logic to create lead first, then attach to WeFormObject
+    // Refactored as part of BOCDD
+    // - Added Lead to WeFormObject
+    // - Reversed logic to create lead first, then attach to WeFormObject
     public PageReference createLead() {
 
         PageReference wexBOCAError = null;
@@ -769,9 +769,9 @@ public class WexBOCAController {
                     creditApp.TM_Session_ID__c = tmSessionId;
 
                     Database.upsertResult creditAppResult = Database.upsert(creditapp, false);
-                	if(creditAppResult.isSuccess()){
-                    	System.debug('Credit Application Saved');
-                	}
+                    if(creditAppResult.isSuccess()){
+                        System.debug('Credit Application Saved');
+                    }
                 }
 
             }
@@ -805,30 +805,30 @@ public class WexBOCAController {
             // Determining if the legal structure is exempted from BOCDD
             Boolean isBOExempt = false;
 
-			for(Beneficial_Owner_Exemption__mdt exemption : [SELECT Legal_Structure__c FROM Beneficial_Owner_Exemption__mdt WHERE Country_Code__c =: countryCode]) {
+            for(Beneficial_Owner_Exemption__mdt exemption : [SELECT Legal_Structure__c FROM Beneficial_Owner_Exemption__mdt WHERE Country_Code__c =: countryCode]) {
 
-            	if((creditApp.Legal_Structure__c).equalsIgnoreCase(exemption.Legal_Structure__c)) {
-                	isBOExempt = true;
+                if((creditApp.Legal_Structure__c).equalsIgnoreCase(exemption.Legal_Structure__c)) {
+                    isBOExempt = true;
                 }
 
-			}
+            }
 
             // If they're not exempt, then we're going to
             // add additional notes to the Lead from the BOCA incase
             // they abandon at the BO certification form
             if(isBOExempt == false && partialLeadRecord != null) {
-            	String backgroundNotes = partialLeadRecord.Description;
+                String backgroundNotes = partialLeadRecord.Description;
 
-            	partialLeadRecord.Legal_Structure__c = creditApp.Legal_Structure__c;
-            	if(!String.isEmpty(backgroundNotes)) {
-	            	backgroundNotes += ', ';
-    	        }
-        	    backgroundNotes += 'Stopped At Beneficial Owner Form';
+                partialLeadRecord.Legal_Structure__c = creditApp.Legal_Structure__c;
+                if(!String.isEmpty(backgroundNotes)) {
+                    backgroundNotes += ', ';
+                }
+                backgroundNotes += 'Stopped At Beneficial Owner Form';
 
-            	partialLeadRecord.Description = backgroundNotes;
+                partialLeadRecord.Description = backgroundNotes;
                 partialLeadRecord.qRouting__c = 'WebPartialApp2';
 
-            	upsert partialLeadRecord;
+                upsert partialLeadRecord;
             }
 
             // Need to review why this is.. Maybe just need to set defaults on the picklists?
@@ -959,19 +959,19 @@ public class WexBOCAController {
 
                 if((creditApp.Status__c).equalsIgnoreCase('bo-needed')) {
                     PageReference beneficialOwner = Page.BOCertification;
-                	beneficialOwner.getParameters().put('weFormId', creditAppId);
+                    beneficialOwner.getParameters().put('weFormId', creditAppId);
                     beneficialOwner.getParameters().put('pgm', programParameter);
-                	beneficialOwner.getParameters().put('lang', languageCode);
-                	beneficialOwner.setRedirect(true);
-                	return beneficialOwner;
+                    beneficialOwner.getParameters().put('lang', languageCode);
+                    beneficialOwner.setRedirect(true);
+                    return beneficialOwner;
                 }
                 else {
-                	PageReference wexBOCAConfirmation = Page.WexBOCAConfirmation;
-                	wexBOCAConfirmation.getParameters().put('pgm', programParameter);
-                	wexBOCAConfirmation.getParameters().put('id', creditAppId);
-                	wexBOCAConfirmation.getParameters().put('lang', languageCode);
-                	wexBOCAConfirmation.setRedirect(true);
-                	return wexBOCAConfirmation;
+                    PageReference wexBOCAConfirmation = Page.WexBOCAConfirmation;
+                    wexBOCAConfirmation.getParameters().put('pgm', programParameter);
+                    wexBOCAConfirmation.getParameters().put('id', creditAppId);
+                    wexBOCAConfirmation.getParameters().put('lang', languageCode);
+                    wexBOCAConfirmation.setRedirect(true);
+                    return wexBOCAConfirmation;
                 }
 
             }

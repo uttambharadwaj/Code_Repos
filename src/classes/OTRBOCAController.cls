@@ -495,7 +495,7 @@ public class OTRBOCAController {
             }
             if (!String.isEmpty(leadIdParameter)) {
 
-                List<Lead> lead = [SELECT Id, OwnerId, Owner.Type, Status, Lead_Converted_To_Opportunity__c, ConvertedAccountId, ConvertedContactId, ConvertedOpportunityId FROM Lead WHERE Id = :leadIdParameter LIMIT 1];
+                List<Lead> lead = [SELECT Id, ConvertedAccountId, ConvertedContactId, ConvertedOpportunityId FROM Lead WHERE Id = :leadIdParameter LIMIT 1];
                 if (!lead.isEmpty()) {
                     passedInLead = lead[0];
                     onlineApplication.Lead__c = lead[0].Id;
