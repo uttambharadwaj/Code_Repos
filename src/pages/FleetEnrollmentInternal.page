@@ -3,7 +3,7 @@
 - Revision History: 19/Jul/2019 MFarrell    NAFONBOARD-44   Added Embossing Name.
 -                   11/Sep/2019 CJackson    NAFONBOARD-96   Added Account Short Name.
 -					16/Sep/2019 JArbegast	NAFONBOARD-92   Shipping Option Approval expansion
--
+-					11/Nov/2019	MFarrell	NAFONBOARD-124	Display Default/Current program template accoount
 -
 -->
 
@@ -480,6 +480,12 @@
 											<dt class="slds-item_label slds-text-color_weak" title="Second Label">Default Billing Cycle:</dt>
 											<dd class="slds-item_detail" title="Description for second label">{!program.Fleet_Default_Billing_Cycle__c}</dd>
 
+											<dt class="slds-item_label slds-text-color_weak" title="Default Template Account">Default Template Account:</dt>
+											<dd class="slds-item_detail" title="Default Template Account Value">{!defaultPTA.Name}</dd>
+
+											<dt class="slds-item_label slds-text-color_weak" title="Current Template Account">Current Template Account:</dt>
+											<dd class="slds-item_detail" title="Current Template Account Value">{!currentPTAName}</dd>
+
 											<dt class="slds-item_label slds-text-color_weak" style="display: {!IF(availableUsageTypesSize == 2, 'block', 'none')};" title="Second Label">Usage Type:</dt>
 											<dd class="slds-item_detail" style="display: {!IF(availableUsageTypesSize == 2, 'block', 'none')};" title="Description for second label">{!program.Fleet_Available_Usage_Types__c}</dd>
 
@@ -603,6 +609,16 @@
 											<br/>
 										</div>
 										<!-- END CHANGES 7/17/2019 CDJ-->
+										<div class="slds-form-element__control">
+											<span class="slds-checkbox">
+												<label class="slds-checkbox__label">
+													<apex:inputCheckbox id="applyDefaultPTA" styleclass="slds-input" value="{!fleetEnrollmentInformation.applyDefaultPTA}"/>
+													<span class="slds-checkbox_faux"></span>
+													<span class="slds-form-element__label">Apply Default Template Account</span>
+												</label>
+											</span>
+										</div>
+										<br />
 										<div class="slds-form-element__control">
 											<span class="slds-checkbox">
 												<label class="slds-checkbox__label">

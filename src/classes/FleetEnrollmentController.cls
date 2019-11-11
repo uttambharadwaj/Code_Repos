@@ -717,13 +717,13 @@ public virtual class FleetEnrollmentController {
 
             fleetEnrollment.Status__c = 'New';
 
-            if (programTemplateAccount != null) {
+            if (programTemplateAccount != null && fleetEnrollment.Program_Template_Account__c == null) {
                 fleetEnrollment.Program_Template_Account__c = programTemplateAccount.Id;
                 fleetEnrollment.Billing_Cycle__c = programTemplateAccount.Billing_Cycle__c;
             }
 
             // Set some fields for the FleetEnrollment record
-            if(program != null) {
+            if(program != null && fleetEnrollment.Program__c == null) {
                 fleetEnrollment.Program__c = program.Id;
             }
 
@@ -736,7 +736,7 @@ public virtual class FleetEnrollmentController {
                 fleetEnrollment.Email_Version__c = emailVersionTracking;
             }
 
-            String key = EncodingUtil.convertToHex(crypto.generateAesKey(128));
+            String key = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
             fleetEnrollment.Print_Token__c = key.substring(0, 25);
 
             if(!String.isEmpty(opportunityParameter)) {
@@ -909,7 +909,7 @@ public virtual class FleetEnrollmentController {
         Id templateId = (brandingUtility != null && brandingUtility.FleetEnrollment_Email_Template_Id__c != null) ? brandingUtility.FleetEnrollment_Email_Template_Id__c : program.Fleet_Data_Capture_Email_Template__c;
         confirmation.setTemplateId(templateId);
         confirmation.setWhatId(fleetEnrollment.Id);
-        confirmation.setTargetObjectId(temporaryContact.id);
+        confirmation.setTargetObjectId(temporaryContact.Id);
         confirmation.setSaveAsActivity(false);
 
         String replyTo = 'noreply@wexinc.com';
@@ -917,10 +917,10 @@ public virtual class FleetEnrollmentController {
             replyTo = 'noreply+fr@wexinc.com';
         }
         confirmation.setReplyTo(replyTo);
-        for(OrgWideEmailAddress owa : [select id, Address, DisplayName from OrgWideEmailAddress])
+        for(OrgWideEmailAddress owa : [SELECT Id, Address, DisplayName FROM OrgWideEmailAddress])
         {
             if(owa.Address.contains(replyTo)) {
-                confirmation.setOrgWideEmailAddressId(owa.id);
+                confirmation.setOrgWideEmailAddressId(owa.Id);
             }
         }
 
