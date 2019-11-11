@@ -118,16 +118,19 @@ function validateDateOfBirth(value) {
         var m = null;
         
         if($Session.Language_Code === "fr_ca") {
+            var feCACharacterReg = /(^\d{4}\/\d{2}\/\d{2}$)/;
             m = moment(value, 'YYYY-MM-DD');
-            return m.isValid() && m.isAfter("1900-01-01");
+            return m.isValid() && m.isAfter("1900-01-01") && feCACharacterReg.test(value);
         }
         if($Session.Language_Code === "en_ca") {
+            var enCACharacterReg = /(^\d{2}\/\d{2}\/\d{4}$)/;
             m = moment(value, 'DD/MM/YYYY');
-            return m.isValid() && m.isAfter("1900-01-01");
+            return m.isValid() && m.isAfter("1900-01-01") && enCACharacterReg.test(value);
         }
         else {
+            var usCharacterReg = /(^\d{2}\/\d{2}\/\d{4}$)/;
             m = moment(value, 'MM/DD/YYYY');
-            return m.isValid() && m.isAfter("1900-01-01");
+            return m.isValid() && m.isAfter("1900-01-01") && usCharacterReg.test(value);
         }
     }
     return false;   
