@@ -61,7 +61,7 @@
                     if ($j("[id$=billingState] option")) {
                         $j(".postal").each(function () {
                             $j(this).addClass('postalCanada').removeClass('postal');
-                        });
+                        }); 
                     }
                 }
 
@@ -979,6 +979,23 @@
                                     <apex:inputText maxlength="20" value="{!fleetEnrollment.Billing_Postal_Code__c}" id="billingPostalCode" styleClass="postal styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Postal_Code__c.label}"/>
                                 </div>
                             </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="loyaltynformation" rendered="{!currentStep == 1}">
+                        <div class="twelve columns clearfix sectionHeader">
+                            Loyalty Program Information
+                        </div>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <div class="twelve columns clearfix">
+                            here
+                            <apex:inputText id="loyaltyId" maxlength="100" value="{!fleetEnrollment.Loyalty_ID__c}" styleClass="styledInput" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_2__c.label} {!$Label.Optional}"/>
+
+
+                            <apex:inputText maxlength="40" value="{!fleetEnrollment.Loyalty_ID__c}"
+                                            id="loyaltyId2" styleClass="styledInput"
+                                            html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Loyalty_ID__c.label}" />
+                        </div>
                         </apex:outputPanel>
                         <apex:outputPanel id="shippingContact" rendered="{!currentStep == 1}">
                             <div class="twelve columns clearfix">
