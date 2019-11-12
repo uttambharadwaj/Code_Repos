@@ -546,24 +546,22 @@ public without sharing class CustomerDetailsController {
     public static Id getContactId(String accountId, String contactRowId) {
         System.debug('Entering getContactId for accountId '+accountId+' and contactRowId '+contactRowId);
         try {
-            String contactRowIdToUse = contactRowId;
-            if (contactRowId.contains('#')) {
-                contactRowIdToUse = contactRowId.split('#').get(0);
-            }
-            //todo: fix in downstream env
-            //List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
-            //List<IntegrationRecord__c> serviceOperationsContacts = [SELECT Contact__r.ID FROM IntegrationRecord__c WHERE Contact_Row_ID__c =: contactRowIdToUse];
+            String contactRowIdToUse = getContactRowId(contactRowId);
+            List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_ID__c =: contactRowId];
 
-            List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
+            if (serviceOperationsContacts.size() == 0) {
+                //Contact_Row_ID__c is a unique, External ID field in Integration Record
+                List<IntegrationRecord__c> serviceOperationsIntegrationRecords = [SELECT Contact__r.Id FROM IntegrationRecord__c WHERE Contact_Row_Id__c =: contactRowIdToUse];
+                if (serviceOperationsIntegrationRecords.size() > 0)
+                    serviceOperationsContacts.add(serviceOperationsIntegrationRecords[0].Contact__r);
+            }
+
 
             System.debug('### ' + serviceOperationsContacts);
 
             if(serviceOperationsContacts.size() > 0) {
 
                 return serviceOperationsContacts[0].Id;
-                //Future once integration records are implemented
-                //return serviceOperationsContacts[0].Contact__r.ID;
-
             }
             else {
 
@@ -698,6 +696,22 @@ public without sharing class CustomerDetailsController {
                         serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
                         serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
                     }
+                        if (customerDetails.contacts != null && customerDetails.contacts.contacts.size() > 0) {
+                            for (CustomerDetailsWSUtilv2.contact contact : customerDetails.contacts.contacts) {
+                                if (contact.role.equalsIgnoreCase('PRIMARY')) {
+                                    serviceOperationsAccount.Primary_Contact_TXT__c = getContactRowId(contact.rowId);
+                                } else if (contact.role.equalsIgnoreCase('SHIPPING')) {
+                                    serviceOperationsAccount.Shipping_Contact_TXT__c = getContactRowId(contact.rowId);
+                                } else if (contact.role.equalsIgnoreCase('BILLING')) {
+                                    serviceOperationsAccount.Billing_Contact_TXT__c = getContactRowId(contact.rowId);
+                                    //todo: validate with Kelly Cochrane where they put the Tandem Physical contact row ID
+                                } else if (contact.role.equalsIgnoreCase('MAILING') || contact.role.equalsIgnoreCase('PHYSICAL')) {
+                                    serviceOperationsAccount.Mailing_Contact_TXT__c = getContactRowId(contact.rowId);
+                                } else if (contact.role.equalsIgnoreCase('ADMIN')) {
+                                    serviceOperationsAccount.Admin_Contact_TXT__c = getContactRowId(contact.rowId);
+                                }
+                            }
+                        }
                     } //accountNewToSalesforce
 
                     //Upsert for convenience; if the account is new to Salesforce it will be an Insert, otherwise an Update but
@@ -730,6 +744,14 @@ public without sharing class CustomerDetailsController {
 
         }
 
+    }
+
+    public static String getContactRowId(String inStr) {
+        String contactRowIdToUse = inStr;
+        if (inStr.contains('#')) {
+            contactRowIdToUse = inStr.split('#').get(0);
+        }
+        return contactRowIdToUse;
     }
 
     private static CustomerDetailsWSUtilv2.customerDetails getCustomerDetailsFromJson(String customerDetailsJSON) {

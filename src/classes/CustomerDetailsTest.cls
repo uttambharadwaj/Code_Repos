@@ -77,14 +77,20 @@ public class CustomerDetailsTest {
 
         Id contactId = CustomerDetailsController.upsertContacts(accountId,contactJsonString,'1-1ZZZZZ');
 
-        /* todo reinstate this
+
         IntegrationRecord__c integrationRecord = new IntegrationRecord__c();
         integrationRecord.Contact__c = contactId;
         integrationRecord.Account__c = accountId;
         integrationRecord.Contact_Row_Id__c = '1-1ZZZZZ';
-        insert integrationRecord;
+        upsert integrationRecord;
 
-         */
+
+        //Second record so we can search on different rowId
+        integrationRecord = new IntegrationRecord__c();
+        integrationRecord.Contact__c = contactId;
+        integrationRecord.Account__c = accountId;
+        integrationRecord.Contact_Row_Id__c = '1-1ZZZZY';
+        upsert integrationRecord;
 
         System.debug('Upserted contactId = '+contactId);
 
@@ -287,7 +293,9 @@ public class CustomerDetailsTest {
             String accountNumber = CustomerDetailsController.getAccountNumber(accountIdString);
             System.debug('### accountNumber=' + accountNumber);
 
-            Id contactIdString = CustomerDetailsController.getContactId(accountIdString, '1-1ZZZZZ');
+            //The different rowId is to test the search by integration record
+            Id contactIdString = CustomerDetailsController.getContactId(accountIdString, '1-1ZZZZY#2-ADDRX');
+            System.assertNotEquals(contactIdString, null);
             System.debug('### contactIdString=' + contactIdString);
 
             String servicingRule = CustomerDetailsController.getPriorityLevelServicingRule(customerDetails.programId,'A');

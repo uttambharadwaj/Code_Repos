@@ -290,6 +290,8 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     
                     responseElement.return_x.shippingAddress = ShippingAddress;
 
+                    responseElement.return_x.contacts = generateContacts().return_x;
+
                     if (customerDetailsRequest.pdRowId != null && !(String.isEmpty(customerDetailsRequest.pdRowId))) {
                         CustomerDetailsWSUtilv2.pdAsset asset = new CustomerDetailsWSUtilv2.pdAsset();
                         asset.pdRowId = customerDetailsRequest.pdRowId;
@@ -334,39 +336,8 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 
                 if((customerDetailsRequest.accountID).equalsIgnoreCase('9100000000000')) {
                     
-                    CustomerDetailsWSUtilv2.getContactsResponse responseElement = new CustomerDetailsWSUtilv2.getContactsResponse();
-                    
-                    responseElement.return_x = new CustomerDetailsWSUtilv2.contacts();
-                    
-                    CustomerDetailsWSUtilv2.contact contact = new CustomerDetailsWSUtilv2.contact();
-                    
-                    contact.role = 'Contact';
-                    contact.contactType = 'Contact';
-                    contact.emailAddr = 'test@wexinc.com';
-                    contact.faxNbr = '207-555-5555';
-                    contact.firstNm = 'Test';
-                    contact.middleNm = 'E';
-                    contact.lastNm = 'McTesterson';
-                    contact.phoneNbr = '207-555-5555';
-                    contact.rowId = '1-1ZZZZZ';
-                    
-                    CustomerDetailsWSUtilv2.address MailingAddress = new CustomerDetailsWSUtilv2.address();
-                    MailingAddress.addr1 = '123 Darling Ave';
-                    MailingAddress.addr2 = 'Filler';
-                    MailingAddress.addr3 = 'Filler';
-                    MailingAddress.addr4 = 'Filler';
-                    MailingAddress.city = 'South Portland';
-                    MailingAddress.state = 'ME';
-                    MailingAddress.country = 'US';
-                    MailingAddress.orgName = 'WEX';
-                    MailingAddress.postalCode = '04106';
-                    
-                    contact.address = MailingAddress;
-                    
-                    responseElement.return_x.contacts = new CustomerDetailsWSUtilv2.contact[]{};
-                        
-                        responseElement.return_x.contacts.add(contact);
-                    
+                    CustomerDetailsWSUtilv2.getContactsResponse responseElement = generateContacts();
+
                     response.put('response_x', responseElement);
                     
                 }
@@ -755,5 +726,42 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
             }
             
         }
-    
+
+    private CustomerDetailsWSUtilv2.getContactsResponse generateContacts() {
+        CustomerDetailsWSUtilv2.getContactsResponse responseElement = new CustomerDetailsWSUtilv2.getContactsResponse();
+
+        responseElement.return_x = new CustomerDetailsWSUtilv2.contacts();
+
+        CustomerDetailsWSUtilv2.contact contact = new CustomerDetailsWSUtilv2.contact();
+
+        contact.role = 'ADMIN';
+        contact.contactType = 'Contact';
+        contact.emailAddr = 'test@wexinc.com';
+        contact.faxNbr = '207-555-5555';
+        contact.firstNm = 'Test';
+        contact.middleNm = 'E';
+        contact.lastNm = 'McTesterson';
+        contact.phoneNbr = '207-555-5555';
+        contact.rowId = '1-1ZZZZZ';
+
+        CustomerDetailsWSUtilv2.address MailingAddress = new CustomerDetailsWSUtilv2.address();
+        MailingAddress.addr1 = '123 Darling Ave';
+        MailingAddress.addr2 = 'Filler';
+        MailingAddress.addr3 = 'Filler';
+        MailingAddress.addr4 = 'Filler';
+        MailingAddress.city = 'South Portland';
+        MailingAddress.state = 'ME';
+        MailingAddress.country = 'US';
+        MailingAddress.orgName = 'WEX';
+        MailingAddress.postalCode = '04106';
+
+        contact.address = MailingAddress;
+
+        responseElement.return_x.contacts = new CustomerDetailsWSUtilv2.contact[]{
+        };
+
+        responseElement.return_x.contacts.add(contact);
+        return responseElement;
+    }
+
 }
