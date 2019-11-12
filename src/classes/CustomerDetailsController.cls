@@ -696,18 +696,18 @@ public without sharing class CustomerDetailsController {
                         serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
                         serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
                     }
+                        //Only populate primary and billing contacts for Tandem
                         if (customerDetails.contacts != null && customerDetails.contacts.contacts.size() > 0) {
                             for (CustomerDetailsWSUtilv2.contact contact : customerDetails.contacts.contacts) {
                                 if (contact.role.equalsIgnoreCase('PRIMARY')) {
                                     serviceOperationsAccount.Primary_Contact_TXT__c = getContactRowId(contact.rowId);
-                                } else if (contact.role.equalsIgnoreCase('SHIPPING')) {
+                                } else if (contact.role.equalsIgnoreCase('SHIPPING') && (!customerDetails.sourceSys.equalsIgnoreCase('TANDEM'))) {
                                     serviceOperationsAccount.Shipping_Contact_TXT__c = getContactRowId(contact.rowId);
                                 } else if (contact.role.equalsIgnoreCase('BILLING')) {
                                     serviceOperationsAccount.Billing_Contact_TXT__c = getContactRowId(contact.rowId);
-                                    //todo: validate with Kelly Cochrane where they put the Tandem Physical contact row ID
-                                } else if (contact.role.equalsIgnoreCase('MAILING') || contact.role.equalsIgnoreCase('PHYSICAL')) {
+                                } else if (contact.role.equalsIgnoreCase('MAILING')  && (!customerDetails.sourceSys.equalsIgnoreCase('TANDEM'))) {
                                     serviceOperationsAccount.Mailing_Contact_TXT__c = getContactRowId(contact.rowId);
-                                } else if (contact.role.equalsIgnoreCase('ADMIN')) {
+                                } else if (contact.role.equalsIgnoreCase('ADMIN')  && (!customerDetails.sourceSys.equalsIgnoreCase('TANDEM'))) {
                                     serviceOperationsAccount.Admin_Contact_TXT__c = getContactRowId(contact.rowId);
                                 }
                             }
