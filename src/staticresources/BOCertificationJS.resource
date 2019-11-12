@@ -107,7 +107,7 @@ function validateSSN(value) {
     		return false;
 		}
     }
-    return true;    
+    return true;
 }
 
 function validateDateOfBirth(value) {
@@ -123,8 +123,8 @@ function validateDateOfBirth(value) {
             return m.isValid() && m.isAfter("1900-01-01") && feCACharacterReg.test(value);
         }
         if($Session.Language_Code === "en_ca") {
-            var enCACharacterReg = /(^\d{2}\/\d{2}\/\d{4}$)/;
-            m = moment(value, 'DD/MM/YYYY');
+            var enCACharacterReg = /(^\d{4}\/\d{2}\/\d{2}$)/;
+            m = moment(value, 'YYYY-MM-DD');
             return m.isValid() && m.isAfter("1900-01-01") && enCACharacterReg.test(value);
         }
         else {
@@ -133,7 +133,7 @@ function validateDateOfBirth(value) {
             return m.isValid() && m.isAfter("1900-01-01") && usCharacterReg.test(value);
         }
     }
-    return false;   
+    return false;
 }
 
 function validatePOBox(value) {
