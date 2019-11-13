@@ -427,7 +427,7 @@ public class CPBOCAToProspectController {
 
                 creditApp.Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
 
-                String myURL = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&customer=' + creditApp.Id + '&key=' + creditApp.Application_Key__c;
+                String myURL = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&customer=' + creditApp.Id + '&key=' + creditApp.Application_Key__c + '&utm_medium=sales&utm_source=b2p%20link';
                 if(hideTNC) myURL += '&tnc=000';
                 creditApp.External_Application_URL__c = myURL;
                 upsert creditApp;
