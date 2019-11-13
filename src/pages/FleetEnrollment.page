@@ -201,6 +201,35 @@
                 return true;
             }
 
+            function validateLoyaltyId(value) {
+
+                if (value !== "") {
+
+                    var validationRegex = /(^\d{15}$)/;
+                    try { // Check if program has valid regex. If not, use default.
+                        validationRegex = String2Regex('{!program.Loyalty_ID_Validation__c}');
+                    } catch {
+                        console.log('Invalid Regex');
+                    }
+
+                    if (!validationRegex.test(value)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            const String2Regex = str => {
+                // Main regex
+                const main = str.match(/\/(.+)\/.*/)[1]
+
+                // Regex options
+                const options = str.match(/\/.+\/(.*)/)[1]
+
+                // Return compiled regex
+                return new RegExp(main, options)
+            }
+
             function displayErrors(errorMessages) {
 
                 var needAssistance = "";
@@ -277,6 +306,11 @@
 
                         if (!validatePostalCode($j('[id$=billingPostalCode]').val())) {
                             $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Postal_Code}</div>');
+                            errorCount++;
+                        }
+
+                        if (!validateLoyaltyId($j('[id$=loyaltyId]').val())) {
+                            $j('[id$=loyaltyId]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Loyalty_Id}</div>');
                             errorCount++;
                         }
 
@@ -980,21 +1014,17 @@
                                 </div>
                             </div>
                         </apex:outputPanel>
-                        <apex:outputPanel id="loyaltynformation" rendered="{!currentStep == 1}">
+                        <apex:outputPanel id="loyaltyInformation" rendered="{!currentStep == 1 && program.Enable_Loyalty_Information__c}">
                         <div class="twelve columns clearfix sectionHeader">
-                            Loyalty Program Information
+                            {!$Label.Fleet_Loyalty_Information}
                         </div>
                         <div class="twelve columns clearfix">
                             &nbsp;
                         </div>
                         <div class="twelve columns clearfix">
-                            here
-                            <apex:inputText id="loyaltyId" maxlength="100" value="{!fleetEnrollment.Loyalty_ID__c}" styleClass="styledInput" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Address_Line_2__c.label} {!$Label.Optional}"/>
-
-
                             <apex:inputText maxlength="40" value="{!fleetEnrollment.Loyalty_ID__c}"
-                                            id="loyaltyId2" styleClass="styledInput"
-                                            html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Loyalty_ID__c.label}" />
+                                            id="loyaltyId" styleClass="styledInput"
+                                            html-placeholder="{!brandingUtility.Loyalty_ID_Display_Name__c}" />
                         </div>
                         </apex:outputPanel>
                         <apex:outputPanel id="shippingContact" rendered="{!currentStep == 1}">
