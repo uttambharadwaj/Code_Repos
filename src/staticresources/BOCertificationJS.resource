@@ -118,12 +118,12 @@ function validateDateOfBirth(value) {
         var m = null;
         
         if($Session.Language_Code === "fr_ca") {
-            var feCACharacterReg = /(^\d{4}\/\d{2}\/\d{2}$)/;
-            m = moment(value, 'YYYY-MM-DD');
+            var feCACharacterReg = /(^\d{4}\-\d{2}\-\d{2}$)/;
+            m = moment(value, 'AAAA-MM-JJ');
             return m.isValid() && m.isAfter("1900-01-01") && feCACharacterReg.test(value);
         }
         if($Session.Language_Code === "en_ca") {
-            var enCACharacterReg = /(^\d{4}\/\d{2}\/\d{2}$)/;
+            var enCACharacterReg = /(^\d{4}\-\d{2}\-\d{2}$)/;
             m = moment(value, 'YYYY-MM-DD');
             return m.isValid() && m.isAfter("1900-01-01") && enCACharacterReg.test(value);
         }
@@ -245,7 +245,7 @@ function validateForm() {
          }
    	});
     
-    $j('[id$=boForm]').find('.date').each(function() {
+    $j('[id$=boForm]').find('.date, .dateCanada').each(function() {
     	if($j(this).val() !== "" && !validateDateOfBirth($j(this).val())) {
            	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Date + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
@@ -271,7 +271,7 @@ function validateForm() {
   	}
     else {
 
-        if(hasErrors == false && !($j('[id$=acknowledgement]').prop('checked')) && $j('[id$=acknowledgement]') == null && $j('[id$=userSessionId]') == null) {
+        if(!($j('[id$=acknowledgement]').prop('checked')) && $j('[id$=userSessionId]').val() === "") {
             console.log('missing acknowledgement');
             $j('[id$=errors]').html($Label.BOCA_Acknowledge_Disclaimer + '.');
             
