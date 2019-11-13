@@ -578,6 +578,7 @@
                                     <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" alt="Loading..."/>
                                 </div>
                                 <apex:inputHidden value="{!noOwnerProngs}" id="noOwnerprongs" />
+                                <input type="hidden" value="{!userSessionId}" id="userSessionId" />
                                 <div id="ex1" class="modal" style="width: 800px !important;">
                                     <h2>
                                         {!$Label.BOCDD_Modal_Header}
