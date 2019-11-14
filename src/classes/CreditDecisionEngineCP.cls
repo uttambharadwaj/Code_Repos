@@ -462,7 +462,6 @@ global class CreditDecisionEngineCP {
             existingExposureRequest.state = cpApplication.Physical_State_Province__c;
             existingExposureRequest.postalCode = cpApplication.Physical_Postal_Code__c;
             existingExposureRequest.fraudFlag = cpApplication.Fraud_Flag__c;
-            existingExposureRequest.ipAddress = cpApplication.Application_Signer_IP_Address__c;
             existingExposureRequest.phone = cpApplication.Business_Phone__c;
             existingExposureRequest.duns = cpApplication.DNB_Resolved_DUNS__c;
             existingExposureRequest.taxID = cpApplication.Taxpayer_ID__c;
