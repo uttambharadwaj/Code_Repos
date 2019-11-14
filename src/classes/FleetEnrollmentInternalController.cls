@@ -386,7 +386,12 @@ public with sharing class FleetEnrollmentInternalController {
 
                             defaultPTA = WexBrandingController.getProgramTemplateAccount(WexBrandingController.getDefaultAccountTemplateByProgram(program.Id));
 
-                            currentPTAName = fleetEnrollments[0].Program_Template_Account_Name__c;
+                            if (fleetEnrollments[0].Program_Template_Account__c != null) {
+                                fleetEnrollment.Program_Template_Account__c = fleetEnrollments[0].Program_Template_Account__c;
+                                currentPTAName = fleetEnrollments[0].Program_Template_Account_Name__c;
+                            }
+                            if (fleetEnrollments[0].Billing_Cycle__c != null) fleetEnrollment.Billing_Cycle__c = fleetEnrollments[0].Billing_Cycle__c;
+                            if (fleetEnrollments[0].Association__c != null) fleetEnrollment.Association__c = fleetEnrollments[0].Association__c;
 
                             if(program.Allow_Partner_Billed_Overnight_Cards__c) {
                                 fleetEnrollmentInformation.expeditedCardShipping = true;
@@ -626,9 +631,13 @@ public with sharing class FleetEnrollmentInternalController {
 
             List<Program_Template_Account__c> programTemplateAccounts = null;
 
-            if (!fleetEnrollmentInformation.applyDefaultPTA) {
+            System.debug('before PTA lookup');
+            System.debug('***Apply Default PTA?: ' + fleetEnrollmentInformation.applyDefaultPTA);
+            if (fleetEnrollmentInformation.applyDefaultPTA != true) {
+                System.debug('inside apply default pta statement');
                 // did the sales rep select an association and a new billing cycle?
                 if (fleetEnrollmentInformation.association == true && fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                    System.debug('inside look up PTA by association and billing cycle');
                     programTemplateAccounts = [
                             SELECT Id
                             FROM Program_Template_Account__c
@@ -639,6 +648,7 @@ public with sharing class FleetEnrollmentInternalController {
                     ];
                     // did the sales rep only select an association?
                 } else if (fleetEnrollmentInformation.association == true) {
+                    System.debug('inside look up PTA by association');
                     programTemplateAccounts = [
                             SELECT Id
                             FROM Program_Template_Account__c
@@ -649,6 +659,7 @@ public with sharing class FleetEnrollmentInternalController {
                     ];
                     // did the sales rep only select a new billing cycle?
                 } else if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                    System.debug('inside look up PTA by billing cycle');
                     programTemplateAccounts = [
                             SELECT Id
                             FROM Program_Template_Account__c
@@ -660,11 +671,15 @@ public with sharing class FleetEnrollmentInternalController {
                 }
             }
 
+            System.debug('current value of PTA list: ' + programTemplateAccounts);
+            System.debug('current PTA on FE record: ' + fleetEnrollment.Program_Template_Account__c);
             // if we're changing the program template account to something different than default
             if (programTemplateAccounts != null && programTemplateAccounts.size() > 0) {
+                System.debug('inside apply found PTA');
                 fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
             // if program template account is blank, and we didn't change it, set to the program default
-            } else if (fleetEnrollmentInformation.applyDefaultPTA || fleetEnrollment.Program_Template_Account__c == null) {
+            } else if (fleetEnrollmentInformation.applyDefaultPTA == true || fleetEnrollment.Program_Template_Account__c == null) {
+                System.debug('inside apply default PTA');
                 fleetEnrollment.Program_Template_Account__c = defaultPTA.Id;
             }
 
