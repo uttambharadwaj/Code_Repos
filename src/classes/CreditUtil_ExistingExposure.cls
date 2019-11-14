@@ -68,7 +68,6 @@ public without sharing class CreditUtil_ExistingExposure {
                     JaroWinklerDistance.getScore(request.city, existingApplication.City__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.state, existingApplication.State__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.postalCode, existingApplication.Zip_Code__c) >= 0.75)
-                    || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.IP_Address__c) == 1.00)
                     || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
                     || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Federal_Tax_ID__c) == 1.00)
                     || (JaroWinklerDistance.getScore(request.phone, existingApplication.Phone_Number__c) == 1.00)) {
@@ -90,7 +89,6 @@ public without sharing class CreditUtil_ExistingExposure {
                 duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
                 duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
                 duplicateApplication.phone = existingApplication.Phone_Number__c;
-                duplicateApplication.ipAddress = existingApplication.IP_Address__c;
                 if (null != existingApplication.Submitted_to_Credit__c) {
                     duplicateApplication.applicationCreatedDate = Date.newInstance(existingApplication.Submitted_to_Credit__c.year(), existingApplication.Submitted_to_Credit__c.month(), existingApplication.Submitted_to_Credit__c.day());
                 }
@@ -117,7 +115,6 @@ public without sharing class CreditUtil_ExistingExposure {
                     JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Zip_Postal_Code__c) >= 0.75
-                    || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.App_Signer_IP_Address__c) == 1.00)
                     || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
                     || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Tax_Payer_ID_number__c) == 1.00)
                     || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone_Number__c) == 1.00)
@@ -159,7 +156,6 @@ public without sharing class CreditUtil_ExistingExposure {
                     JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State_Province__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Postal_Code__c) >= 0.75)
-                    || (JaroWinklerDistance.getScore(request.ipAddress, existingApplication.Application_Signer_IP_Address__c) == 1.00)
                     || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
                     || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone__c) == 1.00)
                     || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Guarantor_Social_Security_Number__c)) == 1.00)) {
@@ -181,7 +177,6 @@ public without sharing class CreditUtil_ExistingExposure {
                 duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
                 duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
                 duplicateApplication.phone = existingApplication.Business_Phone__c;
-                duplicateApplication.ipAddress = existingApplication.Application_Signer_IP_Address__c;
                 duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
                 duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Credit_Line_Approved__c);
                 duplicateApplication.applicationDecisionedDate = existingApplication.Application_Decisioned_Date__c;
@@ -308,7 +303,7 @@ public without sharing class CreditUtil_ExistingExposure {
 
         // Second, take the IDs of the matching contacts and find the Application Request objects with those Account IDs
         List<SObject> appRequestWithPGSSNMatch = [SELECT Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
-                App_Signer_IP_Address__c, Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
+                Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
                 Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c FROM Application_Request__c WHERE Personal_Guarantor__c IN :existingContactMap.keySet() AND Id != :request.applicationId];
 
         // collect the app request Ids to exclude in the query later
@@ -349,7 +344,7 @@ public without sharing class CreditUtil_ExistingExposure {
 
         // Second, take the IDs of the matching accounts and find the Application Request objects with those Account IDs
         List<SObject> appRequestWithPhoneOrTaxMatch = [SELECT Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
-                App_Signer_IP_Address__c, Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
+                Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
                 Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c FROM Application_Request__c WHERE Account_Name__c IN :existingAccountMap.keySet() AND Id != :request.applicationId];
 
         // collect the app request Ids to exclude in the query later
@@ -377,21 +372,21 @@ public without sharing class CreditUtil_ExistingExposure {
         String onlineAppRequestQuery = 'FIND { searchString }IN ALL FIELDS RETURNING ' +
                 'OnlineApplication__c( ' +
                 'Id, Name, CreatedDate, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c, ' +
-                'IP_Address__c, AO_Social_Security_Number__c, Phone_Number__c, DNB_Resolved_DUNS__c, ' +
+                'AO_Social_Security_Number__c, Phone_Number__c, DNB_Resolved_DUNS__c, ' +
                 'Status__c, Credit_Decision__c, Federal_Tax_ID__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Credit_Line_Approved__c, Date_Decisioned__c, Submitted_to_Credit__c ' +
                 'WHERE Id NOT IN :appIds ' +
                 'AND Status__c IN :OTR_APP_STATUSES ' +
                 'ORDER BY Id), ' +
                 'Application_Request__c( ' +
                 'Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c, ' +
-                'App_Signer_IP_Address__c, Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, ' +
+                'Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, ' +
                 'Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c ' +
                 'WHERE Id NOT IN :appIds ' +
                 'AND Status__c IN :NAFLEET_APP_STATUSES ' +
                 'ORDER BY Id), ' +
                 'CP_Application_Request__c( ' +
                 'Id, Name, CreatedDate, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c, ' +
-                'Application_Signer_IP_Address__c, Guarantor_Social_Security_Number__c, Business_Phone__c, DNB_Resolved_DUNS__c, ' +
+                'Guarantor_Social_Security_Number__c, Business_Phone__c, DNB_Resolved_DUNS__c, ' +
                 'Status__c, Credit_Decision__c, Taxpayer_ID__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Credit_Line_Approved__c, Application_Decisioned_Date__c ' +
                 'WHERE Id NOT IN :appIds ' +
                 'AND Status__c IN :CP_APP_STATUSES ' +

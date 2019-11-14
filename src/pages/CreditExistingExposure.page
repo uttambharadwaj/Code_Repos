@@ -21,7 +21,6 @@
             <apex:column headerValue="Tax ID">{!originalRequest.taxId}</apex:column>
             <apex:column headerValue="PG SSN">{!originalRequest.pgSSN}</apex:column>
             <apex:column headerValue="DUNS Number">{!originalRequest.duns}</apex:column>
-            <apex:column headerValue="IP Address">{!originalRequest.ipAddress}</apex:column>
         </apex:pageBlockTable>
     </apex:pageBlock>
     <apex:pageBlock id="onlineAppBlock" title="Possible Duplicate Applications"><br/>
@@ -46,7 +45,6 @@
             <apex:column headerValue="Tax ID">{!duplicate.taxId}</apex:column>
             <apex:column headerValue="PG SSN">{!duplicate.pgSSN}</apex:column>
             <apex:column headerValue="DUNS Number">{!duplicate.duns}</apex:column>
-            <apex:column headerValue="IP Address">{!duplicate.ipAddress}</apex:column>
         </apex:pageBlockTable><br/>
         <apex:outputPanel id="errorDisplay">
             <apex:outputPanel rendered="{!duplicateApplications.size = 0}">
