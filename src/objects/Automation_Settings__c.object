@@ -69,16 +69,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Disable_BOCA_Emails__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>EAPT-746: Disables BOCAAppConfirm, BocaAppConfirm Chevron, BocaAppConfirm French</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Disables BOCAAppConfirm, BocaAppConfirm Chevron, BocaAppConfirm French</inlineHelpText>
-        <label>Disable BOCA Emails</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Disable_BOProng_Trigger__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -244,16 +234,6 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Disable FleetEnrollmentVehicle Trigger</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Disable_FleetEnrollment_Emails__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Disables FleetDataCaptureFormConfirm, FleetDataCaputreFormConfirm_fr_CA, FleetDataCaputreFormNotrify</description>
-        <externalId>false</externalId>
-        <inlineHelpText>Disables FleetDataCaptureFormConfirm, FleetDataCaputreFormConfirm_fr_CA, FleetDataCaputreFormNotrify</inlineHelpText>
-        <label>Disable FleetEnrollment Emails</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>

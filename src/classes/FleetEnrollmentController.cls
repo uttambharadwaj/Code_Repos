@@ -894,9 +894,6 @@ public virtual class FleetEnrollmentController {
 
     public void sendEmail(){
 
-        Automation_Settings__c automationSettings = Automation_Settings__c.getInstance();
-        if (automationSettings.Disable_FleetEnrollment_Emails__c != null && automationSettings.Disable_FleetEnrollment_Emails__c == true) return;
-
         Contact temporaryContact = new Contact();
 
         temporaryContact.FirstName = fleetEnrollment.Billing_Contact_First_Name__c;

@@ -964,8 +964,14 @@ public without sharing class OnlineApplication {
         m.setTargetObjectId(contactId);
         m.setWhatId(oa.Id);
         m.setReplyTo('noreply@fleetone.com');
-        m.setSenderDisplayName(u.Name);        
-        Messaging.sendEmail(new Messaging.SingleEmailMessage[] {m});       
+        m.setSenderDisplayName(u.Name);
+        try {
+            Messaging.sendEmail(new Messaging.SingleEmailMessage[]{
+                    m
+            });
+        } catch (Exception e) {
+            System.debug(e);
+        }
     }
 
     //---------------
