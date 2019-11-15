@@ -77,7 +77,7 @@ public with sharing class EMAP_RPSCommonAccount_Controller
 
             commonEMAPAccList_query = 'Select Id, Name, AU_Account_Number__c, ShippingCountry, Status__c, Account_Sub_Status__c, Client_Name__c ' +
                                             ' From Account ' +
-                                            ' Where RecordType.Name = \'EMAP Fuel Accounts\' AND Id != \'' + creditAssessment.Account__r.id + '\' AND ' + queryNameStr + ' ' +
+                                            ' Where RecordType.Name = \'EMAP Fuel Accounts\' AND Id != \'' + creditAssessment.Account__r.id + '\' AND ' + queryNameStr +
                                             ' AND Id IN (SELECT AccountId FROM Opportunity WHERE Product_Type__c = \'Mobil Card\') ';
 
             //execute query to get list of Restricted accounts or Common accounts
