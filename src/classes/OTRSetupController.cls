@@ -639,13 +639,7 @@ public without sharing class OTRSetupController {
                 }
 
                 if (!Test.isRunningTest()) {
-                    try {
-                        Messaging.sendEmail(new Messaging.SingleEmailMessage[]{
-                                confirmation
-                        });
-                    } catch (Exception e) {
-                        System.debug(e);
-                    }
+                    Messaging.sendEmail(new Messaging.SingleEmailMessage[]{confirmation});
                 }
 
             } catch (Exception e) {
