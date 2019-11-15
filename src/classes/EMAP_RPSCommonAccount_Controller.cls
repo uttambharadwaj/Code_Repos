@@ -74,11 +74,12 @@ public with sharing class EMAP_RPSCommonAccount_Controller
             isCommonAcc = true;
             
             restrictedList_query = 'Select Name,Type__c , Country__c From Restricted_Account__c Where ' + queryNameStr + ' AND Type__c =\'Common Account\' ';
-            
-            commonEMAPAccList_query = 'Select Id, Name, AU_Account_Number__c, ShippingCountry, Status__c, Account_Sub_Status__c, Client_Name__c ' + 
-                                            ' From Account ' + 
-                                            ' Where RecordType.Name = \'EMAP Fuel Accounts\' AND Id != \'' + creditAssessment.Account__r.id + '\' AND ' + queryNameStr + ' ';
-                                            
+
+            commonEMAPAccList_query = 'Select Id, Name, AU_Account_Number__c, ShippingCountry, Status__c, Account_Sub_Status__c, Client_Name__c ' +
+                                            ' From Account ' +
+                                            ' Where RecordType.Name = \'EMAP Fuel Accounts\' AND Id != \'' + creditAssessment.Account__r.id + '\' AND ' + queryNameStr + ' ' +
+                                            ' AND Id IN (SELECT AccountId FROM Opportunity WHERE Product_Type__c = \'Mobil Card\') ';
+
             //execute query to get list of Restricted accounts or Common accounts
             restrictedList = Database.query(restrictedList_query);
             
