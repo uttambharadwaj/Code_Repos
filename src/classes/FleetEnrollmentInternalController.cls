@@ -643,6 +643,7 @@ public with sharing class FleetEnrollmentInternalController {
                             FROM Program_Template_Account__c
                             WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
                             AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
                             AND Association__c = :fleetEnrollmentInformation.selectedAssociation
                             AND Program__c = :program.Id
                     ];
@@ -654,6 +655,7 @@ public with sharing class FleetEnrollmentInternalController {
                             FROM Program_Template_Account__c
                             WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
                             AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
                             AND Association__c = :fleetEnrollmentInformation.selectedAssociation
                             AND Program__c = :program.Id
                     ];
@@ -665,6 +667,18 @@ public with sharing class FleetEnrollmentInternalController {
                             FROM Program_Template_Account__c
                             WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
                             AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                            AND Association__c = :fleetEnrollment.Association__c
+                            AND Program__c = :program.Id
+                    ];
+                } else if (fleetEnrollmentInformation.selectedCardType != fleetEnrollment.Card_Type__c || fleetEnrollmentInformation.selectedUsageType != fleetEnrollment.Usage_Type__c) {
+                    System.debug('inside look up PTA by new card type/usage type');
+                    programTemplateAccounts = [
+                            SELECT Id
+                            FROM Program_Template_Account__c
+                            WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
+                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
                             AND Association__c = :fleetEnrollment.Association__c
                             AND Program__c = :program.Id
                     ];
