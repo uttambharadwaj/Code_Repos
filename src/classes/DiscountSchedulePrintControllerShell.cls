@@ -1,7 +1,9 @@
 /*
 * VF page controller for Shell CPQ template section
 *
-* Revision History: 03/Oct/2019 CJackson    PSOBACKLOG-258   Original
+* Revision History:
+* 03/Oct/2019 CJackson    PSOBACKLOG-258   Original
+* 19/Nov/2019 CJackson    PSOBACKLOG-304   Sorted quote lines and adjusted show/hide options
 */
 
 public with sharing class DiscountSchedulePrintControllerShell {
@@ -15,7 +17,7 @@ public with sharing class DiscountSchedulePrintControllerShell {
         Id quoteId = (Id)ApexPages.currentPage().getParameters().get('qid');
         quote = [SELECT Early_Pay_Selection__c FROM SBQQ__Quote__c WHERE Id = :quoteId];
 
-        lines = [SELECT SBQQ__NetPrice__c, Id, SBQQ__Product__c, SBQQ__ListPrice__c, SBQQ__Product__r.Name FROM SBQQ__QuoteLine__c where SBQQ__Quote__c =: quoteId];
+        lines = [SELECT SBQQ__NetPrice__c, Id, SBQQ__Product__c, SBQQ__ListPrice__c, SBQQ__Product__r.Name FROM SBQQ__QuoteLine__c where SBQQ__Quote__c =: quoteId ORDER BY SBQQ__Number__c];
 
         for(SBQQ__QuoteLine__c line : lines) {
             tiers = [SELECT Name, SBQQ__Discount__c, SBQQ__Number__c, SBQQ__LowerBound__c, SBQQ__UpperBound__c, SBQQ__Schedule__c, Cents_Per_Gallon__c, Election__c, Payment_Timing_Options__c, Basis_Points__c, Basis_Points_Rebate__c, Payment_Timing__c, Bonus_Rebate__c FROM SBQQ__DiscountTier__c where CurrencyIsoCode = 'USD' and SBQQ__Schedule__c in (select sbqq__discountschedule__c from sbqq__quoteline__c where id =: line.Id)
