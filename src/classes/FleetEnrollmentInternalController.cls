@@ -352,7 +352,7 @@ public with sharing class FleetEnrollmentInternalController {
                         fleetEnrollment = new FleetEnrollment__c();
 
                         List<FleetEnrollment__c> fleetEnrollments = [
-                                SELECT Id, Embossing_Company_Name__c, Billing_Cycle__c, Program_Template_Account_Name__c, Program_Template_Account__c, Association__c
+                                SELECT Id, Embossing_Company_Name__c, Billing_Cycle__c, Card_Type__c, Usage_Type__c, Program_Template_Account_Name__c, Program_Template_Account__c, Association__c
                                 FROM FleetEnrollment__c
                                 WHERE Opportunity__c =: opportunity.Id OR Debug_Opportunity_Parameter__c =: opportunity.Id
                         ];
@@ -392,6 +392,8 @@ public with sharing class FleetEnrollmentInternalController {
                             }
                             if (fleetEnrollments[0].Billing_Cycle__c != null) fleetEnrollment.Billing_Cycle__c = fleetEnrollments[0].Billing_Cycle__c;
                             if (fleetEnrollments[0].Association__c != null) fleetEnrollment.Association__c = fleetEnrollments[0].Association__c;
+                            if (fleetEnrollments[0].Card_Type__c != null) fleetEnrollment.Card_Type__c = fleetEnrollments[0].Card_Type__c;
+                            if (fleetEnrollments[0].Usage_Type__c != null) fleetEnrollment.Usage_Type__c = fleetEnrollments[0].Usage_Type__c;
 
                             if(program.Allow_Partner_Billed_Overnight_Cards__c) {
                                 fleetEnrollmentInformation.expeditedCardShipping = true;
@@ -613,17 +615,6 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Special_Shipping_Postal_Code__c = fleetEnrollmentInformation.specialShippingPostalCode;
             }
 
-            if (fleetEnrollmentInformation.selectedCardType != null) {
-                fleetEnrollment.Card_Type__c = fleetEnrollmentInformation.selectedCardType;
-            } else {
-                fleetEnrollment.Card_Type__c = availableCardTypes.get(1).getValue();
-            }
-
-            if (fleetEnrollmentInformation.selectedUsageType != null) {
-                fleetEnrollment.Usage_Type__c = fleetEnrollmentInformation.selectedUsageType;
-            } else {
-                fleetEnrollment.Usage_Type__c = availableUsageTypes.get(1).getValue();
-            }
 
             if (fleetEnrollmentInformation.selectedFindersFee != null) {
                 fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
@@ -691,10 +682,22 @@ public with sharing class FleetEnrollmentInternalController {
             if (programTemplateAccounts != null && programTemplateAccounts.size() > 0) {
                 System.debug('inside apply found PTA');
                 fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
-            // if program template account is blank, and we didn't change it, set to the program default
+                // if program template account is blank, and we didn't change it, set to the program default
             } else if (fleetEnrollmentInformation.applyDefaultPTA == true || fleetEnrollment.Program_Template_Account__c == null) {
                 System.debug('inside apply default PTA');
                 fleetEnrollment.Program_Template_Account__c = defaultPTA.Id;
+            }
+
+            if (fleetEnrollmentInformation.selectedCardType != null) {
+                fleetEnrollment.Card_Type__c = fleetEnrollmentInformation.selectedCardType;
+            } else {
+                fleetEnrollment.Card_Type__c = availableCardTypes.get(1).getValue();
+            }
+
+            if (fleetEnrollmentInformation.selectedUsageType != null) {
+                fleetEnrollment.Usage_Type__c = fleetEnrollmentInformation.selectedUsageType;
+            } else {
+                fleetEnrollment.Usage_Type__c = availableUsageTypes.get(1).getValue();
             }
 
             Database.UpsertResult result = Database.upsert(fleetEnrollment);
