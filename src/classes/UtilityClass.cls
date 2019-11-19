@@ -135,7 +135,11 @@ global class UtilityClass {
     //a non-test scenario can call this method too, sending in the allornone variable as false. otherwise it should just use above method
     public static void sendEmail(Messaging.SingleEmailMessage[] myEmailList, Boolean allOrNone){
         if(Test.isRunningTest()) allOrNone = false; //if we are testing then this needs to be false or it all fails
-        Messaging.sendEmail(myEmailList, allOrNone);
+        try {
+            Messaging.sendEmail(myEmailList, allOrNone);
+        } catch (Exception e) {
+            System.debug(e);
+        }
     }
 
     public static List<Messaging.SendEmailResult> relayEmail(Messaging.SingleEmailMessage myEmail){

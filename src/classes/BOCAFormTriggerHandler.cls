@@ -507,7 +507,7 @@ public class BOCAFormTriggerHandler {
 
     @future
     public static void sendConfirmationEmail(Id creditAppId, Id contactId, Id templateId, Id brandingUtilityId) {
-        
+
         System.debug('### ' + creditAppId);
         System.debug('### ' + contactId);
         System.debug('### ' + templateId);
@@ -559,7 +559,13 @@ public class BOCAFormTriggerHandler {
         }
         
         if(!Test.isRunningTest()){
-            Messaging.sendEmail(new Messaging.SingleEmailMessage[] {confirmation});
+            try {
+                Messaging.sendEmail(new Messaging.SingleEmailMessage[]{
+                        confirmation
+                });
+            } catch (Exception e) {
+                System.debug(e);
+            }
         }
         
     }
