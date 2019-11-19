@@ -42,7 +42,7 @@ global class UtilityClass {
 
     // Convert the passed in lead.
     @Future
-    public static void convertPassedInLead(Id leadId, Id accountId, Id contactId, Id opportunityId) {
+    public static void convertPassedInLead(Id leadId, Id accountId, Id contactId, Id opportunityId, Id ownerId) {
 
 
         Database.LeadConvert leadConvert = new database.LeadConvert();
@@ -54,8 +54,12 @@ global class UtilityClass {
         leadconvert.setConvertedStatus('Qualified');
 
         try {
-            User defaultOwner = [SELECT Id FROM User WHERE Alias = 'sinte'];
-            leadconvert.setOwnerId(defaultOwner.Id);
+
+            if (ownerId == null) {
+                ownerId = [SELECT Id FROM User WHERE Alias = 'sinte'].Id;
+            }
+
+            leadconvert.setOwnerId(ownerId);
             Database.LeadConvertResult leadConvertResult = Database.convertLead(leadconvert);
 
             if (leadConvertResult.isSuccess()) {
@@ -68,6 +72,7 @@ global class UtilityClass {
             insert logInternalError(e, '', 'UtilityClass.convertPassedInLead', false, '', 'Lead:' + leadId + ' Account:' + accountId + ' Contact:' + contactId + ' Opportunity:' + opportunityId);
         }
     }
+
     /***************************END BOCA UTILITIES****************************/
 
     /***************************FIELD MAPPING UTILITIES***********************/

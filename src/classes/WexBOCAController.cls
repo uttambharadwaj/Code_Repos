@@ -953,7 +953,7 @@ public class WexBOCAController {
                     ];
 
                     if (weForm.Opportunity__c != null) {
-                        UtilityClass.convertPassedInLead(passedInLead.Id, weForm.Opportunity__r.AccountId, weForm.Opportunity__r.Primary_Contact__c, weForm.Opportunity__c);
+                        UtilityClass.convertPassedInLead(passedInLead.Id, weForm.Opportunity__r.AccountId, weForm.Opportunity__r.Primary_Contact__c, weForm.Opportunity__c, null);
                     }
                 }
 

@@ -495,7 +495,7 @@ public class OTRBOCAController {
             }
             if (!String.isEmpty(leadIdParameter)) {
 
-                List<Lead> lead = [SELECT Id, ConvertedAccountId, ConvertedContactId, ConvertedOpportunityId FROM Lead WHERE Id = :leadIdParameter LIMIT 1];
+                List<Lead> lead = [SELECT Id, OwnerId, ConvertedAccountId, ConvertedContactId, ConvertedOpportunityId FROM Lead WHERE Id = :leadIdParameter LIMIT 1];
                 if (!lead.isEmpty()) {
                     passedInLead = lead[0];
                     onlineApplication.Lead__c = lead[0].Id;
@@ -838,7 +838,7 @@ public class OTRBOCAController {
             }
 
             if (onlineApplication.Opportunity__c == null) {
-                opportunity.OwnerId = defaultOwner.Id;
+                opportunity.OwnerId = passedInLead != null && passedInLead.OwnerId != null && passedInLead.OwnerId.getSObjectType() == User.SObjectType ? passedInLead.ownerId : defaultOwner.Id;
                 opportunity.AccountId = account.Id;
                 opportunity.Name = onlineApplication.Legal_Business_Name__c;
             }
@@ -1100,7 +1100,8 @@ public class OTRBOCAController {
 
             // Convert the passed in lead and relate it back to the account, contact, and opportunity.
             if (passedInLead != null && passedInLead.ConvertedOpportunityId == null) {
-                UtilityClass.convertPassedInLead(passedInLead.Id, account.Id, primaryContact.Id, opportunity.Id);
+                Id ownerId = passedInLead.OwnerId.getSObjectType() == User.SObjectType ? passedInLead.OwnerId : null;
+                UtilityClass.convertPassedInLead(passedInLead.Id, account.Id, primaryContact.Id, opportunity.Id, ownerId);
             }
 
             if (!isBOExempt && beneficialOwnerSettings.Enable_Upfront_Collection__c == true) {
