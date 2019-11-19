@@ -9,9 +9,9 @@ public without sharing class CreditUtil_ExistingExposure {
 
     private static List<Id> appIds = new List<Id>();
     // The list of application Status that we want to include in what we consider as existing exposure
-    private static List<String> NAFLEET_APP_STATUSES = new List<String>{'Application Complete', 'Decisioned', 'Implementation Complete', 'Pending Implementation'};
-    private static List<String> OTR_APP_STATUSES = new List<String>{'Closed/Fraud','Decisioned-Rereview', 'Decisioned', 'Pending Setup','Pending Setup Data','Pending Setup-Generic','Setup Complete','Cards Produced','Cards Shipped','Approved','Prepay','Prepay Requested','Declined','Audit Complete'};
-    private static List<String> CP_APP_STATUSES = new List<String>{'Application Complete','Cards Produced', 'Cards Shipped','Implementation Complete','Pending Implementation','Pending Setup Data','Pending Setup-Generic','Setup Complete','Audit Complete','Saved - Rereview'};
+    private static Set<String> NAFLEET_APP_STATUSES = new Set<String>{'Application Complete', 'Decisioned', 'Implementation Complete', 'Pending Implementation'};
+    private static Set<String> OTR_APP_STATUSES = new Set<String>{'Closed/Fraud','Decisioned-Rereview', 'Decisioned', 'Pending Setup','Pending Setup Data','Pending Setup-Generic','Setup Complete','Cards Produced','Cards Shipped','Approved','Prepay','Prepay Requested','Declined','Audit Complete'};
+    private static Set<String> CP_APP_STATUSES = new Set<String>{'Application Complete','Cards Produced', 'Cards Shipped','Implementation Complete','Pending Implementation','Pending Setup Data','Pending Setup-Generic','Setup Complete','Audit Complete','Saved - Rereview'};
 
     /** Things have gotten a little complicated.
     * First a list of potentially duplicate applications are gathered. The business name and address need to be at least a 75% match to the
@@ -194,11 +194,6 @@ public without sharing class CreditUtil_ExistingExposure {
 
         String onlineAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
 
-
-        if (request.ipAddress != null) {
-            onlineAppRequestSearchVariables += ' OR ' + request.ipAddress;
-        }
-
         if (request.phone != null) {
             onlineAppRequestSearchVariables += ' OR ' + request.phone.replaceAll('\\D','');
         }
@@ -221,8 +216,7 @@ public without sharing class CreditUtil_ExistingExposure {
 
     private static List<List<SObject>> getCPExistingApplications(ExistingExposureRequest request) {
 
-        String cpAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode +
-                ' OR ' + request.ipAddress + ' OR ' + request.phone.replaceAll('\\D','');
+        String cpAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode + ' OR ' + request.phone.replaceAll('\\D','');
 
         if (request.duns != null) {
             cpAppRequestSearchVariables += ' OR ' + request.duns;
@@ -265,8 +259,7 @@ public without sharing class CreditUtil_ExistingExposure {
             uniqueExistingExposureApps = new Set<SObject>(existingExposureApps);
 
             // Lastly, query for the Application Requests that match the remaining existing exposure criteria
-            String appRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode +
-                    ' OR ' + request.ipAddress;
+            String appRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
 
             if (request.duns != null) {
                 appRequestSearchVariables += ' OR ' + request.duns;
@@ -304,7 +297,7 @@ public without sharing class CreditUtil_ExistingExposure {
         // Second, take the IDs of the matching contacts and find the Application Request objects with those Account IDs
         List<SObject> appRequestWithPGSSNMatch = [SELECT Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
                 Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
-                Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c FROM Application_Request__c WHERE Personal_Guarantor__c IN :existingContactMap.keySet() AND Id != :request.applicationId];
+                Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c FROM Application_Request__c WHERE Personal_Guarantor__c IN :existingContactMap.keySet() AND Status__c IN :NAFLEET_APP_STATUSES AND Id != :request.applicationId];
 
         // collect the app request Ids to exclude in the query later
         for (SObject appRequest : appRequestWithPGSSNMatch) {
@@ -345,7 +338,12 @@ public without sharing class CreditUtil_ExistingExposure {
         // Second, take the IDs of the matching accounts and find the Application Request objects with those Account IDs
         List<SObject> appRequestWithPhoneOrTaxMatch = [SELECT Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
                 Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
-                Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c FROM Application_Request__c WHERE Account_Name__c IN :existingAccountMap.keySet() AND Id != :request.applicationId];
+                Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c
+                FROM Application_Request__c
+                WHERE Account_Name__c
+                IN :existingAccountMap.keySet()
+                AND Status__c IN :NAFLEET_APP_STATUSES
+                AND Id != :request.applicationId];
 
         // collect the app request Ids to exclude in the query later
         for (SObject appRequest : appRequestWithPhoneOrTaxMatch) {
@@ -482,7 +480,6 @@ public without sharing class CreditUtil_ExistingExposure {
         public String taxID { get; set; }
         public String phone { get; set; }
         public String pgSSN { get; set; }
-        public String ipAddress { get; set; }
     }
 
     public class ExistingExposureApplications {
@@ -506,7 +503,6 @@ public without sharing class CreditUtil_ExistingExposure {
         public Boolean fraudFlag { get; set; }
         public String duns { get; set; }
         public String phone { get; set; }
-        public String ipAddress { get; set; }
     }
 
     public class ExistingExposureAccounts {
