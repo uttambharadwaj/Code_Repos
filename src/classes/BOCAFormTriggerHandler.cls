@@ -354,7 +354,7 @@ public class BOCAFormTriggerHandler {
             //if revolver set the record type
             if((program.BOCA_Type__c).equalsIgnoreCase('Revolver Card') ||TestUtils.isRunningTest()){
                 if(Schema.SObjectType.Application_Request__c.getRecordTypeInfosByName().get('Revolver Application') != null) {
-                    opportunity.RecordTypeId = Schema.SObjectType.Application_Request__c.getRecordTypeInfosByName().get('Revolver Application').getRecordTypeId();
+                    applicationRequest.RecordTypeId = Schema.SObjectType.Application_Request__c.getRecordTypeInfosByName().get('Revolver Application').getRecordTypeId();
                 }
             }
 
