@@ -147,7 +147,7 @@ public without sharing class CustomerDetailsController {
             }
 
             if(String.isEmpty(customerDetails.accountNm)) {
-                throw new customerDetailsException('Unable to retrieve account information.');
+                throw new customerDetailsException('Unable to retrieve account information: '+accountNumber + ', '+accountRecordId + ', pdRowId' +  (String.isEmpty(pdRowidString) ? ' not' : '')+' provided');
             }
 
             return customerDetails;
@@ -595,7 +595,7 @@ public without sharing class CustomerDetailsController {
                 if(serviceOperationsAccountRecordTypeId != null) {
 
                     // We only want to select an existing account that is of the 'Service Operations' record type
-                    List<Account> existingAccount = [SELECT Id FROM Account WHERE Wex_Account__c =: customerDetails.wexAccountNbr AND RecordTypeId =: serviceOperationsAccountRecordTypeId LIMIT 1];
+                    List<Account> existingAccount = [SELECT Id FROM Account WHERE Acct_Row_Id__c =: customerDetails.acctRowId AND RecordTypeId =: serviceOperationsAccountRecordTypeId LIMIT 1];
 
                     Account serviceOperationsAccount = null;
 
@@ -612,6 +612,21 @@ public without sharing class CustomerDetailsController {
 
                     if(customerDetails.customerSegmentation != null && (customerDetails.customerSegmentation).isNumeric()) {
                         serviceOperationsAccount.Customer_Segmentation__c = Integer.valueOf(customerDetails.customerSegmentation);
+                    }
+
+                    if (customerDetails.accountSts != null) {
+                        if(customerDetails.accountSts.equalsIgnoreCase('A')) {
+                            serviceOperationsAccount.Status__c = 'Active';
+                        }
+                        else if(customerDetails.accountSts.equalsIgnoreCase('T')) {
+                            serviceOperationsAccount.Status__c = 'Terminated';
+                        }
+                        else if (customerDetails.accountSts.equalsIgnoreCase('S')) {
+                            serviceOperationsAccount.Status__c = 'Suspended';
+                        } //If we sent the full-word status, use it
+                        else if (!(String.isEmpty(customerDetails.accountSts))) {
+                            serviceOperationsAccount.Status__c = customerDetails.accountSts;
+                        }
                     }
 
                     // Update all the fields of the account, if it didn't exist in Salesforce
@@ -715,7 +730,7 @@ public without sharing class CustomerDetailsController {
                     } //accountNewToSalesforce
 
                     //Upsert for convenience; if the account is new to Salesforce it will be an Insert, otherwise an Update but
-                    //we only update segmentation.
+                    //we only update segmentation and status.
                     upsert serviceOperationsAccount;
 
                     System.debug('### AcctId ' + serviceOperationsAccount.Id);
