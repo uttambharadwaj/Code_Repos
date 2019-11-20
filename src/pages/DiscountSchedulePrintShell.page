@@ -21,12 +21,12 @@
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[0]==true}">
                                 <table-cell border="1px solid black" margin="0pt" padding="5pt">
-                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.SBQQ__LowerBound__c.Label}</block>
+                                    <block>Tier Minimum</block>
                                 </table-cell>
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[1]==true}">
                                 <table-cell border="1px solid black" margin="0pt" padding="5pt">
-                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.SBQQ__UpperBound__c.Label}</block>
+                                    <block>Tier Maximum</block>
                                 </table-cell>
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[7]==true}">
@@ -103,7 +103,7 @@
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[2]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
                                         <block font-weight="bold">
-                                            <apex:outputText value="{0, number, currency}">
+                                            <apex:outputText value="${0, number, ###,###,##0.0000}">
                                                 <apex:param value="{!tier.centsPerGallon}" /></apex:outputText>
                                         </block>
                                     </table-cell>

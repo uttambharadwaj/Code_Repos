@@ -390,7 +390,7 @@ public class OTRBOCAToProspectController {
 
                 onlineApplication.Application_Key__c = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
 
-                onlineApplication.External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&offer=' + selectedOffer + '&customer=' + onlineApplication.Id + '&key=' + onlineApplication.Application_Key__c;
+                onlineApplication.External_Application_URL__c = 'https://' + Label.External_Instance_URL + '/creditapplication/' + program.Form_Template__c + '?pgm=' + program.Brand_Short_Name__c + '&offer=' + selectedOffer + '&customer=' + onlineApplication.Id + '&key=' + onlineApplication.Application_Key__c + '&utm_medium=sales&utm_source=b2p%20link';
 
                 upsert onlineApplication;
 

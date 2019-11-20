@@ -61,7 +61,7 @@
                     if ($j("[id$=billingState] option")) {
                         $j(".postal").each(function () {
                             $j(this).addClass('postalCanada').removeClass('postal');
-                        });
+                        }); 
                     }
                 }
 
@@ -201,6 +201,35 @@
                 return true;
             }
 
+            function validateLoyaltyId(value) {
+
+                if (value !== "") {
+
+                    var validationRegex = /(^\d{11}$)/;
+                    try { // Check if program has valid regex. If not, use default.
+                        validationRegex = String2Regex('{!program.Loyalty_ID_Validation__c}');
+                    } catch {
+                        console.log('Invalid Regex');
+                    }
+
+                    if (!validationRegex.test(value)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            const String2Regex = str => {
+                // Main regex
+                const main = str.match(/\/(.+)\/.*/)[1]
+
+                // Regex options
+                const options = str.match(/\/.+\/(.*)/)[1]
+
+                // Return compiled regex
+                return new RegExp(main, options)
+            }
+
             function displayErrors(errorMessages) {
 
                 var needAssistance = "";
@@ -277,6 +306,11 @@
 
                         if (!validatePostalCode($j('[id$=billingPostalCode]').val())) {
                             $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Postal_Code}</div>');
+                            errorCount++;
+                        }
+
+                        if (!validateLoyaltyId($j('[id$=loyaltyId]').val())) {
+                            $j('[id$=loyaltyId]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Loyalty_Id}</div>');
                             errorCount++;
                         }
 
@@ -979,6 +1013,19 @@
                                     <apex:inputText maxlength="20" value="{!fleetEnrollment.Billing_Postal_Code__c}" id="billingPostalCode" styleClass="postal styledInput required" html-placeholder="{!$ObjectType.FleetEnrollment__c.fields.Billing_Postal_Code__c.label}"/>
                                 </div>
                             </div>
+                        </apex:outputPanel>
+                        <apex:outputPanel id="loyaltyInformation" rendered="{!currentStep == 1 && program.Enable_Loyalty_Information__c}">
+                        <div class="twelve columns clearfix sectionHeader">
+                            {!$Label.Fleet_Loyalty_Information}
+                        </div>
+                        <div class="twelve columns clearfix">
+                            &nbsp;
+                        </div>
+                        <div class="twelve columns clearfix">
+                            <apex:inputText maxlength="40" value="{!fleetEnrollment.Loyalty_ID__c}"
+                                            id="loyaltyId" styleClass="styledInput"
+                                            html-placeholder="{!brandingUtility.Loyalty_ID_Display_Name__c}" />
+                        </div>
                         </apex:outputPanel>
                         <apex:outputPanel id="shippingContact" rendered="{!currentStep == 1}">
                             <div class="twelve columns clearfix">

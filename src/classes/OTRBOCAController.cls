@@ -65,6 +65,14 @@ public class OTRBOCAController {
         }
     }
 
+    public String leadIdParameter  {
+        get {
+            return ApexPages.CurrentPage().getParameters().get('leadId');
+        }
+    }
+
+    public Lead passedInLead { get; set; }
+
     public Id accountId {
         get {
             if (ApexPages.currentPage().getParameters().get('accntId') != null) {
@@ -485,6 +493,14 @@ public class OTRBOCAController {
                 }
 
             }
+            if (!String.isEmpty(leadIdParameter)) {
+
+                List<Lead> lead = [SELECT Id, OwnerId, ConvertedAccountId, ConvertedContactId, ConvertedOpportunityId FROM Lead WHERE Id = :leadIdParameter LIMIT 1];
+                if (!lead.isEmpty()) {
+                    passedInLead = lead[0];
+                    onlineApplication.Lead__c = lead[0].Id;
+                }
+            }
 
         } catch (Exception e) {
 
@@ -606,6 +622,7 @@ public class OTRBOCAController {
         try {
 
             Account account = new Account();
+            Opportunity opportunity = new Opportunity();
             Contact primaryContact = new Contact();
             Contact pgContact = new Contact();
             Database.upsertResult result;
@@ -694,7 +711,7 @@ public class OTRBOCAController {
 
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
-            if(account.Id == null) {
+            if (account.Id == null) {
                 if (Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account') != null) {
                     account.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
                 }
@@ -703,6 +720,8 @@ public class OTRBOCAController {
                     account.Id = accountId;
                 } else if (onlineApplication.Account__c != null) {
                     account.Id = onlineApplication.Account__c;
+                } else if (passedInLead != null && passedInLead.ConvertedAccountId != null) {
+                    account.Id = passedInLead.ConvertedAccountId;
                 }
 
                 if (onlineApplication.Account__c == null) {
@@ -741,7 +760,11 @@ public class OTRBOCAController {
             // Add Contacts
 
             if(primaryContact.Id == null) {
+
                 // Create Primary Contact
+                if (passedInLead != null && passedInLead.ConvertedContactId != null) {
+                    primaryContact.Id = passedInLead.ConvertedContactId;
+                }
                 primaryContact.AccountId = account.Id;
 
                 primaryContact.FirstName = onlineApplication.Contact_First_Name__c;
@@ -756,7 +779,7 @@ public class OTRBOCAController {
                 primaryContact.MailingPostalCode = onlineApplication.Zip_code__c;
                 primaryContact.MailingCountry = onlineApplication.Country__c;
 
-                insert primaryContact;
+                upsert primaryContact;
 
                 result = Database.upsert(primaryContact, false);
                 if (!result.isSuccess()) {
@@ -801,15 +824,13 @@ public class OTRBOCAController {
             onlineApplication.Personal_Guarantor__c = pgContact.Id;
             System.debug('***OTR*** PG Contact: ' + pgContact.Id);
 
-            // Add Opportunity
-            Opportunity opportunity = new Opportunity();
-
             // if this was a Paper Application submitted through an existing application, then the opty id will be passed into the URL
             if (optyId != null) {
                 opportunity.Id = optyId;
-            }
-            else if (onlineApplication.Opportunity__c != null) {
+            } else if (onlineApplication.Opportunity__c != null) {
                 opportunity.Id = onlineApplication.Opportunity__c;
+            } else if (passedInLead != null && passedInLead.ConvertedOpportunityId != null) {
+                opportunity.Id = passedInLead.ConvertedOpportunityId;
             }
 
             if (Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Fleet Card') != null) {
@@ -817,7 +838,7 @@ public class OTRBOCAController {
             }
 
             if (onlineApplication.Opportunity__c == null) {
-                opportunity.OwnerId = defaultOwner.Id;
+                opportunity.OwnerId = passedInLead != null && passedInLead.OwnerId != null && passedInLead.OwnerId.getSObjectType() == User.SObjectType ? passedInLead.ownerId : defaultOwner.Id;
                 opportunity.AccountId = account.Id;
                 opportunity.Name = onlineApplication.Legal_Business_Name__c;
             }
@@ -1076,6 +1097,12 @@ public class OTRBOCAController {
             System.debug('### Online Application: ' + onlineApplication.Id);
 
             System.debug('### Online Application Dump: ' + onlineApplication);
+
+            // Convert the passed in lead and relate it back to the account, contact, and opportunity.
+            if (passedInLead != null && passedInLead.ConvertedOpportunityId == null) {
+                Id ownerId = passedInLead.OwnerId.getSObjectType() == User.SObjectType ? passedInLead.OwnerId : null;
+                UtilityClass.convertPassedInLead(passedInLead.Id, account.Id, primaryContact.Id, opportunity.Id, ownerId);
+            }
 
             if (!isBOExempt && beneficialOwnerSettings.Enable_Upfront_Collection__c == true) {
 

@@ -473,7 +473,6 @@ global class CreditDecisionEngineOTR {
             existingExposureRequest.taxID = onlineApplication.Federal_Tax_ID__c;
             existingExposureRequest.phone = onlineApplication.Phone_Number__c;
             existingExposureRequest.pgSSN = onlineApplication.AO_Social_Security_Number__c;
-            existingExposureRequest.ipAddress = onlineApplication.IP_Address__c;
 
             List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
             List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);

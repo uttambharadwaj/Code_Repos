@@ -118,7 +118,7 @@ public class BOCAToProspectComponentController {
     
     public String primaryURL {
         get {
-            return 'https://' + Label.External_Instance_URL + '/creditapplication/' + primaryBrandingUtility.Program__r.Form_Template__c + '?pgm=' + primaryBrandingUtility.Program__r.Brand_Short_Name__c + '&priority=true&customer=' + weFormObject.Id + '&salescode=' + weFormObject.Sales_Id__c + '&cc=' + weFormObject.Promotional_Code__c + '&pg=' + pgValue;
+            return 'https://' + Label.External_Instance_URL + '/creditapplication/' + primaryBrandingUtility.Program__r.Form_Template__c + '?pgm=' + primaryBrandingUtility.Program__r.Brand_Short_Name__c + '&priority=true&customer=' + weFormObject.Id + '&salescode=' + weFormObject.Sales_Id__c + '&cc=' + weFormObject.Promotional_Code__c + '&pg=' + pgValue + '&utm_medium=sales&utm_source=b2p%20link';
         }
     }
     

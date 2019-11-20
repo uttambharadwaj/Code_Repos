@@ -393,6 +393,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>BOCA_Form_fr_ca_Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&apos;https://&apos; + $Label.External_Instance_URL + &apos;/creditapplication/&apos; + TEXT(Form_Template__c) + &apos;?pgm=&apos; + Brand_Short_Name__c + &apos;&amp;lang=fr_ca&apos;, &quot;BOCA Form&quot;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>BOCA French Form Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BOCA_Main_Form_Filename__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>
@@ -616,6 +628,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Bypass_Shipping_Approval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>if selected, will bypass shipping approval for non-standard shipping options</description>
+        <externalId>false</externalId>
+        <label>Bypass Shipping Approval</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>CP_BOCA_Financials_Needed__c</fullName>
@@ -1581,6 +1603,26 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Enable_Loyalty_Information__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Toggles the Loyalty Information section on Fleet Enrollment</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Toggles the Loyalty Information section on Fleet Enrollment</inlineHelpText>
+        <label>Enable Loyalty Information</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Enable_Opportunity_Auto_Assignment__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Enable Opportunity Auto Assignment</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Finders_Fee__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -2194,6 +2236,65 @@ Number of Cards sent to LLC = 10</inlineHelpText>
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>Loyalty_ID_Validation__c</fullName>
+        <description>Regex for Loyalty ID Validation. If blank or invalid a default is used.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Regex for Loyalty ID Validation. If blank or invalid a default is used.</inlineHelpText>
+        <label>Loyalty ID Validation</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Opportunity_Role_Assignment__c</fullName>
+        <externalId>false</externalId>
+        <label>Opportunity Role Assignment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>System Admin</fullName>
+                    <default>false</default>
+                    <label>System Admin</label>
+                </value>
+                <value>
+                    <fullName>Chevron IS Inbound</fullName>
+                    <default>false</default>
+                    <label>Chevron IS Inbound</label>
+                </value>
+                <value>
+                    <fullName>Chevron IS Outbound</fullName>
+                    <default>false</default>
+                    <label>Chevron IS Outbound</label>
+                </value>
+                <value>
+                    <fullName>Chevron IS LDR</fullName>
+                    <default>false</default>
+                    <label>Chevron IS LDR</label>
+                </value>
+                <value>
+                    <fullName>Fleet Outbound Channel Sales 3</fullName>
+                    <default>false</default>
+                    <label>Fleet Outbound Channel Sales 3</label>
+                </value>
+                <value>
+                    <fullName>Shell Closer</fullName>
+                    <default>false</default>
+                    <label>Shell Closer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
         <fullName>Parent_Carrier_ID__c</fullName>
         <externalId>false</externalId>
         <label>Parent Carrier ID</label>
@@ -2254,6 +2355,12 @@ Number of Cards sent to LLC = 10</inlineHelpText>
                     <fullName>158985</fullName>
                     <default>false</default>
                     <label>158985</label>
+                </value>
+                <value>
+                    <fullName>159885</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>159885</label>
                 </value>
                 <value>
                     <fullName>160109</fullName>
@@ -3448,6 +3555,17 @@ This is referenced in the WexBOCAConfirmation VF Page</description>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Use_Upmarket__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>When checked, this will require applicants requesting over $150k under this program to provide required documents and site visit.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, this will require applicants requesting over $150k under this program to provide required documents and site visit.</inlineHelpText>
+        <label>Use Upmarket</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>WEX_Associations__c</fullName>
         <externalId>false</externalId>
         <label>WEX Associations</label>
@@ -3478,6 +3596,246 @@ This is referenced in the WexBOCAConfirmation VF Page</description>
                     <fullName>BizUnite</fullName>
                     <default>false</default>
                     <label>BizUnite</label>
+                </value>
+                <value>
+                    <fullName>Agile Fleet</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Agile Fleet</label>
+                </value>
+                <value>
+                    <fullName>Ambulance Association of PA</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Ambulance Association of PA</label>
+                </value>
+                <value>
+                    <fullName>American Subcontractors Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>American Subcontractors Association</label>
+                </value>
+                <value>
+                    <fullName>Association Name</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Association Name</label>
+                </value>
+                <value>
+                    <fullName>Back Pocket Offer</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Back Pocket Offer</label>
+                </value>
+                <value>
+                    <fullName>Builders Association of Dubois County</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Builders Association of Dubois County</label>
+                </value>
+                <value>
+                    <fullName>Central Florida Builders Exchange</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Central Florida Builders Exchange</label>
+                </value>
+                <value>
+                    <fullName>Construction Association of Michigan</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Construction Association of Michigan</label>
+                </value>
+                <value>
+                    <fullName>Construction Exchange of Buffalo &amp; WNY</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Construction Exchange of Buffalo &amp; WNY</label>
+                </value>
+                <value>
+                    <fullName>Cycle 3, 1M, 5 cents</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Cycle 3, 1M, 5 cents</label>
+                </value>
+                <value>
+                    <fullName>Cycle 3, 1M, 7 cents</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Cycle 3, 1M, 7 cents</label>
+                </value>
+                <value>
+                    <fullName>Fed Ex</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Fed Ex</label>
+                </value>
+                <value>
+                    <fullName>Greater Philadelphia Chamber of Commerce</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Greater Philadelphia Chamber of Commerce</label>
+                </value>
+                <value>
+                    <fullName>Grt. Shamokin Area Chamber of Commerce</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Grt. Shamokin Area Chamber of Commerce</label>
+                </value>
+                <value>
+                    <fullName>Homebuilders Assoc of South Carolina</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Homebuilders Assoc of South Carolina</label>
+                </value>
+                <value>
+                    <fullName>Lawrence City Builders Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Lawrence City Builders Association</label>
+                </value>
+                <value>
+                    <fullName>Massachusetts Independent Auto Dealers Assoc</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Massachusetts Independent Auto Dealers Assoc</label>
+                </value>
+                <value>
+                    <fullName>McMahon Leasing</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>McMahon Leasing</label>
+                </value>
+                <value>
+                    <fullName>NH Homebuilders Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>NH Homebuilders Association</label>
+                </value>
+                <value>
+                    <fullName>NY State Auto Dealers Assoc</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>NY State Auto Dealers Assoc</label>
+                </value>
+                <value>
+                    <fullName>NY State Builders Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>NY State Builders Association</label>
+                </value>
+                <value>
+                    <fullName>National Limousine Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>National Limousine Association</label>
+                </value>
+                <value>
+                    <fullName>National PHCC</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>National PHCC</label>
+                </value>
+                <value>
+                    <fullName>National Roofing Contractors Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>National Roofing Contractors Association</label>
+                </value>
+                <value>
+                    <fullName>National Spa &amp; Pool Institute (The Assoc. of Pool &amp; Spa Professionals</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>National Spa &amp; Pool Institute (The Assoc. of Pool &amp; Spa Professionals</label>
+                </value>
+                <value>
+                    <fullName>New England Livery Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>New England Livery Association</label>
+                </value>
+                <value>
+                    <fullName>New England Tire &amp; Service Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>New England Tire &amp; Service Association</label>
+                </value>
+                <value>
+                    <fullName>Northern New York Builders Exchange</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Northern New York Builders Exchange</label>
+                </value>
+                <value>
+                    <fullName>PA Automotive Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>PA Automotive Association</label>
+                </value>
+                <value>
+                    <fullName>Philadelphia Regional Limousine Assoc.</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Philadelphia Regional Limousine Assoc.</label>
+                </value>
+                <value>
+                    <fullName>Pro Op Purchasing Solutions</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Pro Op Purchasing Solutions</label>
+                </value>
+                <value>
+                    <fullName>Speedway Business Fleet 7C</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Speedway Business Fleet 7C</label>
+                </value>
+                <value>
+                    <fullName>Speedway Business Universal 7C</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Speedway Business Universal 7C</label>
+                </value>
+                <value>
+                    <fullName>Sports Car Club of America</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Sports Car Club of America</label>
+                </value>
+                <value>
+                    <fullName>Sportscar Vintage Racing Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Sportscar Vintage Racing Association</label>
+                </value>
+                <value>
+                    <fullName>Syracuse Builders Exchange</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Syracuse Builders Exchange</label>
+                </value>
+                <value>
+                    <fullName>Terre Haute New Car Dealers Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Terre Haute New Car Dealers Association</label>
+                </value>
+                <value>
+                    <fullName>USA Partner Network</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>USA Partner Network</label>
+                </value>
+                <value>
+                    <fullName>Virginia Automobile Dealers Association</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Virginia Automobile Dealers Association</label>
+                </value>
+                <value>
+                    <fullName>Williamsport/Lycoming County Chamber of Comm.</fullName>
+                    <default>false</default>
+                    <isActive>false</isActive>
+                    <label>Williamsport/Lycoming County Chamber of Comm.</label>
                 </value>
             </valueSetDefinition>
         </valueSet>
@@ -3524,7 +3882,7 @@ This is referenced in the WexBOCAConfirmation VF Page</description>
         </valueSet>
     </fields>
     <fields>
-        <fullName>X18_Character_id__c</fullName>
+        <fullName>X18_Character_Id__c</fullName>
         <externalId>false</externalId>
         <formula>CASESAFEID(Id)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -4401,6 +4759,13 @@ This is referenced in the WexBOCAConfirmation VF Page</description>
             </values>
             <values>
                 <fullName>194136</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Role_Assignment__c</picklist>
+            <values>
+                <fullName>System Admin</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5808,6 +6173,33 @@ This is referenced in the WexBOCAConfirmation VF Page</description>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Opportunity_Role_Assignment__c</picklist>
+            <values>
+                <fullName>Chevron IS Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron IS LDR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron IS Outbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Outbound Channel Sales 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shell Closer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Admin</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Parent_Carrier_ID__c</picklist>
             <values>
                 <fullName>122465</fullName>
@@ -7195,6 +7587,33 @@ This is referenced in the WexBOCAConfirmation VF Page</description>
             </values>
             <values>
                 <fullName>194136</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Role_Assignment__c</picklist>
+            <values>
+                <fullName>Chevron IS Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron IS LDR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron IS Outbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Outbound Channel Sales 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shell Closer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Admin</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8629,6 +9048,33 @@ This is referenced in the WexBOCAConfirmation VF Page</description>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Opportunity_Role_Assignment__c</picklist>
+            <values>
+                <fullName>Chevron IS Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron IS LDR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron IS Outbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Outbound Channel Sales 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shell Closer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Admin</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Parent_Carrier_ID__c</picklist>
             <values>
                 <fullName>122465</fullName>
@@ -10055,6 +10501,33 @@ This is referenced in the WexBOCAConfirmation VF Page</description>
             </values>
             <values>
                 <fullName>194143</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Opportunity_Role_Assignment__c</picklist>
+            <values>
+                <fullName>Chevron IS Inbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron IS LDR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Chevron IS Outbound</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fleet Outbound Channel Sales 3</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Shell Closer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>System Admin</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

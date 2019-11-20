@@ -1,4 +1,4 @@
-$j = jQuery.noConflict();
+$j = jQuery.noConflict(); 
 
 $j(document).ready(function() {
     
