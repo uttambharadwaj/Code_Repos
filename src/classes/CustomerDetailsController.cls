@@ -631,86 +631,73 @@ public without sharing class CustomerDetailsController {
 
                     // Update all the fields of the account, if it didn't exist in Salesforce
                     if (accountNewToSalesforce) {
-                    // Tie our account to a program in SFDC, if it exists
-                    List<Program__c> programs = [SELECT Id FROM Program__c WHERE Siebel_Program_Row_Id__c =: customerDetails.programId];
+                        // Tie our account to a program in SFDC, if it exists
+                        List<Program__c> programs = [SELECT Id FROM Program__c WHERE Siebel_Program_Row_Id__c =: customerDetails.programId];
 
-                    if(programs.size() > 0) {
+                        if(programs.size() > 0) {
                             serviceOperationsAccount.Program__c = programs.get(0).Id;
-                    }
-                    else {
-                        serviceOperationsAccount.Program__c = genericProgram;
-                    }
-
-                    serviceOperationsAccount.Name = customerDetails.accountNm;
-                    serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
-                    serviceOperationsAccount.Acct_Row_Id__c = customerDetails.acctRowId;
-                    serviceOperationsAccount.Wex_Account__c = customerDetails.wexAccountNbr;
-                    serviceOperationsAccount.Sponsor_Acct__c = customerDetails.spnrAccountNbr;
-                    serviceOperationsAccount.PFS_REP__c = customerDetails.pfsRepNm;
-
-                    if (customerDetails.priorityLevel != null) {
-                        serviceOperationsAccount.Priority_Level__c = customerDetails.priorityLevel;
-                        serviceOperationsAccount.Priority_Level_Update_Date__c = System.now();
-                    }
-
-                    if (customerDetails.funder != null) {
-                        serviceOperationsAccount.Funder__c = customerDetails.funder;
-                    }
-
-                    if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('A')) {
-                        serviceOperationsAccount.Status__c = 'Active';    
-                    }
-                    else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('T')) {
-                        serviceOperationsAccount.Status__c = 'Terminated';    
-                    }
-                    else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('S')) {
-                        serviceOperationsAccount.Status__c = 'Suspended';    
-                        } //If we sent the full-word status, use it
-                        else if(customerDetails.accountSts != null && !(String.isEmpty(customerDetails.accountSts))) {
-                            serviceOperationsAccount.Status__c = customerDetails.accountSts;
-                    }
-
-                    serviceOperationsAccount.Platform__c = customerDetails.sourceSys;
-                    serviceOperationsAccount.Online_Application_URL__c = customerDetails.onlineApplication;
-                    serviceOperationsAccount.Account_Instructions__c = customerDetails.specialInstructions;
-
-                    if(customerDetails.billingAddress != null) {
-                        serviceOperationsAccount.BillingStreet = customerDetails.billingAddress.addr1;
-
-                        if(customerDetails.billingAddress.addr2 != null) {
-                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr2;
                         }
-                        if(customerDetails.billingAddress.addr3 != null) {
-                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr3;
-                        }
-                        if(customerDetails.billingAddress.addr4 != null) {
-                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr4;
+                        else {
+                            serviceOperationsAccount.Program__c = genericProgram;
                         }
 
-                        serviceOperationsAccount.BillingCity = customerDetails.billingAddress.city;
-                        serviceOperationsAccount.BillingState = customerDetails.billingAddress.state;
-                        serviceOperationsAccount.BillingCountry = customerDetails.billingAddress.country;
-                        serviceOperationsAccount.BillingPostalCode = customerDetails.billingAddress.postalCode;
-                    }
+                        serviceOperationsAccount.Name = customerDetails.accountNm;
+                        serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
+                        serviceOperationsAccount.Acct_Row_Id__c = customerDetails.acctRowId;
+                        serviceOperationsAccount.Wex_Account__c = customerDetails.wexAccountNbr;
+                        serviceOperationsAccount.Sponsor_Acct__c = customerDetails.spnrAccountNbr;
+                        serviceOperationsAccount.PFS_REP__c = customerDetails.pfsRepNm;
 
-                    if(customerDetails.mailingAddress != null) {
-                        serviceOperationsAccount.ShippingStreet = customerDetails.mailingAddress.addr1;
-
-                        if(customerDetails.billingAddress.addr2 != null) {
-                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr2;
-                        }
-                        if(customerDetails.billingAddress.addr3 != null) {
-                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr3;
-                        }
-                        if(customerDetails.billingAddress.addr4 != null) {
-                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr4;
+                        if (customerDetails.priorityLevel != null) {
+                            serviceOperationsAccount.Priority_Level__c = customerDetails.priorityLevel;
+                            serviceOperationsAccount.Priority_Level_Update_Date__c = System.now();
                         }
 
-                        serviceOperationsAccount.ShippingCity = customerDetails.mailingAddress.city;
-                        serviceOperationsAccount.ShippingState = customerDetails.mailingAddress.state;
-                        serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
-                        serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
-                    }
+                        if (customerDetails.funder != null) {
+                            serviceOperationsAccount.Funder__c = customerDetails.funder;
+                        }
+
+                        serviceOperationsAccount.Platform__c = customerDetails.sourceSys;
+                        serviceOperationsAccount.Online_Application_URL__c = customerDetails.onlineApplication;
+                        serviceOperationsAccount.Account_Instructions__c = customerDetails.specialInstructions;
+
+                        if(customerDetails.billingAddress != null) {
+                            serviceOperationsAccount.BillingStreet = customerDetails.billingAddress.addr1;
+
+                            if(customerDetails.billingAddress.addr2 != null) {
+                                serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr2;
+                            }
+                            if(customerDetails.billingAddress.addr3 != null) {
+                                serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr3;
+                            }
+                            if(customerDetails.billingAddress.addr4 != null) {
+                                serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr4;
+                            }
+
+                            serviceOperationsAccount.BillingCity = customerDetails.billingAddress.city;
+                            serviceOperationsAccount.BillingState = customerDetails.billingAddress.state;
+                            serviceOperationsAccount.BillingCountry = customerDetails.billingAddress.country;
+                            serviceOperationsAccount.BillingPostalCode = customerDetails.billingAddress.postalCode;
+                        }
+
+                        if(customerDetails.mailingAddress != null) {
+                            serviceOperationsAccount.ShippingStreet = customerDetails.mailingAddress.addr1;
+
+                            if(customerDetails.billingAddress.addr2 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr2;
+                            }
+                            if(customerDetails.billingAddress.addr3 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr3;
+                            }
+                            if(customerDetails.billingAddress.addr4 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr4;
+                            }
+
+                            serviceOperationsAccount.ShippingCity = customerDetails.mailingAddress.city;
+                            serviceOperationsAccount.ShippingState = customerDetails.mailingAddress.state;
+                            serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
+                            serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
+                        }
                         //Only populate primary and billing contacts for Tandem
                         if (customerDetails.contacts != null && customerDetails.contacts.contacts.size() > 0) {
                             for (CustomerDetailsWSUtilv2.contact contact : customerDetails.contacts.contacts) {
