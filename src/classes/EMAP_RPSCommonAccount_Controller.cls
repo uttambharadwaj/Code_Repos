@@ -75,7 +75,7 @@ public with sharing class EMAP_RPSCommonAccount_Controller
             
             restrictedList_query = 'Select Name,Type__c , Country__c From Restricted_Account__c Where ' + queryNameStr + ' AND Type__c =\'Common Account\' ';
 
-            commonEMAPAccList_query = 'Select Id, Name, AU_Account_Number__c, ShippingCountry, Status__c, Account_Sub_Status__c, Client_Name__c ' +
+            commonEMAPAccList_query = 'Select Id, Name, RecordType.Name, AU_Account_Number__c, ShippingCountry, Status__c, Account_Sub_Status__c, Client_Name__c ' +
                                             ' From Account ' +
                                             ' Where Id != \'' + creditAssessment.Account__r.id + '\' AND ' + queryNameStr;
 
