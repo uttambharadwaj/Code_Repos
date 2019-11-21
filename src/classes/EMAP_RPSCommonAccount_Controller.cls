@@ -58,7 +58,7 @@ public with sharing class EMAP_RPSCommonAccount_Controller
         
         String restrictedList_query = ''; //Restricted Accounts query string
         String commonEMAPAccList_query = ''; //Restricted EMAP Accounts query string
-        
+        Map<Id, Boolean> mobilCardOpportunities = new Map<Id, Boolean>(); // Key AccountID has Mobil Card Product Type Opportunity
         //Note: RPS check not getting used in this EMAP project
         if(IsRPSButton == 'Yes')
         {
@@ -74,14 +74,14 @@ public with sharing class EMAP_RPSCommonAccount_Controller
             isCommonAcc = true;
             
             restrictedList_query = 'Select Name,Type__c , Country__c From Restricted_Account__c Where ' + queryNameStr + ' AND Type__c =\'Common Account\' ';
-            
-            commonEMAPAccList_query = 'Select Id, Name, AU_Account_Number__c, ShippingCountry, Status__c, Account_Sub_Status__c, Client_Name__c ' + 
-                                            ' From Account ' + 
-                                            ' Where RecordType.Name = \'EMAP Fuel Accounts\' AND Id != \'' + creditAssessment.Account__r.id + '\' AND ' + queryNameStr + ' ';
-                                            
+
+            commonEMAPAccList_query = 'Select Id, Name, RecordType.Name, AU_Account_Number__c, ShippingCountry, Status__c, Account_Sub_Status__c, Client_Name__c ' +
+                                            ' From Account ' +
+                                            ' Where Id != \'' + creditAssessment.Account__r.id + '\' AND ' + queryNameStr;
+
             //execute query to get list of Restricted accounts or Common accounts
             restrictedList = Database.query(restrictedList_query);
-            
+
             if(restrictedList.size() > 0){
                 isResultFound = true;
                 
@@ -102,8 +102,21 @@ public with sharing class EMAP_RPSCommonAccount_Controller
             
             //execute query to get list of EMAP common accounts
             emapAccList = Database.query(commonEMAPAccList_query);
-            
-            if(emapAccList.size() > 0){
+
+            // Remove any records that aren't record type EMAP Fuel Accounts and don't have an opportunity with product type 'Mobil Card'
+            if (emapAccList.size() > 0) {
+
+                // Set key true if account has an Opportunity with Product_Type__c Mobil Card
+                for (Opportunity opportunity : [SELECT AccountId FROM Opportunity WHERE Product_Type__c = 'Mobil Card' AND AccountId IN :emapAccList]) {
+                    if (mobilCardOpportunities.get(opportunity.AccountId) == null) mobilCardOpportunities.put(opportunity.AccountId, true);
+                }
+
+                for (Integer i = emapAccList.size() - 1; i >= 0; i--) {
+                    if (emapAccList[i].RecordType.Name != 'EMAP Fuel Accounts' && mobilCardOpportunities.get(emapAccList[i].id) == null) emapAccList.remove(i);
+                }
+            }
+
+            if(emapAccList.size() > 0) {
                 isEMAPAccsFound = true;
                 
                 //list of emap common accounts from Account object 
