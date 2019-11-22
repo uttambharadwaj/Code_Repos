@@ -203,7 +203,7 @@
 
             function validateLoyaltyId(value) {
 
-                if (value !== "") {
+                if (value && value !== "") {
 
                     var validationRegex = /(^\d{11}$)/;
                     try { // Check if program has valid regex. If not, use default.
