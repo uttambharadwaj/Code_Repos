@@ -206,15 +206,20 @@
                 if (value && value !== "") {
 
                     var validationRegex = /(^\d{11}$)/;
-                    try { // Check if program has valid regex. If not, use default.
-                        validationRegex = String2Regex('{!program.Loyalty_ID_Validation__c}');
-                    } catch {
-                        console.log('Invalid Regex');
+
+                    if ('{!program.Loyalty_ID_Validation__c}' !== "") {
+
+                        try { // Check if program has valid regex. If not, use default.
+                            validationRegex = String2Regex('{!program.Loyalty_ID_Validation__c}');
+                        } catch {
+                            console.log('Invalid Program Loyalty Validation');
+                        }
                     }
 
                     if (!validationRegex.test(value)) {
                         return false;
                     }
+
                 }
                 return true;
             }
