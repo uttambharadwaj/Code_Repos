@@ -7,6 +7,8 @@
 *                   21/Aug/2019 MFarrell    NAFONBOARD-77   We want to be able to pass 0's, changing != 0 to != null.
 *                   30/Aug/2019 MFarrell    NAFONBOARD-82   Updated dataSheetFolder name to custom label & added applicationRequest null checks.
 *                   11/Sep/2019 CJackson    NAFONBOARD-96   API contains the Account Short Name.
+*                   11/Nov/2019 MFarrell    NAFONBOARD-124  Added default program template account variable.
+*                                                           Updated logic that searches for program template accounts when form is used.
 *
 */
 
@@ -84,6 +86,10 @@ public with sharing class FleetEnrollmentInternalController {
     public FleetEnrollment__c fleetEnrollment { get; set; }
 
     public Program__c program { get; set; }
+
+    public Program_Template_Account__c defaultPTA { get; set; }
+
+    public String currentPTAName { get; set; }
 
     public Finders_Fee__c findersFee { get; set; }
 
@@ -346,9 +352,9 @@ public with sharing class FleetEnrollmentInternalController {
                         fleetEnrollment = new FleetEnrollment__c();
 
                         List<FleetEnrollment__c> fleetEnrollments = [
-                                SELECT Id, Embossing_Company_Name__c, Billing_Cycle__c
+                                SELECT Id, Embossing_Company_Name__c, Billing_Cycle__c, Card_Type__c, Usage_Type__c, Program_Template_Account_Name__c, Program_Template_Account__c, Association__c
                                 FROM FleetEnrollment__c
-                                WHERE Opportunity__c =: opportunity.Id OR Debug_Opportunity_Parameter__c=:opportunity.Id
+                                WHERE Opportunity__c =: opportunity.Id OR Debug_Opportunity_Parameter__c =: opportunity.Id
                         ];
 
                         if(fleetEnrollments.size() > 0) {
@@ -372,12 +378,22 @@ public with sharing class FleetEnrollmentInternalController {
                             }
                         }
 
-
                         fleetEnrollment.Submit_Fleet_Data_Form_Used__c = true;
 
                         if (opportunity.Campaign_Program__r.Program__c != null) {
 
                             program = WexBrandingController.getProgram(opportunity.Campaign_Program__r.Program__c);
+
+                            defaultPTA = WexBrandingController.getProgramTemplateAccount(WexBrandingController.getDefaultAccountTemplateByProgram(program.Id));
+
+                            if (fleetEnrollments[0].Program_Template_Account__c != null) {
+                                fleetEnrollment.Program_Template_Account__c = fleetEnrollments[0].Program_Template_Account__c;
+                                currentPTAName = fleetEnrollments[0].Program_Template_Account_Name__c;
+                            }
+                            if (fleetEnrollments[0].Billing_Cycle__c != null) fleetEnrollment.Billing_Cycle__c = fleetEnrollments[0].Billing_Cycle__c;
+                            if (fleetEnrollments[0].Association__c != null) fleetEnrollment.Association__c = fleetEnrollments[0].Association__c;
+                            if (fleetEnrollments[0].Card_Type__c != null) fleetEnrollment.Card_Type__c = fleetEnrollments[0].Card_Type__c;
+                            if (fleetEnrollments[0].Usage_Type__c != null) fleetEnrollment.Usage_Type__c = fleetEnrollments[0].Usage_Type__c;
 
                             if(program.Allow_Partner_Billed_Overnight_Cards__c) {
                                 fleetEnrollmentInformation.expeditedCardShipping = true;
@@ -590,13 +606,86 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Card_Shipping_Postal_Code__c = opportunity.Billing_Zip_Postal_Code__c;
             }
 
-            if(fleetEnrollmentInformation.specialShippingAddress) {
+            if (fleetEnrollmentInformation.specialShippingAddress) {
                 fleetEnrollment.Special_Shipping_Attention__c = fleetEnrollmentInformation.specialShippingAttention;
                 fleetEnrollment.Special_Shipping_Address_Line_1__c = fleetEnrollmentInformation.specialShippingAddressLine1;
                 fleetEnrollment.Special_Shipping_Address_Line_2__c = fleetEnrollmentInformation.specialShippingAddressLine2;
                 fleetEnrollment.Special_Shipping_City__c = fleetEnrollmentInformation.specialShippingCity;
                 fleetEnrollment.Special_Shipping_State__c = fleetEnrollmentInformation.specialShippingState;
                 fleetEnrollment.Special_Shipping_Postal_Code__c = fleetEnrollmentInformation.specialShippingPostalCode;
+            }
+
+
+            if (fleetEnrollmentInformation.selectedFindersFee != null) {
+                fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
+            }
+
+            List<Program_Template_Account__c> programTemplateAccounts = null;
+
+            System.debug('before PTA lookup');
+            System.debug('***Apply Default PTA?: ' + fleetEnrollmentInformation.applyDefaultPTA);
+            if (fleetEnrollmentInformation.applyDefaultPTA != true) {
+                System.debug('inside apply default pta statement');
+                // did the sales rep select an association and a new billing cycle?
+                if (fleetEnrollmentInformation.association == true && fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                    System.debug('inside look up PTA by association and billing cycle');
+                    programTemplateAccounts = [
+                            SELECT Id
+                            FROM Program_Template_Account__c
+                            WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
+                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                            AND Association__c = :fleetEnrollmentInformation.selectedAssociation
+                            AND Program__c = :program.Id
+                    ];
+                    // did the sales rep only select an association?
+                } else if (fleetEnrollmentInformation.association == true) {
+                    System.debug('inside look up PTA by association');
+                    programTemplateAccounts = [
+                            SELECT Id
+                            FROM Program_Template_Account__c
+                            WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
+                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                            AND Association__c = :fleetEnrollmentInformation.selectedAssociation
+                            AND Program__c = :program.Id
+                    ];
+                    // did the sales rep only select a new billing cycle?
+                } else if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                    System.debug('inside look up PTA by billing cycle');
+                    programTemplateAccounts = [
+                            SELECT Id
+                            FROM Program_Template_Account__c
+                            WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
+                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                            AND Association__c = :fleetEnrollment.Association__c
+                            AND Program__c = :program.Id
+                    ];
+                } else if (fleetEnrollmentInformation.selectedCardType != fleetEnrollment.Card_Type__c || fleetEnrollmentInformation.selectedUsageType != fleetEnrollment.Usage_Type__c) {
+                    System.debug('inside look up PTA by new card type/usage type');
+                    programTemplateAccounts = [
+                            SELECT Id
+                            FROM Program_Template_Account__c
+                            WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
+                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                            AND Association__c = :fleetEnrollment.Association__c
+                            AND Program__c = :program.Id
+                    ];
+                }
+            }
+
+            System.debug('current value of PTA list: ' + programTemplateAccounts);
+            System.debug('current PTA on FE record: ' + fleetEnrollment.Program_Template_Account__c);
+            // if we're changing the program template account to something different than default
+            if (programTemplateAccounts != null && programTemplateAccounts.size() > 0) {
+                System.debug('inside apply found PTA');
+                fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
+                // if program template account is blank, and we didn't change it, set to the program default
+            } else if (fleetEnrollmentInformation.applyDefaultPTA == true || fleetEnrollment.Program_Template_Account__c == null) {
+                System.debug('inside apply default PTA');
+                fleetEnrollment.Program_Template_Account__c = defaultPTA.Id;
             }
 
             if (fleetEnrollmentInformation.selectedCardType != null) {
@@ -609,29 +698,6 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Usage_Type__c = fleetEnrollmentInformation.selectedUsageType;
             } else {
                 fleetEnrollment.Usage_Type__c = availableUsageTypes.get(1).getValue();
-            }
-
-            if (fleetEnrollmentInformation.selectedFindersFee != null) {
-                fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
-            }
-
-            List<Program_Template_Account__c> programTemplateAccounts = null;
-
-            if(fleetEnrollmentInformation.association == true) {
-
-                programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c AND Usage_Type__c = :fleetEnrollment.Usage_Type__c AND Program__c = :program.Id AND Association__c =: fleetEnrollmentInformation.selectedAssociation];
-
-            }
-            else {
-
-                programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c AND Usage_Type__c = :fleetEnrollment.Usage_Type__c AND Program__c = :program.Id];
-
-            }
-
-            if (programTemplateAccounts.size() > 0) {
-                fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
-            } else {
-                fleetEnrollment.Program_Template_Account__c = WexBrandingController.getDefaultAccountTemplateByProgram(program.Id);
             }
 
             Database.UpsertResult result = Database.upsert(fleetEnrollment);
@@ -787,6 +853,7 @@ public with sharing class FleetEnrollmentInternalController {
         public Boolean stationCard { get; set; }
         public Boolean association { get; set; }
         public String selectedAssociation { get; set; }
+        public Boolean applyDefaultPTA { get; set; }
 
         public Boolean alternateCardShippingAddress { get; set; }
 

@@ -52,7 +52,8 @@ public class WexBrandingController {
         return getBrandingUtilRecordByProgramId(programId, null);
     }
     public static BOCA_res__c getBrandingUtilRecordByProgramId(Id programId, String language) {
-
+        //List<BOCA_res__c> brandingUtilities = [SELECT Id FROM BOCA_Res__c WHERE Program__c = :program.Id and BOCA_Default__c = true];
+        //List<BOCA_res__c> brandingUtilities = [SELECT Id FROM BOCA_res__c WHERE Program__c = :program.Id AND ISO_code__c = :languageCode];
         String query = UtilityClass.selectStar('BOCA_Res__c') + 'WHERE Program__c = :programId AND ';
         query += language != null ? 'ISO_Code__c = :language' : 'BOCA_Default__c = true';
 
@@ -178,6 +179,25 @@ public class WexBrandingController {
 
     }
 
+    public static Id getCreditCardOneToOne(Id programId){
+        try {
+
+            transient Attachment logo = [SELECT Id, Name, Body FROM Attachment where ParentId = :programId AND Name = :'ui-credit-card-one-to-one.png' LIMIT 1];
+            system.debug(logo);
+            if(logo != null)
+                return logo.Id;
+
+
+
+        } catch (Exception e) {
+
+            return getCreditCardNotTextImageId(programId);
+
+        }
+
+        return null;
+    }
+
     public static Id getBPAVLogoId(Id programId) {
 
         try {
@@ -196,10 +216,49 @@ public class WexBrandingController {
 
     }
 
+    public static Id getPartnerLogoId(Id partnerId) {
+
+        try {
+
+            transient Attachment logo = [SELECT Id, Name, Body FROM Attachment where ParentId = :partnerId AND Name = :'ui-logo.png'];
+
+            return logo.Id;
+
+        } catch (Exception e) {
+
+            System.debug('### ERROR - Cannot find \'ui-logo.png\' for Program: ' + partnerId);
+
+        }
+
+        return null;
+
+    }
+
+    public static Id getPartnerByPartnerKey(String partnerKey) {
+
+        try {
+
+            List<Partner__c> partners = [SELECT Id FROM Partner__c WHERE Partner_Key__c =: partnerKey];
+
+            if(partners.size() == 1) {
+                return partners[0].Id;
+            }
+
+        }
+        catch(Exception e) {
+
+            System.debug('### ERROR - Unable to find partner given key: ' + partnerKey);
+
+        }
+
+        return null;
+
+    }
+
     /** NA FLEET Fleet Enrollment **/
     public static Id getDefaultAccountTemplateByProgram(Id programId) {
 
-        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Program__c = :programId LIMIT 1];
+        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id FROM Program_Template_Account__c WHERE Program__c = :programId AND Program_Default__c = TRUE LIMIT 1];
 
         if (programTemplateAccounts.size() > 0) {
             return programTemplateAccounts[0].Id;
@@ -207,7 +266,7 @@ public class WexBrandingController {
 
         return null;
 
-    } 
+    }
 
     public static Program_Template_Account__c getProgramTemplateAccount(Id programTemplateAccountId) {
 

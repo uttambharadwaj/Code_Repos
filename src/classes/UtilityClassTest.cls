@@ -7,7 +7,9 @@ public class UtilityClassTest {
 
     @testSetup
     static void setup(){
-        //nothing to create yet. sad times.
+        UtilityTestLoader.setAutomation(false);
+
+        insert new Lead(LastName = 'Test', Company = 'Test');
     }
 
     @isTest static void testInternalError() {
@@ -55,7 +57,18 @@ public class UtilityClassTest {
 
         //QED
     }
+    @isTest static void testConvertPassedInLead() {
 
+        Lead lead = [ SELECT Id FROM Lead ];
+
+        Test.startTest();
+        UtilityClass.convertPassedInLead(lead.Id, null, null, null);
+        Test.stopTest();
+
+        lead = [ SELECT Id, ConvertedAccountId FROM Lead ];
+        System.assertEquals(true, lead.ConvertedAccountId != null);
+
+    }
     @isTest static void testHelper(){
         //the org is infected with terrible testing practices. we know who to call...
         UtilityClass.testHelper();

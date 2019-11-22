@@ -1444,7 +1444,6 @@
             <name>Your_Department</name>
             <choiceReferences>CS_Choice</choiceReferences>
             <choiceReferences>SRS_choice</choiceReferences>
-            <choiceReferences>RSLPO_choice</choiceReferences>
             <dataType>String</dataType>
             <defaultSelectedChoiceReference>CS_Choice</defaultSelectedChoiceReference>
             <fieldText>Your Department?</fieldText>

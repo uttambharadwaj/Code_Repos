@@ -43,7 +43,7 @@ public class BOCAFormTriggerHandler {
 
         if(f.Opportunity__c != null){
             try{
-                opportunity = [SELECT Id, AccountId, Disable_Instant_Decisioning__c FROM Opportunity WHERE Id =: f.Opportunity__c LIMIT 1];
+                opportunity = [SELECT Id, AccountId, Disable_Instant_Decisioning__c, Primary_Contact__c FROM Opportunity WHERE Id =: f.Opportunity__c LIMIT 1];
             }
             catch(SYSTEM.DmlException ex){
                 System.debug('Error getting Opportunity: ' + ex.getCause());
@@ -103,7 +103,9 @@ public class BOCAFormTriggerHandler {
 
         //  Step 2 - Create the contact record
         Contact contact = new Contact();
-
+        if (opportunity.Primary_Contact__c != null) {
+            contact.Id = opportunity.Primary_Contact__c;
+        }
         contact.AccountId = account.Id;
 
         contact.FirstName = f.First_Name__c;
@@ -130,7 +132,7 @@ public class BOCAFormTriggerHandler {
             contact.Annual_Income__c = f.Guarantor_Annual_Income__c;
         }
 
-        insert contact;
+        upsert contact;
         
         f.Confirmation_Contact_ID__c = contact.Id;
 
@@ -352,7 +354,7 @@ public class BOCAFormTriggerHandler {
             //if revolver set the record type
             if((program.BOCA_Type__c).equalsIgnoreCase('Revolver Card') ||TestUtils.isRunningTest()){
                 if(Schema.SObjectType.Application_Request__c.getRecordTypeInfosByName().get('Revolver Application') != null) {
-                    opportunity.RecordTypeId = Schema.SObjectType.Application_Request__c.getRecordTypeInfosByName().get('Revolver Application').getRecordTypeId();
+                    applicationRequest.RecordTypeId = Schema.SObjectType.Application_Request__c.getRecordTypeInfosByName().get('Revolver Application').getRecordTypeId();
                 }
             }
 
@@ -505,7 +507,7 @@ public class BOCAFormTriggerHandler {
 
     @future
     public static void sendConfirmationEmail(Id creditAppId, Id contactId, Id templateId, Id brandingUtilityId) {
-        
+
         System.debug('### ' + creditAppId);
         System.debug('### ' + contactId);
         System.debug('### ' + templateId);
@@ -557,7 +559,13 @@ public class BOCAFormTriggerHandler {
         }
         
         if(!Test.isRunningTest()){
-            Messaging.sendEmail(new Messaging.SingleEmailMessage[] {confirmation});
+            try {
+                Messaging.sendEmail(new Messaging.SingleEmailMessage[]{
+                        confirmation
+                });
+            } catch (Exception e) {
+                System.debug(e);
+            }
         }
         
     }

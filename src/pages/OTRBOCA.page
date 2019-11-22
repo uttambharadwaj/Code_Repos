@@ -595,7 +595,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel id="accountGuarantor">
-                                <apex:outputPanel rendered="{!OR(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplicationOffer.Funding__c != 'Parent Funded & Secondary Contract')}">
+                                <apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplicationOffer.Funding__c != 'Parent Funded & Secondary Contract'), true, false)}">
                                     <div class="twelve columns clearfix">
                                         <div class="section-header">
                                             {!$Label.BOCA_Account_Guarantor}

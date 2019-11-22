@@ -897,6 +897,19 @@ IF ( MOD ( Completed_Date__c - DATE( 1900,1,6 ),7) = 0,1,2 ) ) ) ) )</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Loyalty_ID__c</fullName>
+        <description>PSOBACKLOG-293: Field to provide Loyalty IDs provided during the fleet enrollment process.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Loyalty ID</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Monthly_Accounting_Fee_Waive_Date__c</fullName>
         <encryptionScheme>None</encryptionScheme>
         <externalId>false</externalId>

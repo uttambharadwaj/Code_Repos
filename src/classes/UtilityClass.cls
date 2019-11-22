@@ -39,6 +39,40 @@ global class UtilityClass {
         String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128)); //get salty
         return EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + UserInfo.getSessionId() + salt.substring(0, 25))));
     }
+
+    // Convert the passed in lead.
+    @Future
+    public static void convertPassedInLead(Id leadId, Id accountId, Id contactId, Id opportunityId, Id ownerId) {
+
+
+        Database.LeadConvert leadConvert = new database.LeadConvert();
+
+        leadConvert.setLeadId(leadId);
+        leadConvert.setAccountId(accountId);
+        leadConvert.setContactId(contactId);
+        leadConvert.setOpportunityId(opportunityId);
+        leadconvert.setConvertedStatus('Qualified');
+
+        try {
+
+            if (ownerId == null) {
+                ownerId = [SELECT Id FROM User WHERE Alias = 'sinte'].Id;
+            }
+
+            leadconvert.setOwnerId(ownerId);
+            Database.LeadConvertResult leadConvertResult = Database.convertLead(leadconvert);
+
+            if (leadConvertResult.isSuccess()) {
+                System.debug('Converted Lead');
+            } else {
+                System.debug('Failed to convert lead.');
+
+            }
+        } catch (Exception e) {
+            insert logInternalError(e, '', 'UtilityClass.convertPassedInLead', false, '', 'Lead:' + leadId + ' Account:' + accountId + ' Contact:' + contactId + ' Opportunity:' + opportunityId);
+        }
+    }
+
     /***************************END BOCA UTILITIES****************************/
 
     /***************************FIELD MAPPING UTILITIES***********************/
@@ -101,7 +135,11 @@ global class UtilityClass {
     //a non-test scenario can call this method too, sending in the allornone variable as false. otherwise it should just use above method
     public static void sendEmail(Messaging.SingleEmailMessage[] myEmailList, Boolean allOrNone){
         if(Test.isRunningTest()) allOrNone = false; //if we are testing then this needs to be false or it all fails
-        Messaging.sendEmail(myEmailList, allOrNone);
+        try {
+            Messaging.sendEmail(myEmailList, allOrNone);
+        } catch (Exception e) {
+            System.debug(e);
+        }
     }
 
     public static List<Messaging.SendEmailResult> relayEmail(Messaging.SingleEmailMessage myEmail){
@@ -228,6 +266,7 @@ global class UtilityClass {
 
         return provinces;
     }
+
     /**************************END MISCELLANEOUS******************************/
 
     public static void testHelper(){
