@@ -1,0 +1,156 @@
+/**
+ * Created by W083158 on 11/21/2019.
+ */
+
+global with sharing class ServiceOperationsAccountCloner {
+
+    //todo: Proper exception handling throughout
+    static Id serviceOperationsAccountRecordTypeId;
+    static Id serviceOperationsContactRecordTypeId;
+
+    public static void init() {
+        if (serviceOperationsAccountRecordTypeId == null) {
+            serviceOperationsAccountRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+        }
+
+        if (serviceOperationsContactRecordTypeId == null) {
+            serviceOperationsContactRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+        }
+    }
+
+
+    @InvocableMethod(Label='CloneAccountAndContacts' Description='Param is Sales Account ID')
+    public static List<Id> cloneAccountAndContacts(List<Id> otrAccountIds) {
+        Id otrAccountId;
+        if (otrAccountIds == null || otrAccountIds.isEmpty())
+            return null;
+        else
+                otrAccountId  = otrAccountIds.get(0);
+
+        Id serviceOperationsAccountId = cloneAccount(otrAccountId);
+        List<Contact> contactList = [SELECT Id, Contact_Type__c  FROM Contact WHERE AccountId =: otrAccountId];
+        List<Id> newContacts = new List<Id>();
+        Boolean firstContact = true;
+        Id primaryContact;
+        for (Contact contact : contactList) {
+            Id newId = cloneContact(contact.Id, serviceOperationsAccountId);
+            newContacts.add(newId);
+            if (firstContact || 'PRIMARY'.equalsIgnoreCase(contact.Contact_Type__c)) {
+                primaryContact = newId;
+            }
+            firstContact = false;
+        }
+        if (!String.isEmpty(primaryContact)) {
+            Account servOpsAcct = [SELECT Id, Primary_Contact_TXT__c FROM Account WHERE Id =: serviceOperationsAccountId];
+            if (String.isEmpty(servOpsAcct.Primary_Contact_TXT__c)) {
+                servOpsAcct.Primary_Contact_TXT__c = primaryContact;
+                update servOpsAcct;
+            }
+        }
+        List<Id> result = new List<Id>();
+        result.add(serviceOperationsAccountId);
+        return result;
+    }
+
+    public static Id cloneAccount(Id otrAccountId) {
+        init();
+        Account otrAccount =  [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, RecordTypeId, Acct_Row_Id__c, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Platform__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Primary_Contact_TXT__c, Shipping_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Admin_Contact_TXT__c, Carrier_ID__c FROM Account WHERE Id =:otrAccountId LIMIT 1];
+
+        if (serviceOperationsAccountRecordTypeId.equals(otrAccount.RecordTypeId)) //quit
+            return otrAccountId;
+
+        Account serviceOperationsAccount = new Account();
+
+        System.debug('serviceOperationsAccountRecordTypeId='+serviceOperationsAccountRecordTypeId);
+
+        if (serviceOperationsAccountRecordTypeId != null)
+            serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
+
+        serviceOperationsAccount.Customer_Segmentation__c = otrAccount.Customer_Segmentation__c;
+        serviceOperationsAccount.CurrencyIsoCode = otrAccount.CurrencyIsoCode;
+        serviceOperationsAccount.Status__c = otrAccount.Status__c;
+        serviceOperationsAccount.Program__c = otrAccount.Program__c;
+        serviceOperationsAccount.Name = otrAccount.Name;
+        serviceOperationsAccount.Wex_Account__c = otrAccount.Wex_Account__c;
+        serviceOperationsAccount.Sponsor_Acct__c = otrAccount.Sponsor_Acct__c;
+        serviceOperationsAccount.PFS_REP__c = otrAccount.PFS_REP__c;
+        serviceOperationsAccount.Priority_Level__c = otrAccount.Priority_Level__c;
+        serviceOperationsAccount.Priority_Level_Update_Date__c = otrAccount.Priority_Level_Update_Date__c;
+        serviceOperationsAccount.Funder__c = otrAccount.Funder__c;
+        serviceOperationsAccount.Online_Application_URL__c = otrAccount.Online_Application_URL__c;
+        serviceOperationsAccount.Account_Instructions__c = otrAccount.Account_Instructions__c;
+        serviceOperationsAccount.BillingStreet = otrAccount.BillingStreet;
+        serviceOperationsAccount.BillingCity = otrAccount.BillingCity;
+        serviceOperationsAccount.BillingState = otrAccount.BillingState;
+        serviceOperationsAccount.BillingCountry = otrAccount.BillingCountry;
+        serviceOperationsAccount.BillingPostalCode = otrAccount.BillingPostalCode;
+        serviceOperationsAccount.ShippingStreet = otrAccount.ShippingStreet;
+        serviceOperationsAccount.ShippingCity = otrAccount.ShippingCity;
+        serviceOperationsAccount.ShippingState = otrAccount.ShippingState;
+        serviceOperationsAccount.ShippingCountry = otrAccount.ShippingCountry;
+        serviceOperationsAccount.ShippingPostalCode = otrAccount.ShippingPostalCode;
+
+        serviceOperationsAccount.Carrier_ID__c = otrAccount.Carrier_ID__c;
+
+        //todo: determine proper Platform assignment rule
+        //todo: determine other source fields to copy
+        serviceOperationsAccount.Platform__c = otrAccount.Platform__c;
+
+        insert serviceOperationsAccount;
+        Id serviceOperationsAccountId = serviceOperationsAccount.Id;
+
+        serviceOperationsAccount.Acct_Row_Id__c = serviceOperationsAccountId;
+        update serviceOperationsAccount;
+
+        createSalesToServiceJunction(otrAccountId, serviceOperationsAccountId, otrAccount.CurrencyIsoCode);
+
+        return serviceOperationsAccountId;
+
+    }
+
+    public static Id createSalesToServiceJunction(Id otrAccountId, Id serviceAccountId, String currencyIsoCode) {
+        Sales_to_Service_Account_Relationship__c junctionObject = new Sales_to_Service_Account_Relationship__c();
+        junctionObject.Sales_Account__c = otrAccountId;
+        junctionObject.Service_Account__c = serviceAccountId;
+        junctionObject.CurrencyIsoCode = currencyIsoCode;
+        insert junctionObject;
+        return junctionObject.Id;
+    }
+
+    public static Id cloneContact(Id otrContactId, Id serviceOperationsAccountId) {
+        init();
+        Contact otrContact = [SELECT Id, FirstName, LastName, Email, Fax, Phone, WEX_Contact_ID__c, AccountId, RecordTypeId, Contact_Type__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode FROM Contact WHERE Id =: otrContactId];
+
+        if (serviceOperationsContactRecordTypeId.equals(otrContact.RecordTypeId)) //quit
+            return otrContactId;
+
+        Contact serviceOperationsContact = new Contact();
+
+        if (serviceOperationsContactRecordTypeId != null)
+            serviceOperationsContact.RecordTypeId = serviceOperationsContactRecordTypeId;
+
+        serviceOperationsContact.FirstName = otrContact.FirstName;
+        serviceOperationsContact.LastName = otrContact.LastName;
+        serviceOperationsContact.Email = otrContact.Email;
+        serviceOperationsContact.Fax = otrContact.Fax;
+        serviceOperationsContact.Phone = otrContact.Phone;
+        serviceOperationsContact.Contact_Type__c = otrContact.Contact_Type__c;
+        serviceOperationsContact.MailingStreet = otrContact.MailingStreet;
+        serviceOperationsContact.MailingCity = otrContact.MailingCity;
+        serviceOperationsContact.MailingState = otrContact.MailingState;
+        serviceOperationsContact.MailingCountry = otrContact.MailingCountry;
+        serviceOperationsContact.MailingPostalCode = otrContact.MailingPostalCode;
+
+        serviceOperationsContact.AccountId = serviceOperationsAccountId;
+
+        insert serviceOperationsContact;
+        Id serviceOperationsContactId = serviceOperationsContact.Id;
+
+        serviceOperationsContact.Contact_Row_Id__c = serviceOperationsContactId;
+
+        update serviceOperationsContact;
+
+        return serviceOperationsContactId;
+    }
+
+}
