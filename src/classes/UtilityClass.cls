@@ -44,16 +44,21 @@ global class UtilityClass {
     @Future
     public static void convertPassedInLead(Id leadId, Id accountId, Id contactId, Id opportunityId, Id ownerId) {
 
-
-        Database.LeadConvert leadConvert = new database.LeadConvert();
-
-        leadConvert.setLeadId(leadId);
-        leadConvert.setAccountId(accountId);
-        leadConvert.setContactId(contactId);
-        leadConvert.setOpportunityId(opportunityId);
-        leadconvert.setConvertedStatus('Qualified');
-
         try {
+
+            // Locking the records before converting helps avoid UNABLE_TO_LOCK_ROW error.
+            Account account = [SELECT Id FROM Account WHERE Id = :accountId FOR UPDATE ];
+            Contact contact = [SELECT Id FROM Contact WHERE Id = :contactId FOR UPDATE ];
+            Opportunity opportunity = [SELECT Id FROM Opportunity WHERE Id = :opportunityId FOR UPDATE ];
+            Lead lead = [SELECT Id FROM Lead WHERE Id = :leadId FOR UPDATE ];
+
+            Database.LeadConvert leadConvert = new database.LeadConvert();
+
+            leadConvert.setLeadId(lead.Id);
+            leadConvert.setAccountId(account.Id);
+            leadConvert.setContactId(contact.Id);
+            leadConvert.setOpportunityId(opportunity.Id);
+            leadconvert.setConvertedStatus('Qualified');
 
             if (ownerId == null) {
                 ownerId = [SELECT Id FROM User WHERE Alias = 'sinte'].Id;
