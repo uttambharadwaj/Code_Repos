@@ -6,7 +6,8 @@ Last Coverage:      30%
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 refactor to allow code reuse on save for later pdf generation
                     4/10/2019 Jason Arbegast IADJUDICAT-966 remove address section from page; remove related code from controller
                     5/13/2019 Michael Farrell PSOBACKLOG-183 added Daily_Fuel_Limit__c & Daily_Misc_Limit__c to onlineApplications SOQL
-                    6/3/2019 MFarrell PSOBACKLOG-49 - Added Security_Code__c & Online_Password__c to OnlineApplicationAuthorizedContacts SOQL
+                    6/3/2019        MFarrell    PSOBACKLOG-49       Added Security_Code__c & Online_Password__c to OnlineApplicationAuthorizedContacts SOQL
+                    25/Nov/2019     MFarrell    PSOBACKLOG-305      changed application status for paper app or conversion process.
 */
 public without sharing class OTRSetupController {
 
@@ -434,7 +435,7 @@ public without sharing class OTRSetupController {
             // paper apps are identified by having a user session id
             if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true || userSessionId != null) {
                 onlineApplication.Application_Stage__c = 'Application';
-                onlineApplication.Status__c = 'Saved-Complete';
+                onlineApplication.Status__c = 'Saved-PaperApp';
             } else if(onlineApplicationOffer.Funding__c == 'Parent Funded' || onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract') {
                 onlineApplication.Application_Stage__c = 'Implementation';
                 onlineApplication.Status__c = 'Pending Setup';
