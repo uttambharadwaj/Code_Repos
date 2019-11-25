@@ -10,6 +10,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                     07/30/2019      JA                  OTRONBOARD-59   add existing carrier id
                     09/16/2019      Leela Howland       PSOBACKLOG-259  excluding PG required for paper apps
                     26/Sep/2019     MFarrell            OTRONBOARD-88   Added account look up criteria
+                    25/Nov/2019     MFarrell            PSOBACKLOG-305      Added ispaperapp and isconversionapp values - set application type field on application.
 
  */
 
@@ -53,6 +54,28 @@ public class OTRBOCAController {
     public String userSessionId {
         get {
             return UserInfo.getSessionId();
+        }
+    }
+
+    public Boolean isPaperApp {
+        get {
+            if (ApexPages.currentPage().getParameters().get('appType') != null) {
+                if (ApexPages.currentPage().getParameters().get('appType') == 'p') {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public Boolean isConversionApp {
+        get {
+            if (ApexPages.currentPage().getParameters().get('appType') != null) {
+                if (ApexPages.currentPage().getParameters().get('appType') == 'c') {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
@@ -1060,6 +1083,12 @@ public class OTRBOCAController {
 
             if (carrierID != null) {
                 onlineApplication.Existing_Carrier_ID__c = carrierID;
+            }
+
+            if (isPaperApp) {
+                onlineApplication.Application_Type__c = 'Paper Application';
+            } else if (isConversionApp) {
+                onlineApplication.Application_Type__c = 'Conversion';
             }
 
             result = Database.upsert(onlineApplication, false);
