@@ -133,6 +133,15 @@ public class WexBOCAController {
         }
     }
 
+    public Id optyId {
+        get {
+            if (ApexPages.currentPage().getParameters().get('optyId') != null) {
+                return ApexPages.currentPage().getParameters().get('optyId');
+            }
+            return null;
+        }
+    }
+
     // Get the PG to log for the lead
     public String leadIdParameter  {
         get {
@@ -881,6 +890,14 @@ public class WexBOCAController {
                 }
             }
             catch(Exception e) { System.debug('Can\'t attach.. Failing gracefully..'); }
+
+            try {
+                if (!String.isEmpty(optyId)) {
+                    creditApp.Opportunity__c = optyId;
+                }
+            } catch (Exception e) {
+                System.debug('Unable to attach passed in opportunity: ' + e);
+            }
 
             if(languageCode.equalsIgnoreCase('fr_ca') || languageCode.equalsIgnoreCase('en_ca')) { creditApp.Paperless_Flag__c = 'Yes'; }
 
