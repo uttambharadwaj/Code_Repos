@@ -47,7 +47,9 @@ public class OpportunityAssignment {
         for (User user : [
                 SELECT Id, Name, UserRole.Name
                 FROM User
-                WHERE UserRole.Name IN :allRoles AND IsActive = true
+                WHERE UserRole.Name IN :allRoles
+                AND IsActive = true
+                AND Id NOT IN (SELECT UserId FROM OutOfOffice WHERE isEnabled = TRUE)
                 order by Name ASC
         ]) {
 
