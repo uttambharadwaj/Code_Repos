@@ -22,87 +22,106 @@ global with sharing class ServiceOperationsAccountCloner {
     @InvocableMethod(Label='CloneAccountAndContacts' Description='Param is Sales Account ID')
     public static List<Id> cloneAccountAndContacts(List<Id> otrAccountIds) {
         Id otrAccountId;
-        if (otrAccountIds == null || otrAccountIds.isEmpty())
+        if (otrAccountIds == null || otrAccountIds.isEmpty()) {
             return null;
-        else
-                otrAccountId  = otrAccountIds.get(0);
+        } else {
+            otrAccountId = otrAccountIds.get(0);
+        }
 
-        Id serviceOperationsAccountId = cloneAccount(otrAccountId);
-        List<Contact> contactList = [SELECT Id, Contact_Type__c  FROM Contact WHERE AccountId =: otrAccountId];
-        List<Id> newContacts = new List<Id>();
-        Boolean firstContact = true;
-        Id primaryContact;
-        for (Contact contact : contactList) {
-            Id newId = cloneContact(contact.Id, serviceOperationsAccountId);
-            newContacts.add(newId);
-            if (firstContact || 'PRIMARY'.equalsIgnoreCase(contact.Contact_Type__c)) {
-                primaryContact = newId;
-            }
-            firstContact = false;
-        }
-        if (!String.isEmpty(primaryContact)) {
-            Account servOpsAcct = [SELECT Id, Primary_Contact_TXT__c FROM Account WHERE Id =: serviceOperationsAccountId];
-            if (String.isEmpty(servOpsAcct.Primary_Contact_TXT__c)) {
-                servOpsAcct.Primary_Contact_TXT__c = primaryContact;
-                update servOpsAcct;
-            }
-        }
+        Id serviceOperationsAccountId;
         List<Id> result = new List<Id>();
-        result.add(serviceOperationsAccountId);
+        try {
+            serviceOperationsAccountId = cloneAccount(otrAccountId);
+            List<Contact> contactList = [SELECT Id, Contact_Type__c  FROM Contact WHERE AccountId =: otrAccountId];
+            List<Id> newContacts = new List<Id>();
+            Boolean firstContact = true;
+            Id primaryContact;
+            for (Contact contact : contactList) {
+                Id newId = cloneContact(contact.Id, serviceOperationsAccountId);
+                newContacts.add(newId);
+                if (firstContact || 'PRIMARY'.equalsIgnoreCase(contact.Contact_Type__c)) {
+                    primaryContact = newId;
+                }
+                firstContact = false;
+            }
+            if (!String.isEmpty(primaryContact)) {
+                Account servOpsAcct = [SELECT Id, Primary_Contact_TXT__c FROM Account WHERE Id =: serviceOperationsAccountId];
+                if (String.isEmpty(servOpsAcct.Primary_Contact_TXT__c)) {
+                    servOpsAcct.Primary_Contact_TXT__c = primaryContact;
+                    update servOpsAcct;
+                }
+            }
+            result.add(serviceOperationsAccountId);
+        } catch (Exception e) {
+            String errorCode = logError(e);
+            System.debug('*** ERROR Occurred while cloning account '+otrAccountId+': ' + errorCode);
+        }
         return result;
     }
 
     public static Id cloneAccount(Id otrAccountId) {
         init();
-        Account otrAccount =  [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, RecordTypeId, Acct_Row_Id__c, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Platform__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Primary_Contact_TXT__c, Shipping_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Admin_Contact_TXT__c, Carrier_ID__c FROM Account WHERE Id =:otrAccountId LIMIT 1];
+        Id serviceOperationsAccountId;
+        try {
+            Account otrAccount =  [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, Phone, Fax, RecordTypeId, Acct_Row_Id__c, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Platform__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Primary_Contact_TXT__c, Shipping_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Admin_Contact_TXT__c, Carrier_ID__c FROM Account WHERE Id =:otrAccountId LIMIT 1];
 
-        if (serviceOperationsAccountRecordTypeId.equals(otrAccount.RecordTypeId)) //quit
-            return otrAccountId;
+            if (serviceOperationsAccountRecordTypeId.equals(otrAccount.RecordTypeId)) //quit
+            {
+                return otrAccountId;
+            }
 
-        Account serviceOperationsAccount = new Account();
+            Account serviceOperationsAccount = new Account();
 
-        System.debug('serviceOperationsAccountRecordTypeId='+serviceOperationsAccountRecordTypeId);
+            System.debug('serviceOperationsAccountRecordTypeId='+serviceOperationsAccountRecordTypeId);
 
-        if (serviceOperationsAccountRecordTypeId != null)
-            serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
+            if (serviceOperationsAccountRecordTypeId != null) {
+                serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
+            }
 
-        serviceOperationsAccount.Customer_Segmentation__c = otrAccount.Customer_Segmentation__c;
-        serviceOperationsAccount.CurrencyIsoCode = otrAccount.CurrencyIsoCode;
-        serviceOperationsAccount.Status__c = otrAccount.Status__c;
-        serviceOperationsAccount.Program__c = otrAccount.Program__c;
-        serviceOperationsAccount.Name = otrAccount.Name;
-        serviceOperationsAccount.Wex_Account__c = otrAccount.Wex_Account__c;
-        serviceOperationsAccount.Sponsor_Acct__c = otrAccount.Sponsor_Acct__c;
-        serviceOperationsAccount.PFS_REP__c = otrAccount.PFS_REP__c;
-        serviceOperationsAccount.Priority_Level__c = otrAccount.Priority_Level__c;
-        serviceOperationsAccount.Priority_Level_Update_Date__c = otrAccount.Priority_Level_Update_Date__c;
-        serviceOperationsAccount.Funder__c = otrAccount.Funder__c;
-        serviceOperationsAccount.Online_Application_URL__c = otrAccount.Online_Application_URL__c;
-        serviceOperationsAccount.Account_Instructions__c = otrAccount.Account_Instructions__c;
-        serviceOperationsAccount.BillingStreet = otrAccount.BillingStreet;
-        serviceOperationsAccount.BillingCity = otrAccount.BillingCity;
-        serviceOperationsAccount.BillingState = otrAccount.BillingState;
-        serviceOperationsAccount.BillingCountry = otrAccount.BillingCountry;
-        serviceOperationsAccount.BillingPostalCode = otrAccount.BillingPostalCode;
-        serviceOperationsAccount.ShippingStreet = otrAccount.ShippingStreet;
-        serviceOperationsAccount.ShippingCity = otrAccount.ShippingCity;
-        serviceOperationsAccount.ShippingState = otrAccount.ShippingState;
-        serviceOperationsAccount.ShippingCountry = otrAccount.ShippingCountry;
-        serviceOperationsAccount.ShippingPostalCode = otrAccount.ShippingPostalCode;
+            serviceOperationsAccount.Customer_Segmentation__c = otrAccount.Customer_Segmentation__c;
+            serviceOperationsAccount.CurrencyIsoCode = otrAccount.CurrencyIsoCode;
+            serviceOperationsAccount.Status__c = otrAccount.Status__c;
+            serviceOperationsAccount.Program__c = otrAccount.Program__c;
+            serviceOperationsAccount.Name = otrAccount.Name;
+            serviceOperationsAccount.Phone = otrAccount.Phone;
+            serviceOperationsAccount.Fax = otrAccount.Fax;
+            serviceOperationsAccount.Wex_Account__c = otrAccount.Wex_Account__c;
+            serviceOperationsAccount.Sponsor_Acct__c = otrAccount.Sponsor_Acct__c;
+            serviceOperationsAccount.PFS_REP__c = otrAccount.PFS_REP__c;
+            serviceOperationsAccount.Priority_Level__c = otrAccount.Priority_Level__c;
+            serviceOperationsAccount.Priority_Level_Update_Date__c = otrAccount.Priority_Level_Update_Date__c;
+            serviceOperationsAccount.Funder__c = otrAccount.Funder__c;
+            serviceOperationsAccount.Online_Application_URL__c = otrAccount.Online_Application_URL__c;
+            serviceOperationsAccount.Account_Instructions__c = otrAccount.Account_Instructions__c;
+            serviceOperationsAccount.BillingStreet = otrAccount.BillingStreet;
+            serviceOperationsAccount.BillingCity = otrAccount.BillingCity;
+            serviceOperationsAccount.BillingState = otrAccount.BillingState;
+            serviceOperationsAccount.BillingCountry = otrAccount.BillingCountry;
+            serviceOperationsAccount.BillingPostalCode = otrAccount.BillingPostalCode;
+            serviceOperationsAccount.ShippingStreet = otrAccount.ShippingStreet;
+            serviceOperationsAccount.ShippingCity = otrAccount.ShippingCity;
+            serviceOperationsAccount.ShippingState = otrAccount.ShippingState;
+            serviceOperationsAccount.ShippingCountry = otrAccount.ShippingCountry;
+            serviceOperationsAccount.ShippingPostalCode = otrAccount.ShippingPostalCode;
 
-        serviceOperationsAccount.Carrier_ID__c = otrAccount.Carrier_ID__c;
+            serviceOperationsAccount.Carrier_ID__c = otrAccount.Carrier_ID__c;
 
-        //todo: determine proper Platform assignment rule
-        //todo: determine other source fields to copy
-        serviceOperationsAccount.Platform__c = otrAccount.Platform__c;
+            //todo: determine proper Platform assignment rule
+            //todo: determine other source fields to copy
+            serviceOperationsAccount.Platform__c = otrAccount.Platform__c;
 
-        insert serviceOperationsAccount;
-        Id serviceOperationsAccountId = serviceOperationsAccount.Id;
+            insert serviceOperationsAccount;
 
-        serviceOperationsAccount.Acct_Row_Id__c = serviceOperationsAccountId;
-        update serviceOperationsAccount;
+            serviceOperationsAccountId = serviceOperationsAccount.Id;
 
-        createSalesToServiceJunction(otrAccountId, serviceOperationsAccountId, otrAccount.CurrencyIsoCode);
+            serviceOperationsAccount.Acct_Row_Id__c = serviceOperationsAccountId;
+            update serviceOperationsAccount;
+
+            createSalesToServiceJunction(otrAccountId, serviceOperationsAccountId, otrAccount.CurrencyIsoCode);
+        } catch (Exception e) {
+            String errorCode = logError(e);
+            System.debug('*** ERROR Occurred: '+errorCode);
+        }
 
         return serviceOperationsAccountId;
 
@@ -110,10 +129,17 @@ global with sharing class ServiceOperationsAccountCloner {
 
     public static Id createSalesToServiceJunction(Id otrAccountId, Id serviceAccountId, String currencyIsoCode) {
         Sales_to_Service_Account_Relationship__c junctionObject = new Sales_to_Service_Account_Relationship__c();
-        junctionObject.Sales_Account__c = otrAccountId;
-        junctionObject.Service_Account__c = serviceAccountId;
-        junctionObject.CurrencyIsoCode = currencyIsoCode;
-        insert junctionObject;
+        try {
+            junctionObject.Sales_Account__c = otrAccountId;
+            junctionObject.Service_Account__c = serviceAccountId;
+            junctionObject.CurrencyIsoCode = currencyIsoCode;
+            insert junctionObject;
+        } catch (Exception e) {
+            String errorCode = logError(e);
+            System.debug('*** ERROR Occurred: in createSalesToServiceJunction '+errorCode);
+            e.setMessage('Unable to create Sales to Service Junction; '+e.getMessage());
+            throw e;
+        }
         return junctionObject.Id;
     }
 
@@ -122,12 +148,17 @@ global with sharing class ServiceOperationsAccountCloner {
         Contact otrContact = [SELECT Id, FirstName, LastName, Email, Fax, Phone, WEX_Contact_ID__c, AccountId, RecordTypeId, Contact_Type__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode FROM Contact WHERE Id =: otrContactId];
 
         if (serviceOperationsContactRecordTypeId.equals(otrContact.RecordTypeId)) //quit
+        {
             return otrContactId;
+        }
 
         Contact serviceOperationsContact = new Contact();
+        Id serviceOperationsContactId;
 
-        if (serviceOperationsContactRecordTypeId != null)
+        try {
+        if (serviceOperationsContactRecordTypeId != null) {
             serviceOperationsContact.RecordTypeId = serviceOperationsContactRecordTypeId;
+        }
 
         serviceOperationsContact.FirstName = otrContact.FirstName;
         serviceOperationsContact.LastName = otrContact.LastName;
@@ -144,13 +175,54 @@ global with sharing class ServiceOperationsAccountCloner {
         serviceOperationsContact.AccountId = serviceOperationsAccountId;
 
         insert serviceOperationsContact;
-        Id serviceOperationsContactId = serviceOperationsContact.Id;
+        serviceOperationsContactId = serviceOperationsContact.Id;
 
         serviceOperationsContact.Contact_Row_Id__c = serviceOperationsContactId;
 
         update serviceOperationsContact;
+        } catch (Exception e) {
+            String errorCode = logError(e);
+            System.debug('*** ERROR Occurred: in cloneContact '+errorCode);
+            e.setMessage('Error cloning contact '+otrContactId + '; '+e.getMessage());
+            throw e;
+        }
 
         return serviceOperationsContactId;
+    }
+
+    private static String logError(Exception e) {
+
+        try {
+            System.debug('*** ERROR: '+e.getMessage());
+            System.debug('***   : '+String.valueOf(e));
+            System.debug('***   Line #: '+e.getLineNumber());
+            System.debug('***   Cause: '+e.getCause());
+            System.debug('*** '+String.valueOf(e.getStackTraceString()));
+            Internal_Application_Error__c error = new Internal_Application_Error__c();
+
+            error.Error_Message__c = String.valueOf(e);
+            error.Error_Location__c = String.valueOf(e.getStackTraceString());
+            error.Application__c = 'Fleet Account Cloning';
+
+            insert error;
+
+            List<Internal_Application_Error__c> errors = [SELECT Id, Name FROM Internal_Application_Error__c WHERE Id = :error.Id];
+
+            if(!errors.isEmpty()) {
+                return errors[0].Name;
+            }
+            else {
+                return '';
+            }
+
+        }
+        catch(Exception f) {
+
+            System.debug('Error logging exception.. Skipping..' + String.valueOf(f));
+
+            return '';
+
+        }
     }
 
 }
