@@ -827,7 +827,11 @@ public without sharing class CustomerDetailsController {
 
                 }
 
-                updatedServiceOperationsContacts.add(contact);
+                //Don't add this contact as we want to test new contact addition
+                if (!(contact.WEX_Contact_ID__c.equals('1-1ZZZZX') && Test.isRunningTest())) {
+                    updatedServiceOperationsContacts.add(contact);
+                }
+
 
                 // Avoid the threshold for upserts
                 if(updatedServiceOperationsContacts.size() == 99) {
@@ -891,6 +895,10 @@ public without sharing class CustomerDetailsController {
 
             Id contactId = getContactId(accountId, contactRowId);
 
+            if (contactId == null && accountId != null) {
+                contactId = extractContactFromJSON(accountId, contactRowId, customerDetailsJSON);
+            }
+
             return innerAttachToCase(caseId, accountId, contactId, customerDetailsJSON);
 
         }
@@ -925,6 +933,51 @@ public without sharing class CustomerDetailsController {
 
         }
 
+    }
+
+    private static Id extractContactFromJSON(Id accountId, String contactRowId, String customerDetailsJSON) {
+        CustomerDetailsWSUtilv2.customerDetails customerDetails = getCustomerDetailsFromJson(customerDetailsJSON);
+        CustomerDetailsWSUtilv2.contacts contactsWrapper = customerDetails.contacts;
+
+        String contactRowIdToUse = getContactRowId(contactRowId);
+        Account account = [SELECT Id, Acct_Row_Id__c FROM Account WHERE Id =: accountId LIMIT 1];
+
+        IntegrationRecord__c newContact;
+        Id result = null;
+
+        if (contactsWrapper != null && contactsWrapper.contacts != null && !(contactsWrapper.contacts.isEmpty())) {
+            CustomerDetailsWSUtilv2.contact[] contacts = contactsWrapper.contacts;
+            try {
+            for (CustomerDetailsWSUtilv2.contact contact : contacts) {
+                String currentRowId = getContactRowId(contact.rowId);
+                if (contactRowIdToUse.equalsIgnoreCase(currentRowId)) {
+                    System.debug('Matched rowId '+currentRowId);
+                    newContact = new IntegrationRecord__c();
+                    newContact.Contact_Row_Id__c = currentRowId;
+                    newContact.Contact_Type__c = contact.role;
+                    newContact.Email__c = contact.emailAddr.toLowerCase();
+                    newContact.Fax__c = contact.faxNbr;
+                    newContact.First_Name__c = contact.firstNm.toLowerCase().capitalize();
+                    newContact.Last_Name__c = contact.lastNm.toLowerCase().capitalize();
+                    newContact.Middle_Name__c = contact.middleNm.toLowerCase().capitalize();
+                    newContact.Phone__c = contact.phoneNbr;
+                    newContact.Account__c = accountId;
+                    newContact.Acct_Row_Id__c = account.Acct_Row_Id__c;
+                    insert newContact;
+                    System.debug('*** Inserted Integration Record '+newContact);
+                    result = newContact.Contact__c;
+                }
+                if (result != null) {
+                    break;
+                }
+            }
+
+        } catch (Exception e){
+                System.debug('*** Error creating contact: '+e.getMessage());
+                logError(e);
+            }
+        }
+        return result;
     }
 
     private static String innerAttachToCase(String caseId, Id accountId, Id contactId, String customerDetailsJSON) {
@@ -1030,5 +1083,4 @@ public without sharing class CustomerDetailsController {
 
         }
     }
-
 }

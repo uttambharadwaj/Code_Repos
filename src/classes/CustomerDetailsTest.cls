@@ -307,6 +307,46 @@ public class CustomerDetailsTest {
 
     }
 
+    // Happy path test with account number passed in , generating new contact from source
+    static testMethod void testCustomerDetailsWithNewContact() {
+
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            String accountNumberToTest = '9100000000000';
+            String sourceSys           = 'SIEBEL';
+            String pdRowId = 'I-1234-Q';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            System.assert(CustomerDetailsController.genericProgram != null);
+
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest,null,null);
+
+            Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+
+            //Need to create a case so we'll have an owner in the attachToCase function.  Otherwise the triggers complain.
+            Case xCase = new Case(
+                    Subject = 'Test case',
+                    Type = 'Service Operations',
+                    RecordTypeId = caseRecordTypeId,
+                    OwnerId = user.Id
+            );
+            upsert xCase;
+
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZX', JSON.serialize(customerDetails));
+            System.debug('### ContactID=' + contactId);
+
+            Test.stopTest();
+        }
+
+    }
+
     static testMethod void testGetPaymentsWithAccount() {
         User user = getTestUser();
 
