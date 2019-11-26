@@ -936,6 +936,10 @@ public class OTRBOCAController {
                 opportunity.Campaign_Program__c = campaignProgram.Id;
             }
 
+            if (isConversionApp) {
+                opportunity.Disable_Instant_Decisioning__c = true;
+            }
+
             result = Database.upsert(opportunity, false);
             if (!result.isSuccess()) {
                 System.debug('### Opportunity Dump: ' + opportunity);
