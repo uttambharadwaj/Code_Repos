@@ -1,0 +1,48 @@
+<!--
+ - Used to replicate OutOfOffice functionality for users still in Salesforce Classic
+ -->
+
+<apex:page controller="ClassicOutOfOfficeController" showHeader="false" sidebar="false" applyHtmlTag="false"
+           docType="html-5.0" action="{!init}">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+              integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
+              crossorigin="anonymous"/>
+        <title>Out Of Office</title>
+
+    </head>
+
+    <body>
+
+    <div class="container-fluid ">
+        <apex:pageMessages id="pageMessage"></apex:pageMessages>
+        <apex:form styleClass="row fixed-bottom mb-5 ">
+
+                <div class="col-6">
+                    <label for="outOfOfficeStartDate">Start Date</label>
+                    <apex:inputField styleClass="form-control" value="{!outOfOffice.StartDate}"
+                                     id="outOfOfficeStartDate"/>
+                </div>
+
+                <div class="col-6">
+                    <label for="outOfOfficeEndDate">End Date</label>
+                    <apex:inputField styleClass="form-control" value="{!outOfOffice.EndDate}" id="outOfOfficeEndDate"/>
+                </div>
+
+                <div class="col-12">
+                    <label for="outOfOfficeMessage">Message</label>
+                    <apex:inputField styleClass="form-control" value="{!outOfOffice.Message}" id="outOfOfficeMessage"/>
+                </div>
+
+                <apex:commandButton styleClass="fixed-bottom w-100" value="Save" action="{!saveOutOfOffice}"
+                                    rerender="pageMessage"></apex:commandButton>
+
+        </apex:form>
+    </div>
+    </body>
+    </html>
+</apex:page>

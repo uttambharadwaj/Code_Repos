@@ -138,4 +138,8 @@ public class TestClassDispatcher {
         OpportunityHelperTest.updateOpptyPrimaryContact();
     }
 
+    @isTest static void testClassicOutOfOfficeController(){
+        ClassicOutOfOfficeControllerTest.testSaveOutOfOffice();
+    }
+
 }
