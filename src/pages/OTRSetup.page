@@ -279,6 +279,7 @@
                                 &nbsp;
                             </div>
 
+                            <apex:outputPanel id="convApp" rendered="{!if(!isConversionApp, true, false)}">
                             <!--BEGIN CARD INFORMATION SECTION-->
                             <div class="twelve columns clearfix">
                                 <div class="section-header">
@@ -701,6 +702,7 @@
                                 </apex:outputPanel>
                             </apex:outputPanel>
                             <!--END DRIVER INFORMATION SECTION-->
+                            </apex:outputPanel>
 
                             <script>
                                 pageLoadFunctions();

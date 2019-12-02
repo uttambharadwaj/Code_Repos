@@ -196,6 +196,8 @@ public without sharing class OTRSetupController {
 
     public String selectedFundingOptions { get; set; }
 
+    public Boolean isConversionApp { get; set; }
+
     public List<SelectOption> fundingOptions {
 
         get {
@@ -238,7 +240,7 @@ public without sharing class OTRSetupController {
                                 Card_Shipping_Address_Line_1__c, Card_Shipping_Address_Line_2__c, Card_Shipping_City__c, Card_Shipping_State__c, Card_Shipping_Postal_Code__c, Card_Shipping_Country__c, Card_Shipping_Attention__c,
                                 Opportunity__r.CampaignId, Contact_Last_Name__c, Email__c, Contact_First_Name__c, Phone_Number__c, Cell_Number__c, Opportunity__r.Campaign_Program__c,
                                 Card_Shipping_First_Name__c, Card_Shipping_Last_Name__c, Status__c,PDF_Token__c, Allowed_Merchant_Categories__c, Daily_Amount_Requested__c, Daily_Transactions__c,
-                                Monthly_Amount_Requested__c, Monthly_Transactions__c, Weekly_Amount_Requested__c, Weekly_Transactions__c, Scales_Limit__c, Carrier_ID_Number__c
+                                Monthly_Amount_Requested__c, Monthly_Transactions__c, Weekly_Amount_Requested__c, Weekly_Transactions__c, Scales_Limit__c, Carrier_ID_Number__c, Application_Type__c
                         FROM OnlineApplication__c
                         WHERE Id = :customerParameter AND Status__c = 'App-Incomplete'
                         LIMIT 1
@@ -271,6 +273,10 @@ public without sharing class OTRSetupController {
 
                         campaign = WexBrandingController.getCampaignByCampaignProgram(onlineApplication.Opportunity__r.Campaign_Program__c);
 
+                    }
+
+                    if (onlineApplication.Application_Type__c != null && (onlineApplication.Application_Type__c).equalsIgnoreCase('conversion')) {
+                        isConversionApp = true;
                     }
 
                     onlineApplicationDrivers = new List<OnlineApplicationDriverSetup__c>();
