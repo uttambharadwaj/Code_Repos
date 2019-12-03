@@ -13,7 +13,7 @@
                     </apex:repeat>
 
                     <table-header>
-                        <table-row height="10pt" font-weight="bold" text-align="center" color="#000000" background-color="#D7D7D7">
+                        <table-row height="9pt" font-weight="bold" text-align="center" color="#000000" background-color="#D7D7D7">
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[8]==true}">
                                 <table-cell border="1px solid black" margin="0pt" padding="5pt">
                                     <block>Rebate Schedule Tier</block>
@@ -67,7 +67,7 @@
                             <table-row font-size="0.9em">
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[8]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="{0, number, ###,###,###}">
                                                 <apex:param value="{!tier.tierNumber}" /></apex:outputText>
                                         </block>
@@ -76,7 +76,7 @@
 
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[0]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="{0, number, ###,###,###}">
                                                 <apex:param value="{!tier.lowerBound}" /></apex:outputText>
                                         </block>
@@ -85,7 +85,7 @@
 
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[1]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="{0, number, ###,###,###}">
                                                 <apex:param value="{!tier.upperBound}" /></apex:outputText>
                                         </block>
@@ -94,7 +94,7 @@
 
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[7]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="{!tier.bonusRebate}" />
                                         </block>
                                     </table-cell>
@@ -102,7 +102,7 @@
 
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[2]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="${0, number, ###,###,##0.0000}">
                                                 <apex:param value="{!tier.centsPerGallon}" /></apex:outputText>
                                         </block>
@@ -111,7 +111,7 @@
 
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[3]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="{!tier.election}" />
                                         </block>
                                     </table-cell>
@@ -119,7 +119,7 @@
 
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[4]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="{!tier.paymentTimingOptions}" />
                                         </block>
                                     </table-cell>
@@ -127,7 +127,7 @@
 
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[5]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="{!tier.basisPointsRebate}" />
                                         </block>
                                     </table-cell>
@@ -135,7 +135,7 @@
 
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[6]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
-                                        <block font-weight="bold">
+                                        <block font-weight="normal">
                                             <apex:outputText value="{!tier.paymentTiming}" />
                                         </block>
                                     </table-cell>
