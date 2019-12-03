@@ -147,7 +147,7 @@ public without sharing class CustomerDetailsController {
             }
 
             if(String.isEmpty(customerDetails.accountNm)) {
-                throw new customerDetailsException('Unable to retrieve account information.');
+                throw new customerDetailsException('Unable to retrieve account information: '+accountNumber + ', '+accountRecordId + ', pdRowId' +  (String.isEmpty(pdRowidString) ? ' not' : '')+' provided');
             }
 
             return customerDetails;
@@ -546,24 +546,22 @@ public without sharing class CustomerDetailsController {
     public static Id getContactId(String accountId, String contactRowId) {
         System.debug('Entering getContactId for accountId '+accountId+' and contactRowId '+contactRowId);
         try {
-            String contactRowIdToUse = contactRowId;
-            if (contactRowId.contains('#')) {
-                contactRowIdToUse = contactRowId.split('#').get(0);
-            }
-            //todo: fix in downstream env
-            //List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
-            //List<IntegrationRecord__c> serviceOperationsContacts = [SELECT Contact__r.ID FROM IntegrationRecord__c WHERE Contact_Row_ID__c =: contactRowIdToUse];
+            String contactRowIdToUse = getContactRowId(contactRowId);
+            List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_ID__c =: contactRowId];
 
-            List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_Id__c =: contactRowId];
+            if (serviceOperationsContacts.size() == 0) {
+                //Contact_Row_ID__c is a unique, External ID field in Integration Record
+                List<IntegrationRecord__c> serviceOperationsIntegrationRecords = [SELECT Contact__r.Id FROM IntegrationRecord__c WHERE Contact_Row_Id__c =: contactRowIdToUse];
+                if (serviceOperationsIntegrationRecords.size() > 0)
+                    serviceOperationsContacts.add(serviceOperationsIntegrationRecords[0].Contact__r);
+            }
+
 
             System.debug('### ' + serviceOperationsContacts);
 
             if(serviceOperationsContacts.size() > 0) {
 
                 return serviceOperationsContacts[0].Id;
-                //Future once integration records are implemented
-                //return serviceOperationsContacts[0].Contact__r.ID;
-
             }
             else {
 
@@ -597,7 +595,7 @@ public without sharing class CustomerDetailsController {
                 if(serviceOperationsAccountRecordTypeId != null) {
 
                     // We only want to select an existing account that is of the 'Service Operations' record type
-                    List<Account> existingAccount = [SELECT Id FROM Account WHERE Wex_Account__c =: customerDetails.wexAccountNbr AND RecordTypeId =: serviceOperationsAccountRecordTypeId LIMIT 1];
+                    List<Account> existingAccount = [SELECT Id FROM Account WHERE Acct_Row_Id__c =: customerDetails.acctRowId AND RecordTypeId =: serviceOperationsAccountRecordTypeId LIMIT 1];
 
                     Account serviceOperationsAccount = null;
 
@@ -616,92 +614,110 @@ public without sharing class CustomerDetailsController {
                         serviceOperationsAccount.Customer_Segmentation__c = Integer.valueOf(customerDetails.customerSegmentation);
                     }
 
+                    if (customerDetails.accountSts != null) {
+                        if(customerDetails.accountSts.equalsIgnoreCase('A')) {
+                            serviceOperationsAccount.Status__c = 'Active';
+                        }
+                        else if(customerDetails.accountSts.equalsIgnoreCase('T')) {
+                            serviceOperationsAccount.Status__c = 'Terminated';
+                        }
+                        else if (customerDetails.accountSts.equalsIgnoreCase('S')) {
+                            serviceOperationsAccount.Status__c = 'Suspended';
+                        } //If we sent the full-word status, use it
+                        else if (!(String.isEmpty(customerDetails.accountSts))) {
+                            serviceOperationsAccount.Status__c = customerDetails.accountSts;
+                        }
+                    }
+
                     // Update all the fields of the account, if it didn't exist in Salesforce
                     if (accountNewToSalesforce) {
-                    // Tie our account to a program in SFDC, if it exists
-                    List<Program__c> programs = [SELECT Id FROM Program__c WHERE Siebel_Program_Row_Id__c =: customerDetails.programId];
+                        // Tie our account to a program in SFDC, if it exists
+                        List<Program__c> programs = [SELECT Id FROM Program__c WHERE Siebel_Program_Row_Id__c =: customerDetails.programId];
 
-                    if(programs.size() > 0) {
+                        if(programs.size() > 0) {
                             serviceOperationsAccount.Program__c = programs.get(0).Id;
-                    }
-                    else {
-                        serviceOperationsAccount.Program__c = genericProgram;
-                    }
-
-                    serviceOperationsAccount.Name = customerDetails.accountNm;
-                    serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
-                    serviceOperationsAccount.Acct_Row_Id__c = customerDetails.acctRowId;
-                    serviceOperationsAccount.Wex_Account__c = customerDetails.wexAccountNbr;
-                    serviceOperationsAccount.Sponsor_Acct__c = customerDetails.spnrAccountNbr;
-                    serviceOperationsAccount.PFS_REP__c = customerDetails.pfsRepNm;
-
-                    if (customerDetails.priorityLevel != null) {
-                        serviceOperationsAccount.Priority_Level__c = customerDetails.priorityLevel;
-                        serviceOperationsAccount.Priority_Level_Update_Date__c = System.now();
-                    }
-
-                    if (customerDetails.funder != null) {
-                        serviceOperationsAccount.Funder__c = customerDetails.funder;
-                    }
-
-                    if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('A')) {
-                        serviceOperationsAccount.Status__c = 'Active';    
-                    }
-                    else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('T')) {
-                        serviceOperationsAccount.Status__c = 'Terminated';    
-                    }
-                    else if(customerDetails.accountSts != null && (customerDetails.accountSts).equalsIgnoreCase('S')) {
-                        serviceOperationsAccount.Status__c = 'Suspended';    
-                        } //If we sent the full-word status, use it
-                        else if(customerDetails.accountSts != null && !(String.isEmpty(customerDetails.accountSts))) {
-                            serviceOperationsAccount.Status__c = customerDetails.accountSts;
-                    }
-
-                    serviceOperationsAccount.Platform__c = customerDetails.sourceSys;
-                    serviceOperationsAccount.Online_Application_URL__c = customerDetails.onlineApplication;
-                    serviceOperationsAccount.Account_Instructions__c = customerDetails.specialInstructions;
-
-                    if(customerDetails.billingAddress != null) {
-                        serviceOperationsAccount.BillingStreet = customerDetails.billingAddress.addr1;
-
-                        if(customerDetails.billingAddress.addr2 != null) {
-                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr2;
                         }
-                        if(customerDetails.billingAddress.addr3 != null) {
-                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr3;
-                        }
-                        if(customerDetails.billingAddress.addr4 != null) {
-                            serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr4;
+                        else {
+                            serviceOperationsAccount.Program__c = genericProgram;
                         }
 
-                        serviceOperationsAccount.BillingCity = customerDetails.billingAddress.city;
-                        serviceOperationsAccount.BillingState = customerDetails.billingAddress.state;
-                        serviceOperationsAccount.BillingCountry = customerDetails.billingAddress.country;
-                        serviceOperationsAccount.BillingPostalCode = customerDetails.billingAddress.postalCode;
-                    }
+                        serviceOperationsAccount.Name = customerDetails.accountNm;
+                        serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
+                        serviceOperationsAccount.Acct_Row_Id__c = customerDetails.acctRowId;
+                        serviceOperationsAccount.Wex_Account__c = customerDetails.wexAccountNbr;
+                        serviceOperationsAccount.Sponsor_Acct__c = customerDetails.spnrAccountNbr;
+                        serviceOperationsAccount.PFS_REP__c = customerDetails.pfsRepNm;
 
-                    if(customerDetails.mailingAddress != null) {
-                        serviceOperationsAccount.ShippingStreet = customerDetails.mailingAddress.addr1;
-
-                        if(customerDetails.billingAddress.addr2 != null) {
-                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr2;
-                        }
-                        if(customerDetails.billingAddress.addr3 != null) {
-                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr3;
-                        }
-                        if(customerDetails.billingAddress.addr4 != null) {
-                            serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr4;
+                        if (customerDetails.priorityLevel != null) {
+                            serviceOperationsAccount.Priority_Level__c = customerDetails.priorityLevel;
+                            serviceOperationsAccount.Priority_Level_Update_Date__c = System.now();
                         }
 
-                        serviceOperationsAccount.ShippingCity = customerDetails.mailingAddress.city;
-                        serviceOperationsAccount.ShippingState = customerDetails.mailingAddress.state;
-                        serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
-                        serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
-                    }
+                        if (customerDetails.funder != null) {
+                            serviceOperationsAccount.Funder__c = customerDetails.funder;
+                        }
+
+                        serviceOperationsAccount.Platform__c = customerDetails.sourceSys;
+                        serviceOperationsAccount.Online_Application_URL__c = customerDetails.onlineApplication;
+                        serviceOperationsAccount.Account_Instructions__c = customerDetails.specialInstructions;
+
+                        if(customerDetails.billingAddress != null) {
+                            serviceOperationsAccount.BillingStreet = customerDetails.billingAddress.addr1;
+
+                            if(customerDetails.billingAddress.addr2 != null) {
+                                serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr2;
+                            }
+                            if(customerDetails.billingAddress.addr3 != null) {
+                                serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr3;
+                            }
+                            if(customerDetails.billingAddress.addr4 != null) {
+                                serviceOperationsAccount.BillingStreet += '\n' + customerDetails.billingAddress.addr4;
+                            }
+
+                            serviceOperationsAccount.BillingCity = customerDetails.billingAddress.city;
+                            serviceOperationsAccount.BillingState = customerDetails.billingAddress.state;
+                            serviceOperationsAccount.BillingCountry = customerDetails.billingAddress.country;
+                            serviceOperationsAccount.BillingPostalCode = customerDetails.billingAddress.postalCode;
+                        }
+
+                        if(customerDetails.mailingAddress != null) {
+                            serviceOperationsAccount.ShippingStreet = customerDetails.mailingAddress.addr1;
+
+                            if(customerDetails.billingAddress.addr2 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr2;
+                            }
+                            if(customerDetails.billingAddress.addr3 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr3;
+                            }
+                            if(customerDetails.billingAddress.addr4 != null) {
+                                serviceOperationsAccount.ShippingStreet += '\n' + customerDetails.mailingAddress.addr4;
+                            }
+
+                            serviceOperationsAccount.ShippingCity = customerDetails.mailingAddress.city;
+                            serviceOperationsAccount.ShippingState = customerDetails.mailingAddress.state;
+                            serviceOperationsAccount.ShippingCountry = customerDetails.mailingAddress.country;
+                            serviceOperationsAccount.ShippingPostalCode = customerDetails.mailingAddress.postalCode;
+                        }
+                        //Only populate primary and billing contacts for Tandem
+                        if (customerDetails.contacts != null && customerDetails.contacts.contacts.size() > 0) {
+                            for (CustomerDetailsWSUtilv2.contact contact : customerDetails.contacts.contacts) {
+                                if (contact.role.equalsIgnoreCase('PRIMARY')) {
+                                    serviceOperationsAccount.Primary_Contact_TXT__c = getContactRowId(contact.rowId);
+                                } else if (contact.role.equalsIgnoreCase('SHIPPING') && (!customerDetails.sourceSys.equalsIgnoreCase('TANDEM'))) {
+                                    serviceOperationsAccount.Shipping_Contact_TXT__c = getContactRowId(contact.rowId);
+                                } else if (contact.role.equalsIgnoreCase('BILLING')) {
+                                    serviceOperationsAccount.Billing_Contact_TXT__c = getContactRowId(contact.rowId);
+                                } else if (contact.role.equalsIgnoreCase('MAILING')  && (!customerDetails.sourceSys.equalsIgnoreCase('TANDEM'))) {
+                                    serviceOperationsAccount.Mailing_Contact_TXT__c = getContactRowId(contact.rowId);
+                                } else if (contact.role.equalsIgnoreCase('ADMIN')  && (!customerDetails.sourceSys.equalsIgnoreCase('TANDEM'))) {
+                                    serviceOperationsAccount.Admin_Contact_TXT__c = getContactRowId(contact.rowId);
+                                }
+                            }
+                        }
                     } //accountNewToSalesforce
 
                     //Upsert for convenience; if the account is new to Salesforce it will be an Insert, otherwise an Update but
-                    //we only update segmentation.
+                    //we only update segmentation and status.
                     upsert serviceOperationsAccount;
 
                     System.debug('### AcctId ' + serviceOperationsAccount.Id);
@@ -730,6 +746,14 @@ public without sharing class CustomerDetailsController {
 
         }
 
+    }
+
+    public static String getContactRowId(String inStr) {
+        String contactRowIdToUse = inStr;
+        if (inStr.contains('#')) {
+            contactRowIdToUse = inStr.split('#').get(0);
+        }
+        return contactRowIdToUse;
     }
 
     private static CustomerDetailsWSUtilv2.customerDetails getCustomerDetailsFromJson(String customerDetailsJSON) {
@@ -803,7 +827,11 @@ public without sharing class CustomerDetailsController {
 
                 }
 
-                updatedServiceOperationsContacts.add(contact);
+                //Don't add this contact as we want to test new contact addition
+                if (!(contact.WEX_Contact_ID__c.equals('1-1ZZZZX') && Test.isRunningTest())) {
+                    updatedServiceOperationsContacts.add(contact);
+                }
+
 
                 // Avoid the threshold for upserts
                 if(updatedServiceOperationsContacts.size() == 99) {
@@ -867,6 +895,10 @@ public without sharing class CustomerDetailsController {
 
             Id contactId = getContactId(accountId, contactRowId);
 
+            if (contactId == null && accountId != null) {
+                contactId = extractContactFromJSON(accountId, contactRowId, customerDetailsJSON);
+            }
+
             return innerAttachToCase(caseId, accountId, contactId, customerDetailsJSON);
 
         }
@@ -901,6 +933,51 @@ public without sharing class CustomerDetailsController {
 
         }
 
+    }
+
+    private static Id extractContactFromJSON(Id accountId, String contactRowId, String customerDetailsJSON) {
+        CustomerDetailsWSUtilv2.customerDetails customerDetails = getCustomerDetailsFromJson(customerDetailsJSON);
+        CustomerDetailsWSUtilv2.contacts contactsWrapper = customerDetails.contacts;
+
+        String contactRowIdToUse = getContactRowId(contactRowId);
+        Account account = [SELECT Id, Acct_Row_Id__c FROM Account WHERE Id =: accountId LIMIT 1];
+
+        IntegrationRecord__c newContact;
+        Id result = null;
+
+        if (contactsWrapper != null && contactsWrapper.contacts != null && !(contactsWrapper.contacts.isEmpty())) {
+            CustomerDetailsWSUtilv2.contact[] contacts = contactsWrapper.contacts;
+            try {
+            for (CustomerDetailsWSUtilv2.contact contact : contacts) {
+                String currentRowId = getContactRowId(contact.rowId);
+                if (contactRowIdToUse.equalsIgnoreCase(currentRowId)) {
+                    System.debug('Matched rowId '+currentRowId);
+                    newContact = new IntegrationRecord__c();
+                    newContact.Contact_Row_Id__c = currentRowId;
+                    newContact.Contact_Type__c = contact.role;
+                    newContact.Email__c = contact.emailAddr.toLowerCase();
+                    newContact.Fax__c = contact.faxNbr;
+                    newContact.First_Name__c = contact.firstNm.toLowerCase().capitalize();
+                    newContact.Last_Name__c = contact.lastNm.toLowerCase().capitalize();
+                    newContact.Middle_Name__c = contact.middleNm.toLowerCase().capitalize();
+                    newContact.Phone__c = contact.phoneNbr;
+                    newContact.Account__c = accountId;
+                    newContact.Acct_Row_Id__c = account.Acct_Row_Id__c;
+                    insert newContact;
+                    System.debug('*** Inserted Integration Record '+newContact);
+                    result = newContact.Contact__c;
+                }
+                if (result != null) {
+                    break;
+                }
+            }
+
+        } catch (Exception e){
+                System.debug('*** Error creating contact: '+e.getMessage());
+                logError(e);
+            }
+        }
+        return result;
     }
 
     private static String innerAttachToCase(String caseId, Id accountId, Id contactId, String customerDetailsJSON) {
@@ -1006,5 +1083,4 @@ public without sharing class CustomerDetailsController {
 
         }
     }
-
 }
