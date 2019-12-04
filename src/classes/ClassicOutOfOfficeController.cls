@@ -5,7 +5,6 @@ public class ClassicOutOfOfficeController {
     public OutOfOffice outOfOffice { get; set; }
 
     public void init() {
-        System.debug('Do Soemthing..');
 
         try {
             outOfOffice = [SELECT Id, Message, StartDate, EndDate, UserId FROM OutOfOffice WHERE UserId = :UserInfo.getUserId()];
