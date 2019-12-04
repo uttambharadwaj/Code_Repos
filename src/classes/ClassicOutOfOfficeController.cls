@@ -25,7 +25,7 @@ public class ClassicOutOfOfficeController {
         try {
 
             upsert outOfOffice;
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM, 'Successfully updated Out Of Office information!'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM, Label.OutOfOffice_Success));
 
 
         } catch (Exception e) {
