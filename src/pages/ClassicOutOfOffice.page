@@ -23,22 +23,22 @@
         <apex:form styleClass="row fixed-bottom mb-5 ">
 
                 <div class="col-6">
-                    <label for="outOfOfficeStartDate">Start Date</label>
+                    <label for="outOfOfficeStartDate">{!$Label.OutOfOffice_StartDate}</label>
                     <apex:inputField styleClass="form-control" value="{!outOfOffice.StartDate}"
                                      id="outOfOfficeStartDate"/>
                 </div>
 
                 <div class="col-6">
-                    <label for="outOfOfficeEndDate">End Date</label>
+                    <label for="outOfOfficeEndDate">{!$Label.OutOfOffice_EndDate}</label>
                     <apex:inputField styleClass="form-control" value="{!outOfOffice.EndDate}" id="outOfOfficeEndDate"/>
                 </div>
 
                 <div class="col-12">
-                    <label for="outOfOfficeMessage">Message</label>
+                    <label for="outOfOfficeMessage">{!$Label.OutOfOffice_Message}</label>
                     <apex:inputField styleClass="form-control" value="{!outOfOffice.Message}" id="outOfOfficeMessage"/>
                 </div>
 
-                <apex:commandButton styleClass="fixed-bottom w-100" value="Save" action="{!saveOutOfOffice}"
+                <apex:commandButton styleClass="fixed-bottom w-100" value="{!$Label.OutOfOffice_Save}" action="{!saveOutOfOffice}"
                                     rerender="pageMessage"></apex:commandButton>
 
         </apex:form>
