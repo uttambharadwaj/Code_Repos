@@ -1,5 +1,7 @@
 /**
  * Created by lhowland on 5/22/2019.
+ *
+ * Revision History:    25/Nov/2019     MFarrell    PSOBACKLOG-305      Added application type radio buttons for conversion process.
  */
 
 public class PaperAppSubmissionExtension {
@@ -33,6 +35,9 @@ public class PaperAppSubmissionExtension {
 
     public Id selectedProgram { get; set; }
     public Id selectedOffer { get; set; }
+    public String appType { get; set; } {
+        appType = 'paperApp';
+    }
     public Id partnerId = null;
     public Id uid = null;
     public User u = null;
@@ -63,7 +68,7 @@ public class PaperAppSubmissionExtension {
 
         //Update offer
         try {
-            oppties[0].offer__c = selectedOffer;
+            oppties[0].Offer__c = selectedOffer;
 
             upsert oppties;
 
@@ -100,6 +105,11 @@ public class PaperAppSubmissionExtension {
                                 paperAppSubmission.getParameters().put('pgm', brandShortName);
                                 paperAppSubmission.getParameters().put('optyId', optyId);
                                 paperAppSubmission.getParameters().put('accntId', accountId);
+                                if(appType == 'paperApp') {
+                                    paperAppSubmission.getParameters().put('appType', 'p');
+                                } else if (appType == 'convApp') {
+                                    paperAppSubmission.getParameters().put('appType', 'c');
+                                }
                                 System.debug('TEMP page ref: ' + paperAppSubmission);
                                 paperAppSubmission.setRedirect(true);
                                 return paperAppSubmission;

@@ -40,6 +40,7 @@ public class OpportunityAssignment {
 
     private static void opportunityAssignments(List<Application_Request__c> applicationRequests, List<String> allRoles, List<Id> allOpportunityIds) {
         List<Opportunity> opportunitiesToUpdate = new List<Opportunity>();
+        List<Task> tasksToUpdate = new List<Task>();
         Map<String, List<User>> userRoleMap = new Map<String, List<User>>(); // Key: Users Role Name Value: User
         Map<String, Opportunity_Assignments__c> opportunityAssignmentMap = new Map<String, Opportunity_Assignments__c>(); // Key: Role Name Value: Opt Assignment Record
 
@@ -47,7 +48,9 @@ public class OpportunityAssignment {
         for (User user : [
                 SELECT Id, Name, UserRole.Name
                 FROM User
-                WHERE UserRole.Name IN :allRoles AND IsActive = true
+                WHERE UserRole.Name IN :allRoles
+                AND IsActive = true
+                AND Id NOT IN (SELECT UserId FROM OutOfOffice WHERE isEnabled = TRUE)
                 order by Name ASC
         ]) {
 
@@ -71,30 +74,66 @@ public class OpportunityAssignment {
         // Get all needed opportunities
         Map<Id, Opportunity> opportunityMap = new Map<Id, Opportunity>([SELECT Id, OwnerId, Opportunity_Number__c, Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c FROM Opportunity WHERE Id IN :allOpportunityIds]);
 
-        for (Application_Request__c applicationRequest : applicationRequests) {
+        // Get any tasks associated to the opportunities so that the owner can be updated
+        Map<Id, List<Task>> opportunityToTaskMap = new Map<Id, List<Task>>();
+        for (Task task : [
+                SELECT Id, WhatId
+                FROM Task
+                WHERE WhatId IN :opportunityMap.values()
+                AND OwnerId IN (SELECT Id FROM User WHERE Alias = 'sinte')
+        ]) {
 
-            Opportunity opportunity = opportunityMap.get(applicationRequest.Opportunity__c);
-            String userRole = opportunity.Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c;
-            List<User> roleUsers = userRoleMap.get(userRole);
-
-
-            if (opportunityAssignmentMap.get(userRole) == null) {
-                opportunityAssignmentMap.put(userRole, new Opportunity_Assignments__c(Name = userRole));
+            if (opportunityToTaskMap.get(task.WhatId) == null) {
+                opportunityToTaskMap.put(task.WhatId, new List<Task>());
             }
 
-            Opportunity_Assignments__c opportunityAssignment = opportunityAssignmentMap.get(userRole);
-            Integer indexOfNextUser = getLastUserIndex(roleUsers, opportunityAssignment.Last_Assigned_User__c) + 1;
+            opportunityToTaskMap.get(task.WhatId).add(task);
 
-            opportunity.OwnerId = roleUsers[indexOfNextUser].Id;
-            opportunityAssignment.Last_Assigned_User__c = roleUsers[indexOfNextUser].Id;
-            opportunityAssignmentMap.put(userRole, opportunityAssignment);
+        }
 
-            opportunitiesToUpdate.add(opportunity);
+        // Finally, go through each application request
+        for (Application_Request__c applicationRequest : applicationRequests) {
+
+
+            if (opportunityMap.get(applicationRequest.Opportunity__c) != null) {
+
+                Opportunity opportunity = opportunityMap.get(applicationRequest.Opportunity__c);
+                String userRole = opportunity.Campaign_Program__r.Program__r.Opportunity_Role_Assignment__c;
+                List<User> roleUsers = userRoleMap.get(userRole);
+
+
+                if (opportunityAssignmentMap.get(userRole) == null) {
+                    opportunityAssignmentMap.put(userRole, new Opportunity_Assignments__c(Name = userRole));
+                }
+
+                Opportunity_Assignments__c opportunityAssignment = opportunityAssignmentMap.get(userRole);
+                Integer indexOfNextUser = getLastUserIndex(roleUsers, opportunityAssignment.Last_Assigned_User__c) + 1;
+
+                opportunity.OwnerId = roleUsers[indexOfNextUser].Id;
+                opportunityAssignment.Last_Assigned_User__c = roleUsers[indexOfNextUser].Id;
+                opportunityAssignmentMap.put(userRole, opportunityAssignment);
+
+                opportunitiesToUpdate.add(opportunity);
+
+                if (opportunityToTaskMap.get(opportunity.Id) != null) {
+
+                    for (Task task : opportunityToTaskMap.get(opportunity.Id)) {
+                        task.OwnerId = roleUsers[indexOfNextUser].Id;
+                        tasksToUpdate.add(task);
+                    }
+                }
+
+            }
         }
         try {
-            upsert opportunityAssignmentMap.values();
-            update opportunitiesToUpdate;
-            opportunitySplitReset(opportunitiesToUpdate);
+
+            if (!opportunitiesToUpdate.isEmpty()) {
+                upsert opportunityAssignmentMap.values();
+                update opportunitiesToUpdate;
+                update tasksToUpdate;
+                opportunitySplitReset(opportunitiesToUpdate);
+            }
+
         } catch (Exception e) {
             insert UtilityClass.logInternalError(e, '', 'OpportunityAssignment', false, '', String.valueOf(new Map<Id, SObject>(applicationRequests).keySet()));
         }

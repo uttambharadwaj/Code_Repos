@@ -1,5 +1,6 @@
 <!--
  - Created by lhowland on 5/22/2019.
+ - Revision History:    25/Nov/2019     MFarrell    PSOBACKLOG-305      Added application type radio buttons for conversion process.
  -->
 
 <apex:page standardController="Opportunity" showHeader="true" sidebar="true" extensions="PaperAppSubmissionExtension" docType="html-5.0" standardStylesheets="true" action="{!init}">
@@ -14,27 +15,6 @@
         <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
         <apex:slds />
 
-        <style>
-            .submitButton {
-                border: 1px solid #bbc0c4;
-                background: #fff;
-                border-radius: 5px;
-                padding: 4px;
-                width: 140px;
-                font-size: 14px;
-                color: #707d95;
-                vertical-align: middle;
-                text-align: center;
-                cursor: pointer;
-                margin-top: -10px;
-                margin-bottom: 20px;
-            }
-
-            .submitButton:hover {
-                background: #e6e6e6;
-            }
-
-        </style>
     </head>
 
     <apex:pageMessages id="msgs" />
@@ -48,7 +28,7 @@
                         </div>
                     </header>
                 </div>
-                <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                <div class="slds-card__body">
                     <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
                         <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
                             <div class="slds-media__body">
@@ -68,14 +48,26 @@
                                             <apex:selectOptions value="{!availableOffers}" />
                                         </apex:selectlist>
                                     </div>
-                                </div><br/>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="slds-card__body slds-p-left_medium slds-p-top_small slds-p-bottom_small">
+                    <div class="slds-media__body">
+                        <label class="slds-form-element__label" for="appType">
+                            {!$Label.PaperApp_AppType}<abbr class="slds-required" title="required">*</abbr>
+                        </label>
+                        <apex:selectRadio id="appType" value="{!appType}" layout="pageDirection">
+                            <apex:selectOption id="paperApp" itemLabel="{!$Label.PaperApp_PaperApp}" itemValue="paperApp"></apex:selectOption>
+                            <apex:selectOption id="convApp" itemLabel="{!$Label.PaperApp_Conversion}" itemValue="convApp"></apex:selectOption>
+                        </apex:selectRadio>
+                    </div>
+                </div>
             </article>
-            <br />
-            <apex:commandButton styleClass="submitButton" value="Submit" action="{!buildURL}" />
+            <div class="slds-p-left_medium slds-p-top_medium">
+                <apex:commandButton styleClass="slds-button slds-button_neutral slds-button_stateful slds-not-selected" value="Submit" action="{!buildURL}" />
+            </div>
         </apex:outputPanel>
     </apex:form>
     </html>

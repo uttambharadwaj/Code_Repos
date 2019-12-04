@@ -47,14 +47,14 @@
     <aura:attribute name="paymentHistoryColumnList" type="List" />
     <aura:attribute name="pendingPaymentsColumnList" type="List" />
     
-    <aura:attribute name="selectedTabId" type="string" default="customerDetailsTab" />
+    <aura:attribute name="selectedTabId" type="string" default="customerContactsTab" />
     <aura:attribute name="selectedPaymentsTabId" type="string" default="paymentDetailsTab" />
     <aura:attribute name="txnSortedBy" type="string" default="Id" />
     <aura:attribute name="txnSortOrder" type="String" default="asc" />
 
     <aura:attribute name="caseHistory" type="Map" />
     <aura:attribute name="caseHistoryColumnList" type="List" />
-    
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <ltng:require styles="{!$Resource.FontAwesome + '/font-awesome-4.7.0/css/font-awesome.min.css'}" />
     <ltng:require scripts="{!$Resource.ChartJS}" />
@@ -62,7 +62,7 @@
     <ltng:require scripts="{!$Resource.LodashJS}"/>
     <lightning:workspaceAPI aura:id="workspace" />
     <lightning:spinner aura:id="loadingSpinner" class="full-height"/>
-    
+
     <aura:if isTrue="{!v.recordId == null}">
         <div class="slds-page-header" style="margin-bottom: 10px;">
             <div class="slds-grid">
@@ -188,7 +188,7 @@
                                     <lightning:formattedDateTime value="{!v.customerDetails.accountSinceDt}" />
                                     <aura:if isTrue="{!v.customerDetails.accountSinceDt == null}">N/A</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -201,7 +201,7 @@
                                     <lightning:formattedDateTime value="{!v.customerDetails.accountStsDt}" />
                                     <aura:if isTrue="{!v.customerDetails.accountStsDt == null}">N/A</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -214,7 +214,7 @@
                                     {!v.customerDetails.accountStatusReason}
                                     <aura:if isTrue="{!v.customerDetails.accountStatusReason == null}">N/A</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -227,7 +227,7 @@
                                     {!v.customerDetails.billtoAccountNm}
                                     <aura:if isTrue="{!v.customerDetails.billtoAccountNm == null}">N/A</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -239,7 +239,7 @@
                                 <div class="slds-text-heading--small">
                                     {!v.numberOfCasesToday}
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -252,7 +252,7 @@
                                     {!v.customerDetails.driverCount}
                                     <aura:if isTrue="{!v.customerDetails.driverCount == null}">Refer to Source</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -265,7 +265,7 @@
                                     {!v.customerDetails.dIDLength}
                                     <aura:if isTrue="{!v.customerDetails.dIDLength == null}">N/A</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -278,7 +278,7 @@
                                     {!v.customerDetails.vehicleCount}
                                     <aura:if isTrue="{!v.customerDetails.vehicleCount == null}">Refer to Source</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -291,7 +291,7 @@
                                     {!v.customerDetails.salesRepCode}
                                     <aura:if isTrue="{!v.customerDetails.salesRepCode == null}">N/A</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -304,7 +304,7 @@
                                     {!v.customerDetails.pfsRepNm}
                                     <aura:if isTrue="{!v.customerDetails.pfsRepNm == null || v.customerDetails.pfsRepNm == ' '}">N/A</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -317,7 +317,7 @@
                                     {!v.customerDetails.srsCodeAndName}
                                     <aura:if isTrue="{!v.customerDetails.srsCodeAndName == null|| v.customerDetails.srsCodeAndName == ' '}">N/A</aura:if>
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -333,7 +333,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <aura:if isTrue="{!v.frontPageExistingCases != null}">
@@ -430,7 +430,7 @@
                 <div class="slds-media">
                     <div class="slds-media__figure">
                         <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
-                            <lightning:icon iconName="standard:product_item" variant="error" size="small" />  
+                            <lightning:icon iconName="standard:product_item" variant="error" size="small" />
                         </span>
                     </div>
                     <div class="slds-media__body">
@@ -455,21 +455,21 @@
                 <tbody>
                     <aura:if isTrue="{!v.customerDetails.wrightRewardsCustomer == true}">
                         <tr>
-                            <td data-label="Product Name">Wright Rewards</td>                    	
+                            <td data-label="Product Name">Wright Rewards</td>
                             <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.wrightRewardsCustomerStartDt}" /></td>
                             <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.wrightRewardsCustomerEndDt}" /></td>
                         </tr>
                     </aura:if>
                     <aura:if isTrue="{!v.customerDetails.telematicsCustomer == true}">
                         <tr>
-                            <td data-label="Product Name">Telematics</td>                    	
+                            <td data-label="Product Name">Telematics</td>
                             <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.telematicsCustomerStartDt}" /></td>
                             <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.telematicsCustomerEndDt}" /></td>
                         </tr>
                     </aura:if>
                     <aura:if isTrue="{!v.customerDetails.clearViewCustomer == true}">
                         <tr>
-                            <td data-label="Product Name">ClearView</td>                    	
+                            <td data-label="Product Name">ClearView</td>
                             <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.clearViewCustomerStartDt}" /></td>
                             <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.clearViewCustomerEndDt}" /></td>
                         </tr>
@@ -661,6 +661,11 @@
                         <th scope="col">
                             <div class="slds-truncate" title="Contact Name">Contact Name</div>
                         </th>
+                        <aura:if isTrue="{!or(v.appMode != 'subtab', v.recordId != null)}">
+                            <th scope="col">
+                                <div class="slds-truncate" title="NewCaseAction">Action</div>
+                            </th>
+                        </aura:if>
                         <th scope="col">
                             <div class="slds-truncate" title="Address">Address</div>
                         </th>
@@ -691,6 +696,11 @@
                                     Other Contact
                                 </div>
                             </td>
+                            <td scope="row" data-label="NewCaseAction">
+                                <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                    <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="UnknownContact" onclick="{!c.popToCase}">New Case</button>
+                                </aura:if>
+                            </td>
                             <td data-label="Address">
                             </td>
                             <td data-label="Phone">
@@ -708,9 +718,6 @@
                                 <td data-label="Actions">
                                     <div class="slds-truncate">
                                         <div class="slds-button-group" role="group">
-                                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="UnknownContact" onclick="{!c.popToCase}">New Case</button>
-                                            </aura:if>
                                             <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
                                                 <!-- This is the update for a specific case that is passed in -->
                                                 <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="UnknownContact" onclick="{!c.popToCase}">Update Case</button>
@@ -731,6 +738,11 @@
                             Driver
                         </div>
                     </td>
+                    <td scope="row" data-label="NewCaseAction">
+                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">New Case</button>
+                        </aura:if>
+                    </td>
                     <td data-label="Address">
                     </td>
                     <td data-label="Phone">
@@ -748,9 +760,6 @@
                         <td data-label="Actions">
                             <div class="slds-truncate">
                                 <div class="slds-button-group" role="group">
-                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">New Case</button>
-                                    </aura:if>
                                     <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
                                         <!-- This is the update for a specific case that is passed in -->
                                         <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">Update Case</button>
@@ -771,6 +780,11 @@
                             Merchant
                         </div>
                     </td>
+                    <td scope="row" data-label="NewCaseAction">
+                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">New Case</button>
+                        </aura:if>
+                    </td>
                     <td data-label="Address">
                     </td>
                     <td data-label="Phone">
@@ -788,9 +802,6 @@
                         <td data-label="Actions">
                             <div class="slds-truncate">
                                 <div class="slds-button-group" role="group">
-                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">New Case</button>
-                                    </aura:if>
                                     <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
                                         <!-- This is the update for a specific case that is passed in -->
                                         <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">Update Case</button>
@@ -811,6 +822,11 @@
                             Alternate Billing Contact
                         </div>
                     </td>
+                    <td scope="row" data-label="NewCaseAction">
+                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">New Case</button>
+                        </aura:if>
+                    </td>
                     <td data-label="Address">
                     </td>
                     <td data-label="Phone">
@@ -828,9 +844,6 @@
                         <td data-label="Actions">
                             <div class="slds-truncate">
                                 <div class="slds-button-group" role="group">
-                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">New Case</button>
-                                    </aura:if>
                                     <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
                                         <!-- This is the update for a specific case that is passed in -->
                                         <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">Update Case</button>
@@ -851,6 +864,11 @@
                                 Online User
                             </div>
                         </td>
+                        <td scope="row" data-label="NewCaseAction">
+                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyOnlineUserContactId}" onclick="{!c.popToCase}">New Case</button>
+                            </aura:if>
+                        </td>
                         <td data-label="Address">
                         </td>
                         <td data-label="Phone">
@@ -868,9 +886,6 @@
                             <td data-label="Actions">
                                 <div class="slds-truncate">
                                     <div class="slds-button-group" role="group">
-                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyOnlineUserContactId}" onclick="{!c.popToCase}">New Case</button>
-                                        </aura:if>
                                         <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
                                             <!-- This is the update for a specific case that is passed in -->
                                             <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyOnlineUserContactId}" onclick="{!c.popToCase}">Update Case</button>
@@ -891,6 +906,11 @@
                                 Sales Rep
                             </div>
                         </td>
+                        <td scope="row" data-label="NewCaseAction">
+                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummySalesRepContactId}" onclick="{!c.popToCase}">New Case</button>
+                            </aura:if>
+                        </td>
                         <td data-label="Address">
                         </td>
                         <td data-label="Phone">
@@ -908,9 +928,6 @@
                             <td data-label="Actions">
                                 <div class="slds-truncate">
                                     <div class="slds-button-group" role="group">
-                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummySalesRepContactId}" onclick="{!c.popToCase}">New Case</button>
-                                        </aura:if>
                                         <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
                                             <!-- This is the update for a specific case that is passed in -->
                                             <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummySalesRepContactId}" onclick="{!c.popToCase}">Update Case</button>
@@ -931,6 +948,11 @@
                                     {!contact.firstNm}
                                     &nbsp;{!contact.lastNm}
                                 </div>
+                            </td>
+                            <td scope="row" data-label="NewCaseAction">
+                                <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                    <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.rowId}" onclick="{!c.popToCase}">New Case</button>
+                                </aura:if>
                             </td>
                             <td data-label="Address">
                                 <div class="slds-truncate">
@@ -962,9 +984,6 @@
                                 <td data-label="Actions">
                                     <div class="slds-truncate">
                                         <div class="slds-button-group" role="group">
-                                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                                <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.rowId}" onclick="{!c.popToCase}">New Case</button>
-                                            </aura:if>
                                             <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
                                                 <!-- This is the update for a specific case that is passed in -->
                                                 <button class="slds-button slds-button_neutral" data-isDummyContact="false" data-contactRowId="{!contact.rowId}" onclick="{!c.popToCase}">Update Case</button>

@@ -150,6 +150,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     responseElement.return_x.accountStsDt = (Datetime)JSON.deserialize('"2015-04-15T00:00:00-04:00"', Datetime.class);
                     responseElement.return_x.accountingFee = 10.00;
                     responseElement.return_x.accountingFeeDescription = 'Accounting Fee';
+                    responseElement.return_x.acctRowId = '2-ZZZZZ-011';
                     responseElement.return_x.availableCreditLmt = 7179.69;
                     responseElement.return_x.billingAccountId = '9100000000000';
                     responseElement.return_x.billtoAccountNm = 'Hub Cap Annie &amp; Wheel of Idaho Inc';
@@ -290,6 +291,8 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                     
                     responseElement.return_x.shippingAddress = ShippingAddress;
 
+                    responseElement.return_x.contacts = generateContacts().return_x;
+
                     if (customerDetailsRequest.pdRowId != null && !(String.isEmpty(customerDetailsRequest.pdRowId))) {
                         CustomerDetailsWSUtilv2.pdAsset asset = new CustomerDetailsWSUtilv2.pdAsset();
                         asset.pdRowId = customerDetailsRequest.pdRowId;
@@ -334,39 +337,8 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 
                 if((customerDetailsRequest.accountID).equalsIgnoreCase('9100000000000')) {
                     
-                    CustomerDetailsWSUtilv2.getContactsResponse responseElement = new CustomerDetailsWSUtilv2.getContactsResponse();
-                    
-                    responseElement.return_x = new CustomerDetailsWSUtilv2.contacts();
-                    
-                    CustomerDetailsWSUtilv2.contact contact = new CustomerDetailsWSUtilv2.contact();
-                    
-                    contact.role = 'Contact';
-                    contact.contactType = 'Contact';
-                    contact.emailAddr = 'test@wexinc.com';
-                    contact.faxNbr = '207-555-5555';
-                    contact.firstNm = 'Test';
-                    contact.middleNm = 'E';
-                    contact.lastNm = 'McTesterson';
-                    contact.phoneNbr = '207-555-5555';
-                    contact.rowId = '1-1ZZZZZ';
-                    
-                    CustomerDetailsWSUtilv2.address MailingAddress = new CustomerDetailsWSUtilv2.address();
-                    MailingAddress.addr1 = '123 Darling Ave';
-                    MailingAddress.addr2 = 'Filler';
-                    MailingAddress.addr3 = 'Filler';
-                    MailingAddress.addr4 = 'Filler';
-                    MailingAddress.city = 'South Portland';
-                    MailingAddress.state = 'ME';
-                    MailingAddress.country = 'US';
-                    MailingAddress.orgName = 'WEX';
-                    MailingAddress.postalCode = '04106';
-                    
-                    contact.address = MailingAddress;
-                    
-                    responseElement.return_x.contacts = new CustomerDetailsWSUtilv2.contact[]{};
-                        
-                        responseElement.return_x.contacts.add(contact);
-                    
+                    CustomerDetailsWSUtilv2.getContactsResponse responseElement = generateContacts();
+
                     response.put('response_x', responseElement);
                     
                 }
@@ -755,5 +727,68 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
             }
             
         }
-    
+
+    private CustomerDetailsWSUtilv2.getContactsResponse generateContacts() {
+        CustomerDetailsWSUtilv2.getContactsResponse responseElement = new CustomerDetailsWSUtilv2.getContactsResponse();
+
+        responseElement.return_x = new CustomerDetailsWSUtilv2.contacts();
+
+        CustomerDetailsWSUtilv2.contact contact = new CustomerDetailsWSUtilv2.contact();
+
+        contact.role = 'ADMIN';
+        contact.contactType = 'Contact';
+        contact.emailAddr = 'test@wexinc.com';
+        contact.faxNbr = '207-555-5555';
+        contact.firstNm = 'Test';
+        contact.middleNm = 'E';
+        contact.lastNm = 'McTesterson';
+        contact.phoneNbr = '207-555-5555';
+        contact.rowId = '1-1ZZZZZ';
+
+        CustomerDetailsWSUtilv2.address MailingAddress = new CustomerDetailsWSUtilv2.address();
+        MailingAddress.addr1 = '123 Darling Ave';
+        MailingAddress.addr2 = 'Filler';
+        MailingAddress.addr3 = 'Filler';
+        MailingAddress.addr4 = 'Filler';
+        MailingAddress.city = 'South Portland';
+        MailingAddress.state = 'ME';
+        MailingAddress.country = 'US';
+        MailingAddress.orgName = 'WEX';
+        MailingAddress.postalCode = '04106';
+
+        contact.address = MailingAddress;
+
+        CustomerDetailsWSUtilv2.contact contact2 = new CustomerDetailsWSUtilv2.contact();
+
+        contact2.role = 'ADMIN';
+        contact2.contactType = 'Contact';
+        contact2.emailAddr = 'test@wexinc.com';
+        contact2.faxNbr = '207-555-5555';
+        contact2.firstNm = 'Test';
+        contact2.middleNm = 'E';
+        contact2.lastNm = 'McTesterson';
+        contact2.phoneNbr = '207-555-5555';
+        contact2.rowId = '1-1ZZZZX';
+
+        CustomerDetailsWSUtilv2.address primaryAddress = new CustomerDetailsWSUtilv2.address();
+        primaryAddress.addr1 = '123 Darling Ave';
+        primaryAddress.addr2 = 'Filler';
+        primaryAddress.addr3 = 'Filler';
+        primaryAddress.addr4 = 'Filler';
+        primaryAddress.city = 'South Portland';
+        primaryAddress.state = 'ME';
+        primaryAddress.country = 'US';
+        primaryAddress.orgName = 'WEX';
+        primaryAddress.postalCode = '04106';
+
+        contact2.address = primaryAddress;
+
+        responseElement.return_x.contacts = new CustomerDetailsWSUtilv2.contact[]{
+        };
+
+        responseElement.return_x.contacts.add(contact);
+        responseElement.return_x.contacts.add(contact2);
+        return responseElement;
+    }
+
 }

@@ -1,9 +1,10 @@
 /*
-* VF page controller for Shell CPQ template section
+* VF page controller for Shell CPQ template rebate section
 *
 * Revision History:
 * 03/Oct/2019 CJackson    PSOBACKLOG-258   Original
 * 19/Nov/2019 CJackson    PSOBACKLOG-304   Sorted quote lines and adjusted show/hide options
+* 26/Nov/2019 CJackson    PSOBACKLOG-310   Added logic to remove 1 from Discount Tier Maximum
 */
 
 public with sharing class DiscountSchedulePrintControllerShell {
@@ -11,6 +12,7 @@ public with sharing class DiscountSchedulePrintControllerShell {
     public List<SBQQ__QuoteLine__c> lines {get; private set;}
     public List<printableLine> linesWithTiers {get; set;}
     public SBQQ__Quote__c quote {get; set;}
+    public Decimal upperBound { get ; set; }
 
     public DiscountSchedulePrintControllerShell () {
         linesWithTiers = new List<printableLine>();
@@ -27,7 +29,10 @@ public with sharing class DiscountSchedulePrintControllerShell {
                 pLine.name = line.SBQQ__Product__r.Name;
                 pLine.displayColumns = new Boolean[] {false, false, false, false, false, false, false, false, false};
                 for(SBQQ__DiscountTier__c tier : tiers) {
-                    pLine.tiers.add(new printableTier(tier.SBQQ__LowerBound__c, tier.SBQQ__UpperBound__c, tier.Cents_Per_Gallon__c,
+                    upperBound = tier.SBQQ__UpperBound__c;
+                    pLine.tiers.add(new printableTier(tier.SBQQ__LowerBound__c,
+                            (tier.SBQQ__UpperBound__c!=null) ? (upperBound -= 1 ): tier.SBQQ__UpperBound__c,
+                            tier.Cents_Per_Gallon__c,
                             (quote.Early_Pay_Selection__c!=null && quote.Early_Pay_Selection__c==tier.Election__c) ? 'X' : '',
                             tier.Payment_Timing_Options__c, tier.Basis_Points_Rebate__c, tier.Payment_Timing__c, tier.Bonus_Rebate__c,
                             tier.SBQQ__Number__c));

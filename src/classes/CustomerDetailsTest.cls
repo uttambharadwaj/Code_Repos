@@ -77,14 +77,20 @@ public class CustomerDetailsTest {
 
         Id contactId = CustomerDetailsController.upsertContacts(accountId,contactJsonString,'1-1ZZZZZ');
 
-        /* todo reinstate this
+
         IntegrationRecord__c integrationRecord = new IntegrationRecord__c();
         integrationRecord.Contact__c = contactId;
         integrationRecord.Account__c = accountId;
         integrationRecord.Contact_Row_Id__c = '1-1ZZZZZ';
-        insert integrationRecord;
+        upsert integrationRecord;
 
-         */
+
+        //Second record so we can search on different rowId
+        integrationRecord = new IntegrationRecord__c();
+        integrationRecord.Contact__c = contactId;
+        integrationRecord.Account__c = accountId;
+        integrationRecord.Contact_Row_Id__c = '1-1ZZZZY';
+        upsert integrationRecord;
 
         System.debug('Upserted contactId = '+contactId);
 
@@ -287,12 +293,54 @@ public class CustomerDetailsTest {
             String accountNumber = CustomerDetailsController.getAccountNumber(accountIdString);
             System.debug('### accountNumber=' + accountNumber);
 
-            Id contactIdString = CustomerDetailsController.getContactId(accountIdString, '1-1ZZZZZ');
+            //The different rowId is to test the search by integration record
+            Id contactIdString = CustomerDetailsController.getContactId(accountIdString, '1-1ZZZZY#2-ADDRX');
+            System.assertNotEquals(contactIdString, null);
             System.debug('### contactIdString=' + contactIdString);
 
             String servicingRule = CustomerDetailsController.getPriorityLevelServicingRule(customerDetails.programId,'A');
             System.assertEquals(servicingRule,'This customer is awesome!');
             System.debug('### servicingRule=' + servicingRule);
+
+            Test.stopTest();
+        }
+
+    }
+
+    // Happy path test with account number passed in , generating new contact from source
+    static testMethod void testCustomerDetailsWithNewContact() {
+
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            String accountNumberToTest = '9100000000000';
+            String sourceSys           = 'SIEBEL';
+            String pdRowId = 'I-1234-Q';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            System.assert(CustomerDetailsController.genericProgram != null);
+
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest,null,null);
+
+            Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+
+            //Need to create a case so we'll have an owner in the attachToCase function.  Otherwise the triggers complain.
+            Case xCase = new Case(
+                    Subject = 'Test case',
+                    Type = 'Service Operations',
+                    RecordTypeId = caseRecordTypeId,
+                    OwnerId = user.Id
+            );
+            upsert xCase;
+
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZX', JSON.serialize(customerDetails));
+            System.debug('### ContactID=' + contactId);
 
             Test.stopTest();
         }
