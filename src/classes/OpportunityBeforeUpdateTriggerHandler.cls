@@ -51,14 +51,7 @@ public class OpportunityBeforeUpdateTriggerHandler extends TriggerHandlerBase {
         for (Opportunity opp : fuelCardOpptyIds) {
             if (feToOpptyMap.containsKey(opp.Id) == true) {
                 opptyWithFEList.add(opp);
-            } else {
-                opptyWithoutFEList.add(opp);
             }
-        }
-
-        // create the new fleet enrollment records for the opportunities without a fleet enrollment record.
-        if (opptyWithoutFEList.size() > 0) {
-            OpportunityHelper.createFleetEnrollment((List<Opportunity>) opptyWithoutFEList);
         }
 
         // if existing fleet enrollment record, keep it in sync with the opportunity
