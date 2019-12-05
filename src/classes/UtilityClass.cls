@@ -57,7 +57,7 @@ global class UtilityClass {
                 Contact contact = [SELECT Id FROM Contact WHERE Id = :contactId FOR UPDATE ];
                 leadConvert.setContactId(contact.Id);
             }
-            if (accountId != null) {
+            if (opportunityId != null) {
                 Opportunity opportunity = [SELECT Id FROM Opportunity WHERE Id = :opportunityId FOR UPDATE ];
                 leadConvert.setOpportunityId(opportunity.Id);
             }
