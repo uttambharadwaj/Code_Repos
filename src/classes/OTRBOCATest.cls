@@ -363,7 +363,7 @@ public class OTRBOCATest {
                 otrBOCAController.onlineApplication.Number_of_Vehicles__c = 40;
                 otrBOCAController.onlineApplication.Odometer__c = true;
                 otrBOCAController.onlineApplication.Offer__c = otrBOCAController.onlineApplicationOffer.Id;
-                otrBOCAController.onlineApplication.Payment_Method__c = 'Customer ACH';
+//                otrBOCAController.onlineApplication.Payment_Method__c = 'Customer ACH';
                 otrBOCAController.onlineApplication.Phone_Number__c = '3123339999';
                 otrBOCAController.onlineApplication.Product_Type__c = 'OTR';
                 otrBOCAController.onlineApplication.Promotional_Code__c = 'promo12345';
@@ -378,7 +378,7 @@ public class OTRBOCATest {
                 otrBOCAController.onlineApplication.Zip_Code__c = '60606';
                 otrBOCAController.onlineApplication.OwnerId = UserInfo.getUserId();
                 otrBOCAController.onlineApplication.Days_of_Payment__c = 'Monday / Tuesday';
-                otrBOCAController.onlineApplication.Payment_Method__c = 'Auto Draft';
+//                otrBOCAController.onlineApplication.Payment_Method__c = 'Auto Draft';
 
                 otrBOCAController.onlineApplication.AO_Title__c = 'President';
                 otrBOCAController.onlineApplication.AO_Name__c = 'Test McTesterson';
