@@ -46,18 +46,24 @@ global class UtilityClass {
 
         try {
 
-            // Locking the records before converting helps avoid UNABLE_TO_LOCK_ROW error.
-            Account account = [SELECT Id FROM Account WHERE Id = :accountId FOR UPDATE ];
-            Contact contact = [SELECT Id FROM Contact WHERE Id = :contactId FOR UPDATE ];
-            Opportunity opportunity = [SELECT Id FROM Opportunity WHERE Id = :opportunityId FOR UPDATE ];
-            Lead lead = [SELECT Id FROM Lead WHERE Id = :leadId FOR UPDATE ];
-
             Database.LeadConvert leadConvert = new database.LeadConvert();
 
+            // Locking the records before converting helps avoid UNABLE_TO_LOCK_ROW error.
+            if (accountId != null) {
+                Account account = [SELECT Id FROM Account WHERE Id = :accountId FOR UPDATE];
+                leadConvert.setAccountId(account.Id);
+            }
+            if (contactId != null) {
+                Contact contact = [SELECT Id FROM Contact WHERE Id = :contactId FOR UPDATE ];
+                leadConvert.setContactId(contact.Id);
+            }
+            if (accountId != null) {
+                Opportunity opportunity = [SELECT Id FROM Opportunity WHERE Id = :opportunityId FOR UPDATE ];
+                leadConvert.setOpportunityId(opportunity.Id);
+            }
+            Lead lead = [SELECT Id FROM Lead WHERE Id = :leadId FOR UPDATE ];
+
             leadConvert.setLeadId(lead.Id);
-            leadConvert.setAccountId(account.Id);
-            leadConvert.setContactId(contact.Id);
-            leadConvert.setOpportunityId(opportunity.Id);
             leadconvert.setConvertedStatus('Qualified');
 
             if (ownerId == null) {
@@ -71,7 +77,6 @@ global class UtilityClass {
                 System.debug('Converted Lead');
             } else {
                 System.debug('Failed to convert lead.');
-
             }
         } catch (Exception e) {
             insert logInternalError(e, '', 'UtilityClass.convertPassedInLead', false, '', 'Lead:' + leadId + ' Account:' + accountId + ' Contact:' + contactId + ' Opportunity:' + opportunityId);
