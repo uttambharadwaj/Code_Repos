@@ -62,7 +62,7 @@ public class UtilityClassTest {
         Lead lead = [ SELECT Id FROM Lead ];
 
         Test.startTest();
-        UtilityClass.convertPassedInLead(lead.Id, null, null, null);
+        UtilityClass.convertPassedInLead(lead.Id, null, null, null, null);
         Test.stopTest();
 
         lead = [ SELECT Id, ConvertedAccountId FROM Lead ];

@@ -761,6 +761,12 @@ public without sharing class CustomerDetailsController {
         return customerDetails;
     }
 
+    private static List<CustomerDetailsWSUtilv2.contact> getContactsFromJson(String customerContactsJSON) {
+        System.debug('Entering getContactsFromJson: '+customerContactsJSON);
+        List<CustomerDetailsWSUtilv2.contact> contacts = (List<CustomerDetailsWSUtilv2.contact>) JSON.deserialize(customerContactsJSON, List<CustomerDetailsWSUtilv2.contact>.class);
+        return contacts;
+    }
+
     //We only call this in a test method now, to simplify data setup.
     @AuraEnabled
     public static Id upsertContacts(Id accountId, String customerContactsJSON, String contactRowId) {
@@ -886,7 +892,7 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
-    public static String attachToCase(String caseId, String contactRowId, String customerDetailsJSON) {
+    public static String attachToCase(String caseId, String contactRowId, String customerDetailsJSON, String contactsJSON) {
 
         try {
 
@@ -896,7 +902,7 @@ public without sharing class CustomerDetailsController {
             Id contactId = getContactId(accountId, contactRowId);
 
             if (contactId == null && accountId != null) {
-                contactId = extractContactFromJSON(accountId, contactRowId, customerDetailsJSON);
+                contactId = extractContactFromJSON(accountId, contactRowId, contactsJSON);
             }
 
             return innerAttachToCase(caseId, accountId, contactId, customerDetailsJSON);
@@ -935,9 +941,8 @@ public without sharing class CustomerDetailsController {
 
     }
 
-    private static Id extractContactFromJSON(Id accountId, String contactRowId, String customerDetailsJSON) {
-        CustomerDetailsWSUtilv2.customerDetails customerDetails = getCustomerDetailsFromJson(customerDetailsJSON);
-        CustomerDetailsWSUtilv2.contacts contactsWrapper = customerDetails.contacts;
+    private static Id extractContactFromJSON(Id accountId, String contactRowId, String contactsJSON) {
+        CustomerDetailsWSUtilv2.contact[] contacts = getContactsFromJson(contactsJSON);
 
         String contactRowIdToUse = getContactRowId(contactRowId);
         Account account = [SELECT Id, Acct_Row_Id__c FROM Account WHERE Id =: accountId LIMIT 1];
@@ -945,8 +950,7 @@ public without sharing class CustomerDetailsController {
         IntegrationRecord__c newContact;
         Id result = null;
 
-        if (contactsWrapper != null && contactsWrapper.contacts != null && !(contactsWrapper.contacts.isEmpty())) {
-            CustomerDetailsWSUtilv2.contact[] contacts = contactsWrapper.contacts;
+        if (contacts != null && !(contacts.isEmpty())) {
             try {
             for (CustomerDetailsWSUtilv2.contact contact : contacts) {
                 String currentRowId = getContactRowId(contact.rowId);
@@ -965,7 +969,9 @@ public without sharing class CustomerDetailsController {
                     newContact.Acct_Row_Id__c = account.Acct_Row_Id__c;
                     insert newContact;
                     System.debug('*** Inserted Integration Record '+newContact);
-                    result = newContact.Contact__c;
+                    IntegrationRecord__c newRecord = [SELECT Id, Contact__c FROM IntegrationRecord__c WHERE Id =: newContact.Id];
+                    result = newRecord.Contact__c;
+                    System.debug('*** Returning result '+result);
                 }
                 if (result != null) {
                     break;
@@ -1064,6 +1070,14 @@ public without sharing class CustomerDetailsController {
             error.Application__c = 'Service Console - Customer Details';
 
             insert error;
+
+            if (Test.isRunningTest()) {
+                System.debug('*** ERROR: '+String.valueOf(e));
+                System.debug('*** LOCATION: '+String.valueOf(e.getStackTraceString()));
+                System.debug(e.getMessage());
+                System.debug('Error at line: '+e.getLineNumber());
+                System.debug('Type: '+e.getTypeName());
+            }
 
             List<Internal_Application_Error__c> errors = [SELECT Id, Name FROM Internal_Application_Error__c WHERE Id = :error.Id];
 
