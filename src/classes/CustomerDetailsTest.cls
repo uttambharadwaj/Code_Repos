@@ -205,7 +205,7 @@ public class CustomerDetailsTest {
             );
             upsert xCase;
 
-            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZZ', JSON.serialize(customerDetails));
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZZ', JSON.serialize(customerDetails), JSON.serialize(contacts));
             System.debug('### ContactID=' + contactId);
 
             Support_Operation_Settings__c sos = CustomerDetailsController.getSupportOperationsSettings();
@@ -278,7 +278,7 @@ public class CustomerDetailsTest {
             );
             upsert xCase;
 
-            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZZ', JSON.serialize(customerDetails));
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZZ', JSON.serialize(customerDetails), JSON.serialize(contacts));
             System.debug('### ContactID=' + contactId);
 
             Support_Operation_Settings__c sos = CustomerDetailsController.getSupportOperationsSettings();
@@ -327,6 +327,7 @@ public class CustomerDetailsTest {
             System.assert(CustomerDetailsController.genericProgram != null);
 
             CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest,null,null);
+            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts(accountNumberToTest);
 
             Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
 
@@ -339,7 +340,7 @@ public class CustomerDetailsTest {
             );
             upsert xCase;
 
-            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZX', JSON.serialize(customerDetails));
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, '1-1ZZZZX', JSON.serialize(customerDetails), JSON.serialize(contacts));
             System.debug('### ContactID=' + contactId);
 
             Test.stopTest();
