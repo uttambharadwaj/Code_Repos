@@ -1,5 +1,7 @@
 /*
  * Created by MFarrell on 7/23/2019.
+ *
+ * Revision History:    06/Dec/2019     MFarrell    Added future method for updatePrimaryContactFuture
  */
 
 public class OpportunityHelper {
@@ -92,7 +94,7 @@ public class OpportunityHelper {
         List<Opportunity> nulledContactOpportunities = new List<Opportunity>();
         Map<Id, OpportunityContactRole> primaryRolesMap = new Map<Id, OpportunityContactRole>();
 
-        List<OpportunityContactRole> opportunityContactRoles = [SELECT Id, OpportunityId FROM OpportunityContactRole WHERE Id =: primaryRoles];
+        List<OpportunityContactRole> opportunityContactRoles = [SELECT Id, OpportunityId, IsPrimary, ContactId FROM OpportunityContactRole WHERE Id =: primaryRoles];
 
         for (OpportunityContactRole opptyContactRole : opportunityContactRoles) {
             primaryRolesMap.put(opptyContactRole.OpportunityId, opptyContactRole);
