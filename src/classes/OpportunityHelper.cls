@@ -94,9 +94,7 @@ public class OpportunityHelper {
         List<Opportunity> nulledContactOpportunities = new List<Opportunity>();
         Map<Id, OpportunityContactRole> primaryRolesMap = new Map<Id, OpportunityContactRole>();
 
-        List<OpportunityContactRole> opportunityContactRoles = [SELECT Id, OpportunityId, IsPrimary, ContactId FROM OpportunityContactRole WHERE Id =: primaryRoles];
-
-        for (OpportunityContactRole opptyContactRole : opportunityContactRoles) {
+        for (OpportunityContactRole opptyContactRole : [SELECT Id, OpportunityId, IsPrimary, ContactId FROM OpportunityContactRole WHERE Id =: primaryRoles]) {
             primaryRolesMap.put(opptyContactRole.OpportunityId, opptyContactRole);
         }
 
