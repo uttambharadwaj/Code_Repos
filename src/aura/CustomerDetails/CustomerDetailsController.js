@@ -46,7 +46,7 @@
 
         component.set("v.paymentHistoryColumnList", [
             {label: "Cycle End", fieldName: "cycleEndDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 130},
-            {label: "Due Date",  fieldName: "dueDt", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 100},
+            {label: "Due Date",  fieldName: "dueDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 100},
             {label: "Class", fieldName: "cls", type: "text", sortable: false, initialWidth: 80, cellAttributes: { alignment: 'center' }},
             {label: "Sales", fieldName: "salesAmt", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 90, cellAttributes: { alignment: 'right' }},
             {label: "Late Fee", fieldName: "lateFeeAmt", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 100, cellAttributes: { alignment: 'right' }},
