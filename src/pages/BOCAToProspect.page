@@ -440,8 +440,8 @@
                                                 <apex:outputPanel>
                                                     <br />
                                                     <legend class="slds-form-element__legend slds-form-element__label">BOCA Language</legend>
-                                                    <apex:selectList id="nomatch3243243" multiselect="false" value="{!selectedLanguage}" size="1">
-                                                        <apex:selectOptions id="nomatch3243232343"  value="{!availableLanguages}">
+                                                    <apex:selectList multiselect="false" value="{!selectedLanguage}" size="1">
+                                                        <apex:selectOptions value="{!availableLanguages}">
                                                         </apex:selectOptions>
                                                     </apex:selectList>
                                                 </apex:outputPanel>
