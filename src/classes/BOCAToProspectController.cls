@@ -155,6 +155,13 @@ public class BOCAToProspectController {
         
     }
     
+    public String languageCode { get; set; }
+
+    public List<SelectOption> availableLanguages { get; set; }
+
+    public String selectedLanguage { get; set; }
+
+
     public void init() {
         
         try {
@@ -268,7 +275,18 @@ public class BOCAToProspectController {
                 }
                 
             }
-            
+
+            // Get available languages for specific program
+            availableLanguages = new List<SelectOption>();
+            for (BOCA_res__c brandingUtility : [
+                    SELECT Id, ISO_Code__c
+                    FROM BOCA_res__c
+                    WHERE Program__c = :programId
+            ]) {
+                availableLanguages.add(new SelectOption(brandingUtility.ISO_Code__c, brandingUtility.ISO_Code__c));
+            }
+
+
         } catch (Exception e) {
             
             errorCode = logError(e);
@@ -312,7 +330,8 @@ public class BOCAToProspectController {
                                            		creditApp.Disable_Fleet_Enrollment__c = true; 
                                                
                                            }
-                
+                creditApp.Branding_Utility__c = WexBrandingController.getBrandingUtilRecordByProgramId(programId, selectedLanguage).Id;
+
                 // REQUIRED!!!!!
                 creditApp.status__c = 'partial';
                 

@@ -360,7 +360,7 @@
                                 </div>
                             </div>
                         </div>
-                        <br/>   
+                        <br/>
                         <apex:pageMessages id="pageMessages" escape="false"></apex:pageMessages>
                         <apex:outputPanel rendered="{!hasError == false}">
                             
@@ -437,6 +437,15 @@
                                                         </span>
                                                     </div>
                                                 </apex:outputPanel>
+                                                <apex:outputPanel>
+                                                    <br />
+                                                    <legend class="slds-form-element__legend slds-form-element__label">BOCA Language</legend>
+                                                    <apex:selectList id="nomatch3243243" multiselect="false" value="{!selectedLanguage}" size="1">
+                                                        <apex:selectOptions id="nomatch3243232343"  value="{!availableLanguages}">
+                                                        </apex:selectOptions>
+                                                    </apex:selectList>
+                                                </apex:outputPanel>
+
                                             </div>
                                         </div>
                                     </div>
