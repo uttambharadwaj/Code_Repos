@@ -35,6 +35,7 @@ public with sharing class AccountSearchController {
 		action.Label = 'Action';
 		action.Name = 'Action';
 		searchColumns.add(action);
+		//todo: update the column list calculation for OTR
 		for (Service_Search_Columns__mdt c :[SELECT MasterLabel, DeveloperName, SortOrder__c FROM Service_Search_Columns__mdt ORDER BY SortOrder__c ASC]) {
 			Boolean addColumn = true;
 			if ( c.DeveloperName.equalsIgnoreCase('CustomAcctNbr') || c.DeveloperName.equalsIgnoreCase('OnlineUserNm')) {
@@ -43,8 +44,9 @@ public with sharing class AccountSearchController {
 					addColumn = false;
 				} //Next are columns only used for GTAG search
 			} else if (!searchType.equalsIgnoreCase('GTAG')) {
-				if (c.DeveloperName.equalsIgnoreCase('vehicleNbr') || c.DeveloperName.equalsIgnoreCase('pdDepartment'))
+				if (c.DeveloperName.equalsIgnoreCase('vehicleNbr') || c.DeveloperName.equalsIgnoreCase('pdDepartment'))  {
 					addColumn = false;
+				}
 			}
 			if (addColumn) {
 				SearchResultsColumn column = new SearchResultsColumn();
@@ -56,27 +58,26 @@ public with sharing class AccountSearchController {
 		srWrapper.fields = searchColumns;
 
 		AccountSearchTypes.accountSearchRequest request = new AccountSearchTypes.accountSearchRequest();
-		request.SearchField = searchType;
-		request.SearchData = searchKeyword;
+		request.searchField = searchType;
+		request.searchData = searchKeyword;
 
 		List<SearchResultsRow> results = new List<SearchResultsRow> ();
-
+		AccountSearchTypes.accountSearchResult response;
 		try {
-			AccountSearchStub.CustomerDetailsSOAPQSPort client = new AccountSearchStub.CustomerDetailsSOAPQSPort();
-			client.endpoint_x = 'callout:Customer_Details';
-			client.timeout_x = 120000;
-			AccountSearchTypes.accountSearchResult response = client.accountSearch(request);
-			if (response.AccountList != null) {
-				System.debug('accountList.size - ' + response.AccountList.size());
+			if (request.searchField.startsWith('OTR')) {
+				response = getOTRResponse(request);
+			} else {
+				response = getNaFleetSOAPResponse(request);
 			}
-			System.debug('errorMsg - ' + response.ErrorMsg);
-			srWrapper.errorMessage = response.ErrorMsg;
+			if (String.isNotEmpty(response.errorMsg)) {
+				srWrapper.errorMessage = response.errorMsg;
+			}
 
-			if (response.AccountList != null) {
+			if (response.accountList != null) {
 
 				Set<String> pgmIds = new Set<String> ();
 
-				for (AccountSearchTypes.AccountSearchDTO dto : response.AccountList) {
+				for (AccountSearchTypes.accountSearchDTO dto : response.accountList) {
 					String jsonStr = JSON.serialize(dto);
 					Map<String, Object> dtoMap = (Map<String, Object>) JSON.deserializeUntyped(jsonStr);
 					Map<String, Object> caseinstvMap = new Map<String, Object> ();
@@ -95,7 +96,7 @@ public with sharing class AccountSearchController {
 					pgmMap.put(pgm.Siebel_Program_Row_Id__c, pgm.Name);
 				}
 
-				for (AccountSearchTypes.AccountSearchDTO dto : response.AccountList) {
+				for (AccountSearchTypes.accountSearchDTO dto : response.accountList) {
 					SearchResultsRow resultRow = new SearchResultsRow();
 					Map<String, String> resultColumns = new Map<String, String> ();
 					String jsonStr = JSON.serialize(dto);
@@ -165,5 +166,24 @@ public with sharing class AccountSearchController {
 
 		srWrapper.results = results;
 		return srWrapper;
+	}
+
+	private static AccountSearchTypes.accountSearchResult getNaFleetSOAPResponse(AccountSearchTypes.accountSearchRequest request) {
+		AccountSearchStub.CustomerDetailsSOAPQSPort client = new AccountSearchStub.CustomerDetailsSOAPQSPort();
+		client.endpoint_x = 'callout:Customer_Details';
+		client.timeout_x = 120000;
+		AccountSearchTypes.accountSearchResult response = client.accountSearch(request);
+		if (response.accountList != null) {
+			System.debug('accountList.size - ' + response.accountList.size());
+		}
+		System.debug('errorMsg - ' + response.errorMsg);
+		return response;
+	}
+
+	//todo: implement
+	private static AccountSearchTypes.accountSearchResult getOTRResponse(AccountSearchTypes.accountSearchRequest request) {
+		AccountSearchTypes.accountSearchResult response =new AccountSearchTypes.accountSearchResult();
+		response.errorMsg = 'Not implemented yet';
+		return response;
 	}
 }
