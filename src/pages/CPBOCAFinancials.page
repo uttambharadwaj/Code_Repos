@@ -239,7 +239,7 @@
                                     <legend>
                                         <div class="twelve columns clearfix">
                                             <div class="section-header">
-                                                <i class="far fa-user-circle"></i>&nbsp;&nbsp;Upload Financials
+                                                <i class="far fa-user-circle"></i> {!$label.CPBOCA_Upload_Financials}
                                             </div>
                                         </div>
                                     </legend>
@@ -327,7 +327,7 @@
                                             <legend>
                                                 <div class="twelve columns clearfix">
                                                     <div class="section-header">
-                                                        <i class="fa fa-address-card"></i>&nbsp;&nbsp;Document Upload
+                                                        <i class="fa fa-address-card"></i> {!$Label.CPBOCA_Document_Upload}
                                                     </div>
                                                 </div>
                                             </legend>
@@ -360,7 +360,7 @@
                                     </div>
                                     <div class="twelve columns clearfix">
                                         <div class="section-header">
-                                            <i class="fas fa-paperclip"></i> &nbsp;Application Attachments
+                                            <i class="fas fa-paperclip"></i> {!$Label.CPBOCA_Application_Attachments}
                                         </div>
                                     </div>
                                     <br />
@@ -391,7 +391,7 @@
             </div>
         </div>
         <a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
-            <div class="line1">CLICK HERE TO GIVE US A CALL</div>
+            <div class="line1">{!$Label.BOCDD_Call_Us}</div>
             <div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
         </a>
         <div id="footer">
