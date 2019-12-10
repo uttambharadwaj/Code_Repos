@@ -215,12 +215,6 @@ public without sharing class CPBOCAFinancialsController {
 
                     creditApp = cpApplicationRequests[0];
 
-                    System.debug('we found an application!');
-                    System.debug('direct debit: ' + creditApp.Direct_Debit_Form__c);
-                    System.debug('voided check: ' + creditApp.Voided_Check__c);
-                    System.debug('copy of DL: ' + creditApp.Copy_of_Driver_s_License__c);
-                    System.debug('audited financials: ' + creditApp.Audited_Financials__c);
-
                 }
 
                 String configuredDocTypes = program.CP_BOCA_Financials_Needed__c;
@@ -300,9 +294,6 @@ public without sharing class CPBOCAFinancialsController {
         }
     }
 
-    // set to hold value of attachment types added by customer
-    public Set<String> customerAttachments = new Set<String>();
-
     public PageReference submitApplication() {
 
         System.debug('in SubmitApplication method');
@@ -362,9 +353,6 @@ public without sharing class CPBOCAFinancialsController {
 
                 try {
                     insert applicationAttachment;
-
-                    // add attachment type to set so we can get booleans on the creditApp on submit.
-                    customerAttachments.add(docType.fieldName);
                 }
                 catch (Exception e) {
                     System.debug(e);
