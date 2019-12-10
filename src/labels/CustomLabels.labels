@@ -16,6 +16,13 @@
         <value>AUTHORIZED CONTACTS</value>
     </labels>
     <labels>
+        <fullName>AccServiceOpRecordType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AccServiceOpRecordType</shortDescription>
+        <value>Service Operations</value>
+    </labels>
+    <labels>
         <fullName>AcceptanceLowerCase</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1698,7 +1705,7 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Check off any optional fields below which you would lie to see on your reports.</shortDescription>
-        <value>Check off any optional fields below which you would lie to see on your reports. Reports will include the cards&apos; second line of printing, if selected.</value>
+        <value>Check off any optional fields below which you would like to see on your reports. Reports will include the card&apos;s second line of printing, if selected.</value>
     </labels>
     <labels>
         <fullName>Click_submit_to_send_your_information</fullName>
@@ -1991,7 +1998,7 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>External Instance URL</shortDescription>
-        <value>stagefull-onlineservices.cs52.force.com</value>
+        <value>onlineservices.secure.force.com</value>
     </labels>
     <labels>
         <fullName>First_Name</fullName>
@@ -2338,6 +2345,14 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <value>Invalid Email</value>
     </labels>
     <labels>
+        <fullName>Fleet_Invalid_Loyalty_Id</fullName>
+        <categories>Fleet</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fleet Invalid Loyalty Id</shortDescription>
+        <value>Invalid Loyalty ID</value>
+    </labels>
+    <labels>
         <fullName>Fleet_Invalid_Phone</fullName>
         <categories>Fleet Enrollment Form</categories>
         <language>en_US</language>
@@ -2362,12 +2377,20 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <value>Lander Graphic Image</value>
     </labels>
     <labels>
+        <fullName>Fleet_Loyalty_Information</fullName>
+        <categories>Fleet</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fleet Loyalty Information</shortDescription>
+        <value>Loyalty Program Information</value>
+    </labels>
+    <labels>
         <fullName>Fleet_MonFri</fullName>
         <categories>Fleet Enrollment Form</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Fleet_MonFri</shortDescription>
-        <value>&lt;p&gt;Monday - Friday, 8am-5pm (EST)&lt;/p&gt;</value>
+        <value>Monday - Friday, 8am-5pm (EST)</value>
     </labels>
     <labels>
         <fullName>Fleet_More30Vehicles</fullName>
@@ -2566,6 +2589,14 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <protected>false</protected>
         <shortDescription>Fleet_Prompt_Options</shortDescription>
         <value>Prompt Options</value>
+    </labels>
+    <labels>
+        <fullName>Fleet_Random</fullName>
+        <categories>Fleet</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Fleet_Random</shortDescription>
+        <value>Random</value>
     </labels>
     <labels>
         <fullName>Fleet_Randomly_Generated_IDs</fullName>
@@ -2780,13 +2811,6 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <value>We are sorry.  We had a little problem with your last request.  Could you please try again?</value>
     </labels>
     <labels>
-        <fullName>GeoApiKey</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>GeoApiKey</shortDescription>
-        <value>ABQIAAAAqq4Yrhqqa0SAtt0UUzUN-xSNrYs6_w2ysMAxFIa3GdEPjdEk2xTTQwFT6KwGAO8R8LUOGzOtgkYAdQ</value>
-    </labels>
-    <labels>
         <fullName>HeaderText</fullName>
         <categories>Opty Reassign Page</categories>
         <language>en_US</language>
@@ -2987,6 +3011,13 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <value>None</value>
     </labels>
     <labels>
+        <fullName>OTRBOCA_ExistingCarrierIDHelp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OTRBOCA_ExistingCarrierIDHelp</shortDescription>
+        <value>This is your unique 6 digit account number</value>
+    </labels>
+    <labels>
         <fullName>OTRSetup5499</fullName>
         <categories>OTR,Help</categories>
         <language>en_US</language>
@@ -3159,6 +3190,30 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <protected>false</protected>
         <shortDescription>PREVIOUS</shortDescription>
         <value>PREVIOUS</value>
+    </labels>
+    <labels>
+        <fullName>PaperApp_AppType</fullName>
+        <categories>Paper Application</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PaperApp_AppType</shortDescription>
+        <value>Application Type</value>
+    </labels>
+    <labels>
+        <fullName>PaperApp_Conversion</fullName>
+        <categories>Paper Application</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PaperApp_Conversion</shortDescription>
+        <value>Existing Client Conversion</value>
+    </labels>
+    <labels>
+        <fullName>PaperApp_PaperApp</fullName>
+        <categories>Paper Application</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PaperApp_PaperApp</shortDescription>
+        <value>New Client Paper Application</value>
     </labels>
     <labels>
         <fullName>Person_s_authorized_to_speak_with_Customer_Service_on_behalf_of_your_account_T</fullName>
@@ -3407,7 +3462,7 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <shortDescription>SFDC Support Announcement Message</shortDescription>
         <value>&lt;p&gt;In an effort to streamline our process and align with common Corporate practice, we plan to consolidate all support Salesforce into Cherwell. We will all benefit from the workflows that exist today, and we have worked with the help desk to optimize the intake process to reduce back and forth while problem-solving. We aim to make this change as seamless as possible for our users.
     &lt;br /&gt;&lt;br /&gt;
-    Toward the end of October, the “New” tab on the Salesforce case queue will no longer be available. Please use the Cherwell Portal for your support needs going forward by selecting New Request / PC,Hardware,Software / Salesforce.  (coming soon!)
+    Toward the end of October, the “New” tab on the Salesforce case queue will no longer be available. Please use the Cherwell Portal for your support needs going forward by selecting New Request / PC,Hardware,Software / Salesforce. 
     &lt;br /&gt;&lt;br /&gt;
     As always, Cherwell is designed for issue resolution. If the desire is to share a new idea or business need, please connect with your Product Owner.
     &lt;br /&gt;&lt;br /&gt;
