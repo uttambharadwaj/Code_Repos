@@ -6,7 +6,7 @@
                         <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
                             <tr>
                                 <td class="inner contents" style="text-align:center;padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;" >
-                                    <p style="font-size:20px;Margin:0;Margin-bottom:10px;" >Thank you for your interest in the </p>
+                                    <p style="font-size:20px;Margin:0;Margin-bottom:10px;" >{!$Label.BOCAToProspect_Thank_You_For_Interest}</p>
                                     <p style="font-size:20px;font-weight:bold;Margin:0;Margin-bottom:10px;" >
                                         <apex:outputText escape="false" value="{!primaryBrandingUtility.Program_Name__c}" />!
                                     </p>
@@ -20,10 +20,10 @@
                             <tr>
                                 <td class="inner contents" style="padding-bottom:0;padding-top:30px;padding-right:75px;padding-left:75px;width:100%;text-align:left;">
                                     <p style="line-height: 22px;">
-                                        Hi {!bocaToProspect.Contact__r.FirstName},
+                                        {!$Label.BOCAToProspect_Greeting} {!bocaToProspect.Contact__r.FirstName},
                                     </p>
                                     <p style="line-height: 22px;">
-                                        Thank you for your interest in<strong>&nbsp;<apex:outputText escape="false" value="{!primaryBrandingUtility.Program_Name__c}" /></strong>.  I think you'll find our program to be an ideal solution for your company’s fuel management needs. 
+                                        {!$Label.BOCAToProspect_Thank_You_For_Interest}<strong>&nbsp;<apex:outputText escape="false" value="{!primaryBrandingUtility.Program_Name__c}" /></strong>.  {!$Label.BOCAToProspect_Ideal_Solution}
                                     </p>
                                     <p style="line-height: 22px; display: {!IF(bocaToProspect.Custom_Message__c != null, 'block', 'none')}">
                                     	<apex:outputText escape="false" value="{!bocaToProspect.Custom_Message__c}" />    
@@ -47,7 +47,7 @@
 															<![endif]-->
 
 
-															<!-- BOCA LINK --><a href="{!primaryURL}" target="_blank" style="background-color:#FEC524;border-collapse:separate;border-top-width:11px;border-top-style:solid;border-top-color:#FEC524;border-right-width:33px;border-right-style:solid;border-right-color:#FEC524;border-bottom-width:11px;border-bottom-style:solid;border-bottom-color:#FEC524;border-left-width:33px;border-left-style:solid;border-left-color:#FEC524;color:#333333;display:inline-block;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:600;letter-spacing:.3px;text-decoration:none;" >Apply Now</a> <!-- /BOCA LINK -->
+															<!-- BOCA LINK --><a href="{!primaryURL}" target="_blank" style="background-color:#FEC524;border-collapse:separate;border-top-width:11px;border-top-style:solid;border-top-color:#FEC524;border-right-width:33px;border-right-style:solid;border-right-color:#FEC524;border-bottom-width:11px;border-bottom-style:solid;border-bottom-color:#FEC524;border-left-width:33px;border-left-style:solid;border-left-color:#FEC524;color:#333333;display:inline-block;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:600;letter-spacing:.3px;text-decoration:none;" >{!$Label.BOCAToProspect_Apply_Now}</a> <!-- /BOCA LINK -->
 
 
 															<!--[if gte mso 9]>
@@ -91,7 +91,7 @@
                             <apex:outputPanel rendered="{!primaryLearnMoreURL != null && displayAssetsLinks == true}">
                             <tr>
                                 <td class="inner contents" style="font-family:sans-serif;padding-top:0px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:center;" >
-                                    <p style="font-size:18px;"><a href="{!primaryLearnMoreURL}"><strong>Click Here to Learn More</strong></a></p>
+                                    <p style="font-size:18px;"><a href="{!primaryLearnMoreURL}"><strong>{!$Label.BOCAToProspect_Click_Learn}</strong></a></p>
                                 </td>
                             </tr>
                             </apex:outputPanel>
@@ -119,7 +119,7 @@
                         <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
                             <tr>
                                 <td class="inner contents" style="padding-top:10px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:left;" >
-									<p>Thank you for your time. We look forward to working with you.</p>
+									<p>{!$Label.BOCAToProspect_Thank_You_For_Time}</p>
                                     <p style="font-size: 18px; line-height: 18px; padding: 0; margin: 0;">
                                         {!salesRep.Name}
                                     </p>
@@ -127,13 +127,13 @@
                                         {!salesRep.Title}
                                     </p>
                                     <p style="font-size: 13px; display: {!IF(salesRep.Email != null, 'block', 'none')}; line-height: 18px; padding: 0; margin: 0;">
-                                       Email: <a style="color: #0645AD;" href="mailto:{!salesRep.Email}">{!salesRep.Email}</a>
+                                       {!$Label.BOCAToProspect_Field_Email} <a style="color: #0645AD;" href="mailto:{!salesRep.Email}">{!salesRep.Email}</a>
                                     </p>
                                     <p style="font-size: 13px; display: {!IF(salesRep.Phone != null, 'block', 'none')}; line-height: 18px; padding: 0; margin: 0;">
-                                       Phone: {!salesRep.Phone}
+                                        {!$Label.BOCAToProspect_Field_Phone} {!salesRep.Phone}
                                     </p>
                                     <p style="font-size: 13px; display: {!IF(salesRep.Fax != null, 'block', 'none')}; line-height: 18px; padding: 0; margin: 0;">
-                                       Fax: {!salesRep.Fax}
+                                        {!$Label.BOCAToProspect_Field_Fax} {!salesRep.Fax}
                                     </p>
                                 </td>
                             </tr>
