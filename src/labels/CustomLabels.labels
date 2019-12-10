@@ -1650,6 +1650,29 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <value>COMPANY NAME</value>
     </labels>
     <labels>
+        <fullName>CPBOCA_Application_Attachments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPBOCA Application Attachments</shortDescription>
+        <value>Application Attachments</value>
+    </labels>
+    <labels>
+        <fullName>CPBOCA_Document_Upload</fullName>
+        <categories>CPBOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPBOCA Document Upload</shortDescription>
+        <value>Document Upload</value>
+    </labels>
+    <labels>
+        <fullName>CPBOCA_Upload_Financials</fullName>
+        <categories>CPBOCA</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CPBOCA Upload Financials</shortDescription>
+        <value>Upload Financials</value>
+    </labels>
+    <labels>
         <fullName>Cancel</fullName>
         <language>en_US</language>
         <protected>false</protected>
