@@ -1,7 +1,7 @@
 @isTest
-public class OpportunityHelperTest {
+public class OpportunityContactRoleQueueableTest {
 
-    public static void updateOpptyPrimaryContact() {
+    public static void updateOpportunityPrimaryContactTest() {
 
         Opportunity opportunity = [ SELECT Id FROM Opportunity LIMIT 1 ];
         Contact contact = [ SELECT Id FROM Contact LIMIT 1 ];
