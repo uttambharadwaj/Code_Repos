@@ -81,50 +81,14 @@ public class OpportunityHelper {
         }
 
         if (!primaryRoles.isEmpty()) {
-            updatePrimaryContactFuture(primaryRoles);
-        }
-
-    }
-
-    @Future
-    private static void updatePrimaryContactFuture (List<Id> primaryRoles) {
-
-        Set<Id> enabledRecordTypes = UtilityClass.getRecTypeByDevName('Opportunity', new List<String>{'Fuel_Card','Fleet_Card','Telamatics','Factoring','Revolver_Record','Truckers_Opportunity','WEX_Clearview'});
-        List<Opportunity> updatedOpportunities = new List<Opportunity>();
-        List<Opportunity> nulledContactOpportunities = new List<Opportunity>();
-        Map<Id, OpportunityContactRole> primaryRolesMap = new Map<Id, OpportunityContactRole>();
-
-        for (OpportunityContactRole opptyContactRole : [SELECT Id, OpportunityId, IsPrimary, ContactId FROM OpportunityContactRole WHERE Id =: primaryRoles]) {
-            primaryRolesMap.put(opptyContactRole.OpportunityId, opptyContactRole);
-        }
-
-        if (!primaryRolesMap.isEmpty()) {
-
-            for (Opportunity opportunity : [
-                    SELECT Id, Primary_Contact__c
-                    FROM Opportunity
-                    WHERE Id IN :primaryRolesMap.keySet()
-                    AND RecordTypeId IN :enabledRecordTypes
-            ]) {
-
-                if (primaryRolesMap.get(opportunity.Id).IsPrimary == true) {
-
-                    opportunity.Primary_Contact__c = null;
-                    nulledContactOpportunities.add(opportunity);
-
-                    opportunity.Primary_Contact__c = primaryRolesMap.get(opportunity.Id).ContactId;
-                    updatedOpportunities.add(opportunity);
-                }
-            }
 
             try {
-                update nulledContactOpportunities; // I'm told for SFMC to pull the change the value must go from NULL to lookup. Not lookup to lookup.......
-                update updatedOpportunities;
+                OpportunityContactRole_Queueable opportunityContactRoleQueueable = new OpportunityContactRole_Queueable(primaryRoles);
+                System.enqueueJob(opportunityContactRoleQueueable);
             } catch (Exception e) {
-                System.debug('Error updating the primary contact: ' + e);
+                System.debug(e);
             }
+
         }
-
     }
-
 }
