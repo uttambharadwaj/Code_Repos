@@ -1,5 +1,6 @@
 <!--
-*   Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
+* Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
+*                     12/10/2019 PSOBACKLOG-318 Modify "Questions Call" header section to allow HTML encoding
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
@@ -779,7 +780,7 @@
                 <div id="programName" class="seven columns">{!brandingUtility.Program_Name__c}</div>
                 <div id="contactUs" class="five columns">
                     <apex:outputText rendered="{!creditLineAmount != null}">
-                        {!$Label.Questions_Call} {!program.Implementation_Team_Number__c}
+                        <apex:outputText value="{!$Label.Questions_Call} {!program.Implementation_Team_Number__c}" escape="false" />
                     </apex:outputText>
                 </div>
             </div>
