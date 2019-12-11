@@ -2,7 +2,7 @@
     Revision History:   5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
                         20/Aug/2019 MFarrell    LCR-97
                         26/AUG/2019 MFarrell    LCR-109 added required to checking account information fields.
-
+                        10/DEC/2019 MFarrell    LCR-146 & LCR-147 remove requirement from banking information and hide tax ID field if not US/CA
 
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="CPBOCAController" action="{!init}" language="{!languageCode}">
@@ -297,6 +297,7 @@
                                                     </apex:selectList>
                                                 </apex:actionRegion>
                                             </div>
+                                            </apex:outputPanel>
                                             <div class="twelve columns clearfix form-field" data-row="1">
                                                 <apex:actionRegion >
                                                     <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
@@ -307,7 +308,7 @@
                                                     </apex:InputField>
                                                 </apex:actionRegion>
                                             </div>
-                                        </apex:outputPanel>
+
                                     </div>
                                 </div>
                             </fieldset>
