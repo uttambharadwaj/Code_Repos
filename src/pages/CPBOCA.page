@@ -2,7 +2,7 @@
     Revision History:   5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
                         20/Aug/2019 MFarrell    LCR-97
                         26/AUG/2019 MFarrell    LCR-109 added required to checking account information fields.
-
+                        10/DEC/2019 MFarrell    LCR-146 & LCR-147 remove requirement from banking information and hide tax ID field if not US/CA
 
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="CPBOCAController" action="{!init}" language="{!languageCode}">
@@ -297,6 +297,7 @@
                                                     </apex:selectList>
                                                 </apex:actionRegion>
                                             </div>
+                                            </apex:outputPanel>
                                             <div class="twelve columns clearfix form-field" data-row="1">
                                                 <apex:actionRegion >
                                                     <apex:outputLabel for="projectedMonthlySpend" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Projected_Monthly_Spend__c.label} ">
@@ -307,7 +308,7 @@
                                                     </apex:InputField>
                                                 </apex:actionRegion>
                                             </div>
-                                        </apex:outputPanel>
+
                                     </div>
                                 </div>
                             </fieldset>
@@ -331,7 +332,7 @@
                                             <apex:actionRegion >
                                                 <apex:outputLabel for="physicalCountry" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} "/>
                                                 <apex:InputField styleClass="styled-input" id="physicalCountry" html-tabindex="11" value="{!creditApp.Physical_Country__c}">
-                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode, stateRequired" oncomplete="pageLoadFunctions()"/>
+                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode, stateRequired, taxIdField" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
@@ -387,12 +388,16 @@
                                             </apex:outputLabel>
                                             <apex:InputField required="true" styleClass="styled-input required" html-tabindex="17" id="legalStructure" value="{!creditApp.Legal_Structure__c}" html-maxlength="40" />
                                         </div>
-                                        <div class="twelve columns clearfix form-field" data-row="1">
-                                            <apex:outputLabel for="taxpayerID" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Taxpayer_ID__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required taxPayerId" html-tabindex="18" id="taxpayerID" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="10" />
-                                        </div>
+                                        <apex:outputPanel id="taxIdField">
+                                            <apex:outputPanel rendered="{!OR(creditApp.Physical_Country__c=='US',creditApp.Physical_Country__c=='CA',creditApp.Physical_Country__c=='')}">
+                                            <div class="twelve columns clearfix form-field" data-row="1">
+                                                <apex:outputLabel for="taxpayerID" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Taxpayer_ID__c.label} ">
+                                                    <span class="styled-label-required">*</span>
+                                                </apex:outputLabel>
+                                                <apex:InputField required="true" styleClass="styled-input required taxPayerId" html-tabindex="18" id="taxpayerID" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="10" />
+                                            </div>
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
                                         <apex:outputPanel id="legalEntityFields" rendered="{!useUpmarket}">
                                             <div class="twelve columns clearfix form-field" data-row="1">
                                                 <apex:actionRegion >
@@ -568,16 +573,12 @@
                                                 <apex:outputPanel id="bankContact">
                                                     <apex:outputPanel rendered="{!AND(isUpMarket,useUpmarket)}">
                                                         <div class="twelve columns clearfix form-field" sdata-row="0" >
-                                                            <apex:outputLabel for="bankContactName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact__c.label} ">
-                                                                <span class="styled-label-required">*</span>
-                                                            </apex:outputLabel>
-                                                            <apex:InputField required="true" id="bankContactName" styleClass="styled-input required" label="" html-tabindex="28" value="{!creditApp.Bank_Contact__c}" html-maxlength="80" />
+                                                            <apex:outputLabel for="bankContactName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact__c.label} " />
+                                                            <apex:InputField id="bankContactName" styleClass="styled-input" label="" html-tabindex="28" value="{!creditApp.Bank_Contact__c}" html-maxlength="80" />
                                                         </div>
                                                         <div class="twelve columns clearfix form-field" data-row="0">
-                                                            <apex:outputLabel for="bankContactPhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact_Phone__c.label} ">
-                                                                <span class="styled-label-required">*</span>
-                                                            </apex:outputLabel>
-                                                            <apex:InputField required="true" id="bankContactPhone" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-class="phone" label="" html-tabindex="28" value="{!creditApp.Bank_Contact_Phone__c}" html-maxlength="20" />
+                                                            <apex:outputLabel for="bankContactPhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact_Phone__c.label} " />
+                                                            <apex:InputField id="bankContactPhone" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" html-class="phone" label="" html-tabindex="28" value="{!creditApp.Bank_Contact_Phone__c}" html-maxlength="20" />
                                                         </div>
                                                     </apex:outputPanel>
                                                 </apex:outputPanel>
