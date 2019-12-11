@@ -253,7 +253,7 @@
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
                                             <apex:outputLabel for="numberOfCards" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Number_of_Cards__c.label} (optional) "/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="5" id="numberOfCards" html-maxlength="100" value="{!creditApp.Number_of_Cards__c}" />
+                                            <apex:InputField styleClass="styled-input" html-tabindex="4" id="numberOfCards" html-maxlength="100" value="{!creditApp.Number_of_Cards__c}" />
                                         </div>
                                     </div>
                                     <div class="six columns clearfix">
@@ -261,31 +261,31 @@
                                             <apex:outputLabel for="companyName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Company_Legal_Name__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="6" id="companyName" label="" value="{!creditApp.Company_Legal_Name__c}" html-maxlength="40" />
+                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="5" id="companyName" label="" value="{!creditApp.Company_Legal_Name__c}" html-maxlength="40" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
                                             <apex:outputLabel for="doingBusinessAs" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Doing_Business_As__c.label} (optional) "/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="7" label="" id="doingBusinessAs" value="{!creditApp.Doing_Business_As__c}" html-maxlength="40" />
+                                            <apex:InputField styleClass="styled-input" html-tabindex="6" label="" id="doingBusinessAs" value="{!creditApp.Doing_Business_As__c}" html-maxlength="40" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="2">
                                             <apex:actionRegion >
                                                 <apex:outputLabel for="yearsInBusiness" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Years_in_Business__c.label} ">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <apex:InputField required="true" styleClass="styled-input required" html-tabindex="8" id="yearsInBusiness" value="{!creditApp.Years_in_Business__c}" >
+                                                <apex:InputField required="true" styleClass="styled-input required" html-tabindex="7" id="yearsInBusiness" value="{!creditApp.Years_in_Business__c}" >
                                                     <apex:actionSupport event="onchange" rerender="pgInformation" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="3">
                                             <apex:outputLabel for="title" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Title__c.label} (optional) "/>
-                                            <apex:InputField styleClass="styled-input" html-tabindex="9" id="title" label="" value="{!creditApp.Title__c}" />
+                                            <apex:InputField styleClass="styled-input" html-tabindex="8" id="title" label="" value="{!creditApp.Title__c}" />
                                         </div>
                                         <apex:outputPanel rendered="{!useUpmarket}">
                                             <div class="twelve columns clearfix form-field" data-row="4">
                                                 <apex:actionRegion >
                                                     <label class="styled-label" for="preferredCurrency">Preferred Currency <span class="styled-label-required">*</span></label>
-                                                    <apex:selectList html-data-parsley-required="true" value="{!selectedCurrency}" id="preferredCurrency" styleClass="styled-input required" tabIndex="10" multiSelect="false" size="1">
+                                                    <apex:selectList html-data-parsley-required="true" value="{!selectedCurrency}" id="preferredCurrency" styleClass="styled-input required" tabIndex="9" multiSelect="false" size="1">
                                                         <apex:selectOptions value="{!currencyOptions}"/>
                                                         <apex:actionSupport event="onchange" rerender="projectedMonthlySpend" onComplete="pageLoadFunctions()"/>
                                                     </apex:selectList>
@@ -334,7 +334,7 @@
                                             <apex:outputLabel for="physicalAddressLine1" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_1__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="11" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
+                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="12" id="physicalAddressLine1" label="" value="{!creditApp.Physical_Address_Line_1__c}" html-maxlength="100" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="1">
                                             <apex:outputLabel for="physicalAddressLine2" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Address_Line_2__c.label} (optional)"/>
@@ -344,7 +344,7 @@
                                             <apex:outputLabel for="physicalCity" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_City__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="14" id="physicalCity" value="{!creditApp.Physical_City__c}" html-maxlength="50"/>
+                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="13" id="physicalCity" value="{!creditApp.Physical_City__c}" html-maxlength="50"/>
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="3">
                                             <apex:outputLabel for="physicalState" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_State_Province__c.label} ">
@@ -354,7 +354,7 @@
                                                     </apex:outputPanel>
                                                 </apex:outputPanel>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="15" id="physicalState" value="{!creditApp.Physical_State_Province__c}" />
+                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="14" id="physicalState" value="{!creditApp.Physical_State_Province__c}" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
                                             <apex:outputLabel for="physicalPostalCode" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Postal_Code__c.label} ">
@@ -367,7 +367,7 @@
                                                 <apex:outputLabel for="addressOptions" styleClass="styled-label" value="Mailing address and physical address are the same">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <apex:selectList required="true" id="addressOptions" value="{!billingAddressSame}" size="1" styleClass="styled-input required" tabIndex="16">
+                                                <apex:selectList required="true" id="addressOptions" value="{!billingAddressSame}" size="1" styleClass="styled-input required" tabIndex="15">
                                                     <apex:selectOption itemValue="true" itemLabel="{!$Label.BOCA_Picklist_Yes}"/>
                                                     <apex:selectOption itemValue="false" itemLabel="{!$Label.BOCA_Picklist_No}"/>
                                                     <apex:actionSupport event="onchange" rerender="billingAddress" oncomplete="pageRerenderFunctions()" />
@@ -380,7 +380,7 @@
                                             <apex:outputLabel for="legalStructure" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Legal_Structure__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="17" id="legalStructure" value="{!creditApp.Legal_Structure__c}" html-maxlength="40" />
+                                            <apex:InputField required="true" styleClass="styled-input required" html-tabindex="16" id="legalStructure" value="{!creditApp.Legal_Structure__c}" html-maxlength="40" />
                                         </div>
                                         <apex:outputPanel id="taxIdField">
                                             <apex:outputPanel rendered="{!OR(creditApp.Physical_Country__c=='US',creditApp.Physical_Country__c=='CA',creditApp.Physical_Country__c=='')}">
@@ -388,7 +388,7 @@
                                                 <apex:outputLabel for="taxpayerID" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Taxpayer_ID__c.label} ">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <apex:InputField required="true" styleClass="styled-input required taxPayerId" html-tabindex="18" id="taxpayerID" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="10" />
+                                                <apex:InputField required="true" styleClass="styled-input required taxPayerId" html-tabindex="17" id="taxpayerID" value="{!creditApp.Taxpayer_ID__c}" html-maxlength="10" />
                                             </div>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
@@ -400,7 +400,7 @@
                                                             <span class="styled-label-required">*</span>
                                                         </apex:outputPanel>
                                                     </label>
-                                                    <apex:selectList required="{!isUpMarket}" value="{!selectedCountry}" id="legalCountry" styleClass="styled-input {!IF(isUpMarket, 'required', '')}" tabIndex="19" multiSelect="false" size="1">
+                                                    <apex:selectList required="{!isUpMarket}" value="{!selectedCountry}" id="legalCountry" styleClass="styled-input {!IF(isUpMarket, 'required', '')}" tabIndex="18" multiSelect="false" size="1">
                                                         <apex:selectOptions value="{!countryOptions}"/>
                                                         <apex:actionSupport event="onchange" reRender="legalStateFields"/>
                                                     </apex:selectList>
@@ -425,7 +425,7 @@
                                                                 <span class="styled-label-required">*</span>
                                                             </apex:outputPanel>
                                                         </label>
-                                                        <apex:InputText required="{!isUpMarket}" styleClass="styled-input {!IF(isUpMarket, 'required', '')}" tabindex="35" id="legalState2" value="{!selectedState}" />
+                                                        <apex:InputText required="{!isUpMarket}" styleClass="styled-input {!IF(isUpMarket, 'required', '')}" tabindex="20" id="legalState2" value="{!selectedState}" />
                                                     </apex:outputPanel>
                                                 </apex:outputPanel>
                                             </div>
@@ -434,7 +434,7 @@
                                             <apex:outputLabel for="phone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Business_Phone__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="4" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20"/>
+                                            <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="21" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20"/>
                                         </div>
                                     </div>
                                 </div>
@@ -461,7 +461,7 @@
                                                     <apex:outputLabel for="mailingAddress1" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_Address_Line_1__c.label}">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="20" id="mailingAddress1" value="{!creditApp.Mailing_Address_Line_1__c}" />
+                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="22" id="mailingAddress1" value="{!creditApp.Mailing_Address_Line_1__c}" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="1">
                                                     <apex:outputLabel for="mailingAddress2" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_Address_Line_2__c.label} (optional)"/>
@@ -471,7 +471,7 @@
                                                     <apex:outputLabel for="mailingCity" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_City__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="22" id="mailingCity" value="{!creditApp.Mailing_City__c}" />
+                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="23" id="mailingCity" value="{!creditApp.Mailing_City__c}" />
                                                 </div>
                                             </div>
                                             <div class="six columns clearfix">
@@ -479,7 +479,7 @@
                                                     <apex:outputLabel for="mailingState" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_State_Province__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="23" id="mailingState" value="{!creditApp.Mailing_State_Province__c}" />
+                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="24" id="mailingState" value="{!creditApp.Mailing_State_Province__c}" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="2">
                                                     <apex:outputLabel for="mailingPostalCode" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Mailing_Postal_Code__c.label} ">
@@ -578,7 +578,7 @@
                                                         </div>
                                                         <div class="twelve columns clearfix form-field" data-row="0">
                                                             <apex:outputLabel for="bankContactPhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Bank_Contact_Phone__c.label} " />
-                                                            <apex:InputField id="bankContactPhone" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" html-class="phone" label="" html-tabindex="28" value="{!creditApp.Bank_Contact_Phone__c}" html-maxlength="20" />
+                                                            <apex:InputField id="bankContactPhone" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input phone" html-class="phone" label="" html-tabindex="29" value="{!creditApp.Bank_Contact_Phone__c}" html-maxlength="20" />
                                                         </div>
                                                     </apex:outputPanel>
                                                 </apex:outputPanel>
@@ -592,7 +592,7 @@
                                                             <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i>
                                                         </apex:outputPanel>
                                                     </apex:outputLabel>
-                                                    <apex:InputField styleClass="styled-input required numbers" required="true" id="checkingAccountNumber" html-tabindex="29" label="" value="{!creditApp.Checking_Account_Number__c}" html-maxlength="14"/>
+                                                    <apex:InputField styleClass="styled-input required numbers" required="true" id="checkingAccountNumber" html-tabindex="30" label="" value="{!creditApp.Checking_Account_Number__c}" html-maxlength="14"/>
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="3">
                                                     <label for="verifyCheckingAccountNumber" class="styled-label">
@@ -600,7 +600,7 @@
                                                         <span class="styled-label-required">*</span>
                                                         <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i>
                                                     </label>
-                                                    <input type="text" class="styled-input numbers required" id="verifyCheckingAccountNumber" required="true" tabindex="30" maxlength="14" />
+                                                    <input type="text" class="styled-input numbers required" id="verifyCheckingAccountNumber" required="true" tabindex="31" maxlength="14" />
                                                 </div>
                                             </div>
                                             <div class="six columns clearfix">
@@ -609,7 +609,7 @@
                                                         <span class="styled-label-required">*</span>
                                                         <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required numbers" id="abaRoutingNumber" html-tabindex="31" label="" value="{!creditApp.ABA_Routing_Number__c}" html-maxlength="9"/>
+                                                    <apex:InputField required="true" styleClass="styled-input required numbers" id="abaRoutingNumber" html-tabindex="32" label="" value="{!creditApp.ABA_Routing_Number__c}" html-maxlength="9"/>
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="1">
                                                     <label for="verifyAbaRoutingNumber" class="styled-label">
@@ -617,7 +617,7 @@
                                                         <span class="styled-label-required">*</span>
                                                         <i class="fa fa-question-circle help-circle check-image" aria-hidden="true" title="Sample Check Image"></i>
                                                     </label>
-                                                    <input type="text" required="true" class="styled-input required numbers" id="verifyAbaRoutingNumber" maxlength="9" tabindex="32" />
+                                                    <input type="text" required="true" class="styled-input required numbers" id="verifyAbaRoutingNumber" maxlength="9" tabindex="33" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="2">
                                                 </div>
@@ -648,37 +648,37 @@
                                                     <apex:outputLabel for="guarantorFirstName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_First_Name__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="33" id="guarantorFirstName" value="{!creditApp.Guarantor_First_Name__c}" html-maxlength="40"/>
+                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="34" id="guarantorFirstName" value="{!creditApp.Guarantor_First_Name__c}" html-maxlength="40"/>
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="1">
                                                     <apex:outputLabel for="guarantorLastName" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Last_Name__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="34" id="guarantorLastName" value="{!creditApp.Guarantor_Last_Name__c}" html-maxlength="40"/>
+                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="35" id="guarantorLastName" value="{!creditApp.Guarantor_Last_Name__c}" html-maxlength="40"/>
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="2">
                                                     <apex:outputLabel for="guarantorSSN" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Social_Security_Number__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="###-##-####" styleClass="styled-input required ssn" html-tabindex="34" id="guarantorSSN" value="{!creditApp.Guarantor_Social_Security_Number__c}" html-maxlength="11" />
+                                                    <apex:InputField required="true" html-placeholder="###-##-####" styleClass="styled-input required ssn" html-tabindex="36" id="guarantorSSN" value="{!creditApp.Guarantor_Social_Security_Number__c}" html-maxlength="11" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="3">
                                                     <apex:outputLabel for="guarantorDOB" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Date_of_Birth__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputText required="true" html-placeholder="MM/DD/YYYY" styleClass="styled-input required date" tabindex="35" id="guarantorDOB" value="{!creditApp.Guarantor_Date_of_Birth__c}" />
+                                                    <apex:InputText required="true" html-placeholder="MM/DD/YYYY" styleClass="styled-input required date" tabindex="37" id="guarantorDOB" value="{!creditApp.Guarantor_Date_of_Birth__c}" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="4">
                                                     <apex:outputLabel for="guarantorPhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Phone__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="36" id="guarantorPhone" html-class="phone" label="" value="{!creditApp.Guarantor_Residential_Phone__c}" html-maxlength="20"/>
+                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="38" id="guarantorPhone" html-class="phone" label="" value="{!creditApp.Guarantor_Residential_Phone__c}" html-maxlength="20"/>
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="5">
                                                     <apex:outputLabel for="guarantorMobilePhone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Mobile_Phone__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="37" id="guarantorMobilePhone" html-class="phone" label="" value="{!creditApp.Guarantor_Mobile_Phone__c}" html-maxlength="20"/>
+                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="39" id="guarantorMobilePhone" html-class="phone" label="" value="{!creditApp.Guarantor_Mobile_Phone__c}" html-maxlength="20"/>
                                                 </div>
                                             </div>
                                             <div class="six columns clearfix">
@@ -686,25 +686,25 @@
                                                     <apex:outputLabel for="guarantorAddress" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_Address__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="38" id="guarantorAddress" label="" value="{!creditApp.Guarantor_Residential_Address__c}" html-maxlength="100" />
+                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="40" id="guarantorAddress" label="" value="{!creditApp.Guarantor_Residential_Address__c}" html-maxlength="100" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="2">
                                                     <apex:outputLabel for="guarantorCity" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_Residential_City__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="40" id="guarantorCity" label="" value="{!creditApp.Guarantor_Residential_City__c}" html-maxlength="50" />
+                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="41" id="guarantorCity" label="" value="{!creditApp.Guarantor_Residential_City__c}" html-maxlength="50" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="3">
                                                     <apex:outputLabel for="guarantorState" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Guarantor_State_Province__c.label} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="41" id="guarantorState" value="{!creditApp.Guarantor_State_Province__c}" />
+                                                    <apex:InputField required="true" styleClass="styled-input required" html-tabindex="42" id="guarantorState" value="{!creditApp.Guarantor_State_Province__c}" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="4">
                                                     <apex:outputLabel for="guarantorPostalCode" styleClass="styled-label" value="Postal Code">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
-                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Guarantor_Country__c == null || creditApp.Guarantor_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="42" id="guarantorPostalCode" label="" value="{!creditApp.Guarantor_Residential_Postal_Code__c}" html-maxlength="10" />
+                                                    <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Guarantor_Country__c == null || creditApp.Guarantor_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="43" id="guarantorPostalCode" label="" value="{!creditApp.Guarantor_Residential_Postal_Code__c}" html-maxlength="10" />
                                                 </div>
                                                 <div class="twelve columns clearfix form-field" data-row="1">
                                                     <apex:actionRegion >
