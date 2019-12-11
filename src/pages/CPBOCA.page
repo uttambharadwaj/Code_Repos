@@ -251,12 +251,6 @@
                                             </apex:outputLabel>
                                             <apex:InputField required="true" styleClass="styled-input required" html-tabindex="3" id="lastName" label="" value="{!creditApp.Last_Name__c}" html-maxlength="40" />
                                         </div>
-                                        <div class="twelve columns clearfix form-field" data-row="3">
-                                            <apex:outputLabel for="phone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Business_Phone__c.label} ">
-                                                <span class="styled-label-required">*</span>
-                                            </apex:outputLabel>
-                                            <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="4" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20"/>
-                                        </div>
                                         <div class="twelve columns clearfix form-field" data-row="4">
                                             <apex:outputLabel for="numberOfCards" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Number_of_Cards__c.label} (optional) "/>
                                             <apex:InputField styleClass="styled-input" html-tabindex="5" id="numberOfCards" html-maxlength="100" value="{!creditApp.Number_of_Cards__c}" />
@@ -436,6 +430,12 @@
                                                 </apex:outputPanel>
                                             </div>
                                         </apex:outputPanel>
+                                        <div class="twelve columns clearfix form-field" data-row="3">
+                                            <apex:outputLabel for="phone" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Business_Phone__c.label} ">
+                                                <span class="styled-label-required">*</span>
+                                            </apex:outputLabel>
+                                            <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Phone}" styleClass="styled-input required phone" html-tabindex="4" id="phone" html-class="phone" label="" value="{!creditApp.Business_Phone__c}" html-maxlength="20"/>
+                                        </div>
                                     </div>
                                 </div>
                             </fieldset>
