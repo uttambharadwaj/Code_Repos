@@ -42,6 +42,7 @@ public class AccountSearchTypes {
         @AuraEnabled public String pgmRowId;
         @AuraEnabled public String primaryContactNm;
         @AuraEnabled public String primaryContactPhoneNbr;
+        @AuraEnabled public String carrierId;
         @AuraEnabled public String primaryContactRowId;
         @AuraEnabled public String salesforceUUID;
         @AuraEnabled public String spnrAcctNbr;

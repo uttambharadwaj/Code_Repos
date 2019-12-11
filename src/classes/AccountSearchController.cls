@@ -30,6 +30,12 @@ public with sharing class AccountSearchController {
 	@AuraEnabled
 	public static SearchResultsWrapper searchServ(String searchType, String searchKeyword) {
 		SearchResultsWrapper srWrapper = new SearchResultsWrapper();
+
+		// OTR Searches go down a different rabbit hole
+		boolean otrSearch = isOTRSearch(searchType);
+
+		System.debug('Search param: ' + searchType + ' otrSearch:' + otrSearch);
+
 		List<SearchResultsColumn> searchColumns = new List<SearchResultsColumn> ();
 		SearchResultsColumn action = new SearchResultsColumn();
 		action.Label = 'Action';
@@ -48,6 +54,13 @@ public with sharing class AccountSearchController {
 					addColumn = false;
 				}
 			}
+			if (!otrSearch && c.DeveloperName.equalsIgnoreCase('CarrierId') ){
+				addColumn = false;
+			}
+			if(otrSearch && (c.DeveloperName.equalsIgnoreCase('SpnrAcctNbr') || c.DeveloperName.equalsIgnoreCase('PgmRowId'))){
+				addColumn = false;
+			}
+
 			if (addColumn) {
 				SearchResultsColumn column = new SearchResultsColumn();
 				column.Label = c.MasterLabel;
@@ -62,10 +75,13 @@ public with sharing class AccountSearchController {
 		request.searchData = searchKeyword;
 
 		List<SearchResultsRow> results = new List<SearchResultsRow> ();
-		AccountSearchTypes.accountSearchResult response;
+		AccountSearchTypes.accountSearchResult response = new AccountSearchTypes.accountSearchResult();
+
 		try {
-			if (request.searchField.startsWith('OTR')) {
-				response = getOTRResponse(request);
+			if (otrSearch) {
+				// TODO pass back the response with any errors
+                response = searchOTR(searchType, searchKeyword);
+
 			} else {
 				response = getNaFleetSOAPResponse(request);
 			}
@@ -168,6 +184,140 @@ public with sharing class AccountSearchController {
 		return srWrapper;
 	}
 
+	private static boolean isOTRSearch(String searchType) {
+		if (searchType.equalsIgnoreCase('Check_Number_OTR') ||
+				searchType.equalsIgnoreCase('Money_Code') ||
+				searchType.equalsIgnoreCase('Check_Number') ||
+				searchType.equalsIgnoreCase('Account_Number_OTR') ||
+				searchType.equalsIgnoreCase('AR_Number') ||
+				searchType.equalsIgnoreCase('Phone_Number') ||
+				searchType.equalsIgnoreCase('Member_ID') ||
+				searchType.equalsIgnoreCase('Company_Name') ||
+				searchType.equalsIgnoreCase('Carrier_ID')) {
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+	@AuraEnabled
+	public static AccountSearchTypes.accountSearchResult searchOTR(String searchType, String searchKeyword) {
+
+		AccountSearchTypes.accountSearchResult response = new AccountSearchTypes.accountSearchResult();
+
+		List<AccountSearchTypes.AccountSearchDTO> dtoList = new List<AccountSearchTypes.AccountSearchDTO> ();
+		List<Account> accountListService = new List<Account>();
+
+		System.debug('searchOTR with searchType:  ' + searchType + ' searchKeyword: ' + searchKeyword);
+
+		// We need to filter and RecordType.Name = 'Fleet Account' accounts otherwise we will get dups in the result list
+		if ('Carrier_ID'.equals(searchType)) {
+			try {
+				accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY')  FROM Account WHERE RecordType.Name = 'Fleet Account' and Carrier_ID__c = :searchKeyword];
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		} else if('Account_Number_OTR'.equals(searchType)){
+			try {
+				accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY')  FROM Account WHERE RecordType.Name = 'Fleet Account' and Account_Number__c = :searchKeyword];
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		}else if('AR_Number'.equals(searchType)){
+			List<Contract__c> contractIds = new List<Contract__c>();
+			Set<Id> accountsIds = new Set<Id>();
+			try {
+				contractIds = [SELECT Id,Account__c FROM Contract__c WHERE AR_Number__c = :searchKeyword];
+				System.debug('Contracts found: ' + contractIds.size());
+				for(Contract__c contract : contractIds){
+					accountsIds.add(contract.Account__c);
+					System.debug('Account_c: ' + contract.Account__c);
+				}
+				accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone,	BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c,(select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY')	FROM Account WHERE RecordType.Name = 'Fleet Account' and Id IN : accountsIds ];
+
+				System.debug('Contracts found: ' + accountListService.size());
+
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		}else if('Company_Name'.equals(searchType)){
+			try {
+				accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY')  FROM Account WHERE RecordType.Name = 'Fleet Account' and Name = :searchKeyword];
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		}else if('Money_Code'.equals(searchType)){
+			response.errorMsg = 'Money Code search is not yet implemented';
+			return response;
+
+		}else if('Phone_Number'.equals(searchType)){
+			String phoneNumber = '(' + searchKeyword.substring(0,3) + ') ' + searchKeyword.substring(3,6) + '-' + searchKeyword.substring(6,10);
+			try {
+				accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY')  FROM Account WHERE RecordType.Name = 'Fleet Account' and Phone = :phoneNumber];
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		}else if('Check_Number'.equals(searchType)){
+			response.errorMsg = 'Check Number search is not yet implemented';
+			return response;
+
+		}else if('Member_ID'.equals(searchType)){
+			try {
+				accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY')  FROM Account WHERE RecordType.Name = 'Fleet Account' and Member_ID__c = :searchKeyword];
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+		}
+
+
+		for (Account acct : accountListService) {
+
+			AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
+			dto1.acctNm = acct.Name;
+			dto1.acctRowId = acct.Acct_Row_Id__c;
+			dto1.wexAcctNbr = acct.Wex_Account__c;
+			dto1.acctSts = acct.Account_Status__c.replace('<img src="/img/samples/stars_000.gif" alt="0" border="0"/>', '');
+			dto1.primaryContactPhoneNbr = acct.Phone;
+			dto1.mainPhone = acct.Phone;
+			dto1.spnrAcctNbr = acct.Sponsor_Acct__c;
+			dto1.carrierId = acct.Carrier_ID__c;
+			dto1.addrCity = acct.BillingCity;
+			dto1.addrStateProvCd = acct.BillingState;
+			for(Contact contact : acct.Contacts){
+				if('PRIMARY'.equals(contact.Contact_Type__c)){
+					dto1.primaryContactNm = contact.Name;
+					dto1.primaryContactPhoneNbr = contact.Phone;
+				}
+			}
+
+			dtoList.add(dto1);
+		}
+
+		response.accountList = dtoList;
+		if(dtoList.size() < 1){
+			response.errorMsg = 'No results found.';
+		}
+		return response;
+	}
+
 	private static AccountSearchTypes.accountSearchResult getNaFleetSOAPResponse(AccountSearchTypes.accountSearchRequest request) {
 		AccountSearchStub.CustomerDetailsSOAPQSPort client = new AccountSearchStub.CustomerDetailsSOAPQSPort();
 		client.endpoint_x = 'callout:Customer_Details';
@@ -180,10 +330,4 @@ public with sharing class AccountSearchController {
 		return response;
 	}
 
-	//todo: implement
-	private static AccountSearchTypes.accountSearchResult getOTRResponse(AccountSearchTypes.accountSearchRequest request) {
-		AccountSearchTypes.accountSearchResult response =new AccountSearchTypes.accountSearchResult();
-		response.errorMsg = 'Not implemented yet';
-		return response;
-	}
 }
