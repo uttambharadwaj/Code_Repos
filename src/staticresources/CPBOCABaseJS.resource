@@ -1,4 +1,4 @@
-$j = jQuery.noConflict();
+$j = jQuery.noConflict(); 
 
 var isNA = true;
 
@@ -50,10 +50,11 @@ function pageLoadFunctions() {
     $j('.yearsInBusiness').mask('000');
 
     const myCountry = $j("[id$=physicalCountry]").val();
-    if(myCountry == 'US' || myCountry == 'CA') isNA = true;
+    if(myCountry === 'US' || myCountry === 'CA') isNA = true;
     else isNA = false;
 
-    const myPhone = $j('.phone').val();
+    const myPhone = $j("[id$=phone]").val();
+    const bankPhone = $j("[id$=bankContactPhone]").val();
     const myPostl = $j('.postal').val();
 
     //some stuff just for US/CAN at the moment
@@ -62,8 +63,14 @@ function pageLoadFunctions() {
         $j('.postal').mask('00000-0000');
         $j('.postalCanada').mask('A0A-0A0');
 
-        if(myPhone == null || myPhone == '')
-            $j('.phone').attr('placeholder',$Label.BOCA_Placeholder_Phone);
+        if(myPhone == null || myPhone === '') {
+            $j("[id$=phone]").attr('placeholder',$Label.BOCA_Placeholder_Phone);
+        }
+
+        if(bankPhone == null || bankPhone === '') {
+            $j("[id$=bankContactPhone]").attr('placeholder',$Label.BOCA_Placeholder_Phone)
+        }
+
         if(myPostl == null){
             $j('.postal').attr('placeholder',$Label.BOCA_Placeholder_Postal_Code);
             $j('.postalCanada').attr('placeholder',$Label.BOCA_Placeholder_Postal_Code);
@@ -75,8 +82,14 @@ function pageLoadFunctions() {
         $j('.postalCanada').unmask();
         $j('.phone').attr('maxlength',20);
 
-        if(myPhone == null || myPhone == '')
-            $j('.phone').removeAttr('placeholder');
+        if(myPhone == null || myPhone === '') {
+            $j("[id$=phone]").removeAttr('placeholder');
+        }
+
+        if(bankPhone == null || bankPhone === '') {
+            $j("[id$=bankContactPhone]").removeAttr('placeholder'); 
+        }
+
         if(myPostl == null){
             $j('.postal').removeAttr('placeholder');
             $j('.postalCanada').removeAttr('placeholder');
@@ -85,9 +98,9 @@ function pageLoadFunctions() {
     }
 
     const myMoney = $j('.money').val();
-    if(myMoney == null || myMoney == ''){
+    if(myMoney == null || myMoney === ''){
         const myCurrency = $j("[id$=preferredCurrency]").val();
-        if(myCurrency == 'USD' || myCurrency == 'CAD')
+        if(myCurrency === 'USD' || myCurrency === 'CAD')
             $j('.money').attr('placeholder','$');
         else
             $j('.money').removeAttr('placeholder');
@@ -422,9 +435,15 @@ function validate(currentStep) {
          }
    	});
 
-   	if(!isNA && $j('.phone') != null && $j('.phone').val() != null){
-   	    var myPhone = $j('.phone').val().replace(/[\+\s\-()]/g,'');
-   	    $j('.phone').val(myPhone);
+   	if(!isNA) {
+   	    if($j("[id$=phone]") != null && $j("[id$=phone]").val() != null) {
+            var myPhone = $j("[id$=phone]").val().replace(/[\+\s\-()]/g,'');
+            $j("[id$=phone]").val(myPhone);
+   	    }
+        if($j("[id$=bankPhone]") != null && $j("[id$=bankPhone]").val() != null) {
+            var bankPhone = $j("[id$=bankPhone]").val().replace(/[\+\s\-()]/g,'');
+            $j("[id$=bankPhone]").val(bankPhone); 
+        }
    	}
 
     if(hasErrors == false) { 
