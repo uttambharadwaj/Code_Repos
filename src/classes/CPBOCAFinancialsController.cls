@@ -1,3 +1,10 @@
+/*
+*
+* Revision History:
+*                   10/DEC/2019     MFarrell    LCR-142 & LCR-155   Update attachments, change rendering of stock exchange, add list of attachments after customer adds an attachment.
+*
+*/
+
 public without sharing class CPBOCAFinancialsController {
 
     // Credit application object
@@ -108,6 +115,41 @@ public without sharing class CPBOCAFinancialsController {
         }
     }
 
+    public Boolean requireStockExchange {
+        get {
+            if (creditApp != null) {
+                if (creditApp.Stock_Symbol__c != null && creditApp.Stock_Symbol__c != '') {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    // file attachments!
+    public List<Attachment> existingAttachments {
+        get {
+            if(cpAppId != null) {
+                List<Attachment> attachments = [SELECT Id, Name FROM Attachment WHERE CreatedById =: UserInfo.getUserId() AND ParentId =: cpAppId];
+
+                if (attachments.size() > 0) {
+                    return attachments;
+                }
+            }
+            return null;
+        }
+    }
+
+    public Integer existingAttachmentsSize {
+        get {
+            if (existingAttachments != null) {
+                return existingAttachments.size();
+            } else {
+                return 0;
+            }
+        }
+    }
+
     // Branding logo related to the program
     public Id brandingLogo { get; set; }
 
@@ -185,7 +227,6 @@ public without sharing class CPBOCAFinancialsController {
                 for (String doc : documentTypes) {
                     DocumentType docType = new DocumentType();
                     docType.fieldName = doc;
-                    creditApp.put(doc, true);
                     docTypeList.add(docType);
                 }
             }
@@ -253,13 +294,11 @@ public without sharing class CPBOCAFinancialsController {
         }
     }
 
-
     public PageReference submitApplication() {
 
         System.debug('in SubmitApplication method');
 
         try {
-            System.debug('The credit application: ' + creditApp);
 
             Database.SaveResult result = Database.update(creditApp, false);
             System.debug('attempted to update, result was successful: ' + result.isSuccess());
@@ -301,14 +340,16 @@ public without sharing class CPBOCAFinancialsController {
     public PageReference uploadFile() {
 
         for (DocumentType docType : docTypeList) {
-            Boolean fieldChecked = (Boolean) creditApp.get(docType.fieldName);
-            if (docType.attachmentBody != null && docType.attachmentName != null && fieldChecked==true) {
+            if (docType.attachmentBody != null && docType.attachmentName != null) {
 
                 Attachment applicationAttachment = new Attachment();
+                System.debug('attachment name: ' + docType.fieldName);
 
                 applicationAttachment.Body = docType.attachmentBody;
-                applicationAttachment.Name = docType.attachmentName;
+                applicationAttachment.Name = docType.fieldName.substring(0, docType.fieldName.length()-3) + ' - ' + docType.attachmentName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                 applicationAttachment.ParentId = cpAppId;
+
+                creditApp.put(docType.fieldName, true);
 
                 try {
                     insert applicationAttachment;

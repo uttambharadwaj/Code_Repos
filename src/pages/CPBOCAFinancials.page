@@ -1,5 +1,6 @@
 <!--
-    Revision History: 5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
+    Revision History:   5/9/2019 PSOBACKLOG-76 ADA Compliance-Images
+                        10/DEC/2019     MFarrell    LCR-142 & LCR-155   Update attachments, change rendering of stock exchange, add list of attachments after customer adds an attachment.
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="CPBOCAFinancialsController"
     action="{!init}" language="{!languageCode}">
@@ -59,15 +60,15 @@
             $j(elem).nextAll('[id$=attachmentBody]')[0].click();
         }
 
-          function upload(elem) {
-                if ($j($j(elem).prevAll('[id$=attachmentBody]')[0]).val() != null && $j($j(elem).prevAll('[id$=attachmentBody]')[0]).val() !== "") {
-                    uploadFile();
-                }
-                else {
-                    $j('[id$=errors]').css('display', 'block');
-                    $j('[id$=errors]').html('Please select a file to upload.');
-                }
+        function upload(elem) {
+            if ($j($j(elem).prevAll('[id$=attachmentBody]')[0]).val() != null && $j($j(elem).prevAll('[id$=attachmentBody]')[0]).val() !== "") {
+                uploadFile();
             }
+            else {
+                $j('[id$=errors]').css('display', 'block');
+                $j('[id$=errors]').html('Please select a file to upload.');
+            }
+        }
 
         $j(document).ready(function () { 
            $j("[id$=attachmentBody]").on('change', function () {
@@ -238,7 +239,7 @@
                                     <legend>
                                         <div class="twelve columns clearfix">
                                             <div class="section-header">
-                                                <i class="far fa-user-circle"></i>&nbsp;&nbsp;Upload Financials
+                                                <i class="far fa-user-circle"></i> {!$label.CPBOCA_Upload_Financials}
                                             </div>
                                         </div>
                                     </legend>
@@ -248,20 +249,25 @@
                                     <div class="twelve columns clearfix">
                                         <div class="six columns clearfix">
                                             <div class="twelve columns clearfix form-field" data-row="0">
-                                                <apex:outputLabel for="stockSymbol" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Stock_Symbol__c.label} ">
-                                                    <span class="styled-label-required">*</span>
-                                                </apex:outputLabel>
-                                                <apex:InputField required="true" styleClass="styled-input required" html-tabindex="1" id="stockSymbol" value="{!creditApp.Stock_Symbol__c}"
-                                                />
+                                                <apex:actionRegion>
+                                                    <apex:outputLabel for="stockSymbol" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Stock_Symbol__c.label} " />
+                                                    <apex:InputField styleClass="styled-input" html-tabindex="1" id="stockSymbol" value="{!creditApp.Stock_Symbol__c}">
+                                                        <apex:actionSupport event="onchange" reRender="stockExchangeField" />
+                                                    </apex:InputField>
+                                                </apex:actionRegion>
                                             </div>
+                                            <apex:outputPanel id="stockExchangeField">
                                             <div class="twelve columns clearfix form-field" data-row="1">
                                                 <apex:outputLabel for="stockExchange" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Stock_Exchange__c.label} ">
-                                                    <span class="styled-label-required">*</span>
+                                                    <apex:outputPanel rendered="{!requireStockExchange}">
+                                                        <span class="styled-label-required">*</span>
+                                                    </apex:outputPanel>
                                                 </apex:outputLabel>
-                                                <apex:selectList required="true" size="1" styleClass="styled-input required" id="stockExchange" value="{!creditApp.Stock_Exchange__c}">
+                                                <apex:selectList size="1" styleClass="styled-input {!if(requireStockExchange, 'required', '')}" id="stockExchange" value="{!creditApp.Stock_Exchange__c}">
                                                     <apex:selectOptions value="{!stockExchangeList}" />
                                                 </apex:selectList>
                                             </div>
+                                            </apex:outputPanel>
                                         </div>
                                         <div class="six columns clearfix">
                                             <div class="twelve columns clearfix form-field" data-row="0">
@@ -313,49 +319,68 @@
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
+
+                                <!-- Start Document Upload Section -->
                                 <apex:outputPanel id="documentsRequired">
-                                    <fieldset>
-                                        <legend>
-                                            <div class="twelve columns clearfix">
-                                                <div class="section-header">
-                                                    <i class="fa fa-address-card"></i>&nbsp;&nbsp;Documents Required
-                                                </div>
-                                            </div>
-                                        </legend>
-                                        <div class="twelve columns clearfix">
-                                            &nbsp;
-                                        </div>
-                                        <div class="twelve columns clearfix">
-                                                <apex:repeat value="{!docTypeList}" var="doc">
-                                                <div class="twelve columns clearfix form-field" data-row="0">
-                                                    <div class="six columns clearfix form-field" data-row="0">
-                                                        <label class="styled-label">
-                                                            <apex:inputCheckbox id="documentType" value="{!creditApp[doc.fieldName]}" disabled="true" /> &nbsp;{!$ObjectType.CP_Application_Request__c.fields[doc.fieldName].label}
-                                                        </label>
-                                                    </div>
-                                                    <div class="six columns clearfix form-field" data-row="0">
-                                                        <input type="text" id="visibleFileName" style="border-radius: 4px 0px 0px 4px; vertical-align: middle; border-right: 0; width: 50% !important; pointer-events: none; display: inline-flex !important;"
-                                                        />
-                                                        <input type="button" value="Browse" onClick="javascript:triggerFileBrowse(this);" style="background: #e1e1e1 !important; border: 1px solid #D1D1D1; vertical-align: middle; clear: both; margin-left: -5px; border-radius: 0px 4px 4px 0px; margin-top: 2px; border-left: 0; display: inline-flex !important;"
-                                                        />
-                                                        <apex:inputText value="{!doc.attachmentName}" style="visibility: hidden; display: none;" id="attachmentName" />
-                                                        <apex:inputFile value="{!doc.attachmentBody}" filename="{!doc.attachmentName}" id="attachmentBody" style="visibility: hidden; display: none;"
-                                                        />
-                                                        <input type="button" class="" onClick="upload(this);" value="Attach" style="float: left !important;"
-                                                        />  
-                                                    </div>
-                                                </div>
-                                                </apex:repeat>
-                                        </div>
-                                    </fieldset>
                                     <div class="twelve columns clearfix">
-                                        &nbsp;
+                                        <fieldset>
+                                            <legend>
+                                                <div class="twelve columns clearfix">
+                                                    <div class="section-header">
+                                                        <i class="fa fa-address-card"></i> {!$Label.CPBOCA_Document_Upload}
+                                                    </div>
+                                                </div>
+                                            </legend>
+                                            <div class="twelve columns clearfix">
+                                                <apex:repeat value="{!docTypeList}" var="doc">
+                                                    <div id="fileUpload">
+                                                        <div class="twelve columns clearfix">
+                                                            <apex:outputLabel styleClass="styled-label" id="documentType">{!$ObjectType.CP_Application_Request__c.fields[doc.fieldName].label}</apex:outputLabel>
+                                                        </div>
+                                                        <div class="twelve columns clearfix" style="padding-left: 20px">
+                                                            <input type="text" id="visibleFileName" style="border-radius: 4px 0px 0px 4px; vertical-align: middle; border-right: 0; width: 50% !important; pointer-events: none; display: inline-flex !important;" />
+                                                            <input type="button" value="Browse" onClick="javascript:triggerFileBrowse(this);"
+                                                                   style="background: #e1e1e1 !important; border: 1px solid #D1D1D1; vertical-align: middle; clear: both; margin-left: -5px; border-radius: 0px 4px 4px 0px; border-left: 0; display: inline-flex !important;" />
+                                                            <apex:inputText value="{!doc.attachmentName}" style="visibility: hidden; display: none;" id="attachmentName" />
+                                                            <apex:inputFile value="{!doc.attachmentBody}" filename="{!doc.attachmentName}" style="visibility: hidden; display: none;" id="attachmentBody"/>
+                                                            <br />
+                                                            <input type="button" class="" onClick="upload(this);" value="Attach" style="float: left !important;" />
+                                                        </div>
+                                                    </div>
+                                                </apex:repeat>
+                                            </div>
+                                        </fieldset>
                                     </div>
                                 </apex:outputPanel>
+                                <!-- End Document Upload Section -->
+
+                                <!-- Start Attachment Section -->
+                                <apex:outputPanel id="attachments" rendered="{!existingAttachmentsSize > 0}">
+                                    <div class="twelve columns clearfix">
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <div class="section-header">
+                                            <i class="fas fa-paperclip"></i> {!$Label.CPBOCA_Application_Attachments}
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="twelve columns clearfix">
+                                    </div>
+                                    <div class="twelve columns clearfix">
+                                        <ul style="list-style-type: none; padding-left: 20px; padding-top: 10px;">
+                                            <apex:repeat var="attachment" value="{!existingAttachments}">
+                                                <li>
+                                                    <i class="far fa-file-alt styled-label" > {!attachment.Name}</i>
+                                                </li>
+                                            </apex:repeat>
+                                        </ul>
+                                    </div>
+                                </apex:outputPanel>
+                                <!-- End Attachment Section -->
+
                                 <div class="twelve columns clearfix">
                                     <div class="clearfix">
-                                        <input type="button" class="step-button ge-click-appsubmit" onClick="validate({!currentStep});" value="{!$Label.BOCA_Button_Submit}"
-                                        />
+                                        <input type="button" class="step-button ge-click-appsubmit" onClick="validate({!currentStep});" value="{!$Label.BOCA_Button_Submit}" />
                                         <img class="loader-gif" style="" src="{!URLFOR($Resource.WexBOCAAssets, 'WexBOCAAssets/img/loading.gif')}" />
                                     </div>
                                 </div>
@@ -366,7 +391,7 @@
             </div>
         </div>
         <a id="mobile-footer-call" class="ge-click-phone" href="tel:{!program.Inside_Sales_Phone_Number__c}">
-            <div class="line1">CLICK HERE TO GIVE US A CALL</div>
+            <div class="line1">{!$Label.BOCDD_Call_Us}</div>
             <div class="line2">{!program.Inside_Sales_Phone_Number__c}</div>
         </a>
         <div id="footer">
