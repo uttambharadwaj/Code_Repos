@@ -8,6 +8,8 @@
     <aura:attribute name="isDummyContact" type="String" default="false" />
     <aura:attribute name="appMode" type="String" />
     <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="carrierId" type="String" />
+    <aura:attribute name="searchRecordId" type="String" />
     
     <!-- Returns from controller -->
     <aura:attribute name="accountId" type="String" />

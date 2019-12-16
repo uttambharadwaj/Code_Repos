@@ -28,16 +28,28 @@
         var action = component.get("c.getCustomerDetails");
 
         var pdRowId = component.get("v.pdRowId");
+        var acctNbr = component.get("v.accountNumber");
+        var searchRecordId = component.get("v.searchRecordId");
         console.log('### pdRowId = ' + pdRowId);
-        if (pdRowId != null) {
+        console.log('### pdRowId length = ' + pdRowId.length);
+        console.log('### acctNbr = ' + acctNbr);
+        console.log('### acctNbr length = ' + acctNbr.length);
+        console.log('### searchRecordId = ' + searchRecordId);
+        if (pdRowId !== 'null') {
             action.setParams({
-                accountNumber : component.get("v.accountNumber"),
+                accountNumber : acctNbr,
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : pdRowId
             });
+        } else if (acctNbr === 'null') {
+            action.setParams({
+                accountNumber : '',
+                accountRecordId : searchRecordId,
+                pdRowIdString : ''
+            });
         } else {
             action.setParams({
-                accountNumber : component.get("v.accountNumber"),
+                accountNumber : acctNbr,
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : ''
             });

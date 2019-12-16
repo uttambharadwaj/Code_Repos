@@ -90,7 +90,11 @@
                 //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
                 var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
 
-                if(accountNumber == null && component.get("v.recordId") == null) {
+                var carrierId = helper.getParameterByName(component, event, 'c__carrierId', response.url);
+
+                var accountRecordId = helper.getParameterByName(component, event, 'c__accountRowID', response.url);
+
+                if(accountNumber == null && accountRecordId == null && component.get("v.recordId") == null) {
 
                     var toastEvent = $A.get("e.force:showToast");
 
@@ -102,6 +106,7 @@
                 else {
 
                     component.set("v.accountNumber", accountNumber);
+                    component.set("v.searchRecordId", accountRecordId);
 
                     // Grab the case ID off the enclosing tab URL
                     var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
@@ -117,12 +122,13 @@
                     var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
                     component.set("v.pdRowId", pdRowid);
 
-                    /*
+
                     console.log('#### accountNumber = '+component.get("v.accountNumber"));
                     console.log('#### caseId = '+component.get("v.caseId"));
                     console.log('#### contactRowId = '+component.get("v.contactRowId"));
                     console.log('#### pdRowId = '+component.get("v.pdRowId"));
-                     */
+                    console.log('#### searchRecordId = '+component.get("v.searchRecordId"));
+
 
                     // Display the spinner
                     var spinner = component.find("loadingSpinner");
