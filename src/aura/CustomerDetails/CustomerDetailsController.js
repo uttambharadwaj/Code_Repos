@@ -38,15 +38,15 @@
 
         component.set("v.paymentDetailsColumnList", [
             {label: "Payment ID", fieldName: "paymentId", type: "text", sortable: false, initialWidth: 150 },
-            {label: "Accounting Date", fieldName: "accountingDt", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 160},
-            {label: "Posting Date", fieldName: "postingDt", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
+            {label: "Accounting Date", fieldName: "accountingDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 160},
+            {label: "Posting Date", fieldName: "postingDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
             {label: "Payment Amt", fieldName: "paymentAmt", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 130, cellAttributes: { alignment: 'right' }},
             {label: "Currency", fieldName: "currencyCd", type: "text", sortable: false, initialWidth: 120, cellAttributes: { alignment: 'center' }}
         ]);
 
         component.set("v.paymentHistoryColumnList", [
-            {label: "Cycle End", fieldName: "cycleEndDt", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 130},
-            {label: "Due Date",  fieldName: "dueDt", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 100},
+            {label: "Cycle End", fieldName: "cycleEndDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 130},
+            {label: "Due Date",  fieldName: "dueDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 100},
             {label: "Class", fieldName: "cls", type: "text", sortable: false, initialWidth: 80, cellAttributes: { alignment: 'center' }},
             {label: "Sales", fieldName: "salesAmt", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 90, cellAttributes: { alignment: 'right' }},
             {label: "Late Fee", fieldName: "lateFeeAmt", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 100, cellAttributes: { alignment: 'right' }},
@@ -61,10 +61,10 @@
             {label: "Status", fieldName: "status", type: "text", sortable: false, initialWidth: 120 },
             {label: "Source", fieldName: "source", type: "text", sortable: false, initialWidth: 100 },
             {label: "Payment ID", fieldName: "payId", type: "text", sortable: false, initialWidth: 150 },
-            {label: "Scheduled Date", fieldName: "scheduledDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 160},
-            {label: "Posting Date", fieldName: "postingDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
+            {label: "Scheduled Date", fieldName: "scheduledDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 160},
+            {label: "Posting Date", fieldName: "postingDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
             {label: "Payment Amt", fieldName: "amount", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 130, cellAttributes: { alignment: 'right' }},
-            {label: "Updated Date", fieldName: "updateDate", type: "date",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
+            {label: "Updated Date", fieldName: "updateDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
         ]);
 
 
