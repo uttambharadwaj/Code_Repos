@@ -10,6 +10,7 @@
     <aura:attribute name="recordId" type="String" />
     <aura:attribute name="carrierId" type="String" />
     <aura:attribute name="searchRecordId" type="String" />
+    <aura:attribute name="isOtrAccount" type="String" />
     
     <!-- Returns from controller -->
     <aura:attribute name="accountId" type="String" />

@@ -122,14 +122,6 @@
                     var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
                     component.set("v.pdRowId", pdRowid);
 
-
-                    console.log('#### accountNumber = '+component.get("v.accountNumber"));
-                    console.log('#### caseId = '+component.get("v.caseId"));
-                    console.log('#### contactRowId = '+component.get("v.contactRowId"));
-                    console.log('#### pdRowId = '+component.get("v.pdRowId"));
-                    console.log('#### searchRecordId = '+component.get("v.searchRecordId"));
-
-
                     // Display the spinner
                     var spinner = component.find("loadingSpinner");
                     $A.util.removeClass(spinner, "slds-hide");

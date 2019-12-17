@@ -139,6 +139,11 @@ public with sharing class AccountSearchController {
 									pdRowId = (String) caseinstvMap.get('pdrowid');
 								}
 
+								String carrierId = '';
+								if (caseinstvMap.containsKey('carrierid')) {
+									carrierId = (String) caseinstvMap.get('carrierid');
+								}
+
 								resultColumns.put(col.Name, accNum + '|' + acctRowId + '|' + contactId + '|' + pdRowId);
 							}
 							else {
@@ -321,7 +326,14 @@ public with sharing class AccountSearchController {
 
 			AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
 			dto1.acctNm = acct.Name;
-			dto1.acctRowId = acct.Acct_Row_Id__c;
+			dto1.accountId = acct.Id;
+			//Sneaky hack for OTR - MHB
+			if (!String.isEmpty(acct.Acct_Row_Id__c)) {
+				dto1.acctRowId = acct.Acct_Row_Id__c;
+			} else {
+				dto1.acctRowId = acct.Id;
+			}
+
 			dto1.wexAcctNbr = acct.Wex_Account__c;
 			dto1.acctSts = acct.Account_Status__c.replace('<img src="/img/samples/stars_000.gif" alt="0" border="0"/>', '');
 			dto1.primaryContactPhoneNbr = acct.Phone;
