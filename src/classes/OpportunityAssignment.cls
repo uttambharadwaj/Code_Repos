@@ -50,7 +50,7 @@ public class OpportunityAssignment {
                 FROM User
                 WHERE UserRole.Name IN :allRoles
                 AND IsActive = true
-                AND Id NOT IN (SELECT UserId FROM OutOfOffice WHERE isEnabled = TRUE)
+                AND Id NOT IN (SELECT UserId FROM OutOfOffice WHERE StartDate <= :System.Now() AND EndDate >= :System.Now())
                 order by Name ASC
         ]) {
 

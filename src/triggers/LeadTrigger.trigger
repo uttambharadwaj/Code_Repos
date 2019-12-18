@@ -11,6 +11,9 @@
 
 trigger LeadTrigger on Lead (before insert, before update, after insert, after delete, after update) 
 {
+	Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
+	if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Lead_Automation__c) { return; }
+
 	List<Lead> records = trigger.isDelete ? trigger.old : trigger.new;
 
 	if(trigger.isBefore)

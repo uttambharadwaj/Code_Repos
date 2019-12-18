@@ -24,7 +24,7 @@ public class TestClassDispatcher {
     }
 
     @isTest static void testOpportunityTriggerBeforeUpdate() {
-        //OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnUpdate();
+        OpportunityTriggerTest.testFleetEnrollmentOpptyInfoOnUpdate();
     }
 
     @isTest static void testOpptyTriggerInsert(){
@@ -135,7 +135,20 @@ public class TestClassDispatcher {
         OpportunityAssignmentTest.test_opportunityAutoAssignment();
     }
     @isTest static void testOpptyUpdatePrimaryContact(){
-        OpportunityHelperTest.updateOpptyPrimaryContact();
+        OpportunityContactRoleQueueableTest.updateOpportunityPrimaryContactTest();
     }
+
+    @isTest static void testClassicOutOfOfficeController(){
+        ClassicOutOfOfficeControllerTest.testSaveOutOfOffice();
+    }
+
+    @isTest static void testCreditLensWSAuth() {
+        CreditWS_CreditLensTest.creditLensAuthenticationPositiveTest();
+    }
+
+    @isTest static void testCreditLensWSCreate() {
+        CreditWS_CreditLensTest.creditLensCreateEntityPostiveTest();
+    }
+
 
 }

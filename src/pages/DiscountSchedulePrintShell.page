@@ -1,3 +1,8 @@
+<!--
+* Revision History:
+* 03/Oct/2019 CJackson    PSOBACKLOG-258   Original.
+* 09/Dec/2019 CJackson    PSOBACKLOG-319   Modified logic to remove 1 from Discount Tier Maximum (using new formula field).
+-->
 <apex:page showHeader="false" sidebar="false" cache="false" contentType="text/xml" controller="DiscountSchedulePrintControllerShell">
     <block>
         <block>&nbsp;</block>
@@ -13,20 +18,20 @@
                     </apex:repeat>
 
                     <table-header>
-                        <table-row height="9pt" font-weight="bold" text-align="center" color="#000000" background-color="#D7D7D7">
+                        <table-row height="9pt" font-size="0.8em" font-weight="bold" text-align="center" color="#000000" background-color="#D7D7D7">
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[8]==true}">
                                 <table-cell border="1px solid black" margin="0pt" padding="5pt">
-                                    <block>Rebate Schedule Tier</block>
+                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.SBQQ__Number__c.Label}</block>
                                 </table-cell>
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[0]==true}">
                                 <table-cell border="1px solid black" margin="0pt" padding="5pt">
-                                    <block>Tier Minimum</block>
+                                    <block>Minimum Monthly Gallons</block>
                                 </table-cell>
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[1]==true}">
                                 <table-cell border="1px solid black" margin="0pt" padding="5pt">
-                                    <block>Tier Maximum</block>
+                                    <block>Maximum Monthly Gallons</block>
                                 </table-cell>
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[7]==true}">
@@ -64,7 +69,7 @@
                     <table-body>
                         <apex:repeat var="tier" value="{!line.tiers}">
 
-                            <table-row font-size="0.9em">
+                            <table-row font-size="0.8em">
                                 <apex:outputPanel layout="none" rendered="{!line.displayColumns[8]==true}">
                                     <table-cell text-align="center" padding="1pt" padding-left="1pt" padding-right="1pt" border="1px solid black">
                                         <block font-weight="normal">

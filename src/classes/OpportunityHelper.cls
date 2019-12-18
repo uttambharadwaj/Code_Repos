@@ -1,5 +1,7 @@
 /*
  * Created by MFarrell on 7/23/2019.
+ *
+ * Revision History:    06/Dec/2019     MFarrell    Added future method for updatePrimaryContactFuture
  */
 
 public class OpportunityHelper {
@@ -68,45 +70,25 @@ public class OpportunityHelper {
 
     public static void updatePrimaryContact(List<OpportunityContactRole> opportunityContactRoles, List<OpportunityContactRole> oldOpportunityContactRoles) {
 
-        Set<Id> enabledRecordTypes = UtilityClass.getRecTypeByDevName('Opportunity', new List<String>{'Fuel_Card','Fleet_Card','Telamatics','Factoring','Revolver_Record','Truckers_Opportunity','WEX_Clearview'});
-        Map<Id, OpportunityContactRole> primaryRoles = new Map<Id, OpportunityContactRole>();
-        List<Opportunity> updatedOpportunities = new List<Opportunity>();
-        List<Opportunity> nulledContactOpportunities = new List<Opportunity>();
+        List<Id> primaryRoles = new List<Id>();
+
         for (Integer i = 0; i < opportunityContactRoles.size(); i++) {
 
             Boolean isChangedOrInserted = oldOpportunityContactRoles != null ? !oldOpportunityContactRoles[i].IsPrimary : true;
             if (opportunityContactRoles[i].IsPrimary && isChangedOrInserted) {
-                primaryRoles.put(opportunityContactRoles[i].OpportunityId, opportunityContactRoles[i]);
+                primaryRoles.add(opportunityContactRoles[i].Id);
             }
         }
 
         if (!primaryRoles.isEmpty()) {
 
-            for (Opportunity opportunity : [
-                    SELECT Id, Primary_Contact__c
-                    FROM Opportunity
-                    WHERE Id IN :primaryRoles.keySet()
-                    AND RecordTypeId IN :enabledRecordTypes
-            ]) {
-
-
-                if (primaryRoles.get(opportunity.Id).IsPrimary == true) {
-
-                    opportunity.Primary_Contact__c = null;
-                    nulledContactOpportunities.add(opportunity);
-
-                    opportunity.Primary_Contact__c = primaryRoles.get(opportunity.Id).ContactId;
-                    updatedOpportunities.add(opportunity);
-                }
-            }
-
             try {
-                update nulledContactOpportunities; // I'm told for SFMC to pull the change the value must go from NULL to lookup. Not lookup to lookup.......
-                update updatedOpportunities;
+                OpportunityContactRole_Queueable opportunityContactRoleQueueable = new OpportunityContactRole_Queueable(primaryRoles);
+                System.enqueueJob(opportunityContactRoleQueueable);
             } catch (Exception e) {
-                System.debug('Error updating the primary contact: ' + e);
+                System.debug(e);
             }
+
         }
     }
-
 }

@@ -7,7 +7,7 @@
             <table width="100%" style="border-spacing:0;font-family:sans-serif;color:#333333;" >
                 <tr>
                     <td class="inner contents" style="padding-top:40px;padding-bottom:10px;padding-right:75px;padding-left:75px;width:100%;text-align:left;" >
-                        <p style="text-align:center;font-size:24px;Margin:0;Margin-bottom:10px;" >Additional card options to consider:</p>
+                        <p style="text-align:center;font-size:24px;Margin:0;Margin-bottom:10px;" >{!$Label.BOCAToProspect_Additional_Considerations}</p>
                     </td>
                 </tr>
             </table>
@@ -69,7 +69,7 @@
 																<td align="center" bgcolor="#FEC524"  valign="top" style="padding-top:padding:5px;padding-bottom:padding:5px;padding-right:15px;padding-left:15px;" >
 														<![endif]-->
                                                         
-                                                        <!-- BOTTOM CARD APPLY BUTTON --><a href="{!secondaryProgram.bocaURL}" target="_blank" style="background-color:#FEC524;border-collapse:separate;border-top-width:9px;border-top-style:solid;border-top-color:#FEC524;border-right-width:25px;border-right-style:solid;border-right-color:#FEC524;border-bottom-width:9px;border-bottom-style:solid;border-bottom-color:#FEC524;border-left-width:25px;border-left-style:solid;border-left-color:#FEC524;color:#333333;display:inline-block;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:14px;font-weight:600;letter-spacing:.3px;text-decoration:none;" >Apply Now</a>
+                                                        <!-- BOTTOM CARD APPLY BUTTON --><a href="{!secondaryProgram.bocaURL}" target="_blank" style="background-color:#FEC524;border-collapse:separate;border-top-width:9px;border-top-style:solid;border-top-color:#FEC524;border-right-width:25px;border-right-style:solid;border-right-color:#FEC524;border-bottom-width:9px;border-bottom-style:solid;border-bottom-color:#FEC524;border-left-width:25px;border-left-style:solid;border-left-color:#FEC524;color:#333333;display:inline-block;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:14px;font-weight:600;letter-spacing:.3px;text-decoration:none;" >{!$Label.BOCAToProspect_Apply_Now}</a>
                                                         
                                                         <!--[if gte mso 9]>
 																</td>

@@ -1,5 +1,6 @@
 <!--
-Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
+* Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
+*                     12/10/2019 PSOBACKLOG-318 Modify "Questions Call" header section to allow HTML encoding
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="FleetEnrollmentConfirmationController"
     language="{!languageCode}">
@@ -214,7 +215,7 @@ Revision History:   5/15/2019 PSOBACKLOG-76 ADA Compliance-Images
                 <div id="programName" class="six columns">{!program.Brand_Long_Name__c}</div>
                 <div id="contactUs" class="six columns">
 					<apex:outputText rendered="{!fleetEnrollment.Credit_Line_Amount__c != null}">
-                            {!$Label.Questions_Call} {!program.Implementation_Team_Number__c}
+                        <apex:outputText value="{!$Label.Questions_Call} {!program.Implementation_Team_Number__c}" escape="false" />
                     </apex:outputText>
 				</div>
             </div>
