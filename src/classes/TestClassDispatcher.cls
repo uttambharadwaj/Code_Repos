@@ -135,7 +135,7 @@ public class TestClassDispatcher {
         OpportunityAssignmentTest.test_opportunityAutoAssignment();
     }
     @isTest static void testOpptyUpdatePrimaryContact(){
-        OpportunityHelperTest.updateOpptyPrimaryContact();
+        OpportunityContactRoleQueueableTest.updateOpportunityPrimaryContactTest();
     }
 
     @isTest static void testClassicOutOfOfficeController(){
