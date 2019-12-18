@@ -2,7 +2,7 @@
 private class MergeServiceContactsBatchTest {
     @testSetup
     static void setup(){
-       UtilityTestLoader.setAutomation(true);
+       UtilityTestLoader.setAutomation(false);
     }
     static testmethod void testMerge() {
 
