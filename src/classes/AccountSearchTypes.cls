@@ -42,16 +42,20 @@ public class AccountSearchTypes {
         @AuraEnabled public String pgmRowId;
         @AuraEnabled public String primaryContactNm;
         @AuraEnabled public String primaryContactPhoneNbr;
+        @AuraEnabled public String carrierId;
         @AuraEnabled public String primaryContactRowId;
         @AuraEnabled public String salesforceUUID;
         @AuraEnabled public String spnrAcctNbr;
         @AuraEnabled public String vehicleNbr;
         @AuraEnabled public String wexAcctNbr;
+        @AuraEnabled public String accountId;
         private String[] acctNm_type_info = new String[]{'acctNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] acctRowId_type_info = new String[]{'acctRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] acctSts_type_info = new String[]{'acctSts','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountId_type_info = new String[]{'accountId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] addrCity_type_info = new String[]{'addrCity','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] addrStateProvCd_type_info = new String[]{'addrStateProvCd','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] carrierId_type_info = new String[]{'carrierId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] chldFlg_type_info = new String[]{'chldFlg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] customAcctNbr_type_info = new String[]{'customAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] dwSourceSys_type_info = new String[]{'dwSourceSys','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -71,7 +75,7 @@ public class AccountSearchTypes {
         private String[] vehicleNbr_type_info = new String[]{'vehicleNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] wexAcctNbr_type_info = new String[]{'wexAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'acctNm','acctRowId','acctSts','addrCity','addrStateProvCd','chldFlg','customAcctNbr','dwSourceSys','hierLevelNbr','mainPhone','onlineUserAccessLevel','onlineUserNm','parentWexAcctNbr','pdDepartment','pdRowId','pgmRowId','primaryContactNm','primaryContactPhoneNbr','primaryContactRowId','salesforceUUID','spnrAcctNbr','vehicleNbr','wexAcctNbr'};
+        private String[] field_order_type_info = new String[]{'acctNm','acctRowId','acctSts','accountId','addrCity','addrStateProvCd','carrierId','chldFlg','customAcctNbr','dwSourceSys','hierLevelNbr','mainPhone','onlineUserAccessLevel','onlineUserNm','parentWexAcctNbr','pdDepartment','pdRowId','pgmRowId','primaryContactNm','primaryContactPhoneNbr','primaryContactRowId','salesforceUUID','spnrAcctNbr','vehicleNbr','wexAcctNbr'};
     }
     public class accountSearch {
         @AuraEnabled public AccountSearchTypes.accountSearchRequest arg0;

@@ -11,9 +11,7 @@ public class CustomerDetailsTest {
 
         String contactJsonString = JSON.serialize(contacts);
         System.debug('### contactJsonString='+contactJsonString);
-
         UtilityTestLoader.setAutomation(false);
-
         Id genericProgramId;
         Id genericPartnerId;
         String programRowId;

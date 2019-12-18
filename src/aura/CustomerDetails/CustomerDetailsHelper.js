@@ -28,16 +28,25 @@
         var action = component.get("c.getCustomerDetails");
 
         var pdRowId = component.get("v.pdRowId");
-        console.log('### pdRowId = ' + pdRowId);
-        if (pdRowId != null) {
+        var acctNbr = component.get("v.accountNumber");
+        var searchRecordId = component.get("v.searchRecordId");
+
+        if (pdRowId !== 'null') {
             action.setParams({
-                accountNumber : component.get("v.accountNumber"),
+                accountNumber : acctNbr,
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : pdRowId
             });
+        } else if (acctNbr === 'null') { //OTR path
+            action.setParams({
+                accountNumber : '',
+                accountRecordId : searchRecordId,
+                pdRowIdString : ''
+            });
+            component.set("v.isOtrAccount", true);
         } else {
             action.setParams({
-                accountNumber : component.get("v.accountNumber"),
+                accountNumber : acctNbr,
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : ''
             });
@@ -52,7 +61,8 @@
 
                 _.forEach(component.get("v.customerDetails.contacts"), function(customerDetailsContact) {
                     _.forEach(customerDetailsContact, function(contact) {
-                        if((contact.contactType).toUpperCase() === 'PRIMARY') {
+                        console.log("contactType = "+contact.contactType);
+                        if((contact.contactType) != undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
                             primaryContact = contact;
                         }
                     });
@@ -182,12 +192,25 @@
     },
 
     loadCustomerContacts : function(component, target) {
-        this.loadGenericContacts(component, target);
-        var action = component.get("c.getCustomerContacts");
+        var action;
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+        this.loadGenericContacts(component, target);
+        console.log("loadCustomerContacts: isOtrAccount="+component.get("v.isOtrAccount"));
+
+        if (component.get("v.isOtrAccount") == true) {
+            console.log("Taking OTR path!");
+            action = component.get("c.getCustomerContactsFromSalesforce");
+            action.setParams({
+                accountId : component.get("v.searchRecordId")
+            });
+        } else {
+            action = component.get("c.getCustomerContacts");
+
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+        }
+
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -853,82 +876,85 @@
 
     loadInvoices : function(component, target) {
 
-        var action = component.get("c.getInvoices");
+        if (component.get("v.isOtrAccount") != true) {
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber"),
-            sourceSys     : component.get("v.customerDetails.sourceSys")
-        });
+            var action = component.get("c.getInvoices");
 
-        action.setCallback(this, function(response) {
-            console.log("### loadInvoices RESPONSE " +response);
-            var state = response.getState();
+            action.setParams({
+                accountNumber : component.get("v.accountNumber"),
+                sourceSys     : component.get("v.customerDetails.sourceSys")
+            });
 
-            if(component.isValid() && state === "SUCCESS") {
-                component.set("v.invoices", response.getReturnValue());
-                console.log("### got invoices");
-                console.log(response.getReturnValue());
-                console.log(component.get("v.invoices"));
+            action.setCallback(this, function(response) {
+                console.log("### loadInvoices RESPONSE " +response);
+                var state = response.getState();
+
+                if(component.isValid() && state === "SUCCESS") {
+                    component.set("v.invoices", response.getReturnValue());
+                    console.log("### got invoices");
+                    console.log(response.getReturnValue());
+                    console.log(component.get("v.invoices"));
 
 
-                if(target != null) {
-                    $A.util.removeClass(target, 'fa-spin fa-1x fa-fw');
+                    if(target != null) {
+                        $A.util.removeClass(target, 'fa-spin fa-1x fa-fw');
+                    }
+
+                    var spinner = component.find("invoicesLoadingSpinner");
+                    $A.util.addClass(spinner, "slds-hide");
+
+                    var message;
+                    var messageType;
+                    var messageTitle = "";
+                    var messageMode;
+
+
+                    if(target != null) {
+                        message = "Tab data refreshed!";
+                        messageType = "success";
+                        messageTitle = "Success";
+                        messageMode = "dismissible";
+                    }
+
+
+                    var errors = response.getReturnValue().errorMsg;
+                    if (errors && errors.length > 0) {
+                        console.log("### errors="+errors);
+                        console.log("### errors.length="+errors.length);
+                        message = errors;
+                        messageType = "warning";
+                        messageTitle = "Warning!";
+                        messageMode = "sticky";
+                    }
+                    console.log("### messageTitle = "+messageTitle);
+                    if (messageTitle != "") {
+                        var toastEvent = $A.get("e.force:showToast");
+
+                        toastEvent.setParams({ "mode": messageMode, "type": messageType, "title": messageTitle, "message": message });
+
+                        toastEvent.fire();
+                    }
                 }
+                else {
+                    var errorMessage = "Unknown Fault";
 
-                var spinner = component.find("invoicesLoadingSpinner");
-                $A.util.addClass(spinner, "slds-hide");
+                    var errors = response.errorMsg;
 
-                var message;
-                var messageType;
-                var messageTitle = "";
-                var messageMode;
+                    if (errors && Array.isArray(errors) && errors.length > 0) {
+                        errorMessage = errors[0].message;
+                    }
 
-
-                if(target != null) {
-                    message = "Tab data refreshed!";
-                    messageType = "success";
-                    messageTitle = "Success";
-                    messageMode = "dismissible";
-                }
-
-
-                var errors = response.getReturnValue().errorMsg;
-                if (errors && errors.length > 0) {
-                    console.log("### errors="+errors);
-                    console.log("### errors.length="+errors.length);
-                    message = errors;
-                    messageType = "warning";
-                    messageTitle = "Warning!";
-                    messageMode = "sticky";
-                }
-                console.log("### messageTitle = "+messageTitle);
-                if (messageTitle != "") {
                     var toastEvent = $A.get("e.force:showToast");
 
-                    toastEvent.setParams({ "mode": messageMode, "type": messageType, "title": messageTitle, "message": message });
+                    toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
 
                     toastEvent.fire();
                 }
-            }
-            else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.errorMsg;
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
-            }
-        });
-        var spinner = component.find("invoicesLoadingSpinner");
-        $A.util.addClass(spinner, "slds-hide");
-        $A.enqueueAction(action);
+            });
+            var spinner = component.find("invoicesLoadingSpinner");
+            $A.util.addClass(spinner, "slds-hide");
+            $A.enqueueAction(action);
+        }
     },
 
     getPriorityLevelServicingRule : function(component, target) {

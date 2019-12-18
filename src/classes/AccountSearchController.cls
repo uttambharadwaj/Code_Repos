@@ -30,11 +30,18 @@ public with sharing class AccountSearchController {
 	@AuraEnabled
 	public static SearchResultsWrapper searchServ(String searchType, String searchKeyword) {
 		SearchResultsWrapper srWrapper = new SearchResultsWrapper();
+
+		// OTR Searches go down a different rabbit hole
+		boolean otrSearch = isOTRSearch(searchType);
+
+		System.debug('Search param: ' + searchType + ' otrSearch:' + otrSearch);
+
 		List<SearchResultsColumn> searchColumns = new List<SearchResultsColumn> ();
 		SearchResultsColumn action = new SearchResultsColumn();
 		action.Label = 'Action';
 		action.Name = 'Action';
 		searchColumns.add(action);
+		//todo: update the column list calculation for OTR
 		for (Service_Search_Columns__mdt c :[SELECT MasterLabel, DeveloperName, SortOrder__c FROM Service_Search_Columns__mdt ORDER BY SortOrder__c ASC]) {
 			Boolean addColumn = true;
 			if ( c.DeveloperName.equalsIgnoreCase('CustomAcctNbr') || c.DeveloperName.equalsIgnoreCase('OnlineUserNm')) {
@@ -43,9 +50,17 @@ public with sharing class AccountSearchController {
 					addColumn = false;
 				} //Next are columns only used for GTAG search
 			} else if (!searchType.equalsIgnoreCase('GTAG')) {
-				if (c.DeveloperName.equalsIgnoreCase('vehicleNbr') || c.DeveloperName.equalsIgnoreCase('pdDepartment'))
+				if (c.DeveloperName.equalsIgnoreCase('vehicleNbr') || c.DeveloperName.equalsIgnoreCase('pdDepartment'))  {
 					addColumn = false;
+				}
 			}
+			if (!otrSearch && c.DeveloperName.equalsIgnoreCase('CarrierId') ){
+				addColumn = false;
+			}
+			if(otrSearch && (c.DeveloperName.equalsIgnoreCase('SpnrAcctNbr') || c.DeveloperName.equalsIgnoreCase('PgmRowId'))){
+				addColumn = false;
+			}
+
 			if (addColumn) {
 				SearchResultsColumn column = new SearchResultsColumn();
 				column.Label = c.MasterLabel;
@@ -56,27 +71,29 @@ public with sharing class AccountSearchController {
 		srWrapper.fields = searchColumns;
 
 		AccountSearchTypes.accountSearchRequest request = new AccountSearchTypes.accountSearchRequest();
-		request.SearchField = searchType;
-		request.SearchData = searchKeyword;
+		request.searchField = searchType;
+		request.searchData = searchKeyword;
 
 		List<SearchResultsRow> results = new List<SearchResultsRow> ();
+		AccountSearchTypes.accountSearchResult response = new AccountSearchTypes.accountSearchResult();
 
 		try {
-			AccountSearchStub.CustomerDetailsSOAPQSPort client = new AccountSearchStub.CustomerDetailsSOAPQSPort();
-			client.endpoint_x = 'callout:Customer_Details';
-			client.timeout_x = 120000;
-			AccountSearchTypes.accountSearchResult response = client.accountSearch(request);
-			if (response.AccountList != null) {
-				System.debug('accountList.size - ' + response.AccountList.size());
-			}
-			System.debug('errorMsg - ' + response.ErrorMsg);
-			srWrapper.errorMessage = response.ErrorMsg;
+			if (otrSearch) {
+				// TODO pass back the response with any errors
+                response = searchOTR(searchType, searchKeyword);
 
-			if (response.AccountList != null) {
+			} else {
+				response = getNaFleetSOAPResponse(request);
+			}
+			if (String.isNotEmpty(response.errorMsg)) {
+				srWrapper.errorMessage = response.errorMsg;
+			}
+
+			if (response.accountList != null) {
 
 				Set<String> pgmIds = new Set<String> ();
 
-				for (AccountSearchTypes.AccountSearchDTO dto : response.AccountList) {
+				for (AccountSearchTypes.accountSearchDTO dto : response.accountList) {
 					String jsonStr = JSON.serialize(dto);
 					Map<String, Object> dtoMap = (Map<String, Object>) JSON.deserializeUntyped(jsonStr);
 					Map<String, Object> caseinstvMap = new Map<String, Object> ();
@@ -95,7 +112,7 @@ public with sharing class AccountSearchController {
 					pgmMap.put(pgm.Siebel_Program_Row_Id__c, pgm.Name);
 				}
 
-				for (AccountSearchTypes.AccountSearchDTO dto : response.AccountList) {
+				for (AccountSearchTypes.accountSearchDTO dto : response.accountList) {
 					SearchResultsRow resultRow = new SearchResultsRow();
 					Map<String, String> resultColumns = new Map<String, String> ();
 					String jsonStr = JSON.serialize(dto);
@@ -120,6 +137,11 @@ public with sharing class AccountSearchController {
 								String pdRowId = '';
 								if (caseinstvMap.containsKey('pdrowid')) {
 									pdRowId = (String) caseinstvMap.get('pdrowid');
+								}
+
+								String carrierId = '';
+								if (caseinstvMap.containsKey('carrierid')) {
+									carrierId = (String) caseinstvMap.get('carrierid');
 								}
 
 								resultColumns.put(col.Name, accNum + '|' + acctRowId + '|' + contactId + '|' + pdRowId);
@@ -166,4 +188,187 @@ public with sharing class AccountSearchController {
 		srWrapper.results = results;
 		return srWrapper;
 	}
+
+	private static boolean isOTRSearch(String searchType) {
+		if (searchType.equalsIgnoreCase('Check_Number_OTR') ||
+				searchType.equalsIgnoreCase('Money_Code') ||
+				searchType.equalsIgnoreCase('Check_Number') ||
+				searchType.equalsIgnoreCase('Account_Number_OTR') ||
+				searchType.equalsIgnoreCase('AR_Number') ||
+				searchType.equalsIgnoreCase('Phone_Number') ||
+				searchType.equalsIgnoreCase('Member_ID') ||
+				searchType.equalsIgnoreCase('Company_Name') ||
+				searchType.equalsIgnoreCase('Carrier_ID')) {
+			return true;
+
+		}else{
+			return false;
+		}
+	}
+
+	@AuraEnabled
+	public static AccountSearchTypes.accountSearchResult searchOTR(String searchType, String searchKeyword) {
+
+		AccountSearchTypes.accountSearchResult response = new AccountSearchTypes.accountSearchResult();
+		boolean isWildCardSearch = searchKeyword.contains('*');
+		List<AccountSearchTypes.AccountSearchDTO> dtoList = new List<AccountSearchTypes.AccountSearchDTO> ();
+		List<Account> accountListService = new List<Account>();
+
+		System.debug('searchOTR with searchType:  ' + searchType + ' searchKeyword: ' + searchKeyword);
+
+		// We need to filter and RecordType.Name = 'Fleet Account' accounts otherwise we will get dups in the result list
+		if ('Carrier_ID'.equals(searchType)) {
+			try {
+				if (isWildCardSearch) {
+					searchKeyword = searchKeyword.replace('*', '%');
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and Carrier_ID__c LIKE :searchKeyword];
+				} else {
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and Carrier_ID__c = :searchKeyword];
+				}
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		} else if('Account_Number_OTR'.equals(searchType)){
+			try {
+				if (isWildCardSearch) {
+					searchKeyword = searchKeyword.replace('*', '%');
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and Account_Number__c LIKE :searchKeyword];
+				} else {
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and Account_Number__c = :searchKeyword];
+				}
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		}else if('AR_Number'.equals(searchType)){
+			List<Contract__c> contractIds = new List<Contract__c>();
+			Set<Id> accountsIds = new Set<Id>();
+			try {
+				if (isWildCardSearch) {
+					searchKeyword = searchKeyword.replace('*', '%');
+					contractIds = [SELECT Id,Account__c FROM Contract__c WHERE AR_Number__c LIKE :searchKeyword];
+				}else {
+					contractIds = [SELECT Id,Account__c FROM Contract__c WHERE AR_Number__c = :searchKeyword];
+				}
+				System.debug('Contracts found: ' + contractIds.size());
+				for(Contract__c contract : contractIds){
+					accountsIds.add(contract.Account__c);
+				}
+				accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone,	BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c,(select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY')	FROM Account WHERE RecordType.Name = 'Fleet Account' and Id IN : accountsIds ];
+
+				System.debug('Contracts found: ' + accountListService.size());
+
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		}else if('Company_Name'.equals(searchType)){
+			try {
+				if (isWildCardSearch) {
+					searchKeyword = searchKeyword.replace('*', '%');
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and Name Like :searchKeyword];
+				}else {
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and Name = :searchKeyword];
+				}
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		}else if('Money_Code'.equals(searchType)){
+			response.errorMsg = 'Money Code search is not yet implemented';
+			return response;
+
+		}else if('Phone_Number'.equals(searchType)){
+			String phoneNumber = '(' + searchKeyword.substring(0,3) + ') ' + searchKeyword.substring(3,6) + '-' + searchKeyword.substring(6,10);
+			String phoneNumber2 = searchKeyword.substring(0,3) + '-' + searchKeyword.substring(3,6) + '-' + searchKeyword.substring(6,10);
+			try {
+				if (isWildCardSearch) {
+					searchKeyword = searchKeyword.replace('*', '%');
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and (Phone LIKE :phoneNumber or Phone LIKE :phoneNumber2)];
+				}else {
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and (Phone = :phoneNumber  or Phone = :phoneNumber2)];
+				}
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		}else if('Check_Number'.equals(searchType)){
+			response.errorMsg = 'Check Number search is not yet implemented';
+			return response;
+
+		}else if('Member_ID'.equals(searchType)){
+			try {
+				if (isWildCardSearch) {
+					searchKeyword = searchKeyword.replace('*', '%');
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and Member_ID__c LIKE :searchKeyword];
+				}else {
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY') FROM Account WHERE RecordType.Name = 'Fleet Account' and Member_ID__c = :searchKeyword];
+				}
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+		}
+
+		for (Account acct : accountListService) {
+
+			AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
+			dto1.acctNm = acct.Name;
+			dto1.accountId = acct.Id;
+			//Sneaky hack for OTR - MHB
+			if (!String.isEmpty(acct.Acct_Row_Id__c)) {
+				dto1.acctRowId = acct.Acct_Row_Id__c;
+			} else {
+				dto1.acctRowId = acct.Id;
+			}
+
+			dto1.wexAcctNbr = acct.Wex_Account__c;
+			dto1.acctSts = acct.Account_Status__c.replace('<img src="/img/samples/stars_000.gif" alt="0" border="0"/>', '');
+			dto1.primaryContactPhoneNbr = acct.Phone;
+			dto1.mainPhone = acct.Phone;
+			dto1.spnrAcctNbr = acct.Sponsor_Acct__c;
+			dto1.carrierId = acct.Carrier_ID__c;
+			dto1.addrCity = acct.BillingCity;
+			dto1.addrStateProvCd = acct.BillingState;
+			for(Contact contact : acct.Contacts){
+				if('PRIMARY'.equals(contact.Contact_Type__c)){
+					dto1.primaryContactNm = contact.Name;
+					dto1.primaryContactPhoneNbr = contact.Phone;
+				}
+			}
+
+			dtoList.add(dto1);
+		}
+
+		response.accountList = dtoList;
+		if(dtoList.size() < 1){
+			response.errorMsg = 'No results found.';
+		}
+		return response;
+	}
+
+	private static AccountSearchTypes.accountSearchResult getNaFleetSOAPResponse(AccountSearchTypes.accountSearchRequest request) {
+		AccountSearchStub.CustomerDetailsSOAPQSPort client = new AccountSearchStub.CustomerDetailsSOAPQSPort();
+		client.endpoint_x = 'callout:Customer_Details';
+		client.timeout_x = 120000;
+		AccountSearchTypes.accountSearchResult response = client.accountSearch(request);
+		if (response.accountList != null) {
+			System.debug('accountList.size - ' + response.accountList.size());
+		}
+		System.debug('errorMsg - ' + response.errorMsg);
+		return response;
+	}
+
 }
