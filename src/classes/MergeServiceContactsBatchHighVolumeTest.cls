@@ -13,11 +13,15 @@ private class MergeServiceContactsBatchHighVolumeTest {
         cms.Field__c = 'Contact__c';
         insert cms;
 
+        Program__c program1 = new Program__c();
+        insert program1;
+
         Account acc1 = new Account(Name = 'test1');
         Account acc2 = new Account(Name = 'test2');
-        insert new Account[] {acc1, acc2};
+        Account acc3 = new Account(Name = 'test3', Program__c = program1.Id);
+        insert new Account[] {acc1, acc2, acc3};
 
-        Id rectypeid = [SELECT Id FROM RecordType WHERE SObjectType = 'Contact' AND DeveloperName = 'Service_Operations' LIMIT 1].Id;
+        Id rectypeid = UtilityClass.getRecTypeByDevName('Contact', 'Service_Operations');
 
         Contact c1 = new Contact();
         c1.AccountId = acc1.Id;
@@ -82,7 +86,7 @@ private class MergeServiceContactsBatchHighVolumeTest {
         insert c6;
 
         Contact c7 = new Contact();
-        c7.AccountId = acc1.Id;
+        c7.AccountId = acc3.Id;
         c7.FirstName = 'John';
         c7.LastName = 'Doe';
         c7.Phone = '111-222-3333';
@@ -143,6 +147,6 @@ private class MergeServiceContactsBatchHighVolumeTest {
         List<Contact> ctList = [SELECT Id, MobilePhone, OtherPhone, Phone2__c, Phone3__c, Email_Address_2__c, Email_Address_3__c, (SELECT Id FROM Integration_Record__r)
                                 FROM Contact ORDER BY Name, Id];
 
-        System.assertEquals(2, ctList.size());
+        System.assertEquals(3, ctList.size());
     }
 }
