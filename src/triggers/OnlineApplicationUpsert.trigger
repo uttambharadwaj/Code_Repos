@@ -29,7 +29,7 @@ trigger OnlineApplicationUpsert on OnlineApplication__c (before insert, before u
 
             // if Application Stage has just changed to Adjudication
             if(!(old.Application_Stage__c).equalsIgnoreCase('Adjudication') && (oa.Application_Stage__c).equalsIgnoreCase('Adjudication')
-                    && (oa.Status__c).equalsIgnoreCase('Pending Decision') && CreditDecisionEngineOTR.decisionEngineRunning == false && oa.Opportunity__r.Disable_Instant_Decisioning__c == false) {
+                    && (oa.Status__c).equalsIgnoreCase('Pending Decision') && CreditDecisionEngineOTR.decisionEngineRunning == false && oa.Disable_Instant_Decisioning__c == false) {
 
                 CreditDecisionEngineOTR.runOTRDecisioningProcessFuture(oa.Id);
 
@@ -38,7 +38,7 @@ trigger OnlineApplicationUpsert on OnlineApplication__c (before insert, before u
             // if Compliance of Fraud had to make a decision on the application, then decisioing needs to be re-run
             if(((old.Compliance_Decision__c != null && !(old.Compliance_Decision__c).equalsIgnoreCase(oa.Compliance_Decision__c)) || (old.Fraud_Decision__c != null && !(old.Fraud_Decision__c).equalsIgnoreCase(oa.Fraud_Decision__c)))
                     && (oa.Application_Stage__c).equalsIgnoreCase('Adjudication')
-                    && (oa.Status__c).equalsIgnoreCase('Pending Decision') && CreditDecisionEngineOTR.decisionEngineRunning == false && oa.Opportunity__r.Disable_Instant_Decisioning__c == false) {
+                    && (oa.Status__c).equalsIgnoreCase('Pending Decision') && CreditDecisionEngineOTR.decisionEngineRunning == false && oa.Disable_Instant_Decisioning__c == false) {
 
                 CreditDecisionEngineOTR.runOTRDecisioningProcessFuture(oa.Id);
             }
