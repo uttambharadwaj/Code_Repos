@@ -30,6 +30,8 @@
         var pdRowId = component.get("v.pdRowId");
         var acctNbr = component.get("v.accountNumber");
         var searchRecordId = component.get("v.searchRecordId");
+        if (searchRecordId === 'null')
+            searchRecordId = component.get("v.recordId");
 
         if (pdRowId !== 'null') {
             action.setParams({
@@ -1211,7 +1213,7 @@
 
                     workspaceAPI.openSubtab({
                         parentTabId: response,
-                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber"),
+                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__searchRecordId=' + returnedCaseId,
                         focus: false
                     });
 
