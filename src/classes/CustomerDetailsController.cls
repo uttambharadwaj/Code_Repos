@@ -213,10 +213,8 @@ public without sharing class CustomerDetailsController {
             customerDetails.onlineApplication = serviceOperationsAccount.Online_Application_URL__c;
             customerDetails.specialInstructions = serviceOperationsAccount.Account_Instructions__c;
 
-
-            customerDetails.spnrAccountNbr = serviceOperationsAccount.Carrier_ID__c;
-
-            customerDetails.wexAccountNbr = serviceOperationsAccount.Carrier_ID__c;
+            customerDetails.spnrAccountNbr = serviceOperationsAccount.Carrier_ID__c; //todo: is this correct? external account number
+            //customerDetails.wexAccountNbr = serviceOperationsAccount.Carrier_ID__c; //todo: is this correct? internal account number
 
             customerDetails.sourceSys = serviceOperationsAccount.Platform__c;
 
