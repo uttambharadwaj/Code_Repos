@@ -41,12 +41,12 @@ public without sharing class CustomerDetailsController {
 
     @AuraEnabled
     public static Integer getNumberOfCasesToday(String accountNumber) {
+        System.debug('### entering getExistingCases for '+accountNumber);
 
         try {
 
             List<Case> cases = [SELECT Id FROM Case WHERE Account.Wex_Account__c =: accountNumber AND CreatedDate = TODAY AND RecordType.Name IN: caseTypesToDisplay];
-
-            System.debug(cases.size());
+            System.debug('### getExistingCases found '+cases.size());
 
             return cases.size();
 
@@ -70,10 +70,12 @@ public without sharing class CustomerDetailsController {
 
     @AuraEnabled
     public static List<Case> getExistingCases(String accountNumber) {
+        System.debug('### entering getExistingCases for '+accountNumber);
 
         try {
 
             List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, toLabel(Status), CreatedDate, LastModifiedDate, toLabel(Origin), Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay ORDER BY LastModifiedDate DESC];
+            System.debug('### getExistingCases found '+cases.size());
 
             return cases;
 
@@ -125,9 +127,6 @@ public without sharing class CustomerDetailsController {
             } else {
                 customerDetails = getSoapCustomerDetails(accountNumber, pdRowIdString);
             }
-
-
-
 
             if(String.isEmpty(customerDetails.pfsRepNm)) {
                 customerDetails.pfsRepNm = 'N/A';
@@ -193,6 +192,8 @@ public without sharing class CustomerDetailsController {
                 if ('Active'.equals(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'A';
                 } else if ('Inactive'.equals(serviceOperationsAccount.Status__c)) {
+                    customerDetails.accountSts = 'I';
+                }  else if ('Suspended'.equals(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'S';
                 }  else if ('Terminated'.equals(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'T';
@@ -256,7 +257,7 @@ public without sharing class CustomerDetailsController {
         CustomerDetailsWSUtilv2.contact newContact;
         for (Contact rawContact : rawContactList) {
             newContact = new CustomerDetailsWSUtilv2.contact();
-            newContact.role = 'CONTACT';
+            //newContact.role = 'CONTACT';
             System.debug('*** Contact row ID='+rawContact.WEX_Contact_ID__c);
 
             if (rawContact.WEX_Contact_ID__c != null && rawContact.WEX_Contact_ID__c.equals(primaryContactRowId)) {

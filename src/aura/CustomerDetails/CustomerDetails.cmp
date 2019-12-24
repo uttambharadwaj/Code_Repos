@@ -128,6 +128,9 @@
                                 <aura:if isTrue="{!v.customerDetails.accountSts == 'S'}">
                                     <span class="account-status-suspended">Suspended</span>
                                 </aura:if>
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'I'}">
+                                    <span class="account-status-suspended">Inactive</span>
+                                </aura:if>
                             </p>
                         </div>
                     </div>
