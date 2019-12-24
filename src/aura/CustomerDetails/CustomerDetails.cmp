@@ -50,7 +50,7 @@
     <aura:attribute name="paymentHistoryColumnList" type="List" />
     <aura:attribute name="pendingPaymentsColumnList" type="List" />
     
-    <aura:attribute name="selectedTabId" type="string" default="customerContactsTab" />
+    <aura:attribute name="selectedTabId" type="string" default="customerDetailsTab" />
     <aura:attribute name="selectedPaymentsTabId" type="string" default="paymentDetailsTab" />
     <aura:attribute name="txnSortedBy" type="string" default="Id" />
     <aura:attribute name="txnSortOrder" type="String" default="asc" />
