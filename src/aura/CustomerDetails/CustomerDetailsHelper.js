@@ -30,6 +30,8 @@
         var pdRowId = component.get("v.pdRowId");
         var acctNbr = component.get("v.accountNumber");
         var searchRecordId = component.get("v.searchRecordId");
+        if (searchRecordId === 'null')
+            searchRecordId = component.get("v.recordId");
 
         if (pdRowId !== 'null') {
             action.setParams({
@@ -57,6 +59,9 @@
 
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.customerDetails", response.getReturnValue());
+                if (component.get("v.isOtrAccount") === true && component.get("v.customerDetails.sfdcAcctId") !== 'null') {
+                    component.set("v.recordId", component.get("v.customerDetails.sfdcAcctId"));
+                }
                 var primaryContact = null;
 
                 _.forEach(component.get("v.customerDetails.contacts"), function(customerDetailsContact) {
@@ -64,11 +69,13 @@
                         console.log("contactType = "+contact.contactType);
                         if((contact.contactType) != undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
                             primaryContact = contact;
+                            
                         }
                     });
                 });
 
                 component.set("v.customerPrimaryContact", primaryContact);
+                console.log(primaryContact);
 
                 if(component.get("v.accountNumber") == null) {
                     component.set("v.accountNumber", component.get("v.customerDetails.wexAccountNbr"));
@@ -201,7 +208,8 @@
             console.log("Taking OTR path!");
             action = component.get("c.getCustomerContactsFromSalesforce");
             action.setParams({
-                accountId : component.get("v.searchRecordId")
+                accountId : component.get("v.recordId"),
+                primaryContactRowId: component.get("v.customerPrimaryContact.rowId")
             });
         } else {
             action = component.get("c.getCustomerContacts");
@@ -1211,7 +1219,7 @@
 
                     workspaceAPI.openSubtab({
                         parentTabId: response,
-                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber"),
+                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__searchRecordId=' + returnedCaseId,
                         focus: false
                     });
 

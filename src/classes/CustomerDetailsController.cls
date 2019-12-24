@@ -186,6 +186,7 @@ public without sharing class CustomerDetailsController {
 
         if (!(serviceOperationsAccounts.isEmpty())) {
             Account serviceOperationsAccount = serviceOperationsAccounts.get(0);
+            customerDetails.sfdcAcctId = serviceOperationsAccount.Id;
 
             customerDetails.customerSegmentation = String.valueOf(serviceOperationsAccount.Customer_Segmentation__c);
             if (serviceOperationsAccount.Status__c != null) {
@@ -260,6 +261,7 @@ public without sharing class CustomerDetailsController {
 
             if (rawContact.WEX_Contact_ID__c != null && rawContact.WEX_Contact_ID__c.equals(primaryContactRowId)) {
                 newContact.contactType = 'PRIMARY';
+                newContact.role = 'PRIMARY';
                 System.debug('*** Assigned primary contact');
             }
             else {

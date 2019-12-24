@@ -136,6 +136,8 @@
                     // Grab the number of cases today
                     helper.fetchNumberOfCasesToday(component);
 
+                    component.set("v.selectedTabId","customerContactsTab");
+
                 }
 
                 /*

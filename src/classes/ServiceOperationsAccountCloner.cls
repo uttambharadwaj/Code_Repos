@@ -57,6 +57,18 @@ global with sharing class ServiceOperationsAccountCloner {
                     servOpsAcct.Primary_Contact_TXT__c = primaryContact;
                     update servOpsAcct;
                 }
+                Contact thisContact = [SELECT Id, Contact_Type__c FROM Contact WHERE Id =: primaryContact];
+                if ( thisContact != null) {
+                    thisContact.Contact_Type__c = 'PRIMARY';
+                    update thisContact;
+                }
+
+                IntegrationRecord__c integrationRecord = [SELECT Id, Contact_Type__c FROM IntegrationRecord__c WHERE Contact_Row_Id__c =: primaryContact AND Account__c =: serviceOperationsAccountId];
+
+                if (integrationRecord != null) {
+                    integrationRecord.Contact_Type__c = 'PRIMARY';
+                    update integrationRecord;
+                }
             }
         } catch (Exception e) {
             String errorCode = logError(e);
@@ -198,6 +210,19 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsContact.WEX_Contact_ID__c = serviceOperationsContactId;
 
             update serviceOperationsContact;
+
+            IntegrationRecord__c integrationRecord = new IntegrationRecord__c();
+            integrationRecord.First_Name__c = serviceOperationsContact.FirstName;
+            integrationRecord.Last_Name__c = serviceOperationsContact.LastName;
+            integrationRecord.Email__c = serviceOperationsContact.Email;
+            integrationRecord.Fax__c = serviceOperationsContact.Fax;
+            integrationRecord.Phone__c = serviceOperationsContact.Phone;
+            integrationRecord.Contact_Type__c = serviceOperationsContact.Contact_Type__c;
+            integrationRecord.Account__c = serviceOperationsContact.AccountId;
+            integrationRecord.Contact_Row_Id__c = serviceOperationsContact.WEX_Contact_ID__c;
+
+            insert integrationRecord;
+
         } catch (Exception e) {
             String errorCode = logError(e);
             System.debug('*** ERROR Occurred: in cloneContact '+errorCode);
