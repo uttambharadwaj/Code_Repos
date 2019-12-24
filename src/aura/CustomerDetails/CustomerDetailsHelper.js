@@ -60,7 +60,7 @@
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.customerDetails", response.getReturnValue());
                 if (component.get("v.isOtrAccount") === true && component.get("v.customerDetails.sfdcAcctId") !== 'null') {
-                    component.set("v.recordId", component.get("v.customerDetails.sfdcAcctId"));
+                    //component.set("v.recordId", component.get("v.customerDetails.sfdcAcctId")); // todo: causes an error in the browser. is a valid component variable.
                 }
                 var primaryContact = null;
 

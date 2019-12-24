@@ -141,7 +141,7 @@
                 }
 
                 /*
-                // Grab the account number off the encolsing tab URL
+                // Grab the account number off the enclosing tab URL
                 var accountNumber = helper.getParameterByName(component, event, 'accountNumber', response.url);
 
                 if(accountNumber == null && component.get("v.recordId") == null) {
