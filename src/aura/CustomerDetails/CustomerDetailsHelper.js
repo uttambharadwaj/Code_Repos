@@ -630,6 +630,7 @@
         }
         return iso;
     },
+
     getWexActionDescription : function(actionCode, odsDescription) {
         var wex;
         switch(actionCode)  {
@@ -1345,13 +1346,16 @@
             component.set("v.filteredExistingCases", filteredCases);
         }
 
-    }, sortCaseData:  function (component, fieldName, sortDirection) {
+    },
+
+    sortCaseData:  function (component, fieldName, sortDirection) {
         var data = component.find("casesTable").get("v.data");
         var reverse = sortDirection !== 'asc';
         //sorts the rows based on the column header that's clicked
         data.sort(this.sortBy(fieldName, reverse))
         component.find("casesTable").set("v.data", data);
     },
+
     //These functions are used in the Declined Transactions tab
     sortTxnData: function (component, fieldName, sortDirection) {
         var data = component.find("declinedTransactionsTable").get("v.data");
@@ -1360,6 +1364,7 @@
         data.sort(this.sortBy(fieldName, reverse))
         component.find("declinedTransactionsTable").set("v.data", data);
     },
+
     sortBy: function (field, reverse, primer) {
         var key = primer ?
             function(x) {return primer(x[field])} :
@@ -1370,10 +1375,10 @@
             return a = key(a)?key(a):'', b = key(b)?key(b):'', reverse * ((a > b) - (b > a));
         }
     },
-    //These are object flatteners used to make child object fields available to Datatables
+
+    // These are object flatteners used to make child object fields available to Datatables
     // Taken from https://iwritecrappycode.wordpress.com/2017/11/22/salesforce-lightning-datatable-query-flattener/
-    flattenObject : function(propName, obj)
-    {
+    flattenObject : function(propName, obj) {
         var flatObject = [];
 
         for(var prop in obj)

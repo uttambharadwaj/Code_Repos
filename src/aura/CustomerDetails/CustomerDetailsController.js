@@ -67,7 +67,6 @@
             {label: "Updated Date", fieldName: "updateDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
         ]);
 
-
         component.set("v.past3InvoicesColumnList", [
             {label: "Invoice Date", fieldName: "closingDt", type: "text", sortable: false},
             {label: "View Invoice", fieldName: "invoiceUrl", type: "url",typeAttributes: {label: "View Invoice", target: { fieldName: 'invoiceUrl' }}, sortable: false}
@@ -156,11 +155,11 @@
 
                     component.set("v.accountNumber", accountNumber);
 
-                    // Grab the case ID off the encolsing tab URL
+                    // Grab the case ID off the enclosing tab URL
                     var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
                     component.set("v.caseId", caseId);
 
-                    // Grab the contactRowID off the encolsing tab URL
+                    // Grab the contactRowID off the enclosing tab URL
                     var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
                     component.set("v.contactRowId", contactRowId);
 
@@ -358,7 +357,6 @@
         }
     },
 
-
     refreshInvoices : function(component, event, helper) {
         $A.util.addClass(event.target, 'fa-spin fa-1x fa-fw');
         helper.loadInvoices(component, event.target);
@@ -385,7 +383,6 @@
         $A.util.addClass(event.target, 'fa-spin fa-1x fa-fw');
         helper.fetchCaseHistory(component, event.target);
     },
-
 
     // Client-side controller called by the DeclinedTransactions onsort event handler
     handleTxnSort: function (component, event, helper) {
@@ -430,6 +427,7 @@
         component.set("v.filteredDataTableTransactions", helper.createDataTableTransactions(component.get("v.declinedTransactions")));
 
     },
+
     lazyLoadPayments : function(component, event, helper) {
         if(component.get("v.paymentsBulk") == null) {
             var spinner = component.find("paymentsLoadingSpinner");
@@ -456,6 +454,7 @@
         helper.sortTxnData(component, fieldName, sortDirection);
 
     },
+
     // Client-side controller called by the Payment History onsort event handler
     handlePaymentHistorySort: function (component, event, helper) {
         var fieldName = event.getParam('fieldName');
