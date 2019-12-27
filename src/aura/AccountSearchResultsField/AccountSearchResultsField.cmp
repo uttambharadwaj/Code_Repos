@@ -1,5 +1,5 @@
 <aura:component controller="AccountSearchResultsFieldController">
-	<lightning:workspaceAPI aura:id="workspace"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="result" type="Object" />
     <aura:attribute name="fieldName" type="String" />
     <aura:attribute name="caseId" type="String" />
@@ -7,7 +7,8 @@
     <aura:attribute name="accountRowID" type="String" />
     <aura:attribute name="contactRowId" type="String" />
     <aura:attribute name="pdRowId" type="String" />
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:workspaceAPI aura:id="workspace"/>
     <div class="slds-cell-wrap">
         <aura:if isTrue="{!v.fieldName == 'Action'}">
             <a onclick="{!c.openTab}" title="View">View</a>

@@ -89,12 +89,11 @@
                 var pageRef = component.get("v.pageReference");
                 //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
                 var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
-
                 //var carrierId = helper.getParameterByName(component, event, 'c__carrierId', response.url);
-
                 //var accountRecordId = helper.getParameterByName(component, event, 'c__accountRowID', response.url);
 
-                if(accountNumber == null && accountRecordId == null && component.get("v.recordId") == null) {
+                //if(accountNumber == null && accountRecordId == null && component.get("v.recordId") == null) {
+                if(accountNumber == null && component.get("v.recordId") == null) {
 
                     var toastEvent = $A.get("e.force:showToast");
 

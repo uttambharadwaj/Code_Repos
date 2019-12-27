@@ -12,27 +12,32 @@
             var outputText = component.find("outputTextId");
             outputText.set("v.value", result[fieldName]);
         }
+
     },
 
     openTab: function(component, event, helper) {
         var workspaceAPI = component.find("workspace");
-        workspaceAPI.openTab({
-            pageReference: {
-                "type": "standard__component",
-                "attributes": {
-                    "componentName": "c__CustomerDetails"
-                },
-                "state": {
-                    "c__accountNumber": component.get("v.accountNumber"),
-                    "c__accountRowID": component.get("v.accountRowID"),
-                    "c__contactRowId": component.get("v.contactRowId"),
-                    "c__pdRowId": component.get("v.pdRowId"),
-                    "c__caseId": component.get("v.caseId")
-                }
-            },
-            focus: true
-        }).catch(function(error) {
-            console.log(error);
-        });
+
+        //check if otr account, then handle cloning before opening customerdetails tab
+        helper.helloWorld(component);
+
+        // workspaceAPI.openTab({
+        //     pageReference: {
+        //         "type": "standard__component",
+        //         "attributes": {
+        //             "componentName": "c__CustomerDetails"
+        //         },
+        //         "state": {
+        //             "c__accountNumber": component.get("v.accountNumber"),
+        //             "c__accountRowID": component.get("v.accountRowID"),
+        //             "c__contactRowId": component.get("v.contactRowId"),
+        //             "c__pdRowId": component.get("v.pdRowId"),
+        //             "c__caseId": component.get("v.caseId")
+        //         }
+        //     },
+        //     focus: true
+        // }).catch(function(error) {
+        //     console.log(error);
+        // });
     },
 })

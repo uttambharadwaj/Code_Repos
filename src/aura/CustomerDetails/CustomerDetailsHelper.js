@@ -199,9 +199,9 @@
     },
 
     loadCustomerContacts : function(component, target) {
+        this.loadGenericContacts(component, target);
         var action;
 
-        this.loadGenericContacts(component, target);
         // console.log("loadCustomerContacts: isOtrAccount="+component.get("v.isOtrAccount"));
         //
         // if (component.get("v.isOtrAccount") == true) {
