@@ -90,9 +90,9 @@
                 //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
                 var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
 
-                var carrierId = helper.getParameterByName(component, event, 'c__carrierId', response.url);
+                //var carrierId = helper.getParameterByName(component, event, 'c__carrierId', response.url);
 
-                var accountRecordId = helper.getParameterByName(component, event, 'c__accountRowID', response.url);
+                //var accountRecordId = helper.getParameterByName(component, event, 'c__accountRowID', response.url);
 
                 if(accountNumber == null && accountRecordId == null && component.get("v.recordId") == null) {
 
@@ -106,7 +106,7 @@
                 else {
 
                     component.set("v.accountNumber", accountNumber);
-                    component.set("v.searchRecordId", accountRecordId);
+                    //component.set("v.searchRecordId", accountRecordId);
 
                     // Grab the case ID off the enclosing tab URL
                     var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
@@ -136,7 +136,7 @@
                     // Grab the number of cases today
                     helper.fetchNumberOfCasesToday(component);
 
-                    component.set("v.selectedTabId","customerContactsTab");
+                    //component.set("v.selectedTabId","customerContactsTab");
 
                 }
 

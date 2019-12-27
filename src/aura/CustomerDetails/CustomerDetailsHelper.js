@@ -29,9 +29,9 @@
 
         var pdRowId = component.get("v.pdRowId");
         var acctNbr = component.get("v.accountNumber");
-        var searchRecordId = component.get("v.searchRecordId");
-        if (searchRecordId === 'null')
-            searchRecordId = component.get("v.recordId");
+        // var searchRecordId = component.get("v.searchRecordId");
+        // if (searchRecordId === 'null')
+        //     searchRecordId = component.get("v.recordId");
 
         if (pdRowId !== 'null') {
             action.setParams({
@@ -39,13 +39,13 @@
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : pdRowId
             });
-        } else if (acctNbr === 'null') { //OTR path
-            action.setParams({
-                accountNumber : '',
-                accountRecordId : searchRecordId,
-                pdRowIdString : ''
-            });
-            component.set("v.isOtrAccount", true);
+        // } else if (acctNbr === 'null') { //OTR path
+        //     action.setParams({
+        //         accountNumber : '',
+        //         accountRecordId : searchRecordId,
+        //         pdRowIdString : ''
+        //     });
+        //     component.set("v.isOtrAccount", true);
         } else {
             action.setParams({
                 accountNumber : acctNbr,
@@ -59,14 +59,14 @@
 
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.customerDetails", response.getReturnValue());
-                if (component.get("v.isOtrAccount") === true && component.get("v.customerDetails.sfdcAcctId") !== 'null') {
-                    //component.set("v.recordId", component.get("v.customerDetails.sfdcAcctId")); // todo: causes an error in the browser. is a valid component variable.
-                }
+                // if (component.get("v.isOtrAccount") === true && component.get("v.customerDetails.sfdcAcctId") !== 'null') {
+                //     //component.set("v.recordId", component.get("v.customerDetails.sfdcAcctId")); // todo: causes an error in the browser. is a valid component variable.
+                // }
                 var primaryContact = null;
 
                 _.forEach(component.get("v.customerDetails.contacts"), function(customerDetailsContact) {
                     _.forEach(customerDetailsContact, function(contact) {
-                        console.log("contactType = "+contact.contactType);
+                        //console.log("contactType = "+contact.contactType);
                         if((contact.contactType) != undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
                             primaryContact = contact;
                             
@@ -75,7 +75,7 @@
                 });
 
                 component.set("v.customerPrimaryContact", primaryContact);
-                console.log(primaryContact);
+                //console.log(primaryContact);
 
                 if(component.get("v.accountNumber") == null) {
                     component.set("v.accountNumber", component.get("v.customerDetails.wexAccountNbr"));
@@ -202,22 +202,22 @@
         var action;
 
         this.loadGenericContacts(component, target);
-        console.log("loadCustomerContacts: isOtrAccount="+component.get("v.isOtrAccount"));
-
-        if (component.get("v.isOtrAccount") == true) {
-            console.log("Taking OTR path!");
-            action = component.get("c.getCustomerContactsFromSalesforce");
-            action.setParams({
-                accountId : component.get("v.recordId"),
-                primaryContactRowId: component.get("v.customerPrimaryContact.rowId")
-            });
-        } else {
+        // console.log("loadCustomerContacts: isOtrAccount="+component.get("v.isOtrAccount"));
+        //
+        // if (component.get("v.isOtrAccount") == true) {
+        //     console.log("Taking OTR path!");
+        //     action = component.get("c.getCustomerContactsFromSalesforce");
+        //     action.setParams({
+        //         accountId : component.get("v.recordId"),
+        //         primaryContactRowId: component.get("v.customerPrimaryContact.rowId")
+        //     });
+        // } else {
             action = component.get("c.getCustomerContacts");
 
             action.setParams({
                 accountNumber : component.get("v.accountNumber")
             });
-        }
+        //}
 
 
         action.setCallback(this, function(response) {
@@ -884,8 +884,7 @@
 
     loadInvoices : function(component, target) {
 
-        if (component.get("v.isOtrAccount") != true) {
-
+        //if (component.get("v.isOtrAccount") != true) {
             var action = component.get("c.getInvoices");
 
             action.setParams({
@@ -962,7 +961,7 @@
             var spinner = component.find("invoicesLoadingSpinner");
             $A.util.addClass(spinner, "slds-hide");
             $A.enqueueAction(action);
-        }
+        //}
     },
 
     getPriorityLevelServicingRule : function(component, target) {
@@ -1219,7 +1218,8 @@
 
                     workspaceAPI.openSubtab({
                         parentTabId: response,
-                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__searchRecordId=' + returnedCaseId,
+                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber"),
+                        //url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__searchRecordId=' + returnedCaseId,
                         focus: false
                     });
 
