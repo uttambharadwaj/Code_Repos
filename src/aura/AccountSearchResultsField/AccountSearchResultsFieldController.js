@@ -19,7 +19,7 @@
         var workspaceAPI = component.find("workspace");
 
         //check if otr account, then handle cloning before opening customerdetails tab
-        helper.helloWorld(component);
+        helper.cloneOTRAccountIfNeeded(component);
 
         // workspaceAPI.openTab({
         //     pageReference: {
