@@ -18,8 +18,8 @@
                 });
                 searchTypeField.set("v.options", opts);
                 component.set("v.upperTypes", upperTypes);
-            } else if (state === "ERROR") {
-                //this.handleErrors(component, response.getError());
+            } else {
+                handleErrors(component, response.getError());
             }
         });
         $A.enqueueAction(action);
@@ -87,8 +87,8 @@
                 component.set("v.fields", searchResults.fields);
                 component.set("v.results", searchResults.results);
                 component.set("v.errorMessage", searchResults.errorMessage);
-            } else if (state === "ERROR") {
-                //this.handleErrors(component, response.getError());
+            } else {
+                handleErrors(component, response.getError());
             }
         });
         $A.enqueueAction(action);
@@ -127,4 +127,20 @@
             console.log(error);
         });
     },
+
+    handleErrors: function(component, response) {
+        var errorMessage = "Unknown Fault";
+
+        var errors = response.getError();
+
+        if (errors && Array.isArray(errors) && errors.length > 0) {
+            errorMessage = errors[0].message;
+        }
+
+        var toastEvent = $A.get("e.force:showToast");
+
+        toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
+
+        toastEvent.fire();
+    }
 })
