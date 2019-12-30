@@ -3,6 +3,7 @@
     <!-- Parameters -->
     <aura:attribute name="caseId" type="String" />
     <aura:attribute name="accountNumber" type="String" />
+    <aura:attribute name="accountRowId" type="String" />
     <aura:attribute name="contactRowId" type="String" />
     <aura:attribute name="pdRowId" type="String" />
     <aura:attribute name="isDummyContact" type="String" default="false" />

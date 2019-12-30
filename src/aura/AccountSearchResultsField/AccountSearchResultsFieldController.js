@@ -5,7 +5,7 @@
         if (fieldName === "Action") {
             var params = result[fieldName].split('|');
             component.set("v.accountNumber", params[0]);
-            component.set("v.accountRowID", encodeURIComponent(params[1]));
+            component.set("v.accountRowId", encodeURIComponent(params[1]));
             component.set("v.contactRowId", encodeURIComponent(params[2]));
             component.set("v.pdRowId", encodeURIComponent(params[3]));
         } else {

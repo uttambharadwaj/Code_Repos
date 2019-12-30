@@ -24,11 +24,14 @@
     },
 
     loadCustomerDetails : function(component, target) {
+        console.log('*** Entering helper.loadCustomerDetails');
 
         var action = component.get("c.getCustomerDetails");
 
         var pdRowId = component.get("v.pdRowId");
         var acctNbr = component.get("v.accountNumber");
+        var acctRowId = component.get("v.accountRowId");
+
         // var searchRecordId = component.get("v.searchRecordId");
         // if (searchRecordId === 'null')
         //     searchRecordId = component.get("v.recordId");
@@ -39,13 +42,13 @@
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : pdRowId
             });
-        // } else if (acctNbr === 'null') { //OTR path
-        //     action.setParams({
-        //         accountNumber : '',
-        //         accountRecordId : searchRecordId,
-        //         pdRowIdString : ''
-        //     });
-        //     component.set("v.isOtrAccount", true);
+        } else if (acctNbr === 'null') { //OTR path
+            action.setParams({
+                accountNumber : '',
+                accountRecordId : acctRowId,
+                pdRowIdString : ''
+            });
+            component.set("v.isOtrAccount", true);
         } else {
             action.setParams({
                 accountNumber : acctNbr,
@@ -1376,7 +1379,7 @@
         }
     },
 
-    // These are object flatteners used to make child object fields available to Datatables
+    // These are object flatteners used to make child object fields available to DataTables
     // Taken from https://iwritecrappycode.wordpress.com/2017/11/22/salesforce-lightning-datatable-query-flattener/
     flattenObject : function(propName, obj) {
         var flatObject = [];

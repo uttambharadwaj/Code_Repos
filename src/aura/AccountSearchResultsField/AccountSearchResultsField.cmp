@@ -4,7 +4,7 @@
     <aura:attribute name="fieldName" type="String" />
     <aura:attribute name="caseId" type="String" />
     <aura:attribute name="accountNumber" type="String" />
-    <aura:attribute name="accountRowID" type="String" />
+    <aura:attribute name="accountRowId" type="String" />
     <aura:attribute name="contactRowId" type="String" />
     <aura:attribute name="pdRowId" type="String" />
 

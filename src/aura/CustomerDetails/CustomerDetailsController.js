@@ -89,10 +89,10 @@
                 //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
                 var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
                 //var carrierId = helper.getParameterByName(component, event, 'c__carrierId', response.url);
-                //var accountRecordId = helper.getParameterByName(component, event, 'c__accountRowID', response.url);
+                var accountRowId = helper.getParameterByName(component, event, 'c__accountRowId', response.url);
 
-                //if(accountNumber == null && accountRecordId == null && component.get("v.recordId") == null) {
-                if(accountNumber == null && component.get("v.recordId") == null) {
+                if(accountNumber == null && accountRowId == null && component.get("v.recordId") == null) {
+                //if(accountNumber == null && component.get("v.recordId") == null) {
 
                     var toastEvent = $A.get("e.force:showToast");
 
@@ -100,43 +100,43 @@
 
                     toastEvent.fire();
 
-                }
-                else {
-
-                    component.set("v.accountNumber", accountNumber);
-                    //component.set("v.searchRecordId", accountRecordId);
-
-                    // Grab the case ID off the enclosing tab URL
-                    var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
-                    // var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
-                    component.set("v.caseId", caseId);
-
-                    // Grab the contactRowID off the enclosing tab URL
-                    var contactRowId = (pageRef && pageRef.state) ? pageRef.state.c__contactRowId : null;
-                    // var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
-                    component.set("v.contactRowId", contactRowId);
-
-                    // Grab the pdRowId off the enclosing tab URL
-                    var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
-                    component.set("v.pdRowId", pdRowid);
-
-                    // Display the spinner
-                    var spinner = component.find("loadingSpinner");
-                    $A.util.removeClass(spinner, "slds-hide");
-
-                    // Grab the customer details
-                    helper.loadCustomerDetails(component);
-
-                    //Get the open cases
-                    console.log("### Fetching existing cases");
-                    helper.fetchExistingOpenCases(component);
-
-                    // Grab the number of cases today
-                    helper.fetchNumberOfCasesToday(component);
-
-                    //component.set("v.selectedTabId","customerContactsTab");
+                    return;
 
                 }
+
+                component.set("v.accountNumber", accountNumber);
+                component.set("v.accountRowId", accountRowId);
+
+                // Grab the case ID off the enclosing tab URL
+                var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
+                // var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
+                component.set("v.caseId", caseId);
+
+                // Grab the contactRowID off the enclosing tab URL
+                var contactRowId = (pageRef && pageRef.state) ? pageRef.state.c__contactRowId : null;
+                // var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
+                component.set("v.contactRowId", contactRowId);
+
+                // Grab the pdRowId off the enclosing tab URL
+                var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
+                component.set("v.pdRowId", pdRowid);
+
+                // Display the spinner
+                var spinner = component.find("loadingSpinner");
+                $A.util.removeClass(spinner, "slds-hide");
+
+                // Grab the customer details
+                helper.loadCustomerDetails(component);
+
+                //Get the open cases
+                console.log("### Fetching existing cases");
+                helper.fetchExistingOpenCases(component);
+
+                // Grab the number of cases today
+                helper.fetchNumberOfCasesToday(component);
+
+                //component.set("v.selectedTabId","customerContactsTab");
+
 
                 /*
                 // Grab the account number off the enclosing tab URL

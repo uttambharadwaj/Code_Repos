@@ -1,19 +1,14 @@
 ({
     cloneOTRAccountIfNeeded: function (component) {
-        console.log('*** Entering helper.cloneOTRAccountIfNeeded');
-
         var accountNumber = component.get("v.accountNumber");
-        var accountRowID = component.get("v.accountRowID");
+        var accountRowId = component.get("v.accountRowId");
         if (accountNumber === 'null') {accountNumber = '';}
-
-        console.log('*** accountNumber: ' + accountNumber);
-        console.log('*** accountRowId: ' + accountRowID);
 
         var action = component.get("c.cloneOTRAccountIfNeeded");
 
         action.setParams({
             accountNumber : accountNumber,
-            accountRecordId : accountRowID
+            accountRecordId : accountRowId
         });
 
         action.setCallback(this, function (response) {
@@ -22,13 +17,10 @@
             var state = response.getState();
 
             if (component.isValid() && state === "SUCCESS") {
-                component.set("v.accountRowID", response.getReturnValue());
+                component.set("v.accountRowId", response.getReturnValue());
             } else {
                 this.handleErrors(component, response);
             }
-
-            console.log('*** callback response: ' + state);
-            console.log('*** v.accountRowId: ' + component.get("v.accountRowID"));
 
             this.openCustomerDetailsTab(component);
 
@@ -49,7 +41,7 @@
                 },
                 "state": {
                     "c__accountNumber": component.get("v.accountNumber"),
-                    "c__accountRowID": component.get("v.accountRowID"),
+                    "c__accountRowId": component.get("v.accountRowId"),
                     "c__contactRowId": component.get("v.contactRowId"),
                     "c__pdRowId": component.get("v.pdRowId"),
                     "c__caseId": component.get("v.caseId")
