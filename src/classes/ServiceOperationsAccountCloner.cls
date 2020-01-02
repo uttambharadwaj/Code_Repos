@@ -39,6 +39,15 @@ global with sharing class ServiceOperationsAccountCloner {
         Id serviceOperationsAccountId;
         try {
             serviceOperationsAccountId = cloneAccount(otrAccountId);
+
+            //bugfix - contacts are duplicated each time this function is called, need to check for contacts first
+            List<Contact> existingServiceOperationsAccountContacts = [SELECT Id, Contact_Type__c  FROM Contact WHERE AccountId =: serviceOperationsAccountId];
+            if(!existingServiceOperationsAccountContacts.isEmpty()){
+                System.debug('*** Service Operations account contacts already exist for accountId: ' + serviceOperationsAccountId + ', returning without copying contacts.');
+                return serviceOperationsAccountId;
+            }
+
+            //todo: bugfix - need to determine primary contact
             List<Contact> contactList = [SELECT Id, Contact_Type__c  FROM Contact WHERE AccountId =: otrAccountId];
             List<Id> newContacts = new List<Id>();
             Boolean firstContact = true;
@@ -86,11 +95,11 @@ global with sharing class ServiceOperationsAccountCloner {
             if (serviceOperationsAccountRecordTypeId.equals(otrAccount.RecordTypeId)) //quit
             {
                 return otrAccountId;
-            } else {
-                List<Sales_to_Service_Account_Relationship__c> serviceIdList = [SELECT Service_Account__c FROM Sales_to_Service_Account_Relationship__c WHERE Sales_Account__c =: otrAccountId];
-                if (!(serviceIdList.isEmpty())) {
-                    return serviceIdList[0].Service_Account__c;
-                }
+            }
+
+            List<Sales_to_Service_Account_Relationship__c> serviceIdList = [SELECT Service_Account__c FROM Sales_to_Service_Account_Relationship__c WHERE Sales_Account__c =: otrAccountId];
+            if (!(serviceIdList.isEmpty())) {
+                return serviceIdList[0].Service_Account__c;
             }
 
             Account serviceOperationsAccount = new Account();
