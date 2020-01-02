@@ -59,8 +59,8 @@
                             {!$Label.PaperApp_AppType}<abbr class="slds-required" title="required">*</abbr>
                         </label>
                         <apex:selectRadio id="appType" value="{!appType}" layout="pageDirection">
-                            <apex:selectOption id="paperApp" itemLabel="{!$Label.PaperApp_PaperApp}" itemValue="paperApp"></apex:selectOption>
-                            <apex:selectOption id="convApp" itemLabel="{!$Label.PaperApp_Conversion}" itemValue="convApp"></apex:selectOption>
+                            <apex:selectOption id="paperApp" itemLabel="{!$Label.PaperApp_PaperApp}" itemValue="paperApp" />
+                            <apex:selectOption id="convApp" itemLabel="{!$Label.PaperApp_Conversion}" itemValue="convApp" rendered="{!IF(paperOnly, false, true)}" itemDisabled="{!IF(paperOnly, true, false)}"/>
                         </apex:selectRadio>
                     </div>
                 </div>
