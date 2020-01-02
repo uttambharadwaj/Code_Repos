@@ -25,7 +25,7 @@ public class CreditWS_CLCreateEntityRequest {
     public String Currency_x;                    // USD (currency of risk)
     public String IndClassification;
     public String TaxId;
-    public String WexControlYear;
+    public String WexYearControl;
     public String WexDunsNumber;
     public Integer WexNumberOfCreditExperiences; // DNB # of trade lines
     public Decimal WexCreditExtended;

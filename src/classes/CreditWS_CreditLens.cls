@@ -191,12 +191,14 @@ global class CreditWS_CreditLens {
                 if (cpApp.DNB_Resolved_DUNS__c != null) creditLensRequest.WexDunsNumber = cpApp.DNB_Resolved_DUNS__c;
                 if (cpApp.DNB_Trade_Lines__c != null) creditLensRequest.WexNumberOfCreditExperiences = Integer.valueOf(cpApp.DNB_Trade_Lines__c);
                 if (cpApp.Paydex__c != null) creditLensRequest.WexPaydexScore = String.valueOf(cpApp.Paydex__c);
-                if (cpApp.Control_Year__c != null) creditLensRequest.WexControlYear = cpApp.Control_Year__c;
+                if (cpApp.Control_Year__c != null) creditLensRequest.WexYearControl = cpApp.Control_Year__c;
                 if (cpApp.Risk_Grade__c != null) creditLensRequest.WexPrimaryRiskGrade = cpApp.Risk_Grade__c;
 //                if (cpApp.Risk_Grade_Source__c != null) creditLensRequest.WexPrimaryRiskGradeSource = cpApp.Risk_Grade_Source__c; //todo can't send until they figure out the dropdown values in CL
                 if (cpApp.Stock_Symbol__c != null) {
                     creditLensRequest.FirmType = 'PUB';
                     creditLensRequest.StockCode = cpApp.Stock_Symbol__c;
+                } else {
+                    creditLensRequest.FirmType = 'PRV'; // set default
                 }
                 if (cpApp.Stock_Exchange__c != null) {
                     Moodys_CreditLens_Mapping__mdt stockExchangeMapping = CLStockExchange(cpApp.Stock_Exchange__c);
@@ -207,7 +209,14 @@ global class CreditWS_CreditLens {
                 }
                 if (cpApp.CurrencyIsoCode != null) creditLensRequest.Currency_x = cpApp.CurrencyIsoCode; else creditLensRequest.Currency_x = 'USD'; // set a default
 
-                if (cpApp.Opportunity__r != null) creditLensRequest.WexRelationshipManager = getUserName(cpApp.Opportunity__r.OwnerId);
+                if (cpApp.Opportunity__r != null) {
+                    creditLensRequest.WexRelationshipManager = getUserName(cpApp.Opportunity__r.OwnerId);
+                    if (cpApp.Opportunity__r.Sales_Group__c.equalsIgnoreCase('Travel')) {
+                        creditLensRequest.WexBusinessUnit = 'Travel';
+                    } else {
+                        creditLensRequest.WexBusinessUnit = 'Payables';
+                    }
+                }
                 creditLensRequest.WexCreditAnalyst = UserInfo.getName();
 
                 //todo mappings for SIC Code
@@ -371,7 +380,7 @@ global class CreditWS_CreditLens {
                 }
             } catch (Exception e) {
                 System.debug('### Error creating entity in Credit Lens - ' + e.getLineNumber() + ' - ' + e.getMessage());
-                String error = 'Error creating entity in Credit Lens: ' + e.getMessage();
+                String error = 'Error creating entity in Credit Lens: ' + e.getMessage() + ' Error: ' + responseBody;
                 createEntityError = error;
             }
         }
