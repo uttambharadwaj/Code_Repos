@@ -5,7 +5,7 @@
 * 03/Oct/2019 CJackson    PSOBACKLOG-258   Original.
 * 19/Nov/2019 CJackson    PSOBACKLOG-304   Sorted quote lines and adjusted show/hide options.
 * 26/Nov/2019 CJackson    PSOBACKLOG-310   Added logic to remove 1 from Discount Tier Maximum.
-* 09/Dec/2019 CJackson    PSOBACKLOG-319   Modified logic to remove 1 from Discount Tier Maximum (using new formula field).
+* 09/Dec/2019 CJackson    PSOBACKLOG-319   Modified logic to remove 1 from Discount Tier Maximum (using new formula field). Added logic to hide unselected Early Pay options.
 */
 
 public with sharing class DiscountSchedulePrintControllerShell {
@@ -39,11 +39,11 @@ public with sharing class DiscountSchedulePrintControllerShell {
                         if (tier.Cents_Per_Gallon__c != null) pLine.displayColumns[2] = true;
                         if (quote.Early_Pay_Selection__c != null && quote.Early_Pay_Selection__c == tier.Election__c) pLine.displayColumns[3] = true;
                         if (tier.Payment_Timing_Options__c != null) pLine.displayColumns[4] = true;
-                        //if (tier.Basis_Points_Rebate__c!=null) pLine.displayColumns[5] = true;
+                        //if (tier.Basis_Points_Rebate__c != null) pLine.displayColumns[5] = true;
                         if (tier.Basis_Points_Rebate__c != '0 basis points') pLine.displayColumns[5] = true;
                         if (tier.Payment_Timing__c != null) pLine.displayColumns[6] = true;
                         if (tier.Bonus_Rebate__c != null) pLine.displayColumns[7] = true;
-                        if (tier.SBQQ__Number__c != null) pLine.displayColumns[8] = true;
+                        if (tier.SBQQ__Number__c != null)  pLine.displayColumns[8] = true;
                     }
                 }
 
@@ -79,7 +79,7 @@ public with sharing class DiscountSchedulePrintControllerShell {
                     }
                 }
                 if (width==0) width = 1;
-                return 100.00/width;
+                return 100.00 / width;
             }
             private set;
         }
