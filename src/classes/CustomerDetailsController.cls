@@ -255,18 +255,15 @@ public without sharing class CustomerDetailsController {
         for (Contact rawContact : rawContactList) {
             newContact = new CustomerDetailsWSUtilv2.contact();
             //newContact.role = 'CONTACT';
-            System.debug('*** Contact row ID='+rawContact.WEX_Contact_ID__c);
+            System.debug('*** Contact record ID='+rawContact.Id);
 
-            if (rawContact.WEX_Contact_ID__c != null && rawContact.WEX_Contact_ID__c.equals(primaryContactRowId)) {
+            if (rawContact.Id != null && rawContact.Id.equals(primaryContactRowId)) {
                 newContact.contactType = 'PRIMARY';
                 newContact.role = 'PRIMARY';
-                System.debug('*** Assigned primary contact');
-            }
-            else {
-                newContact.contactType = rawContact.Contact_Type__c;
+                System.debug('*** Primary contact identified: ' + primaryContactRowId);
             }
 
-            if (newContact.contactType == null) {
+            if (newContact.contactType != 'PRIMARY') {
                 newContact.contactType = 'CONTACT';
             }
 

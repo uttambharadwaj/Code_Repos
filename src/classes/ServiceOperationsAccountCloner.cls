@@ -36,6 +36,7 @@ global with sharing class ServiceOperationsAccountCloner {
 
     @AuraEnabled
     public static Id cloneAccountAndContacts(Id otrAccountId) {
+        System.debug('*** Entering ServiceOperationsAccountCloner.cloneAccountAndContacts for Id: ' + otrAccountId);
         Id serviceOperationsAccountId;
         try {
             serviceOperationsAccountId = cloneAccount(otrAccountId);
@@ -43,42 +44,59 @@ global with sharing class ServiceOperationsAccountCloner {
             //bugfix - contacts are duplicated each time this function is called, need to check for contacts first
             List<Contact> existingServiceOperationsAccountContacts = [SELECT Id, Contact_Type__c  FROM Contact WHERE AccountId =: serviceOperationsAccountId];
             if(!existingServiceOperationsAccountContacts.isEmpty()){
-                System.debug('*** Service Operations account contacts already exist for accountId: ' + serviceOperationsAccountId + ', returning without copying contacts.');
+                System.debug('*** Service Operations account contacts already exist for serviceOperationsAccountId: ' + serviceOperationsAccountId + ', returning without copying contacts.');
                 return serviceOperationsAccountId;
             }
 
-            //todo: bugfix - need to determine primary contact
+            //todo: bugfix - need better primary contact logic
             List<Contact> contactList = [SELECT Id, Contact_Type__c  FROM Contact WHERE AccountId =: otrAccountId];
+
+            if (contactList.isEmpty()){
+                System.debug('*** OTR account contacts do not exist for otrAccountId: ' + otrAccountId + ', no contacts cloned for serviceOperationsAccountId:'+ serviceOperationsAccountId +'. Returning without copying contacts.');
+                return serviceOperationsAccountId;
+            }
+
             List<Id> newContacts = new List<Id>();
-            Boolean firstContact = true;
-            Id primaryContact;
+            Id primaryContactId;
             for (Contact contact : contactList) {
                 Id newId = cloneContact(contact.Id, serviceOperationsAccountId);
                 newContacts.add(newId);
-                if (firstContact || 'PRIMARY'.equalsIgnoreCase(contact.Contact_Type__c)) {
-                    primaryContact = newId;
-                }
-                firstContact = false;
-            }
-            if (!String.isEmpty(primaryContact)) {
-                Account servOpsAcct = [SELECT Id, Primary_Contact_TXT__c FROM Account WHERE Id =: serviceOperationsAccountId];
-                if (String.isEmpty(servOpsAcct.Primary_Contact_TXT__c)) {
-                    servOpsAcct.Primary_Contact_TXT__c = primaryContact;
-                    update servOpsAcct;
-                }
-                Contact thisContact = [SELECT Id, Contact_Type__c FROM Contact WHERE Id =: primaryContact];
-                if ( thisContact != null) {
-                    thisContact.Contact_Type__c = 'PRIMARY';
-                    update thisContact;
-                }
-
-                IntegrationRecord__c integrationRecord = [SELECT Id, Contact_Type__c FROM IntegrationRecord__c WHERE Contact_Row_Id__c =: primaryContact AND Account__c =: serviceOperationsAccountId];
-
-                if (integrationRecord != null) {
-                    integrationRecord.Contact_Type__c = 'PRIMARY';
-                    update integrationRecord;
+                if ('PRIMARY'.equalsIgnoreCase(contact.Contact_Type__c)) {
+                    primaryContactId = newId;
                 }
             }
+
+            if(String.isEmpty(primaryContactId)){
+                primaryContactId = newContacts[0];
+                System.debug('*** OTR account contacts do not include a primary contact, using contact:'+ primaryContactId +' as the primary contact for serviceOperationsAccountId: '+serviceOperationsAccountId);
+            }
+
+            Account servOpsAcct = [SELECT Id, Primary_Contact_TXT__c FROM Account WHERE Id =: serviceOperationsAccountId];
+            servOpsAcct.Primary_Contact_TXT__c = primaryContactId;
+            update servOpsAcct;
+            System.debug('*** Updated serviceOperationsAccount: '+ serviceOperationsAccountId + ' set primaryContactId: '+primaryContactId);
+
+            Contact serviceOperationsPrimaryContact = [SELECT Id, Contact_Type__c FROM Contact WHERE Id =:primaryContactId];
+            if ( serviceOperationsPrimaryContact != null) {
+                serviceOperationsPrimaryContact.Contact_Type__c = 'PRIMARY';
+                update serviceOperationsPrimaryContact;
+                System.debug('*** Updated serviceOperationsPrimaryContact: '+ primaryContactId + ' set contact type to "PRIMARY"');
+            } else {
+                //ummmm something went seriously wrong
+                System.debug('*** ERROR: PrimaryContactId:'+ primaryContactId +' not found for serviceOperationsAccountId: '+serviceOperationsAccountId);
+            }
+
+            IntegrationRecord__c integrationRecord = [SELECT Id, Contact_Type__c FROM IntegrationRecord__c WHERE Contact_Row_Id__c =:primaryContactId AND Account__c =: serviceOperationsAccountId];
+
+            if (integrationRecord != null) {
+                integrationRecord.Contact_Type__c = 'PRIMARY';
+                update integrationRecord;
+                System.debug('*** Updated integrationRecord contact' + primaryContactId + ' set contact type to "PRIMARY"');
+            } else {
+                //ummmm something went seriously wrong
+                System.debug('*** ERROR: integrationRecord not found for contact:'+ primaryContactId);
+            }
+
         } catch (Exception e) {
             String errorCode = logError(e);
             System.debug('*** ERROR Occurred while cloning account '+otrAccountId+': ' + errorCode);
@@ -92,8 +110,9 @@ global with sharing class ServiceOperationsAccountCloner {
         try {
             Account otrAccount =  [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, Phone, Fax, RecordTypeId, Acct_Row_Id__c, Wex_Account__c, Sponsor_Acct__c, ParentId, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Platform__c, Line_of_Business__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Primary_Contact_TXT__c, Shipping_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Admin_Contact_TXT__c, Carrier_ID__c FROM Account WHERE Id =:otrAccountId LIMIT 1];
 
-            if (serviceOperationsAccountRecordTypeId.equals(otrAccount.RecordTypeId)) //quit
+            if (serviceOperationsAccountRecordTypeId.equals(otrAccount.RecordTypeId)) //already cloned.
             {
+                System.debug('*** Service Operations account already exists, serviceOperationsAccountId: ' + otrAccount + ', returning without cloning account.');
                 return otrAccountId;
             }
 
@@ -104,7 +123,7 @@ global with sharing class ServiceOperationsAccountCloner {
 
             Account serviceOperationsAccount = new Account();
 
-            System.debug('serviceOperationsAccountRecordTypeId='+serviceOperationsAccountRecordTypeId);
+            System.debug('*** serviceOperationsAccountRecordTypeId='+serviceOperationsAccountRecordTypeId);
 
             if (serviceOperationsAccountRecordTypeId != null) {
                 serviceOperationsAccount.RecordTypeId = serviceOperationsAccountRecordTypeId;
@@ -143,7 +162,7 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsAccount.Platform__c = ( otrAccount.Platform__c != null ? otrAccount.Platform__c : otrAccount.Line_of_Business__c);
 
             if (otrAccount.ParentId != null) {
-                Id parentAccountId = cloneAccount(otrAccount.ParentId);
+                Id parentAccountId = cloneAccount(otrAccount.ParentId); //ooooh recursion!
                 serviceOperationsAccount.ParentId = parentAccountId;
             }
             insert serviceOperationsAccount;
@@ -180,19 +199,22 @@ global with sharing class ServiceOperationsAccountCloner {
     }
 
     public static Id cloneContact(Id otrContactId, Id serviceOperationsAccountId) {
+        System.debug('*** Entering ServiceOperationsAccountCloner.cloneContact for otrContactId: '+ otrContactId +' and serviceOperationsAccountId: '+serviceOperationsAccountId);
         init();
         Contact otrContact = [SELECT Id, FirstName, LastName, Email, Fax, Phone, WEX_Contact_ID__c, AccountId, RecordTypeId, Contact_Type__c, Line_of_Business__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode FROM Contact WHERE Id =: otrContactId];
-        System.debug('OTR Contact Type='+otrContact.Contact_Type__c);
-        if (serviceOperationsContactRecordTypeId.equals(otrContact.RecordTypeId)) //quit
-        {
-            return otrContactId;
-        }
+        //System.debug('*** OTR Contact Type='+otrContact.Contact_Type__c);
+//        if (serviceOperationsContactRecordTypeId.equals(otrContact.RecordTypeId)) //quit
+//        {
+//            //todo: don't clone if OTR account contact is service operations type? why not?
+//            return otrContactId;
+//        }
 
         Contact serviceOperationsContact = new Contact();
         Id serviceOperationsContactId;
 
         try {
             if (serviceOperationsContactRecordTypeId != null) {
+                //seems redundant since variable has been referenced twice already
                 serviceOperationsContact.RecordTypeId = serviceOperationsContactRecordTypeId;
             }
 
@@ -202,7 +224,7 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsContact.Fax = otrContact.Fax;
             serviceOperationsContact.Phone = otrContact.Phone;
             serviceOperationsContact.Contact_Type__c = otrContact.Contact_Type__c;
-            if (otrContact.Contact_Type__c == null || ''.equals(otrContact.Contact_Type__c)) {
+            if (String.isEmpty(serviceOperationsContact.Contact_Type__c)) {
                 serviceOperationsContact.Contact_Type__c = 'CONTACT';
             }
             serviceOperationsContact.MailingStreet = otrContact.MailingStreet;
@@ -214,11 +236,15 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsContact.AccountId = serviceOperationsAccountId;
 
             insert serviceOperationsContact;
+            System.debug('*** Inserted serviceOperationsContact with Id '+ serviceOperationsContact.Id);
             serviceOperationsContactId = serviceOperationsContact.Id;
 
             serviceOperationsContact.WEX_Contact_ID__c = serviceOperationsContactId;
+            //todo: populate Contact_Row_Id__c ?
+            //serviceOperationsContact.Contact_Row_Id__c = serviceOperationsContactId; // or otrContact.Id ?
 
             update serviceOperationsContact;
+            System.debug('*** Updated serviceOperationsContact with Id '+ serviceOperationsContact.Id);
 
             IntegrationRecord__c integrationRecord = new IntegrationRecord__c();
             integrationRecord.First_Name__c = serviceOperationsContact.FirstName;
@@ -227,10 +253,11 @@ global with sharing class ServiceOperationsAccountCloner {
             integrationRecord.Fax__c = serviceOperationsContact.Fax;
             integrationRecord.Phone__c = serviceOperationsContact.Phone;
             integrationRecord.Contact_Type__c = serviceOperationsContact.Contact_Type__c;
-            integrationRecord.Account__c = serviceOperationsContact.AccountId;
-            integrationRecord.Contact_Row_Id__c = serviceOperationsContact.WEX_Contact_ID__c;
+            integrationRecord.Account__c = serviceOperationsContact.AccountId; //todo: should this be mapped to 'integrationRecord.Acct_Row_Id__c' instead?
+            integrationRecord.Contact_Row_Id__c = serviceOperationsContact.WEX_Contact_ID__c; //todo: should this be mapped to 'integrationRecord.Acct_Row_Id__c' instead?
 
             insert integrationRecord;
+            System.debug('*** Inserted integrationRecord with Id '+ integrationRecord.Id);
 
         } catch (Exception e) {
             String errorCode = logError(e);
