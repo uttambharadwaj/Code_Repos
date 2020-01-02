@@ -17,7 +17,7 @@ public class CreditWS_CLCreateEntityResponse {
         public Integer AddressId;
         public String AddressType;
         public String Address1;
-        public Object Address2;
+        public String Address2;
         public String Country;
         public String State;
         public String City;
