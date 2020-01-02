@@ -453,6 +453,8 @@ public without sharing class OTRSetupController {
 
             System.debug('TEMP status post IFs: ' + onlineApplication.Status__c);
 
+            if (isConversionApp != null && isConversionApp) onlineApplication.Credit_Line_Requested__c = 1; // conversion apps get a default credit line of 1.
+
             onlineApplication.Number_of_Cards_Needed__c = numberOfCards;
 
             if (selectedOtherServices != null && selectedOtherServices != '') {
@@ -645,7 +647,7 @@ public without sharing class OTRSetupController {
                     }
                 }
 
-                if (!Test.isRunningTest()) {
+                if (!Test.isRunningTest() && userSessionId == null) {
                     Messaging.sendEmail(new Messaging.SingleEmailMessage[]{confirmation});
                 }
 

@@ -14,7 +14,7 @@ public class CreditWS_CLAuthResponse {
     }
 
     public PayLoad payLoad;
-    public Object status;
+    public String status;
 
     public class UserAuthorization {
         public Integer Id;

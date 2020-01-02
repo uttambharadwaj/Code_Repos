@@ -91,7 +91,7 @@ public class MergeServiceContactsBatch implements Schedulable, Database.Batchabl
         }
 
         Map<Id, Contact> contacts = new Map<Id, Contact>(
-            [SELECT Id, Name, Phone, HomePhone, MobilePhone, OtherPhone, Phone2__c, Phone3__c, Phone4__c, Phone5__c,
+            [SELECT Id, Name, Phone, HomePhone, MobilePhone, OtherPhone, Account_Program_Id__c, Phone2__c, Phone3__c, Phone4__c, Phone5__c,
              Email, Email_Address_2__c, Email_Address_3__c, Email_Address_4__c, Email_Address_5__c, SourceLastModifiedDate__c,
              (SELECT Id, Account__c, Contact_Type__c, Phone__c, Mobile_Phone__c, Email__c FROM Integration_Record__r)
              FROM Contact WHERE RecordTypeId = :rectypeid AND AccountId != null AND Name IN : ctNames]);
@@ -109,7 +109,7 @@ public class MergeServiceContactsBatch implements Schedulable, Database.Batchabl
         //merge sets if the same id exists in two places
         for (String key1 : ctMap.keySet()) {
             for (String key2 : ctMap.keySet()) {
-                if (key1 != key2) {
+                if (key1 != key2 && key1.split('\\$')[1] == key2.split('\\$')[1]) {
                     Set<Id> st1 = ctMap.get(key1);
                     Set<Id> st2 = ctMap.get(key2);
                     Set<Id> st3 = new Set<Id>(st1);
@@ -242,7 +242,7 @@ public class MergeServiceContactsBatch implements Schedulable, Database.Batchabl
 
         try {
             if (!winningCtMap.isEmpty()) {
-                update winningCtMap.values();
+                update new List<Contact>(new Set<Contact>(winningCtMap.values()));
             }
 
             if (!acrList.isEmpty()) {
@@ -254,7 +254,7 @@ public class MergeServiceContactsBatch implements Schedulable, Database.Batchabl
             }
 
             if (!losingCtMap.isEmpty()) {
-                delete losingCtMap.values();
+                delete new List<Contact>(new Set<Contact>(losingCtMap.values()));
             }
         } catch (Exception e) {
             System.debug('Error occurred - ' + e.getMessage());
@@ -271,7 +271,7 @@ public class MergeServiceContactsBatch implements Schedulable, Database.Batchabl
             if (ct.get(s) != null) {
                 String val = ((String) ct.get(s)).toUpperCase();
                 if (!excludedPhoneEmails.contains(val)) {
-                    String key = ct.Name.toUpperCase() + '$' + val;
+                    String key = ct.Name.toUpperCase() + '$' + ct.Account_Program_Id__c + '$' + val;
                     if (ctMap.get(key) != null) {
                         Set<Id> st = ctMap.get(key);
                         st.add(ct.Id);

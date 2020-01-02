@@ -33,6 +33,35 @@ public class PaperAppSubmissionExtension {
         }
     }
 
+    public Boolean paperOnly {
+        get {
+            if(UserInfo.getUserId() != null){
+                Set<Id> assigned = new Map<Id, PermissionSet>([
+                        SELECT Id FROM PermissionSet
+                        WHERE Id IN (
+                                SELECT PermissionSetId
+                                FROM PermissionSetAssignment
+                                WHERE AssigneeId = :UserInfo.getUserId()
+                        )
+                ]).keySet();
+                for(CustomPermission cp : [
+                        SELECT DeveloperName FROM CustomPermission
+                        WHERE Id IN (
+                                SELECT SetupEntityId
+                                FROM SetupEntityAccess
+                                WHERE SetupEntityType = 'CustomPermission'
+                                AND ParentId IN :assigned
+                        )
+                ]){
+                    if(cp.DeveloperName == 'Submit_Credit_App_Paper_Only'){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+    }
+
     public Id selectedProgram { get; set; }
     public Id selectedOffer { get; set; }
     public String appType { get; set; } {
