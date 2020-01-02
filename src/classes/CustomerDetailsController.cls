@@ -177,12 +177,10 @@ public without sharing class CustomerDetailsController {
         return customerDetails;
     }
 
-    private static CustomerDetailsWSUtilv2.customerDetails getOtrCustomerDetails(Id accountId) {
-        Id serviceAccountId = ServiceOperationsAccountCloner.cloneAccountAndContacts(accountId);
-        System.debug('*** Account Cloner returns ID '+serviceAccountId + ' for OTR account '+accountId);
+    private static CustomerDetailsWSUtilv2.customerDetails getOtrCustomerDetails(Id accountRowId) {
         CustomerDetailsWSUtilv2.customerDetails customerDetails = new CustomerDetailsWSUtilv2.customerDetails();
 
-        List<Account> serviceOperationsAccounts = [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, Phone, Fax, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Carrier_ID__c, Platform__c, Acct_Row_Id__c, Primary_Contact_TXT__c FROM Account WHERE Id =: serviceAccountId];
+        List<Account> serviceOperationsAccounts = [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, Phone, Fax, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Carrier_ID__c, Platform__c, Acct_Row_Id__c, Primary_Contact_TXT__c FROM Account WHERE Id =: accountRowId];
 
         if (!(serviceOperationsAccounts.isEmpty())) {
             Account serviceOperationsAccount = serviceOperationsAccounts.get(0);
@@ -237,7 +235,7 @@ public without sharing class CustomerDetailsController {
             customerDetails.shippingAddress = shippingAddress;
 
             CustomerDetailsWSUtilv2.contacts contacts = new  CustomerDetailsWSUtilv2.contacts();
-            contacts.contacts = getCustomerContactsFromSalesforce(serviceAccountId, serviceOperationsAccount.Primary_Contact_TXT__c);
+            contacts.contacts = getCustomerContactsFromSalesforce(accountRowId, serviceOperationsAccount.Primary_Contact_TXT__c);
             customerDetails.contacts = contacts;
             for (CustomerDetailsWSUtilv2.contact contact : contacts.contacts) {
                 if (contact.contactType.equalsIgnoreCase('PRIMARY')) {
@@ -249,10 +247,10 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
-    public static List<CustomerDetailsWSUtilv2.contact> getCustomerContactsFromSalesforce(Id accountId, String primaryContactRowId) {
-        System.debug('*** Called getCustomerContactsFromSalesforce with acct '+accountId + ' and primaryContact '+primaryContactRowId);
+    public static List<CustomerDetailsWSUtilv2.contact> getCustomerContactsFromSalesforce(Id accountRowId, String primaryContactRowId) {
+        System.debug('*** Called getCustomerContactsFromSalesforce with acct '+ accountRowId + ' and primaryContact '+primaryContactRowId);
         List<CustomerDetailsWSUtilv2.contact> contactList = new List<CustomerDetailsWSUtilv2.contact>();
-        List<Contact> rawContactList = [SELECT Id, Contact_Row_Id__c, WEX_Contact_ID__c, FirstName, LastName, Email, Fax, Phone, Contact_Type__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode, AccountId  FROM Contact WHERE AccountId =: accountId];
+        List<Contact> rawContactList = [SELECT Id, Contact_Row_Id__c, WEX_Contact_ID__c, FirstName, LastName, Email, Fax, Phone, Contact_Type__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode, AccountId  FROM Contact WHERE AccountId =:accountRowId];
         CustomerDetailsWSUtilv2.contact newContact;
         for (Contact rawContact : rawContactList) {
             newContact = new CustomerDetailsWSUtilv2.contact();
@@ -267,9 +265,11 @@ public without sharing class CustomerDetailsController {
             else {
                 newContact.contactType = rawContact.Contact_Type__c;
             }
+
             if (newContact.contactType == null) {
                 newContact.contactType = 'CONTACT';
             }
+
             newContact.emailAddr = rawContact.Email;
             newContact.faxNbr = rawContact.Fax;
             newContact.firstNm = rawContact.FirstName;
@@ -647,7 +647,7 @@ public without sharing class CustomerDetailsController {
 
             String errorCode = logError(e);
 
-            throw new AuraHandledException('Unable to retrieve account number for given account ID. (Error Tracking Code: ' + errorCode + ')');
+            throw new AuraHandledException('Unable to retrieve account number for given account ID: ' + accountRecordId + '. (Error Tracking Code: ' + errorCode + ')');
 
         }
 
