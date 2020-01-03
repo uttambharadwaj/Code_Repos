@@ -135,49 +135,6 @@
 
                 //component.set("v.selectedTabId","customerContactsTab");
 
-
-                /*
-                // Grab the account number off the enclosing tab URL
-                var accountNumber = helper.getParameterByName(component, event, 'accountNumber', response.url);
-
-                if(accountNumber == null && component.get("v.recordId") == null) {
-
-                    var toastEvent = $A.get("e.force:showToast");
-
-                    toastEvent.setParams({ "type": "error", "title": "Error", "message": "Account number or Account record ID missing!" });
-
-                    toastEvent.fire();
-
-                }
-                else {
-
-                    component.set("v.accountNumber", accountNumber);
-
-                    // Grab the case ID off the enclosing tab URL
-                    var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
-                    component.set("v.caseId", caseId);
-
-                    // Grab the contactRowID off the enclosing tab URL
-                    var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
-                    component.set("v.contactRowId", contactRowId);
-
-                    // Display the spinner
-                    var spinner = component.find("loadingSpinner");
-                    $A.util.removeClass(spinner, "slds-hide");
-
-                    // Grab the customer details
-                    helper.loadCustomerDetails(component);
-
-                    //Get the open cases
-                    console.log("### Fetching existing cases");
-                    helper.fetchExistingOpenCases(component);
-
-                    // Grab the number of cases today
-                    helper.fetchNumberOfCasesToday(component);
-
-                }
-                */
-
             });
         })
 
@@ -195,7 +152,6 @@
     lazyLoadCustomerContacts : function(component, event, helper) {
 
         if(component.get("v.customerContacts") == null) {
-
             var spinner = component.find("customerContactsLoadingSpinner");
             $A.util.removeClass(spinner, "slds-hide");
 

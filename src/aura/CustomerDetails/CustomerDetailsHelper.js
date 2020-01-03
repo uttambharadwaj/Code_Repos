@@ -67,16 +67,13 @@
 
                 _.forEach(component.get("v.customerDetails.contacts"), function(customerDetailsContact) {
                     _.forEach(customerDetailsContact, function(contact) {
-                        //console.log("contactType = "+contact.contactType);
-                        if((contact.contactType) != undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
+                        if((contact.contactType) !== undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
                             primaryContact = contact;
-                            
                         }
                     });
                 });
 
                 component.set("v.customerPrimaryContact", primaryContact);
-                //console.log(primaryContact);
 
                 if(component.get("v.accountNumber") == null) {
                     component.set("v.accountNumber", component.get("v.customerDetails.wexAccountNbr"));
@@ -112,7 +109,7 @@
 
                     var customerName = component.get("v.customerDetails.accountNm");
 
-                    if(customerName === "" || customerName == undefined) { customerName = "Customer Details" };
+                    if(customerName === "" || customerName === undefined) { customerName = "Customer Details" };
 
                     workspaceAPI.getFocusedTabInfo().then(function(response) {
                         var focusedTabId = response.tabId;
@@ -173,26 +170,15 @@
     },
 
     loadGenericContacts : function(component, target) {
-        console.log('### Entering loadGenericContacts');
         var action = component.get("c.getSupportOperationsSettings");
         action.setCallback(this, function(response){
-            console.log('### loadGenericContacts: component.isValid() ='+component.isValid());
-            console.log('### loadGenericContacts: response != null ='+response != null);
-            console.log('### loadGenericContacts: response.getState() ='+response.getState());
             if(component.isValid() && response != null && response.getState() == 'SUCCESS'){
                 //saving custom setting to attribute
-                console.log('### loadGenericContacts within isValid() test');
                 component.set("v.dummyDriverContactId", response.getReturnValue().ContactDriverRecordID__c);
                 component.set("v.dummyMerchantContactId", response.getReturnValue().ContactMerchantRecordID__c);
                 component.set("v.dummyAltBillingContactId", response.getReturnValue().ContactAlternateBillingRecordID__c);
                 component.set("v.dummyOnlineUserContactId", response.getReturnValue().ContactOnlineUserRecordID__c);
                 component.set("v.dummySalesRepContactId", response.getReturnValue().ContactSalesRepRecordId__c);
-
-                console.debug("Driver: "+response.getReturnValue().ContactDriverRecordID__c );//Check the output
-                console.debug("Merchant: "+response.getReturnValue().ContactMerchantRecordID__c );//Check the output
-                console.debug("Alt Billing: "+response.getReturnValue().ContactAlternateBillingRecordID__c );//Check the output
-                console.debug("Online User: "+response.getReturnValue().ContactOnlineUserRecordID__c );//Check the output
-                console.debug("Sales Rep: "+component.get("v.dummySalesRepContactId") );//Check the output
             }
         });
 
@@ -203,18 +189,14 @@
         this.loadGenericContacts(component, target);
         var action;
 
-        console.log("### loadCustomerContacts: isOtrAccount=" + component.get("v.isOtrAccount"));
-
-        if (component.get("v.isOtrAccount") == true) {
-            console.log("### Loading OTR Contacts for accountRecordId: " + component.get("v.accountRowId") + ' PrimaryContactId: ' + component.get("v.customerPrimaryContact.rowId"));
+        if (component.get("v.isOtrAccount") === true) {
             action = component.get("c.getCustomerContactsFromSalesforce");
             action.setParams({
-                accountId : component.get("v.accountRowId"),
+                accountRowId : component.get("v.accountRowId"),
                 primaryContactRowId: component.get("v.customerPrimaryContact.rowId")
             });
         } else {
             action = component.get("c.getCustomerContacts");
-
             action.setParams({
                 accountNumber : component.get("v.accountNumber")
             });
