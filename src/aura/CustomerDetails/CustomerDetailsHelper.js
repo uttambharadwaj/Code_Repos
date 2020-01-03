@@ -977,11 +977,21 @@
 
     fetchNumberOfCasesToday : function(component, name) {
 
-        var action = component.get("c.getNumberOfCasesToday");
+        if (component.get("v.isOtrAccount")) {
+            var action = component.get("c.getNumberOfCasesTodayByAccountRecordId");
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+            action.setParams({
+                accountRowId : component.get("v.accountRowId")
+            });
+
+        } else {
+            var action = component.get("c.getNumberOfCasesToday");
+
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+
+        }
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -1013,11 +1023,21 @@
 
     fetchExistingCases : function(component, name) {
 
-        var action = component.get("c.getExistingCases");
+        if (component.get("v.isOtrAccount")) {
+            var action = component.get("c.getExistingCasesByAccountRecordId");
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+            action.setParams({
+                accountRowId : component.get("v.accountRowId")
+            });
+
+        } else {
+            var action = component.get("c.getExistingCases");
+
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+
+        }
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -1056,11 +1076,22 @@
     fetchCaseHistory : function(component, name) {
 
         console.log("### Helper: Fetching case history");
-        var action = component.get("c.getExistingCases");
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+        if (component.get("v.isOtrAccount")) {
+            var action = component.get("c.getExistingCasesByAccountRecordId");
+
+            action.setParams({
+                accountRowId : component.get("v.accountRowId")
+            });
+
+        } else {
+            var action = component.get("c.getExistingCases");
+
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+
+        }
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -1109,11 +1140,21 @@
 
     fetchExistingOpenCases : function(component) {
 
-        var action = component.get("c.getExistingOpenCases");
+        if (component.get("v.isOtrAccount")) {
+            var action = component.get("c.getExistingOpenCasesByAccountRecordId");
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+            action.setParams({
+                accountRowId : component.get("v.accountRowId")
+            });
+
+        } else {
+            var action = component.get("c.getExistingOpenCases");
+
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+
+        }
         //Get the open cases
         console.log("### Helper: Fetching existing cases");
 

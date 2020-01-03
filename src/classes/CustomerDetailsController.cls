@@ -41,12 +41,34 @@ public without sharing class CustomerDetailsController {
 
     @AuraEnabled
     public static Integer getNumberOfCasesToday(String accountNumber) {
-        System.debug('### entering getExistingCases for '+accountNumber);
+        System.debug('### entering getNumberOfCasesToday for '+accountNumber);
 
         try {
 
             List<Case> cases = [SELECT Id FROM Case WHERE Account.Wex_Account__c =: accountNumber AND CreatedDate = TODAY AND RecordType.Name IN: caseTypesToDisplay];
-            System.debug('### getExistingCases found '+cases.size());
+            System.debug('### getNumberOfCasesToday found '+cases.size());
+
+            return cases.size();
+
+        }
+        catch(Exception e) {
+
+            String errorCode = logError(e);
+
+            throw new AuraHandledException('Unable to retrieve number of cases today for account. (Error Tracking Code: ' + errorCode + ')');
+
+        }
+
+    }
+
+    @AuraEnabled
+    public static Integer getNumberOfCasesTodayByAccountRecordId(String accountRowId) {
+        System.debug('### entering getNumberOfCasesTodayByAccountRecordId for '+accountRowId);
+
+        try {
+
+            List<Case> cases = [SELECT Id FROM Case WHERE AccountId =: accountRowId AND CreatedDate = TODAY AND RecordType.Name IN: caseTypesToDisplay];
+            System.debug('### getNumberOfCasesTodayByAccountRecordId found '+cases.size());
 
             return cases.size();
 
@@ -91,6 +113,28 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
+    public static List<Case> getExistingCasesByAccountRecordId(String accountRowId) {
+        System.debug('### entering getExistingCasesByAccountRecordId for '+accountRowId);
+
+        try {
+
+            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, toLabel(Status), CreatedDate, LastModifiedDate, toLabel(Origin), Owner.Name, Department__c, RecordType.Name FROM Case WHERE AccountId =: accountRowId AND RecordType.Name IN: caseTypesToDisplay ORDER BY LastModifiedDate DESC];
+            System.debug('### getExistingCasesByAccountRecordId found '+cases.size());
+
+            return cases;
+
+        }
+        catch(Exception e) {
+
+            String errorCode = logError(e);
+
+            throw new AuraHandledException('Unable to retrieve list of existing cases for account. (Error Tracking Code: ' + errorCode + ')');
+
+        }
+
+    }
+
+    @AuraEnabled
     public static List<Case> getExistingOpenCases(String accountNumber) {
         System.debug('### entering getExistingOpenCases for '+accountNumber);
 
@@ -98,6 +142,27 @@ public without sharing class CustomerDetailsController {
 
             List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, Status,  LastModifiedDate, Origin, Owner.Name, Department__c, RecordType.Name FROM Case WHERE Account.Wex_Account__c =: accountNumber AND RecordType.Name IN: caseTypesToDisplay AND IsClosed = FALSE ORDER BY LastModifiedDate DESC LIMIT 5];
             System.debug('### getExistingOpenCases found '+cases.size());
+
+            return cases;
+        }
+        catch(Exception e) {
+
+            String errorCode = logError(e);
+
+            throw new AuraHandledException('Unable to retrieve list of existing cases for account. (Error Tracking Code: ' + errorCode + ')');
+
+        }
+
+    }
+
+    @AuraEnabled
+    public static List<Case> getExistingOpenCasesByAccountRecordId(String accountRowId) {
+        System.debug('### entering getExistingOpenCasesByAccountRecordId for '+accountRowId);
+
+        try {
+
+            List<Case> cases = [SELECT Id, CaseNumber, Subject, Contact.Name, Status,  LastModifiedDate, Origin, Owner.Name, Department__c, RecordType.Name FROM Case WHERE AccountId =: accountRowId AND RecordType.Name IN: caseTypesToDisplay AND IsClosed = FALSE ORDER BY LastModifiedDate DESC LIMIT 5];
+            System.debug('### getExistingOpenCasesByAccountRecordId found '+cases.size());
 
             return cases;
         }
