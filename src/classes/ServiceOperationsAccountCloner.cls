@@ -48,7 +48,6 @@ global with sharing class ServiceOperationsAccountCloner {
                 return serviceOperationsAccountId;
             }
 
-            //todo: bugfix - need better primary contact logic
             List<Contact> contactList = [SELECT Id, Contact_Type__c  FROM Contact WHERE AccountId =: otrAccountId];
 
             if (contactList.isEmpty()){
@@ -202,12 +201,6 @@ global with sharing class ServiceOperationsAccountCloner {
         System.debug('*** Entering ServiceOperationsAccountCloner.cloneContact for otrContactId: '+ otrContactId +' and serviceOperationsAccountId: '+serviceOperationsAccountId);
         init();
         Contact otrContact = [SELECT Id, FirstName, LastName, Email, Fax, Phone, WEX_Contact_ID__c, AccountId, RecordTypeId, Contact_Type__c, Line_of_Business__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode FROM Contact WHERE Id =: otrContactId];
-        //System.debug('*** OTR Contact Type='+otrContact.Contact_Type__c);
-//        if (serviceOperationsContactRecordTypeId.equals(otrContact.RecordTypeId)) //quit
-//        {
-//            //todo: don't clone if OTR account contact is service operations type? why not?
-//            return otrContactId;
-//        }
 
         Contact serviceOperationsContact = new Contact();
         Id serviceOperationsContactId;
@@ -239,9 +232,8 @@ global with sharing class ServiceOperationsAccountCloner {
             System.debug('*** Inserted serviceOperationsContact with Id '+ serviceOperationsContact.Id);
             serviceOperationsContactId = serviceOperationsContact.Id;
 
-            serviceOperationsContact.WEX_Contact_ID__c = serviceOperationsContactId;
-            //todo: populate Contact_Row_Id__c ?
-            //serviceOperationsContact.Contact_Row_Id__c = serviceOperationsContactId; // or otrContact.Id ?
+            //serviceOperationsContact.WEX_Contact_ID__c = serviceOperationsContactId; //this is used to store an external id like siebel contact id
+            serviceOperationsContact.Contact_Row_Id__c = serviceOperationsContactId;
 
             update serviceOperationsContact;
             System.debug('*** Updated serviceOperationsContact with Id '+ serviceOperationsContact.Id);
@@ -253,8 +245,9 @@ global with sharing class ServiceOperationsAccountCloner {
             integrationRecord.Fax__c = serviceOperationsContact.Fax;
             integrationRecord.Phone__c = serviceOperationsContact.Phone;
             integrationRecord.Contact_Type__c = serviceOperationsContact.Contact_Type__c;
-            integrationRecord.Account__c = serviceOperationsContact.AccountId; //todo: should this be mapped to 'integrationRecord.Acct_Row_Id__c' instead?
-            integrationRecord.Contact_Row_Id__c = serviceOperationsContact.WEX_Contact_ID__c; //todo: should this be mapped to 'integrationRecord.Acct_Row_Id__c' instead?
+            integrationRecord.Account__c = serviceOperationsContact.AccountId;
+            //integrationRecord.Contact_Row_Id__c = serviceOperationsContact.WEX_Contact_ID__c;
+            integrationRecord.Contact_Row_Id__c = serviceOperationsContact.Contact_Row_Id__c;
 
             insert integrationRecord;
             System.debug('*** Inserted integrationRecord with Id '+ integrationRecord.Id);
