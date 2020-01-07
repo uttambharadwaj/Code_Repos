@@ -148,19 +148,8 @@
                 this.loadInvoices(component,target);
             }
             else {
-                var errorMessage = "Unknown Fault";
+                this.handleErrors(component, response);
 
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
             }
 
         });
@@ -228,19 +217,7 @@
 
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
         });
 
@@ -540,19 +517,7 @@
 
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
         });
 
@@ -733,19 +698,7 @@
             }
             else {
                 component.set("v.declinedTransactionsErrorMessage","");
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
         });
 
@@ -976,6 +929,17 @@
     },
 
     fetchNumberOfCasesToday : function(component, name) {
+        console.log("### Enter fetchNumberOfCasesToday");
+
+        var acctNbr = component.get("v.accountNumber");
+        var acctRowId = component.get("v.accountRowId");
+        var isOtrAccount = component.get("v.isOtrAccount");
+
+        //sometimes isOtrAccount value is undefined
+        if(isOtrAccount !== true && isOtrAccount !== false){
+            isOtrAccount = (acctNbr === 'null' && acctRowId !== 'null');
+            component.set("v.isOtrAccount", isOtrAccount);
+        }
 
         if (component.get("v.isOtrAccount")) {
             var action = component.get("c.getNumberOfCasesTodayByAccountRecordId");
@@ -1000,19 +964,7 @@
                 component.set("v.numberOfCasesToday", response.getReturnValue());
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1052,19 +1004,7 @@
                 $A.util.addClass(page, 'slds-backdrop--open');
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1117,19 +1057,7 @@
                 }
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1139,19 +1067,30 @@
     },
 
     fetchExistingOpenCases : function(component) {
+        console.log("### Enter fetchExistingOpenCases");
+
+        var acctNbr = component.get("v.accountNumber");
+        var acctRowId = component.get("v.accountRowId");
+        var isOtrAccount = component.get("v.isOtrAccount");
+
+        //sometimes isOtrAccount value is undefined
+        if(isOtrAccount !== true && isOtrAccount !== false){
+            isOtrAccount = (acctNbr === 'null' && acctRowId !== 'null');
+            component.set("v.isOtrAccount", isOtrAccount);
+        }
 
         if (component.get("v.isOtrAccount")) {
             var action = component.get("c.getExistingOpenCasesByAccountRecordId");
 
             action.setParams({
-                accountRowId : component.get("v.accountRowId")
+                accountRowId : acctRowId
             });
 
         } else {
             var action = component.get("c.getExistingOpenCases");
 
             action.setParams({
-                accountNumber : component.get("v.accountNumber")
+                accountNumber : acctNbr
             });
 
         }
@@ -1166,19 +1105,7 @@
                 component.set("v.frontPageExistingCases", response.getReturnValue());
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1240,8 +1167,7 @@
 
                     workspaceAPI.openSubtab({
                         parentTabId: response,
-                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber"),
-                        //url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__searchRecordId=' + returnedCaseId,
+                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__accountRowId=' + component.get("v.accountRowId"),
                         focus: false
                     });
 
@@ -1258,20 +1184,7 @@
 
             }
             else {
-
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1459,5 +1372,22 @@
             console.log("flattenQueryResult: ["+i+"] = "+JSON.stringify(obj));
         }
         return newListOfObjects;
+    },
+
+    handleErrors : function(component, response){
+        var errorMessage = "Unknown Fault";
+
+        var errors = response.getError();
+
+        if (errors && Array.isArray(errors) && errors.length > 0) {
+            errorMessage = errors[0].message;
+        }
+
+        var toastEvent = $A.get("e.force:showToast");
+
+        toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
+
+        toastEvent.fire();
     }
+
 })
