@@ -19,7 +19,7 @@
                 searchTypeField.set("v.options", opts);
                 component.set("v.upperTypes", upperTypes);
             } else {
-                handleErrors(component, response.getError());
+                this.handleErrors(component, response);
             }
         });
         $A.enqueueAction(action);
@@ -88,7 +88,7 @@
                 component.set("v.results", searchResults.results);
                 component.set("v.errorMessage", searchResults.errorMessage);
             } else {
-                handleErrors(component, response.getError());
+                this.handleErrors(component, response);
             }
         });
         $A.enqueueAction(action);
