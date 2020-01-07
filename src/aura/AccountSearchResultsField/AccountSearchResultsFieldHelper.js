@@ -11,10 +11,18 @@
             accountRecordId : accountRowId
         });
 
-        action.setCallback(this, function (response) {
-            component.set("v.spinner", false);
+        var parent = component.get("v.parent");
+        if (parent) {
+            parent.showSpinner(true);
+        }
 
+        action.setCallback(this, function (response) {
             var state = response.getState();
+
+            var parent = component.get("v.parent");
+            if (parent) {
+                parent.showSpinner(false);
+            }
 
             if (component.isValid() && state === "SUCCESS") {
                 component.set("v.accountRowId", response.getReturnValue());
@@ -27,7 +35,6 @@
         });
 
         $A.enqueueAction(action);
-        component.set("v.spinner", true);
     },
 
     openCustomerDetailsTab: function(component) {
