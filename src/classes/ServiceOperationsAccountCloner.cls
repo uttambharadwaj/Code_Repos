@@ -156,7 +156,6 @@ global with sharing class ServiceOperationsAccountCloner {
 
             serviceOperationsAccount.Carrier_ID__c = otrAccount.Carrier_ID__c;
 
-            //todo: determine proper Platform assignment rule
             //todo: determine other source fields to copy
             serviceOperationsAccount.Platform__c = ( otrAccount.Platform__c != null ? otrAccount.Platform__c : otrAccount.Line_of_Business__c);
 
