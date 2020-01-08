@@ -86,11 +86,13 @@
 
                 // Gears additions commented out until we find out what else is missing - MHB 28 Jun 2018
                 var pageRef = component.get("v.pageReference");
-                //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
-                var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
-                var accountRowId = helper.getParameterByName(component, event, 'c__accountRowId', response.url);
+                var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
+                var accountRowId = (pageRef && pageRef.state) ? pageRef.state.c__accountRowId : null;
+                //var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
+                //var accountRowId = helper.getParameterByName(component, event, 'c__accountRowId', response.url);
 
-                if(accountNumber == null && accountRowId == null && component.get("v.recordId") == null) {
+                //throw error and return if not enough data to continue
+                if(accountNumber === 'null' && accountRowId === 'null' && component.get("v.recordId") === 'null') {
 
                     var toastEvent = $A.get("e.force:showToast");
 
@@ -249,7 +251,7 @@
     },
 
     popToFrontPageCase : function(component, event, helper) {
-        console.log('###: Component popToFrontPageCase'+event.currentTarget.getAttribute("data-caseId"));
+        //console.log('###: Component popToFrontPageCase'+event.currentTarget.getAttribute("data-caseId"));
 
         var focusedCaseId =  event.currentTarget.getAttribute("data-caseId");
 
@@ -314,8 +316,8 @@
     refreshInvoices : function(component, event, helper) {
         $A.util.addClass(event.target, 'fa-spin fa-1x fa-fw');
         helper.loadInvoices(component, event.target);
-        console.log("### refreshedInvoices");
-        console.log(component.get("v.invoices"));
+        //console.log("### refreshedInvoices");
+        //console.log(component.get("v.invoices"));
     },
 
     refreshDeclinedTransactions : function(component, event, helper) {
@@ -329,7 +331,7 @@
     lazyLoadCases : function(component, event, helper) {
         var spinner = component.find("casesLoadingSpinner");
         $A.util.removeClass(spinner, "slds-hide");
-        console.log("LazyLoadCases: event source= "+event.getSource());
+        //console.log("LazyLoadCases: event source= "+event.getSource());
         helper.fetchCaseHistory(component, component.find("casesTab"));
     },
 
@@ -363,7 +365,7 @@
     filterTransactions : function(component, event, helper) {
         var inputCmp = component.find("transactionTableFilter");
         var allValid = inputCmp.get("v.validity").valid;
-        console.log("### Filter validity="+allValid);
+        //console.log("### Filter validity="+allValid);
         inputCmp.showHelpMessageIfInvalid();
         if (allValid) {
             helper.filterTransactions(component);
