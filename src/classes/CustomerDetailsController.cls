@@ -266,6 +266,14 @@ public without sharing class CustomerDetailsController {
                 }
             }
             customerDetails.programId = serviceOperationsAccount.Program__c;
+            if (serviceOperationsAccount.Program__c != null) {
+                List<Program__c> programs = [SELECT Id, Service_Program_Name__c, Service_Program_Website__c FROM Program__c WHERE Id =: serviceOperationsAccount.Program__c ];
+                if (programs.size() > 0) {
+                    customerDetails.programNm = programs[0].Service_Program_Name__c;
+                    customerDetails.onlineApplication = programs[0].Service_Program_Website__c;
+                }
+            }
+
             customerDetails.accountNm = serviceOperationsAccount.Name;
 
             customerDetails.wexAccountNbr = serviceOperationsAccount.Wex_Account__c;
@@ -280,7 +288,10 @@ public without sharing class CustomerDetailsController {
             customerDetails.spnrAccountNbr = serviceOperationsAccount.Carrier_ID__c; //todo: is this correct? external account number
             //customerDetails.wexAccountNbr = serviceOperationsAccount.Carrier_ID__c; //todo: is this correct? internal account number
 
-            customerDetails.sourceSys = serviceOperationsAccount.Platform__c;
+            if (serviceOperationsAccount.Platform__c != null)
+                customerDetails.sourceSys = serviceOperationsAccount.Platform__c;
+            else
+                    customerDetails.sourceSys = 'OTR';
 
             CustomerDetailsWSUtilv2.address billingAddress = new CustomerDetailsWSUtilv2.address();
             CustomerDetailsWSUtilv2.address shippingAddress = new CustomerDetailsWSUtilv2.address();
