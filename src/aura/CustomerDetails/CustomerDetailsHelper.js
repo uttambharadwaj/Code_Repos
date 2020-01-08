@@ -1165,6 +1165,7 @@
                         tabId: response
                     });
 
+                    $A.util.addClass(spinner, "slds-hide");
                     workspaceAPI.openSubtab({
                         parentTabId: response,
                         url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__accountRowId=' + component.get("v.accountRowId"),
