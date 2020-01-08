@@ -65,7 +65,7 @@
     <ltng:require scripts="{!$Resource.MomentJS}" />
     <ltng:require scripts="{!$Resource.LodashJS}"/>
     <lightning:workspaceAPI aura:id="workspace" />
-    <lightning:spinner aura:id="loadingSpinner" class="full-height"/>
+    <lightning:spinner aura:id="loadingSpinner" class="full-height" alternativeText="Waiting for data..."/>
 
     <aura:if isTrue="{!v.recordId == null}">
         <div class="slds-page-header" style="margin-bottom: 10px;">
@@ -645,7 +645,7 @@
                 </div>
                 Contacts
             </aura:set>
-            <lightning:spinner aura:id="customerContactsLoadingSpinner" /><br/>
+            <lightning:spinner aura:id="customerContactsLoadingSpinner" alternativeText="Waiting for data..." /><br/>
             <div class="slds-size--2-of-12">
                 <div class="slds-form-element">
                     <label class="slds-form-element__label">FILTER</label>
