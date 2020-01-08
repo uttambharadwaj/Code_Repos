@@ -13,6 +13,28 @@ private class ServiceOperationsAccountClonerTest {
         Id fleetAccountRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
         Id fleetContactRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Standard Contact').getRecordTypeId();
 
+        Account parentOtrAccount = new Account();
+        parentOtrAccount.Customer_Segmentation__c = 0;
+        parentOtrAccount.CurrencyIsoCode = 'USD';
+        parentOtrAccount.Status__c = 'Active';
+        parentOtrAccount.Name = 'Test Parent Account';
+        parentOtrAccount.BillingStreet = '1 Hancock St';
+        parentOtrAccount.BillingCity = 'Portland';
+        parentOtrAccount.BillingState = 'ME';
+        parentOtrAccount.BillingCountry = 'USA';
+        parentOtrAccount.BillingPostalCode = '04101';
+        parentOtrAccount.ShippingStreet = '97 Darling Ave';
+        parentOtrAccount.ShippingCity = 'S Portland';
+        parentOtrAccount.ShippingState = 'ME';
+        parentOtrAccount.ShippingCountry = 'USA';
+        parentOtrAccount.ShippingPostalCode = '04106';
+        parentOtrAccount.RecordTypeId = fleetAccountRecordTypeId;
+
+        otrAccount.Carrier_ID__c = '123457';
+
+        insert parentOtrAccount;
+        Id parentOtrAccountId = parentOtrAccount.Id;
+
         otrAccount.Customer_Segmentation__c = 0;
         otrAccount.CurrencyIsoCode = 'USD';
         otrAccount.Status__c = 'Active';
@@ -28,13 +50,13 @@ private class ServiceOperationsAccountClonerTest {
         otrAccount.ShippingCountry = 'USA';
         otrAccount.ShippingPostalCode = '04106';
         otrAccount.RecordTypeId = fleetAccountRecordTypeId;
+        otrAccount.ParentId = parentOtrAccountId;
 
         otrAccount.Carrier_ID__c = '123456';
 
         insert otrAccount;
 
         Id otrAccountId = otrAccount.Id;
-
 
         Contact otrContact = new Contact();
         otrContact.RecordTypeId = fleetContactRecordTypeId;

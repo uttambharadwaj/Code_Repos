@@ -16,13 +16,22 @@ public class CustomerDetailsTest {
         Id genericPartnerId;
         String programRowId;
 
-        List<Program__c> genericPrograms = [SELECT Id, Siebel_Program_Row_Id__c, Partner__c FROM Program__c WHERE RecordType.Name = 'CPS Program' AND Brand_Short_Name__c = 'WEXGeneric'];
+        List<Program__c> genericPrograms = [SELECT Id, Siebel_Program_Row_Id__c, Brand_Short_Name__c, Partner__c,Service_Program_Name__c,Service_Program_Website__c  FROM Program__c WHERE RecordType.Name = 'CPS Program' AND Brand_Short_Name__c = 'WEXGeneric'];
 
         System.debug('### Generic Program search returns '+genericPrograms);
         if (genericPrograms.size() > 0) {
             genericProgramId = genericPrograms[0].Id;
             genericPartnerId = genericPrograms[0].Partner__c;
             programRowId = genericPrograms[0].Siebel_Program_Row_Id__c;
+            if (genericPrograms[0].Service_Program_Name__c == null || genericPrograms[0].Service_Program_Website__c == null) {
+                if (genericPrograms[0].Service_Program_Name__c == null)
+                    genericPrograms[0].Service_Program_Name__c = genericPrograms[0].Brand_Short_Name__c;
+
+                if (genericPrograms[0].Service_Program_Website__c == null)
+                    genericPrograms[0].Service_Program_Website__c =  'https://www.wexgeneric.com';
+
+                update genericPrograms[0];
+            }
         }
         else {
             programRowId =  '1-12N3P99';
@@ -39,6 +48,8 @@ public class CustomerDetailsTest {
             program.Name = 'WEXGeneric';
             program.Form_Template__c = 'WEXGeneric';
             program.Brand_Short_Name__c = 'WEXGeneric';
+            program.Service_Program_Name__c = 'WEXGeneric';
+            program.Service_Program_Website__c = 'https://www.wexgeneric.com';
             program.Preferred_Language_Indicator__c = 'ENU';
             program.Custom_Email_Header_URL__c = 'http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg';
             program.Brand_Heading__c = 'Time is money. Use WEX and save both.';
@@ -123,7 +134,71 @@ public class CustomerDetailsTest {
             dummyDriverContact.AccountId = accountId;
             dummyDriverContact.WEX_Contact_ID__c = '0030g00002CDTUz';
             insert dummyDriverContact;
-    }
+        }
+
+        //OTR data
+        Account otrAccount = new Account();
+
+        Id fleetAccountRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
+        Id fleetContactRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Standard Contact').getRecordTypeId();
+
+        Account parentOtrAccount = new Account();
+        parentOtrAccount.Customer_Segmentation__c = 0;
+        parentOtrAccount.CurrencyIsoCode = 'USD';
+        parentOtrAccount.Program__c = genericProgramId;
+        parentOtrAccount.Status__c = 'Active';
+        parentOtrAccount.Name = 'Test Parent Account';
+        parentOtrAccount.BillingStreet = '1 Hancock St';
+        parentOtrAccount.BillingCity = 'Portland';
+        parentOtrAccount.BillingState = 'ME';
+        parentOtrAccount.BillingCountry = 'USA';
+        parentOtrAccount.BillingPostalCode = '04101';
+        parentOtrAccount.ShippingStreet = '97 Darling Ave';
+        parentOtrAccount.ShippingCity = 'S Portland';
+        parentOtrAccount.ShippingState = 'ME';
+        parentOtrAccount.ShippingCountry = 'USA';
+        parentOtrAccount.ShippingPostalCode = '04106';
+        parentOtrAccount.RecordTypeId = fleetAccountRecordTypeId;
+
+        otrAccount.Carrier_ID__c = '123457';
+
+        insert parentOtrAccount;
+        Id parentOtrAccountId = parentOtrAccount.Id;
+
+        otrAccount.Customer_Segmentation__c = 0;
+        otrAccount.CurrencyIsoCode = 'USD';
+        otrAccount.Program__c = genericProgramId;
+        otrAccount.Status__c = 'Active';
+        otrAccount.Name = 'Test Account';
+        otrAccount.BillingStreet = '1 Hancock St';
+        otrAccount.BillingCity = 'Portland';
+        otrAccount.BillingState = 'ME';
+        otrAccount.BillingCountry = 'USA';
+        otrAccount.BillingPostalCode = '04101';
+        otrAccount.ShippingStreet = '97 Darling Ave';
+        otrAccount.ShippingCity = 'S Portland';
+        otrAccount.ShippingState = 'ME';
+        otrAccount.ShippingCountry = 'USA';
+        otrAccount.ShippingPostalCode = '04106';
+        otrAccount.RecordTypeId = fleetAccountRecordTypeId;
+        otrAccount.ParentId = parentOtrAccountId;
+
+        otrAccount.Carrier_ID__c = '123456';
+
+        insert otrAccount;
+
+        Id otrAccountId = otrAccount.Id;
+
+        Contact otrContact = new Contact();
+        otrContact.RecordTypeId = fleetContactRecordTypeId;
+        otrContact.FirstName = 'Generic';
+        otrContact.LastName = 'Boss';
+        otrContact.Phone = '207-773-8171';
+        otrContact.AccountId = otrAccountId;
+        insert otrContact;
+        Id otrContactId = otrContact.Id;
+        otrContact.Contact_Row_Id__c = otrContactId;
+        update otrContact;
 
     }
 
@@ -423,6 +498,79 @@ public class CustomerDetailsTest {
 
             Test.stopTest();
         }
+    }
+
+    // Happy path test with carrierId passed in
+    static testMethod void testOTRCustomerDetails() {
+
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            String carrierIdToTest = '123456';
+            String sourceSys           = 'SIEBEL';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            System.assert(CustomerDetailsController.genericProgram != null);
+
+            Id fleetAccountRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Fleet Account').getRecordTypeId();
+
+            Account otrAccount = [SELECT Id FROM Account WHERE Carrier_ID__c =: carrierIdToTest AND RecordTypeId =: fleetAccountRecordTypeId LIMIT 1];
+
+            Id otrAccountId = otrAccount.Id;
+
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, otrAccountId, null);
+            System.debug('### customerDetails=' + customerDetails);
+
+            System.assert('WEXGeneric'.equals(customerDetails.programNm),'Program Name was: '+ customerDetails.programNm);
+            System.assert('https://www.wexgeneric.com'.equals(customerDetails.onlineApplication),'Online Application was: '+ customerDetails.onlineApplication);
+
+            Integer numberOfCasesToday = CustomerDetailsController.getNumberOfCasesTodayByAccountRecordId(otrAccountId);
+
+            System.assert(numberOfCasesToday == 0, 'Number of cases today was: '+numberOfCasesToday);
+
+            List<Case> existingCases = CustomerDetailsController.getExistingCasesByAccountRecordId(otrAccountId);
+
+            System.assert(existingCases.size() == 0, 'Number of existing cases was: '+existingCases.size());
+
+            System.assert(customerDetails.pdAsset == null);
+
+            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContactsFromSalesforce(carrierIdToTest, null);
+            Id contactRowId = null;
+            if (contacts.size() > 0) {
+                contactRowId = contacts[0].rowId;
+            }
+
+            // List<CustomerDetailsWSUtilv2.authLogRecord> declinedAuths = CustomerDetailsController.getRecentDeclinedAuths(carrierIdToTest, sourceSys);
+
+            List<Case> cases = CustomerDetailsController.getExistingOpenCasesByAccountRecordId(otrAccountId);
+
+            System.assert(cases.size() == 0, 'Number of existing open cases was: '+cases.size());
+
+            Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+
+            //Need to create a case so we'll have an owner in the attachToCase function.  Otherwise the triggers complain.
+            Case xCase = new Case(
+                    Subject = 'Test case',
+                    Type = 'Service Operations',
+                    RecordTypeId = caseRecordTypeId,
+                    OwnerId = user.Id
+            );
+            upsert xCase;
+
+
+
+            Id contactId = CustomerDetailsController.attachToCase(xCase.Id, contactRowId, JSON.serialize(customerDetails), JSON.serialize(contacts));
+            System.debug('### ContactID=' + contactId);
+
+            Test.stopTest();
+        }
+
     }
 
     // Negative test with bad account number passed in
