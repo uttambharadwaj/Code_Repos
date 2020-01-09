@@ -268,9 +268,9 @@ public with sharing class AccountSearchController {
 			try {
 				if (isWildCardSearch) {
 					searchKeyword = searchKeyword.replace('*', '%');
-					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c FROM Account WHERE RecordType.Name = 'Fleet Account' and (Carrier_ID__c like :'9998' + searchKeyword or Carrier_ID__c like :'4000' + searchKeyword or Carrier_ID__c like :'4500' + searchKeyword)];
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c FROM Account WHERE RecordType.Name = 'Fleet Account' and (Carrier_ID__c like :'9998' + searchKeyword or Carrier_ID__c like :'4000' + searchKeyword or Carrier_ID__c like :'4500' + searchKeyword or Carrier_ID__c like :'9999' + searchKeyword)];
 				} else {
-					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c FROM Account WHERE RecordType.Name = 'Fleet Account' and (Carrier_ID__c = :'9998' + searchKeyword or Carrier_ID__c = :'4000' + searchKeyword or Carrier_ID__c = :'4500' + searchKeyword)];
+					accountListService = [SELECT Id, Name,Sponsor_Acct__c, Account_Status__c, Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c FROM Account WHERE RecordType.Name = 'Fleet Account' and (Carrier_ID__c = :'9998' + searchKeyword or Carrier_ID__c = :'4000' + searchKeyword or Carrier_ID__c = :'4500' + searchKeyword or Carrier_ID__c = :'9999' + searchKeyword)];
 				}
 			} catch (Exception e) {
 				System.debug('Error - ' + e.getMessage());
