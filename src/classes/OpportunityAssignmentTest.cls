@@ -29,11 +29,9 @@ public class OpportunityAssignmentTest {
         });
         Test.stopTest();
 
-        opportunity = [SELECT Id, OwnerId, owner.name FROM Opportunity WHERE Id = :applicationRequests.Opportunity__c];
+        opportunity = [SELECT Id, OwnerId FROM Opportunity WHERE Id = :applicationRequests.Opportunity__c];
 
         // Assert that the proper user was assigned as owner
-        System.debug(users[0].name);
-        System.debug(opportunity.owner.name);
         System.assertEquals(users[0].id, opportunity.ownerId);
 
         for (OpportunitySplit opportunitySplit : [
