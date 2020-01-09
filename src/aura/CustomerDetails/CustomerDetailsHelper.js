@@ -34,6 +34,10 @@
         // if (searchRecordId === 'null')
         //     searchRecordId = component.get("v.recordId");
 
+        if(pdRowId === undefined){
+            pdRowId = 'null';
+        }
+
         if (pdRowId !== 'null') {
             action.setParams({
                 accountNumber : acctNbr,
