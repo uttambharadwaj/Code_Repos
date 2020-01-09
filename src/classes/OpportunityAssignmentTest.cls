@@ -10,16 +10,30 @@ public class OpportunityAssignmentTest {
         program.Opportunity_Role_Assignment__c = 'System Admin';
         update program;
 
-        List<User> users = [SELECT Id, Name, UserRole.Name FROM User WHERE UserRole.Name = 'System Admin' AND IsActive = true order by Name ASC];
+        Opportunity opportunity = [SELECT Id, OwnerId FROM Opportunity WHERE Id = :applicationRequests.Opportunity__c];
+        opportunity.OwnerId = [ SELECT Id FROM User WHERE alias = 'sinte' ].Id;
+        update opportunity;
+
+        List<User> users = [
+                SELECT Id, Name, UserRole.Name
+                FROM User
+                WHERE UserRole.Name = 'System Admin'
+                AND IsActive = true
+                AND Id NOT IN (SELECT UserId FROM OutOfOffice WHERE StartDate <= :System.Now() AND EndDate >= :System.Now())
+                order by Name ASC
+        ];
+
         Test.startTest();
         OpportunityAssignment.applicationRequestDeniedHandler(new List<Application_Request__c>{
                 applicationRequests
         });
         Test.stopTest();
 
-        Opportunity opportunity = [SELECT Id, OwnerId FROM Opportunity WHERE Id = :applicationRequests.Opportunity__c];
+        opportunity = [SELECT Id, OwnerId, owner.name FROM Opportunity WHERE Id = :applicationRequests.Opportunity__c];
 
         // Assert that the proper user was assigned as owner
+        System.debug(users[0].name);
+        System.debug(opportunity.owner.name);
         System.assertEquals(users[0].id, opportunity.ownerId);
 
         for (OpportunitySplit opportunitySplit : [
