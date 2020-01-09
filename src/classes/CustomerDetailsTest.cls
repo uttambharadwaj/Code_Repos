@@ -1,7 +1,7 @@
-@isTest
+@IsTest
 public class CustomerDetailsTest {
 
-    @testSetup
+    @TestSetup
     static void setupTestData() {
         Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
         CustomerDetailsWSUtilv2.customerDetails details = CustomerDetailsController.getCustomerDetails('9100000000000','',null);
@@ -199,6 +199,16 @@ public class CustomerDetailsTest {
         Id otrContactId = otrContact.Id;
         otrContact.Contact_Row_Id__c = otrContactId;
         update otrContact;
+
+        List<Contact> otrContacts = [SELECT Id, FirstName, LastName, Contact_Type__c, Phone, Contact_Row_Id__c, AccountId FROM Contact WHERE AccountId =: otrAccountId];
+        Contact contact;
+        for (Integer i=0; i < otrContacts.size(); i++) {
+            System.debug('### Contact: '+otrContacts[i]);
+        }
+
+        System.debug('### parentOtrAccountId = '+parentOtrAccountId);
+        System.debug('### otrAccountId = '+otrAccountId);
+        System.debug('### otrContactId = '+otrContactId);
 
     }
 
@@ -508,7 +518,6 @@ public class CustomerDetailsTest {
         System.runAs(user) {
 
             String carrierIdToTest = '123456';
-            String sourceSys           = 'SIEBEL';
 
             Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
 
@@ -522,25 +531,32 @@ public class CustomerDetailsTest {
 
             Account otrAccount = [SELECT Id FROM Account WHERE Carrier_ID__c =: carrierIdToTest AND RecordTypeId =: fleetAccountRecordTypeId LIMIT 1];
 
-            Id otrAccountId = otrAccount.Id;
+            Id[] idList = new List<Id>();
+            idList.add(otrAccount.Id);
+            Id serviceAccountId = null;
 
-            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, otrAccountId, null);
+            List<Id> serviceAccountIdList = ServiceOperationsAccountCloner.cloneAccountAndContacts(idList);
+            if (serviceAccountIdList.size()>0) {
+                serviceAccountId = serviceAccountIdList[0];
+            }
+
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, serviceAccountId, null);
             System.debug('### customerDetails=' + customerDetails);
 
             System.assert('WEXGeneric'.equals(customerDetails.programNm),'Program Name was: '+ customerDetails.programNm);
             System.assert('https://www.wexgeneric.com'.equals(customerDetails.onlineApplication),'Online Application was: '+ customerDetails.onlineApplication);
 
-            Integer numberOfCasesToday = CustomerDetailsController.getNumberOfCasesTodayByAccountRecordId(otrAccountId);
+            Integer numberOfCasesToday = CustomerDetailsController.getNumberOfCasesTodayByAccountRecordId(serviceAccountId);
 
             System.assert(numberOfCasesToday == 0, 'Number of cases today was: '+numberOfCasesToday);
 
-            List<Case> existingCases = CustomerDetailsController.getExistingCasesByAccountRecordId(otrAccountId);
+            List<Case> existingCases = CustomerDetailsController.getExistingCasesByAccountRecordId(serviceAccountId);
 
             System.assert(existingCases.size() == 0, 'Number of existing cases was: '+existingCases.size());
 
             System.assert(customerDetails.pdAsset == null);
 
-            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContactsFromSalesforce(carrierIdToTest, null);
+            List<CustomerDetailsWSUtilv2.contact> contacts = customerDetails.contacts.contacts;
             Id contactRowId = null;
             if (contacts.size() > 0) {
                 contactRowId = contacts[0].rowId;
@@ -548,7 +564,7 @@ public class CustomerDetailsTest {
 
             // List<CustomerDetailsWSUtilv2.authLogRecord> declinedAuths = CustomerDetailsController.getRecentDeclinedAuths(carrierIdToTest, sourceSys);
 
-            List<Case> cases = CustomerDetailsController.getExistingOpenCasesByAccountRecordId(otrAccountId);
+            List<Case> cases = CustomerDetailsController.getExistingOpenCasesByAccountRecordId(serviceAccountId);
 
             System.assert(cases.size() == 0, 'Number of existing open cases was: '+cases.size());
 
