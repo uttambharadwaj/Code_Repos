@@ -21,16 +21,15 @@ global with sharing class ServiceOperationsAccountCloner {
 
     @InvocableMethod(Label='CloneAccountAndContacts' Description='Param is Sales Account ID')
     public static List<Id> cloneAccountAndContacts(List<Id> otrAccountIds) {
-        Id otrAccountId;
+        List<Id> result = new List<Id>();
         if (otrAccountIds == null || otrAccountIds.isEmpty()) {
             return null;
         } else {
-            otrAccountId = otrAccountIds.get(0);
+            for (Id otrAccountId : otrAccountIds) {
+                Id serviceOperationsAccountId = cloneAccountAndContacts(otrAccountId);
+                result.add(serviceOperationsAccountId);
+            }
         }
-
-        Id serviceOperationsAccountId = cloneAccountAndContacts(otrAccountId);
-        List<Id> result = new List<Id>();
-        result.add(serviceOperationsAccountId);
         return result;
     }
 

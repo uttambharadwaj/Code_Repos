@@ -748,6 +748,9 @@ public without sharing class CustomerDetailsController {
     @AuraEnabled
     public static Id getContactId(String accountId, String contactRowId) {
         System.debug('Entering getContactId for accountId '+accountId+' and contactRowId '+contactRowId);
+        if (accountId == null || contactRowId == null)
+            return null;
+
         try {
             String contactRowIdToUse = getContactRowId(contactRowId);
             List<Contact> serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND WEX_Contact_ID__c =: contactRowId];
@@ -977,7 +980,12 @@ public without sharing class CustomerDetailsController {
 
     private static List<CustomerDetailsWSUtilv2.contact> getContactsFromJson(String customerContactsJSON) {
         System.debug('Entering getContactsFromJson: '+customerContactsJSON);
-        List<CustomerDetailsWSUtilv2.contact> contacts = (List<CustomerDetailsWSUtilv2.contact>) JSON.deserialize(customerContactsJSON, List<CustomerDetailsWSUtilv2.contact>.class);
+        List<CustomerDetailsWSUtilv2.contact> contacts = new List<CustomerDetailsWSUtilv2.contact>();
+        try {
+            contacts = (List<CustomerDetailsWSUtilv2.contact>) JSON.deserialize(customerContactsJSON, List<CustomerDetailsWSUtilv2.contact>.class);
+        } catch (Exception e) {
+            System.debug('Unable to parse contacts, returning empty list');
+        }
         return contacts;
     }
 
@@ -1115,7 +1123,7 @@ public without sharing class CustomerDetailsController {
 
             Id contactId = getContactId(accountId, contactRowId);
 
-            if (contactId == null && accountId != null) {
+            if (contactId == null && accountId != null && contactsJSON != null) {
                 contactId = extractContactFromJSON(accountId, contactRowId, contactsJSON);
             }
 
@@ -1157,6 +1165,8 @@ public without sharing class CustomerDetailsController {
 
     private static Id extractContactFromJSON(Id accountId, String contactRowId, String contactsJSON) {
         CustomerDetailsWSUtilv2.contact[] contacts = getContactsFromJson(contactsJSON);
+        if (contacts == null || contacts.size() == 0)
+            return null;
 
         String contactRowIdToUse = getContactRowId(contactRowId);
         Account account = [SELECT Id, Acct_Row_Id__c FROM Account WHERE Id =: accountId LIMIT 1];
