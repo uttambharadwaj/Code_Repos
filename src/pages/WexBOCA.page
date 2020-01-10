@@ -61,6 +61,10 @@
             $Label.BOCA_Required = '{!JSENCODE($Label.BOCA_Required)}';
             $Label.BOCA_Picklist_None = '{!JSENCODE($Label.BOCA_Picklist_None)}';
             $Label.BOCA_Picklist_Choose_One = '{!JSENCODE($Label.BOCA_Picklist_Choose_One)}';
+            $Label.BOCA_invalid_checking_account = '{!JSENCODE($Label.BOCA_invalid_checking_account)}';
+            $Label.BOCA_unmatched_checking_account = '{!JSENCODE($Label.BOCA_unmatched_checking_account)}';
+            $Label.BOCA_unmatched_routing_number = '{!JSENCODE($Label.BOCA_unmatched_routing_number)}';
+            $Label.BOCA_invalid_routing_number = '{!JSENCODE($Label.BOCA_invalid_routing_number)}';
 
             window.boca_language_code = '{!languageCode}';
             window.card_program_name = '{!programParameter}';
@@ -428,6 +432,89 @@
                                 <div class="twelve columns clearfix">
                                     &nbsp;
                                 </div>
+
+                                <!-- LCR-123 -->
+                                <apex:outputPanel id="financialInstitutionSection">
+                                    <apex:outputPanel rendered="{!financialCapture}">
+                                        <div class="twelve columns clearfix">
+                                            <div class="section-header">
+                                                {!$label.WexBOCA_Financial_Institution}
+                                            </div>
+                                            <div class="twelve columns clearfix">
+                                                &nbsp;
+                                            </div>
+                                            <div class="twelve columns clearfix">
+                                                <div class="six columns clearfix">
+                                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                                        <apex:actionRegion>
+                                                            <apex:outputLabel for="paymentType" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Payment Type', $ObjectType.WeFormObject__c.fields.Payment_Method__c.label)} ">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputLabel>
+                                                            <apex:InputField styleClass="styled-input required" required="true" html-tabindex="17" id="paymentType" value="{!creditApp.Payment_Method__c}">
+                                                                <apex:actionSupport event="onchange" reRender="financialsColumn1, financialsColumn2" />
+                                                            </apex:InputField>
+                                                        </apex:actionRegion>
+                                                    </div>
+
+                                                    <apex:outputPanel id="financialsColumn1">
+                                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                                        <apex:outputLabel for="checkingAccountNumber" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Checking Account #', $ObjectType.WeFormObject__c.fields.Checking_Account_Number__c.label)} ">
+                                                            <apex:outputPanel rendered="{!requireFinancials}">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputPanel>
+                                                        </apex:outputLabel>
+                                                        <apex:InputField styleClass="styled-input {!if(requireFinancials, 'required', '')} numbers" required="{!requireFinancials}" html-tabindex="18" id="checkingAccountNumber" html-maxlength="14" value="{!creditApp.Checking_Account_Number__c}" />
+                                                    </div>
+
+                                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                                        <label for="verifyCheckingAccountNumber" class="styled-label">{!$label.WexBOCA_Confirm_Checking_Account}
+                                                            <apex:outputPanel rendered="{!requireFinancials}">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputPanel>
+                                                        </label>
+                                                        <input type="text" class="styled-input {!if(requireFinancials, 'required', '')} numbers" required="{!requireFinancials}" id="verifyCheckingAccountNumber" tabindex="19" maxlength="14" />
+                                                    </div>
+                                                    </apex:outputPanel>
+                                                </div>
+
+                                                <div class="six columns clearfix">
+                                                    <apex:outputPanel id="financialsColumn2">
+                                                    <div class="twelve columns clearfix form-field" data-row="0">
+                                                        <apex:outputLabel for="financialInstitution" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Financial Institution', $ObjectType.WeFormObject__c.fields.Financial_Institution__c.label)} ">
+                                                            <apex:outputPanel rendered="{!requireFinancials}">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputPanel>
+                                                        </apex:outputLabel>
+                                                        <apex:InputField styleClass="styled-input {!if(requireFinancials, 'required', '')}" required="{!requireFinancials}" html-tabindex="20" id="financialInstitution" html-maxlength="25" value="{!creditApp.Financial_Institution__c}" />
+                                                    </div>
+
+                                                    <div class="twelve columns clearfix form-field" data-row="1">
+                                                        <apex:outputLabel for="abaRoutingNumber" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'ABA Routing #', $ObjectType.WeFormObject__c.fields.ABA_Routing_Number__c.label)} ">
+                                                            <apex:outputPanel rendered="{!requireFinancials}">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputPanel>
+                                                        </apex:outputLabel>
+                                                        <apex:InputField styleClass="styled-input {!if(requireFinancials, 'required', '')} numbers" required="{!requireFinancials}" html-tabindex="21" id="abaRoutingNumber" html-maxlength="9" value="{!creditApp.ABA_Routing_Number__c}" />
+                                                    </div>
+
+                                                    <div class="twelve columns clearfix form-field" data-row="2">
+                                                        <label for="verifyAbaRoutingNumber" class="styled-label">{!$label.WexBOCA_Confirm_ABA_Routing_Number}
+                                                            <apex:outputPanel rendered="{!requireFinancials}">
+                                                                <span class="styled-label-required">*</span>
+                                                            </apex:outputPanel>
+                                                        </label>
+                                                        <input type="text" class="styled-input {!if(requireFinancials, 'required', '')} numbers" required="{!requireFinancials}" id="verifyAbaRoutingNumber" tabindex="22" maxlength="9" />
+                                                    </div>
+                                                    </apex:outputPanel>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </apex:outputPanel>
+                                </apex:outputPanel>
+
+                                <div class="twelve columns clearfix">
+                                    &nbsp;
+                                </div>
                                 <apex:outputPanel id="billingAddress">
                                     <apex:outputPanel rendered="{!billingAddressSame == false}">
                                         <div class="twelve columns clearfix">
@@ -509,6 +596,7 @@
                                         </script>
                                     </apex:outputPanel>
                                 </apex:outputPanel>
+
                                 <apex:outputPanel rendered="{!isPG == true}">
                                     <div class="twelve columns clearfix">
                                         <div class="section-header">
