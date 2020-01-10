@@ -41,7 +41,9 @@
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[2]==true}">
                                 <table-cell border="1px solid black" margin="0pt" padding="5pt">
-                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.Cents_Per_Gallon__c.Label}</block>
+                                    <block font-weight="bold">
+                                        <apex:outputText value="{!IF(line.name = "Custom Rebate", "Rebate on IN and OON(3) Gallons (Cents Per Gallon)" , IF(line.name = "Standard Rebate", "Cent-per-gallon rebate on gallons purchased at Shell locations", "Cents Per Gallon"))}" />
+                                    </block>
                                 </table-cell>
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[3]==true}">

@@ -21,7 +21,7 @@ public with sharing class DiscountSchedulePrintController {
         lines = [SELECT SBQQ__NetPrice__c, Id, SBQQ__Product__c, SBQQ__ListPrice__c, SBQQ__Product__r.Name FROM SBQQ__QuoteLine__c where SBQQ__Quote__c =: quoteId];
 
         for(SBQQ__QuoteLine__c line : lines) {
-            tiers = [SELECT Name, SBQQ__Discount__c,SBQQ__Number__c, SBQQ__LowerBound__c, Max_Spend_WEX__c, SBQQ__Schedule__c, Cents_Per_Gallon__c, Election__c, Payment_Timing_Options__c, Basis_Points_Rebate__c, Basis_Points__c, Payment_Timing__c FROM SBQQ__DiscountTier__c where CurrencyIsoCode = 'USD' and SBQQ__Schedule__c in (select sbqq__discountschedule__c from sbqq__quoteline__c where id =: line.Id)
+            tiers = [SELECT Name, SBQQ__Discount__c,SBQQ__Number__c, SBQQ__LowerBound__c, SBQQ__UpperBound__c, Max_Spend_WEX__c, SBQQ__Schedule__c, Cents_Per_Gallon__c, Election__c, Payment_Timing_Options__c, Basis_Points_Rebate__c, Basis_Points__c, Payment_Timing__c FROM SBQQ__DiscountTier__c where CurrencyIsoCode = 'USD' and SBQQ__Schedule__c in (select sbqq__discountschedule__c from sbqq__quoteline__c where id =: line.Id)
             ORDER BY SBQQ__LowerBound__c ASC];
             if(tiers.size() >= 1) {
                 printableLine pLine = new printableLine();
