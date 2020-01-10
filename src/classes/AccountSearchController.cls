@@ -85,10 +85,8 @@ public with sharing class AccountSearchController {
 				}else if(c.DeveloperName.equalsIgnoreCase('Platform')){
 					addColumn = true;
 				}
-
 				if(c.DeveloperName.equalsIgnoreCase('CarrierId') && 'AR_Number'.equals(searchType)){
-					// we don't want to show the carrier ID for an Account Number (tchek) search
-					addColumn = false;
+					addColumn = true;
 				}
 			}
 
