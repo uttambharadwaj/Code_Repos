@@ -173,6 +173,19 @@ public class WexBOCAController {
     // Program for the BOCA
     public Program__c program { get; set; }
 
+    public Boolean financialCapture { get; set; }
+
+    public Boolean requireFinancials {
+        get {
+            if (creditApp != null) {
+                if (creditApp.Payment_Method__c != null && creditApp.Payment_Method__c.contains('ACH')) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
     // Language Code for the BOCA
     public String languageCode { get; set; }
 
@@ -337,7 +350,7 @@ public class WexBOCAController {
             List<Program__c> programs = [SELECT Id, Live_Person_Code__c, Publish_BOCA__c, Custom_Email_Header_URL__c,
                     Analytics_Body_Block__c, Analytics_Head_Block__c, Peoplesoft_rel_code__c,
                     Upload_Pricing_Data_Flag__c, T_C__c, Brand_Long_Name__c, BOCA_Disclaimer__c,
-                    Inside_Sales_Phone_Number__c, Brand_Color_1__c, Brand_Color_2__c, Confirmation_Info__c, BOCA_Type__c, Always_Require_PG__c
+                    Inside_Sales_Phone_Number__c, Brand_Color_1__c, Brand_Color_2__c, Confirmation_Info__c, BOCA_Type__c, Always_Require_PG__c, Financial_Institution_Capture__c
             FROM Program__c WHERE Brand_Short_Name__c = :programParameter and Form_Template__c = :currentPageName];
 
             // If we have a program, then set it, otherwise, redirect to error page
@@ -351,6 +364,7 @@ public class WexBOCAController {
                 }
                 else {
                     program = programs[0];
+                    if (program.Financial_Institution_Capture__c == true) financialCapture = true;
                 }
             }
             else {
