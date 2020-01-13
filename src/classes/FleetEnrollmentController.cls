@@ -457,13 +457,14 @@ public virtual class FleetEnrollmentController {
             }
 
             //if this comes from an external marketing database it may have a siebel ID in the oppty parameter, and no app req parameter
+            //if this comes from BOCA To Prospect, there will be a salesforce oppty parameter, but no application parameter.
             if (String.isEmpty(applicationRequestParameter) && !String.isEmpty(opportunityParameter)) {
 
 
                 List<FleetEnrollment__c> fleetEnrollments = [
                         SELECT Id, Has_Fleet_Enrollment_Data__c, Opportunity__r.Billing_Country__c
                         FROM FleetEnrollment__c
-                        WHERE Opportunity_Number__c = :opportunityParameter];
+                        WHERE Opportunity_Number__c = :opportunityParameter OR Opportunity__c = :opportunityParameter];
 
                 if (fleetEnrollments.size() > 0) {
 
