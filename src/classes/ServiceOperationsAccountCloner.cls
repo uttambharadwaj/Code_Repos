@@ -136,6 +136,8 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsAccount.Fax = otrAccount.Fax;
             serviceOperationsAccount.Wex_Account__c = otrAccount.Wex_Account__c;
             serviceOperationsAccount.Sponsor_Acct__c = otrAccount.Sponsor_Acct__c;
+            serviceOperationsAccount.Member_ID__c = otrAccount.Member_ID__c;
+            serviceOperationsAccount.EDGE_Account_Number__c = otrAccount.EDGE_Account_Number__c;
             serviceOperationsAccount.PFS_REP__c = otrAccount.PFS_REP__c;
             serviceOperationsAccount.Priority_Level__c = otrAccount.Priority_Level__c;
             serviceOperationsAccount.Priority_Level_Update_Date__c = otrAccount.Priority_Level_Update_Date__c;
