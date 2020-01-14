@@ -99,6 +99,8 @@ public class BOCAFormTriggerHandler {
         account.Phone = f.Business_Phone__c;
         account.Fax = f.Business_fax__c;
 
+        if (f.Financial_Institution__c != null) account.Financial_Institution__c = f.Financial_Institution__c;
+
         upsert account;
 
         //  Step 2 - Create the contact record
@@ -443,6 +445,14 @@ public class BOCAFormTriggerHandler {
             if(beneficialOwnerSettings.Enable_Upfront_Collection__c == true) {
                 applicationRequest.Beneficial_Owner_Information__c = boEntity.Id;
             }
+
+            if(f.Payment_Method__c != null) applicationRequest.Payment_Type__c = f.Payment_Method__c;
+
+            if(f.ABA_Routing_Number__c != null) applicationRequest.ABA_Routing_Number__c = f.ABA_Routing_Number__c;
+
+            if(f.Checking_Account_Number__c != null) applicationRequest.Checking_Account_Number__c = f.Checking_Account_Number__c;
+
+            if (f.Financial_Institution__c != null) applicationRequest.Financial_Institution__c = f.Financial_Institution__c;
 
             System.debug('Disable Instant from opty: ' + opportunity.Disable_Instant_Decisioning__c);
             if(program.Disable_Instant_Decisioning__c != true && opportunity.Disable_Instant_Decisioning__c != true) {

@@ -212,7 +212,7 @@
 
                         try { // Check if program has valid regex. If not, use default.
                             validationRegex = String2Regex('{!program.Loyalty_ID_Validation__c}');
-                        } catch {
+                        } catch(error) {
                             console.log('Invalid Program Loyalty Validation');
                         }
                     }
@@ -225,16 +225,14 @@
                 return true;
             }
 
-            const String2Regex = str => {
+            function String2Regex(str) {
                 // Main regex
-                const main = str.match(/\/(.+)\/.*/)[1]
+                var main = str.match(/\/(.+)\/.*/)[1]; // Regex options
 
-                // Regex options
-                const options = str.match(/\/.+\/(.*)/)[1]
+                var options = str.match(/\/.+\/(.*)/)[1]; // Return compiled regex
 
-                // Return compiled regex
-                return new RegExp(main, options)
-            }
+                return new RegExp(main, options);
+            };
 
             function displayErrors(errorMessages) {
 

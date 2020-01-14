@@ -336,8 +336,6 @@ function validate(currentStep) {
         if($j('[id$=averageMonthlyFuelExpenses]').val() !== "" && !(parseFloat($j('[id$=averageMonthlyFuelExpenses]').val().replace(/,/g,'')) > 0)) {
             $j('[id$=averageMonthlyFuelExpenses]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Amount + '</div>'); errorCount++;
         }
-        
-
 
         if($j('[id$=estimatedFuelVolume]').val() != null && $j('[id$=estimatedFuelVolume]').val() !== "" && !(parseFloat($j('[id$=estimatedFuelVolume]').val().replace(/,/g,'')) > 0)) {
             $j('[id$=estimatedFuelVolume]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Amount + '</div>'); errorCount++;
@@ -384,6 +382,26 @@ function validate(currentStep) {
         
         if($j('[id$=billingEmail]').val() != null && !validateEmail($j('[id$=billingEmail]').val())) {
         	$j('[id$=billingEmail]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Email + '</div>'); errorCount++;     
+        }
+
+        if($j('[id$=checkingAccountNumber]').length > 0 && $j('[id$=checkingAccountNumber]').val() !== "" && ($j('[id$=checkingAccountNumber]').val().length < 5 || $j('[id$=checkingAccountNumber]').val().length > 14)) {
+            $j('[id$=checkingAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_invalid_checking_account + '</div>');
+            errorCount++;
+        }
+
+        if($j('[id$=verifyCheckingAccountNumber]').length > 0 && $j('[id$=verifyCheckingAccountNumber]').val() !== "" && $j('[id$=checkingAccountNumber]').val() !== $j('[id$=verifyCheckingAccountNumber]').val()) {
+            $j('[id$=verifyCheckingAccountNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_unmatched_checking_account + '</div>');
+            errorCount++;
+        }
+
+        if($j('[id$=verifyAbaRoutingNumber]').length > 0 && $j('[id$=verifyAbaRoutingNumber]').val() !== "" && $j('[id$=abaRoutingNumber]').val() !== $j('[id$=verifyAbaRoutingNumber]').val()) {
+            $j('[id$=verifyAbaRoutingNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_unmatched_routing_number + '</div>');
+            errorCount++;
+        }
+
+        if($j('[id$=abaRoutingNumber]').length > 0 && $j('[id$=abaRoutingNumber]').val() !== "" && $j('[id$=abaRoutingNumber]').val().length < 9) {
+            $j('[id$=abaRoutingNumber]').addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_invalid_routing_number + '</div>');
+            errorCount++;
         }
         
         if($j('[id$=isPG]').val() === "true") {
