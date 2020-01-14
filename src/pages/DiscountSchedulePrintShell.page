@@ -2,6 +2,7 @@
 * Revision History:
 * 03/Oct/2019 CJackson    PSOBACKLOG-258   Original.
 * 09/Dec/2019 CJackson    PSOBACKLOG-319   Modified logic to remove 1 from Discount Tier Maximum (using new formula field).
+* 07/Jan/2020 CJackson    PSOBACKLOG-325   Hard-coded Rebate Tier header.
 -->
 <apex:page showHeader="false" sidebar="false" cache="false" contentType="text/xml" controller="DiscountSchedulePrintControllerShell">
     <block>
@@ -21,7 +22,7 @@
                         <table-row height="9pt" font-size="0.8em" font-weight="bold" text-align="center" color="#000000" background-color="#D7D7D7">
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[8]==true}">
                                 <table-cell border="1px solid black" margin="0pt" padding="5pt">
-                                    <block>{!$ObjectType.SBQQ__DiscountTier__c.fields.SBQQ__Number__c.Label}</block>
+                                    <block>Rebate Tier</block>
                                 </table-cell>
                             </apex:outputPanel>
                             <apex:outputPanel layout="none" rendered="{!line.displayColumns[0]==true}">
