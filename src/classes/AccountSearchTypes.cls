@@ -51,6 +51,7 @@ public class AccountSearchTypes {
         @AuraEnabled public String accountId;
         @AuraEnabled public String arNumber;
         @AuraEnabled public String platform;
+        @AuraEnabled public String memberId;
         private String[] acctNm_type_info = new String[]{'acctNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] acctRowId_type_info = new String[]{'acctRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] acctSts_type_info = new String[]{'acctSts','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
