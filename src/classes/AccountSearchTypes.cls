@@ -70,7 +70,7 @@ public class AccountSearchTypes {
         private String[] pdDepartment_type_info = new String[]{'pdDepartment','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] pdRowId_type_info = new String[]{'pdRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] pgmRowId_type_info = new String[]{'pgmRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
-        private String[] platform_info = new String[]{'platform','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] platform_type_info = new String[]{'platform','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] primaryContactNm_type_info = new String[]{'primaryContactNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] primaryContactPhoneNbr_type_info = new String[]{'primaryContactPhoneNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] primaryContactRowId_type_info = new String[]{'primaryContactRowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
