@@ -286,6 +286,8 @@ public class BOCAToProspectController {
                 availableLanguages.add(new SelectOption(brandingUtility.ISO_Code__c, brandingUtility.ISO_Code__c));
             }
 
+            selectedLanguage = 'en_us';
+
 
         } catch (Exception e) {
             
