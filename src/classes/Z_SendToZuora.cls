@@ -409,7 +409,7 @@ public class Z_SendToZuora {
                 zSubscription.setValue('TermType', 'TERMED');
                 zSubscription.setValue('InitialTerm', charge.ServiceTerm__c);
                 zSubscription.setValue('RenewalSetting', 'RENEW_TO_EVERGREEN');
-                zSubscription.setValue('autoRenew', 'TRUE');
+                zSubscription.setValue('AutoRenew', 'TRUE');
             //Recurring Until End of Term
             }else{
                 zSubscription.setValue('TermType', 'TERMED');
