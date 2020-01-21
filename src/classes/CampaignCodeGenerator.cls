@@ -27,7 +27,7 @@ public class CampaignCodeGenerator {
     }
 
     @TestVisible
-    public static String generateCode(Integer codeLength, String chars) {
+    private static String generateCode(Integer codeLength, String chars) {
 
         String randomCode = '';
         Integer randomNumber;
