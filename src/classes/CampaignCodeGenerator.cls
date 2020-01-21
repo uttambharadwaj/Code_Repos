@@ -40,7 +40,7 @@ public class CampaignCodeGenerator {
 
             if (randomCode.length() == 0) {
                 randomNumber += indexOfAlphaStart; // First character should be alpha.
-                size = chars.length() - (chars.length() - indexOfAlphaStart); // The rest should be numeric now instead
+                size = chars.length() - (chars.length() - indexOfAlphaStart); // The rest should be numeric
             }
 
             randomCode += chars.substring(randomNumber, randomNumber + 1);
