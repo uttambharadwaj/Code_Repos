@@ -404,6 +404,12 @@ public class Z_SendToZuora {
             //Recurring Evergreen
             if(charge.ServiceTerm__c == 1){
             	zSubscription.setValue('TermType', 'EVERGREEN');
+            //Recurring Until End of Term, Then Flip to Evergreen
+            }else if (charge.ProductCategory__c == 'Monthly Service'){
+                zSubscription.setValue('TermType', 'TERMED');
+                zSubscription.setValue('InitialTerm', charge.ServiceTerm__c);
+                zSubscription.setValue('RenewalSetting', 'RENEW_TO_EVERGREEN');
+                zSubscription.setValue('AutoRenew', 'TRUE');
             //Recurring Until End of Term
             }else{
                 zSubscription.setValue('TermType', 'TERMED');
@@ -415,14 +421,7 @@ public class Z_SendToZuora {
             //Recurring Evergreen
             if(charge.ProductRatePlanCharge__r.zqu__ProductRatePlan__r.NonRecurringPaymentTerm__c == 'NOT'){
             	zSubscription.setValue('TermType', 'EVERGREEN');
-            //Non Recurring
-            }else if(charge.ServiceTerm__c == 1){
-                zSubscription.setValue('TermType', 'TERMED');
-                zSubscription.setValue('InitialTerm', charge.ServiceTerm__c);
-                zSubscription.setValue('RenewalSetting', 'RENEW_WITH_SPECIFIC_TERM');
-                zSubscription.setValue('RenewalTerm', Integer.valueOf('0'));
-            //Recurring Until End of Term
-            }else{
+            }else{ //Duplicate code stanza removed - MHB 1/16/2020
                 zSubscription.setValue('TermType', 'TERMED');
                 zSubscription.setValue('InitialTerm', charge.ServiceTerm__c);
                 zSubscription.setValue('RenewalSetting', 'RENEW_WITH_SPECIFIC_TERM');
