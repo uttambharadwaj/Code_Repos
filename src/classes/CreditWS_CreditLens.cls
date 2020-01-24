@@ -112,7 +112,7 @@ global class CreditWS_CreditLens {
                 Http authenticationCallout = new Http();
 
                 HttpResponse authenticateResponse = authenticationCallout.send(authenticateRequest);
-                System.debug('TEMP auth response: ' + authenticateResponse);
+                System.debug('auth response: ' + authenticateResponse);
 
                 if (authenticateResponse.getStatusCode() == 200) {
                     String responseBody =  authenticateResponse.getBody();
