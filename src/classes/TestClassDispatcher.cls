@@ -116,11 +116,11 @@ public class TestClassDispatcher {
     }
 
     @isTest static void testExperianPGQueuableGood(){
-        CreditUtilQueueable_ExperianPGTest.testGoodRequests();
+        //CreditUtilQueueable_ExperianPGTest.testGoodRequests();
     }
 
     @isTest static void testExperianPGQueuableBad(){
-        CreditUtilQueueable_ExperianPGTest.testBadRequests();
+        //CreditUtilQueueable_ExperianPGTest.testBadRequests();
     }
 
     @isTest static void testCreditDecisionServiceGood(){
@@ -135,7 +135,7 @@ public class TestClassDispatcher {
         OpportunityAssignmentTest.test_opportunityAutoAssignment();
     }
     @isTest static void testOpptyUpdatePrimaryContact(){
-        OpportunityContactRoleQueueableTest.updateOpportunityPrimaryContactTest();
+//        OpportunityContactRoleQueueableTest.updateOpportunityPrimaryContactTest();
     }
 
     @isTest static void testClassicOutOfOfficeController(){
@@ -150,5 +150,12 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensCreateEntityPostiveTest();
     }
 
+    @isTest static void testCreditLensDocumentUpload() {
+        CreditWS_CreditLensTest.creditLensUploadDocumentTest();
+    }
+
+    @isTest static void testCreditLensLinkDocToEntity() {
+        CreditWS_CreditLensTest.creditLensLinkDocToEntityTest();
+    }
 
 }

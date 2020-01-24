@@ -6,6 +6,7 @@ global class CreditWS_CreditLens {
 
     public static String createEntityUnable = '';
     public static String createEntityError = '';
+    public static String token = '';
 
     public static Credit_Decision_Engine_Endpoints__mdt CLAuthSettings {
         get {
@@ -30,6 +31,34 @@ global class CreditWS_CreditLens {
 
             } catch (Exception e) {
                 System.debug('### ERROR: Error getting Credit Lens Create Entity connection settings.');
+                return null;
+            }
+        }
+    }
+
+    public static Credit_Decision_Engine_Endpoints__mdt CLUploadDocumentsSettings {
+        get {
+            try {
+                Credit_Decision_Engine_Endpoints__mdt CLUploadDocumentsSettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Doc_Upload'];
+
+                return CLUploadDocumentsSettings;
+
+            } catch (Exception e) {
+                System.debug('### ERROR: Error getting Credit Lens Upload Documents connection settings.');
+                return null;
+            }
+        }
+    }
+
+    public static Credit_Decision_Engine_Endpoints__mdt CLDocToEntitySettings {
+        get {
+            try {
+                Credit_Decision_Engine_Endpoints__mdt CLDocToEntitySettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Doc_to_Entity'];
+
+                return CLDocToEntitySettings;
+
+            } catch (Exception e) {
+                System.debug('### ERROR: Error getting Credit Lens Document to Entity Association connection settings.');
                 return null;
             }
         }
@@ -174,7 +203,9 @@ global class CreditWS_CreditLens {
                 creditLensRequest.ShortName = cpApp.Doing_Business_As__c;
                 creditLensRequest.PlaceOfIncorporation = country;
                 creditLensRequest.CountryOfInc = country;
-                creditLensRequest.ProvinceStateOfIncorporation = cpApp.Physical_Country__c + cpApp.Physical_State_Province__c;
+                if (cpApp.Physical_State_Province__c != null) {
+                    creditLensRequest.ProvinceStateOfIncorporation = cpApp.Physical_Country__c + cpApp.Physical_State_Province__c;
+                }
                 creditLensRequest.BusinessPortfolio = country;
                 if (cpApp.Country_of_Contacting_Entity__c != null) creditLensRequest.CountryOfRisk = CLCountry(cpApp.Country_of_Contacting_Entity__c);
                 if (cpApp.Country_of_Contracting_Entity_Other__c != null) creditLensRequest.CountryOfRisk = CLCountry(cpApp.Country_of_Contracting_Entity_Other__c);
@@ -211,10 +242,12 @@ global class CreditWS_CreditLens {
 
                 if (cpApp.Opportunity__r != null) {
                     creditLensRequest.WexRelationshipManager = getUserName(cpApp.Opportunity__r.OwnerId);
-                    if (cpApp.Opportunity__r.Sales_Group__c.equalsIgnoreCase('Travel')) {
-                        creditLensRequest.WexBusinessUnit = 'Travel';
-                    } else {
-                        creditLensRequest.WexBusinessUnit = 'Payables';
+                    if (cpApp.Opportunity__r.Sales_Group__c != null) {
+                        if (cpApp.Opportunity__r.Sales_Group__c.equalsIgnoreCase('Travel')) {
+                            creditLensRequest.WexBusinessUnit = 'Travel';
+                        } else {
+                            creditLensRequest.WexBusinessUnit = 'Payables';
+                        }
                     }
                 }
                 creditLensRequest.WexCreditAnalyst = UserInfo.getName();
@@ -331,7 +364,7 @@ global class CreditWS_CreditLens {
 
         if (creditLensRequest != null) {
 
-            String jsonRequest = replaceSpeicalCharsJSON(JSON.serializePretty(creditLensRequest, true));
+            String jsonRequest = replaceSpecialCharsJSON(JSON.serializePretty(creditLensRequest, true));
 
             String responseBody = '';
 
@@ -387,14 +420,247 @@ global class CreditWS_CreditLens {
         return null;
     }
 
+
     /**
-     * Because Moodys was so kind as so have attribute names start with $ and end in _
+     * Takes a list of documents that were selected by the user to be uploading into Credit Lens.
+     * First, the document is uploaded to Credit Lens and a document ID is returned.
+     * Second, an Entity record is given the document Id as a reference.
      *
-     * @param jsonBody
+     * @param attachments
      *
      * @return
      */
-    public static String replaceSpeicalCharsJSON(String jsonBody) {
+    public static List<String> uploadDocuments(List<GenericFile> files) {
+
+        //String token = creditLensAuthentication();
+        token = creditLensAuthentication();
+
+        //todo accept multiple files in one request
+        Blob fileBody = files[0].body;
+        String fileName = files[0].fileName;
+        if ((files[0].objectType).equalsIgnoreCase('ContentDocument')) { fileName +=  '.' + files[0].fileExtension; }
+        String boundary = '----------------------------741e90d31eff';
+        String header = '--'+boundary+'\r\nContent-Disposition: form-data; name="file"; filename="'+fileName+'"\r\nContent-Type: ' + files[0].MIMEType;   // String header = '--' + boundary +'\nContent-Disposition: form-data; name="file"; filename="' + fileName +'";\nContent-Type: application/octet-stream';
+        String footer = '\r\n--'+boundary+'--';   //String footer = '--' + boundary +'--';
+        String headerEncoded = EncodingUtil.base64Encode(Blob.valueOf(header + '\r\n\r\n'));
+
+        while(headerEncoded.endsWith('='))
+        {
+            header+=' ';
+            headerEncoded = EncodingUtil.base64Encode(Blob.valueOf(header + '\r\n\r\n'));
+        }
+        String bodyEncoded = EncodingUtil.base64Encode(fileBody);
+
+        Blob bodyBlob = null;
+        String last4Bytes = bodyEncoded.substring(bodyEncoded.length()-4,bodyEncoded.length());
+
+        if(last4Bytes.endsWith('==')) {
+            // The '==' sequence indicates that the last group contained only one 8 bit byte
+            last4Bytes = last4Bytes.substring(0,2) + '0K';
+            bodyEncoded = bodyEncoded.substring(0,bodyEncoded.length()-4) + last4Bytes;
+            String footerEncoded = EncodingUtil.base64Encode(Blob.valueOf(footer));
+            bodyBlob = EncodingUtil.base64Decode(headerEncoded+bodyEncoded+footerEncoded);
+        } else if(last4Bytes.endsWith('=')) {
+            // '=' indicates that encoded data already contained two out of 3x 8 bit bytes
+            last4Bytes = last4Bytes.substring(0,3) + 'N';
+            bodyEncoded = bodyEncoded.substring(0,bodyEncoded.length()-4) + last4Bytes;
+            footer = '\n' + footer;
+            String footerEncoded = EncodingUtil.base64Encode(Blob.valueOf(footer));
+            bodyBlob = EncodingUtil.base64Decode(headerEncoded+bodyEncoded+footerEncoded);
+        } else {
+            // Prepend the CR LF to the footer
+            footer = '\r\n' + footer;
+            String footerEncoded = EncodingUtil.base64Encode(Blob.valueOf(footer));
+            bodyBlob = EncodingUtil.base64Decode(headerEncoded+bodyEncoded+footerEncoded);
+        }
+
+        String responseBody = '';
+
+        try {
+
+            Credit_Decision_Engine_Endpoints__mdt CLUploadDocumentsSettings = CLUploadDocumentsSettings;
+
+            if (CLUploadDocumentsSettings != null) {
+
+                HttpRequest httpRequest = new HttpRequest();
+
+                httpRequest.setMethod('POST');
+                httpRequest.setHeader('Authorization', 'Bearer ' + token);
+                httpRequest.setHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
+                httpRequest.setEndpoint(CLUploadDocumentsSettings.Endpoint_URL__c);
+                httpRequest.setBodyAsBlob(bodyBlob);
+                httpRequest.setTimeout(120000);
+
+                Http docUploadCallout = new Http();
+                HttpResponse httpResponse = docUploadCallout.send(httpRequest);
+                System.debug('httpResponse body: ' + httpResponse.getBody());
+
+                if (httpResponse.getStatusCode() == 200) {
+
+                    responseBody = httpResponse.getBody();
+
+                    CreditWS_CLUploadDocResponse response = CreditWS_CLUploadDocResponse.parse(responseBody);
+
+                    if (response != null) {
+
+                        List<CreditWS_CLUploadDocResponse.PayLoad> payloads = new List<CreditWS_CLUploadDocResponse.PayLoad>();
+                        payloads = response.payLoad;
+
+                        List<String> docIds = new List<String>();
+
+                        if (payloads.size() > 0) {
+                            for (CreditWS_CLUploadDocResponse.PayLoad payload: payloads) {
+                                docIds.add(payload.DocumentId);
+                            }
+                        }
+                        return docIds;
+                    }
+                }
+            }
+
+        } catch(Exception e) {
+            System.debug('### Error uploading document(s) to Credit Lens - ' + e.getLineNumber() + ' - ' + e.getMessage());
+            return null;
+
+        }
+        return null;
+    }
+
+
+    /**
+     * Once the document(s) have been upload to Credit Lens, the returned document ID must be linked to the desired Entity record.
+     *
+     * @param appId
+     * @param docIds
+     *
+     * @return
+     */
+    public static Boolean linkDocToEntity(String appId, List<String> docIds) {
+
+        Integer entityId = null;
+
+        List<CP_Application_Request__c> cpApps = [SELECT CreditLens_EntityID__c FROM CP_Application_Request__c WHERE Id = :appId];
+        if (cpApps.size() > 0) {
+            Decimal entityDecimal = cpApps[0].CreditLens_EntityID__c;
+            if (entityDecimal != null) {
+                entityId = Integer.valueOf(entityDecimal);
+            } else {
+                System.debug('No Entity related to this application exists yet in Credit Lens.');
+                return false;
+            }
+        }
+
+        try {
+
+            Credit_Decision_Engine_Endpoints__mdt CLDocToEntitySettings = CLDocToEntitySettings;
+            String responseBody = '';
+
+            if (CLDocToEntitySettings != null && docIds.size() > 0 && entityId != null) {
+
+                CreditWS_CLDocToEntityRequest docToEntityRequest = new CreditWS_CLDocToEntityRequest();
+
+                CreditWS_CLDocToEntityRequest.Context context = new CreditWS_CLDocToEntityRequest.Context();
+                docToEntityRequest.context = context;
+
+                CreditWS_CLDocToEntityRequest.PayLoad_Y payLoadY = new CreditWS_CLDocToEntityRequest.PayLoad_Y();
+                CreditWS_CLDocToEntityRequest.PayLoad payLoad = new CreditWS_CLDocToEntityRequest.PayLoad();
+
+                List<CreditWS_CLDocToEntityRequest.Multi> multis = new List<CreditWS_CLDocToEntityRequest.Multi>();
+                CreditWS_CLDocToEntityRequest.Multi multi = new CreditWS_CLDocToEntityRequest.Multi();
+
+                multi.viewModelId = 'SpreadDocumentUpload';
+                multi.behavior = 'Save';
+
+                payLoad.SpreadDocumentId = '00000000-0000-0000-0000-000000000000';
+                payLoad.EntityId = entityId;
+                payLoad.DocumentId = docIds[0]; //todo allow multiple files
+                payload.FinancialTemplateId = '6'; //what IS this?
+                payload.DocumentStatus = 'SUBMITTED';
+                payLoad.StatementDate = String.valueOf(System.now());
+                payLoad.SpreadStatementCount = String.valueOf(docIds.size());
+                payLoad.SpreadDocumentType = 'FINANCIAL_DOCUMENT';
+                payLoad.FilterOutForUI = false;
+
+                List<CreditWS_CLDocToEntityRequest.SpreadStatement> spreadStatements = new List<CreditWS_CLDocToEntityRequest.SpreadStatement>();
+                CreditWS_CLDocToEntityRequest.SpreadStatement spreadStatement = new CreditWS_CLDocToEntityRequest.SpreadStatement();
+
+                spreadStatement.StatementPeriod = 12; //todo can I skip this field?
+                spreadStatement.StatementType = 'ANNUAL'; //todo find out what other options there are
+                spreadStatement.StatementDate = String.valueOf(System.now());
+                spreadStatement.OperationType = 'Create';
+
+                spreadStatements.add(spreadStatement);
+
+                payload.SpreadStatement = spreadStatements;
+                payLoad.OperationType = 'Create';
+                payLoad.Status = 1;
+                payLoad.t_x = 'SpreadDocument';
+
+                multi.payLoad = payLoad;
+                multis.add(multi);
+                payLoadY.multi = multis;
+
+                docToEntityRequest.payLoad = payLoadY;
+
+                String jsonRequest = replaceSpecialCharsJSON(JSON.serializePretty(docToEntityRequest, true));
+
+                HttpRequest httpRequest = new HttpRequest();
+
+                httpRequest.setMethod('POST');
+                httpRequest.setHeader('Authorization', 'Bearer ' + token);
+                httpRequest.setHeader('Content-Type', 'application/json');
+                httpRequest.setEndpoint(CLDocToEntitySettings.Endpoint_URL__c);
+                httpRequest.setBody(jsonRequest);
+
+                Http httpCallout = new Http();
+                HttpResponse httpResponse = httpCallout.send(httpRequest);
+
+                System.debug('httpResponse body: ' + httpResponse.getBody());
+
+                if (httpResponse.getStatusCode() == 200) {
+
+                    responseBody = httpResponse.getBody();
+
+                    CreditWS_CLDocToEntityResponse response = CreditWS_CLDocToEntityResponse.parse(responseBody);
+
+                    if (response != null) {
+
+                        List<List<CreditWS_CLDocToEntityResponse.PayLoad>> payloadsLists = new List<List<CreditWS_CLDocToEntityResponse.PayLoad>>();
+                        payloadsLists = response.payLoad;
+
+                        // there should only ever be one main payload
+                        List<CreditWS_CLDocToEntityResponse.PayLoad> payloads = new List<CreditWS_CLDocToEntityResponse.PayLoad>();
+                        payloads = payloadsLists[0];
+
+                        for (CreditWS_CLDocToEntityResponse.PayLoad responsePayload : payloads) {
+                            CreditWS_CLDocToEntityResponse.Rules rules = responsePayload.Rules;
+                            CreditWS_CLDocToEntityResponse.LinkAutoSpreadDocumentToEntity linkAutoSpreadDocumentToEntity = rules.LinkAutoSpreadDocumentToEntity;
+                            if (linkAutoSpreadDocumentToEntity.success) {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+        } catch(Exception e) {
+            System.debug('### Error associating document(s) to Credit Lens Entity - ' + e.getLineNumber() + ' - ' + e.getMessage());
+            return false;
+
+        }
+        return false;
+    }
+
+
+        /**
+         * Because Moodys was so kind as so have attribute names start with $ and end in _
+         *
+         * @param jsonBody
+         *
+         * @return
+         */
+    public static String replaceSpecialCharsJSON(String jsonBody) {
 
         String regexFormat = '(?m)^\\s*"{0}"\\s*:';
 
@@ -405,7 +671,11 @@ global class CreditWS_CreditLens {
                 'x_new' => '\\$new',
                 'x_initialRulesExecuted' => '\\$initialRulesExecuted',
                 't_x' => 't_',
-                'Currency_x' => 'Currency'
+                'Currency_x' => 'Currency',
+                'VersionId_x' => 'VersionId_',
+                'BaseVersionId_x' => 'BaseVersionId_',
+                'Payload_Y' => 'Payload',
+                'Payload_Z' => 'Payload'
         };
 
         String formattedJSON = JSON.serializePretty(JSON.deserializeUntyped(jsonBody));
@@ -427,7 +697,7 @@ global class CreditWS_CreditLens {
             // Find all and replace
             formattedJSON = formattedJSON.replaceAll(regex, replacement);
         }
-        System.debug('TEMP formattedJSON post replacement of things and stuff: ' + formattedJSON);
+        System.debug('FormattedJSON post replacement of things and stuff: ' + formattedJSON);
         return formattedJSON;
     }
 

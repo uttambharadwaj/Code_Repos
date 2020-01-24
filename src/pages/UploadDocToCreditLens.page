@@ -1,0 +1,201 @@
+<!--
+ - Created by lhowland on 1/2/2020.
+ -->
+
+<apex:page id="UploadDocToCreditLens" showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" standardController="CP_Application_Request__c" extensions="UploadDocToCreditLensController" action="{!init}">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>Upload Documents to Credit Lens</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
+
+        <!-- Script -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js"/>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+        <!-- Import the Design System style sheet -->
+        <apex:slds />
+
+        <style>
+
+            .warningMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #fbb439;
+            }
+
+            .confirmMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #32af5c;
+            }
+
+            .errorMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #e9696e;
+            }
+
+            .infoMessage {
+                padding: 12px;
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #3c97dd;
+            }
+
+            .warningMessage h4,
+            .confirmMessage h4,
+            .errorMessage h4,
+            .infoMessage h4 {
+                font-weight: bold;
+                padding-right: 4px;
+            }
+
+            .slds-spinner_container {
+                display: none;
+                min-height: 100vh !important;
+            }
+
+            .slds-box {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0 rgba(0, 0, 0, 0.08);
+            }
+
+            .slds-card {
+                background: #f1f1f1 !important;
+            }
+
+            .slds-item_label {
+                font-weight: bold;
+            }
+
+            .slds-item_detail {
+                margin-bottom: 10px !important;
+            }
+
+            a, a:hover, a:visited {
+                text-decoration: none !important;
+                outline: none !important;
+            }
+
+            .slds-spinner_container { display: none; min-height: 100vh !important; }
+        </style>
+
+        <script>
+
+            function validateOnSubmit() {
+                <!--todo add function to validate on submit that at least one document was selected for upload, then call uploadDocuments method in controller-->
+
+                uploadFiles();
+            }
+
+        </script>
+
+    </head>
+    <body onload="moveTo(0,0); resizeTo(600,725);">
+
+    <apex:form id="uploadFilesToCreditLens">
+        <apex:actionFunction name="uploadFiles" action="{!uploadDocuments}" rerender=""/>
+        <apex:outputPanel title="Select Files to Upload to Credit Lens" id="filesToUpload">
+            <div id="content" class="slds-scope slds-is-relative">
+
+                <!-- HEADER -->
+                <div class="slds-page-header">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-has-flexi-truncate">
+                            <div class="slds-media slds-no-space slds-grow">
+                                <div class="slds-media__figure">
+                                    <svg aria-hidden="true" class="slds-icon">
+                                        <use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/doctype-sprite/svg/symbols.svg#attachment')}"></use>
+                                    </svg>
+                                </div>
+
+                                <div class="slds-media__body">
+                                    <!--<p class="slds-text-title&#45;&#45;caps slds-line-height&#45;&#45;reset">Upload Documents to Credit Lens</p>-->
+                                    <h1 class="slds-page-header__title slds-m-right--small slds-align-middle slds-truncate" title="">
+                                        <apex:outputText value="Upload Documents to Credit Lens" escape="false"/>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-no-flex slds-grid slds-align-top">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <apex:pageMessages id="pageMessages" escape="false"></apex:pageMessages>
+                <apex:outputPanel rendered="{!appId != null}">
+
+                    <article class="slds-card">
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media--center slds-has-flexi-truncate">
+                                <!--<div class="slds-media__figure">-->
+                                    <!--<svg aria-hidden="true" class="slds-icon slds-icon-standard-contact slds-icon&#45;&#45;small">-->
+                                        <!--<use xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/standard-sprite/svg/symbols.svg#product_item')}"></use>-->
+                                    <!--</svg>-->
+                                <!--</div>-->
+                                <div class="slds-media__body slds-truncate">
+                                    <a href="javascript:void(0);" class="slds-text-link--reset">
+                                        <span class="slds-text-heading--small">Available Documents</span>
+                                    </a>
+                                </div>
+                            </header>
+                        </div>
+                        <!-- CARD BODY = TABLE -->
+                        <div class="slds-card__body"  style="background: #fff !important; padding: 10px 0;">
+                            <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-1 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                                <apex:pageBlock >
+                                                    <div>
+                                                        <!--<span>Please select at least one file to upload.</span> -->
+                                                        <span>Please select a file to upload.</span>
+                                                    </div>
+                                                    <apex:pageBlockSection title="{!allFilesSize} File(s) Found:" collapsible="true" columns="1" id="files">
+                                                        <apex:selectRadio value="{!selectedFile}" layout="pageDirection">
+                                                            <apex:selectOptions value="{!items}"/><br/>
+                                                        </apex:selectRadio>
+                                                    </apex:pageBlockSection>
+                                                </apex:pageBlock>
+                                            </div>
+                                        </div><br/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <div class="slds-p-left_medium slds-p-top_medium">
+                        <input type="button" styleClass="slds-button slds-button_neutral slds-button_stateful slds-not-selected" id="submitButton" value="Upload" onclick="validateOnSubmit();"/>
+                    </div>
+                    <div class="slds-spinner_container" id="spinner">
+                        <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                            <span class="slds-assistive-text">Uploading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </apex:outputPanel>
+
+                <!--<div class="slds-p-left_medium slds-p-top_medium">-->
+                <!--<apex:commandButton styleClass="slds-button slds-button_neutral slds-button_stateful slds-not-selected" value="Upload" action="{!uploadDocuments}" />-->
+                <!--</div>-->
+            </div>
+        </apex:outputPanel>
+    </apex:form>
+    </body>
+    </html>
+</apex:page>
