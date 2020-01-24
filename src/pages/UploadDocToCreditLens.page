@@ -15,6 +15,7 @@
 
         <!-- Script -->
         <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js"/>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/parsley.js/2.7.2/parsley.min.js" />
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
@@ -93,12 +94,34 @@
         </style>
 
         <script>
+            var $j = jQuery.noConflict();
+
+            $j(document).ready(function() {
+                overridePageMessages();
+            });
+
+            function overridePageMessages() {
+                var textureEffect = '';
+
+                $j('.warningM3').addClass('warningMessage');
+                $j('.confirmM3').addClass('confirmMessage');
+                $j('.errorM3').addClass('errorMessage');
+                $j('.infoM3').addClass('infoMessage');
+
+                $j('.errorM3').removeClass('errorM3');
+                $j('.confirmM3').removeClass('confirmM3');
+                $j('.infoM3').removeClass('infoM3');
+                $j('.warningM3').removeClass('warningM3');
+            }
 
             function validateOnSubmit() {
                 <!--todo add function to validate on submit that at least one document was selected for upload, then call uploadDocuments method in controller-->
+                $j('[id$=submitButton]').addClass('disabled-button');
+                $j('[id$=spinner]').css('display', 'block').height($j(document).height());
 
                 uploadFiles();
             }
+
 
         </script>
 
