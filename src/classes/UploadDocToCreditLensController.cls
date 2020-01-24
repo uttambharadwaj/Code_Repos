@@ -90,9 +90,8 @@ public class UploadDocToCreditLensController {
 
 
     /**
-      * Because the BOCA saves files as type Attachment and inside SF, uploading a file is saved as a ContentDocumentType,
-      * for the purpose of displaying all the files, we combine them. The file name is used as the ID simply for the ease
-      * of displaying a dynamic number of files on the UI.
+      * Because the BOCA saves files as type Attachment and inside SF, uploading a file is saved as a ContentDocument,
+      * for the purpose of displaying all the files, we combine them.
       *
       * @return
       */

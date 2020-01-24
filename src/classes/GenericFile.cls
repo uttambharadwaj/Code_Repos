@@ -1,6 +1,6 @@
 /**
  * Created by lhowland on 1/7/2020.
- * The purpose of this object is to house both Attachments and ContentDocumentLinks into a single list.
+ * The purpose of this object is to house both Attachments and ContentDocuments into a single list.
  */
 
 public class GenericFile {
