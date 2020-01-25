@@ -9,6 +9,11 @@
 *   Modified By: Derek Gilbert (WEX)
 *   Modified Date: 12/07/17
 *   Modified Reason:  Assignment rules not firing when child lead is created by Salesforce Integration.
+*
+*
+*   Modified By: Lev
+*   Modified Date: 07/31/2019
+*   Modified Reason: Updated decoupleChildLeadCheck method to include Marketable field when creating a parent lead reccord.
 */
 
 public class ULead {
@@ -1007,7 +1012,8 @@ public class ULead {
                 plead.email = l2.email;
                 plead.ownerid = setting.Parent_Lead_Queue__c;
                 plead.recordtypeid = setting.Parent_Lead_Record_Type_Id__c;
-
+                //Lev: Adding Marketable field - -7/31/2019
+                //plead.Marketable__c = 'Partners';
                 parentstoinsert.put(l2.Id,plead);
                 childrentoupdate.add(l2);
 
@@ -1035,6 +1041,61 @@ public class ULead {
         if(updateChildren.size()>0) update updateChildren;
 
 
+    }
+
+    // Update parent Lead Marketable value on child Lead update
+    public static void setMarketable(List<Lead> records, Map<Id, Lead> oldMap) {
+        // Only pull child Leads that have just been assigned a parent Lead and have a primary campaign
+        System.debug('Marketable:' + records);
+        Map<Id, Id> parentIdToCampaignIdMap = new Map<Id, Id>();
+        for (Lead l : records) {
+            if (l.Parent_Lead__c != null &&
+                    //oldMap.get(l.Id).Parent_Lead__c != l.Parent_Lead__c &&
+                    l.Primary_Campaign__c != null) {
+                parentIdToCampaignIdMap.put(l.Parent_Lead__c, l.Primary_Campaign__c);
+            }
+        }
+
+        // Query only for parent Leads that don't have Marketable already set
+        Map<Id, Lead> parentLeadMap = new Map<Id, Lead>([
+                SELECT Id, Marketable__c
+                FROM Lead
+                WHERE Id IN :parentIdToCampaignIdMap.keySet()
+                AND Marketable__c = null
+
+        ]);
+
+        // Filter out parent Leads with Marketable value already set
+        for (Id parentId : parentIdToCampaignIdMap.keySet()) {
+            if (!parentLeadMap.keySet().contains(parentId)) {
+                parentIdToCampaignIdMap.remove(parentId);
+            }
+        }
+
+        // Query for primary campaign records to determine if they are marketable to all
+        Map<Id, Campaign> primaryCampaignMap = new Map<Id, Campaign>([
+                SELECT Id,
+                        Campaign_Program_Marketable_to__c
+                FROM Campaign
+                WHERE Id IN :parentIdToCampaignIdMap.values()
+        ]);
+        System.debug('primaryCampaignMap:' + primaryCampaignMap);
+
+        // Set Marketable on parent Leads
+        for (Lead parentLead : parentLeadMap.values()) {
+            // Determine marketable value based on primary campaign of child Lead
+            Id campaignId = parentIdToCampaignIdMap.get(parentLead.Id);
+            String marketable = primaryCampaignMap.get(campaignId).Campaign_Program_Marketable_to__c;
+            if (marketable != null && marketable.equalsIgnoreCase('Partner')) marketable = 'Partners';
+            //If the  parent lead has Marketable set to Partners, but a child lead is created that is associated with a Wex program, flip the parent lead's marketable to All
+            if (parentLead.Marketable__c != 'All' && String.isNotBlank(marketable) && String.isNotEmpty(marketable)) {
+                parentLead.Marketable__c = marketable;
+            }
+
+        }
+        System.debug('parentLeadMap:' + parentLeadMap.values());
+        // Update parent Leads
+        update parentLeadMap.values();
     }
 
 
