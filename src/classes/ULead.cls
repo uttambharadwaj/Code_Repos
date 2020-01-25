@@ -1798,4 +1798,50 @@ public class ULead {
         rds.oldMap = oldMap;
         BREeze.ProcessRules.processRuleLogic('MC_Leads_Sync_to_Marketing_Cloud', false, rds);
     }
+
+    // Update Mobile Phone country code based on associated program
+    public static void updateCountryCode(List<Lead> leads, Map<Id, Lead> oldMap) {
+        System.debug('entered');
+        // Get list of program ids
+        List<Id> campaignProgramIds = new List<Id>();
+        for (Lead lead : leads) {
+            if (lead.Campaign_Program__c != null) campaignProgramIds.add(lead.Campaign_Program__c);
+        }
+
+
+        if (!campaignProgramIds.isEmpty()) {
+
+            Map<Id, Program__c> campaignProgramToProgramMap = new Map<Id, Program__c>();
+            for (Program__c program :[
+                    SELECT Country_Code__c, (SELECT Id FROM Campaign_Programs__r)
+                    FROM Program__c
+                    WHERE Id IN (SELECT Program__c FROM Campaign_Program__c WHERE Id IN :campaignProgramIds)
+            ]) {
+                for (Campaign_Program__c cp : program.Campaign_Programs__r) {
+                    if (campaignProgramToProgramMap.get(cp.Id) == null) campaignProgramToProgramMap.put(cp.Id, program);
+                }
+            }
+
+            for (Lead lead : leads) {
+
+                String mobileNumber = lead.MobilePhone != null ? lead.MobilePhone.replaceAll('[^0-9]', '') : '0';
+                String existingNumber = oldMap != null && oldMap.get(lead.Id).MobilePhone != null  ? oldMap.get(lead.Id).MobilePhone : '0';
+                
+                Boolean isInsertOrPhoneUpdated = oldMap == null || mobileNumber != existingNumber;
+                if (UtilityClass.phoneNumberMissingCountryCode(mobileNumber) && isInsertOrPhoneUpdated) {
+
+                    Boolean leadHasProgram = lead.Campaign_Program__c != null && campaignProgramToProgramMap.get(lead.Campaign_Program__c) != null;
+                    if (leadHasProgram && campaignProgramToProgramMap.get(lead.Campaign_Program__c).Country_Code__c != null) {
+
+                        // Picklist value should be ex: +1 en-us
+                        List<String> codeAndCountry = campaignProgramToProgramMap.get(lead.Campaign_Program__c).Country_Code__c.split(' ');
+                        lead.MobilePhone = codeAndCountry[0] + mobileNumber;
+                        lead.et4ae5__Mobile_Country_Code__c = codeAndCountry[1];
+
+                    }
+                }
+            }
+        }
+    }
+
 }
