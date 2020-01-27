@@ -6,6 +6,7 @@ global class CreditWS_CreditLens {
 
     public static String createEntityUnable = '';
     public static String createEntityError = '';
+    public static String token = '';
 
     public static Credit_Decision_Engine_Endpoints__mdt CLAuthSettings {
         get {
@@ -162,7 +163,7 @@ global class CreditWS_CreditLens {
 
         if (objectType.equalsIgnoreCase('Application_Request__c')) {
 
-             //todo stuff and things for NA Fleet
+            //todo stuff and things for NA Fleet
             // WExBusinessUntit = NAFleet
         }
 
@@ -654,13 +655,13 @@ global class CreditWS_CreditLens {
     }
 
 
-        /**
-         * Because Moodys was so kind as so have attribute names start with $ and end in _
-         *
-         * @param jsonBody
-         *
-         * @return
-         */
+    /**
+     * Because Moodys was so kind as so have attribute names start with $ and end in _
+     *
+     * @param jsonBody
+     *
+     * @return
+     */
     public static String replaceSpecialCharsJSON(String jsonBody) {
 
         String regexFormat = '(?m)^\\s*"{0}"\\s*:';
