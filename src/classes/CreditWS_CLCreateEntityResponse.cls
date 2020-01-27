@@ -90,7 +90,7 @@ public class CreditWS_CLCreateEntityResponse {
         public String WexRequestCurrency;
         public String WexExistingCreditLineAmt;
         public String WexRequestCreditLineAmount;
-//        public Object WexCreditInformationOn;
+        public String WexCreditInformationOn;
         public String WexPaymentHistory;
         public String WexProejctedMonthlySpend;
 //        public Object WexHighCycleSpend;

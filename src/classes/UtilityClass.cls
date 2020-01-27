@@ -277,6 +277,17 @@ global class UtilityClass {
         return provinces;
     }
 
+    // Determines if a phone number is missing the country code.
+    // I imagine the criteria for this will evolve over time, hence why it was extracted out
+    public static Boolean phoneNumberMissingCountryCode(String phoneNumber) {
+
+        if (phoneNumber != null) {
+            phoneNumber = phoneNumber.replaceAll('[^0-9]', '');
+        }
+
+        return phoneNumber != null && phoneNumber.length() == 10;
+    }
+
     /**************************END MISCELLANEOUS******************************/
 
     public static void testHelper(){
