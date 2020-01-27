@@ -20,7 +20,7 @@ trigger LeadTrigger on Lead (before insert, before update, after insert, after d
 	{
 		if(trigger.isInsert) 
 		{
-
+			ULead.updateCountryCode(records, trigger.oldMap);
 			ULead.setTotalVehicles(records, trigger.oldMap);
 			ULead.setVehicleCount(records, trigger.oldMap);
 			
@@ -32,7 +32,7 @@ trigger LeadTrigger on Lead (before insert, before update, after insert, after d
 		}
 		else if(trigger.isUpdate)
 		{
-			
+			ULead.updateCountryCode(records, trigger.oldMap);
 			ULead.setTotalVehicles(records, trigger.oldMap);
 			ULead.setVehicleCount(records, trigger.oldMap);
 			
