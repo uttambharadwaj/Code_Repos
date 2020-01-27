@@ -163,7 +163,7 @@ global class CreditWS_CreditLens {
 
         if (objectType.equalsIgnoreCase('Application_Request__c')) {
 
-             //todo stuff and things for NA Fleet
+            //todo stuff and things for NA Fleet
             // WExBusinessUntit = NAFleet
         }
 
@@ -184,7 +184,8 @@ global class CreditWS_CreditLens {
                             Legal_Structure__c, CurrencyIsoCode, Taxpayer_ID__c, DNB_Resolved_DUNS__c, Stock_Symbol__c, Stock_Exchange__c, CreditLens_EntityID__c, Opportunity__r.OwnerId, Opportunity__r.Sales_Group__c,
                             Credit_Line_Recommendation__c, Credit_Line_Requested__c, Account__r.AccountNumber, Country_of_Contacting_Entity__c, Country_of_Contracting_Entity_Other__c, National__c,
                             Mailing_Address_Line_1__c, Mailing_Address_Line_2__c, Mailing_City__c, Mailing_State_Province__c, Mailing_Postal_Code__c, Mailing_Country__c, Financials_Completed_For__c, Program__r.Name,
-                            DNB_Trade_Lines__c, Paydex__c, Billing_Cycle__c, Control_Year__c, Risk_Grade__c, Risk_Grade_Source__c, Email__c, Business_Phone__c, First_Name__c, Last_Name__c, SIC_Code__c, Credit_Lens_Response__c, Payment_Type__c
+                            DNB_Trade_Lines__c, Paydex__c, Billing_Cycle__c, Control_Year__c, Risk_Grade__c, Risk_Grade_Source__c, Email__c, Business_Phone__c, First_Name__c, Last_Name__c, SIC_Code__c, Credit_Lens_Response__c, Payment_Type__c,
+                            Security_Type__c, Security_Currency__c, Security_Expiration_Date__c
                     FROM CP_Application_Request__c
                     where Id = :appID
             ];
@@ -242,15 +243,16 @@ global class CreditWS_CreditLens {
 
                 if (cpApp.Opportunity__r != null) {
                     creditLensRequest.WexRelationshipManager = getUserName(cpApp.Opportunity__r.OwnerId);
-                    if (cpApp.Opportunity__r.Sales_Group__c != null) {
-                        if (cpApp.Opportunity__r.Sales_Group__c.equalsIgnoreCase('Travel')) {
-                            creditLensRequest.WexBusinessUnit = 'Travel';
-                        } else {
-                            creditLensRequest.WexBusinessUnit = 'Payables';
-                        }
+                    if (cpApp.Opportunity__r.Sales_Group__c != null && cpApp.Opportunity__r.Sales_Group__c.equalsIgnoreCase('Travel')) {
+                        creditLensRequest.WexBusinessUnit = 'Travel';
+                    } else {
+                        creditLensRequest.WexBusinessUnit = 'Payables';
                     }
                 }
                 creditLensRequest.WexCreditAnalyst = UserInfo.getName();
+                if (cpApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = cpApp.Security_Type__c;
+                if (cpApp.Security_Type__c != null) creditLensRequest.WexRequestCurrency = cpApp.Security_Currency__c;
+                if (cpApp.Security_Type__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(cpApp.Security_Expiration_Date__c);
 
                 //todo mappings for SIC Code
 //                if (cpApp.SIC_Code__c != null) {
@@ -653,13 +655,13 @@ global class CreditWS_CreditLens {
     }
 
 
-        /**
-         * Because Moodys was so kind as so have attribute names start with $ and end in _
-         *
-         * @param jsonBody
-         *
-         * @return
-         */
+    /**
+     * Because Moodys was so kind as so have attribute names start with $ and end in _
+     *
+     * @param jsonBody
+     *
+     * @return
+     */
     public static String replaceSpecialCharsJSON(String jsonBody) {
 
         String regexFormat = '(?m)^\\s*"{0}"\\s*:';
