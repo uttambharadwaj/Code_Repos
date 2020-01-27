@@ -35,12 +35,6 @@ public class GenericFile {
             when 'docx' {
                 return 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
             }
-            when 'rtf' {
-                return 'application/rtf';
-            }
-            when 'odt' {
-                return 'application/vnd.oasis.opendocument.text';
-            }
             when 'csv' {
                 return 'text/csv';
             }
@@ -49,9 +43,6 @@ public class GenericFile {
             }
             when 'xlsx' {
                 return 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
-            }
-            when 'ods' {
-                return 'application/vnd.oasis.opendocument.spreadsheet';
             }
             when 'pdf' {
                 return 'application/pdf';

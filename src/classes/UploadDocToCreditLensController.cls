@@ -181,7 +181,7 @@ public class UploadDocToCreditLensController {
             if (uploadSuccess) {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, ' Your file(s) have been uploaded!'));
             } else if (errorMessage != null && errorMessage.equalsIgnoreCase('badFileType')) {
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'You have selected an unsupported file type. The following files are accepted: txt, odt, doc, docx, rtf, csv, xls, xlsx, ods, pdf'));
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'You have selected an unsupported file type. The following files are accepted: txt, doc, docx, csv, xls, xlsx, pdf'));
             } else {
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, ' Unable to upload your file(s) to Credit Lens.'));
             }
