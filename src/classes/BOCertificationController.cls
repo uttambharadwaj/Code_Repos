@@ -925,12 +925,18 @@ public class BOCertificationController {
                 }
                 else {
 
-                    PageReference wexBOCAConfirmation = Page.WexBOCAConfirmation;
-                    WexBOCAConfirmation.getParameters().put('id', weFormObject.Id);
-                    WexBOCAConfirmation.getParameters().put('pgm', weFormObject.Program__r.Brand_Short_Name__c );
-                    WexBOCAConfirmation.getParameters().put('lang', languageCode);
-                    WexBOCAConfirmation.setRedirect(true);
-                    return WexBOCAConfirmation;
+                    PageReference nextPage;
+                    if (program.Use_Upmarket__c) {
+                        nextPage = Page.WexBOCAFinancials;
+                    } else {
+                        nextPage = Page.WexBOCAConfirmation;
+                    }
+
+                    nextPage.getParameters().put('id', weFormObject.Id);
+                    nextPage.getParameters().put('pgm', weFormObject.Program__r.Brand_Short_Name__c );
+                    nextPage.getParameters().put('lang', languageCode);
+                    nextPage.setRedirect(true);
+                    return nextPage;
 
                 }
 
