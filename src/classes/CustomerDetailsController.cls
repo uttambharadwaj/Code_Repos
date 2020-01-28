@@ -331,7 +331,7 @@ public without sharing class CustomerDetailsController {
             //newContact.role = 'CONTACT';
             System.debug('*** Contact record ID='+rawContact.Id);
 
-            if (rawContact.Id != null && rawContact.Id.equals(primaryContactRowId)) {
+            if (rawContact.Contact_Row_Id__c != null && rawContact.Contact_Row_Id__c.equals(primaryContactRowId)) {
                 newContact.contactType = 'PRIMARY';
                 newContact.role = 'PRIMARY';
                 System.debug('*** Primary contact identified: ' + primaryContactRowId);
@@ -346,7 +346,7 @@ public without sharing class CustomerDetailsController {
             newContact.firstNm = rawContact.FirstName;
             newContact.lastNm = rawContact.LastName;
             newContact.phoneNbr = rawContact.Phone;
-            newContact.rowId = rawContact.WEX_Contact_ID__c;
+            newContact.rowId = rawContact.Contact_Row_Id__c ;
             if (newContact.rowId == null) {
                 newContact.rowId = rawContact.Id;
             }
