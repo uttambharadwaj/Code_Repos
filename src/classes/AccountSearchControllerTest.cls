@@ -11,10 +11,16 @@ public class AccountSearchControllerTest {
 
 		Test.startTest();
 		AccountSearchController.SearchResultsWrapper resultsWrapper = AccountSearchController.searchServ('ACCTNM', 'test acct');
+
+		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('Carrier_ID', '123');
+
 		Test.stopTest();
 
-		System.assertEquals(2, resultsWrapper.results.size());
+		System.assertEquals(3, resultsWrapper.results.size());
+
+		System.assertEquals(0, resultsWrapper2.results.size());
 	}
+
 
 	public class MockResponseGenerator implements WebServiceMock {
 
@@ -34,9 +40,13 @@ public class AccountSearchControllerTest {
 			dto1.AcctNm = 'test acct1';
 			AccountSearchTypes.AccountSearchDTO dto2 = new AccountSearchTypes.AccountSearchDTO();
 			dto2.AcctNm = 'test acct2';
+			AccountSearchTypes.AccountSearchDTO dto3 = new AccountSearchTypes.AccountSearchDTO();
+			dto3.AcctNm = 'test acct3';
+			dto3.carrierId = '123';
 			List<AccountSearchTypes.AccountSearchDTO> dtoList = new List<AccountSearchTypes.AccountSearchDTO> ();
 			dtoList.add(dto1);
 			dtoList.add(dto2);
+			dtoList.add(dto3);
 			result.AccountList = dtoList;
 			res.return_x = result;
 			response.put('response_x', res);
