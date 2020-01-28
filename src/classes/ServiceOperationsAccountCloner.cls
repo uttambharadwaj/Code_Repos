@@ -134,7 +134,7 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsAccount.Name = otrAccount.Name;
             serviceOperationsAccount.Phone = otrAccount.Phone;
             serviceOperationsAccount.Fax = otrAccount.Fax;
-            serviceOperationsAccount.Wex_Account__c = otrAccount.Wex_Account__c;
+            serviceOperationsAccount.Wex_Account__c = otrAccount.Carrier_ID__c;
             serviceOperationsAccount.Sponsor_Acct__c = otrAccount.Sponsor_Acct__c;
             serviceOperationsAccount.Member_ID__c = otrAccount.Member_ID__c;
             serviceOperationsAccount.EDGE_Account_Number__c = otrAccount.EDGE_Account_Number__c;
@@ -154,8 +154,6 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsAccount.ShippingState = otrAccount.ShippingState;
             serviceOperationsAccount.ShippingCountry = otrAccount.ShippingCountry;
             serviceOperationsAccount.ShippingPostalCode = otrAccount.ShippingPostalCode;
-
-            serviceOperationsAccount.Carrier_ID__c = otrAccount.Carrier_ID__c;
 
             //todo: determine other source fields to copy
             serviceOperationsAccount.Platform__c = ( otrAccount.Platform__c != null ? otrAccount.Platform__c : otrAccount.Line_of_Business__c);
