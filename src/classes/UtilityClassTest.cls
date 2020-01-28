@@ -69,6 +69,17 @@ public class UtilityClassTest {
         System.assertEquals(true, lead.ConvertedAccountId != null);
 
     }
+
+    @isTest static void testPhoneNumberMissingCountryCode() {
+
+        String phoneMissingCountryCode = '909-909-9999';
+        String phoneNotMissingCountryCode = '+1' + phoneMissingCountryCode;
+
+        Test.startTest();
+        System.assertEquals(true, UtilityClass.phoneNumberMissingCountryCode(phoneMissingCountryCode));
+        System.assertEquals(false, UtilityClass.phoneNumberMissingCountryCode(phoneNotMissingCountryCode));
+        Test.stopTest();
+    }
     @isTest static void testHelper(){
         //the org is infected with terrible testing practices. we know who to call...
         UtilityClass.testHelper();

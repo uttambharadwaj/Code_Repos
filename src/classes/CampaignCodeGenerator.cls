@@ -30,24 +30,17 @@ public class CampaignCodeGenerator {
     private static String generateCode(Integer codeLength, String chars) {
 
         String randomCode = '';
-        Integer size;
-        Integer indexOfAlphaStart = chars.indexOf('A');
-        Integer sequentialAlphaCount = 0;
+        Integer randomNumber;
+        Integer indexOfAlphaStart = chars.indexOfAnyBut('0123456789');
+        Integer size = chars.length() - indexOfAlphaStart;
 
         while (randomCode.length() < codeLength) {
 
-            // Do not have more than 2 alpha characters together
-            size = sequentialAlphaCount < 2 ? chars.length() : indexOfAlphaStart;
+            randomNumber = Math.mod(Math.abs(Crypto.getRandomInteger()), size);
 
-            Integer randomNumber = Math.mod(Math.abs(Crypto.getRandomInteger()), size);
-
-            // First character must be alpha
-            if (randomCode.length() == 0 && randomNumber < indexOfAlphaStart) {
-                randomNumber += indexOfAlphaStart;
-            }
-
-            if (randomNumber >= indexOfAlphaStart) {
-                sequentialAlphaCount = sequentialAlphaCount >= 2 ? 0 : sequentialAlphaCount + 1;
+            if (randomCode.length() == 0) {
+                randomNumber += indexOfAlphaStart; // First character should be alpha.
+                size = chars.length() - (chars.length() - indexOfAlphaStart); // The rest should be numeric
             }
 
             randomCode += chars.substring(randomNumber, randomNumber + 1);

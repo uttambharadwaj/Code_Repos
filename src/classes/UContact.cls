@@ -294,4 +294,43 @@ public class UContact {
         rds.oldMap = oldMap;
         BREeze.ProcessRules.processRuleLogic('MC_Contacts_Sync_to_Marketing_Cloud', false, rds);
     }
+
+    // Update Mobile Phone country code based on associated program if mobile number is 10 digits
+    public static void updateCountryCode(List<Contact> contacts, Map<Id, Contact> oldMap) {
+
+        // Get list of program ids
+        List<Id> programIds = new List<Id>();
+        for (Contact contact : contacts) {
+            if (contact.Account_Program_Id__c != null) programIds.add(contact.Account_Program_Id__c);
+        }
+
+        if (!programIds.isEmpty()) {
+
+            Map<Id, Program__c> programMap = new Map<Id, Program__c>([
+                    SELECT Id, Country_Code__c
+                    FROM Program__c
+                    WHERE Id IN :programIds
+            ]);
+
+            for (Contact contact : contacts) {
+
+                String mobileNumber = contact.MobilePhone != null ? contact.MobilePhone.replaceAll('[^0-9]', '') : '0';
+                String existingNumber = oldMap != null && oldMap.get(contact.Id).MobilePhone != null  ? oldMap.get(contact.Id).MobilePhone : '0';
+
+                Boolean isInsertOrPhoneUpdated = oldMap == null || mobileNumber != existingNumber;
+                if (UtilityClass.phoneNumberMissingCountryCode(mobileNumber) && isInsertOrPhoneUpdated) {
+
+                    Boolean contactHasProgram = contact.Account_Program_Id__c != null && programMap.get(contact.Account_Program_Id__c) != null;
+                    if (contactHasProgram && programMap.get(contact.Account_Program_Id__c).Country_Code__c != null) {
+
+                        // Picklist value should be ex: +1 en-us
+                        List<String> codeAndCountry = programMap.get(contact.Account_Program_Id__c).Country_Code__c.split(' ');
+                        contact.MobilePhone = codeAndCountry[0] + mobileNumber;
+                        contact.et4ae5__Mobile_Country_Code__c = codeAndCountry[1];
+
+                    }
+                }
+            }
+        }
+    }
 }

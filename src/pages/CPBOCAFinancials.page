@@ -289,7 +289,7 @@
                                                 </apex:selectList>
                                                 </apex:actionRegion>
                                             </div>
-                                            <apex:outputPanel id="contractingEntityPanel" rendered="{!creditApp.Financials_Completed_For__c == 'Contracting Entity'}">
+                                            <apex:outputPanel id="contractingEntityPanel">
                                                 <div class="twelve columns clearfix form-field" data-row="2">
                                                     <apex:outputLabel for="contractingEntityCountry" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Country_of_Contacting_Entity__c.label}">
                                                         <span class="styled-label-required">*</span>

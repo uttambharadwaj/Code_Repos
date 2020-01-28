@@ -15,7 +15,7 @@ public class CampaignBeforeInsertTriggerHandler extends TriggerHandlerBase {
 
             for (Integer i = 0; i < campaignsList.size(); i++) {
 
-                if (campaignsList[i].Coupon_Code__c == null && enabledRecordTypes.contains(campaignsList[i].RecordTypeId)) {
+                if (campaignsList[i].Coupon_Code__c == null && enabledRecordTypes.contains(String.valueOf(campaignsList[i].RecordTypeId))) {
                     campaignsList[i].Coupon_Code__c = campaignCodes[i];
                 }
 

@@ -470,7 +470,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                     &nbsp;
                                 </div>
                             </apex:outputPanel>
-                            <apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplicationOffer.Funding__c != 'Parent Funded & Secondary Contract', !isConversionApp), true, false)}">
+                            <apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', !isConversionApp), true, false)}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
                                         Payment Information
@@ -537,11 +537,8 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel rendered="{!IF(OR(
-                                                                AND(
-                                                                    OR(onlineApplicationOffer.Funding__c == 'Parent Funded', onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract'),
-                                                                    onlineApplicationOffer.Enable_Parent_Funded_Banking_Information__c == true
-                                                                    ),
-                                                                    !isConversionApp
+                                                                AND(onlineApplicationOffer.Funding__c != 'Parent Funded', !isConversionApp),
+                                                                AND(onlineApplicationOffer.Funding__c == 'Parent Funded', onlineApplicationOffer.Enable_Parent_Funded_Banking_Information__c == true)
                                                                 ), true, false)}">
                                 <div class="twelve columns clearfix">
                                     <div class="section-header">
@@ -601,7 +598,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                 </div>
                             </apex:outputPanel>
                             <apex:outputPanel id="accountGuarantor">
-                                <apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplicationOffer.Funding__c != 'Parent Funded & Secondary Contract', !isConversionApp), true, false)}">
+                                <apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', !isConversionApp), true, false)}">
                                     <div class="twelve columns clearfix">
                                         <div class="section-header">
                                             {!$Label.BOCA_Account_Guarantor}

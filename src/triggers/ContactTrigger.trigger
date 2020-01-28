@@ -19,8 +19,10 @@ trigger ContactTrigger on Contact (before insert, before update, after insert, a
 
     if (trigger.isBefore) {
         if (trigger.isInsert) {
+            UContact.updateCountryCode(records, trigger.oldMap);
             UContact.executeBREeze(records, trigger.oldMap);
         } else if (trigger.isUpdate) {
+            UContact.updateCountryCode(records, trigger.oldMap);
             UContact.executeBREeze(records, trigger.oldMap);
         }
     } else if (trigger.isAfter) {

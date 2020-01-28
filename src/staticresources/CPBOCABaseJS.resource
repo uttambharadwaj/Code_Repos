@@ -446,7 +446,17 @@ function validate(currentStep) {
         }
    	}
 
-    if(hasErrors == false) { 
+    if(hasErrors == false && !($j('[id$=acknowledgeDisclaimer]').prop('checked'))) {
+        $j('[id$=disclaimerErrors]').css('display', 'block');
+
+        $j('[id$=authorizedSignerBody]').addClass('erroredSection');
+
+        window.page_name = "App-Page2-Errors";
+
+        document.querySelector("#disclaimerErrors").scrollIntoView();
+
+        hasErrors = true;
+    } else if (hasErrors == false) {
         $j('[id$=creditForm]').find('.step-button').addClass('disabled-button');
         $j('[id$=creditForm]').find('.loader-gif').css('display', 'block');
 

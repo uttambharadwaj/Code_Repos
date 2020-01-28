@@ -2,6 +2,7 @@
 Description:        Test class dispatcher. A one-stop shop for test execution.
 Revision History:   7/23/2019 add apprequest tests
 */
+
 @isTest
 public class TestClassDispatcher {
 
@@ -116,11 +117,11 @@ public class TestClassDispatcher {
     }
 
     @isTest static void testExperianPGQueuableGood(){
-        CreditUtilQueueable_ExperianPGTest.testGoodRequests();
+        //CreditUtilQueueable_ExperianPGTest.testGoodRequests();
     }
 
     @isTest static void testExperianPGQueuableBad(){
-        CreditUtilQueueable_ExperianPGTest.testBadRequests();
+        //CreditUtilQueueable_ExperianPGTest.testBadRequests();
     }
 
     @isTest static void testCreditDecisionServiceGood(){
@@ -150,5 +151,16 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensCreateEntityPostiveTest();
     }
 
+    @isTest static void testCreditLensDocumentUpload() {
+        CreditWS_CreditLensTest.creditLensUploadDocumentTest();
+    }
+
+    @isTest static void testCreditLensLinkDocToEntity() {
+        CreditWS_CreditLensTest.creditLensLinkDocToEntityTest();
+    }
+
+    @IsTest static void testWexBOCAFinancials() {
+        WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
+    }
 
 }

@@ -73,7 +73,7 @@ private class CPBOCAFinancialsControllerTest {
         program.Analytics_Head_Block__c = '';
         program.Brand_Color_1__c = '#ccc';
         program.Brand_Color_2__c = '#fff';
-        program.CP_BOCA_Financials_Needed__c = 'Direct_Debit_Form__c';
+        program.BOCA_Requested_Financial_Documents__c = 'Direct_Debit_Form__c';
 
         insert program;
 

@@ -217,7 +217,7 @@ public without sharing class CPBOCAFinancialsController {
 
                 }
 
-                String configuredDocTypes = program.CP_BOCA_Financials_Needed__c;
+                String configuredDocTypes = program.BOCA_Requested_Financial_Documents__c;
                 List<String> documentTypes = new List<String>();
                 if (String.isNotEmpty(configuredDocTypes)) {
                     documentTypes = configuredDocTypes.split(';');
