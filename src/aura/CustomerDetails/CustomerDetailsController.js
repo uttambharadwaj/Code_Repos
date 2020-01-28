@@ -67,7 +67,6 @@
             {label: "Updated Date", fieldName: "updateDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
         ]);
 
-
         component.set("v.past3InvoicesColumnList", [
             {label: "Invoice Date", fieldName: "closingDt", type: "text", sortable: false},
             {label: "View Invoice", fieldName: "invoiceUrl", type: "url",typeAttributes: {label: "View Invoice", target: { fieldName: 'invoiceUrl' }}, sortable: false}
@@ -87,64 +86,13 @@
 
                 // Gears additions commented out until we find out what else is missing - MHB 28 Jun 2018
                 var pageRef = component.get("v.pageReference");
-                //var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
-                var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
+                var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
+                var accountRowId = (pageRef && pageRef.state) ? pageRef.state.c__accountRowId : null;
+                //var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
+                //var accountRowId = helper.getParameterByName(component, event, 'c__accountRowId', response.url);
 
-                if(accountNumber == null && component.get("v.recordId") == null) {
-
-                    var toastEvent = $A.get("e.force:showToast");
-
-                    toastEvent.setParams({ "type": "error", "title": "Error", "message": "Account number or Account record ID missing!" });
-
-                    toastEvent.fire();
-
-                }
-                else {
-
-                    component.set("v.accountNumber", accountNumber);
-
-                    // Grab the case ID off the enclosing tab URL
-                    var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
-                    // var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
-                    component.set("v.caseId", caseId);
-
-                    // Grab the contactRowID off the enclosing tab URL
-                    var contactRowId = (pageRef && pageRef.state) ? pageRef.state.c__contactRowId : null;
-                    // var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
-                    component.set("v.contactRowId", contactRowId);
-
-                    // Grab the pdRowId off the enclosing tab URL
-                    var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
-                    component.set("v.pdRowId", pdRowid);
-
-                    /*
-                    console.log('#### accountNumber = '+component.get("v.accountNumber"));
-                    console.log('#### caseId = '+component.get("v.caseId"));
-                    console.log('#### contactRowId = '+component.get("v.contactRowId"));
-                    console.log('#### pdRowId = '+component.get("v.pdRowId"));
-                     */
-
-                    // Display the spinner
-                    var spinner = component.find("loadingSpinner");
-                    $A.util.removeClass(spinner, "slds-hide");
-
-                    // Grab the customer details
-                    helper.loadCustomerDetails(component);
-
-                    //Get the open cases
-                    console.log("### Fetching existing cases");
-                    helper.fetchExistingOpenCases(component);
-
-                    // Grab the number of cases today
-                    helper.fetchNumberOfCasesToday(component);
-
-                }
-
-                /*
-                // Grab the account number off the encolsing tab URL
-                var accountNumber = helper.getParameterByName(component, event, 'accountNumber', response.url);
-
-                if(accountNumber == null && component.get("v.recordId") == null) {
+                //throw error and return if not enough data to continue
+                if(accountNumber === 'null' && accountRowId === 'null' && component.get("v.recordId") === 'null') {
 
                     var toastEvent = $A.get("e.force:showToast");
 
@@ -152,35 +100,42 @@
 
                     toastEvent.fire();
 
-                }
-                else {
-
-                    component.set("v.accountNumber", accountNumber);
-
-                    // Grab the case ID off the encolsing tab URL
-                    var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
-                    component.set("v.caseId", caseId);
-
-                    // Grab the contactRowID off the encolsing tab URL
-                    var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
-                    component.set("v.contactRowId", contactRowId);
-
-                    // Display the spinner
-                    var spinner = component.find("loadingSpinner");
-                    $A.util.removeClass(spinner, "slds-hide");
-
-                    // Grab the customer details
-                    helper.loadCustomerDetails(component);
-
-                    //Get the open cases
-                    console.log("### Fetching existing cases");
-                    helper.fetchExistingOpenCases(component);
-
-                    // Grab the number of cases today
-                    helper.fetchNumberOfCasesToday(component);
+                    return;
 
                 }
-                */
+
+                component.set("v.accountNumber", accountNumber);
+                component.set("v.accountRowId", accountRowId);
+
+                // Grab the case ID off the enclosing tab URL
+                var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
+                // var caseId = helper.getParameterByName(component, event, 'caseId', response.url);
+                component.set("v.caseId", caseId);
+
+                // Grab the contactRowID off the enclosing tab URL
+                var contactRowId = (pageRef && pageRef.state) ? pageRef.state.c__contactRowId : null;
+                // var contactRowId = helper.getParameterByName(component, event, 'contactRowId', response.url);
+                component.set("v.contactRowId", contactRowId);
+
+                // Grab the pdRowId off the enclosing tab URL
+                var pdRowid = (pageRef && pageRef.state) ? pageRef.state.c__pdRowId : null;
+                component.set("v.pdRowId", pdRowid);
+
+                // Display the spinner
+                var spinner = component.find("loadingSpinner");
+                $A.util.removeClass(spinner, "slds-hide");
+
+                // Grab the customer details
+                helper.loadCustomerDetails(component);
+
+                //Get the open cases
+                console.log("### Fetching existing cases");
+                helper.fetchExistingOpenCases(component);
+
+                // Grab the number of cases today
+                helper.fetchNumberOfCasesToday(component);
+
+                //component.set("v.selectedTabId","customerContactsTab");
 
             });
         })
@@ -199,7 +154,6 @@
     lazyLoadCustomerContacts : function(component, event, helper) {
 
         if(component.get("v.customerContacts") == null) {
-
             var spinner = component.find("customerContactsLoadingSpinner");
             $A.util.removeClass(spinner, "slds-hide");
 
@@ -297,7 +251,7 @@
     },
 
     popToFrontPageCase : function(component, event, helper) {
-        console.log('###: Component popToFrontPageCase'+event.currentTarget.getAttribute("data-caseId"));
+        //console.log('###: Component popToFrontPageCase'+event.currentTarget.getAttribute("data-caseId"));
 
         var focusedCaseId =  event.currentTarget.getAttribute("data-caseId");
 
@@ -359,12 +313,11 @@
         }
     },
 
-
     refreshInvoices : function(component, event, helper) {
         $A.util.addClass(event.target, 'fa-spin fa-1x fa-fw');
         helper.loadInvoices(component, event.target);
-        console.log("### refreshedInvoices");
-        console.log(component.get("v.invoices"));
+        //console.log("### refreshedInvoices");
+        //console.log(component.get("v.invoices"));
     },
 
     refreshDeclinedTransactions : function(component, event, helper) {
@@ -378,7 +331,7 @@
     lazyLoadCases : function(component, event, helper) {
         var spinner = component.find("casesLoadingSpinner");
         $A.util.removeClass(spinner, "slds-hide");
-        console.log("LazyLoadCases: event source= "+event.getSource());
+        //console.log("LazyLoadCases: event source= "+event.getSource());
         helper.fetchCaseHistory(component, component.find("casesTab"));
     },
 
@@ -386,7 +339,6 @@
         $A.util.addClass(event.target, 'fa-spin fa-1x fa-fw');
         helper.fetchCaseHistory(component, event.target);
     },
-
 
     // Client-side controller called by the DeclinedTransactions onsort event handler
     handleTxnSort: function (component, event, helper) {
@@ -413,7 +365,7 @@
     filterTransactions : function(component, event, helper) {
         var inputCmp = component.find("transactionTableFilter");
         var allValid = inputCmp.get("v.validity").valid;
-        console.log("### Filter validity="+allValid);
+        //console.log("### Filter validity="+allValid);
         inputCmp.showHelpMessageIfInvalid();
         if (allValid) {
             helper.filterTransactions(component);
@@ -431,6 +383,7 @@
         component.set("v.filteredDataTableTransactions", helper.createDataTableTransactions(component.get("v.declinedTransactions")));
 
     },
+
     lazyLoadPayments : function(component, event, helper) {
         if(component.get("v.paymentsBulk") == null) {
             var spinner = component.find("paymentsLoadingSpinner");
@@ -457,6 +410,7 @@
         helper.sortTxnData(component, fieldName, sortDirection);
 
     },
+
     // Client-side controller called by the Payment History onsort event handler
     handlePaymentHistorySort: function (component, event, helper) {
         var fieldName = event.getParam('fieldName');

@@ -24,20 +24,36 @@
     },
 
     loadCustomerDetails : function(component, target) {
-
         var action = component.get("c.getCustomerDetails");
 
         var pdRowId = component.get("v.pdRowId");
-        console.log('### pdRowId = ' + pdRowId);
-        if (pdRowId != null) {
+        var acctNbr = component.get("v.accountNumber");
+        var acctRowId = component.get("v.accountRowId");
+
+        // var searchRecordId = component.get("v.searchRecordId");
+        // if (searchRecordId === 'null')
+        //     searchRecordId = component.get("v.recordId");
+
+        if(pdRowId === undefined){
+            pdRowId = 'null';
+        }
+
+        if (pdRowId !== 'null') {
             action.setParams({
-                accountNumber : component.get("v.accountNumber"),
+                accountNumber : acctNbr,
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : pdRowId
             });
+        } else if (acctNbr === 'null') { //OTR path
+            action.setParams({
+                accountNumber : '',
+                accountRecordId : acctRowId,
+                pdRowIdString : ''
+            });
+            component.set("v.isOtrAccount", true);
         } else {
             action.setParams({
-                accountNumber : component.get("v.accountNumber"),
+                accountNumber : acctNbr,
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : ''
             });
@@ -48,11 +64,14 @@
 
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.customerDetails", response.getReturnValue());
+                // if (component.get("v.isOtrAccount") === true && component.get("v.customerDetails.sfdcAcctId") !== 'null') {
+                //     //component.set("v.recordId", component.get("v.customerDetails.sfdcAcctId")); // todo: causes an error in the browser. is a valid component variable.
+                // }
                 var primaryContact = null;
 
                 _.forEach(component.get("v.customerDetails.contacts"), function(customerDetailsContact) {
                     _.forEach(customerDetailsContact, function(contact) {
-                        if((contact.contactType).toUpperCase() === 'PRIMARY') {
+                        if((contact.contactType) !== undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
                             primaryContact = contact;
                         }
                     });
@@ -94,7 +113,7 @@
 
                     var customerName = component.get("v.customerDetails.accountNm");
 
-                    if(customerName === "" || customerName == undefined) { customerName = "Customer Details" };
+                    if(customerName === "" || customerName === undefined) { customerName = "Customer Details" };
 
                     workspaceAPI.getFocusedTabInfo().then(function(response) {
                         var focusedTabId = response.tabId;
@@ -133,19 +152,8 @@
                 this.loadInvoices(component,target);
             }
             else {
-                var errorMessage = "Unknown Fault";
+                this.handleErrors(component, response);
 
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
             }
 
         });
@@ -155,26 +163,15 @@
     },
 
     loadGenericContacts : function(component, target) {
-        console.log('### Entering loadGenericContacts');
         var action = component.get("c.getSupportOperationsSettings");
         action.setCallback(this, function(response){
-            console.log('### loadGenericContacts: component.isValid() ='+component.isValid());
-            console.log('### loadGenericContacts: response != null ='+response != null);
-            console.log('### loadGenericContacts: response.getState() ='+response.getState());
             if(component.isValid() && response != null && response.getState() == 'SUCCESS'){
                 //saving custom setting to attribute
-                console.log('### loadGenericContacts within isValid() test');
                 component.set("v.dummyDriverContactId", response.getReturnValue().ContactDriverRecordID__c);
                 component.set("v.dummyMerchantContactId", response.getReturnValue().ContactMerchantRecordID__c);
                 component.set("v.dummyAltBillingContactId", response.getReturnValue().ContactAlternateBillingRecordID__c);
                 component.set("v.dummyOnlineUserContactId", response.getReturnValue().ContactOnlineUserRecordID__c);
                 component.set("v.dummySalesRepContactId", response.getReturnValue().ContactSalesRepRecordId__c);
-
-                console.debug("Driver: "+response.getReturnValue().ContactDriverRecordID__c );//Check the output
-                console.debug("Merchant: "+response.getReturnValue().ContactMerchantRecordID__c );//Check the output
-                console.debug("Alt Billing: "+response.getReturnValue().ContactAlternateBillingRecordID__c );//Check the output
-                console.debug("Online User: "+response.getReturnValue().ContactOnlineUserRecordID__c );//Check the output
-                console.debug("Sales Rep: "+component.get("v.dummySalesRepContactId") );//Check the output
             }
         });
 
@@ -183,11 +180,20 @@
 
     loadCustomerContacts : function(component, target) {
         this.loadGenericContacts(component, target);
-        var action = component.get("c.getCustomerContacts");
+        var action;
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+        if (component.get("v.isOtrAccount") === true) {
+            action = component.get("c.getCustomerContactsFromSalesforce");
+            action.setParams({
+                accountRowId : component.get("v.accountRowId"),
+                primaryContactRowId: component.get("v.customerPrimaryContact.rowId")
+            });
+        } else {
+            action = component.get("c.getCustomerContacts");
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+        }
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -195,8 +201,6 @@
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.customerContacts", response.getReturnValue());
                 component.set("v.filteredCustomerContacts", response.getReturnValue());
-
-                console.log(component.get("v.customerContacts"));
 
                 if(target != null) {
                     $A.util.removeClass(target, 'fa-spin fa-1x fa-fw');
@@ -217,19 +221,7 @@
 
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
         });
 
@@ -529,19 +521,7 @@
 
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
         });
 
@@ -599,6 +579,7 @@
         }
         return iso;
     },
+
     getWexActionDescription : function(actionCode, odsDescription) {
         var wex;
         switch(actionCode)  {
@@ -721,19 +702,7 @@
             }
             else {
                 component.set("v.declinedTransactionsErrorMessage","");
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
         });
 
@@ -853,6 +822,8 @@
 
     loadInvoices : function(component, target) {
 
+        if (component.get("v.isOtrAccount")) { return; }
+
         var action = component.get("c.getInvoices");
 
         action.setParams({
@@ -962,12 +933,33 @@
     },
 
     fetchNumberOfCasesToday : function(component, name) {
+        console.log("### Enter fetchNumberOfCasesToday");
 
-        var action = component.get("c.getNumberOfCasesToday");
+        var acctNbr = component.get("v.accountNumber");
+        var acctRowId = component.get("v.accountRowId");
+        var isOtrAccount = component.get("v.isOtrAccount");
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+        //sometimes isOtrAccount value is undefined
+        if(isOtrAccount !== true && isOtrAccount !== false){
+            isOtrAccount = (acctNbr === 'null' && acctRowId !== 'null');
+            component.set("v.isOtrAccount", isOtrAccount);
+        }
+
+        if (component.get("v.isOtrAccount")) {
+            var action = component.get("c.getNumberOfCasesTodayByAccountRecordId");
+
+            action.setParams({
+                accountRowId : component.get("v.accountRowId")
+            });
+
+        } else {
+            var action = component.get("c.getNumberOfCasesToday");
+
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+
+        }
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -976,19 +968,7 @@
                 component.set("v.numberOfCasesToday", response.getReturnValue());
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -999,11 +979,21 @@
 
     fetchExistingCases : function(component, name) {
 
-        var action = component.get("c.getExistingCases");
+        if (component.get("v.isOtrAccount")) {
+            var action = component.get("c.getExistingCasesByAccountRecordId");
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+            action.setParams({
+                accountRowId : component.get("v.accountRowId")
+            });
+
+        } else {
+            var action = component.get("c.getExistingCases");
+
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+
+        }
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -1018,19 +1008,7 @@
                 $A.util.addClass(page, 'slds-backdrop--open');
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1042,11 +1020,22 @@
     fetchCaseHistory : function(component, name) {
 
         console.log("### Helper: Fetching case history");
-        var action = component.get("c.getExistingCases");
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+        if (component.get("v.isOtrAccount")) {
+            var action = component.get("c.getExistingCasesByAccountRecordId");
+
+            action.setParams({
+                accountRowId : component.get("v.accountRowId")
+            });
+
+        } else {
+            var action = component.get("c.getExistingCases");
+
+            action.setParams({
+                accountNumber : component.get("v.accountNumber")
+            });
+
+        }
 
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -1072,19 +1061,7 @@
                 }
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1094,12 +1071,33 @@
     },
 
     fetchExistingOpenCases : function(component) {
+        console.log("### Enter fetchExistingOpenCases");
 
-        var action = component.get("c.getExistingOpenCases");
+        var acctNbr = component.get("v.accountNumber");
+        var acctRowId = component.get("v.accountRowId");
+        var isOtrAccount = component.get("v.isOtrAccount");
 
-        action.setParams({
-            accountNumber : component.get("v.accountNumber")
-        });
+        //sometimes isOtrAccount value is undefined
+        if(isOtrAccount !== true && isOtrAccount !== false){
+            isOtrAccount = (acctNbr === 'null' && acctRowId !== 'null');
+            component.set("v.isOtrAccount", isOtrAccount);
+        }
+
+        if (component.get("v.isOtrAccount")) {
+            var action = component.get("c.getExistingOpenCasesByAccountRecordId");
+
+            action.setParams({
+                accountRowId : acctRowId
+            });
+
+        } else {
+            var action = component.get("c.getExistingOpenCases");
+
+            action.setParams({
+                accountNumber : acctNbr
+            });
+
+        }
         //Get the open cases
         console.log("### Helper: Fetching existing cases");
 
@@ -1111,19 +1109,7 @@
                 component.set("v.frontPageExistingCases", response.getReturnValue());
             }
             else {
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1183,9 +1169,10 @@
                         tabId: response
                     });
 
+                    $A.util.addClass(spinner, "slds-hide");
                     workspaceAPI.openSubtab({
                         parentTabId: response,
-                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber"),
+                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__accountRowId=' + component.get("v.accountRowId"),
                         focus: false
                     });
 
@@ -1202,20 +1189,7 @@
 
             }
             else {
-
-                var errorMessage = "Unknown Fault";
-
-                var errors = response.getError();
-
-                if (errors && Array.isArray(errors) && errors.length > 0) {
-                    errorMessage = errors[0].message;
-                }
-
-                var toastEvent = $A.get("e.force:showToast");
-
-                toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
-
-                toastEvent.fire();
+                this.handleErrors(component, response);
             }
 
         });
@@ -1311,13 +1285,16 @@
             component.set("v.filteredExistingCases", filteredCases);
         }
 
-    }, sortCaseData:  function (component, fieldName, sortDirection) {
+    },
+
+    sortCaseData:  function (component, fieldName, sortDirection) {
         var data = component.find("casesTable").get("v.data");
         var reverse = sortDirection !== 'asc';
         //sorts the rows based on the column header that's clicked
         data.sort(this.sortBy(fieldName, reverse))
         component.find("casesTable").set("v.data", data);
     },
+
     //These functions are used in the Declined Transactions tab
     sortTxnData: function (component, fieldName, sortDirection) {
         var data = component.find("declinedTransactionsTable").get("v.data");
@@ -1326,6 +1303,7 @@
         data.sort(this.sortBy(fieldName, reverse))
         component.find("declinedTransactionsTable").set("v.data", data);
     },
+
     sortBy: function (field, reverse, primer) {
         var key = primer ?
             function(x) {return primer(x[field])} :
@@ -1336,10 +1314,10 @@
             return a = key(a)?key(a):'', b = key(b)?key(b):'', reverse * ((a > b) - (b > a));
         }
     },
-    //These are object flatteners used to make child object fields available to Datatables
+
+    // These are object flatteners used to make child object fields available to DataTables
     // Taken from https://iwritecrappycode.wordpress.com/2017/11/22/salesforce-lightning-datatable-query-flattener/
-    flattenObject : function(propName, obj)
-    {
+    flattenObject : function(propName, obj) {
         var flatObject = [];
 
         for(var prop in obj)
@@ -1399,5 +1377,22 @@
             console.log("flattenQueryResult: ["+i+"] = "+JSON.stringify(obj));
         }
         return newListOfObjects;
+    },
+
+    handleErrors : function(component, response){
+        var errorMessage = "Unknown Fault";
+
+        var errors = response.getError();
+
+        if (errors && Array.isArray(errors) && errors.length > 0) {
+            errorMessage = errors[0].message;
+        }
+
+        var toastEvent = $A.get("e.force:showToast");
+
+        toastEvent.setParams({ "mode": "sticky", "type": "error", "title": "Error", "message": errorMessage });
+
+        toastEvent.fire();
     }
+
 })
