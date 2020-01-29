@@ -1,11 +1,11 @@
-$j = jQuery.noConflict(); 
+$j = jQuery.noConflict();
 
 var isNA = true;
 
 $j(document).ready(function() {
-    
+
     pageLoadFunctions();
-    
+
 });
 
 function pageLoadFunctions() {
@@ -13,23 +13,23 @@ function pageLoadFunctions() {
     $j(document).on( 'focus', ':input', function(){
         $j(this).attr('autocomplete', 'something-new');
     });
-    
+
     $j('.helpIcon').tooltip({
-        tooltipClass: 'toolTip', 
+        tooltipClass: 'toolTip',
         position: { my: "left+10 center", at: "right center", collision: "flipfit" },
     });
-    
+
     $j( "#accordion" ).accordion({ heightStyle: 'content', collapsible: true });
-    
+
     // Various transformations for the Canadian application
     if(boca_language_code === "en_ca" || boca_language_code === "fr_ca") {
         flipToProvince('state');
         flipToProvince('pgState');
         flipToProvince('billingState');
-        
+
         $j("[id$=legalStructure] option[value='Limited Liability Company']").remove();
         $j("[id$=legalStructure] option[value='Corporation/Association']").remove();
-        
+
         $j(".postal").each(function() {
             $j(this).addClass('postalCanada').removeClass('postal');
         });
@@ -87,7 +87,7 @@ function pageLoadFunctions() {
         }
 
         if(bankPhone == null || bankPhone === '') {
-            $j("[id$=bankContactPhone]").removeAttr('placeholder'); 
+            $j("[id$=bankContactPhone]").removeAttr('placeholder');
         }
 
         if(myPostl == null){
@@ -120,14 +120,14 @@ function pageLoadFunctions() {
     $j("[id$=cardUsageType] option[value='']").remove();
 
     $j(".check-image").tooltip({ content: '<img src="' + $Label.Check_Sample + '" />' });
-    
+
     if(card_program_name === 'SunocoGettUniversal') {
-        
+
         $j("[id$=companyName]").attr('placeholder', 'Enter GETT and your First and Last Name');
         $j("[id$=doingBusinessAs]").addClass('required').attr('placeholder', 'Enter your GETT Driver ID');
         $j("[id$=doingBusinessAs]").prev('.styled-label').append('&nbsp;<span class="styled-label-required">*</span>');
         $j("[id$=fleetSize]").val('1').attr('disabled', 'true');
-        
+
         $j("[id$=physicalAddress]").attr('placeholder', 'Enter Your Home Address');
         $j("[id$=pgAddress]").attr('placeholder', 'Enter Your Home Address');
         $j("[id$=taxpayerId]").attr('placeholder', 'Enter Your Social Security Number (#########)');
@@ -136,50 +136,50 @@ function pageLoadFunctions() {
         $j("[id$=exemptFromMotorFuelsTax]").val('No').attr('disabled', 'true');
         $j("[id$=averageMonthlyFuelExpenses]").attr("placeholder", "Enter your monthly fuel spending");
         $j("[id$=taxpayerId]").mask('000000000');
-        
-        
+
+
     }
-    
+
     $j("[id$=creditForm]").find('.step-button').click(function() {
         console.log('here');
         event.preventDefault();
     });
-    
+
     if(page_name === 'App-Page1' || page_name === 'App-Page1-Errors') {
         $j('[id$=pgnote]').css('display', 'none');
     }
     else {
         $j('[id$=pgnote]').css('display', 'block');
     }
-    
+
     console.log(boca_language_code);
-    
+
 }
 
 function flipToProvince(id) {
-    
+
     var provinces = ['AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'];
-    
+
     $j("[id$=" + id + "] option").each(function() {
         if($j(this).val() !== '' && $j.inArray($j(this).val(), provinces) == -1) {
             $j(this).remove();
-        } 
+        }
     });
-    
+
     var currentValues = new Array();
-    
+
     $j("[id$=" + id + "] option").each(function() {
         currentValues.push($j(this).val());
     });
-    
+
     console.log(currentValues);
-    
+
     for(var i = 0; i < provinces.length; i++) {
         if($j.inArray(provinces[i], currentValues) == -1) {
             $j("[id$=" + id + "]").append($j('<option>', { value: provinces[i], text: provinces[i] }));
         }
     }
-    
+
 }
 
 function validatePhone(value) {
@@ -195,7 +195,7 @@ function validatePhone(value) {
 function validateEmail(value) {
     console.log(value);
     if(value) {
-        var characterReg = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i;    
+        var characterReg = /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i;
         if(!characterReg.test(value)) {
             return false;
         }
@@ -213,12 +213,12 @@ function validateFleetSize(value) {
             return false;
         }
     }
-    return true;  
+    return true;
 }
 
 function validateCanadianPostalCode(value) {
     if(value !== "" && isNA) {
-        
+
         var characterReg = /^[A-Za-z]\d[A-Za-z][ -]?\d[A-Za-z]\d$/i;
         if(!characterReg.test(value)) {
             return false;
@@ -264,7 +264,7 @@ function validateSSN(value) {
             return false;
         }
     }
-    return true;    
+    return true;
 }
 
 function validateDateOfBirth(value) {
@@ -274,7 +274,7 @@ function validateDateOfBirth(value) {
             return false;
         }
     }
-    return true;    
+    return true;
 }
 
 function validatePOBox(value) {
@@ -282,7 +282,7 @@ function validatePOBox(value) {
         var characterReg = /\bP(ost|ostal)?([ \.]*(O|0)(ffice)?)?([ \.]*Box)?\b/i;;
         console.log(characterReg.test(value));
         if(characterReg.test(value)) {
-            return false;     
+            return false;
         }
     }
     return true;
@@ -291,11 +291,11 @@ function validatePOBox(value) {
 // Due to the design of the form (two column, left to right), this function was created
 // to make the rows even if the sister field has an error. Basically add padding.
 function levelSetErroredRows() {
-    $j('[id$=creditForm]').find('.form-field').each(function() {                        
+    $j('[id$=creditForm]').find('.form-field').each(function() {
         var rowHasError = false;
-        
+
         $j('[id$=creditForm]').find('[data-row=' + $j(this).attr('data-row') + ']').each(function() { if($j(this).find('.fieldErrorMessage').length > 0) { rowHasError = true; } });
-        
+
         if(rowHasError) {
             $j('[id$=creditForm]').find('[data-row=' + $j(this).attr('data-row') + ']').each(function() {
                 if($j(this).find('.fieldErrorMessage').length == 0) {
@@ -303,79 +303,79 @@ function levelSetErroredRows() {
                 }
             });
         }
-    });    
+    });
 }
 
 function validate(currentStep) {
-    
+
     var hasErrors = false;
-    
+
     $j('[id$=creditForm]').find('.erroredInput').each(function() {
-        $j(this).removeClass('erroredInput');    
+        $j(this).removeClass('erroredInput');
     });
-    
+
     $j('[id$=creditForm]').find('.fieldErrorMessage').each(function() {
-        $j(this).remove();   
+        $j(this).remove();
     });
-    
+
     $j('[id$=content]').find('.stepErrors').each(function() {
-        $j(this).css('display', 'none');   
+        $j(this).css('display', 'none');
     });
-    
+
     $j('[id$=creditForm]').find('.erroredSection').each(function() {
-        $j(this).removeClass('erroredSection'); 
+        $j(this).removeClass('erroredSection');
     });
-    
+
     $j('[id$=creditForm]').find('.errorFiller').each(function() {
-        $j(this).removeClass('errorFiller'); 
+        $j(this).removeClass('errorFiller');
     });
-    
-	$j('[id$=creditForm]').find('.required').each(function() {
-	    console.log($j(this).val());
-    	if($j(this).val() === '' || $j(this).val() === null || $j(this).val() === '#') {
-           	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Required + '</div>');
-                        
+
+    $j('[id$=creditForm]').find('.required').each(function() {
+        console.log($j(this).val());
+        if($j(this).val() === '' || $j(this).val() === null || $j(this).val() === '#') {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Required + '</div>');
+
             $j(this).on('click', function() {
-              	$j(this).removeClass("erroredInput"); 
+                $j(this).removeClass("erroredInput");
                 $j(this).next('.fieldErrorMessage').remove();
                 levelSetErroredRows();
-             });
-                        
-             hasErrors = true;
-         }
-   	});
-           
+            });
+
+            hasErrors = true;
+        }
+    });
+
     $j('[id$=creditForm]').find('.email').each(function() {
-    	if($j(this).val() != null && !validateEmail($j(this).val())) {
-           	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Email + '</div>');
+        if($j(this).val() != null && !validateEmail($j(this).val())) {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Email + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-             hasErrors = true;
-         }
-   	});
-    
+            hasErrors = true;
+        }
+    });
+
     $j('[id$=creditForm]').find('.phone').each(function() {
-    	if($j(this).val() != null && !validatePhone($j(this).val())) {
-           	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Phone + '</div>');
+        if($j(this).val() != null && !validatePhone($j(this).val())) {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Phone + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-             hasErrors = true;
-         }
-   	});
-    
+            hasErrors = true;
+        }
+    });
+
     $j('[id$=creditForm]').find('.taxpayerId').each(function() {
-    	if($j("[id$=taxpayerId]").val() != null && !validateTaxpayerId($j("[id$=taxpayerId]").val())) {
-           	$j("[id$=taxpayerId]").addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Tax_ID + '</div>');
+        if($j("[id$=taxpayerId]").val() != null && !validateTaxpayerId($j("[id$=taxpayerId]").val())) {
+            $j("[id$=taxpayerId]").addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Tax_ID + '</div>');
             $j("[id$=taxpayerId]").on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-             hasErrors = true;
-         }
-   	});
-    
+            hasErrors = true;
+        }
+    });
+
     $j('[id$=creditForm]').find('.postal').each(function() {
-    	if($j(this).val() != null && !validatePostalCode($j(this).val())) {
-           	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Postal_Code + '</div>');
+        if($j(this).val() != null && !validatePostalCode($j(this).val())) {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Postal_Code + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-             hasErrors = true;
-         }
-   	});
+            hasErrors = true;
+        }
+    });
 
     $j('[id$=creditForm]').find('.postalCanada').each(function() {
         if($j(this).val() != null && !validateCanadianPostalCode($j(this).val())) {
@@ -384,14 +384,14 @@ function validate(currentStep) {
             hasErrors = true;
         }
     });
-    
+
     $j('[id$=creditForm]').find('.ssn').each(function() {
-    	if($j(this).val() != null && !validateSSN($j(this).val())) {
-           	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_SSN + '</div>');
+        if($j(this).val() != null && !validateSSN($j(this).val())) {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_SSN + '</div>');
             $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-             hasErrors = true;
-         }
-   	});
+            hasErrors = true;
+        }
+    });
 
     console.log($j('[id$=checkingAccountNumber]').length);
 
@@ -418,40 +418,40 @@ function validate(currentStep) {
         $j('[id$=abaRoutingNumber]').on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
         hasErrors = true;
     }
-    
-    $j('[id$=creditForm]').find('.date').each(function() {
-    	if($j(this).val() != null && !validateDateOfBirth($j(this).val())) {
-           	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Date + '</div>');
-            $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-             hasErrors = true;
-         }
-   	});
-    
-    $j('[id$=creditForm]').find('.address').each(function() {
-    	if($j(this).val() != null && !validatePOBox($j(this).val())) {
-           	$j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_PO_Box_Warning + '</div>');
-            $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
-             hasErrors = true;
-         }
-   	});
 
-   	if(!isNA) {
-   	    if($j("[id$=phone]") != null && $j("[id$=phone]").val() != null) {
+    $j('[id$=creditForm]').find('.date').each(function() {
+        if($j(this).val() != null && !validateDateOfBirth($j(this).val())) {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Date + '</div>');
+            $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
+            hasErrors = true;
+        }
+    });
+
+    $j('[id$=creditForm]').find('.address').each(function() {
+        if($j(this).val() != null && !validatePOBox($j(this).val())) {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_PO_Box_Warning + '</div>');
+            $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
+            hasErrors = true;
+        }
+    });
+
+    if(!isNA) {
+        if($j("[id$=phone]") != null && $j("[id$=phone]").val() != null) {
             var myPhone = $j("[id$=phone]").val().replace(/[\+\s\-()]/g,'');
             $j("[id$=phone]").val(myPhone);
-   	    }
+        }
         if($j("[id$=bankPhone]") != null && $j("[id$=bankPhone]").val() != null) {
             var bankPhone = $j("[id$=bankPhone]").val().replace(/[\+\s\-()]/g,'');
-            $j("[id$=bankPhone]").val(bankPhone); 
+            $j("[id$=bankPhone]").val(bankPhone);
         }
-   	}
+    }
 
-    if(hasErrors == false && !($j('[id$=acknowledgeDisclaimer]').prop('checked'))) {
+    if (hasErrors == false && page_name === 'App-Page1' && !($j('[id$=acknowledgeDisclaimer]').prop('checked'))) {
         $j('[id$=disclaimerErrors]').css('display', 'block');
 
         $j('[id$=authorizedSignerBody]').addClass('erroredSection');
 
-        window.page_name = "App-Page2-Errors";
+        window.page_name = "App-Page1-Errors";
 
         document.querySelector("#disclaimerErrors").scrollIntoView();
 
@@ -461,16 +461,15 @@ function validate(currentStep) {
         $j('[id$=creditForm]').find('.loader-gif').css('display', 'block');
 
         submitApplication();
-    }
-    else { 
-        $j('[id$=errors]').css('display', 'block');   
-        
+    } else {
+        $j('[id$=errors]').css('display', 'block');
+
         levelSetErroredRows();
-        
-        document.querySelector("#errors").scrollIntoView();   
-        
+
+        document.querySelector("#errors").scrollIntoView();
+
         window.page_name = "App-Page1-Errors";
-        
+
         if(typeof dataLayer !== 'undefined') {
             dataLayer.push({'event': 'sfdcapp_page_rerendered'});
         }
