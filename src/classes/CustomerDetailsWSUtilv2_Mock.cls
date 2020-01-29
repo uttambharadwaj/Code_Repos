@@ -556,6 +556,8 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
             testAccount.wexAcctNbr = '9100000000000';
             testAccount.spnrAcctNbr = '9100000000000';
             testAccount.acctSts = 'Active';
+            testAccount.acctRowId = '1-ZZZZZZ';
+            testAccount.dwSourceSys = 'SIEBEL';
 
             testAccounts.add(testAccount);
 
