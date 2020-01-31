@@ -5,35 +5,25 @@
     Purpose: Files used in WebDAM are kept up to date by various sources. This class pulls updated versions of files
     so that they can be used in Salesforce primarily by the sales team and their curated email templates.
  */
-public class WebDAMSync {
+public class WebDAMSync implements Schedulable {
 
+    public void execute(SchedulableContext sc) {
 
-    public static void updateFiles() {
-
-        WebDAMConnector webDAMConnector;
-        List<Document> documents = new List<Document>();
-        Map<String, Blob> assetIds = new Map<String, Blob>();
         try {
-            webDAMConnector = new WebDAMConnector();
-        } catch (Exception e) {
-            System.debug(e);
-        }
-
-        if (webDAMConnector != null) {
-
-            // TODO handle no results
+            WebDAMConnector webDAMConnector = new WebDAMConnector();
             WebDAM_Connector__c webDAMConnectorConfig = WebDAM_Connector__c.getInstance();
+
             for (WebDAMConnectorAuthResponse.items searchItem : WebDAMConnector.searchByString(webDAMConnectorConfig.WebDAM_Search__c)) {
-
-                saveAsset(searchItem.id, searchItem.name, searchItem.version, '00l70000001Ca9kAAC', searchItem.filetype);
-
+                saveAsset(searchItem.id, searchItem.name, searchItem.version, webDAMConnectorConfig.Default_Folder_Id, searchItem.filetype);
             }
 
+        } catch (Exception e) {
+            System.debug(e);
         }
     }
 
     @future(callout=true)
-    public static void saveAsset(String assetId, String name, String version, String folderid, String type) {
+    private static void saveAsset(String assetId, String name, String version, String folderid, String type) {
 
         try {
 
@@ -45,14 +35,15 @@ public class WebDAMSync {
             List<Document> existingDocument = [SELECT Id, Name FROM Document WHERE DeveloperName LIKE :devName + '_%'];
             if (existingDocument.size() > 0) {
                 if (existingDocument.size() != 1) insert UtilityClass.logInternalError('More than one file found for developer name: ' + devName, 'WebDAMSync.SaveAsset', '', 'WebDAMSync', false, '', assetId);
-                if (existingDocument[0].Name.substringAfterLast('v') == version) return; // Only update files that have increased version numbers
+                if (existingDocument[0].Name.substringAfterLast('_v') == version) return; // Only update files that have increased version numbers
                 doc.Id = existingDocument[0].Id;
 
             } else doc.DeveloperName = devName + '_' + String.valueOf(randomNumber); // Add random number for in the event that the file has existed before and been deleted;
+            // ------
 
             WebDAMConnector webDAMConnector = new WebDAMConnector();
             doc.Body = WebDAMConnector.getDAMFile(assetId);
-            doc.name = name + ' v' + version;
+            doc.name = generateFileName(name, version);
             doc.folderid = folderid; // TODO dynamically get folder
             doc.type = type;
 
@@ -62,5 +53,9 @@ public class WebDAMSync {
             System.debug(e);
             insert UtilityClass.logInternalError(e, '', 'WebDAMSync', false, '', assetId);
         }
+    }
+
+    private static String generateFileName(String name, String version) {
+        return name.substringBeforeLast('.') + '_v' + version;
     }
 }

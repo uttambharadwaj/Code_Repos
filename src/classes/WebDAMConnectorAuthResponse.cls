@@ -27,12 +27,6 @@ public class WebDAMConnectorAuthResponse {
     }
 
 
-//    public class items {
-//
-//    }
-//    public String id;
-//    public String filename;
-
     public static WebDAMConnectorAuthResponse parse(String json){
         return (WebDAMConnectorAuthResponse) System.JSON.deserialize(json, WebDAMConnectorAuthResponse.class);
     }
