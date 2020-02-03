@@ -10,6 +10,7 @@
 *   Modified Date: 12/07/17
 *   Modified Reason:  Assignment rules not firing when child lead is created by Salesforce Integration.
 *
+*
 *   Modified By: Lev
 *   Modified Date: 07/31/2019
 *   Modified Reason: Updated decoupleChildLeadCheck method to include Marketable field when creating a parent lead reccord.
@@ -1011,7 +1012,8 @@ public class ULead {
                 plead.email = l2.email;
                 plead.ownerid = setting.Parent_Lead_Queue__c;
                 plead.recordtypeid = setting.Parent_Lead_Record_Type_Id__c;
-
+                //Lev: Adding Marketable field - -7/31/2019
+                //plead.Marketable__c = 'Partners';
                 parentstoinsert.put(l2.Id,plead);
                 childrentoupdate.add(l2);
 
@@ -1059,6 +1061,7 @@ public class ULead {
                 SELECT Id, Marketable__c
                 FROM Lead
                 WHERE Id IN :parentIdToCampaignIdMap.keySet()
+                AND Marketable__c = null
 
         ]);
 
@@ -1083,6 +1086,7 @@ public class ULead {
             // Determine marketable value based on primary campaign of child Lead
             Id campaignId = parentIdToCampaignIdMap.get(parentLead.Id);
             String marketable = primaryCampaignMap.get(campaignId).Campaign_Program_Marketable_to__c;
+            if (marketable != null && marketable.equalsIgnoreCase('Partner')) marketable = 'Partners';
             //If the  parent lead has Marketable set to Partners, but a child lead is created that is associated with a Wex program, flip the parent lead's marketable to All
             if (parentLead.Marketable__c != 'All' && String.isNotBlank(marketable) && String.isNotEmpty(marketable)) {
                 parentLead.Marketable__c = marketable;
@@ -1093,6 +1097,7 @@ public class ULead {
         // Update parent Leads
         update parentLeadMap.values();
     }
+
 
     public static void eloquaPassParent(List<Lead> records, Map<Id,Lead> oldMap)
     {
@@ -1847,5 +1852,57 @@ public class ULead {
         
 
     }
-    
+
+    public static void executeBREeze(List<Lead> records, Map<Id, Lead> oldMap) {
+        BREeze.processRules.ruleDataSet rds = new BREeze.processRules.ruleDataSet();
+        rds.records = records;
+        rds.oldMap = oldMap;
+        BREeze.ProcessRules.processRuleLogic('MC_Leads_Sync_to_Marketing_Cloud', false, rds);
+    }
+
+    // Update Mobile Phone country code based on associated program
+    public static void updateCountryCode(List<Lead> leads, Map<Id, Lead> oldMap) {
+        System.debug('entered');
+        // Get list of program ids
+        List<Id> campaignProgramIds = new List<Id>();
+        for (Lead lead : leads) {
+            if (lead.Campaign_Program__c != null) campaignProgramIds.add(lead.Campaign_Program__c);
+        }
+
+
+        if (!campaignProgramIds.isEmpty()) {
+
+            Map<Id, Program__c> campaignProgramToProgramMap = new Map<Id, Program__c>();
+            for (Program__c program :[
+                    SELECT Country_Code__c, (SELECT Id FROM Campaign_Programs__r)
+                    FROM Program__c
+                    WHERE Id IN (SELECT Program__c FROM Campaign_Program__c WHERE Id IN :campaignProgramIds)
+            ]) {
+                for (Campaign_Program__c cp : program.Campaign_Programs__r) {
+                    if (campaignProgramToProgramMap.get(cp.Id) == null) campaignProgramToProgramMap.put(cp.Id, program);
+                }
+            }
+
+            for (Lead lead : leads) {
+
+                String mobileNumber = lead.MobilePhone != null ? lead.MobilePhone.replaceAll('[^0-9]', '') : '0';
+                String existingNumber = oldMap != null && oldMap.get(lead.Id).MobilePhone != null  ? oldMap.get(lead.Id).MobilePhone : '0';
+                
+                Boolean isInsertOrPhoneUpdated = oldMap == null || mobileNumber != existingNumber;
+                if (UtilityClass.phoneNumberMissingCountryCode(mobileNumber) && isInsertOrPhoneUpdated) {
+
+                    Boolean leadHasProgram = lead.Campaign_Program__c != null && campaignProgramToProgramMap.get(lead.Campaign_Program__c) != null;
+                    if (leadHasProgram && campaignProgramToProgramMap.get(lead.Campaign_Program__c).Country_Code__c != null) {
+
+                        // Picklist value should be ex: +1 en-us
+                        List<String> codeAndCountry = campaignProgramToProgramMap.get(lead.Campaign_Program__c).Country_Code__c.split(' ');
+                        lead.MobilePhone = codeAndCountry[0] + mobileNumber;
+                        lead.et4ae5__Mobile_Country_Code__c = codeAndCountry[1];
+
+                    }
+                }
+            }
+        }
+    }
+
 }

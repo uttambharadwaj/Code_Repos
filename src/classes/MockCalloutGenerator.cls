@@ -4,6 +4,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
     private static final String EXPERIAN_REQUEST_ENDPOINT = 'experian_endpoint_returned_from_login_verification';
     private static final String CREDITLENS_REQUEST_AUTH = 'creditlens_authorization_returned_from_variation';
     private static final String CREDITLENS_REQUEST_CREATE = 'creditlens_entity_creation_returned';
+    private static final String CREDITLENS_REQUEST_UPLOADDOC = 'creditlens_upload_document_returned';
     private static final String NO_ENDPOINT_FOUND_FAILURE = 'the_requested_endpoint_was_not_found_so_this_fails';
 
     public Map<String, HttpCalloutMock> requests;
@@ -26,7 +27,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 }
                 when 'expLogin'{
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Experian_Toolkit' LIMIT 1].Endpoint_URL__c;
-                    this.requests.put(myEndpoint, new MockRequest(200,'Success',EXPERIAN_REQUEST_ENDPOINT,null));
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',EXPERIAN_REQUEST_ENDPOINT,null));   
                 }
                 when 'creditLensAuthGood' {
                     this.requests.put(CREDITLENS_REQUEST_AUTH, new MockRequest(200,'Success',getCreditLensAuthGoodBody(),null));
@@ -41,7 +42,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     this.requests.put(CREDITLENS_REQUEST_CREATE, new MockRequest(200,'Success',getCreditLensCreateGoodBody(),null));
                 }
                 when 'creditLensCreateLogin' {
-                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Auth' LIMIT 1].Endpoint_URL__c;
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity' LIMIT 1].Endpoint_URL__c;
                     Map<String, String> headers = new Map<String, String>();
                     headers.put('Content-Type', 'application/json');
                     headers.put('Authorization', 'Bearer 123456');
@@ -382,6 +383,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
         return json;
     }
 
+    // create entity record
     public static String getCreditLensCreateGoodBody() {
         String json = '{'+
                 '    \"payLoad\": ['+
@@ -572,7 +574,86 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 '            \"EntityDocumentLinkVm\": [],'+
                 '            \"UpdatedBy_\": null'+
                 '        }'+
-                '        }'+
+                '    ],'+
+                '    \"status\": {}'+
+                '}';
+
+        return json;
+    }
+
+    public static String getCreditLensUploadDocGoodBody() {
+
+        String json = '{'+
+        '    \"payLoad\": ['+
+        '        {'+
+        '            \"DocumentId\": \"31a6a6b5-899d-421b-b12d-fcba904e5c5b\",'+
+        '            \"VersionId_\": 1,'+
+        '            \"BaseVersionId_\": 0,'+
+        '            \"OriginalFileName\": \"TestFinancials.txt\"'+
+        '        }'+
+        '    ],'+
+        '    \"Status\": {}'+
+        '}';
+
+        return json;
+    }
+
+    public static String getCreditLensLinkDocToEntityGoodBody() {
+
+        String json = '{'+
+                '    \"payLoad\": ['+
+                '        ['+
+                '            {'+
+                '                \"disableCreate\": {},'+
+                '                \"StatementDate\": \"2020-01-14T00:00:00Z\",'+
+                '                \"SpreadStatementCount\": \"1\",'+
+                '                \"SpreadDocumentId\": \"c373d5e0-e9fb-4a44-b304-fc97c5060bc9\",'+
+                '                \"DocumentStatus\": \"SUBMITTED\",'+
+                '                \"FinancialTemplateId\": \"6\",'+
+                '                \"ExternalId\": null,'+
+                '                \"ExternalActionDate\": null,'+
+                '                \"ExternalSubmittedDate\": null,'+
+                '                \"EntityId\": 258,'+
+                '                \"DocumentId\": \"7c81409d-e093-4bfc-9e87-b2aec8d0d2bc\",'+
+                '                \"SpreadDocumentType\": \"FINANCIAL_DOCUMENT\",'+
+                '                \"Rules\": {'+
+                '                    \"LinkAutoSpreadDocumentToEntity\": {'+
+                '                        \"success\": true,'+
+                '                        \"data\": {'+
+                '                            \"LinkId\": 74'+
+                '                        },'+
+                '                        \"ruleName\": \"LinkAutoSpreadDocumentToEntity\"'+
+                '                    }'+
+                '                },'+
+                '                \"t_\": \"SpreadDocument\",'+
+                '                \"IsValid_\": true,'+
+                '                \"IsDeleted_\": false,'+
+                '                \"BaseVersionId_\": 0,'+
+                '                \"VersionId_\": 1,'+
+                '                \"Inapplicable_\": [],'+
+                '                \"Associations_\": ['+
+                '                    \"SpreadStatement\"'+
+                '                ],'+
+                '                \"SpreadStatement\": ['+
+                '                    {'+
+                '                        \"SpreadDocumentId\": \"c373d5e0-e9fb-4a44-b304-fc97c5060bc9\",'+
+                '                        \"SpreadStatementId\": \"002f115c-f20c-42c7-9a10-5551bdf7afbe\",'+
+                '                        \"StatementDate\": \"2020-01-14T00:00:00Z\",'+
+                '                        \"StatementPeriod\": 12,'+
+                '                        \"StatementType\": \"ANNUAL\",'+
+                '                        \"StatementStatus\": null,'+
+                '                        \"HistoricalStatementId\": null,'+
+                '                        \"t_\": \"SpreadStatement\",'+
+                '                        \"IsValid_\": true,'+
+                '                        \"IsDeleted_\": false,'+
+                '                        \"BaseVersionId_\": 0,'+
+                '                        \"VersionId_\": 1,'+
+                '                        \"Inapplicable_\": []'+
+                '                    }'+
+                '                ],'+
+                '                \"UpdatedBy_\": null'+
+                '            }'+
+                '        ]'+
                 '    ],'+
                 '    \"status\": {}'+
                 '}';

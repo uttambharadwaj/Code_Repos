@@ -3,11 +3,15 @@
     <!-- Parameters -->
     <aura:attribute name="caseId" type="String" />
     <aura:attribute name="accountNumber" type="String" />
+    <aura:attribute name="accountRowId" type="String" />
     <aura:attribute name="contactRowId" type="String" />
     <aura:attribute name="pdRowId" type="String" />
     <aura:attribute name="isDummyContact" type="String" default="false" />
     <aura:attribute name="appMode" type="String" />
     <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="carrierId" type="String" />
+    <aura:attribute name="searchRecordId" type="String" />
+    <aura:attribute name="isOtrAccount" type="String" />
     
     <!-- Returns from controller -->
     <aura:attribute name="accountId" type="String" />
@@ -61,7 +65,7 @@
     <ltng:require scripts="{!$Resource.MomentJS}" />
     <ltng:require scripts="{!$Resource.LodashJS}"/>
     <lightning:workspaceAPI aura:id="workspace" />
-    <lightning:spinner aura:id="loadingSpinner" class="full-height"/>
+    <lightning:spinner aura:id="loadingSpinner" class="full-height" alternativeText="Waiting for data..."/>
 
     <aura:if isTrue="{!v.recordId == null}">
         <div class="slds-page-header" style="margin-bottom: 10px;">
@@ -124,6 +128,9 @@
                                 </aura:if>
                                 <aura:if isTrue="{!v.customerDetails.accountSts == 'S'}">
                                     <span class="account-status-suspended">Suspended</span>
+                                </aura:if>
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'I'}">
+                                    <span class="account-status-suspended">Inactive</span>
                                 </aura:if>
                             </p>
                         </div>
@@ -638,7 +645,7 @@
                 </div>
                 Contacts
             </aura:set>
-            <lightning:spinner aura:id="customerContactsLoadingSpinner" /><br/>
+            <lightning:spinner aura:id="customerContactsLoadingSpinner" alternativeText="Waiting for data..." /><br/>
             <div class="slds-size--2-of-12">
                 <div class="slds-form-element">
                     <label class="slds-form-element__label">FILTER</label>
@@ -732,132 +739,132 @@
                             </aura:if>
                         </tr>
                     <!-- Driver -->
-                <tr class="contactRow">
-                    <td scope="row" data-label="Contact Name">
-                        <div class="slds-truncate">
-                            Driver
-                        </div>
-                    </td>
-                    <td scope="row" data-label="NewCaseAction">
-                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">New Case</button>
-                        </aura:if>
-                    </td>
-                    <td data-label="Address">
-                    </td>
-                    <td data-label="Phone">
-                    </td>
-                    <td data-label="Fax">
-                    </td>
-                    <td data-label="Email">
-                    </td>
-                    <td data-label="Contact Type">
-                        <div class="slds-truncate">
-                            CONTACT
-                        </div>
-                    </td>
-                    <aura:if isTrue="{!v.appMode != 'subtab'}">
-                        <td data-label="Actions">
+                    <tr class="contactRow">
+                        <td scope="row" data-label="Contact Name">
                             <div class="slds-truncate">
-                                <div class="slds-button-group" role="group">
-                                    <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
-                                        <!-- This is the update for a specific case that is passed in -->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">Update Case</button>
-                                    </aura:if>
-                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                        <!-- This will open the modal-->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.openCaseModal}">Update Case</button>
-                                    </aura:if>
-                                </div>
+                                Driver
                             </div>
                         </td>
-                    </aura:if>
-                </tr>
-                <!-- Merchant -->
-                <tr class="contactRow">
-                    <td scope="row" data-label="Contact Name">
-                        <div class="slds-truncate">
-                            Merchant
-                        </div>
-                    </td>
-                    <td scope="row" data-label="NewCaseAction">
-                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">New Case</button>
-                        </aura:if>
-                    </td>
-                    <td data-label="Address">
-                    </td>
-                    <td data-label="Phone">
-                    </td>
-                    <td data-label="Fax">
-                    </td>
-                    <td data-label="Email">
-                    </td>
-                    <td data-label="Contact Type">
-                        <div class="slds-truncate">
-                            CONTACT
-                        </div>
-                    </td>
-                    <aura:if isTrue="{!v.appMode != 'subtab'}">
-                        <td data-label="Actions">
+                        <td scope="row" data-label="NewCaseAction">
+                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">New Case</button>
+                            </aura:if>
+                        </td>
+                        <td data-label="Address">
+                        </td>
+                        <td data-label="Phone">
+                        </td>
+                        <td data-label="Fax">
+                        </td>
+                        <td data-label="Email">
+                        </td>
+                        <td data-label="Contact Type">
                             <div class="slds-truncate">
-                                <div class="slds-button-group" role="group">
-                                    <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
-                                        <!-- This is the update for a specific case that is passed in -->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">Update Case</button>
-                                    </aura:if>
-                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                        <!-- This will open the modal-->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.openCaseModal}">Update Case</button>
-                                    </aura:if>
-                                </div>
+                                CONTACT
                             </div>
                         </td>
-                    </aura:if>
-                </tr>
-                <!-- Unlisted billing contact -->
-                <tr class="contactRow">
-                    <td scope="row" data-label="Contact Name">
-                        <div class="slds-truncate">
-                            Alternate Billing Contact
-                        </div>
-                    </td>
-                    <td scope="row" data-label="NewCaseAction">
-                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">New Case</button>
-                        </aura:if>
-                    </td>
-                    <td data-label="Address">
-                    </td>
-                    <td data-label="Phone">
-                    </td>
-                    <td data-label="Fax">
-                    </td>
-                    <td data-label="Email">
-                    </td>
-                    <td data-label="Contact Type">
-                        <div class="slds-truncate">
-                            CONTACT
-                        </div>
-                    </td>
-                    <aura:if isTrue="{!v.appMode != 'subtab'}">
-                        <td data-label="Actions">
-                            <div class="slds-truncate">
-                                <div class="slds-button-group" role="group">
-                                    <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
-                                        <!-- This is the update for a specific case that is passed in -->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">Update Case</button>
-                                    </aura:if>
-                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                        <!-- This will open the modal-->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.openCaseModal}">Update Case</button>
-                                    </aura:if>
+                        <aura:if isTrue="{!v.appMode != 'subtab'}">
+                            <td data-label="Actions">
+                                <div class="slds-truncate">
+                                    <div class="slds-button-group" role="group">
+                                        <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                            <!-- This is the update for a specific case that is passed in -->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.popToCase}">Update Case</button>
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                            <!-- This will open the modal-->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyDriverContactId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                        </aura:if>
+                                    </div>
                                 </div>
+                            </td>
+                        </aura:if>
+                    </tr>
+                    <!-- Merchant -->
+                    <tr class="contactRow">
+                        <td scope="row" data-label="Contact Name">
+                            <div class="slds-truncate">
+                                Merchant
                             </div>
                         </td>
-                    </aura:if>
-                </tr>
-                    <!-- Dummy Online User -->
+                        <td scope="row" data-label="NewCaseAction">
+                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">New Case</button>
+                            </aura:if>
+                        </td>
+                        <td data-label="Address">
+                        </td>
+                        <td data-label="Phone">
+                        </td>
+                        <td data-label="Fax">
+                        </td>
+                        <td data-label="Email">
+                        </td>
+                        <td data-label="Contact Type">
+                            <div class="slds-truncate">
+                                CONTACT
+                            </div>
+                        </td>
+                        <aura:if isTrue="{!v.appMode != 'subtab'}">
+                            <td data-label="Actions">
+                                <div class="slds-truncate">
+                                    <div class="slds-button-group" role="group">
+                                        <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                            <!-- This is the update for a specific case that is passed in -->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.popToCase}">Update Case</button>
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                            <!-- This will open the modal-->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyMerchantContactId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </td>
+                        </aura:if>
+                    </tr>
+                    <!-- Alternate billing contact -->
+                    <tr class="contactRow">
+                        <td scope="row" data-label="Contact Name">
+                            <div class="slds-truncate">
+                                Alternate Billing Contact
+                            </div>
+                        </td>
+                        <td scope="row" data-label="NewCaseAction">
+                            <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">New Case</button>
+                            </aura:if>
+                        </td>
+                        <td data-label="Address">
+                        </td>
+                        <td data-label="Phone">
+                        </td>
+                        <td data-label="Fax">
+                        </td>
+                        <td data-label="Email">
+                        </td>
+                        <td data-label="Contact Type">
+                            <div class="slds-truncate">
+                                CONTACT
+                            </div>
+                        </td>
+                        <aura:if isTrue="{!v.appMode != 'subtab'}">
+                            <td data-label="Actions">
+                                <div class="slds-truncate">
+                                    <div class="slds-button-group" role="group">
+                                        <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
+                                            <!-- This is the update for a specific case that is passed in -->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.popToCase}">Update Case</button>
+                                        </aura:if>
+                                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
+                                            <!-- This will open the modal-->
+                                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyAltBillingContactId}" onclick="{!c.openCaseModal}">Update Case</button>
+                                        </aura:if>
+                                    </div>
+                                </div>
+                            </td>
+                        </aura:if>
+                    </tr>
+                    <!-- Online User -->
                     <tr class="contactRow">
                         <td scope="row" data-label="Contact Name">
                             <div class="slds-truncate">
@@ -899,7 +906,7 @@
                             </td>
                         </aura:if>
                     </tr>
-                    <!-- Dummy Sales Rep -->
+                    <!-- Sales Rep -->
                     <tr class="contactRow">
                         <td scope="row" data-label="Contact Name">
                             <div class="slds-truncate">
@@ -1796,7 +1803,7 @@
                 </div>
 				Discounts &amp; Rebates
             </aura:set>
-                        <div class="slds-page-header">
+                <div class="slds-page-header">
                 <div class="slds-media">
                     <div class="slds-media__figure">
                         <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">

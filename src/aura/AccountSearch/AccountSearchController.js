@@ -14,6 +14,14 @@
         }
     },
 
+    showSpinner: function (component, event) {
+        var params = event.getParam('arguments');
+        if (params) {
+            var p1 = params.param1;
+            component.set("v.spinner", p1);
+        }
+    },
+
     search: function (component, event, helper) {
         helper.validateForm(component);
     },

@@ -1,6 +1,14 @@
 <apex:component controller="CPQQuoteApprovalEmailController" access="global">
     <apex:attribute name="pramquoteId" description="Id of the quote" type="Id" required="false" assignto="{!quoteId}" />
-    
+    <!--
+    Description: Component for Visualforce CPQ Approval email
+    Revision History:
+    ??/??/????  ????????  Original
+    01/29/2020  CJackson  Add content for how to approve via email reply
+    -->
+
+    To approve or reject this item, click the Quote link below or reply to this email with one of these words in the first line of the email message: APPROVE, APPROVED, YES, REJECT, REJECTED, DECLINE, DECLINED, NO<br/>
+    <br/><br/>
     Customer : {!quote.SBQQ__BillingName__c}<br/>
     Address : {!quote.SBQQ__BillingStreet__c}, {!quote.SBQQ__BillingCity__c}, {!quote.SBQQ__BillingState__c}, {!quote.SBQQ__BillingPostalCode__c}<br/>
     Opportunity Name :

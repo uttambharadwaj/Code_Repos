@@ -90,7 +90,7 @@ public class CreditWS_CLCreateEntityResponse {
         public String WexRequestCurrency;
         public String WexExistingCreditLineAmt;
         public String WexRequestCreditLineAmount;
-//        public Object WexCreditInformationOn;
+        public String WexCreditInformationOn;
         public String WexPaymentHistory;
         public String WexProejctedMonthlySpend;
 //        public Object WexHighCycleSpend;
@@ -103,7 +103,7 @@ public class CreditWS_CLCreateEntityResponse {
 //        public Object WexBillingCycle3;
 //        public Object WexDaysToPay3;
 //        public Object WexPaymentType;
-//        public Object CollateralSecurity;
+        public String CollateralSecurity;
         public String CollateralSecuringEntity;
 //        public Object WexCollateralAmt;
 //        public Object WexPrimaryRiskGrade;
@@ -121,6 +121,7 @@ public class CreditWS_CLCreateEntityResponse {
         public String WexApprovedCreditLine;
         public String WexCreditLineCurrency;
 //        public Object NextReviewDate;
+        public String WexExpirationSecurityDate;
 //        public Object WexFinancialsRequestedDate;
 //        public Object WexFinancialsRequestedDate2;
 //        public Object WexFinancialsReceivedDate;
