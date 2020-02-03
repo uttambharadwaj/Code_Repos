@@ -48,6 +48,20 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     headers.put('Authorization', 'Bearer 123456');
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',CREDITLENS_REQUEST_CREATE,headers));
                 }
+                when 'creditLensUploadDoc' {
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Doc_Upload' LIMIT 1].Endpoint_URL__c;
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Content-Type', 'multipart/form-data');
+                    headers.put('Authorization', 'Bearer 123456');
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensUploadDocGoodBody(),headers));
+                }
+                when 'creditLensLinkDocToEntity' {
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Doc_to_Entity' LIMIT 1].Endpoint_URL__c;
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Authorization', 'Bearer 123456');
+                    headers.put('Content-Type', 'application/json');
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensLinkDocToEntityGoodBody(),headers));
+                }
                 when 'WebDAMAuthLogin' {
                     String myEndpoint = 'https://apiv2.webdamdb.com/oauth2/token';
                     Map<String, String> headers = new Map<String, String>();
