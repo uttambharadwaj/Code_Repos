@@ -1,6 +1,3 @@
-/**
- * Created by jharrell on 1/28/20.
- */
 /*
     Purpose: Files used in WebDAM are kept up to date by various sources. This class pulls updated versions of files
     so that they can be used in Salesforce primarily by the sales team and their curated email templates.

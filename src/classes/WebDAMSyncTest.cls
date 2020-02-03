@@ -17,7 +17,7 @@ public with sharing class WebDAMSyncTest {
     public static void test_savingAsset() {
 
         Test.startTest();
-        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'WebDAMAuthLogin', 'WebDAMSearch'}));
+        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'WebDAMAuthLogin', 'WebDAMSearch', 'WebDAMDownload'}));
 
         WebDAMSync webDAMSync = new WebDAMSync();
         webDAMSync.execute(null);
