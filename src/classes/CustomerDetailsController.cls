@@ -456,6 +456,11 @@ public without sharing class CustomerDetailsController {
     @AuraEnabled
     public static List<CustomerDetailsWSUtilv2.authLogRecord>  getRecentDeclinedAuths(String wexAcctNbr, String sourceSys) {
 
+        if (!isExternalPlatform(sourceSys)) {
+            return new List<CustomerDetailsWSUtilv2.authLogRecord>();
+        }
+        //Everything from here on is effectively "else"
+
         try {
 
             CDS = Customer_Dashboard_Services__c.getOrgDefaults();
@@ -473,7 +478,7 @@ public without sharing class CustomerDetailsController {
 
             CustomerDetailsWSUtilv2.authSearchResult authSearchResult = customerDetailsCallout.getRecentDeclinedAuths(wexAcctNbr,sourceSys);
 
-            System.debug('### ' + authSearchResult);
+            //System.debug('### ' + authSearchResult);
 
             return authSearchResult.authLog;
 
@@ -491,6 +496,18 @@ public without sharing class CustomerDetailsController {
     @AuraEnabled
     public static CustomerDetailsWSUtilv2.payments getPayments(String accountNumber, String sourceSys) {
 
+        CustomerDetailsWSUtilv2.payments result;
+
+        if (!isExternalPlatform(sourceSys)) {
+            System.debug('getPayments for external platform: '+sourceSys);
+            result = new CustomerDetailsWSUtilv2.payments();
+            result.paymentDetails = new CustomerDetailsWSUtilv2.paymentDetailEntry[]{};
+            result.paymentHistory = new CustomerDetailsWSUtilv2.paymentHistoryEntry[]{};
+            result.pendingPayments = new CustomerDetailsWSUtilv2.pendingPaymentEntry[]{};
+            return result;
+        }
+        //Everything from here on is effectively "else"
+
         try {
 
             CDS = Customer_Dashboard_Services__c.getOrgDefaults();
@@ -499,7 +516,7 @@ public without sharing class CustomerDetailsController {
 
             customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
 
-            System.debug('### CDS ' + CDS );
+            //System.debug('### CDS ' + CDS );
 
             // Some damage control - we don't want that value to be below the default threshold
             if(CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
@@ -510,7 +527,7 @@ public without sharing class CustomerDetailsController {
 
             //CustomerDetailsWSUtilv2.payments payments = CustomerDetailsController.getDummyPayments(accountNumber);
 
-            System.debug('### ' + payments);
+            //System.debug('### ' + payments);
 
             return payments;
 
@@ -528,6 +545,16 @@ public without sharing class CustomerDetailsController {
     @AuraEnabled
     public static CustomerDetailsWSUtilv2.invoices getInvoices(String accountNumber, String sourceSys) {
 
+        CustomerDetailsWSUtilv2.invoices result;
+
+        if (!isExternalPlatform(sourceSys)) {
+            System.debug('getInvoices for external platform: '+sourceSys);
+            result= new CustomerDetailsWSUtilv2.invoices();
+            result.invoices = new CustomerDetailsWSUtilv2.invoiceEntry[]{};
+            return result;
+        }
+        //Everything from here on is effectively "else"
+
         try {
 
             CDS = Customer_Dashboard_Services__c.getOrgDefaults();
@@ -543,18 +570,18 @@ public without sharing class CustomerDetailsController {
                 customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
             }
 
-            CustomerDetailsWSUtilv2.invoices invoices = customerDetailsCallout.getInvoices(accountNumber, sourceSys);
+            result = customerDetailsCallout.getInvoices(accountNumber, sourceSys);
 
-            System.debug('### ' + invoices);
+            //System.debug('### ' + result);
 
-            return invoices;
+            return result;
 
         }
         catch(Exception e) {
 
             String errorCode = logError(e);
 
-            throw new AuraHandledException('Unable to retrieve recent payments. (Error Tracking Code: ' + errorCode + ')');
+            throw new AuraHandledException('Unable to retrieve recent invoices. (Error Tracking Code: ' + errorCode + ')');
 
         }
 
@@ -961,6 +988,13 @@ public without sharing class CustomerDetailsController {
 
     }
 
+    /**
+     * Returns true for SIEBEL or TANDEM, False otherwise.
+     *
+     * @param platform
+     *
+     * @return boolean
+     */
     private static Boolean isExternalPlatform(String platform) {
         return ('SIEBEL'.equalsIgnoreCase(platform) || 'TANDEM'.equalsIgnoreCase(platform));
     }
