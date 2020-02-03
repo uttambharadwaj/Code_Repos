@@ -456,7 +456,7 @@ public without sharing class CustomerDetailsController {
     @AuraEnabled
     public static List<CustomerDetailsWSUtilv2.authLogRecord>  getRecentDeclinedAuths(String wexAcctNbr, String sourceSys) {
 
-        if (isExternalPlatform(sourceSys)) {
+        if (!isExternalPlatform(sourceSys)) {
             return new List<CustomerDetailsWSUtilv2.authLogRecord>();
         }
         //Everything from here on is effectively "else"
@@ -498,7 +498,8 @@ public without sharing class CustomerDetailsController {
 
         CustomerDetailsWSUtilv2.payments result;
 
-        if (isExternalPlatform(sourceSys)) {
+        if (!isExternalPlatform(sourceSys)) {
+            System.debug('getPayments for external platform: '+sourceSys);
             result = new CustomerDetailsWSUtilv2.payments();
             result.paymentDetails = new CustomerDetailsWSUtilv2.paymentDetailEntry[]{};
             result.paymentHistory = new CustomerDetailsWSUtilv2.paymentHistoryEntry[]{};
@@ -546,7 +547,8 @@ public without sharing class CustomerDetailsController {
 
         CustomerDetailsWSUtilv2.invoices result;
 
-        if (isExternalPlatform(sourceSys)) {
+        if (!isExternalPlatform(sourceSys)) {
+            System.debug('getInvoices for external platform: '+sourceSys);
             result= new CustomerDetailsWSUtilv2.invoices();
             result.invoices = new CustomerDetailsWSUtilv2.invoiceEntry[]{};
             return result;
@@ -986,6 +988,13 @@ public without sharing class CustomerDetailsController {
 
     }
 
+    /**
+     * Returns true for SIEBEL or TANDEM, False otherwise.
+     *
+     * @param platform
+     *
+     * @return boolean
+     */
     private static Boolean isExternalPlatform(String platform) {
         return ('SIEBEL'.equalsIgnoreCase(platform) || 'TANDEM'.equalsIgnoreCase(platform));
     }
