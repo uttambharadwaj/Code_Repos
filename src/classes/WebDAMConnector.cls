@@ -50,11 +50,15 @@ public class WebDAMConnector {
         req.setHeader('Authorization', 'Bearer ' + accessToken);
 
         Http searchRequuest = new Http();
-        HttpResponse authenticateResponse = searchRequuest.send(req);
-        WebDAMConnectorAuthResponse response = WebDAMConnectorAuthResponse.parse(authenticateResponse.getBody());
+        HttpResponse searchResponse = searchRequuest.send(req);
+        WebDAMConnectorAuthResponse response = WebDAMConnectorAuthResponse.parse(searchResponse.getBody());
 
-        return response.items;
-
+        if (searchResponse.getStatusCode() == 200) {
+            return response.items;
+        } else {
+            insert UtilityClass.logInternalError(searchResponse.getBody(), 'WebDAMConnector SearchByString', '', 'WebDAMConnector', true, '', '');
+            throw new WebDAMConnectorException(searchResponse.getBody());
+        }
     }
 
     public Blob getDAMFile(String assetId) {
@@ -65,9 +69,14 @@ public class WebDAMConnector {
         req.setHeader('Authorization', 'Bearer ' + accessToken);
         Http getDAMFile = new Http();
 
-        HttpResponse authenticateResponse = getDAMFile.send(req);
-        return authenticateResponse.getBodyAsBlob();
+        HttpResponse downloadResponse = getDAMFile.send(req);
 
+        if (downloadResponse.getStatusCode() == 200) {
+            return downloadResponse.getBodyAsBlob();
+        } else {
+            insert UtilityClass.logInternalError(downloadResponse.getBody(), 'WebDAMConnector SearchByString', '', 'WebDAMConnector', true, '', '');
+            throw new WebDAMConnectorException(downloadResponse.getBody());
+        }
     }
 
     public class WebDAMConnectorException extends Exception {}
