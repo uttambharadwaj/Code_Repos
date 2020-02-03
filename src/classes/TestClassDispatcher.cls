@@ -150,5 +150,26 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensCreateEntityPostiveTest();
     }
 
+    @isTest static void testWebDAMSyncGenerateFileName() {
+        WebDAMSyncTest.test_generateFileName();
+    }
+
+    @isTest static void testWebDAMSyncSavingAsset() {
+        WebDAMSyncTest.test_savingAsset();
+    }
+
+    @isTest static void testWebDAMConnectorAuth() {
+        WebDAMConnectorTest.test_webDAMAuth();
+    }
+
+    @isTest static void testWebDAMConnectorSearch() {
+        WebDAMConnectorTest.test_webDAMSearch();
+    }
+
+    @isTest static void testWebDAMConnectorDownload() {
+        WebDAMConnectorTest.test_webDAMDownload();
+    }
+
+
 
 }

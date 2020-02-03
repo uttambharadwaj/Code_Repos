@@ -4,7 +4,7 @@
 
 public class WebDAMConnector {
 
-    private final String BASE_URL = 'https://apiv2.webdamdb.com/';
+    private final String BASE_URL = 'https://apiv2.webdamdb.com';
     private String refresh_token {
         get;
         set;
@@ -46,7 +46,7 @@ public class WebDAMConnector {
 
         HttpRequest req = new HttpRequest();
         req.setMethod('GET');
-        req.setEndpoint(BASE_URL + 'search?sortby=datemodified&sortdir=desc&offset=0&query=' + searchParam);
+        req.setEndpoint(BASE_URL + '/search?sortby=datemodified&sortdir=desc&offset=0&query=' + searchParam);
         req.setHeader('Authorization', 'Bearer ' + accessToken);
 
         Http searchRequuest = new Http();
@@ -61,7 +61,7 @@ public class WebDAMConnector {
 
         HttpRequest req = new HttpRequest();
         req.setMethod('GET');
-        req.setEndpoint(BASE_URL + 'assets/' + assetId + '/download');
+        req.setEndpoint(BASE_URL + '/assets/' + assetId + '/download');
         req.setHeader('Authorization', 'Bearer ' + accessToken);
         Http getDAMFile = new Http();
 

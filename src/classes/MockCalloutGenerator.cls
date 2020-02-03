@@ -26,7 +26,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 }
                 when 'expLogin'{
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Experian_Toolkit' LIMIT 1].Endpoint_URL__c;
-                    this.requests.put(myEndpoint, new MockRequest(200,'Success',EXPERIAN_REQUEST_ENDPOINT,null));   
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',EXPERIAN_REQUEST_ENDPOINT,null));
                 }
                 when 'creditLensAuthGood' {
                     this.requests.put(CREDITLENS_REQUEST_AUTH, new MockRequest(200,'Success',getCreditLensAuthGoodBody(),null));
@@ -46,6 +46,24 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     headers.put('Content-Type', 'application/json');
                     headers.put('Authorization', 'Bearer 123456');
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',CREDITLENS_REQUEST_CREATE,headers));
+                }
+                when 'WebDAMAuthLogin' {
+                    String myEndpoint = 'https://apiv2.webdamdb.com/oauth2/token';
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Content-Type', 'application/json');
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getWebDAMSuccessfulAuthBody(),headers));
+                }
+                when 'WebDAMSearch' {
+                    String myEndpoint = 'https://apiv2.webdamdb.com/search?sortby=datemodified&sortdir=desc&offset=0&query=infopack';
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Content-Type', 'application/json');
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getWebDAMSearchBody(),headers));
+                }
+                when 'WebDAMDownload' {
+                    String myEndpoint = 'https://apiv2.webdamdb.com/assets/100240231/download';
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Content-Type', 'application/json');
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',Blob.valueOf('test string'),headers));
                 }
             }
         }
@@ -562,4 +580,14 @@ public class MockCalloutGenerator implements HttpCalloutMock {
         return json;
     }
 
+    public static String getWebDAMSuccessfulAuthBody() {
+
+        String json = '{"access_token":"321ea8800752d0de005582560c6d8f7006435cc8","expires_in":3600,"token_type":"bearer","scope":null,"refresh_token":"a7bdfecaeadb842759d35a80bf3c9251531483ea"}';
+        return json;
+    }
+
+    public static String getWebDAMSearchBody() {
+        String json = '{\"success\":1,\"total_count\":22,\"offset\":0,\"limit\":1,\"items\":[{\"id\":\"100240231\",\"type\":\"asset\",\"type_id\":\"4\",\"status\":\"active\",\"filename\":\"WE_Roadside_InfoPack.pdf\",\"name\":\"WE_Roadside_InfoPack.pdf\",\"filesize\":\"1.65\",\"width\":\"612\",\"height\":\"792\",\"description\":\"\",\"filetype\":\"pdf\",\"colorspace\":\"CMYK\",\"version\":\"1\",\"datecreated\":\"2019-12-18 10:57:50\",\"date_created_unix\":\"1576695470\",\"datemodified\":\"2019-12-19 11:52:14\",\"date_modified_unix\":\"1576785134\",\"datecapturedUnix\":\"1530234045\",\"datecaptured\":\"2018-06-28 18:00:45\",\"mediaUrl\":\"<div class=\\\"documentViewerArea\\\" style=\\\"height:100%;\\\">\\n                            <iframe\\n                            src=\\\"\\/js\\/external\\/pdfjs\\/web\\/viewer.html?file=https:\\/\\/cdn2.webdamdb.com\\/md_cradQc3fGX99.jpg.pdf?v=1\\\"                                                         \\n                            style=\\\"width: 100%; height:100%; border: 1px solid black;\\\" \\/> \\n                            <\\/div>\",\"hiResMediaUrl\":\"<div class=\\\"documentViewerArea\\\" style=\\\"height:100%;\\\">\\n                            <iframe\\n                            src=\\\"\\/js\\/external\\/pdfjs\\/web\\/viewer.html?file=https:\\/\\/cdn2.webdamdb.com\\/md_cradQc3fGX99.jpg.pdf?v=1\\\"                                                         \\n                            style=\\\"width: 100%; height:100%; border: 1px solid black;\\\" \\/> \\n                            <\\/div>\",\"hiResURLRaw\":\"https:\\/\\/cdn2.webdamdb.com\\/md_cradQc3fGX99.jpg.pdf?v=1\",\"numComments\":0,\"pagecount\":\"4\",\"hasthumbnail\":\"0\",\"numExif\":0,\"numXmp\":\"1\",\"user\":{\"type\":\"user\",\"id\":\"416958\",\"email\":\"lisa.sposato@wexinc.com\",\"firstname\":\"Lisa\",\"lastname\":\"Sposato\",\"name\":\"Lisa Sposato\",\"username\":\"lisa.sposato\",\"status\":\"active\",\"role\":4},\"folder\":{\"type\":\"folder\",\"id\":\"3345989\",\"name\":\"Inside Sales\",\"permissions\":{\"folders\":[],\"assets\":[\"download\"]},\"properties\":{\"ALBENABLE_REQUESTRECIPIENT\":\"\",\"ALBWATERMARKPHOTOS\":\"0\",\"ALBEMAILHIRESDOWNLOAD\":\"\",\"ALBENABLE_REQUESTDOWNLOAD\":\"\",\"ALBENABLE_DOWNLOADUSAGE\":\"\"}},\"thumbnailurls\":[{\"size\":100,\"url\":\"https:\\/\\/cdn2.webdamdb.com\\/100th_sm_cradQc3fGX99.jpg?1576785134\"},{\"size\":150,\"url\":\"https:\\/\\/cdn2.webdamdb.com\\/150th_sm_cradQc3fGX99.jpg?1576785134\"},{\"size\":220,\"url\":\"https:\\/\\/cdn2.webdamdb.com\\/220th_sm_cradQc3fGX99.jpg?1576785134\"},{\"size\":310,\"url\":\"https:\\/\\/cdn2.webdamdb.com\\/310th_sm_cradQc3fGX99.jpg?1576785134\"},{\"size\":550,\"url\":\"https:\\/\\/cdn2.webdamdb.com\\/md_cradQc3fGX99.jpg?1576785134\",\"previewurls\":[]},{\"size\":1280,\"url\":\"https:\\/\\/cdn2.webdamdb.com\\/1280_cradQc3fGX99.jpg?1576785134\"}],\"numRelated\":0,\"readonly\":0,\"readonlynext\":0,\"onhold\":0,\"metadata\":{\"required\":{}},\"prevAssetId\":null}],\"facets\":{\"type\":{\"image\":0,\"document\":22,\"audiovideo\":0,\"presentation\":0,\"other\":0}}}';
+        return json;
+    }
 }

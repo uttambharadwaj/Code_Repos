@@ -14,7 +14,7 @@ public class WebDAMSync implements Schedulable {
             WebDAM_Connector__c webDAMConnectorConfig = WebDAM_Connector__c.getInstance();
 
             for (WebDAMConnectorAuthResponse.items searchItem : WebDAMConnector.searchByString(webDAMConnectorConfig.WebDAM_Search__c)) {
-                saveAsset(searchItem.id, searchItem.name, searchItem.version, webDAMConnectorConfig.Default_Folder_Id, searchItem.filetype);
+                saveAsset(searchItem.id, searchItem.name, searchItem.version, webDAMConnectorConfig.Default_Folder_Id__c, searchItem.filetype);
             }
 
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class WebDAMSync implements Schedulable {
             WebDAMConnector webDAMConnector = new WebDAMConnector();
             doc.Body = WebDAMConnector.getDAMFile(assetId);
             doc.name = generateFileName(name, version);
-            doc.folderid = folderid; // TODO dynamically get folder
+            doc.folderid = folderid; // TODO dynamically get folder... probably based on folder name in WebDAM.
             doc.type = type;
 
             upsert doc;
@@ -54,7 +54,7 @@ public class WebDAMSync implements Schedulable {
             insert UtilityClass.logInternalError(e, '', 'WebDAMSync', false, '', assetId);
         }
     }
-
+    @TestVisible
     private static String generateFileName(String name, String version) {
         return name.substringBeforeLast('.') + '_v' + version;
     }
