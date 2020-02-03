@@ -29,7 +29,7 @@ global class UtilityClass {
 
         return error;
     }
-    // TODO write test class
+
     public static Internal_Application_Error__c logInternalError(String e, String errorLocation, String theURL, String whereFrom, Boolean sendIt, String viewState, String params) {
         Internal_Application_Error__c error = new Internal_Application_Error__c();
 
