@@ -151,6 +151,18 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensCreateEntityPostiveTest();
     }
 
+    @isTest static void testCreditLensDocumentUpload() {
+        CreditWS_CreditLensTest.creditLensUploadDocumentTest();
+    }
+
+    @isTest static void testCreditLensLinkDocToEntity() {
+        CreditWS_CreditLensTest.creditLensLinkDocToEntityTest();
+    }
+
+    @IsTest static void testWexBOCAFinancials() {
+        WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
+    }
+
     @isTest static void testWebDAMSyncGenerateFileName() {
         WebDAMSyncTest.test_generateFileName();
     }
@@ -169,18 +181,6 @@ public class TestClassDispatcher {
 
     @isTest static void testWebDAMConnectorDownload() {
         WebDAMConnectorTest.test_webDAMDownload();
-    }
-
-    @isTest static void testCreditLensDocumentUpload() {
-        CreditWS_CreditLensTest.creditLensUploadDocumentTest();
-    }
-
-    @isTest static void testCreditLensLinkDocToEntity() {
-        CreditWS_CreditLensTest.creditLensLinkDocToEntityTest();
-    }
-
-    @IsTest static void testWexBOCAFinancials() {
-        WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
     }
 
 }
