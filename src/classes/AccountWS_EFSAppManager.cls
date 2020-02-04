@@ -452,29 +452,23 @@ global class AccountWS_EFSAppManager {
         }
         jsonPayload.writeBooleanField('handEnter', false);
         jsonPayload.writeNumberField('payrollContractId', 0);
-        if(selectedOtherServices != null){
-            if (hasATM) {
-                jsonPayload.writeBooleanField('payrollAtm', true);
-            } else {
-                jsonPayload.writeBooleanField('payrollAtm', false);
-            }
 
-            if (selectedOtherServices.contains('register check')) {
-                jsonPayload.writeBooleanField('payrollChk', true);
-            } else {
-                jsonPayload.writeBooleanField('payrollChk', false);
-            }
+        if(selectedOtherServices != null){
 
             if(selectedOtherServices.contains('fleet mastercard')) jsonPayload.writeStringField('mc_fleet','Y');
 
-            if(hasSmartfunds){
-                if(selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
-                if(selectedOtherServices.contains('debit use')) jsonPayload.writeBooleanField('payrollDebit', true);
+            Boolean payroll = false;
+            if(hasSmartfunds) {
+                if (selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
+                if (selectedOtherServices.contains('debit use')) jsonPayload.writeBooleanField('payrollDebit', true);
+                payroll = true;
             }
+            jsonPayload.writeBooleanField('payrollAtm', payroll);
+            jsonPayload.writeBooleanField('payrollChk', payroll);
+            jsonPayload.writeBooleanField('payrollWire', payroll);
+
         }
 
-
-        jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
         jsonPayload.writeBooleanField('defCardMgdNonFuel', false);
         jsonPayload.writeEndObject();
