@@ -1,0 +1,2 @@
+id,client_id__c,client_secret__c,username__c,password__c,webdam_search__c,default_folder_id__c
+00l70000001CpQAAA0,test,test,test,test,infopack,00l70000001Ca9kAAC

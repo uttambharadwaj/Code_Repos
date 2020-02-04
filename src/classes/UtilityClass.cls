@@ -29,6 +29,21 @@ global class UtilityClass {
 
         return error;
     }
+
+    public static Internal_Application_Error__c logInternalError(String e, String errorLocation, String theURL, String whereFrom, Boolean sendIt, String viewState, String params) {
+        Internal_Application_Error__c error = new Internal_Application_Error__c();
+
+        error.Error_Message__c = e;
+        error.Error_Location__c = errorLocation;
+        error.Application__c = whereFrom;
+        error.Application_URL__c = theURL;
+        error.User__c = UserInfo.getUserId();
+        error.Send_Email__c = sendIt;
+        error.Application_View_State__c = viewState;
+        error.Application_Parameters__c = params;
+
+        return error;
+    }
     /***********************END ERROR LOG UTILITIES***************************/
 
     /***************************BOCA UTILITIES********************************/
