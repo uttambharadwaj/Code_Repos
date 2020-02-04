@@ -106,7 +106,7 @@ global with sharing class ServiceOperationsAccountCloner {
         init();
         Id serviceOperationsAccountId;
         try {
-            Account otrAccount =  [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, Phone, Fax, RecordTypeId, Acct_Row_Id__c, Wex_Account__c, Sponsor_Acct__c, ParentId, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Platform__c, Line_of_Business__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Primary_Contact_TXT__c, Shipping_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Admin_Contact_TXT__c, Carrier_ID__c FROM Account WHERE Id =:otrAccountId LIMIT 1];
+            Account otrAccount =  [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, Phone, Fax, RecordTypeId, Acct_Row_Id__c, Wex_Account__c, Sponsor_Acct__c, ParentId, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Platform__c, Line_of_Business__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Primary_Contact_TXT__c, Shipping_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Admin_Contact_TXT__c, Carrier_ID__c, Member_ID__c, EDGE_Account_Number__c FROM Account WHERE Id =:otrAccountId LIMIT 1];
 
             if (serviceOperationsAccountRecordTypeId.equals(otrAccount.RecordTypeId)) //already cloned.
             {
@@ -119,6 +119,13 @@ global with sharing class ServiceOperationsAccountCloner {
                 return serviceIdList[0].Service_Account__c;
             }
 
+            String carrierId = otrAccount.Carrier_ID__c;
+            if(carrierId != null && (carrierId.startsWith('9999') ||
+                    carrierId.startsWith('4500') ||
+                    carrierId.startsWith('4000'))){
+                carrierId = carrierId.substring(4);
+            }
+            System.debug('*** CarrierId - 2: ' + carrierId);
             Account serviceOperationsAccount = new Account();
 
             System.debug('*** serviceOperationsAccountRecordTypeId='+serviceOperationsAccountRecordTypeId);
@@ -134,8 +141,7 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsAccount.Name = otrAccount.Name;
             serviceOperationsAccount.Phone = otrAccount.Phone;
             serviceOperationsAccount.Fax = otrAccount.Fax;
-            serviceOperationsAccount.Wex_Account__c = otrAccount.Carrier_ID__c;
-            serviceOperationsAccount.Sponsor_Acct__c = otrAccount.Sponsor_Acct__c;
+            serviceOperationsAccount.Sponsor_Acct__c = carrierId;
             serviceOperationsAccount.Member_ID__c = otrAccount.Member_ID__c;
             serviceOperationsAccount.EDGE_Account_Number__c = otrAccount.EDGE_Account_Number__c;
             serviceOperationsAccount.PFS_REP__c = otrAccount.PFS_REP__c;
