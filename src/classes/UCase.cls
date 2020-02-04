@@ -8,8 +8,8 @@
 public class UCase
 {
 
-    private static final String SHELL_SLA_WEEK = 'Shell SLA';
-    private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
+    private static final String SHELL_SLA = 'Shell SLA';
+    //private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
     private static Boolean hasRunOnceUpdate = false;
     private static List<String> wexEmailAddressDomains = new List<String>{'wexinc.com','wrightexpress.com','wexaustralia.com','wexeurope.com'};
     private static Id genericEmailAddressId;
@@ -38,14 +38,14 @@ public class UCase
         FROM Entitlement];
         System.debug(LoggingLevel.INFO, '#debug: auxEntitlementsList: ' + auxEntitlementsList);
         ID weekEntitlementID;
-        ID weekendEntitlementID;
+        //ID weekendEntitlementID;
         for(Entitlement auxEntitlement : auxEntitlementsList){
-            if(auxEntitlement.Name == SHELL_SLA_WEEK){
+            if(auxEntitlement.Name == SHELL_SLA){
                 weekEntitlementID = auxEntitlement.ID;
             }
-            if(auxEntitlement.Name == SHELL_SLA_WEEKEND){
-                weekendEntitlementID = auxEntitlement.ID;
-            }
+            //if(auxEntitlement.Name == SHELL_SLA_WEEKEND){
+            //  weekendEntitlementID = auxEntitlement.ID;
+            //}
         }
 
         List<Case> casesToUpdate = new List<Case>();
@@ -57,17 +57,18 @@ public class UCase
                 //System.debug(LoggingLevel.INFO, '#debug: auxCase.SuppliedName: ' + auxCase.SuppliedName);
                 //System.debug(LoggingLevel.INFO, '#debug: domain: ' + domain);
                 //if(domain.contains('shell')){
-                if(auxCase.Program_Email__c == 'Shellfleethelp@wexinc.com'){
+                if((auxCase.Program_Email__c).equalsIgnoreCase('Shellfleethelp@wexinc.com')){
                     // Evaluate the created date/time.
                     Datetime thisDT = auxCase.CreatedDate;
                     String myDate = thisDT.format('yyyy-MM-dd HH:mm:ss', 'EST');
                     Datetime convertedDate = Datetime.valueOf(myDate);
-                    String correctSLA = getCorrectSLA(convertedDate);
-                    if(correctSLA == SHELL_SLA_WEEK){
-                        auxCaseNew.EntitlementId = weekEntitlementID;
-                    }else{
-                        auxCaseNew.EntitlementId = weekendEntitlementID;
-                    }
+                    //String correctSLA = getCorrectSLA(convertedDate);
+                    //if(correctSLA == SHELL_SLA_WEEK){
+                    auxCaseNew.EntitlementId = weekEntitlementID;
+                    //}
+                    //else{
+                    //  auxCaseNew.EntitlementId = weekendEntitlementID;
+                    //}
                     casesToUpdate.add(auxCaseNew);
                 }
             }
@@ -75,39 +76,39 @@ public class UCase
         update casesToUpdate;
     }
 
-    private static String getCorrectSLA(Datetime estCreatedDateTime){
-        // Find out if it is within Weekend SLA.
-        String dayOfWeek = estCreatedDateTime.format('EEEE');
-        Integer hourOfDay = estCreatedDateTime.hour();
-        Integer minuteOfHour = estCreatedDateTime.minute();
-        String slaName = '';
-        switch on dayOfWeek{
-            when 'Friday'{
-                if((hourOfDay == 20 && minuteOfHour >= 1) || hourOfDay > 20){
-                    slaName = SHELL_SLA_WEEKEND;
-                }else{
-                    slaName = SHELL_SLA_WEEK;
-                }
-            }
-            when 'Saturday'{
-                slaName = SHELL_SLA_WEEKEND;
-            }
-            when 'Sunday'{
-                slaName = SHELL_SLA_WEEKEND;
-            }
-            when 'Monday'{
-                if((hourOfDay == 7 && minuteOfHour <= 59) || hourOfDay < 7){
-                    slaName = SHELL_SLA_WEEKEND;
-                }else{
-                    slaName = SHELL_SLA_WEEK;
-                }
-            }
-            when else {
-                slaName = SHELL_SLA_WEEK;
-            }
-        }
-        return slaName;
-    }
+    //private static String getCorrectSLA(Datetime estCreatedDateTime){
+    // Find out if it is within Weekend SLA.
+    //String dayOfWeek = estCreatedDateTime.format('EEEE');
+    //Integer hourOfDay = estCreatedDateTime.hour();
+    //Integer minuteOfHour = estCreatedDateTime.minute();
+    //String slaName = '';
+    //switch on dayOfWeek{
+    //when 'Friday'{
+    //if((hourOfDay == 20 && minuteOfHour >= 1) || hourOfDay > 20){
+    //  slaName = SHELL_SLA_WEEKEND;
+    //}else{
+    //    slaName = SHELL_SLA_WEEK;
+    //  }
+    //}
+    //when 'Saturday'{
+    //  slaName = SHELL_SLA_WEEKEND;
+    //}
+    //when 'Sunday'{
+    //  slaName = SHELL_SLA_WEEKEND;
+    //}
+    //when 'Monday'{
+    //     if((hourOfDay == 7 && minuteOfHour <= 59) || hourOfDay < 7){
+    //       slaName = SHELL_SLA_WEEKEND;
+    //       }else{
+    //    slaName = SHELL_SLA_WEEK;
+    //  }
+    //}
+    //when else {
+    //    slaName = SHELL_SLA_WEEK;
+    //  }
+    //}
+    //  return slaName;
+    //}
 
     public static void setNotificationFromBatch(List<Case> records)
     {
@@ -234,7 +235,7 @@ public class UCase
                         && checkForWexEmailAddress(c.ContactEmail)           // Don't send to contacts with a Wex email address
                         && !(c.Department__c.toLowerCase().startsWith('corporate payments') //Don't send to Corporate Payments cases
                         || c.Department__c.toLowerCase().startsWith('receivables')) //Don't send to Receivables cases
-                )                                                          //End IF parameters
+                        )                                                          //End IF parameters
                 {
                     Id programEmailId;
                     if (c.Program_Email__c != null && !(c.Program_Email__c.equals(''))) {
