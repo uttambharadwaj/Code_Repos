@@ -233,7 +233,12 @@ public class UCase
                         && !(c.Service_Program_Survey_Sent__c)               //Don't send more than once on a single case even if it reopens
                         && checkForWexEmailAddress(c.ContactEmail)           // Don't send to contacts with a Wex email address
                         && !(c.Department__c.toLowerCase().startsWith('corporate payments') //Don't send to Corporate Payments cases
-                        || c.Department__c.toLowerCase().startsWith('receivables')) //Don't send to Receivables cases
+                            || c.Department__c.toLowerCase().startsWith('receivables') //Don't send to Receivables cases
+                            || c.Department__c.toLowerCase().startsWith('otr ')//Don't send to OTR / EFS cases - EAPT-1211 , EAPT-680 (Dept list)
+                            || c.Department__c.toLowerCase().startsWith('project resource')//OTR - EAPT-1211 , EAPT-680 (Dept list)
+                            || c.Department__c.toLowerCase().startsWith('quality assurance')//OTR  - EAPT-1211 , EAPT-680 (Dept list)
+                            || c.Department__c.toLowerCase().startsWith('training')//OTR - EAPT-1211 , EAPT-680 (Dept list)
+                        )
                 )                                                          //End IF parameters
                 {
                     Id programEmailId;
