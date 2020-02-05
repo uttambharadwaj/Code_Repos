@@ -135,6 +135,7 @@ public class TestClassDispatcher {
     @isTest static void testOpportunityAutoAssignment(){
         OpportunityAssignmentTest.test_opportunityAutoAssignment();
     }
+
     @isTest static void testOpptyUpdatePrimaryContact(){
         OpportunityContactRoleQueueableTest.updateOpportunityPrimaryContactTest();
     }
@@ -161,6 +162,10 @@ public class TestClassDispatcher {
 
     @IsTest static void testWexBOCAFinancials() {
         WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
+    }
+
+    @IsTest static void testPaperAppExtension() {
+        PaperAppSubmissionExtensionTest.buildURLTest();
     }
 
 }

@@ -51,6 +51,15 @@ public class OTRBOCAController {
 
     public String tmSessionId { get; set; }
 
+    public String passedInTMSessionId {
+        get {
+            if (ApexPages.currentPage().getParameters().get('tmx') != null) {
+                return ApexPages.currentPage().getParameters().get('tmx');
+            }
+            return null;
+        }
+    }
+
     public String userSessionId {
         get {
             return UserInfo.getSessionId();
@@ -316,18 +325,6 @@ public class OTRBOCAController {
         }
     }
 
-    /* public List<String> dayOfPaymentOptions {
-        get {
-            List<String> picklistValues = new List<String>();
-            Schema.DescribeFieldResult dayOfPayment = OnlineApplication__c.Day_of_Payment__c.getDescribe();
-            List<Schema.PicklistEntry> picklistEntries = dayOfPayment.getPicklistValues();
-            for (Schema.PicklistEntry picklistValue : picklistEntries) {
-                picklistValues.add(picklistValue.getLabel());
-            }
-            return picklistValues;
-        }
-    } */
-
     public String selectedDaysOfPayment { get; set; }
 
     public OTRBOCAAdditionalAttributes additionalAttributes { get; set; }
@@ -363,7 +360,7 @@ public class OTRBOCAController {
 
                     program = WexBrandingController.getProgram(programId);
 
-                    if(program.Publish_BOCA__c ==  false) {
+                    if (program.Publish_BOCA__c == false) {
                         throw new creditApplicationException('Program is currently unavailable. Please check configuration.');
                     }
 
@@ -500,16 +497,22 @@ public class OTRBOCAController {
                     onlineApplication.Weekly_Amount_Requested__c = onlineApplicationOffer.Weekly_Amount__c;
                     onlineApplication.Weekly_Transactions__c = onlineApplicationOffer.of_Weekly_Transactions__c;
 
-                    // Generate ThreatMetrix SessionID
-                    Datetime dt = Datetime.now();
-                    Long l = dt.getTime();
+                    // don't generate a ThreatMetrix SessionID for Conversion Apps
+                    // use the passed in SessionID for Paper Apps
+                    if (!isConversionApp && !isPaperApp) {
+                        // Generate ThreatMetrix SessionID
+                        Datetime dt = Datetime.now();
+                        Long l = dt.getTime();
 
-                    String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+                        String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
 
-                    // IADJUDICAT-1157 populate tmSessionId variable
-                    tmSessionId = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+                        // IADJUDICAT-1157 populate tmSessionId variable
+                        tmSessionId = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+                    } else if (isPaperApp) {
+                        tmSessionId = passedInTMSessionId;
+                    }
 
-                    onlineApplication.ThreatMetrix_Session_ID__c= tmSessionId;
+                    onlineApplication.ThreatMetrix_Session_ID__c = tmSessionId;
 
                 } else {
                     throw new creditApplicationException('Unable to find specified credit application.');
@@ -649,88 +652,6 @@ public class OTRBOCAController {
             Contact primaryContact = new Contact();
             Contact pgContact = new Contact();
             Database.upsertResult result;
-
-            //commenting out because now we don't want to do any validations with the existing carrier id...
-//            if(carrierID != null && carrierID != '') {
-//                //OTRONBOARD-88 do we have an account that matches the requested criteria
-//                Boolean accountNotMatched = true;
-//                //OTRONBOARD-88 how many account fields are required to match the application
-//                Integer requiredMatchingAccFields = 2;
-//                Boolean carrierNotFound = true;
-//                List<Account> myAccounts = [SELECT Id FROM Account WHERE Carrier_ID__c = :carrierId LIMIT 1];
-//                if(myAccounts.size()>0){
-//                    Account a = myAccounts[0];
-//                    account.Id = a.Id;
-//                    List<OnlineApplication__c> oa = [SELECT Opportunity__r.Primary_Contact__c, Personal_Guarantor__c, Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName FROM OnlineApplication__c WHERE Account__c = :a.Id LIMIT 1];
-//                    if(oa.size()>0){
-//                        primaryContact.Id = oa[0].Opportunity__r.Primary_Contact__c;
-//                        pgContact.Id = oa[0].Personal_Guarantor__c;
-//                        pgContact.FirstName = oa[0].Personal_Guarantor__r.FirstName;
-//                        pgContact.LastName = oa[0].Personal_Guarantor__r.LastName;
-//                    }
-//                } else {
-//                    throw new creditApplicationException('Carrier ID not found');
-//                }
-//
-//                for(Account a : [SELECT Id, Name, BillingStreet, Phone,
-//                (SELECT Id, Program__c, Opportunity__r.Primary_Contact__c,
-//                        Personal_Guarantor__r.FirstName, Personal_Guarantor__r.LastName, Personal_Guarantor__c
-//                FROM Online_Applications__r)
-//                FROM Account
-//                WHERE Carrier_ID__c = :carrierID]) {
-//                    //start counting how many account fields match the corresponding application field
-//                    Integer matchingAccFields = 0;
-//                    //set value to true so that each iteration can restart the process
-//                    accountNotMatched = true;
-//
-//                    if(a.Name != null && a.Name == onlineApplication.Legal_Business_Name__c) {
-//                        matchingAccFields ++;
-//                    }
-//                    System.debug('Acc Name: ' + a.Name + ' vs App Legal Business Name: ' + onlineApplication.Legal_Business_Name__c + ' Match counter after Account: ' + matchingAccFields);
-//
-//                    if(a.BillingStreet != null && a.BillingStreet == onlineApplication.Business_Street_Address__c) {
-//                        matchingAccFields ++;
-//                    }
-//                    System.debug('Acc BillingStreet: ' + a.BillingStreet + ' vs App Address Line 1: ' + onlineApplication.Business_Street_Address__c + ' Match counter after Address: ' + matchingAccFields);
-//
-//                    if(a.Phone != null && a.Phone.replaceAll('\\D','') == onlineApplication.Phone_Number__c.replaceAll('\\D','')) {
-//                        matchingAccFields ++;
-//                    }
-//                    System.debug('Acc Phone: ' + a.Phone + ' vs App Phone: ' + onlineApplication.Phone_Number__c + 'Match counter after Phone: ' + matchingAccFields);
-//
-//                    System.debug('Final count of matching fields: ' + matchingAccFields);
-//                    System.debug('Required Matching Fields: ' + requiredMatchingAccFields);
-//
-//                    //if we matched enough fields, continue to the next step
-//                    if(matchingAccFields >= requiredMatchingAccFields) {
-//                        //set boolean so we know that we have a matching account
-//                        accountNotMatched = false;
-//                        //iterate over online applications related to the account to see if one exists for this program
-//                        for (OnlineApplication__c oa : a.Online_Applications__r) {
-//                            if (oa.Program__c == program.Id) {
-//                                carrierNotFound = false;
-//                                //need to get account and contact informations
-//                                account.Id = a.Id;
-//                                primaryContact.Id = oa.Opportunity__r.Primary_Contact__c;
-//                                pgContact.Id = oa.Personal_Guarantor__c;
-//                                pgContact.FirstName = oa.Personal_Guarantor__r.FirstName;
-//                                pgContact.LastName = oa.Personal_Guarantor__r.LastName;
-//                                break;
-//                            }
-//                        }
-//                    } else {
-//                        //account does not match the required criteria, move on to the next one in the loop, if one exists
-//                        continue;
-//                    }
-//
-//                }
-//                if(accountNotMatched) {
-//                    throw new creditApplicationException('Application Business Name, Street Address, or Phone Number does not match existing Carrier ID');
-//                }
-//                if(carrierNotFound) {
-//                    throw new creditApplicationException('Carrier ID not found');
-//                }
-//            }
 
             User defaultOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
@@ -910,7 +831,7 @@ public class OTRBOCAController {
                 opportunity.OwnerId = salesRep.Id;
             }
 
-            opportunity.IP_Address__c = ipAddress;
+            if (!isPaperApp) opportunity.IP_Address__c = ipAddress;
 
             opportunity.Billing_Contact__c = primaryContact.Id;
             opportunity.Primary_Contact__c = primaryContact.Id;
@@ -1018,12 +939,6 @@ public class OTRBOCAController {
 
             }
 
-            // Online Application Random Mappings
-//            if (opportunity.OwnerId != null) {
-//                onlineApplication.OwnerId = opportunity.OwnerId;
-//            }
-
-//            onlineApplication.Day_of_Payment__c = selectedDaysOfPayment;
             onlineApplication.Program__c = program.Id;
             onlineApplication.Offer__c = onlineApplicationOffer.Id;
             onlineApplication.Product_Type__c = 'OTR';
@@ -1038,8 +953,14 @@ public class OTRBOCAController {
                 onlineApplication.AO_Last_Name__c = onlineApplication.Contact_Last_Name__c;
             }
 
-            onlineApplication.IP_Address__c = ipAddress;
-            onlineApplication.Application_Signer_IP__c = ipAddress;
+            if (!isPaperApp) {
+                onlineApplication.IP_Address__c = ipAddress;
+                onlineApplication.Application_Signer_IP__c = ipAddress;
+            } else if (isPaperApp) {
+                String paperAppIpAddress = [SELECT IP_Address__c FROM Opportunity WHERE Id =: optyId LIMIT 1].IP_Address__c;
+                onlineApplication.IP_Address__c = paperAppIpAddress;
+                onlineApplication.Application_Signer_IP__c = paperAppIpAddress;
+            }
 
             // Enable_Promotional_Code__c is used to display the promo code box to the user. If it's true and the user entered a value keep that value.
             if (onlineApplicationOffer.Enable_Promotional_Code__c && String.isNotEmpty(onlineApplication.Promotional_Code__c)) {

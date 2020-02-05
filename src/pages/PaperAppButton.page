@@ -4,7 +4,8 @@
  -->
 
 <apex:page standardController="Opportunity" showHeader="true" sidebar="true" extensions="PaperAppSubmissionExtension" docType="html-5.0" standardStylesheets="true" action="{!init}">
-    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <html lang="en">
+
     <head>
 
         <meta charset="utf-8" />
@@ -61,7 +62,17 @@
                         <apex:selectRadio id="appType" value="{!appType}" layout="pageDirection">
                             <apex:selectOption id="paperApp" itemLabel="{!$Label.PaperApp_PaperApp}" itemValue="paperApp" />
                             <apex:selectOption id="convApp" itemLabel="{!$Label.PaperApp_Conversion}" itemValue="convApp" rendered="{!IF(paperOnly, false, true)}" itemDisabled="{!IF(paperOnly, true, false)}"/>
+                            <apex:actionSupport event="onchange" reRender="tmxIP" />
                         </apex:selectRadio>
+                        <apex:outputPanel id="tmxIP">
+                            <apex:outputPanel rendered="{!appType == 'paperApp'}">
+                                <div class="slds-form-element__control slds-p-left_medium slds-p-top_small">
+                                    <apex:outputLabel styleClass="slds-form-element__label" for="ipAddress">Client IP Address</apex:outputLabel> <br />
+                                    <apex:inputText html-placeholder="###.###.###.###" id="ipAddress" value="{!ipAddress}" />
+                                    <div class="slds-form-element__help">{!$Label.PaperApp_IPAddress}</div>
+                                </div>
+                            </apex:outputPanel>
+                        </apex:outputPanel>
                     </div>
                 </div>
             </article>
