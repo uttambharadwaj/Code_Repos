@@ -284,8 +284,6 @@ public without sharing class CustomerDetailsController {
             customerDetails.funder = serviceOperationsAccount.Funder__c;
             customerDetails.specialInstructions = serviceOperationsAccount.Account_Instructions__c;
 
-            customerDetails.spnrAccountNbr = serviceOperationsAccount.Carrier_ID__c;
-
             if (serviceOperationsAccount.Platform__c != null)
                 customerDetails.sourceSys = serviceOperationsAccount.Platform__c;
             else
