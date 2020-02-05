@@ -22,10 +22,6 @@
 global class AccountWS_EFSAppManager {
 
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
-//    public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
-//    public final static String SHIPPING_FEE = '704'; //mastercard shipping fee
-//    public final static String EMBOSSING_FEE = '705'; //mastercard embossing fee
-//    public final static String ATM_WITHDRAWAL_FEE = '105';
 
     public static Boolean integrationRunning { get; set; }
 
@@ -250,8 +246,11 @@ global class AccountWS_EFSAppManager {
                 if(product.containsIgnoreCase('atm')) hasATM = true;
             }
         }
-        if(hasMastercard != true && onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('mastercard')) {
+        if(hasMastercard != true && onlineApplicationOffer.Product_Type__c.containsIgnoreCase('mastercard')) {
             hasMastercard = true;
+        }
+        if(hasSmartfunds != true && onlineApplicationOffer.Product_Type__c.containsIgnoreCase('smartfunds')) {
+            hasSmartfunds = true;
         }
 
         if(onlineApplication.Program__c != null) {
@@ -991,8 +990,6 @@ global class AccountWS_EFSAppManager {
                     }
                 }
 
-                System.debug('lets try to set some fees by using a quote...!');
-
                 setFees(productOptionMap);
 
                 if (this.feeSet.contains(null)) {
@@ -1028,8 +1025,6 @@ global class AccountWS_EFSAppManager {
                         }
                     }
                 }
-
-                System.debug('lets try to set some fees by using opportunity line items...!');
 
                 setFees(productOptionMap);
             }
@@ -1078,22 +1073,6 @@ global class AccountWS_EFSAppManager {
                 if (this.accountSetUpFee == null && poMap.containsKey(accountSetUpFeePC)) this.accountSetUpFee = String.valueOf(poMap.get(accountSetUpFeePC));
 
             }
-
-            System.debug('dear fees, are you there?');
-            System.debug('Monthly Fee: ' + this.monthlyFee);
-            System.debug('MC Shipping Fee: ' + this.mcOvernightShippingFee);
-            System.debug('MC Embossing Fee: ' + this.mcEmbossingFee);
-            System.debug('ATM Withdrawl Fee: ' + this.atmWithdrawalFee);
-            System.debug('achAccountTransferFee: ' + this.achAccountTransferFee);
-            System.debug('smartFundsATMDeclineFee: ' + this.smartFundsATMDeclineFee);
-            System.debug('smartFundsPointofSaleFee: ' + this.smartFundsPointofSaleFee);
-            System.debug('smartFundsATMBalanceInquiryFee: ' + this.smartFundsATMBalanceInquiryFee);
-            System.debug('checkFee: ' + this.checkFee);
-            System.debug('smartFundsEFSNetworkDebitFee: ' + this.smartFundsEFSNetworkDebitFee);
-            System.debug('loadFee: ' + this.loadFee);
-            System.debug('smartFundsMasterCardNetworkDebitFee: ' + this.smartFundsMasterCardNetworkDebitFee);
-            System.debug('scalesInNetworkFee: ' + this.scalesInNetworkFee);
-            System.debug('mcLocationFee: ' + this.mcLocationFee);
 
         }
     }
