@@ -69,13 +69,15 @@
                 // }
                 var primaryContact = null;
 
-                _.forEach(component.get("v.customerDetails.contacts"), function(customerDetailsContact) {
-                    _.forEach(customerDetailsContact, function(contact) {
-                        if((contact.contactType) !== undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
-                            primaryContact = contact;
-                        }
+                if (undefined !== _) {
+                    _.forEach(component.get("v.customerDetails.contacts"), function(customerDetailsContact) {
+                        _.forEach(customerDetailsContact, function(contact) {
+                            if((contact.contactType) !== undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
+                                primaryContact = contact;
+                            }
+                        });
                     });
-                });
+                };
 
                 component.set("v.customerPrimaryContact", primaryContact);
 
