@@ -8,6 +8,10 @@
     <aura:attribute name="keyword" type="String" />
     <aura:attribute name="upperTypes" type="String[]" />
 
+    <aura:method name="showSpinner" action="{!c.showSpinner}" access="public">
+        <aura:attribute name="param1" type="boolean" access="public" default="false"/>
+    </aura:method>
+
     <lightning:workspaceAPI aura:id="workspace" />
     <lightning:card iconName="standard:account" title="Account Search">
         <div class="slds-p-horizontal_medium">
@@ -64,7 +68,7 @@
                                 <tr>
                                     <aura:iteration items="{!v.fields}" var="f">
                                         <td role="gridcell">
-                                            <c:AccountSearchResultsField result="{!result.resultColumns}" fieldName="{!f.Name}" caseId="{!v.caseId}" />
+                                            <c:AccountSearchResultsField parent="{!this }" result="{!result.resultColumns}" fieldName="{!f.Name}" caseId="{!v.caseId}" />
                                         </td>
                                     </aura:iteration>
                                 </tr>

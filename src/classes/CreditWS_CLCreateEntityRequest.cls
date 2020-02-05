@@ -20,6 +20,7 @@ public class CreditWS_CLCreateEntityRequest {
     public String PrimaryCreditOfficer;          // Credit Analyst working the app
     public String CountryOfRisk;                 // USA, CAN, etc
     public String CountryOfInc;
+    public String CollateralSecurity;            // Security Type: Deposit, Bank Guaranty, Personal Guaranty, CCG, LOC, Insurance, Multiple, N/A
     public String PlaceOfIncorporation;
     public String ProvinceStateOfIncorporation;  // 2 digit country code + 2 digit state code. ex: USME = Maine
     public String Currency_x;                    // USD (currency of risk)
@@ -45,6 +46,8 @@ public class CreditWS_CLCreateEntityRequest {
     public String WexRequestCreditLineAmount;
     public String WexOriginationModelRecommendat;
     public String WexCreditInformationOn;
+    public String WexExpirationSecurityDate;
+    public String WexRequestCurrency;            // USD, GBP, EUR, BRL
     public List<EntityOfficer> EntityOfficers;
     public List<EntityContactCreateAndEdit> EntityContactCreateAndEdit;
     public List<EntityAddress> EntityAddress;

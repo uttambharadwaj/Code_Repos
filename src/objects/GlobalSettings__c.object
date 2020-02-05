@@ -1,5 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>AU_Genesis_Account_Services_Cert_Name__c</fullName>
+        <description>The Certificate passed to AU Genesis endpoint. Must be the API Name of the Certificate.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The Certificate passed to AU Genesis endpoint. Must be the API Name of the Certificate.</inlineHelpText>
+        <label>AU Genesis Account Services Cert Name</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_Genesis_Account_Services_Endpoint__c</fullName>
+        <description>Used for AU integration from Salesforce to Genesis</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Used for AU integration from Salesforce to Genesis</inlineHelpText>
+        <label>AU Genesis Account Services Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
     <fields>
         <fullName>AU_Genesis_Account_Services_Timeout__c</fullName>
         <externalId>false</externalId>
@@ -11,4 +37,254 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>AU_WSS2_CreditDecision_Services_Endpoint__c</fullName>
+        <description>URL of WSS2 Webservice
+http://{WSS2_Site}/WebServices/SalesforceCreditDecisionService.asmx</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>AU WSS2 CreditDecision Services Endpoint</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>AU_WSS2_CreditDecision_Services_Password__c</fullName>
+        <description>Password to connect to WSS2 Service
+//Specified in WSS2 web.config</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>AU WSS2 CreditDecision Services Password</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_WSS2_CreditDecision_Services_Timeout__c</fullName>
+        <description>Timeout in milliseconds</description>
+        <externalId>false</externalId>
+        <label>AU WSS2 CreditDecision Services Timeout</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AU_WSS2_CreditDecision_Services_Username__c</fullName>
+        <description>Username to connect to WSS2
+// Specified in WSS2 Web.config</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>AU WSS2 CreditDecision Services Username</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AccountAssetRecordTypeID__c</fullName>
+        <description>For the Account Asset Trigger - only include Fuel Card record type.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>For the Account Asset Trigger - only include Fuel Card record type.</inlineHelpText>
+        <label>AccountAssetRecordTypeID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CaseCloseEmailAlert__c</fullName>
+        <description>Email alert sent to Opp owner when case Type = Precard or Setup, Cards field is not blank, and Case is closed</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Email alert sent to Opp owner when case Type = Precard or Setup, Cards field is not blank, and Case is closed</inlineHelpText>
+        <label>CaseCloseEmailAlert</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Country_Code_Enabled_RecordTypes__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Enable the country code to be added to the MobilePhone field automatically when a country code isn&apos;t specified.</inlineHelpText>
+        <label>Country Code Enabled RecordTypes</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Activity_Owner__c</fullName>
+        <description>Default owner for Lead Activities when Lead is assigned to a Queue. (Activities can not be owned by a Queue)</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Default Activity Owner</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_Lead_Record_Type__c</fullName>
+        <description>In the event that a lead is inserted without a valid coupon code, we need a default Lead Record type to use when we insert the lead.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Default Lead Record Type</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Integration_User_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Integration User ID</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Marketing_Queue_ID__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Contains the ID of the Queue to assign Leads from i2i that don&apos;t match existing SFDC record.</inlineHelpText>
+        <label>Marketing Queue ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Days__c</fullName>
+        <description>Used in StageID Batch, for number of days in the past to compare to Opportunity Last Modified.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Used in StageID Batch, for number of days in the past to compare to Opportunity Last Modified.</inlineHelpText>
+        <label>Number of Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Lead_Queue__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Parent Lead Queue</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Parent_Lead_Record_Type_Id__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Parent Lead Record Type Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Truckers_Account_Record_Type__c</fullName>
+        <description>The RecordTypeID for TruckersB2B Accounts</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Truckers Account Record Type</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Virtual_Card_Queue_ID__c</fullName>
+        <description>Used in a trigger to assign cases that are in the Virtual Card Admin queue.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>Used in a trigger to assign cases that are in the Virtual Card Admin queue.</inlineHelpText>
+        <label>Virtual Card Queue ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Virtual_Card_RecType_ID__c</fullName>
+        <description>The Case Record Type of Virtual Payments used in Case Trigger.</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <inlineHelpText>The Case Record Type of Virtual Payments used in Case Trigger.</inlineHelpText>
+        <label>Virtual Card RecType ID</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Web_to_Lead_creator__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Web to Lead creator</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>productionInstance__c</fullName>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>productionInstance</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>GlobalSettings</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CaseCloseEmailAlert__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>Default_Activity_Owner__c</columns>
+        <columns>Default_Lead_Record_Type__c</columns>
+        <columns>Integration_User_ID__c</columns>
+        <columns>Marketing_Queue_ID__c</columns>
+        <columns>Parent_Lead_Queue__c</columns>
+        <columns>Parent_Lead_Record_Type_Id__c</columns>
+        <columns>productionInstance__c</columns>
+        <columns>Web_to_Lead_creator__c</columns>
+        <columns>AU_Genesis_Account_Services_Cert_Name__c</columns>
+        <columns>AU_Genesis_Account_Services_Endpoint__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <visibility>Public</visibility>
 </CustomObject>
