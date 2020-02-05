@@ -1,6 +1,7 @@
 /*
 Description:        Test class dispatcher. A one-stop shop for test execution.
 Revision History:   7/23/2019 add apprequest tests
+
 */
 
 @isTest
@@ -135,6 +136,7 @@ public class TestClassDispatcher {
     @isTest static void testOpportunityAutoAssignment(){
         OpportunityAssignmentTest.test_opportunityAutoAssignment();
     }
+
     @isTest static void testOpptyUpdatePrimaryContact(){
         OpportunityContactRoleQueueableTest.updateOpportunityPrimaryContactTest();
     }
@@ -181,6 +183,10 @@ public class TestClassDispatcher {
 
     @isTest static void testWebDAMConnectorDownload() {
         WebDAMConnectorTest.test_webDAMDownload();
+    }
+
+    @IsTest static void testPaperAppExtension() {
+        PaperAppSubmissionExtensionTest.buildURLTest();
     }
 
 }
