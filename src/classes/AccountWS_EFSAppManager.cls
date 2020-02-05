@@ -796,7 +796,7 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Faxed Electronichek')) jsonPayload.writeStringField('req_payment_method', 'Check');
         if(onlineApplication.Payment_Frequency__c != null) jsonPayload.writeStringField('req_payment_frequency', onlineApplication.Payment_Frequency__c);
 
-        if(onlineApplicationOffer != null && onlineApplicationOffer.Setup_Fee__c != null) jsonPayload.writeNumberField('setup_fee', Integer.valueOf(onlineApplicationOffer.Setup_Fee__c));
+        if(myFees.accountSetUpFee != null) jsonPayload.writeNumberField('setup_fee', Integer.valueOf(myFees.accountSetUpFee));
 
         jsonPayload.writeStringField('products', 'ALL');
         jsonPayload.writeStringField('cash_apply_type', 'INVOICE MATCH');
@@ -950,6 +950,7 @@ global class AccountWS_EFSAppManager {
         public String mcOvernightShippingPC;
         public String mcEmbossingPC;
         public String mcLocationPC;
+        public String accountSetUpFeePC;
 
         //fee variables which are pulled from either the quote or the opportunity line item using the product code variables
         public String achAccountTransferFee;
@@ -966,10 +967,11 @@ global class AccountWS_EFSAppManager {
         public String mcOvernightShippingFee;
         public String mcEmbossingFee;
         public String mcLocationFee;
+        public String accountSetUpFee;
 
         public Set<String> feeSet = new Set<String>{achAccountTransferFee, atmWithdrawalFee, smartFundsATMDeclineFee, smartFundsPointofSaleFee,
                 smartFundsATMBalanceInquiryFee, checkFee, smartFundsEFSNetworkDebitFee, loadFee, smartFundsMasterCardNetworkDebitFee, monthlyFee,
-                scalesInNetworkFee, mcOvernightShippingFee, mcEmbossingFee, mcLocationFee};
+                scalesInNetworkFee, mcOvernightShippingFee, mcEmbossingFee, mcLocationFee, accountSetUpFee};
 
         public CardFees(OnlineApplication__c onlineApplication) {
             if(onlineApplication.Opportunity__c != null) {
@@ -1052,6 +1054,7 @@ global class AccountWS_EFSAppManager {
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Overnight_Shipping_Fee')) mcOvernightShippingPC = fees.Product_Code__c;
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Embossing_Fee')) mcEmbossingPC = fees.Product_Code__c;
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Location_Fee')) mcLocationPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('Account_Set_Up_Fee')) accountSetUpFeePC = fees.Product_Code__c;
                 }
 
             }
@@ -1072,6 +1075,7 @@ global class AccountWS_EFSAppManager {
                 if(this.smartFundsMasterCardNetworkDebitFee == null && poMap.containsKey(smartFundsMasterCardNetworkDebitPC)) this.smartFundsMasterCardNetworkDebitFee = String.valueOf(poMap.get(smartFundsMasterCardNetworkDebitPC));
                 if(this.scalesInNetworkFee == null && poMap.containsKey(scalesInNetworkPC)) this.scalesInNetworkFee = String.valueOf(poMap.get(scalesInNetworkPC));
                 if(this.mcLocationFee == null && poMap.containsKey(mcLocationPC)) this.mcLocationFee = String.valueOf(poMap.get(mcLocationPC));
+                if (this.accountSetUpFee == null && poMap.containsKey(accountSetUpFeePC)) this.accountSetUpFee = String.valueOf(poMap.get(accountSetUpFeePC));
 
             }
 
