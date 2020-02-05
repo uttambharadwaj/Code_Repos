@@ -384,7 +384,8 @@ public with sharing class AccountSearchController {
 			}
 
 			dto1.wexAcctNbr = acct.Wex_Account__c;
-			dto1.acctSts = acct.Status__c != null ? acct.Status__c.replace('Member', '') : acct.Status__c;
+			String status = acct.Status__c != null ? acct.Status__c : '';
+			dto1.acctSts = status.replace('Member', '');
 			dto1.primaryContactPhoneNbr = acct.Phone;
 			dto1.mainPhone = acct.Phone;
 			if(!isOTRSearch) {
