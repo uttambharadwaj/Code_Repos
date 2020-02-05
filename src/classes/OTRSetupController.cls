@@ -439,9 +439,12 @@ public without sharing class OTRSetupController {
             }
 
             // paper apps are identified by having a user session id
-            if (TestUtils.isRunningTest() || program.Disable_Instant_Decisioning__c == true || userSessionId != null) {
+            if (TestUtils.isRunningTest() || userSessionId != null) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-PaperApp';
+            } else if (program.Disable_Instant_Decisioning__c == true) {
+                onlineApplication.Application_Stage__c = 'Application';
+                onlineApplication.Status__c = 'Saved-Complete';
             } else if(onlineApplicationOffer.Funding__c == 'Parent Funded' || onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract') {
                 onlineApplication.Application_Stage__c = 'Implementation';
                 onlineApplication.Status__c = 'Pending Setup';
@@ -450,8 +453,6 @@ public without sharing class OTRSetupController {
                 onlineApplication.Status__c = 'Pending Decision';
                 onlineApplication.Submitted_to_Credit__c = Datetime.now();
             }
-
-            System.debug('TEMP status post IFs: ' + onlineApplication.Status__c);
 
             if (isConversionApp != null && isConversionApp) onlineApplication.Credit_Line_Requested__c = 1; // conversion apps get a default credit line of 1.
 
