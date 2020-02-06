@@ -69,7 +69,7 @@
                 // }
                 var primaryContact = null;
 
-                if (undefined !== _) {
+                if (!(typeof _ === 'undefined')) {
                     _.forEach(component.get("v.customerDetails.contacts"), function(customerDetailsContact) {
                         _.forEach(customerDetailsContact, function(contact) {
                             if((contact.contactType) !== undefined && (contact.contactType).toUpperCase() === 'PRIMARY') {
@@ -77,7 +77,7 @@
                             }
                         });
                     });
-                };
+                }
 
                 component.set("v.customerPrimaryContact", primaryContact);
 
