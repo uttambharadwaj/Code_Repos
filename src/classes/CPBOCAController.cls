@@ -246,7 +246,7 @@ public class CPBOCAController {
     public Boolean isBankInfoNeeded {
         get {
             if (creditApp != null) {
-                if (null != creditApp.Payment_Type__c && creditApp.Payment_Type__c.equalsIgnoreCase('ET')) {
+                if (null != creditApp.Payment_Type__c && creditApp.Payment_Type__c.equalsIgnoreCase('Debit ACH')) {
                     return true;
                 }
             }
