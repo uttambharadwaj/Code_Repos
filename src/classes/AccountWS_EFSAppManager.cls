@@ -1049,7 +1049,7 @@ global class AccountWS_EFSAppManager {
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Overnight_Shipping_Fee')) mcOvernightShippingPC = fees.Product_Code__c;
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Embossing_Fee')) mcEmbossingPC = fees.Product_Code__c;
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Location_Fee')) mcLocationPC = fees.Product_Code__c;
-                    if (fees.DeveloperName.equalsIgnoreCase('Account_Set_Up_Fee')) accountSetUpFeePC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('Account_Setup_Fee')) accountSetUpFeePC = fees.Product_Code__c;
                 }
 
             }
