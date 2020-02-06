@@ -198,9 +198,11 @@ public without sharing class OTRSetupController {
 
     public Boolean isConversionApp { get; set; }
 
-    public Boolean isMastercard {
+    public Boolean hasMastercard {
         get {
-            if (onlineApplicationOffer.Product_Type__c.containsIgnoreCase('mastercard')) {
+            if (onlineApplicationOffer.Product_Type__c.containsIgnoreCase('MasterCard')) {
+                return true;
+            } else if (selectedOtherServices != null && selectedOtherServices.containsIgnoreCase('MasterCard')) {
                 return true;
             }
             return false;
