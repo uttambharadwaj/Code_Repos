@@ -44,7 +44,9 @@
                 accountRecordId : component.get("v.recordId"),
                 pdRowIdString : pdRowId
             });
-        } else if (acctNbr === 'null') { //OTR path
+        //} else if (acctNbr === 'null') { //OTR path
+        } else if (this.isSalesforceId(acctRowId)) { //OTR path
+
             action.setParams({
                 accountNumber : '',
                 accountRecordId : acctRowId,
@@ -1379,6 +1381,19 @@
             console.log("flattenQueryResult: ["+i+"] = "+JSON.stringify(obj));
         }
         return newListOfObjects;
+    },
+
+    isSalesforceId : function(testId) {
+        if (testId.length < 1)  {
+            return false;
+        }
+        if (testId === null)  {
+            return false;
+        }
+        if (testId.length != 15 && testId.length != 18) {
+            return false;
+        }
+        return (testId.match('[A-Za-z0-9]+'));
     },
 
     handleErrors : function(component, response){
