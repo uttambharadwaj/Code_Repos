@@ -476,7 +476,7 @@ public without sharing class CustomerDetailsController {
 
             CustomerDetailsWSUtilv2.authSearchResult authSearchResult = customerDetailsCallout.getRecentDeclinedAuths(wexAcctNbr,sourceSys);
 
-            System.debug('### ' + authSearchResult);
+            //System.debug('### ' + authSearchResult);
 
             return authSearchResult.authLog;
 

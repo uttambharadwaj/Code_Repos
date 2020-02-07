@@ -55,44 +55,10 @@ global with sharing class ServiceOperationsAccountCloner {
             }
 
             List<Id> newContacts = new List<Id>();
-            Id primaryContactId;
+
             for (Contact contact : contactList) {
                 Id newId = cloneContact(contact.Id, serviceOperationsAccountId);
                 newContacts.add(newId);
-                if ('PRIMARY'.equalsIgnoreCase(contact.Contact_Type__c)) {
-                    primaryContactId = newId;
-                }
-            }
-
-            if(String.isEmpty(primaryContactId)){
-                primaryContactId = newContacts[0];
-                System.debug('*** OTR account contacts do not include a primary contact, using contact:'+ primaryContactId +' as the primary contact for serviceOperationsAccountId: '+serviceOperationsAccountId);
-            }
-
-            Account servOpsAcct = [SELECT Id, Primary_Contact_TXT__c FROM Account WHERE Id =: serviceOperationsAccountId];
-            servOpsAcct.Primary_Contact_TXT__c = primaryContactId;
-            update servOpsAcct;
-            System.debug('*** Updated serviceOperationsAccount: '+ serviceOperationsAccountId + ' set primaryContactId: '+primaryContactId);
-
-            Contact serviceOperationsPrimaryContact = [SELECT Id, Contact_Type__c FROM Contact WHERE Id =:primaryContactId];
-            if ( serviceOperationsPrimaryContact != null) {
-                serviceOperationsPrimaryContact.Contact_Type__c = 'PRIMARY';
-                update serviceOperationsPrimaryContact;
-                System.debug('*** Updated serviceOperationsPrimaryContact: '+ primaryContactId + ' set contact type to "PRIMARY"');
-            } else {
-                //ummmm something went seriously wrong
-                System.debug('*** ERROR: PrimaryContactId:'+ primaryContactId +' not found for serviceOperationsAccountId: '+serviceOperationsAccountId);
-            }
-
-            IntegrationRecord__c integrationRecord = [SELECT Id, Contact_Type__c FROM IntegrationRecord__c WHERE Contact_Row_Id__c =:primaryContactId AND Account__c =: serviceOperationsAccountId];
-
-            if (integrationRecord != null) {
-                integrationRecord.Contact_Type__c = 'PRIMARY';
-                update integrationRecord;
-                System.debug('*** Updated integrationRecord contact' + primaryContactId + ' set contact type to "PRIMARY"');
-            } else {
-                //ummmm something went seriously wrong
-                System.debug('*** ERROR: integrationRecord not found for contact:'+ primaryContactId);
             }
 
         } catch (Exception e) {
