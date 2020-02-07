@@ -135,7 +135,7 @@ public class PaperAppSubmissionExtension {
 
                             if (formTemplate != null && brandShortName != null) {
 
-                                if (ipAddress != null) {
+                                if (ipAddress != null && ipAddress != '') {
                                     generateTMSessionId();
                                     stampIPOnOppty();
                                 }
