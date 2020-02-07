@@ -87,6 +87,7 @@ global with sharing class ServiceOperationsAccountCloner {
 
             String carrierId = otrAccount.Carrier_ID__c;
             if(carrierId != null && (carrierId.startsWith('9999') ||
+                    carrierId.startsWith('9998') ||
                     carrierId.startsWith('4500') ||
                     carrierId.startsWith('4000'))){
                 carrierId = carrierId.substring(4);
