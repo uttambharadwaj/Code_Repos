@@ -55,44 +55,10 @@ global with sharing class ServiceOperationsAccountCloner {
             }
 
             List<Id> newContacts = new List<Id>();
-            Id primaryContactId;
+
             for (Contact contact : contactList) {
                 Id newId = cloneContact(contact.Id, serviceOperationsAccountId);
                 newContacts.add(newId);
-                if ('PRIMARY'.equalsIgnoreCase(contact.Contact_Type__c)) {
-                    primaryContactId = newId;
-                }
-            }
-
-            if(String.isEmpty(primaryContactId)){
-                primaryContactId = newContacts[0];
-                System.debug('*** OTR account contacts do not include a primary contact, using contact:'+ primaryContactId +' as the primary contact for serviceOperationsAccountId: '+serviceOperationsAccountId);
-            }
-
-            Account servOpsAcct = [SELECT Id, Primary_Contact_TXT__c FROM Account WHERE Id =: serviceOperationsAccountId];
-            servOpsAcct.Primary_Contact_TXT__c = primaryContactId;
-            update servOpsAcct;
-            System.debug('*** Updated serviceOperationsAccount: '+ serviceOperationsAccountId + ' set primaryContactId: '+primaryContactId);
-
-            Contact serviceOperationsPrimaryContact = [SELECT Id, Contact_Type__c FROM Contact WHERE Id =:primaryContactId];
-            if ( serviceOperationsPrimaryContact != null) {
-                serviceOperationsPrimaryContact.Contact_Type__c = 'PRIMARY';
-                update serviceOperationsPrimaryContact;
-                System.debug('*** Updated serviceOperationsPrimaryContact: '+ primaryContactId + ' set contact type to "PRIMARY"');
-            } else {
-                //ummmm something went seriously wrong
-                System.debug('*** ERROR: PrimaryContactId:'+ primaryContactId +' not found for serviceOperationsAccountId: '+serviceOperationsAccountId);
-            }
-
-            IntegrationRecord__c integrationRecord = [SELECT Id, Contact_Type__c FROM IntegrationRecord__c WHERE Contact_Row_Id__c =:primaryContactId AND Account__c =: serviceOperationsAccountId];
-
-            if (integrationRecord != null) {
-                integrationRecord.Contact_Type__c = 'PRIMARY';
-                update integrationRecord;
-                System.debug('*** Updated integrationRecord contact' + primaryContactId + ' set contact type to "PRIMARY"');
-            } else {
-                //ummmm something went seriously wrong
-                System.debug('*** ERROR: integrationRecord not found for contact:'+ primaryContactId);
             }
 
         } catch (Exception e) {
@@ -106,7 +72,7 @@ global with sharing class ServiceOperationsAccountCloner {
         init();
         Id serviceOperationsAccountId;
         try {
-            Account otrAccount =  [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, Phone, Fax, RecordTypeId, Acct_Row_Id__c, Wex_Account__c, Sponsor_Acct__c, ParentId, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Platform__c, Line_of_Business__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Primary_Contact_TXT__c, Shipping_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Admin_Contact_TXT__c, Carrier_ID__c FROM Account WHERE Id =:otrAccountId LIMIT 1];
+            Account otrAccount =  [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Program__c, Name, Phone, Fax, RecordTypeId, Acct_Row_Id__c, Wex_Account__c, Sponsor_Acct__c, ParentId, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Platform__c, Line_of_Business__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Primary_Contact_TXT__c, Shipping_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Admin_Contact_TXT__c, Carrier_ID__c, Member_ID__c, EDGE_Account_Number__c FROM Account WHERE Id =:otrAccountId LIMIT 1];
 
             if (serviceOperationsAccountRecordTypeId.equals(otrAccount.RecordTypeId)) //already cloned.
             {
@@ -119,6 +85,14 @@ global with sharing class ServiceOperationsAccountCloner {
                 return serviceIdList[0].Service_Account__c;
             }
 
+            String carrierId = otrAccount.Carrier_ID__c;
+            if(carrierId != null && (carrierId.startsWith('9999') ||
+                    carrierId.startsWith('9998') ||
+                    carrierId.startsWith('4500') ||
+                    carrierId.startsWith('4000'))){
+                carrierId = carrierId.substring(4);
+            }
+            System.debug('*** CarrierId - 2: ' + carrierId);
             Account serviceOperationsAccount = new Account();
 
             System.debug('*** serviceOperationsAccountRecordTypeId='+serviceOperationsAccountRecordTypeId);
@@ -134,8 +108,7 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsAccount.Name = otrAccount.Name;
             serviceOperationsAccount.Phone = otrAccount.Phone;
             serviceOperationsAccount.Fax = otrAccount.Fax;
-            serviceOperationsAccount.Wex_Account__c = otrAccount.Wex_Account__c;
-            serviceOperationsAccount.Sponsor_Acct__c = otrAccount.Sponsor_Acct__c;
+            serviceOperationsAccount.Sponsor_Acct__c = carrierId;
             serviceOperationsAccount.Member_ID__c = otrAccount.Member_ID__c;
             serviceOperationsAccount.EDGE_Account_Number__c = otrAccount.EDGE_Account_Number__c;
             serviceOperationsAccount.PFS_REP__c = otrAccount.PFS_REP__c;
@@ -154,8 +127,6 @@ global with sharing class ServiceOperationsAccountCloner {
             serviceOperationsAccount.ShippingState = otrAccount.ShippingState;
             serviceOperationsAccount.ShippingCountry = otrAccount.ShippingCountry;
             serviceOperationsAccount.ShippingPostalCode = otrAccount.ShippingPostalCode;
-
-            serviceOperationsAccount.Carrier_ID__c = otrAccount.Carrier_ID__c;
 
             //todo: determine other source fields to copy
             serviceOperationsAccount.Platform__c = ( otrAccount.Platform__c != null ? otrAccount.Platform__c : otrAccount.Line_of_Business__c);

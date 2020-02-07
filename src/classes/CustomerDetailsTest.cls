@@ -452,6 +452,29 @@ public class CustomerDetailsTest {
         }
     }
 
+    static testMethod void testGetPaymentsForOTR() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+            String accountNumberToTest = '9100000000000';
+            String sourceSys           = 'OTR';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            CustomerDetailsWSUtilv2.payments payments =  CustomerDetailsController.getPayments(accountNumberToTest,sourceSys);
+            System.assert(payments.paymentHistory.isEmpty());
+            System.assert(payments.paymentDetails.isEmpty());
+            System.assert(payments.pendingPayments.isEmpty());
+            System.assert(String.isEmpty(payments.errorMsg));
+
+            Test.stopTest();
+        }
+    }
+
     static testMethod void testGetRefundAggregatesWithAccount() {
         User user = getTestUser();
 
@@ -529,6 +552,27 @@ public class CustomerDetailsTest {
         }
     }
 
+    static testMethod void testGetInvoicesforOTR() {
+        User user = getTestUser();
+
+        System.runAs(user) {
+            String accountNumberToTest = '9100000000000';
+            String sourceSys           = 'OTR';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            CustomerDetailsWSUtilv2.invoices invoices =  CustomerDetailsController.getInvoices(accountNumberToTest,sourceSys);
+            System.assert(invoices.invoices.isEmpty());
+            System.assert(String.isEmpty(invoices.errorMsg));
+
+            Test.stopTest();
+        }
+    }
+
     // Happy path test with carrierId passed in
     static testMethod void testOTRCustomerDetails() {
 
@@ -581,7 +625,8 @@ public class CustomerDetailsTest {
                 contactRowId = contacts[0].rowId;
             }
 
-            // List<CustomerDetailsWSUtilv2.authLogRecord> declinedAuths = CustomerDetailsController.getRecentDeclinedAuths(carrierIdToTest, sourceSys);
+            List<CustomerDetailsWSUtilv2.authLogRecord> declinedAuths = CustomerDetailsController.getRecentDeclinedAuths(carrierIdToTest, 'OTR');
+            System.assert(declinedAuths.isEmpty());
 
             List<Case> cases = CustomerDetailsController.getExistingOpenCasesByAccountRecordId(serviceAccountId);
 
