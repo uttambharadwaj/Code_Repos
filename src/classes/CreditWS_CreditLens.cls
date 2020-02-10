@@ -306,7 +306,7 @@ global class CreditWS_CreditLens {
                 physicalAddress.Address1 = cpApp.Physical_Address_Line_1__c;
                 if (cpApp.Physical_Address_Line_2__c != null) physicalAddress.Address2 = cpApp.Physical_Address_Line_2__c;
                 physicalAddress.Country = country;
-                physicalAddress.State = cpApp.Physical_Country__c + cpApp.Physical_State_Province__c;
+                if (cpApp.Mailing_State_Province__c != null) physicalAddress.State = cpApp.Physical_Country__c + cpApp.Physical_State_Province__c;
                 physicalAddress.City = cpApp.Physical_City__c;
                 physicalAddress.Zip = cpApp.Physical_Postal_Code__c;
                 physicalAddress.t_x = 'Address';
@@ -324,7 +324,7 @@ global class CreditWS_CreditLens {
                 mailingAddress.Address1 = cpApp.Mailing_Address_Line_1__c;
                 if (cpApp.Mailing_Address_Line_2__c != null) physicalAddress.Address2 = cpApp.Mailing_Address_Line_2__c;
                 mailingAddress.Country = CLCountry(cpApp.Mailing_Country__c);
-                mailingAddress.State = cpApp.Mailing_Country__c + cpApp.Mailing_State_Province__c;
+                if (cpApp.Mailing_State_Province__c != null) mailingAddress.State = cpApp.Mailing_Country__c + cpApp.Mailing_State_Province__c;
                 mailingAddress.City = cpApp.Mailing_City__c;
                 mailingAddress.Zip = cpApp.Mailing_Postal_Code__c;
                 mailingAddress.t_x = 'Address';
