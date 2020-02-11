@@ -161,7 +161,7 @@ public class CreditDecisionEngineCPTest {
                 cpApplication.DUNS_Number__c = '123456789';
                 cpApplication.Billing_Cycle__c = 'Weekly';
                 cpApplication.Payment_Due_Date__c = 'Monday';
-                cpApplication.Payment_Type__c = 'ET';
+                cpApplication.Payment_Type__c = 'Debit ACH';
                 cpApplication.Financial_Institution__c = 'Chase Bank';
                 cpApplication.Checking_Account_Number__c = '123456789';
                 cpApplication.ABA_Routing_Number__c = '123456789';

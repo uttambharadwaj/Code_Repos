@@ -29,6 +29,21 @@ global class UtilityClass {
 
         return error;
     }
+
+    public static Internal_Application_Error__c logInternalError(String e, String errorLocation, String theURL, String whereFrom, Boolean sendIt, String viewState, String params) {
+        Internal_Application_Error__c error = new Internal_Application_Error__c();
+
+        error.Error_Message__c = e;
+        error.Error_Location__c = errorLocation;
+        error.Application__c = whereFrom;
+        error.Application_URL__c = theURL;
+        error.User__c = UserInfo.getUserId();
+        error.Send_Email__c = sendIt;
+        error.Application_View_State__c = viewState;
+        error.Application_Parameters__c = params;
+
+        return error;
+    }
     /***********************END ERROR LOG UTILITIES***************************/
 
     /***************************BOCA UTILITIES********************************/
@@ -81,6 +96,18 @@ global class UtilityClass {
         } catch (Exception e) {
             insert logInternalError(e, '', 'UtilityClass.convertPassedInLead', false, '', 'Lead:' + leadId + ' Account:' + accountId + ' Contact:' + contactId + ' Opportunity:' + opportunityId);
         }
+    }
+
+    // take a multi-select picklist and turn it into a single option picklist for BOCA
+    public static List<SelectOption> multiSelectToBOCAPickList (String multiSelectField) {
+        List<SelectOption> picklistValues = new List<SelectOption>();
+        picklistValues.add(new SelectOption('#', '--Choose One--'));
+        if (multiSelectField != null) {
+            for (String option : multiSelectField.split(';')) {
+                picklistValues.add(new SelectOption(option, option));
+            }
+        }
+        return picklistValues;
     }
 
     /***************************END BOCA UTILITIES****************************/

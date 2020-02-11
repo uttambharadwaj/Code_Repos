@@ -26,6 +26,10 @@ public class PaperAppSubmissionExtension {
 
     }
 
+    public String tmSessionId { get; set; }
+
+    public String ipAddress { get; set; }
+
     public Boolean hasError {
         get {
             if (ApexPages.hasMessages()) return true;
@@ -73,7 +77,7 @@ public class PaperAppSubmissionExtension {
     public Boolean isPartner { get; set; }
     public List<Opportunity> oppties = [
             SELECT Offer__c, Offer__r.Program__c, Offer__r.Program__r.Brand_Short_Name__c,
-                    Offer__r.Program__r.Form_Template__c, Campaign_Program__c, AccountId
+                    Offer__r.Program__r.Form_Template__c, Campaign_Program__c, AccountId, IP_Address__c
             FROM Opportunity
             WHERE Id = :optyId
             LIMIT 1
@@ -130,6 +134,12 @@ public class PaperAppSubmissionExtension {
                             String formTemplate = programs[0].Form_Template__c;
 
                             if (formTemplate != null && brandShortName != null) {
+
+                                if (ipAddress != null && ipAddress != '') {
+                                    generateTMSessionId();
+                                    stampIPOnOppty();
+                                }
+
                                 PageReference paperAppSubmission = Page.OTRBOCA;
                                 paperAppSubmission.getParameters().put('pgm', brandShortName);
                                 paperAppSubmission.getParameters().put('optyId', optyId);
@@ -139,6 +149,7 @@ public class PaperAppSubmissionExtension {
                                 } else if (appType == 'convApp') {
                                     paperAppSubmission.getParameters().put('appType', 'c');
                                 }
+                                if(tmSessionId != null) paperAppSubmission.getParameters().put('tmx', tmSessionId);
                                 System.debug('TEMP page ref: ' + paperAppSubmission);
                                 paperAppSubmission.setRedirect(true);
                                 return paperAppSubmission;
@@ -198,5 +209,22 @@ public class PaperAppSubmissionExtension {
             }
             return availableOffers;
         }
+    }
+
+    private void generateTMSessionId() {
+        // EAPT-904 Generate ThreatMetrix SessionID for paper apps using provided ip address from client's digital signature
+
+        Datetime dt = Datetime.now();
+        Long l = dt.getTime();
+
+        String salt = EncodingUtil.convertToHex(Crypto.generateAesKey(128));
+
+        tmSessionId = EncodingUtil.convertToHex(Crypto.generateDigest('MD5', Blob.valueOf(l + ipAddress + salt.substring(0, 25))));
+    }
+
+    private void stampIPOnOppty() {
+        oppties[0].IP_Address__c = ipAddress;
+
+        upsert oppties;
     }
 }

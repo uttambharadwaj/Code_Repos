@@ -1,6 +1,7 @@
 /*
 Description:        Test class dispatcher. A one-stop shop for test execution.
 Revision History:   7/23/2019 add apprequest tests
+
 */
 
 @isTest
@@ -135,6 +136,7 @@ public class TestClassDispatcher {
     @isTest static void testOpportunityAutoAssignment(){
         OpportunityAssignmentTest.test_opportunityAutoAssignment();
     }
+
     @isTest static void testOpptyUpdatePrimaryContact(){
         OpportunityContactRoleQueueableTest.updateOpportunityPrimaryContactTest();
     }
@@ -161,6 +163,30 @@ public class TestClassDispatcher {
 
     @IsTest static void testWexBOCAFinancials() {
         WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
+    }
+
+    @isTest static void testWebDAMSyncGenerateFileName() {
+        WebDAMSyncTest.test_generateFileName();
+    }
+
+    @isTest static void testWebDAMSyncSavingAsset() {
+        WebDAMSyncTest.test_savingAsset();
+    }
+
+    @isTest static void testWebDAMConnectorAuth() {
+        WebDAMConnectorTest.test_webDAMAuth();
+    }
+
+    @isTest static void testWebDAMConnectorSearch() {
+        WebDAMConnectorTest.test_webDAMSearch();
+    }
+
+    @isTest static void testWebDAMConnectorDownload() {
+        WebDAMConnectorTest.test_webDAMDownload();
+    }
+
+    @IsTest static void testPaperAppExtension() {
+        PaperAppSubmissionExtensionTest.buildURLTest();
     }
 
 }

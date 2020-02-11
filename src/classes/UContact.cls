@@ -296,15 +296,21 @@ public class UContact {
     }
 
     // Update Mobile Phone country code based on associated program if mobile number is 10 digits
-    public static void updateCountryCode(List<Contact> contacts, Map<Id, Contact> oldMap) {
+    public static void updateCountryCode(List<Contact> triggerContacts, Map<Id, Contact> oldMap) {
+        GlobalSettings__c globalSettings = GlobalSettings__c.getInstance('Settings');
+        List<String> enabledRecordTypes = globalSettings.Country_Code_Enabled_RecordTypes__c != null ? globalSettings.Country_Code_Enabled_RecordTypes__c.split(';') : new List<String>();
 
         // Get list of program ids
         List<Id> programIds = new List<Id>();
-        for (Contact contact : contacts) {
-            if (contact.Account_Program_Id__c != null) programIds.add(contact.Account_Program_Id__c);
-        }
+        List<Contact> contacts = new List<Contact>();
 
-        if (!programIds.isEmpty()) {
+        for (Contact contact : triggerContacts) {
+            if (enabledRecordTypes.contains(String.valueOf(contact.RecordTypeId))) {
+                contacts.add(contact);
+                if (contact.Account_Program_Id__c != null) programIds.add(contact.Account_Program_Id__c);
+            }
+        }
+        if (!contacts.isEmpty()) {
 
             Map<Id, Program__c> programMap = new Map<Id, Program__c>([
                     SELECT Id, Country_Code__c
@@ -328,6 +334,9 @@ public class UContact {
                         contact.MobilePhone = codeAndCountry[0] + mobileNumber;
                         contact.et4ae5__Mobile_Country_Code__c = codeAndCountry[1];
 
+                    } else {
+                        contact.MobilePhone = '+1' + mobileNumber;
+                        contact.et4ae5__Mobile_Country_Code__c = 'en-us';
                     }
                 }
             }

@@ -22,10 +22,6 @@
 global class AccountWS_EFSAppManager {
 
     public final static String APPLICATION_NAME = 'EFS LLC Account Integration';
-//    public final static String MONTHLY_FEE = '118'; //Active Card Fee/Monthly Membership Fee
-//    public final static String SHIPPING_FEE = '704'; //mastercard shipping fee
-//    public final static String EMBOSSING_FEE = '705'; //mastercard embossing fee
-//    public final static String ATM_WITHDRAWAL_FEE = '105';
 
     public static Boolean integrationRunning { get; set; }
 
@@ -250,8 +246,11 @@ global class AccountWS_EFSAppManager {
                 if(product.containsIgnoreCase('atm')) hasATM = true;
             }
         }
-        if(hasMastercard != true && onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('mastercard')) {
+        if(hasMastercard != true && onlineApplicationOffer.Product_Type__c.containsIgnoreCase('mastercard')) {
             hasMastercard = true;
+        }
+        if(hasSmartfunds != true && onlineApplicationOffer.Product_Type__c.containsIgnoreCase('smartfunds')) {
+            hasSmartfunds = true;
         }
 
         if(onlineApplication.Program__c != null) {
@@ -452,29 +451,23 @@ global class AccountWS_EFSAppManager {
         }
         jsonPayload.writeBooleanField('handEnter', false);
         jsonPayload.writeNumberField('payrollContractId', 0);
-        if(selectedOtherServices != null){
-            if (hasATM) {
-                jsonPayload.writeBooleanField('payrollAtm', true);
-            } else {
-                jsonPayload.writeBooleanField('payrollAtm', false);
-            }
 
-            if (selectedOtherServices.contains('register check')) {
-                jsonPayload.writeBooleanField('payrollChk', true);
-            } else {
-                jsonPayload.writeBooleanField('payrollChk', false);
-            }
+        if(selectedOtherServices != null){
 
             if(selectedOtherServices.contains('fleet mastercard')) jsonPayload.writeStringField('mc_fleet','Y');
 
-            if(hasSmartfunds){
-                if(selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
-                if(selectedOtherServices.contains('debit use')) jsonPayload.writeBooleanField('payrollDebit', true);
+            Boolean payroll = false;
+            if(hasSmartfunds) {
+                if (selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
+                if (selectedOtherServices.contains('debit use')) jsonPayload.writeBooleanField('payrollDebit', true);
+                payroll = true;
             }
+            jsonPayload.writeBooleanField('payrollAtm', payroll);
+            jsonPayload.writeBooleanField('payrollChk', payroll);
+            jsonPayload.writeBooleanField('payrollWire', payroll);
+
         }
 
-
-        jsonPayload.writeBooleanField('payrollWire', false);
         jsonPayload.writeBooleanField('defCardMgdFuel', false);
         jsonPayload.writeBooleanField('defCardMgdNonFuel', false);
         jsonPayload.writeEndObject();
@@ -802,7 +795,7 @@ global class AccountWS_EFSAppManager {
         if(onlineApplication.Payment_Method__c != null && (onlineApplication.Payment_Method__c).equalsIgnoreCase('Faxed Electronichek')) jsonPayload.writeStringField('req_payment_method', 'Check');
         if(onlineApplication.Payment_Frequency__c != null) jsonPayload.writeStringField('req_payment_frequency', onlineApplication.Payment_Frequency__c);
 
-        if(onlineApplicationOffer != null && onlineApplicationOffer.Setup_Fee__c != null) jsonPayload.writeNumberField('setup_fee', Integer.valueOf(onlineApplicationOffer.Setup_Fee__c));
+        if(myFees.accountSetUpFee != null) jsonPayload.writeNumberField('setup_fee', Integer.valueOf(myFees.accountSetUpFee));
 
         jsonPayload.writeStringField('products', 'ALL');
         jsonPayload.writeStringField('cash_apply_type', 'INVOICE MATCH');
@@ -956,6 +949,7 @@ global class AccountWS_EFSAppManager {
         public String mcOvernightShippingPC;
         public String mcEmbossingPC;
         public String mcLocationPC;
+        public String accountSetUpFeePC;
 
         //fee variables which are pulled from either the quote or the opportunity line item using the product code variables
         public String achAccountTransferFee;
@@ -972,10 +966,11 @@ global class AccountWS_EFSAppManager {
         public String mcOvernightShippingFee;
         public String mcEmbossingFee;
         public String mcLocationFee;
+        public String accountSetUpFee;
 
         public Set<String> feeSet = new Set<String>{achAccountTransferFee, atmWithdrawalFee, smartFundsATMDeclineFee, smartFundsPointofSaleFee,
                 smartFundsATMBalanceInquiryFee, checkFee, smartFundsEFSNetworkDebitFee, loadFee, smartFundsMasterCardNetworkDebitFee, monthlyFee,
-                scalesInNetworkFee, mcOvernightShippingFee, mcEmbossingFee, mcLocationFee};
+                scalesInNetworkFee, mcOvernightShippingFee, mcEmbossingFee, mcLocationFee, accountSetUpFee};
 
         public CardFees(OnlineApplication__c onlineApplication) {
             if(onlineApplication.Opportunity__c != null) {
@@ -994,8 +989,6 @@ global class AccountWS_EFSAppManager {
                         }
                     }
                 }
-
-                System.debug('lets try to set some fees by using a quote...!');
 
                 setFees(productOptionMap);
 
@@ -1033,8 +1026,6 @@ global class AccountWS_EFSAppManager {
                     }
                 }
 
-                System.debug('lets try to set some fees by using opportunity line items...!');
-
                 setFees(productOptionMap);
             }
         }
@@ -1058,6 +1049,7 @@ global class AccountWS_EFSAppManager {
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Overnight_Shipping_Fee')) mcOvernightShippingPC = fees.Product_Code__c;
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Embossing_Fee')) mcEmbossingPC = fees.Product_Code__c;
                     if (fees.DeveloperName.equalsIgnoreCase('MC_Location_Fee')) mcLocationPC = fees.Product_Code__c;
+                    if (fees.DeveloperName.equalsIgnoreCase('Account_Setup_Fee')) accountSetUpFeePC = fees.Product_Code__c;
                 }
 
             }
@@ -1078,24 +1070,9 @@ global class AccountWS_EFSAppManager {
                 if(this.smartFundsMasterCardNetworkDebitFee == null && poMap.containsKey(smartFundsMasterCardNetworkDebitPC)) this.smartFundsMasterCardNetworkDebitFee = String.valueOf(poMap.get(smartFundsMasterCardNetworkDebitPC));
                 if(this.scalesInNetworkFee == null && poMap.containsKey(scalesInNetworkPC)) this.scalesInNetworkFee = String.valueOf(poMap.get(scalesInNetworkPC));
                 if(this.mcLocationFee == null && poMap.containsKey(mcLocationPC)) this.mcLocationFee = String.valueOf(poMap.get(mcLocationPC));
+                if (this.accountSetUpFee == null && poMap.containsKey(accountSetUpFeePC)) this.accountSetUpFee = String.valueOf(poMap.get(accountSetUpFeePC));
 
             }
-
-            System.debug('dear fees, are you there?');
-            System.debug('Monthly Fee: ' + this.monthlyFee);
-            System.debug('MC Shipping Fee: ' + this.mcOvernightShippingFee);
-            System.debug('MC Embossing Fee: ' + this.mcEmbossingFee);
-            System.debug('ATM Withdrawl Fee: ' + this.atmWithdrawalFee);
-            System.debug('achAccountTransferFee: ' + this.achAccountTransferFee);
-            System.debug('smartFundsATMDeclineFee: ' + this.smartFundsATMDeclineFee);
-            System.debug('smartFundsPointofSaleFee: ' + this.smartFundsPointofSaleFee);
-            System.debug('smartFundsATMBalanceInquiryFee: ' + this.smartFundsATMBalanceInquiryFee);
-            System.debug('checkFee: ' + this.checkFee);
-            System.debug('smartFundsEFSNetworkDebitFee: ' + this.smartFundsEFSNetworkDebitFee);
-            System.debug('loadFee: ' + this.loadFee);
-            System.debug('smartFundsMasterCardNetworkDebitFee: ' + this.smartFundsMasterCardNetworkDebitFee);
-            System.debug('scalesInNetworkFee: ' + this.scalesInNetworkFee);
-            System.debug('mcLocationFee: ' + this.mcLocationFee);
 
         }
     }

@@ -450,9 +450,10 @@
                                                             <apex:outputLabel for="paymentType" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Payment Type', $ObjectType.WeFormObject__c.fields.Payment_Method__c.label)} ">
                                                                 <span class="styled-label-required">*</span>
                                                             </apex:outputLabel>
-                                                            <apex:InputField styleClass="styled-input required" required="true" html-tabindex="17" id="paymentType" value="{!creditApp.Payment_Method__c}">
+                                                            <apex:selectList size="1" styleClass="styled-input required" required="true" tabindex="17" id="paymentType" value="{!creditApp.Payment_Method__c}">
+                                                                <apex:selectOptions value="{!paymentMethodOptions}" />
                                                                 <apex:actionSupport event="onchange" reRender="financialsColumn1, financialsColumn2" />
-                                                            </apex:InputField>
+                                                            </apex:selectList>
                                                         </apex:actionRegion>
                                                     </div>
 

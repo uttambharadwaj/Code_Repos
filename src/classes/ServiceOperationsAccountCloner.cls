@@ -103,7 +103,9 @@ global with sharing class ServiceOperationsAccountCloner {
 
             serviceOperationsAccount.Customer_Segmentation__c = otrAccount.Customer_Segmentation__c;
             serviceOperationsAccount.CurrencyIsoCode = otrAccount.CurrencyIsoCode;
-            serviceOperationsAccount.Status__c = otrAccount.Status__c;
+            String status = otrAccount.Status__c;
+            status = status != null ? status.remove('Member') : '';
+            serviceOperationsAccount.Status__c = status;
             serviceOperationsAccount.Program__c = otrAccount.Program__c;
             serviceOperationsAccount.Name = otrAccount.Name;
             serviceOperationsAccount.Phone = otrAccount.Phone;

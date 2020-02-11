@@ -1861,16 +1861,23 @@ public class ULead {
     }
 
     // Update Mobile Phone country code based on associated program
-    public static void updateCountryCode(List<Lead> leads, Map<Id, Lead> oldMap) {
-        System.debug('entered');
+    public static void updateCountryCode(List<Lead> triggerLeads, Map<Id, Lead> oldMap) {
+
+        GlobalSettings__c globalSettings = GlobalSettings__c.getInstance('Settings');
+        List<String> enabledRecordTypes = globalSettings.Country_Code_Enabled_RecordTypes__c != null ? globalSettings.Country_Code_Enabled_RecordTypes__c.split(';') : new List<String>();
+
         // Get list of program ids
         List<Id> campaignProgramIds = new List<Id>();
-        for (Lead lead : leads) {
-            if (lead.Campaign_Program__c != null) campaignProgramIds.add(lead.Campaign_Program__c);
+        List<Lead> leads = new List<Lead>();
+
+        for (Lead lead : triggerLeads) {
+            if (enabledRecordTypes.contains(String.valueOf(lead.RecordTypeId))) {
+                leads.add(lead);
+                if (lead.Campaign_Program__c != null) campaignProgramIds.add(lead.Campaign_Program__c);
+            }
         }
 
-
-        if (!campaignProgramIds.isEmpty()) {
+        if (!leads.isEmpty()) {
 
             Map<Id, Program__c> campaignProgramToProgramMap = new Map<Id, Program__c>();
             for (Program__c program :[
@@ -1899,6 +1906,9 @@ public class ULead {
                         lead.MobilePhone = codeAndCountry[0] + mobileNumber;
                         lead.et4ae5__Mobile_Country_Code__c = codeAndCountry[1];
 
+                    } else {
+                        lead.MobilePhone = '+1' + mobileNumber;
+                        lead.et4ae5__Mobile_Country_Code__c = 'en-us';
                     }
                 }
             }

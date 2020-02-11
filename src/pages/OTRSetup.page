@@ -372,7 +372,7 @@
                                 </div>
 
                                 <!--BEGIN ALLOWED MERCHANT CATEGORIES SUBSECTION-->
-                                <div id="allowedMerchantCategories" style="{!if(onlineApplicationOffer.Product_Type__c == 'MasterCard', "", "display: none")}">
+                                <div id="allowedMerchantCategories" style="{!if(hasMastercard, "", "display: none")}">
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>
@@ -423,7 +423,7 @@
                                 <!--END ALLOWED MERCHANT CATEGORIES SUBSECTION-->
 
                                 <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-->
-                                <div id="refreshingLimits" class="twelve columns clearfix form-field styled-panel" style="{!if(onlineApplicationOffer.Product_Type__c == 'MasterCard', "", "display: none")}">
+                                <div id="refreshingLimits" class="twelve columns clearfix form-field styled-panel" style="{!if(hasMastercard, "", "display: none")}">
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>

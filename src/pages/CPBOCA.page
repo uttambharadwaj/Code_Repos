@@ -326,7 +326,7 @@
                                             <apex:actionRegion >
                                                 <apex:outputLabel for="physicalCountry" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Country__c.label} "/>
                                                 <apex:InputField styleClass="styled-input" id="physicalCountry" html-tabindex="11" value="{!creditApp.Physical_Country__c}">
-                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode, stateRequired, taxIdField" oncomplete="pageLoadFunctions()"/>
+                                                    <apex:actionSupport event="onchange" rerender="physicalState, physicalPostalCode, stateRequired, taxIdField, paymentType" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
@@ -360,14 +360,14 @@
                                             <apex:outputLabel for="physicalPostalCode" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Physical_Postal_Code__c.label} ">
                                                 <span class="styled-label-required">*</span>
                                             </apex:outputLabel>
-                                            <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Physical_Country__c == null || creditApp.Physical_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="16" id="physicalPostalCode" label="" value="{!creditApp.Physical_Postal_Code__c}" html-maxlength="10" />
+                                            <apex:InputField required="true" html-placeholder="{!$Label.BOCA_Placeholder_Postal_Code}" styleClass="styled-input required {!IF(creditApp.Physical_Country__c == null || creditApp.Physical_Country__c = 'US', 'postal', 'postalCanada')}" html-tabindex="15" id="physicalPostalCode" label="" value="{!creditApp.Physical_Postal_Code__c}" html-maxlength="10" />
                                         </div>
                                         <div class="twelve columns clearfix form-field" data-row="6">
                                             <apex:actionRegion >
                                                 <apex:outputLabel for="addressOptions" styleClass="styled-label" value="Mailing address and physical address are the same">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <apex:selectList required="true" id="addressOptions" value="{!billingAddressSame}" size="1" styleClass="styled-input required" tabIndex="15">
+                                                <apex:selectList required="true" id="addressOptions" value="{!billingAddressSame}" size="1" styleClass="styled-input required" tabIndex="16">
                                                     <apex:selectOption itemValue="true" itemLabel="{!$Label.BOCA_Picklist_Yes}"/>
                                                     <apex:selectOption itemValue="false" itemLabel="{!$Label.BOCA_Picklist_No}"/>
                                                     <apex:actionSupport event="onchange" rerender="billingAddress" oncomplete="pageRerenderFunctions()" />
@@ -540,9 +540,10 @@
                                                 <apex:outputLabel for="paymentType" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Payment_Type__c.label} ">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <apex:InputField required="{!creditApp.Billing_Cycle__c != null}" styleClass="styled-input required" html-tabindex="27" id="paymentType" value="{!creditApp.Payment_Type__c}">
+                                                <apex:selectList size="1" required="{!creditApp.Billing_Cycle__c != null}" styleClass="styled-input required" tabindex="27" id="paymentType" value="{!creditApp.Payment_Type__c}">
+                                                    <apex:selectOptions value="{!paymentMethodOptions}" />
                                                     <apex:actionSupport event="onchange" rerender="bankInformation,bankContact" oncomplete="pageLoadFunctions()"/>
-                                                </apex:InputField>
+                                                </apex:selectList>
                                             </apex:actionRegion>
                                         </div>
                                     </div>
