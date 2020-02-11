@@ -28,7 +28,8 @@ private without sharing class ULeadTest {
 		childLead.Campaign_Program__c = campaignProgram.Id;
 		insert childLead;
 
-
+		Id leadRecordTypeId = [SELECT RecordTypeId FROM Lead WHERE Id = :childLead.Id].RecordTypeId;
+		insert new GlobalSettings__c(Name = 'Settings', Country_Code_Enabled_RecordTypes__c = leadRecordTypeId + ';');
 	}
 
 	// setMarketable with no parent lead change 
