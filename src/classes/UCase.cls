@@ -24,10 +24,15 @@ public class UCase
 
         List<Id> idsToProcess = new List<Id>();
         for(Case auxCase : newRecords){
-            idsToProcess.add(auxCase.ID);
+            if (auxCase.Program_Email__c != null && auxCase.Program_Email__c.equalsIgnoreCase('Shellfleethelp@wexinc.com')) {
+                idsToProcess.add(auxCase.ID);
+            }
         }
 
-        processRecords(idsToProcess);
+        if (idsToProcess.size() > 0) {
+            processRecords(idsToProcess);
+        }
+
     }
 
     @future
