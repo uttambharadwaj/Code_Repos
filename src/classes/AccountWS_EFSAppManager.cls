@@ -459,10 +459,10 @@ global class AccountWS_EFSAppManager {
 
             Boolean payroll = false;
             if(hasSmartfunds) {
-                if (selectedOtherServices.contains('ach transfer')) jsonPayload.writeBooleanField('payrollAch', true);
-                if (selectedOtherServices.contains('debit use')) jsonPayload.writeBooleanField('payrollDebit', true);
                 payroll = true;
             }
+            jsonPayload.writeBooleanField('payrollAch', payroll);
+            jsonPayload.writeBooleanField('payrollDebit', payroll);
             jsonPayload.writeBooleanField('payrollAtm', payroll);
             jsonPayload.writeBooleanField('payrollChk', payroll);
             jsonPayload.writeBooleanField('payrollWire', payroll);
