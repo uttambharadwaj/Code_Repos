@@ -1,0 +1,32 @@
+<apex:page showheader="true" sidebar="true" tabStyle="Opportunity" standardcontroller="Opportunity" extensions="ReferralLeadController">
+    <apex:form id="leadForm">
+        <apex:sectionheader title="Referral Lead" />
+        <apex:pageblock mode="edit" rendered="{!leadCreated==true}">
+            <apex:pageblocksection columns="1">
+                <apex:outputpanel >
+                    <p>Referral Lead created. Click <a href="{!URLFOR($Action.Opportunity.View, Opportunity.Id)}">here</a> to go back.</p>
+                </apex:outputpanel>
+            </apex:pageblocksection>
+        </apex:pageblock>
+        <apex:pageblock mode="edit" rendered="{!leadCreated!=true}">
+            <apex:actionRegion >
+                <apex:pageblocksection columns="1">
+                    <apex:selectlist value="{!selProduct}" size="1" label="Select a Product">
+                        <apex:selectoptions value="{!productsList}" />
+                        <apex:actionsupport event="onchange" action="{!getLeadFields}" rerender="leadForm" />
+                    </apex:selectlist>
+                </apex:pageblocksection>
+            </apex:actionRegion>
+            <apex:pageblocksection columns="1">
+                <apex:repeat value="{!apiFields}" var="fld">
+                    <apex:inputfield value="{!refLead[fld]}" rendered="{!refLead!=null && fld!='Name'}" />
+                    <apex:inputfield value="{!refLead['LastName']}" label="Name" rendered="{!refLead!=null && fld=='Name'}" />
+                </apex:repeat>
+            </apex:pageblocksection>
+            <apex:pageblockbuttons location="bottom" rendered="{!refLead!=null}">
+                <apex:commandbutton action="{!saveLead}" value="Submit" />
+                <apex:commandButton action="{!cancel}" immediate="true" value="Cancel"/>
+            </apex:pageblockbuttons>
+        </apex:pageblock>
+    </apex:form>
+</apex:page>
