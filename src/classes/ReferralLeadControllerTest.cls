@@ -1,5 +1,11 @@
 @isTest
 private class ReferralLeadControllerTest {
+
+    @testSetup
+    static void setupData() {
+        UtilityTestLoader.setAutomation(false);
+    }
+
     static testmethod void testController() {
         Id rectypeId = Schema.SObjectType.Lead.getRecordTypeInfosByDeveloperName().get('Wright_Leads').getRecordTypeId();
         ReferringOppSetting__c cs = new ReferringOppSetting__c();
