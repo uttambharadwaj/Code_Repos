@@ -21,10 +21,7 @@ public class i2iGet {
 	i2iGet.executeCall (null,'XYZ','2077745816',null,null);
 	
 	*/
-
-
-	public class returnData
-	{
+	public class returnData {
 		public string returnDescription {get;set;}
 		public double isiId {get;set;}
 		public string firstName {get;set;}
@@ -40,18 +37,16 @@ public class i2iGet {
 		public string sicCode {get;set;}
 		public string SFDCContactId {get;set;}
 		public string SFDCParentLeadId {get;set;}
-		//public string SFDCChildLeadId {get;set;}
 		//added new field -phillip
 		public string i2iId {get;set;}
-
 		public string CouponCode{get;set;}
 		public string MailDate{get;set;}
 		public string Offer{get;set;}
-
 		public string phone{get;set;}
 		public string country{get;set;}
 		public string i2icontactid{get;set;}
-	}
+		public String leadNumber { get; set; }
+    }
 	
 	public static boolean inProduction ()
 	{
@@ -125,10 +120,16 @@ public class i2iGet {
      	DateTime endTime = system.now();
      	
      	system.debug('-----Milliseconds To Execute: '+ getDifferenceInMilliSeconds(starttime, endtime));
-     	
+
      	System.debug('>>>>>' + res.getBody() + '<<<<<<');  
      	
      	List <returnData> rData = (List <returnData>)JSON.deserialize(res.getBody(), List <returnData>.class);
+        for(Integer i = 0; i < rData.size(); i++) {
+            returnData str = rData.get(i);
+            if(str.returnDescription != 'Success') {
+                rdata.remove(i);
+            }
+        }
 		
 		system.debug('-----records returned: ' + rData.size());
 		
