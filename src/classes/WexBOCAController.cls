@@ -53,6 +53,14 @@ public class WexBOCAController {
                 else if (pg == 'a') {
                     return true;
                 }
+                else if (pg == 'b' && creditApp.Years_in_Business__c != null) {
+                    Boolean inBusinessOverYear = (creditApp.Years_in_Business__c).isNumeric();
+                    if (!inBusinessOverYear) {
+                        return true;
+                    } else if (Integer.valueOf(creditApp.Years_in_Business__c) <= 3 && creditApp.Fleet_Size__c <= 5) {
+                        return true;
+                    }
+                }
                 else if ((program.BOCA_Type__c).equalsIgnoreCase('Revolver Card') || (creditApp != null && creditApp.Years_in_Business__c != null && (creditApp.Years_in_Business__c).isNumeric() == false)) {
                     return true;
                 }
