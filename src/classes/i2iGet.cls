@@ -120,20 +120,20 @@ public class i2iGet {
      	DateTime endTime = system.now();
      	
      	system.debug('-----Milliseconds To Execute: '+ getDifferenceInMilliSeconds(starttime, endtime));
-
+     	System.debug('status ' + + res.getStatus());
      	System.debug('>>>>>' + res.getBody() + '<<<<<<');  
      	
      	List <returnData> rData = (List <returnData>)JSON.deserialize(res.getBody(), List <returnData>.class);
-        for(Integer i = 0; i < rData.size(); i++) {
-            returnData str = rData.get(i);
-            if(str.returnDescription != 'Success') {
-                rdata.remove(i);
-            }
-        }
+		List <returnData> successRData = new List<returnData>();
+		for(returnData rd : rData) {
+			if(rd.returnDescription != 'Success') {
+				successRData.add(rd);
+			}
+		}
 		
-		system.debug('-----records returned: ' + rData.size());
+		system.debug('-----records returned: ' + successRData.size());
 		
-     	return rData;
+     	return successRData;
 		
 	}
 	
