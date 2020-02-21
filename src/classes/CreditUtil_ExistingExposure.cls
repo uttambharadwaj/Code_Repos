@@ -63,42 +63,50 @@ public without sharing class CreditUtil_ExistingExposure {
 
         for (OnlineApplication__c existingApplication : existingApplications) {
 
-            if((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Legal_Business_Name__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Business_Street_Address__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.city, existingApplication.City__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.state, existingApplication.State__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.postalCode, existingApplication.Zip_Code__c) >= 0.75)
-                    || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
-                    || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Federal_Tax_ID__c) == 1.00)
-                    || (JaroWinklerDistance.getScore(request.phone, existingApplication.Phone_Number__c) == 1.00)) {
+            // Consider the application for existing exposure if it was created under 12 months ago OR was flagged for fraud
+            if (existingApplication.CreatedDate > System.now().addMonths(-12) || existingApplication.Fraud_Flag__c) {
 
-                ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
+                // Consider existing exposure if the business is a 75% match compared the to current application
+                // OR the DUNS # matches the current application
+                // OR the business phone matches the current application
+                // OR the PG SSN matches the current application
+                if ((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Legal_Business_Name__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Business_Street_Address__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.city, existingApplication.City__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.state, existingApplication.State__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Zip_Code__c) >= 0.75)
+                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Federal_Tax_ID__c) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Phone_Number__c) == 1.00)) {
 
-                duplicateApplication.applicationId = existingApplication.Id;
-                duplicateApplication.applicationName = existingApplication.Name;
-                duplicateApplication.legalBusinessName = existingApplication.Legal_Business_Name__c;
-                duplicateApplication.addressLine1 = existingApplication.Business_Street_Address__c;
-                duplicateApplication.city = existingApplication.City__c;
-                duplicateApplication.state = existingApplication.State__c;
-                duplicateApplication.postalCode = existingApplication.Zip_Code__c;
-                duplicateApplication.applicationStatus = existingApplication.Status__c;
-                duplicateApplication.creditDecision = existingApplication.Credit_Decision__c;
-                duplicateApplication.taxId = existingApplication.Federal_Tax_ID__c;
-                duplicateApplication.pgSSN = existingApplication.AO_Social_Security_Number__c;
-                duplicateApplication.program = existingApplication.Program__c;
-                duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
-                duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
-                duplicateApplication.phone = existingApplication.Phone_Number__c;
-                if (null != existingApplication.Submitted_to_Credit__c) {
-                    duplicateApplication.applicationCreatedDate = Date.newInstance(existingApplication.Submitted_to_Credit__c.year(), existingApplication.Submitted_to_Credit__c.month(), existingApplication.Submitted_to_Credit__c.day());
+                    ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
+
+                    duplicateApplication.applicationId = existingApplication.Id;
+                    duplicateApplication.applicationName = existingApplication.Name;
+                    duplicateApplication.legalBusinessName = existingApplication.Legal_Business_Name__c;
+                    duplicateApplication.addressLine1 = existingApplication.Business_Street_Address__c;
+                    duplicateApplication.city = existingApplication.City__c;
+                    duplicateApplication.state = existingApplication.State__c;
+                    duplicateApplication.postalCode = existingApplication.Zip_Code__c;
+                    duplicateApplication.applicationStatus = existingApplication.Status__c;
+                    duplicateApplication.creditDecision = existingApplication.Credit_Decision__c;
+                    duplicateApplication.taxId = existingApplication.Federal_Tax_ID__c;
+                    duplicateApplication.pgSSN = existingApplication.AO_Social_Security_Number__c;
+                    duplicateApplication.program = existingApplication.Program__c;
+                    duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
+                    duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
+                    duplicateApplication.phone = existingApplication.Phone_Number__c;
+                    if (null != existingApplication.Submitted_to_Credit__c) {
+                        duplicateApplication.applicationCreatedDate = Date.newInstance(existingApplication.Submitted_to_Credit__c.year(), existingApplication.Submitted_to_Credit__c.month(), existingApplication.Submitted_to_Credit__c.day());
+                    }
+                    duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
+                    duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Credit_Line_Approved__c);
+                    if (null != existingApplication.Date_Decisioned__c) {
+                        duplicateApplication.applicationDecisionedDate = Date.newInstance(existingApplication.Date_Decisioned__c.year(), existingApplication.Date_Decisioned__c.month(), existingApplication.Date_Decisioned__c.day());
+                    }
+
+                    existingExposureApplications.add(duplicateApplication);
                 }
-                duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
-                duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Credit_Line_Approved__c);
-                if (null != existingApplication.Date_Decisioned__c) {
-                    duplicateApplication.applicationDecisionedDate = Date.newInstance(existingApplication.Date_Decisioned__c.year(), existingApplication.Date_Decisioned__c.month(), existingApplication.Date_Decisioned__c.day());
-                }
-
-                existingExposureApplications.add(duplicateApplication);
             }
         }
         return existingExposureApplications;
@@ -110,36 +118,44 @@ public without sharing class CreditUtil_ExistingExposure {
 
         for(Application_Request__c existingApplication : existingExposuirApps) {
 
-            if(JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Opportunity_Name_Text__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Physical_Street__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Zip_Postal_Code__c) >= 0.75
-                    || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
-                    || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Tax_Payer_ID_number__c) == 1.00)
-                    || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone_Number__c) == 1.00)
-                    || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Personal_Guarantor_SSN__c)) == 1.00)) {
+            // Consider the application for existing exposure if it was created under 12 months ago OR was flagged for fraud
+            if (existingApplication.CreatedDate > System.now().addMonths(-12) || existingApplication.Fraud_Flag__c) {
 
-                ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
+                // Consider existing exposure if the business is a 75% match compared the to current application
+                // OR the DUNS # matches the current application
+                // OR the business phone matches the current application
+                // OR the PG SSN matches the current application
+                if (JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Opportunity_Name_Text__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Physical_Street__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Zip_Postal_Code__c) >= 0.75
+                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Tax_Payer_ID_number__c) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone_Number__c) == 1.00)
+                        || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Personal_Guarantor_SSN__c)) == 1.00)) {
 
-                duplicateApplication.applicationId = existingApplication.Id;
-                duplicateApplication.applicationName = existingApplication.Name;
-                duplicateApplication.legalBusinessName = existingApplication.Opportunity_Name_Text__c;
-                duplicateApplication.addressLine1 = existingApplication.Physical_Street__c;
-                duplicateApplication.city = existingApplication.Physical_City__c;
-                duplicateApplication.state = existingApplication.Physical_State__c;
-                duplicateApplication.postalCode = existingApplication.Physical_Zip_Postal_Code__c;
-                duplicateApplication.applicationStatus = existingApplication.Status__c;
-                duplicateApplication.creditDecision = existingApplication.Credit_Decision__c;
-                duplicateApplication.taxId = existingApplication.Tax_Payer_ID_number__c;
-                duplicateApplication.pgSSN = existingApplication.Personal_Guarantor_SSN__c;
-                duplicateApplication.program = existingApplication.Program__c;
-                duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
-                duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
-                duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Approved_Credit_Limit__c);
-                duplicateApplication.applicationDecisionedDate = existingApplication.Decision_Date__c;
+                    ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
-                existingExposureApplications.add(duplicateApplication);
+                    duplicateApplication.applicationId = existingApplication.Id;
+                    duplicateApplication.applicationName = existingApplication.Name;
+                    duplicateApplication.legalBusinessName = existingApplication.Opportunity_Name_Text__c;
+                    duplicateApplication.addressLine1 = existingApplication.Physical_Street__c;
+                    duplicateApplication.city = existingApplication.Physical_City__c;
+                    duplicateApplication.state = existingApplication.Physical_State__c;
+                    duplicateApplication.postalCode = existingApplication.Physical_Zip_Postal_Code__c;
+                    duplicateApplication.applicationStatus = existingApplication.Status__c;
+                    duplicateApplication.creditDecision = existingApplication.Credit_Decision__c;
+                    duplicateApplication.taxId = existingApplication.Tax_Payer_ID_number__c;
+                    duplicateApplication.pgSSN = existingApplication.Personal_Guarantor_SSN__c;
+                    duplicateApplication.program = existingApplication.Program__c;
+                    duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
+                    duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
+                    duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Approved_Credit_Limit__c);
+                    duplicateApplication.applicationDecisionedDate = existingApplication.Decision_Date__c;
+
+                    existingExposureApplications.add(duplicateApplication);
+                }
             }
         }
         return existingExposureApplications;
@@ -151,37 +167,45 @@ public without sharing class CreditUtil_ExistingExposure {
 
         for (CP_Application_Request__c existingApplication : existingApplications) {
 
-            if((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Company_Legal_Name__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Physical_Address_Line_1__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State_Province__c) >= 0.75 &&
-                    JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Postal_Code__c) >= 0.75)
-                    || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
-                    || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone__c) == 1.00)
-                    || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Guarantor_Social_Security_Number__c)) == 1.00)) {
+            // Consider the application for existing exposure if it was created under 12 months ago OR was flagged for fraud
+            if (existingApplication.CreatedDate > System.now().addMonths(-12) || existingApplication.Fraud_Flag__c) {
 
-                ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
+                // Consider existing exposure if the business is a 75% match compared the to current application
+                // OR the DUNS # matches the current application
+                // OR the business phone matches the current application
+                // OR the PG SSN matches the current application
+                if((JaroWinklerDistance.getScore(request.legalBusinessName, existingApplication.Company_Legal_Name__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.addressLine1, existingApplication.Physical_Address_Line_1__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State_Province__c) >= 0.75 &&
+                        JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Postal_Code__c) >= 0.75)
+                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
+                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone__c) == 1.00)
+                        || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Guarantor_Social_Security_Number__c)) == 1.00)) {
 
-                duplicateApplication.applicationId = existingApplication.Id;
-                duplicateApplication.applicationName = existingApplication.Name;
-                duplicateApplication.legalBusinessName = existingApplication.Company_Legal_Name__c;
-                duplicateApplication.addressLine1 = existingApplication.Physical_Address_Line_1__c;
-                duplicateApplication.city = existingApplication.Physical_City__c;
-                duplicateApplication.state = existingApplication.Physical_State_Province__c;
-                duplicateApplication.postalCode = existingApplication.Physical_Postal_Code__c;
-                duplicateApplication.applicationStatus = existingApplication.Status__c;
-                duplicateApplication.creditDecision = existingApplication.Credit_Decision__c;
-                duplicateApplication.taxId = existingApplication.Taxpayer_ID__c;
-                duplicateApplication.pgSSN = existingApplication.Guarantor_Social_Security_Number__c;
-                duplicateApplication.program = existingApplication.Program__c;
-                duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
-                duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
-                duplicateApplication.phone = existingApplication.Business_Phone__c;
-                duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
-                duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Credit_Line_Approved__c);
-                duplicateApplication.applicationDecisionedDate = existingApplication.Application_Decisioned_Date__c;
+                    ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
-                existingExposureApplications.add(duplicateApplication);
+                    duplicateApplication.applicationId = existingApplication.Id;
+                    duplicateApplication.applicationName = existingApplication.Name;
+                    duplicateApplication.legalBusinessName = existingApplication.Company_Legal_Name__c;
+                    duplicateApplication.addressLine1 = existingApplication.Physical_Address_Line_1__c;
+                    duplicateApplication.city = existingApplication.Physical_City__c;
+                    duplicateApplication.state = existingApplication.Physical_State_Province__c;
+                    duplicateApplication.postalCode = existingApplication.Physical_Postal_Code__c;
+                    duplicateApplication.applicationStatus = existingApplication.Status__c;
+                    duplicateApplication.creditDecision = existingApplication.Credit_Decision__c;
+                    duplicateApplication.taxId = existingApplication.Taxpayer_ID__c;
+                    duplicateApplication.pgSSN = existingApplication.Guarantor_Social_Security_Number__c;
+                    duplicateApplication.program = existingApplication.Program__c;
+                    duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
+                    duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
+                    duplicateApplication.phone = existingApplication.Business_Phone__c;
+                    duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
+                    duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Credit_Line_Approved__c);
+                    duplicateApplication.applicationDecisionedDate = existingApplication.Application_Decisioned_Date__c;
+
+                    existingExposureApplications.add(duplicateApplication);
+                }
             }
         }
         return existingExposureApplications;
@@ -376,7 +400,7 @@ public without sharing class CreditUtil_ExistingExposure {
                 'AND Status__c IN :OTR_APP_STATUSES ' +
                 'ORDER BY Id), ' +
                 'Application_Request__c( ' +
-                'Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c, ' +
+                'Id, Name, CreatedDate, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c, ' +
                 'Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, ' +
                 'Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c, Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c ' +
                 'WHERE Id NOT IN :appIds ' +
