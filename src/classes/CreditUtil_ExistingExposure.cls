@@ -319,7 +319,7 @@ public without sharing class CreditUtil_ExistingExposure {
         Map<Id, Contact> existingContactMap = new Map<Id, Contact>((List<Contact>) search.query(contactQuery)[0]);
 
         // Second, take the IDs of the matching contacts and find the Application Request objects with those Account IDs
-        List<SObject> appRequestWithPGSSNMatch = [SELECT Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
+        List<SObject> appRequestWithPGSSNMatch = [SELECT Id, CreatedDate, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
                 Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
                 Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c FROM Application_Request__c WHERE Personal_Guarantor__c IN :existingContactMap.keySet() AND Status__c IN :NAFLEET_APP_STATUSES AND Id != :request.applicationId];
 
@@ -360,7 +360,7 @@ public without sharing class CreditUtil_ExistingExposure {
         Map<Id, Account> existingAccountMap = new Map<Id, Account>((List<Account>) search.query(accountQuery)[0]);
 
         // Second, take the IDs of the matching accounts and find the Application Request objects with those Account IDs
-        List<SObject> appRequestWithPhoneOrTaxMatch = [SELECT Id, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
+        List<SObject> appRequestWithPhoneOrTaxMatch = [SELECT Id, CreatedDate, Name, Account_Name__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
                 Personal_Guarantor_SSN__c, Business_Phone_Number__c, DNB_Resolved_DUNS__c, Status__c, Credit_Decision__c, Tax_Payer_ID_number__c,Program__c, Fraud_Flag__c,
                 Credit_Line_Requested__c,Approved_Credit_Limit__c, Decision_Date__c
                 FROM Application_Request__c
