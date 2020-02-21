@@ -257,6 +257,20 @@ global class UtilityClass {
         }
         return myObjectName;
     }
+
+    // get sObject field. Standard .get doesn't support relations
+    public static Object getSObjectField(sObject sObj, String fieldRef) {
+
+        List<String> fieldList = fieldRef.split('\\.');
+
+        for (Integer i = 0; i < fieldList.size() - 1; i++) {
+            sObj = (sObject) sObj.getSobject(fieldList[i]);
+            if (sObj == null) return null;
+        }
+
+        return sObj.get(fieldList[fieldList.size()-1]);
+    }
+
     //get record type id using developer name...no query!
     public static Id getRecTypeByDevName(String objName, String recTypeName){
         return Schema.getGlobalDescribe().get(objName).getDescribe().getRecordTypeInfosByDeveloperName().get(recTypeName).getRecordTypeId();
