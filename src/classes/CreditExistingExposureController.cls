@@ -54,6 +54,7 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.duns = onlineApplications[0].DNB_Resolved_DUNS__c;
                 existingExposureRequest.taxID = onlineApplications[0].Federal_Tax_ID__c;
                 existingExposureRequest.pgSSN = onlineApplications[0].AO_Social_Security_Number__c;
+                existingExposureRequest.createdDate = onlineApplications[0].CreatedDate;
 
                 originalRequest = existingExposureRequest.clone();
 
@@ -82,6 +83,7 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.duns = cpApplicationRequests[0].DNB_Resolved_DUNS__c;
                 existingExposureRequest.taxID = cpApplicationRequests[0].Taxpayer_ID__c;
                 existingExposureRequest.pgSSN = cpApplicationRequests[0].Guarantor_Social_Security_Number__c;
+                existingExposureRequest.createdDate = cpApplicationRequests[0].CreatedDate;
 
                 originalRequest = existingExposureRequest.clone();
 
@@ -109,6 +111,7 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.taxID = naApplicationRequests[0].Tax_Payer_ID_number__c;
                 existingExposureRequest.pgSSN = naApplicationRequests[0].Personal_Guarantor_SSN__c;
                 existingExposureRequest.duns = naApplicationRequests[0].DNB_Resolved_DUNS__c;
+                existingExposureRequest.createdDate = naApplicationRequests[0].CreatedDate;
 
                 originalRequest = existingExposureRequest.clone();
 

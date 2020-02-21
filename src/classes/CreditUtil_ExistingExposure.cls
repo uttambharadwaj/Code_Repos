@@ -96,6 +96,7 @@ public without sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.fraudFlag = existingApplication.Fraud_Flag__c;
                     duplicateApplication.duns = existingApplication.DNB_Resolved_DUNS__c;
                     duplicateApplication.phone = existingApplication.Phone_Number__c;
+                    duplicateApplication.createdDate = existingApplication.CreatedDate;
                     if (null != existingApplication.Submitted_to_Credit__c) {
                         duplicateApplication.applicationCreatedDate = Date.newInstance(existingApplication.Submitted_to_Credit__c.year(), existingApplication.Submitted_to_Credit__c.month(), existingApplication.Submitted_to_Credit__c.day());
                     }
@@ -153,6 +154,7 @@ public without sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
                     duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Approved_Credit_Limit__c);
                     duplicateApplication.applicationDecisionedDate = existingApplication.Decision_Date__c;
+                    duplicateApplication.createdDate = existingApplication.CreatedDate;
 
                     existingExposureApplications.add(duplicateApplication);
                 }
@@ -203,6 +205,7 @@ public without sharing class CreditUtil_ExistingExposure {
                     duplicateApplication.creditLineRequested = String.valueOf(existingApplication.Credit_Line_Requested__c);
                     duplicateApplication.creditLineApproved = String.valueOf(existingApplication.Credit_Line_Approved__c);
                     duplicateApplication.applicationDecisionedDate = existingApplication.Application_Decisioned_Date__c;
+                    duplicateApplication.createdDate = existingApplication.CreatedDate;
 
                     existingExposureApplications.add(duplicateApplication);
                 }
@@ -504,6 +507,7 @@ public without sharing class CreditUtil_ExistingExposure {
         public String taxID { get; set; }
         public String phone { get; set; }
         public String pgSSN { get; set; }
+        public Datetime createdDate { get; set; }
     }
 
     public class ExistingExposureApplications {
@@ -527,6 +531,7 @@ public without sharing class CreditUtil_ExistingExposure {
         public Boolean fraudFlag { get; set; }
         public String duns { get; set; }
         public String phone { get; set; }
+        public Datetime createdDate { get; set; }
     }
 
     public class ExistingExposureAccounts {
