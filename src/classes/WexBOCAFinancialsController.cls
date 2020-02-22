@@ -260,7 +260,6 @@ public class WexBOCAFinancialsController {
                 try {
                     insert applicationAttachment;
                     if (attachToFleetEnrollment(docType.fieldName) && fleetEnrollment != null) {
-                        System.debug('inside attach to fleet enrollment if');
                         fleetEnrollmentAttachment = applicationAttachment.clone();
                         fleetEnrollmentAttachment.ParentId = fleetEnrollment.Id;
                     }
@@ -344,7 +343,6 @@ public class WexBOCAFinancialsController {
     }
 
     public Boolean attachToFleetEnrollment (String attachmentName) {
-        System.debug('inside attach to fleet enrollment method');
 
         if (attachmentName.containsIgnoreCase('Direct_Debit_Form') || attachmentName.containsIgnoreCase('Voided_Check')) {
             return true;
