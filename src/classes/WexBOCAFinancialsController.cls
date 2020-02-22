@@ -47,6 +47,8 @@ public class WexBOCAFinancialsController {
 
     public WeFormObject__c weFrom { get; set; }
 
+    public FleetEnrollment__c fleetEnrollment { get; set; }
+
     // sub-class to help facilitate document upload
     public class DocumentType {
         public String fieldName {get; set;}
@@ -215,6 +217,13 @@ public class WexBOCAFinancialsController {
                     appReq = appReqs[0];
                 }
                 System.debug('app req: ' + appReq);
+
+                List<FleetEnrollment__c> fleetEnrollments = [SELECT Id FROM FleetEnrollment__c WHERE Application_Request__c =: appReqs[0].Id];
+
+                if (fleetEnrollments.size() > 0) {
+                    fleetEnrollment = fleetEnrollments[0];
+                }
+
                 String configuredDocTypes = program.BOCA_Requested_Financial_Documents__c;
                 List<String> documentTypes = new List<String>();
                 if (String.isNotEmpty(configuredDocTypes)) {
@@ -238,6 +247,7 @@ public class WexBOCAFinancialsController {
             if (docType.attachmentBody != null && docType.attachmentName != null) {
 
                 Attachment applicationAttachment = new Attachment();
+                Attachment fleetEnrollmentAttachment = new Attachment();
                 System.debug('attachment name: ' + docType.fieldName);
 
                 applicationAttachment.Body = docType.attachmentBody;
@@ -249,12 +259,19 @@ public class WexBOCAFinancialsController {
 
                 try {
                     insert applicationAttachment;
+                    if (attachToFleetEnrollment(docType.fieldName) && fleetEnrollment != null) {
+                        System.debug('inside attach to fleet enrollment if');
+                        fleetEnrollmentAttachment = applicationAttachment.clone();
+                        fleetEnrollmentAttachment.ParentId = fleetEnrollment.Id;
+                    }
+                    if (fleetEnrollmentAttachment != null) insert fleetEnrollmentAttachment;
                 }
                 catch (Exception e) {
                     System.debug(e);
                 }
                 finally {
                     applicationAttachment.Body = null;
+                    fleetEnrollmentAttachment.Body = null;
                 }
             }
         }
@@ -324,6 +341,16 @@ public class WexBOCAFinancialsController {
             return '';
         }
 
+    }
+
+    public Boolean attachToFleetEnrollment (String attachmentName) {
+        System.debug('inside attach to fleet enrollment method');
+
+        if (attachmentName.containsIgnoreCase('Direct_Debit_Form') || attachmentName.containsIgnoreCase('Voided_Check')) {
+            return true;
+        }
+
+        return false;
     }
     
 }
