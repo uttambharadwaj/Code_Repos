@@ -31,7 +31,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         };
 
         List<String> commonFields = new List<String>();
-        stdController.addFields(caseFields);
+        if (!Test.isRunningTest()) stdController.addFields(caseFields);
 
         this.currentCase = (Case) stdController.getRecord();
         if (currentCase.recordTypeId != null) this.recordTypeId = currentCase.recordTypeId;

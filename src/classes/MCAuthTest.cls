@@ -1,5 +1,5 @@
 @IsTest
-public class MCAuthTest {
+public class MCAuthTest { // TODO move to test class dispatcher
 
     public final static String TRIGGERED_EMAIL_KEY = 'TestTriggeredEmail';
 
