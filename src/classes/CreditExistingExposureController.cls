@@ -37,7 +37,7 @@ public with sharing class CreditExistingExposureController {
 
         if(((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
-            List<OnlineApplication__c> onlineApplications = [SELECT Id, Name, Legal_Business_Name__c, Business_Street_Address__c, Business_Address_Line_2__c,
+            List<OnlineApplication__c> onlineApplications = [SELECT Id, CreatedDate, Name, Legal_Business_Name__c, Business_Street_Address__c, Business_Address_Line_2__c,
                     City__c, State__c, Zip_Code__c, Federal_Tax_ID__c, DNB_Resolved_DUNS__c, Phone_Number__c, AO_Social_Security_Number__c
             FROM OnlineApplication__c WHERE Id =: applicationId];
 
@@ -54,6 +54,7 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.duns = onlineApplications[0].DNB_Resolved_DUNS__c;
                 existingExposureRequest.taxID = onlineApplications[0].Federal_Tax_ID__c;
                 existingExposureRequest.pgSSN = onlineApplications[0].AO_Social_Security_Number__c;
+                existingExposureRequest.createdDate = onlineApplications[0].CreatedDate;
 
                 originalRequest = existingExposureRequest.clone();
 
@@ -65,7 +66,7 @@ public with sharing class CreditExistingExposureController {
         }
         else if(((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('CP_Application_Request__c')) {
 
-            List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Name, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c,
+            List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, CreatedDate, Name, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c,
                     Business_Phone__c, DNB_Resolved_DUNS__c, Taxpayer_ID__c, Guarantor_Social_Security_Number__c
             FROM CP_Application_Request__c WHERE Id =: applicationId];
 
@@ -82,6 +83,7 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.duns = cpApplicationRequests[0].DNB_Resolved_DUNS__c;
                 existingExposureRequest.taxID = cpApplicationRequests[0].Taxpayer_ID__c;
                 existingExposureRequest.pgSSN = cpApplicationRequests[0].Guarantor_Social_Security_Number__c;
+                existingExposureRequest.createdDate = cpApplicationRequests[0].CreatedDate;
 
                 originalRequest = existingExposureRequest.clone();
 
@@ -92,7 +94,7 @@ public with sharing class CreditExistingExposureController {
         }
         else if(((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('Application_Request__c')) {
 
-            List<Application_Request__c> naApplicationRequests = [SELECT Id, Name, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
+            List<Application_Request__c> naApplicationRequests = [SELECT Id, CreatedDate, Name, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c, Physical_State__c, Physical_Zip_Postal_Code__c,
                     Tax_Payer_ID_number__c, Business_Phone_Number__c, Personal_Guarantor_SSN__c, DNB_Resolved_DUNS__c
             FROM Application_Request__c WHERE Id =: applicationId];
 
@@ -109,6 +111,7 @@ public with sharing class CreditExistingExposureController {
                 existingExposureRequest.taxID = naApplicationRequests[0].Tax_Payer_ID_number__c;
                 existingExposureRequest.pgSSN = naApplicationRequests[0].Personal_Guarantor_SSN__c;
                 existingExposureRequest.duns = naApplicationRequests[0].DNB_Resolved_DUNS__c;
+                existingExposureRequest.createdDate = naApplicationRequests[0].CreatedDate;
 
                 originalRequest = existingExposureRequest.clone();
 
