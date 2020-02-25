@@ -8,7 +8,7 @@ public class MCTriggeredEmailControllerTest {
 
         Test.startTest();
 
-        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'MCAuth', 'MarketingCloudTriggeredEmail'}));
+        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'MCConnector', 'MarketingCloudTriggeredEmail'}));
 
         ApexPages.StandardController sc = new ApexPages.StandardController(testCase);
 
@@ -16,7 +16,7 @@ public class MCTriggeredEmailControllerTest {
         Test.setCurrentPage(mcTriggeredEmailPage);
 
         MCTriggeredEmailController mcTriggerEmailTest = new MCTriggeredEmailController(sc);
-        mcTriggerEmailTest.selectedMCTriggeredEmailKey = MCAuthTest.TRIGGERED_EMAIL_KEY;
+        mcTriggerEmailTest.selectedMCTriggeredEmailKey = MCConnectorTest.TRIGGERED_EMAIL_KEY;
         mcTriggerEmailTest.sendMCTriggeredEmail();
         Test.stopTest();
 

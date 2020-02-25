@@ -193,11 +193,11 @@ public class TestClassDispatcher {
         MCTriggeredEmailControllerTest.testMCTriggeredEmailController();
     }
 
-    @IsTest static void testMCAuthTest() {
-        MCAuthTest.testMarketingCloudAuth();
+    @IsTest static void testMCConnector() {
+        MCConnectorTest.testMarketingCloudAuth();
     }
 
     @IsTest static void testMCTriggeredEmail() {
-        MCAuthTest.testMarketingCloudTriggeredEmail();
+        MCConnectorTest.testMarketingCloudTriggeredEmail();
     }
 }

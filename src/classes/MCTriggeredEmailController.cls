@@ -108,7 +108,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 mcData.toAddress = toEmail;
                 mcData.subscriberKey = currentCase.ContactId != null ? currentCase.ContactId : toEmail;
 
-                MCAuth mcConnector = new MCAuth();
+                MCConnector mcConnector = new MCConnector();
                 mcConnector.mcData = mcData;
 
                 if (mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey)) {

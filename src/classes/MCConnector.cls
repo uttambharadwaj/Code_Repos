@@ -1,4 +1,4 @@
-public class MCAuth {
+public class MCConnector {
 
     private static String triggeredEmailCallout = 'callout:Marketing_Cloud_Triggered_Email';
     private final static String authCallout = 'callout:Marketing_Cloud_Authorization';
@@ -6,29 +6,32 @@ public class MCAuth {
     private String accessToken { get; set; }
     public MCData mcData;
 
-    public MCAuth() {
+    public MCConnector() {
 
-        mcData = new MCData();
-        HttpRequest req = new HttpRequest();
-        req.setMethod('POST');
-        req.setHeader('Content-type', 'application/json');
-        req.setEndpoint(authCallout);
-        req.setBody(authBody);
+        try {
+            mcData = new MCData();
+            HttpRequest req = new HttpRequest();
+            req.setMethod('POST');
+            req.setHeader('Content-type', 'application/json');
+            req.setEndpoint(authCallout);
+            req.setBody(authBody);
 
-        Http authRequest = new Http();
-        HttpResponse authenticateResponse = authRequest.send(req); // TODO Try catch
-        if (authenticateResponse.getStatusCode() == 200) {
-            String responseBody = authenticateResponse.getBody();
+            Http authRequest = new Http();
+            HttpResponse authenticateResponse = authRequest.send(req);
 
-            MCResponse response = MCResponse.parse(responseBody);
+            if (authenticateResponse.getStatusCode() == 200) {
+                String responseBody = authenticateResponse.getBody();
+                MCResponse response = MCResponse.parse(responseBody);
+                accessToken = response.access_token;
+                System.debug(authenticateResponse.getBody());
 
-            accessToken = response.access_token;
-            System.debug(authenticateResponse.getBody());
+            } else { // TODO Throw exception
+                System.debug(authenticateResponse.getBody());
+                insert UtilityClass.logInternalError(authenticateResponse.getBody(), 'MCConnector Init', '', 'MCConnector', true, '', '');
+                throw new MCConnectorException(authenticateResponse.getBody());
+            }
+        } catch (Exception e) {
 
-        } else { // TODO Throw exception
-            System.debug(authenticateResponse.getBody());
-            //insert UtilityClass.logInternalError(authenticateResponse.getBody(), 'WebDAMConnector Init', '', 'WebDAMConnector', true, '', '');
-            //throw new WebDAMConnectorException(authenticateResponse.getBody());
         }
     }
 
@@ -64,4 +67,6 @@ public class MCAuth {
 
         return successful;
     }
+
+    public class MCConnectorException extends Exception {}
 }

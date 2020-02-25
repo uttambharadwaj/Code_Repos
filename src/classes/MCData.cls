@@ -7,19 +7,19 @@ public class MCData {
 
     public String generateJSON() {
 
-        RootObject objJSONRoot = new RootObject();
+        RootObject rootObj = new RootObject();
 
-        To objLocation = new To();
-        objLocation.address = toAddress;
-        objLocation.subscriberKey = subscriberKey;
+        To toObj = new To();
+        toObj.address = toAddress;
+        toObj.subscriberKey = subscriberKey;
 
         ContactAttributes ca = new ContactAttributes();
         ca.SubscriberAttributes = subscriberAttributes;
 
-        objLocation.ContactAttributes = ca;
-        objJSONRoot.To = objLocation;
+        toObj.ContactAttributes = ca;
+        rootObj.To = toObj;
 
-        return JSON.serialize(objJSONRoot);
+        return JSON.serialize(rootObj);
     }
 
 
