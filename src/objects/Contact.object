@@ -434,6 +434,19 @@ MailingCountry</formula>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Lead_Number__c</fullName>
+        <description>This field stores the auto generated number from the converted lead record</description>
+        <encryptionScheme>None</encryptionScheme>
+        <externalId>false</externalId>
+        <label>Lead Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Location_Name__c</fullName>
         <description>Used for WEX User Contact record type.</description>
         <externalId>false</externalId>

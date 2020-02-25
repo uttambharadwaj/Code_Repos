@@ -1,6 +1,5 @@
 <apex:page sidebar="false" cache="false" expires="0" controller="i2iSearchController">
-
-<style>
+    <style>
     
     .selectedCount {
         color: #666;
@@ -31,8 +30,7 @@
       var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
       if ((evt.keyCode == 13) && (node.type=="text"))  {return false;}
     } 
-    
-    
+
     document.onkeypress = stopRKey; 
     
     // Added by Trekbin to fire the commandButton onclick event, as per the case requirement : 00022611
@@ -96,8 +94,8 @@
         <apex:column headervalue="Select" style="width:100px;">
             <apex:commandbutton value="Open" action="{!l.openlead}" immediate="true"/>&nbsp;
             <apex:commandbutton value="Create Opportunity" action="{!l.convertlead}" immediate="true"/>
-        </apex:column>
-        <apex:column value="{!l.returndatarecord.firstname} {!l.returndatarecord.lastname}" headervalue="Name"/>
+        </apex:column> 
+        <apex:column value="{!l.returndatarecord.company} {!l.returndatarecord.lastname}" headervalue="Name"/>
         <apex:column value="{!l.returndatarecord.company}" headervalue="Company"/>
         <apex:column value="{!l.returndatarecord.state}" headervalue="State"/>
         <apex:column value="{!l.returndatarecord.city}" headervalue="City"/>
@@ -119,11 +117,12 @@
             <!-- <apex:commandbutton value="Open" action="{!c.opencontact}" />&nbsp; -->
             <apex:commandbutton value="Open" action="{!c.openopportunity}" /> &nbsp;
         </apex:column>
+
         <apex:column value="{!c.returndatarecord.firstname} {!c.returndatarecord.lastname}" headervalue="Name"/>
         <apex:column value="{!c.returndatarecord.company}" headervalue="Company"/>
         <apex:column value="{!c.returndatarecord.state}" headervalue="State"/>
         <apex:column value="{!c.returndatarecord.city}" headervalue="City"/>  
-        <apex:column value="{!c.campaignmemberrecord.campaign.name}" headervalue="Campaign"/>
+        <apex:column value="{!c.campaignmemberrecord.campaign.name}" headervalue="Campaign"/>-->
         <!-- <apex:column value="{!c.opportunitycontactrecord.opportunity.Coupon_Code2__c}" headervalue="Coupon Code"/> -->
         <!-- <apex:column value="{!programselected}" headervalue="Program"/>-->
         <apex:column value="{!c.returndatarecord.couponcode}" headervalue="Coupon Code"/>
@@ -132,32 +131,26 @@
         <apex:column value="{!c.returndatarecord.maildate}" headervalue="Mail Date"/>
         <apex:column value="{!c.campaignmemberrecord.contact.owner.name}" headervalue="Owner"/>
         <apex:column value="{!c.opportunitycontactrecord.opportunity.stagename}" headervalue="Stage"/>
-        <!-- <apex:column value="{!c.opportunitycontactrecord.opportunity.Product_Interest__c}" headervalue="Product Interest"/>-->
+        <apex:column value="{!c.opportunitycontactrecord.opportunity.Product_Interest__c}" headervalue="Product Interest"/>
     </apex:pageblocktable>
     <br/> 
     <h1>Recent Campaign Matches</h1>
-    
-     
-     <apex:pageblocktable value="{!nomatchrecordwrappers}" var="nomatch">
-   
+     <apex:pageblocktable value="{!nomatchrecordwrappers}" var="nomatch">   
         <apex:column headervalue="Select" style="width:100px;">
-         
             <apex:commandbutton value="Create Lead" action="{!nomatch.createLeadRedirect}" immediate="true"/>&nbsp;
             <apex:commandbutton value="Create Opportunity" action="{!nomatch.convertLead}" immediate="true" oncomplete="convertChildLead(this);" rerender="demo" status="actionSubmitted"/>
             <!-- Added by Trekbin, to split the DML and Callout into two different transactions -->
             <apex:commandButton action="{!nomatch.convertChildLead}" value="convertChildLead" id="outputPnlConvert" style="display:none;" rerender="pgMsg" status="actionSubmitted"/>
            </apex:column>       
-          
+ 
         <apex:column value="{!nomatch.nomatchi2irecord.firstname} {!nomatch.nomatchi2irecord.lastname}" headervalue="Name"/>
         <apex:column value="{!nomatch.nomatchi2irecord.company}" headerValue="Company"/>
         <apex:column value="{!nomatch.nomatchi2irecord.state}" headervalue="State"/>
         <apex:column value="{!nomatch.nomatchi2irecord.city}" headervalue="City"/>
-        <apex:column value="{!nomatch.nomatchi2irecord.couponcode}" headervalue="Coupon Code"/>
-        <apex:column value="{!nomatch.programname}" headervalue="Program"/>
+        <apex:column value="{!nomatch.nomatchi2irecord.CouponCode}" headervalue="Coupon Code"/>
+        <apex:column value="{!nomatch.ProgramName}" headervalue="Program"/>
         <apex:column value="{!nomatch.nomatchi2irecord.offer}" headervalue="Offer"/>
-        <apex:column value="{!nomatch.nomatchi2irecord.maildate}" headervalue="Mail Date"/>
-        
-        
+        <apex:column value="{!nomatch.nomatchi2irecord.MailDate}" headervalue="Mail Date"/>       
     </apex:pageblocktable>
     <br/>
     <br/>
@@ -171,7 +164,7 @@
     iframeurl: {!iframeurl}-->
 </apex:pageBlock>
 <apex:pageblock title="Salesforce Results">
-    <apex:iframe src="{!iframeurl}" scrolling="true" id="theIframe" width="100%" rendered="{!iframeurlhit}" frameborder="true"/>
+    <iframe src="{!iframeurl}" scrolling="true" id="theIframe" width="100%" rendered="{!iframeurlhit}" frameborder="true"/>
 </apex:pageblock>
 
 </apex:form>

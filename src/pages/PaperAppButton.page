@@ -26,9 +26,15 @@
 
             $j = jQuery.noConflict();
 
+            var appType;
+
+            function TypeSelect(selection) {
+                appType = selection.value;
+            }
+
             function validate() {
 
-                if ($j('[id$=ipAddress]').val() != null && $j('[id$=ipAddress]').val() !== "") {
+                if (($j('[id$=ipAddress]').val() != null && $j('[id$=ipAddress]').val() !== "") || appType === 'convApp') {
                     submitApp();
                 } else {
                     if (confirm('{!JSENCODE($Label.PaperApp_IPAddress)}')) {
@@ -84,7 +90,7 @@
                         <label class="slds-form-element__label" for="appType">
                             {!$Label.PaperApp_AppType}<abbr class="slds-required" title="required">*</abbr>
                         </label>
-                        <apex:selectRadio id="appType" value="{!appType}" layout="pageDirection">
+                        <apex:selectRadio id="appType" value="{!appType}" layout="pageDirection" onclick="TypeSelect(this);">
                             <apex:selectOption id="paperApp" itemLabel="{!$Label.PaperApp_PaperApp}" itemValue="paperApp" />
                             <apex:selectOption id="convApp" itemLabel="{!$Label.PaperApp_Conversion}" itemValue="convApp" rendered="{!IF(paperOnly, false, true)}" itemDisabled="{!IF(paperOnly, true, false)}"/>
                             <apex:actionSupport event="onchange" reRender="tmxIP" />
