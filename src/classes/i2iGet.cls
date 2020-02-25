@@ -21,10 +21,7 @@ public class i2iGet {
 	i2iGet.executeCall (null,'XYZ','2077745816',null,null);
 	
 	*/
-
-
-	public class returnData
-	{
+	public class returnData {
 		public string returnDescription {get;set;}
 		public double isiId {get;set;}
 		public string firstName {get;set;}
@@ -40,18 +37,16 @@ public class i2iGet {
 		public string sicCode {get;set;}
 		public string SFDCContactId {get;set;}
 		public string SFDCParentLeadId {get;set;}
-		//public string SFDCChildLeadId {get;set;}
 		//added new field -phillip
 		public string i2iId {get;set;}
-
 		public string CouponCode{get;set;}
 		public string MailDate{get;set;}
 		public string Offer{get;set;}
-
 		public string phone{get;set;}
 		public string country{get;set;}
 		public string i2icontactid{get;set;}
-	}
+		public String leadNumber { get; set; }
+    }
 	
 	public static boolean inProduction ()
 	{
@@ -125,14 +120,20 @@ public class i2iGet {
      	DateTime endTime = system.now();
      	
      	system.debug('-----Milliseconds To Execute: '+ getDifferenceInMilliSeconds(starttime, endtime));
-     	
+     	System.debug('status ' + + res.getStatus());
      	System.debug('>>>>>' + res.getBody() + '<<<<<<');  
      	
      	List <returnData> rData = (List <returnData>)JSON.deserialize(res.getBody(), List <returnData>.class);
+		List <returnData> successRData = new List<returnData>();
+		for(returnData rd : rData) {
+			if(rd.returnDescription != 'Success') {
+				successRData.add(rd);
+			}
+		}
 		
-		system.debug('-----records returned: ' + rData.size());
+		system.debug('-----records returned: ' + successRData.size());
 		
-     	return rData;
+     	return successRData;
 		
 	}
 	
