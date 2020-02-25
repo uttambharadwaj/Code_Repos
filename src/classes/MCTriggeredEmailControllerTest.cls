@@ -2,12 +2,13 @@
 public class MCTriggeredEmailControllerTest {
 
 
-    @IsTest
     public static void testMCTriggeredEmailController() {
+
+        Case testCase = [ SELECT Id,RecordTypeId FROM Case WHERE RecordTypeId = '0120g000000N2ONAA0' LIMIT 1 ];
 
         Test.startTest();
 
-        Case testCase = [ SELECT Id, RecordTypeId FROM Case WHERE RecordTypeId != NULL ];
+        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'MCAuth', 'MarketingCloudTriggeredEmail'}));
 
         ApexPages.StandardController sc = new ApexPages.StandardController(testCase);
 
@@ -15,8 +16,10 @@ public class MCTriggeredEmailControllerTest {
         Test.setCurrentPage(mcTriggeredEmailPage);
 
         MCTriggeredEmailController mcTriggerEmailTest = new MCTriggeredEmailController(sc);
-
-        // TODO insert metadata records
+        mcTriggerEmailTest.selectedMCTriggeredEmailKey = MCAuthTest.TRIGGERED_EMAIL_KEY;
+        mcTriggerEmailTest.sendMCTriggeredEmail();
         Test.stopTest();
+
+        System.assertEquals(true, mcTriggerEmailTest.emailSent);
     }
 }

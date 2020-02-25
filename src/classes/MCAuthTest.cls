@@ -1,10 +1,9 @@
 @IsTest
-public class MCAuthTest { // TODO move to test class dispatcher
+public class MCAuthTest {
 
     public final static String TRIGGERED_EMAIL_KEY = 'TestTriggeredEmail';
 
-    @IsTest
-    static void testMarketingCloudAuth() {
+    public static void testMarketingCloudAuth() {
 
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'MCAuth'}));
@@ -15,8 +14,7 @@ public class MCAuthTest { // TODO move to test class dispatcher
 
     }
 
-    @IsTest
-    static void testMarketingCloudTriggeredEmail() {
+    public static void testMarketingCloudTriggeredEmail() {
 
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'MCAuth', 'MarketingCloudTriggeredEmail'}));

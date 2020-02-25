@@ -2,5 +2,5 @@
 <StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
     <cacheControl>Public</cacheControl>
     <contentType>text/plain</contentType>
-    <description>Test_Data_MC_Triggered_Email</description>
+    <description>Test_Data_Case</description>
 </StaticResource>
