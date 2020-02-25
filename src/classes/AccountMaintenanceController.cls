@@ -23,6 +23,8 @@ public class AccountMaintenanceController {
     public Boolean isBroken { get; set; }
     
     public String didLength { get; set; }
+
+    public String onlineUrl { get; set; }
     
     public void init() {
         
@@ -48,6 +50,10 @@ public class AccountMaintenanceController {
                 }
                 else {
                     didLength = program.DID_Length__c;
+                    if (String.isEmpty(program.Service_Program_Website__c))
+                        onlineUrl = '';
+                    else
+                        onlineUrl = program.Service_Program_Website__c.contains('://') ? program.Service_Program_Website__c : 'http://' +program.Service_Program_Website__c;
                 }
                 
                 Id brandingUtilityId = WexBrandingController.getBrandingUtilityByProgramId(cases[0].Account.Program__c, languageCode);

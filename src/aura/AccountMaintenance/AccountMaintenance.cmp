@@ -5,6 +5,7 @@
 <aura:component implements="lightning:isUrlAddressable,force:hasRecordId" description="AccountMaintenance">
     <aura:attribute name="recordId" type="String" />
     <aura:attribute name="didLength" type="String" />
+    <aura:attribute name="onlineUrl" type="String" />
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     <lightning:flow aura:id="flowData" />
     {!v.pageReference.state.c__action}

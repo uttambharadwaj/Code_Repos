@@ -200,7 +200,7 @@
         //Create Lightning Component
         $Lightning.use("c:AccountMaintenanceScreens", function() {
             $Lightning.createComponent("c:AccountMaintenance",
-                { "recordId" : caseId, "didLength" : "{!didLength}" }, //Pass Parameter
+                { "recordId" : caseId, "didLength" : "{!didLength}", "onlineUrl" :{!onlineUrl} }, //Pass Parameter
                 "LightningContainer", function(component) {
                     console.log('Component created');
                 });

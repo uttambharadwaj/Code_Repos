@@ -16,6 +16,11 @@
                 name: 'recordId',
                 type: 'String',
                 value: component.get('v.recordId')
+            },
+            {
+                name: 'onlineUrl',
+                type: 'String',
+                value: component.get('v.onlineUrl')
             }
         ]
         
