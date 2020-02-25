@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-6" id="cancelButton">
-                    <button type="submit" class="btn btn-secondary w-100">Cancel</button>
+                    <button type="reset" class="btn btn-secondary w-100" onclick="window.close();">Cancel</button>
                 </div>
                 <div class="col-6" id="sendButton">
                     <apex:commandButton styleClass="btn btn-danger w-100" value="Send"
