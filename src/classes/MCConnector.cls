@@ -9,6 +9,7 @@ public class MCConnector {
     public MCConnector() {
 
         try {
+
             mcData = new MCData();
             HttpRequest req = new HttpRequest();
             req.setMethod('POST');
@@ -25,43 +26,42 @@ public class MCConnector {
                 accessToken = response.access_token;
                 System.debug(authenticateResponse.getBody());
 
-            } else { // TODO Throw exception
-                System.debug(authenticateResponse.getBody());
+            } else {
                 insert UtilityClass.logInternalError(authenticateResponse.getBody(), 'MCConnector Init', '', 'MCConnector', true, '', '');
-                throw new MCConnectorException(authenticateResponse.getBody());
+                throw new MCConnectorException('Unable to authenticate with Marketing Cloud.');
             }
         } catch (Exception e) {
-
+            insert UtilityClass.logInternalError(e, '', 'MCConnector', true, '', '');
+            throw new MCConnectorException('Unable to authenticate with Marketing Cloud.');
         }
     }
 
     public Boolean sendTriggeredEmail(String key) {
 
         Boolean successful = false;
-
         HttpRequest req = new HttpRequest();
 
         req.setMethod('POST');
         req.setEndpoint(triggeredEmailCallout +'/key:'+key+'/send?account_id=100029437');
-
         req.setHeader('Content-Type', 'application/json');
         req.setHeader('Authorization', 'Bearer ' + accessToken);
-
-
-
 
         try {
 
             req.setBody(mcData.generateJSON());
-            Http searchRequuest = new Http();
-            HttpResponse postResponse = searchRequuest.send(req);
+            Http sendEmailReq = new Http();
+            HttpResponse postResponse = sendEmailReq.send(req);
             String resBody = postResponse.getBody();
-            System.debug(resBody);
-            if (resBody.contains('"Queued"')) successful = true;
 
-        } catch (Exception e) { // TODO Better error  handling
-            System.debug(e);
-            System.debug(e.getLineNumber());
+            if (resBody.contains('"Queued"')) successful = true;
+            else {
+                insert UtilityClass.logInternalError(resBody, 'MCConnector sendTriggeredEmail', '', 'MCConnector', true, '', '');
+                throw new MCConnectorException('Unable to send message.');
+            }
+
+        } catch (Exception e) {
+            insert UtilityClass.logInternalError(e, '', 'MCConnector', true, '', '');
+            throw new MCConnectorException('Unable to send message.');
         }
 
 
