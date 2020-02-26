@@ -22,11 +22,12 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
     public Map<String, Object> subscriberAttributes;
 
-    Public void init(){
+    public void init() {
 
 
         sObject triggeredEmailKeyObj;
         MC_Triggered_Email__mdt triggeredEmailConfig;
+        String objectName = (String) UtilityClass.getObjName((Id)pageObj.get('Id'));
 
         this.subscriberAttributes = new Map<String, Object>();
         this.emailSent = false;
@@ -34,7 +35,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         this.mcTriggeredEmailKeys = new List<SelectOption>();
 
         Map<String, SObjectType> globalDescribe = Schema.getGlobalDescribe();
-        Map<String, Schema.SObjectField> validCaseFields = globalDescribe.get('Case').getDescribe().fields.getMap();
+        Map<String, Schema.SObjectField> validPageObjFields = globalDescribe.get(objectName).getDescribe().fields.getMap();
         Map<String, Schema.SObjectField> triggeredEmailKeyFields = globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
 
 
@@ -70,13 +71,13 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             return;
         }
 
-        // Add valid case fields to list
+        // Add valid fields to list
         for (String field : triggeredEmailKeyFields.keySet()) {
 
             if (triggeredEmailKeyObj.get(field) != null) {
 
                 String fieldValue = (String) triggeredEmailKeyObj.get(field);
-                if (validCaseFields.get(fieldValue) != null || fieldValue.contains('.')) {
+                if (validPageObjFields.get(fieldValue) != null || fieldValue.contains('.')) {
                     pageObjFields.add(fieldValue);
                     commonFields.add(field);
                 }
@@ -87,7 +88,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
         try {
             // We don't know what all fields we need until after we have the custom metadata records but we do need the record type before getting the custom metadata.
-            this.pageObj = Database.query('SELECT ' + String.join(pageObjFields, ',') + ' FROM '+ UtilityClass.getObjName((Id)pageObj.get('Id')) +' WHERE Id = :objId');
+            this.pageObj = Database.query('SELECT ' + String.join(pageObjFields, ',') + ' FROM '+ objectName +' WHERE Id = :objId');
         } catch (Exception e) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
             this.showForm = false;
@@ -130,11 +131,11 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     // Constructor for page
     public MCTriggeredEmailController(ApexPages.StandardController stdController) {
 
-        List<String> caseFields = new List<String>{
-                'recordTypeId', 'Id', 'ContactId'
+        List<String> pageObjFields = new List<String>{
+                'recordTypeId', 'Id'
         };
 
-        if (!Test.isRunningTest()) stdController.addFields(caseFields);
+        if (!Test.isRunningTest()) stdController.addFields(pageObjFields);
         this.pageObj2 = stdController.getRecord();
     }
 
