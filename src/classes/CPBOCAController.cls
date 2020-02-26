@@ -246,7 +246,7 @@ public class CPBOCAController {
     public Boolean isBankInfoNeeded {
         get {
             if (creditApp != null) {
-                if (null != creditApp.Payment_Type__c && creditApp.Payment_Type__c.equalsIgnoreCase('ET')) {
+                if (null != creditApp.Payment_Type__c && creditApp.Payment_Type__c.equalsIgnoreCase('Debit ACH')) {
                     return true;
                 }
             }
@@ -265,6 +265,22 @@ public class CPBOCAController {
         }
     }
 
+    public List<SelectOption> paymentMethodOptions {
+        get {
+            List<SelectOption> paymentOptions = UtilityClass.multiSelectToBOCAPickList(program.Available_Payment_Methods__c);
+
+            // if our customer selects a physical country outside of the US or CA we need to remove ACH from the payment options
+            if (creditApp.Physical_Country__c != null && !creditApp.Physical_Country__c.equalsIgnoreCase('US') && !creditApp.Physical_Country__c.equalsIgnoreCase('CA')) {
+                for (Integer i = 0; i < paymentOptions.size(); i++) {
+                    if (paymentOptions[i].getValue() == 'Debit ACH') { paymentOptions.remove(i); }
+                    if (paymentOptions[i].getValue() == 'Credit ACH') { paymentOptions.remove(i); }
+                }
+            }
+
+            return paymentOptions;
+        }
+    }
+
     public void doNothing() {
 
     }
@@ -274,8 +290,6 @@ public class CPBOCAController {
 
     // Language Code for the BOCA
     public String languageCode { get; set; }
-
-
 
     // Branding utility related to the program
     public BOCA_res__c brandingUtility { get; set; }

@@ -10,16 +10,47 @@
 
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <title>BOCA To Prospect</title>
+        <title>Submit Credit App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link href="{!URLFOR($Resource.FontAwesome, 'font-awesome-4.7.0/css/font-awesome.min.css')}" rel="stylesheet"/>
         <apex:slds />
 
+        <!-- Imported Scripts -->
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment-with-locales.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" />
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" />
+
+        <script>
+
+            $j = jQuery.noConflict();
+
+            var appType;
+
+            function TypeSelect(selection) {
+                appType = selection.value;
+            }
+
+            function validate() {
+
+                if (($j('[id$=ipAddress]').val() != null && $j('[id$=ipAddress]').val() !== "") || appType === 'convApp') {
+                    submitApp();
+                } else {
+                    if (confirm('{!JSENCODE($Label.PaperApp_IPAddress)}')) {
+                        submitApp();
+                    }
+                }
+
+            }
+
+        </script>
+
     </head>
 
     <apex:pageMessages id="msgs" />
     <apex:form id="PaperAppProgramSelection">
+        <apex:actionFunction name="submitApp" action="{!buildURL}" />
         <apex:outputPanel rendered="{!hasError == false}">
             <article class="slds-card">
                 <div class="slds-card__header slds-grid">
@@ -59,7 +90,7 @@
                         <label class="slds-form-element__label" for="appType">
                             {!$Label.PaperApp_AppType}<abbr class="slds-required" title="required">*</abbr>
                         </label>
-                        <apex:selectRadio id="appType" value="{!appType}" layout="pageDirection">
+                        <apex:selectRadio id="appType" value="{!appType}" layout="pageDirection" onclick="TypeSelect(this);">
                             <apex:selectOption id="paperApp" itemLabel="{!$Label.PaperApp_PaperApp}" itemValue="paperApp" />
                             <apex:selectOption id="convApp" itemLabel="{!$Label.PaperApp_Conversion}" itemValue="convApp" rendered="{!IF(paperOnly, false, true)}" itemDisabled="{!IF(paperOnly, true, false)}"/>
                             <apex:actionSupport event="onchange" reRender="tmxIP" />
@@ -68,8 +99,7 @@
                             <apex:outputPanel rendered="{!appType == 'paperApp'}">
                                 <div class="slds-form-element__control slds-p-left_medium slds-p-top_small">
                                     <apex:outputLabel styleClass="slds-form-element__label" for="ipAddress">Client IP Address</apex:outputLabel> <br />
-                                    <apex:inputText html-placeholder="###.###.###.###" id="ipAddress" value="{!ipAddress}" />
-                                    <div class="slds-form-element__help">{!$Label.PaperApp_IPAddress}</div>
+                                    <apex:inputText styleClass="slds-input slds-size_1-of-8" id="ipAddress" value="{!ipAddress}" maxLength="15" />
                                 </div>
                             </apex:outputPanel>
                         </apex:outputPanel>
@@ -77,7 +107,7 @@
                 </div>
             </article>
             <div class="slds-p-left_medium slds-p-top_medium">
-                <apex:commandButton styleClass="slds-button slds-button_neutral slds-button_stateful slds-not-selected" value="Submit" action="{!buildURL}" />
+                <input type="button" class="slds-button slds-button_neutral slds-button_stateful slds-not-selected" value="Submit" onclick="validate();" />
             </div>
         </apex:outputPanel>
     </apex:form>

@@ -298,7 +298,7 @@ public class UContact {
     // Update Mobile Phone country code based on associated program if mobile number is 10 digits
     public static void updateCountryCode(List<Contact> triggerContacts, Map<Id, Contact> oldMap) {
         GlobalSettings__c globalSettings = GlobalSettings__c.getInstance('Settings');
-        List<String> enabledRecordTypes = globalSettings.Country_Code_Enabled_RecordTypes__c != null ? globalSettings.Country_Code_Enabled_RecordTypes__c.split(';') : new List<String>();
+        List<String> enabledRecordTypes = globalSettings != null && globalSettings.Country_Code_Enabled_RecordTypes__c != null ? globalSettings.Country_Code_Enabled_RecordTypes__c.split(';') : new List<String>();
 
         // Get list of program ids
         List<Id> programIds = new List<Id>();

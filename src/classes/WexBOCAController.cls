@@ -53,6 +53,14 @@ public class WexBOCAController {
                 else if (pg == 'a') {
                     return true;
                 }
+                else if (pg == 'b' && creditApp.Years_in_Business__c != null) {
+                    Boolean inBusinessOverYear = (creditApp.Years_in_Business__c).isNumeric();
+                    if (!inBusinessOverYear) {
+                        return true;
+                    } else if (Integer.valueOf(creditApp.Years_in_Business__c) <= 3 && creditApp.Fleet_Size__c <= 5) {
+                        return true;
+                    }
+                }
                 else if ((program.BOCA_Type__c).equalsIgnoreCase('Revolver Card') || (creditApp != null && creditApp.Years_in_Business__c != null && (creditApp.Years_in_Business__c).isNumeric() == false)) {
                     return true;
                 }
@@ -186,6 +194,24 @@ public class WexBOCAController {
         }
     }
 
+    public Boolean isUpmarket {
+        get {
+            if (program != null) {
+                return program.Use_Upmarket__c;
+            }
+            return false;
+        }
+    }
+
+    public Boolean requireUpmarketFinancials {
+        get {
+            if (program != null) {
+                return program.Require_Financial_Documents__c;
+            }
+            return false;
+        }
+    }
+
     // Language Code for the BOCA
     public String languageCode { get; set; }
 
@@ -195,6 +221,12 @@ public class WexBOCAController {
                 return 'CA';
             }
             return 'US';
+        }
+    }
+
+    public List<SelectOption> paymentMethodOptions {
+        get {
+            return UtilityClass.multiSelectToBOCAPickList(program.Available_Payment_Methods__c);
         }
     }
 
@@ -350,8 +382,9 @@ public class WexBOCAController {
             List<Program__c> programs = [SELECT Id, Live_Person_Code__c, Publish_BOCA__c, Custom_Email_Header_URL__c,
                     Analytics_Body_Block__c, Analytics_Head_Block__c, Peoplesoft_rel_code__c,
                     Upload_Pricing_Data_Flag__c, T_C__c, Brand_Long_Name__c, BOCA_Disclaimer__c,
-                    Inside_Sales_Phone_Number__c, Brand_Color_1__c, Brand_Color_2__c, Confirmation_Info__c, BOCA_Type__c, Always_Require_PG__c, Financial_Institution_Capture__c
-            FROM Program__c WHERE Brand_Short_Name__c = :programParameter and Form_Template__c = :currentPageName];
+                    Inside_Sales_Phone_Number__c, Brand_Color_1__c, Brand_Color_2__c, Confirmation_Info__c, BOCA_Type__c, Always_Require_PG__c,
+                    Financial_Institution_Capture__c, Use_Upmarket__c, Require_Financial_Documents__c, Available_Payment_Methods__c
+            FROM Program__c WHERE Brand_Short_Name__c = :programParameter AND Form_Template__c = :currentPageName];
 
             // If we have a program, then set it, otherwise, redirect to error page
             if(!programs.isEmpty()) {
@@ -995,8 +1028,16 @@ public class WexBOCAController {
                     beneficialOwner.getParameters().put('lang', languageCode);
                     beneficialOwner.setRedirect(true);
                     return beneficialOwner;
-                }
-                else {
+
+                } else if (isUpmarket && requireUpmarketFinancials) {
+                    PageReference wexBOCAFinancials = Page.WexBOCAFinancials;
+                    wexBOCAFinancials.getParameters().put('id', creditAppId);
+                    wexBOCAFinancials.getParameters().put('pgm', programParameter);
+                    wexBOCAFinancials.getParameters().put('lang', languageCode);
+                    wexBOCAFinancials.setRedirect(true);
+                    return wexBOCAFinancials;
+
+                } else {
                     PageReference wexBOCAConfirmation = Page.WexBOCAConfirmation;
                     wexBOCAConfirmation.getParameters().put('pgm', programParameter);
                     wexBOCAConfirmation.getParameters().put('id', creditAppId);

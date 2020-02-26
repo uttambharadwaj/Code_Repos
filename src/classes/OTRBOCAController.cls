@@ -499,7 +499,7 @@ public class OTRBOCAController {
 
                     // don't generate a ThreatMetrix SessionID for Conversion Apps
                     // use the passed in SessionID for Paper Apps
-                    if (!isConversionApp && !isPaperApp) {
+                    if (!isConversionApp && (!isPaperApp || passedInTMSessionId == null)) {
                         // Generate ThreatMetrix SessionID
                         Datetime dt = Datetime.now();
                         Long l = dt.getTime();
@@ -953,13 +953,13 @@ public class OTRBOCAController {
                 onlineApplication.AO_Last_Name__c = onlineApplication.Contact_Last_Name__c;
             }
 
-            if (!isPaperApp) {
-                onlineApplication.IP_Address__c = ipAddress;
-                onlineApplication.Application_Signer_IP__c = ipAddress;
-            } else if (isPaperApp) {
+            if (isPaperApp && passedInTMSessionId != null) {
                 String paperAppIpAddress = [SELECT IP_Address__c FROM Opportunity WHERE Id =: optyId LIMIT 1].IP_Address__c;
                 onlineApplication.IP_Address__c = paperAppIpAddress;
                 onlineApplication.Application_Signer_IP__c = paperAppIpAddress;
+            } else {
+                onlineApplication.IP_Address__c = ipAddress;
+                onlineApplication.Application_Signer_IP__c = ipAddress;
             }
 
             // Enable_Promotional_Code__c is used to display the promo code box to the user. If it's true and the user entered a value keep that value.

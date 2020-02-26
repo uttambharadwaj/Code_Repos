@@ -3968,4 +3968,18 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <shortDescription>Z_UseSeparateAccountQQ</shortDescription>
         <value>Do you want Service billed to a separate account?</value>
     </labels>
+    <labels>
+        <fullName>Marketing_Cloud</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Marketing Cloud</shortDescription>
+        <value>Marketing Cloud</value>
+    </labels>
+    <labels>
+        <fullName>Quick_Pivot</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quick Pivot</shortDescription>
+        <value>Quick Pivot</value>
+    </labels>
 </CustomLabels>

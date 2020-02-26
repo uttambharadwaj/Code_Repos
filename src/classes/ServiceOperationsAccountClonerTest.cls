@@ -80,13 +80,13 @@ private class ServiceOperationsAccountClonerTest {
         Integer i=0;
         Boolean triedToCloneServiceAccount = false;
         for (Id serviceId : serviceAccountIds) {
-            Account serviceAccount = [SELECT Id, Acct_Row_Id__c, Carrier_ID__c, Name, Phone, Fax, CurrencyIsoCode,  Status__c,  BillingStreet,  BillingCity,  BillingState,  BillingCountry,  BillingPostalCode,  ShippingStreet,  ShippingCity,  ShippingState,  ShippingCountry,  ShippingPostalCode FROM Account WHERE Id =: serviceId];
+            Account serviceAccount = [SELECT Id, Acct_Row_Id__c, Carrier_ID__c, Sponsor_Acct__c, Name, Phone, Fax, CurrencyIsoCode,  Status__c,  BillingStreet,  BillingCity,  BillingState,  BillingCountry,  BillingPostalCode,  ShippingStreet,  ShippingCity,  ShippingState,  ShippingCountry,  ShippingPostalCode FROM Account WHERE Id =: serviceId];
             Id otrAccountId = otrAccountIds.get(i);
-            Account otrAccount = [SELECT Id, Acct_Row_Id__c, Carrier_ID__c, Name, Phone, Fax, CurrencyIsoCode,  Status__c,  BillingStreet,  BillingCity,  BillingState,  BillingCountry,  BillingPostalCode,  ShippingStreet,  ShippingCity,  ShippingState,  ShippingCountry,  ShippingPostalCode FROM Account WHERE Id =: otrAccountId];
+            Account otrAccount = [SELECT Id, Acct_Row_Id__c, Carrier_ID__c, Wex_Account__c, Name, Phone, Fax, CurrencyIsoCode,  Status__c,  BillingStreet,  BillingCity,  BillingState,  BillingCountry,  BillingPostalCode,  ShippingStreet,  ShippingCity,  ShippingState,  ShippingCountry,  ShippingPostalCode FROM Account WHERE Id =: otrAccountId];
 
             System.assertNotEquals(null, otrAccount, 'OTR Account was null for Id '+otrAccountId);
             System.assertEquals(serviceAccount.Id, serviceAccount.Acct_Row_Id__c);
-            System.assertEquals(otrAccount.Carrier_ID__c, serviceAccount.Carrier_ID__c);
+            System.assertEquals(otrAccount.Carrier_ID__c, serviceAccount.Sponsor_Acct__c);
             System.assertEquals(otrAccount.Name, serviceAccount.Name);
             System.assertEquals(otrAccount.Phone, serviceAccount.Phone);
             System.assertEquals(otrAccount.Fax, serviceAccount.Fax);

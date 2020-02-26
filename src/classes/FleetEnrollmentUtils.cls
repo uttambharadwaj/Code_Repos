@@ -42,7 +42,7 @@ public class FleetEnrollmentUtils {
         Map<Id, List<FleetEnrollment_Vehicle__c>> fleetEnrollmentVehicles = new Map<Id, List<FleetEnrollment_Vehicle__c>>();
 
         Map<Id, FleetEnrollment__c> fleetEnrollments = new Map<Id, FleetEnrollment__c>([SELECT Id, Association__c FROM FleetEnrollment__c WHERE Id IN :fleetEnrollmentIds AND Association__c = NULL]);
-        Map<Id, List<Attachment>> fleetEnrollmentAttachments = listToFleetIdMap([SELECT Id,ParentId FROM Attachment WHERE ParentId IN :fleetEnrollmentIds AND ParentId != NULL]);
+        Map<Id, List<Attachment>> fleetEnrollmentAttachments = listToFleetIdMap([SELECT Id,ParentId FROM Attachment WHERE ParentId IN :fleetEnrollmentIds AND ParentId != NULL AND Owner.Name != 'CreditApplication Site Guest User']);
 
         // Determine if additional data is needed for any of the fleetEnrollmentIds
         Set<Id> fleetEnrollmentsNoAttachments = fleetEnrollmentIds.clone();

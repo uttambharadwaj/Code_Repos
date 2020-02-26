@@ -98,6 +98,18 @@ global class UtilityClass {
         }
     }
 
+    // take a multi-select picklist and turn it into a single option picklist for BOCA
+    public static List<SelectOption> multiSelectToBOCAPickList (String multiSelectField) {
+        List<SelectOption> picklistValues = new List<SelectOption>();
+        picklistValues.add(new SelectOption('#', '--Choose One--'));
+        if (multiSelectField != null) {
+            for (String option : multiSelectField.split(';')) {
+                picklistValues.add(new SelectOption(option, option));
+            }
+        }
+        return picklistValues;
+    }
+
     /***************************END BOCA UTILITIES****************************/
 
     /***************************FIELD MAPPING UTILITIES***********************/
