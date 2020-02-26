@@ -65,7 +65,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             triggeredEmailKeyObj = Database.query(query);
         } catch (Exception e) {
             System.debug(e);
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'This record type has not been configured to use this function.'));
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'This record type does not have any triggered emails configured.'));
             this.showForm = false;
             return;
         }
@@ -121,9 +121,13 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             this.mcTriggeredEmailKeys.add(new SelectOption(mcTriggeredEmailKey.MasterLabel, mcTriggeredEmailKey.MasterLabel));
         }
     }
+
+    // Constructor for component
     public MCTriggeredEmailController() {
         this.showForm = false;
     }
+
+    // Constructor for page
     public MCTriggeredEmailController(ApexPages.StandardController stdController) {
 
         List<String> caseFields = new List<String>{
