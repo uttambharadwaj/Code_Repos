@@ -6,4 +6,8 @@
         <field>RecordType__c</field>
         <value xsi:type="xsd:string">test</value>
     </values>
+    <values>
+        <field>RepName__c</field>
+        <value xsi:type="xsd:string">contact.name</value>
+    </values>
 </CustomMetadata>

@@ -3,7 +3,15 @@
     <label>Case - Fleet Implementation</label>
     <protected>false</protected>
     <values>
+        <field>Default_Email__c</field>
+        <value xsi:type="xsd:string">Contact.Email</value>
+    </values>
+    <values>
         <field>RecordTypeId__c</field>
         <value xsi:type="xsd:string">0120g000000N2ONAA0</value>
+    </values>
+    <values>
+        <field>Subscriber_Key__c</field>
+        <value xsi:type="xsd:string">Contact.Id</value>
     </values>
 </CustomMetadata>
