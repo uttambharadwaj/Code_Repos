@@ -1,0 +1,64 @@
+<apex:component id="MCTriggeredEmailComponent" controller="MCTriggeredEmailController">
+    <apex:attribute name="pageObj2" description="sObject record that the button in activated on" type="sObject" assignTo="{!pageObj}"/>
+    <html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+              integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
+              crossorigin="anonymous"/>
+        <style>
+
+            #sendButton {
+                position: fixed;
+                bottom: 0px;
+                right: 0px;
+            }
+
+            #cancelButton {
+                position: fixed;
+                bottom: 0px;
+                left: 0px;
+            }
+
+            #requiredFields {
+                padding-top: 10px;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+        </style>
+    </head>
+    <body>
+
+    <div id="mainContainer" class="container-fluid">
+        <apex:pageMessages id="pageMessage"></apex:pageMessages>
+        <apex:outputPanel id="testPanel" rendered="{!showForm == true}">
+            <apex:form styleClass="row mb-5">
+                <div id="requiredFields">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Available MC Triggered Emails</label>
+                            <apex:selectList value="{!selectedMCTriggeredEmailKey}" multiselect="false" size="1">
+                                <apex:selectOptions value="{!mcTriggeredEmailKeys}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <apex:inputText styleClass="form-control" value="{!toEmail}" id="outOfOfficeStartDate"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6" id="cancelButton">
+                    <button type="reset" class="btn btn-secondary w-100" onclick="window.close();">Cancel</button>
+                </div>
+                <div class="col-6" id="sendButton">
+                    <apex:commandButton styleClass="btn btn-danger w-100" value="Send"
+                                        action="{!sendMCTriggeredEmail}"></apex:commandButton>
+                </div>
+            </apex:form>
+        </apex:outputPanel>
+    </div>
+    </body>
+    </html>
+</apex:component>

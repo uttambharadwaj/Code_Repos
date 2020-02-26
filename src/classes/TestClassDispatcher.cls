@@ -189,4 +189,15 @@ public class TestClassDispatcher {
         PaperAppSubmissionExtensionTest.buildURLTest();
     }
 
+    @IsTest static void testMCTriggeredEmailController() {
+        MCTriggeredEmailControllerTest.testMCTriggeredEmailController();
+    }
+
+    @IsTest static void testMCConnector() {
+        MCConnectorTest.testMarketingCloudAuth();
+    }
+
+    @IsTest static void testMCTriggeredEmail() {
+        MCConnectorTest.testMarketingCloudTriggeredEmail();
+    }
 }
