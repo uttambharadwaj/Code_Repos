@@ -5,17 +5,29 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     public Boolean emailSent { get; set; }
     public Boolean showForm { get; set; }
     private String recordTypeId { get; set; }
-    public Case currentCase;
-
-
+    private String subscriberKey;
+    public sObject pageObj {
+        get;
+        set {
+            if (this.pageObj == null) {
+                this.pageObj = value;
+                init();
+            } else
+                this.pageObj = value;
+        }
+    }
+    public sObject pageObj2 { get; set; }
     public String selectedMCTriggeredEmailKey { get; set; }
     public List<SelectOption> mcTriggeredEmailKeys { get; set; }
 
     public Map<String, Object> subscriberAttributes;
 
-    public MCTriggeredEmailController(ApexPages.StandardController stdController) {
+    Public void init(){
 
-        sObject sobj;
+
+        sObject triggeredEmailKeyObj;
+        MC_Triggered_Email__mdt triggeredEmailConfig;
+
         this.subscriberAttributes = new Map<String, Object>();
         this.emailSent = false;
         this.showForm = true;
@@ -23,50 +35,59 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
         Map<String, SObjectType> globalDescribe = Schema.getGlobalDescribe();
         Map<String, Schema.SObjectField> validCaseFields = globalDescribe.get('Case').getDescribe().fields.getMap();
-        Map<String, Schema.SObjectField> mfields = globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
+        Map<String, Schema.SObjectField> triggeredEmailKeyFields = globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
 
 
-        List<String> caseFields = new List<String>{
-                'recordTypeId', 'Id', 'ContactId'
+        List<String> pageObjFields = new List<String>{
+                'recordTypeId', 'Id'
         };
-
         List<String> commonFields = new List<String>();
-        if (!Test.isRunningTest()) stdController.addFields(caseFields);
 
-        this.currentCase = (Case) stdController.getRecord();
-        if (currentCase.recordTypeId != null) this.recordTypeId = currentCase.recordTypeId;
+        if (pageObj.get('RecordTypeId') != null) this.recordTypeId = (String) pageObj.get('RecordTypeId');
 
-        String fields = String.join(new List<String>(mfields.keySet()), ',');
-        String query = 'SELECT ' + fields + ' FROM MC_Triggered_Email_Key__mdt WHERE RecordType__c IN (SELECT Id FROM MC_Triggered_Email__mdt WHERE RecordTypeId__c = :recordTypeId)';
-        System.debug(query);
         try {
-            sobj = Database.query(query);
+            triggeredEmailConfig = [SELECT Id, Default_Email__c, Subscriber_Key__c FROM MC_Triggered_Email__mdt WHERE RecordTypeId__c = :recordTypeId];
         } catch (Exception e) {
+            System.debug(e);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'This record type has not been configured to use this function.'));
+            this.showForm = false;
+            return;
+        }
+
+        if (triggeredEmailConfig.Default_Email__c != null) pageObjFields.add(triggeredEmailConfig.Default_Email__c);
+        if (triggeredEmailConfig.Subscriber_Key__c != null) pageObjFields.add(triggeredEmailConfig.Subscriber_Key__c);
+
+
+        String fields = String.join(new List<String>(triggeredEmailKeyFields.keySet()), ',');
+        Id triggeredEmailId = triggeredEmailConfig.Id;
+        String query = 'SELECT ' + fields + ' FROM MC_Triggered_Email_Key__mdt WHERE RecordType__c = :triggeredEmailId';
+        try {
+            triggeredEmailKeyObj = Database.query(query);
+        } catch (Exception e) {
+            System.debug(e);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'This record type has not been configured to use this function.'));
             this.showForm = false;
             return;
         }
 
         // Add valid case fields to list
-        for (String field : mfields.keySet()) {
+        for (String field : triggeredEmailKeyFields.keySet()) {
 
-            if (sobj.get(field) != null) {
+            if (triggeredEmailKeyObj.get(field) != null) {
 
-                String fieldValue = (String) sobj.get(field);
+                String fieldValue = (String) triggeredEmailKeyObj.get(field);
                 if (validCaseFields.get(fieldValue) != null || fieldValue.contains('.')) {
-                    caseFields.add(fieldValue);
+                    pageObjFields.add(fieldValue);
                     commonFields.add(field);
                 }
             }
 
         }
-
-        caseFields.add('Contact.Email');
-        Id caseId = (Id) currentCase.get('Id');
+        Id objId = (Id) pageObj.get('Id');
 
         try {
             // We don't know what all fields we need until after we have the custom metadata records but we do need the record type before getting the custom metadata.
-            this.currentCase = (Case) Database.query('SELECT ' + String.join(caseFields, ',') + ' FROM Case WHERE Id = :caseId');
+            this.pageObj = Database.query('SELECT ' + String.join(pageObjFields, ',') + ' FROM '+ UtilityClass.getObjName((Id)pageObj.get('Id')) +' WHERE Id = :objId');
         } catch (Exception e) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
             this.showForm = false;
@@ -75,15 +96,19 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         }
 
         // Set default email - field is user editable
-        if (currentCase.Contact != null && currentCase.Contact.Email != null) {
-            this.toEmail = currentCase.Contact.Email;
+        if (triggeredEmailConfig.Default_Email__c != null) {
+            this.toEmail = (String) UtilityClass.getSObjectField(pageObj, triggeredEmailConfig.Default_Email__c);
             this.ogEmailValue = toEmail; // toEmail is user editable
+        }
+
+        if (triggeredEmailConfig.Subscriber_Key__c != null) {
+            this.subscriberKey = (String) UtilityClass.getSObjectField(pageObj, triggeredEmailConfig.Subscriber_Key__c);
         }
 
         // Add subscriberAttributes - This object will be serialized and sent to MC
         for (String field : commonFields) {
             // Field should match the name of the field in MC after removing __c
-            this.subscriberAttributes.put(field.remove('__c'), UtilityClass.getSobjectField(currentCase, (String) sobj.get(field)));
+            this.subscriberAttributes.put(field.remove('__c'), UtilityClass.getSobjectField(pageObj, (String) triggeredEmailKeyObj.get(field)));
         }
 
 
@@ -96,6 +121,18 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             this.mcTriggeredEmailKeys.add(new SelectOption(mcTriggeredEmailKey.MasterLabel, mcTriggeredEmailKey.MasterLabel));
         }
     }
+    public MCTriggeredEmailController() {
+        this.showForm = false;
+    }
+    public MCTriggeredEmailController(ApexPages.StandardController stdController) {
+
+        List<String> caseFields = new List<String>{
+                'recordTypeId', 'Id', 'ContactId'
+        };
+
+        if (!Test.isRunningTest()) stdController.addFields(caseFields);
+        this.pageObj2 = stdController.getRecord();
+    }
 
 
     public void sendMCTriggeredEmail() {
@@ -106,7 +143,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 MCData mcData = new MCData();
                 mcData.subscriberAttributes = subscriberAttributes;
                 mcData.toAddress = toEmail;
-                mcData.subscriberKey = currentCase.ContactId != null ? currentCase.ContactId : toEmail;
+                mcData.subscriberKey = this.subscriberKey;
 
                 MCConnector mcConnector = new MCConnector();
                 mcConnector.mcData = mcData;
@@ -143,8 +180,8 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
         }
 
-        else if (currentCase.ContactId == null) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'A contact must be associated to the case to perform this function.'));
+        else if (this.subscriberKey == null) {
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'A subscriber key was not specified.'));
             this.showForm = false;
         }
 

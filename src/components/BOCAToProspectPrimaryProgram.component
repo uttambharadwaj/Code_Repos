@@ -1,4 +1,4 @@
-<apex:component controller="BOCAToProspectComponentController" access="global">
+<apex:component controller="BOCAToProspectComponentController" access="global" >
     <apex:attribute name="bocaToProspectIdFromEmail" assignTo="{!bocaToProspectId}" type="String" description="The BOCA_To_Prospect__c ID"/> 
 								   <!-- PROGRAM NAME, CARD, AND STEPS -->
                 <tr>
