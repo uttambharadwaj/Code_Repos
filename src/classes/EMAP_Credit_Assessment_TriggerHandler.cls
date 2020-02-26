@@ -226,9 +226,10 @@ public with sharing class EMAP_Credit_Assessment_TriggerHandler{
         
         List<Id> accList = new List<Id>();
         Map<Id, Credit_Assessment__c> csMap = new Map<Id, Credit_Assessment__c>();
+        Set<Id> disabledRecordTypes = UtilityClass.getRecTypeByDevName('Credit_Assessment__c', new List<String>{'AU_EM_Credit_Assessment'});
         for(Credit_Assessment__c creditRec : creditRecNewList){
             //only those CA whose final judgement is Approved or Declined by approval process
-            if(creditRec.Final_Judgement__c == 'Approved' || creditRec.Final_Judgement__c == 'Declined'){
+            if(!disabledRecordTypes.contains(creditRec.RecordTypeId) && (creditRec.Final_Judgement__c == 'Approved' || creditRec.Final_Judgement__c == 'Declined')){
                 accList.add(creditRec.Account__c);
                 csMap.put(creditRec.Account__c, creditRec);
             }
