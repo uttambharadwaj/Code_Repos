@@ -52,6 +52,14 @@ private class FleetAccountMaintenaneWS_MainTest {
     static void testBehavior() {
         UtilityTestLoader.setAutomation(false);
         Test.startTest();
+        Test.setMock(HttpCalloutMock.class, new FleetAccountMaintenanceWS_Main_Mock());
+        RestRequest req = new RestRequest();
+        RestResponse res = new RestResponse();
+
+        req.requestURI = '/services/apexrest/FleetAccountMaintenanceWS/ProcessChanges/';
+        req.httpMethod = 'GET';
+        RestContext.request = req;
+        RestContext.response = res;
         FleetAccountMaintenanceWS_Main.getTasks();
 
         List<Account_Maintenance_Task__c> taskList = [SELECT Id, Status__c FROM Account_Maintenance_Task__c WHERE Status__c = 'New'];
@@ -60,6 +68,8 @@ private class FleetAccountMaintenaneWS_MainTest {
         }
 
         FleetAccountMaintenanceWS_Main.updateTask('BadId', false, 'Error');
+
+        FleetAccountMaintenanceWS_Main.GETResponse getResponse = new FleetAccountMaintenanceWS_Main.GETResponse(true, '');
 
         Test.stopTest();
     }
