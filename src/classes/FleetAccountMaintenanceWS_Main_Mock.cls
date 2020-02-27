@@ -1,9 +1,5 @@
-/**
- * Created by W083158 on 2/27/2020.
- */
-
 @IsTest
-public with sharing class FleetAccountMaintenanceWS_Main_Mock  implements HttpCalloutMock {
+public with sharing class FleetAccountMaintenanceWS_Main_Mock implements HttpCalloutMock {
 
 
     public HttpResponse respond(HttpRequest param1) {
