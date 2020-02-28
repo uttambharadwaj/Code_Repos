@@ -1,0 +1,36 @@
+<!--
+ - Created by jharrell on 2/27/20.
+ -->
+
+<apex:page standardController="Lead" extensions="AULeadAccountSearchController" id="AULeadAccountSearch">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
+              integrity="sha384-SI27wrMjH3ZZ89r4o+fGIJtnzkAnFs3E4qz9DIYioCQ5l9Rd/7UAa8DHcaL8jkWt"
+              crossorigin="anonymous"/>
+        <title>Account Search</title>
+
+    </head>
+
+    <body>
+
+    <apex:pageBlock rendered="{!IF(accounts.size > 0, true, false)}">
+        <apex:pageBlockTable value="{!accounts}" var="acc">
+            <apex:column value="{!acc.Name}"/>
+            <apex:column value="{!acc.ShippingCity}"/>
+            <apex:column value="{!acc.ShippingState}"/>
+            <apex:column value="{!acc.RecordType.Name}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    <apex:outputPanel rendered="{!IF(accounts.size > 0, false, true)}">
+        <center>
+            <br />
+            Unable to find any matching accounts for this Lead.
+        </center>
+    </apex:outputPanel>
+    </body>
+    </html>
+</apex:page>
