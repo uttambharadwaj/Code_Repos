@@ -668,7 +668,7 @@ public class OTRBOCAController {
                     account.Id = passedInLead.ConvertedAccountId;
                 }
 
-                if (onlineApplication.Account__c == null) {
+                if (onlineApplication.Account__c == null && accountId == null) {
                     account.OwnerId = defaultOwner.Id;
                     account.Name = onlineApplication.Legal_Business_Name__c;
                 }
@@ -781,7 +781,7 @@ public class OTRBOCAController {
                 opportunity.RecordTypeId = Schema.SObjectType.Opportunity.getRecordTypeInfosByName().get('Fleet Card').getRecordTypeId();
             }
 
-            if (onlineApplication.Opportunity__c == null) {
+            if (onlineApplication.Opportunity__c == null && optyId == null) {
                 opportunity.OwnerId = passedInLead != null && passedInLead.OwnerId != null && passedInLead.OwnerId.getSObjectType() == User.SObjectType ? passedInLead.ownerId : defaultOwner.Id;
                 opportunity.AccountId = account.Id;
                 opportunity.Name = onlineApplication.Legal_Business_Name__c;
