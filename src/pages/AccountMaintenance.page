@@ -1,0 +1,217 @@
+<apex:page showHeader="false" sidebar="false" controller="AccountMaintenanceController" action="{!init}">
+    <html>
+    <head>
+        <title>{!brandingUtility.Program_Name__c} - Account Maintenance</title>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" />
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet" />
+        
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.0.min.js" />
+        
+        <apex:includeLightning />
+        
+        <script>
+                var $j = jQuery.noConflict();
+        
+        		$j(document).ready(function() {
+                
+                	overridePageMessages();
+                    
+                    $j(".actionsRight .slds-button[title|='Finish']").html("Add Another");
+        
+                 });
+        
+        		function overridePageMessages() {    
+                	var textureEffect = '';
+                
+                	$j('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);          
+        			$j('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);    
+        			$j('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);                  
+        			$j('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);   
+                    
+                    $j('.errorM3').removeClass('errorM3'); 
+        			$j('.confirmM3').removeClass('confirmM3'); 
+        			$j('.infoM3').removeClass('infoM3');   
+        			$j('.warningM3').removeClass('warningM3');  
+            	}
+        </script>
+
+        <style>
+            .messageTable tbody tr:nth-child(2) {
+                        display: none;
+                    }
+            
+            .messageTable tbody tr td:nth-child(1) {
+                        display: none;
+                    }
+            
+            .messageCell {
+             border: 0 !important; 
+            }
+            
+                    .warningMessage {
+                        padding: 12px; 
+                        border-radius: 4px;
+                        color: #fff;
+                        margin-bottom: 8px;
+                        background: #fbb439;
+                    }
+            
+            .confirmMessage {
+                padding: 12px; 
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #32af5c;
+            }
+            
+            .errorMessage {
+                padding: 12px; 
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #e9696e;
+            }
+            
+            .infoMessage {
+                padding: 12px; 
+                border-radius: 4px;
+                color: #fff;
+                margin-bottom: 8px;
+                background: #3c97dd;
+            }
+            
+            .warningMessage h4, 
+                .confirmMessage h4,
+                    .errorMessage h4,
+                        .infoMessage h4 {
+                            font-weight: bold;
+                            padding-right: 4px;
+                        }
+            
+            body {
+                background: #00709B !important;
+            }
+
+            #content {
+                margin: 0 auto;
+                max-width: 1000px;
+                min-height: 400px;
+            }
+
+            .container {
+                margin-top: 40px;
+                background: #FFFFFF;
+                filter:drop-shadow(5px 5px 10px black);
+                padding: 40px 60px;
+                border: 1px solid #999;
+                border-radius: 8px !important;
+                font-size: 18px !important;
+            }
+
+            .slds-form-element__label, .slds-button, .flowruntime-input-error, input, select, .slds-form-element__help, .slds-text-heading_small {
+                font-size: 14px !important;
+            	font-weight: normal !important;
+            }
+            
+            .slds-text-heading_small { font-weight: bold; }
+
+            .slds-button_brand[title=~Finish] {
+            	content: "Add Another" !important;
+            }
+
+            
+            h1 {
+                font-size: 24px;
+                font-weight: 700;
+            }
+
+            #LightningContainer {
+                font-size: 14px !important;
+            }
+
+            .errorCode {
+                font-size: 13px;
+            }
+
+        .logo {	
+			max-height: 80px; 
+			float: left; 
+			margin-bottom: 10px; 
+		}
+
+		.program-name { 
+			float: left; 
+			line-height: 80px; 
+			padding-left: 16px; 
+			display: block; 
+            font-size: 16px;
+            color: #666;
+		}
+            
+            #branding { 
+	width: 100%; 
+	text-align: center; 
+	margin-bottom: 10px; 
+}
+            
+        </style>
+        
+        <apex:slds />
+
+    </head>
+    <body>
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row">
+                    <div class="twelve columns clearfix">
+                        <div id="branding">
+                            <!--PSOBACKLOG-76-->
+                            <apex:outputPanel rendered="{!brandingLogo != ''}">
+                        		<img class="logo" src="{!URLFOR($Action.Attachment.Download, brandingLogo)}" alt="Logo"/>
+                            </apex:outputPanel>
+                        	<apex:outputPanel rendered="{!brandingLogo == ''}">
+                            	<img class="logo" src="{!URLFOR($Resource.WEXLogo)}" alt="Wex Logo"/>
+                        	</apex:outputPanel>
+                            <h1 class="program-name header-large"><apex:outputText escape="false" value="{!brandingUtility.Program_Name__c}" /></h1>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <apex:pageMessages ></apex:pageMessages>
+                    <br/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="twelve columns" id="LightningContainer">
+<apex:outputPanel rendered="{!isBroken == false}">
+    <script type="text/javascript">
+        //get account Id from URL
+        var caseId = "{!$CurrentPage.parameters.recordId}";
+                    
+                    console.log(caseId);
+
+        //Create Lightning Component
+        $Lightning.use("c:AccountMaintenanceScreens", function() {
+            $Lightning.createComponent("c:AccountMaintenance",
+                { "recordId" : caseId, "didLength" : "{!didLength}", "onlineUrl" :"{!onlineUrl}" }, //Pass Parameter
+                "LightningContainer", function(component) {
+                    console.log('Component created');
+                });
+        });
+    </script>
+    </apex:outputPanel>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+    </html>
+</apex:page>
