@@ -4,18 +4,18 @@ public with sharing class AULeadAccountSearchController {
     public AULeadAccountSearchController(ApexPages.StandardController page) {
 
         List<String> fields = new List<String>{
-                'Id', 'Name'
+                'Id', 'Company'
         };
         page.addFields(fields);
         Lead lead = (Lead) page.getRecord();
 
-        if (Lead.Name != null) {
-            String leadName = '%' + Lead.Name.replace(' ', '%') + '%';
-            leadName = leadName.replace(' ', '%');
+        if (Lead.Company != null) {
+            String leadCompany = '%' + Lead.Company.replace(' ', '%') + '%';
+            leadCompany = leadCompany.replace(' ', '%');
             this.accounts = [
                     SELECT Id, Name, ShippingCity, ShippingState, RecordType.Name
                     FROM Account
-                    WHERE Name LIKE :leadName AND RecordType.Name LIKE 'AU %'
+                    WHERE Name LIKE :leadCompany AND RecordType.Name LIKE 'AU %'
                     LIMIT 1000
             ];
         }
