@@ -1,0 +1,14 @@
+.THIS #error{
+    color:red;
+    text-align: left;
+    padding:10px 0px;
+    margin: 0px;
+}
+.THIS .headerNopadding{
+    padding: .75rem 1rem 0;
+    padding-top: 0.75rem;
+    padding-right: 1rem;
+    padding-bottom: 0px;
+    padding-left: 0rem;
+    margin: 0 0 .75rem;
+}
