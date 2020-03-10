@@ -1,0 +1,86 @@
+<aura:component  controller = "Wex_AccountValidation" implements = "flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global">
+    
+    <aura:attribute name="showError" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="showMessage" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="showOnLoadMessage" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="errorMessage" type="String" required="false" description="" access="private"/>
+    <aura:attribute name="message" type="String" required="false" description="" access="private"/>
+    <aura:attribute name="confirmAccountNumber" type="Boolean" required="true" description="" default="false" access="private"/>
+    
+    <aura:attribute name="showErrorAccount" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="AccounterrorMessage" type="String" required="false" description="" access="private"/>
+    
+    <aura:attribute name="showErrorZipCode" type="Boolean" required="true" description="" default="false" access="private"/>
+    <aura:attribute name="zipErroMessage" type="String" required="false" description="" access="private"/>
+    
+    <aura:handler name="init" value="{!this}" action = "{!c.doInit}" />
+    
+    <lightning:layout class="">
+        <lightning:layoutItem size="7">
+            <div class="custom-box">
+                <div class="slds-grid slds-grid_align-left">
+                    <div class=" slds-col slds-size_8-of-12 slds-p-around_small content">
+                        <div class="slds-grid slds-grid_align-center slds-p-bottom_small slds-p-top_small">
+                            <div class="slds-col slds-size_10-of-12">
+                                <div>
+                                    <div class="slds-card__header slds-grid headerNopadding">
+                                        <header class="slds-media slds-media_left slds-has-flexi-truncate">
+                                            <div class="slds-media__body">
+                                                <span class="slds-card__header-title">
+                                                    <strong>Please enter your account number below.</strong>
+                                                </span>
+                                                <aura:if isTrue="{!v.showMessage}">
+                                                    <div id="error">
+                                                        <ui:outputRichText value="{!v.message}"/>
+                                                    </div>
+                                                </aura:if>
+                                            </div>
+                                        </header>
+                                    </div>
+                                    <div class="slds-card__body no-padding">
+                                        <div class="slds-no-flex"  style="display:inline-block"  onkeyup="{!c.onPress}">
+                                            
+                                            <lightning:input type="text" class="SearchBarStyle" label="Account Number/Carrier ID" name="searchbar" aura:id="AccountNumber" required="true"
+                                                pattern="[0-9]*"  />&nbsp; <br/> <!-- onchange="{!c.checkAccountNumber}" -->
+                                            <aura:if isTrue="{!v.showErrorAccount}">
+                                                <div id="error">
+                                                    <ui:outputRichText value="{!v.AccounterrorMessage}"/>
+                                                </div>
+                                            </aura:if>
+                                            
+                                            <lightning:input type="text" class="SearchBarStyle" label="Confirm Account Number/Carrier ID" name="searchbar0" aura:id="ConfirmAccountNumber" 
+                                                             required="true" pattern="[0-9]*" />&nbsp;<br/> <!--onchange="{!c.checkAccountNumber}" -->
+                                            
+                                            
+                                            <lightning:input type="text" class="SearchBarStyle" label="Billing Postal Code" name="searchbar2" aura:id="zipCode" 
+                                                             required="true" pattern="[0-9]{5}" />
+                                            <aura:if isTrue="{!v.showErrorZipCode}">
+                                                <div id="error">
+                                                    <ui:outputRichText value="{!v.zipErroMessage}"/>
+                                                </div>
+                                            </aura:if>
+                                        </div>  
+                                        
+                                        <aura:if isTrue="{!v.showError}">
+                                            <div id="error">
+                                                <ui:outputRichText value="{!v.errorMessage}"/>
+                                            </div>
+                                        </aura:if>
+                                        <footer class="slds-card__footer slds-media_left">
+                                            <lightning:button name="Go" variant="brand" label="Next" onclick="{!c.onGo}"  disabled=""/>
+                                        </footer>
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>
