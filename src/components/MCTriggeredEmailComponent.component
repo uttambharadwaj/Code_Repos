@@ -1,5 +1,6 @@
-<apex:component id="MCTriggeredEmailComponent" controller="MCTriggeredEmailController">
-    <apex:attribute name="pageObj2" description="sObject record that the button in activated on" type="sObject" assignTo="{!pageObj}"/>
+<apex:component id="MCTriggeredEmailComponent" controller="MCTriggeredEmailController" allowDML="true">
+    <apex:attribute name="pageObj2" description="sObject record that the button in activated on" type="sObject"
+                    assignTo="{!pageObj}"/>
     <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
@@ -31,24 +32,39 @@
 
     <div id="mainContainer" class="container-fluid">
         <apex:pageMessages id="pageMessage"></apex:pageMessages>
+
         <apex:outputPanel id="testPanel" rendered="{!showForm == true}">
             <apex:form styleClass="row mb-5">
                 <div id="requiredFields">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Available MC Triggered Emails</label>
-                            <apex:selectList value="{!selectedMCTriggeredEmailKey}" multiselect="false" size="1">
-                                <apex:selectOptions value="{!mcTriggeredEmailKeys}"/>
-                            </apex:selectList>
+                    <apex:outputPanel rendered="{!currentPage == 1}">
+
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Available MC Triggered Emails</label>
+                                <apex:selectList value="{!selectedMCTriggeredEmailKey}" multiselect="false" size="1">
+                                    <apex:selectOptions value="{!mcTriggeredEmailKeys}"/>
+                                </apex:selectList>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <apex:inputText styleClass="form-control" value="{!toEmail}" id="outOfOfficeStartDate"/>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <apex:inputText styleClass="form-control" value="{!toEmail}" id="emailAddress"/>
+                            </div>
                         </div>
-                    </div>
+
+                    </apex:outputPanel>
+                    <apex:outputPanel rendered="{!currentPage == 2}">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Customer First Name</label>
+                                <apex:inputText styleClass="form-control" value="{!firstName}" id="firstName"/>
+                            </div>
+                        </div>
+                    </apex:outputPanel>
+
                 </div>
+
                 <div class="col-6" id="cancelButton">
                     <button type="reset" class="btn btn-secondary w-100" onclick="window.close();">Cancel</button>
                 </div>
