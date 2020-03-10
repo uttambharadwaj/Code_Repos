@@ -1,11 +1,13 @@
 public class MCTriggeredEmailController { // extension for MarketingTriggeredEmail.page
 
     public String toEmail { get; set; }
-    private String ogEmailValue { get; set; }
+    public String ogEmailValue { get; set; }
     public Boolean emailSent { get; set; }
     public Boolean showForm { get; set; }
     private String recordTypeId { get; set; }
     private String subscriberKey;
+    public String firstName { get; set; }
+    public Integer currentPage { get; set; }
     public sObject pageObj {
         get;
         set {
@@ -13,7 +15,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 this.pageObj = value;
                 init();
             } else
-                this.pageObj = value;
+                    this.pageObj = value;
         }
     }
     public sObject pageObj2 { get; set; }
@@ -24,10 +26,10 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
     public void init() {
 
-
+        this.currentPage = 1;
         sObject triggeredEmailKeyObj;
         MC_Triggered_Email__mdt triggeredEmailConfig;
-        String objectName = (String) UtilityClass.getObjName((Id)pageObj.get('Id'));
+        String objectName = (String) UtilityClass.getObjName((Id) pageObj.get('Id'));
 
         this.subscriberAttributes = new Map<String, Object>();
         this.emailSent = false;
@@ -39,7 +41,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         Map<String, Schema.SObjectField> triggeredEmailKeyFields = globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
 
 
-        List<String> pageObjFields = new List<String>{
+        Set<String> pageObjFields = new Set<String>{
                 'recordTypeId', 'Id'
         };
         List<String> commonFields = new List<String>();
@@ -88,7 +90,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
         try {
             // We don't know what all fields we need until after we have the custom metadata records but we do need the record type before getting the custom metadata.
-            this.pageObj = Database.query('SELECT ' + String.join(pageObjFields, ',') + ' FROM '+ objectName +' WHERE Id = :objId');
+            this.pageObj = Database.query('SELECT ' + String.join(new List<String>(pageObjFields), ',') + ' FROM ' + objectName + ' WHERE Id = :objId');
         } catch (Exception e) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
             this.showForm = false;
@@ -145,6 +147,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         if (sendMCTriggeredEmailValidation()) {
             try {
 
+                if (this.firstName != null) subscriberAttributes.put('FirstName', this.firstName);
                 MCData mcData = new MCData();
                 mcData.subscriberAttributes = subscriberAttributes;
                 mcData.toAddress = toEmail;
@@ -169,28 +172,49 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
     private Boolean sendMCTriggeredEmailValidation() {
 
-        Boolean validationSuccessful = false;
-        Pattern regexEmailPattern = Pattern.compile('([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})'); // https://developer.salesforce.com/forums/?id=906F000000092GXIAY
+        Boolean validationSuccessful = true;
 
-        if (emailSent) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'The email has already been sent.'));
+        // ------------------------------------- Page 1 -------------------------------------
+        if (this.currentPage == 1) {
+            Pattern regexEmailPattern = Pattern.compile('([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})'); // https://developer.salesforce.com/forums/?id=906F000000092GXIAY
+
+            if (emailSent) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'The email has already been sent.'));
+                validationSuccessful = false;
+            }
+
+            else if (String.isEmpty(toEmail)) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'Please enter a valid email address.'));
+                validationSuccessful = false;
+            }
+
+            else if (!regexEmailPattern.matcher(toEmail).matches()) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'A invalid email address was entered.'));
+                validationSuccessful = false;
+            }
+
+            else if (this.subscriberKey == null) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'A subscriber key was not specified.'));
+                this.showForm = false;
+                validationSuccessful = false;
+            }
+
+            else if (this.toEmail != this.ogEmailValue) {
+               // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO, 'Additional information is required.'));
+                this.currentPage = 2;
+                validationSuccessful = false;
+            }
         }
 
-        else if (String.isEmpty(toEmail)) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'Please enter a valid email address.'));
+        // ------------------------------------- Page 2 -------------------------------------
+        else if (this.currentPage == 2) {
+
+            if (this.firstName == '') {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'A first name to be used in the email body must be entered.'));
+                validationSuccessful = false;
+            }
+
         }
-
-        else if (!regexEmailPattern.matcher(toEmail).matches()) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'A invalid email address was entered.'));
-
-        }
-
-        else if (this.subscriberKey == null) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'A subscriber key was not specified.'));
-            this.showForm = false;
-        }
-
-        else validationSuccessful = true;
 
         return validationSuccessful;
     }

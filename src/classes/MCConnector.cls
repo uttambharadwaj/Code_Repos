@@ -49,10 +49,11 @@ public class MCConnector {
         try {
 
             req.setBody(mcData.generateJSON());
+            System.debug(mcData.generateJSON());
             Http sendEmailReq = new Http();
             HttpResponse postResponse = sendEmailReq.send(req);
             String resBody = postResponse.getBody();
-
+            System.debug(resBody);
             if (resBody.contains('"Queued"')) successful = true;
             else {
                 insert UtilityClass.logInternalError(resBody, 'MCConnector sendTriggeredEmail', '', 'MCConnector', true, '', '');
