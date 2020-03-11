@@ -16,8 +16,10 @@ public with sharing class AULeadAccountSearchController {
                     SELECT Id, Name, ShippingCity, ShippingState, RecordType.Name
                     FROM Account
                     WHERE Name LIKE :leadCompany AND RecordType.Name LIKE 'AU %'
+                    AND Id IN (SELECT AccountId FROM Opportunity WHERE Product_Type__c = 'Mobil Card')
                     LIMIT 1000
             ];
+
         }
     }
 }
