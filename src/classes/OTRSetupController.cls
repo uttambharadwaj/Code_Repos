@@ -207,6 +207,12 @@ public without sharing class OTRSetupController {
         }
     }
 
+    public Boolean showRefreshLimits {
+        get {
+            return onlineApplicationOffer.MasterCard_Refreshing_Limits__c;
+        }
+    }
+
     public List<SelectOption> fundingOptions {
 
         get {
