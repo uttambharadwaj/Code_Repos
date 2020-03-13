@@ -32,7 +32,7 @@ public class CreditWS_CLCreateEntityRequest {
     public Decimal WexCreditExtended;
     public String WexPaydexScore;
     public String DaysToPay;
-    public String WexBillingCycle;               // Daily, Weekly, Bi-Weekly, Monthly, Multiple, Fortnightly
+    public String BillingCycle;               // Daily, Weekly, Bi-Weekly, Monthly, Multiple, Fortnightly
     public String WexPaymentType;                // ACH, Direct Debit, Bank Transfer
     public String WexAccountNumber;
     public String WexProgramString;

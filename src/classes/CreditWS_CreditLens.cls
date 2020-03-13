@@ -215,7 +215,7 @@ global class CreditWS_CreditLens {
                 creditLensRequest.Division = 'Corporate';
                 creditLensRequest.CreditPortfolio = 'WexBank';
                 creditLensRequest.WexCreditInformationOn = cpApp.Financials_Completed_For__c;
-                if (cpApp.Billing_Cycle__c != null) creditLensRequest.WexBillingCycle = cpApp.Billing_Cycle__c;
+                if (cpApp.Billing_Cycle__c != null) creditLensRequest.BillingCycle = cpApp.Billing_Cycle__c;
 //                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //todo can't send until they figure out the dropdown values in CL
                 if (cpApp.Credit_Line_Requested__c != null) creditLensRequest.WexRequestCreditLineAmount = String.valueOf(cpApp.Credit_Line_Requested__c);
                 if (cpApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexOriginationModelRecommendat = String.valueOf(cpApp.Credit_Line_Recommendation__c);
