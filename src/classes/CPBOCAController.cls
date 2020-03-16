@@ -274,6 +274,7 @@ public class CPBOCAController {
                 for (Integer i = 0; i < paymentOptions.size(); i++) {
                     if (paymentOptions[i].getValue() == 'Debit ACH') { paymentOptions.remove(i); }
                     if (paymentOptions[i].getValue() == 'Credit ACH') { paymentOptions.remove(i); }
+                    if (paymentOptions[i].getValue() == 'Check') { paymentOptions.remove(i); }
                 }
             }
 
