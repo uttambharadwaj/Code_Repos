@@ -300,11 +300,11 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                 <apex:outputLabel for="country" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Country', $ObjectType.OnlineApplication__c.fields.Country__c.label)}">
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
-                                                <!--If Parent Funded, allow the option of country-->
-                                                <apex:InputField rendered="{!onlineApplicationOffer.Funding__c == 'Parent Funded'}" styleClass="styled-input" id="countryWithCA" required="true" value="{!onlineApplication.Country__c}">
+                                                <!--If  Parent Funded, is a paper app, or is a conversion app, then allow the option of country-->
+                                                <apex:InputField rendered="{!IF(onlineApplicationOffer.Funding__c == 'Parent Funded' || isPaperApp || isConversionApp, true, false)}" styleClass="styled-input" id="countryWithCA" required="true" value="{!onlineApplication.Country__c}">
                                                     <apex:actionSupport event="onchange" rerender="postalCode, state" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
-                                                <apex:InputField rendered="{!onlineApplicationOffer.Funding__c != 'Parent Funded'}" html-disabled="true" styleClass="styled-input" id="country" required="true" value="{!onlineApplication.Country__c}">
+                                                <apex:InputField rendered="{!IF(onlineApplicationOffer.Funding__c != 'Parent Funded' && !isPaperApp && !isConversionApp, true, false)}" html-disabled="true" styleClass="styled-input" id="country" required="true" value="{!onlineApplication.Country__c}">
                                                     <apex:actionSupport event="onchange" rerender="postalCode, state" oncomplete="pageLoadFunctions()"/>
                                                 </apex:InputField>
                                             </apex:actionRegion>
