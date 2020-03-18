@@ -185,7 +185,7 @@ global class CreditWS_CreditLens {
                             Credit_Line_Recommendation__c, Credit_Line_Requested__c, Account__r.AccountNumber, Country_of_Contacting_Entity__c, Country_of_Contracting_Entity_Other__c, National__c,
                             Mailing_Address_Line_1__c, Mailing_Address_Line_2__c, Mailing_City__c, Mailing_State_Province__c, Mailing_Postal_Code__c, Mailing_Country__c, Financials_Completed_For__c, Program__r.Name,
                             DNB_Trade_Lines__c, Paydex__c, Billing_Cycle__c, Control_Year__c, Risk_Grade__c, Risk_Grade_Source__c, Email__c, Business_Phone__c, First_Name__c, Last_Name__c, SIC_Code__c, Credit_Lens_Response__c, Payment_Type__c,
-                            Security_Type__c, Security_Currency__c, Security_Expiration_Date__c
+                            Security_Type__c, Security_Currency__c, Security_Expiration_Date__c, DNB_Credit_Line_Recommendation__c
                     FROM CP_Application_Request__c
                     where Id = :appID
             ];
@@ -218,7 +218,8 @@ global class CreditWS_CreditLens {
                 if (cpApp.Billing_Cycle__c != null) creditLensRequest.BillingCycle = cpApp.Billing_Cycle__c;
 //                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //todo can't send until they figure out the dropdown values in CL
                 if (cpApp.Credit_Line_Requested__c != null) creditLensRequest.WexRequestCreditLineAmount = String.valueOf(cpApp.Credit_Line_Requested__c);
-                if (cpApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexOriginationModelRecommendat = String.valueOf(cpApp.Credit_Line_Recommendation__c);
+                if (cpApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexRecommendedCreditLine = String.valueOf(cpApp.Credit_Line_Recommendation__c);
+                if (cpApp.DNB_Credit_Line_Recommendation__c != null) creditLensRequest.WexOriginationModelRecommendat = String.valueOf(cpApp.DNB_Credit_Line_Recommendation__c);
                 if (cpApp.Taxpayer_ID__c != null) creditLensRequest.TaxId = cpApp.Taxpayer_ID__c;
                 if (cpApp.DNB_Resolved_DUNS__c != null) creditLensRequest.WexDunsNumber = cpApp.DNB_Resolved_DUNS__c;
                 if (cpApp.DNB_Trade_Lines__c != null) creditLensRequest.WexNumberOfCreditExperiences = Integer.valueOf(cpApp.DNB_Trade_Lines__c);
@@ -306,7 +307,7 @@ global class CreditWS_CreditLens {
                 physicalAddress.Address1 = cpApp.Physical_Address_Line_1__c;
                 if (cpApp.Physical_Address_Line_2__c != null) physicalAddress.Address2 = cpApp.Physical_Address_Line_2__c;
                 physicalAddress.Country = country;
-                if (cpApp.Mailing_State_Province__c != null) physicalAddress.State = cpApp.Physical_Country__c + cpApp.Physical_State_Province__c;
+                if (cpApp.Physical_State_Province__c != null) physicalAddress.State = cpApp.Physical_Country__c + cpApp.Physical_State_Province__c;
                 physicalAddress.City = cpApp.Physical_City__c;
                 physicalAddress.Zip = cpApp.Physical_Postal_Code__c;
                 physicalAddress.t_x = 'Address';
