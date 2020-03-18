@@ -43,8 +43,9 @@ public class CreditWS_CLCreateEntityRequest {
     public String FirmType;                      // PBV, PUB, GVT, NP, CO, SUBPublicForeign, SUBPrivate, SUBPublic, SUBPrivateForeignParent
     public String WexPrimaryRiskGrade;
     public String WexPrimaryRiskGradeSource;     //DNB, DNB Custom, RiskCalc, Moody's, The Street, SBRI, FICO, S&P, Fitch
-    public String WexRequestCreditLineAmount;
-    public String WexOriginationModelRecommendat;
+    public String WexRequestCreditLineAmount;    // applicant's requested credit line
+    public String WexOriginationModelRecommendat;// DNB credit line recommendation
+    public String WexRecommendedCreditLine;      // Credit Decision recommended credit line
     public String WexCreditInformationOn;
     public String WexExpirationSecurityDate;
     public String WexRequestCurrency;            // USD, GBP, EUR, BRL
