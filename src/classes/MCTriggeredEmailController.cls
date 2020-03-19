@@ -147,7 +147,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         if (sendMCTriggeredEmailValidation()) {
             try {
 
-                if (this.firstName != null) subscriberAttributes.put('FirstName', this.firstName);
+                if (this.firstName != null) subscriberAttributes.put('firstname', this.firstName);
                 MCData mcData = new MCData();
                 mcData.subscriberAttributes = subscriberAttributes;
                 mcData.toAddress = toEmail;
