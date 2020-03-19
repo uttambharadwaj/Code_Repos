@@ -55,6 +55,7 @@
       
       <apex:pageblockSection title="System Information">
           <apex:inputField value="{!credAssess.CurrencyIsoCode}"/>
+          <apex:inputField value="{!credAssess.RecordTypeId}"/>
       </apex:pageblockSection>
       
       <apex:pageblockButtons >
