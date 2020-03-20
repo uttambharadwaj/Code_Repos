@@ -402,7 +402,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                     ar.Credit_Line_Recommendation__c = 0;
                 }
             }
-        } else if (riskGrade.equals('3') || riskGrade.equals('4')) {
+        } else if (riskGrade.equals('3') || riskGrade.equals('4') || (riskGrade.equals('5') && ar.Years_In_Business__c > 3)) {
             if (creditLineRequested <= 10000) {
                 ar.Credit_Line_Recommendation__c = creditLineRequested;
             } else if (creditLineRequested > 10000 && creditLineRequested <= 150000) {
