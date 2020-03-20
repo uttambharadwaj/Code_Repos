@@ -357,7 +357,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
             return ar.Credit_Line_Recommendation__c;
         }
 
-        if (riskGrade.equals('3') || riskGrade.equals('4')) {
+        if (riskGrade.equals('3') || riskGrade.equals('4') || (riskGrade.equals('5') && ar.Years_In_Business__c > 3)) {
             // don't increase requested to the 10k min if the applicant requested less
             if (creditLineRequested < 10000) {
                 ar.Credit_Line_Recommendation__c = creditLineRequested;
