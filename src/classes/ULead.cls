@@ -26,38 +26,31 @@ public class ULead {
 	private static set<Id> parentsprocessedthroughMerge = new set<Id>();
 
 
-// moved to process builder
-//    public static void setTotalVehicles (List <Lead> records, Map <id, Lead> oldMap)
-//    {
-//        boolean isInsert = (oldMap == null);
-//
-//        for(Lead l : records)
-//        {
-//            if(isinsert == true
-//               || (isinsert == false
-//                   && (l.Number_of_tractors__c != oldMap.get(l.id).Number_of_tractors__c
-//                       || l.Number_of_Other_Fuel_Vehicles__c != oldMap.get(l.id).Number_of_Other_Fuel_Vehicles__c)))
-//            {
-//                if(l.Number_of_Tractors__c == null)
-//                {
-//                    l.Number_of_tractors__c = 0;
-//                }
-//                if(l.Number_of_Other_Fuel_Vehicles__c == null)
-//                {
-//                    l.Number_of_Other_Fuel_Vehicles__c = 0;
-//                }
-//
-//                l.Number_of_Vehicles__c = l.Number_of_tractors__c + l.Number_of_Other_Fuel_Vehicles__c;
-//
-//                // 9/12/2013 11:02 AM
-//                //l.Card_Product__c = 'Local';
-//                //if(l.Number_Of_Tractors__c >= l.Number_of_Other_Fuel_Vehicles__c)
-//                //{
-//                //    l.Card_Product__c = 'OTR';
-//                //}
-//            }
-//        }
-//    }
+    public static void setTotalVehicles (List <Lead> records, Map <id, Lead> oldMap)
+    {
+        boolean isInsert = (oldMap == null);
+
+        for(Lead l : records)
+        {
+            if(isinsert == true
+               || (isinsert == false
+                   && (l.Number_of_tractors__c != oldMap.get(l.id).Number_of_tractors__c
+                       || l.Number_of_Other_Fuel_Vehicles__c != oldMap.get(l.id).Number_of_Other_Fuel_Vehicles__c)))
+            {
+                if(l.Number_of_Tractors__c == null)
+                {
+                    l.Number_of_tractors__c = 0;
+                }
+                if(l.Number_of_Other_Fuel_Vehicles__c == null)
+                {
+                    l.Number_of_Other_Fuel_Vehicles__c = 0;
+                }
+
+                l.Number_of_Vehicles__c = l.Number_of_tractors__c + l.Number_of_Other_Fuel_Vehicles__c;
+
+            }
+        }
+    }
     
 
     public static void setVehicleCount (List <Lead> records, Map <id, Lead> oldMap)
@@ -769,56 +762,6 @@ public class ULead {
         
         
     }
-
-    //Not being used, turned off for client request 03/27/14
-    /*
-    public static void leadParentingTaskCreation(List<Lead> leads, Map<OpportunityContactRole,String> ocrs, Map<String,Campaign> campaigns, Set<Id> queueIDs, String defaultActivityOwner)//List<sobject> objects, Boolean opp)
-    {
-    	system.debug('-* leadparentingtask start: ' + system.now());
-    	
-        List<Task> tasksToInsert = new List<Task>();
-
-        if(leads!=null)
-        {
-        	for(lead l : leads)
-        	{
-        		Task t = new Task();
-	        	t.ownerid = queueIds.contains(l.ownerid) ? defaultActivityOwner : l.ownerid;
-	        	t.subject = 'WEX Marketing Notification: Lead Has Been Updated';
-	        	t.whoId = l.id;
-	        	t.Type='WEX Marketing Notification';
-            	t.Activity_Type__c='WEX Marketing Notification';
-            	t.ActivityDate = system.now().date();
-	        	t.Description = (campaigns.containskey(l.i2i_coupon_code_pass__c)) ? campaigns.get(l.i2i_coupon_code_pass__c).Offer__c : '';
-	        	
-	        	taskstoinsert.add(t);
-        	}
-        	
-        }
-        
-        if(ocrs!=null)
-        {
-        	for(OpportunityContactRole oc : ocrs.keyset())
-        	{
-        		Task t = new Task();
-	        	t.ownerid = queueIds.contains(oc.opportunity.ownerid) ? defaultActivityOwner : oc.opportunity.ownerid;
-	        	t.subject = 'WEX Marketing Notification: Oppty Has Been Updated';
-	        	t.whatId = oc.opportunityid;
-	        	t.Type='WEX Marketing Notification';
-            	t.Activity_Type__c='WEX Marketing Notification';
-            	t.ActivityDate = system.now().date();
-	        	t.Description = (campaigns.containskey(ocrs.get(oc))) ? campaigns.get(ocrs.get(oc)).Offer__c : '';
-	        	
-	        	taskstoinsert.add(t);
-        	}
-        }
-        
-        if(taskstoinsert.size()>0) insert taskstoinsert;
-        
-        system.debug('-* leadparentingtask end: ' + system.now());
-            
-    }
-    */
 
 
     public static void decoupleChildLeadCheck(List<Lead> records, Map<Id,Lead> oldmap)

@@ -7,7 +7,8 @@ public with sharing class LeadBeforeUpdateTriggerHandler extends TriggerHandlerB
     public override void mainEntry(TriggerParameters tp) {
 
         ULead.updateCountryCode(tp.newList, (Map<Id, Lead>) tp.oldMap); // Update Mobile Phone country code based on associated program
-        ULead.setVehicleCount(tp.newList, (Map<Id, Lead>) tp.oldMap); // look at moving to process builder
+        ULead.setTotalVehicles(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        ULead.setVehicleCount(tp.newList, (Map<Id, Lead>) tp.oldMap);
         ULead.linktoContactAccount(tp.newList, (Map<Id, Lead>) tp.oldMap);
         ULead.eloquaPassParent(tp.newList, (Map<Id, Lead>) tp.oldMap);
         ULead.setMarketable(tp.newList, (Map<Id, Lead>) tp.oldMap);

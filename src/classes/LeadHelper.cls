@@ -4,6 +4,32 @@
 
 public class LeadHelper {
     
+    public static void setOpptyContractRolePrimaryAfterUpdate (List<Lead> triggerLeads) {
+
+        Set<String> AU_Lead_RTs = auLeadRecordTypes();
+        List<OpportunityContactRole> opptyContactRolesUpdate = new List<OpportunityContactRole>();
+        Map<Id, Lead> leadToOpptyIdMap = new Map<Id, Lead>();
+        Map<Id, Lead> leadToContactIdMap = new Map<Id, Lead>();
+
+        for (Lead l : triggerLeads) {
+            if(!AU_Lead_RTs.contains(l.RecordTypeId) && l.IsConverted) {
+
+                if (l.ConvertedOpportunityId != null && l.ConvertedContactId != null) {
+                    leadToOpptyIdMap.put(l.ConvertedOpportunityId, l);
+                    leadToContactIdMap.put(l.ConvertedContactId, l);
+                }
+            }
+        }
+
+        for (OpportunityContactRole ocr : [SELECT Id, IsPrimary FROM OpportunityContactRole WHERE OpportunityId = :leadToOpptyIdMap.keySet() AND ContactId = :leadToContactIdMap.keySet()]) {
+            ocr.IsPrimary = true;
+            opptyContactRolesUpdate.add(ocr);
+        }
+
+        update opptyContactRolesUpdate;
+
+    }
+    
     public static void auValidateSuburbPostcode (List<Lead> triggerLeads) {
         
         // trigger should fire only for Leads with Australian record types

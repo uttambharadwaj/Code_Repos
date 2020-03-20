@@ -14,9 +14,10 @@ public with sharing class LeadAfterUpdateTriggerHandler extends TriggerHandlerBa
         LeadTriggerHandler.createRelatedTaskAndNote(tp.newList, (Map<Id, Lead>) tp.oldMap);
         ULead.primaryCampaignChange(tp.newList, (Map<Id, Lead>) tp.oldMap);
         UCampaignMember.setOpportunity(tp.newList, (Map<Id, Lead>) tp.oldMap);
-        LeadHelper.auLeadsAfterUpdate(tp.newList, (Map<Id, Lead>) tp.newMap, (Map<Id, Lead>) tp.oldMap);
+        LeadHelper.auLeadRecordTypesAfterUpdate(tp.newList, (Map<Id, Lead>) tp.newMap, (Map<Id, Lead>) tp.oldMap);
         LeadHelper.forsevaLeadAfterUpdate(tp.newList, (Map<Id, Lead>) tp.oldMap);
         LeadHelper.leadSplitAfterUpdate(tp.newList);
+        LeadHelper.setOpptyContractRolePrimaryAfterUpdate(tp.newList);
         ULeadWeightedRoundRobin.leadWeightedRoundRobin(tp.newList, (Map<Id, Lead>) tp.oldMap);
 
     }
