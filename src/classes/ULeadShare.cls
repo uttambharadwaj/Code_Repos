@@ -1,5 +1,5 @@
 public class ULeadShare {
-	
+
 	public static void communityCheckSharing (List<Lead> records, Map<Id, Lead> oldmap)
 	{
 		Set<Id> contactIds = new Set<Id>();
@@ -31,8 +31,6 @@ public class ULeadShare {
 				leadIds.add(l.Id);
 			}
 		}
-		
-		//system.debug('--* run insert-contactids: ' + isinsert + ' : ' + contactIds);
 
 		if(contactIds.isEmpty()) return;
 
@@ -51,12 +49,10 @@ public class ULeadShare {
 
 		for(LeadShare ls : [Select LeadId, UserOrGroupId
 								from LeadShare
-								Where LeadId IN :leadids AND UserOrGroupId IN :userIds]) //:contactIds])
+								Where LeadId IN :leadids AND UserOrGroupId IN :userIds])
 		{
 			existingLeadShares.put(ls.leadid+'-'+ls.userorgroupid,ls);
 		}
-
-		//system.debug('--* existingleadshares-insert: ' + isinsert + ' ' + existingLeadShares);
 		
 		for(Lead l2 : records)
 		{
@@ -89,9 +85,6 @@ public class ULeadShare {
 				leadsharesDelete.add(existingLeadShares.get(l2.Id+'-'+communityUsers.get(oldmap.get(l2.Id).EReferred_By__c)));
 			}
 		}
-
-		//system.debug('--* leadshares: ' + leadshares);
-		//system.debug('--* leadsharesDelete: ' + leadsharesDelete);
 		
 		if(!leadshares.isEmpty()) insert leadshares;
 		if(!leadsharesDelete.isEmpty()) delete leadsharesDelete;

@@ -1,0 +1,24 @@
+/**
+ * Created by mfarrell on 3/20/20.
+ */
+
+public with sharing class LeadAfterUpdateTriggerHandler extends TriggerHandlerBase {
+
+    public override void mainEntry(TriggerParameters tp) {
+
+        ULead.processParentLead(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        ULead.eloquaPass(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        ULead.decoupleChildLeadCheck(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        ULead.mergei2iParentDuplicates(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        ULeadShare.communityCheckSharing(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        LeadTriggerHandler.createRelatedTaskAndNote(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        ULead.primaryCampaignChange(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        UCampaignMember.setOpportunity(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        LeadHelper.auLeadsAfterUpdate(tp.newList, (Map<Id, Lead>) tp.newMap, (Map<Id, Lead>) tp.oldMap);
+        LeadHelper.forsevaLeadAfterUpdate(tp.newList, (Map<Id, Lead>) tp.oldMap);
+        LeadHelper.leadSplitAfterUpdate(tp.newList);
+        ULeadWeightedRoundRobin.leadWeightedRoundRobin(tp.newList, (Map<Id, Lead>) tp.oldMap);
+
+    }
+
+}

@@ -233,19 +233,7 @@ public class UCampaignMember {
 	
 	}
 
-/*
-	public static void updateCounts (List <CampaignMember> records)
-	{
-		set <id> cIds = new set <id>();
-		
-		for(CampaignMember cm : records)
-		{
-			cIds.add(cm.campaignId);
-		}		
-		
-		UCampaign.countUniqueLeads(cIds);
-	}
-*/
+
 	public static void linkParentLead (List <CampaignMember> records)
 	{
 		
