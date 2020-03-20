@@ -204,6 +204,12 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 this.currentPage = 2;
                 validationSuccessful = false;
             }
+
+            else if (subscriberAttributes.get('sfprogramid') == null) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'A program must be set in the Card Program field to use this function.'));
+                this.showForm = false;
+                validationSuccessful = false;
+            }
         }
 
         // ------------------------------------- Page 2 -------------------------------------
