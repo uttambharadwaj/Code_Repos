@@ -10,7 +10,7 @@
 
 trigger LeadTrigger on Lead (before insert, before update, after insert, after delete, after update) { 
 
-	TriggerFactory.createTriggerDispatcher(Opportunity.SObjectType);
+	TriggerFactory.createTriggerDispatcher(Lead.SObjectType);
 
 }
 //	Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
