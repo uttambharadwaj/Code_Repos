@@ -1,0 +1,33 @@
+<!--
+ - Created by jharrell on 2/27/20.
+ -->
+
+<apex:page standardController="Lead" extensions="AULeadAccountSearchController" id="AULeadAccountSearch">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+        <title>Account Search</title>
+
+        <!-- Meta -->
+        <meta charset="utf-8" />
+        <meta content="width=device-width, user-scalable=no" name="viewport" />
+    </head>
+
+    <body>
+
+    <apex:pageBlock rendered="{!IF(accounts.size > 0, true, false)}">
+        <apex:pageBlockTable value="{!accounts}" var="acc">
+            <apex:column value="{!acc.Name}"/>
+            <apex:column value="{!acc.ShippingCity}"/>
+            <apex:column value="{!acc.ShippingState}"/>
+            <apex:column value="{!acc.RecordType.Name}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+    <apex:outputPanel rendered="{!IF(accounts.size > 0, false, true)}">
+        <center>
+            <br />
+            Unable to find any matching accounts for this Lead.
+        </center>
+    </apex:outputPanel>
+    </body>
+    </html>
+</apex:page>
