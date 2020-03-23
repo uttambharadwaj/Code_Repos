@@ -215,7 +215,7 @@ global class UtilityClass {
             escapedSearchVariables = escapedSearchVariables.replaceAll('\\\\',''); // removing slashes - that's silly to have them
 
             // match special characters to escape
-            Pattern myPattern = Pattern.compile( '(\\?|\\&|\\||\\!|\\{|\\}|\\[|\\]|\\(|\\)|\\^|\\~|\\:|\\"|\\+|\\-)' );
+            Pattern myPattern = Pattern.compile( '(\\?|\\&|\\||\\!|\\{|\\}|\\[|\\]|\\(|\\)|\\^|\\~|\\:|\\"|\\+|\\-|\\*)' );
             Matcher myMatcher = myPattern.matcher(escapedSearchVariables);
 
             // escape special characters
@@ -230,7 +230,7 @@ global class UtilityClass {
 
         if (searchVariables != null) {
             searchVariables = searchVariables.replaceAll('\\\\','');
-            searchVariables = searchVariables.replaceAll('[-?&|!\\[\\]{}()^~*:\"\'\\+]','');
+            searchVariables = searchVariables.replaceAll('[-?&|!\\[\\]{}()^*~:\"\'\\+]','');
         }
         System.debug('TEMP after chars removed: ' + searchVariables);
 
