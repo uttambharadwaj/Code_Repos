@@ -12,6 +12,7 @@ public without sharing class CreditUtil_ExistingExposure {
     private static Set<String> NAFLEET_APP_STATUSES = new Set<String>{'Application Complete', 'Decisioned', 'Implementation Complete', 'Pending Implementation'};
     private static Set<String> OTR_APP_STATUSES = new Set<String>{'Closed/Fraud','Decisioned-Rereview', 'Decisioned', 'Pending Setup','Pending Setup Data','Pending Setup-Generic','Setup Complete','Cards Produced','Cards Shipped','Approved','Prepay','Prepay Requested','Declined','Audit Complete'};
     private static Set<String> CP_APP_STATUSES = new Set<String>{'Application Complete','Cards Produced', 'Cards Shipped','Implementation Complete','Pending Implementation','Pending Setup Data','Pending Setup-Generic','Setup Complete','Audit Complete','Saved - Rereview'};
+    private static String businessName = '';
 
     /** Things have gotten a little complicated.
     * First a list of potentially duplicate applications are gathered. The business name and address need to be at least a 75% match to the
@@ -23,10 +24,9 @@ public without sharing class CreditUtil_ExistingExposure {
         List<List<SObject>> existingApplications = new List<List<SObject>>();
         appIds.add(request.applicationId);
 
+        businessName = request.legalBusinessName;
+
         // Add FIND wildcard onto business name if longer than 10 chars
-        if(request.legalBusinessName != null && (request.legalBusinessName).length() > 10){
-            request.legalBusinessName = (request.legalBusinessName).subString(0, 10) + '*';
-        }
         if (request.postalCode != null && (request.postalCode).length() > 5) {
             request.postalCode = request.postalCode.substring(0,5) + '*';
         }
@@ -66,7 +66,7 @@ public without sharing class CreditUtil_ExistingExposure {
             // Consider the application for existing exposure if it was created under 12 months ago OR was flagged for fraud
             if (existingApplication.CreatedDate > System.now().addMonths(-12) || existingApplication.Fraud_Flag__c) {
 
-                // Consider existing exposure if the business is a 75% match compared the to current application
+                // Consider existing exposure if the business name AND address together are a 75% match compared the to current application
                 // OR the DUNS # matches the current application
                 // OR the business phone matches the current application
                 // OR the PG SSN matches the current application
@@ -122,7 +122,7 @@ public without sharing class CreditUtil_ExistingExposure {
             // Consider the application for existing exposure if it was created under 12 months ago OR was flagged for fraud
             if (existingApplication.CreatedDate > System.now().addMonths(-12) || existingApplication.Fraud_Flag__c) {
 
-                // Consider existing exposure if the business is a 75% match compared the to current application
+                // Consider existing exposure if the business name AND address together are a 75% match compared the to current application
                 // OR the DUNS # matches the current application
                 // OR the business phone matches the current application
                 // OR the PG SSN matches the current application
@@ -172,7 +172,7 @@ public without sharing class CreditUtil_ExistingExposure {
             // Consider the application for existing exposure if it was created under 12 months ago OR was flagged for fraud
             if (existingApplication.CreatedDate > System.now().addMonths(-12) || existingApplication.Fraud_Flag__c) {
 
-                // Consider existing exposure if the business is a 75% match compared the to current application
+                // Consider existing exposure if the business name AND address together are a 75% match compared the to current application
                 // OR the DUNS # matches the current application
                 // OR the business phone matches the current application
                 // OR the PG SSN matches the current application
@@ -219,7 +219,7 @@ public without sharing class CreditUtil_ExistingExposure {
      */
     private static List<List<SObject>> getOTRExistingApplications(ExistingExposureRequest request) {
 
-        String onlineAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
+        String onlineAppRequestSearchVariables = request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
 
         if (request.phone != null) {
             onlineAppRequestSearchVariables += ' OR ' + request.phone.replaceAll('\\D','');
@@ -243,7 +243,7 @@ public without sharing class CreditUtil_ExistingExposure {
 
     private static List<List<SObject>> getCPExistingApplications(ExistingExposureRequest request) {
 
-        String cpAppRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode + ' OR ' + request.phone.replaceAll('\\D','');
+        String cpAppRequestSearchVariables = request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode + ' OR ' + request.phone.replaceAll('\\D','');
 
         if (request.duns != null) {
             cpAppRequestSearchVariables += ' OR ' + request.duns;
@@ -286,7 +286,7 @@ public without sharing class CreditUtil_ExistingExposure {
             uniqueExistingExposureApps = new Set<SObject>(existingExposureApps);
 
             // Lastly, query for the Application Requests that match the remaining existing exposure criteria
-            String appRequestSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
+            String appRequestSearchVariables = request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
 
             if (request.duns != null) {
                 appRequestSearchVariables += ' OR ' + request.duns;
@@ -417,7 +417,12 @@ public without sharing class CreditUtil_ExistingExposure {
                 'AND Status__c IN :CP_APP_STATUSES ' +
                 'ORDER BY Id)';
 
+        businessName = UtilityClass.removeReservedChars(businessName);
+        if(businessName != null && (businessName).length() > 10) {
+            businessName = (businessName).subString(0, 10) + '*';
+        }
         searchVariables = UtilityClass.removeReservedChars(searchVariables);
+        searchVariables = businessName + ' AND ' + searchVariables; // adding business name last in order to preserve * as a wild card
         System.debug('queryForAllLOBs search variables: ' + searchVariables);
         onlineAppRequestQuery = onlineAppRequestQuery.replace('searchString', searchVariables);
 
@@ -437,11 +442,12 @@ public without sharing class CreditUtil_ExistingExposure {
         List<FSC_Existing_Exposure__c> existingExposureAccounts = new List<FSC_Existing_Exposure__c>();
         List<ExistingExposureAccounts> existingExposureAccountMatches = new List<ExistingExposureAccounts>();
 
+        request.legalBusinessName = UtilityClass.removeReservedChars(request.legalBusinessName);
         if(request.legalBusinessName != null && (request.legalBusinessName).length() > 10){
             request.legalBusinessName = (request.legalBusinessName).subString(0, 10) + '*';
         }
 
-        String accountSearchVariables = request.legalBusinessName + ' AND ' + request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
+        String accountSearchVariables = request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
 
         if (request.duns != null) {
             accountSearchVariables += ' OR ' + formatDUNs(request.duns);
@@ -452,6 +458,7 @@ public without sharing class CreditUtil_ExistingExposure {
                 'ORDER BY Id)';
 
         accountSearchVariables = UtilityClass.removeReservedChars(accountSearchVariables);
+        accountSearchVariables = request.legalBusinessName + ' AND ' + accountSearchVariables; // adding business name last in order to preserve the * as a wild card
         System.debug('getAccounts search variables: ' + accountSearchVariables);
         accountQuery = accountQuery.replace('searchString', accountSearchVariables);
 
