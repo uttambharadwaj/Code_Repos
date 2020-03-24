@@ -11,6 +11,9 @@
 
 trigger EMAP_Account_Trigger on Account (before insert, before update, after update) 
 {
+    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
+    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Account_Automation__c) { return; }
+
     if(trigger.isBefore){
         //used to update EMAP Account record currency with program currency
         EMAP_Account_TriggerHandler.updateCurrency(trigger.new);

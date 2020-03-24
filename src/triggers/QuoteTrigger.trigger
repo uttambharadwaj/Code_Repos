@@ -1,4 +1,8 @@
 trigger QuoteTrigger on zqu__Quote__c (before update, after update, before insert) {
+
+    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
+    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Zuora_Automation__c) { return; }
+
     QuoteTriggerHandler handler = new QuoteTriggerHandler();
     
     system.debug('Quote Trigger Running');

@@ -1,4 +1,5 @@
 public class LeadTriggerHandler {
+
     public static void createRelatedTaskAndNote (List<Lead> records, Map<Id, Lead> oldMap) {
         Boolean isInsert = oldMap==null;
         Map<Id, Lead> leadsMap = new Map<Id, Lead>();
