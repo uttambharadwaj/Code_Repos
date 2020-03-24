@@ -271,6 +271,9 @@
                             if (!validatePostalCode($j('[id$=billingPostalCode]').val())) {
                                 $j('[id$=billingPostalCode]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Invalid_Postal_Code}</div>'); errorCount++;
                             }
+                            if ($j('[id$=numberOfCards]').val() !== "" && !validateNumberOfCards($j('[id$=numberOfCards]').val())) {
+                                $j('[id$=numberOfCards]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Please_enter_a_value_between_1_and_30}</div>'); errorCount++;
+                            }
 
                             // For each fleet contact, validate that all fields are filled in and they are valid phone/email
                             $j('[id$=fleetContact]').find('.fleetContact').each(function (index) {
@@ -310,26 +313,7 @@
                             });
 
                         }
-                        if (currentStep === 1) {
 
-                            // Catch all to check for required fields
-                            $j('[id$=fleetEnrollmentForm]').find('.required').each(function () {
-                                if ($j(this).val() === null || $j(this).val() === "") {
-                                    errorMessages.push('{!$Label.Fleet_Please_fill_required_fields}');
-                                    if ($j(this).next('.helpIcon').length > 0) {
-                                        $j(this).addClass('erroredInput').next('.helpIcon').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
-                                    }
-                                    else {
-                                        $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Required}</div>'); errorCount++;
-                                    }
-                                }
-                            });
-
-                            if ($j('[id$=numberOfCards]').val() !== "" && !validateNumberOfCards($j('[id$=numberOfCards]').val())) {
-                                $j('[id$=numberOfCards]').addClass('erroredInput').after('<div class="fieldErrorMessage">{!$Label.Fleet_Please_enter_a_value_between_1_and_30}</div>'); errorCount++;
-                            }
-
-                        }
                         if (currentStep === 2) {
 
                             // Catch all to check for required fields
@@ -345,9 +329,6 @@
                                     }
                                 }
                             });
-
-                        }
-                        if (currentStep === 2) {
 
                             var numberOfDrivers = 0;
                             $j('[id$=driverDetails]').find('.fleetDriverItem').each(function () {
@@ -422,9 +403,14 @@
                         }
 
                         console.log(errorMessages);
+                        console.log(errorCount);
+                        console.log(currentStep);
 
-                        if (errorCount > 0) { if (errorMessages.length > 0) { displayErrors(errorMessages); } return false; }
-                        else { stepContinue(); }
+                        if (errorCount > 0) {
+                            if (errorMessages.length > 0) {
+                                displayErrors(errorMessages);
+                            } return false;
+                        } else { stepContinue(); }
                     }
                 }
 

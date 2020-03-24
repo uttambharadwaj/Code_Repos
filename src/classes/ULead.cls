@@ -17,27 +17,23 @@
 */
 
 public class ULead {
-	
-	//private static boolean hasRun = false;
+
 	private static boolean hasRun_ParentInsert = false;
-	//private static boolean hasRun_EloquaChildPass = false;
 	private static boolean hasrun_Decouple = false;
-	//private static boolean hasrun_i2iMerges = false;
 	
 	private static set<Id> parentsprocessed = new set<id>();
 	private static set<Id> childrenprocessed = new set<id>();
 	private static set<Id> parentsprocessedthroughMerge = new set<Id>();
 
 
-
     public static void setTotalVehicles (List <Lead> records, Map <id, Lead> oldMap)
     {
         boolean isInsert = (oldMap == null);
-        
+
         for(Lead l : records)
         {
-            if(isinsert == true   
-               || (isinsert == false 
+            if(isinsert == true
+               || (isinsert == false
                    && (l.Number_of_tractors__c != oldMap.get(l.id).Number_of_tractors__c
                        || l.Number_of_Other_Fuel_Vehicles__c != oldMap.get(l.id).Number_of_Other_Fuel_Vehicles__c)))
             {
@@ -49,16 +45,10 @@ public class ULead {
                 {
                     l.Number_of_Other_Fuel_Vehicles__c = 0;
                 }
-                
+
                 l.Number_of_Vehicles__c = l.Number_of_tractors__c + l.Number_of_Other_Fuel_Vehicles__c;
-                
-                // 9/12/2013 11:02 AM
-                //l.Card_Product__c = 'Local';
-                //if(l.Number_Of_Tractors__c >= l.Number_of_Other_Fuel_Vehicles__c)
-                //{
-                //    l.Card_Product__c = 'OTR';
-                //}
-            }   
+
+            }
         }
     }
     
@@ -71,7 +61,7 @@ public class ULead {
         {
             if(isinsert == true || (isinsert == false && l.Number_Of_Vehicles__c != oldMap.get(l.id).Number_Of_Vehicles__c))
             {
-                if(l.Number_Of_Vehicles__c == null) 
+                if(l.Number_Of_Vehicles__c == null)
                 {
                     l.Number_Of_Vehicles__c = 0;
                 }
@@ -90,11 +80,8 @@ public class ULead {
     // replace the V2 trigger V2SA_CreateCampaignMemberLeadUpload
     public static void createCampaignMember (List <Lead> leads)
     {
-    	//if(hasRun || hasRun_ParentInsert) return;
     	
     	GlobalSettings__c setting = GlobalSettings__c.getOrgDefaults();
-    	
-    	//**todo should I set recursion monitor here?
     	
         List <CampaignMember> CampaignMemberstoInsert = new List <CampaignMember> ();
         
@@ -113,12 +100,10 @@ public class ULead {
         
         if(CampaignMemberstoInsert.size() > 0)
         {
-            //insert CampaignMemberstoInsert;
-            
-            
+
             List<Database.Saveresult> insertResults = Database.insert(CampaignMemberstoInsert,false);
             List<CampaignMember> cmInsertReTry = new List<CampaignMember>();
-            //for(SaveResult sr : insertResults)
+
             for(Integer x = 0; x < CampaignMemberstoInsert.size(); x++)
             {
             	Database.Saveresult sr = insertResults[x];
@@ -126,17 +111,13 @@ public class ULead {
             	{
             		for(Database.Error err : sr.getErrors())
             		{
-            			//if(err.getStatusCode() == StatusCode.UNABLE_TO_LOCK_ROW)
-            			//{
             				cmInsertReTry.add(CampaignMemberstoInsert[x]);
             				break;
-            			//}
             		}
             	}
             }
             
             if(cmInsertReTry.size()>0) insert cmInsertReTry;
-            
 
         }
     }
@@ -197,11 +178,10 @@ public class ULead {
 		if(cmtoinsert.size() > 0)
         {
             //insert CampaignMemberstoInsert;
-            
-            
+
             List<Database.Saveresult> insertResults = Database.insert(cmtoinsert,false);
             List<CampaignMember> cmInsertReTry = new List<CampaignMember>();
-            //for(SaveResult sr : insertResults)
+
             for(Integer x = 0; x < cmtoinsert.size(); x++)
             {
             	Database.Saveresult sr = insertResults[x];
@@ -209,11 +189,8 @@ public class ULead {
             	{
             		for(Database.Error err : sr.getErrors())
             		{
-            			//if(err.getStatusCode() == StatusCode.UNABLE_TO_LOCK_ROW)
-            			//{
             				cmInsertReTry.add(cmtoinsert[x]);
             				break;
-            			//}
             		}
             	}
             }
@@ -409,10 +386,9 @@ public class ULead {
         Set<Id> salesProfileIDs = new Set<Id>();
         set<string> parenti2iIds = new set<string>();
         set<string> parentCouponCodes = new set<string>();
-        
+
         Set<Id> relatedContactIds = new Set<Id>();
 
-        
         Map<string,Campaign> parenting_campaignsByCouponCode = new Map<string,Campaign>();
         Map<string,Id> parenting_programsbyCouponCode = new Map<string,Id>();
         
@@ -439,46 +415,12 @@ public class ULead {
             
         }
 
-        //system.debug('---- isinsert: ' + isinsert);
-        //system.debug('---- parentemails: ' + parentemails);
-        //system.debug('---- parenti2iids: ' +  parenti2iIds);
-        //system.debug('---- parentcouponcodes: ' + parentCouponCodes);
-        //system.debug('---- relatedcontactids: ' + relatedContactIds);
-        
-        /*
-        if(
-        (parenti2iids.isempty() && UserInfo.getUserId() != setting.Web_to_Lead_creator__c) 
-        || parentcouponcodes.isempty())
-        {
-            system.debug('-* processparent empty exit.' + system.now());
-            return;
-        }
-        */
         if(parentcouponcodes.isempty()) return;
-        
-                
-        /*
-        Turn off, upserts could have insert run first
-        then batch of update right after it.
-
-        if(isinsert)
-        {
-            hasRun_ParentInsert=true;
-        }else
-        {
-            if(hasRun_ParentInsert)
-            {
-                system.debug('-* processparent hasrunparent exit.' + system.now());
-                return;
-            }
-        }
-        */
 
         if(hasRun_Decouple){
             system.debug('-* processparent hasRun_Decouple exit.' + system.now());
             return;
         }
-
         
         //**********  Sales Profiles to qualify recent Lead task activity.
         
@@ -490,21 +432,7 @@ public class ULead {
 
             }
         }
-        //******************
 
-        //********Queues
-        /* Used to check for Task assignemtns, not doing task assignments anymore.
-        Set<Id> lead_oppQueues = new Set<Id>();
-        for(QueueSobject qso : [Select QueueId from QueueSobject 
-                                    Where QueueId != null
-                                    AND(SobjectType = 'Lead' OR SobjectType = 'Opportunity')])
-        {
-            lead_oppQueues.add(qso.QueueId);
-        }
-        */
-        
-
-        //***************
         //Recordtypes for Child Lead Assignemnts
         Map<String,String> childRecordTypesByProgram = new Map<String,String>();
         for(Lead_record_Type__c lrt : Lead_record_Type__c.getall().values())
@@ -514,9 +442,7 @@ public class ULead {
                 childRecordTypesByProgram.put(lrt.programid__c,lrt.lead_record_type_id__c);
             }
         }
-        //**************
-        
-        //***********************************************
+
         //building campaign and program data
         
         Set<Id> programsFromCouponCodes = new Set<Id>();
@@ -540,23 +466,12 @@ public class ULead {
         {
             campaignsUnderPrograms.add(cp2.Campaign__c);
         }
-        
 
         system.debug('-- programsFromCouponCodes: ' + programsFromCouponCodes);
         system.debug('-- parenting_programsbycouponcode: ' + parenting_programsbycouponcode);
         system.debug('-- parenting_campaignsbyCouponCode: ' + parenting_campaignsbyCouponCode);
         system.debug('-- campaignsUnderPrograms: ' + campaignsUnderPrograms);
 
-        //*************************************************
-        
-        //check dml limits
-        //system.debug('-- in ulead2: ' + limits.getqueries() + ' :: ' + limits.getLimitQueries());
-        //system.debug('-- in ulead row2: ' + limits.getQueryRows() + ' :: ' + limits.getLimitQueryRows());
-        
-
-        
-        //**************************************************
-        //building overhead to find contact/opp matches
         Map<string,OpportunityContactRole> i2iIdcontactOpportunityMap = new Map<string,OpportunityContactRole>();
           
         
@@ -626,18 +541,6 @@ public class ULead {
 
         system.debug('---- i2iChildLeadAndProgramAndActivity: ' + i2iChildLeadAndProgramAndActivity);
         
-        //******************************************************************************************************
-
-
-
-        /*
-        if(!isinsert)
-        {
-        system.debug('---- i2iIdcontactopportunitymap: ' + i2iIdcontactOpportunityMap);
-        system.debug('---- i2iChildLeadAndProgramAndActivity: ' + i2iChildLeadAndProgramAndActivity);
-        }
-        */
-        
         Database.Dmloptions dmlo = new Database.Dmloptions();
         
         AssignmentRule ar = new AssignmentRule();
@@ -652,18 +555,10 @@ public class ULead {
         
         //****End of overhead
 
-
-
         List<Lead> oppContactMatchCreateLead = new List<Lead>();
         List<Lead> programAcitivtyMatchAppendChildLead = new List<Lead>();
         List<Lead> eeCreateChildLeads = new List<Lead>();
-
-        //Tasks not being created, turned off per client request.
-        //Map<OpportunityContactRole,String> ocrsForTasks = new Map<OpportunityContactRole,String>();
-        //List<Lead> leadsforTasks = new List<Lead>();
-
         Set<Id> contactIdsForCMCheck = new Set<Id>();
-
 
         //Start loop to categorize leads
         for(Lead ld : leads)
@@ -680,23 +575,11 @@ public class ULead {
                 if(i2iIdcontactOpportunityMap.containskey(parenting_programsbycouponcode.get(ld.i2i_coupon_code_pass__c)+'-'+ld.i2i_Id__c)
                 && (i2iIdContactOpportunityMap.get(parenting_programsbycouponcode.get(ld.i2i_coupon_code_pass__c)+'-'+ld.i2i_id__c).ContactId == ld.Related_Contact__c))
                 {
-                    /*
-                    Lead l_child = ld.clone();
-                    l_child.Parent_Lead__c = ld.Id;
-                    l_child.i2i_id__c = '';
-                    l_child.Related_Account__c = null;
-                    l_child.Related_Contact__c = null;
-                    l_child.Jigsaw = null;
-                    */
 
                     Lead l_child = createChildLead(ld);
                     l_child.RecordtypeId = childRecordTypesByProgram.containskey(parenting_programsbycouponcode.get(ld.i2i_coupon_code_pass__c)) ? childRecordTypesByProgram.get(parenting_programsbycouponcode.get(ld.i2i_coupon_code_pass__c))
                                             : setting.Default_Lead_Record_Type__c;
-                    
-                    //if(!(parenting_campaignsbycouponcode.containskey(ld.i2i_coupon_code_pass__c)) || !(parenting_programsbycouponcode.containskey(ld.i2i_coupon_code_pass__c))) l_child.No_campaign__c=true;
-                    
-                    
-                    
+
                     if(parenting_campaignsbycouponcode.containskey(ld.i2i_coupon_code_pass__c))
                     {
                         l_child.primary_campaign__c = parenting_campaignsbycouponcode.get(ld.i2i_coupon_code_pass__c).Id;
@@ -719,8 +602,6 @@ public class ULead {
                     
                     oppContactMatchCreateLead.add(l_child);
                     
-                    //ocrsForTasks.put(i2iIdcontactOpportunityMap.get(parenting_programsbycouponcode.get(ld.i2i_coupon_code_pass__c)+'-'+ld.i2i_id__c),ld.i2i_Coupon_Code_Pass__c);
-                    
                     if(ld.Related_Contact__c!=null) contactIdsForCMCheck.add(ld.Related_Contact__c);
                     
 
@@ -734,28 +615,14 @@ public class ULead {
                     
                     system.debug('---- i2i programActivitymatch: ' + ld.id);
                        
-                }else 
-                //if(ld.i2i_ID__c != null || (isinsert && UserInfo.getUserId() == setting.Web_to_Lead_creator__c))
+                }else
+
                 //New requirement 071714, all parent leads should create a child lead.
                 {
-                   
-                    /*
-                    Lead l_child = ld.clone();
-                    l_child.parent_lead__c = ld.id;
-                    l_child.i2i_id__c = '';
-                    l_child.Related_Account__c = null;
-                    l_child.Related_Contact__c = null;
-                    l_child.Jigsaw = null;
-                    */
 
                     Lead l_child = createChildLead(ld);
                     l_child.RecordtypeId = childRecordTypesByProgram.containskey(parenting_programsbycouponcode.get(ld.i2i_coupon_code_pass__c)) ? childRecordTypesByProgram.get(parenting_programsbycouponcode.get(ld.i2i_coupon_code_pass__c))
                                             : setting.Default_Lead_Record_Type__c;
-
-
-                    
-                    //if(!(parenting_campaignsbycouponcode.containskey(ld.i2i_coupon_code_pass__c)) || !(parenting_programsbycouponcode.containskey(ld.i2i_coupon_code_pass__c))) l_child.No_campaign__c=true;
-                   
                     
                     if(parenting_campaignsbycouponcode.containskey(ld.i2i_coupon_code_pass__c))
                     {
@@ -778,9 +645,6 @@ public class ULead {
                     }
 
                     eeCreateChildLeads.add(l_child);
-
-
-
 
                     system.debug('-- i2i ee_match: ' + ld.id);
                     
@@ -841,7 +705,7 @@ public class ULead {
         if(programAcitivtyMatchAppendChildLead.size()>0)
         {
             cmtoinsertbyleadid.putall(buildCampaignMemberByCouponCode(programAcitivtyMatchAppendChildLead,parenting_campaignsbycouponcode,parenting_existingLeadsOnCampaigns)); //parenting_programsbycouponcode));
-            //leadsfortasks.addall(programAcitivtyMatchAppendChildLead);
+
         }
         
         if(eeCreateChildLeads.size()>0)
@@ -849,14 +713,8 @@ public class ULead {
             system.debug('---- eeCreatedChildLeads before insert: ' + eeCreateChildLeads);
             insert eeCreateChildLeads;
 
-            //leadsfortasks.addall(eeCreateChildLeads);
             cmtoinsertbyleadid.putall(buildcampaignmemberbycouponcode(eeCreateChildLeads,parenting_campaignsbycouponcode,parenting_existingLeadsOnCampaigns));
         }
-
-        //**Turning off per client request 03/27/14
-        //if(ocrsForTasks.size()>0) leadParentingTaskCreation(null,ocrsfortasks,parenting_campaignsbycouponcode,lead_oppQueues,setting.Default_Activity_Owner__c);
-        //if(leadsfortasks.size()>0) leadParentingTaskCreation(leadsfortasks,null,parenting_campaignsbycouponcode, lead_oppQueues, setting.Default_Activity_Owner__c);
-
         
         system.debug(' ---- cmtoinsertbyleadid: ' + cmtoinsertbyleadid);
 
@@ -875,8 +733,6 @@ public class ULead {
         system.debug('-* processParent end: ' + system.now());
 
     }
-
-
 
     
     public static Map<Id,CampaignMember> buildCampaignMemberByCouponCode(List<Lead> leads, Map<string,Campaign> campaigns, Set<String> existingLeadsOnCampaigns)
@@ -907,56 +763,6 @@ public class ULead {
         
     }
 
-    //Not being used, turned off for client request 03/27/14
-    /*
-    public static void leadParentingTaskCreation(List<Lead> leads, Map<OpportunityContactRole,String> ocrs, Map<String,Campaign> campaigns, Set<Id> queueIDs, String defaultActivityOwner)//List<sobject> objects, Boolean opp)
-    {
-    	system.debug('-* leadparentingtask start: ' + system.now());
-    	
-        List<Task> tasksToInsert = new List<Task>();
-
-        if(leads!=null)
-        {
-        	for(lead l : leads)
-        	{
-        		Task t = new Task();
-	        	t.ownerid = queueIds.contains(l.ownerid) ? defaultActivityOwner : l.ownerid;
-	        	t.subject = 'WEX Marketing Notification: Lead Has Been Updated';
-	        	t.whoId = l.id;
-	        	t.Type='WEX Marketing Notification';
-            	t.Activity_Type__c='WEX Marketing Notification';
-            	t.ActivityDate = system.now().date();
-	        	t.Description = (campaigns.containskey(l.i2i_coupon_code_pass__c)) ? campaigns.get(l.i2i_coupon_code_pass__c).Offer__c : '';
-	        	
-	        	taskstoinsert.add(t);
-        	}
-        	
-        }
-        
-        if(ocrs!=null)
-        {
-        	for(OpportunityContactRole oc : ocrs.keyset())
-        	{
-        		Task t = new Task();
-	        	t.ownerid = queueIds.contains(oc.opportunity.ownerid) ? defaultActivityOwner : oc.opportunity.ownerid;
-	        	t.subject = 'WEX Marketing Notification: Oppty Has Been Updated';
-	        	t.whatId = oc.opportunityid;
-	        	t.Type='WEX Marketing Notification';
-            	t.Activity_Type__c='WEX Marketing Notification';
-            	t.ActivityDate = system.now().date();
-	        	t.Description = (campaigns.containskey(ocrs.get(oc))) ? campaigns.get(ocrs.get(oc)).Offer__c : '';
-	        	
-	        	taskstoinsert.add(t);
-        	}
-        }
-        
-        if(taskstoinsert.size()>0) insert taskstoinsert;
-        
-        system.debug('-* leadparentingtask end: ' + system.now());
-            
-    }
-    */
-
 
     public static void decoupleChildLeadCheck(List<Lead> records, Map<Id,Lead> oldmap)
     {
@@ -966,7 +772,6 @@ public class ULead {
         List<Lead> childrentoupdate = new List<Lead>();
         Map<Id,Lead> parentstoinsert = new Map<Id,Lead>();
 
-        //Set<string> emailscope = new Set<String>();
         Set<Id> parentIds = new Set<Id>();
         for(Lead l : records)
         {
@@ -977,7 +782,6 @@ public class ULead {
             && l.Parent_Lead__c!=null
             )
             {
-                //emailScope.add(l.email);
                 parentIds.add(l.Parent_Lead__c);
             }
         }
@@ -985,7 +789,6 @@ public class ULead {
         Map<Id, string> parentIdandEmail = new Map<Id,string>();
         for(Lead ld : [Select Id, Email from Lead Where RecordTypeId = :setting.Parent_Lead_Record_Type_Id__c
                         AND Id IN :parentIds])
-                        //AND Email IN :emailscope])
         {
             parentIdandEmail.put(ld.Id, ld.Email);
         }
@@ -1000,7 +803,6 @@ public class ULead {
             &&((isinsert && l2.Parent_Lead__c==null)
             ||(!isinsert && l2.email!=null && l2.email != oldmap.get(l2.Id).Email && l2.Parent_Lead__c!=null
                 && parentIdandEmail.containskey(l2.Parent_Lead__c) && l2.Email != parentIdandEmail.get(l2.Parent_Lead__c)
-             //&& l2.Email != parentleads.get(l2.Parent_lead__c).Email //&& parentleads.containskey(l2.parent_lead__c)
             ))
             )
             {
@@ -1012,8 +814,7 @@ public class ULead {
                 plead.email = l2.email;
                 plead.ownerid = setting.Parent_Lead_Queue__c;
                 plead.recordtypeid = setting.Parent_Lead_Record_Type_Id__c;
-                //Lev: Adding Marketable field - -7/31/2019
-                //plead.Marketable__c = 'Partners';
+
                 parentstoinsert.put(l2.Id,plead);
                 childrentoupdate.add(l2);
 
@@ -1033,13 +834,11 @@ public class ULead {
         for(Lead childl : childrentoupdate)
         {
             Lead c_lead = new Lead(id=childl.Id, Parent_Lead__c=parentstoinsert.get(childl.Id).Id);
-            //childl.Parent_Lead__c = parentstoinsert.get(childl.Id).Id;
 
             updateChildren.add(c_lead);
         }
 
         if(updateChildren.size()>0) update updateChildren;
-
 
     }
 
@@ -1050,7 +849,6 @@ public class ULead {
         Map<Id, Id> parentIdToCampaignIdMap = new Map<Id, Id>();
         for (Lead l : records) {
             if (l.Parent_Lead__c != null &&
-                    //oldMap.get(l.Id).Parent_Lead__c != l.Parent_Lead__c &&
                     l.Primary_Campaign__c != null) {
                 parentIdToCampaignIdMap.put(l.Parent_Lead__c, l.Primary_Campaign__c);
             }
@@ -1118,6 +916,7 @@ public class ULead {
 
 
     }
+
     public static void eloquaPass(List<Lead> records, Map<Id,Lead> oldmap)
     {
         GlobalSettings__c gs = GlobalSettings__c.getorgdefaults();
@@ -1141,7 +940,6 @@ public class ULead {
         }
 
         if(i2iIds.isEmpty() || parentCouponCodes.isEmpty()) return;
-
 
         //*** General Overhead
 
@@ -1173,7 +971,6 @@ public class ULead {
         {
             if(c.Default_Program__c!=null)
             {
-                //programsFromCouponCodes.add(c.Default_Program__c);
                 programsbycouponcode.put(c.Coupon_code__c,c.Default_Program__c);
             }
             
@@ -1215,7 +1012,7 @@ public class ULead {
                                             AND Opportunity.CreatedDate >= :ninetydays
                                             ])
         {
-            string unqkey = (string)ocr.contactid + ocr.Opportunity.Campaign.Coupon_code__c; //ocr.opportunity.coupon_code2__c;
+            string unqkey = (string)ocr.contactid + ocr.Opportunity.Campaign.Coupon_code__c;
             opportunityContacts.put(unqkey,ocr);     
             opportunityContactsContactIds.add(ocr.contactid);
 
@@ -1227,7 +1024,6 @@ public class ULead {
         Map<String, CampaignMember> campaignMembersMapContact = new Map<String, CampaignMember>();
         
         List<CampaignMember> campaignMembersLead = new List<CampaignMember>();
-        //List<CampaignMember> campaignMembersContact = new List<CampaignMember>();
         Set<String> existingLeadsOnCampaigns = new Set<String>();
         for(CampaignMember cm : [Select LeadId, ContactId, Contact.i2i_Id__c, lead.IsConverted, Lead.Status,
                                 CampaignId, campaign.Coupon_Code__c,
@@ -1254,8 +1050,7 @@ public class ULead {
 
                 existingLeadsOnCampaigns.add(cm.LeadId+'-'+cm.CampaignId);
             }
-            
-            //programnamesbycouponcode.put(cm.campaign.coupon_code__c,cm.campaign.default_program__r.name);
+
             system.debug('-- cm: ' + cm);
         }
 
@@ -1290,17 +1085,12 @@ public class ULead {
 
         //**********************************************Overhead end
 
-
-
-        //List<Opportunity> oppsToupdate = new List<Opportunity>();
         List<sobject> oppsToupdate = new List<sobject>();
-        //List<Lead> childLeadsToUpdate = new List<Lead>();
         List<sobject> childLeadsToUpdate = new List<sobject>();
         List<Lead> childLeadstoInsert = new List<Lead>();
 
         for(Lead ld : records)
         {
-
 
             if(ld.RecordTypeId == gs.Parent_Lead_Record_Type_Id__c
                 && ld.Most_Recent_Response__c != null
@@ -1308,7 +1098,6 @@ public class ULead {
                 && (isinsert || ld.Most_Recent_Response__c != oldmap.get(ld.Id).Most_Recent_Response__c)
                 && ld.i2i_id__c != null)
             {
-
 
                 if(campaignMembersMapContact.containskey(ld.i2i_ID__c+'-'+ld.i2i_Coupon_Code_Pass__c))
                 {
@@ -1327,9 +1116,6 @@ public class ULead {
                                 ocr.Opportunity.Most_Recent_Response__c + '\r\n' + responseSummary;
                         }
 
-                        //o.Most_Recent_Response__c = ld.Most_Recent_Response__c;
-                        //o.Most_Recent_Response_Date__c = ld.Most_Recent_Response_Date__c;
-
                         sobject leadsobject = ld;
                         sobject oppsobject = o;
 
@@ -1341,9 +1127,6 @@ public class ULead {
                                  oppsobject.put(params[1],leadsobject.get(params[0]));
                             }
                         }
-
-
-                        //oppsToupdate.add(o);
                         oppstoupdate.add(oppsobject);
                         continue;
                     }
@@ -1364,11 +1147,6 @@ public class ULead {
                                         cm.Lead.Most_Recent_Response__c   + '\r\n' + responseSummary; 
                         }
 
-                        //l_update.Most_Recent_Response__c = ld.Most_Recent_Response__c;
-                        //l_update.Most_Recent_Response_Date__c = ld.Most_Recent_Response_Date__c;
-
-                        //childLeadsToUpdate.add(l_update);
-
                         sobject ldsobject = ld;
                         sobject childlead = l_update;
 
@@ -1387,7 +1165,6 @@ public class ULead {
                     
                 }
 
-
                 //**Else create the lead, clone, etc.
                 //Clone will pick up the most recent responses.
                 
@@ -1396,7 +1173,6 @@ public class ULead {
                 child_l.RecordtypeId = childRecordTypesByProgram.containskey(programsbycouponcode.get(ld.i2i_coupon_code_pass__c)) ? childRecordTypesByProgram.get(programsbycouponcode.get(ld.i2i_coupon_code_pass__c))
                                                 : gs.Default_Lead_Record_Type__c;
 
-         
                 if(campaignsbycouponcode.containskey(ld.i2i_coupon_code_pass__c))
                 {
                     child_l.primary_campaign__c = campaignsbycouponcode.get(ld.i2i_coupon_code_pass__c).Id;
@@ -1420,7 +1196,6 @@ public class ULead {
                 childLeadstoInsert.add(child_l);
             }
 
-
         }
 
         if(!oppsToupdate.isEmpty()) update oppsToupdate;
@@ -1438,7 +1213,6 @@ public class ULead {
         {
             insert cmtoInsertByLeadId.values();
         }
-
 
     }
 
@@ -1458,77 +1232,36 @@ public class ULead {
     }
 
 
-	
 	public static void mergei2iParentDuplicates(List<Lead> records, map<id,Lead>oldmap)
     {
         GlobalSettings__c gs = GlobalSettings__c.getorgdefaults();
         boolean isinsert = (oldmap==null);
         
         Set<string> i2iIds = new Set<string>();
-        //Set<string> emails = new Set<String>();
-        //Set<string> i2iContactIds = new Set<String>();
-
-        //Map<String,Lead> runningLeadstoCheck = new Map<String,Lead>();
-        //Map<String,Set<Id>> leadsinloopByi2iID = new Map<String,Set<Id>>();
         
         for(Lead scope : records)
         {
-            //system.debug('-- merge leadcheck: ' + scope.i2i_ID__c + ' ' + oldmap.get(scope.id).i2i_id__c);
             
             if(
-            //!(parentsprocessedthroughMerge.contains(scope.Id))
-            //&&
             scope.RecordTypeId == gs.Parent_Lead_Record_Type_Id__c 
             && 
             (scope.i2i_ID__c !=null && scope.i2i_ID__c != '0'
             && (isinsert || scope.i2i_ID__c != oldmap.get(scope.id).i2i_id__c))
-            //||
-            //(scope.email!=null && scope.Email!='none@none.com'
-            //&& (isinsert || scope.email!=oldmap.get(scope.id).email))
-            //||
-            //(scope.i2i_Contact_ID__c!=null
-            //&& (isInsert || scope.i2i_Contact_ID__c!= oldmap.get(scope.Id).i2i_Contact_ID__c))
 
             )
             {
-                //parentsprocessedthroughMerge.add(scope.Id);
                 
                 if(scope.i2i_ID__c!=null && scope.i2i_ID__c!='0') i2iIds.add(scope.i2i_id__c);
-                //if(scope.email!=null && scope.email != 'none@none.com') emails.add(scope.email);
-                //if(scope.i2i_Contact_ID__c!=null && scope.i2i_Contact_ID__c!='0') i2iContactIds.add(scope.i2i_Contact_ID__c);
-                
-                //runningLeadstoCheck.put(scope.id+'-'+scope.i2i_ID__c,scope);
             }
         }
         
         system.debug('---- merge i2iids: ' + i2iids);
-        //system.debug('---- merge emails: ' + emails);
         
-        if(i2iIds.isempty()) return; //&& emails.isempty() && i2iContactIds.isEmpty()) return; 
-        
-        
-        //if(!test.isRunningTest())
-        //{
-            //if(hasrun_i2imerges) return;
-            //hasrun_i2imerges = true;
-        //}
-        
-        
+        if(i2iIds.isempty()) return;
+
         Map<String,Map<Id,Lead>> leadsByi2iIds = new Map<String,Map<Id,Lead>>();
         Set<String> i2iIdsWithDups = new Set<String>();
         Map<String,Lead> i2iIdWinningLead = new Map<String,Lead>();
-        
-        
-        //Map<String,Map<Id,Lead>> leadsbyemail = new Map<string,Map<Id,Lead>>();
-        //set<string> emailswithdups = new Set<String>();
-        //Map<String,Lead> emailWinningLead = new Map<String,Lead>();
-        
-
-        
-        //Map<String,Map<Id,Lead>> leadsbyi2iContactId = new Map<string,Map<Id,Lead>>();
-        //Set<string> i2iContactIdswithdups = new Set<String>();
-        //Map<String,Lead> i2iContactIdWinningLead = new Map<String,Lead>();
-        
 
         set <string> leadFields = new set <string>();
         string leadFieldString = 'id, i2i_id__c, email, createddate, i2i_Contact_ID__c';
@@ -1545,8 +1278,6 @@ public class ULead {
         
         string recId = gs.Parent_Lead_Record_Type_Id__c;
         string leadQuery = 'select ' + leadFieldString + ', (Select Id from Child_Leads__r where isConverted = false) ';
-        //leadQuery += 'from lead where (i2i_id__c in :i2iIds OR email in :emails) and isConverted = false and RecordTypeId = :recId';
-        //leadQuery += 'from lead where (i2i_id__c in :i2iIds OR i2i_Contact_ID__c in :i2iContactIds) and isConverted = false and RecordTypeId = :recId';
         leadQuery += 'from lead where i2i_id__c in :i2iIds and isConverted = false and RecordTypeId = :recId';
         
         system.debug('---- merge leadquery: ' + leadquery);
@@ -1577,78 +1308,15 @@ public class ULead {
                 i2iIdWinningLead.put(ld.i2i_id__c,ld);
             }
 
-            //*********compile i2i Contact Id structure
-            /*
-            if(leadsbyi2iContactId.containskey(ld.i2i_Contact_ID__c))
-            {
-                Map<Id,Lead> leads = leadsbyi2iContactId.get(ld.i2i_Contact_ID__c);
-                leads.put(ld.id,ld);
-                leadsbyi2iContactId.put(ld.i2i_Contact_ID__c,leads);
-                
-                i2iContactIdswithdups.add(ld.i2i_Contact_ID__c);
-            }else if(ld.i2i_Contact_ID__c!=null && ld.i2i_Contact_ID__c != '0')
-            {
-                map<id,lead> leads = new Map<id,Lead>();
-                leads.put(ld.id,ld);
-                leadsbyi2iContactId.put(ld.i2i_Contact_ID__c,leads);
-            }
-            
-            if(ld.i2i_Contact_ID__c!=null 
-            && ld.i2i_Contact_ID__c!='0'
-            && (!(i2icontactidwinninglead.containskey(ld.i2i_Contact_ID__c)) 
-                || (i2icontactidwinninglead.get(ld.i2i_Contact_ID__c).createddate < ld.createddate))
-            )
-            {
-                i2icontactidwinninglead.put(ld.i2i_Contact_ID__c,ld);
-            }
-            */
-            //**********************************************
-
-            //compile email structure - deprecated
-            /*
-            if(leadsbyemail.containskey(ld.email))
-            {
-                Map<Id,Lead> leads = leadsbyemail.get(ld.email);
-                leads.put(ld.id,ld);
-                leadsbyemail.put(ld.email,leads);
-                
-                emailswithdups.add(ld.email);
-            }else if(ld.email!=null && ld.email != 'none@none.com')
-            {
-                map<id,lead> leads = new Map<id,Lead>();
-                leads.put(ld.id,ld);
-                leadsbyemail.put(ld.email,leads);
-            }
-            
-            if(ld.email!=null 
-            && ld.email!='none@none.com'
-            && (!(emailwinninglead.containskey(ld.email)) || (emailwinninglead.get(ld.email).createddate < ld.createddate)))
-            {
-                emailwinninglead.put(ld.email,ld);
-            }
-            */
-
         }
-        
-        //system.debug('---- merge leadsbyi2iids: ' + leadsbyi2iids);
-        //system.debug('---- merge winninglead: ' + i2iidwinninglead);
+
         system.debug('---- merge i2iidswithdups: ' + i2iidswithdups);
         
-        //system.debug('---- merge leadsbyemail: ' + leadsbyemail);
-        //system.debug('---- merge emailwinninglead: ' + emailwinninglead);
-        //system.debug('---- merge emailswithdups: ' + emailswithdups);
-        
         if(leadsbyi2iids.isempty() || i2iIdswithdups.isempty()) return;
-            //&& 
-            /*(leadsbyemail.isempty() || emailswithdups.isempty())*/
-            //(leadsbyi2iContactId.isempty() || i2iContactIdswithdups.isEmpty())
-            //) return;
         
         List<Lead> leadstoupdate = new List<Lead>();
         Map<Id,Lead> parentleadstoupdate = new Map<Id,Lead>();
-        //List<Lead> leadstodelete = new List<Lead>();
         Map<Id,Lead> leadstodelete = new Map<Id,Lead>();
-        //Set<Id> leadsprocessed = new Set<Id>();
         
         //Process i2i IDs
         for(String i2i : i2iIdswithdups)
@@ -1679,99 +1347,21 @@ public class ULead {
                                 hasupdate = true;
                             }
                         }
-                        
-                        //add l to delete list
-                        //leadstodelete.add(l);
+
                         leadstodelete.put(l.id,l);
 
                         DeletedRecordsStageClass.deletedRecordsReasons.put(l.Id,'Parent Lead Duplicate i2i Id');
 
-                        //leadsprocessed.add(l.id);
                     }
                 }
                 
                 if(hasupdate) parentleadstoupdate.put(winninglead.id,winninglead);
-                //leadsprocessed.add(winninglead.id);
+
             }
         }
 
 
         //Process i2i contact matching
-        /*
-        for(String i2icontact : i2iContactIdswithdups)
-        {
-            if(leadsbyi2iContactId.containskey(i2icontact) && i2iContactIdWinningLead.containskey(i2icontact))
-            {
-                Lead winningLead = (parentleadstoupdate.containskey(i2icontactidwinninglead.get(i2icontact).Id)) ? parentleadstoupdate.get(i2icontactidwinninglead.get(i2icontact).Id) : i2icontactidwinninglead.get(i2icontact);
-                if(leadstodelete.containskey(winninglead.id)) continue;
-                boolean hasupdate = false;
-                
-                for(lead l : leadsbyi2icontactid.get(i2icontact).values())
-                {
-                    if(l.id!=winninglead.id && !(leadstodelete.containskey(l.id)))
-                    {
-                        for( lead childlead : l.child_leads__r)
-                        {
-                            Lead childL = new Lead(id=childlead.id, parent_lead__c=winninglead.id);
-                            leadstoupdate.add(childl);
-                        }
-                        for(string fieldname : leadfields)
-                        {
-                            if(winninglead.get(fieldname)==null && l.get(fieldname)!=null)
-                            {
-                                winninglead.put(fieldname,l.get(fieldname));
-                                hasupdate = true;
-                            }
-                        }
-                        
-                        leadstodelete.put(l.id,l);
-                        
-                    }
-                }
-                
-                
-                if(hasupdate) parentleadstoupdate.put(winninglead.id,winninglead);
-            }
-        }
-        */
-        /*    Email matching deprecated
-        for(string em : emailswithdups)
-        {
-            if(leadsbyemail.containskey(em) && emailwinninglead.containskey(em))
-            {
-                Lead winningLead = (parentleadstoupdate.containskey(emailwinninglead.get(em).Id)) ? parentleadstoupdate.get(emailwinninglead.get(em).Id) : emailwinninglead.get(em);
-                if(leadstodelete.containskey(winninglead.id)) continue;
-                boolean hasupdate = false;
-                
-                for(lead l : leadsbyemail.get(em).values())
-                {
-                    if(l.id!=winninglead.id && !(leadstodelete.containskey(l.id)))
-                    {
-                        for( lead childlead : l.child_leads__r)
-                        {
-                            Lead childL = new Lead(id=childlead.id, parent_lead__c=winninglead.id);
-                            leadstoupdate.add(childl);
-                        }
-                        for(string fieldname : leadfields)
-                        {
-                            if(winninglead.get(fieldname)==null && l.get(fieldname)!=null)
-                            {
-                                winninglead.put(fieldname,l.get(fieldname));
-                                hasupdate = true;
-                            }
-                        }
-                        
-                        leadstodelete.put(l.id,l);
-                        
-                    }
-                }
-                
-                
-                if(hasupdate) parentleadstoupdate.put(winninglead.id,winninglead);
-
-            }
-        }
-        */
         
         system.debug('---- merge leadstoupdate: ' + leadstoupdate);
         system.debug('---- merge leadtodelete: ' + leadstodelete);

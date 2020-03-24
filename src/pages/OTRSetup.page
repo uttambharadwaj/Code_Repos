@@ -423,7 +423,7 @@
                                 <!--END ALLOWED MERCHANT CATEGORIES SUBSECTION-->
 
                                 <!--BEGIN REFRESH LIMITS SUBSECTION...WHICH IS PROBABLY WAY TOO MANY FIELDS BUT WELCOME TO EFS-->
-                                <div id="refreshingLimits" class="twelve columns clearfix form-field styled-panel" style="{!if(hasMastercard, "", "display: none")}">
+                                <div id="refreshingLimits" class="twelve columns clearfix form-field styled-panel" style="{!if(showRefreshLimits, "", "display: none")}">
                                     <div class="twelve columns clearfix">
                                         &nbsp;
                                     </div>

@@ -55,9 +55,10 @@ public class FleetEnrollmentController2 extends FleetEnrollmentController{
         }
 
         if(currentStep == 2) {
-            currentStep += 1;
             setupFleetVehicles();
         }
+
+        currentStep = currentStep + 1;
 
     }
 

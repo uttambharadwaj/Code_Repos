@@ -9,6 +9,7 @@
 *                   11/Sep/2019 CJackson    NAFONBOARD-96   API contains the Account Short Name.
 *                   11/Nov/2019 MFarrell    NAFONBOARD-124  Added default program template account variable.
 *                                                           Updated logic that searches for program template accounts when form is used.
+*                   18/Mar/20202 MFarrell   EAPT-1459       Added isMillennium Boolean so program template account changes from NAFONBOARD-124 only apply to Millennium Programs.
 *
 */
 
@@ -98,6 +99,12 @@ public with sharing class FleetEnrollmentInternalController {
     public Boolean hasError {
         get {
             return ApexPages.hasMessages();
+        }
+    }
+
+    public Boolean isMillennium {
+        get {
+            return program.WEX_Platform__c.equalsIgnoreCase('Millennium');
         }
     }
 
@@ -384,7 +391,9 @@ public with sharing class FleetEnrollmentInternalController {
 
                             program = WexBrandingController.getProgram(opportunity.Campaign_Program__r.Program__c);
 
-                            defaultPTA = WexBrandingController.getProgramTemplateAccount(WexBrandingController.getDefaultAccountTemplateByProgram(program.Id));
+                            if (isMillennium) {
+                                defaultPTA = WexBrandingController.getProgramTemplateAccount(WexBrandingController.getDefaultAccountTemplateByProgram(program.Id));
+                            }
 
                             if (fleetEnrollments[0].Program_Template_Account__c != null) {
                                 fleetEnrollment.Program_Template_Account__c = fleetEnrollments[0].Program_Template_Account__c;
@@ -620,72 +629,64 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
             }
 
-            List<Program_Template_Account__c> programTemplateAccounts = null;
+            if (isMillennium) {
 
-            System.debug('before PTA lookup');
-            System.debug('***Apply Default PTA?: ' + fleetEnrollmentInformation.applyDefaultPTA);
-            if (fleetEnrollmentInformation.applyDefaultPTA != true) {
-                System.debug('inside apply default pta statement');
-                // did the sales rep select an association and a new billing cycle?
-                if (fleetEnrollmentInformation.association == true && fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
-                    System.debug('inside look up PTA by association and billing cycle');
-                    programTemplateAccounts = [
-                            SELECT Id
-                            FROM Program_Template_Account__c
-                            WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
-                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
-                            AND Association__c = :fleetEnrollmentInformation.selectedAssociation
-                            AND Program__c = :program.Id
-                    ];
-                    // did the sales rep only select an association?
-                } else if (fleetEnrollmentInformation.association == true) {
-                    System.debug('inside look up PTA by association');
-                    programTemplateAccounts = [
-                            SELECT Id
-                            FROM Program_Template_Account__c
-                            WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
-                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
-                            AND Association__c = :fleetEnrollmentInformation.selectedAssociation
-                            AND Program__c = :program.Id
-                    ];
-                    // did the sales rep only select a new billing cycle?
-                } else if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
-                    System.debug('inside look up PTA by billing cycle');
-                    programTemplateAccounts = [
-                            SELECT Id
-                            FROM Program_Template_Account__c
-                            WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
-                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
-                            AND Association__c = :fleetEnrollment.Association__c
-                            AND Program__c = :program.Id
-                    ];
-                } else if (fleetEnrollmentInformation.selectedCardType != fleetEnrollment.Card_Type__c || fleetEnrollmentInformation.selectedUsageType != fleetEnrollment.Usage_Type__c) {
-                    System.debug('inside look up PTA by new card type/usage type');
-                    programTemplateAccounts = [
-                            SELECT Id
-                            FROM Program_Template_Account__c
-                            WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
-                            AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                            AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
-                            AND Association__c = :fleetEnrollment.Association__c
-                            AND Program__c = :program.Id
-                    ];
+                List<Program_Template_Account__c> programTemplateAccounts = null;
+                if (fleetEnrollmentInformation.applyDefaultPTA != true) {
+                    // did the sales rep select an association and a new billing cycle?
+                    if (fleetEnrollmentInformation.association == true && fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                        programTemplateAccounts = [
+                                SELECT Id
+                                FROM Program_Template_Account__c
+                                WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
+                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                                AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                                AND Association__c = :fleetEnrollmentInformation.selectedAssociation
+                                AND Program__c = :program.Id
+                        ];
+                        // did the sales rep only select an association?
+                    } else if (fleetEnrollmentInformation.association == true) {
+                        programTemplateAccounts = [
+                                SELECT Id
+                                FROM Program_Template_Account__c
+                                WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
+                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                                AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                                AND Association__c = :fleetEnrollmentInformation.selectedAssociation
+                                AND Program__c = :program.Id
+                        ];
+                        // did the sales rep only select a new billing cycle?
+                    } else if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
+                        programTemplateAccounts = [
+                                SELECT Id
+                                FROM Program_Template_Account__c
+                                WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
+                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                                AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                                AND Association__c = :fleetEnrollment.Association__c
+                                AND Program__c = :program.Id
+                        ];
+                        // were the card type or usage type changed?
+                    } else if (fleetEnrollmentInformation.selectedCardType != fleetEnrollment.Card_Type__c || fleetEnrollmentInformation.selectedUsageType != fleetEnrollment.Usage_Type__c) {
+                        programTemplateAccounts = [
+                                SELECT Id
+                                FROM Program_Template_Account__c
+                                WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
+                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
+                                AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
+                                AND Association__c = :fleetEnrollment.Association__c
+                                AND Program__c = :program.Id
+                        ];
+                    }
                 }
-            }
 
-            System.debug('current value of PTA list: ' + programTemplateAccounts);
-            System.debug('current PTA on FE record: ' + fleetEnrollment.Program_Template_Account__c);
-            // if we're changing the program template account to something different than default
-            if (programTemplateAccounts != null && programTemplateAccounts.size() > 0) {
-                System.debug('inside apply found PTA');
-                fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
-                // if program template account is blank, and we didn't change it, set to the program default
-            } else if (fleetEnrollmentInformation.applyDefaultPTA == true || fleetEnrollment.Program_Template_Account__c == null) {
-                System.debug('inside apply default PTA');
-                fleetEnrollment.Program_Template_Account__c = defaultPTA.Id;
+                // if we're changing the program template account to something different than default
+                if (programTemplateAccounts != null && programTemplateAccounts.size() > 0) {
+                    fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
+                    // if program template account is blank, and we didn't change it, set to the program default
+                } else if (fleetEnrollmentInformation.applyDefaultPTA == true || fleetEnrollment.Program_Template_Account__c == null) {
+                    fleetEnrollment.Program_Template_Account__c = defaultPTA.Id;
+                }
             }
 
             if (fleetEnrollmentInformation.selectedCardType != null) {

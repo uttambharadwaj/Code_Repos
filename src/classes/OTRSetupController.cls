@@ -202,8 +202,16 @@ public without sharing class OTRSetupController {
         get {
             if (onlineApplicationOffer.Product_Type__c.containsIgnoreCase('MasterCard')) {
                 return true;
+            } else if (selectedOtherServices != null && selectedOtherServices.containsIgnoreCase('MasterCard')) {
+                return true;
             }
             return false;
+        }
+    }
+
+    public Boolean showRefreshLimits {
+        get {
+            return onlineApplicationOffer.MasterCard_Refreshing_Limits__c;
         }
     }
 

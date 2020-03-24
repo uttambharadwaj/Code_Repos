@@ -713,9 +713,7 @@ function prodSelection(myProduct){
     //else $j("[id$=transferOptions]").hide();
     if(selectedProducts.join(";").includes('MasterCard')) {
         $j("[id$=allowedMerchantCategories]").show();
-        $j("[id$=refreshingLimits]").show();
     } else {
         $j("[id$=allowedMerchantCategories]").hide();
-        $j("[id$=refreshingLimits]").hide();
     }
 }

@@ -3,8 +3,7 @@ public class ULeadWeightedRoundRobin {
     public static void leadWeightedRoundRobin (List <Lead> records, Map <id, Lead> oldMap)
     {
         boolean isInsert = (oldMap == null);
-        
-        
+
         Set <String> eligibleQueues = new Set <String>();
 
         for(LeadRoundRobinQueue__c eq : [Select isActive__c, Standard_Queue_Id__c 
@@ -77,8 +76,7 @@ public class ULeadWeightedRoundRobin {
         {
             return;
         }
-   
-    
+
         // find the inactive users
         // this will get rid of groups
         Set <Id> ActiveUsers = new Set <Id>();
@@ -97,8 +95,7 @@ public class ULeadWeightedRoundRobin {
         id nxtrepId;
    
         List <Lead> LeadsToUpdate = new List <Lead>();
-    
-      
+
         for(Lead l : [select id, ownerid 
                       from lead 
                       where id in :Leads 
@@ -171,7 +168,6 @@ public class ULeadWeightedRoundRobin {
         {
             update LeadsToUpdate;
         }
-      
 
         // Update the Settings
         List <LeadRoundRobinQueue__c> RoundRobinQueuesToUpdate = new List <LeadRoundRobinQueue__c>();
@@ -184,6 +180,5 @@ public class ULeadWeightedRoundRobin {
         update RoundRobinQueuesToUpdate;
       
     }
-    
     
 }
