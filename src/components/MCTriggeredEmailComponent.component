@@ -42,7 +42,8 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Available MC Triggered Emails</label>
                                 <apex:selectList value="{!selectedMCTriggeredEmailKey}" multiselect="false" size="1">
-                                    <apex:selectOptions value="{!mcTriggeredEmailKeys}"/>
+                                    <apex:actionSupport event="onchange" action="{!updateSubscriberKey}" />
+                                    <apex:selectOptions value="{!mcTriggeredEmailKeys}" />
                                 </apex:selectList>
                             </div>
                         </div>
