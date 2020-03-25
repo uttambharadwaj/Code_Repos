@@ -94,6 +94,7 @@ public class MCConnector {
             if (status.equalsIgnoreCase('Error')) {
                 System.debug(resBody);
                 insert UtilityClass.logInternalError(resBody, 'MCConnector getTriggeredEmailStatus', '', 'MCConnector', true, '', '');
+                status += ' Key: ' + key + ' SendID: ' + recipientSendId;
             }
             return status;
         } catch (Exception e) {
