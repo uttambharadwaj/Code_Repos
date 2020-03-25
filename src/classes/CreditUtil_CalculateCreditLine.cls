@@ -351,7 +351,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                 }
             }
             // set a minimum credit line recommendation of 25k for this RG range unless applicant requested less
-            if (ar.Credit_Line_Recommendation__c < 25000) {
+            if (ar.Credit_Line_Recommendation__c < 25000 && creditLineRequested > 25000) {
                 ar.Credit_Line_Recommendation__c = 25000;
             }
             return ar.Credit_Line_Recommendation__c;
@@ -372,7 +372,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                 }
             }
             // set a minimum credit line recommendation of 10k for this RG range unless applicant requested less
-            if (ar.Credit_Line_Recommendation__c < 10000) {
+            if (ar.Credit_Line_Recommendation__c < 10000 && creditLineRequested > 10000) {
                 ar.Credit_Line_Recommendation__c = 10000;
             }
             return ar.Credit_Line_Recommendation__c;
