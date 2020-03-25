@@ -70,7 +70,7 @@ public class MCConnector {
             insert UtilityClass.logInternalError(e, '', 'MCConnector', true, '', '');
             throw new MCConnectorException('Unable to send message.');
         }
-        
+
         return sendId;
     }
 
@@ -87,8 +87,8 @@ public class MCConnector {
         try {
 
             Http sendEmailReq = new Http();
-            HttpResponse postResponse = sendEmailReq.send(req);
-            String resBody = postResponse.getBody();
+            HttpResponse getResponse = sendEmailReq.send(req);
+            String resBody = getResponse.getBody();
             String status = resBody.substringAfter('"status"').substringBefore(',').replaceAll('[^a-zA-Z0-9\\s+]', '');
 
             if (status.equalsIgnoreCase('Error')) {

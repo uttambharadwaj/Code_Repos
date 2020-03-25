@@ -1,4 +1,4 @@
-public class MCTriggeredEmailController { // extension for MarketingTriggeredEmail.page It was pretty once upon a time........
+public class MCTriggeredEmailController { // extension for MarketingTriggeredEmail.page
 
     public MCConnector mcConnector;
     public String mcTriggeredEmailConfirmationId;
@@ -28,23 +28,10 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     private sObject selectedEmailKeyObj;
     public Map<String, Object> subscriberAttributes;
 
-    private Map<String, Schema.SObjectField> triggeredEmailKeyFields {
-        get {
-            return globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
-        }
+    private Map<String, Schema.SObjectField> triggeredEmailKeyFields { get; set; }
+    private Map<String, Schema.SObjectField> validPageObjFields { get; set; }
 
-    }
-    private Map<String, Schema.SObjectField> validPageObjFields {
-        get {
-            return globalDescribe.get(objectName).getDescribe().fields.getMap();
-        }
-    }
-
-    private Map<String, SObjectType> globalDescribe {
-        get {
-            return Schema.getGlobalDescribe();
-        }
-    }
+    private Map<String, SObjectType> globalDescribe { get; set; }
 
     private String objectName {
         get {
@@ -87,6 +74,10 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         this.emailSent = false;
         this.showForm = true;
         this.mcTriggeredEmailKeys = new List<SelectOption>();
+
+        this.globalDescribe = Schema.getGlobalDescribe();
+        this.triggeredEmailKeyFields = globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
+        this.validPageObjFields = globalDescribe.get(objectName).getDescribe().fields.getMap();
 
         if (pageObj.get('RecordTypeId') != null) this.recordTypeId = (String) pageObj.get('RecordTypeId');
 
@@ -191,7 +182,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 System.debug(mcData);
                 mcTriggeredEmailConfirmationId = mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey); // throws exception and logs error
                 emailSent = true;
-                triggeredEmailStatus = 'Queued'; // maybe someday the REST api will support sync calls.... until then we can periodically retrieve the status in mc.
+                triggeredEmailStatus = 'Queued'; // maybe someday the REST api will accept the SYNC parameter. It currently ignores it and does the operation async.... until then we can periodically retrieve the status in mc.....
 
             } catch (Exception e) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));

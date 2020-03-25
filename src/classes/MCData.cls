@@ -18,10 +18,10 @@ public class MCData {
 
         toObj.ContactAttributes = ca;
 
-        Options opts = new Options();
-        opts.RequestType = 'SYNC';
-
-        rootObj.Options = opts;
+//        Options opts = new Options();
+//        opts.RequestType = 'SYNC';
+//
+//        rootObj.Options = opts;
         rootObj.To = toObj;
 
         return JSON.serialize(rootObj);
@@ -36,12 +36,12 @@ public class MCData {
 
     public class RootObject {
         public To To { get; set; }
-        public Options Options { get; set; }
+        //public Options Options { get; set; }
     }
 
-    public class Options {
-        public String RequestType { get; set; }
-    }
+//    public class Options {
+//        public String RequestType { get; set; }
+//    }
     public class ContactAttributes {
         public Map<String, Object> SubscriberAttributes;
     }
