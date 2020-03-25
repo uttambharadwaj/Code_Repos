@@ -93,8 +93,9 @@ public class MCConnector {
 
             if (status.equalsIgnoreCase('Error')) {
                 System.debug(resBody);
-                insert UtilityClass.logInternalError(resBody, 'MCConnector getTriggeredEmailStatus', '', 'MCConnector', true, '', '');
-                status += ' Key: ' + key + ' SendID: ' + recipientSendId;
+                Internal_Application_Error__c internalError = UtilityClass.logInternalError(resBody, 'MCConnector getTriggeredEmailStatus', '', 'MCConnector', true, '', key + '-' + recipientSendId);
+                insert internalError;
+                status += ' Error ID: ' + internalError.Id;
             }
             return status;
         } catch (Exception e) {
