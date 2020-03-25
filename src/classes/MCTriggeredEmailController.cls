@@ -1,5 +1,7 @@
-public class MCTriggeredEmailController { // extension for MarketingTriggeredEmail.page ...it was pretty once upon a time.
+public class MCTriggeredEmailController { // extension for MarketingTriggeredEmail.page It was pretty once upon a time........
 
+    public MCConnector mcConnector;
+    public String mcTriggeredEmailConfirmationId;
     public String toEmail { get; set; }
     public String ogEmailValue { get; set; }
     public Boolean emailSent { get; set; }
@@ -15,7 +17,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 this.pageObj = value;
                 init();
             } else
-                    this.pageObj = value;
+                this.pageObj = value;
         }
     }
     public sObject pageObj2 { get; set; }
@@ -25,6 +27,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     private MC_Triggered_Email__mdt triggeredEmailConfig;
     private sObject selectedEmailKeyObj;
     public Map<String, Object> subscriberAttributes;
+
     private Map<String, Schema.SObjectField> triggeredEmailKeyFields {
         get {
             return globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
@@ -48,7 +51,34 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             return (String) UtilityClass.getObjName((Id) pageObj.get('Id'));
         }
     }
+    public String triggeredEmailStatus { get; set; }
+    public void updateTriggeredEmailStatus() {
+        if (selectedMCTriggeredEmailKey != null && mcTriggeredEmailConfirmationId != null) {
+            triggeredEmailStatus = mcConnector.getTriggeredEmailStatus(selectedMCTriggeredEmailKey, mcTriggeredEmailConfirmationId);
+        }
+    }
     private Map<String, sObject> emailKeyLabelToObject { get; set; }
+
+
+    // ------------------------------------------------------------------------------------------------------------------------------
+
+
+    // Constructor for component
+    public MCTriggeredEmailController() {
+        this.showForm = false;
+    }
+
+    // Constructor for page
+    public MCTriggeredEmailController(ApexPages.StandardController stdController) {
+
+        List<String> pageObjFields = new List<String>{
+                'recordTypeId', 'Id'
+        };
+
+        if (!Test.isRunningTest()) stdController.addFields(pageObjFields);
+        this.pageObj2 = stdController.getRecord();
+    }
+
     public void init() {
 
         this.currentPage = 1;
@@ -89,6 +119,8 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             return;
         }
         selectedMCTriggeredEmailKey = mcTriggeredEmailKeys.get(0).getLabel();
+
+        mcConnector = new MCConnector();
         updateSubscriberKey();
     }
 
@@ -144,23 +176,6 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         }
     }
 
-    // Constructor for component
-    public MCTriggeredEmailController() {
-        this.showForm = false;
-    }
-
-    // Constructor for page
-    public MCTriggeredEmailController(ApexPages.StandardController stdController) {
-
-        List<String> pageObjFields = new List<String>{
-                'recordTypeId', 'Id'
-        };
-
-        if (!Test.isRunningTest()) stdController.addFields(pageObjFields);
-        this.pageObj2 = stdController.getRecord();
-    }
-
-
     public void sendMCTriggeredEmail() {
 
         if (sendMCTriggeredEmailValidation()) {
@@ -172,15 +187,11 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 mcData.toAddress = toEmail;
                 mcData.subscriberKey = this.subscriberKey;
 
-                MCConnector mcConnector = new MCConnector();
                 mcConnector.mcData = mcData;
                 System.debug(mcData);
-                if (mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey)) {
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM, 'Sent. You may now close this window.'));
-                    this.emailSent = true;
-                } else {
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'Failed to send email. MC declined the sent data.')); // probably not a valid triggered email, or missing required fields
-                }
+                mcTriggeredEmailConfirmationId = mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey); // throws exception and logs error
+                emailSent = true;
+                triggeredEmailStatus = 'Queued'; // maybe someday the REST api will support sync calls.... until then we can periodically retrieve the status in mc.
 
             } catch (Exception e) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
@@ -202,17 +213,6 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         // ------------------------------------- Page 1 -------------------------------------
         if (this.currentPage == 1) {
             Pattern regexEmailPattern = Pattern.compile('([a-zA-Z0-9_\\-\\.]+)@((\\[a-z]{1,3}\\.[a-z]{1,3}\\.[a-z]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})'); // https://developer.salesforce.com/forums/?id=906F000000092GXIAY
-
-            // Validate that required fields from metadata have values
-            for (String field : requiredMCFields) {
-
-                if (subscriberAttributes.get(field) == null) {
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'Missing required value: ' + field));
-                    this.showForm = false;
-                    validationSuccessful = false;
-                }
-            }
-            // ======
 
             if (emailSent) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'The email has already been sent.'));
@@ -253,6 +253,19 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             }
 
         }
+
+        //  ---------------------------------------------------------------------------------
+
+        // Validate that required fields from metadata have values
+        for (String field : requiredMCFields) {
+
+            if (subscriberAttributes.get(field) == null) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'Missing required value: ' + field));
+                this.showForm = false;
+                validationSuccessful = false;
+            }
+        }
+        // ======
 
         return validationSuccessful;
     }

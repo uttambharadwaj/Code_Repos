@@ -42,8 +42,8 @@
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Available MC Triggered Emails</label>
                                 <apex:selectList value="{!selectedMCTriggeredEmailKey}" multiselect="false" size="1">
-                                    <apex:actionSupport event="onchange" action="{!updateSubscriberKey}" />
-                                    <apex:selectOptions value="{!mcTriggeredEmailKeys}" />
+                                    <apex:actionSupport event="onchange" action="{!updateSubscriberKey}"/>
+                                    <apex:selectOptions value="{!mcTriggeredEmailKeys}"/>
                                 </apex:selectList>
                             </div>
                         </div>
@@ -74,6 +74,22 @@
                                         action="{!sendMCTriggeredEmail}"></apex:commandButton>
                 </div>
             </apex:form>
+        </apex:outputPanel>
+
+        <apex:outputPanel id="confirmationPanel" rendered="{!emailSent == true}">
+            <apex:form styleClass="row mb-5">
+
+                <div class="card">
+                    <h5 class="card-header">Status</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Queued in marketing cloud. Monitor status to ensure delivery.</h5>
+                        <p class="card-text">Status: {!triggeredEmailStatus}</p>
+                        <apex:commandButton styleClass="btn btn-primary w-100" value="Refresh Status"
+                                            action="{!updateTriggeredEmailStatus}"></apex:commandButton>
+                    </div>
+                </div>
+            </apex:form>
+
         </apex:outputPanel>
     </div>
     </body>
