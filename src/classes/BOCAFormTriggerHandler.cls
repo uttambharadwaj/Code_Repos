@@ -417,7 +417,7 @@ public class BOCAFormTriggerHandler {
 
             applicationRequest.Expected_Monthly_Vehicle_Expense__c = (f.Estimated_Monthly_Vehicle_Expenses__c != null) ? Decimal.valueOf(String.valueOf(f.Estimated_Monthly_Vehicle_Expenses__c)) : Decimal.valueOf(String.valueOf(f.Avg_Monthly_Fuel_Service_Expenses__c));
 
-            applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c * 3);
+            applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c * 2);
 
             if(program.Auto_Send_BOCA_to_Siebel__c == true){
                 applicationRequest.Forward_Application_to_Credit__c = 'Yes';
