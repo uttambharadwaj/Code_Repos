@@ -5,6 +5,7 @@
 * Author: Derek Gilbert
 * Initial Date: 3/5/2018
 * Revision History: 4/25/2019 IADJUDICAT-739 make them wait longer for that response. also do the constructor w/ parameter thing
+* 3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
 */
 public class CreditWS_DNB {
 
@@ -226,15 +227,32 @@ public class CreditWS_DNB {
                             if(result.OperatingStatusText.value != null) matchCandidate.OperatingStatus = result.OperatingStatusText.value;
 
                             // Match Grade String represents how close of a match each attribute the applicant supplied compared to what DNB found
-                            for(CreditWSUtil_DNBDirect_Match.MatchGradeComponent matchGradeComponent : result.MatchQualityInformation.MatchGradeComponent) {
+                            // Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components
+                            if(result.MatchQualityInformation.MatchGradeComponent != null) {
+                                for (CreditWSUtil_DNBDirect_Match.MatchGradeComponent matchGradeComponent : result.MatchQualityInformation.MatchGradeComponent) {
 
-                                if((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Name')) {
-                                    matchCandidate.NameMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                    if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Name')) {
+                                        matchCandidate.NameMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                    }
+                                    if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Street Name')) {
+                                        matchCandidate.StreetNameMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                    }
+                                    if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('State')) {
+                                        matchCandidate.StateMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                    }
+                                    if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Street Number')) {
+                                        matchCandidate.StreetNumberMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                    }
+                                    if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('City')) {
+                                        matchCandidate.CityMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                    }
+                                    if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Postal Code')) {
+                                        matchCandidate.PostalCodeMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                    }
                                 }
-
                             }
 
-                            // Match Data Profile represents how DNB matched the business. For ex: matched on CEO Name, Former Name, Registrered Address, etc
+                            // Match Data Profile represents how DNB matched the business. For ex: matched on CEO Name, Former Name, Registered Address, etc
                             if(result.MatchQualityInformation.MatchDataProfileComponent != null) {
 
                                 for (CreditWSUtil_DNBDirect_Match.MatchDataProfileComponent matchDataProfileComponent : result.MatchQualityInformation.MatchDataProfileComponent) {
@@ -1410,6 +1428,12 @@ public class CreditWS_DNB {
         public String MatchGradeText { get; set; }
 
         public String NameMatchGradeString { get; set; }
+        public String StreetNameMatchGradeString { get; set; }
+        public String StateMatchGradeString { get; set; }
+        public String StreetNumberMatchGradeString { get; set; }
+        public String CityMatchGradeString { get; set; }
+        public String PostalCodeMatchGradeString { get; set; }
+
         public String NameMatchDataProfile { get; set; }
         public String StreetNumberMatchDataProfile { get; set; }
         public String StreetNameMatchDataProfile { get; set; }
