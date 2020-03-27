@@ -339,11 +339,11 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
         if (riskGrade.equals('1') || riskGrade.equals('2')) {
             // don't increase requested to the 25k min if the applicant requested less
-            if (creditLineRequested < 25000) {
+            if (creditLineRequested <= 25000) {
                 ar.Credit_Line_Recommendation__c = creditLineRequested;
                 return ar.Credit_Line_Recommendation__c;
             }
-            if (ar.Credit_Line_Recommendation__c >= 25000) {
+            if (ar.Credit_Line_Recommendation__c > 25000) {
                 if (ar.Credit_Line_Recommendation__c <= highCreditAmount) {
                     return ar.Credit_Line_Recommendation__c;
                 }
@@ -360,11 +360,11 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
         if (riskGrade.equals('3') || riskGrade.equals('4') || (riskGrade.equals('5') && ar.Years_In_Business__c > 3)) {
             // don't increase requested to the 10k min if the applicant requested less
-            if (creditLineRequested < 10000) {
+            if (creditLineRequested <= 10000) {
                 ar.Credit_Line_Recommendation__c = creditLineRequested;
                 return ar.Credit_Line_Recommendation__c;
             }
-            if (ar.Credit_Line_Recommendation__c >= 10000) {
+            if (ar.Credit_Line_Recommendation__c > 10000) {
                 if (ar.Credit_Line_Recommendation__c <= highCreditAmount) {
                     return ar.Credit_Line_Recommendation__c;
                 }
