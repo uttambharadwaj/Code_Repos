@@ -143,7 +143,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
                 List<Application_Request__c> applicationRequests = [
                         SELECT Id,Credit_Line_Recommendation__c,DNB_Credit_Line_Recommendation__c,Requested_Credit_Limit_Currency__c,PG_Required__c,PG_High_Credit_Amount__c,PG_FICO_Score__c, Risk_Grade__c,
-                                DNB_CSAD_High_Credit__c, DNB_SBFE_High_Credit__c, DNB_Trade_Lines__c, BOCA_Type__c, Legal_Structure__c, Annual_Gross_Revenue__c, Years_In_Business__c, Credit_Decision_Comments__c
+                                DNB_CSAD_High_Credit__c, DNB_SBFE_High_Credit__c, DNB_Trade_Lines__c, BOCA_Type__c, Legal_Structure__c, Annual_Gross_Revenue__c, Years_In_Business__c, Auto_Decision_Comments__c
                         FROM Application_Request__c
                         WHERE Id = :so.Id
                 ];
@@ -158,7 +158,8 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                         if (creditLineRequested <= 25000) {
                             return calculateRevolverCreditLine(ar);
                         } else {
-                            ar.Credit_Decision_Comments__c += ' Revolver account requesting more than $25k, requires manual review.';
+                            System.debug('Revolver account requesting more than $25k, requires manual review.');
+                            ar.Auto_Decision_Comments__c += ' Revolver account requesting more than $25k, requires manual review.';
                             return 0;
                         }
                     }
@@ -338,11 +339,11 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
         if (riskGrade.equals('1') || riskGrade.equals('2')) {
             // don't increase requested to the 25k min if the applicant requested less
-            if (creditLineRequested < 25000) {
+            if (creditLineRequested <= 25000) {
                 ar.Credit_Line_Recommendation__c = creditLineRequested;
                 return ar.Credit_Line_Recommendation__c;
             }
-            if (ar.Credit_Line_Recommendation__c >= 25000) {
+            if (ar.Credit_Line_Recommendation__c > 25000) {
                 if (ar.Credit_Line_Recommendation__c <= highCreditAmount) {
                     return ar.Credit_Line_Recommendation__c;
                 }
@@ -351,7 +352,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                 }
             }
             // set a minimum credit line recommendation of 25k for this RG range unless applicant requested less
-            if (ar.Credit_Line_Recommendation__c < 25000) {
+            if (ar.Credit_Line_Recommendation__c < 25000 && creditLineRequested > 25000) {
                 ar.Credit_Line_Recommendation__c = 25000;
             }
             return ar.Credit_Line_Recommendation__c;
@@ -359,11 +360,11 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
         if (riskGrade.equals('3') || riskGrade.equals('4') || (riskGrade.equals('5') && ar.Years_In_Business__c > 3)) {
             // don't increase requested to the 10k min if the applicant requested less
-            if (creditLineRequested < 10000) {
+            if (creditLineRequested <= 10000) {
                 ar.Credit_Line_Recommendation__c = creditLineRequested;
                 return ar.Credit_Line_Recommendation__c;
             }
-            if (ar.Credit_Line_Recommendation__c >= 10000) {
+            if (ar.Credit_Line_Recommendation__c > 10000) {
                 if (ar.Credit_Line_Recommendation__c <= highCreditAmount) {
                     return ar.Credit_Line_Recommendation__c;
                 }
@@ -372,7 +373,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                 }
             }
             // set a minimum credit line recommendation of 10k for this RG range unless applicant requested less
-            if (ar.Credit_Line_Recommendation__c < 10000) {
+            if (ar.Credit_Line_Recommendation__c < 10000 && creditLineRequested > 10000) {
                 ar.Credit_Line_Recommendation__c = 10000;
             }
             return ar.Credit_Line_Recommendation__c;
@@ -430,175 +431,175 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
         if (appRequest.Legal_Structure__c.equals('Sole Proprietorship') || appRequest.DNB_Trade_Lines__c > 3 || appRequest.Years_In_Business__c < 1) {
 
-            return revolverCreditLimitTableOne(appRequest.Risk_Grade__c, revenue);
+            Map<String, List<RevenueRange>> creditLimitTableOneTwo = populateCreditLimitTableOneTwo();
+            return revolverCreditLimit(appRequest.Risk_Grade__c, revenue, creditLimitTableOneTwo);
 
         } else if (appRequest.Years_In_Business__c >= 1 && appRequest.Years_In_Business__c <= 3) {
 
-            return revolverCreditLimitTableThree(appRequest.Risk_Grade__c, revenue);
+            Map<String, List<RevenueRange>> creditLimitTableThree = populateCreditLimitTableThree();
+            return revolverCreditLimit(appRequest.Risk_Grade__c, revenue, creditLimitTableThree);
 
         }else if (appRequest.Years_In_Business__c >= 4) {
 
-            return revolverCreditLimitTableFour(appRequest.Risk_Grade__c, revenue);
+            Map<String, List<RevenueRange>> creditLimitTableFour = populateCreditLimitTableFour();
+            return revolverCreditLimit(appRequest.Risk_Grade__c, revenue, creditLimitTableFour);
         }
 
+        System.debug('Application does not meet any criteria for a Revolver credit line assignment.');
         return 0;
     }
 
+
     /**
-     * NA Fleet Credit Limit Table for Sole Prop businesses, thin credit files, and companies in business for less than 1 year
-     **/
-    private static Decimal revolverCreditLimitTableOne(String riskGrade, Decimal revenue) {
+     * Find the appropriate credit line for the given applicant revenue and risk grade.
+     */
+    private static Decimal revolverCreditLimit(String riskGrade, Decimal revenue, Map<String, List<RevenueRange>> creditLimitTbale) {
 
-        System.debug('Credit limit table 1 / 2');
-        if (riskGrade.equals('1')) {
+        List<RevenueRange> revenueRanges = creditLimitTbale.get(riskGrade);
 
-            if (revenue <= 49000) {
-                return 2000;
-            }
-            else if (revenue >= 50000 && revenue <= 99000) {
-                return 4000;
-            }
-            else if (revenue >= 100000 && revenue <= 199000) {
-                return 7000;
-            }
-            else if (revenue >= 200000 && revenue <= 499000) {
-                return 10000;
-            }
-            else if (revenue >= 500000 && revenue <= 999000) {
-                return 12500;
-            }
-            else if (revenue >= 1000000) {
-                return 15000;
-            }
-        }
-
-        else if (riskGrade.equals('2')) {
-
-            if (revenue <= 49000) {
-                return 1500;
-            }
-            else if (revenue >= 50000 && revenue <= 99000) {
-                return 2500;
-            }
-            else if (revenue >= 100000 && revenue <= 199000) {
-                return 5000;
-            }
-            else if (revenue >= 200000 && revenue <= 499000) {
-                return 7500;
-            }
-            else if (revenue >= 500000 && revenue <= 999000) {
-                return 10000;
-            }
-            else if (revenue >= 1000000) {
-                return 12500;
+        for (RevenueRange revenueRange : revenueRanges) {
+            // null max means there is no cap
+            if (revenue >= revenueRange.minimmRevenue && (revenueRange.maximumRevenue ==  null || revenue <= revenueRange.maximumRevenue)) {
+                return revenueRange.creditLine;
             }
         }
         return 0;
+    }
+
+
+    /**
+    * NA Fleet Credit Limit Table for Sole Prop businesses, thin credit files, and companies in business for less than 1 year
+    **/
+    private static Map<String, List<RevenueRange>> populateCreditLimitTableOneTwo() {
+
+        System.debug('using credit limit table 1 / 2');
+        Map<String, List<RevenueRange>> creditLimitTbaleOneTwo = new Map<String, List<RevenueRange>>();
+
+        List<RevenueRange> RG1RevenueRanges = new List<RevenueRange>();
+        RevenueRange RG1revenueRange49 = new RevenueRange(0, 49000, 2000);
+        RevenueRange RG1revenueRange99 = new RevenueRange(50000, 99000, 4000);
+        RevenueRange RG1revenueRange199 = new RevenueRange(100000, 199000, 7000);
+        RevenueRange RG1revenueRange499 = new RevenueRange(200000, 499000, 10000);
+        RevenueRange RG1revenueRange999 = new RevenueRange(500000, 999000, 12500);
+        RevenueRange RG1revenueRange1M = new RevenueRange(1000000, null, 15000);
+
+        RG1RevenueRanges.add(RG1revenueRange49);
+        RG1RevenueRanges.add(RG1revenueRange99);
+        RG1RevenueRanges.add(RG1revenueRange199);
+        RG1RevenueRanges.add(RG1revenueRange499);
+        RG1RevenueRanges.add(RG1revenueRange999);
+        RG1RevenueRanges.add(RG1revenueRange1M);
+
+        creditLimitTbaleOneTwo.put('1', RG1RevenueRanges);
+
+        List<RevenueRange> RG2RevenueRanges = new List<RevenueRange>();
+        RevenueRange RG2revenueRange49 = new RevenueRange(0, 49000, 1500);
+        RevenueRange RG2revenueRange99 = new RevenueRange(50000, 99000, 2500);
+        RevenueRange RG2revenueRange199 = new RevenueRange(100000, 199000, 5000);
+        RevenueRange RG2revenueRange499 = new RevenueRange(200000, 499000, 7500);
+        RevenueRange RG2revenueRange999 = new RevenueRange(500000, 999000, 10000);
+        RevenueRange RG2revenueRange1M = new RevenueRange(1000000, null, 12500);
+
+        RG2RevenueRanges.add(RG2revenueRange49);
+        RG2RevenueRanges.add(RG2revenueRange99);
+        RG2RevenueRanges.add(RG2revenueRange199);
+        RG2RevenueRanges.add(RG2revenueRange499);
+        RG2RevenueRanges.add(RG2revenueRange999);
+        RG2RevenueRanges.add(RG2revenueRange1M);
+
+        creditLimitTbaleOneTwo.put('2', RG2RevenueRanges);
+
+        return creditLimitTbaleOneTwo;
     }
 
     /**
     * NA Fleet Credit Limit Table for companies in business for 1-3 years
     **/
-    private static Decimal revolverCreditLimitTableThree(String riskGrade, Decimal revenue) {
+    private static Map<String, List<RevenueRange>> populateCreditLimitTableThree() {
 
-        System.debug('Credit limit table 3');
-        if (riskGrade.equals('1')) {
+        System.debug('using credit limit table 3');
+        Map<String, List<RevenueRange>> creditLimitTableOneTwo = new Map<String, List<RevenueRange>>();
 
-            if (revenue <= 49000) {
-                return 3000;
-            }
-            else if (revenue >= 50000 && revenue <= 99000) {
-                return 6000;
-            }
-            else if (revenue >= 100000 && revenue <= 199000) {
-                return 9000;
-            }
-            else if (revenue >= 200000 && revenue <= 499000) {
-                return 12000;
-            }
-            else if (revenue >= 500000 && revenue <= 999000) {
-                return 16000;
-            }
-            else if (revenue >= 1000000) {
-                return 20000;
-            }
-        }
+        List<RevenueRange> RG1RevenueRanges = new List<RevenueRange>();
+        RevenueRange RG1revenueRange49 = new RevenueRange(0, 49000, 3000);
+        RevenueRange RG1revenueRange99 = new RevenueRange(50000, 99000, 6000);
+        RevenueRange RG1revenueRange199 = new RevenueRange(100000, 199000, 9000);
+        RevenueRange RG1revenueRange499 = new RevenueRange(200000, 499000, 12000);
+        RevenueRange RG1revenueRange999 = new RevenueRange(500000, 999000, 16000);
+        RevenueRange RG1revenueRange1M = new RevenueRange(1000000, null, 20000);
 
-        else if (riskGrade.equals('2')) {
+        RG1RevenueRanges.add(RG1revenueRange49);
+        RG1RevenueRanges.add(RG1revenueRange99);
+        RG1RevenueRanges.add(RG1revenueRange199);
+        RG1RevenueRanges.add(RG1revenueRange499);
+        RG1RevenueRanges.add(RG1revenueRange999);
+        RG1RevenueRanges.add(RG1revenueRange1M);
 
-            if (revenue <= 49000) {
-                return 2000;
-            }
-            else if (revenue >= 50000 && revenue <= 99000) {
-                return 4000;
-            }
-            else if (revenue >= 100000 && revenue <= 199000) {
-                return 7500;
-            }
-            else if (revenue >= 200000 && revenue <= 499000) {
-                return 10000;
-            }
-            else if (revenue >= 500000 && revenue <= 999000) {
-                return 13000;
-            }
-            else if (revenue >= 1000000) {
-                return 17500;
-            }
-        }
+        creditLimitTableOneTwo.put('1', RG1RevenueRanges);
 
-        return 0;
+        List<RevenueRange> RG2RevenueRanges = new List<RevenueRange>();
+        RevenueRange RG2revenueRange49 = new RevenueRange(0, 49000, 2000);
+        RevenueRange RG2revenueRange99 = new RevenueRange(50000, 99000, 4000);
+        RevenueRange RG2revenueRange199 = new RevenueRange(100000, 199000, 7500);
+        RevenueRange RG2revenueRange499 = new RevenueRange(200000, 499000, 10000);
+        RevenueRange RG2revenueRange999 = new RevenueRange(500000, 999000, 13000);
+        RevenueRange RG2revenueRange1M = new RevenueRange(1000000, null, 17500);
+
+        RG2RevenueRanges.add(RG2revenueRange49);
+        RG2RevenueRanges.add(RG2revenueRange99);
+        RG2RevenueRanges.add(RG2revenueRange199);
+        RG2RevenueRanges.add(RG2revenueRange499);
+        RG2RevenueRanges.add(RG2revenueRange999);
+        RG2RevenueRanges.add(RG2revenueRange1M);
+
+        creditLimitTableOneTwo.put('2', RG2RevenueRanges);
+
+        return creditLimitTableOneTwo;
     }
 
     /**
      * NA Fleet Credit Limit Table for companies in business for 4 or more years
      **/
-    private static Decimal revolverCreditLimitTableFour(String riskGrade, Decimal revenue) {
+    private static Map<String, List<RevenueRange>> populateCreditLimitTableFour() {
 
-        System.debug('Credit limit table 4');
-        if (riskGrade.equals('1')) {
+        System.debug('using credit limit table 4');
+        Map<String, List<RevenueRange>> creditLimitTableOneTwo = new Map<String, List<RevenueRange>>();
 
-            if (revenue <= 49000) {
-                return 5000;
-            }
-            else if (revenue >= 50000 && revenue <= 99000) {
-                return 8000;
-            }
-            else if (revenue >= 100000 && revenue <= 199000) {
-                return 12000;
-            }
-            else if (revenue >= 200000 && revenue <= 499000) {
-                return 16000;
-            }
-            else if (revenue >= 500000 && revenue <= 999000) {
-                return 20000;
-            }
-            else if (revenue >= 1000000) {
-                return 25000;
-            }
-        }
+        List<RevenueRange> RG1RevenueRanges = new List<RevenueRange>();
+        RevenueRange RG1revenueRange49 = new RevenueRange(0, 49000, 5000);
+        RevenueRange RG1revenueRange99 = new RevenueRange(50000, 99000, 8000);
+        RevenueRange RG1revenueRange199 = new RevenueRange(100000, 199000, 12000);
+        RevenueRange RG1revenueRange499 = new RevenueRange(200000, 499000, 16000);
+        RevenueRange RG1revenueRange999 = new RevenueRange(500000, 999000, 20000);
+        RevenueRange RG1revenueRange1M = new RevenueRange(1000000, null, 25000);
 
-        else if (riskGrade.equals('2')) {
+        RG1RevenueRanges.add(RG1revenueRange49);
+        RG1RevenueRanges.add(RG1revenueRange99);
+        RG1RevenueRanges.add(RG1revenueRange199);
+        RG1RevenueRanges.add(RG1revenueRange499);
+        RG1RevenueRanges.add(RG1revenueRange999);
+        RG1RevenueRanges.add(RG1revenueRange1M);
 
-            if (revenue <= 49000) {
-                return 3000;
-            }
-            else if (revenue >= 50000 && revenue <= 99000) {
-                return 5000;
-            }
-            else if (revenue >= 100000 && revenue <= 199000) {
-                return 8000;
-            }
-            else if (revenue >= 200000 && revenue <= 499000) {
-                return 12000;
-            }
-            else if (revenue >= 500000 && revenue <= 999000) {
-                return 16000;
-            }
-            else if (revenue >= 1000000) {
-                return 20000;
-            }
-        }
-        return 0;
+        creditLimitTableOneTwo.put('1', RG1RevenueRanges);
+
+        List<RevenueRange> RG2RevenueRanges = new List<RevenueRange>();
+        RevenueRange RG2revenueRange49 = new RevenueRange(0, 49000, 3000);
+        RevenueRange RG2revenueRange99 = new RevenueRange(50000, 99000, 5000);
+        RevenueRange RG2revenueRange199 = new RevenueRange(100000, 199000, 8000);
+        RevenueRange RG2revenueRange499 = new RevenueRange(200000, 499000, 12000);
+        RevenueRange RG2revenueRange999 = new RevenueRange(500000, 999000, 16000);
+        RevenueRange RG2revenueRange1M = new RevenueRange(1000000, null, 20000);
+
+        RG2RevenueRanges.add(RG2revenueRange49);
+        RG2RevenueRanges.add(RG2revenueRange99);
+        RG2RevenueRanges.add(RG2revenueRange199);
+        RG2RevenueRanges.add(RG2revenueRange499);
+        RG2RevenueRanges.add(RG2revenueRange999);
+        RG2RevenueRanges.add(RG2revenueRange1M);
+
+        creditLimitTableOneTwo.put('2', RG2RevenueRanges);
+
+        return creditLimitTableOneTwo;
     }
 
 
