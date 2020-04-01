@@ -265,6 +265,19 @@ public class CreditDecisionEngineTest {
             System.assertEquals(9000, oa);
 
             // Risk Grade 1 and 2
+            // requesting under 10k
+            // with DNBSBFEHighCredit value coming in at 99999999999.00
+            onlineApplications[0].Risk_Grade__c = '1';
+            onlineApplications[0].Credit_Line_Requested__c = 9000;
+            onlineApplications[0].DNB_Credit_Line_Recommendation__c = 9000;
+            onlineApplications[0].DNB_CSAD_High_Credit__c = 15000;
+            onlineApplications[0].Number_of_Trucks__c = 1;
+            upsert onlineApplications[0];
+
+            oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
+            System.assertEquals(9000, oa);
+
+            // Risk Grade 1 and 2
             // requesting great than 10k and less than 150k
             // has high credit amount to cover
             onlineApplications[0].Risk_Grade__c = '2';
@@ -296,6 +309,19 @@ public class CreditDecisionEngineTest {
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
             System.assertEquals(20000, oa);
+
+            // Risk Grade 1 and 2
+            // requesting more than DNB is suggesting with
+            // DNB_SBFE_High_Credit__c = 99999999999.00
+            onlineApplications[0].Risk_Grade__c = '2';
+            onlineApplications[0].Credit_Line_Requested__c = 40000;
+            onlineApplications[0].DNB_Credit_Line_Recommendation__c = 35000;
+            onlineApplications[0].DNB_CSAD_High_Credit__c = 30000;
+            onlineApplications[0].DNB_SBFE_High_Credit__c = 99999999999.00;
+            upsert onlineApplications[0];
+
+            oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
+            System.assertEquals(30000, oa);
 
             // Risk Grade 3
             // requesting less than 150k

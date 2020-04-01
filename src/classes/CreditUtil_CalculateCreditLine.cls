@@ -196,6 +196,10 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
         Decimal highCreditAmount = 0;
 
+        if (DNBSBFEHighCredit == 99999999999.00){
+            DNBSBFEHighCredit = 0;
+        }
+
         if (null != DNBSBFEHighCredit && null != DNBCSADHighCredit) {
             if (DNBCSADHighCredit > DNBSBFEHighCredit) {
                 highCreditAmount = DNBCSADHighCredit;
