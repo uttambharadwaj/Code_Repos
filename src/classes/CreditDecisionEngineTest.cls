@@ -13,7 +13,7 @@ public class CreditDecisionEngineTest {
     static void setupUser() {
 
         UtilityTestLoader.setAutomation(false);
-    
+
         Account offerAccount = new Account();
         offerAccount.Name = 'TestAccount-01';
 
@@ -212,7 +212,7 @@ public class CreditDecisionEngineTest {
         }
 
         insert onlineApplications;
-        
+
     }
 
     static testMethod void testCreditDecisionEngine() {
@@ -258,7 +258,7 @@ public class CreditDecisionEngineTest {
             onlineApplications[0].Credit_Line_Requested__c = 9000;
             onlineApplications[0].DNB_Credit_Line_Recommendation__c = 9000;
             onlineApplications[0].DNB_CSAD_High_Credit__c = 15000;
-            onlineApplications[0].Number_of_Trucks__c = 1;
+            onlineApplications[0].Number_of_Trucks__c = 20;
             upsert onlineApplications[0];
 
             Decimal oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
@@ -296,6 +296,19 @@ public class CreditDecisionEngineTest {
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
             System.assertEquals(20000, oa);
+
+            // Risk Grade 1 and 2
+            // requesting more than DNB is suggesting with
+            // DNB_SBFE_High_Credit__c = 99999999999.00
+            onlineApplications[0].Risk_Grade__c = '2';
+            onlineApplications[0].Credit_Line_Requested__c = 40000;
+            onlineApplications[0].DNB_Credit_Line_Recommendation__c = 35000;
+            onlineApplications[0].DNB_CSAD_High_Credit__c = 30000;
+            onlineApplications[0].DNB_SBFE_High_Credit__c = 99999999999.00;
+            upsert onlineApplications[0];
+
+            oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
+            System.assertEquals(30000, oa);
 
             // Risk Grade 3
             // requesting less than 150k
@@ -367,23 +380,23 @@ public class CreditDecisionEngineTest {
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
             System.assertEquals(5000, oa);
 
-            // Number of trucks effect credit recommendation (offering them more than they requested)
+            // Number of trucks affect credit recommendation
             onlineApplications[0].PG_Score__c = 751;
-            onlineApplications[0].Number_of_Trucks__c = 3;  // resulting in upping "requested" credit to 7500
+            onlineApplications[0].Number_of_Trucks__c = 1;  // resulting in reducing "requested" credit to 2500
             onlineApplications[0].Credit_Line_Requested__c = 5000;
             onlineApplications[0].PG_High_Credit_Amount__c = 11000;
             upsert onlineApplications[0];
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
-            System.assertEquals(7500, oa);
+            System.assertEquals(2500, oa);
 
-            // Number of trucks effect credit recommendation and is a slip seat (offering them more than they requested)
-            onlineApplications[0].Team_Drivers_Slip_Seat__c = true; // resulting in upping "requested" creit to 10500
+            // Number of trucks affect credit recommendation and is a slip seat (offering them more than they requested)
+            onlineApplications[0].Team_Drivers_Slip_Seat__c = true; // resulting in upping "requested" credit 3500
             onlineApplications[0].Credit_Line_Requested__c = 5000;
             upsert onlineApplications[0];
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
-            System.assertEquals(10500, oa);
+            System.assertEquals(3500, oa);
 
             /** TEST FOR BOTH COMMERCIAL AND CONSUMER */
 
@@ -452,7 +465,7 @@ public class CreditDecisionEngineTest {
 
     static testMethod void testExistingExposure() {
 
-        List<OnlineApplication__c> onlineApplications = [SELECT Id FROM OnlineApplication__c];
+        List<OnlineApplication__c> onlineApplications = [SELECT Id, Status__c FROM OnlineApplication__c];
 
         if (onlineApplications.size() > 0) {
 
