@@ -196,6 +196,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
         Decimal highCreditAmount = 0;
 
+        //Added EAPT-1561 - to handle 99999999999.00 coming from DNB for some other codes.
         if (DNBSBFEHighCredit == 99999999999.00){
             DNBSBFEHighCredit = 0;
         }
