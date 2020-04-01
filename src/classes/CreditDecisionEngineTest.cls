@@ -265,18 +265,6 @@ public class CreditDecisionEngineTest {
             System.assertEquals(9000, oa);
 
             // Risk Grade 1 and 2
-            // requesting under 10k
-            // with DNBSBFEHighCredit value coming in at 99999999999.00
-            onlineApplications[0].Risk_Grade__c = '1';
-            onlineApplications[0].Credit_Line_Requested__c = 9000;
-            onlineApplications[0].DNB_Credit_Line_Recommendation__c = 9000;
-            onlineApplications[0].DNB_CSAD_High_Credit__c = 15000;
-            upsert onlineApplications[0];
-
-            oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
-            System.assertEquals(9000, oa);
-
-            // Risk Grade 1 and 2
             // requesting great than 10k and less than 150k
             // has high credit amount to cover
             onlineApplications[0].Risk_Grade__c = '2';
