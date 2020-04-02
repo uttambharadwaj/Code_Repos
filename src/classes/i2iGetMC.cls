@@ -15,27 +15,30 @@ public class i2iGetMC {
 	* Parameters: Values entered into search tool
 	* Return: String of parameters to add 
 	*/
-    public static String compileFilterCriteria(String couponCode, String leadNumber, String programSelected, String phonepass, String company, String zipcode, String email) {
+    public static String compileFilterCriteria(String promoCode, String couponCode, String leadNumber, String programSelected, String phonepass, String company, String zipcode, String email) {
         String filters;
         String endingFilter = '</Filter>';
         Map<String,String> filterMap = new Map<String,String>();
         
+        //Check filter criteria prior to adding to XML message
         if (String.isNotBlank(couponCode)) {
             filterMap.put('CouponCode', couponCode);
-        }   
-        if (String.isNotBlank(leadNumber)) {
+        } if (String.isNotBlank(leadNumber)) {
             filterMap.put('LeadNumber', leadNumber);
-        }
-        if(programSelected != '' && programSelected != null){
+        } if(programSelected != '' && programSelected != null){
             filterMap.put('ProgramName', programSelected);            
         } if(phonePass != '' && phonePass != null){
             filterMap.put('Phone', phonePass);            
         } if(company != '' && company != null){
-            filterMap.put('Company', company);            
+            //If company name contains a & replace the XML properly 
+            company = company.escapeXml();
+            filterMap.put('Company', company);
         } if(zipCode != '' && zipCode != null){
             filterMap.put('PostalCode', zipCode);            
         } if(email != '' && email != null) {
             filterMap.put('EmailAddress', email);
+        } if(promoCode != '' && promoCode != null) {
+            filterMap.put('i2i_id__c', promoCode);
         }
       
         //Return nothing is all search Criterias are null        
@@ -70,11 +73,15 @@ public class i2iGetMC {
         } else if (filterMap.size() == 7) {
             filters = compile7Filters(filterMap);
         }
-        
         filters += endingFilter;
         return filters;
     }
-    
+
+	/*
+	 * Description: Create XML message with specified criteria for Marketing Cloud
+	 * Paramters: filter map
+	 * return: Proper XML format based on number of filter criteria added
+	 */    
     public static String compile2Filters(Map<String, String> filterMap) {
         String filters = '<Filter xsi:type="ComplexFilterPart">';
             Integer i = 0;
@@ -108,6 +115,12 @@ public class i2iGetMC {
             }
         return filters;
     }
+    
+    /*
+	 * Description: Create XML message with specified criteria for Marketing Cloud
+	 * Paramters: filter map
+	 * return: Proper XML format based on number of filter criteria added
+	 */ 
     public static String compile3Filters(Map<String, String> filterMap) {
         String filters = '<Filter xsi:type="ComplexFilterPart"><LeftOperand xsi:type="ComplexFilterPart">';
             Integer i = 0;
@@ -153,12 +166,17 @@ public class i2iGetMC {
             }
         return filters;
     }
+    
+    /*
+	 * Description: Create XML message with specified criteria for Marketing Cloud
+	 * Paramters: filter map
+	 * return: Proper XML format based on number of filter criteria added
+	 */ 
     public static String compile4Filters(Map<String, String> filterMap) {
         String filters = '<Filter xsi:type="ComplexFilterPart"><LeftOperand xsi:type="ComplexFilterPart">';
         Integer i = 0;
         for(String key : filterMap.keySet()) { 
             String value = filterMap.get(key);
-            System.debug('compile4Filters i ' + i);
             if(i == 0) {
                 //Enable Wildcard searching in MC
                 if(value.contains('*')) {
@@ -211,6 +229,12 @@ public class i2iGetMC {
         }
         return filters;
     }
+    
+    /*
+	 * Description: Create XML message with specified criteria for Marketing Cloud
+	 * Paramters: filter map
+	 * return: Proper XML format based on number of filter criteria added
+	 */ 
     public static String compile5Filters(Map<String, String> filterMap) {
         String filters = '<Filter xsi:type="ComplexFilterPart"><LeftOperand xsi:type="ComplexFilterPart">';
         Integer i = 0;
@@ -280,11 +304,16 @@ public class i2iGetMC {
         }
         return filters;
     }
+    
+    /*
+	 * Description: Create XML message with specified criteria for Marketing Cloud
+	 * Paramters: filter map
+	 * return: Proper XML format based on number of filter criteria added
+	 */ 
     public static String compile6Filters(Map<String, String> filterMap) {
         String filters = '<Filter xsi:type="ComplexFilterPart"><LeftOperand xsi:type="ComplexFilterPart">';
         Integer i = 0;
         for(String key : filterMap.keySet()) { 
-            System.debug('i ' + i);
             String value = filterMap.get(key);
             if(i == 0) {
                 //Enable Wildcard searching in MC
@@ -350,11 +379,16 @@ public class i2iGetMC {
         }
         return filters;
     }
+    
+    /*
+	 * Description: Create XML message with specified criteria for Marketing Cloud
+	 * Paramters: filter map
+	 * return: Proper XML format based on number of filter criteria added
+	 */ 
     public static String compile7Filters(Map<String, String> filterMap) {
         String filters = '<Filter xsi:type="ComplexFilterPart"><LeftOperand xsi:type="ComplexFilterPart">';
         Integer i = 0;
         for(String key : filterMap.keySet()) { 
-            System.debug('i ' + i);
             String value = filterMap.get(key);
             if(i == 0) {
                 //Enable Wildcard searching in MC
@@ -442,16 +476,28 @@ public class i2iGetMC {
         return filters;
     }
     
+    /*
+	 * Description: If search criteria contains a wildcard change operator to like instead of equals
+	 * Paramters: All parts of the XML envelope
+	 * return: Proper XML formated envelope based on filter criteria 
+	 */ 
     public static String handleWildCard(String beginning, String key, String value, String ending) {
         String operator = beginning + '<Property>' + key + '</Property><SimpleOperator>like</SimpleOperator>' 
             +'<Value>' + value + '</Value>' + ending;
         return operator;
     } 
+    
+    /*
+	 * Description: If search criteria does not contains a wildcard add operator equals
+	 * Paramters: All parts of the XML envelope
+	 * return: Proper XML formated envelope based on filter criteria 
+	 */ 
     public static String handleNonWildCard(String beginning, String key, String value, String ending) {
         String operator = beginning + '<Property>' + key + 
             '</Property><SimpleOperator>equals</SimpleOperator><Value>' + value + '</Value>' + ending;
         return operator;
     }
+    
     /*
 	* Description: Set up authorization call to retrieve oAuth Token from MC
 	* Return: the access token for authorization
@@ -493,7 +539,7 @@ public class i2iGetMC {
         
     }
     
-    /*
+   /*
 	* Description: Called from sendTokenMC, gets endpoint of MarketingCloud and the body to send
 	* Parameters: Marketing Cloud endpoind and soapBody to send to Marketing Cloud
 	* Return: XML body from Marketing Cloud
@@ -510,7 +556,6 @@ public class i2iGetMC {
             r.setHeader('Content-type','text/xml');    
             r.setHeader('charset','UTF-8'); 
             r.setBody(soapBody);   
-            System.debug('body sent ' + r.getBody());
             HttpResponse s = h.send(r);
             return s.getBody();
         } catch (Exception e) {
@@ -525,18 +570,18 @@ public class i2iGetMC {
         }
     }
     
-    /*
+   /*
 	* Description: Called from i2iSearchController, gets access token, compiles the filters from search tool and 
 	* 				makes callout to Marketing Cloud.
 	* Parameters: All search criteria filled out in Search table
 	* Return: Records from Marketing Cloud in proper format
 	*/
-    // public static List<i2iGet.returnData> sendTokenMC (String couponCode, String subscriberKey, String programSelected, String phonepass, String company, String zipcode, String email) {
-    public static List<i2iGet.returnData> sendTokenMC (String couponCode, String leadNumber, String programSelected, String phonepass, String company, String zipcode, String email) {
+    public static List<i2iGet.returnData> sendTokenMC (String promoCode, String couponCode, String leadNumber, String programSelected, String phonepass, String company, String zipcode, String email) {
         String accessToken = authAccessToken();
-        String filters = compileFilterCriteria(couponCode, leadNumber, programSelected, phonepass, company, zipcode, email);
+        String soapEnvelope;
         
-        String soapEnvelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> '  + 
+        String filters = compileFilterCriteria(null, couponCode, leadNumber, programSelected, phonepass, company, zipcode, email);
+        soapEnvelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> '  + 
             '<soapenv:Header> <fueloauth>' + accessToken + '</fueloauth></soapenv:Header><soapenv:Body><RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
             '<RetrieveRequest><ObjectType>DataExtensionObject[SendLog_SearchTool]</ObjectType>' +
             '<Properties>EmailAddress</Properties>' +
@@ -562,7 +607,6 @@ public class i2iGetMC {
             '<Properties>i2i_Contact_ID__c</Properties>' +
             '<Properties>LeadNumber</Properties>' +
             filters + '</RetrieveRequest></RetrieveRequestMsg></soapenv:Body></soapenv:Envelope>';
-        System.debug('SOAP ENVELOPE: ' + soapEnvelope);
         String response = makeHttpXMLPost(servicesEndpoint, soapEnvelope);
         
         //Send back test response for test coverage
@@ -600,11 +644,85 @@ public class i2iGetMC {
         }
         
         List<i2iGet.returnData> rd = i2iGetMC.xmlToMap(response);
-        System.debug('rd ' + rd);
+        
+        if(rd.isEmpty()) {
+            rd = i2iGetMC.sendTokenMCRetry(accessToken, promoCode, programSelected, phonepass, company, zipcode, email);
+        }
         return rd;
     }
     
-    /*
+   /*
+	* Description: Called from i2iSearchController, gets access token, compiles the filters from search tool and 
+	* 				makes callout to Marketing Cloud.
+	* Parameters: All search criteria filled out in Search table
+	* Return: Records from Marketing Cloud in proper format
+	*/
+    public static List<i2iGet.returnData> sendTokenMCRetry (String accessToken, String promoCode, String programSelected, String phonepass, String company, String zipcode, String email) {
+        String soapEnvelope;
+        String filters = compileFilterCriteria(promoCode, null, null, programSelected, phonepass, company, zipcode, email);
+        soapEnvelope = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> '  + 
+            '<soapenv:Header> <fueloauth>' + accessToken + '</fueloauth></soapenv:Header><soapenv:Body><RetrieveRequestMsg xmlns="http://exacttarget.com/wsdl/partnerAPI">' +
+            '<RetrieveRequest><ObjectType>DataExtensionObject[QP_History]</ObjectType>' +
+            '<Properties>i2i_id__c</Properties>' + 
+            '<Properties>i2i_Contact_ID__c</Properties>' + 
+            '<Properties>FirstName</Properties>' + 
+            '<Properties>LastName</Properties>' + 
+            '<Properties>Company</Properties>' + 
+            '<Properties>City</Properties>' + 
+            '<Properties>State</Properties>' + 
+            '<Properties>Street</Properties>' + 
+            '<Properties>PostalCode</Properties>' + 
+            '<Properties>Phone</Properties>' + 
+            '<Properties>Country</Properties>' + 
+            '<Properties>title</Properties>' + 
+            '<Properties>LeadSource</Properties>' + 
+            '<Properties>SICCode</Properties>' + 
+            '<Properties>Offer</Properties>' + 
+            '<Properties>MailDate</Properties>' + 
+            '<Properties>EmailAddress</Properties>' + 
+            '<Properties>CouponCode</Properties>'+
+            filters + '</RetrieveRequest></RetrieveRequestMsg></soapenv:Body></soapenv:Envelope>';
+        
+        String response = makeHttpXMLPost(servicesEndpoint, soapEnvelope);
+        
+        //Send back test response for test coverage
+        if(Test.isRunningTest()) {
+            response = '<?xml version="1.0" encoding="utf-8"?><soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ' + 
+                'xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">' +
+                '<soap:Header><wsa:Action>RetrieveResponse</wsa:Action><wsa:MessageID>urn:uuid:370f4030-22e6-4706-a5a2-a7190e906678</wsa:MessageID><wsa:RelatesTo>urn:uuid:531a2812-26cf-4fa6-ade9-8b71dd74a927</wsa:RelatesTo>' +
+                '<wsa:To>http://schemas.xmlsoap.org/ws/2004/08/addressing/role/anonymous</wsa:To><wsse:Security><wsu:Timestamp wsu:Id="Timestamp-e1086372-6ef8-43d4-a826-80aa60df4c3b">' +
+                '<wsu:Created>2019-10-24T15:58:59Z</wsu:Created><wsu:Expires>2019-10-24T16:03:59Z</wsu:Expires></wsu:Timestamp></wsse:Security></soap:Header><soap:Body>' +
+                '<RetrieveResponseMsg xmlns="http://exacttarget.com/wsdl/partnerAPI"><OverallStatus>MoreDataAvailable</OverallStatus><RequestID>67dd72b4-399e-4d33-8134-5fcad03f3761</RequestID>' +
+                '<Results xsi:type="DataExtensionObject"><PartnerKey xsi:nil="true" /><ObjectID xsi:nil="true" /><Type>DataExtensionObject</Type><Properties>' +
+                '<Property><Name>EmailAddress</Name><Value></Value></Property>' +
+                '<Property><Name>FirstName</Name><Value /></Property>' +
+                '<Property><Name>LastName</Name><Value>Last</Value></Property>' + 
+                '<Property><Name>CouponCode</Name><Value>test1</Value></Property>' + 
+                '<Property><Name>SendType</Name><Value>Email</Value></Property>' +
+                '<Property><Name>ContactType</Name><Value>Unknown</Value></Property>' +
+                '<Property><Name>MobileNumber</Name><Value /></Property>' +
+                '<Property><Name>EmailName</Name><Value></Value></Property>' +
+                '<Property><Name>MessageName</Name><Value /></Property>' +
+                '<Property><Name>SendDate</Name><Value>9/17/2019 7:58:40 AM</Value></Property>' +
+                '<Property><Name>ProgramName</Name><Value /></Property>' +
+                '<Property><Name>ProgramID</Name><Value /></Property>' +
+                '<Property><Name>i2i_id__c</Name><Value>AWECS-192753929872</Value></Property>' +
+                '<Property><Name>Company</Name><Value>THE TEST COMPANY</Value></Property>' +
+                '<Property><Name>City</Name><Value /></Property>' +
+                '<Property><Name>State</Name><Value /></Property>' +
+                '<Property><Name>Street</Name><Value /></Property>' + 
+                '<Property><Name>PostalCode</Name><Value /></Property>' +
+                '<Property><Name>Phone</Name><Value>1111111111</Value></Property>' +
+                '<Property><Name>Country</Name><Value /></Property>' +
+                '<Property><Name>i2i_Contact_ID__c</Name><Value /></Property>' +
+                '</Properties></Results></RetrieveResponseMsg></soap:Body></soap:Envelope>';
+        }
+        
+        List<i2iGet.returnData> rd = i2iGetMC.xmlToMap(response);
+        return rd;
+    }
+    
+   /*
 	* Description: Loop through XML returned from Marketing Cloud
 	*			   Get to Properties of each record returned and add it to the Map
 	* Parameter: XML returned from callout to Marketing Cloud
@@ -625,7 +743,6 @@ public class i2iGetMC {
             Dom.XmlNode retrieveResponse = body.getChildElement('RetrieveResponseMsg', 'http://exacttarget.com/wsdl/partnerAPI');
             if(retrieveResponse != null) {
                 List<Dom.XmlNode> results = retrieveResponse.getChildren();
-                System.debug('results ' + results);
                 //Get Records returned 
                 for(Dom.XmlNode ch: results) {
                     if(ch.getName() == 'Results') {

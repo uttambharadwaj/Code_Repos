@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customButtons>Preferences</customButtons>
     <customButtons>pi__Send_to_Prospect_Insight</customButtons>
     <excludeButtons>RequestUpdate</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
