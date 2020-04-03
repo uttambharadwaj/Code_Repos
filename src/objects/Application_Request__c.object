@@ -11427,6 +11427,24 @@ App_Log__c != null
     </validationRules>
     <visibility>Public</visibility>
     <webLinks>
+        <fullName>App_Request_Marketing_Send</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>page</linkType>
+        <masterLabel>Marketing Send</masterLabel>
+        <openType>newWindow</openType>
+        <page>AppRequestMarketingTriggeredEmail</page>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+    </webLinks>
+    <webLinks>
         <fullName>Attach</fullName>
         <availability>online</availability>
         <displayType>button</displayType>
