@@ -1,5 +1,7 @@
 public class MCTriggeredEmailController { // extension for MarketingTriggeredEmail.page
 
+    public MCConnector mcConnector;
+    public String mcTriggeredEmailConfirmationId;
     public String toEmail { get; set; }
     public String ogEmailValue { get; set; }
     public Boolean emailSent { get; set; }
@@ -15,36 +17,67 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 this.pageObj = value;
                 init();
             } else
-                    this.pageObj = value;
+                this.pageObj = value;
         }
     }
     public sObject pageObj2 { get; set; }
     public String selectedMCTriggeredEmailKey { get; set; }
     public List<SelectOption> mcTriggeredEmailKeys { get; set; }
-
+    private List<sObject> triggeredEmailKeyObj { get; set; }
+    private MC_Triggered_Email__mdt triggeredEmailConfig;
+    private sObject selectedEmailKeyObj;
     public Map<String, Object> subscriberAttributes;
+
+    private Map<String, Schema.SObjectField> triggeredEmailKeyFields { get; set; }
+    private Map<String, Schema.SObjectField> validPageObjFields { get; set; }
+
+    private Map<String, SObjectType> globalDescribe { get; set; }
+
+    private String objectName {
+        get {
+            return (String) UtilityClass.getObjName((Id) pageObj.get('Id'));
+        }
+    }
+    public String triggeredEmailStatus { get; set; }
+    public void updateTriggeredEmailStatus() {
+        if (selectedMCTriggeredEmailKey != null && mcTriggeredEmailConfirmationId != null) {
+            triggeredEmailStatus = mcConnector.getTriggeredEmailStatus(selectedMCTriggeredEmailKey, mcTriggeredEmailConfirmationId);
+        }
+    }
+    private Map<String, sObject> emailKeyLabelToObject { get; set; }
+
+
+    // ------------------------------------------------------------------------------------------------------------------------------
+
+
+    // Constructor for component
+    public MCTriggeredEmailController() {
+        this.showForm = false;
+    }
+
+    // Constructor for page
+    public MCTriggeredEmailController(ApexPages.StandardController stdController) {
+
+        List<String> pageObjFields = new List<String>{
+                'recordTypeId', 'Id'
+        };
+
+        if (!Test.isRunningTest()) stdController.addFields(pageObjFields);
+        this.pageObj2 = stdController.getRecord();
+    }
 
     public void init() {
 
         this.currentPage = 1;
-        sObject triggeredEmailKeyObj;
-        MC_Triggered_Email__mdt triggeredEmailConfig;
-        String objectName = (String) UtilityClass.getObjName((Id) pageObj.get('Id'));
 
         this.subscriberAttributes = new Map<String, Object>();
         this.emailSent = false;
         this.showForm = true;
         this.mcTriggeredEmailKeys = new List<SelectOption>();
 
-        Map<String, SObjectType> globalDescribe = Schema.getGlobalDescribe();
-        Map<String, Schema.SObjectField> validPageObjFields = globalDescribe.get(objectName).getDescribe().fields.getMap();
-        Map<String, Schema.SObjectField> triggeredEmailKeyFields = globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
-
-
-        Set<String> pageObjFields = new Set<String>{
-                'recordTypeId', 'Id'
-        };
-        List<String> commonFields = new List<String>();
+        this.globalDescribe = Schema.getGlobalDescribe();
+        this.triggeredEmailKeyFields = globalDescribe.get('MC_Triggered_Email_Key__mdt').getDescribe().fields.getMap();
+        this.validPageObjFields = globalDescribe.get(objectName).getDescribe().fields.getMap();
 
         if (pageObj.get('RecordTypeId') != null) this.recordTypeId = (String) pageObj.get('RecordTypeId');
 
@@ -57,34 +90,53 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             return;
         }
 
-        if (triggeredEmailConfig.Default_Email__c != null) pageObjFields.add(triggeredEmailConfig.Default_Email__c);
-        if (triggeredEmailConfig.Subscriber_Key__c != null) pageObjFields.add(triggeredEmailConfig.Subscriber_Key__c);
-
 
         String fields = String.join(new List<String>(triggeredEmailKeyFields.keySet()), ',');
         Id triggeredEmailId = triggeredEmailConfig.Id;
+        emailKeyLabelToObject = new Map<String, sObject>();
         String query = 'SELECT ' + fields + ' FROM MC_Triggered_Email_Key__mdt WHERE RecordType__c = :triggeredEmailId';
         try {
             triggeredEmailKeyObj = Database.query(query);
+            for (sObject obj : triggeredEmailKeyObj) {
+                String objMasterLabel = (String) obj.get('MasterLabel');
+                emailKeyLabelToObject.put(objMasterLabel, obj);
+                this.mcTriggeredEmailKeys.add(new SelectOption(objMasterLabel, objMasterLabel)); // This is populating the picklist on the VFP
+
+            }
         } catch (Exception e) {
             System.debug(e);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'This record type does not have any triggered emails configured.'));
             this.showForm = false;
             return;
         }
+        selectedMCTriggeredEmailKey = mcTriggeredEmailKeys.get(0).getLabel();
 
+        mcConnector = new MCConnector();
+        updateSubscriberKey();
+    }
+
+    // Called when user changes between email keys. Different keys have different fields etc.
+    public void updateSubscriberKey() {
+
+        List<String> commonFields = new List<String>();
+        Set<String> pageObjFields = new Set<String>{
+                'recordTypeId', 'Id'
+        };
+        if (triggeredEmailConfig.Default_Email__c != null) pageObjFields.add(triggeredEmailConfig.Default_Email__c);
+        if (triggeredEmailConfig.Subscriber_Key__c != null) pageObjFields.add(triggeredEmailConfig.Subscriber_Key__c);
+
+        selectedEmailKeyObj = emailKeyLabelToObject.get(selectedMCTriggeredEmailKey);
         // Add valid fields to list
         for (String field : triggeredEmailKeyFields.keySet()) {
 
-            if (triggeredEmailKeyObj.get(field) != null) {
+            if (selectedEmailKeyObj.get(field) != null) {
 
-                String fieldValue = (String) triggeredEmailKeyObj.get(field);
+                String fieldValue = (String) selectedEmailKeyObj.get(field);
                 if (validPageObjFields.get(fieldValue) != null || fieldValue.contains('.')) {
                     pageObjFields.add(fieldValue);
                     commonFields.add(field);
                 }
             }
-
         }
         Id objId = (Id) pageObj.get('Id');
 
@@ -111,36 +163,9 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         // Add subscriberAttributes - This object will be serialized and sent to MC
         for (String field : commonFields) {
             // Field should match the name of the field in MC after removing __c
-            this.subscriberAttributes.put(field.remove('__c'), UtilityClass.getSobjectField(pageObj, (String) triggeredEmailKeyObj.get(field)));
-        }
-
-
-        // Get all triggered email keys by record type. This is populating the picklist on the VFP
-        for (MC_Triggered_Email_Key__mdt mcTriggeredEmailKey : [
-                SELECT MasterLabel
-                FROM MC_Triggered_Email_Key__mdt
-                WHERE RecordType__c IN (SELECT Id FROM MC_Triggered_Email__mdt WHERE RecordTypeId__c = :recordTypeId)
-        ]) {
-            this.mcTriggeredEmailKeys.add(new SelectOption(mcTriggeredEmailKey.MasterLabel, mcTriggeredEmailKey.MasterLabel));
+            this.subscriberAttributes.put(field.remove('__c'), UtilityClass.getSobjectField(pageObj, (String) selectedEmailKeyObj.get(field)));
         }
     }
-
-    // Constructor for component
-    public MCTriggeredEmailController() {
-        this.showForm = false;
-    }
-
-    // Constructor for page
-    public MCTriggeredEmailController(ApexPages.StandardController stdController) {
-
-        List<String> pageObjFields = new List<String>{
-                'recordTypeId', 'Id'
-        };
-
-        if (!Test.isRunningTest()) stdController.addFields(pageObjFields);
-        this.pageObj2 = stdController.getRecord();
-    }
-
 
     public void sendMCTriggeredEmail() {
 
@@ -153,15 +178,11 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 mcData.toAddress = toEmail;
                 mcData.subscriberKey = this.subscriberKey;
 
-                MCConnector mcConnector = new MCConnector();
                 mcConnector.mcData = mcData;
-
-                if (mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey)) {
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.CONFIRM, 'Sent. You may now close this window.'));
-                    this.emailSent = true;
-                } else {
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'Failed to send email. MC declined the sent data.')); // probably not a valid triggered email, or missing required fields
-                }
+                System.debug(mcData);
+                mcTriggeredEmailConfirmationId = mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey); // throws exception and logs error
+                emailSent = true;
+                triggeredEmailStatus = 'Queued'; // maybe someday the REST api will accept the SYNC parameter. It currently ignores it and does the operation async.... until then we can periodically retrieve the status in mc.....
 
             } catch (Exception e) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
@@ -173,6 +194,12 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     private Boolean sendMCTriggeredEmailValidation() {
 
         Boolean validationSuccessful = true;
+
+        List<String> requiredMCFields = new List<String>();
+        if (selectedEmailKeyObj.get('required_fields__c') != null) {
+            String requiredMCFieldsString = (String) selectedEmailKeyObj.get('required_fields__c');
+            requiredMCFields = requiredMCFieldsString.toLowerCase().split(',');
+        }
 
         // ------------------------------------- Page 1 -------------------------------------
         if (this.currentPage == 1) {
@@ -199,11 +226,13 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 validationSuccessful = false;
             }
 
+            // Any page changing validaiton needs to be at the end of currentpage validation
             else if (this.toEmail != this.ogEmailValue) {
-               // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO, 'Additional information is required.'));
+                // ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO, 'Additional information is required.'));
                 this.currentPage = 2;
                 validationSuccessful = false;
             }
+            System.debug(subscriberAttributes.get('sfprogramid'));
         }
 
         // ------------------------------------- Page 2 -------------------------------------
@@ -215,6 +244,19 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             }
 
         }
+
+        //  ---------------------------------------------------------------------------------
+
+        // Validate that required fields from metadata have values
+        for (String field : requiredMCFields) {
+
+            if (subscriberAttributes.get(field) == null) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'Missing required value: ' + field));
+                this.showForm = false;
+                validationSuccessful = false;
+            }
+        }
+        // ======
 
         return validationSuccessful;
     }

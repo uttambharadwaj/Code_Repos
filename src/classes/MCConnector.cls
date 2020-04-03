@@ -36,13 +36,14 @@ public class MCConnector {
         }
     }
 
-    public Boolean sendTriggeredEmail(String key) {
+    public String sendTriggeredEmail(String key) {
 
         Boolean successful = false;
+        String sendId;
         HttpRequest req = new HttpRequest();
 
         req.setMethod('POST');
-        req.setEndpoint(triggeredEmailCallout +'/key:'+key+'/send?account_id=100029437');
+        req.setEndpoint(triggeredEmailCallout + '/key:' + key + '/send');
         req.setHeader('Content-Type', 'application/json');
         req.setHeader('Authorization', 'Bearer ' + accessToken);
 
@@ -54,8 +55,13 @@ public class MCConnector {
             HttpResponse postResponse = sendEmailReq.send(req);
             String resBody = postResponse.getBody();
             System.debug(resBody);
-            if (resBody.contains('"Queued"')) successful = true;
-            else {
+
+            MCResponse response = MCResponse.parse(resBody);
+            System.debug(response);
+            if (response.responses != null && response.responses[0].hasErrors == false) {
+                successful = true;
+                sendId = response.responses[0].recipientSendId;
+            } else {
                 insert UtilityClass.logInternalError(resBody, 'MCConnector sendTriggeredEmail', '', 'MCConnector', true, '', '');
                 throw new MCConnectorException('Unable to send message.');
             }
@@ -65,9 +71,38 @@ public class MCConnector {
             throw new MCConnectorException('Unable to send message.');
         }
 
-
-        return successful;
+        return sendId;
     }
 
-    public class MCConnectorException extends Exception {}
+    public String getTriggeredEmailStatus(String key, String recipientSendId) {
+
+        //https://mcb9lg4yfkyxd3c4ctrlcfsdpln4.rest.marketingcloudapis.com/messaging/v1/messageDefinitionSends/key:JamesTriggeredSend/deliveryRecords/61129259-b7f9-489e-a7b0-d73561e63db6
+        HttpRequest req = new HttpRequest();
+
+        req.setMethod('GET');
+        req.setEndpoint(triggeredEmailCallout + '/key:' + key + '/deliveryRecords/' + recipientSendId);
+        req.setHeader('Content-Type', 'application/json');
+        req.setHeader('Authorization', 'Bearer ' + accessToken);
+
+        try {
+
+            Http sendEmailReq = new Http();
+            HttpResponse getResponse = sendEmailReq.send(req);
+            String resBody = getResponse.getBody();
+            String status = resBody.substringAfter('"status"').substringBefore(',').replaceAll('[^a-zA-Z0-9\\s+]', '');
+
+            if (status.equalsIgnoreCase('Error')) {
+                System.debug(resBody);
+                Internal_Application_Error__c internalError = UtilityClass.logInternalError(resBody, 'MCConnector getTriggeredEmailStatus', '', 'MCConnector', true, '', key + '-' + recipientSendId);
+                insert internalError;
+                status += ' Error ID: ' + internalError.Id;
+            }
+            return status;
+        } catch (Exception e) {
+            insert UtilityClass.logInternalError(e, '', 'MCConnector Get Status', true, '', recipientSendId);
+            throw new MCConnectorException('Unable to retrieve status for id: ' + recipientSendId);
+        }
+    }
+    public class MCConnectorException extends Exception {
+    }
 }
