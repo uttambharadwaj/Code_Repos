@@ -47,9 +47,9 @@ function pageLoadFunctions() {
     
     // Fixing a load of picklist options
     $j("[id$=yearsInBusiness] option").eq('').text($Label.BOCA_Picklist_Choose_One);
-    $j("[id$=state] option").eq('').text($Label.BOCA_Picklist_Choose_One);
-    $j("[id$=pgState] option").eq('').text($Label.BOCA_Picklist_Choose_One);
-    $j("[id$=billingState] option").eq('').text($Label.BOCA_Picklist_Choose_One);
+    $j("[id$=state] option:contains('--None--')").text($Label.BOCA_Picklist_Choose_One);
+    $j("[id$=pgState] option:contains('--None--')").text($Label.BOCA_Picklist_Choose_One);
+    $j("[id$=billingState] option:contains('--None--')").text($Label.BOCA_Picklist_Choose_One);
     $j("[id$=exemptFromMotorFuelsTax] option").eq('').text($Label.BOCA_Picklist_Choose_One);
     $j("[id$=legalStructure] option").eq('').text($Label.BOCA_Picklist_Choose_One);
     $j("[id$=fiscalYearStarts] option[value='']").remove();
