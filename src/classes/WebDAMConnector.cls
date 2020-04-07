@@ -46,7 +46,7 @@ public class WebDAMConnector {
 
         HttpRequest req = new HttpRequest();
         req.setMethod('GET');
-        req.setEndpoint(BASE_URL + '/search?sortby=datemodified&sortdir=desc&offset=0&query=' + searchParam);
+        req.setEndpoint(BASE_URL + '/search?query=' + searchParam + webDAMConnectorConfig.search_options__c);
         req.setHeader('Authorization', 'Bearer ' + accessToken);
 
         Http searchRequuest = new Http();
