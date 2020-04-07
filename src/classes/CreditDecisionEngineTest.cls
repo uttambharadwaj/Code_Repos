@@ -891,42 +891,6 @@ public class CreditDecisionEngineTest {
 
     }
 
-    static testMethod void testForteCallout() {
-
-        Test.startTest();
-
-        TestUtils.enable_isRunningTest = true;
-
-        Test.setMock(HttpCalloutMock.class, new ForteCalloutMock());
-
-        CreditWS_Forte.ForteRequest request = new CreditWS_Forte.ForteRequest();
-
-        request.action = 'verify';
-        request.authorization_amount = 1;
-        request.echeck = new CreditWS_Forte.ForteECheck();
-        request.echeck.account_number = '11111111';
-        request.echeck.routing_number = '222222222';
-
-        CreditWS_Forte.ForteResponse response = CreditWS_Forte.verifyBankAccount(request);
-
-        System.assert((response.transaction_id).equalsIgnoreCase('trn_520ed196-e275-4a93-ab6a-3e601c4bf35f'));
-        System.assert((response.location_id).equalsIgnoreCase('loc_167635'));
-        System.assert(response.authorization_amount == 1);
-        System.assert((response.entered_by).equalsIgnoreCase('c28e0b656a521c2f17f559618d85f1be'));
-
-        System.assert((response.echeck.masked_account_number).equalsIgnoreCase('****1111'));
-        System.assert((response.echeck.last_4_account_number).equalsIgnoreCase('1111'));
-        System.assert((response.echeck.routing_number).equalsIgnoreCase('222222222'));
-
-        System.assert((response.response.environment).equalsIgnoreCase('sandbox'));
-        System.assert((response.response.response_type).equalsIgnoreCase('D'));
-        System.assert((response.response.response_code).equalsIgnoreCase('U19'));
-        System.assert((response.response.response_desc).equalsIgnoreCase('INVALID TRN'));
-
-        Test.stopTest();
-
-    }
-
     static testMethod void testDNBCustomModelCallout() {
 
         List<OnlineApplication__c> onlineApplications = [SELECT Id, DUNS__c, Credit_Line_Requested__c FROM OnlineApplication__c LIMIT 1];
@@ -1101,15 +1065,6 @@ public class CreditDecisionEngineTest {
             HTTPResponse retVal = new HTTPResponse();
             retVal.setStatusCode(200);
             retVal.setBody('review_status=passed');
-            return retVal;
-        }
-    }
-
-    public class ForteCalloutMock implements HttpCalloutMock {
-        public HTTPResponse respond(HTTPRequest req) {
-            HTTPResponse retVal = new HTTPResponse();
-            retVal.setStatusCode(200);
-            retVal.setBody('{"transaction_id":"trn_520ed196-e275-4a93-ab6a-3e601c4bf35f","location_id":"loc_167635","action":"verify","authorization_amount":1.00,"entered_by":"c28e0b656a521c2f17f559618d85f1be","echeck":{"masked_account_number":"****1111","last_4_account_number":"1111","routing_number":"222222222"},"response":{"environment":"sandbox","response_type":"D","response_code":"U19","response_desc":"INVALID TRN"}}');
             return retVal;
         }
     }

@@ -509,15 +509,6 @@ public class CreditDecisionEngineCPTest {
         }
     }
 
-    public class ForteCalloutMock implements HttpCalloutMock {
-        public HTTPResponse respond(HTTPRequest req) {
-            HTTPResponse retVal = new HTTPResponse();
-            retVal.setStatusCode(200);
-            retVal.setBody('{"transaction_id":"trn_520ed196-e275-4a93-ab6a-3e601c4bf35f","location_id":"loc_167635","action":"verify","authorization_amount":1.00,"entered_by":"c28e0b656a521c2f17f559618d85f1be","echeck":{"masked_account_number":"****1111","last_4_account_number":"1111","routing_number":"222222222"},"response":{"environment":"sandbox","response_type":"D","response_code":"U19","response_desc":"INVALID TRN"}}');
-            return retVal;
-        }
-    }
-
     public class ExperianCalloutMock implements HttpCalloutMock {
         public HTTPResponse respond(HTTPRequest req) {
             HTTPResponse retVal = new HTTPResponse();
