@@ -313,6 +313,7 @@ public with sharing class FleetEnrollmentInternalController {
         }
     }
 
+
     public FleetEnrollmentInternalController() {
 
     }
@@ -624,69 +625,8 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Special_Shipping_Postal_Code__c = fleetEnrollmentInformation.specialShippingPostalCode;
             }
 
-
             if (fleetEnrollmentInformation.selectedFindersFee != null) {
                 fleetEnrollment.Finders_Fee__c = fleetEnrollmentInformation.selectedFindersFee;
-            }
-
-            if (isMillennium) {
-
-                List<Program_Template_Account__c> programTemplateAccounts = null;
-                if (fleetEnrollmentInformation.applyDefaultPTA != true) {
-                    // did the sales rep select an association and a new billing cycle?
-                    if (fleetEnrollmentInformation.association == true && fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
-                        programTemplateAccounts = [
-                                SELECT Id
-                                FROM Program_Template_Account__c
-                                WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
-                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                                AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
-                                AND Association__c = :fleetEnrollmentInformation.selectedAssociation
-                                AND Program__c = :program.Id
-                        ];
-                        // did the sales rep only select an association?
-                    } else if (fleetEnrollmentInformation.association == true) {
-                        programTemplateAccounts = [
-                                SELECT Id
-                                FROM Program_Template_Account__c
-                                WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
-                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                                AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
-                                AND Association__c = :fleetEnrollmentInformation.selectedAssociation
-                                AND Program__c = :program.Id
-                        ];
-                        // did the sales rep only select a new billing cycle?
-                    } else if (fleetEnrollmentInformation.billingCycleDifferentThanProgramDefault == true) {
-                        programTemplateAccounts = [
-                                SELECT Id
-                                FROM Program_Template_Account__c
-                                WHERE Billing_Cycle__c = :fleetEnrollmentInformation.selectedBillingCycle
-                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                                AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
-                                AND Association__c = :fleetEnrollment.Association__c
-                                AND Program__c = :program.Id
-                        ];
-                        // were the card type or usage type changed?
-                    } else if (fleetEnrollmentInformation.selectedCardType != fleetEnrollment.Card_Type__c || fleetEnrollmentInformation.selectedUsageType != fleetEnrollment.Usage_Type__c) {
-                        programTemplateAccounts = [
-                                SELECT Id
-                                FROM Program_Template_Account__c
-                                WHERE Billing_Cycle__c = :fleetEnrollment.Billing_Cycle__c
-                                AND Usage_Type__c = :fleetEnrollmentInformation.selectedUsageType
-                                AND Card_Type__c = :fleetEnrollmentInformation.selectedCardType
-                                AND Association__c = :fleetEnrollment.Association__c
-                                AND Program__c = :program.Id
-                        ];
-                    }
-                }
-
-                // if we're changing the program template account to something different than default
-                if (programTemplateAccounts != null && programTemplateAccounts.size() > 0) {
-                    fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
-                    // if program template account is blank, and we didn't change it, set to the program default
-                } else if (fleetEnrollmentInformation.applyDefaultPTA == true || fleetEnrollment.Program_Template_Account__c == null) {
-                    fleetEnrollment.Program_Template_Account__c = defaultPTA.Id;
-                }
             }
 
             if (fleetEnrollmentInformation.selectedCardType != null) {
@@ -699,6 +639,21 @@ public with sharing class FleetEnrollmentInternalController {
                 fleetEnrollment.Usage_Type__c = fleetEnrollmentInformation.selectedUsageType;
             } else {
                 fleetEnrollment.Usage_Type__c = availableUsageTypes.get(1).getValue();
+            }
+
+            if (isMillennium) {
+                List<Program_Template_Account__c> programTemplateAccounts = null;
+                if (fleetEnrollmentInformation.applyDefaultPTA != true) {
+                    programTemplateAccounts = Database.query(programTemplateAccountQuery());
+                }
+
+                // Did the program template account change based on the rep's selection?
+                if (programTemplateAccounts != null && programTemplateAccounts.size() > 0) {
+                    fleetEnrollment.Program_Template_Account__c = programTemplateAccounts[0].Id;
+                    // Are we applying the default, or is the program template account currently null?
+                } else if (fleetEnrollmentInformation.applyDefaultPTA == true || fleetEnrollment.Program_Template_Account__c == null) {
+                    fleetEnrollment.Program_Template_Account__c = defaultPTA.Id;
+                }
             }
 
             Database.UpsertResult result = Database.upsert(fleetEnrollment);
@@ -916,8 +871,22 @@ public with sharing class FleetEnrollmentInternalController {
 
         }
 
-
     }
 
+    private String programTemplateAccountQuery() {
+        // use data entered by the form if available
+        // if not use data already on the fleet enrollment record
+        // or use a blank string if the fleet enrollment field is null
+        String billingCycle = (fleetEnrollmentInformation.selectedBillingCycle != null && fleetEnrollmentInformation.selectedBillingCycle != '') ? fleetEnrollmentInformation.selectedBillingCycle : (fleetEnrollment.Billing_Cycle__c != null) ? fleetEnrollment.Billing_Cycle__c : '';
+        String cardType = (fleetEnrollmentInformation.selectedCardType != null && fleetEnrollmentInformation.selectedCardType != '') ? fleetEnrollmentInformation.selectedCardType : (fleetEnrollment.Card_Type__c != null) ? fleetEnrollment.Card_Type__c : '';
+        String usageType = (fleetEnrollmentInformation.selectedUsageType != null && fleetEnrollmentInformation.selectedUsageType != '') ? fleetEnrollmentInformation.selectedUsageType : (fleetEnrollment.Usage_Type__c != null) ? fleetEnrollment.Usage_Type__c : '';
+        String association = (fleetEnrollmentInformation.selectedAssociation != null && fleetEnrollmentInformation.selectedAssociation != '') ? fleetEnrollmentInformation.selectedAssociation : (fleetEnrollment.Association__c != null) ? fleetEnrollment.Association__c : '';
+
+        String query =  ' SELECT ' + 'Id' +
+                        ' FROM Program_Template_Account__c' +
+                        ' WHERE Program__c = \'' + program.Id + '\' AND Billing_Cycle__c = \'' + billingCycle + '\' AND Usage_Type__c = \'' + usageType + '\' AND Card_Type__c = \'' + cardType + '\' AND Association__c = \'' + association + '\' LIMIT 1 ';
+
+        return query;
+    }
 
 }
