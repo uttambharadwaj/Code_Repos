@@ -13,7 +13,7 @@ public class CreditDecisionEngineTest {
     static void setupUser() {
 
         UtilityTestLoader.setAutomation(false);
-    
+
         Account offerAccount = new Account();
         offerAccount.Name = 'TestAccount-01';
 
@@ -212,7 +212,7 @@ public class CreditDecisionEngineTest {
         }
 
         insert onlineApplications;
-        
+
     }
 
     static testMethod void testCreditDecisionEngine() {
@@ -258,7 +258,7 @@ public class CreditDecisionEngineTest {
             onlineApplications[0].Credit_Line_Requested__c = 9000;
             onlineApplications[0].DNB_Credit_Line_Recommendation__c = 9000;
             onlineApplications[0].DNB_CSAD_High_Credit__c = 15000;
-            onlineApplications[0].Number_of_Trucks__c = 1;
+            onlineApplications[0].Number_of_Trucks__c = 20;
             upsert onlineApplications[0];
 
             Decimal oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
@@ -296,6 +296,19 @@ public class CreditDecisionEngineTest {
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
             System.assertEquals(20000, oa);
+
+            // Risk Grade 1 and 2
+            // requesting more than DNB is suggesting with
+            // DNB_SBFE_High_Credit__c = 99999999999.00
+            onlineApplications[0].Risk_Grade__c = '2';
+            onlineApplications[0].Credit_Line_Requested__c = 40000;
+            onlineApplications[0].DNB_Credit_Line_Recommendation__c = 35000;
+            onlineApplications[0].DNB_CSAD_High_Credit__c = 30000;
+            onlineApplications[0].DNB_SBFE_High_Credit__c = 99999999999.00;
+            upsert onlineApplications[0];
+
+            oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
+            System.assertEquals(30000, oa);
 
             // Risk Grade 3
             // requesting less than 150k
@@ -367,23 +380,23 @@ public class CreditDecisionEngineTest {
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
             System.assertEquals(5000, oa);
 
-            // Number of trucks effect credit recommendation (offering them more than they requested)
+            // Number of trucks affect credit recommendation
             onlineApplications[0].PG_Score__c = 751;
-            onlineApplications[0].Number_of_Trucks__c = 3;  // resulting in upping "requested" credit to 7500
+            onlineApplications[0].Number_of_Trucks__c = 1;  // resulting in reducing "requested" credit to 2500
             onlineApplications[0].Credit_Line_Requested__c = 5000;
             onlineApplications[0].PG_High_Credit_Amount__c = 11000;
             upsert onlineApplications[0];
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
-            System.assertEquals(7500, oa);
+            System.assertEquals(2500, oa);
 
-            // Number of trucks effect credit recommendation and is a slip seat (offering them more than they requested)
-            onlineApplications[0].Team_Drivers_Slip_Seat__c = true; // resulting in upping "requested" creit to 10500
+            // Number of trucks affect credit recommendation and is a slip seat (offering them more than they requested)
+            onlineApplications[0].Team_Drivers_Slip_Seat__c = true; // resulting in upping "requested" credit 3500
             onlineApplications[0].Credit_Line_Requested__c = 5000;
             upsert onlineApplications[0];
 
             oa = (Decimal) cuccl.getFunctionValue(null, new OnlineApplication__c(Id = onlineApplications[0].Id), 'String', 'String', 'String', onlineApplications[0].Id);
-            System.assertEquals(10500, oa);
+            System.assertEquals(3500, oa);
 
             /** TEST FOR BOTH COMMERCIAL AND CONSUMER */
 
@@ -452,7 +465,7 @@ public class CreditDecisionEngineTest {
 
     static testMethod void testExistingExposure() {
 
-        List<OnlineApplication__c> onlineApplications = [SELECT Id FROM OnlineApplication__c];
+        List<OnlineApplication__c> onlineApplications = [SELECT Id, Status__c FROM OnlineApplication__c];
 
         if (onlineApplications.size() > 0) {
 
@@ -878,42 +891,6 @@ public class CreditDecisionEngineTest {
 
     }
 
-    static testMethod void testForteCallout() {
-
-        Test.startTest();
-
-        TestUtils.enable_isRunningTest = true;
-
-        Test.setMock(HttpCalloutMock.class, new ForteCalloutMock());
-
-        CreditWS_Forte.ForteRequest request = new CreditWS_Forte.ForteRequest();
-
-        request.action = 'verify';
-        request.authorization_amount = 1;
-        request.echeck = new CreditWS_Forte.ForteECheck();
-        request.echeck.account_number = '11111111';
-        request.echeck.routing_number = '222222222';
-
-        CreditWS_Forte.ForteResponse response = CreditWS_Forte.verifyBankAccount(request);
-
-        System.assert((response.transaction_id).equalsIgnoreCase('trn_520ed196-e275-4a93-ab6a-3e601c4bf35f'));
-        System.assert((response.location_id).equalsIgnoreCase('loc_167635'));
-        System.assert(response.authorization_amount == 1);
-        System.assert((response.entered_by).equalsIgnoreCase('c28e0b656a521c2f17f559618d85f1be'));
-
-        System.assert((response.echeck.masked_account_number).equalsIgnoreCase('****1111'));
-        System.assert((response.echeck.last_4_account_number).equalsIgnoreCase('1111'));
-        System.assert((response.echeck.routing_number).equalsIgnoreCase('222222222'));
-
-        System.assert((response.response.environment).equalsIgnoreCase('sandbox'));
-        System.assert((response.response.response_type).equalsIgnoreCase('D'));
-        System.assert((response.response.response_code).equalsIgnoreCase('U19'));
-        System.assert((response.response.response_desc).equalsIgnoreCase('INVALID TRN'));
-
-        Test.stopTest();
-
-    }
-
     static testMethod void testDNBCustomModelCallout() {
 
         List<OnlineApplication__c> onlineApplications = [SELECT Id, DUNS__c, Credit_Line_Requested__c FROM OnlineApplication__c LIMIT 1];
@@ -1088,15 +1065,6 @@ public class CreditDecisionEngineTest {
             HTTPResponse retVal = new HTTPResponse();
             retVal.setStatusCode(200);
             retVal.setBody('review_status=passed');
-            return retVal;
-        }
-    }
-
-    public class ForteCalloutMock implements HttpCalloutMock {
-        public HTTPResponse respond(HTTPRequest req) {
-            HTTPResponse retVal = new HTTPResponse();
-            retVal.setStatusCode(200);
-            retVal.setBody('{"transaction_id":"trn_520ed196-e275-4a93-ab6a-3e601c4bf35f","location_id":"loc_167635","action":"verify","authorization_amount":1.00,"entered_by":"c28e0b656a521c2f17f559618d85f1be","echeck":{"masked_account_number":"****1111","last_4_account_number":"1111","routing_number":"222222222"},"response":{"environment":"sandbox","response_type":"D","response_code":"U19","response_desc":"INVALID TRN"}}');
             return retVal;
         }
     }

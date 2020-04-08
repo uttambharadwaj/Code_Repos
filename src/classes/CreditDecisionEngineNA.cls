@@ -5,6 +5,7 @@
 * Author: Derek Gilbert
 * Initial Date: 3/26/2018
 * Revision History: 4/30/2019 IADJUDICAT-739 do the constructor thing.
+* 3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
 */
 global class CreditDecisionEngineNA {
 
@@ -28,7 +29,7 @@ global class CreditDecisionEngineNA {
                 SELECT Id, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, App_Signer_Last_Name_Text__c,
                         Billing_City__c, Billing_Contact_First_Name_Text__c, Billing_Contact_Last_Name_Text__c, Billing_Contact__r.Email, Billing_Contact__r.Phone,
                         Billing_State__c, Billing_Street__c, Billing_Zip_Postal_Code__c, Business_Phone_Number__c, Checking_Account_Number__c, CreatedBy.Alias,
-                        Doing_Business_As__c, DUNS_Number__c, Forte_Response_Code__c, Legal_Structure__c, Name, Opportunity_Name_Text__c, Opportunity__r.SourceSystem__c,
+                        Doing_Business_As__c, DUNS_Number__c, Legal_Structure__c, Name, Opportunity_Name_Text__c, Opportunity__r.SourceSystem__c,
                         Personal_Guarantor_DOB__c, Personal_Guarantor_First_Name__c, Personal_Guarantor_Home_Phone__c, Personal_Guarantor_Last_Name__c, Personal_Guarantor_Email__c,
                         Personal_Guarantor_Mailing_City__c, Personal_Guarantor_Mailing_Country__c, Personal_Guarantor_Mailing_State__c, Personal_Guarantor_Mailing_Street__c,
                         Personal_Guarantor_Mailing_Zip__c, Personal_Guarantor_SSN__c, PG_Required__c, Physical_City__c, Physical_State__c, Physical_Street__c, Requested_Credit_Limit__c,
@@ -303,7 +304,13 @@ global class CreditDecisionEngineNA {
 
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1 && dnbDirectMatchResponse.matchCandidates[0].OperatingStatus != null && (dnbDirectMatchResponse.matchCandidates[0].OperatingStatus).equalsIgnoreCase('Active')) {
 
+                //Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
                 naApplication.DNB_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchGradeString;
+                naApplication.DNB_Street_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StreetNameMatchGradeString;
+                naApplication.DNB_State_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StateMatchGradeString;
+                naApplication.DNB_Street_Number_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StreetNumberMatchGradeString;
+                naApplication.DNB_City_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].CityMatchGradeString;
+                naApplication.DNB_Postal_Code_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchGradeString;
                 naApplication.DNB_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchDataProfile;
                 naApplication.DNB_Street_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StreetNameMatchDataProfile;
                 naApplication.DNB_Street_Number_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StreetNumberMatchDataProfile;

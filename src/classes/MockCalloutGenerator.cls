@@ -87,10 +87,10 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',getMarketingCloudAuthBody(),headers));
                 }
                 when 'MarketingCloudTriggeredEmail' {
-                    String myEndpoint = 'callout:Marketing_Cloud_Triggered_Email/key:'+ MCConnectorTest.TRIGGERED_EMAIL_KEY+'/send?account_id=100029437';
+                    String myEndpoint = 'callout:Marketing_Cloud_Triggered_Email/key:'+ MCConnectorTest.TRIGGERED_EMAIL_KEY+'/send';
                     Map<String, String> headers = new Map<String, String>();
                     headers.put('Content-Type', 'application/json');
-                    this.requests.put(myEndpoint, new MockRequest(200,'Success',Blob.valueOf('"Queued"'),headers));
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getMarketingCloudTriggeredSendBody(),headers));
                 }
             }
         }
@@ -700,6 +700,11 @@ public class MockCalloutGenerator implements HttpCalloutMock {
 
     private static String getMarketingCloudAuthBody() {
         String json = '{\"access_token\": \"eyJhbGciOiJIUzI1NiIsImtpZCI6IjEiLCJ2ZXIiOiIxIiwidHlwIjoiSldUIn0.eyJhY2Nlc3NfdG9rZW4iOiJacnhvVFg0V0RuNFdVNzI0NjI1aHBMZW8iLCJjbGllbnRfaWQiOiJvMTI1ZGRjN3QwNDNlZmRwdGtidmZpcW8iLCJlaWQiOjEwMDAyNjY0NSwic3RhY2tfa2V5IjoiUzEwIiwicGxhdGZvcm1fdmVyc2lvbiI6MiwiY2xpZW50X3R5cGUiOiJTZXJ2ZXJUb1NlcnZlciJ9.fXyxCJzxA67Yq721_DBAVOahOMMbXE2nkt5huhv9FOM._TeKU_onn315RxwBLqK7Is35Kx38rBgW__23LKl8ueF1EtC56gO6vZydgG4EmV_G9Y_PuPBN3VEfdFP8cHPU_I46jBzRAjfKPm2BXiupEWWe8DcZrADxJzV-mXavvU0pyYPgyQ1D9PJXBXmCzH4ldWLtXn88uk-NSWXmUmjBGoEgV5WnyEd\",    \"token_type\": \"Bearer\",    \"expires_in\": 1079,    \"scope\": \"offline documents_and_images_read documents_and_images_write saved_content_read saved_content_write email_read email_send email_write push_read push_send push_write sms_read sms_send sms_write audiences_read audiences_write list_and_subscribers_read list_and_subscribers_write data_extensions_read data_extensions_write file_locations_read file_locations_write tracking_events_read accounts_read accounts_write marketing_cloud_connect_read marketing_cloud_connect_write marketing_cloud_connect_send tracking_events_write\",    \"soap_instance_url\": \"https://mcb9lg4yfkyxd3c4ctrlcfsdpln4.soap.marketingcloudapis.com",    \"rest_instance_url\": \"https://mcb9lg4yfkyxd3c4ctrlcfsdpln4.rest.marketingcloudapis.com"}';
+        return json;
+    }
+
+    private static String getMarketingCloudTriggeredSendBody() {
+        String json = '{"requestId":"5cddb241-39a8-4916-afaa-c168a71a7bda","responses":[{"recipientSendId":"5cddb241-39a8-4916-afaa-c168a71a7bda","hasErrors":false,"messages":["Queued"]}]}';
         return json;
     }
 }

@@ -4,7 +4,7 @@
 * Module: Main Runner
 * Author: Derek Gilbert
 * Initial Date: 3/26/2018
-*
+* Revision History: 3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
 */
 global class CreditDecisionEngineCP {
 
@@ -23,7 +23,7 @@ global class CreditDecisionEngineCP {
         decisionEngineRunning = true;
 
         List<CP_Application_Request__c> cpApplications = [
-                SELECT Id, Name, Company_Legal_Name__c, Forte_Response_Code__c, Application_Stage__c, ThreatMetrix_Request_ID__c,
+                SELECT Id, Name, Company_Legal_Name__c, Application_Stage__c, ThreatMetrix_Request_ID__c,
                         ThreatMetrix_Result__c, Sanctions_Business_Check__c, Sanctions_Individual_Check__c,
                         Physical_Address_Line_1__c, Physical_City__c, Physical_State_Province__c, Physical_Country__c, Physical_Postal_Code__c, Sanctions_Individual_Result_ID__c,
                         First_Name__c, Last_Name__c, Taxpayer_ID__c, Guarantor_First_Name__c, Guarantor_Last_Name__c, Guarantor_Date_of_Birth__c,
@@ -308,8 +308,14 @@ global class CreditDecisionEngineCP {
 
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1 && dnbDirectMatchResponse.matchCandidates[0].OperatingStatus != null && (dnbDirectMatchResponse.matchCandidates[0].OperatingStatus).equalsIgnoreCase('Active')) {
 
+                //Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
                 cpApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
                 cpApplication.DNB_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchGradeString;
+                cpApplication.DNB_Street_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StreetNameMatchGradeString;
+                cpApplication.DNB_State_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StateMatchGradeString;
+                cpApplication.DNB_Street_Number_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StreetNumberMatchGradeString;
+                cpApplication.DNB_City_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].CityMatchGradeString;
+                cpApplication.DNB_Postal_Code_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchGradeString;
                 cpApplication.DNB_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchDataProfile;
                 cpApplication.DNB_Street_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StreetNameMatchDataProfile;
                 cpApplication.DNB_Street_Number_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StreetNumberMatchDataProfile;
@@ -468,27 +474,6 @@ global class CreditDecisionEngineCP {
 
             List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
             List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
-
-            // Forte
-            CreditWS_Forte.ForteRequest forteRequest = new CreditWS_Forte.ForteRequest();
-
-            forteRequest.authorization_amount = 1;
-            forteRequest.action = 'verify';
-            forteRequest.echeck = new CreditWS_Forte.ForteECheck();
-            forteRequest.echeck.account_number = cpApplication.Checking_Account_Number__c;
-            forteRequest.echeck.routing_number = cpApplication.ABA_Routing_Number__c;
-
-            if (!TestUtils.isRunningTest()) {
-
-                CreditWS_Forte.ForteResponse forteResponse = CreditWS_Forte.verifyBankAccount(forteRequest);
-
-                if (forteResponse != null && forteResponse.response != null) {
-                    cpApplication.Forte_Response_Code__c = forteResponse.response.response_code;
-                    cpApplication.Forte_Response_Message__c = forteResponse.response.response_desc;
-                    cpApplication.Forte_Response_Type__c = forteResponse.response.response_type;
-                }
-
-            }
 
             // GIACT
             System.debug('Running GIACT...');

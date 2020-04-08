@@ -19,11 +19,11 @@ public class MCConnectorTest {
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'MCConnector', 'MarketingCloudTriggeredEmail'}));
         MCConnector mcConnector = new MCConnector();
-        Boolean sendSuccessful = mcConnector.sendTriggeredEmail(TRIGGERED_EMAIL_KEY);
+        String sendId = mcConnector.sendTriggeredEmail(TRIGGERED_EMAIL_KEY);
         Test.stopTest();
 
         System.assertEquals(true, mcConnector != null);
-        System.assertEquals(true, sendSuccessful);
+        System.assertEquals(true, sendId != null);
 
     }
 }

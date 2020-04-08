@@ -6,6 +6,7 @@
 * Initial Date: 3/26/2018
 * Revision History: 4/23/2019 Jason Arbegast IADJUDICAT-1188 escape single quotes on business name
 *                   4/25/2019 IADJUDICAT-739 move dnb lookup logic to just before upsert; gotta wait for that response; also do the constructor thing
+*                   3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
 */
 global class CreditDecisionEngineOTR {
 
@@ -26,7 +27,7 @@ global class CreditDecisionEngineOTR {
         decisionEngineRunning = true;
 
         List<OnlineApplication__c> onlineApplications = [
-                SELECT Id, Name, Legal_Business_Name__c, Forte_Response_Code__c, Application_Stage__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Session_ID__c,
+                SELECT Id, Name, Legal_Business_Name__c, Application_Stage__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Session_ID__c,
                         ThreatMetrix_Result__c, Sanctions_Business_Check__c, Sanctions_Individual_Check__c, ABA_Routing_Number__c, Checking_Account_Number__c, Country__c,
                         Business_Street_Address__c, City__c, State__c, Zip_code__c, Sanctions_Individual_Result_ID__c, Contact_First_Name__c, Contact_Last_Name__c,
                         AO_Name__c, AO_Work_Email__c, AO_Address__c, AO_City__c, Contact_Name__c, AO_State__c, AO_Zip_Code__c, AO_Date_of_Birth__c, AO_Social_Security_Number__c, Running_Credit_Decisioning__c,
@@ -317,7 +318,13 @@ global class CreditDecisionEngineOTR {
 
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates.size() == 1 && dnbDirectMatchResponse.matchCandidates[0].OperatingStatus != null && (dnbDirectMatchResponse.matchCandidates[0].OperatingStatus).equalsIgnoreCase('Active')) {
 
+                //Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
                 onlineApplication.DNB_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchGradeString;
+                onlineApplication.DNB_Street_Name_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StreetNameMatchGradeString;
+                onlineApplication.DNB_State_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StateMatchGradeString;
+                onlineApplication.DNB_Street_Number_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].StreetNumberMatchGradeString;
+                onlineApplication.DNB_City_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].CityMatchGradeString;
+                onlineApplication.DNB_Postal_Code_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchGradeString;
                 onlineApplication.DNB_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchDataProfile;
                 onlineApplication.DNB_Street_Name_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StreetNameMatchDataProfile;
                 onlineApplication.DNB_Street_Number_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].StreetNumberMatchDataProfile;
@@ -481,28 +488,6 @@ global class CreditDecisionEngineOTR {
                 if (existingExposureApplication.fraudFlag) {
                     onlineApplication.Previous_Fraud__c = true;
                 }
-            }
-
-            // Forte
-            System.debug('Running Forte...');
-            CreditWS_Forte.ForteRequest forteRequest = new CreditWS_Forte.ForteRequest();
-
-            forteRequest.authorization_amount = 1;
-            forteRequest.action = 'verify';
-            forteRequest.echeck = new CreditWS_Forte.ForteECheck();
-            forteRequest.echeck.account_number = onlineApplication.Checking_Account_Number__c;
-            forteRequest.echeck.routing_number = onlineApplication.ABA_Routing_Number__c;
-
-            if (!TestUtils.isRunningTest()) {
-
-                CreditWS_Forte.ForteResponse forteResponse = CreditWS_Forte.verifyBankAccount(forteRequest);
-
-                if (forteResponse != null && forteResponse.response != null) {
-                    onlineApplication.Forte_Response_Code__c = forteResponse.response.response_code;
-                    onlineApplication.Forte_Response_Message__c = forteResponse.response.response_desc;
-                    onlineApplication.Forte_Response_Type__c = forteResponse.response.response_type;
-                }
-
             }
 
             // GIACT

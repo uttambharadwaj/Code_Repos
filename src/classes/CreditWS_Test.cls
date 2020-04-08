@@ -321,42 +321,6 @@ public class CreditWS_Test {
 
     }
 
-    static testMethod void testForteCallout() {
-
-        Test.startTest();
-
-        TestUtils.enable_isRunningTest = true;
-
-        Test.setMock(HttpCalloutMock.class, new ForteCalloutMock());
-
-        CreditWS_Forte.ForteRequest request = new CreditWS_Forte.ForteRequest();
-
-        request.action = 'verify';
-        request.authorization_amount = 1;
-        request.echeck = new CreditWS_Forte.ForteECheck();
-        request.echeck.account_number = '11111111';
-        request.echeck.routing_number = '222222222';
-
-        CreditWS_Forte.ForteResponse response = CreditWS_Forte.verifyBankAccount(request);
-
-        System.assert((response.transaction_id).equalsIgnoreCase('trn_520ed196-e275-4a93-ab6a-3e601c4bf35f'));
-        System.assert((response.location_id).equalsIgnoreCase('loc_167635'));
-        System.assert(response.authorization_amount == 1);
-        System.assert((response.entered_by).equalsIgnoreCase('c28e0b656a521c2f17f559618d85f1be'));
-
-        System.assert((response.echeck.masked_account_number).equalsIgnoreCase('****1111'));
-        System.assert((response.echeck.last_4_account_number).equalsIgnoreCase('1111'));
-        System.assert((response.echeck.routing_number).equalsIgnoreCase('222222222'));
-
-        System.assert((response.response.environment).equalsIgnoreCase('sandbox'));
-        System.assert((response.response.response_type).equalsIgnoreCase('D'));
-        System.assert((response.response.response_code).equalsIgnoreCase('U19'));
-        System.assert((response.response.response_desc).equalsIgnoreCase('INVALID TRN'));
-
-        Test.stopTest();
-
-    }
-
     static testMethod void testDNBSBRIWSDL() {
 
         new CreditWSUtil_DNBSBRI.SBRI_GUARANTORNAMEGRP();
@@ -628,15 +592,6 @@ public class CreditWS_Test {
             HTTPResponse retVal = new HTTPResponse();
             retVal.setStatusCode(200);
             retVal.setBody('{ "Status": { "ConversationId": "31000205378036", "RequestId": "449412256", "TransactionStatus": "passed", "Reference": "123456" }, "Products": [ { "ProductType": "InstantID", "ExecutedStepName": "InstantID", "ProductConfigurationName": "Wex.IID", "ProductStatus": "pass" }, { "ProductType": "FraudPoint", "ExecutedStepName": "FraudPoint", "ProductConfigurationName": "Wex.FP", "ProductStatus": "pass", "ParameterDetails": [ { "Group": "FRAUD_POINT", "Name": "LexID", "Values": [ { "Value": "0" } ] }, { "Group": "FRAUD_POINT", "Name": "Attributes", "Values": [ { "Value": "IdentityRiskLevel" }, { "Value": "IdentityAgeOldest" }, { "Value": "IdentityAgeNewest" }, { "Value": "IdentityRecentUpdate" }, { "Value": "IdentityRecordCount" }, { "Value": "IdentitySourceCount" }, { "Value": "IdentityAgeRiskIndicator" }, { "Value": "IDVerRiskLevel" }, { "Value": "IDVerSSN" }, { "Value": "IDVerName" }, { "Value": "IDVerAddress" }, { "Value": "IDVerAddressNotCurrent" }, { "Value": "IDVerAddressAssocCount" }, { "Value": "IDVerPhone" }, { "Value": "IDVerDriversLicense" }, { "Value": "IDVerDOB" }, { "Value": "IDVerSSNSourceCount" }, { "Value": "IDVerAddressSourceCount" }, { "Value": "IDVerDOBSourceCount" }, { "Value": "IDVerSSNCreditBureauCount" }, { "Value": "IDVerSSNCreditBureauDelete" }, { "Value": "IDVerAddrCreditBureauCount" }, { "Value": "SourceRiskLevel" }, { "Value": "SourceFirstReportingIdentity" }, { "Value": "SourceCreditBureau" }, { "Value": "SourceCreditBureauCount" }, { "Value": "SourceCreditBureauAgeOldest" }, { "Value": "SourceCreditBureauAgeNewest" }, { "Value": "SourceCreditBureauAgeChange" }, { "Value": "SourcePublicRecord" }, { "Value": "SourcePublicRecordCount" }, { "Value": "SourcePublicRecordCountYear" }, { "Value": "SourceEducation" }, { "Value": "SourceOccupationalLicense" }, { "Value": "SourceVoterRegistration" }, { "Value": "SourceOnlineDirectory" }, { "Value": "SourceDoNotMail" }, { "Value": "SourceAccidents" }, { "Value": "SourceBusinessRecords" }, { "Value": "SourceProperty" }, { "Value": "SourceAssets" }, { "Value": "SourcePhoneDirectoryAssistance" }, { "Value": "SourcePhoneNonPublicDirectory" }, { "Value": "VariationRiskLevel" }, { "Value": "VariationIdentityCount" }, { "Value": "VariationSSNCount" }, { "Value": "VariationSSNCountNew" }, { "Value": "VariationMSourcesSSNCount" }, { "Value": "VariationMSourcesSSNUnrelCount" }, { "Value": "VariationLastNameCount" }, { "Value": "VariationLastNameCountNew" }, { "Value": "VariationAddrCountYear" }, { "Value": "VariationAddrCountNew" }, { "Value": "VariationAddrStability" }, { "Value": "VariationAddrChangeAge" }, { "Value": "VariationDOBCount" }, { "Value": "VariationDOBCountNew" }, { "Value": "VariationPhoneCount" }, { "Value": "VariationPhoneCountNew" }, { "Value": "VariationSearchSSNCount" }, { "Value": "VariationSearchAddrCount" }, { "Value": "VariationSearchPhoneCount" }, { "Value": "SearchVelocityRiskLevel" }, { "Value": "SearchCount" }, { "Value": "SearchCountYear" }, { "Value": "SearchCountMonth" }, { "Value": "SearchCountWeek" }, { "Value": "SearchCountDay" }, { "Value": "SearchUnverifiedSSNCountYear" }, { "Value": "SearchUnverifiedAddrCountYear" }, { "Value": "SearchUnverifiedDOBCountYear" }, { "Value": "SearchUnverifiedPhoneCountYear" }, { "Value": "SearchBankingSearchCount" }, { "Value": "SearchBankingSearchCountYear" }, { "Value": "SearchBankingSearchCountMonth" }, { "Value": "SearchBankingSearchCountWeek" }, { "Value": "SearchBankingSearchCountDay" }, { "Value": "SearchHighRiskSearchCount" }, { "Value": "SearchHighRiskSearchCountYear" }, { "Value": "SearchHighRiskSearchCountMonth" }, { "Value": "SearchHighRiskSearchCountWeek" }, { "Value": "SearchHighRiskSearchCountDay" }, { "Value": "SearchFraudSearchCount" }, { "Value": "SearchFraudSearchCountYear" }, { "Value": "SearchFraudSearchCountMonth" }, { "Value": "SearchFraudSearchCountWeek" }, { "Value": "SearchFraudSearchCountDay" }, { "Value": "SearchLocateSearchCount" }, { "Value": "SearchLocateSearchCountYear" }, { "Value": "SearchLocateSearchCountMonth" }, { "Value": "SearchLocateSearchCountWeek" }, { "Value": "SearchLocateSearchCountDay" }, { "Value": "AssocRiskLevel" }, { "Value": "AssocCount" }, { "Value": "AssocDistanceClosest" }, { "Value": "AssocSuspicousIdentitiesCount" }, { "Value": "AssocCreditBureauOnlyCount" }, { "Value": "AssocCreditBureauOnlyCountNew" }, { "Value": "AssocCreditBureauOnlyCountMonth" }, { "Value": "AssocHighRiskTopologyCount" }, { "Value": "ValidationRiskLevel" }, { "Value": "ValidationSSNProblems" }, { "Value": "ValidationAddrProblems" }, { "Value": "ValidationPhoneProblems" }, { "Value": "ValidationDLProblems" }, { "Value": "ValidationIPProblems" }, { "Value": "CorrelationRiskLevel" }, { "Value": "CorrelationSSNNameCount" }, { "Value": "CorrelationSSNAddrCount" }, { "Value": "CorrelationAddrNameCount" }, { "Value": "CorrelationAddrPhoneCount" }, { "Value": "CorrelationPhoneLastNameCount" }, { "Value": "DivRiskLevel" }, { "Value": "DivSSNIdentityCount" }, { "Value": "DivSSNIdentityCountNew" }, { "Value": "DivSSNIdentityMSourceCount" }, { "Value": "DivSSNIdentityMSourceUrelCount" }, { "Value": "DivSSNLNameCount" }, { "Value": "DivSSNLNameCountNew" }, { "Value": "DivSSNAddrCount" }, { "Value": "DivSSNAddrCountNew" }, { "Value": "DivSSNAddrMSourceCount" }, { "Value": "DivAddrIdentityCount" }, { "Value": "DivAddrIdentityCountNew" }, { "Value": "DivAddrIdentityMSourceCount" }, { "Value": "DivAddrSuspIdentityCountNew" }, { "Value": "DivAddrSSNCount" }, { "Value": "DivAddrSSNCountNew" }, { "Value": "DivAddrSSNMSourceCount" }, { "Value": "DivAddrPhoneCount" }, { "Value": "DivAddrPhoneCountNew" }, { "Value": "DivAddrPhoneMSourceCount" }, { "Value": "DivPhoneIdentityCount" }, { "Value": "DivPhoneIdentityCountNew" }, { "Value": "DivPhoneIdentityMSourceCount" }, { "Value": "DivPhoneAddrCount" }, { "Value": "DivPhoneAddrCountNew" }, { "Value": "DivSearchSSNIdentityCount" }, { "Value": "DivSearchAddrIdentityCount" }, { "Value": "DivSearchAddrSuspIdentityCount" }, { "Value": "DivSearchPhoneIdentityCount" }, { "Value": "SearchComponentRiskLevel" }, { "Value": "SearchSSNSearchCount" }, { "Value": "SearchSSNSearchCountYear" }, { "Value": "SearchSSNSearchCountMonth" }, { "Value": "SearchSSNSearchCountWeek" }, { "Value": "SearchSSNSearchCountDay" }, { "Value": "SearchAddrSearchCount" }, { "Value": "SearchAddrSearchCountYear" }, { "Value": "SearchAddrSearchCountMonth" }, { "Value": "SearchAddrSearchCountWeek" }, { "Value": "SearchAddrSearchCountDay" }, { "Value": "SearchPhoneSearchCount" }, { "Value": "SearchPhoneSearchCountYear" }, { "Value": "SearchPhoneSearchCountMonth" }, { "Value": "SearchPhoneSearchCountWeek" }, { "Value": "SearchPhoneSearchCountDay" }, { "Value": "ComponentCharRiskLevel" }, { "Value": "SSNHighIssueAge" }, { "Value": "SSNLowIssueAge" }, { "Value": "SSNIssueState" }, { "Value": "SSNNonUS" }, { "Value": "InputPhoneType" }, { "Value": "IPState" }, { "Value": "IPCountry" }, { "Value": "IPContinent" }, { "Value": "InputAddrAgeOldest" }, { "Value": "InputAddrAgeNewest" }, { "Value": "InputAddrType" }, { "Value": "InputAddrLenOfRes" }, { "Value": "InputAddrDwellType" }, { "Value": "InputAddrDelivery" }, { "Value": "InputAddrActivePhoneList" }, { "Value": "InputAddrOccupantOwned" }, { "Value": "InputAddrBusinessCount" }, { "Value": "InputAddrNBRHDBusinessCount" }, { "Value": "InputAddrNBRHDSingleFamilyCount" }, { "Value": "InputAddrNBRHDMultiFamilyCount" }, { "Value": "InputAddrNBRHDMedianIncome" }, { "Value": "InputAddrNBRHDMedianValue" }, { "Value": "InputAddrNBRHDMurderIndex" }, { "Value": "InputAddrNBRHDCarTheftIndex" }, { "Value": "InputAddrNBRHDBurglaryIndex" }, { "Value": "InputAddrNBRHDCrimeIndex" }, { "Value": "InputAddrNBRHDMobilityIndex" }, { "Value": "InputAddrNBRHDVacantPropCount" }, { "Value": "AddrChangeDistance" }, { "Value": "AddrChangeStateDiff" }, { "Value": "AddrChangeIncomeDiff" }, { "Value": "AddrChangeValueDiff" }, { "Value": "AddrChangeCrimeDiff" }, { "Value": "AddrChangeEconTrajectory" }, { "Value": "AddrChangeEconTrajectoryIndex" }, { "Value": "CurrAddrAgeOldest" }, { "Value": "CurrAddrAgeNewest" }, { "Value": "CurrAddrLenOfRes" }, { "Value": "CurrAddrDwellType" }, { "Value": "CurrAddrStatus" }, { "Value": "CurrAddrActivePhoneList" }, { "Value": "CurrAddrMedianIncome" }, { "Value": "CurrAddrMedianValue" }, { "Value": "CurrAddrMurderIndex" }, { "Value": "CurrAddrCarTheftIndex" }, { "Value": "CurrAddrBurglaryIndex" }, { "Value": "CurrAddrCrimeIndex" }, { "Value": "PrevAddrAgeOldest" }, { "Value": "PrevAddrAgeNewest" }, { "Value": "PrevAddrLenOfRes" }, { "Value": "PrevAddrDwellType" }, { "Value": "PrevAddrStatus" }, { "Value": "PrevAddrOccupantOwned" }, { "Value": "PrevAddrMedianIncome" }, { "Value": "PrevAddrMedianValue" }, { "Value": "PrevAddrMurderIndex" }, { "Value": "PrevAddrCarTheftIndex" }, { "Value": "PrevAddrBurglaryIndex" }, { "Value": "PrevAddrCrimeIndex" } ] } ] } ] }');
-            return retVal;
-        }
-    }
-
-    public class ForteCalloutMock implements HttpCalloutMock {
-        public HTTPResponse respond(HTTPRequest req) {
-            HTTPResponse retVal = new HTTPResponse();
-            retVal.setStatusCode(200);
-            retVal.setBody('{"transaction_id":"trn_520ed196-e275-4a93-ab6a-3e601c4bf35f","location_id":"loc_167635","action":"verify","authorization_amount":1.00,"entered_by":"c28e0b656a521c2f17f559618d85f1be","echeck":{"masked_account_number":"****1111","last_4_account_number":"1111","routing_number":"222222222"},"response":{"environment":"sandbox","response_type":"D","response_code":"U19","response_desc":"INVALID TRN"}}');
             return retVal;
         }
     }
