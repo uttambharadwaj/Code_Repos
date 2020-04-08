@@ -14,6 +14,18 @@ public class SweepsBatchService {
             								'Mail_Opt_Out__c, Direct_Mail_Opt_In__c ';
     public static final Integer batchLimit = Integer.valueOf(Label.SweepBatchLimit);
 
+    
+    //If Changes exist route to batch
+    public static void routeLeadBatch (List<Lead>triggerNew, Map<Id, Lead> newMap, Map<Id, Lead> oldMap) {
+        for( Id leadId : newMap.keySet() ) {
+            if(oldMap.get( leadId ).DoNotCall != newMap.get( leadId ).DoNotCall || 
+               oldMap.get( leadId ).HasOptedOutOfEmail != newMap.get( leadId ).HasOptedOutOfEmail || 
+               oldMap.get( leadId ).Mail_Opt_Out__c != newMap.get( leadId ).Mail_Opt_Out__c ){
+                   SweepsBatchService.handleLeadUpdate(triggerNew);
+               }
+        }
+    }
+    
     /*
      * Description: If Contact record is changed, update all related records
      * Param: updatedcontact is list of changed records

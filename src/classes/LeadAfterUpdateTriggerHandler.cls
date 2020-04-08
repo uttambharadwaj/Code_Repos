@@ -22,13 +22,7 @@ public with sharing class LeadAfterUpdateTriggerHandler extends TriggerHandlerBa
 
         //Route Contact Preferences to SweepBatch
         if(!system.isBatch()) {
-            for( Id leadId : tp.newMap.keySet() ) {
-                if(tp.oldMap.get( leadId ).DoNotCall != tp.newMap.get( leadId ).DoNotCall || 
-                    tp.oldMap.get( leadId ).HasOptedOutOfEmail != tp.newMap.get( leadId ).HasOptedOutOfEmail || 
-                    tp.oldMap.get( leadId ).Mail_Opt_Out__c != tp.newMap.get( leadId ).Mail_Opt_Out__c ){
-                        SweepsBatchService.handleLeadUpdate(tp.new);
-                    }
-            }
+            SweepsBatchService.routeLeadBatch((List<Lead>)tp.newList,(Map<Id, Lead>) tp.newMap, (Map<Id, Lead>) tp.oldMap);
         }
     }
 
