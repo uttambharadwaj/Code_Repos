@@ -23,7 +23,7 @@ public with sharing class WebDAMConnectorTest {
 
         WebDAMConnector webDAMConnector = new WebDAMConnector();
 
-        List<WebDAMConnectorAuthResponse.items> searchResults = webDAMConnector.searchByString('infopack');
+        List<WebDAMConnectorAuthResponse.items> searchResults = webDAMConnector.searchByString('infopack', '');
         Test.stopTest();
 
         System.assertEquals(1, searchResults.size());

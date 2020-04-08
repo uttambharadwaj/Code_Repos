@@ -69,7 +69,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',getWebDAMSuccessfulAuthBody(),headers));
                 }
                 when 'WebDAMSearch' {
-                    String myEndpoint = 'https://apiv2.webdamdb.com/search?sortby=datemodified&sortdir=desc&offset=0&query=infopack';
+                    String myEndpoint = 'https://apiv2.webdamdb.com/search?query=infopack';
                     Map<String, String> headers = new Map<String, String>();
                     headers.put('Content-Type', 'application/json');
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',getWebDAMSearchBody(),headers));
