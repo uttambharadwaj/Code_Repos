@@ -42,11 +42,11 @@ public class WebDAMConnector {
         }
     }
 
-    public List<WebDAMConnectorAuthResponse.items> searchByString(String searchParam) {
+    public List<WebDAMConnectorAuthResponse.items> searchByString(String searchParam, String searchOptions) {
 
         HttpRequest req = new HttpRequest();
         req.setMethod('GET');
-        req.setEndpoint(BASE_URL + '/search?query=' + searchParam + webDAMConnectorConfig.search_options__c);
+        req.setEndpoint(BASE_URL + '/search?query=' + searchParam + searchOptions);
         req.setHeader('Authorization', 'Bearer ' + accessToken);
 
         Http searchRequuest = new Http();
