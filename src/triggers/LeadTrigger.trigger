@@ -12,19 +12,6 @@ trigger LeadTrigger on Lead (before insert, before update, after insert, after d
 
 	TriggerFactory.createTriggerDispatcher(Lead.SObjectType);
 
-	if(Trigger.isAfter && Trigger.isUpdate) {
-		//Route Contact Preferences to SweepBatch
-		if(!system.isBatch()) {
-			for( Id leadId : Trigger.newMap.keySet() ) {
-				if(Trigger.oldMap.get( leadId ).DoNotCall != Trigger.newMap.get( leadId ).DoNotCall || 
-					Trigger.oldMap.get( leadId ).HasOptedOutOfEmail != Trigger.newMap.get( leadId ).HasOptedOutOfEmail || 
-					Trigger.oldMap.get( leadId ).Mail_Opt_Out__c != Trigger.newMap.get( leadId ).Mail_Opt_Out__c ){
-						SweepsBatchService.handleLeadUpdate(Trigger.new);
-					}
-			}
-		}
-	}
-
 }
 //	Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
 //	if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Lead_Automation__c) { return; }
