@@ -15,7 +15,7 @@ public class SweepsBatchService {
     public static final Integer batchLimit = Integer.valueOf(Label.SweepBatchLimit);
 
     
-    //If Changes exist route to batch
+    //If Changes exist route to batch 
     public static void routeLeadBatch (List<Lead>triggerNew, Map<Id, Lead> newMap, Map<Id, Lead> oldMap) {
         for( Id leadId : newMap.keySet() ) {
             if(oldMap.get( leadId ).DoNotCall != newMap.get( leadId ).DoNotCall || 

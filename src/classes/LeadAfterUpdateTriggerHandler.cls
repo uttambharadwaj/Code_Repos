@@ -21,7 +21,7 @@ public with sharing class LeadAfterUpdateTriggerHandler extends TriggerHandlerBa
         ULeadWeightedRoundRobin.leadWeightedRoundRobin(tp.newList, (Map<Id, Lead>) tp.oldMap);
 
         //Route Contact Preferences to SweepBatch
-        if(!system.isBatch()) {
+        if(!system.isBatch()) { 
             SweepsBatchService.routeLeadBatch((List<Lead>)tp.newList,(Map<Id, Lead>) tp.newMap, (Map<Id, Lead>) tp.oldMap);
         }
     }
