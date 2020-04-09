@@ -199,102 +199,103 @@ global class CreditDecisionEngineNA {
 
             }
 
-            // Lexis Nexis RDP - SBA
-            System.debug('Running LN RDP - SBA....');
-            CreditWS_LexisNexisRDP.LexisNexisSBARequest lexisNexisSBARequest = new CreditWS_LexisNexisRDP.LexisNexisSBARequest();
-
-            lexisNexisSBARequest.companyName = naApplication.Opportunity_Name_Text__c;
-            lexisNexisSBARequest.streetAddress = naApplication.Billing_Street__c;
-            lexisNexisSBARequest.city = naApplication.Billing_City__c;
-            lexisNexisSBARequest.state = naApplication.Billing_State__c;
-            lexisNexisSBARequest.postalCode = naApplication.Billing_Zip_Postal_Code__c;
-            lexisNexisSBARequest.phoneNumber = naApplication.Business_Phone_Number__c;
-            lexisNexisSBARequest.federalTaxId = naApplication.Tax_Payer_ID_number__c;
-
-            if(naApplication.Personal_Guarantor__c != null) {
-
-                CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative lexisNexisAuthorizedRepresenative = new CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative();
-
-                lexisNexisAuthorizedRepresenative.firstName = naApplication.Personal_Guarantor_First_Name__c;
-                lexisNexisAuthorizedRepresenative.lastName = naApplication.Personal_Guarantor_Last_Name__c;
-                lexisNexisAuthorizedRepresenative.streetAddress = naApplication.Personal_Guarantor_Mailing_Street__c;
-                lexisNexisAuthorizedRepresenative.city = naApplication.Personal_Guarantor_Mailing_City__c;
-                lexisNexisAuthorizedRepresenative.state = naApplication.Personal_Guarantor_Mailing_State__c;
-                lexisNexisAuthorizedRepresenative.postalCode = naApplication.Personal_Guarantor_Mailing_Zip__c;
-
-                lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives = new List<CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative>{ lexisNexisAuthorizedRepresenative };
-
-            }
-
-            CreditWS_LexisNexisRDP.LexisNexisSBAResponse lexisNexisSBAResponse = CreditWS_LexisNexisRDP.lexisNexisSmallBusinessAnalytics(lexisNexisSBARequest);
-
-            naApplication.Lexis_Nexis_Custom_Model_Score__c = lexisNexisSBAResponse.fraudScore;
-
-            // Lexis Nexis - BIID
-            System.debug('Running LN BIID....');
-            CreditWS_LexisNexisRDP.LexisNexisBIIDRequest lexisNexisBIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisBIIDRequest();
-
-            lexisNexisBIIDRequest.applicationId = naApplication.Id;
-            lexisNexisBIIDRequest.businessName = naApplication.Opportunity_Name_Text__c;
-            lexisNexisBIIDRequest.streetAddress = naApplication.Billing_Street__c;
-            lexisNexisBIIDRequest.city = naApplication.Billing_City__c;
-            lexisNexisBIIDRequest.state = naApplication.Billing_State__c;
-            lexisNexisBIIDRequest.postalCode = naApplication.Billing_Zip_Postal_Code__c;
-            lexisNexisBIIDRequest.phoneNumber = naApplication.Business_Phone_Number__c;
-            lexisNexisBIIDRequest.federalTaxId = naApplication.Tax_Payer_ID_number__c;
-
-            if(naApplication.Personal_Guarantor__c != null) {
-
-                CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative lexisNexisAuthorizedRepresenative = new CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative();
-
-                lexisNexisAuthorizedRepresenative.firstName = naApplication.Personal_Guarantor_First_Name__c;
-                lexisNexisAuthorizedRepresenative.lastName = naApplication.Personal_Guarantor_Last_Name__c;
-                lexisNexisAuthorizedRepresenative.streetAddress = naApplication.Personal_Guarantor_Mailing_Street__c;
-                lexisNexisAuthorizedRepresenative.city = naApplication.Personal_Guarantor_Mailing_City__c;
-                lexisNexisAuthorizedRepresenative.state = naApplication.Personal_Guarantor_Mailing_State__c;
-                lexisNexisAuthorizedRepresenative.postalCode = naApplication.Personal_Guarantor_Mailing_Zip__c;
-
-                lexisNexisBIIDRequest.lexisNexisAuthorizedRepresenatives = new List<CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative>{
-                        lexisNexisAuthorizedRepresenative
-                };
-
-            }
-
-            CreditWS_LexisNexisRDP.LexisNexisBIIDResponse lexisNexisBIIDResponse = CreditWS_LexisNexisRDP.lexisNexisBusinessInstantID(lexisNexisBIIDRequest);
-
-            System.debug(lexisNexisBIIDResponse);
-
-            if(lexisNexisBIIDResponse != null && !String.isEmpty(lexisNexisBIIDResponse.biidWorkflowResult)) {
-
-                // set result in object
-                naApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
-                naApplication.Lexis_Nexis_BIID_Score__c = lexisNexisBIIDResponse.biidScore;
-
-                // If we fail, go to Fraud Point
-                if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && naApplication.Personal_Guarantor__c != null) {
-
-                    CreditWS_LexisNexisRDP.LexisNexisIIDRequest lexisNexisIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisIIDRequest();
-
-                    LexisNexisIIDRequest.applicationId = naApplication.Id;
-                    lexisNexisIIDRequest.firstName = naApplication.Personal_Guarantor_First_Name__c;
-                    lexisNexisIIDRequest.lastName = naApplication.Personal_Guarantor_Last_Name__c;
-                    lexisNexisIIDRequest.streetAddress = naApplication.Personal_Guarantor_Mailing_Street__c;
-                    lexisNexisIIDRequest.city = naApplication.Personal_Guarantor_Mailing_City__c;
-                    lexisNexisIIDRequest.state = naApplication.Personal_Guarantor_Mailing_State__c;
-                    lexisNexisIIDRequest.postalCode = naApplication.Personal_Guarantor_Mailing_Zip__c;
-                    lexisNexisIIDRequest.phoneNumber = naApplication.Personal_Guarantor_Home_Phone__c;
-                    lexisNexisIIDRequest.socialSecurityNumber = naApplication.Personal_Guarantor_SSN__c;
-
-                    CreditWS_LexisNexisRDP.LexisNexisIIDResponse lexisNexisIIDResponse = CreditWS_LexisNexisRDP.lexisNexisConsumerInstantId(LexisNexisIIDRequest);
-
-                    naApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
-                    naApplication.Lexis_Nexis_FraudPoint_Result__c = (lexisNexisIIDResponse.fraudPointWorkflowResult).capitalize();
-                    naApplication.Lexis_Nexis_IID_Result__c = (lexisNexisIIDResponse.iidWorkflowResult).capitalize();
-                    naApplication.Lexis_Nexis_CVI_Score__c = lexisNexisIIDResponse.cviScore;
-
-                }
-
-            }
+            //EAPT-1562 retiring LN RDP / BIID / CVI but I don't trust they won't re-add it. Going to leave it just commented out for a while then delete.
+//            // Lexis Nexis RDP - SBA
+//            System.debug('Running LN RDP - SBA....');
+//            CreditWS_LexisNexisRDP.LexisNexisSBARequest lexisNexisSBARequest = new CreditWS_LexisNexisRDP.LexisNexisSBARequest();
+//
+//            lexisNexisSBARequest.companyName = naApplication.Opportunity_Name_Text__c;
+//            lexisNexisSBARequest.streetAddress = naApplication.Billing_Street__c;
+//            lexisNexisSBARequest.city = naApplication.Billing_City__c;
+//            lexisNexisSBARequest.state = naApplication.Billing_State__c;
+//            lexisNexisSBARequest.postalCode = naApplication.Billing_Zip_Postal_Code__c;
+//            lexisNexisSBARequest.phoneNumber = naApplication.Business_Phone_Number__c;
+//            lexisNexisSBARequest.federalTaxId = naApplication.Tax_Payer_ID_number__c;
+//
+//            if(naApplication.Personal_Guarantor__c != null) {
+//
+//                CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative lexisNexisAuthorizedRepresenative = new CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative();
+//
+//                lexisNexisAuthorizedRepresenative.firstName = naApplication.Personal_Guarantor_First_Name__c;
+//                lexisNexisAuthorizedRepresenative.lastName = naApplication.Personal_Guarantor_Last_Name__c;
+//                lexisNexisAuthorizedRepresenative.streetAddress = naApplication.Personal_Guarantor_Mailing_Street__c;
+//                lexisNexisAuthorizedRepresenative.city = naApplication.Personal_Guarantor_Mailing_City__c;
+//                lexisNexisAuthorizedRepresenative.state = naApplication.Personal_Guarantor_Mailing_State__c;
+//                lexisNexisAuthorizedRepresenative.postalCode = naApplication.Personal_Guarantor_Mailing_Zip__c;
+//
+//                lexisNexisSBARequest.lexisNexisAuthorizedRepresenatives = new List<CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative>{ lexisNexisAuthorizedRepresenative };
+//
+//            }
+//
+//            CreditWS_LexisNexisRDP.LexisNexisSBAResponse lexisNexisSBAResponse = CreditWS_LexisNexisRDP.lexisNexisSmallBusinessAnalytics(lexisNexisSBARequest);
+//
+//            naApplication.Lexis_Nexis_Custom_Model_Score__c = lexisNexisSBAResponse.fraudScore;
+//
+//            // Lexis Nexis - BIID
+//            System.debug('Running LN BIID....');
+//            CreditWS_LexisNexisRDP.LexisNexisBIIDRequest lexisNexisBIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisBIIDRequest();
+//
+//            lexisNexisBIIDRequest.applicationId = naApplication.Id;
+//            lexisNexisBIIDRequest.businessName = naApplication.Opportunity_Name_Text__c;
+//            lexisNexisBIIDRequest.streetAddress = naApplication.Billing_Street__c;
+//            lexisNexisBIIDRequest.city = naApplication.Billing_City__c;
+//            lexisNexisBIIDRequest.state = naApplication.Billing_State__c;
+//            lexisNexisBIIDRequest.postalCode = naApplication.Billing_Zip_Postal_Code__c;
+//            lexisNexisBIIDRequest.phoneNumber = naApplication.Business_Phone_Number__c;
+//            lexisNexisBIIDRequest.federalTaxId = naApplication.Tax_Payer_ID_number__c;
+//
+//            if(naApplication.Personal_Guarantor__c != null) {
+//
+//                CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative lexisNexisAuthorizedRepresenative = new CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative();
+//
+//                lexisNexisAuthorizedRepresenative.firstName = naApplication.Personal_Guarantor_First_Name__c;
+//                lexisNexisAuthorizedRepresenative.lastName = naApplication.Personal_Guarantor_Last_Name__c;
+//                lexisNexisAuthorizedRepresenative.streetAddress = naApplication.Personal_Guarantor_Mailing_Street__c;
+//                lexisNexisAuthorizedRepresenative.city = naApplication.Personal_Guarantor_Mailing_City__c;
+//                lexisNexisAuthorizedRepresenative.state = naApplication.Personal_Guarantor_Mailing_State__c;
+//                lexisNexisAuthorizedRepresenative.postalCode = naApplication.Personal_Guarantor_Mailing_Zip__c;
+//
+//                lexisNexisBIIDRequest.lexisNexisAuthorizedRepresenatives = new List<CreditWS_LexisNexisRDP.LexisNexisAuthorizedRepresenative>{
+//                        lexisNexisAuthorizedRepresenative
+//                };
+//
+//            }
+//
+//            CreditWS_LexisNexisRDP.LexisNexisBIIDResponse lexisNexisBIIDResponse = CreditWS_LexisNexisRDP.lexisNexisBusinessInstantID(lexisNexisBIIDRequest);
+//
+//            System.debug(lexisNexisBIIDResponse);
+//
+//            if(lexisNexisBIIDResponse != null && !String.isEmpty(lexisNexisBIIDResponse.biidWorkflowResult)) {
+//
+//                // set result in object
+//                naApplication.Lexis_Nexis_BIID_Result__c = (lexisNexisBIIDResponse.biidWorkflowResult).capitalize();
+//                naApplication.Lexis_Nexis_BIID_Score__c = lexisNexisBIIDResponse.biidScore;
+//
+//                // If we fail, go to Fraud Point
+//                if(!(lexisNexisBIIDResponse.biidWorkflowResult).equalsIgnoreCase('pass') && naApplication.Personal_Guarantor__c != null) {
+//
+//                    CreditWS_LexisNexisRDP.LexisNexisIIDRequest lexisNexisIIDRequest = new CreditWS_LexisNexisRDP.LexisNexisIIDRequest();
+//
+//                    LexisNexisIIDRequest.applicationId = naApplication.Id;
+//                    lexisNexisIIDRequest.firstName = naApplication.Personal_Guarantor_First_Name__c;
+//                    lexisNexisIIDRequest.lastName = naApplication.Personal_Guarantor_Last_Name__c;
+//                    lexisNexisIIDRequest.streetAddress = naApplication.Personal_Guarantor_Mailing_Street__c;
+//                    lexisNexisIIDRequest.city = naApplication.Personal_Guarantor_Mailing_City__c;
+//                    lexisNexisIIDRequest.state = naApplication.Personal_Guarantor_Mailing_State__c;
+//                    lexisNexisIIDRequest.postalCode = naApplication.Personal_Guarantor_Mailing_Zip__c;
+//                    lexisNexisIIDRequest.phoneNumber = naApplication.Personal_Guarantor_Home_Phone__c;
+//                    lexisNexisIIDRequest.socialSecurityNumber = naApplication.Personal_Guarantor_SSN__c;
+//
+//                    CreditWS_LexisNexisRDP.LexisNexisIIDResponse lexisNexisIIDResponse = CreditWS_LexisNexisRDP.lexisNexisConsumerInstantId(LexisNexisIIDRequest);
+//
+//                    naApplication.Lexis_Nexis_FraudPoint_Score__c = lexisNexisIIDResponse.fraudPointScore;
+//                    naApplication.Lexis_Nexis_FraudPoint_Result__c = (lexisNexisIIDResponse.fraudPointWorkflowResult).capitalize();
+//                    naApplication.Lexis_Nexis_IID_Result__c = (lexisNexisIIDResponse.iidWorkflowResult).capitalize();
+//                    naApplication.Lexis_Nexis_CVI_Score__c = lexisNexisIIDResponse.cviScore;
+//
+//                }
+//
+//            }
 
             // DNB Resolution. IADJUDCIAT-739 use a constructor for apprequests
             System.debug('Running DNB Matching....');
