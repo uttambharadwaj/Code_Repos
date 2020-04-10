@@ -86,6 +86,7 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                     }
                     else if (experianResponse == null || experianResponse.calloutFailed){
                         System.debug('Experian callout failed. Response: ' + experianResponse);
+                        onlineApplication.PG_Data__c = 'Callout Failed';
                     }
                 }
 
@@ -163,6 +164,7 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                     }
                     else if (experianResponse == null || experianResponse.calloutFailed) {
                         System.debug('Experian callout failed. Response: ' + experianResponse);
+                        cpApplicant.PG_Data__c = 'Callout Failed';
                     }
                 }
 
@@ -241,6 +243,7 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                     }
                     else if (experianResponse == null || experianResponse.calloutFailed) {
                         System.debug('Experian callout failed. Response: ' + experianResponse);
+                        naApplicant.PG_Data__c = 'Callout Failed';
                     }
                 }
 
