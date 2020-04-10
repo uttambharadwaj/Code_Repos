@@ -9,8 +9,8 @@ public class WebDAMSync implements Schedulable {
         try {
             WebDAMConnector webDAMConnector = new WebDAMConnector();
             WebDAM_Connector__c webDAMConnectorConfig = WebDAM_Connector__c.getInstance();
-
-            for (WebDAMConnectorAuthResponse.items searchItem : WebDAMConnector.searchByString(webDAMConnectorConfig.WebDAM_Search__c)) {
+            String searchOptions = webDAMConnectorConfig.search_options__c != null ? webDAMConnectorConfig.search_options__c : '';
+            for (WebDAMConnectorAuthResponse.items searchItem : WebDAMConnector.searchByString(webDAMConnectorConfig.WebDAM_Search__c, searchOptions)) {
                 saveAsset(searchItem.id, searchItem.name, searchItem.version, webDAMConnectorConfig.Default_Folder_Id__c, searchItem.filetype);
             }
 

@@ -69,6 +69,7 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                     }
                     else if (equifaxResponse == null || equifaxResponse.calloutFailed){
                         System.debug('Equifax callout failed. Response: ' + equifaxResponse);
+                        onlineApplication.PG_Data__c = 'Callout Failed';
                     }
                 }
 
@@ -129,6 +130,7 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                     }
                     else if (equifaxResponse == null || equifaxResponse.calloutFailed) {
                         System.debug('Equifax callout failed. Response: ' + equifaxResponse);
+                        cpApplicant.PG_Data__c = 'Callout Failed';
                     }
                 }
 
@@ -187,6 +189,7 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                 }
                 else if (equifaxResponse == null || equifaxResponse.calloutFailed) {
                     System.debug('Equifax callout failed. Response: ' + equifaxResponse);
+                    naApplicant.PG_Data__c = 'Callout Failed';
                 }
 
                 upsert naApplicant;
