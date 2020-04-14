@@ -4,6 +4,7 @@
 
 public with sharing class CreditWSUtil_DNBDirect_Auth {
 
+    public String access_token;
     public class TransactionResult {
         public String SeverityText;
         public String ResultID;
