@@ -556,7 +556,7 @@ global class CreditDecisionEngineOTR {
             }
 
             // Run counter-offer processes
-            onlineApplications = [SELECT Id, PG_Required__c, AO_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_Score__c FROM OnlineApplication__c WHERE Id = :onlineApplicationId LIMIT 1];
+            onlineApplications = [SELECT Id, PG_Required__c, PG_Data__c, AO_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_Score__c FROM OnlineApplication__c WHERE Id = :onlineApplicationId LIMIT 1];
 
             if (onlineApplications.size() > 0) {
 
@@ -574,6 +574,9 @@ global class CreditDecisionEngineOTR {
                     else if(onlineApp.AO_Country__c != null && (onlineApp.AO_Country__c).equalsIgnoreCase('CA')) {
                         System.debug('Attemping to pull Equifax credit report...');
                         CreditDecisionEngineQueueable.runEquifaxPGChecks(onlineApp.Id);
+                    } else {
+                        onlineApp.PG_Data__c = 'Insufficient Information';
+                        upsert onlineApp;
                     }
                 }
 

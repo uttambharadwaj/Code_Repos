@@ -537,7 +537,7 @@ global class CreditDecisionEngineCP {
             }
 
 //             Run counter-offer processes
-            cpApplications = [SELECT Id, PG_Required__c, Guarantor_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];
+            cpApplications = [SELECT Id, PG_Required__c, PG_Data__c, Guarantor_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM CP_Application_Request__c WHERE Id = :cpApplicationId];
 
             if (cpApplications.size() > 0 && !TestUtils.isRunningTest()) {
 
@@ -555,6 +555,9 @@ global class CreditDecisionEngineCP {
                     } else if (cpApp.Guarantor_Country__c != null && (cpApp.Guarantor_Country__c).equalsIgnoreCase('CA')) {
                         System.debug('Running Equifax...');
                         CreditDecisionEngineQueueable.runEquifaxPGChecks(cpApp.Id);
+                    } else {
+                        cpApp.PG_Data__c = 'Insufficient Information';
+                        upsert cpApp;
                     }
                 }
             }
