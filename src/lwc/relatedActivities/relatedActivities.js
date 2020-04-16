@@ -1,26 +1,57 @@
 /**
- * Created by mfarrell on 4/9/20.
+ * Created by mfarrell on 4/9/20
+ * Child of relatedTasksParent
  */
 
 import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getAllActivities from '@salesforce/apex/LWC_ActivitiesController.getAllActivities';
+import getTaskCount from '@salesforce/apex/LWC_ActivitiesController.getTaskCount';
 
 export default class ActivityList extends NavigationMixin(LightningElement) {
     activities;
     error;
-
     @api recordId;
-    
-    @wire(getAllActivities, {recordId: '$recordId'})
-    wiredActivities({error, data}) {
-        if (data) {
-            this.activities = data;
-            this.error = undefined;
-        } else if (error) {
-            this.error = error;
-            this.activities = undefined;
+    @api currentpage;
+    @api pagesize;
+    @api totalrecords;
+    totalpages;
+    localCurrentPage = null;
+
+    renderedCallback() {
+        // trying to prevent multiple executions of this code.
+        if (this.localCurrentPage === this.currentpage) {
+            return;
         }
+        this.localCurrentPage = this.currentpage;
+        getTaskCount({ recordId: this.recordId })
+            .then(recordsCount => {
+                this.totalrecords = recordsCount;
+                if (recordsCount) {
+                    this.totalpages = Math.ceil(recordsCount / this.pagesize);
+                    getAllActivities({ pageNumber: this.currentpage, numberOfRecords: recordsCount, pageSize: this.pagesize, recordId: this.recordId })
+                        .then(data => {
+                            this.activities = data;
+                            this.error = undefined;
+                        })
+                        .catch(error => {
+                            this.error = error;
+                            this.activities = undefined;
+                        });
+                } else {
+                    this.activities = [];
+                    this.totalpages = 1;
+                    this.totalrecords = 0;
+                }
+                const event = new CustomEvent('recordsload', {
+                    detail: recordsCount
+                });
+                this.dispatchEvent(event);
+            })
+            .catch(error => {
+                this.error = error;
+                this.totalrecords = undefined;
+            });
     }
 
     navigateToRecordViewPage(eventRecordId) {

@@ -5,14 +5,30 @@
 
 public inherited sharing class LWC_ActivitiesController {
 
-    @AuraEnabled(Cacheable=true)
-    public static List<Task> getAllActivities(String recordId) {
-        return [
-            SELECT Id, Subject, Description, Type, CreatedById, Owner.Name, WhatId, ActivityDate, LastModifiedDate
-            FROM Task
-            WHERE WhatId =: recordId
-            ORDER BY ActivityDate DESC
-        ];
+    @AuraEnabled(Cacheable = true)
+    public static List<Task> getAllActivities(Integer pageNumber, Integer numberOfRecords, Integer pageSize, String recordId) {
+        System.debug(pageNumber);
+        System.debug(pageSize);
+        System.debug(numberOfRecords);
+        System.debug(recordId);
+        String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, Owner.Name, WhatId, ActivityDate, LastModifiedDate FROM Task';
+        if (recordId != null && recordId != '') {
+            taskQuery += ' WHERE WhatId =: recordId';
+        }
+        taskQuery += ' ORDER BY ActivityDate DESC';
+        taskQuery += ' LIMIT ' + pageSize + ' OFFSET ' + (pageSize * (pageNumber -1));
+
+        return Database.query(taskQuery);
+    }
+
+    @AuraEnabled(Cacheable = true)
+    public static Integer getTaskCount(String recordId) {
+        System.debug(recordId);
+        String countQuery = 'SELECT count() FROM Task ';
+        if (recordId != null && recordId != '') {
+            countQuery += ' WHERE WhatId =: recordId';
+        }
+        return Database.countQuery(countQuery);
     }
 
 }
