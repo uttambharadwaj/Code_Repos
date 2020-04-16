@@ -5,7 +5,7 @@
 <!-- Related Tasks Parent -->
 <template>
     <lightning-card title="Activities" icon-name="standard:task">
-        <c-related-activities currentpage={page} onrecordsload={handleRecordsLoad} pagesize={pagesize} record-id={recordId} totalrecords={totalrecords}></c-related-activities>
+        <c-related-tasks-List currentpage={page} onrecordsload={handleRecordsLoad} pagesize={pagesize} record-id={recordId} totalrecords={totalrecords}></c-related-tasks-List>
         <div class="slds-m-around_medium">
             <c-related-tasks-pagination onprevious={handlePrevious} onnext={handleNext} onfirst={handleFirst}
                                 onlast={handleLast} currentpage={page} totalrecords={totalrecords} pagesize={pagesize}>

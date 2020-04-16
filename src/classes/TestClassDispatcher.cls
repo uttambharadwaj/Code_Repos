@@ -201,8 +201,8 @@ public class TestClassDispatcher {
         MCConnectorTest.testMarketingCloudTriggeredEmail();
     }
 
-    @IsTest static void testLWCGetAllActivities() {
-        LWC_ActivitiesControllerTest.testGetAllActivities();
+    @IsTest static void testLWCGetAllTasks() {
+        LWC_TasksControllerTest.testGetAllTasks();
     }
 
 }

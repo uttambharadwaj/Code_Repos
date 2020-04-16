@@ -5,10 +5,10 @@
 
 import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import getAllActivities from '@salesforce/apex/LWC_ActivitiesController.getAllActivities';
-import getTaskCount from '@salesforce/apex/LWC_ActivitiesController.getTaskCount';
+import getAllTasks from '@salesforce/apex/LWC_TasksController.getAllTasks';
+import getTaskCount from '@salesforce/apex/LWC_TasksController.getTaskCount';
 
-export default class ActivityList extends NavigationMixin(LightningElement) {
+export default class TaskList extends NavigationMixin(LightningElement) {
     activities;
     error;
     @api recordId;
@@ -29,7 +29,7 @@ export default class ActivityList extends NavigationMixin(LightningElement) {
                 this.totalrecords = recordsCount;
                 if (recordsCount) {
                     this.totalpages = Math.ceil(recordsCount / this.pagesize);
-                    getAllActivities({ pageNumber: this.currentpage, numberOfRecords: recordsCount, pageSize: this.pagesize, recordId: this.recordId })
+                    getAllTasks({ pageNumber: this.currentpage, numberOfRecords: recordsCount, pageSize: this.pagesize, recordId: this.recordId })
                         .then(data => {
                             this.activities = data;
                             this.error = undefined;

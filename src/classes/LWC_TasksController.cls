@@ -3,10 +3,10 @@
  * Used by relatedActivities LWC to get list of activities related to the current object.
  */
 
-public inherited sharing class LWC_ActivitiesController {
+public inherited sharing class LWC_TasksController {
 
     @AuraEnabled(Cacheable = true)
-    public static List<Task> getAllActivities(Integer pageNumber, Integer numberOfRecords, Integer pageSize, String recordId) {
+    public static List<Task> getAllTasks(Integer pageNumber, Integer numberOfRecords, Integer pageSize, String recordId) {
         System.debug(pageNumber);
         System.debug(pageSize);
         System.debug(numberOfRecords);
