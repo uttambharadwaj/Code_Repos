@@ -16,8 +16,8 @@
     },
 
     openTab: function(component, event, helper) {
-        //check if otr account, then handle cloning if needed, finally open CustomerDetails tab
-        helper.cloneOTRAccountIfNeeded(component);
+        //open CustomerDetails tab
+        helper.openCustomerDetailsTab(component);
 
     },
 })

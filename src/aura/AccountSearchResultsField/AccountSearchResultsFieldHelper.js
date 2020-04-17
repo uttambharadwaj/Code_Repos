@@ -1,4 +1,5 @@
 ({
+    //This method is deprecated - MHB 4/17/2020 OTR Data Project
     cloneOTRAccountIfNeeded: function (component) {
         var accountNumber = component.get("v.accountNumber");
         var accountRowId = component.get("v.accountRowId");
