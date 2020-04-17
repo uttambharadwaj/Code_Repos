@@ -6,13 +6,13 @@
 <template>
     <div class="slds-m-around_medium">
 
-        <template if:true={activities}>
-            <template for:each={activities} for:item="activity">
-                <div key={activity.Id} class="slds-m-bottom_medium">
-                    <p><strong>Who: </strong>{activity.Owner.Name}</p>
-                    <p><strong>Date: </strong><lightning-formatted-date-time value={activity.ActivityDate}></lightning-formatted-date-time></p>
-                    <p><strong>Subject: </strong><a href="www.salesforce.com" data-record-id={activity.Id} onclick={handleClick}>{activity.Subject}</a></p>
-                    <p><strong>Description: </strong>{activity.Description}</p>
+        <template if:true={tasks}>
+            <template for:each={tasks} for:item="task">
+                <div key={task.Id} class="slds-m-bottom_medium">
+                    <p><strong>Who: </strong>{task.Owner.Name}</p>
+                    <p><strong>Date: </strong><lightning-formatted-date-time value={task.ActivityDate}></lightning-formatted-date-time></p>
+                    <p><strong>Subject: </strong><a href="www.salesforce.com" data-record-id={task.Id} onclick={handleClick}>{task.Subject}</a></p>
+                    <p><strong>Description: </strong>{task.Description}</p>
                 </div>
             </template>
         </template>

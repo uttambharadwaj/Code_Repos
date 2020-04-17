@@ -9,49 +9,44 @@ import getAllTasks from '@salesforce/apex/LWC_TasksController.getAllTasks';
 import getTaskCount from '@salesforce/apex/LWC_TasksController.getTaskCount';
 
 export default class TaskList extends NavigationMixin(LightningElement) {
-    activities;
+    tasks;
     error;
     @api recordId;
     @api currentpage;
     @api pagesize;
     @api totalrecords;
     totalpages;
-    localCurrentPage = null;
 
-    renderedCallback() {
-        // trying to prevent multiple executions of this code.
-        if (this.localCurrentPage === this.currentpage) {
-            return;
+    @wire(getTaskCount, {recordId: '$recordId'})
+    wiredCountTasks({data, error}) {
+        if (data) {
+            this.totalrecords = data;
+            this.error = undefined;
+            this.totalpages = Math.ceil(this.totalrecords / this.pagesize);
+        } else if (error) {
+            this.error = error;
+            this.totalrecords = undefined;
+        } else {
+            this.totalrecords = 0;
         }
-        this.localCurrentPage = this.currentpage;
-        getTaskCount({ recordId: this.recordId })
-            .then(recordsCount => {
-                this.totalrecords = recordsCount;
-                if (recordsCount) {
-                    this.totalpages = Math.ceil(recordsCount / this.pagesize);
-                    getAllTasks({ pageNumber: this.currentpage, numberOfRecords: recordsCount, pageSize: this.pagesize, recordId: this.recordId })
-                        .then(data => {
-                            this.activities = data;
-                            this.error = undefined;
-                        })
-                        .catch(error => {
-                            this.error = error;
-                            this.activities = undefined;
-                        });
-                } else {
-                    this.activities = [];
-                    this.totalpages = 1;
-                    this.totalrecords = 0;
-                }
-                const event = new CustomEvent('recordsload', {
-                    detail: recordsCount
-                });
-                this.dispatchEvent(event);
-            })
-            .catch(error => {
-                this.error = error;
-                this.totalrecords = undefined;
+    }
+
+    @wire(getAllTasks, {pageNumber: '$currentpage', pageSize: '$pagesize', recordId: '$recordId'})
+    wiredGetTasks({data, error}) {
+        if (data) {
+            this.tasks = data;
+            this.error = undefined;
+            const event = new CustomEvent('recordsload', {
+                detail: this.totalrecords
             });
+            this.dispatchEvent(event);
+        } else if (error) {
+            this.error = error;
+            this.tasks = undefined;
+        } else {
+            this.tasks = [];
+            this.totalpages = 1;
+        }
     }
 
     navigateToRecordViewPage(eventRecordId) {
