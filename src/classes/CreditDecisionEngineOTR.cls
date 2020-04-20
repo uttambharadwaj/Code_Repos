@@ -560,6 +560,7 @@ global class CreditDecisionEngineOTR {
 
             if (onlineApplications.size() > 0) {
 
+                Boolean sendToFinalDecision = true;
                 OnlineApplication__c onlineApp = onlineApplications[0];
 
                 if (onlineApp.PG_Required__c == true
@@ -570,20 +571,55 @@ global class CreditDecisionEngineOTR {
                     if(onlineApp.AO_Country__c == null || (onlineApp.AO_Country__c).equalsIgnoreCase('US')) {
                         System.debug('Attemping to pull Experian credit report...');
                         CreditDecisionEngineQueueable.runExperianPGChecks(onlineApp.Id);
+                        sendToFinalDecision = false;
                     }
                     else if(onlineApp.AO_Country__c != null && (onlineApp.AO_Country__c).equalsIgnoreCase('CA')) {
                         System.debug('Attemping to pull Equifax credit report...');
                         CreditDecisionEngineQueueable.runEquifaxPGChecks(onlineApp.Id);
-                    } else {
-                        onlineApp.PG_Data__c = 'Insufficient Information';
-                        upsert onlineApp;
+                        sendToFinalDecision = false;
                     }
                 }
 
+                if (sendToFinalDecision) {
+                    runFinalCreditDecision(onlineApp);
+
+                }
             }
 
         }
 
     }
+    public static void runFinalCreditDecision(OnlineApplication__c onlineApplication) {
+
+        String query = UtilityClass.selectStar('OnlineApplication__c');
+        Id appId = onlineApplication.Id;
+        query += 'WHERE Id = :appId';
+
+        try {
+
+            onlineApplication = (OnlineApplication__c) Database.query(query);
+            BREeze.ProcessRules.processRuleLogic('OTRFraudDecisioningFraudDecision', new List<SObject>{
+                    onlineApplication
+            });
+            BREeze.ProcessRules.processRuleLogic('OTRCreditDecisioningCalculateRecommendedDecision', new List<SObject>{
+                    onlineApplication
+            });
+            upsert onlineApplication;
+        } catch (Exception e) {
+            insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineOTR.runFinalCreditDecision', true, '', onlineApplication.id);
+        }
+    }
+//    public static void runFinalCreditDecision(OnlineApplication__c onlineApplication) {
+//        try {
+//            BREeze.ProcessRules.processRuleLogic('OTRFraudDecisioningFraudDecision', new List<SObject>{
+//                    onlineApplication
+//            });
+//            BREeze.ProcessRules.processRuleLogic('OTRCreditDecisioningCalculateRecommendedDecision', new List<SObject>{
+//                    onlineApplication
+//            });
+//        } catch (Exception e) {
+//            insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineOTR.runFinalCreditDecision', true, '', onlineApplication.id);
+//        }
+//    }
 
 }
