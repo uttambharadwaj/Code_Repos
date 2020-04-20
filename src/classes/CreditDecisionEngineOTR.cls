@@ -582,7 +582,6 @@ global class CreditDecisionEngineOTR {
 
                 if (sendToFinalDecision) {
                     runFinalCreditDecision(onlineApp);
-
                 }
             }
 
@@ -609,17 +608,4 @@ global class CreditDecisionEngineOTR {
             insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineOTR.runFinalCreditDecision', true, '', onlineApplication.id);
         }
     }
-//    public static void runFinalCreditDecision(OnlineApplication__c onlineApplication) {
-//        try {
-//            BREeze.ProcessRules.processRuleLogic('OTRFraudDecisioningFraudDecision', new List<SObject>{
-//                    onlineApplication
-//            });
-//            BREeze.ProcessRules.processRuleLogic('OTRCreditDecisioningCalculateRecommendedDecision', new List<SObject>{
-//                    onlineApplication
-//            });
-//        } catch (Exception e) {
-//            insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineOTR.runFinalCreditDecision', true, '', onlineApplication.id);
-//        }
-//    }
-
 }

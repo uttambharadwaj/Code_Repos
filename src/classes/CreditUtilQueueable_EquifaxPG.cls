@@ -137,7 +137,7 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                 }
 
                 upsert cpApplicant;
-
+                CreditDecisionEngineCP.runFinalCreditDecision(cpApplicant);
                 // Make a safe copy so we don't overwrite any fields
                 cpApplications = [SELECT Id, Running_Credit_Decisioning__c FROM CP_Application_Request__c WHERE Id = :applicationId];
 
@@ -195,7 +195,7 @@ public class CreditUtilQueueable_EquifaxPG implements Queueable, Database.Allows
                 }
 
                 upsert naApplicant;
-
+                CreditDecisionEngineNA.runFinalCreditDecision(naApplicant);
                 // Make a safe copy so we don't overwrite any fields
                 naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :applicationId];
 

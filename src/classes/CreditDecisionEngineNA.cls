@@ -527,6 +527,7 @@ global class CreditDecisionEngineNA {
 
             if (naApplications.size() > 0) {
 
+                Boolean sendToFinalDecision = true;
                 Application_Request__c appRequest = naApplications[0];
 
                 if (appRequest.PG_Required__c == true
@@ -538,20 +539,40 @@ global class CreditDecisionEngineNA {
                     if(appRequest.Personal_Guarantor_Mailing_Country__c == null || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('US') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('United States')) {
                         System.debug('Running Edxperian....');
                         CreditDecisionEngineQueueable.runExperianPGChecks(naApplications[0].Id);
+                        sendToFinalDecision = false;
                     }
                     else if (appRequest.Personal_Guarantor_Mailing_Country__c != null && (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('CA') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('Canada')) {
                         System.debug('Running Equifax....');
                         CreditDecisionEngineQueueable.runEquifaxPGChecks(appRequest.Id);
-                    } else {
-                        appRequest.PG_Data__c = 'Insufficient Information';
-                        upsert appRequest;
+                        sendToFinalDecision = false;
                     }
                 }
-
+                if (sendToFinalDecision) {
+                    runFinalCreditDecision(appRequest);
+                }
             }
 
         }
 
     }
+    public static void runFinalCreditDecision(Application_Request__c appRequest) {
 
+        String query = UtilityClass.selectStar('Application_Request__c');
+        Id appId = appRequest.Id;
+        query += 'WHERE Id = :appId';
+
+        try {
+
+            appRequest = (Application_Request__c) Database.query(query);
+            BREeze.ProcessRules.processRuleLogic('NAFraudDecisioningFraudDecision', new List<SObject>{
+                    appRequest
+            });
+            BREeze.ProcessRules.processRuleLogic('NACreditDecisioningCalculateRecommendedDecision', new List<SObject>{
+                    appRequest
+            });
+            upsert appRequest;
+        } catch (Exception e) {
+            insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineNA.runFinalCreditDecision', true, '', appRequest.id);
+        }
+    }
 }
