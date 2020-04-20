@@ -366,56 +366,49 @@ public with sharing class AccountSearchController {
 		}
 
 		for (Account acct : accountListService) {
+			if (!(acct.Id.toString().equals(acct.Acct_Row_Id__c))) { //We no longer want the old, cloned records where the AcctRowId was the Id of the record
 
-			AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
-			String carrierId = acct.Carrier_ID__c;
-			dto1.acctNm = acct.Name;
-			dto1.accountId = acct.Id;
-			//Sneaky hack for OTR - MHB
-			if (!String.isEmpty(acct.Acct_Row_Id__c)) {
-				dto1.acctRowId = acct.Acct_Row_Id__c;
-			} else {
+				AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
+				String carrierId = acct.Carrier_ID__c;
+				dto1.acctNm = acct.Name;
+				dto1.accountId = acct.Id;
+				//This was the place where we would assign the Id to Acct_Row_Id__c; not doing that anymore
 				dto1.acctRowId = acct.Id;
-			}
-			dto1.memberId = acct.Member_ID__c;
-			if(acct.Program__c != null){
-				Program__c programName = [SELECT Name FROM Program__c WHERE Id = :acct.Program__c];
-				dto1.pgmRowId = programName.Name;
-			}
 
-			dto1.wexAcctNbr = acct.Wex_Account__c;
-			String status = acct.Status__c != null ? acct.Status__c : '';
-			dto1.acctSts = status.replace('Member', '');
-			dto1.primaryContactPhoneNbr = acct.Phone;
-			dto1.mainPhone = acct.Phone;
-			if(!isOTRSearch) {
-				dto1.spnrAcctNbr = acct.Sponsor_Acct__c;
-			}else{
-				if('Account_Number_OTR'.equals(searchType)){
-					carrierId = carrierId.substring(4);
+				dto1.memberId = acct.Member_ID__c;
+				if (acct.Program__c != null) {
+					Program__c programName = [SELECT Name FROM Program__c WHERE Id = :acct.Program__c];
+					dto1.pgmRowId = programName.Name;
 				}
-				dto1.spnrAcctNbr = carrierId;
-			}
-			dto1.carrierId = carrierId;
-			dto1.platform = acct.Platform__c != null ? acct.Platform__c : 'OTR';
-			if(isOTRSearch){
-				for(Contract__c contract : contractIds){
-					if(contract.Account__c == acct.Id){
-						dto1.arNumber = contract.AR_Number__c;
+
+				dto1.wexAcctNbr = acct.Wex_Account__c;
+				String status = acct.Status__c != null ? acct.Status__c : '';
+				dto1.acctSts = status.replace('Member', '');
+				dto1.primaryContactPhoneNbr = acct.Phone;
+				dto1.mainPhone = acct.Phone;
+				dto1.spnrAcctNbr = acct.Sponsor_Acct__c;
+				
+				dto1.carrierId = carrierId;
+				dto1.platform = acct.Platform__c != null ? acct.Platform__c : 'OTR';
+				if (isOTRSearch) {
+					for (Contract__c contract : contractIds) {
+						if (contract.Account__c == acct.Id) {
+							dto1.arNumber = contract.AR_Number__c;
+						}
 					}
 				}
-			}
 
-			dto1.addrCity = acct.BillingCity;
-			dto1.addrStateProvCd = acct.BillingState;
-			for(Contact contact : acct.Contacts){
-				if('PRIMARY'.equals(contact.Contact_Type__c)){
-					dto1.primaryContactNm = contact.Name;
-					dto1.primaryContactPhoneNbr = contact.Phone;
+				dto1.addrCity = acct.BillingCity;
+				dto1.addrStateProvCd = acct.BillingState;
+				for (Contact contact : acct.Contacts) {
+					if ('PRIMARY'.equals(contact.Contact_Type__c)) {
+						dto1.primaryContactNm = contact.Name;
+						dto1.primaryContactPhoneNbr = contact.Phone;
+					}
 				}
-			}
 
-			dtoList.add(dto1);
+				dtoList.add(dto1);
+			}
 		}
 
 		response.accountList = dtoList;
