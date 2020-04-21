@@ -29,8 +29,13 @@
         var pdRowId = component.get("v.pdRowId");
         var acctNbr = component.get("v.accountNumber");
         var acctRowId = component.get("v.accountRowId");
+        var recordId  = component.get("v.recordId");
+        var isOtrAccount = component.get("v.isOtrAccount");  // var searchRecordId = component.get("v.searchRecordId");
+        console.log("loadCustomerDetails isOtrAccount="+isOtrAccount);
+        console.log("loadCustomerDetails acctNbr="+acctNbr);
+        console.log("loadCustomerDetails acctRowId="+acctRowId);
+        console.log("loadCustomerDetails recordId="+recordId);
 
-        // var searchRecordId = component.get("v.searchRecordId");
         // if (searchRecordId === 'null')
         //     searchRecordId = component.get("v.recordId");
 
@@ -41,23 +46,24 @@
         if (pdRowId !== 'null') {
             action.setParams({
                 accountNumber : acctNbr,
-                accountRecordId : component.get("v.recordId"),
-                pdRowIdString : pdRowId
+                accountRecordId : recordId,
+                pdRowIdString : pdRowId,
+                isOtrAccount : isOtrAccount
             });
         //} else if (acctNbr === 'null') { //OTR path
-        } else if (this.isSalesforceId(acctRowId)) { //OTR path
-
+        } else if (isOtrAccount) { //OTR path
             action.setParams({
                 accountNumber : '',
                 accountRecordId : acctRowId,
-                pdRowIdString : ''
+                pdRowIdString : pdRowId,
+                isOtrAccount : isOtrAccount
             });
-            component.set("v.isOtrAccount", true);
         } else {
             action.setParams({
                 accountNumber : acctNbr,
-                accountRecordId : component.get("v.recordId"),
-                pdRowIdString : ''
+                accountRecordId : recordId,
+                pdRowIdString : '',
+                isOtrAccount : isOtrAccount
             });
         }
 
@@ -189,7 +195,7 @@
         if (component.get("v.isOtrAccount") === true) {
             action = component.get("c.getCustomerContactsFromSalesforce");
             action.setParams({
-                accountRowId : component.get("v.accountRowId"),
+                accountId : component.get("v.accountRowId"),
                 primaryContactRowId: component.get("v.customerPrimaryContact.rowId")
             });
         } else {
@@ -953,7 +959,7 @@
             var action = component.get("c.getNumberOfCasesTodayByAccountRecordId");
 
             action.setParams({
-                accountRowId : component.get("v.accountRowId")
+                accountId : component.get("v.accountRowId")
             });
 
         } else {
@@ -1029,7 +1035,7 @@
             var action = component.get("c.getExistingCasesByAccountRecordId");
 
             action.setParams({
-                accountRowId : component.get("v.accountRowId")
+                accountId : component.get("v.accountRowId")
             });
 
         } else {
@@ -1078,20 +1084,21 @@
         console.log("### Enter fetchExistingOpenCases");
 
         var acctNbr = component.get("v.accountNumber");
-        var acctRowId = component.get("v.accountRowId");
+        var recordId = component.get("v.accountRowId");
         var isOtrAccount = component.get("v.isOtrAccount");
+        
 
         //sometimes isOtrAccount value is undefined
         if(isOtrAccount !== true && isOtrAccount !== false){
-            isOtrAccount = (acctNbr === 'null' && acctRowId !== 'null');
+            isOtrAccount = (acctNbr === 'null' && recordId !== 'null');
             component.set("v.isOtrAccount", isOtrAccount);
         }
 
         if (component.get("v.isOtrAccount")) {
-            var action = component.get("c.getExistingOpenCasesByAccountRecordId");
+            var action = component.get("c.getExistingOpenCasesByAccountId");
 
             action.setParams({
-                accountRowId : acctRowId
+                accountId : recordId
             });
 
         } else {

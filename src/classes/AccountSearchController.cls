@@ -7,6 +7,8 @@ public with sharing class AccountSearchController {
 		public List<SearchResultsRow> results { get; set; }
 		@AuraEnabled
 		public String errorMessage { get; set; }
+		@AuraEnabled
+		public Boolean otrSearch { get; set; }
 	}
 
 	public class SearchResultsColumn {
@@ -32,7 +34,8 @@ public with sharing class AccountSearchController {
 		SearchResultsWrapper srWrapper = new SearchResultsWrapper();
 
 		// OTR Searches go down a different rabbit hole
-		boolean otrSearch = isOTRSearch(searchType);
+		Boolean otrSearch = isOTRSearch(searchType);
+		srWrapper.otrSearch = otrSearch;
 
 		System.debug('Search param: ' + searchType + ' otrSearch:' + otrSearch);
 
@@ -165,7 +168,9 @@ public with sharing class AccountSearchController {
 							if (caseinstvMap.containsKey('wexacctnbr')) {
 								String accNum = (String) caseinstvMap.get('wexacctnbr');
 								String acctRowId = '';
-								if (caseinstvMap.containsKey('acctrowid')) {
+								if (caseinstvMap.containsKey('accountid')) {
+									acctRowId = (String) caseinstvMap.get('accountid');
+								} else if (caseinstvMap.containsKey('acctrowid')) {
 									acctRowId = (String) caseinstvMap.get('acctrowid');
 								}
 								String contactId = '';
@@ -182,7 +187,8 @@ public with sharing class AccountSearchController {
 									carrierId = (String) caseinstvMap.get('carrierid');
 								}
 
-								resultColumns.put(col.Name, accNum + '|' + acctRowId + '|' + contactId + '|' + pdRowId);
+
+								resultColumns.put(col.Name, accNum + '|' + acctRowId + '|' + contactId + '|' + pdRowId + '|'+otrSearch);
 							}
 							else {
 								resultColumns.put(col.Name, '');
@@ -227,7 +233,7 @@ public with sharing class AccountSearchController {
 		return srWrapper;
 	}
 
-	private static boolean isOTRSearch(String searchType) {
+	private static Boolean isOTRSearch(String searchType) {
 		if (searchType.equalsIgnoreCase('Check_Number_OTR') ||
 				searchType.equalsIgnoreCase('Money_Code') ||
 				searchType.equalsIgnoreCase('Check_Number') ||
@@ -257,7 +263,7 @@ public with sharing class AccountSearchController {
 		System.debug('searchOTR with searchType:  ' + searchType + ' searchKeyword: ' + searchKeyword);
 
 		// We need to filter and RecordType.Name = 'Fleet Account' accounts otherwise we will get dups in the result list
-		if ('Carrier_ID'.equals(searchType)) {
+		if ('Carrier_ID'.equals(searchType) || 'Member_ID'.equals(searchType) || 'Account_Number_OTR'.equals(searchType)) {
 			try {
 				if (isWildCardSearch) {
 					searchKeyword = searchKeyword.replace('*', '%');
@@ -271,21 +277,7 @@ public with sharing class AccountSearchController {
 				return response;
 			}
 
-		} else if('Account_Number_OTR'.equals(searchType)){
-			try {
-				if (isWildCardSearch) {
-					searchKeyword = searchKeyword.replace('*', '%');
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE RecordType.Name = 'Service Operations' and (Sponsor_Acct__c like :'9998' + searchKeyword or Sponsor_Acct__c like :'4000' + searchKeyword or Sponsor_Acct__c like :'4500' + searchKeyword or Sponsor_Acct__c like :'9999' + searchKeyword)];
-				} else {
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE RecordType.Name = 'Service Operations' and (Sponsor_Acct__c = :'9998' + searchKeyword or Sponsor_Acct__c = :'4000' + searchKeyword or Sponsor_Acct__c = :'4500' + searchKeyword or Sponsor_Acct__c = :'9999' + searchKeyword)];
-				}
-			} catch (Exception e) {
-				System.debug('Error - ' + e.getMessage());
-				response.errorMsg = e.getMessage();
-				return response;
-			}
-
-		}else if('AR_Number'.equals(searchType)){
+		} else if('AR_Number'.equals(searchType)){
 			Set<Id> accountsIds = new Set<Id>();
 			try {
 				if (isWildCardSearch) {
@@ -366,14 +358,14 @@ public with sharing class AccountSearchController {
 		}
 
 		for (Account acct : accountListService) {
-			if (!(acct.Id.equals(acct.Acct_Row_Id__c))) { //We no longer want the old, cloned records where the AcctRowId was the Id of the record
+			if (!(acct.Acct_Row_Id__c.equals(acct.Id))) { //We no longer want the old, cloned records where the AcctRowId was the Id of the record
 
 				AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
 				String carrierId = acct.Carrier_ID__c;
 				dto1.acctNm = acct.Name;
 				dto1.accountId = acct.Id;
 				//This was the place where we would assign the Id to Acct_Row_Id__c; not doing that anymore
-				dto1.acctRowId = acct.Id;
+				dto1.acctRowId = acct.Acct_Row_Id__c;
 
 				dto1.memberId = acct.Member_ID__c;
 				if (acct.Program__c != null) {

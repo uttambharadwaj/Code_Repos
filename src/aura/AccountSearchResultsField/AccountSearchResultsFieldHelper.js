@@ -52,8 +52,8 @@
                     "c__accountRowId": component.get("v.accountRowId"),
                     "c__contactRowId": component.get("v.contactRowId"),
                     "c__pdRowId": component.get("v.pdRowId"),
-                    "c__caseId": component.get("v.caseId")
-                }
+                    "c__caseId": component.get("v.caseId"),
+                    "c__isOtrSearch": component.get("v.isOtrSearch")               }
             },
             focus: true
         }).catch(function(error) {

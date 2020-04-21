@@ -4,7 +4,7 @@ public class CustomerDetailsTest {
     @TestSetup
     static void setupTestData() {
         Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
-        CustomerDetailsWSUtilv2.customerDetails details = CustomerDetailsController.getCustomerDetails('9100000000000','',null);
+        CustomerDetailsWSUtilv2.customerDetails details = CustomerDetailsController.getCustomerDetails('9100000000000','',null, false);
         String jsonAccountString = JSON.serialize(details);
         System.debug('### jsonAccountString='+jsonAccountString);
         List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts('9100000000000');
@@ -265,7 +265,7 @@ public class CustomerDetailsTest {
 
             List<Case> existingCases = CustomerDetailsController.getExistingCases(accountNumberToTest);
 
-            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest, null, null);
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest, null, null,false);
 
             System.assert(customerDetails.pdAsset == null);
 
@@ -334,7 +334,7 @@ public class CustomerDetailsTest {
 
             List<Case> existingCases = CustomerDetailsController.getExistingCases(accountNumberToTest);
 
-            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest, null, pdRowId);
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest, null, pdRowId,false);
 
             System.assert(customerDetails.pdAsset != null);
 
@@ -409,7 +409,7 @@ public class CustomerDetailsTest {
 
             System.assert(CustomerDetailsController.genericProgram != null);
 
-            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest,null,null);
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest,null,null,false);
             List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts(accountNumberToTest);
 
             Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
@@ -603,7 +603,7 @@ public class CustomerDetailsTest {
                 serviceAccountId = serviceAccountIdList[0];
             }
 
-            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, serviceAccountId, null);
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, serviceAccountId, null,true);
             System.debug('### customerDetails=' + customerDetails);
 
             System.assert('WEXGeneric'.equals(customerDetails.programNm),'Program Name was: '+ customerDetails.programNm);
@@ -628,7 +628,7 @@ public class CustomerDetailsTest {
             List<CustomerDetailsWSUtilv2.authLogRecord> declinedAuths = CustomerDetailsController.getRecentDeclinedAuths(carrierIdToTest, 'OTR');
             System.assert(declinedAuths.isEmpty());
 
-            List<Case> cases = CustomerDetailsController.getExistingOpenCasesByAccountRecordId(serviceAccountId);
+            List<Case> cases = CustomerDetailsController.getExistingOpenCasesByAccountId(serviceAccountId);
 
             System.assert(cases.size() == 0, 'Number of existing open cases was: '+cases.size());
 
@@ -668,7 +668,7 @@ public class CustomerDetailsTest {
 
             try {
 
-                CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, '0000',null);
+                CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, '0000',null,false);
 
             }
             catch(Exception e) {

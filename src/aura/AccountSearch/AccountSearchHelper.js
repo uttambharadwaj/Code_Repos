@@ -87,6 +87,8 @@
                 component.set("v.fields", searchResults.fields);
                 component.set("v.results", searchResults.results);
                 component.set("v.errorMessage", searchResults.errorMessage);
+                component.set("v.isOtrSearch", searchResults.otrSearch);
+                console.log("OTRSearch = "+searchResults.otrSearch);
             } else {
                 this.handleErrors(component, response);
             }

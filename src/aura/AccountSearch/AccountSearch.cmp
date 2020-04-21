@@ -7,6 +7,7 @@
     <aura:attribute name="errorMessage" type="String" />
     <aura:attribute name="keyword" type="String" />
     <aura:attribute name="upperTypes" type="String[]" />
+    <aura:attribute name="isOtrSearch" type="boolean" default="false" />
 
     <aura:method name="showSpinner" action="{!c.showSpinner}" access="public">
         <aura:attribute name="param1" type="boolean" access="public" default="false"/>
