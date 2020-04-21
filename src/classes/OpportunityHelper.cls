@@ -10,7 +10,7 @@ public class OpportunityHelper {
 
         Set<Opportunity> fuelCardOpptyIds = new Set<Opportunity>();
         Map<Id, Id> opptyToProgramMap = new Map<Id, Id>();
-        Map<Id, Id> programTemplateToProgramMap = new Map<Id, Id>();
+        Map<Id, Program_Template_Account__c> programTemplateToProgramMap = new Map<Id, Program_Template_Account__c>();
 
         for (Opportunity opp : opptys) {
             if (opp.RecordTypeId == UtilityClass.getRecordTypeByName(Opportunity.getSObjectType(), 'Fuel Card')) {
@@ -32,9 +32,9 @@ public class OpportunityHelper {
         }
 
         // Find all Program Template Accounts for the Programs associated with the oppty list
-        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c FROM Program_Template_Account__c WHERE Program_Default__c = TRUE AND Program__c IN :opptyToProgramMap.keySet()];
+        List<Program_Template_Account__c> programTemplateAccounts = [SELECT Id, Program__c, Usage_Type__c, Card_Type__c, Billing_Cycle__c, Association__c FROM Program_Template_Account__c WHERE Program_Default__c = TRUE AND Program__c IN :opptyToProgramMap.keySet()];
         for (Program_Template_Account__c pta : programTemplateAccounts) {
-            programTemplateToProgramMap.put(pta.Program__c, pta.Id);
+            programTemplateToProgramMap.put(pta.Program__c, pta);
         }
 
         // create new FleetEnrollment__c record for each opportunity, add records to feSet to limit duplicates
@@ -42,7 +42,10 @@ public class OpportunityHelper {
             FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
             fleetEnrollment.Opportunity__c = opp.Id;
             fleetEnrollment.Program__c = opp.Campaign_Program__r.Program__c;
-            fleetEnrollment.Program_Template_Account__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c);
+            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Id != null) fleetEnrollment.Program_Template_Account__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Id;
+            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Usage_Type__c != null) fleetEnrollment.Usage_Type__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Usage_Type__c;
+            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Card_Type__c != null) fleetEnrollment.Card_Type__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Card_Type__c;
+            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Association__c != null) fleetEnrollment.Association__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Association__c;
             fleetEnrollment.Debug_Opportunity_Parameter__c = opp.Id;
             fleetEnrollment.Status__c = 'New';
             if (opp.Name.length() > 30) {
