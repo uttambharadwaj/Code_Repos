@@ -3714,6 +3714,14 @@ interests. &lt;b&gt;If no individuals meet this definition, check “&lt;b&gt;Be
         <value>Submit</value>
     </labels>
     <labels>
+        <fullName>SweepBatchLimit</fullName>
+        <categories>SweepsBatch</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SweepBatchLimit</shortDescription>
+        <value>100</value>
+    </labels>
+    <labels>
         <fullName>TellUsWhoWillBe</fullName>
         <language>en_US</language>
         <protected>true</protected>
