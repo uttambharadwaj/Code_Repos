@@ -20,27 +20,6 @@ public class CreditDecisionEngineCPTest {
 
         insert offerAccount;
 
-        //TODO skip offer??
-        OnlineApplicationOffer__c onlineApplicationOffer = new OnlineApplicationOffer__c();
-        onlineApplicationOffer.Name = 'TestOffer-01';
-        onlineApplicationOffer.Application_Title__c = 'TestTitle';
-        onlineApplicationOffer.Complete_Later_Text__c = 'Test';
-        onlineApplicationOffer.EchoSign_User_Email__c = 'test@test.com';
-        onlineApplicationOffer.Terms_and_Conditions_Version__c = 'TestVersion-01';
-        onlineApplicationOffer.BOCA_Default_Offer__c = true;
-        onlineApplicationOffer.Disclosure__c = 'Test';
-        onlineApplicationOffer.Credit_Limit_Per_Truck__c = 2500.00;
-        onlineApplicationOffer.Credit_Limit_Per_Truck_Slip_Seat__c = 3500.00;
-
-        insert onlineApplicationOffer;
-
-        Attachment terms = new Attachment();
-        terms.Name = 'TestVersion-01';
-        Blob termsBlob = Blob.valueOf('Unit Test Attachment Body');
-        terms.body = termsBlob;
-        terms.parentId = onlineApplicationOffer.Id;
-        upsert terms;
-
         Campaign campaign = new Campaign();
 
         //create campaign test data

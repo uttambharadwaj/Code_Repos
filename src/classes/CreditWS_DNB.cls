@@ -215,11 +215,10 @@ public class CreditWS_DNB {
 
                             if(result.DUNSNumber != null) matchCandidate.DUNSNumber = result.DUNSNumber;
                             if(result.OrganizationPrimaryName.OrganizationName.value != null) matchCandidate.OrganizationName = result.OrganizationPrimaryName.OrganizationName.value;
-                            // There is no separate trade style name for DNB - so we'll compare the organization name with the trade style name
-                            if(result.OrganizationPrimaryName.OrganizationName.value != null && !String.isBlank(dnbDirectMatchRequest.TradeStyleName))
                             if(result.PrimaryAddress.StreetAddressLine != null && result.PrimaryAddress.StreetAddressLine.size() > 0) matchCandidate.StreetAddressLine = result.PrimaryAddress.StreetAddressLine[0].LineText;
                             if(result.PrimaryAddress.PrimaryTownName != null) matchCandidate.PrimaryTownName = result.PrimaryAddress.PrimaryTownName;
                             if(result.PrimaryAddress.TerritoryAbbreviatedName != null) matchCandidate.TerritoryAbbreviatedName = result.PrimaryAddress.TerritoryAbbreviatedName;
+                            if(result.PrimaryAddress.PostalCode != null) matchCandidate.PostalCode = result.PrimaryAddress.PostalCode;
                             if(result.PrimaryAddress.CountryISOAlpha2Code != null) matchCandidate.CountryISOAlpha2Code = result.PrimaryAddress.CountryISOAlpha2Code;
                             if(result.MatchQualityInformation.ConfidenceCodeValue != null) matchCandidate.ConfidenceCodeValue = result.MatchQualityInformation.ConfidenceCodeValue;
                             if(result.MatchQualityInformation.MatchGradeText != null) matchCandidate.MatchGradeText = result.MatchQualityInformation.MatchGradeText;

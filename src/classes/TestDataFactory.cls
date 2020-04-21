@@ -153,6 +153,15 @@ public with sharing class TestDataFactory {
         if (isInsert) insert t;
         return t;
     }
+    
+    // Program
+    public static Partner__c createPartner(Boolean isInsert, String partName) {
+        Partner__c p = new Partner__c();
+        p.Name = partName;
+
+        if (isInsert) insert p;
+        return p;
+    }
 
     // User - System Administrator
     public static User createUserSysAdmin(Boolean isInsert) {
