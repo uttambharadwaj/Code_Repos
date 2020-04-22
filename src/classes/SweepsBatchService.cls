@@ -48,7 +48,7 @@ public class SweepsBatchService {
                 pref.emailIn = c.Email_Opt_In_Contact__c;
                 pref.mobileIn = c.HasOptedInOfMobile__c;
                 pref.telemarkingIn = c.Outbound_Call_Opt_In__c;
-                
+
                 //Check if Email preferences have changed
                 if(c.HasOptedOutOfEmail != parentCont.HasOptedOutOfEmail) {
                     pref.parentEmail = c.Email;
@@ -71,7 +71,6 @@ public class SweepsBatchService {
                     pref.parentZip = c.MailingPostalCode;
                     pref.parentCity = c.MailingCity;
                 }
-                
                 prefMap.put(c.PartnerID__c, pref);
             }
 		}
@@ -105,7 +104,7 @@ public class SweepsBatchService {
                 pref.emailIn = ld.Email_Opt_In__c;
                 pref.mobileIn = ld.HasOptedInOfMobile__c;
                 pref.telemarkingIn = ld.Outbound_Call_Opt_In__c;
-                
+
                 //Check if Email preferences have changed
                 if(ld.HasOptedOutOfEmail != parentLd.HasOptedOutOfEmail) {
                     pref.parentEmail = ld.Email;
@@ -128,7 +127,6 @@ public class SweepsBatchService {
                     pref.parentState = ld.State;
                     pref.parentZip = ld.PostalCode;
                 }
-                
                 prefMap.put(ld.PartnerID__c, pref);
             }
 		}
