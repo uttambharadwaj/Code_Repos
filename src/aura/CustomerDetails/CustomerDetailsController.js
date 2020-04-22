@@ -110,10 +110,11 @@
                 }
 
                 component.set("v.accountNumber", accountNumber);
+                component.set("v.accountRowId", accountRowId);
                 if (helper.isSalesforceId(accountRowId)== true) {
-                    component.set("v.recordId", accountRowId);
-                } else
-                    component.set("v.accountRowId", accountRowId);
+                    component.set("v.acctRecordId", accountRowId);
+                }
+
                 component.set("v.isOtrAccount", isOtrAccount);
 
                 // Grab the case ID off the enclosing tab URL

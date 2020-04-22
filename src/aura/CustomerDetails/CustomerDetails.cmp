@@ -8,7 +8,7 @@
     <aura:attribute name="pdRowId" type="String" />
     <aura:attribute name="isDummyContact" type="String" default="false" />
     <aura:attribute name="appMode" type="String" />
-    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="acctRecordId" type="String" />
     <aura:attribute name="carrierId" type="String" />
     <aura:attribute name="searchRecordId" type="String" />
     <aura:attribute name="isOtrAccount" type="String" />

@@ -1005,8 +1005,8 @@ public without sharing class CustomerDetailsController {
 
                  }
              } else {
-                 System.debug('*** Searching for OTR Account Row Id '+customerDetails.acctRowId + ' and recordTypeId='+serviceOperationsAccountRecordTypeId);
-                 Account sourceAccount = [SELECT Id FROM Account WHERE Acct_Row_Id__c =: customerDetails.acctRowId AND RecordTypeId =: serviceOperationsAccountRecordTypeId];
+                 System.debug('*** Searching for OTR Account Id '+customerDetails.acctRowId + ' and recordTypeId='+serviceOperationsAccountRecordTypeId);
+                 Account sourceAccount = [SELECT Id FROM Account WHERE Id =: customerDetails.acctRowId AND RecordTypeId =: serviceOperationsAccountRecordTypeId];
                  if (sourceAccount.Id != null) {
                      return sourceAccount.Id;
                  } else {
@@ -1049,6 +1049,25 @@ public without sharing class CustomerDetailsController {
             contactRowIdToUse = inStr.split('#').get(0);
         }
         return contactRowIdToUse;
+    }
+
+    public static String initcap(String name) {
+        String result = '';
+        if (name == null || ''.equals(name.trim())) {
+            result = name;
+        } else {
+            List<String> nameArray = name.split(' ');
+            String newPart;
+            for (String namePart : nameArray) {
+                namePart = namePart.trim();
+                if (!(''.equals(namePart))) {
+                    Integer len = namePart.length();
+                    newPart = namePart.left(1).toUpperCase() + namePart.right(len-1).toLowerCase();
+                    result = result + newPart+' ';
+                }
+            }
+        }
+        return result.trim();
     }
 
     private static CustomerDetailsWSUtilv2.customerDetails getCustomerDetailsFromJson(String customerDetailsJSON) {

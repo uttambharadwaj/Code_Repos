@@ -29,39 +29,56 @@
         var pdRowId = component.get("v.pdRowId");
         var acctNbr = component.get("v.accountNumber");
         var acctRowId = component.get("v.accountRowId");
-        var recordId  = component.get("v.recordId");
+        var acctRecordId  = component.get("v.acctRecordId");
         var isOtrAccount = component.get("v.isOtrAccount");  // var searchRecordId = component.get("v.searchRecordId");
         console.log("loadCustomerDetails isOtrAccount="+isOtrAccount);
         console.log("loadCustomerDetails acctNbr="+acctNbr);
         console.log("loadCustomerDetails acctRowId="+acctRowId);
-        console.log("loadCustomerDetails recordId="+recordId);
+        console.log("loadCustomerDetails acctRecordId="+acctRecordId);
 
         // if (searchRecordId === 'null')
-        //     searchRecordId = component.get("v.recordId");
+        //     searchRecordId = component.get("v.acctRecordId");
 
         if(pdRowId === undefined){
             pdRowId = 'null';
         }
 
+
+        var idToUse = '';
+        if (typeof acctRecordId === "string") { //acctRecordId will always be a Salesforce object Id
+            idToUse = acctRecordId;
+            console.log('idToUse is acctRecordId');
+        }
+        else if (typeof acctRowId === "string" && isSalesforceId(acctRowId)) {
+            idToUse = acctRowId;
+            console.log('idToUse is acctRowId');
+        }
+
+        if((typeof isOtrAccount !== "boolean")){
+            isOtrAccount = (idToUse !== '');
+            console.log("isOtrAccount now set to "+isOtrAccount);
+        }
+
+
         if (pdRowId !== 'null') {
             action.setParams({
                 accountNumber : acctNbr,
-                accountRecordId : recordId,
+                accountRecordId : idToUse,
                 pdRowIdString : pdRowId,
                 isOtrAccount : isOtrAccount
             });
-        //} else if (acctNbr === 'null') { //OTR path
+            //} else if (acctNbr === 'null') { //OTR path
         } else if (isOtrAccount) { //OTR path
             action.setParams({
                 accountNumber : '',
-                accountRecordId : acctRowId,
+                accountRecordId : idToUse,
                 pdRowIdString : pdRowId,
                 isOtrAccount : isOtrAccount
             });
         } else {
             action.setParams({
                 accountNumber : acctNbr,
-                accountRecordId : recordId,
+                accountRecordId : idToUse,
                 pdRowIdString : '',
                 isOtrAccount : isOtrAccount
             });
@@ -73,7 +90,7 @@
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.customerDetails", response.getReturnValue());
                 // if (component.get("v.isOtrAccount") === true && component.get("v.customerDetails.sfdcAcctId") !== 'null') {
-                //     //component.set("v.recordId", component.get("v.customerDetails.sfdcAcctId")); // todo: causes an error in the browser. is a valid component variable.
+                //     //component.set("v.acctRecordId", component.get("v.customerDetails.sfdcAcctId")); // todo: causes an error in the browser. is a valid component variable.
                 // }
                 var primaryContact = null;
 
@@ -1084,13 +1101,13 @@
         console.log("### Enter fetchExistingOpenCases");
 
         var acctNbr = component.get("v.accountNumber");
-        var recordId = component.get("v.accountRowId");
+        var acctRecordId = component.get("v.accountRowId");
         var isOtrAccount = component.get("v.isOtrAccount");
-        
+
 
         //sometimes isOtrAccount value is undefined
         if(isOtrAccount !== true && isOtrAccount !== false){
-            isOtrAccount = (acctNbr === 'null' && recordId !== 'null');
+            isOtrAccount = (acctNbr === 'null' && acctRecordId !== 'null');
             component.set("v.isOtrAccount", isOtrAccount);
         }
 
@@ -1098,7 +1115,7 @@
             var action = component.get("c.getExistingOpenCasesByAccountId");
 
             action.setParams({
-                accountId : recordId
+                accountId : acctRecordId
             });
 
         } else {
@@ -1183,7 +1200,7 @@
                     $A.util.addClass(spinner, "slds-hide");
                     workspaceAPI.openSubtab({
                         parentTabId: response,
-                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__accountRowId=' + component.get("v.accountRowId"),
+                        url: '#/n/Customer_Details?c__accountNumber=' + component.get("v.accountNumber") + '&c__accountRowId=' + component.get("v.accountRowId") + '&c__isOtrSearch=' + component.get("v.isOtrAccount"),
                         focus: false
                     });
 
@@ -1391,16 +1408,22 @@
     },
 
     isSalesforceId : function(testId) {
-        if (testId.length < 1)  {
-            return false;
-        }
+        console.log('Entering isSalesforceId for testId '+testId);
         if (testId === null)  {
             return false;
         }
-        if (testId.length != 15 && testId.length != 18) {
+        if (testId.length < 1)  {
             return false;
         }
-        return (testId.match('[A-Za-z0-9]+'));
+        if (testId.length !== 15 && testId.length !== 18) {
+            return false;
+        }
+        let matchResult = testId.match('[A-Za-z0-9]+');
+        console.log('matchResult is '+matchResult);
+        let result = matchResult && (testId === matchResult[0]);
+        console.log('isSalesforceId returns '+result);
+        return result;
+
     },
 
     handleErrors : function(component, response){
