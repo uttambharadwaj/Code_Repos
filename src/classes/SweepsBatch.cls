@@ -1,14 +1,14 @@
 /*
- * Description: Perform batch sweep of Lead and Contact preferences
- * Date: April 2020
- * Author: Lev
- */
+* Description: Perform batch sweep of Lead and Contact preferences
+* Date: April 2020
+* Author: Lev
+*/
 public class SweepsBatch implements Database.Batchable<sObject>, Database.stateful{
     public String changedObject;
     public String fields;
     public List<Internal_Application_Error__c> errors;
-	public Map<String, SweepsBatchService.MCPreferences> prefMap;
-
+    public Map<String, SweepsBatchService.MCPreferences> prefMap;
+    
     public Database.QueryLocator start (Database.BatchableContext BC) {
         errors = new List<Internal_Application_Error__c>();
         Set<String> partIds = prefMap.keySet();
@@ -20,51 +20,68 @@ public class SweepsBatch implements Database.Batchable<sObject>, Database.statef
     public void execute(Database.BatchableContext BC, List<sObject> scope) {
         List<Contact> conts = new List<Contact>();
         List<Lead> leads = new List<Lead>();
-
+        
         //Loop through found records and identify the record type
         for(sObject obj : scope) {
             if(obj.getSObjectType().getDescribe().getName() == 'Lead') {
                 String partnerId = (String) obj.get('PartnerID__c');
                 SweepsBatchService.MCPreferences preferences = prefMap.get(partnerId);
-                
-                //Update Direct Mail preferences 
                 Lead ld = (Lead)obj;
-                ld.Direct_Mail_Opt_In__c = !preferences.directMail;
-                ld.Mail_Opt_Out__c = preferences.directMail;
-                
-                //Update Outbound Telemarketing preferences
-                ld.Outbound_Call_Opt_In__c = !preferences.telemarking;
-                ld.DoNotCall = preferences.telemarking;
                 
                 //Update Email preferences
-                ld.Email_Opt_In__c = !preferences.email;
-                ld.HasOptedOutOfEmail = preferences.email;
+                if(ld.Email == preferences.parentEmail) {
+                    ld.Email_Opt_In__c = preferences.emailIn;
+                    ld.HasOptedOutOfEmail = preferences.emailOut;
+                } 
+                
+                //Update Direct Mail preferences 
+                if(ld.Street == preferences.parentStreet && ld.City == preferences.parentCity &&
+                   ld.State == preferences.parentState && ld.PostalCode == preferences.parentZip ) {
+                       ld.Direct_Mail_Opt_In__c = preferences.directMailIn;
+                       ld.Mail_Opt_Out__c = preferences.directMailOut;   
+                   }
+                
+                //Update Outbound Telemarketing preferences
+                if(ld.Phone == preferences.parentPhone) {
+                    ld.Outbound_Call_Opt_In__c = preferences.telemarkingIn;
+                    ld.DoNotCall = preferences.telemarkingOut;
+                }
                 
                 //Update Mobile preferences
-                ld.HasOptedInOfMobile__c = !preferences.mobile;
-                ld.et4ae5__HasOptedOutOfMobile__c = preferences.mobile;
+                if(ld.MobilePhone == preferences.parentMobile) {
+                    ld.HasOptedInOfMobile__c = preferences.mobileIn;
+                    ld.et4ae5__HasOptedOutOfMobile__c = preferences.mobileOut;
+                }
                 leads.add(ld);
             } else if(obj.getSObjectType().getDescribe().getName() == 'Contact') {
                 String partnerId = (String) obj.get('PartnerID__c');
                 SweepsBatchService.MCPreferences preferences = prefMap.get(partnerId);
-                
-                //Update Direct Mail preferences 
                 Contact cont = (Contact)obj;
-                cont.Direct_Mail_Opt_In__c = !preferences.directMail;
-                cont.Mail_Opt_Out__c = preferences.directMail;
-                
-                //Update Outbound Telemarketing preferences
-                cont.Outbound_Call_Opt_In__c = !preferences.telemarking;
-                cont.DoNotCall = preferences.telemarking;
                 
                 //Update Email preferences
-                cont.Email_Opt_In_Contact__c = !preferences.email;
-                cont.HasOptedOutOfEmail = preferences.email;
+                if(cont.Email == preferences.parentEmail) {
+                    cont.Email_Opt_In_Contact__c = preferences.emailIn;
+                    cont.HasOptedOutOfEmail = preferences.emailOut;
+                } 
+                
+                //Update Direct Mail preferences 
+                if(cont.MailingStreet == preferences.parentStreet && cont.MailingCity == preferences.parentCity &&
+                   cont.MailingState == preferences.parentState && cont.MailingPostalCode == preferences.parentZip ) {
+                       cont.Direct_Mail_Opt_In__c = preferences.directMailIn;
+                       cont.Mail_Opt_Out__c = preferences.directMailOut;
+                   }
+                
+                //Update Outbound Telemarketing preferences
+                if(cont.Phone == preferences.parentPhone) {
+                    cont.Outbound_Call_Opt_In__c = preferences.telemarkingIn;
+                    cont.DoNotCall = preferences.telemarkingOut;
+                }
                 
                 //Update Mobile preferences
-                cont.HasOptedInOfMobile__c = !preferences.mobile;
-                cont.et4ae5__HasOptedOutOfMobile__c = preferences.mobile;
-                
+                if(cont.MobilePhone == preferences.parentMobile) {
+                    cont.HasOptedInOfMobile__c = preferences.mobileIn;
+                    cont.et4ae5__HasOptedOutOfMobile__c = preferences.mobileOut;
+                }
                 conts.add(cont);
             }
         }
@@ -76,7 +93,7 @@ public class SweepsBatch implements Database.Batchable<sObject>, Database.statef
             Lead lead = new Lead();
             leads.add(lead);
         }
-
+        
         //Update Contacts if not null
         if(!conts.isEmpty()) {
             Database.SaveResult[] contList = Database.update(conts,false);
@@ -102,8 +119,7 @@ public class SweepsBatch implements Database.Batchable<sObject>, Database.statef
         }
     }
     
-    public void finish(Database.BatchableContext BC){
-
+    public void finish(Database.BatchableContext BC){       
         //If errors occur insert internal error logs
         if(!errors.isEmpty()){
             insert errors;

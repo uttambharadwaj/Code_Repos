@@ -41,7 +41,7 @@ trigger ContactTrigger on Contact (before insert, before update, after insert, a
                     if(Trigger.oldMap.get( contId ).DoNotCall != Trigger.newMap.get( contId ).DoNotCall || 
                        Trigger.oldMap.get( contId ).HasOptedOutOfEmail != Trigger.newMap.get( contId ).HasOptedOutOfEmail || 
                        Trigger.oldMap.get( contId ).Mail_Opt_Out__c != Trigger.newMap.get( contId ).Mail_Opt_Out__c ){
-                           SweepsBatchService.handleContactUpdate(Trigger.new);
+                           SweepsBatchService.handleContactUpdate(Trigger.new, Trigger.oldMap);
                        }
                 }
             }
