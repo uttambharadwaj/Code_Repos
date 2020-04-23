@@ -91,6 +91,9 @@
                 var isOtrAccount = (pageRef && pageRef.state) ? pageRef.state.c__isOtrSearch : false;
                 console.log("isOtrAccount="+isOtrAccount);
                 console.log("accountRowId="+accountRowId);
+                console.log("accountNumber="+accountNumber);
+                console.log("tabId="+tabId);
+                console.log("recordId="+component.get("v.recordId"));
 
 
                 //var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);

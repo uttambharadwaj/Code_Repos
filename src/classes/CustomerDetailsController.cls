@@ -186,6 +186,15 @@ public without sharing class CustomerDetailsController {
 
         try {
             CustomerDetailsWSUtilv2.customerDetails customerDetails;
+            String platform;
+            if (isOtrAccount == false && accountNumber == null && accountRecordId != null && isSalesforceId(accountRecordId)) { //Must be a subtab
+                Account[] accts = [SELECT Id, Acct_Row_Id__c,Wex_Account__c, Platform__c FROM Account WHERE Id =: accountRecordId];
+                if (accts.size() > 0) {
+                    accountNumber = accts[0].Wex_Account__c;
+                    platform = accts[0].Platform__c;
+                    isOtrAccount = (!(isExternalPlatform(platform)));
+                }
+            }
 
             if (isOtrAccount) {
                 accountRecordId = getAccountIdFromAcctRowId(accountRecordId);
@@ -247,7 +256,7 @@ public without sharing class CustomerDetailsController {
         System.debug('Calling getOtrCustomerDetails with accountId '+accountId);
         CustomerDetailsWSUtilv2.customerDetails customerDetails = new CustomerDetailsWSUtilv2.customerDetails();
 
-        List<Account> serviceOperationsAccounts = [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Account_Status_Date__c, Program__c, Name, Phone, Fax, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Carrier_ID__c, Platform__c, Acct_Row_Id__c, Primary_Contact_TXT__c FROM Account WHERE Id =: accountId];
+        List<Account> serviceOperationsAccounts = [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Account_Status_Date__c, Account_Since__c, Program__c, Name, Phone, Fax, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Carrier_ID__c, Platform__c, Acct_Row_Id__c, Primary_Contact_TXT__c FROM Account WHERE Id =: accountId];
 
         if (!(serviceOperationsAccounts.isEmpty())) {
             Account serviceOperationsAccount = serviceOperationsAccounts.get(0);
@@ -272,6 +281,7 @@ public without sharing class CustomerDetailsController {
                 }
             }
             customerDetails.accountStsDt = serviceOperationsAccount.Account_Status_Date__c;
+            customerDetails.accountSinceDt = serviceOperationsAccount.Account_Since__c;
             customerDetails.programId = serviceOperationsAccount.Program__c;
             if (serviceOperationsAccount.Program__c != null) {
                 List<Program__c> programs = [SELECT Id, Service_Program_Name__c, Service_Program_Website__c FROM Program__c WHERE Id =: serviceOperationsAccount.Program__c ];
@@ -284,6 +294,8 @@ public without sharing class CustomerDetailsController {
             customerDetails.accountNm = serviceOperationsAccount.Name;
 
             customerDetails.wexAccountNbr = serviceOperationsAccount.Wex_Account__c;
+            if (customerDetails.wexAccountNbr == null)
+                serviceOperationsAccount.Wex_Account__c = 'N/A';
             customerDetails.spnrAccountNbr = serviceOperationsAccount.Sponsor_Acct__c;
             customerDetails.acctRowId = serviceOperationsAccount.Acct_Row_Id__c;
             customerDetails.pfsRepNm = serviceOperationsAccount.PFS_REP__c;
@@ -344,7 +356,17 @@ public without sharing class CustomerDetailsController {
                 }
 
                 if (newContact.contactType != 'PRIMARY') {
-                    newContact.contactType = 'CONTACT';
+                    if (rawContact.Contact_Type__c.equals('BILLING')) {
+                        newContact.contactType = 'BILLING';
+                        newContact.role = 'BILLING';
+                    } else if (rawContact.Contact_Type__c.equals('SHIPPING')) {
+                        newContact.contactType = 'SHIPPING';
+                        newContact.role = 'SHIPPING';
+                    } else if (rawContact.Contact_Type__c.equals('Accounts Payable')) {
+                        newContact.contactType = 'ACCOUNTS PAYABLE';
+                        newContact.role = 'ACCOUNTS PAYABLE';
+                    } else
+                        newContact.contactType = 'CONTACT';
                 }
 
                 newContact.emailAddr = rawContact.Email;
@@ -861,6 +883,7 @@ public without sharing class CustomerDetailsController {
     public static Id upsertAccount(String customerDetailsJSON) {
         Boolean accountNewToSalesforce = false;
 
+
         try {
 
             CustomerDetailsWSUtilv2.customerDetails customerDetails = getCustomerDetailsFromJson(customerDetailsJSON);
@@ -1006,7 +1029,7 @@ public without sharing class CustomerDetailsController {
                  }
              } else {
                  System.debug('*** Searching for OTR Account Id '+customerDetails.acctRowId + ' and recordTypeId='+serviceOperationsAccountRecordTypeId);
-                 Account sourceAccount = [SELECT Id FROM Account WHERE Id =: customerDetails.acctRowId AND RecordTypeId =: serviceOperationsAccountRecordTypeId];
+                 Account sourceAccount = [SELECT Id FROM Account WHERE Acct_Row_Id__c =: customerDetails.acctRowId AND RecordTypeId =: serviceOperationsAccountRecordTypeId];
                  if (sourceAccount.Id != null) {
                      return sourceAccount.Id;
                  } else {

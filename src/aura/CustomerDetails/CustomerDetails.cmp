@@ -147,7 +147,9 @@
                 </li>
                 <li class="slds-page-header__detail-block">
                     <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Internal Account Number</p>
-                    <p class="slds-text-body--regular slds-truncate">{!v.customerDetails.wexAccountNbr}</p>
+                    <p class="slds-text-body--regular slds-truncate">{!v.customerDetails.wexAccountNbr}
+                        <aura:if isTrue="{!v.customerDetails.wexAccountNbr == null}">N/A</aura:if>
+                    </p>
                 </li>
                 <li class="slds-page-header__detail-block">
                     <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Primary Contact</p>
