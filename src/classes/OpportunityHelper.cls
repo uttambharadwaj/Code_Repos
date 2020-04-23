@@ -42,10 +42,12 @@ public class OpportunityHelper {
             FleetEnrollment__c fleetEnrollment = new FleetEnrollment__c();
             fleetEnrollment.Opportunity__c = opp.Id;
             fleetEnrollment.Program__c = opp.Campaign_Program__r.Program__c;
-            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Id != null) fleetEnrollment.Program_Template_Account__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Id;
-            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Usage_Type__c != null) fleetEnrollment.Usage_Type__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Usage_Type__c;
-            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Card_Type__c != null) fleetEnrollment.Card_Type__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Card_Type__c;
-            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Association__c != null) fleetEnrollment.Association__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Association__c;
+            if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c) != null) {
+                if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Id != null) fleetEnrollment.Program_Template_Account__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Id;
+                if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Usage_Type__c != null) fleetEnrollment.Usage_Type__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Usage_Type__c;
+                if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Card_Type__c != null) fleetEnrollment.Card_Type__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Card_Type__c;
+                if (programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Association__c != null) fleetEnrollment.Association__c = programTemplateToProgramMap.get(opp.Campaign_Program__r.Program__c).Association__c;
+            }
             fleetEnrollment.Debug_Opportunity_Parameter__c = opp.Id;
             fleetEnrollment.Status__c = 'New';
             if (opp.Name.length() > 30) {
