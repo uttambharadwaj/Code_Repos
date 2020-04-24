@@ -1427,9 +1427,6 @@
         <locationY>200</locationY>
         <actionName>BREeze__ProcessRulesInvocable</actionName>
         <actionType>apex</actionType>
-        <connector>
-            <targetReference>myDecision24</targetReference>
-        </connector>
         <inputParameters>
             <processMetadataValues>
                 <name>dataType</name>
@@ -1470,205 +1467,6 @@
             <name>ruleName</name>
             <value>
                 <stringValue>CPCreditDecisioning-CreditLine</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>sObjectId</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue></stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>sObjectId</name>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
-            <name>apexSelection</name>
-            <value>
-                <stringValue>BREeze - Execute Standard Rule</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_25_A1</name>
-        <label>Fraud Decision</label>
-        <locationX>2500</locationX>
-        <locationY>200</locationY>
-        <actionName>BREeze__ProcessRulesInvocable</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>myRule_25_A2</targetReference>
-        </connector>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>ruleName</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue></stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>ruleName</name>
-            <value>
-                <stringValue>CPFraudDecisioningFraudDecision</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>sObjectId</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue></stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>Reference</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>sObjectId</name>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
-            <name>apexSelection</name>
-            <value>
-                <stringValue>BREeze - Execute Standard Rule</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_25_A2</name>
-        <label>Credit Decision</label>
-        <locationX>2500</locationX>
-        <locationY>300</locationY>
-        <actionName>BREeze__ProcessRulesInvocable</actionName>
-        <actionType>apex</actionType>
-        <inputParameters>
-            <processMetadataValues>
-                <name>dataType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>isRequired</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideLabel</name>
-                <value>
-                    <stringValue>ruleName</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>maxOccurs</name>
-                <value>
-                    <numberValue>0.0</numberValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>objectType</name>
-                <value>
-                    <stringValue></stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>rightHandSideType</name>
-                <value>
-                    <stringValue>String</stringValue>
-                </value>
-            </processMetadataValues>
-            <name>ruleName</name>
-            <value>
-                <stringValue>CPCreditDecisioningCalculateRecommendedDecision</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -2505,9 +2303,6 @@
         <label>myDecision22</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
-        <defaultConnector>
-            <targetReference>myDecision24</targetReference>
-        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_23</name>
@@ -2609,213 +2404,6 @@
                 <targetReference>myRule_23_A1</targetReference>
             </connector>
             <label>Calculate Recommended Credit Line</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <processMetadataValues>
-            <name>index</name>
-            <value>
-                <numberValue>9.0</numberValue>
-            </value>
-        </processMetadataValues>
-        <name>myDecision24</name>
-        <label>myDecision24</label>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
-        <defaultConnectorLabel>default</defaultConnectorLabel>
-        <rules>
-            <name>myRule_25</name>
-            <conditionLogic>1 AND 2 AND 3 AND (4 OR (5 AND 6))</conditionLogic>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Application_Stage__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Adjudication</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Pending Decision</stringValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.Running_Credit_Decisioning__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.PG_Required__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.PG_Required__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <processMetadataValues>
-                    <name>inputDataType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>leftHandSideType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Boolean</stringValue>
-                    </value>
-                </processMetadataValues>
-                <leftValueReference>myVariable_current.PG_Data__c</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>myRule_25_A1</targetReference>
-            </connector>
-            <label>Final Decision</label>
         </rules>
     </decisions>
     <decisions>
@@ -3217,7 +2805,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_10_myRule_8_A1_0994222524</name>
+        <name>formula_10_myRule_8_A1_7102397602</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -3229,7 +2817,7 @@
   [CP_Application_Request__c].Program__c.Partner__c.Partner_Email__c, &quot;&quot;)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_15_myRule_14_A1_6248532564</name>
+        <name>formula_15_myRule_14_A1_6564660516</name>
         <dataType>String</dataType>
         <expression>IF(NOT(ISBLANK({!myVariable_current.Program__c})),
   {!myVariable_current.Program__r.Partner__r.Partner_Email__c}, &quot;&quot;)</expression>
@@ -3241,7 +2829,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_7748758582</name>
+        <name>formula_2_myRule_1_A1_0921008853</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -3252,7 +2840,7 @@
                 <stringValue>$User.Id</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_4_A1_7563846772</name>
+        <name>formula_6_myRule_4_A1_5178771180</name>
         <dataType>String</dataType>
         <expression>{!$User.Id}</expression>
     </formulas>
@@ -3290,7 +2878,7 @@ ISCHANGED({!myVariable_current.Credit_Decision__c}),
         <expression>OR(ISNEW(),
   ISCHANGED({!myVariable_current.Program__c}))</expression>
     </formulas>
-    <interviewLabel>BREeze_CP_Decisioning-9_InterviewLabel</interviewLabel>
+    <interviewLabel>BREeze_CP_Decisioning-14_InterviewLabel</interviewLabel>
     <label>BREeze CP Decisioning</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -3478,7 +3066,7 @@ ISCHANGED({!myVariable_current.Credit_Decision__c}),
             </processMetadataValues>
             <field>Partner_Email__c</field>
             <value>
-                <elementReference>formula_15_myRule_14_A1_6248532564</elementReference>
+                <elementReference>formula_15_myRule_14_A1_6564660516</elementReference>
             </value>
         </inputAssignments>
         <object>CP_Application_Request__c</object>
@@ -3561,7 +3149,7 @@ ISCHANGED({!myVariable_current.Credit_Decision__c}),
             </processMetadataValues>
             <field>Credit_Analyst__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_7748758582</elementReference>
+                <elementReference>formula_2_myRule_1_A1_0921008853</elementReference>
             </value>
         </inputAssignments>
         <object>CP_Application_Request__c</object>
@@ -3644,7 +3232,7 @@ ISCHANGED({!myVariable_current.Credit_Decision__c}),
             </processMetadataValues>
             <field>Credit_Analyst__c</field>
             <value>
-                <elementReference>formula_6_myRule_4_A1_7563846772</elementReference>
+                <elementReference>formula_6_myRule_4_A1_5178771180</elementReference>
             </value>
         </inputAssignments>
         <object>CP_Application_Request__c</object>
@@ -3727,7 +3315,7 @@ ISCHANGED({!myVariable_current.Credit_Decision__c}),
             </processMetadataValues>
             <field>Compliance_Analyst__c</field>
             <value>
-                <elementReference>formula_10_myRule_8_A1_0994222524</elementReference>
+                <elementReference>formula_10_myRule_8_A1_7102397602</elementReference>
             </value>
         </inputAssignments>
         <object>CP_Application_Request__c</object>
