@@ -79,7 +79,7 @@ public class CreditWS_DNB {
 
             try {
 
-                Credit_Decision_Engine_Endpoints__mdt dnbSettings = [SELECT Id, Client_Key__c, Client_Secret__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'DNB_Direct_Plus'];
+                Credit_Decision_Engine_Endpoints__mdt dnbSettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'DNB_Direct_2_0'];
 
                 return dnbSettings;
 
@@ -108,21 +108,24 @@ public class CreditWS_DNB {
             if (dnbDirectSettings != null) {
 
                 HttpRequest authenticationRequest = new HttpRequest();
-                authenticationRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/V2/token');
 
                 authenticationRequest.setMethod('POST');
                 authenticationRequest.setHeader('Content-Type', 'application/json');
+                authenticationRequest.setHeader('x-dnb-user', dnbDirectSettings.Username__c);
+                authenticationRequest.setHeader('x-dnb-pwd', dnbDirectSettings.Password__c);
 
-                authenticationRequest.setHeader('Authorization', 'Basic ' + dnbDirectSettings.Client_Key__c + ':' + dnbDirectSettings.Client_Secret__c);
-                authenticationRequest.setBody('{ \"grant_type\" : \"client_credentials\" }');
+                authenticationRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/Authentication/V2.0/');
+
+                authenticationRequest.setBody('{\'TransactionDetail\': {\'ApplicationTransactionID\': \'1\',\'ServiceTransactionID\': \'1\',\'TransactionTimestamp\': \'2001-12-17T09:30:47Z\'}}');
+
                 Http authenticationCallout = new Http();
 
                 HTTPResponse authenticationResponse = authenticationCallout.send(authenticationRequest);
 
                 CreditWSUtil_DNBDirect_Auth parsedAuthenticationResponse = CreditWSUtil_DNBDirect_Auth.parse(authenticationResponse.getBody());
 
-                if((parsedAuthenticationResponse.TransactionResult.ResultText).equalsIgnoreCase('SUCCESS')) { // TODO verify response
-                    return parsedAuthenticationResponse.access_token;
+                if((parsedAuthenticationResponse.TransactionResult.ResultText).equalsIgnoreCase('SUCCESS')) {
+                    return parsedAuthenticationResponse.AuthenticationDetail.Token;
                 }
                 else {
                     throw new dnbCalloutException('### Error: Unable to log into DNB: ' + authenticationResponse.getBody());
@@ -155,7 +158,7 @@ public class CreditWS_DNB {
                 HttpRequest clenseAndMatchRequest = new HttpRequest();
 
                 clenseAndMatchRequest.setMethod('GET');
-                clenseAndMatchRequest.setHeader('Authorization', 'Bearer ' + authorizationToken);
+                clenseAndMatchRequest.setHeader('Authorization', authorizationToken);
 
                 Map<String, String> parameterStrings = new Map<String, String>();
 
@@ -163,8 +166,8 @@ public class CreditWS_DNB {
 
                 parameterStrings.put('DUNSNumber', dnbDirectMatchRequest.DUNSNumber);
                 parameterStrings.put('SubjectName', dnbDirectMatchRequest.SubjectName);
-                parameterStrings.put('StreetAddressLine1', dnbDirectMatchRequest.StreetAddressLine1);
-                parameterStrings.put('StreetAddressLine2', dnbDirectMatchRequest.StreetAddressLine2);
+                parameterStrings.put('StreetAddressLine-1', dnbDirectMatchRequest.StreetAddressLine1);
+                parameterStrings.put('StreetAddressLine-2', dnbDirectMatchRequest.StreetAddressLine2);
                 parameterStrings.put('PrimaryTownName', dnbDirectMatchRequest.PrimaryTownName);
                 parameterStrings.put('TerritoryName', dnbDirectMatchRequest.TerritoryName);
                 parameterStrings.put('FullPostalCode', dnbDirectMatchRequest.FullPostalCode);
