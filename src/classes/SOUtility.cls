@@ -20,6 +20,7 @@ public with sharing class SOUtility {
         nameSet.remove('billingaddress');
         nameSet.remove('mailingaddress');
         nameSet.remove('otheraddress');
+        nameSet.remove('geolocation__c');
 
         nameList.addAll(nameSet);
         for(String columnName : nameList) {
