@@ -25,6 +25,9 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 when 'expGood'{
                     this.requests.put(EXPERIAN_REQUEST_ENDPOINT, new MockRequest(200,'Success',getExpGoodBody(),null));
                 }
+                when 'expFileLock'{
+                    this.requests.put(EXPERIAN_REQUEST_ENDPOINT, new MockRequest(200,'Success',getFileLockedExperianBody(),null));
+                }
                 when 'expLogin'{
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Experian_Toolkit' LIMIT 1].Endpoint_URL__c;
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',EXPERIAN_REQUEST_ENDPOINT,null));   
@@ -340,6 +343,32 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     '</Products>'+
                     '</NetConnectResponse>';
         return s;
+    }
+
+    public static String getFileLockedExperianBody() {
+        String json = '<?xml version=\"1.0\" standalone=\"no\"?>'+
+                '<NetConnectResponse xmlns=\"http://www.experian.com/NetConnectResponse\">'+
+                '<CompletionCode>0000</CompletionCode>'+
+                '<TransactionId>12345678</TransactionId>'+
+                    '<Products xmlns=\"http://www.experian.com/ARFResponse\">'+
+                        '<Header>'+
+                            '<ReportDate>04232020</ReportDate>'+
+                            '<ReportTime>120851</ReportTime>'+
+                            '<Preamble>TNH1</Preamble>'+
+                            '<ARFVersion>07</ARFVersion>'+
+                            '<ReferenceNumber>WEXPE/07444352</ReferenceNumber>'+
+                        '</Header>'+
+                        '<Statement>'+
+                            '<Type code=\"32\"/>'+
+                            '<DateReported>03232020</DateReported>'+
+                            '<StatementText>' +
+                                '<MessageText>32&amp; 03-23-2020 0000000 FILE LOCKED AT CONSUMERS REQUEST</MessageText>'+
+                            '</StatementText>'+
+                        '</Statement>'+
+                     '</Products>'+
+                '</NetConnectResponse>';
+
+        return json;
     }
 
     public static String getCreditLensAuthGoodBody() {

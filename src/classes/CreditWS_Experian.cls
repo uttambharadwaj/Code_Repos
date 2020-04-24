@@ -16,6 +16,7 @@ public class CreditWS_Experian {
     private static Boolean inquiryAddressHighRisk = false;
     private static Boolean securityStatement = false;
     private static Boolean onFileAddressHighRisk = false;
+    private static Boolean fileLocked = false;
 
     public static Credit_Decision_Engine_Endpoints__mdt experianSettings {
         get {
@@ -61,7 +62,7 @@ public class CreditWS_Experian {
                 System.debug('Experian response header-Location -----' + consumerIdScoreResponse.getHeader('Location'));
                 System.debug('Experian response body----' +consumerIdScoreResponse.getBody());
 
-                if(!TestUtils.isRunningTest()) {
+                if(consumerIdScoreResponse != null) {
                     String creditScore = parseResponse(consumerIdScoreResponse);
                     experianResponse.creditScore = Integer.valueOf(creditScore);
                     experianResponse.experianData = extraExperianData;
@@ -71,7 +72,7 @@ public class CreditWS_Experian {
                     experianResponse.inquiryAddressHighRisk = inquiryAddressHighRisk;
                     experianResponse.securityStatement = securityStatement;
                     experianResponse.onFileAddressHighRisk = onFileAddressHighRisk;
-                    System.debug('inquiry address high risk being set to the response: ' + inquiryAddressHighRisk);
+                    experianResponse.fileLocked = fileLocked;
                 }
             }
 
@@ -93,25 +94,36 @@ public class CreditWS_Experian {
 
         try {
             Dom.XmlNode rootNode = doc.getRootElement();
-            List<Dom.XmlNode> customSolution = rootNode.getChildElement('Products', NAMESPACE)
-                    .getChildElement('CustomSolution', NAMESPACE)
-                    .getChildElements();
-            for (Dom.XmlNode node : customSolution) {
-                if (node.getName().equalsIgnoreCase('RiskModel')) {
-                    Dom.XmlNode modelIndicator = node.getChildElement('ModelIndicator', NAMESPACE);
-                    // F is the code for FICO2 (Experian/Fair, Isaac Risk Model V2)
-                    if (modelIndicator.getAttribute('code',null).equalsIgnoreCase('F') || modelIndicator.getAttribute('code',null).equalsIgnoreCase('F ')) {
-                        creditScore = node.getChildElement('Score', NAMESPACE).getText();
+            List<Dom.XmlNode> products = rootNode.getChildElement('Products', NAMESPACE).getChildElements();
+            for (Dom.XmlNode productNode : products) {
+                if (productNode.getName().equalsIgnoreCase('CustomSolution')) {
+                    List<Dom.XmlNode> customeSolutionNodes = productNode.getChildElements();
+                    for (Dom.XmlNode node : customeSolutionNodes) {
+                        if (node.getName().equalsIgnoreCase('RiskModel')) {
+                            Dom.XmlNode modelIndicator = node.getChildElement('ModelIndicator', NAMESPACE);
+                            // F is the code for FICO2 (Experian/Fair, Isaac Risk Model V2)
+                            if (modelIndicator.getAttribute('code', null).equalsIgnoreCase('F') || modelIndicator.getAttribute('code', null).equalsIgnoreCase('F ')) {
+                                creditScore = node.getChildElement('Score', NAMESPACE).getText();
+                            }
+                        } else if (node.getName().equalsIgnoreCase('FraudServices')) {
+                            populateFraudIndicators(node);
+                        }
+                        extraExperianData += collectChildrenData(node, extraExperianData);
+                    }
+                 // If there is no CustomSolution section, it might be because the applicant's file is locked or frozen
+                } else if (productNode.getName().equalsIgnoreCase('Statement')) {
+                    Dom.XmlNode statement = productNode.getChildElement('StatementText', NAMESPACE);
+                    if (statement != null) {
+                        String messageText = statement.getChildElement('MessageText', NAMESPACE).getText();
+                        System.debug('Experian consumer statement message: ' + messageText);
+                        if (messageText.contains('FILE LOCKED') || messageText.contains('FILE FROZEN')) {
+                            fileLocked = true;
+                        }
                     }
                 }
-                else if (node.getName().equalsIgnoreCase('FraudServices')) {
-                    populateFraudIndicators(node);
-                }
-                extraExperianData += collectChildrenData(node, extraExperianData);
             }
-
         } catch(Exception e) {
-            System.debug('### ERROR: ' + e.getMessage());
+            System.debug('### ERROR. Parse exception: ' + e.getMessage());
         }
 
         return creditScore;
@@ -121,26 +133,26 @@ public class CreditWS_Experian {
      * Converts a Dom.XmlNode date to a Date object
      * Format of Dom date: MMDDYYYY or MMYY
      */
-    private static Date domToDate(Dom.XmlNode domDate) {
-
-        String domDateAsStirng = domDate.getText();
-        if (domDateAsStirng.length() == 4) {
-            String day = '01';  // day not offered on 4 digit dates
-            String month = domDateAsStirng.substring(0,2);
-            // fuzzy logic to pick century. Assume 2000's, if that then is future dated, change to 1900's
-            String year = '20' + domDateAsStirng.substring(2,4);
-            Date statusDate = Date.newInstance(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
-            if (statusDate > Date.today()) {
-                year = '19' + domDateAsStirng.substring(2,4);
-                statusDate = Date.newInstance(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
-            }
-            return statusDate;
-        }
-        String month = domDateAsStirng.substring(0,2);
-        String day = domDateAsStirng.substring(2,4);
-        String year = domDateAsStirng.substring(4,8);
-        return Date.newInstance(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
-    }
+//    private static Date domToDate(Dom.XmlNode domDate) {
+//
+//        String domDateAsStirng = domDate.getText();
+//        if (domDateAsStirng.length() == 4) {
+//            String day = '01';  // day not offered on 4 digit dates
+//            String month = domDateAsStirng.substring(0,2);
+//            // fuzzy logic to pick century. Assume 2000's, if that then is future dated, change to 1900's
+//            String year = '20' + domDateAsStirng.substring(2,4);
+//            Date statusDate = Date.newInstance(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
+//            if (statusDate > Date.today()) {
+//                year = '19' + domDateAsStirng.substring(2,4);
+//                statusDate = Date.newInstance(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
+//            }
+//            return statusDate;
+//        }
+//        String month = domDateAsStirng.substring(0,2);
+//        String day = domDateAsStirng.substring(2,4);
+//        String year = domDateAsStirng.substring(4,8);
+//        return Date.newInstance(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day));
+//    }
 
     /*
        Until the extra data in the Experian response is being used, traverse through the XML response and store values in a formatted text area
@@ -177,11 +189,11 @@ public class CreditWS_Experian {
         for(Experian_Premier_Attributes_Description__mdt epad : [SELECT Code__c, Description__c FROM Experian_Premier_Attributes_Description__mdt])
             epadMap.put(epad.Code__c, epad.Description__c);
 
-        for(Dom.XmlNode child : attributes){ 
+        for(Dom.XmlNode child : attributes){
 
             String code = child.getChildElement('Name',NAMESPACE).getText();
             String value = child.getChildElement('Value',NAMESPACE).getText();
-        
+
             // created for reporting
             premierAttributeCodes += code + ':' + value + ',';
 
@@ -212,7 +224,6 @@ public class CreditWS_Experian {
 
         for (Dom.XmlNode node : fraudServicesChildren) {
             if (node.getName().equalsIgnoreCase('Indicator') && node.getText().equals('10')) {
-                System.debug('inquiry address high risk 02: ' + inquiryAddressHighRisk);
                 inquiryAddressHighRisk = true;
             }
             else if (node.getName().equalsIgnoreCase('Indicator') && node.getText().equals('12')) {
@@ -222,7 +233,6 @@ public class CreditWS_Experian {
                 onFileAddressHighRisk = true;
             }
         }
-        System.debug('inquiry address high risk in method: ' + inquiryAddressHighRisk);
     }
 
     public static String getAuthenticationInfo(ExperianRequest experianRequest) {
@@ -240,6 +250,7 @@ public class CreditWS_Experian {
 
         try {
             HttpResponse resAuthentication = http.send(reqAuthentication);
+            System.debug('Experian Net Connect status: ' + resAuthentication.getStatusCode());
 
             if (resAuthentication.getStatusCode() == 200) {
                 return resAuthentication.getBody();
@@ -392,8 +403,10 @@ public class CreditWS_Experian {
         public Boolean inquiryAddressHighRisk { get; set; }
         public Boolean securityStatement { get; set; }
         public Boolean onFileAddressHighRisk { get; set; }
+        public Boolean fileLocked { get; set; }
 
         public ExperianResponse() {
+            this.fileLocked = false;
             this.creditScore = 0;
             this.calloutFailed = false;
         }

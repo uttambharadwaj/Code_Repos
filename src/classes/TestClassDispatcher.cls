@@ -118,11 +118,15 @@ public class TestClassDispatcher {
     }
 
     @isTest static void testExperianPGQueuableGood(){
-        //CreditUtilQueueable_ExperianPGTest.testGoodRequests();
+        CreditUtilQueueable_ExperianPGTest.testGoodRequests();
     }
 
     @isTest static void testExperianPGQueuableBad(){
         //CreditUtilQueueable_ExperianPGTest.testBadRequests();
+    }
+
+    @isTest static void testExperianPGQueuableFileLocked(){
+        CreditUtilQueueable_ExperianPGTest.testFileLocked();
     }
 
     @isTest static void testCreditDecisionServiceGood(){

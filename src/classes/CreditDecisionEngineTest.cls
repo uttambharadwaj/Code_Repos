@@ -933,45 +933,6 @@ public class CreditDecisionEngineTest {
 
     }
 
-    static testMethod void testExperianCallout() {
-
-        List<OnlineApplication__c> onlineApplications = [SELECT Id, Type_of_Business__c, Contact_First_Name__c, Contact_Last_Name__c, AO_Home_Phone_Number__c, AO_Address__c, AO_City__c, AO_State__c, AO_Zip_Code__c, AO_Date_of_Birth__c, AO_Social_Security_Number__c FROM OnlineApplication__c];
-
-        if (onlineApplications.size() > 0) {
-
-            Test.startTest();
-
-            TestUtils.enable_isRunningTest = true;
-
-            Test.setMock(HttpCalloutMock.class, new ExperianCalloutMock());
-
-            CreditWS_Experian.ExperianRequest experianRequest = new CreditWS_Experian.ExperianRequest();
-
-            if (onlineApplications[0].Type_of_Business__c.equals('Proprietorship') || onlineApplications[0].Type_of_Business__c.equals('Partnership')) {
-                experianRequest.accountPurposeCode = '10';
-            } else {
-                experianRequest.accountPurposeCode = '5J';
-            }
-
-            experianRequest.socialSecurityNumber = onlineApplications[0].AO_Social_Security_Number__c;
-            experianRequest.contactFirstName = onlineApplications[0].Contact_First_Name__c;
-            experianRequest.contactLastName = onlineApplications[0].Contact_Last_Name__c;
-            experianRequest.address = onlineApplications[0].AO_Address__c;
-            experianRequest.city = onlineApplications[0].AO_City__c;
-            experianRequest.state = onlineApplications[0].AO_State__c;
-            experianRequest.zipCode = onlineApplications[0].AO_Zip_Code__c;
-            experianRequest.phone = onlineApplications[0].AO_Home_Phone_Number__c;
-            experianRequest.dateOfBirthMonth = String.valueOf(onlineApplications[0].AO_Date_of_Birth__c.month()).leftPad(2).replace(' ', '0');
-            experianRequest.dateOfBirthDay = String.valueOf(onlineApplications[0].AO_Date_of_Birth__c.day()).leftPad(2).replace(' ', '0');
-            experianRequest.dateOfBirthYear = String.valueOf(onlineApplications[0].AO_Date_of_Birth__c.year());
-
-            CreditWS_Experian.ExperianResponse experianResponse = CreditWS_Experian.getCreditScore((experianRequest));
-
-            Test.stopTest();
-
-        }
-
-    }
 
     static testMethod void testExperianParser() {
 
@@ -995,6 +956,7 @@ public class CreditDecisionEngineTest {
 
     }
 
+    //TODO credt CreditUtilQueuable_PGEquifaxTest and add to the TestClassDispatcher, then delete this shit
     static testMethod void testEquifaxCallout() {
 
         List<OnlineApplication__c> onlineApplications = [SELECT Id, Type_of_Business__c, Contact_First_Name__c, Contact_Last_Name__c, AO_Home_Phone_Number__c, AO_Address__c, AO_City__c, AO_State__c, AO_Zip_Code__c, AO_Date_of_Birth__c, AO_Social_Security_Number__c FROM OnlineApplication__c];

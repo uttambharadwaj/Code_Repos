@@ -62,6 +62,7 @@ global with sharing class PGIntegrationButton {
                     appInfo[0].Inquiry_Address_High_Risk__c = experianResponse.inquiryAddressHighRisk;
                     appInfo[0].Security_Statement_on_Report__c = experianResponse.securityStatement;
                     appInfo[0].On_File_Address_High_Risk__c = experianResponse.onFileAddressHighRisk;
+                    if (experianResponse.fileLocked) appInfo[0].PG_Data__c = 'File Locked or Frozen';
 
                     upsert appInfo[0];
 
@@ -175,6 +176,7 @@ global with sharing class PGIntegrationButton {
                         appInfo[0].Inquiry_Address_High_Risk__c = experianResponse.inquiryAddressHighRisk;
                         appInfo[0].Security_Statement_on_Report__c = experianResponse.securityStatement;
                         appInfo[0].On_File_Address_High_Risk__c = experianResponse.onFileAddressHighRisk;
+                        if (experianResponse.fileLocked) appInfo[0].PG_Data__c = 'File Locked or Frozen';
 
                         upsert appInfo[0];
 
@@ -289,6 +291,7 @@ global with sharing class PGIntegrationButton {
                         appInfo[0].Inquiry_Address_High_Risk__c = experianResponse.inquiryAddressHighRisk;
                         appInfo[0].Security_Statement_on_Report__c = experianResponse.securityStatement;
                         appInfo[0].On_File_Address_High_Risk__c = experianResponse.onFileAddressHighRisk;
+                        if (experianResponse.fileLocked) appInfo[0].PG_Data__c = 'File Locked or Frozen';
         
                         upsert appInfo[0];
         
