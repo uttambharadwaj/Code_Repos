@@ -384,7 +384,7 @@ public with sharing class AccountSearchController {
 				dto1.spnrAcctNbr = acct.Sponsor_Acct__c;
 				
 				dto1.carrierId = carrierId;
-				dto1.platform = acct.Program__r.WEX_Platform__c != null ? acct.Program__r.WEX_Platform__c : 'OTR';
+				dto1.platform = acct.Program__r.WEX_Platform__c != null ? acct.Program__r.WEX_Platform__c : (acct.Platform__c != null ? acct.Platform__c : 'OTR');
 				if (isOTRSearch) {
 					for (Contract__c contract : contractIds) {
 						if (contract.Account__c == acct.Id) {
