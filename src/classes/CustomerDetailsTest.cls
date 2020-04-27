@@ -145,7 +145,6 @@ public class CustomerDetailsTest {
         Account parentOtrAccount = new Account();
         parentOtrAccount.Customer_Segmentation__c = 0;
         parentOtrAccount.CurrencyIsoCode = 'USD';
-        parentOtrAccount.Program__c = genericProgramId;
         parentOtrAccount.Status__c = 'Active';
         parentOtrAccount.Name = 'Test Parent Account';
         parentOtrAccount.BillingStreet = '1 Hancock St';
@@ -167,7 +166,6 @@ public class CustomerDetailsTest {
 
         otrAccount.Customer_Segmentation__c = 0;
         otrAccount.CurrencyIsoCode = 'USD';
-        otrAccount.Program__c = genericProgramId;
         otrAccount.Status__c = 'X';
         otrAccount.Name = 'Test Account';
         otrAccount.BillingStreet = '1 Hancock St';
@@ -188,6 +186,14 @@ public class CustomerDetailsTest {
         insert otrAccount;
 
         Id otrAccountId = otrAccount.Id;
+
+        Contract__c otrContract = new Contract__c();
+        otrContract.Account__c = otrAccountId;
+        otrContract.Status__c = 'A';
+        otrContract.Name = '123456';
+        otrContract.AR_Number__c = '0001234567890';
+
+        insert otrContract;
 
         Contact otrContact = new Contact();
         otrContact.RecordTypeId = serviceOpsContactRecordTypeId;

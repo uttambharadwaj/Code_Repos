@@ -1027,9 +1027,9 @@ public without sharing class CustomerDetailsController {
                  }
              } else {
                  System.debug('*** Searching for OTR Account Id '+customerDetails.acctRowId + ' and recordTypeId='+serviceOperationsAccountRecordTypeId);
-                 Account sourceAccount = [SELECT Id FROM Account WHERE Acct_Row_Id__c =: customerDetails.acctRowId AND RecordTypeId =: serviceOperationsAccountRecordTypeId];
-                 if (sourceAccount.Id != null) {
-                     return sourceAccount.Id;
+                 List<Account> sourceAccounts = [SELECT Id FROM Account WHERE Acct_Row_Id__c =: customerDetails.acctRowId AND RecordTypeId =: serviceOperationsAccountRecordTypeId];
+                 if (sourceAccounts.size() > 0) {
+                     return sourceAccounts[0].Id;
                  } else {
                      throw new customerDetailsException('Unable to parse customer details object while locating account.');
                  }
