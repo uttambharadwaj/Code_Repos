@@ -853,6 +853,11 @@ public without sharing class CustomerDetailsController {
                     serviceOperationsContacts.add(serviceOperationsIntegrationRecords[0].Contact__r);
             }
 
+            if (serviceOperationsContacts.size() == 0) {
+                //Go looking at the Contact_Row_ID field; should always be unique at the account level (implemented this way for OTR)
+                serviceOperationsContacts = [SELECT Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND Account.Id =: accountId AND Contact_Row_Id__c =: contactRowId];
+            }
+
 
             System.debug('### ' + serviceOperationsContacts);
 
