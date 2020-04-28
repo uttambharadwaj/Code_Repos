@@ -105,12 +105,13 @@ public class CreditWS_DNB {
             if (dnbDirectSettings != null) {
 
                 HttpRequest authenticationRequest = new HttpRequest();
-                authenticationRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/V2/token');
+                authenticationRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v2/token');
 
                 authenticationRequest.setMethod('POST');
                 authenticationRequest.setHeader('Content-Type', 'application/json');
 
-                authenticationRequest.setHeader('Authorization', 'Basic ' + dnbDirectSettings.Client_Key__c + ':' + dnbDirectSettings.Client_Secret__c);
+                authenticationRequest.setHeader('Authorization', 'Basic ' + EncodingUtil.base64Encode(Blob.valueOf(dnbDirectSettings.Client_Key__c + ':' + dnbDirectSettings.Client_Secret__c)));
+                System.debug(EncodingUtil.base64Encode(Blob.valueOf(dnbDirectSettings.Client_Key__c + ':' + dnbDirectSettings.Client_Secret__c)));
                 authenticationRequest.setBody('{ \"grant_type\" : \"client_credentials\" }');
                 Http authenticationCallout = new Http();
 
@@ -118,7 +119,7 @@ public class CreditWS_DNB {
 
                 CreditWSUtil_DNBDirect_Auth parsedAuthenticationResponse = CreditWSUtil_DNBDirect_Auth.parse(authenticationResponse.getBody());
 
-                if ((parsedAuthenticationResponse.TransactionResult.ResultText).equalsIgnoreCase('SUCCESS')) { // TODO verify response
+                if (parsedAuthenticationResponse.error == null) {
                     return parsedAuthenticationResponse.access_token;
                 } else {
                     throw new dnbCalloutException('### Error: Unable to log into DNB: ' + authenticationResponse.getBody());
@@ -140,8 +141,7 @@ public class CreditWS_DNB {
 
         try {
 
-            // String authorizationToken = CreditWS_DNB.dnbDirectAuthentication();
-            String authorizationToken = 'hr1tnW10rfFXJyJbUxG1lmxAYgAy';
+            String authorizationToken = CreditWS_DNB.dnbDirectAuthentication();
             if (TestUtils.isRunningTest()) {
                 authorizationToken = 'TESTTOKEN';
             }
@@ -155,21 +155,21 @@ public class CreditWS_DNB {
 
                 Map<String, String> parameterStrings = new Map<String, String>();
 
-                parameterStrings.put('CountryISOAlpha2Code', dnbDirectMatchRequest.CountryISOAlpha2Code);
+                parameterStrings.put('countryISOAlpha2Code', dnbDirectMatchRequest.CountryISOAlpha2Code);
 
                 parameterStrings.put('duns', dnbDirectMatchRequest.DUNSNumber);
                 parameterStrings.put('name', dnbDirectMatchRequest.SubjectName);
-                parameterStrings.put('StreetAddressLine1', dnbDirectMatchRequest.StreetAddressLine1);
-                parameterStrings.put('StreetAddressLine2', dnbDirectMatchRequest.StreetAddressLine2);
+                parameterStrings.put('streetAddressLine1', dnbDirectMatchRequest.StreetAddressLine1);
+                parameterStrings.put('streetAddressLine2', dnbDirectMatchRequest.StreetAddressLine2);
                 parameterStrings.put('addressLocality', dnbDirectMatchRequest.PrimaryTownName);
                 parameterStrings.put('addressRegion', dnbDirectMatchRequest.TerritoryName);
                 parameterStrings.put('postalCode', dnbDirectMatchRequest.FullPostalCode);
                 if (!String.isEmpty(dnbDirectMatchRequest.TelephoneNumber)) {
-                    parameterStrings.put('TelephoneNumber', dnbDirectMatchRequest.TelephoneNumber);
+                    parameterStrings.put('telephoneNumber', dnbDirectMatchRequest.TelephoneNumber);
                 }
 
                 if (dnbDirectMatchRequest.SingleResolution == true) {
-                    parameterStrings.put('CandidateMaximumQuantity', '1');
+                    parameterStrings.put('candidateMaximumQuantity', '1'); // TODO Verify this
                 }
 
                 clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/cleanseMatch?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
@@ -189,81 +189,77 @@ public class CreditWS_DNB {
 
                 CreditWSUtil_DNBDirect_Match cleanseAndMatchResult = CreditWSUtil_DNBDirect_Match.parse(jsonResponse);
 
-                if (cleanseAndMatchResult != null) {
-//
-//                        if(cleanseAndMatchResult.GetCleanseMatchResponse.GetCleanseMatchResponseDetail.MatchResponseDetail.MatchDataCriteriaText != null &&
-//                                (cleanseAndMatchResult.GetCleanseMatchResponse.GetCleanseMatchResponseDetail.MatchResponseDetail.MatchDataCriteriaText.value).equalsIgnoreCase('DUNS Number Lookup')) {
-//
-//                            dnbDirectMatchResponse.exactDUNSMatch = true;
-//
-//                        } // TODO use AAAAAAA for this
+                if (cleanseAndMatchResult != null && cleanseAndMatchResult.error == null) {
 
                     for (CreditWSUtil_DNBDirect_Match.MatchCandidates matchCandidateResponse : cleanseAndMatchResult.MatchCandidates) {
 
-                        CreditWSUtil_DNBDirect_Match.Organization result = matchCandidate.organization;
+                        CreditWSUtil_DNBDirect_Match.Organization result = matchCandidateResponse.organization;
                         DNBDirect_MatchCandidate matchCandidate = new DNBDirect_MatchCandidate();
 
                         if (result.duns != null) matchCandidate.DUNSNumber = result.duns;
                         if (result.primaryName != null) matchCandidate.OrganizationName = result.primaryName;
                         if (result.PrimaryAddress.streetAddress.line1 != null) matchCandidate.StreetAddressLine = result.PrimaryAddress.streetAddress.line1;
-                        //if (result.PrimaryAddress.streetAddress.line2 != null) matchCandidate.StreetAddressLine2 = result.PrimaryAddress.streetAddress.line2;
-                        if (result.PrimaryAddress.addressLocality != null) matchCandidate.PrimaryTownName = (String) result.PrimaryAddress.addressLocality;
+                        if (result.PrimaryAddress.streetAddress.line2 != null) matchCandidate.StreetAddressLine2 = result.PrimaryAddress.streetAddress.line2;
+                        if (result.PrimaryAddress.addressLocality != null) matchCandidate.PrimaryTownName = result.PrimaryAddress.addressLocality.name;
                         if (result.PrimaryAddress.addressRegion != null && result.PrimaryAddress.addressRegion.abbreviatedName != null) matchCandidate.TerritoryAbbreviatedName = result.PrimaryAddress.addressRegion.abbreviatedName;
                         if (result.PrimaryAddress.PostalCode != null) matchCandidate.PostalCode = result.PrimaryAddress.PostalCode;
                         if (result.PrimaryAddress.addressCountry.isoAlpha2Code != null) matchCandidate.CountryISOAlpha2Code = result.PrimaryAddress.addressCountry.isoAlpha2Code;
                         if (matchCandidateResponse.matchQualityInformation.confidenceCode != null) matchCandidate.ConfidenceCodeValue = matchCandidateResponse.matchQualityInformation.confidenceCode;
-                        if (matchCandidateResponse.MatchQualityInformation.matchGrade != null) matchCandidate.MatchGradeText = matchCandidateResponse.MatchQualityInformation.matchGrade;
+                        if (matchCandidateResponse.MatchQualityInformation.matchGrade != null) {
+                            matchCandidate.MatchGradeText = matchCandidateResponse.MatchQualityInformation.matchGrade;
+                            if (matchCandidateResponse.MatchQualityInformation.matchGrade == 'AAAAAAAAAAA') dnbDirectMatchResponse.exactDUNSMatch = true;
+                        }
                         if (result.telephone != null && result.telephone.size() > 0) matchCandidate.TelephoneNumber = result.telephone[0].telephoneNumber;
-                        if (result.dunsControlStatus.operatingStatus != null) matchCandidate.OperatingStatus = (String) result.dunsControlStatus.operatingStatus;
+                        if (result.dunsControlStatus.operatingStatus != null) matchCandidate.OperatingStatus = result.dunsControlStatus.operatingStatus.description;
 
                         // Match Grade String represents how close of a match each attribute the applicant supplied compared to what DNB found
                         // Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components
-                        if (matchCandidate.MatchQualityInformation.MatchGradeComponents != null) {
-                            for (CreditWSUtil_DNBDirect_Match.MatchGradeComponent matchGradeComponent : result.MatchQualityInformation.MatchGradeComponent) {
+                        if (matchCandidateResponse.MatchQualityInformation.MatchGradeComponents != null) {
+                            for (CreditWSUtil_DNBDirect_Match.MatchGradeComponents matchGradeComponent : matchCandidateResponse.MatchQualityInformation.MatchGradeComponents) {
 
-                                if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Name')) {
-                                    matchCandidate.NameMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                if (matchGradeComponent.componentType.equalsIgnoreCase('Name')) {
+                                    matchCandidate.NameMatchGradeString = matchGradeComponent.componentRating;
                                 }
-                                if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Street Name')) {
-                                    matchCandidate.StreetNameMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                if (matchGradeComponent.componentType.equalsIgnoreCase('Street Name')) {
+                                    matchCandidate.StreetNameMatchGradeString = matchGradeComponent.componentRating;
                                 }
-                                if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('State')) {
-                                    matchCandidate.StateMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                if (matchGradeComponent.componentType.equalsIgnoreCase('State')) {
+                                    matchCandidate.StateMatchGradeString = matchGradeComponent.componentRating;
                                 }
-                                if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Street Number')) {
-                                    matchCandidate.StreetNumberMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                if (matchGradeComponent.componentType.equalsIgnoreCase('Street Number')) {
+                                    matchCandidate.StreetNumberMatchGradeString = matchGradeComponent.componentRating;
                                 }
-                                if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('City')) {
-                                    matchCandidate.CityMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                if (matchGradeComponent.componentType.equalsIgnoreCase('City')) {
+                                    matchCandidate.CityMatchGradeString = matchGradeComponent.componentRating;
                                 }
-                                if ((matchGradeComponent.MatchGradeComponentTypeText.value).equalsIgnoreCase('Postal Code')) {
-                                    matchCandidate.PostalCodeMatchGradeString = matchGradeComponent.MatchGradeComponentRating;
+                                if (matchGradeComponent.componentType.equalsIgnoreCase('Postal Code')) {
+                                    matchCandidate.PostalCodeMatchGradeString = matchGradeComponent.componentRating;
                                 }
                             }
                         }
 
                         // Match Data Profile represents how DNB matched the business. For ex: matched on CEO Name, Former Name, Registered Address, etc
-                        if (result.MatchQualityInformation.MatchDataProfileComponent != null) {
+                        if (matchCandidateResponse.MatchQualityInformation.matchDataProfileComponents != null) {
 
-                            for (CreditWSUtil_DNBDirect_Match.MatchDataProfileComponent matchDataProfileComponent : result.MatchQualityInformation.MatchDataProfileComponent) {
+                            for (CreditWSUtil_DNBDirect_Match.MatchDataProfileComponents matchDataProfileComponent : matchCandidateResponse.MatchQualityInformation.matchDataProfileComponents) {
 
-                                if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('Name')) {
-                                    matchCandidate.NameMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('Name')) {
+                                    matchCandidate.NameMatchDataProfile = matchDataProfileComponent.componentValue;
                                 }
-                                if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('Street Number')) {
-                                    matchCandidate.StreetNumberMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('Street Number')) {
+                                    matchCandidate.StreetNumberMatchDataProfile = matchDataProfileComponent.componentValue;
                                 }
-                                if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('Street Name')) {
-                                    matchCandidate.StreetNameMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('Street Name')) {
+                                    matchCandidate.StreetNameMatchDataProfile = matchDataProfileComponent.componentValue;
                                 }
-                                if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('City')) {
-                                    matchCandidate.CityMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('City')) {
+                                    matchCandidate.CityMatchDataProfile = matchDataProfileComponent.componentValue;
                                 }
-                                if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('State')) {
-                                    matchCandidate.StateMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('State')) {
+                                    matchCandidate.StateMatchDataProfile = matchDataProfileComponent.componentValue;
                                 }
-                                if ((matchDataProfileComponent.MatchDataProfileComponentTypeText.value).equalsIgnoreCase('Postal Code')) {
-                                    matchCandidate.PostalCodeMatchDataProfile = matchDataProfileComponent.MatchDataProfileComponentValue;
+                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('Postal Code')) {
+                                    matchCandidate.PostalCodeMatchDataProfile = matchDataProfileComponent.componentValue;
                                 }
 
                             }
@@ -273,26 +269,21 @@ public class CreditWS_DNB {
                         dnbDirectMatchResponse.matchCandidates.add(matchCandidate);
 
                     }
-                    else {
-
-                    throw new dnbCalloutException('### Error: Unable to get DNB result: ' + cleanseAndMatchResponse.getBody());
-
+                } else {
+                    System.debug('### ERROR - Response null or has error.');
+                    if (cleanseAndMatchResult.error != null) System.debug('### ERROR - ' + cleanseAndMatchResult.error.errorMessage);
                 }
-
             }
-
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             //IADJUDICAT 739 let's log an error too. we need to know what is happening at all times. we are big brother and we say so.
             System.debug('### Error - ' + e.getLineNumber() + ' - ' + e.getMessage());
             // Removed by DDG - this needs to be queued or futured as the engine needs to continue on even if this call fails..
             // Causing uncommited work errors
             //insert UtilityClass.logInternalError(e, null, 'CreditWS_DNB=>dnbDirectClenseAndMatch', false, null, null);
+
         }
 
         return dnbDirectMatchResponse;
-
     }
 
     public static DNBCAModelResponse getCAScore(DNBCAModelRequest dnbcaModelRequest) {
@@ -306,7 +297,7 @@ public class CreditWS_DNB {
             dnbCustomModelCalloutRequest.UserId = dnbcaModelRequest.UserId;
             dnbCustomModelCalloutRequest.Password = dnbcaModelRequest.Password;
 
-// Create an order request for the SBRI product with the associated DUNS
+            // Create an order request for the SBRI product with the associated DUNS
             dnbCustomModelCalloutRequest.Orders = new CreditWSUtil_DNBCustomModel.Orders();
 
             dnbCustomModelCalloutRequest.Orders.DnB_DUNS_Number = dnbcaModelRequest.DnB_DUNS_Number;
@@ -1041,55 +1032,6 @@ public class CreditWS_DNB {
 
     }
 
-//TODO DELETE ME AFTER CA NEW MODEL RELEASED
-    public class DNBSBRIRequest {
-
-        public String UserId {
-            get;
-            set;
-        }
-        public String Password {
-            get;
-            set;
-        }
-
-        public String DnB_DUNS_Number {
-            get;
-            set;
-        }
-        public String Product {
-            get;
-            set;
-        }
-        public String Product_Type {
-            get;
-            set;
-        }
-        public String Mode {
-            get;
-            set;
-        }
-        public String Format {
-            get;
-            set;
-        }
-
-        public DNBSBRIRequest() {
-
-            this.UserId = dnbSettings.Username__c;
-            this.Password = dnbSettings.Password__c;
-
-// These are the defaults retrieved from the
-// DNB Toolkit site
-            this.Product = 'GACustomProduct8';
-            this.Product_Type = 'D';
-            this.Mode = 'DIRECT';
-            this.Format = 'XML';
-
-        }
-
-    }
-
     public class DNBNAFleetModelRequest {
 
         public String UserId {
@@ -1135,15 +1077,15 @@ public class CreditWS_DNB {
 
         public DNBNAFleetModelRequest() {
 
-// Always the value we send for the NA Fleet model
+            // Always the value we send for the NA Fleet model
             this.BOCAType = 1;
             this.InputID = 'WEX_FLT_01';
 
             this.UserId = dnbCustomModelSettings.Username__c;
             this.Password = dnbCustomModelSettings.Password__c;
 
-// These are the defaults retrieved from the
-// DNB Toolkit site
+            // These are the defaults retrieved from the
+            // DNB Toolkit site
             this.Product = 'gacustomproduct12';
             this.Product_Type = 'D';
             this.Mode = 'DIRECT';

@@ -5,6 +5,11 @@
 public with sharing class CreditWSUtil_DNBDirect_Auth {
 
     public String access_token;
+    public Error error;
+    public class Error {
+        public String errorCode;
+        public String errorMessage;
+    }
     public class TransactionResult {
         public String SeverityText;
         public String ResultID;
