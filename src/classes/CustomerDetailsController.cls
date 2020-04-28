@@ -336,7 +336,7 @@ public without sharing class CustomerDetailsController {
                     shippingAddress.country = contact.address.country;
                     shippingAddress.postalCode = contact.address.postalCode;
                 }
-                else if (shippingAddress.city == null && contact.contactType.equalsIgnoreCase('BILLING')) {
+                else if (billingAddress.city == null && contact.contactType.equalsIgnoreCase('BILLING')) {
                     billingAddress.addr1 = contact.address.addr1;
                     billingAddress.city = contact.address.city;
                     billingAddress.state = contact.address.state;
