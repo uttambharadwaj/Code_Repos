@@ -320,8 +320,7 @@ public without sharing class CustomerDetailsController {
             shippingAddress.country = serviceOperationsAccount.ShippingCountry;
             shippingAddress.postalCode = serviceOperationsAccount.ShippingPostalCode;
 
-            customerDetails.billingAddress = billingAddress;
-            customerDetails.shippingAddress = shippingAddress;
+
 
             CustomerDetailsWSUtilv2.contacts contacts = new  CustomerDetailsWSUtilv2.contacts();
             contacts.contacts = getCustomerContactsFromSalesforce(accountId, serviceOperationsAccount.Primary_Contact_TXT__c);
@@ -330,7 +329,23 @@ public without sharing class CustomerDetailsController {
                 if (contact.contactType.equalsIgnoreCase('PRIMARY')) {
                     customerDetails.primaryAddress = contact.address;
                 }
+                else if (shippingAddress.city == null && contact.contactType.equalsIgnoreCase('SHIPPING')) {
+                    shippingAddress.addr1 = contact.address.addr1;
+                    shippingAddress.city = contact.address.city;
+                    shippingAddress.state = contact.address.state;
+                    shippingAddress.country = contact.address.country;
+                    shippingAddress.postalCode = contact.address.postalCode;
+                }
+                else if (shippingAddress.city == null && contact.contactType.equalsIgnoreCase('BILLING')) {
+                    billingAddress.addr1 = contact.address.addr1;
+                    billingAddress.city = contact.address.city;
+                    billingAddress.state = contact.address.state;
+                    billingAddress.country = contact.address.country;
+                    billingAddress.postalCode = contact.address.postalCode;
+                }
             }
+            customerDetails.billingAddress = billingAddress;
+            customerDetails.shippingAddress = shippingAddress;
         }
         return customerDetails;
     }
@@ -340,7 +355,7 @@ public without sharing class CustomerDetailsController {
         System.debug('*** Called getCustomerContactsFromSalesforce with acct '+ accountId + ' and primaryContact '+primaryContactRowId);
         List<CustomerDetailsWSUtilv2.contact> contactList = new List<CustomerDetailsWSUtilv2.contact>();
         if (!String.isEmpty(accountId)) {
-            List<Contact> rawContactList = [SELECT Id, Contact_Row_Id__c, WEX_Contact_ID__c, FirstName, LastName, Email, Fax, Phone, Contact_Type__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode, AccountId  FROM Contact WHERE AccountId =:accountId];
+            List<Contact> rawContactList = [SELECT Id, Contact_Row_Id__c, WEX_Contact_ID__c, FirstName, LastName, Email, Fax, Phone, Contact_Type__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode, AccountId  FROM Contact WHERE AccountId =:accountId AND Status__c = 'Active'];
             CustomerDetailsWSUtilv2.contact newContact;
             for (Contact rawContact : rawContactList) {
                 newContact = new CustomerDetailsWSUtilv2.contact();
@@ -354,13 +369,13 @@ public without sharing class CustomerDetailsController {
                 }
 
                 if (newContact.contactType != 'PRIMARY') {
-                    if (rawContact.Contact_Type__c.equals('BILLING')) {
+                    if (rawContact.Contact_Type__c.equalsIgnoreCase('BILLING')) {
                         newContact.contactType = 'BILLING';
                         newContact.role = 'BILLING';
-                    } else if (rawContact.Contact_Type__c.equals('SHIPPING')) {
+                    } else if (rawContact.Contact_Type__c.equalsIgnoreCase('SHIPPING')) {
                         newContact.contactType = 'SHIPPING';
                         newContact.role = 'SHIPPING';
-                    } else if (rawContact.Contact_Type__c.equals('Accounts Payable')) {
+                    } else if (rawContact.Contact_Type__c.equalsIgnoreCase('Accounts Payable')) {
                         newContact.contactType = 'ACCOUNTS PAYABLE';
                         newContact.role = 'ACCOUNTS PAYABLE';
                     } else
