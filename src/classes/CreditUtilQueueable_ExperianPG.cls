@@ -92,6 +92,8 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
 
                 upsert onlineApplication;
 
+                CreditDecisionEngineOTR.runFinalCreditDecision(onlineApplication);
+
                 // Make a safe copy so we don't overwrite any fields
                 onlineApplications = [SELECT Id, Running_Credit_Decisioning__c FROM OnlineApplication__c WHERE Id = :applicationId LIMIT 1];
 
@@ -169,7 +171,7 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                 }
 
                 upsert cpApplicant;
-
+                CreditDecisionEngineCP.runFinalCreditDecision(cpApplicant);
                 // Make a safe copy so we don't overwrite any fields
                 cpApplications = [SELECT Id, Running_Credit_Decisioning__c FROM CP_Application_Request__c WHERE Id = :applicationId];
 
@@ -248,7 +250,7 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                 }
 
                 upsert naApplicant;
-
+                CreditDecisionEngineNA.runFinalCreditDecision(naApplicant);
                 // Make a safe copy so we don't overwrite any fields
                 naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :applicationId];
 

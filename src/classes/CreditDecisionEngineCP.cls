@@ -542,6 +542,7 @@ global class CreditDecisionEngineCP {
 
             if (cpApplications.size() > 0 && !TestUtils.isRunningTest()) {
 
+                Boolean sendToFinalDecision = true;
                 CP_Application_Request__c cpApp = cpApplications[0];
 
                 if (cpApp.PG_Required__c == true
@@ -552,19 +553,38 @@ global class CreditDecisionEngineCP {
                     if (cpApp.Guarantor_Country__c == null || (cpApp.Guarantor_Country__c).equalsIgnoreCase('US')) {
                         System.debug('Running Experian...');
                         CreditDecisionEngineQueueable.runExperianPGChecks(cpApp.Id);
+                        sendToFinalDecision = false;
 
                     } else if (cpApp.Guarantor_Country__c != null && (cpApp.Guarantor_Country__c).equalsIgnoreCase('CA')) {
                         System.debug('Running Equifax...');
                         CreditDecisionEngineQueueable.runEquifaxPGChecks(cpApp.Id);
-                    } else {
-                        cpApp.PG_Data__c = 'Insufficient Information';
-                        upsert cpApp;
+                        sendToFinalDecision = false;
                     }
                 }
+                if (sendToFinalDecision) {
+                    runFinalCreditDecision(cpApp);
+                }
             }
-
         }
-
     }
+    public static void runFinalCreditDecision(CP_Application_Request__c cpAppRequest) {
 
+        String query = UtilityClass.selectStar('CP_Application_Request__c');
+        Id appId = cpAppRequest.Id;
+        query += 'WHERE Id = :appId';
+
+        try {
+
+            cpAppRequest = (CP_Application_Request__c) Database.query(query);
+            BREeze.ProcessRules.processRuleLogic('CPFraudDecisioningFraudDecision', new List<SObject>{
+                    cpAppRequest
+            });
+            BREeze.ProcessRules.processRuleLogic('CPCreditDecisioningCalculateRecommendedDecision', new List<SObject>{
+                    cpAppRequest
+            });
+            upsert cpAppRequest;
+        } catch (Exception e) {
+            insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineCP.runFinalCreditDecision', true, '', cpAppRequest.id);
+        }
+    }
 }
