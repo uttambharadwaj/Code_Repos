@@ -8,7 +8,7 @@
     <aura:attribute name="pdRowId" type="String" />
     <aura:attribute name="isDummyContact" type="String" default="false" />
     <aura:attribute name="appMode" type="String" />
-    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="acctRecordId" type="String" />
     <aura:attribute name="carrierId" type="String" />
     <aura:attribute name="searchRecordId" type="String" />
     <aura:attribute name="isOtrAccount" type="String" />
@@ -132,6 +132,9 @@
                                 <aura:if isTrue="{!v.customerDetails.accountSts == 'I'}">
                                     <span class="account-status-suspended">Inactive</span>
                                 </aura:if>
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'H'}">
+                                    <span class="account-status-suspended">Hold</span>
+                                </aura:if>
                             </p>
                         </div>
                     </div>
@@ -144,7 +147,9 @@
                 </li>
                 <li class="slds-page-header__detail-block">
                     <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Internal Account Number</p>
-                    <p class="slds-text-body--regular slds-truncate">{!v.customerDetails.wexAccountNbr}</p>
+                    <p class="slds-text-body--regular slds-truncate">{!v.customerDetails.wexAccountNbr}
+                        <aura:if isTrue="{!v.customerDetails.wexAccountNbr == null}">N/A</aura:if>
+                    </p>
                 </li>
                 <li class="slds-page-header__detail-block">
                     <p class="slds-text-title slds-truncate slds-m-bottom--xx-small" title="Field 1">Primary Contact</p>

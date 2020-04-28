@@ -88,6 +88,14 @@
                 var pageRef = component.get("v.pageReference");
                 var accountNumber = (pageRef && pageRef.state) ? pageRef.state.c__accountNumber : null;
                 var accountRowId = (pageRef && pageRef.state) ? pageRef.state.c__accountRowId : null;
+                var isOtrAccount = (pageRef && pageRef.state) ? pageRef.state.c__isOtrSearch : false;
+                console.log("isOtrAccount="+isOtrAccount);
+                console.log("accountRowId="+accountRowId);
+                console.log("accountNumber="+accountNumber);
+                console.log("tabId="+tabId);
+                console.log("recordId="+component.get("v.recordId"));
+
+
                 //var accountNumber = helper.getParameterByName(component, event, 'c__accountNumber', response.url);
                 //var accountRowId = helper.getParameterByName(component, event, 'c__accountRowId', response.url);
 
@@ -106,6 +114,11 @@
 
                 component.set("v.accountNumber", accountNumber);
                 component.set("v.accountRowId", accountRowId);
+                if (helper.isSalesforceId(accountRowId)== true) {
+                    component.set("v.acctRecordId", accountRowId);
+                }
+
+                component.set("v.isOtrAccount", isOtrAccount);
 
                 // Grab the case ID off the enclosing tab URL
                 var caseId = (pageRef && pageRef.state) ? pageRef.state.c__caseId : null;
