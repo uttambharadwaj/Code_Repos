@@ -1,7 +1,7 @@
 @isTest
-public class CreditUtilQueueable_ExperianPGTest{
+public class CreditUtilQueueable_ExperianPGTest {
 
-    public static void testGoodRequests(){
+    public static void testGoodRequests() {
         
         Id aid = [SELECT Id FROM Account WHERE Name = 'Test' LIMIT 1].Id;
         Id oid1 = [SELECT Id FROM Opportunity WHERE Name = 'Test Oppty 7' LIMIT 1].Id;
@@ -31,6 +31,8 @@ public class CreditUtilQueueable_ExperianPGTest{
         Set<Id> myIds = new Set<Id>{oa1.Id,oa2.Id,oa3.Id,ar1.Id,ar2.Id,ar3.Id,cp1.Id,cp2.Id,cp3.Id};
         
         Test.startTest();
+        TestUtils.enable_isRunningTest = true;
+
         Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'expGood','expLogin'})); //set mock
         for(Id i : myIds)
             System.enqueueJob(new CreditUtilQueueable_ExperianPG(i));
@@ -137,7 +139,7 @@ public class CreditUtilQueueable_ExperianPGTest{
 
     }
 
-    public static void testBadRequests(){
+    public static void testBadRequests() {
 
         Id aid = [SELECT Id FROM Account WHERE Name = 'Test' LIMIT 1].Id;
         Id oid = [SELECT Id FROM Opportunity WHERE Name = 'Test Oppty 9' LIMIT 1].Id;
@@ -156,6 +158,8 @@ public class CreditUtilQueueable_ExperianPGTest{
         Set<Id> myIds = new Set<Id>{oa1.Id,ar1.Id,cp1.Id};
 
         Test.startTest();
+        TestUtils.enable_isRunningTest = true;
+
         Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'fail','expLogin'})); //set mock
         for(Id i : myIds)
             System.enqueueJob(new CreditUtilQueueable_ExperianPG(i));
@@ -171,6 +175,32 @@ public class CreditUtilQueueable_ExperianPGTest{
         system.assertEquals(ar1Score,ar1.PG_FICO_Score__c,'The score was updated');
         system.assertNotEquals(cp1Date,cp1.LastModifiedDate,'It was not updated');
         system.assertEquals(cp1Score,cp1.PG_FICO_Score__c,'The score was updated');
+    }
+
+    /*
+    A consumer can request their credit report to be locked, making it so we can not view the information.
+     */
+    public static void testFileLocked() {
+
+        Id aid = [SELECT Id FROM Account WHERE Name = 'Test' LIMIT 1].Id;
+
+        OnlineApplication__c oa2 = [SELECT Id, LastModifiedDate FROM OnlineApplication__c WHERE Account__c = :aid AND AO_Name__c = 'Maurice Moss' LIMIT 1];
+
+        DateTime oa1Date = oa2.LastModifiedDate;
+
+        Set<Id> myIds = new Set<Id>{oa2.Id};
+
+        Test.startTest();
+        TestUtils.enable_isRunningTest = true;
+
+        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'expFileLock','expLogin'})); //set mock
+        for(Id i : myIds)
+            System.enqueueJob(new CreditUtilQueueable_ExperianPG(i));
+        Test.stopTest();
+
+        oa2 = [SELECT Id, LastModifiedDate, PG_Data__c FROM OnlineApplication__c WHERE Id = :oa2.Id LIMIT 1];
+
+        System.assertEquals('File Locked or Frozen', oa2.PG_Data__c);
     }
 
 }
