@@ -181,6 +181,18 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
+    public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString) {
+        //Formula for isOtrAccount taken from older version of code
+        boolean isOtrAccount = false;
+        String newAccountRecordId = accountRecordId;
+        if (String.isEmpty(accountNumber)  && !(isSalesforceId(newAccountRecordId))) {
+            newAccountRecordId = getAccountIdFromAcctRowId(accountRecordId);
+            isOtrAccount = true;
+        }
+        return getCustomerDetails(accountNumber, newAccountRecordId, pdRowIdString, isOtrAccount );
+    }
+
+    @AuraEnabled
     public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString, Boolean isOtrAccount) {
         System.debug('Entering getCustomerDetails for '+accountNumber+','+accountRecordId+','+ pdRowIdString+','+isOtrAccount);
 

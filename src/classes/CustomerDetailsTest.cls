@@ -44,6 +44,7 @@ public class CustomerDetailsTest {
             genericPartnerId = partner.Id;
 
             Program__c program = new Program__c();
+            Id serviceOpsProgramRecordTypeId = Schema.SObjectType.Program__c.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
 
             program.Name = 'WEXGeneric';
             program.Form_Template__c = 'WEXGeneric';
@@ -63,23 +64,11 @@ public class CustomerDetailsTest {
             program.Brand_Color_2__c = '#fff';
             program.Siebel_Program_Row_Id__c = programRowId;
             program.Partner__c = genericPartnerId;
+            program.RecordTypeId = serviceOpsProgramRecordTypeId;
+
 
             insert program;
             genericProgramId = program.Id;
-        }
-
-        if (genericPartnerId == null) {
-            Partner__c partner = new Partner__c();
-            partner.Name = 'WEXGeneric';
-
-            insert partner;
-
-            genericPartnerId = partner.Id;
-
-            Program__c program = [SELECT Id, Partner__c FROM Program__c WHERE Id =: genericProgramId];
-            program.Partner__c = genericPartnerId;
-            update program;
-
         }
 
         Id accountId =  CustomerDetailsController.upsertAccount(jsonAccountString);
@@ -158,6 +147,9 @@ public class CustomerDetailsTest {
         parentOtrAccount.ShippingCountry = 'USA';
         parentOtrAccount.ShippingPostalCode = '04106';
         parentOtrAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
+        parentOtrAccount.Program__c = genericProgramId;
+        parentOtrAccount.Platform__c = 'EFSLLC';
+        parentOtrAccount.Acct_Row_Id__c = 'EFSLLC-123456';
 
         otrAccount.Sponsor_Acct__c = '123457';
 
@@ -180,6 +172,9 @@ public class CustomerDetailsTest {
         otrAccount.ShippingPostalCode = '04106';
         otrAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
         otrAccount.ParentId = parentOtrAccountId;
+        otrAccount.Program__c = genericProgramId;
+        otrAccount.Platform__c = 'EFSLLC';
+        otrAccount.Acct_Row_Id__c = 'EFSLLC-123457';
 
         otrAccount.Sponsor_Acct__c = '123456';
 
