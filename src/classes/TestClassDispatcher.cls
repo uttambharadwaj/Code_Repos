@@ -153,8 +153,12 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensAuthenticationPositiveTest();
     }
 
-    @isTest static void testCreditLensWSCreate() {
-        CreditWS_CreditLensTest.creditLensCreateEntityPostiveTest();
+    @isTest static void testCreditLensWSCreateCP() {
+        CreditWS_CreditLensTest.creditLensCreateEntityPostiveCPTest();
+    }
+
+    @isTest static void testCreditLensWSCreateNA() {
+        CreditWS_CreditLensTest.creditLensCreateEntityPostiveNATest();
     }
 
     @isTest static void testCreditLensDocumentUpload() {
