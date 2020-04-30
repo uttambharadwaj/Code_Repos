@@ -169,7 +169,7 @@ public class CreditWS_DNB {
                 }
 
                 if (dnbDirectMatchRequest.SingleResolution == true) {
-                    parameterStrings.put('candidateMaximumQuantity', '1'); // TODO Verify this
+                    parameterStrings.put('candidateMaximumQuantity', '1');
                 }
 
                 clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/cleanseMatch?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
