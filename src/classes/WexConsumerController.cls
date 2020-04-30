@@ -74,6 +74,13 @@ public class WexConsumerController {
         }
     }
 
+    // Get the Merchant Facility Number
+    public String merchantFacilityNumber {
+        get {
+            return ApexPages.currentPage().getParameters().get('merchantFacilityNumber');
+        }
+    }
+
     // Program for the BOCA
     public Program__c program { get; set; }
     
@@ -462,6 +469,7 @@ public class WexConsumerController {
             creditApp.isPG__c = true;
 
             creditApp.Group_Code__c = groupCode;
+            if (merchantFacilityNumber != null && merchantFacilityNumber.length() < 15) creditApp.Merchant_Facility_Number__c = merchantFacilityNumber;
             
             // Set the status to TEST if it is a test, otherwise complete.
             // We don't want to test downstream triggers as part of this.
