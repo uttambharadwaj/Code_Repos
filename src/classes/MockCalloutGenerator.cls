@@ -3,7 +3,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
 
     private static final String EXPERIAN_REQUEST_ENDPOINT = 'experian_endpoint_returned_from_login_verification';
     private static final String CREDITLENS_REQUEST_AUTH = 'creditlens_authorization_returned_from_variation';
-    private static final String CREDITLENS_REQUEST_CREATE = 'creditlens_entity_creation_returned';
+    private static final String CREDITLENS_REQUEST_CREATE = 'https://wexinc-cfg.creditlens.moodysanalytics.com/api/data/vm/EntityEdit';
     private static final String CREDITLENS_REQUEST_UPLOADDOC = 'creditlens_upload_document_returned';
     private static final String NO_ENDPOINT_FOUND_FAILURE = 'the_requested_endpoint_was_not_found_so_this_fails';
 
@@ -20,8 +20,8 @@ public class MockCalloutGenerator implements HttpCalloutMock {
     private void makeRequests(Set<String> myRequests){
         MockRequest myNull = new MockRequest(555,'Failure',Blob.valueOf('Man, you are one pathetic loser. No offense.'),null);
         this.requests = new Map<String, HttpCalloutMock>{NO_ENDPOINT_FOUND_FAILURE=>myNull};
-        for(String s : myRequests){
-            switch on s{
+        for(String s : myRequests) {
+            switch on s {
                 when 'expGood'{
                     this.requests.put(EXPERIAN_REQUEST_ENDPOINT, new MockRequest(200,'Success',getExpGoodBody(),null));
                 }
@@ -29,24 +29,18 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Experian_Toolkit' LIMIT 1].Endpoint_URL__c;
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',EXPERIAN_REQUEST_ENDPOINT,null));   
                 }
-                when 'creditLensAuthGood' {
-                    this.requests.put(CREDITLENS_REQUEST_AUTH, new MockRequest(200,'Success',getCreditLensAuthGoodBody(),null));
-                }
                 when 'creditLensAuthLogin' {
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Auth' LIMIT 1].Endpoint_URL__c;
                     Map<String, String> headers = new Map<String, String>();
                     headers.put('Content-Type', 'application/json');
-                    this.requests.put(myEndpoint, new MockRequest(200,'Success',CREDITLENS_REQUEST_AUTH,headers));
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensAuthGoodBody(),headers));
                 }
                 when 'creditLensCreateGood' {
-                    this.requests.put(CREDITLENS_REQUEST_CREATE, new MockRequest(200,'Success',getCreditLensCreateGoodBody(),null));
-                }
-                when 'creditLensCreateLogin' {
-                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity' LIMIT 1].Endpoint_URL__c;
+                 //   String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity' LIMIT  1].Endpoint_URL__c;
                     Map<String, String> headers = new Map<String, String>();
                     headers.put('Content-Type', 'application/json');
                     headers.put('Authorization', 'Bearer 123456');
-                    this.requests.put(myEndpoint, new MockRequest(200,'Success',CREDITLENS_REQUEST_CREATE,headers));
+                    this.requests.put(CREDITLENS_REQUEST_CREATE, new MockRequest(200,'Success',getCreditLensCreateGoodBody(),headers));
                 }
                 when 'creditLensUploadDoc' {
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Doc_Upload' LIMIT 1].Endpoint_URL__c;
@@ -411,6 +405,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
 
     // create entity record
     public static String getCreditLensCreateGoodBody() {
+
         String json = '{'+
                 '    \"payLoad\": ['+
                 '        {'+
@@ -430,7 +425,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 '            \"WexYearIncorporated\": \"2000\",'+
                 '            \"EstablishmentDate\": \"2000\",'+
                 '            \"RegistrationNumber\": \"TEST\",'+
-                '            \"OnList\": null,'+
+                '            \"OnList\": \"N/A\",'+
                 '            \"WexYearEst\": null,'+
                 '            \"WexYearControl\": null,'+
                 '            \"Descriptions\": null,'+
@@ -515,7 +510,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 '            \"WexPaymentHistory\": null,'+
                 '            \"WexProejctedMonthlySpend\": \"20000\",'+
                 '            \"WexHighCycleSpend\": null,'+
-                '            \"BillingCycle\": null,'+
+                '            \"BillingCycle\": \"Monthly\",'+
                 '            \"DaysToPay\": null,'+
                 '            \"WexBillingCycle1\": null,'+
                 '            \"WexDaysToPay1\": null,'+
