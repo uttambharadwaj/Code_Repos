@@ -87,7 +87,7 @@ public class CreditWS_CreditLensTest {
         Test.startTest();
         TestUtils.enable_isRunningTest = true;
 
-        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'creditLensCreateGood','creditLensAuthLogin'})); //set mock
+        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'creditLensCreateGood','creditLensAuthLogin'}));
         for (Id id : myIds) {
             CreditWS_CreditLens.creditLensCreateEntityButton(id);
         }
@@ -103,6 +103,7 @@ public class CreditWS_CreditLensTest {
         System.assert(naAppNewEntId.Credit_Lens_Entity_ID__c != null, 'Expected a credit lens entity ID, why don\'t we have one?');
 
     }
+
 
     public static void creditLensUploadDocumentTest() {
 
@@ -121,7 +122,7 @@ public class CreditWS_CreditLensTest {
 
         Test.startTest();
 
-        PageReference uploadDocumetPage = Page.UploadDocToCreditLens;
+        PageReference uploadDocumetPage = Page.UploadDocToCreditLensCP;
         uploadDocumetPage.getParameters().put('id', cpApp.Id);
         Test.setCurrentPage(uploadDocumetPage);
 
@@ -131,11 +132,11 @@ public class CreditWS_CreditLensTest {
 
         System.assert(uploadDocController.appId.equals(cpApp.Id));
 
-        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator('creditLensUploadDoc')); //set mock
+        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator('creditLensUploadDoc'));
 
-        //todo assert something from the response
+        PageReference uploadPageReference = uploadDocController.uploadDocuments();
 
-        uploadDocController.uploadDocuments();
+        System.assert(uploadPageReference.getParameters().get('errorMessage') == null, 'Received an error message while uploading document.');
 
         Test.stopTest();
 
@@ -150,7 +151,6 @@ public class CreditWS_CreditLensTest {
                 WHERE Company_Legal_Name__c = 'Amazing Company 1' AND CreditLens_EntityID__c != NULL
                 LIMIT 1];
 
-
         //sanity checks before we start testing
         System.assert(cpApp != null, 'Expected an app with an entity Id, didn\'t find one');
 
@@ -160,15 +160,12 @@ public class CreditWS_CreditLensTest {
 
         Test.startTest();
 
-        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator('creditLensLinkDocToEntity')); //set mock
+        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator('creditLensLinkDocToEntity'));
 
-        //todo assert something from the response
+        Boolean success = CreditWS_CreditLens.linkDocToEntity(cpApp.Id, docIds, (cpApp.Id).getSobjectType().getDescribe().getName());
 
-        CreditWS_CreditLens.linkDocToEntity(cpApp.Id, docIds);
+        System.assert(success, 'Expected great success and only received failure.');
 
         Test.stopTest();
-
     }
-
-
 }
