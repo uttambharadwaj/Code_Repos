@@ -879,7 +879,9 @@
 
     loadInvoices : function(component, target) {
 
-        if (component.get("v.isOtrAccount")) { return; }
+        if (component.get("v.isOtrAccount") && component.get("v.isOtrAccount").toUpperCase()==="TRUE") {
+            console.log("OTR account; returning no invoices");
+            return; }
 
         var action = component.get("c.getInvoices");
 
