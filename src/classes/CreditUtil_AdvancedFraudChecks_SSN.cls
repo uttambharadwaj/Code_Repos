@@ -20,9 +20,7 @@ global class CreditUtil_AdvancedFraudChecks_SSN implements BREeze.FunctionChecke
         (?!123-45-6789|219-09-9999|078-05-1120) #Don't allow "123-45-6789", "219-09-9999" or "078-05-1120"
         (?!666|000|9\d{2})\d{3}                 #Don't allow the SSN to begin with 666, 000 or
                                                  anything between 900-999
-        -                                       #A dash (separating Area and Group numbers)
         (?!00)\d{2}                             #Don't allow the Group Number to be "00"
-        -                                       #Another dash (separating Group and Serial numbers)
         (?!0{4})\d{4}                           #Don't allow last four digits to be "0000"
         $                                       #End of expression
         https://www.codeproject.com/articles/651609/validating-social-security-numbers-through-regular
