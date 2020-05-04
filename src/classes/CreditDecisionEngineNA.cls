@@ -6,7 +6,8 @@
 * Initial Date: 3/26/2018
 * Revision History: 4/30/2019 IADJUDICAT-739 do the constructor thing.
 * 3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
-*/
+* 5/4/2020: Release 20.09: EAPT-1618: Added a check for Legal Structure vs Company Name */
+
 global class CreditDecisionEngineNA {
 
     public static Boolean decisionEngineRunning = false;
@@ -47,6 +48,18 @@ global class CreditDecisionEngineNA {
             if(!Test.isRunningTest()) {
                 naApplication.Running_Credit_Decisioning__c = true;
             }
+
+            // Check for Legal Structure Matching Company Name for US as a Physical Country
+            // EAPT - 1618
+
+            if (naApplication.Physical_Country__c == 'US' && null != naApplication.Opportunity_Name_Text__c && null != naApplication.Legal_Structure__c){
+
+                System.debug('Checking for Legal Structure Issues...');
+
+                naApplication.Legal_Name_Matches_Company_Name__c = CreditWs_Utils.checkLegalStructure(naApplication.Opportunity_Name_Text__c, naApplication.Legal_Structure__c);
+            }
+
+            System.debug('######' + naApplication.Legal_Name_Matches_Company_Name__c);
 
             // ThreatMetrix
             System.debug('Running ThreatMetrix....');

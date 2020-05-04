@@ -7,6 +7,7 @@
 * Revision History: 4/23/2019 Jason Arbegast IADJUDICAT-1188 escape single quotes on business name
 *                   4/25/2019 IADJUDICAT-739 move dnb lookup logic to just before upsert; gotta wait for that response; also do the constructor thing
 *                   3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
+*                   5/4/2020: Release 20.09: EAPT-1618: Added a check for Legal Structure vs Company Name
 */
 global class CreditDecisionEngineOTR {
 
@@ -45,6 +46,18 @@ global class CreditDecisionEngineOTR {
             OnlineApplication__c onlineApplication = onlineApplications[0];
 
             onlineApplication.Running_Credit_Decisioning__c = true;
+
+            // Check for Legal Structure Matching Company Name for US as a Physical Country
+            // EAPT - 1618
+
+            if (onlineApplication.Country__c == 'US' && null != onlineApplication.Legal_Business_Name__c && null != onlineApplication.Type_of_Business__c){
+
+                System.debug('Checking for Legal Structure Issues...');
+
+                onlineApplication.Legal_Name_Matches_Company_Name__c = CreditWs_Utils.checkLegalStructure(onlineApplication.Legal_Business_Name__c, onlineApplication.Type_of_Business__c);
+            }
+
+            System.debug('######' + onlineApplication.Legal_Name_Matches_Company_Name__c);
 
             // ThreatMetrix
             if (null != onlineApplication.Opportunity__c && null != onlineApplication.Opportunity__r.SourceSystem__c && (onlineApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {
