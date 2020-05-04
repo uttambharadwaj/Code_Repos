@@ -698,21 +698,14 @@ global class CreditWS_CreditLens {
      *
      * @return
      */
-    public static Boolean linkDocToEntity(String appId, List<String> docIds) {
+    public static Boolean linkDocToEntity(String appId, List<String> docIds, String sObjectType) {
 
         System.debug('Attempting to link uploaded document to the appropriate Entity in Credit Lens...');
 
-        Integer entityId = null;
-
-        List<CP_Application_Request__c> cpApps = [SELECT CreditLens_EntityID__c FROM CP_Application_Request__c WHERE Id = :appId];
-        if (cpApps.size() > 0) {
-            Decimal entityDecimal = cpApps[0].CreditLens_EntityID__c;
-            if (entityDecimal != null) {
-                entityId = Integer.valueOf(entityDecimal);
-            } else {
-                System.debug('No Entity related to this application exists yet in Credit Lens.');
-                return false;
-            }
+        Integer entityId = getEntityId(appId, sObjectType);
+        if (entityId == null) {
+            System.debug('No Entity related to this application exists yet in Credit Lens.');
+            return false;
         }
 
         try {
@@ -815,6 +808,50 @@ global class CreditWS_CreditLens {
 
         }
         return false;
+    }
+
+    /**
+     * Query for the Credit Lens Entity Id for the given sObject type
+     * and convert it from a Decimal to an Integer.
+     *
+     * @param appId
+     * @param sObjectType
+     *
+     * @return
+     */
+    private static Integer getEntityId(Id appId, String sObjectType) {
+
+        System.debug('TEMP sObjectType: ' + sObjectType);
+
+        Decimal entityDecimal = null;
+
+        // CORPORATE PAYMENTS
+        if (sObjectType != null && (sObjectType).equalsIgnoreCase('CP_Application_Request__c')) {
+            List<CP_Application_Request__c> cpApps = [SELECT CreditLens_EntityID__c FROM CP_Application_Request__c WHERE Id = :appId];
+            if (cpApps.size() > 0) {
+                entityDecimal = cpApps[0].CreditLens_EntityID__c;
+            }
+        }
+        // NA FLEET
+        else if (sObjectType != null && (sObjectType).equalsIgnoreCase('Application_Request__c')) {
+            List<Application_Request__c> naApps = [SELECT Credit_Lens_Entity_ID__c FROM Application_Request__c WHERE Id = :appId];
+            if (naApps.size() > 0) {
+                entityDecimal = naApps[0].Credit_Lens_Entity_ID__c;
+                System.debug('TEMP entityDecimal: ' + entityDecimal);
+            }
+        }
+        // OTR
+        else if (sObjectType != null && (sObjectType).equalsIgnoreCase('OnlineApplication__c')) {
+//          List<OnlineApplication__c> otrApps = [SELECT CreditLens_EntityID__c FROM OnlineApplication__c WHERE Id = :appId];
+//            if (otrApps.size() > 0) {
+//                entityDecimal = otrApps[0].Credit_Lens_Entity_ID__c;
+//            }
+        }
+
+        if (entityDecimal != null) {
+            return Integer.valueOf(entityDecimal);
+        }
+        return null;
     }
 
 
