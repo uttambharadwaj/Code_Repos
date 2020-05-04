@@ -239,9 +239,10 @@
 
 
 
-        if (useSalesforce === true) {
-            action = component.get("c.getCustomerContactsFromSalesforce");
+        if (useSalesforce === true) { //Still may not really be true; do final check in Apex
+            action = component.get("c.getCustomerContactsFromAnywhere");
             action.setParams({
+                accountNumber : accountNumber,
                 accountId : idToUse,
                 primaryContactRowId: component.get("v.customerPrimaryContact.rowId")
             });
