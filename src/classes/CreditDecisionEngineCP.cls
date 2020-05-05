@@ -54,8 +54,6 @@ global class CreditDecisionEngineCP {
                 cpApplication.Legal_Name_Matches_Company_Name__c = CreditWs_Utils.checkLegalStructure(cpApplication.Company_Legal_Name__c, cpApplication.Legal_Structure__c);
             }
 
-            System.debug('######' + cpApplication.Legal_Name_Matches_Company_Name__c);
-
             // ThreatMetrix
             System.debug('Running ThreatMetrix...');
             if ((cpApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {

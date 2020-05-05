@@ -57,8 +57,6 @@ global class CreditDecisionEngineOTR {
                 onlineApplication.Legal_Name_Matches_Company_Name__c = CreditWs_Utils.checkLegalStructure(onlineApplication.Legal_Business_Name__c, onlineApplication.Type_of_Business__c);
             }
 
-            System.debug('######' + onlineApplication.Legal_Name_Matches_Company_Name__c);
-
             // ThreatMetrix
             if (null != onlineApplication.Opportunity__c && null != onlineApplication.Opportunity__r.SourceSystem__c && (onlineApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {
 

@@ -59,8 +59,6 @@ global class CreditDecisionEngineNA {
                 naApplication.Legal_Name_Matches_Company_Name__c = CreditWs_Utils.checkLegalStructure(naApplication.Opportunity_Name_Text__c, naApplication.Legal_Structure__c);
             }
 
-            System.debug('######' + naApplication.Legal_Name_Matches_Company_Name__c);
-
             // ThreatMetrix
             System.debug('Running ThreatMetrix....');
             if ((naApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {
