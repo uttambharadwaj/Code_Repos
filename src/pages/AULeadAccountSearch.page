@@ -17,6 +17,7 @@
     <apex:pageBlock rendered="{!IF(accounts.size > 0, true, false)}">
         <apex:pageBlockTable value="{!accounts}" var="acc">
             <apex:column value="{!acc.Name}"/>
+            <apex:column value="{!acc.AU_Account_Number__c}"/>
             <apex:column value="{!acc.ShippingCity}"/>
             <apex:column value="{!acc.ShippingState}"/>
             <apex:column value="{!acc.RecordType.Name}"/>

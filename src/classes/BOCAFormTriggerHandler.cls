@@ -247,6 +247,7 @@ public class BOCAFormTriggerHandler {
 
         opportunity.Paperless_Billing_Flag__c = f.Paperless_Flag__c;
         opportunity.Group_Code__c = f.Group_Code__c;
+        opportunity.Merchant_Facility_Number__c = f.Merchant_Facility_Number__c;
         opportunity.IP_Address__c = f.IPAddress__c;
         opportunity.Legal_Structure__c = f.Legal_Structure__c;
         if(f.Legal_Structure__c != null && (f.Legal_Structure__c).equalsIgnoreCase('Natural Person')) {

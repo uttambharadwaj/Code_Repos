@@ -118,11 +118,15 @@ public class TestClassDispatcher {
     }
 
     @isTest static void testExperianPGQueuableGood(){
-        //CreditUtilQueueable_ExperianPGTest.testGoodRequests();
+        CreditUtilQueueable_ExperianPGTest.testGoodRequests();
     }
 
     @isTest static void testExperianPGQueuableBad(){
         //CreditUtilQueueable_ExperianPGTest.testBadRequests();
+    }
+
+    @isTest static void testExperianPGQueuableFileLocked(){
+        CreditUtilQueueable_ExperianPGTest.testFileLocked();
     }
 
     @isTest static void testCreditDecisionServiceGood(){
@@ -149,8 +153,12 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensAuthenticationPositiveTest();
     }
 
-    @isTest static void testCreditLensWSCreate() {
-        CreditWS_CreditLensTest.creditLensCreateEntityPostiveTest();
+    @isTest static void testCreditLensWSCreateCP() {
+        CreditWS_CreditLensTest.creditLensCreateEntityPostiveCPTest();
+    }
+
+    @isTest static void testCreditLensWSCreateNA() {
+        CreditWS_CreditLensTest.creditLensCreateEntityPostiveNATest();
     }
 
     @isTest static void testCreditLensDocumentUpload() {

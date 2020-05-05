@@ -13,7 +13,7 @@ public with sharing class AULeadAccountSearchController {
             String leadCompany = '%' + Lead.Company.replace(' ', '%') + '%';
             leadCompany = leadCompany.replace(' ', '%');
             this.accounts = [
-                    SELECT Id, Name, ShippingCity, ShippingState, RecordType.Name
+                    SELECT Id, Name, ShippingCity, ShippingState, RecordType.Name, AU_Account_Number__c
                     FROM Account
                     WHERE Name LIKE :leadCompany AND RecordType.Name LIKE 'AU %'
                     AND Id IN (SELECT AccountId FROM Opportunity WHERE Product_Type__c = 'Mobil Card')

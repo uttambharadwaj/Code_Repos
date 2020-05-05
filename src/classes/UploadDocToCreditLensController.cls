@@ -13,6 +13,15 @@ public class UploadDocToCreditLensController {
         }
     }
 
+    public String sObjectType {
+        get {
+            if(appId != null) {
+                return appId.getSobjectType().getDescribe().getName();
+            }
+            return null;
+        }
+    }
+
     public Boolean uploadSuccess {
         get {
             if (ApexPages.CurrentPage().getParameters().get('uploadStatus') == 'true') {
@@ -191,6 +200,8 @@ public class UploadDocToCreditLensController {
 
     public PageReference uploadDocuments() {
 
+        System.debug('Preparing to upload document to Credit Lens...');
+
         List<String> docIds = null;
 
         String error = null;
@@ -215,10 +226,10 @@ public class UploadDocToCreditLensController {
          }
 
         if (docIds != null) {
-            success = CreditWS_CreditLens.linkDocToEntity(appId, docIds);
+            success = CreditWS_CreditLens.linkDocToEntity(appId, docIds, sObjectType);
         }
 
-        PageReference redirect = Page.UploadDocToCreditLens;
+        PageReference redirect = Page.UploadDocToCreditLensCP;
         redirect.getParameters().put('uploadStatus', String.valueOf(success));
         if (error != null) redirect.getParameters().put('errorMessage', error);
         redirect.setRedirect(true);

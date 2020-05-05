@@ -83,11 +83,17 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                         onlineApplication.Inquiry_Address_High_Risk__c = experianResponse.inquiryAddressHighRisk;
                         onlineApplication.Security_Statement_on_Report__c = experianResponse.securityStatement;
                         onlineApplication.On_File_Address_High_Risk__c = experianResponse.onFileAddressHighRisk;
+                        if (experianResponse.fileLocked) onlineApplication.PG_Data__c = 'File Locked or Frozen';
                     }
                     else if (experianResponse == null || experianResponse.calloutFailed){
                         System.debug('Experian callout failed. Response: ' + experianResponse);
                         onlineApplication.PG_Data__c = 'Callout Failed';
                     }
+                }
+
+                if (TestUtils.enable_isRunningTest) {
+                    //BREeze doesn't play well the some tests
+                    onlineApplication.Running_Credit_Decisioning__c = false;
                 }
 
                 upsert onlineApplication;
@@ -163,11 +169,16 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                         cpApplicant.Inquiry_Address_High_Risk__c = experianResponse.inquiryAddressHighRisk;
                         cpApplicant.Security_Statement_on_Report__c = experianResponse.securityStatement;
                         cpApplicant.On_File_Address_High_Risk__c = experianResponse.onFileAddressHighRisk;
+                        if (experianResponse.fileLocked) cpApplicant.PG_Data__c = 'File Locked or Frozen';
                     }
                     else if (experianResponse == null || experianResponse.calloutFailed) {
                         System.debug('Experian callout failed. Response: ' + experianResponse);
                         cpApplicant.PG_Data__c = 'Callout Failed';
                     }
+                }
+                if (TestUtils.enable_isRunningTest) {
+                    //BREeze doesn't play well the some tests
+                    cpApplicant.Running_Credit_Decisioning__c = false;
                 }
 
                 upsert cpApplicant;
@@ -242,11 +253,16 @@ public class CreditUtilQueueable_ExperianPG implements Queueable, Database.Allow
                         naApplicant.Inquiry_Address_High_Risk__c = experianResponse.inquiryAddressHighRisk;
                         naApplicant.Security_Statement_on_Report__c = experianResponse.securityStatement;
                         naApplicant.On_File_Address_High_Risk__c = experianResponse.onFileAddressHighRisk;
+                        if (experianResponse.fileLocked) naApplicant.PG_Data__c = 'File Locked or Frozen';
                     }
                     else if (experianResponse == null || experianResponse.calloutFailed) {
                         System.debug('Experian callout failed. Response: ' + experianResponse);
                         naApplicant.PG_Data__c = 'Callout Failed';
                     }
+                }
+                if (TestUtils.enable_isRunningTest) {
+                    //BREeze doesn't play well the some tests
+                    naApplicant.Running_Credit_Decisioning__c = false;
                 }
 
                 upsert naApplicant;

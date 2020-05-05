@@ -116,6 +116,7 @@ global class CreditWS_CreditLens {
 
                 if (authenticateResponse.getStatusCode() == 200) {
                     String responseBody =  authenticateResponse.getBody();
+                    System.debug('auth response body: ' + responseBody);
 
                     CreditWS_CLAuthResponse response = CreditWS_CLAuthResponse.parse(responseBody);
 
@@ -129,7 +130,7 @@ global class CreditWS_CreditLens {
             }
 
         } catch(Exception e) {
-            System.debug('### Error authenticating in Credit Lens - ' + e.getLineNumber() + ' - ' + e.getMessage());
+            System.debug('### Error authenticating in Credit Lens - Line Number:' + e.getLineNumber() + ' - ' + e.getMessage());
 
         }
 
@@ -163,14 +164,171 @@ global class CreditWS_CreditLens {
 
         if (objectType.equalsIgnoreCase('Application_Request__c')) {
 
-            //todo stuff and things for NA Fleet
-            // WExBusinessUntit = NAFleet
+            System.debug('NA Fleet App ID: ' + appID);
+            List<Application_Request__c> naApplications = [
+                    SELECT Id, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, Tax_Payer_ID_number__c, Paydex__c, Risk_Grade__c,
+                            Billing_City__c, Billing_Contact_First_Name_Text__c, Billing_Contact_Last_Name_Text__c, Billing_Contact__r.Email, Billing_Contact__r.Phone, DNB_Resolved_DUNS__c,
+                            Billing_State__c, Billing_Street__c, Billing_Zip_Postal_Code__c, Business_Phone_Number__c, Checking_Account_Number__c, Financials_Completed_For__c, DNB_Trade_Lines__c,
+                            Doing_Business_As__c, DUNS_Number__c, Legal_Structure__c, Name, Opportunity_Name_Text__c, Personal_Guarantor_DOB__c, Personal_Guarantor_First_Name__c, Personal_Guarantor_Home_Phone__c,
+                            Personal_Guarantor_Last_Name__c, Personal_Guarantor_Email__c, Personal_Guarantor_Mailing_City__c, Personal_Guarantor_Mailing_Country__c, Personal_Guarantor_Mailing_State__c, Personal_Guarantor_Mailing_Street__c,
+                            Personal_Guarantor_Mailing_Zip__c, Personal_Guarantor_SSN__c, PG_Required__c, Physical_City__c, Physical_State__c, Physical_Street__c, Physical_Street_Line_2__c, Requested_Credit_Limit__c,
+                            Physical_Zip_Postal_Code__c, Program__c, Physical_Country__c, Fraud_Flag__c, Credit_Line_Recommendation__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c,
+                            Program_Name__c, Account_Name__r.AccountNumber, Country_of_Contracting_Entity__c, Country_of_Contracting_Entity_Other__c, Stock_Exchange__c, Stock_Symbol__c, CurrencyIsoCode,
+                            Security_Type__c, Security_Currency__c, Security_Expiration_Date__c, Credit_Lens_Entity_ID__c, Credit_Lens_Response__c, App_Signer_Email__c, App_Signer_Name_Text__c, App_Signer_Last_Name_Text__c,
+                            Opportunity__r.OwnerId, Opportunity__r.Sales_Group__c, Control_Year__c
+                    FROM Application_Request__c
+                    WHERE Id = :appID
+            ];
+
+            if (naApplications.size() == 1) {
+                Application_Request__c naApp = naApplications[0];
+
+                String country = CLCountry(naApp.Physical_Country__c);
+
+                creditLensRequest.EntityType = 'CORP'; //todo cpApp.Legal_Structure__c; - need to have naming convention solidified
+//                if (cpApp.CreditLens_EntityID__c != null) creditLensRequest.EntityId = cpApp.CreditLens_EntityID__c;
+                if (naApp.Account_Name__r.AccountNumber != null) creditLensRequest.WexAccountNumber = naApp.Account_Name__r.AccountNumber;
+//                if (naApp.National__c !=null) creditLensRequest.LegalEntity = naApp.National__c;
+                if (naApp.Program_Name__c !=null) creditLensRequest.WexProgramString = naApp.Program_Name__c;
+                creditLensRequest.LongName = naApp.Opportunity_Name_Text__c;
+                creditLensRequest.ShortName = naApp.Doing_Business_As__c;
+                creditLensRequest.PlaceOfIncorporation = country;
+                creditLensRequest.CountryOfInc = country;
+                if (naApp.Physical_State__c != null) {
+                    creditLensRequest.ProvinceStateOfIncorporation = naApp.Physical_Country__c + naApp.Physical_State__c;
+                }
+                creditLensRequest.BusinessPortfolio = country;
+                if (naApp.Country_of_Contracting_Entity__c != null) creditLensRequest.CountryOfRisk = CLCountry(naApp.Country_of_Contracting_Entity__c);
+                if (naApp.Country_of_Contracting_Entity_Other__c != null) creditLensRequest.CountryOfRisk = CLCountry(naApp.Country_of_Contracting_Entity_Other__c);
+                if (creditLensRequest.CountryOfRisk == null) creditLensRequest.CountryOfRisk = country; // set default because it's required
+                creditLensRequest.SystemId = naApp.Name;
+                creditLensRequest.Division = 'Fleet';
+                creditLensRequest.CreditPortfolio = 'WexBank';
+                creditLensRequest.WexCreditInformationOn = naApp.Financials_Completed_For__c;
+//                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //todo can't send until they figure out the dropdown values in CL
+                if (naApp.Requested_Credit_Limit__c != null) creditLensRequest.WexRequestCreditLineAmount = naApp.Requested_Credit_Limit__c;
+                if (naApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexRecommendedCreditLine = String.valueOf(naApp.Credit_Line_Recommendation__c);
+                if (naApp.DNB_Credit_Line_Recommendation__c != null) creditLensRequest.WexOriginationModelRecommendat = String.valueOf(naApp.DNB_Credit_Line_Recommendation__c);
+                if (naApp.Tax_Payer_ID_number__c != null) creditLensRequest.TaxId = naApp.Tax_Payer_ID_number__c;
+                if (naApp.DNB_Resolved_DUNS__c != null) creditLensRequest.WexDunsNumber = naApp.DNB_Resolved_DUNS__c;
+                if (naApp.DNB_Trade_Lines__c != null) creditLensRequest.WexNumberOfCreditExperiences = Integer.valueOf(naApp.DNB_Trade_Lines__c);
+                if (naApp.Paydex__c != null) creditLensRequest.WexPaydexScore = String.valueOf(naApp.Paydex__c);
+                if (naApp.Control_Year__c != null) creditLensRequest.WexYearControl = naApp.Control_Year__c;
+                if (naApp.Risk_Grade__c != null) creditLensRequest.WexPrimaryRiskGrade = naApp.Risk_Grade__c;
+//                if (cpApp.Risk_Grade_Source__c != null) creditLensRequest.WexPrimaryRiskGradeSource = cpApp.Risk_Grade_Source__c; //todo can't send until they figure out the dropdown values in CL
+                if (naApp.Stock_Symbol__c != null) {
+                    creditLensRequest.FirmType = 'PUB';
+                    creditLensRequest.StockCode = naApp.Stock_Symbol__c;
+                } else {
+                    creditLensRequest.FirmType = 'PRV'; // set default
+                }
+                if (naApp.Stock_Exchange__c != null) {
+                    Moodys_CreditLens_Mapping__mdt stockExchangeMapping = CLStockExchange(naApp.Stock_Exchange__c);
+                    if (stockExchangeMapping != null) {
+                        creditLensRequest.StockExchange = stockExchangeMapping.Key__c;
+                        creditLensRequest.CountryOfListing = country;
+                    }
+                }
+                if (naApp.CurrencyIsoCode != null) creditLensRequest.Currency_x = naApp.CurrencyIsoCode; else creditLensRequest.Currency_x = 'USD'; // set a default
+
+                if (naApp.Opportunity__r != null) {
+                    creditLensRequest.WexRelationshipManager = getUserName(naApp.Opportunity__r.OwnerId);
+                    if (naApp.Opportunity__r.Sales_Group__c != null && naApp.Opportunity__r.Sales_Group__c.equalsIgnoreCase('Travel')) {
+                        creditLensRequest.WexBusinessUnit = 'Travel';
+                    } else {
+                        creditLensRequest.WexBusinessUnit = 'Payables';
+                    }
+                }
+                creditLensRequest.WexCreditAnalyst = UserInfo.getName();
+                if (naApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = naApp.Security_Type__c;
+                if (naApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = naApp.Security_Currency__c;
+                if (naApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(naApp.Security_Expiration_Date__c);
+                creditLensRequest.OnList = '4'; //required for integration, so setting the default of 4 which maps to N/A
+                creditLensRequest.BillingCycle = 'Monthly'; // required for integration but NA Fleet does not set this field, this is the requested default
+
+                //todo mappings for SIC Code
+//                if (cpApp.SIC_Code__c != null) {
+//
+//                    creditLensRequest.IndClassification = 'SIC';
+//
+//                    CreditWS_CLCreateEntityRequest.IndustryCode industryCode = new CreditWS_CLCreateEntityRequest.IndustryCode();
+//                    industryCode.Code = cpApp.SIC_Code__c;
+//                    industryCode.Description = 'Crude petroleum and natural gas';
+//                    industryCode.Keys = new list<String> {'B', '13', cpApp.SIC_Code__c};
+//
+//                    List<CreditWS_CLCreateEntityRequest.IndustrySelection> industrySelections = new List<CreditWS_CLCreateEntityRequest.IndustrySelection>();
+//                    CreditWS_CLCreateEntityRequest.IndustrySelection industrySelection = new CreditWS_CLCreateEntityRequest.IndustrySelection();
+//                    industrySelection.x_new = true;
+//                    industrySelection.Percentage = 1;
+//                    industrySelection.OperationType = 'Create';
+//                    industrySelection.IndustryId = -1;
+//                    industrySelection.Classification = 'SIC';
+//                    industrySelection.IsPrimary = true;
+//                    industrySelection.x_initialRulesExecuted = true;
+//                    industrySelection.IndustryCode = industryCode;
+//
+//                    industrySelections.add(industrySelection);
+//                    creditLensRequest.IndustrySelection = industrySelections;
+//                }
+
+                //add Applicant as a Contact
+                List<CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit> contacts = new List<CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit>();
+                CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit contact = new CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit();
+
+                contact.x_new = true;
+                contact.OperationType = 'Create';
+                contact.x_initialRulesExecuted = true;
+                contact.Email = naApp.App_Signer_Email__c;
+                contact.Id = -1;
+                contact.Name = naApp.App_Signer_Name_Text__c + ' ' + naApp.App_Signer_Last_Name_Text__c;
+                contact.OfficeNo = naApp.Business_Phone_Number__c;
+
+                contacts.add(contact);
+                creditLensRequest.EntityContactCreateAndEdit = contacts;
+
+                //add physical business address
+                List<CreditWS_CLCreateEntityRequest.EntityAddress> addresses = new List<CreditWS_CLCreateEntityRequest.EntityAddress>();
+                CreditWS_CLCreateEntityRequest.EntityAddress physicalAddress = new CreditWS_CLCreateEntityRequest.EntityAddress();
+
+                physicalAddress.x_new = true;
+                physicalAddress.OperationType = 'Create';
+                physicalAddress.AddressId = -1;
+                physicalAddress.x_initialRulesExecuted = true;
+                physicalAddress.AddressType = 'REGISTERED';
+                physicalAddress.Address1 = naApp.Physical_Street__c;
+                if (naApp.Physical_Street_Line_2__c != null) physicalAddress.Address2 = naApp.Physical_Street_Line_2__c;
+                physicalAddress.Country = country;
+                if (naApp.Physical_State__c != null) physicalAddress.State = naApp.Physical_Country__c + naApp.Physical_State__c;
+                physicalAddress.City = naApp.Physical_City__c;
+                physicalAddress.Zip = naApp.Physical_Zip_Postal_Code__c;
+                physicalAddress.t_x = 'Address';
+
+                addresses.add(physicalAddress);
+                creditLensRequest.EntityAddress = addresses;
+
+                Integer entityId = createEntity(creditLensRequest, token);
+
+                if (entityId != null) {
+                    naApp.Credit_Lens_Entity_ID__c = entityId;
+                    naApp.Credit_Lens_Response__c = 'Entity ' + entityId + ' successfully created in Credit Lens!';
+                    upsert naApp;
+                } else {
+                    String createStatus = createEntityUnable + '\n' + createEntityError;
+                    if (createStatus.length() > 2000) {
+                        naApp.Credit_Lens_Response__c = createStatus.substring(0,1995) + ' ...';
+                        upsert naApp;
+                    } else {
+                        naApp.Credit_Lens_Response__c = createStatus;
+                        upsert naApp;
+                    }
+                }
+            }
         }
 
         else if (objectType.equalsIgnoreCase('OnlineApplication__c')) {
 
             //todo stuff and things for OTR
-            // WExBusinessUntit = OTR
+            // WExBusinessUntit = OTRf
 
         }
 
@@ -252,8 +410,9 @@ global class CreditWS_CreditLens {
                 }
                 creditLensRequest.WexCreditAnalyst = UserInfo.getName();
                 if (cpApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = cpApp.Security_Type__c;
-                if (cpApp.Security_Type__c != null) creditLensRequest.WexRequestCurrency = cpApp.Security_Currency__c;
-                if (cpApp.Security_Type__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(cpApp.Security_Expiration_Date__c);
+                if (cpApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = cpApp.Security_Currency__c;
+                if (cpApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(cpApp.Security_Expiration_Date__c);
+                creditLensRequest.OnList = '4'; //required for integration, so setting the default of 4 which maps to N/A
 
                 //todo mappings for SIC Code
 //                if (cpApp.SIC_Code__c != null) {
@@ -415,7 +574,7 @@ global class CreditWS_CreditLens {
 
                 }
             } catch (Exception e) {
-                System.debug('### Error creating entity in Credit Lens - ' + e.getLineNumber() + ' - ' + e.getMessage());
+                System.debug('### Error creating entity in Credit Lens - line number: ' + e.getLineNumber() + ' - ' + e.getMessage());
                 String error = 'Error creating entity in Credit Lens: ' + e.getMessage() + ' Error: ' + responseBody;
                 createEntityError = error;
             }
@@ -538,19 +697,14 @@ global class CreditWS_CreditLens {
      *
      * @return
      */
-    public static Boolean linkDocToEntity(String appId, List<String> docIds) {
+    public static Boolean linkDocToEntity(String appId, List<String> docIds, String sObjectType) {
 
-        Integer entityId = null;
+        System.debug('Attempting to link uploaded document to the appropriate Entity in Credit Lens...');
 
-        List<CP_Application_Request__c> cpApps = [SELECT CreditLens_EntityID__c FROM CP_Application_Request__c WHERE Id = :appId];
-        if (cpApps.size() > 0) {
-            Decimal entityDecimal = cpApps[0].CreditLens_EntityID__c;
-            if (entityDecimal != null) {
-                entityId = Integer.valueOf(entityDecimal);
-            } else {
-                System.debug('No Entity related to this application exists yet in Credit Lens.');
-                return false;
-            }
+        Integer entityId = getEntityId(appId, sObjectType);
+        if (entityId == null) {
+            System.debug('No Entity related to this application exists yet in Credit Lens.');
+            return false;
         }
 
         try {
@@ -655,6 +809,50 @@ global class CreditWS_CreditLens {
         return false;
     }
 
+    /**
+     * Query for the Credit Lens Entity Id for the given sObject type
+     * and convert it from a Decimal to an Integer.
+     *
+     * @param appId
+     * @param sObjectType
+     *
+     * @return
+     */
+    private static Integer getEntityId(Id appId, String sObjectType) {
+
+        System.debug('TEMP sObjectType: ' + sObjectType);
+
+        Decimal entityDecimal = null;
+
+        // CORPORATE PAYMENTS
+        if (sObjectType != null && (sObjectType).equalsIgnoreCase('CP_Application_Request__c')) {
+            List<CP_Application_Request__c> cpApps = [SELECT CreditLens_EntityID__c FROM CP_Application_Request__c WHERE Id = :appId];
+            if (cpApps.size() > 0) {
+                entityDecimal = cpApps[0].CreditLens_EntityID__c;
+            }
+        }
+        // NA FLEET
+        else if (sObjectType != null && (sObjectType).equalsIgnoreCase('Application_Request__c')) {
+            List<Application_Request__c> naApps = [SELECT Credit_Lens_Entity_ID__c FROM Application_Request__c WHERE Id = :appId];
+            if (naApps.size() > 0) {
+                entityDecimal = naApps[0].Credit_Lens_Entity_ID__c;
+                System.debug('TEMP entityDecimal: ' + entityDecimal);
+            }
+        }
+        // OTR
+        else if (sObjectType != null && (sObjectType).equalsIgnoreCase('OnlineApplication__c')) {
+//          List<OnlineApplication__c> otrApps = [SELECT CreditLens_EntityID__c FROM OnlineApplication__c WHERE Id = :appId];
+//            if (otrApps.size() > 0) {
+//                entityDecimal = otrApps[0].Credit_Lens_Entity_ID__c;
+//            }
+        }
+
+        if (entityDecimal != null) {
+            return Integer.valueOf(entityDecimal);
+        }
+        return null;
+    }
+
 
     /**
      * Because Moodys was so kind as so have attribute names start with $ and end in _
@@ -700,7 +898,7 @@ global class CreditWS_CreditLens {
             // Find all and replace
             formattedJSON = formattedJSON.replaceAll(regex, replacement);
         }
-        System.debug('FormattedJSON post replacement of things and stuff: ' + formattedJSON);
+        System.debug('Formatted JSON post replacement of things and stuff: ' + formattedJSON);
         return formattedJSON;
     }
 
