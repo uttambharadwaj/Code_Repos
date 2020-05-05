@@ -7,6 +7,8 @@ public with sharing class AccountSearchController {
 		public List<SearchResultsRow> results { get; set; }
 		@AuraEnabled
 		public String errorMessage { get; set; }
+		@AuraEnabled
+		public Boolean otrSearch { get; set; }
 	}
 
 	public class SearchResultsColumn {
@@ -32,7 +34,8 @@ public with sharing class AccountSearchController {
 		SearchResultsWrapper srWrapper = new SearchResultsWrapper();
 
 		// OTR Searches go down a different rabbit hole
-		boolean otrSearch = isOTRSearch(searchType);
+		Boolean otrSearch = isOTRSearch(searchType);
+		srWrapper.otrSearch = otrSearch;
 
 		System.debug('Search param: ' + searchType + ' otrSearch:' + otrSearch);
 
@@ -56,11 +59,11 @@ public with sharing class AccountSearchController {
 			}
 			// Don't show any OTR Columns for a NA Fleet search
 			if (!otrSearch && (c.DeveloperName.equalsIgnoreCase('CarrierId') ||
-					           c.DeveloperName.equalsIgnoreCase('CompanyName') ||
-					           c.DeveloperName.equalsIgnoreCase('MemberID') ||
-					           c.DeveloperName.equalsIgnoreCase('PhoneNumber') ||
-					           c.DeveloperName.equalsIgnoreCase('ARNumber') ||
-							   c.DeveloperName.equalsIgnoreCase('Platform')
+					c.DeveloperName.equalsIgnoreCase('CompanyName') ||
+					c.DeveloperName.equalsIgnoreCase('MemberID') ||
+					c.DeveloperName.equalsIgnoreCase('PhoneNumber') ||
+					c.DeveloperName.equalsIgnoreCase('ARNumber') ||
+					c.DeveloperName.equalsIgnoreCase('Platform')
 			)){
 				addColumn = false;
 			}
@@ -87,10 +90,10 @@ public with sharing class AccountSearchController {
 				}else if (c.DeveloperName.equalsIgnoreCase('SpnrAcctNbr') && 'Account_Number_OTR'.equals(searchType)){
 					addColumn = true;
 				}if(c.DeveloperName.equalsIgnoreCase('CarrierId') && ('Carrier_ID'.equals(searchType) ||
-				                                                      'Account_Name_OTR'.equals(searchType) ||
-						                                              'Account_Phone_OTR'.equals(searchType) ||
-						                                              'Member_ID'.equals(searchType) ||
-						                                              'AR_Number'.equals(searchType)
+						'Account_Name_OTR'.equals(searchType) ||
+						'Account_Phone_OTR'.equals(searchType) ||
+						'Member_ID'.equals(searchType) ||
+						'AR_Number'.equals(searchType)
 				)){
 					addColumn = true;
 				}
@@ -118,7 +121,7 @@ public with sharing class AccountSearchController {
 		try {
 			if (otrSearch) {
 				// TODO pass back the response with any errors
-                response = searchOTR(searchType, searchKeyword);
+				response = searchOTR(searchType, searchKeyword);
 
 			} else {
 				response = getNaFleetSOAPResponse(request);
@@ -165,7 +168,9 @@ public with sharing class AccountSearchController {
 							if (caseinstvMap.containsKey('wexacctnbr')) {
 								String accNum = (String) caseinstvMap.get('wexacctnbr');
 								String acctRowId = '';
-								if (caseinstvMap.containsKey('acctrowid')) {
+								if (caseinstvMap.containsKey('accountid')) {
+									acctRowId = (String) caseinstvMap.get('accountid');
+								} else if (caseinstvMap.containsKey('acctrowid')) {
 									acctRowId = (String) caseinstvMap.get('acctrowid');
 								}
 								String contactId = '';
@@ -182,7 +187,8 @@ public with sharing class AccountSearchController {
 									carrierId = (String) caseinstvMap.get('carrierid');
 								}
 
-								resultColumns.put(col.Name, accNum + '|' + acctRowId + '|' + contactId + '|' + pdRowId);
+
+								resultColumns.put(col.Name, accNum + '|' + acctRowId + '|' + contactId + '|' + pdRowId + '|'+otrSearch);
 							}
 							else {
 								resultColumns.put(col.Name, '');
@@ -220,6 +226,7 @@ public with sharing class AccountSearchController {
 			insert err;
 
 			System.debug('Error - ' + e.getMessage());
+			System.debug('Error - ' + e.getStackTraceString());
 			srWrapper.errorMessage = e.getMessage();
 		}
 
@@ -227,7 +234,7 @@ public with sharing class AccountSearchController {
 		return srWrapper;
 	}
 
-	private static boolean isOTRSearch(String searchType) {
+	private static Boolean isOTRSearch(String searchType) {
 		if (searchType.equalsIgnoreCase('Check_Number_OTR') ||
 				searchType.equalsIgnoreCase('Money_Code') ||
 				searchType.equalsIgnoreCase('Check_Number') ||
@@ -257,13 +264,13 @@ public with sharing class AccountSearchController {
 		System.debug('searchOTR with searchType:  ' + searchType + ' searchKeyword: ' + searchKeyword);
 
 		// We need to filter and RecordType.Name = 'Fleet Account' accounts otherwise we will get dups in the result list
-		if ('Carrier_ID'.equals(searchType)) {
+		if ('Carrier_ID'.equals(searchType) || 'Member_ID'.equals(searchType) || 'Account_Number_OTR'.equals(searchType)) {
 			try {
 				if (isWildCardSearch) {
 					searchKeyword = searchKeyword.replace('*', '%');
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE RecordType.Name = 'Fleet Account' and Carrier_ID__c LIKE :searchKeyword];
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' and Sponsor_Acct__c LIKE :searchKeyword];
 				} else {
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE RecordType.Name = 'Fleet Account' and Carrier_ID__c = :searchKeyword];
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' and Sponsor_Acct__c = :searchKeyword];
 				}
 			} catch (Exception e) {
 				System.debug('Error - ' + e.getMessage());
@@ -271,21 +278,7 @@ public with sharing class AccountSearchController {
 				return response;
 			}
 
-		} else if('Account_Number_OTR'.equals(searchType)){
-			try {
-				if (isWildCardSearch) {
-					searchKeyword = searchKeyword.replace('*', '%');
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE RecordType.Name = 'Fleet Account' and (Carrier_ID__c like :'9998' + searchKeyword or Carrier_ID__c like :'4000' + searchKeyword or Carrier_ID__c like :'4500' + searchKeyword or Carrier_ID__c like :'9999' + searchKeyword)];
-				} else {
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE RecordType.Name = 'Fleet Account' and (Carrier_ID__c = :'9998' + searchKeyword or Carrier_ID__c = :'4000' + searchKeyword or Carrier_ID__c = :'4500' + searchKeyword or Carrier_ID__c = :'9999' + searchKeyword)];
-				}
-			} catch (Exception e) {
-				System.debug('Error - ' + e.getMessage());
-				response.errorMsg = e.getMessage();
-				return response;
-			}
-
-		}else if('AR_Number'.equals(searchType)){
+		} else if('AR_Number'.equals(searchType)){
 			Set<Id> accountsIds = new Set<Id>();
 			try {
 				if (isWildCardSearch) {
@@ -298,9 +291,9 @@ public with sharing class AccountSearchController {
 				for(Contract__c contract : contractIds){
 					accountsIds.add(contract.Account__c);
 				}
-				accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone,	BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c,(select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), (SELECT AR_Number__c FROM Contracts__r), Platform__c, Program__c FROM Account WHERE RecordType.Name = 'Fleet Account' and Id IN : accountsIds ];
+				accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone,	BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c,(select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), (SELECT AR_Number__c FROM Contracts__r), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' and Id IN : accountsIds ];
 
-				System.debug('Contracts found: ' + accountListService.size());
+				System.debug('Accounts found: ' + accountListService.size());
 
 			} catch (Exception e) {
 				System.debug('Error - ' + e.getMessage());
@@ -312,9 +305,9 @@ public with sharing class AccountSearchController {
 			try {
 				if (isWildCardSearch) {
 					searchKeyword = searchKeyword.replace('*', '%');
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE (RecordType.Name = 'Fleet Account' or RecordType.Name = 'Truckers - Accounts') and Name Like :searchKeyword];
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' and Name Like :searchKeyword];
 				}else {
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE (RecordType.Name = 'Fleet Account' or RecordType.Name = 'Truckers - Accounts') and Name = :searchKeyword];
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' and Name = :searchKeyword];
 				}
 			} catch (Exception e) {
 				System.debug('Error - ' + e.getMessage());
@@ -336,86 +329,81 @@ public with sharing class AccountSearchController {
 			try {
 				if (isWildCardSearch) {
 					searchKeyword = searchKeyword.replace('*', '%');
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE (RecordType.Name = 'Fleet Account' or RecordType.Name = 'Truckers - Accounts') and (Phone LIKE :phoneNumber or Phone LIKE :phoneNumber2)];
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' and (Phone LIKE :phoneNumber or Phone LIKE :phoneNumber2)];
 				}else {
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE (RecordType.Name = 'Fleet Account' or RecordType.Name = 'Truckers - Accounts') and (Phone = :phoneNumber  or Phone = :phoneNumber2)];
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' and (Phone = :phoneNumber  or Phone = :phoneNumber2)];
 				}
 			} catch (Exception e) {
 				System.debug('Error - ' + e.getMessage());
 				response.errorMsg = e.getMessage();
 				return response;
 			}
+			/*  - Commented out as I don't have approval to implement the contact phone search
+			if (accountListService.isEmpty()) {
+				Set<Id> accountsIds = new Set<Id>();
+				List<Contact> contactsByPhone;
+				if (isWildCardSearch) {
+					searchKeyword = searchKeyword.replace('*', '%');
+					contactsByPhone = [SELECT Id, Account.Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND (Phone LIKE :phoneNumber OR Phone LIKE :phoneNumber2)];
+				}else {
+					contactsByPhone = [SELECT Id, Account.Id FROM Contact WHERE RecordType.Name = 'Service Operations' AND (Phone = :phoneNumber OR Phone = :phoneNumber2)];
+				}
+				if (!contactsByPhone.isEmpty()) {
+					for(Contact contact : contactsByPhone){
+						accountsIds.add(contact.Account.Id);
+					}
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' AND Id IN : accountsIds ];
+				}
+			}
+		*/
 
 		}else if('Check_Number'.equals(searchType)){
 			response.errorMsg = 'Check Number search is not yet implemented';
 			return response;
 
-		}else if('Member_ID'.equals(searchType)){
-			try {
-				if (isWildCardSearch) {
-					searchKeyword = searchKeyword.replace('*', '%');
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE (RecordType.Name = 'Fleet Account' or RecordType.Name = 'Truckers - Accounts') and Member_ID__c LIKE :searchKeyword];
-				}else {
-					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c FROM Account WHERE (RecordType.Name = 'Fleet Account' or RecordType.Name = 'Truckers - Accounts') and Member_ID__c = :searchKeyword];
-				}
-			} catch (Exception e) {
-				System.debug('Error - ' + e.getMessage());
-				response.errorMsg = e.getMessage();
-				return response;
-			}
 		}
 
 		for (Account acct : accountListService) {
+			if (!(acct.Acct_Row_Id__c.equals(acct.Id))) { //We no longer want the old, cloned records where the AcctRowId was the Id of the record
 
-			AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
-			String carrierId = acct.Carrier_ID__c;
-			dto1.acctNm = acct.Name;
-			dto1.accountId = acct.Id;
-			//Sneaky hack for OTR - MHB
-			if (!String.isEmpty(acct.Acct_Row_Id__c)) {
+				AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
+				String carrierId = acct.Carrier_ID__c;
+				dto1.acctNm = acct.Name;
+				dto1.accountId = acct.Id;
+				//This was the place where we would assign the Id to Acct_Row_Id__c; not doing that anymore
 				dto1.acctRowId = acct.Acct_Row_Id__c;
-			} else {
-				dto1.acctRowId = acct.Id;
-			}
-			dto1.memberId = acct.Member_ID__c;
-			if(acct.Program__c != null){
-				Program__c programName = [SELECT Name FROM Program__c WHERE Id = :acct.Program__c];
-				dto1.pgmRowId = programName.Name;
-			}
 
-			dto1.wexAcctNbr = acct.Wex_Account__c;
-			String status = acct.Status__c != null ? acct.Status__c : '';
-			dto1.acctSts = status.replace('Member', '');
-			dto1.primaryContactPhoneNbr = acct.Phone;
-			dto1.mainPhone = acct.Phone;
-			if(!isOTRSearch) {
+				dto1.memberId = acct.Member_ID__c;
+				dto1.pgmRowId = acct.Program__r.Service_Program_Name__c;
+
+				dto1.wexAcctNbr = acct.Wex_Account__c;
+				String status = acct.Status__c != null ? acct.Status__c : '';
+				dto1.acctSts = status.replace('Member', '');
+				dto1.primaryContactPhoneNbr = acct.Phone;
+				dto1.mainPhone = acct.Phone;
 				dto1.spnrAcctNbr = acct.Sponsor_Acct__c;
-			}else{
-				if('Account_Number_OTR'.equals(searchType)){
-					carrierId = carrierId.substring(4);
-				}
-				dto1.spnrAcctNbr = carrierId;
-			}
-			dto1.carrierId = carrierId;
-			dto1.platform = acct.Platform__c != null ? acct.Platform__c : 'OTR';
-			if(isOTRSearch){
-				for(Contract__c contract : contractIds){
-					if(contract.Account__c == acct.Id){
-						dto1.arNumber = contract.AR_Number__c;
+				
+				dto1.carrierId = carrierId;
+				dto1.platform = acct.Program__r.WEX_Platform__c != null ? acct.Program__r.WEX_Platform__c : (acct.Platform__c != null ? acct.Platform__c : 'OTR');
+				if (isOTRSearch) {
+					for (Contract__c contract : contractIds) {
+						if (contract.Account__c == acct.Id) {
+							dto1.arNumber = contract.AR_Number__c;
+						}
 					}
 				}
-			}
 
-			dto1.addrCity = acct.BillingCity;
-			dto1.addrStateProvCd = acct.BillingState;
-			for(Contact contact : acct.Contacts){
-				if('PRIMARY'.equals(contact.Contact_Type__c)){
-					dto1.primaryContactNm = contact.Name;
-					dto1.primaryContactPhoneNbr = contact.Phone;
+				dto1.addrCity = acct.BillingCity;
+				dto1.addrStateProvCd = acct.BillingState;
+				for (Contact contact : acct.Contacts) {
+					if ('PRIMARY'.equals(contact.Contact_Type__c)) {
+						dto1.primaryContactNm = contact.Name;
+						dto1.primaryContactPhoneNbr = contact.Phone;
+					}
 				}
-			}
 
-			dtoList.add(dto1);
+				dtoList.add(dto1);
+			}
 		}
 
 		response.accountList = dtoList;
