@@ -181,13 +181,25 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
+    public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString) {
+        //Formula for isOtrAccount taken from older version of code
+        boolean isOtrAccount = false;
+        String newAccountRecordId = accountRecordId;
+        if (String.isEmpty(accountNumber)  && !(isSalesforceId(newAccountRecordId))) {
+            newAccountRecordId = getAccountIdFromAcctRowId(accountRecordId);
+            isOtrAccount = true;
+        }
+        return getCustomerDetails(accountNumber, newAccountRecordId, pdRowIdString, isOtrAccount );
+    }
+
+    @AuraEnabled
     public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString, Boolean isOtrAccount) {
         System.debug('Entering getCustomerDetails for '+accountNumber+','+accountRecordId+','+ pdRowIdString+','+isOtrAccount);
 
         try {
             CustomerDetailsWSUtilv2.customerDetails customerDetails;
             String platform;
-            if (isOtrAccount == false && accountNumber == null && accountRecordId != null && isSalesforceId(accountRecordId)) { //Must be a subtab
+            if ((isOtrAccount == null || isOtrAccount == false) && accountNumber == null && accountRecordId != null && isSalesforceId(accountRecordId)) { //Must be a subtab
                 Account[] accts = [SELECT Id, Acct_Row_Id__c,Wex_Account__c, Platform__c FROM Account WHERE Id =: accountRecordId];
                 if (accts.size() > 0) {
                     accountNumber = accts[0].Wex_Account__c;
@@ -196,7 +208,7 @@ public without sharing class CustomerDetailsController {
                 }
             }
 
-            if (isOtrAccount) {
+            if (isOtrAccount != null && isOtrAccount == true) {
                 accountRecordId = getAccountIdFromAcctRowId(accountRecordId);
                 customerDetails = getOtrCustomerDetails(accountRecordId);
             } else {
@@ -320,8 +332,7 @@ public without sharing class CustomerDetailsController {
             shippingAddress.country = serviceOperationsAccount.ShippingCountry;
             shippingAddress.postalCode = serviceOperationsAccount.ShippingPostalCode;
 
-            customerDetails.billingAddress = billingAddress;
-            customerDetails.shippingAddress = shippingAddress;
+
 
             CustomerDetailsWSUtilv2.contacts contacts = new  CustomerDetailsWSUtilv2.contacts();
             contacts.contacts = getCustomerContactsFromSalesforce(accountId, serviceOperationsAccount.Primary_Contact_TXT__c);
@@ -330,43 +341,83 @@ public without sharing class CustomerDetailsController {
                 if (contact.contactType.equalsIgnoreCase('PRIMARY')) {
                     customerDetails.primaryAddress = contact.address;
                 }
+                else if (shippingAddress.city == null && contact.contactType.equalsIgnoreCase('SHIPPING')) {
+                    shippingAddress.addr1 = contact.address.addr1;
+                    shippingAddress.city = contact.address.city;
+                    shippingAddress.state = contact.address.state;
+                    shippingAddress.country = contact.address.country;
+                    shippingAddress.postalCode = contact.address.postalCode;
+                }
+                else if (billingAddress.city == null && contact.contactType.equalsIgnoreCase('BILLING')) {
+                    billingAddress.addr1 = contact.address.addr1;
+                    billingAddress.city = contact.address.city;
+                    billingAddress.state = contact.address.state;
+                    billingAddress.country = contact.address.country;
+                    billingAddress.postalCode = contact.address.postalCode;
+                }
             }
+            customerDetails.billingAddress = billingAddress;
+            customerDetails.shippingAddress = shippingAddress;
         }
         return customerDetails;
     }
 
     @AuraEnabled
-    public static List<CustomerDetailsWSUtilv2.contact> getCustomerContactsFromSalesforce(Id accountId, String primaryContactRowId) {
-        System.debug('*** Called getCustomerContactsFromSalesforce with acct '+ accountId + ' and primaryContact '+primaryContactRowId);
+    public static List<CustomerDetailsWSUtilv2.contact> getCustomerContactsFromAnywhere(String accountNumber, String accountId, String primaryContactRowId) {
+        List<CustomerDetailsWSUtilv2.contact> returnList = new List<CustomerDetailsWSUtilv2.contact>();
+        Account acct;
+        if (isSalesforceId(accountId)) {
+            List<Account> accountList = [SELECT Id, Platform__c, Wex_Account__c FROM Account WHERE Id =: accountId];
+            if (accountList.size() > 0) {
+                acct = accountList[0];
+            }
+        } else if (!(String.isEmpty(accountNumber))) {
+            List<Account> accountList = [SELECT Id, Platform__c, Wex_Account__c FROM Account WHERE (Wex_Account__c =: accountNumber OR Sponsor_Acct__c =: accountNumber)];
+            if (accountList.size() > 0) {
+                acct = accountList[0];
+            }
+        }
+
+        if (acct != null) {
+            if (isExternalPlatform(acct.Platform__c)) {
+                returnList = CustomerDetailsController.getCustomerContacts(acct.Wex_Account__c);
+            } else {
+                returnList = CustomerDetailsController.getCustomerContactsFromSalesforce(accountId, primaryContactRowId);
+            }
+        }
+        return returnList;
+    }
+
+    @AuraEnabled
+    public static List<CustomerDetailsWSUtilv2.contact> getCustomerContactsFromSalesforce(Id accountId, String pPrimaryContactRowId) {
+        System.debug('*** Called getCustomerContactsFromSalesforce with acct '+ accountId + ' and primaryContact '+pPrimaryContactRowId);
         List<CustomerDetailsWSUtilv2.contact> contactList = new List<CustomerDetailsWSUtilv2.contact>();
         if (!String.isEmpty(accountId)) {
-            List<Contact> rawContactList = [SELECT Id, Contact_Row_Id__c, WEX_Contact_ID__c, FirstName, LastName, Email, Fax, Phone, Contact_Type__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode, AccountId  FROM Contact WHERE AccountId =:accountId];
+            Account acct;
+            String adminContactId = '';
+            String billingContactId = '';
+            String mailingContactId = '';
+            String shippingContactId = '';
+            String primaryContactId = '';
+
+
+            List<Contact> rawContactList = [SELECT Id, Contact_Row_Id__c, WEX_Contact_ID__c, FirstName, LastName, Email, Fax, Phone, Contact_Type__c, MailingStreet, MailingCity, MailingState, MailingCountry, MailingPostalCode, AccountId  FROM Contact WHERE AccountId =:accountId AND Status__c = 'Active'];
+            List<Account> accountList = [SELECT Id, Admin_Contact_TXT__c, Billing_Contact_TXT__c, Mailing_Contact_TXT__c, Primary_Contact_TXT__c, Shipping_Contact_TXT__c FROM Account WHERE Id =: accountId];
+            if (accountList.size() > 0)  {
+                acct = accountList[0];
+                adminContactId = ( !(String.isEmpty(acct.Admin_Contact_TXT__c )) ?acct.Admin_Contact_TXT__c : '*** NO VALUE ***');
+                billingContactId = (!(String.isEmpty(acct.Billing_Contact_TXT__c )) ?acct.Billing_Contact_TXT__c : '*** NO VALUE ***');
+                mailingContactId = (!(String.isEmpty(acct.Mailing_Contact_TXT__c )) ?acct.Mailing_Contact_TXT__c : '*** NO VALUE ***');
+                shippingContactId = (!(String.isEmpty(acct.Shipping_Contact_TXT__c )) ?acct.Shipping_Contact_TXT__c : '*** NO VALUE ***');
+                //primary defaults first to the value passed in, then the one on the account record (should be the same), then empty
+                primaryContactId = (!(String.isEmpty(pPrimaryContactRowId )) ? pPrimaryContactRowId : !(String.isEmpty(acct.Primary_Contact_TXT__c )) ?acct.Primary_Contact_TXT__c : '*** NO VALUE ***');
+            }
+
             CustomerDetailsWSUtilv2.contact newContact;
             for (Contact rawContact : rawContactList) {
+                Boolean contactAdded = false;
                 newContact = new CustomerDetailsWSUtilv2.contact();
-                //newContact.role = 'CONTACT';
-                System.debug('*** Contact record ID='+rawContact.Id);
-
-                if (rawContact.Contact_Row_Id__c != null && (rawContact.Contact_Row_Id__c.equals(primaryContactRowId) || rawContact.Contact_Type__c.equals('PRIMARY'))) {
-                    newContact.contactType = 'PRIMARY';
-                    newContact.role = 'PRIMARY';
-                    System.debug('*** Primary contact identified: ' + primaryContactRowId);
-                }
-
-                if (newContact.contactType != 'PRIMARY') {
-                    if (rawContact.Contact_Type__c.equals('BILLING')) {
-                        newContact.contactType = 'BILLING';
-                        newContact.role = 'BILLING';
-                    } else if (rawContact.Contact_Type__c.equals('SHIPPING')) {
-                        newContact.contactType = 'SHIPPING';
-                        newContact.role = 'SHIPPING';
-                    } else if (rawContact.Contact_Type__c.equals('Accounts Payable')) {
-                        newContact.contactType = 'ACCOUNTS PAYABLE';
-                        newContact.role = 'ACCOUNTS PAYABLE';
-                    } else
-                        newContact.contactType = 'CONTACT';
-                }
-
+                newContact.contactType = 'CONTACT';
                 newContact.emailAddr = rawContact.Email;
                 newContact.faxNbr = rawContact.Fax;
                 newContact.firstNm = rawContact.FirstName;
@@ -386,8 +437,41 @@ public without sharing class CustomerDetailsController {
                 address.postalCode = rawContact.MailingPostalCode;
 
                 newContact.address = address;
-                System.debug(newContact);
-                contactList.add(newContact);
+                //newContact.role = 'CONTACT';
+                System.debug('*** Contact record ID='+rawContact.Id);
+                String rawContactType = (rawContact.Contact_Type__c != null ? rawContact.Contact_Type__c : 'CONTACT');
+                String rawContactRowId = (rawContact.Contact_Row_Id__c != null ? rawContact.Contact_Row_Id__c : '');
+
+                if ((!(String.isEmpty(primaryContactId)) && rawContactRowId.equals(primaryContactId)) ||( rawContactType.equals('PRIMARY'))) {
+                    contactList.add(cloneContact(newContact,'PRIMARY'));
+                    contactAdded = true;
+                    System.debug('*** Primary contact identified: ' + pPrimaryContactRowId);
+                }
+
+                if (rawContactType.equalsIgnoreCase('BILLING') || rawContactRowId.equals(billingContactId)) {
+                    contactList.add(cloneContact(newContact,'BILLING'));
+                    contactAdded = true;
+                }
+                if (rawContactType.equalsIgnoreCase('SHIPPING') || rawContactRowId.equals(shippingContactId)) {
+                    contactList.add(cloneContact(newContact,'SHIPPING'));
+                    contactAdded = true;
+                }
+                if (rawContactType.equalsIgnoreCase('Accounts Payable')) {
+                    contactList.add(cloneContact(newContact,'ACCOUNTS PAYABLE'));
+                    contactAdded = true;
+                }
+                if (rawContactType.equalsIgnoreCase('MAILING') || rawContactRowId.equals(mailingContactId)) {
+                    contactList.add(cloneContact(newContact,'MAILING'));
+                    contactAdded = true;
+                }
+                if (rawContactType.equalsIgnoreCase('ADMIN') || rawContactRowId.equals(adminContactId)) {
+                    contactList.add(cloneContact(newContact,'ADMIN'));
+                    contactAdded = true;
+                }
+                if (contactAdded == false) {
+                    newContact.contactType = 'CONTACT';
+                    contactList.add(newContact);
+                }
             }
         }
         return contactList;
@@ -1419,6 +1503,28 @@ public without sharing class CustomerDetailsController {
             return false;
         }
         return (Pattern.matches('[A-Za-z0-9]+',testId));
+    }
+
+    private static CustomerDetailsWSUtilv2.contact cloneContact(CustomerDetailsWSUtilv2.contact pContact, String newRole) {
+        CustomerDetailsWSUtilv2.contact newContact = new CustomerDetailsWSUtilv2.contact();
+        newContact.emailAddr = pContact.emailAddr;
+        newContact.faxNbr = pContact.faxNbr;
+        newContact.firstNm = pContact.firstNm;
+        newContact.lastNm = pContact.lastNm;
+        newContact.phoneNbr = pContact.phoneNbr;
+        newContact.rowId = pContact.rowId ;
+
+        newContact.address = pContact.address;
+
+        newContact.contactType = pContact.contactType;
+        if (!String.isEmpty(newRole)) {
+            newContact.contactType = newRole.toUpperCase();
+            newContact.role = ('CONTACT'.equalsIgnoreCase(newRole) ? null : newRole.toUpperCase() );
+        } else {
+            newContact.contactType = pContact.contactType;
+            newContact.role = pContact.role;
+        }
+        return newContact;
     }
 
     private static String logError(Exception e) {

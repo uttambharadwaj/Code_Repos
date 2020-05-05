@@ -239,9 +239,10 @@
 
 
 
-        if (useSalesforce === true) {
-            action = component.get("c.getCustomerContactsFromSalesforce");
+        if (useSalesforce === true) { //Still may not really be true; do final check in Apex
+            action = component.get("c.getCustomerContactsFromAnywhere");
             action.setParams({
+                accountNumber : accountNumber,
                 accountId : idToUse,
                 primaryContactRowId: component.get("v.customerPrimaryContact.rowId")
             });
@@ -879,7 +880,9 @@
 
     loadInvoices : function(component, target) {
 
-        if (component.get("v.isOtrAccount")) { return; }
+        if (component.get("v.isOtrAccount") && component.get("v.isOtrAccount").toUpperCase()==="TRUE") {
+            console.log("OTR account; returning no invoices");
+            return; }
 
         var action = component.get("c.getInvoices");
 

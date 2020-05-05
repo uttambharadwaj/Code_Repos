@@ -44,6 +44,7 @@ public class CustomerDetailsTest {
             genericPartnerId = partner.Id;
 
             Program__c program = new Program__c();
+            Id serviceOpsProgramRecordTypeId = Schema.SObjectType.Program__c.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
 
             program.Name = 'WEXGeneric';
             program.Form_Template__c = 'WEXGeneric';
@@ -63,23 +64,11 @@ public class CustomerDetailsTest {
             program.Brand_Color_2__c = '#fff';
             program.Siebel_Program_Row_Id__c = programRowId;
             program.Partner__c = genericPartnerId;
+            program.RecordTypeId = serviceOpsProgramRecordTypeId;
+
 
             insert program;
             genericProgramId = program.Id;
-        }
-
-        if (genericPartnerId == null) {
-            Partner__c partner = new Partner__c();
-            partner.Name = 'WEXGeneric';
-
-            insert partner;
-
-            genericPartnerId = partner.Id;
-
-            Program__c program = [SELECT Id, Partner__c FROM Program__c WHERE Id =: genericProgramId];
-            program.Partner__c = genericPartnerId;
-            update program;
-
         }
 
         Id accountId =  CustomerDetailsController.upsertAccount(jsonAccountString);
@@ -158,6 +147,9 @@ public class CustomerDetailsTest {
         parentOtrAccount.ShippingCountry = 'USA';
         parentOtrAccount.ShippingPostalCode = '04106';
         parentOtrAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
+        parentOtrAccount.Program__c = genericProgramId;
+        parentOtrAccount.Platform__c = 'EFSLLC';
+        parentOtrAccount.Acct_Row_Id__c = 'EFSLLC-123456';
 
         otrAccount.Sponsor_Acct__c = '123457';
 
@@ -180,6 +172,14 @@ public class CustomerDetailsTest {
         otrAccount.ShippingPostalCode = '04106';
         otrAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
         otrAccount.ParentId = parentOtrAccountId;
+        otrAccount.Program__c = genericProgramId;
+        otrAccount.Platform__c = 'EFSLLC';
+        otrAccount.Acct_Row_Id__c = 'EFSLLC-123457';
+        otrAccount.Primary_Contact_TXT__c = 'EFSLLC-123457-0001';
+        otrAccount.Admin_Contact_TXT__c = 'EFSLLC-123457-0002';
+        otrAccount.Billing_Contact_TXT__c = 'EFSLLC-123457-0002';
+        otrAccount.Shipping_Contact_TXT__c = 'EFSLLC-123457-0002';
+        otrAccount.Mailing_Contact_TXT__c = 'EFSLLC-123457-0002';
 
         otrAccount.Sponsor_Acct__c = '123456';
 
@@ -202,10 +202,29 @@ public class CustomerDetailsTest {
         otrContact.Phone = '207-773-8171';
         otrContact.AccountId = otrAccountId;
         otrContact.Contact_Type__c = 'PRIMARY';
+        otrContact.Contact_Row_Id__c = 'EFSLLC-123457-0001';
         insert otrContact;
-        Id otrContactId = otrContact.Id;
-        otrContact.Contact_Row_Id__c = otrContactId;
-        update otrContact;
+
+        Contact otrContact1 = new Contact();
+        otrContact1.RecordTypeId = serviceOpsContactRecordTypeId;
+        otrContact1.FirstName = 'Generic';
+        otrContact1.LastName = 'Servant';
+        otrContact1.Phone = '207-773-8171';
+        otrContact1.AccountId = otrAccountId;
+        otrContact1.Contact_Type__c = 'Accounts Payable';
+        otrContact1.Contact_Row_Id__c = 'EFSLLC-123457-0002';
+        insert otrContact1;
+
+        Contact otrContact2 = new Contact();
+        otrContact2.RecordTypeId = serviceOpsContactRecordTypeId;
+        otrContact2.FirstName = 'Generic';
+        otrContact2.LastName = 'Serf';
+        otrContact2.Phone = '207-773-8171';
+        otrContact2.AccountId = otrAccountId;
+        otrContact2.Contact_Row_Id__c = 'EFSLLC-123457-0003';
+        insert otrContact2;
+
+
 
         List<Contact> otrContacts = [SELECT Id, FirstName, LastName, Contact_Type__c, Phone, Contact_Row_Id__c, AccountId FROM Contact WHERE AccountId =: otrAccountId];
         Contact contact;
@@ -215,7 +234,7 @@ public class CustomerDetailsTest {
 
         System.debug('### parentOtrAccountId = '+parentOtrAccountId);
         System.debug('### otrAccountId = '+otrAccountId);
-        System.debug('### otrContactId = '+otrContactId);
+
 
     }
 
@@ -276,7 +295,7 @@ public class CustomerDetailsTest {
 
             System.assert(customerDetails.pdAsset == null);
 
-            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts(accountNumberToTest);
+            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContactsFromAnywhere(accountNumberToTest,null,null);
 
             CustomerDetailsWSUtilv2.agingHistory agingHistory = CustomerDetailsController.getAgingHistory(accountNumberToTest);
 
@@ -349,7 +368,7 @@ public class CustomerDetailsTest {
 
             System.assert(customerDetails.pdAsset.wexAcctNbr == accountNumberToTest);
 
-            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts(accountNumberToTest);
+            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContactsFromAnywhere(accountNumberToTest,null,null);
 
             CustomerDetailsWSUtilv2.agingHistory agingHistory = CustomerDetailsController.getAgingHistory(accountNumberToTest);
 
@@ -417,7 +436,7 @@ public class CustomerDetailsTest {
             System.assert(CustomerDetailsController.genericProgram != null);
 
             CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(accountNumberToTest,null,null,false);
-            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts(accountNumberToTest);
+            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContactsFromAnywhere(accountNumberToTest,null,null);
 
             Id caseRecordTypeId = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
 
@@ -619,10 +638,27 @@ public class CustomerDetailsTest {
 
             System.assert(customerDetails.pdAsset == null);
 
-            List<CustomerDetailsWSUtilv2.contact> contacts = customerDetails.contacts.contacts;
-            Id contactRowId = null;
+            List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContactsFromAnywhere(null,serviceAccountId,null);
+            String contactRowId = null;
             if (contacts.size() > 0) {
                 contactRowId = contacts[0].rowId;
+            }
+            System.assert(contacts.size() == 7, 'Improper number of contacts detected: '+contacts.size()); //Should be one for each role except AP, plus one unassigned
+            for (CustomerDetailsWSUtilv2.contact ct : contacts) {
+                if (ct.role == null  && !('CONTACT'.equalsIgnoreCase(ct.contactType))) {
+                    System.debug('*** NULL ROLE DETECTED!');
+                    System.debug('RowId = '+ct.rowId);
+                    System.debug('ContactType = '+ct.contactType);
+                    System.assert(false, 'Null role detected!');
+                }
+
+                if ('PRIMARY'.equalsIgnoreCase(ct.role)) {
+                    System.assert('EFSLLC-123457-0001'.equals(ct.rowId), 'Bad Primary Contact Detected! :'+ct.rowId);
+                }
+                else if ('ADMIN'.equalsIgnoreCase(ct.role)) {
+                    System.assert('EFSLLC-123457-0002'.equals(ct.rowId), 'Bad Admin Contact Detected! :'+ct.rowId);
+                }
+                System.debug(ct);
             }
 
             List<CustomerDetailsWSUtilv2.authLogRecord> declinedAuths = CustomerDetailsController.getRecentDeclinedAuths(carrierIdToTest, 'OTR');
@@ -692,7 +728,7 @@ public class CustomerDetailsTest {
 
             try {
 
-                List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContacts('0000');
+                List<CustomerDetailsWSUtilv2.contact> contacts = CustomerDetailsController.getCustomerContactsFromAnywhere('0000',null,null);
 
             }
             catch(Exception e) {
