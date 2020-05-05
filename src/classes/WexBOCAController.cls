@@ -141,6 +141,13 @@ public class WexBOCAController {
         }
     }
 
+    // Get the Merchant Facility Number
+    public String merchantFacilityNumber {
+        get {
+            return ApexPages.currentPage().getParameters().get('merchantFacilityNumber');
+        }
+    }
+
     public Id optyId {
         get {
             if (ApexPages.currentPage().getParameters().get('optyId') != null) {
@@ -975,6 +982,7 @@ public class WexBOCAController {
             if(salesRep != null) { creditApp.salesRep__c = salesRep.Id; }
 
             creditApp.Group_Code__c = groupCode;
+            if (merchantFacilityNumber != null && merchantFacilityNumber.length() < 15) creditApp.Merchant_Facility_Number__c = merchantFacilityNumber;
 
             // Set the PG flag if it is true
             if(isPG) {
