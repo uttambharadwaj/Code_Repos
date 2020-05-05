@@ -205,7 +205,6 @@ global class CreditWS_CreditLens {
                 creditLensRequest.Division = 'Fleet';
                 creditLensRequest.CreditPortfolio = 'WexBank';
                 creditLensRequest.WexCreditInformationOn = naApp.Financials_Completed_For__c;
-//                if (naApp.Billing_Cycle__c != null) creditLensRequest.BillingCycle = naApp.Billing_Cycle__c;
 //                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //todo can't send until they figure out the dropdown values in CL
                 if (naApp.Requested_Credit_Limit__c != null) creditLensRequest.WexRequestCreditLineAmount = naApp.Requested_Credit_Limit__c;
                 if (naApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexRecommendedCreditLine = String.valueOf(naApp.Credit_Line_Recommendation__c);
@@ -244,7 +243,7 @@ global class CreditWS_CreditLens {
                 if (naApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = naApp.Security_Type__c;
                 if (naApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = naApp.Security_Currency__c;
                 if (naApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(naApp.Security_Expiration_Date__c);
-                creditLensRequest.OnList = 'N/A'; // required for integration so setting default
+                creditLensRequest.OnList = '4'; //required for integration, so setting the default of 4 which maps to N/A
                 creditLensRequest.BillingCycle = 'Monthly'; // required for integration but NA Fleet does not set this field, this is the requested default
 
                 //todo mappings for SIC Code
@@ -413,7 +412,7 @@ global class CreditWS_CreditLens {
                 if (cpApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = cpApp.Security_Type__c;
                 if (cpApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = cpApp.Security_Currency__c;
                 if (cpApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(cpApp.Security_Expiration_Date__c);
-                creditLensRequest.OnList = 'N/A'; //required for integration, so setting the default
+                creditLensRequest.OnList = '4'; //required for integration, so setting the default of 4 which maps to N/A
 
                 //todo mappings for SIC Code
 //                if (cpApp.SIC_Code__c != null) {
