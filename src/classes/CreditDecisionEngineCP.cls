@@ -5,6 +5,7 @@
 * Author: Derek Gilbert
 * Initial Date: 3/26/2018
 * Revision History: 3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
+*                    5/4/2020: Release 20.09: EAPT-1618: Added a check for Legal Structure vs Company Name
 */
 global class CreditDecisionEngineCP {
 
@@ -43,8 +44,18 @@ global class CreditDecisionEngineCP {
 
             cpApplication.Running_Credit_Decisioning__c = true;
 
+            // Check for Legal Structure Matching Company Name for US as a Physical Country
+            // EAPT - 1618
+
+            if (cpApplication.Physical_Country__c == 'US' && null != cpApplication.Company_Legal_Name__c && null != cpApplication.Legal_Structure__c){
+
+                System.debug('Checking for Legal Structure Issues...');
+
+                cpApplication.Legal_Name_Matches_Company_Name__c = CreditWs_Utils.checkLegalStructure(cpApplication.Company_Legal_Name__c, cpApplication.Legal_Structure__c);
+            }
+
             // ThreatMetrix
-            System.debug('Running ThreamMetrix...');
+            System.debug('Running ThreatMetrix...');
             if ((cpApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {
 
                 // If the application hasn't yet been integrated
