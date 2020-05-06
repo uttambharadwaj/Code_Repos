@@ -1,4 +1,4 @@
-/*
+/**
  * Created by dgilbert on 10/18/2018.
  * Revision History: 5/4/2020: Release 20.09: EAPT-1618: Added a method to check for Legal Structure vs Company Name - Uttam Bharadwaj
  *
@@ -27,6 +27,10 @@ public with sharing class CreditWS_Utils {
     public static Boolean checkLegalStructure(String companyName, String legalStructure) {
 
         // Check for LLC
+        //
+
+        System.debug('####' + companyName + '  ###' + legalStructure);
+
         if (
                 ((companyName.endsWithIgnoreCase(' LLC')) || (companyName.endsWithIgnoreCase(' L.L.C.'))
                         || (companyName.endsWithIgnoreCase(' L.L.C')))
@@ -64,7 +68,7 @@ public with sharing class CreditWS_Utils {
         if (
                 ((companyName.endsWithIgnoreCase(' Association')) || (companyName.endsWithIgnoreCase(' Associated')) ||
                         (companyName.endsWithIgnoreCase(' Assoc')))
-                        && (legalStructure != 'Corporation/Association')
+                        && (legalStructure != 'Corporation/Association') && (!companyName.containsIgnoreCase('Unincorporated Association'))
                 ) {
             return false;
         }
@@ -152,7 +156,7 @@ public with sharing class CreditWS_Utils {
 
         // Check for Sole Proprietorship
         if (
-                ((companyName.endsWithIgnoreCase('Sole Prop')) || (companyName.endsWithIgnoreCase('Sole Proprietorship')))
+                ((companyName.endsWithIgnoreCase('Sole Prop')) || (companyName.containsIgnoreCase('Sole Proprietorship')))
                         && (legalStructure != 'Sole Proprietorship')
                 ) {
             return false;

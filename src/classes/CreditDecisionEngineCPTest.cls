@@ -53,10 +53,6 @@ public class CreditDecisionEngineCPTest {
 
         insert program;
 
-        onlineApplicationOffer.Program__c = program.Id;
-
-        upsert onlineApplicationOffer;
-
         // Setup Attachments
         Attachment cardImage = new Attachment();
         cardImage.Name = 'ui-credit-card.png';
@@ -188,6 +184,43 @@ public class CreditDecisionEngineCPTest {
                 Test.stopTest();
 
             }
+
+        }
+
+    }
+
+    static testMethod void testLegalStructureMatching(){
+
+        List<CP_Application_Request__c> cpApplications = [SELECT Id FROM CP_Application_Request__c];
+
+        if (cpApplications.size() > 0) {
+
+            cpApplications[0].Company_Legal_Name__c = 'Mind LLC';
+            cpApplications[0].Legal_Structure__c = 'Limited Liability Company';
+
+
+
+            Boolean cp = CreditWS_Utils.checkLegalStructure(cpApplications[0].Company_Legal_Name__c, cpApplications[0].Legal_Structure__c);
+            System.assertEquals( true, cp);
+
+            cpApplications[0].Company_Legal_Name__c = 'Mind LLC';
+            cpApplications[0].Legal_Structure__c = 'Federal/State/Local Government Agency or Authority';
+
+
+
+            cp = CreditWS_Utils.checkLegalStructure(cpApplications[0].Company_Legal_Name__c, cpApplications[0].Legal_Structure__c);
+            System.assertEquals( false, cp);
+
+
+            cpApplications[0].Company_Legal_Name__c = 'Test Unincorporated Association';
+            cpApplications[0].Legal_Structure__c = 'Federal/State/Local Government Agency or Authority';
+
+
+
+            cp = CreditWS_Utils.checkLegalStructure(cpApplications[0].Company_Legal_Name__c, cpApplications[0].Legal_Structure__c);
+            System.assertEquals( false, cp);
+
+
 
         }
 
