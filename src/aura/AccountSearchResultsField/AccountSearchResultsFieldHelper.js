@@ -1,4 +1,5 @@
 ({
+    //This method is deprecated - MHB 4/17/2020 OTR Data Project
     cloneOTRAccountIfNeeded: function (component) {
         var accountNumber = component.get("v.accountNumber");
         var accountRowId = component.get("v.accountRowId");
@@ -51,8 +52,8 @@
                     "c__accountRowId": component.get("v.accountRowId"),
                     "c__contactRowId": component.get("v.contactRowId"),
                     "c__pdRowId": component.get("v.pdRowId"),
-                    "c__caseId": component.get("v.caseId")
-                }
+                    "c__caseId": component.get("v.caseId"),
+                    "c__isOtrSearch": component.get("v.isOtrSearch")               }
             },
             focus: true
         }).catch(function(error) {

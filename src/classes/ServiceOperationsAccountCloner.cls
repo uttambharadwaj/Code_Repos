@@ -36,6 +36,9 @@ global with sharing class ServiceOperationsAccountCloner {
     @AuraEnabled
     public static Id cloneAccountAndContacts(Id otrAccountId) {
         System.debug('*** Entering ServiceOperationsAccountCloner.cloneAccountAndContacts for Id: ' + otrAccountId);
+        if (!Test.isRunningTest()) {
+            throw new IllegalArgumentException('Entered Account Cloning Process when we shouldn\'t do this anymore!');
+        }
         Id serviceOperationsAccountId;
         try {
             serviceOperationsAccountId = cloneAccount(otrAccountId);
