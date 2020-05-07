@@ -172,7 +172,7 @@ public class CreditWS_DNB {
                     parameterStrings.put('candidateMaximumQuantity', '1');
                 }
 
-                clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/cleanseMatch?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
+                clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/sbfe?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
                 clenseAndMatchRequest.setTimeout(120000); //IADJUDICAT-739 make them wait as long as possible. bc everyone needs a little break now and then
 
                 Http cleanseRequestCallout = new Http();
@@ -197,6 +197,7 @@ public class CreditWS_DNB {
                         DNBDirect_MatchCandidate matchCandidate = new DNBDirect_MatchCandidate();
 
                         if (result.duns != null) matchCandidate.DUNSNumber = result.duns;
+                        if (result.subjectID != null) matchCandidate.AGN = result.subjectID;
                         if (result.primaryName != null) matchCandidate.OrganizationName = result.primaryName;
                         if (result.PrimaryAddress.streetAddress.line1 != null) matchCandidate.StreetAddressLine = result.PrimaryAddress.streetAddress.line1;
                         if (result.PrimaryAddress.streetAddress.line2 != null) matchCandidate.StreetAddressLine2 = result.PrimaryAddress.streetAddress.line2;
@@ -1784,6 +1785,7 @@ public class CreditWS_DNB {
             get;
             set;
         }
+        public String AGN { get; set; }
         public String DUNSNumber { get; set; }
         public String StreetAddressLine {
             get;

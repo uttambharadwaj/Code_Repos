@@ -16,6 +16,7 @@ public class CreditWSUtil_DNBDirect_Match {
 
     public class Organization {
         public String duns;
+        public String subjectID;
         public List<WebsiteAddress> websiteAddress;
         public DunsControlStatus dunsControlStatus;
         public String primaryName;
