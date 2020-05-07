@@ -1,11 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Salesforce Bi-Weekly Production Release 9/12/19</fullName>
     <description>https://docs.google.com/document/d/1v_nlxKmDrm8kLSjKesPjjt7qnpB9AEFUKirkq16qZd8/edit</description>
     <types>
         <members>DataLoaderBatch</members>
         <members>OpportunityTriggerTest</members>
         <members>TestClassDispatcher</members>
+        <members>AULeadAccountSearchController</members>
+        <members>AccountMaintenanceController</members>
+        <members>AccountMaintenanceControllerTest</members>
+        <members>CreditDecisionEngineNA</members>
+        <members>CreditDecisionEngineOTR</members>
+        <members>CreditDecisionEngineCP</members>
+        <members>CreditDecisionEngineTest</members>
+        <members>CreditUtil_CalculateCreditLine</members>
+        <members>CreditWS_DNB</members>
+        <members>FleetAccountMaintenanceWS_Main</members>
+        <members>FleetAccountMaintenanceWS_Main_Mock</members>
+        <members>FleetAccountMaintenaneWS_MainTest</members>
+        <members>LeadAfterDeleteTriggerHandler</members>
+        <members>LeadAfterInsertTriggerHandler</members>
+        <members>LeadAfterUpdateTriggerHandler</members>
+        <members>LeadBeforeInsertTriggerHandler</members>
+        <members>LeadBeforeUpdateTriggerHandler</members>
+        <members>LeadHelper</members>
+        <members>LeadTriggerDispatcher</members>
+        <members>MCConnector</members>
+        <members>MCConnectorTest</members>
+        <members>MCData</members>
+        <members>MCResponse</members>
+        <members>MCTriggeredEmailController</members>
+        <members>MCTriggeredEmailControllerTest</members>
+        <members>ReferralLeadController</members>
+        <members>ReferralLeadControllerTest</members>
+        <members>TestDataFactory</members>
+        <members>WebDAMConnector</members>
+        <members>WebDAMConnectorAuthResponse</members>
+        <members>WebDAMConnectorTest</members>
+        <members>WebDAMSync</members>
+        <members>WebDAMSyncTest</members>
+        <members>Wex_AccountValidation</members>
+        <members>Wex_AccountValidation_Test</members>
+        <members>WexBOCAController</members>
+        <members>i2iGetMC</members>
+        <members>i2iGetMC_CalloutTest</members>
+        <members>i2iGetMC_Test</members>
+        <members>RevenueRange</members>
+        <members>LWC_TasksController</members>
+        <members>LWC_TasksControllerTest</members>
+        <members>SweepsBatch</members>
+        <members>SweepsBatchService</members>
+        <members>SweepsBathServiceTest</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -17,6 +61,28 @@
         <members>Test_Data_Configuration.Test_Data_Campaign_2</members>
         <members>Test_Data_Configuration.Test_Data_Default_Campaigns</members>
         <members>Test_Data_Configuration.Test_Data_Global_Settings</members>
+        <members>MC_Triggered_Email.test</members>
+        <members>MC_Triggered_Email_Key.JamesTriggeredSend</members>
+        <members>Search_Tool_Mapping.City</members>
+        <members>Search_Tool_Mapping.Company</members>
+        <members>Search_Tool_Mapping.Country</members>
+        <members>Search_Tool_Mapping.CouponCode</members>
+        <members>Search_Tool_Mapping.EmailAddress</members>
+        <members>Search_Tool_Mapping.FirstName</members>
+        <members>Search_Tool_Mapping.LastName</members>
+        <members>Search_Tool_Mapping.LeadNumber</members>
+        <members>Search_Tool_Mapping.Phone</members>
+        <members>Search_Tool_Mapping.PostalCode</members>
+        <members>Search_Tool_Mapping.State</members>
+        <members>Search_Tool_Mapping.Street</members>
+        <members>Search_Tool_Mapping.i2i_Contact_ID_c</members>
+        <members>Search_Tool_Mapping.i2i_id_c</members>
+        <members>Search_Tool_Source.Marketing_Cloud</members>
+        <members>Search_Tool_Source.Quick_Pivot</members>
+        <members>MC_Triggered_Email.Application_Fuel_Card</members>
+        <members>MC_Triggered_Email.Application_Revolver_Application</members>
+        <members>MC_Triggered_Email_Key.Application_Request_Fuel_Card</members>
+        <members>MC_Triggered_Email_Key.Application_Request_Revolver_Applicati</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -29,7 +95,57 @@
         <members>Test_Data_Global_Settings</members>
         <members>Test_Data_Opportunity</members>
         <members>Test_Data_Program</members>
+        <members>Test_Data_Case</members>
+        <members>Test_Data_WebDAM_Connector</members>
+        <members>Test_Data_Task</members>
         <name>StaticResource</name>
+    </types>
+    <types>
+        <members>ceNotifier</members>
+        <members>ceEvent</members>
+        <members>AccountMaintenance</members>
+        <members>AccountMaintenanceScreens</members>
+        <members>Wex_AccountValidation</members>
+        <members>Wex_HomePageLogo</members>
+        <name>AuraDefinitionBundle</name>
+    </types>
+    <types>
+        <members>MCTriggeredEmailComponent</members>
+        <members>UploadDocToCreditLens</members>
+        <name>ApexComponent</name>
+    </types>
+    <types>
+        <members>AULeadAccountSearch</members>
+        <members>AccountMaintenance</members>
+        <members>MarketingTriggeredEmail</members>
+        <members>ReferralLead</members>
+        <members>WexBOCA</members>
+        <members>AppRequestMarketingTriggeredEmail</members>
+        <members>UploadDocToCreditLensCP</members>
+        <members>UploadDocToCreditLensNA</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>Search_Tool_Mapping__mdt</members>
+        <members>Search_Tool_Source__mdt</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Search_Tool_Mapping__mdt-Search Tool Mapping Layout</members>
+        <members>Search_Tool_Source__mdt-Search Tool Source Layout</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>Marketing_Cloud_Authorization</members>
+        <members>Marketing_Cloud_Services</members>
+        <name>NamedCredential</name>
+    </types>
+    <types>
+        <members>relatedTaskCreateNew</members>
+        <members>relatedTasksList</members>
+        <members>relatedTasksPagination</members>
+        <members>relatedTasksParent</members>
+        <name>LightningComponentBundle</name>
     </types>
     <version>45.0</version>
 </Package>
