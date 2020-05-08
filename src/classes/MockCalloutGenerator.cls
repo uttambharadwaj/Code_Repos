@@ -39,11 +39,11 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensAuthGoodBody(),headers));
                 }
                 when 'creditLensCreateGood' {
-                 //   String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity' LIMIT  1].Endpoint_URL__c;
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity' LIMIT  1].Endpoint_URL__c;
                     Map<String, String> headers = new Map<String, String>();
                     headers.put('Content-Type', 'application/json');
                     headers.put('Authorization', 'Bearer 123456');
-                    this.requests.put(CREDITLENS_REQUEST_CREATE, new MockRequest(200,'Success',getCreditLensCreateGoodBody(),headers));
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensCreateGoodBody(),headers));
                 }
                 when 'creditLensUploadDoc' {
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Doc_Upload' LIMIT 1].Endpoint_URL__c;
@@ -454,7 +454,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 '            \"WexYearIncorporated\": \"2000\",'+
                 '            \"EstablishmentDate\": \"2000\",'+
                 '            \"RegistrationNumber\": \"TEST\",'+
-                '            \"OnList\": \"N/A\",'+
+                '            \"OnList\": \"4\",'+
                 '            \"WexYearEst\": null,'+
                 '            \"WexYearControl\": null,'+
                 '            \"Descriptions\": null,'+

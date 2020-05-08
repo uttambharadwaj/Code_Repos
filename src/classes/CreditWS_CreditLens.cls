@@ -175,7 +175,7 @@ global class CreditWS_CreditLens {
                             Physical_Zip_Postal_Code__c, Program__c, Physical_Country__c, Fraud_Flag__c, Credit_Line_Recommendation__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c,
                             Program_Name__c, Account_Name__r.AccountNumber, Country_of_Contracting_Entity__c, Country_of_Contracting_Entity_Other__c, Stock_Exchange__c, Stock_Symbol__c, CurrencyIsoCode,
                             Security_Type__c, Security_Currency__c, Security_Expiration_Date__c, Credit_Lens_Entity_ID__c, Credit_Lens_Response__c, App_Signer_Email__c, App_Signer_Name_Text__c, App_Signer_Last_Name_Text__c,
-                            Opportunity__r.OwnerId, Opportunity__r.Sales_Group__c, Control_Year__c
+                            Opportunity__r.OwnerId, Opportunity__r.Sales_Group__c, Control_Year__c, SIC_Code__c
                     FROM Application_Request__c
                     WHERE Id = :appID
             ];
@@ -243,33 +243,32 @@ global class CreditWS_CreditLens {
                 if (naApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = naApp.Security_Type__c;
                 if (naApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = naApp.Security_Currency__c;
                 if (naApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(naApp.Security_Expiration_Date__c);
-                creditLensRequest.OnList = '4'; //required for integration, so setting the default of 4 which maps to N/A
+                creditLensRequest.OnList = '4'; //required for integration, so setting the default which maps to N/A in Credit Lens
                 creditLensRequest.BillingCycle = 'Monthly'; // required for integration but NA Fleet does not set this field, this is the requested default
 
-                //todo mappings for SIC Code
-//                if (cpApp.SIC_Code__c != null) {
-//
-//                    creditLensRequest.IndClassification = 'SIC';
-//
-//                    CreditWS_CLCreateEntityRequest.IndustryCode industryCode = new CreditWS_CLCreateEntityRequest.IndustryCode();
-//                    industryCode.Code = cpApp.SIC_Code__c;
-//                    industryCode.Description = 'Crude petroleum and natural gas';
-//                    industryCode.Keys = new list<String> {'B', '13', cpApp.SIC_Code__c};
-//
-//                    List<CreditWS_CLCreateEntityRequest.IndustrySelection> industrySelections = new List<CreditWS_CLCreateEntityRequest.IndustrySelection>();
-//                    CreditWS_CLCreateEntityRequest.IndustrySelection industrySelection = new CreditWS_CLCreateEntityRequest.IndustrySelection();
-//                    industrySelection.x_new = true;
-//                    industrySelection.Percentage = 1;
-//                    industrySelection.OperationType = 'Create';
-//                    industrySelection.IndustryId = -1;
-//                    industrySelection.Classification = 'SIC';
-//                    industrySelection.IsPrimary = true;
-//                    industrySelection.x_initialRulesExecuted = true;
-//                    industrySelection.IndustryCode = industryCode;
-//
-//                    industrySelections.add(industrySelection);
-//                    creditLensRequest.IndustrySelection = industrySelections;
-//                }
+                if (naApp.SIC_Code__c != null) {
+
+                    creditLensRequest.IndClassification = 'SIC';
+
+                    CreditWS_CLCreateEntityRequest.IndustryCode industryCode = new CreditWS_CLCreateEntityRequest.IndustryCode();
+                    industryCode = mapSICCode(naApp.SIC_Code__c);
+
+                    if (industryCode != null) {
+                        List<CreditWS_CLCreateEntityRequest.IndustrySelection> industrySelections = new List<CreditWS_CLCreateEntityRequest.IndustrySelection>();
+                        CreditWS_CLCreateEntityRequest.IndustrySelection industrySelection = new CreditWS_CLCreateEntityRequest.IndustrySelection();
+                        industrySelection.x_new = true;
+                        industrySelection.Percentage = 1;
+                        industrySelection.OperationType = 'Create';
+                        industrySelection.IndustryId = -1;
+                        industrySelection.Classification = 'SIC';
+                        industrySelection.IsPrimary = true;
+                        industrySelection.x_initialRulesExecuted = true;
+                        industrySelection.IndustryCode = industryCode;
+
+                        industrySelections.add(industrySelection);
+                        creditLensRequest.IndustrySelection = industrySelections;
+                    }
+                }
 
                 //add Applicant as a Contact
                 List<CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit> contacts = new List<CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit>();
@@ -412,32 +411,31 @@ global class CreditWS_CreditLens {
                 if (cpApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = cpApp.Security_Type__c;
                 if (cpApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = cpApp.Security_Currency__c;
                 if (cpApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(cpApp.Security_Expiration_Date__c);
-                creditLensRequest.OnList = '4'; //required for integration, so setting the default of 4 which maps to N/A
+                creditLensRequest.OnList = '4'; //required for integration, so setting the default which maps to N/A in Credit Lens
 
-                //todo mappings for SIC Code
-//                if (cpApp.SIC_Code__c != null) {
-//
-//                    creditLensRequest.IndClassification = 'SIC';
-//
-//                    CreditWS_CLCreateEntityRequest.IndustryCode industryCode = new CreditWS_CLCreateEntityRequest.IndustryCode();
-//                    industryCode.Code = cpApp.SIC_Code__c;
-//                    industryCode.Description = 'Crude petroleum and natural gas';
-//                    industryCode.Keys = new list<String> {'B', '13', cpApp.SIC_Code__c};
-//
-//                    List<CreditWS_CLCreateEntityRequest.IndustrySelection> industrySelections = new List<CreditWS_CLCreateEntityRequest.IndustrySelection>();
-//                    CreditWS_CLCreateEntityRequest.IndustrySelection industrySelection = new CreditWS_CLCreateEntityRequest.IndustrySelection();
-//                    industrySelection.x_new = true;
-//                    industrySelection.Percentage = 1;
-//                    industrySelection.OperationType = 'Create';
-//                    industrySelection.IndustryId = -1;
-//                    industrySelection.Classification = 'SIC';
-//                    industrySelection.IsPrimary = true;
-//                    industrySelection.x_initialRulesExecuted = true;
-//                    industrySelection.IndustryCode = industryCode;
-//
-//                    industrySelections.add(industrySelection);
-//                    creditLensRequest.IndustrySelection = industrySelections;
-//                }
+                if (cpApp.SIC_Code__c != null) {
+
+                    creditLensRequest.IndClassification = 'SIC';
+
+                    CreditWS_CLCreateEntityRequest.IndustryCode industryCode = new CreditWS_CLCreateEntityRequest.IndustryCode();
+                    industryCode = mapSICCode(cpApp.SIC_Code__c);
+
+                    if (industryCode != null) {
+                        List<CreditWS_CLCreateEntityRequest.IndustrySelection> industrySelections = new List<CreditWS_CLCreateEntityRequest.IndustrySelection>();
+                        CreditWS_CLCreateEntityRequest.IndustrySelection industrySelection = new CreditWS_CLCreateEntityRequest.IndustrySelection();
+                        industrySelection.x_new = true;
+                        industrySelection.Percentage = 1;
+                        industrySelection.OperationType = 'Create';
+                        industrySelection.IndustryId = -1;
+                        industrySelection.Classification = 'SIC';
+                        industrySelection.IsPrimary = true;
+                        industrySelection.x_initialRulesExecuted = true;
+                        industrySelection.IndustryCode = industryCode;
+
+                        industrySelections.add(industrySelection);
+                        creditLensRequest.IndustrySelection = industrySelections;
+                    }
+                }
 
                 //add Applicant as a Contact
                 List<CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit> contacts = new List<CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit>();
@@ -912,4 +910,20 @@ global class CreditWS_CreditLens {
         return null;
     }
 
+    private static CreditWS_CLCreateEntityRequest.IndustryCode mapSICCode(String SICCode) {
+
+        CreditWS_CLCreateEntityRequest.IndustryCode industryCode = new CreditWS_CLCreateEntityRequest.IndustryCode();
+
+        try {
+            SIC_Code_Mapping__mdt industryCodeMapping = [SELECT Id, Description__c, Letter_Group__c, Number__c FROM SIC_Code_Mapping__mdt WHERE Label = :SICCode];
+
+            industryCode.Description = industryCodeMapping.Description__c;
+            industryCode.Keys = new list<String> { industryCodeMapping.Letter_Group__c, industryCodeMapping.Number__c, SICCode };
+
+        } catch (Exception e) {
+            System.debug('### ERROR: Error getting SIC Code mappings.');
+            return null;
+        }
+        return industryCode;
+    }
 }
