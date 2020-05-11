@@ -1,0 +1,14 @@
+# Set the default behavior, in case people don't have core.autocrlf set. Illuminated Cloud pulls down LF automatically.
+* text eol=lf
+
+# Explicitly declare text files you want to always be normalized and converted
+# to native line endings on checkout.
+
+# ^There aren't any
+
+# Denote all files that are truly binary and should not be modified.
+*.resource binary
+*.site binary
+*.png binary
+*.jpg binary
+*.gif binary

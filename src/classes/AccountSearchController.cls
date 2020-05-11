@@ -361,6 +361,24 @@ public with sharing class AccountSearchController {
 			response.errorMsg = 'Check Number search is not yet implemented';
 			return response;
 
+		} else if ('Card_Number_OTR'.equals(searchType)) {
+			//Nifty Hack Part 1: T-Chek card numbers are the only ones we have that are 12 digits
+			if(searchKeyword.length() != 12 || !searchKeyword.isNumeric()){
+				//EFS card search will go here
+				response.errorMsg = 'Card Number search is only configured for T-Chek platforms at this time';
+				return response;
+			} else {
+				//Nifty Hack part 2: Account number is the first 5 digits of the T-Chek card number
+				String accountNumber = searchKeyword.left(5);
+				try
+				{
+					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' AND Platform__c IN ('TCHEK','PINNACLE') AND Sponsor_Acct__c = :accountNumber];
+				} catch (Exception e) {
+					System.debug('Error - ' + e.getMessage());
+					response.errorMsg = e.getMessage();
+					return response;
+				}
+			}
 		}
 
 		for (Account acct : accountListService) {
@@ -382,7 +400,7 @@ public with sharing class AccountSearchController {
 				dto1.primaryContactPhoneNbr = acct.Phone;
 				dto1.mainPhone = acct.Phone;
 				dto1.spnrAcctNbr = acct.Sponsor_Acct__c;
-				
+
 				dto1.carrierId = carrierId;
 				dto1.platform = acct.Program__r.WEX_Platform__c != null ? acct.Program__r.WEX_Platform__c : (acct.Platform__c != null ? acct.Platform__c : 'OTR');
 				if (isOTRSearch) {
