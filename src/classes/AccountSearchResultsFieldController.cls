@@ -11,7 +11,7 @@ public with sharing class AccountSearchResultsFieldController {
 
         try {
 
-            if (String.isEmpty(accountNumber) && isSalesforceId(accountRecordId)) {
+            if (isSalesforceId(accountRecordId)) {
                 Id serviceAccountId = ServiceOperationsAccountCloner.cloneAccountAndContacts(accountRecordId);
 
                 System.debug('*** Account Cloner returned Id '+ serviceAccountId + ' for OTR account Id '+ accountRecordId);
