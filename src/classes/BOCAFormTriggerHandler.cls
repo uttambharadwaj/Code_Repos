@@ -420,9 +420,9 @@ public class BOCAFormTriggerHandler {
 
             applicationRequest.Years_In_Business__c = opportunity.Years_In_Business__c;
 
-            if (applicationRequest.Program__c == 'Chevron and Texaco Business' || applicationRequest.Program__c == 'Chevron and Texaco Business Access'
-                    || applicationRequest.Program__c == 'Shell Fleet Navigator'|| applicationRequest.Program__c == 'Shell Fleet Plus'
-                    || applicationRequest.Program__c == 'Shell Fleet Plus Canada'|| applicationRequest.Program__c == 'Shell Small Business' ||
+            if (applicationRequest.Program__c.equalsIgnoreCase('Chevron and Texaco Business') || applicationRequest.Program__c.equalsIgnoreCase('Chevron and Texaco Business Access')
+                    || applicationRequest.Program__c.equalsIgnoreCase('Shell Fleet Navigator') || applicationRequest.Program__c.equalsIgnoreCase('Shell Fleet Plus')
+                    || applicationRequest.Program__c.equalsIgnoreCase('Shell Fleet Plus Canada') || applicationRequest.Program__c.equalsIgnoreCase('Shell Small Business') ||
                     applicationRequest.Years_In_Business__c >= 2 )
 
             {
