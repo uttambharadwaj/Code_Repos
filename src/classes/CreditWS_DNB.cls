@@ -172,7 +172,7 @@ public class CreditWS_DNB {
                     parameterStrings.put('candidateMaximumQuantity', '1');
                 }
 
-                clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/sbfe?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
+                clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/sbfe?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings) + '&isDUNSUniverseRequired=true'); // isDUNSUniverseRequired to true returns both DUNS and SBFE data. False is just SBFE.
                 clenseAndMatchRequest.setTimeout(120000); //IADJUDICAT-739 make them wait as long as possible. bc everyone needs a little break now and then
 
                 Http cleanseRequestCallout = new Http();
@@ -210,7 +210,7 @@ public class CreditWS_DNB {
                             matchCandidate.MatchGradeText = matchCandidateResponse.MatchQualityInformation.matchGrade;
                             if (matchCandidateResponse.MatchQualityInformation.matchGrade == 'AAAAAAAAAAA') dnbDirectMatchResponse.exactDUNSMatch = true;
                         }
-                        if (result.telephone != null && result.telephone.size() > 0) matchCandidate.TelephoneNumber = result.telephone[0].telephoneNumber;
+                        if (result.telephone != null) matchCandidate.TelephoneNumber = result.telephone.telephoneNumber;
                         if (result.dunsControlStatus.operatingStatus != null) matchCandidate.OperatingStatus = result.dunsControlStatus.operatingStatus.description;
 
                         // Match Grade String represents how close of a match each attribute the applicant supplied compared to what DNB found

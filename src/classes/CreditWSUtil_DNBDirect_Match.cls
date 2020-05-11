@@ -21,7 +21,7 @@ public class CreditWSUtil_DNBDirect_Match {
         public DunsControlStatus dunsControlStatus;
         public String primaryName;
         public List<WebsiteAddress> tradeStyleNames;
-        public List<Telephone> telephone;
+        public Telephone telephone;
         public PrimaryAddress primaryAddress;
         public MailingAddress mailingAddress;
         public List<WebsiteAddress> registrationNumbers;
