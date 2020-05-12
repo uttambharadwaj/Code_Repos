@@ -34,7 +34,7 @@ public class BOCAFormTriggerHandler {
 
     public static void triageWexBOCA(WeFormObject__c f) {
 
-        Program__c program = [SELECT Id, BOCA_Type__c, Form_Template__c, Auto_Send_BOCA_to_Siebel__c, Disable_Instant_Decisioning__c FROM Program__c WHERE Id = : f.Program__c];
+        Program__c program = [SELECT Id, Name, BOCA_Type__c, Form_Template__c, Auto_Send_BOCA_to_Siebel__c, Disable_Instant_Decisioning__c FROM Program__c WHERE Id = : f.Program__c];
 
         User recordOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
@@ -420,17 +420,22 @@ public class BOCAFormTriggerHandler {
 
             applicationRequest.Years_In_Business__c = opportunity.Years_In_Business__c;
 
-            if (applicationRequest.Program__c.equalsIgnoreCase('Chevron and Texaco Business') || applicationRequest.Program__c.equalsIgnoreCase('Chevron and Texaco Business Access')
-                    || applicationRequest.Program__c.equalsIgnoreCase('Shell Fleet Navigator') || applicationRequest.Program__c.equalsIgnoreCase('Shell Fleet Plus')
-                    || applicationRequest.Program__c.equalsIgnoreCase('Shell Fleet Plus Canada') || applicationRequest.Program__c.equalsIgnoreCase('Shell Small Business') ||
-                    applicationRequest.Years_In_Business__c >= 2 )
+            System.debug('###' + program.Name + '### YIB' + applicationRequest.Years_In_Business__c);
 
-            {
+            if (program.Name.equalsIgnoreCase('Chevron and Texaco Business') || program.Name.equalsIgnoreCase('Chevron and Texaco Business Access')
+                    || program.Name.equalsIgnoreCase('Shell Fleet Navigator') || program.Name.equalsIgnoreCase('Shell Fleet Plus')
+                    || program.Name.equalsIgnoreCase('Shell Fleet Plus Canada') || program.Name.equalsIgnoreCase('Shell Small Business')
+                    || opportunity.Years_In_Business__c >= 2 )  {
+
                 applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c * 2);
             }
+
             else {
+
                 applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c / 2);
+
             }
+
             if(program.Auto_Send_BOCA_to_Siebel__c == true){
                 applicationRequest.Forward_Application_to_Credit__c = 'Yes';
             }
