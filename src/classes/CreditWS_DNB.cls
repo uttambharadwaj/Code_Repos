@@ -168,10 +168,6 @@ public class CreditWS_DNB {
                     parameterStrings.put('telephoneNumber', dnbDirectMatchRequest.TelephoneNumber);
                 }
 
-                if (dnbDirectMatchRequest.SingleResolution == true) {
-                    parameterStrings.put('candidateMaximumQuantity', '1');
-                }
-
                 clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/sbfe?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings) + '&isDUNSUniverseRequired=true'); // isDUNSUniverseRequired to true returns both DUNS and SBFE data. False is just SBFE.
                 clenseAndMatchRequest.setTimeout(120000); //IADJUDICAT-739 make them wait as long as possible. bc everyone needs a little break now and then
 
@@ -189,86 +185,97 @@ public class CreditWS_DNB {
 
                 CreditWSUtil_DNBDirect_Match cleanseAndMatchResult = CreditWSUtil_DNBDirect_Match.parse(jsonResponse);
 
+                Boolean isDUNSExactLookup = dnbDirectMatchRequest.DUNSNumber != null;
+                Boolean isSBFEExactLookup = dnbDirectMatchRequest.AGN != null;
                 if (cleanseAndMatchResult != null && cleanseAndMatchResult.error == null) {
-
+					System.debug(cleanseAndMatchResult.MatchCandidates);
                     for (CreditWSUtil_DNBDirect_Match.MatchCandidates matchCandidateResponse : cleanseAndMatchResult.MatchCandidates) {
 
                         CreditWSUtil_DNBDirect_Match.Organization result = matchCandidateResponse.organization;
-                        DNBDirect_MatchCandidate matchCandidate = new DNBDirect_MatchCandidate();
+                        // If an identifier was passed in we only want to return results matching said id. The SBFE endpoint does not support passing ID# as a parameter like the old endpoint did.
+                        if ((!isDUNSExactLookup && !isSBFEExactLookup) || (isDUNSExactLookup && dnbDirectMatchRequest.DUNSNumber == result.duns) || (isSBFEExactLookup && dnbDirectMatchRequest.AGN == result.subjectID)) {
 
-                        if (result.duns != null) matchCandidate.DUNSNumber = result.duns;
-                        if (result.subjectID != null) matchCandidate.AGN = result.subjectID;
-                        if (result.primaryName != null) matchCandidate.OrganizationName = result.primaryName;
-                        if (result.PrimaryAddress.streetAddress.line1 != null) matchCandidate.StreetAddressLine = result.PrimaryAddress.streetAddress.line1;
-                        if (result.PrimaryAddress.streetAddress.line2 != null) matchCandidate.StreetAddressLine2 = result.PrimaryAddress.streetAddress.line2;
-                        if (result.PrimaryAddress.addressLocality != null) matchCandidate.PrimaryTownName = result.PrimaryAddress.addressLocality.name;
-                        if (result.PrimaryAddress.addressRegion != null && result.PrimaryAddress.addressRegion.abbreviatedName != null) matchCandidate.TerritoryAbbreviatedName = result.PrimaryAddress.addressRegion.abbreviatedName;
-                        if (result.PrimaryAddress.PostalCode != null) matchCandidate.PostalCode = result.PrimaryAddress.PostalCode;
-                        if (result.PrimaryAddress.addressCountry.isoAlpha2Code != null) matchCandidate.CountryISOAlpha2Code = result.PrimaryAddress.addressCountry.isoAlpha2Code;
-                        if (matchCandidateResponse.matchQualityInformation.confidenceCode != null) matchCandidate.ConfidenceCodeValue = matchCandidateResponse.matchQualityInformation.confidenceCode;
-                        if (matchCandidateResponse.MatchQualityInformation.matchGrade != null) {
-                            matchCandidate.MatchGradeText = matchCandidateResponse.MatchQualityInformation.matchGrade;
-                            if (matchCandidateResponse.MatchQualityInformation.matchGrade == 'AAAAAAAAAAA') dnbDirectMatchResponse.exactDUNSMatch = true;
-                        }
-                        if (result.telephone != null) matchCandidate.TelephoneNumber = result.telephone.telephoneNumber;
-                        if (result.dunsControlStatus.operatingStatus != null) matchCandidate.OperatingStatus = result.dunsControlStatus.operatingStatus.description;
 
-                        // Match Grade String represents how close of a match each attribute the applicant supplied compared to what DNB found
-                        // Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components
-                        if (matchCandidateResponse.MatchQualityInformation.MatchGradeComponents != null) {
-                            for (CreditWSUtil_DNBDirect_Match.MatchGradeComponents matchGradeComponent : matchCandidateResponse.MatchQualityInformation.MatchGradeComponents) {
+                            DNBDirect_MatchCandidate matchCandidate = new DNBDirect_MatchCandidate();
 
-                                if (matchGradeComponent.componentType.equalsIgnoreCase('Name')) {
-                                    matchCandidate.NameMatchGradeString = matchGradeComponent.componentRating;
-                                }
-                                if (matchGradeComponent.componentType.equalsIgnoreCase('Street Name')) {
-                                    matchCandidate.StreetNameMatchGradeString = matchGradeComponent.componentRating;
-                                }
-                                if (matchGradeComponent.componentType.equalsIgnoreCase('State')) {
-                                    matchCandidate.StateMatchGradeString = matchGradeComponent.componentRating;
-                                }
-                                if (matchGradeComponent.componentType.equalsIgnoreCase('Street Number')) {
-                                    matchCandidate.StreetNumberMatchGradeString = matchGradeComponent.componentRating;
-                                }
-                                if (matchGradeComponent.componentType.equalsIgnoreCase('City')) {
-                                    matchCandidate.CityMatchGradeString = matchGradeComponent.componentRating;
-                                }
-                                if (matchGradeComponent.componentType.equalsIgnoreCase('Postal Code')) {
-                                    matchCandidate.PostalCodeMatchGradeString = matchGradeComponent.componentRating;
+                            if (result.duns != null) matchCandidate.DUNSNumber = result.duns;
+                            if (result.subjectID != null) matchCandidate.AGN = result.subjectID;
+                            if (result.primaryName != null) matchCandidate.OrganizationName = result.primaryName;
+                            if (result.PrimaryAddress != null) {
+                                if (result.PrimaryAddress.streetAddress != null) matchCandidate.StreetAddressLine = result.PrimaryAddress.streetAddress.line1;
+                                if (result.PrimaryAddress.streetAddress != null) matchCandidate.StreetAddressLine2 = result.PrimaryAddress.streetAddress.line2;
+                                if (result.PrimaryAddress.addressLocality != null) matchCandidate.PrimaryTownName = result.PrimaryAddress.addressLocality.name;
+                                if (result.PrimaryAddress.addressRegion != null && result.PrimaryAddress.addressRegion.abbreviatedName != null) matchCandidate.TerritoryAbbreviatedName = result.PrimaryAddress.addressRegion.abbreviatedName;
+                                if (result.PrimaryAddress.PostalCode != null) matchCandidate.PostalCode = result.PrimaryAddress.PostalCode;
+                                if (result.PrimaryAddress.addressCountry != null) matchCandidate.CountryISOAlpha2Code = result.PrimaryAddress.addressCountry.isoAlpha2Code;
+                            }
+							if (matchCandidateResponse.matchQualityInformation != null) {
+								if (matchCandidateResponse.matchQualityInformation.confidenceCode != null) matchCandidate.ConfidenceCodeValue = matchCandidateResponse.matchQualityInformation.confidenceCode;
+								if (matchCandidateResponse.MatchQualityInformation.matchGrade != null) {
+									matchCandidate.MatchGradeText = matchCandidateResponse.MatchQualityInformation.matchGrade;
+									if (matchCandidateResponse.MatchQualityInformation.matchGrade == 'AAAAAAAAAAA') dnbDirectMatchResponse.exactDUNSMatch = true;
+								}
+							}
+                            if (result.telephone != null) matchCandidate.TelephoneNumber = result.telephone.telephoneNumber;
+                            if (result.dunsControlStatus != null && result.dunsControlStatus.operatingStatus != null) matchCandidate.OperatingStatus = result.dunsControlStatus.operatingStatus.description;
+
+                            // Match Grade String represents how close of a match each attribute the applicant supplied compared to what DNB found
+                            // Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components
+                            if (matchCandidateResponse.MatchQualityInformation.MatchGradeComponents != null) {
+                                for (CreditWSUtil_DNBDirect_Match.MatchGradeComponents matchGradeComponent : matchCandidateResponse.MatchQualityInformation.MatchGradeComponents) {
+
+                                    if (matchGradeComponent.componentType.equalsIgnoreCase('Name')) {
+                                        matchCandidate.NameMatchGradeString = matchGradeComponent.componentRating;
+                                    }
+                                    if (matchGradeComponent.componentType.equalsIgnoreCase('Street Name')) {
+                                        matchCandidate.StreetNameMatchGradeString = matchGradeComponent.componentRating;
+                                    }
+                                    if (matchGradeComponent.componentType.equalsIgnoreCase('State')) {
+                                        matchCandidate.StateMatchGradeString = matchGradeComponent.componentRating;
+                                    }
+                                    if (matchGradeComponent.componentType.equalsIgnoreCase('Street Number')) {
+                                        matchCandidate.StreetNumberMatchGradeString = matchGradeComponent.componentRating;
+                                    }
+                                    if (matchGradeComponent.componentType.equalsIgnoreCase('City')) {
+                                        matchCandidate.CityMatchGradeString = matchGradeComponent.componentRating;
+                                    }
+                                    if (matchGradeComponent.componentType.equalsIgnoreCase('Postal Code')) {
+                                        matchCandidate.PostalCodeMatchGradeString = matchGradeComponent.componentRating;
+                                    }
                                 }
                             }
-                        }
 
-                        // Match Data Profile represents how DNB matched the business. For ex: matched on CEO Name, Former Name, Registered Address, etc
-                        if (matchCandidateResponse.MatchQualityInformation.matchDataProfileComponents != null) {
+                            // Match Data Profile represents how DNB matched the business. For ex: matched on CEO Name, Former Name, Registered Address, etc
+                            if (matchCandidateResponse.MatchQualityInformation.matchDataProfileComponents != null) {
 
-                            for (CreditWSUtil_DNBDirect_Match.MatchDataProfileComponents matchDataProfileComponent : matchCandidateResponse.MatchQualityInformation.matchDataProfileComponents) {
+                                for (CreditWSUtil_DNBDirect_Match.MatchDataProfileComponents matchDataProfileComponent : matchCandidateResponse.MatchQualityInformation.matchDataProfileComponents) {
 
-                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('Name')) {
-                                    matchCandidate.NameMatchDataProfile = matchDataProfileComponent.componentValue;
-                                }
-                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('Street Number')) {
-                                    matchCandidate.StreetNumberMatchDataProfile = matchDataProfileComponent.componentValue;
-                                }
-                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('Street Name')) {
-                                    matchCandidate.StreetNameMatchDataProfile = matchDataProfileComponent.componentValue;
-                                }
-                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('City')) {
-                                    matchCandidate.CityMatchDataProfile = matchDataProfileComponent.componentValue;
-                                }
-                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('State')) {
-                                    matchCandidate.StateMatchDataProfile = matchDataProfileComponent.componentValue;
-                                }
-                                if (matchDataProfileComponent.componentType.equalsIgnoreCase('Postal Code')) {
-                                    matchCandidate.PostalCodeMatchDataProfile = matchDataProfileComponent.componentValue;
+                                    if (matchDataProfileComponent.componentType.equalsIgnoreCase('Name')) {
+                                        matchCandidate.NameMatchDataProfile = matchDataProfileComponent.componentValue;
+                                    }
+                                    if (matchDataProfileComponent.componentType.equalsIgnoreCase('Street Number')) {
+                                        matchCandidate.StreetNumberMatchDataProfile = matchDataProfileComponent.componentValue;
+                                    }
+                                    if (matchDataProfileComponent.componentType.equalsIgnoreCase('Street Name')) {
+                                        matchCandidate.StreetNameMatchDataProfile = matchDataProfileComponent.componentValue;
+                                    }
+                                    if (matchDataProfileComponent.componentType.equalsIgnoreCase('City')) {
+                                        matchCandidate.CityMatchDataProfile = matchDataProfileComponent.componentValue;
+                                    }
+                                    if (matchDataProfileComponent.componentType.equalsIgnoreCase('State')) {
+                                        matchCandidate.StateMatchDataProfile = matchDataProfileComponent.componentValue;
+                                    }
+                                    if (matchDataProfileComponent.componentType.equalsIgnoreCase('Postal Code')) {
+                                        matchCandidate.PostalCodeMatchDataProfile = matchDataProfileComponent.componentValue;
+                                    }
+
                                 }
 
                             }
 
+                            dnbDirectMatchResponse.matchCandidates.add(matchCandidate);
+                            if (dnbDirectMatchRequest.SingleResolution == true) break; // only return 1 result.
                         }
-
-                        dnbDirectMatchResponse.matchCandidates.add(matchCandidate);
-
                     }
                 } else {
                     System.debug('### ERROR - Response null or has error.');
@@ -1683,6 +1690,7 @@ public class CreditWS_DNB {
             get;
             set;
         }
+        public String AGN { get; set; }
         public String SubjectName {
             get;
             set;
@@ -1734,6 +1742,7 @@ public class CreditWS_DNB {
             this.FullPostalCode = myApp.Zip_Code__c;
             this.CountryISOAlpha2Code = myApp.Country__c;
             this.DUNSNumber = myApp.DUNS__c;
+            this.AGN = myApp.Automatically_Generated_Number__c;
             this.TelephoneNumber = myApp.Phone_Number__c;
             this.TradeStyleName = myApp.Trade_Name__c;
 
@@ -1750,6 +1759,7 @@ public class CreditWS_DNB {
             this.FullPostalCode = myApp.Physical_Zip_Postal_Code__c;
             this.CountryISOAlpha2Code = myApp.Physical_Country__c;
             this.DUNSNumber = myApp.DUNS_Number__c;
+            this.AGN = myApp.Automatically_Generated_Number__c;
             this.TelephoneNumber = myApp.Business_Phone_Number__c;
             this.TradeStyleName = myApp.Doing_Business_As__c;
 
