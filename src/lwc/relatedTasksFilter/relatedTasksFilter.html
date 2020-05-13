@@ -12,9 +12,9 @@
             icon-name="utility:filterList"
             onclick={handleFilterClick}>
         </lightning-button-icon>
-        <div if:true={showPopover}>
-            <section aria-label="Dialog title" aria-describedby="popover-body-id" class="slds-popover slds-popover__body slds-m-vertical_medium slds-nubbin_top-right" role="dialog">
-                <div class="slds-m-around_small">
+        <div class="slds-is-relative slds-float_right slds-m-vertical_medium">
+            <section if:true={showPopover} class="slds-popover slds-nubbin_top-right" role="dialog">
+                <div class="slds-popover__body slds-m-around_small">
                     <lightning-button-icon
                         alternative-text="Close"
                         icon-name="utility:close"
