@@ -42,7 +42,7 @@ public with sharing class DNBAdvancedLookupController {
         if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
             List<OnlineApplication__c> onlineApplications = [
-                    SELECT Id, DUNS__c, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c, Country__c, Phone_Number__c, Trade_Name__c
+                    SELECT Id, Automatically_Generated_Number__c, DUNS__c, Legal_Business_Name__c, Business_Street_Address__c, City__c, State__c, Zip_Code__c, Country__c, Phone_Number__c, Trade_Name__c
                     FROM OnlineApplication__c
                     WHERE Id = :applicationId
             ];
@@ -55,6 +55,7 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.state = onlineApplications[0].State__c;
                 applicationInformation.postalCode = onlineApplications[0].Zip_Code__c;
                 applicationInformation.dunsNumber = onlineApplications[0].DUNS__c;
+                applicationInformation.AGN = onlineApplications[0].Automatically_Generated_Number__c;
 
                 //IADJUDICAT 739 set up constructor for our class that uses online app.
                 CreditWS_DNB.DNBDirect_MatchRequest dnbDirectMatchRequest = new CreditWS_DNB.DNBDirect_MatchRequest(onlineApplications[0]);
@@ -70,7 +71,7 @@ public with sharing class DNBAdvancedLookupController {
         } else if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('CP_Application_Request__c')) {
 
             List<CP_Application_Request__c> cpApplicationRequests = [
-                    SELECT Id, DUNS_Number__c, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c,
+                    SELECT Id, Automatically_Generated_Number__c, DUNS_Number__c, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c,
                             Physical_State_Province__c, Physical_Postal_Code__c, Business_Phone__c, Doing_Business_As__c
                     FROM CP_Application_Request__c
                     WHERE Id = :applicationId
@@ -84,6 +85,7 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.state = cpApplicationRequests[0].Physical_State_Province__c;
                 applicationInformation.postalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 applicationInformation.dunsNumber = cpApplicationRequests[0].DUNS_Number__c;
+                applicationInformation.AGN = cpApplicationRequests[0].Automatically_Generated_Number__c;
                 applicationInformation.phoneNumber = cpApplicationRequests[0].Business_Phone__c;
                 applicationInformation.tradeStyleName = cpApplicationRequests[0].Doing_Business_As__c;
 
@@ -96,6 +98,7 @@ public with sharing class DNBAdvancedLookupController {
                 dnbDirectMatchRequest.FullPostalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
                 dnbDirectMatchRequest.CountryISOAlpha2Code = 'US';
                 dnbDirectMatchRequest.DUNSNumber = cpApplicationRequests[0].DUNS_Number__c;
+                dnbDirectMatchRequest.AGN = cpApplicationRequests[0].Automatically_Generated_Number__c;
                 dnbDirectMatchRequest.TradeStyleName = cpApplicationRequests[0].Doing_Business_As__c;
                 dnbDirectMatchRequest.TelephoneNumber = cpApplicationRequests[0].Business_Phone__c;
 
@@ -110,7 +113,7 @@ public with sharing class DNBAdvancedLookupController {
         } else if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('Application_Request__c')) {
 
             List<Application_Request__c> applicationRequests = [
-                    SELECT Id, DUNS_Number__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c,
+                    SELECT Id, Automatically_Generated_Number__c, DUNS_Number__c, Opportunity_Name_Text__c, Physical_Street__c, Physical_City__c,
                             Physical_State__c, Physical_Zip_Postal_Code__c, Physical_Country__c, Business_Phone_Number__c, Doing_Business_As__c
                     FROM Application_Request__c
                     WHERE Id = :applicationId
@@ -124,6 +127,7 @@ public with sharing class DNBAdvancedLookupController {
                 applicationInformation.state = applicationRequests[0].Physical_State__c;
                 applicationInformation.postalCode = applicationRequests[0].Physical_Zip_Postal_Code__c;
                 applicationInformation.dunsNumber = applicationRequests[0].DUNS_Number__c;
+                applicationInformation.AGN = applicationRequests[0].Automatically_Generated_Number__c;
                 applicationInformation.phoneNumber = applicationRequests[0].Business_Phone_Number__c;
                 applicationInformation.tradeStyleName = applicationRequests[0].Doing_Business_As__c;
 
@@ -152,12 +156,13 @@ public with sharing class DNBAdvancedLookupController {
 
             if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
-                List<OnlineApplication__c> onlineApplications = [SELECT Id, DUNS__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
+                List<OnlineApplication__c> onlineApplications = [SELECT Id, Automatically_Generated_Number__c, DUNS__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
                         DNB_Street_Number_Match_Data_Profile__c, DNB_City_Match_Data_Profile__c, DNB_State_Match_Data_Profile__c, DNB_Postal_Code_Match_Data_Profile__c FROM OnlineApplication__c WHERE Id = :applicationId];
 
                 if (onlineApplications.size() == 1) {
 
                     onlineApplications[0].DUNS__c = selectedDunsNumber;
+                    onlineApplications[0].Automatically_Generated_Number__c = lookupResults[selectedIndex].AGN;
                     onlineApplications[0].DNB_Name_Match_Grade__c = lookupResults[selectedIndex].NameMatchGradeString;
                     onlineApplications[0].DNB_Name_Match_Data_Profile__c = lookupResults[selectedIndex].NameMatchDataProfile;
                     onlineApplications[0].DNB_Street_Name_Match_Data_Profile__c = lookupResults[selectedIndex].StreetNameMatchDataProfile;
@@ -177,12 +182,13 @@ public with sharing class DNBAdvancedLookupController {
 
             } else if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('CP_Application_Request__c')) {
 
-                List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, DUNS_Number__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
+                List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Automatically_Generated_Number__c, DUNS_Number__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
                         DNB_Street_Number_Match_Data_Profile__c, DNB_City_Match_Data_Profile__c, DNB_State_Match_Data_Profile__c, DNB_Postal_Code_Match_Data_Profile__c FROM CP_Application_Request__c WHERE Id = :applicationId];
 
                 if (cpApplicationRequests.size() == 1) {
 
                     cpApplicationRequests[0].DUNS_Number__c = selectedDunsNumber;
+                    cpApplicationRequests[0].Automatically_Generated_Number__c = lookupResults[selectedIndex].AGN;
                     cpApplicationRequests[0].DNB_Name_Match_Grade__c = lookupResults[selectedIndex].NameMatchGradeString;
                     cpApplicationRequests[0].DNB_Name_Match_Data_Profile__c = lookupResults[selectedIndex].NameMatchDataProfile;
                     cpApplicationRequests[0].DNB_Street_Name_Match_Data_Profile__c = lookupResults[selectedIndex].StreetNameMatchDataProfile;
@@ -203,7 +209,7 @@ public with sharing class DNBAdvancedLookupController {
             } else if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('Application_Request__c')) {
 
                 List<Application_Request__c> applicationRequests = [
-                        SELECT Id, DUNS_Number__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
+                        SELECT Id, Automatically_Generated_Number__c, DUNS_Number__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
                                 DNB_Street_Number_Match_Data_Profile__c, DNB_City_Match_Data_Profile__c, DNB_State_Match_Data_Profile__c, DNB_Postal_Code_Match_Data_Profile__c
                         FROM Application_Request__c
                         WHERE Id = :applicationId
@@ -212,6 +218,7 @@ public with sharing class DNBAdvancedLookupController {
                 if (applicationRequests.size() == 1) {
 
                     applicationRequests[0].DUNS_Number__c = selectedDunsNumber;
+                    applicationRequests[0].Automatically_Generated_Number__c = lookupResults[selectedIndex].AGN;
                     applicationRequests[0].DNB_Name_Match_Grade__c = lookupResults[selectedIndex].NameMatchGradeString;
                     applicationRequests[0].DNB_Name_Match_Data_Profile__c = lookupResults[selectedIndex].NameMatchDataProfile;
                     applicationRequests[0].DNB_Street_Name_Match_Data_Profile__c = lookupResults[selectedIndex].StreetNameMatchDataProfile;
@@ -251,6 +258,7 @@ public with sharing class DNBAdvancedLookupController {
         public String postalCode { get; set; }
         public String phoneNumber { get; set; }
         public String dunsNumber { get; set; }
+        public String AGN { get; set; }
 
     }
 

@@ -313,6 +313,7 @@ global class CreditDecisionEngineCP {
             dnbDirectMatchRequest.FullPostalCode = cpApplication.Physical_Postal_Code__c;
             dnbDirectMatchRequest.CountryISOAlpha2Code = cpApplication.Physical_Country__c;
             dnbDirectMatchRequest.DUNSNumber = cpApplication.DUNS_Number__c;
+            dnbDirectMatchRequest.AGN = cpApplication.Automatically_Generated_Number__c;
             dnbDirectMatchRequest.TelephoneNumber = cpApplication.Business_Phone__c;
             dnbDirectMatchRequest.TradeStyleName = cpApplication.Doing_Business_As__c;
 
