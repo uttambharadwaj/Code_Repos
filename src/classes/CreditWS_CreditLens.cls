@@ -917,6 +917,7 @@ global class CreditWS_CreditLens {
         try {
             SIC_Code_Mapping__mdt industryCodeMapping = [SELECT Id, Description__c, Letter_Group__c, Number__c FROM SIC_Code_Mapping__mdt WHERE Label = :SICCode];
 
+            industryCode.Code = SICCode;
             industryCode.Description = industryCodeMapping.Description__c;
             industryCode.Keys = new list<String> { industryCodeMapping.Letter_Group__c, industryCodeMapping.Number__c, SICCode };
 
