@@ -335,6 +335,7 @@ global class CreditDecisionEngineCP {
                 cpApplication.DNB_State_Match_Data_Profile__c  = dnbDirectMatchResponse.matchCandidates[0].StateMatchDataProfile;
                 cpApplication.DNB_Postal_Code_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchDataProfile;
                 cpApplication.DNB_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].MatchGradeText;
+                cpApplication.Automatically_Generated_Number__c = dnbDirectMatchResponse.matchCandidates[0].AGN;
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     cpApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
                 }
@@ -343,7 +344,7 @@ global class CreditDecisionEngineCP {
                 System.debug('Running DNB BPAV...');
                 BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('CPCreditDecisioningBPAVMatch', new List<SObject>{cpApplication});
 
-                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')  && dnbDirectMatchResponse.matchCandidates[0].DUNSNumber != null) {
 
                     cpApplication.DUNS_Number__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
 
