@@ -1,6 +1,7 @@
 /**
  * Created by dgilbert on 5/14/2018.
  * Refactored and added additional match criteria by lhowland on 5/1/2019.
+ * EAPT - 1787 Added functionality to strip dashes and spaces from match candidates
 */
 
 /** The purpose of this class is to potentially find duplicate applications and accounts based on the current application being submitted.
