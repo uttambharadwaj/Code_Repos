@@ -34,7 +34,7 @@ public class BOCAFormTriggerHandler {
 
     public static void triageWexBOCA(WeFormObject__c f) {
 
-        Program__c program = [SELECT Id, Name, BOCA_Type__c, Form_Template__c, Auto_Send_BOCA_to_Siebel__c, Disable_Instant_Decisioning__c FROM Program__c WHERE Id = : f.Program__c];
+        Program__c program = [SELECT Id, Name, Reduced_Credit_Line__c, BOCA_Type__c, Form_Template__c, Auto_Send_BOCA_to_Siebel__c, Disable_Instant_Decisioning__c FROM Program__c WHERE Id = : f.Program__c];
 
         User recordOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
