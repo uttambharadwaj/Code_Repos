@@ -1,6 +1,7 @@
 /**
  * Created by dgilbert on 5/14/2018.
  * Refactored and added additional match criteria by lhowland on 5/1/2019.
+ * EAPT - 1787 Added functionality to strip dashes and spaces from match candidates
 */
 
 /** The purpose of this class is to potentially find duplicate applications and accounts based on the current application being submitted.
@@ -75,9 +76,9 @@ public without sharing class CreditUtil_ExistingExposure {
                         JaroWinklerDistance.getScore(request.city, existingApplication.City__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.state, existingApplication.State__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.postalCode, existingApplication.Zip_Code__c) >= 0.75)
-                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
-                        || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Federal_Tax_ID__c) == 1.00)
-                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Phone_Number__c) == 1.00)) {
+                        || (request.duns != null && existingApplication.DNB_Resolved_DUNS__c != null && (JaroWinklerDistance.getScore(onlyDigits(request.duns), onlyDigits(existingApplication.DNB_Resolved_DUNS__c))) == 1.00)
+                        || (JaroWinklerDistance.getScore(onlyDigits(request.taxID), onlyDigits(existingApplication.Federal_Tax_ID__c)) == 1.00)
+                        || (JaroWinklerDistance.getScore(onlyDigits(request.phone), onlyDigits(existingApplication.Phone_Number__c)) == 1.00)) {
 
                     ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
@@ -131,10 +132,10 @@ public without sharing class CreditUtil_ExistingExposure {
                         JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Zip_Postal_Code__c) >= 0.75
-                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
-                        || (JaroWinklerDistance.getScore(request.taxID, existingApplication.Tax_Payer_ID_number__c) == 1.00)
-                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone_Number__c) == 1.00)
-                        || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Personal_Guarantor_SSN__c)) == 1.00)) {
+                        || (request.duns != null && (JaroWinklerDistance.getScore(onlyDigits(request.duns), onlyDigits(existingApplication.DNB_Resolved_DUNS__c))) == 1.00)
+                        || (JaroWinklerDistance.getScore(onlyDigits(request.taxID), onlyDigits(existingApplication.Tax_Payer_ID_number__c)) == 1.00)
+                        || (JaroWinklerDistance.getScore(onlyDigits(request.phone), onlyDigits(existingApplication.Business_Phone_Number__c)) == 1.00)
+                        || (request.pgSSN != null && (JaroWinklerDistance.getScore(onlyDigits(request.pgSSN), onlyDigits(existingApplication.Personal_Guarantor_SSN__c))) == 1.00)) {
 
                     ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
@@ -181,9 +182,9 @@ public without sharing class CreditUtil_ExistingExposure {
                         JaroWinklerDistance.getScore(request.city, existingApplication.Physical_City__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.state, existingApplication.Physical_State_Province__c) >= 0.75 &&
                         JaroWinklerDistance.getScore(request.postalCode, existingApplication.Physical_Postal_Code__c) >= 0.75)
-                        || (request.duns != null && (JaroWinklerDistance.getScore(request.duns, existingApplication.DNB_Resolved_DUNS__c)) == 1.00)
-                        || (JaroWinklerDistance.getScore(request.phone, existingApplication.Business_Phone__c) == 1.00)
-                        || (request.pgSSN != null && (JaroWinklerDistance.getScore(request.pgSSN, existingApplication.Guarantor_Social_Security_Number__c)) == 1.00)) {
+                        || (request.duns != null && (JaroWinklerDistance.getScore(onlyDigits(request.duns), onlyDigits(existingApplication.DNB_Resolved_DUNS__c))) == 1.00)
+                        || (JaroWinklerDistance.getScore(onlyDigits(request.phone), onlyDigits(existingApplication.Business_Phone__c)) == 1.00)
+                        || (request.pgSSN != null && (JaroWinklerDistance.getScore(onlyDigits(request.pgSSN), onlyDigits(existingApplication.Guarantor_Social_Security_Number__c))) == 1.00)) {
 
                     ExistingExposureApplications duplicateApplication = new ExistingExposureApplications();
 
@@ -222,11 +223,11 @@ public without sharing class CreditUtil_ExistingExposure {
         String onlineAppRequestSearchVariables = request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode;
 
         if (request.phone != null) {
-            onlineAppRequestSearchVariables += ' OR ' + request.phone.replaceAll('\\D','');
+            onlineAppRequestSearchVariables += ' OR ' + request.phone.replaceAll('[^0-9]','');
         }
 
         if (request.taxID != null) {
-            onlineAppRequestSearchVariables +=  ' OR ' + request.taxID.replaceAll('\\D','');
+            onlineAppRequestSearchVariables +=  ' OR ' + request.taxID.replaceAll('[^0-9]','');
         }
 
         if (request.duns != null) {
@@ -234,7 +235,7 @@ public without sharing class CreditUtil_ExistingExposure {
         }
 
         if (request.pgSSN != null) {
-            onlineAppRequestSearchVariables += ' OR ' + request.pgSSN.replaceAll('\\D','');
+            onlineAppRequestSearchVariables += ' OR ' + request.pgSSN.replaceAll('[^0-9]','');
         }
 
         return queryForAllLOBs(onlineAppRequestSearchVariables);
@@ -243,14 +244,14 @@ public without sharing class CreditUtil_ExistingExposure {
 
     private static List<List<SObject>> getCPExistingApplications(ExistingExposureRequest request) {
 
-        String cpAppRequestSearchVariables = request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode + ' OR ' + request.phone.replaceAll('\\D','');
+        String cpAppRequestSearchVariables = request.addressLine1 + ' AND ' + request.city + ' AND ' + request.state + ' AND ' + request.postalCode + ' OR ' + request.phone.replaceAll('[^0-9]','');
 
         if (request.duns != null) {
             cpAppRequestSearchVariables += ' OR ' + request.duns;
         }
 
         if (request.pgSSN != null) {
-            cpAppRequestSearchVariables += ' OR ' + request.pgSSN.replaceAll('\\D','');
+            cpAppRequestSearchVariables += ' OR ' + request.pgSSN.replaceAll('[^0-9]','');
         }
 
         return queryForAllLOBs(cpAppRequestSearchVariables);
@@ -313,7 +314,7 @@ public without sharing class CreditUtil_ExistingExposure {
     private static List<SObject> getAppRequestViaPGSSN(ExistingExposureRequest request) {
 
         // Find PG SSN from the Contact
-        String contactSearchVariable = request.pgSSN.replaceAll('\\D','');
+        String contactSearchVariable = request.pgSSN.replaceAll('[^0-9]','');
         String contactQuery = 'FIND { searchString } IN ALL Fields RETURNING Contact(Id)';
         contactSearchVariable = UtilityClass.removeReservedChars(contactSearchVariable);
         System.debug('getAppRequestViaPGSSN search variables: ' + contactSearchVariable);
@@ -343,13 +344,13 @@ public without sharing class CreditUtil_ExistingExposure {
         // First find any accounts that have that same business phone number or tax id number.
         String accountSearchVariables = '';
         if (request.phone != null && request.taxId != null) {
-            accountSearchVariables = request.phone.replaceAll('\\D','') + ' OR ' + request.taxId.replaceAll('\\D','');
+            accountSearchVariables = request.phone.replaceAll('[^0-9]','') + ' OR ' + request.taxId.replaceAll('[^0-9]','');
         }
         else if (request.phone != null) {
-            accountSearchVariables = request.phone.replaceAll('\\D','');
+            accountSearchVariables = request.phone.replaceAll('[^0-9]','');
         }
-        else if (request.taxid != null) {
-            accountSearchVariables = request.taxId.replaceAll('\\D','');
+        else if (request.taxID != null) {
+            accountSearchVariables = request.taxId.replaceAll('[^0-9]','');
         }
         else {
             return new List<SObject>();
@@ -389,6 +390,11 @@ public without sharing class CreditUtil_ExistingExposure {
         return duns.substring(0,2) + ' ' + duns.substring(2,5) + ' ' + duns.substring(5,9);
     }
 
+    private static String onlyDigits(String num) {
+        if (num == null) {return null;}
+        return num.replaceAll('[^0-9]','');
+
+    }
 
     private static List<List<SObject>> queryForAllLOBs(String searchVariables) {
 
@@ -475,7 +481,7 @@ public without sharing class CreditUtil_ExistingExposure {
                     JaroWinklerDistance.getScore(request.city, existingAccount.City__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.state, existingAccount.State_Province__c ) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.postalCode, existingAccount.Postal_Code__c) >= 0.75
-                    || (request.duns != null && (JaroWinklerDistance.getScore(formattedDUNs, existingAccount.DUNS_Number__c)) == 1.00)) {
+                    || (request.duns != null && (JaroWinklerDistance.getScore( onlyDigits(formattedDUNs), onlyDigits(existingAccount.DUNS_Number__c))) == 1.00)) {
 
                 ExistingExposureAccounts existingExposureAccountMatch = new ExistingExposureAccounts();
 
