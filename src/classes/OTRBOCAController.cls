@@ -146,17 +146,18 @@ public class OTRBOCAController {
 
     public Boolean displayDaysOfPayment {
         get {
+            Boolean display = true;
             if (('Parent Funded').equalsIgnoreCase(onlineApplicationOffer.Funding__c) || ('Prepay').equalsIgnoreCase(onlineApplication.Account_Type__c) || ('Internet Pay').equalsIgnoreCase(onlineApplication.Payment_Method__c)) {
-                return false;
+                display = false;
                 // else if they selected ACH, are in business under 2 years, and isn't on the FTS or CoreCard platform - EAPT-1747
-            } else if (onlineApplication.Payment_Method__c != null && onlineApplication.Payment_Method__c.containsIgnoreCase('ACH')
+            } if (onlineApplication.Payment_Method__c != null && onlineApplication.Payment_Method__c.containsIgnoreCase('ACH')
                     && yearsInBusiness != null && yearsInBusiness < 2
                     && (!('FTS').equalsIgnoreCase(program.WEX_Platform__c)
                     || !('CoreCard').equalsIgnoreCase(program.WEX_Platform__c))) {
                 onlineApplication.Days_Of_Payment__c = 'Monday / Thursday';
-                return false;
+                display = false;
             }
-            return true;
+            return display;
         }
     }
 
