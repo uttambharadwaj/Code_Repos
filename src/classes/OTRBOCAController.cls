@@ -134,6 +134,33 @@ public class OTRBOCAController {
 
     public Campaign campaign { get; set; }
 
+    public Integer yearsInBusiness {
+        get {
+            Integer yearsInBusiness = 0;
+            if (onlineApplication.Year_Established__c != null && onlineApplication.Year_Established__c.isNumeric()) {
+                yearsInBusiness = System.today().year() - (Integer.valueOf(onlineApplication.Year_Established__c));
+            }
+            return yearsInBusiness >= 0 ? yearsInBusiness : 0;
+        }
+    }
+
+    public Boolean displayDaysOfPayment {
+        get {
+            Boolean display = true;
+            if (('Parent Funded').equalsIgnoreCase(onlineApplicationOffer.Funding__c) || ('Prepay').equalsIgnoreCase(onlineApplication.Account_Type__c) || ('Internet Pay').equalsIgnoreCase(onlineApplication.Payment_Method__c)) {
+                display = false;
+                // else if they selected ACH, are in business under 2 years, and isn't on the FTS or CoreCard platform - EAPT-1747
+            } if (onlineApplication.Payment_Method__c != null && onlineApplication.Payment_Method__c.containsIgnoreCase('ACH')
+                    && yearsInBusiness != null && yearsInBusiness < 2
+                    && !('FTS').equalsIgnoreCase(program.WEX_Platform__c)
+                    && !('CoreCard').equalsIgnoreCase(program.WEX_Platform__c)) {
+                onlineApplication.Days_Of_Payment__c = 'Monday / Thursday';
+                display = false;
+            }
+            return display;
+        }
+    }
+
     public Boolean forcePg { get; set; }
 
     // Check is this is a Personal Guaruntor application
@@ -152,9 +179,7 @@ public class OTRBOCAController {
             } else if (pg != null && pg == 'a') {
                 return true;
             } else if (onlineApplication != null) {
-                Date rightNow = Date.today();
-
-                if (onlineApplication.Year_Established__c != null && ((rightNow.year()) - Integer.valueOf(onlineApplication.Year_Established__c)) <= 1) {
+                if (yearsInBusiness <= 1) {
                     return true;
 
                 } else if (!prepay && onlineApplication.Type_of_Business__c != null && ((onlineApplication.Type_of_Business__c).equalsIgnoreCase('Sole Proprietorship')
