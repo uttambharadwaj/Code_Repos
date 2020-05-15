@@ -422,18 +422,10 @@ public class BOCAFormTriggerHandler {
 
             System.debug('###' + program.Name + '### YIB' + applicationRequest.Years_In_Business__c);
 
-            if (program.Name.equalsIgnoreCase('Chevron and Texaco Business') || program.Name.equalsIgnoreCase('Chevron and Texaco Business Access')
-                    || program.Name.equalsIgnoreCase('Shell Fleet Navigator') || program.Name.equalsIgnoreCase('Shell Fleet Plus')
-                    || program.Name.equalsIgnoreCase('Shell Fleet Plus Canada') || program.Name.equalsIgnoreCase('Shell Small Business')
-                    || opportunity.Years_In_Business__c >= 2 )  {
-
-                applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c * 2);
-            }
-
-            else {
-
+            if (opportunity.Years_In_Business__c < 2 && program.Reduced_Credit_Line__c == true) {
                 applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c / 2);
-
+            } else {
+                applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c * 2);
             }
 
             if(program.Auto_Send_BOCA_to_Siebel__c == true){
