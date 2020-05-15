@@ -156,7 +156,7 @@ public with sharing class DNBAdvancedLookupController {
 
             if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('OnlineApplication__c')) {
 
-                List<OnlineApplication__c> onlineApplications = [SELECT Id, Automatically_Generated_Number__c, DUNS__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
+                List<OnlineApplication__c> onlineApplications = [SELECT Id, Automatically_Generated_Number__c, DNB_Lookup_Hits__c, DUNS__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
                         DNB_Street_Number_Match_Data_Profile__c, DNB_City_Match_Data_Profile__c, DNB_State_Match_Data_Profile__c, DNB_Postal_Code_Match_Data_Profile__c FROM OnlineApplication__c WHERE Id = :applicationId];
 
                 if (onlineApplications.size() == 1) {
@@ -170,7 +170,7 @@ public with sharing class DNBAdvancedLookupController {
                     onlineApplications[0].DNB_City_Match_Data_Profile__c = lookupResults[selectedIndex].CityMatchDataProfile;
                     onlineApplications[0].DNB_State_Match_Data_Profile__c = lookupResults[selectedIndex].StateMatchDataProfile;
                     onlineApplications[0].DNB_Postal_Code_Match_Data_Profile__c = lookupResults[selectedIndex].PostalCodeMatchDataProfile;
-
+                    onlineApplications[0].DNB_Lookup_Hits__c = 1;
                     Database.UpsertResult result = Database.upsert(onlineApplications[0], false);
                     if (result.isSuccess()) {
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, 'Application updated!'));
@@ -182,7 +182,7 @@ public with sharing class DNBAdvancedLookupController {
 
             } else if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('CP_Application_Request__c')) {
 
-                List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Automatically_Generated_Number__c, DUNS_Number__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
+                List<CP_Application_Request__c> cpApplicationRequests = [SELECT Id, Automatically_Generated_Number__c, DNB_Lookup_Hits__c, DUNS_Number__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
                         DNB_Street_Number_Match_Data_Profile__c, DNB_City_Match_Data_Profile__c, DNB_State_Match_Data_Profile__c, DNB_Postal_Code_Match_Data_Profile__c FROM CP_Application_Request__c WHERE Id = :applicationId];
 
                 if (cpApplicationRequests.size() == 1) {
@@ -196,7 +196,7 @@ public with sharing class DNBAdvancedLookupController {
                     cpApplicationRequests[0].DNB_City_Match_Data_Profile__c = lookupResults[selectedIndex].CityMatchDataProfile;
                     cpApplicationRequests[0].DNB_State_Match_Data_Profile__c = lookupResults[selectedIndex].StateMatchDataProfile;
                     cpApplicationRequests[0].DNB_Postal_Code_Match_Data_Profile__c = lookupResults[selectedIndex].PostalCodeMatchDataProfile;
-
+                    cpApplicationRequests[0].DNB_Lookup_Hits__c = 1;
                     Database.UpsertResult result = Database.upsert(cpApplicationRequests[0], false);
                     if (result.isSuccess()) {
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, 'Application updated!'));
@@ -209,7 +209,7 @@ public with sharing class DNBAdvancedLookupController {
             } else if (((Id.valueOf(applicationId)).getSobjectType().getDescribe().getName()).equalsIgnoreCase('Application_Request__c')) {
 
                 List<Application_Request__c> applicationRequests = [
-                        SELECT Id, Automatically_Generated_Number__c, DUNS_Number__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
+                        SELECT Id, Automatically_Generated_Number__c, DNB_Lookup_Hits__c, DUNS_Number__c, DNB_Name_Match_Grade__c, DNB_Name_Match_Data_Profile__c, DNB_Street_Name_Match_Data_Profile__c,
                                 DNB_Street_Number_Match_Data_Profile__c, DNB_City_Match_Data_Profile__c, DNB_State_Match_Data_Profile__c, DNB_Postal_Code_Match_Data_Profile__c
                         FROM Application_Request__c
                         WHERE Id = :applicationId
@@ -226,7 +226,7 @@ public with sharing class DNBAdvancedLookupController {
                     applicationRequests[0].DNB_City_Match_Data_Profile__c = lookupResults[selectedIndex].CityMatchDataProfile;
                     applicationRequests[0].DNB_State_Match_Data_Profile__c = lookupResults[selectedIndex].StateMatchDataProfile;
                     applicationRequests[0].DNB_Postal_Code_Match_Data_Profile__c = lookupResults[selectedIndex].PostalCodeMatchDataProfile;
-
+                    applicationRequests[0].DNB_Lookup_Hits__c = 1;
                     Database.UpsertResult result = Database.upsert(applicationRequests[0], false);
                     if (result.isSuccess()) {
                         ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM, 'Application updated!'));
