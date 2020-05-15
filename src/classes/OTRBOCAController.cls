@@ -152,8 +152,8 @@ public class OTRBOCAController {
                 // else if they selected ACH, are in business under 2 years, and isn't on the FTS or CoreCard platform - EAPT-1747
             } if (onlineApplication.Payment_Method__c != null && onlineApplication.Payment_Method__c.containsIgnoreCase('ACH')
                     && yearsInBusiness != null && yearsInBusiness < 2
-                    && (!('FTS').equalsIgnoreCase(program.WEX_Platform__c)
-                    || !('CoreCard').equalsIgnoreCase(program.WEX_Platform__c))) {
+                    && !('FTS').equalsIgnoreCase(program.WEX_Platform__c)
+                    && !('CoreCard').equalsIgnoreCase(program.WEX_Platform__c)) {
                 onlineApplication.Days_Of_Payment__c = 'Monday / Thursday';
                 display = false;
             }
