@@ -423,7 +423,7 @@ public class BOCAFormTriggerHandler {
             System.debug('###' + program.Name + '### YIB' + applicationRequest.Years_In_Business__c);
 
             if (opportunity.Years_In_Business__c < 2 && program.Reduced_Credit_Line__c == true) {
-                applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c / 2);
+                applicationRequest.Requested_Credit_Limit__c = String.valueOf(Math.round(applicationRequest.Expected_Monthly_Vehicle_Expense__c / 2));
             } else {
                 applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c * 2);
             }
