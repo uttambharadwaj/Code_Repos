@@ -27,7 +27,7 @@ global class CreditDecisionEngineNA {
         decisionEngineRunning = true;
 
         List<Application_Request__c> naApplications = [
-                SELECT Id, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, App_Signer_Last_Name_Text__c,
+                SELECT Id, Automatically_Generated_Number__c, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, App_Signer_Last_Name_Text__c,
                         Billing_City__c, Billing_Contact_First_Name_Text__c, Billing_Contact_Last_Name_Text__c, Billing_Contact__r.Email, Billing_Contact__r.Phone,
                         Billing_State__c, Billing_Street__c, Billing_Zip_Postal_Code__c, Business_Phone_Number__c, Checking_Account_Number__c, CreatedBy.Alias,
                         Doing_Business_As__c, DUNS_Number__c, Legal_Structure__c, Name, Opportunity_Name_Text__c, Opportunity__r.SourceSystem__c,

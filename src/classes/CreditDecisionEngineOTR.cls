@@ -28,7 +28,7 @@ global class CreditDecisionEngineOTR {
         decisionEngineRunning = true;
 
         List<OnlineApplication__c> onlineApplications = [
-                SELECT Id, Name, Legal_Business_Name__c, Application_Stage__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Session_ID__c,
+                SELECT Id, Automatically_Generated_Number__c, Name, Legal_Business_Name__c, Application_Stage__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Session_ID__c,
                         ThreatMetrix_Result__c, Sanctions_Business_Check__c, Sanctions_Individual_Check__c, ABA_Routing_Number__c, Checking_Account_Number__c, Country__c,
                         Business_Street_Address__c, City__c, State__c, Zip_code__c, Sanctions_Individual_Result_ID__c, Contact_First_Name__c, Contact_Last_Name__c,
                         AO_Name__c, AO_Work_Email__c, AO_Address__c, AO_City__c, Contact_Name__c, AO_State__c, AO_Zip_Code__c, AO_Date_of_Birth__c, AO_Social_Security_Number__c, Running_Credit_Decisioning__c,
