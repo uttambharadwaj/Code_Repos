@@ -27,6 +27,7 @@ public class AccountSearchControllerTest {
 		parentOtrAccount.ShippingState = 'ME';
 		parentOtrAccount.ShippingCountry = 'USA';
 		parentOtrAccount.ShippingPostalCode = '04106';
+		parentOtrAccount.Platform__c = 'EFSLLC';
 		parentOtrAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
 
 		parentOtrAccount.Sponsor_Acct__c = '123457';
@@ -50,6 +51,7 @@ public class AccountSearchControllerTest {
 		otrAccount.ShippingState = 'ME';
 		otrAccount.ShippingCountry = 'USA';
 		otrAccount.ShippingPostalCode = '04106';
+		otrAccount.Platform__c = 'EFSLLC';
 		otrAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
 		otrAccount.ParentId = parentOtrAccountId;
 		otrAccount.Acct_Row_Id__c = 'EFSLLC-123456';
@@ -57,9 +59,33 @@ public class AccountSearchControllerTest {
 		otrAccount.Sponsor_Acct__c = '123456';
 
 		insert otrAccount;
-
 		Id otrAccountId = otrAccount.Id;
+		
+		Account tchekAccount = new Account();
+		tchekAccount.Customer_Segmentation__c = 0;
+		tchekAccount.CurrencyIsoCode = 'USD';
+		tchekAccount.Status__c = 'A';
+		tchekAccount.Name = 'Test TChek Account';
+		tchekAccount.Phone = '207-523-7171';
+		tchekAccount.BillingStreet = '1 Hancock St';
+		tchekAccount.BillingCity = 'Portland';
+		tchekAccount.BillingState = 'ME';
+		tchekAccount.BillingCountry = 'USA';
+		tchekAccount.BillingPostalCode = '04101';
+		tchekAccount.ShippingStreet = '97 Darling Ave';
+		tchekAccount.ShippingCity = 'S Portland';
+		tchekAccount.ShippingState = 'ME';
+		tchekAccount.ShippingCountry = 'USA';
+		tchekAccount.ShippingPostalCode = '04106';
+		tchekAccount.Platform__c = 'TCHEK';
+		tchekAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
+		tchekAccount.Acct_Row_Id__c = 'TCHEK-12345';
 
+		tchekAccount.Sponsor_Acct__c = '12345';
+		
+		insert tchekAccount;
+		Id tchekAccountId = tchekAccount.Id;
+		
 		Contract__c otrContract = new Contract__c();
 		otrContract.Account__c = otrAccountId;
 		otrContract.Status__c = 'A';
@@ -75,11 +101,18 @@ public class AccountSearchControllerTest {
 		otrContact.Phone = '207-773-8171';
 		otrContact.AccountId = otrAccountId;
 		otrContact.Contact_Type__c = 'PRIMARY';
+		otrContact.Contact_Row_Id__c = 'EFSLLC-123456-6666';
 		insert otrContact;
-		Id otrContactId = otrContact.Id;
-		otrContact.Contact_Row_Id__c = otrContactId;
-		update otrContact;
 
+		Contact tchekContact = new Contact();
+		tchekContact.RecordTypeId = serviceOpsContactRecordTypeId;
+		tchekContact.FirstName = 'Generic';
+		tchekContact.LastName = 'Trucker';
+		tchekContact.Phone = '207-773-1776';
+		tchekContact.AccountId = tchekAccountId;
+		tchekContact.Contact_Type__c = 'PRIMARY';
+		tchekContact.Contact_Row_Id__c = 'TCHEK-12345-6667';
+		insert tchekContact;
 	}
 
 	@IsTest
@@ -127,7 +160,31 @@ public class AccountSearchControllerTest {
 
 		Test.stopTest();
 
-		System.assertEquals(2, resultsWrapper2.results.size());
+		System.assertEquals(3, resultsWrapper2.results.size());
+	}
+
+	@IsTest
+	static void testAcctNumberSearchForTchek() {
+		Test.setMock(WebServiceMock.class, new MockResponseGenerator());
+
+		Test.startTest();
+		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('Account_Number_OTR', '12345');
+
+		Test.stopTest();
+
+		System.assertEquals(1, resultsWrapper2.results.size());
+	}
+
+	@IsTest
+	static void testAcctNumberWildcardSearchForTchek() {
+		Test.setMock(WebServiceMock.class, new MockResponseGenerator());
+
+		Test.startTest();
+		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('Account_Number_OTR', '12345*');
+
+		Test.stopTest();
+
+		System.assertEquals(1, resultsWrapper2.results.size());
 	}
 
 	@IsTest
@@ -175,7 +232,7 @@ public class AccountSearchControllerTest {
 
 		Test.stopTest();
 
-		System.assertEquals(2, resultsWrapper2.results.size());
+		System.assertEquals(3, resultsWrapper2.results.size());
 	}
 
 	@IsTest
@@ -184,6 +241,18 @@ public class AccountSearchControllerTest {
 
 		Test.startTest();
 		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('Account_Phone_OTR', '2075237171');
+
+		Test.stopTest();
+
+		System.assertEquals(2, resultsWrapper2.results.size());
+	}
+
+	@IsTest
+	static void testCardNumberSearchForTchek() {
+		Test.setMock(WebServiceMock.class, new MockResponseGenerator());
+
+		Test.startTest();
+		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('Card_Number_OTR', '123456789012');
 
 		Test.stopTest();
 
