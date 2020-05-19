@@ -407,7 +407,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                                     <span class="styled-label-required">*</span>
                                                 </apex:outputLabel>
                                                 <apex:InputField styleClass="styled-input required" required="true" html-tabindex="20" id="yearsInBusiness" label="" value="{!onlineApplication.Year_Established__c}">
-                                                    <apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="accountGuarantor,disclaimer" oncomplete="pageLoadFunctions()" />
+                                                    <apex:actionSupport event="onchange" action="{!recalculatePG}" rerender="accountGuarantor,disclaimer,dayOfPaymentGroup" oncomplete="pageLoadFunctions()" />
                                                 </apex:InputField>
                                             </apex:actionRegion>
                                         </div>
@@ -520,7 +520,7 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                         </apex:outputPanel>
                                         <apex:outputPanel id="dayOfPaymentGroup">
                                             <!-- PSOBACKLOG-55 -->
-                                            <apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplication.Account_Type__c != 'Prepay', onlineApplication.Payment_Method__c != 'Internet Pay'), true, false)}">
+                                            <apex:outputPanel rendered="{!displayDaysOfPayment}">
                                                 <div class="twelve columns clearfix form-field" data-row="13">
                                                     <apex:outputLabel for="dayOfPayment" styleClass="styled-label" value="Day(s) Of Payment ">
                                                         <span class="styled-label-required">*</span>

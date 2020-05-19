@@ -136,24 +136,31 @@
                                 <lightning:icon iconName="utility:description" size="x-small" variant="inverse"/>
                                 APPLICANT DETAILS</div>   
                             &nbsp;&nbsp;
-                            <lightning:textarea aura:id="field" label="Please describe the reason that you are requesting assistance from the Compassion Fund, including details about the qualifying event and how this has impacted, or will impact you, financially."                         
+                            <lightning:textarea aura:id="field" label="Please describe the reason that you are requesting assistance from the Compassion Fund, including details about the qualifying event and how this has impacted, or will impact you, financially."
                                                 value="{!v.newCompassionFundForm.Reason_for_Request__c}" class="slds-p-top_medium bodyContent" required="true"/>
-                            <lightning:textarea aura:id="field" label="List any other assistance that you/the applicant have applied for, are receiving, or anticipate receiving as a result of the qualifying event."                         
+                            <lightning:input type="number" aura:id="field" label="What is the amount of financial assistance that are you seeking from the Compassion Fund?"
+                                             name="financialAssistanceRequested"
+                                             min="0"
+                                             value="{!v.newCompassionFundForm.Financial_Assistance_Requested__c}"
+                                             maxlength="4"
+                                             class="bodyContent"
+                                             required="true"/>
+                            <lightning:textarea aura:id="field" label="List any other assistance that you/the applicant have applied for, are receiving, or anticipate receiving as a result of the qualifying event."
                                                 value="{!v.newCompassionFundForm.Other_Assistance__c}" class="slds-p-top_medium bodyContent" required="true"/>
                             <lightning:textarea aura:id="field" label="Explain in detail how you/the applicant will use the grant funds, if received (IMPORTANT: Federal Law prohibits the WEX Cares Foundation from providing grants to be used to pay medical deductibles from WEX’s plans or to cover loss in wages due to reduction in hours)."                         
                                                 value="{!v.newCompassionFundForm.Purpose_of_Funds__c}" class="slds-p-top_medium bodyContent" required="true"/>
 							
                             <br/>
                             <label class="slds-p-top_medium">
-                                <lightning:formattedText class="bodyContent" value="Please upload any supporting documentation to your application. All documents must be uploaded as image files only. Supporting documentation includes proof referenced in the qualifying events "/>
+                                <lightning:formattedText class="bodyContent" value="Please send all requested supporting documentation to wexcares@wexinc.com.  This is a secure mailbox. All documents must be uploaded as image files only. Supporting documentation includes proof referenced in the qualifying events "/>
                                 <a href="https://www.wexinc.com/wex-compassion-fund/wp-content/uploads/sites/4/2019/01/qualifying-matrix-20190114.pdf" title="matrix" target="_blank" class="link">matrix</a>
                                 <lightning:formattedText class="bodyContent" value=" or documentation otherwise requested by the WEX Cares Foundation to substantiate your claim. Questions around what to include and when? Contact us at " />
                                 <a href="mailto:wexcares@wexinc.com" title="WEX Cares" target="_blank" class="link">wexcares@wexinc.com</a>
                             </label>
 
-                            <lightning:textarea aura:id="field"                                               
+                            <lightning:textarea aura:id="field"
                                                 value="{!v.newCompassionFundForm.Supporting_Documentation__c}" class="bodyContent"/>
-                            
+
                             <div class="slds-p-top_medium">          
                                 <lightning:radioGroup aura:id="field"
                                                       name="additionalInfo"

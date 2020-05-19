@@ -4,12 +4,44 @@
 
 <!-- Related Tasks Parent -->
 <template>
-    <lightning-card title="Activities" icon-name="standard:task">
-        <c-related-tasks-List currentpage={page} onrecordsload={handleRecordsLoad} pagesize={pagesize} record-id={recordId} totalrecords={totalrecords}></c-related-tasks-List>
-        <div class="slds-m-around_medium">
-            <c-related-tasks-pagination onprevious={handlePrevious} onnext={handleNext} onfirst={handleFirst}
-                                onlast={handleLast} currentpage={page} totalrecords={totalrecords} pagesize={pagesize}>
-            </c-related-tasks-pagination>
+    <lightning-card title="" icon-name="standard:task" class="slds-card__header">
+        <div slot="title">
+            <span class="slds-card__header-link">Related Tasks</span>
         </div>
+        <!-- commenting out tabs for create new as that will be future functionality
+            <lightning-tabset>
+            <lightning-tab label="Tasks" title="Tasks">-->
+                <c-related-tasks-filter
+                    task-type-filter={taskTypeFilter}
+                    onfilterapplied={handledFilterApplied}>
+                </c-related-tasks-filter>
+                <c-related-tasks-List
+                    task-type-filter={taskTypeFilter}
+                    currentpage={page}
+                    onrecordsload={handleRecordsLoad}
+                    pagesize={pagesize}
+                    record-id={recordId}
+                    totalrecords={totalrecords}>
+                </c-related-tasks-List>
+                <div class="slds-m-around_medium">
+                    <c-related-tasks-pagination
+                        onprevious={handlePrevious}
+                        onnext={handleNext}
+                        onfirst={handleFirst}
+                        onlast={handleLast}
+                        currentpage={page}
+                        totalrecords={totalrecords}
+                        pagesize={pagesize}>
+                    </c-related-tasks-pagination>
+                </div>
+            <!--commenting out tabs for create new as that will be future functionality
+                </lightning-tab>
+            <lightning-tab label="New Task" title="New">
+                <c-related-task-create-new
+                    record-id={recordId}
+                >
+                </c-related-task-create-new>
+            </lightning-tab>
+        </lightning-tabset>-->
     </lightning-card>
 </template>
