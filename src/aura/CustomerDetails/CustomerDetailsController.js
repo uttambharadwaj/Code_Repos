@@ -37,6 +37,7 @@
         ]);
 
         component.set("v.paymentDetailsColumnList", [
+            {label: "Deposit ID", fieldName: "depositId", type: "text", sortable: false, initialWidth: 150 },
             {label: "Payment ID", fieldName: "paymentId", type: "text", sortable: false, initialWidth: 150 },
             {label: "Accounting Date", fieldName: "accountingDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 160},
             {label: "Posting Date", fieldName: "postingDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
