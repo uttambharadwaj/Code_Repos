@@ -556,6 +556,7 @@ public class CustomerDetailsWSUtilv2 {
     public class paymentDetailEntry {
         @AuraEnabled public DateTime accountingDt;
         @AuraEnabled public String currencyCd;
+        @AuraEnabled public String depositId;
         @AuraEnabled public String id;
         @AuraEnabled public Decimal paymentAmt;
         @AuraEnabled public String paymentId;
@@ -565,6 +566,9 @@ public class CustomerDetailsWSUtilv2 {
         };
         private String[] currencyCd_type_info = new String[]{
                 'currencyCd', 'http://com.wex.enterpriseapps.customerinfo', null, '0', '1', 'false'
+        };
+        private String[] depositId_type_info = new String[]{
+                'depositId', 'http://com.wex.enterpriseapps.customerinfo', null, '0', '1', 'false'
         };
         private String[] id_type_info = new String[]{
                 'id', 'http://com.wex.enterpriseapps.customerinfo', null, '0', '1', 'false'
@@ -582,7 +586,7 @@ public class CustomerDetailsWSUtilv2 {
                 'http://com.wex.enterpriseapps.customerinfo', 'false', 'false'
         };
         private String[] field_order_type_info = new String[]{
-                'accountingDt', 'currencyCd', 'id', 'paymentAmt', 'paymentId', 'postingDt'
+                'accountingDt', 'currencyCd', 'depositId', 'id', 'paymentAmt', 'paymentId', 'postingDt'
         };
     }
     public class authSearchResult {

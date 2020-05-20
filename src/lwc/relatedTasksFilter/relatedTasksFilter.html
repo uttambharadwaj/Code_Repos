@@ -1,0 +1,73 @@
+<!--
+ - Created by mfarrell on 4/22/20.
+ -->
+
+<!-- Related Tasks Filter -->
+<template>
+    <div class="slds-m-horizontal_medium slds-text-align_right">
+        <span class="slds-m-horizontal_medium">Filters: Type - {taskTypeFilter} | Date - {dateValue}</span>
+        <lightning-button-icon
+            alternative-text="Filter"
+            variant={buttonVariant}
+            icon-name="utility:filterList"
+            onclick={handleFilterClick}>
+        </lightning-button-icon>
+        <div class="slds-is-relative slds-float_right slds-m-vertical_medium">
+            <section if:true={showPopover} class="slds-popover slds-nubbin_top-right" role="dialog">
+                <div class="slds-popover__body slds-m-around_small">
+                    <lightning-button-icon
+                        alternative-text="Close"
+                        icon-name="utility:close"
+                        variant="bare"
+                        size="small"
+                        class="slds-text-align_right"
+                        onclick={handleCloseClick}>
+                    </lightning-button-icon>
+                    <div>
+                        <p class="slds-text-heading_label slds-text-align_left">Task Type</p>
+                        <lightning-checkbox-group
+                            name="Type"
+                            variant="label-hidden"
+                            options={typeOptions}
+                            value={typeValue}
+                            class="slds-text-align_left slds-m-horizontal_medium"
+                            onchange={handleTypeChange}>
+                        </lightning-checkbox-group>
+                    </div>
+                    <br />
+                    <div>
+                        <p class="slds-text-heading_label slds-text-align_left">Date Range</p>
+                        <lightning-checkbox-group
+                            name="Date"
+                            variant="label-hidden"
+                            options={dateOptions}
+                            value={dateValue}
+                            class="slds-text-align_left slds-m-horizontal_medium"
+                            onchange={handleDateChange}>
+                        </lightning-checkbox-group>
+                    </div>
+                    <br />
+                    <footer class="slds-popover__footer">
+                        <div class="slds-grid slds-wrap">
+                            <!-- left column -->
+                            <div class="slds-col slds-size_1-of-2 slds-text-align_left">
+                                <lightning-button
+                                        label="Clear Filter"
+                                        onclick={handleClearFilterClick}>
+                                </lightning-button>
+                            </div>
+                            <!-- right column -->
+                            <div class="slds-col slds-size_1-of-2 slds-text-align_right">
+                                <lightning-button
+                                        variant="brand"
+                                        label="Apply"
+                                        onclick={handleApplyFilterClick}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </section>
+        </div>
+    </div>
+</template>

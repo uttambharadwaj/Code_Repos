@@ -180,9 +180,13 @@
                                                         </div>
                                                     </div>
                                                     <div class="slds-form-element__row">
-                                                        <div class="slds-form-element slds-size_1-of-1">
+                                                        <div class="slds-form-element slds-size_1-of-2">
                                                             <label class="slds-form-element__label" for="input-01">Address</label>
                                                             <apex:inputText styleClass="slds-input {!IF(applicationInformation.addressLine1 == null, 'nullValue', '')}" disabled="true" value="{!applicationInformation.addressLine1}" />
+                                                        </div>
+                                                        <div class="slds-form-element slds-size_2-of-2">
+                                                            <label class="slds-form-element__label" for="input-02">AGN</label>
+                                                            <apex:inputText styleClass="slds-input {!IF(applicationInformation.AGN == null, 'nullValue', '')}" disabled="true" value="{!applicationInformation.AGN}" />
                                                         </div>
                                                     </div>
                                                     <div class="slds-form-element__row">
@@ -226,6 +230,9 @@
                                                     <div class="slds-truncate" title="DUNS Number">DUNS Number</div>
                                                 </th>
                                                 <th scope="col">
+                                                    <div class="slds-truncate" title="AGN">AGN</div>
+                                                </th>
+                                                <th scope="col">
                                                     <div class="slds-truncate" title="Address">Address</div>
                                                 </th>
                                                 <th scope="col">
@@ -264,6 +271,9 @@
                                                 <td data-label="DUNS Number">
                                                     <div class="slds-truncate" title="">{!result.DUNSNumber}</div>
                                                 </td>
+                                                <td data-label="AGN">
+                                                    <div class="slds-truncate" title="">{!result.AGN}</div>
+                                                </td>
                                                 <td data-label="Address">
                                                     <div class="slds-truncate" title="">{!result.StreetAddressLine}</div>
                                                 </td>
@@ -281,7 +291,7 @@
                                                 </td>
                                                 <td data-label="Postal Code">
                                                     <span style='color: #33cc33;'>
-                                                        <apex:outputText escape="false" rendered="{!result.DUNSNumber == applicationInformation.dunsNumber}" value="&#10004;" />
+                                                        <apex:outputText escape="false" rendered="{!(result.DUNSNumber != null && result.DUNSNumber == applicationInformation.dunsNumber) || (result.AGN != null && result.AGN == applicationInformation.AGN)}" value="&#10004;" />
                                                     </span>
                                                 </td>
                                             </tr>

@@ -3,7 +3,7 @@
  * Child of relatedTasksParent
  */
 
-import { LightningElement, api, wire } from 'lwc';
+import { LightningElement, api, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getAllTasks from '@salesforce/apex/LWC_TasksController.getAllTasks';
 import getTaskCount from '@salesforce/apex/LWC_TasksController.getTaskCount';
@@ -15,9 +15,16 @@ export default class TaskList extends NavigationMixin(LightningElement) {
     @api currentpage;
     @api pagesize;
     @api totalrecords;
+    @api taskTypeFilter;
+    @api taskHistoricalDateFilter;
+    @api taskFutureDateFilter;
     totalpages;
 
-    @wire(getTaskCount, {recordId: '$recordId'})
+    @wire(getTaskCount, {
+        recordId: '$recordId',
+        taskTypeFilter: '$taskTypeFilter',
+        taskHistoricalDateFilter: '$taskHistoricalDateFilter',
+        taskFutureDateFilter: '$taskFutureDateFilter'})
     wiredCountTasks({data, error}) {
         if (data) {
             this.totalrecords = data;
@@ -31,7 +38,13 @@ export default class TaskList extends NavigationMixin(LightningElement) {
         }
     }
 
-    @wire(getAllTasks, {pageNumber: '$currentpage', pageSize: '$pagesize', recordId: '$recordId'})
+    @wire(getAllTasks, {
+        pageNumber: '$currentpage',
+        pageSize: '$pagesize',
+        recordId: '$recordId',
+        taskTypeFilter: '$taskTypeFilter',
+        taskHistoricalDateFilter: '$taskHistoricalDateFilter',
+        taskFutureDateFilter: '$taskFutureDateFilter'})
     wiredGetTasks({data, error}) {
         if (data) {
             this.tasks = data;
