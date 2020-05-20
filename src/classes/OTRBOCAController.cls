@@ -149,8 +149,9 @@ public class OTRBOCAController {
             Boolean display = true;
             if (('Parent Funded').equalsIgnoreCase(onlineApplicationOffer.Funding__c) || ('Prepay').equalsIgnoreCase(onlineApplication.Account_Type__c) || ('Internet Pay').equalsIgnoreCase(onlineApplication.Payment_Method__c)) {
                 display = false;
+                onlineApplication.Days_Of_Payment__c = null;
                 // else if they selected ACH, are in business under 2 years, and isn't on the FTS or CoreCard platform - EAPT-1747
-            } if (onlineApplication.Payment_Method__c != null && onlineApplication.Payment_Method__c.containsIgnoreCase('ACH')
+            } else if (onlineApplication.Payment_Method__c != null && onlineApplication.Payment_Method__c.containsIgnoreCase('ACH')
                     && yearsInBusiness != null && yearsInBusiness < 2
                     && !('FTS').equalsIgnoreCase(program.WEX_Platform__c)
                     && !('CoreCard').equalsIgnoreCase(program.WEX_Platform__c)) {
