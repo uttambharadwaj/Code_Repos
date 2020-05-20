@@ -13,7 +13,9 @@
             <lightning-tab label="Tasks" title="Tasks">-->
                 <c-related-tasks-filter
                     task-type-filter={taskTypeFilter}
-                    onfilterapplied={handledFilterApplied}>
+                    onfilterapplied={handledFilterApplied}
+                    task-future-date-filter={taskFutureDateFilter}
+                    task-historical-date-filter={taskHistoricalDateFilter}>
                 </c-related-tasks-filter>
                 <c-related-tasks-List
                     task-type-filter={taskTypeFilter}
@@ -21,7 +23,9 @@
                     onrecordsload={handleRecordsLoad}
                     pagesize={pagesize}
                     record-id={recordId}
-                    totalrecords={totalrecords}>
+                    totalrecords={totalrecords}
+                    task-future-date-filter={taskFutureDateFilter}
+                    task-historical-date-filter={taskHistoricalDateFilter}>
                 </c-related-tasks-List>
                 <div class="slds-m-around_medium">
                     <c-related-tasks-pagination

@@ -6,16 +6,28 @@ import {LightningElement, api} from 'lwc';
 
 export default class RelatedTasksFilter extends LightningElement {
     @api taskTypeFilter;
+    @api taskHistoricalDateFilter = false;
+    @api taskFutureDateFilter = false;
     showPopover = false;
     buttonVariant;
-    value = [];
-    options = [
+    filters = {};
+    typeValue = [];
+    typeOptions = [
         { label: 'Call', value: 'Call' },
         { label: 'Email', value: 'Email' },
     ];
+    dateValue = ['Historical'];
+    dateOptions = [
+        { label: 'Future', value: 'Future' },
+        { label: 'Historical', value: 'Historical' },
+    ];
 
-    handleChange(event) {
-        this.value = event.detail.value;
+    handleTypeChange(event) {
+        this.typeValue = event.detail.value;
+
+    }
+    handleDateChange(event) {
+        this.dateValue = event.detail.value;
     }
     handleFilterClick () {
         if(this.showPopover) {
@@ -26,19 +38,22 @@ export default class RelatedTasksFilter extends LightningElement {
         }
     }
     handleApplyFilterClick () {
-        this.taskTypeFilter = this.value.toString();
+        this.taskTypeFilter = this.typeValue.toString();
+        this.taskFutureDateFilter = this.dateValue.includes('Future');
+        this.taskHistoricalDateFilter = this.dateValue.includes('Historical');
+        this.filters = {type: this.taskTypeFilter, historicalDates: this.taskHistoricalDateFilter, futureDates: this.taskFutureDateFilter}
         const event = new CustomEvent('filterapplied', {
-            detail: this.taskTypeFilter
+            detail: this.filters
         });
         this.dispatchEvent(event);
         this.handleCloseClick();
 
     }
     handleClearFilterClick () {
-        this.value = [];
+        this.typeValue = [];
+        this.dateValue = [];
         this.handleApplyFilterClick();
     }
-
     handleCloseClick () {
         this.showPopover = false;
         this.buttonVariant = undefined;

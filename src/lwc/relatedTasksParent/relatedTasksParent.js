@@ -11,6 +11,8 @@ export default class PaginationParent extends LightningElement {
     @api totalrecords;
     @api pagesize;
     @api taskTypeFilter = '';
+    @api taskHistoricalDateFilter = null;
+    @api taskFutureDateFilter = null;
 
     handlePrevious() {
         if (this.page > 1) {
@@ -32,10 +34,9 @@ export default class PaginationParent extends LightningElement {
         this.totalPages = Math.ceil(this.totalrecords / this.pagesize);
     }
     handledFilterApplied(event) {
-        this.taskTypeFilter = event.detail;
-        console.log(this.taskTypeFilter);
+        this.taskTypeFilter = event.detail.type;
+        this.taskFutureDateFilter = event.detail.futureDates;
+        this.taskHistoricalDateFilter = event.detail.historicalDates;
     }
-    // handlePageChange(event) {
-    //     this.page = event.detail;
-    // }
+
 }
