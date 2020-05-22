@@ -439,7 +439,6 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                         CustomerDetailsWSUtilv2.paymentDetailEntry entry = new CustomerDetailsWSUtilv2.paymentDetailEntry();
                         minusI = 13-i;
                         entry.id = ''+i;
-                        entry.depositId = 'DEPOSIT_'+i;
                         entry.paymentId = 'PAYMENT_'+i;
                         entry.accountingDt = Datetime.newInstance(2017,minusI,minusI);
                         entry.postingDt = Datetime.newInstance(2017,minusI,minusI);
