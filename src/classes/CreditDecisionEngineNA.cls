@@ -27,7 +27,7 @@ global class CreditDecisionEngineNA {
         decisionEngineRunning = true;
 
         List<Application_Request__c> naApplications = [
-                SELECT Id, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, App_Signer_Last_Name_Text__c,
+                SELECT Id, Automatically_Generated_Number__c, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, App_Signer_Last_Name_Text__c,
                         Billing_City__c, Billing_Contact_First_Name_Text__c, Billing_Contact_Last_Name_Text__c, Billing_Contact__r.Email, Billing_Contact__r.Phone,
                         Billing_State__c, Billing_Street__c, Billing_Zip_Postal_Code__c, Business_Phone_Number__c, Checking_Account_Number__c, CreatedBy.Alias,
                         Doing_Business_As__c, DUNS_Number__c, Legal_Structure__c, Name, Opportunity_Name_Text__c, Opportunity__r.SourceSystem__c,
@@ -330,7 +330,6 @@ global class CreditDecisionEngineNA {
                 naApplication.DNB_State_Match_Data_Profile__c  = dnbDirectMatchResponse.matchCandidates[0].StateMatchDataProfile;
                 naApplication.DNB_Postal_Code_Match_Data_Profile__c = dnbDirectMatchResponse.matchCandidates[0].PostalCodeMatchDataProfile;
                 naApplication.DNB_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].MatchGradeText;
-                naApplication.Automatically_Generated_Number__c = dnbDirectMatchResponse.matchCandidates[0].AGN;
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     naApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
                 }
@@ -339,98 +338,98 @@ global class CreditDecisionEngineNA {
                 System.debug('Running DNB BPAV....');
                 BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('NACreditDecisioningBPAVMatch', new List<SObject>{naApplication});
 
-                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')  && dnbDirectMatchResponse.matchCandidates[0].DUNSNumber != null) {
+                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
 
+                    naApplication.Automatically_Generated_Number__c = dnbDirectMatchResponse.matchCandidates[0].AGN;
                     naApplication.DUNS_Number__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
 
-                    if (naApplication.Physical_Country__c == null || (naApplication.Physical_Country__c).equalsIgnoreCase('US')) {
+                    if (dnbDirectMatchResponse.matchCandidates[0].DUNSNumber != null) {
+                        if (naApplication.Physical_Country__c == null || (naApplication.Physical_Country__c).equalsIgnoreCase('US')) {
 
-                        CreditWS_DNB.DNBNAFleetModelRequest dnbNAFleetModelRequest = new CreditWS_DNB.DNBNAFleetModelRequest();
+                            CreditWS_DNB.DNBNAFleetModelRequest dnbNAFleetModelRequest = new CreditWS_DNB.DNBNAFleetModelRequest();
 
-                        dnbNAFleetModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
-                        dnbNAFleetModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(naApplication.Requested_Credit_Limit__c));
+                            dnbNAFleetModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
+                            dnbNAFleetModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(naApplication.Requested_Credit_Limit__c));
 
-                        CreditWS_DNB.DNBNAFleetModelResponse dnbNAFleetModelResponse = CreditWS_DNB.getNAFleetScore(dnbNAFleetModelRequest);
+                            CreditWS_DNB.DNBNAFleetModelResponse dnbNAFleetModelResponse = CreditWS_DNB.getNAFleetScore(dnbNAFleetModelRequest);
 
-                        if (dnbNAFleetModelResponse != null) {
+                            if (dnbNAFleetModelResponse != null) {
 
-                            naApplication.DNB_Score__c = dnbNAFleetModelResponse.RawScore;
-                            naApplication.DNB_Credit_Line_Recommendation__c = dnbNAFleetModelResponse.RecommendedCreditLimitAmount;
-                            naApplication.DNB_Model__c = dnbNAFleetModelResponse.ModelUsed;
-                            naApplication.SIC_Code__c = dnbNAFleetModelResponse.PrimarySIC;
-                            naApplication.DNB_Resolved_DUNS__c = dnbNAFleetModelResponse.DunsNumber;
-                            naApplication.DUNS_Number__c = dnbNAFleetModelResponse.DunsNumber;
-                            naApplication.Global_Ultimate_DUNS__c = dnbNAFleetModelResponse.GlobalUltimateDUNS;
-                            naApplication.DNB_Resolved_Name__c = dnbNAFleetModelResponse.PrimaryName;
-                            naApplication.DNB_Resolved_Address__c = dnbNAFleetModelResponse.AddressLine;
-                            naApplication.DNB_Resolved_City__c = dnbNAFleetModelResponse.PostalTown;
-                            naApplication.DNB_Resolved_State__c = dnbNAFleetModelResponse.PrimaryGeographicArea;
-                            naApplication.DNB_Resolved_Postal_Code__c = dnbNAFleetModelResponse.PostalCode;
-                            naApplication.DNB_Resolved_Country__c = dnbNAFleetModelResponse.CountryCode;
-                            naApplication.DNB_SBFE_High_Credit__c = dnbNAFleetModelResponse.SBFEHighCredit;
-                            naApplication.DNB_CSAD_High_Credit__c = dnbNAFleetModelResponse.CSADHighCredit;
-                            naApplication.DNB_SBRI_Card_Score__c = dnbNAFleetModelResponse.SBRICardScore;
-                            naApplication.Bankruptcy_Date__c = dnbNAFleetModelResponse.BankruptcyDateOfFiling;
-                            naApplication.Bureau_Tax_ID__c = dnbNAFleetModelResponse.FeinTaxID;
-                            naApplication.Paydex__c = dnbNAFleetModelResponse.Paydex;
-                            naApplication.Control_Year__c = String.valueOf(dnbNAFleetModelResponse.ControlYear);
-                            naApplication.Year_Started__c = String.valueOf(dnbNAFleetModelResponse.YearStarted);
-                            naApplication.Number_of_Payments_Negative__c = dnbNAFleetModelResponse.NumberPaymentExperiencesNegative;
-                            naApplication.Number_of_Payments_Slow__c = dnbNAFleetModelResponse.NumberPaymentExperiencesSlow;
-                            naApplication.Satisfactory_Trades__c = dnbNAFleetModelResponse.NumberPaymentExperiencesSatisfactory;
-                            naApplication.DNB_Trade_Lines__c = dnbNAFleetModelResponse.NumberOfTrades;
-                            naApplication.DNB_Reason_Code__c = String.join(dnbNAFleetModelResponse.ReasonCodes, ', ');
+                                naApplication.DNB_Score__c = dnbNAFleetModelResponse.RawScore;
+                                naApplication.DNB_Credit_Line_Recommendation__c = dnbNAFleetModelResponse.RecommendedCreditLimitAmount;
+                                naApplication.DNB_Model__c = dnbNAFleetModelResponse.ModelUsed;
+                                naApplication.SIC_Code__c = dnbNAFleetModelResponse.PrimarySIC;
+                                naApplication.DNB_Resolved_DUNS__c = dnbNAFleetModelResponse.DunsNumber;
+                                naApplication.DUNS_Number__c = dnbNAFleetModelResponse.DunsNumber;
+                                naApplication.Global_Ultimate_DUNS__c = dnbNAFleetModelResponse.GlobalUltimateDUNS;
+                                naApplication.DNB_Resolved_Name__c = dnbNAFleetModelResponse.PrimaryName;
+                                naApplication.DNB_Resolved_Address__c = dnbNAFleetModelResponse.AddressLine;
+                                naApplication.DNB_Resolved_City__c = dnbNAFleetModelResponse.PostalTown;
+                                naApplication.DNB_Resolved_State__c = dnbNAFleetModelResponse.PrimaryGeographicArea;
+                                naApplication.DNB_Resolved_Postal_Code__c = dnbNAFleetModelResponse.PostalCode;
+                                naApplication.DNB_Resolved_Country__c = dnbNAFleetModelResponse.CountryCode;
+                                naApplication.DNB_SBFE_High_Credit__c = dnbNAFleetModelResponse.SBFEHighCredit;
+                                naApplication.DNB_CSAD_High_Credit__c = dnbNAFleetModelResponse.CSADHighCredit;
+                                naApplication.DNB_SBRI_Card_Score__c = dnbNAFleetModelResponse.SBRICardScore;
+                                naApplication.Bankruptcy_Date__c = dnbNAFleetModelResponse.BankruptcyDateOfFiling;
+                                naApplication.Bureau_Tax_ID__c = dnbNAFleetModelResponse.FeinTaxID;
+                                naApplication.Paydex__c = dnbNAFleetModelResponse.Paydex;
+                                naApplication.Control_Year__c = String.valueOf(dnbNAFleetModelResponse.ControlYear);
+                                naApplication.Year_Started__c = String.valueOf(dnbNAFleetModelResponse.YearStarted);
+                                naApplication.Number_of_Payments_Negative__c = dnbNAFleetModelResponse.NumberPaymentExperiencesNegative;
+                                naApplication.Number_of_Payments_Slow__c = dnbNAFleetModelResponse.NumberPaymentExperiencesSlow;
+                                naApplication.Satisfactory_Trades__c = dnbNAFleetModelResponse.NumberPaymentExperiencesSatisfactory;
+                                naApplication.DNB_Trade_Lines__c = dnbNAFleetModelResponse.NumberOfTrades;
+                                naApplication.DNB_Reason_Code__c = String.join(dnbNAFleetModelResponse.ReasonCodes, ', ');
+
+                            } else {
+                                naApplication.DNB_Score__c = 0;
+                            }
+
+                        } else if (naApplication.Physical_Country__c != null && (naApplication.Physical_Country__c).equalsIgnoreCase('CA')) {
+
+                            CreditWS_DNB.DNBCAModelRequest dnbCAModelRequest = new CreditWS_DNB.DNBCAModelRequest();
+
+                            dnbCAModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
+                            dnbCAModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(naApplication.Requested_Credit_Limit__c));
+                            dnbCAModelRequest.Platforms = 'FLEET';
+                            dnbCAModelRequest.BOCAType = 1;
+
+                            CreditWS_DNB.DNBCAModelResponse dnbCAModelResponse = CreditWS_DNB.getCAScore(dnbCAModelRequest);
+
+                            if (dnbCAModelResponse != null) {
+
+                                naApplication.DNB_Score__c = dnbCAModelResponse.RawScore;
+                                naApplication.DNB_Credit_Line_Recommendation__c = dnbCAModelResponse.RecommendedCreditLimitAmount;
+                                naApplication.SIC_Code__c = dnbCAModelResponse.PrimarySIC;
+                                naApplication.DNB_Resolved_DUNS__c = dnbCAModelResponse.DunsNumber;
+                                naApplication.DUNS_Number__c = dnbCAModelResponse.DunsNumber;
+                                naApplication.Global_Ultimate_DUNS__c = dnbCAModelResponse.GlobalUltimateDUNS;
+                                naApplication.DNB_Resolved_Name__c = dnbCAModelResponse.PrimaryName;
+                                naApplication.DNB_Resolved_Address__c = dnbCAModelResponse.AddressLine;
+                                naApplication.DNB_Resolved_City__c = dnbCAModelResponse.PostalTown;
+                                naApplication.DNB_Resolved_State__c = dnbCAModelResponse.PrimaryGeographicArea;
+                                naApplication.DNB_Resolved_Postal_Code__c = dnbCAModelResponse.PostalCode;
+                                naApplication.DNB_Resolved_Country__c = dnbCAModelResponse.CountryCode;
+                                naApplication.DNB_SBFE_High_Credit__c = dnbCAModelResponse.SBFEHighCredit;
+                                naApplication.DNB_CSAD_High_Credit__c = dnbCAModelResponse.CSADHighCredit;
+                                naApplication.DNB_SBRI_Card_Score__c = dnbCAModelResponse.SBRICardScore;
+                                naApplication.Bureau_Tax_ID__c = dnbCAModelResponse.FeinTaxID;
+                                naApplication.Paydex__c = dnbCAModelResponse.Paydex;
+                                naApplication.Control_Year__c = String.valueOf(dnbCAModelResponse.ControlYear);
+                                naApplication.Year_Started__c = String.valueOf(dnbCAModelResponse.YearStarted);
+                                naApplication.Number_of_Payments_Negative__c = dnbCAModelResponse.NumberPaymentExperiencesNegative;
+                                naApplication.Number_of_Payments_Slow__c = dnbCAModelResponse.NumberPaymentExperiencesSlow;
+                                naApplication.Satisfactory_Trades__c = dnbCAModelResponse.NumberPaymentExperiencesSatisfactory;
+                                naApplication.DNB_Trade_Lines__c = dnbCAModelResponse.NumberOfTrades;
+                                naApplication.DNB_Reason_Code__c = String.join(dnbCAModelResponse.ReasonCodes, ', ');
+
+                            } else {
+                                naApplication.DNB_Score__c = 0;
+                            }
 
                         }
-                        else {
-                            naApplication.DNB_Score__c = 0;
-                        }
-
-                    } else if (naApplication.Physical_Country__c != null && (naApplication.Physical_Country__c).equalsIgnoreCase('CA')) {
-
-                        CreditWS_DNB.DNBCAModelRequest dnbCAModelRequest = new CreditWS_DNB.DNBCAModelRequest();
-
-                        dnbCAModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
-                        dnbCAModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(naApplication.Requested_Credit_Limit__c));
-                        dnbCAModelRequest.Platforms = 'FLEET';
-                        dnbCAModelRequest.BOCAType = 1;
-
-                        CreditWS_DNB.DNBCAModelResponse dnbCAModelResponse = CreditWS_DNB.getCAScore(dnbCAModelRequest);
-
-                        if (dnbCAModelResponse != null) {
-
-                            naApplication.DNB_Score__c = dnbCAModelResponse.RawScore;
-                            naApplication.DNB_Credit_Line_Recommendation__c = dnbCAModelResponse.RecommendedCreditLimitAmount;
-                            naApplication.SIC_Code__c = dnbCAModelResponse.PrimarySIC;
-                            naApplication.DNB_Resolved_DUNS__c = dnbCAModelResponse.DunsNumber;
-                            naApplication.DUNS_Number__c = dnbCAModelResponse.DunsNumber;
-                            naApplication.Global_Ultimate_DUNS__c = dnbCAModelResponse.GlobalUltimateDUNS;
-                            naApplication.DNB_Resolved_Name__c = dnbCAModelResponse.PrimaryName;
-                            naApplication.DNB_Resolved_Address__c = dnbCAModelResponse.AddressLine;
-                            naApplication.DNB_Resolved_City__c = dnbCAModelResponse.PostalTown;
-                            naApplication.DNB_Resolved_State__c = dnbCAModelResponse.PrimaryGeographicArea;
-                            naApplication.DNB_Resolved_Postal_Code__c = dnbCAModelResponse.PostalCode;
-                            naApplication.DNB_Resolved_Country__c = dnbCAModelResponse.CountryCode;
-                            naApplication.DNB_SBFE_High_Credit__c = dnbCAModelResponse.SBFEHighCredit;
-                            naApplication.DNB_CSAD_High_Credit__c = dnbCAModelResponse.CSADHighCredit;
-                            naApplication.DNB_SBRI_Card_Score__c = dnbCAModelResponse.SBRICardScore;
-                            naApplication.Bureau_Tax_ID__c = dnbCAModelResponse.FeinTaxID;
-                            naApplication.Paydex__c = dnbCAModelResponse.Paydex;
-                            naApplication.Control_Year__c = String.valueOf(dnbCAModelResponse.ControlYear);
-                            naApplication.Year_Started__c = String.valueOf(dnbCAModelResponse.YearStarted);
-                            naApplication.Number_of_Payments_Negative__c = dnbCAModelResponse.NumberPaymentExperiencesNegative;
-                            naApplication.Number_of_Payments_Slow__c = dnbCAModelResponse.NumberPaymentExperiencesSlow;
-                            naApplication.Satisfactory_Trades__c = dnbCAModelResponse.NumberPaymentExperiencesSatisfactory;
-                            naApplication.DNB_Trade_Lines__c = dnbCAModelResponse.NumberOfTrades;
-                            naApplication.DNB_Reason_Code__c = String.join(dnbCAModelResponse.ReasonCodes, ', ');
-
-                        }
-                        else {
-                            naApplication.DNB_Score__c = 0;
-                        }
-
                     }
-
                 } else if(dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null){
                     dnbDirectMatchRequest.SingleResolution = false;
                     dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);

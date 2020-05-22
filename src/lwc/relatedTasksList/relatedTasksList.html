@@ -9,8 +9,19 @@
         <template if:true={tasks}>
             <template for:each={tasks} for:item="task">
                 <div key={task.Id} class="slds-m-bottom_medium">
-                    <p><strong>Who: </strong>{task.Owner.Name}</p>
-                    <p><strong>Date: </strong><lightning-formatted-date-time value={task.ActivityDate}></lightning-formatted-date-time></p>
+                    <div class="slds-grid slds-wrap">
+                        <!-- Left Column -->
+                        <div class="slds-col slds-size_1-of-2">
+                            <p><strong>Who: </strong>{task.Owner.Name}</p>
+                            <p><strong>Date: </strong><lightning-formatted-date-time value={task.ActivityDate}></lightning-formatted-date-time></p>
+                        </div>
+                        <!-- Right Column -->
+                        <div class="slds-col slds-size_1-of-2">
+                            <p><strong>Type: </strong>{task.Type}</p>
+                            <p><strong>Status: </strong>{task.Status}</p>
+                        </div>
+                    </div>
+                    <!-- Single Column For Longer Text Fields -->
                     <p><strong>Subject: </strong><a href="www.salesforce.com" data-record-id={task.Id} onclick={handleClick}>{task.Subject}</a></p>
                     <p><strong>Description: </strong>{task.Description}</p>
                 </div>

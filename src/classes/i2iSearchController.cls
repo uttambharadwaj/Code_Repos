@@ -235,11 +235,15 @@
                     Set<String> i2iIds = new Set<String>();
                     Set<String> couponCodesReturned = new Set<String>();
                     Set<String> leadNumbers = new Set<String>();
+					Set<String> phones = new Set<String>();
+					Set<String> emails = new Set<String>();
     
                     for(i2iGet.returnData rd: records) {
-                        if(rd.i2iId!=null) i2iIds.add(rd.i2iId);
-                        if(rd.couponcode!=null) couponCodesReturned.add(rd.CouponCode);
-                        if (rd.leadNumber != null) leadNumbers.add(rd.leadNumber);
+                        if (rd.i2iId!=null && !String.isEmpty(rd.i2iId) ) i2iIds.add(rd.i2iId);
+						if (rd.couponcode!=null && !String.isEmpty(rd.couponcode) ) couponCodesReturned.add(rd.CouponCode);
+						if (rd.leadNumber != null && !String.isEmpty(rd.leadNumber) ) leadNumbers.add(rd.leadNumber);
+						if (rd.phone != null && !String.isEmpty(rd.phone) ) phones.add(rd.phone);
+						if (rd.email != null && !String.isEmpty(rd.email) ) emails.add(rd.email);
                     }
                     
                     Set<Id> whoIds = new Set<Id>();
@@ -277,6 +281,8 @@
                                                 OR Contact.Lead_Number__c IN :leadNumbers
                                                 OR lead.parent_lead__r.i2i_id__c IN :i2iIds 
                                                 OR Contact.i2i_id__c IN :i2iIDs) 
+											AND (lead.phone in :phones)
+											AND (lead.email in :emails)
                                              Order By CreatedDate ASC]) {
                                                  
                                                  if(cm.contactId != null) {

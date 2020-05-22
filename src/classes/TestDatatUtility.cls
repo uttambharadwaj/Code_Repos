@@ -152,7 +152,7 @@ public class TestDatatUtility {
    public static User createUser(){
        Profile prof = [SELECT Id,Name FROM Profile where name ='AU EMAP Credit User'];
        
-       UserRole userRole = [SELECT Id FROM UserRole WHERE Name = 'Credit Team Leader'];
+       UserRole userRole = [SELECT Id FROM UserRole WHERE Name = 'AU Credit Team Leader'];
 
        User u=new User();
        u.username = 'forseva2test@salesforce.com';
