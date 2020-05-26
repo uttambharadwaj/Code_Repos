@@ -3,6 +3,7 @@ Description:        Invocable class for adding attachments to email template
 Test Classes:       InvocableSendEmailTemplateTest
 Last Coverage:      100%
 Revision History:   3/29/2019 Jason Arbegast IADJUDICAT-746 created class with method for sending email templates from dreaded process builder
+                    20May2020   MFarrell    EAPT-1865   Added ability to look up contacts on an account and CC them on the final email
  */
 public with sharing class InvocableSendEmailTemplate {
 
@@ -43,6 +44,12 @@ public with sharing class InvocableSendEmailTemplate {
         @InvocableVariable(label='ccRecipients')
         public String ccRecipients;
 
+        @InvocableVariable(Label='contactTypes')
+        public String contactTypes;
+
+        @InvocableVariable(Label='AccountId')
+        public Id accountId;
+
         @InvocableVariable(label='whatId')
         public Id whatId; //id for merge field population
 
@@ -68,6 +75,7 @@ public with sharing class InvocableSendEmailTemplate {
 
         //get attachment based on provided info
         Map<Id, String> parentIdToAttchName = getAttachmentMap(emailWrappers);
+        List<String> contactEmails = getContactEmailsByRole(emailWrappers);
 
         for(EmailWrapper ew : emailWrappers){
             Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
@@ -81,6 +89,10 @@ public with sharing class InvocableSendEmailTemplate {
                 toEmails = ew.toRecipients.split(',');
             if(ew.ccRecipients!= null && ew.ccRecipients.length()>0)
                 ccEmails = ew.ccRecipients.split(',');
+
+            if (contactEmails.size() > 0) {
+                ccEmails.addAll(contactEmails);
+            }
 
             email.setToAddresses(toEmails);
             email.setCcAddresses(ccEmails);
@@ -99,7 +111,7 @@ public with sharing class InvocableSendEmailTemplate {
             if(theAttachment != null)
                 email.setEntityAttachments(new List<Id>{theAttachment}); // ids of any attachments to include...currently limited to only one
 
-            email.setorgWideEmailAddressId(ew.orgWideEmailId);
+            email.setOrgWideEmailAddressId(ew.orgWideEmailId);
             email.setSaveAsActivity(ew.saveAsActivity);
             email.setTreatTargetObjectAsRecipient(ew.sendToTarget);
 
@@ -141,7 +153,7 @@ public with sharing class InvocableSendEmailTemplate {
                 Set<String> allFieldNames = new Set<String>(parentIdToFieldName.values());
                 String allTheFields = String.join(new List<String>(allFieldNames), ',');
                 String myQuery = 'SELECT Id, ' + allTheFields + ' FROM ' + objType + ' WHERE Id IN :theParentIds';
-                for(sObject so : Database.query(myQuery)){
+                for(SObject so : Database.query(myQuery)){
                     String thisAttachName = parentIdToFieldName.get(so.Id);
                     parentIdToAttchName.put(so.Id, (String)so.get(thisAttachName));
                 }
@@ -151,11 +163,35 @@ public with sharing class InvocableSendEmailTemplate {
         //get the ids for the attachments
         if(parentIdToAttchName.size()>0){
             Set<String> allAttachNames = new Set<String>(parentIdToAttchName.values());
-            for(Attachment a : [SELECT Id, ParentId FROM Attachment WHERE ParentId IN :parentIdToAttchName.keyset() AND Name IN :allAttachNames]){
+            for(Attachment a : [SELECT Id, ParentId FROM Attachment WHERE ParentId IN :parentIdToAttchName.keySet() AND Name IN :allAttachNames]){
                 parentIdToAttchName.put(a.ParentId, a.Id);
             }
         }
         return parentIdToAttchName;
+    }
+
+    public static List<String> getContactEmailsByRole(List<EmailWrapper> emailWrappers) {
+        List<String> contactEmails = new List<String>();
+        List<String> contactTypes = new List<String>();
+        List<Contact> contacts = new List<Contact>();
+
+        for (EmailWrapper ew : emailWrappers) {
+            if (ew.contactTypes != null && ew.contactTypes != '') {
+                contactTypes = ew.contactTypes.split(',');
+            }
+
+            if (contactTypes.size() > 0 && ew.accountId != null) {
+                contacts = [SELECT Id, Email FROM Contact WHERE AccountId =: ew.accountId AND Email != NULL AND Contact_Type__c IN : contactTypes];
+            }
+        }
+
+        if (contacts.size() > 0) {
+            for (Contact c : contacts) {
+                contactEmails.add(c.Email);
+            }
+        }
+
+        return contactEmails;
     }
 
 }
