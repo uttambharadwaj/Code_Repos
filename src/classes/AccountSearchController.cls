@@ -393,7 +393,7 @@ public with sharing class AccountSearchController {
 				//Nifty Hack part 2: Account number is the first 5 digits of the T-Chek card number
 				//NEW: But, we have to account for leading zeroes getting stripped off along the way.
 				String prelimAccountNumber = newSearchKeyword.left(5);
-				String accountNumber = Integer.valueOf(prelimAccountNumber).toString().trim();
+				String accountNumber = String.valueOf(Integer.valueOf(prelimAccountNumber)).trim();
 				System.debug('Searching for accountNumber "'+accountNumber + '" based on '+prelimAccountNumber);
 				try
 				{
