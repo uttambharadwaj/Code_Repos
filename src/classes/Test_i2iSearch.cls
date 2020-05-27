@@ -37,6 +37,8 @@ private class Test_i2iSearch {
 		acct = TestDataFactory.createAccount(true);
 		leadRecordType = TestDataFactory.createLeadRecordType(true, 'Test', program.Id); 
 		parentLead = TestDataFactory.createLead(true, null, '1');
+    
+        
 		childLead = [SELECT Id, Parent_Lead__r.rr_lead_number__c FROM Lead WHERE Parent_Lead__c = :parentLead.Id][0];
 
 		cont1 = TestDataFactory.createContact(true, acct.Id, 'test1', childLead.Parent_Lead__r.rr_lead_number__c); 
@@ -44,6 +46,12 @@ private class Test_i2iSearch {
 
 		OpportunityContactRole ocr1 = TestDataFactory.createOpportunityContactRole(true, opp1.Id, cont1.Id);
 		CampaignMember campMember1 = TestDataFactory.createCampaignMember(true, campaign1.Id, cont1.Id); 
+        
+        CampaignMember cm = new CampaignMember();
+        cm.CampaignId = campaign1.Id;
+        cm.LeadId = parentLead.Id;
+        cm.Status = 'Sent';
+        insert cm;
 		
 		childLeadTask = TestDataFactory.createTask(true, childLead.Id, sysAdminUser.Id);
 		Sales_Activity_by_Profile__c sabp = TestDataFactory.createSalesActivityByProfile(true); 
@@ -68,6 +76,7 @@ private class Test_i2iSearch {
 		// If searching with Quick Pivot
 		Boolean isQuickPivot = [SELECT Active__c FROM Search_Tool_Source__mdt WHERE Data_Source__c = 'Quick Pivot' LIMIT 1].Active__c;
 		if (isQuickPivot) {
+            
 			i2isc.programSelected = 'Test';
 			i2isc.phoneNumber = '13111111111';
 			i2isc.company = 'THE TEST COMPANY';
@@ -78,10 +87,10 @@ private class Test_i2iSearch {
 			System.Test.setMock(HttpCalloutMock.class, new Test_i2iHttpCallOutMock());
 		}
 		// If searching with Marketing Cloud
-		else {
+		else {            
 			i2isc.phoneNumber = '3333333333';
 			i2isc.promocode = 'test1-' + childLead.Parent_Lead__r.rr_lead_number__c;
-
+            
 			// Callout mock
 			Map<String, String> servicesHeaders = new Map<String, String>();
 			servicesHeaders.put('SOAPAction', 'Retrieve');
@@ -99,7 +108,7 @@ private class Test_i2iSearch {
 
 	/** TEST METHODS */
 	@isTest
-	static void testInit() {
+	static void testInit() {        
 		init();
 		initPage();
 	}
@@ -135,10 +144,10 @@ private class Test_i2iSearch {
 
 	@isTest
 	static void testConvertLead_lead() {
+        
 		init();
 		initPage();
 
-		// Test
 		System.Test.startTest();
 		i2isc.searchi2i();
 		PageReference pageRef = i2isc.leadwrappers[0].convertlead();
@@ -146,6 +155,9 @@ private class Test_i2iSearch {
 
 		Id newOppId = [SELECT ConvertedOpportunityId FROM Lead WHERE Id = :childLead.Id][0].ConvertedOpportunityId;
 		String url = '/' + newOppId + '/e?retURL=%2F' + newOppId;
+        
+        
+        System.debug('newOppId: '+newOppId);
 
 		// Assert that the lead was converted and the page reference was returned for the new Opportunity
 		System.assertEquals(url, pageRef.getUrl());
@@ -169,6 +181,7 @@ private class Test_i2iSearch {
 
 	@isTest
 	static void testOpen_contact() {
+        
 		init();
 		initPage();
 		cont1.i2i_ID__c = '1';
@@ -207,7 +220,7 @@ private class Test_i2iSearch {
 	}
 
 	@isTest
-	static void testConvertLead_noMatch() {
+	static void testConvertLead_noMatch() {        
 		init();
 		delete parentLead;
 		delete childLead;
@@ -230,7 +243,7 @@ private class Test_i2iSearch {
 	}
 
 	@isTest
-	static void testConvertChildLead_noMatch() {
+	static void testConvertChildLead_noMatch() {        
 		init();
 		childLead = [
 			SELECT Id, i2i_id__c, Parent_Lead__r.rr_lead_number__c, Parent_Lead__r.i2i_id__c, IsConverted, 
