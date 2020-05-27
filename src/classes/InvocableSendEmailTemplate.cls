@@ -172,22 +172,25 @@ public with sharing class InvocableSendEmailTemplate {
 
     public static List<String> getContactEmailsByRole(List<EmailWrapper> emailWrappers) {
         List<String> contactEmails = new List<String>();
-        List<String> contactTypes = new List<String>();
         List<Contact> contacts = new List<Contact>();
+        Map<Id, List<String>> accountToContactRoleMap = new Map<Id, List<String>>();
 
         for (EmailWrapper ew : emailWrappers) {
-            if (ew.contactTypes != null && ew.contactTypes != '') {
-                contactTypes = ew.contactTypes.split(',');
+            if (ew.contactTypes != null && ew.contactTypes != '' && ew.accountId != null) {
+                accountToContactRoleMap.put(ew.accountId, ew.contactTypes.split(','));
             }
 
-            if (contactTypes.size() > 0 && ew.accountId != null) {
-                contacts = [SELECT Id, Email FROM Contact WHERE AccountId =: ew.accountId AND Email != NULL AND Contact_Type__c IN : contactTypes];
-            }
         }
+
+        contacts = [SELECT Id, Email, AccountId, Contact_Type__c FROM Contact WHERE AccountId =: accountToContactRoleMap.keySet() AND Email != NULL AND Contact_Type__c != NULL];
 
         if (contacts.size() > 0) {
             for (Contact c : contacts) {
-                contactEmails.add(c.Email);
+                for (String type : accountToContactRoleMap.get(c.AccountId)) {
+                    if (c.Contact_Type__c == type) {
+                        contactEmails.add(c.Email);
+                    }
+                }
             }
         }
 
