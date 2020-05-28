@@ -240,6 +240,10 @@ public without sharing class CustomerDetailsController {
     }
 
     private static CustomerDetailsWSUtilv2.customerDetails getSoapCustomerDetails(String accountNumber, String pdRowIdString) {
+        return getSoapCustomerDetails(accountNumber, 'Internal', pdRowIdString);
+    }
+
+    private static CustomerDetailsWSUtilv2.customerDetails getSoapCustomerDetails(String accountNumber, String acctIdType, String pdRowIdString) {
         CDS = Customer_Dashboard_Services__c.getOrgDefaults();
 
         customerDetailsRequest = new CustomerDetailsWSUtilv2.customerDetailsRequest();
@@ -254,7 +258,7 @@ public without sharing class CustomerDetailsController {
         }
 
         customerDetailsRequest.accountID = accountNumber;
-        customerDetailsRequest.accountIdType = 'Internal';
+        customerDetailsRequest.accountIdType = acctIdType;
 
         if (!String.isEmpty(pdRowIdString)) {
             customerDetailsRequest.pdRowId = pdRowIdString;
@@ -266,12 +270,15 @@ public without sharing class CustomerDetailsController {
 
     private static CustomerDetailsWSUtilv2.customerDetails getOtrCustomerDetails(String accountId) {
         System.debug('Calling getOtrCustomerDetails with accountId '+accountId);
-        CustomerDetailsWSUtilv2.customerDetails customerDetails = new CustomerDetailsWSUtilv2.customerDetails();
+        CustomerDetailsWSUtilv2.customerDetails customerDetails;
 
         List<Account> serviceOperationsAccounts = [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Account_Status_Date__c, Account_Since__c, Program__c, Name, Phone, Fax, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Carrier_ID__c, Platform__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c,  Acct_Row_Id__c, Primary_Contact_TXT__c FROM Account WHERE Id =: accountId];
 
         if (!(serviceOperationsAccounts.isEmpty())) {
             Account serviceOperationsAccount = serviceOperationsAccounts.get(0);
+
+            customerDetails = getSoapCustomerDetails(serviceOperationsAccount.Sponsor_Acct__c, serviceOperationsAccount.Platform__c, null);
+
             customerDetails.sfdcAcctId = serviceOperationsAccount.Id;
 
             customerDetails.customerSegmentation = String.valueOf(serviceOperationsAccount.Customer_Segmentation__c);
