@@ -276,16 +276,17 @@ public without sharing class CustomerDetailsController {
 
             customerDetails.customerSegmentation = String.valueOf(serviceOperationsAccount.Customer_Segmentation__c);
             if (serviceOperationsAccount.Status__c != null) {
-                if ('Active'.equals(serviceOperationsAccount.Status__c)) {
+                if ('Active'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'A';
-                } else if ('Inactive'.equals(serviceOperationsAccount.Status__c)) {
+                } else if ('Inactive'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'I';
-                } else if ('Suspended'.equals(serviceOperationsAccount.Status__c)) {
+                } else if ('Suspended'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'S';
-                } else if ('Terminated'.equals(serviceOperationsAccount.Status__c)) {
+                } else if ('Terminated'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'T';
-                }
-                  else if ('C'.equals(serviceOperationsAccount.Status__c) || 'X'.equals(serviceOperationsAccount.Status__c)) {
+                } else if ('Hold'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
+                    customerDetails.accountSts = 'H';
+                } else if ('C'.equalsIgnoreCase(serviceOperationsAccount.Status__c) || 'X'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'T';
                 }
                   else {
