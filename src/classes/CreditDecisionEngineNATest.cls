@@ -187,7 +187,7 @@ public with sharing class CreditDecisionEngineNATest {
 
                 TestUtils.enable_isRunningTest = true;
 
-                CreditDecisionEngineNA.runNADecisioningProcess(applicationRequests[0].Id);
+                CreditDecisionEngineNA.runHandler(applicationRequests[0].Id);
 
                 Test.stopTest();
 
