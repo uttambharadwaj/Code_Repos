@@ -580,7 +580,7 @@ global class CreditDecisionEngineNA {
                         && !TestUtils.isRunningTest()) {
 
                     if(appRequest.Personal_Guarantor_Mailing_Country__c == null || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('US') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('United States')) {
-                        System.debug('Running Edxperian....');
+                        System.debug('Running Experian....');
                         CreditDecisionEngineQueueable.runExperianPGChecks(naApplications[0].Id);
                         sendToFinalDecision = false;
                     }
