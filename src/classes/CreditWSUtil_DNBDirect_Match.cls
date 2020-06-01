@@ -22,6 +22,7 @@ public class CreditWSUtil_DNBDirect_Match {
         public String primaryName;
         public List<WebsiteAddress> tradeStyleNames;
         public Telephone telephone;
+        public List<Telephone> telephones;
         public PrimaryAddress primaryAddress;
         public MailingAddress mailingAddress;
         public List<WebsiteAddress> registrationNumbers;
