@@ -380,7 +380,7 @@ public with sharing class AccountSearchController {
 			//Nifty Hack Part 1: T-Chek card numbers are the only ones we have that are 12 digits
 			if(searchKeyword.length() != 12 || !searchKeyword.isNumeric()){
 				//EFS card search will go here
-				response.errorMsg = 'Card Number search is only configured for T-Chek platforms at this time';
+				response.errorMsg = 'No results found.';
 				return response;
 			} else {
 				//Nifty Hack part 2: Account number is the first 5 digits of the T-Chek card number
