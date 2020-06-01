@@ -168,7 +168,16 @@ public class CreditWS_DNB {
                     parameterStrings.put('telephoneNumber', dnbDirectMatchRequest.TelephoneNumber);
                 }
 
-                clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/sbfe?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings) + '&isDUNSUniverseRequired=true'); // isDUNSUniverseRequired to true returns both DUNS and SBFE data. False is just SBFE.
+                // SBFE can only be used for US applicants
+                Boolean usApplicant = true;
+                if (dnbDirectMatchRequest.CountryISOAlpha2Code != null && dnbDirectMatchRequest.CountryISOAlpha2Code.equalsIgnoreCase('US')) {
+                    System.debug('using SBFE...');
+                    clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/sbfe?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings) + '&isDUNSUniverseRequired=true'); // isDUNSUniverseRequired to true returns both DUNS and SBFE data. False is just SBFE.
+                } else {
+                    System.debug('using cleanseMatch instead of SBFE...');
+                    usApplicant = false;
+                    clenseAndMatchRequest.setEndpoint(dnbDirectSettings.Endpoint_URL__c + '/v1/match/cleanseMatch?' + CreditWS_Utils.buildHTTPCalloutParameterString(parameterStrings));
+                }
                 clenseAndMatchRequest.setTimeout(120000); //IADJUDICAT-739 make them wait as long as possible. bc everyone needs a little break now and then
 
                 Http cleanseRequestCallout = new Http();
@@ -183,12 +192,18 @@ public class CreditWS_DNB {
 
                 System.debug('### Cleanse And Match Response: ' + jsonResponse);
 
-                CreditWSUtil_DNBDirect_Match cleanseAndMatchResult = CreditWSUtil_DNBDirect_Match.parse(jsonResponse);
+                CreditWSUtil_DNBDirect_Match cleanseAndMatchResult = null;
+                if (usApplicant) {
+                    cleanseAndMatchResult = CreditWSUtil_DNBDirect_Match.parse(jsonResponse);
+                } else {
+                    jsonResponse = jsonResponse.replaceAll('telephone', 'telephones');
+                    cleanseAndMatchResult = CreditWSUtil_DNBDirect_Match.parse(jsonResponse);
+                }
 
                 Boolean isDUNSExactLookup = dnbDirectMatchRequest.DUNSNumber != null;
                 Boolean isSBFEExactLookup = dnbDirectMatchRequest.AGN != null;
                 if (cleanseAndMatchResult != null && cleanseAndMatchResult.error == null) {
-					System.debug(cleanseAndMatchResult.MatchCandidates);
+					System.debug('Cleanse and Match Result:' + cleanseAndMatchResult.MatchCandidates);
                     for (CreditWSUtil_DNBDirect_Match.MatchCandidates matchCandidateResponse : cleanseAndMatchResult.MatchCandidates) {
 
                         CreditWSUtil_DNBDirect_Match.Organization result = matchCandidateResponse.organization;
@@ -216,7 +231,8 @@ public class CreditWS_DNB {
 									if (matchCandidateResponse.MatchQualityInformation.matchGrade == 'AAAAAAAAAAA') dnbDirectMatchResponse.exactDUNSMatch = true;
 								}
 							}
-                            if (result.telephone != null) matchCandidate.TelephoneNumber = result.telephone.telephoneNumber;
+                            if (result.telephone != null) matchCandidate.TelephoneNumber = result.telephone.telephoneNumber; // SBFE callout only
+                            if (result.telephones != null) matchCandidate.TelephoneNumber = result.telephones[0].telephoneNumber;  // CleanseMatch callout
                             if (result.dunsControlStatus != null && result.dunsControlStatus.operatingStatus != null) matchCandidate.OperatingStatus = result.dunsControlStatus.operatingStatus.description;
 
                             // Match Grade String represents how close of a match each attribute the applicant supplied compared to what DNB found
@@ -370,7 +386,6 @@ public class CreditWS_DNB {
 
             if (!TestUtils.isRunningTest()) {
 
-                System.debug('TEMP DNB full request' + dnbCustomModelCalloutRequest);
                 CreditWSUtil_DNBCustomModel.customProducts12_Response dnbCustomModelCalloutResponse = dnbCustomModelCallOut.ws_CustomProducts12(dnbCustomModelCalloutRequest);
 
                 if (dnbCustomModelCalloutResponse != null) {
