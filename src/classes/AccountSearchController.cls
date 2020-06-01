@@ -377,15 +377,24 @@ public with sharing class AccountSearchController {
 			return response;
 
 		} else if ('Card_Number_OTR'.equals(searchType)) {
+			String prelimSearchKeyword = searchKeyword;
+			String newSearchKeyword = searchKeyword;
+			//Check for TChek BIN
+			if (prelimSearchKeyword.length() == 18 && prelimSearchKeyword.startsWith('600296')) {
+				newSearchKeyword = prelimSearchKeyword.right(12);
+			}
+
 			//Nifty Hack Part 1: T-Chek card numbers are the only ones we have that are 12 digits
-			if(searchKeyword.length() != 12 || !searchKeyword.isNumeric()){
+			if(newSearchKeyword.length() != 12 || !newSearchKeyword.isNumeric()){
 				//EFS card search will go here
 				response.errorMsg = 'No results found.';
 				return response;
 			} else {
 				//Nifty Hack part 2: Account number is the first 5 digits of the T-Chek card number
-				String accountNumber = searchKeyword.left(5);
-				System.debug('Searching for accountNumber '+accountNumber);
+				//NEW: But, we have to account for leading zeroes getting stripped off along the way.
+				String prelimAccountNumber = newSearchKeyword.left(5);
+				String accountNumber = String.valueOf(Integer.valueOf(prelimAccountNumber)).trim();
+				System.debug('Searching for accountNumber "'+accountNumber + '" based on '+prelimAccountNumber);
 				try
 				{
 					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_Id__c, Acct_Row_Id__c, (select name, Phone, Contact_Type__c, RecordType.Name from Contacts where Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' AND Platform__c IN ('TCHEK','TCHEK_MC','PINNACLE') AND Sponsor_Acct__c = :accountNumber];
