@@ -8,6 +8,7 @@
 * 3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
 * 5/4/2020: Release 20.09: EAPT-1618: Added a check for Legal Structure vs Company Name
 * 5/28/2020: Release 20.11: EAPT-1754: Added ability to skip callouts on Application Request from Campaign
+*                           EAPT-1851: Added a callout skip for Natural Persons as the Legal Entity
 */
 
 global class CreditDecisionEngineNA {
@@ -30,10 +31,16 @@ global class CreditDecisionEngineNA {
     * an additional if else.
     * If you need to bypass the entire credit decision engine, including the final decision use the
     * Run_Final_Decision_Only__c checkbox on the Campaign.
-    */
+    * Added another scenario with Legal Structure as Natural Person
+    **/
+
     private static Boolean bypassCallouts(Application_Request__c appReq) {
         Boolean bypassCallouts = false;
         if (appReq.Campaign_Program__c != null && appReq.Opportunity__r.Campaign.Run_Final_Decision_Only__c) {
+            bypassCallouts = true;
+        }
+        if (appReq.Legal_Structure__c != null && appReq.Legal_Structure__c.containsIgnoreCase('Natural Person')
+                && appReq.Physical_Country__c != null && appReq.Physical_Country__c == 'CA'){
             bypassCallouts = true;
         }
         return bypassCallouts;
@@ -51,7 +58,8 @@ global class CreditDecisionEngineNA {
                         Personal_Guarantor_Mailing_Zip__c, Personal_Guarantor_SSN__c, PG_Required__c, Physical_City__c, Physical_State__c, Physical_Street__c, Requested_Credit_Limit__c,
                         Physical_Zip_Postal_Code__c, Program__c, Running_Credit_Decisioning__c, Sanctions_Business_Check__c, Sanctions_Business_Result_ID__c,
                         Sanctions_Individual_Check__c, Sanctions_Individual_Result_ID__c, Tax_Payer_ID_number__c, ThreatMetrix_Session_ID__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Result__c,
-                        Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c, Campaign_Program__c, Opportunity__r.Campaign.Run_Final_Decision_Only__c
+                        Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c, Campaign_Program__c,
+                        Opportunity__r.Campaign.Run_Final_Decision_Only__c, Only_Final_Decision_Has_Run__c
                 FROM Application_Request__c
                 WHERE Id = :naApplicationId
         ];
@@ -64,6 +72,7 @@ global class CreditDecisionEngineNA {
                 runNADecisioningProcess(naApplication);
             }
             else {
+                naApplication.Only_Final_Decision_Has_Run__c = true;
                 runFinalCreditDecision(naApplication);
             }
 
