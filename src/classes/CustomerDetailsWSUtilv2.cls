@@ -462,142 +462,153 @@ public class CustomerDetailsWSUtilv2 {
         private String[] field_order_type_info = new String[]{'authLog','errorMsg'};
     }
     public class customerDetails {
-        @AuraEnabled public String accountNbrType{ get; set; }
-        @AuraEnabled public String accountNm{ get; set; }
-        @AuraEnabled public Datetime accountSinceDt{ get; set; }
-        @AuraEnabled public String accountStatusReason{ get; set; }
-        @AuraEnabled public String accountSts{ get; set; }
-        @AuraEnabled public Datetime accountStsDt{ get; set; }
-        @AuraEnabled public Decimal accountingFee{ get; set; }
-        @AuraEnabled public String accountingFeeDescription{ get; set; }
-        @AuraEnabled public String acctRowId{ get; set; }
-        @AuraEnabled public CustomerDetailsWSUtilv2.address alternateAddress{ get; set; }
-        @AuraEnabled public String arNumber{ get; set; }
-        @AuraEnabled public Decimal availableCreditLmt{ get; set; }
-        @AuraEnabled public String billingAccountId{ get; set; }
-        @AuraEnabled public CustomerDetailsWSUtilv2.address billingAddress{ get; set; }
-        @AuraEnabled public String billingCycleDesc{ get; set; }
-        @AuraEnabled public String billtoAccountNm{ get; set; }
-        @AuraEnabled public Decimal canadianFee{ get; set; }
-        @AuraEnabled public String canadianFeeDescription{ get; set; }
-        @AuraEnabled public Boolean cashEnabledIndicator{ get; set; }
-        @AuraEnabled public Boolean clearViewCustomer{ get; set; }
-        @AuraEnabled public Datetime clearViewCustomerEndDt{ get; set; }
-        @AuraEnabled public Datetime clearViewCustomerStartDt{ get; set; }
-        @AuraEnabled public Decimal codeExpiredFee{ get; set; }
-        @AuraEnabled public String codeExpiredFeeDescription{ get; set; }
-        @AuraEnabled public Integer collectionRiskScore{ get; set; }
-        @AuraEnabled public Boolean consumerIndicator{ get; set; }
-        @AuraEnabled public CustomerDetailsWSUtilv2.contacts contacts{ get; set; }
-        @AuraEnabled public Datetime contractEndDt{ get; set; }
-        @AuraEnabled public String contractName{ get; set; }
-        @AuraEnabled public String contractNbr{ get; set; }
-        @AuraEnabled public String contractNm{ get; set; }
-        @AuraEnabled public Datetime contractStartDt{ get; set; }
-        @AuraEnabled public Boolean costPlusIndicator{ get; set; }
-        @AuraEnabled public Decimal creditLmt{ get; set; }
-        @AuraEnabled public Integer creditScore{ get; set; }
-        @AuraEnabled public Integer currentBillingCycle{ get; set; }
-        @AuraEnabled public Datetime currentInvoiceClosingDt{ get; set; }
-        @AuraEnabled public Datetime currentInvoiceDueDt{ get; set; }
-        @AuraEnabled public String customerId{ get; set; }
-        @AuraEnabled public String customerIdentifier{ get; set; }
-        @AuraEnabled public String customerNm{ get; set; }
-        @AuraEnabled public String customerSegmentation{ get; set; }
-        @AuraEnabled public Datetime customerSinceDt{ get; set; }
-        @AuraEnabled public Integer daysToPay{ get; set; }
-        @AuraEnabled public String debitCycle{ get; set; }
-        @AuraEnabled public String description{ get; set; }
-        @AuraEnabled public Boolean discountIndicator{ get; set; }
-        @AuraEnabled public Decimal driverCount{ get; set; }
-        @AuraEnabled public String errorMsg{ get; set; }
-        @AuraEnabled public Boolean evergreenIndicator{ get; set; }
-        @AuraEnabled public Decimal faxFee{ get; set; }
-        @AuraEnabled public String faxFeeDescription{ get; set; }
-        @AuraEnabled public String financeChargeRteType{ get; set; }
-        @AuraEnabled public Boolean fleetOneCustomer{ get; set; }
-        @AuraEnabled public Decimal flexCardApplicableRte{ get; set; }
-        @AuraEnabled public Boolean flexCardCustomer{ get; set; }
-        @AuraEnabled public String flexCardPenaltyPricingIndicator{ get; set; }
-        @AuraEnabled public String funder{ get; set; }
-        @AuraEnabled public Boolean highCreditRiskFeeIndicator{ get; set; }
-        @AuraEnabled public Datetime highRiskCureDt{ get; set; }
-        @AuraEnabled public Decimal highRiskPercentageRte{ get; set; }
-        @AuraEnabled public String iolCustomerNbr{ get; set; }
-        @AuraEnabled public String iolFleetNbr{ get; set; }
-        @AuraEnabled public Decimal lastInvoiceBilledAmt{ get; set; }
-        @AuraEnabled public Decimal lastPaymentAmount{ get; set; }
-        @AuraEnabled public Datetime lastPaymentDt{ get; set; }
-        @AuraEnabled public String lastPaymentMethod{ get; set; }
-        @AuraEnabled public String latePaymentCounter{ get; set; }
-        @AuraEnabled public CustomerDetailsWSUtilv2.address mailingAddress{ get; set; }
-        @AuraEnabled public Boolean masterCardCustomer{ get; set; }
-        @AuraEnabled public Datetime memberSinceDt{ get; set; }
-        @AuraEnabled public Decimal moneyIncrementalFee{ get; set; }
-        @AuraEnabled public String moneyIncrementalFeeDescription{ get; set; }
-        @AuraEnabled public Decimal monthlyCardFee{ get; set; }
-        @AuraEnabled public String monthlyCardFeeDescription{ get; set; }
-        @AuraEnabled public Decimal nsfFee{ get; set; }
-        @AuraEnabled public String nsfFeeDescription{ get; set; }
-        @AuraEnabled public String nsfPaymentCounter{ get; set; }
-        @AuraEnabled public String onlineApplication{ get; set; }
-        @AuraEnabled public CustomerDetailsWSUtilv2.otrContracts_element otrContracts{ get; set; }
-        @AuraEnabled public Decimal outOfNetworkPerTxnFee{ get; set; }
-        @AuraEnabled public String outOfNetworkProgramOrAccountRte{ get; set; }
-        @AuraEnabled public Decimal overLimitFee{ get; set; }
-        @AuraEnabled public String overLimitFeeDescription{ get; set; }
-        @AuraEnabled public Decimal paperDeliveryFee{ get; set; }
-        @AuraEnabled public String paperWithFeeWaived{ get; set; }
-        @AuraEnabled public String paperless{ get; set; }
-        @AuraEnabled public Boolean partnerFleetCustomer{ get; set; }
-        @AuraEnabled public Boolean partnerRebateIndicator{ get; set; }
-        @AuraEnabled public Decimal pastDueAmount{ get; set; }
-        @AuraEnabled public Decimal payByAgentFee{ get; set; }
-        @AuraEnabled public String payByAgentFeeDescription{ get; set; }
-        @AuraEnabled public CustomerDetailsWSUtilv2.pdAsset pdAsset{ get; set; }
-        @AuraEnabled public Decimal pendingTxns{ get; set; }
-        @AuraEnabled public Decimal periodicFinanceChargeRte{ get; set; }
-        @AuraEnabled public String pfsRepNm{ get; set; }
-        @AuraEnabled public CustomerDetailsWSUtilv2.address primaryAddress{ get; set; }
-        @AuraEnabled public String priorityLevel{ get; set; }
-        @AuraEnabled public String programId{ get; set; }
-        @AuraEnabled public String programMaintenanceCharge{ get; set; }
-        @AuraEnabled public String programMaintenanceChargeDescription{ get; set; }
-        @AuraEnabled public String programNm{ get; set; }
-        @AuraEnabled public Decimal reactivationFee{ get; set; }
-        @AuraEnabled public String reactivationFeeDescription{ get; set; }
-        @AuraEnabled public String rebateTierFlag{ get; set; }
-        @AuraEnabled public String salesRepCode{ get; set; }
-        @AuraEnabled public String servicingRules{ get; set; }
-        @AuraEnabled public String sfdcAcctId { get; set; }
-        @AuraEnabled public CustomerDetailsWSUtilv2.address shippingAddress{ get; set; }
-        @AuraEnabled public String sourceSys{ get; set; }
-        @AuraEnabled public String specialInstructions{ get; set; }
-        @AuraEnabled public String spnrAccountNbr{ get; set; }
-        @AuraEnabled public String srsCodeAndName{ get; set; }
-        @AuraEnabled public Boolean telematicsCustomer{ get; set; }
-        @AuraEnabled public Datetime telematicsCustomerEndDt{ get; set; }
-        @AuraEnabled public Datetime telematicsCustomerStartDt{ get; set; }
-        @AuraEnabled public Decimal thirdPartyCheckFee{ get; set; }
-        @AuraEnabled public String thirdPartyCheckFeeDescription{ get; set; }
-        @AuraEnabled public Decimal truckStopFee{ get; set; }
-        @AuraEnabled public String truckStopFeeDescription{ get; set; }
-        @AuraEnabled public Decimal unbilledAmt{ get; set; }
-        @AuraEnabled public String usualMethodOfPayment{ get; set; }
-        @AuraEnabled public Decimal vehicleCount{ get; set; }
-        @AuraEnabled public Decimal vehicleIdLength{ get; set; }
-        @AuraEnabled public Boolean WEXFleetCustomer{ get; set; }
-        @AuraEnabled public Decimal westernUnionFee{ get; set; }
-        @AuraEnabled public String westernUnionFeeDescription{ get; set; }
-        @AuraEnabled public String wexAccountNbr{ get; set; }
-        @AuraEnabled public String wexRebateDescription{ get; set; }
-        @AuraEnabled public Boolean wexRebateIndicator{ get; set; }
-        @AuraEnabled public Decimal wireFee{ get; set; }
-        @AuraEnabled public String wireFeeDescription{ get; set; }
-        @AuraEnabled public Boolean wrightRewardsCustomer{ get; set; }
-        @AuraEnabled public Datetime wrightRewardsCustomerEndDt{ get; set; }
-        @AuraEnabled public Datetime wrightRewardsCustomerStartDt{ get; set; }
-        @AuraEnabled public Decimal dIDLength { get; set; }
+        @AuraEnabled public String accountNbrType;
+        @AuraEnabled public String accountNm;
+        @AuraEnabled public Datetime accountSinceDt;
+        @AuraEnabled public String accountStatusReason;
+        @AuraEnabled public String accountSts;
+        @AuraEnabled public Datetime accountStsDt;
+        @AuraEnabled public Decimal accountingFee;
+        @AuraEnabled public String accountingFeeDescription;
+        @AuraEnabled public String acctRowId;
+        @AuraEnabled public CustomerDetailsWSUtilv3.address alternateAddress;
+        @AuraEnabled public String arNumber;
+        @AuraEnabled public Decimal availableCreditLmt;
+        @AuraEnabled public Decimal billedAmt;
+        @AuraEnabled public String billingAccountId;
+        @AuraEnabled public CustomerDetailsWSUtilv3.address billingAddress;
+        @AuraEnabled public String billingCycleDesc;
+        @AuraEnabled public String billtoAccountNm;
+        @AuraEnabled public Decimal canadianFee;
+        @AuraEnabled public String canadianFeeDescription;
+        @AuraEnabled public Boolean cashEnabledIndicator;
+        @AuraEnabled public Decimal cashLimit;
+        @AuraEnabled public Boolean clearViewCustomer;
+        @AuraEnabled public Datetime clearViewCustomerEndDt;
+        @AuraEnabled public Datetime clearViewCustomerStartDt;
+        @AuraEnabled public Decimal codeExpiredFee;
+        @AuraEnabled public String codeExpiredFeeDescription;
+        @AuraEnabled public String collectionDescriptor;
+        @AuraEnabled public Integer collectionRiskScore;
+        @AuraEnabled public Boolean consumerIndicator;
+        @AuraEnabled public CustomerDetailsWSUtilv3.contacts contacts;
+        @AuraEnabled public Datetime contractEndDt;
+        @AuraEnabled public String contractName;
+        @AuraEnabled public String contractNbr;
+        @AuraEnabled public String contractNm;
+        @AuraEnabled public Datetime contractStartDt;
+        @AuraEnabled public Boolean costPlusIndicator;
+        @AuraEnabled public Decimal creditLmt;
+        @AuraEnabled public Integer creditScore;
+        @AuraEnabled public Integer currentBillingCycle;
+        @AuraEnabled public Datetime currentInvoiceClosingDt;
+        @AuraEnabled public Datetime currentInvoiceDueDt;
+        @AuraEnabled public String customerId;
+        @AuraEnabled public String customerIdentifier;
+        @AuraEnabled public String customerNm;
+        @AuraEnabled public String customerSegmentation;
+        @AuraEnabled public Datetime customerSinceDt;
+        @AuraEnabled public Integer daysToPay;
+        @AuraEnabled public String debitCycle;
+        @AuraEnabled public Decimal depositAmt;
+        @AuraEnabled public String description;
+        @AuraEnabled public Boolean discountIndicator;
+        @AuraEnabled public Decimal driverCount;
+        @AuraEnabled public String errorMsg;
+        @AuraEnabled public Boolean evergreenIndicator;
+        @AuraEnabled public Decimal faxFee;
+        @AuraEnabled public String faxFeeDescription;
+        @AuraEnabled public String financeChargeRteType;
+        @AuraEnabled public Boolean fleetOneCustomer;
+        @AuraEnabled public Decimal flexCardApplicableRte;
+        @AuraEnabled public Boolean flexCardCustomer;
+        @AuraEnabled public String flexCardPenaltyPricingIndicator;
+        @AuraEnabled public String funder;
+        @AuraEnabled public Boolean highCreditRiskFeeIndicator;
+        @AuraEnabled public Datetime highRiskCureDt;
+        @AuraEnabled public Decimal highRiskPercentageRte;
+        @AuraEnabled public String iolCustomerNbr;
+        @AuraEnabled public String iolFleetNbr;
+        @AuraEnabled public Decimal lastInvoiceBilledAmt;
+        @AuraEnabled public Decimal lastPaymentAmount;
+        @AuraEnabled public Datetime lastPaymentDt;
+        @AuraEnabled public String lastPaymentMethod;
+        @AuraEnabled public String latePaymentCounter;
+        @AuraEnabled public Datetime latePaymentDate;
+        @AuraEnabled public CustomerDetailsWSUtilv3.address mailingAddress;
+        @AuraEnabled public Boolean masterCardCustomer;
+        @AuraEnabled public Datetime memberSinceDt;
+        @AuraEnabled public Decimal moneyCodeLimit;
+        @AuraEnabled public Decimal moneyIncrementalFee;
+        @AuraEnabled public String moneyIncrementalFeeDescription;
+        @AuraEnabled public Decimal monthlyCardFee;
+        @AuraEnabled public String monthlyCardFeeDescription;
+        @AuraEnabled public Decimal nsfFee;
+        @AuraEnabled public String nsfFeeDescription;
+        @AuraEnabled public String nsfPaymentCounter;
+        @AuraEnabled public String onlineApplication;
+        @AuraEnabled public Boolean onlinePayAllowed;
+        @AuraEnabled public Decimal onlinePayVelocity;
+        @AuraEnabled public CustomerDetailsWSUtilv3.otrContracts_element otrContracts;
+        @AuraEnabled public Decimal outOfNetworkPerTxnFee;
+        @AuraEnabled public String outOfNetworkProgramOrAccountRte;
+        @AuraEnabled public Decimal overLimitFee;
+        @AuraEnabled public String overLimitFeeDescription;
+        @AuraEnabled public Decimal paperDeliveryFee;
+        @AuraEnabled public String paperWithFeeWaived;
+        @AuraEnabled public String paperless;
+        @AuraEnabled public Boolean partnerFleetCustomer;
+        @AuraEnabled public Boolean partnerRebateIndicator;
+        @AuraEnabled public Decimal pastDueAmount;
+        @AuraEnabled public Decimal payByAgentFee;
+        @AuraEnabled public String payByAgentFeeDescription;
+        @AuraEnabled public CustomerDetailsWSUtilv3.pdAsset pdAsset;
+        @AuraEnabled public Decimal pendingTxns;
+        @AuraEnabled public Decimal periodicFinanceChargeRte;
+        @AuraEnabled public String pfsRepNm;
+        @AuraEnabled public CustomerDetailsWSUtilv3.address primaryAddress;
+        @AuraEnabled public String priorityLevel;
+        @AuraEnabled public String programId;
+        @AuraEnabled public String programMaintenanceCharge;
+        @AuraEnabled public String programMaintenanceChargeDescription;
+        @AuraEnabled public String programNm;
+        @AuraEnabled public Decimal reactivationFee;
+        @AuraEnabled public String reactivationFeeDescription;
+        @AuraEnabled public String rebateTierFlag;
+        @AuraEnabled public Decimal recourceAmt;
+        @AuraEnabled public String salesRepCode;
+        @AuraEnabled public String servicingRules;
+        @AuraEnabled public CustomerDetailsWSUtilv3.address shippingAddress;
+        @AuraEnabled public String sourceSys;
+        @AuraEnabled public String specialInstructions;
+        @AuraEnabled public String spnrAccountNbr;
+        @AuraEnabled public String srsCodeAndName;
+        @AuraEnabled public Boolean telematicsCustomer;
+        @AuraEnabled public Datetime telematicsCustomerEndDt;
+        @AuraEnabled public Datetime telematicsCustomerStartDt;
+        @AuraEnabled public String territoryCode;
+        @AuraEnabled public Decimal thirdPartyCheckFee;
+        @AuraEnabled public String thirdPartyCheckFeeDescription;
+        @AuraEnabled public Decimal totalOwed;
+        @AuraEnabled public Decimal transactionLimit;
+        @AuraEnabled public Decimal truckStopFee;
+        @AuraEnabled public String truckStopFeeDescription;
+        @AuraEnabled public Decimal unbilledAmt;
+        @AuraEnabled public String usualMethodOfPayment;
+        @AuraEnabled public Decimal vehicleCount;
+        @AuraEnabled public Decimal vehicleIdLength;
+        @AuraEnabled public Boolean WEXFleetCustomer;
+        @AuraEnabled public Decimal westernUnionFee;
+        @AuraEnabled public String westernUnionFeeDescription;
+        @AuraEnabled public String wexAccountNbr;
+        @AuraEnabled public String wexRebateDescription;
+        @AuraEnabled public Boolean wexRebateIndicator;
+        @AuraEnabled public Decimal wireFee;
+        @AuraEnabled public String wireFeeDescription;
+        @AuraEnabled public Boolean wrightRewardsCustomer;
+        @AuraEnabled public Datetime wrightRewardsCustomerEndDt;
+        @AuraEnabled public Datetime wrightRewardsCustomerStartDt;
+        @AuraEnabled public Decimal dIDLength;
         private String[] accountNbrType_type_info = new String[]{'accountNbrType','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] accountNm_type_info = new String[]{'accountNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] accountSinceDt_type_info = new String[]{'accountSinceDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -610,6 +621,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] alternateAddress_type_info = new String[]{'alternateAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] arNumber_type_info = new String[]{'arNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] availableCreditLmt_type_info = new String[]{'availableCreditLmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] billedAmt_type_info = new String[]{'billedAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] billingAccountId_type_info = new String[]{'billingAccountId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] billingAddress_type_info = new String[]{'billingAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] billingCycleDesc_type_info = new String[]{'billingCycleDesc','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -617,11 +629,13 @@ public class CustomerDetailsWSUtilv2 {
         private String[] canadianFee_type_info = new String[]{'canadianFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] canadianFeeDescription_type_info = new String[]{'canadianFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] cashEnabledIndicator_type_info = new String[]{'cashEnabledIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] cashLimit_type_info = new String[]{'cashLimit','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] clearViewCustomer_type_info = new String[]{'clearViewCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
         private String[] clearViewCustomerEndDt_type_info = new String[]{'clearViewCustomerEndDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] clearViewCustomerStartDt_type_info = new String[]{'clearViewCustomerStartDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] codeExpiredFee_type_info = new String[]{'codeExpiredFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] codeExpiredFeeDescription_type_info = new String[]{'codeExpiredFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] collectionDescriptor_type_info = new String[]{'collectionDescriptor','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] collectionRiskScore_type_info = new String[]{'collectionRiskScore','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
         private String[] consumerIndicator_type_info = new String[]{'consumerIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
         private String[] contacts_type_info = new String[]{'contacts','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -643,6 +657,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] customerSinceDt_type_info = new String[]{'customerSinceDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] daysToPay_type_info = new String[]{'daysToPay','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
         private String[] debitCycle_type_info = new String[]{'debitCycle','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] depositAmt_type_info = new String[]{'depositAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] description_type_info = new String[]{'description','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] discountIndicator_type_info = new String[]{'discountIndicator','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
         private String[] driverCount_type_info = new String[]{'driverCount','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -666,9 +681,11 @@ public class CustomerDetailsWSUtilv2 {
         private String[] lastPaymentDt_type_info = new String[]{'lastPaymentDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] lastPaymentMethod_type_info = new String[]{'lastPaymentMethod','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] latePaymentCounter_type_info = new String[]{'latePaymentCounter','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] latePaymentDate_type_info = new String[]{'latePaymentDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] mailingAddress_type_info = new String[]{'mailingAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] masterCardCustomer_type_info = new String[]{'masterCardCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
         private String[] memberSinceDt_type_info = new String[]{'memberSinceDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] moneyCodeLimit_type_info = new String[]{'moneyCodeLimit','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] moneyIncrementalFee_type_info = new String[]{'moneyIncrementalFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] moneyIncrementalFeeDescription_type_info = new String[]{'moneyIncrementalFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] monthlyCardFee_type_info = new String[]{'monthlyCardFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -677,6 +694,8 @@ public class CustomerDetailsWSUtilv2 {
         private String[] nsfFeeDescription_type_info = new String[]{'nsfFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] nsfPaymentCounter_type_info = new String[]{'nsfPaymentCounter','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] onlineApplication_type_info = new String[]{'onlineApplication','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] onlinePayAllowed_type_info = new String[]{'onlinePayAllowed','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
+        private String[] onlinePayVelocity_type_info = new String[]{'onlinePayVelocity','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] otrContracts_type_info = new String[]{'otrContracts','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
         private String[] outOfNetworkPerTxnFee_type_info = new String[]{'outOfNetworkPerTxnFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] outOfNetworkProgramOrAccountRte_type_info = new String[]{'outOfNetworkProgramOrAccountRte','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -703,9 +722,9 @@ public class CustomerDetailsWSUtilv2 {
         private String[] reactivationFee_type_info = new String[]{'reactivationFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] reactivationFeeDescription_type_info = new String[]{'reactivationFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] rebateTierFlag_type_info = new String[]{'rebateTierFlag','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] recourceAmt_type_info = new String[]{'recourceAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] salesRepCode_type_info = new String[]{'salesRepCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] servicingRules_type_info = new String[]{'servicingRules','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
-        private String[] sfdcAcctId_type_info = new String[]{'sfdcAcctId', 'http://com.wex.enterpriseapps.customerinfo', null, '0', '1', 'false'};
         private String[] shippingAddress_type_info = new String[]{'shippingAddress','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] sourceSys_type_info = new String[]{'sourceSys','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] specialInstructions_type_info = new String[]{'specialInstructions','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -714,8 +733,11 @@ public class CustomerDetailsWSUtilv2 {
         private String[] telematicsCustomer_type_info = new String[]{'telematicsCustomer','http://com.wex.enterpriseapps.customerinfo',null,'1','1','false'};
         private String[] telematicsCustomerEndDt_type_info = new String[]{'telematicsCustomerEndDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] telematicsCustomerStartDt_type_info = new String[]{'telematicsCustomerStartDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] territoryCode_type_info = new String[]{'territoryCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] thirdPartyCheckFee_type_info = new String[]{'thirdPartyCheckFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] thirdPartyCheckFeeDescription_type_info = new String[]{'thirdPartyCheckFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] totalOwed_type_info = new String[]{'totalOwed','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] transactionLimit_type_info = new String[]{'transactionLimit','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] truckStopFee_type_info = new String[]{'truckStopFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] truckStopFeeDescription_type_info = new String[]{'truckStopFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] unbilledAmt_type_info = new String[]{'unbilledAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -735,7 +757,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] wrightRewardsCustomerStartDt_type_info = new String[]{'wrightRewardsCustomerStartDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] dIDLength_type_info = new String[]{'dIDLength','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'accountNbrType','accountNm','accountSinceDt','accountStatusReason','accountSts','accountStsDt','accountingFee','accountingFeeDescription','acctRowId','alternateAddress','arNumber','availableCreditLmt','billingAccountId','billingAddress','billingCycleDesc','billtoAccountNm','canadianFee','canadianFeeDescription','cashEnabledIndicator','clearViewCustomer','clearViewCustomerEndDt','clearViewCustomerStartDt','codeExpiredFee','codeExpiredFeeDescription','collectionRiskScore','consumerIndicator','contacts','contractEndDt','contractName','contractNbr','contractNm','contractStartDt','costPlusIndicator','creditLmt','creditScore','currentBillingCycle','currentInvoiceClosingDt','currentInvoiceDueDt','customerId','customerIdentifier','customerNm','customerSegmentation','customerSinceDt','daysToPay','debitCycle','description','discountIndicator','driverCount','errorMsg','evergreenIndicator','faxFee','faxFeeDescription','financeChargeRteType','fleetOneCustomer','flexCardApplicableRte','flexCardCustomer','flexCardPenaltyPricingIndicator','funder','highCreditRiskFeeIndicator','highRiskCureDt','highRiskPercentageRte','iolCustomerNbr','iolFleetNbr','lastInvoiceBilledAmt','lastPaymentAmount','lastPaymentDt','lastPaymentMethod','latePaymentCounter','mailingAddress','masterCardCustomer','memberSinceDt','moneyIncrementalFee','moneyIncrementalFeeDescription','monthlyCardFee','monthlyCardFeeDescription','nsfFee','nsfFeeDescription','nsfPaymentCounter','onlineApplication','otrContracts','outOfNetworkPerTxnFee','outOfNetworkProgramOrAccountRte','overLimitFee','overLimitFeeDescription','paperDeliveryFee','paperWithFeeWaived','paperless','partnerFleetCustomer','partnerRebateIndicator','pastDueAmount','payByAgentFee','payByAgentFeeDescription','pdAsset','pendingTxns','periodicFinanceChargeRte','pfsRepNm','primaryAddress','priorityLevel','programId','programMaintenanceCharge','programMaintenanceChargeDescription','programNm','reactivationFee','reactivationFeeDescription','rebateTierFlag','salesRepCode','servicingRules','sfdcAcctid','shippingAddress','sourceSys','specialInstructions','spnrAccountNbr','srsCodeAndName','telematicsCustomer','telematicsCustomerEndDt','telematicsCustomerStartDt','thirdPartyCheckFee','thirdPartyCheckFeeDescription','truckStopFee','truckStopFeeDescription','unbilledAmt','usualMethodOfPayment','vehicleCount','vehicleIdLength','WEXFleetCustomer','westernUnionFee','westernUnionFeeDescription','wexAccountNbr','wexRebateDescription','wexRebateIndicator','wireFee','wireFeeDescription','wrightRewardsCustomer','wrightRewardsCustomerEndDt','wrightRewardsCustomerStartDt','dIDLength'};
+        private String[] field_order_type_info = new String[]{'accountNbrType','accountNm','accountSinceDt','accountStatusReason','accountSts','accountStsDt','accountingFee','accountingFeeDescription','acctRowId','alternateAddress','arNumber','availableCreditLmt','billedAmt','billingAccountId','billingAddress','billingCycleDesc','billtoAccountNm','canadianFee','canadianFeeDescription','cashEnabledIndicator','cashLimit','clearViewCustomer','clearViewCustomerEndDt','clearViewCustomerStartDt','codeExpiredFee','codeExpiredFeeDescription','collectionDescriptor','collectionRiskScore','consumerIndicator','contacts','contractEndDt','contractName','contractNbr','contractNm','contractStartDt','costPlusIndicator','creditLmt','creditScore','currentBillingCycle','currentInvoiceClosingDt','currentInvoiceDueDt','customerId','customerIdentifier','customerNm','customerSegmentation','customerSinceDt','daysToPay','debitCycle','depositAmt','description','discountIndicator','driverCount','errorMsg','evergreenIndicator','faxFee','faxFeeDescription','financeChargeRteType','fleetOneCustomer','flexCardApplicableRte','flexCardCustomer','flexCardPenaltyPricingIndicator','funder','highCreditRiskFeeIndicator','highRiskCureDt','highRiskPercentageRte','iolCustomerNbr','iolFleetNbr','lastInvoiceBilledAmt','lastPaymentAmount','lastPaymentDt','lastPaymentMethod','latePaymentCounter','latePaymentDate','mailingAddress','masterCardCustomer','memberSinceDt','moneyCodeLimit','moneyIncrementalFee','moneyIncrementalFeeDescription','monthlyCardFee','monthlyCardFeeDescription','nsfFee','nsfFeeDescription','nsfPaymentCounter','onlineApplication','onlinePayAllowed','onlinePayVelocity','otrContracts','outOfNetworkPerTxnFee','outOfNetworkProgramOrAccountRte','overLimitFee','overLimitFeeDescription','paperDeliveryFee','paperWithFeeWaived','paperless','partnerFleetCustomer','partnerRebateIndicator','pastDueAmount','payByAgentFee','payByAgentFeeDescription','pdAsset','pendingTxns','periodicFinanceChargeRte','pfsRepNm','primaryAddress','priorityLevel','programId','programMaintenanceCharge','programMaintenanceChargeDescription','programNm','reactivationFee','reactivationFeeDescription','rebateTierFlag','recourceAmt','salesRepCode','servicingRules','shippingAddress','sourceSys','specialInstructions','spnrAccountNbr','srsCodeAndName','telematicsCustomer','telematicsCustomerEndDt','telematicsCustomerStartDt','territoryCode','thirdPartyCheckFee','thirdPartyCheckFeeDescription','totalOwed','transactionLimit','truckStopFee','truckStopFeeDescription','unbilledAmt','usualMethodOfPayment','vehicleCount','vehicleIdLength','WEXFleetCustomer','westernUnionFee','westernUnionFeeDescription','wexAccountNbr','wexRebateDescription','wexRebateIndicator','wireFee','wireFeeDescription','wrightRewardsCustomer','wrightRewardsCustomerEndDt','wrightRewardsCustomerStartDt','dIDLength'};
     }
     public class getRecentDeclinedAuthsResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.authSearchResult return_x;
@@ -1039,6 +1061,8 @@ public class CustomerDetailsWSUtilv2 {
     }
     public class pendingPaymentEntry {
         @AuraEnabled public Decimal amount;
+        @AuraEnabled public String currency_x;
+        @AuraEnabled public String holdStatus;
         @AuraEnabled public String payId;
         @AuraEnabled public Datetime postingDate;
         @AuraEnabled public Datetime scheduledDate;
@@ -1046,6 +1070,8 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String status;
         @AuraEnabled public Datetime updateDate;
         private String[] amount_type_info = new String[]{'amount','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] currency_x_type_info = new String[]{'currency','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] holdStatus_type_info = new String[]{'holdStatus','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] payId_type_info = new String[]{'payId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] postingDate_type_info = new String[]{'postingDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] scheduledDate_type_info = new String[]{'scheduledDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -1053,7 +1079,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] status_type_info = new String[]{'status','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] updateDate_type_info = new String[]{'updateDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'amount','payId','postingDate','scheduledDate','source','status','updateDate'};
+        private String[] field_order_type_info = new String[]{'amount','currency_x','holdStatus','payId','postingDate','scheduledDate','source','status','updateDate'};
     }
     public class accountSearchResult {
         @AuraEnabled public CustomerDetailsWSUtilv2.accountSearchDTO[] accountList;
