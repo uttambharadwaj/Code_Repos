@@ -72,7 +72,7 @@ public with sharing class DNBAdvancedLookupController {
 
             List<CP_Application_Request__c> cpApplicationRequests = [
                     SELECT Id, Automatically_Generated_Number__c, DUNS_Number__c, Company_Legal_Name__c, Physical_Address_Line_1__c, Physical_City__c,
-                            Physical_State_Province__c, Physical_Postal_Code__c, Business_Phone__c, Doing_Business_As__c
+                            Physical_State_Province__c, Physical_Postal_Code__c, Physical_Country__c, Business_Phone__c, Doing_Business_As__c
                     FROM CP_Application_Request__c
                     WHERE Id = :applicationId
             ];
@@ -96,7 +96,7 @@ public with sharing class DNBAdvancedLookupController {
                 dnbDirectMatchRequest.PrimaryTownName = cpApplicationRequests[0].Physical_City__c;
                 dnbDirectMatchRequest.TerritoryName = cpApplicationRequests[0].Physical_State_Province__c;
                 dnbDirectMatchRequest.FullPostalCode = cpApplicationRequests[0].Physical_Postal_Code__c;
-                dnbDirectMatchRequest.CountryISOAlpha2Code = 'US';
+                dnbDirectMatchRequest.CountryISOAlpha2Code = cpApplicationRequests[0].Physical_Country__c;
                 dnbDirectMatchRequest.DUNSNumber = cpApplicationRequests[0].DUNS_Number__c;
                 dnbDirectMatchRequest.AGN = cpApplicationRequests[0].Automatically_Generated_Number__c;
                 dnbDirectMatchRequest.TradeStyleName = cpApplicationRequests[0].Doing_Business_As__c;
