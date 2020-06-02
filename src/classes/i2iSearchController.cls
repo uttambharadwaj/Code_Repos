@@ -283,20 +283,10 @@ public class i2iSearchController {
                                             OR Contact.Lead_Number__c IN :leadNumbers
                                             OR lead.parent_lead__r.i2i_id__c IN :i2iIds 
                                             OR Contact.i2i_id__c IN :i2iIDs) 
-                                         AND ( lead.phone in :phones
-										   OR Contact.phone in :phones ) 
+                                         AND ( lead.INVOCA_FOR_SF__TextPhone__c  in :phones
+										   OR Contact.INVOCA_FOR_SF__TextPhone__c  in :phones ) 
                                          Order By CreatedDate ASC] ) { 
-                                   
-                    
-                    System.debug('cm.contactId: '+cm.ContactId); 
-                    System.debug('cm.campaign.Coupon_Code__c: '+cm.campaign.Coupon_Code__c);
-                    System.debug('cm.lead.parent_lead__r.rr_lead_number__c: '+cm.lead.parent_lead__r.rr_lead_number__c);
-                    System.debug('cm.Contact.Lead_Number__c:' +cm.Contact.Lead_Number__c);                    
-                    System.debug('cm.Contact.i2i_id__c: '+cm.Contact.i2i_id__c);
-                    System.debug('cm.lead.phone: '+cm.lead.phone);
-                    System.debug('cm.contact.phone: '+cm.contact.phone);
-                    System.debug('cm.lead.email: '+cm.lead.email);
-                    System.debug('cm.contact.email: '+cm.contact.email);
+
                     
                                              if(cm.ContactId != null) {
                                                 String mcKey = cm.Contact.Lead_Number__c + '-' + cm.Campaign.Coupon_Code__c;
