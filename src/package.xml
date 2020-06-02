@@ -6,6 +6,7 @@
         <members>DataLoaderBatch</members>
         <members>OpportunityTriggerTest</members>
         <members>TestClassDispatcher</members>
+        <members>CreditUtil_NullField</members>
         <name>ApexClass</name>
     </types>
     <types>
