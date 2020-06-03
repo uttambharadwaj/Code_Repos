@@ -74,6 +74,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String programMaintenanceCharge;
         @AuraEnabled public String programMaintenanceChargeDescription;
         @AuraEnabled public String salesforceId;
+        @AuraEnabled public String sfdcAcctId;
         @AuraEnabled public Decimal thirdPartyCheckFee;
         @AuraEnabled public String thirdPartyCheckFeeDescription;
         @AuraEnabled public Decimal unbilledAmt;
@@ -128,6 +129,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] programMaintenanceCharge_type_info = new String[]{'programMaintenanceCharge','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] programMaintenanceChargeDescription_type_info = new String[]{'programMaintenanceChargeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] salesforceId_type_info = new String[]{'salesforceId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] sfdcAcctId_type_info = new String[]{'sfdcAcctId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] thirdPartyCheckFee_type_info = new String[]{'thirdPartyCheckFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] thirdPartyCheckFeeDescription_type_info = new String[]{'thirdPartyCheckFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] unbilledAmt_type_info = new String[]{'unbilledAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -137,7 +139,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] wireFee_type_info = new String[]{'wireFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] wireFeeDescription_type_info = new String[]{'wireFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'arNumber','availableCreditLmt','billingCycleDesc','canadianFee','canadianFeeDescription','cashEnabledIndicator','codeExpiredFee','codeExpiredFeeDescription','contractCurrency','contractIssuerId','contractIssuerName','contractNbr','contractNm','contractStartDt','contractStatus','creditLmt','currentBillingCycle','currentInvoiceClosingDt','currentInvoiceDueDt','daysToPay','debitCycle','faxFee','faxFeeDescription','financeChargeRteType','lastInvoiceBilledAmt','lastPaymentAmount','lastPaymentDt','lastPaymentMethod','moneyIncrementalFee','moneyIncrementalFeeDescription','monthlyCardFee','monthlyCardFeeDescription','nsfFee','nsfFeeDescription','outOfNetworkPerTxnFee','outOfNetworkProgramOrAccountRte','overLimitFee','overLimitFeeDescription','pastDueAmount','payByAgentFee','payByAgentFeeDescription','pendingTxns','periodicFinanceChargeRte','programMaintenanceCharge','programMaintenanceChargeDescription','salesforceId','thirdPartyCheckFee','thirdPartyCheckFeeDescription','unbilledAmt','usualMethodOfPayment','westernUnionFee','westernUnionFeeDescription','wireFee','wireFeeDescription'};
+        private String[] field_order_type_info = new String[]{'arNumber','availableCreditLmt','billingCycleDesc','canadianFee','canadianFeeDescription','cashEnabledIndicator','codeExpiredFee','codeExpiredFeeDescription','contractCurrency','contractIssuerId','contractIssuerName','contractNbr','contractNm','contractStartDt','contractStatus','creditLmt','currentBillingCycle','currentInvoiceClosingDt','currentInvoiceDueDt','daysToPay','debitCycle','faxFee','faxFeeDescription','financeChargeRteType','lastInvoiceBilledAmt','lastPaymentAmount','lastPaymentDt','lastPaymentMethod','moneyIncrementalFee','moneyIncrementalFeeDescription','monthlyCardFee','monthlyCardFeeDescription','nsfFee','nsfFeeDescription','outOfNetworkPerTxnFee','outOfNetworkProgramOrAccountRte','overLimitFee','overLimitFeeDescription','pastDueAmount','payByAgentFee','payByAgentFeeDescription','pendingTxns','periodicFinanceChargeRte','programMaintenanceCharge','programMaintenanceChargeDescription','salesforceId','sfdcAcctId','thirdPartyCheckFee','thirdPartyCheckFeeDescription','unbilledAmt','usualMethodOfPayment','westernUnionFee','westernUnionFeeDescription','wireFee','wireFeeDescription'};
     }
     public class getOtrContracts {
         @AuraEnabled public String otrAcctNbr;
