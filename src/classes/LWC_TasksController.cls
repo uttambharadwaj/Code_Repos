@@ -13,7 +13,7 @@ public inherited sharing class LWC_TasksController {
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
         System.debug('Historical: ' + historicalTasks + ' Future: ' + futureTasks);
 
-        String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, OwnerId, Owner.Name, WhatId, ActivityDate, LastModifiedDate FROM Task';
+        String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, OwnerId, Owner.Name, WhatId, ActivityDate, LastModifiedDate, Status FROM Task';
         if (recordId != null && recordId != '') {
             taskQuery += ' WHERE WhatId =: recordId';
             // are we filtering by task type?
