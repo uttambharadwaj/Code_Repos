@@ -471,12 +471,12 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Decimal accountingFee;
         @AuraEnabled public String accountingFeeDescription;
         @AuraEnabled public String acctRowId;
-        @AuraEnabled public CustomerDetailsWSUtilv3.address alternateAddress;
+        @AuraEnabled public CustomerDetailsWSUtilv2.address alternateAddress;
         @AuraEnabled public String arNumber;
         @AuraEnabled public Decimal availableCreditLmt;
         @AuraEnabled public Decimal billedAmt;
         @AuraEnabled public String billingAccountId;
-        @AuraEnabled public CustomerDetailsWSUtilv3.address billingAddress;
+        @AuraEnabled public CustomerDetailsWSUtilv2.address billingAddress;
         @AuraEnabled public String billingCycleDesc;
         @AuraEnabled public String billtoAccountNm;
         @AuraEnabled public Decimal canadianFee;
@@ -491,7 +491,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String collectionDescriptor;
         @AuraEnabled public Integer collectionRiskScore;
         @AuraEnabled public Boolean consumerIndicator;
-        @AuraEnabled public CustomerDetailsWSUtilv3.contacts contacts;
+        @AuraEnabled public CustomerDetailsWSUtilv2.contacts contacts;
         @AuraEnabled public Datetime contractEndDt;
         @AuraEnabled public String contractName;
         @AuraEnabled public String contractNbr;
@@ -535,7 +535,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String lastPaymentMethod;
         @AuraEnabled public String latePaymentCounter;
         @AuraEnabled public Datetime latePaymentDate;
-        @AuraEnabled public CustomerDetailsWSUtilv3.address mailingAddress;
+        @AuraEnabled public CustomerDetailsWSUtilv2.address mailingAddress;
         @AuraEnabled public Boolean masterCardCustomer;
         @AuraEnabled public Datetime memberSinceDt;
         @AuraEnabled public Decimal moneyCodeLimit;
@@ -549,7 +549,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String onlineApplication;
         @AuraEnabled public Boolean onlinePayAllowed;
         @AuraEnabled public Decimal onlinePayVelocity;
-        @AuraEnabled public CustomerDetailsWSUtilv3.otrContracts_element otrContracts;
+        @AuraEnabled public CustomerDetailsWSUtilv2.otrContracts_element otrContracts;
         @AuraEnabled public Decimal outOfNetworkPerTxnFee;
         @AuraEnabled public String outOfNetworkProgramOrAccountRte;
         @AuraEnabled public Decimal overLimitFee;
@@ -562,11 +562,11 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Decimal pastDueAmount;
         @AuraEnabled public Decimal payByAgentFee;
         @AuraEnabled public String payByAgentFeeDescription;
-        @AuraEnabled public CustomerDetailsWSUtilv3.pdAsset pdAsset;
+        @AuraEnabled public CustomerDetailsWSUtilv2.pdAsset pdAsset;
         @AuraEnabled public Decimal pendingTxns;
         @AuraEnabled public Decimal periodicFinanceChargeRte;
         @AuraEnabled public String pfsRepNm;
-        @AuraEnabled public CustomerDetailsWSUtilv3.address primaryAddress;
+        @AuraEnabled public CustomerDetailsWSUtilv2.address primaryAddress;
         @AuraEnabled public String priorityLevel;
         @AuraEnabled public String programId;
         @AuraEnabled public String programMaintenanceCharge;
@@ -578,7 +578,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Decimal recourceAmt;
         @AuraEnabled public String salesRepCode;
         @AuraEnabled public String servicingRules;
-        @AuraEnabled public CustomerDetailsWSUtilv3.address shippingAddress;
+        @AuraEnabled public CustomerDetailsWSUtilv2.address shippingAddress;
         @AuraEnabled public String sourceSys;
         @AuraEnabled public String specialInstructions;
         @AuraEnabled public String spnrAccountNbr;
