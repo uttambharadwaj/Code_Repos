@@ -56,6 +56,9 @@ public with sharing class InvocableSendEmailTemplate {
         @InvocableVariable(Label='SalesRepRoles')
         public String salesRepRoles;
 
+        @InvocableVariable(Label='NationalAccount')
+        public Boolean nationalAccount;
+
         @InvocableVariable(label='whatId')
         public Id whatId; //id for merge field population
 
@@ -215,11 +218,16 @@ public with sharing class InvocableSendEmailTemplate {
         Map<String, List<String>> territoryCodeToSalesRepRole = new Map<String, List<String>>();
 
         for (EmailWrapper ew : emailWrappers) {
-            if (ew.territoryCode != null && ew.territoryCode != '' && ew.salesRepRoles != null && ew.salesRepRoles != '') {
-                 territoryCodeToSalesRepRole.put(ew.territoryCode, ew.salesRepRoles.split(','));
+            if(ew.nationalAccount != null && ew.nationalAccount == true) {
+                if (ew.territoryCode != null && ew.territoryCode != '' && ew.salesRepRoles != null && ew.salesRepRoles != '') {
+                     territoryCodeToSalesRepRole.put(ew.territoryCode, ew.salesRepRoles.split(','));
+                }
             }
         }
-        salesReps = [SELECT Id, Email, Territory_Code__c, Role_Name__c FROM User WHERE Territory_Code__c =: territoryCodeToSalesRepRole.keySet() AND IsActive = TRUE];
+
+        if (territoryCodeToSalesRepRole.size() > 0) {
+            salesReps = [SELECT Id, Email, Territory_Code__c, Role_Name__c FROM User WHERE Territory_Code__c =: territoryCodeToSalesRepRole.keySet() AND IsActive = TRUE];
+        }
 
         if (salesReps.size() > 0) {
             for (User u : salesReps) {
