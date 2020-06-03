@@ -165,7 +165,7 @@ public with sharing class InvocableSendEmailTemplate {
                 Set<String> allFieldNames = new Set<String>(parentIdToFieldName.values());
                 String allTheFields = String.join(new List<String>(allFieldNames), ',');
                 String myQuery = 'SELECT Id, ' + allTheFields + ' FROM ' + objType + ' WHERE Id IN :theParentIds';
-                for(sObject so : Database.query(myQuery)){
+                for(SObject so : Database.query(myQuery)){
                     String thisAttachName = parentIdToFieldName.get(so.Id);
                     parentIdToAttchName.put(so.Id, (String)so.get(thisAttachName));
                 }
@@ -175,7 +175,7 @@ public with sharing class InvocableSendEmailTemplate {
         //get the ids for the attachments
         if(parentIdToAttchName.size()>0){
             Set<String> allAttachNames = new Set<String>(parentIdToAttchName.values());
-            for(Attachment a : [SELECT Id, ParentId FROM Attachment WHERE ParentId IN :parentIdToAttchName.keyset() AND Name IN :allAttachNames]){
+            for(Attachment a : [SELECT Id, ParentId FROM Attachment WHERE ParentId IN :parentIdToAttchName.keySet() AND Name IN :allAttachNames]){
                 parentIdToAttchName.put(a.ParentId, a.Id);
             }
         }

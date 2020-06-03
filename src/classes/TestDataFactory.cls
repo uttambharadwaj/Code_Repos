@@ -45,6 +45,8 @@ public with sharing class TestDataFactory {
         c.AccountId = acctId;
         c.LastName = 'test';
         c.i2i_id__c = i2iID;
+        c.Phone = '1111111111';
+        
         c.Lead_Number__c = leadNumber;
 
         if (isInsert) insert c;
@@ -73,6 +75,7 @@ public with sharing class TestDataFactory {
         l.Company = 'THE TEST COMPANY';
         l.i2i_ID__c = idNumber;
         l.i2i_Coupon_Code_Pass__c = 'test' + idNumber;
+        l.Phone = '1111111111';
         
         // Child Lead
         if (parentId != null) {
