@@ -73,6 +73,7 @@ global class CreditDecisionEngineNA {
             }
             else {
                 naApplication.Only_Final_Decision_Has_Run__c = true;
+                upsert naApplication;
                 runFinalCreditDecision(naApplication);
             }
 
