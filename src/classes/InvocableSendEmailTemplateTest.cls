@@ -13,7 +13,7 @@ public class InvocableSendEmailTemplateTest {
         Account acc = new Account(Name='Entirely Vindictive Industries, LLC', TickerSymbol='EVIL');
         insert acc;
 
-        Contact con = new Contact(LastName='Commander', FirstName='Cobra', AccountId=acc.Id);
+        Contact con = new Contact(LastName='Commander', FirstName='Cobra', AccountId=acc.Id, Contact_Type__c='Primary', Email='test@test.com');
         insert con;
 
         //for this test, attachment name will be matched with account tickersymbol
@@ -37,6 +37,7 @@ public class InvocableSendEmailTemplateTest {
 
         Integer initialEmailCount = Limits.getEmailInvocations();
 
+        Account myAccount = [SELECT Id FROM Account WHERE TickerSymbol = 'EVIL' LIMIT 1];
         Contact myContact = [SELECT Id, AccountId FROM Contact WHERE LastName='Commander' LIMIT 1];
         EmailTemplate myTemplate = [SELECT Id FROM EmailTemplate WHERE Name='BasicEmailTemplate' LIMIT 1];
 
@@ -49,6 +50,8 @@ public class InvocableSendEmailTemplateTest {
         eminem.saveAsActivity = false;
         eminem.attachmentParentId = myContact.AccountId;
         eminem.attachmentParentField = 'TickerSymbol';
+        eminem.accountId = myAccount.Id;
+        eminem.contactTypes = 'Primary, Billing';
 
         Test.startTest();
         InvocableSendEmailTemplate.sendEmailTemplate(new List<InvocableSendEmailTemplate.EmailWrapper>{eminem});
@@ -83,6 +86,30 @@ public class InvocableSendEmailTemplateTest {
 
         //myAttachmentMap should make a map of parentId (in this case, account id) to attachment id
         system.assertEquals(myAttache.Id, myAttachmentMap.get(myAccount.Id));
+
+    }
+
+    static testMethod void testGetContactEmails() {
+
+        EmailTemplate myTemplate = [SELECT Id FROM EmailTemplate WHERE Name='BasicEmailTemplate' LIMIT 1];
+
+        Account myAccount = [SELECT Id FROM Account WHERE TickerSymbol = 'EVIL' LIMIT 1];
+        Contact myContact = [SELECT Id, AccountId, Email FROM Contact WHERE LastName='Commander' LIMIT 1];
+
+        InvocableSendEmailTemplate.EmailWrapper eminem= new InvocableSendEmailTemplate.EmailWrapper();
+        eminem.templateId = myTemplate.Id;
+        eminem.toRecipients = UserInfo.getUserEmail();
+        eminem.whatId = myContact.AccountId;
+        eminem.targetObjId = myContact.Id;
+        eminem.accountId = myAccount.Id;
+        eminem.contactTypes = 'Primary, Billing';
+        eminem.saveAsActivity = false;
+
+        Test.startTest();
+        List<String> contactEmails = InvocableSendEmailTemplate.getContactEmailsByRole(new List<InvocableSendEmailTemplate.EmailWrapper>{eminem});
+        Test.stopTest();
+
+        System.assert(contactEmails.contains(myContact.Email));
 
     }
 

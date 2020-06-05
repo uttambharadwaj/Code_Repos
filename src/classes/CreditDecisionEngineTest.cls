@@ -162,6 +162,7 @@ public class CreditDecisionEngineTest {
             onlineApplication.Confirm_Checking_Account_Number__c = '1234567890123';
             onlineApplication.Contact_First_Name__c = 'Testy';
             onlineApplication.Contact_Last_Name__c = 'McTesterson';
+            onlineApplication.Country__c = 'US';
             onlineApplication.Credit_Line_Requested__c = 10000;
             onlineApplication.Data_Entry_Stage__c = null;
             onlineApplication.Day_of_Payment__c = 'Monday';
@@ -231,7 +232,7 @@ public class CreditDecisionEngineTest {
 
                 Test.setMock(HttpCalloutMock.class, new CalloutMock());
 
-                CreditDecisionEngineOTR.runOTRDecisioningProcess(onlineApplications[0].Id);
+                CreditDecisionEngineOTR.runHandler(onlineApplications[0].Id);
 
                 Test.stopTest();
 
