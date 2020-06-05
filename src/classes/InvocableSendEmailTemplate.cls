@@ -50,6 +50,15 @@ public with sharing class InvocableSendEmailTemplate {
         @InvocableVariable(Label='AccountId')
         public Id accountId;
 
+        @InvocableVariable(Label='TerritoryCode')
+        public String territoryCode;
+
+        @InvocableVariable(Label='SalesRepRoles')
+        public String salesRepRoles;
+
+        @InvocableVariable(Label='NationalAccount')
+        public Boolean nationalAccount;
+
         @InvocableVariable(label='whatId')
         public Id whatId; //id for merge field population
 
@@ -75,7 +84,10 @@ public with sharing class InvocableSendEmailTemplate {
 
         //get attachment based on provided info
         Map<Id, String> parentIdToAttchName = getAttachmentMap(emailWrappers);
+        //get contact emails from the account by contact type
         List<String> contactEmails = getContactEmailsByRole(emailWrappers);
+        //get sales rep emails by territory code
+        List<String> salesRepEmails = getSalesReps(emailWrappers);
 
         for(EmailWrapper ew : emailWrappers){
             Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
@@ -92,6 +104,9 @@ public with sharing class InvocableSendEmailTemplate {
 
             if (contactEmails.size() > 0) {
                 ccEmails.addAll(contactEmails);
+            }
+            if (salesRepEmails.size() > 0) {
+                ccEmails.addAll(salesRepEmails);
             }
 
             email.setToAddresses(toEmails);
@@ -195,6 +210,36 @@ public with sharing class InvocableSendEmailTemplate {
         }
 
         return contactEmails;
+    }
+
+    public static List<String> getSalesReps(List<EmailWrapper> emailWrappers) {
+        List<String> salesRepEmails = new List<String>();
+        List<User> salesReps = new List<User>();
+        Map<String, List<String>> territoryCodeToSalesRepRole = new Map<String, List<String>>();
+
+        for (EmailWrapper ew : emailWrappers) {
+            if(ew.nationalAccount != null && ew.nationalAccount == true) {
+                if (ew.territoryCode != null && ew.territoryCode != '' && ew.salesRepRoles != null && ew.salesRepRoles != '') {
+                     territoryCodeToSalesRepRole.put(ew.territoryCode, ew.salesRepRoles.split(','));
+                }
+            }
+        }
+
+        if (territoryCodeToSalesRepRole.size() > 0) {
+            salesReps = [SELECT Id, Email, Territory_Code__c, Role_Name__c FROM User WHERE Territory_Code__c =: territoryCodeToSalesRepRole.keySet() AND IsActive = TRUE];
+        }
+
+        if (salesReps.size() > 0) {
+            for (User u : salesReps) {
+                for (String role : territoryCodeToSalesRepRole.get(u.Territory_Code__c)) {
+                    if (u.Role_Name__c == role) {
+                        salesRepEmails.add(u.Email);
+                    }
+                }
+            }
+        }
+
+        return salesRepEmails;
     }
 
 }
