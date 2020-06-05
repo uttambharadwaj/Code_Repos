@@ -66,6 +66,8 @@
             {label: "Posting Date", fieldName: "postingDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
             {label: "Payment Amt", fieldName: "amount", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 130, cellAttributes: { alignment: 'right' }},
             {label: "Updated Date", fieldName: "updateDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
+            {label: "Status of Hold", fieldName: "holdStatus", type: "text", sortable: false, initialWidth: 120 },
+            {label: "Currency Label", fieldName: "currency_x", type: "text", sortable: false, initialWidth: 120 },
         ]);
 
         component.set("v.past3InvoicesColumnList", [
