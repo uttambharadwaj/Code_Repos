@@ -69,6 +69,7 @@ public with sharing class CreditWS_Giact {
                 Http http = new Http();
 
                 HTTPResponse httpResponse = http.send(httpRequest);
+                System.debug('GIACT raw response body:' + httpResponse.getBody());
 
                 if(CreditWS_Giact.isGIACTJSONValid(httpResponse.getBody())) {
 

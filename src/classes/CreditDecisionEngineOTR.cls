@@ -527,8 +527,8 @@ global class CreditDecisionEngineOTR {
             }
         }
 
-        // GIACT
-        if(!String.isBlank(onlineApplication.ABA_Routing_Number__c) && !String.isBlank(onlineApplication.Checking_Account_Number__c)) {
+        // GIACT - only available for US applicants
+        if(!String.isBlank(onlineApplication.ABA_Routing_Number__c) && !String.isBlank(onlineApplication.Checking_Account_Number__c) && onlineApplication.Country__c.equalsIgnoreCase('US')) {
 
             CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
 
@@ -542,7 +542,30 @@ global class CreditDecisionEngineOTR {
 
                 CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage)) {
+                if (giactVerifyResponse != null && giactVerifyResponse.AccountResponseCode.equals('12')) {
+                    // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
+                    if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null && onlineApplication.AO_Social_Security_Number__c != null) {
+                        //re-run using both PG name and SSN
+                        giactVerifyRequest.FirstName = onlineApplication.AO_First_Name__c;
+                        giactVerifyRequest.LastName = onlineApplication.AO_Last_Name__c;
+                        giactVerifyRequest.FederalTaxId = onlineApplication.AO_Social_Security_Number__c;
+                        giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                    }
+                    if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null) {
+                        //re-run using both PG name
+                        giactVerifyRequest.FirstName = onlineApplication.AO_First_Name__c;
+                        giactVerifyRequest.LastName = onlineApplication.AO_Last_Name__c;
+                        giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                    }
+                    if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_Social_Security_Number__c != null) {
+                        //re-run using both PG SSN
+                        giactVerifyRequest.FederalTaxId = onlineApplication.AO_Social_Security_Number__c;
+                        giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                    }
+                }
+
+
+                if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage))   {
 
                     onlineApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
                     onlineApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
@@ -562,11 +585,8 @@ global class CreditDecisionEngineOTR {
                     if(giactVerifyResponse != null) {
                         onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
                     }
-
                 }
-
             }
-
         }
 
         // Upsert and execute BREeze
