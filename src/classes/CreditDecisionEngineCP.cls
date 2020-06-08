@@ -510,19 +510,21 @@ global class CreditDecisionEngineCP {
                         if (giactVerifyResponse.CustomerResponseCode.equals('1') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null && cpApplication.Guarantor_Social_Security_Number__c != null) {
                             //re-run using both PG name and SSN
                             System.debug('Re-running GIACT using PG name and SSN...');
+                            giactVerifyRequest.BusinessName = null;
                             giactVerifyRequest.FirstName = cpApplication.Guarantor_First_Name__c;
                             giactVerifyRequest.LastName = cpApplication.Guarantor_Last_Name__c;
                             giactVerifyRequest.FederalTaxId = cpApplication.Guarantor_Social_Security_Number__c;
                             giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                         }
-                        if (giactVerifyResponse.CustomerResponseCode.equals('3') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null) {
+                        else if (giactVerifyResponse.CustomerResponseCode.equals('3') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null) {
                             //re-run using both PG name
                             System.debug('Re-running GIACT using PG name...');
+                            giactVerifyRequest.BusinessName = null;
                             giactVerifyRequest.FirstName = cpApplication.Guarantor_First_Name__c;
                             giactVerifyRequest.LastName = cpApplication.Guarantor_Last_Name__c;
                             giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                         }
-                        if (giactVerifyResponse.CustomerResponseCode.equals('4') && cpApplication.Guarantor_Social_Security_Number__c != null) {
+                        else if (giactVerifyResponse.CustomerResponseCode.equals('4') && cpApplication.Guarantor_Social_Security_Number__c != null) {
                             //re-run using both PG SSN
                             System.debug('Re-running GIACT using SSN...');
                             giactVerifyRequest.FederalTaxId = cpApplication.Guarantor_Social_Security_Number__c;
