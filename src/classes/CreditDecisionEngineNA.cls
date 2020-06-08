@@ -509,14 +509,14 @@ global class CreditDecisionEngineNA {
                             giactVerifyRequest.FederalTaxId = naApplication.Personal_Guarantor_SSN__c;
                             giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                         }
-                        if (giactVerifyResponse.CustomerResponseCode.equals('1') && naApplication.Personal_Guarantor_First_Name__c != null && naApplication.Personal_Guarantor_Last_Name__c != null) {
+                        if (giactVerifyResponse.CustomerResponseCode.equals('3') && naApplication.Personal_Guarantor_First_Name__c != null && naApplication.Personal_Guarantor_Last_Name__c != null) {
                             //re-run using both PG name
                             System.debug('Re-running GIACT using PG name...');
                             giactVerifyRequest.FirstName = naApplication.Personal_Guarantor_First_Name__c;
                             giactVerifyRequest.LastName = naApplication.Personal_Guarantor_Last_Name__c;
                             giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                         }
-                        if (giactVerifyResponse.CustomerResponseCode.equals('1') && naApplication.Personal_Guarantor_SSN__c != null) {
+                        if (giactVerifyResponse.CustomerResponseCode.equals('4') && naApplication.Personal_Guarantor_SSN__c != null) {
                             //re-run using both PG SSN
                             System.debug('Re-running GIACT using PG SSN...');
                             giactVerifyRequest.FederalTaxId = naApplication.Personal_Guarantor_SSN__c;

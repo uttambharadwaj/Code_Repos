@@ -553,14 +553,14 @@ global class CreditDecisionEngineOTR {
                         giactVerifyRequest.FederalTaxId = onlineApplication.AO_Social_Security_Number__c;
                         giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                     }
-                    if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null) {
+                    if (giactVerifyResponse.CustomerResponseCode.equals('3') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null) {
                         //re-run using both PG name
                         System.debug('Re-running GIACT using PG name...');
                         giactVerifyRequest.FirstName = onlineApplication.AO_First_Name__c;
                         giactVerifyRequest.LastName = onlineApplication.AO_Last_Name__c;
                         giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                     }
-                    if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_Social_Security_Number__c != null) {
+                    if (giactVerifyResponse.CustomerResponseCode.equals('4') && onlineApplication.AO_Social_Security_Number__c != null) {
                         //re-run using both PG SSN
                         System.debug('Re-running GIACT using PG SSN...');
                         giactVerifyRequest.FederalTaxId = onlineApplication.AO_Social_Security_Number__c;
