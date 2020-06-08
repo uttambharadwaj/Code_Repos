@@ -528,6 +528,7 @@ global class CreditDecisionEngineOTR {
         }
 
         // GIACT - only available for US applicants
+        System.debug('Running GIACT...');
         if(!String.isBlank(onlineApplication.ABA_Routing_Number__c) && !String.isBlank(onlineApplication.Checking_Account_Number__c) && onlineApplication.Country__c.equalsIgnoreCase('US')) {
 
             CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
@@ -546,6 +547,7 @@ global class CreditDecisionEngineOTR {
                     // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
                     if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null && onlineApplication.AO_Social_Security_Number__c != null) {
                         //re-run using both PG name and SSN
+                        System.debug('Re-running GIACT using PG name and SSN...');
                         giactVerifyRequest.FirstName = onlineApplication.AO_First_Name__c;
                         giactVerifyRequest.LastName = onlineApplication.AO_Last_Name__c;
                         giactVerifyRequest.FederalTaxId = onlineApplication.AO_Social_Security_Number__c;
@@ -553,12 +555,14 @@ global class CreditDecisionEngineOTR {
                     }
                     if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null) {
                         //re-run using both PG name
+                        System.debug('Re-running GIACT using PG name...');
                         giactVerifyRequest.FirstName = onlineApplication.AO_First_Name__c;
                         giactVerifyRequest.LastName = onlineApplication.AO_Last_Name__c;
                         giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                     }
                     if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_Social_Security_Number__c != null) {
                         //re-run using both PG SSN
+                        System.debug('Re-running GIACT using PG SSN...');
                         giactVerifyRequest.FederalTaxId = onlineApplication.AO_Social_Security_Number__c;
                         giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                     }

@@ -490,7 +490,8 @@ global class CreditDecisionEngineCP {
             List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
 
             // GIACT - only available for US applicants
-            if(!String.isBlank(cpApplication.ABA_Routing_Number__c) && !String.isBlank(cpApplication.Checking_Account_Number__c) && cpApplication.Guarantor_Country__c.equalsIgnoreCase('US')) {
+            System.debug('Running GIACT...');
+            if(!String.isBlank(cpApplication.ABA_Routing_Number__c) && !String.isBlank(cpApplication.Checking_Account_Number__c) && cpApplication.Physical_Country__c.equalsIgnoreCase('US')) {
 
                 CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
 
@@ -508,6 +509,7 @@ global class CreditDecisionEngineCP {
                         // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
                         if (giactVerifyResponse.CustomerResponseCode.equals('1') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null && cpApplication.Guarantor_Social_Security_Number__c != null) {
                             //re-run using both PG name and SSN
+                            System.debug('Re-running GIACT using PG name and SSN...');
                             giactVerifyRequest.FirstName = cpApplication.Guarantor_First_Name__c;
                             giactVerifyRequest.LastName = cpApplication.Guarantor_Last_Name__c;
                             giactVerifyRequest.FederalTaxId = cpApplication.Guarantor_Social_Security_Number__c;
@@ -515,12 +517,14 @@ global class CreditDecisionEngineCP {
                         }
                         if (giactVerifyResponse.CustomerResponseCode.equals('1') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null) {
                             //re-run using both PG name
+                            System.debug('Re-running GIACT using PG name...');
                             giactVerifyRequest.FirstName = cpApplication.Guarantor_First_Name__c;
                             giactVerifyRequest.LastName = cpApplication.Guarantor_Last_Name__c;
                             giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                         }
                         if (giactVerifyResponse.CustomerResponseCode.equals('1') && cpApplication.Guarantor_Social_Security_Number__c != null) {
                             //re-run using both PG SSN
+                            System.debug('Re-running GIACT using SSN...');
                             giactVerifyRequest.FederalTaxId = cpApplication.Guarantor_Social_Security_Number__c;
                             giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
                         }
