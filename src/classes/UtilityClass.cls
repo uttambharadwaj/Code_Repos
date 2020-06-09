@@ -232,8 +232,6 @@ global class UtilityClass {
             searchVariables = searchVariables.replaceAll('\\\\','');
             searchVariables = searchVariables.replaceAll('[-?&|!\\[\\]{}()^*~:\"\'\\+]','');
         }
-        System.debug('TEMP after chars removed: ' + searchVariables);
-
         return searchVariables;
     }
 

@@ -44,7 +44,9 @@ public with sharing class CreditWS_Giact {
                 // Customer Information
                 giactRequest.Customer = new CreditWSUtil_GiactVerify.Customer();
                 giactRequest.Customer.EntityType = 0;
-                giactRequest.Customer.BusinessName = giactInquiryRequest.BusinessName;
+                if (giactInquiryRequest.BusinessName !=null ) giactRequest.Customer.BusinessName = giactInquiryRequest.BusinessName;
+                if (giactInquiryRequest.FirstName != null) giactRequest.Customer.FirstName = giactInquiryRequest.FirstName;
+                if (giactInquiryRequest.LastName != null) giactRequest.Customer.LastName = giactInquiryRequest.LastName;
                 if(!String.isBlank(giactInquiryRequest.FederalTaxId)) {
                     giactRequest.Customer.TaxId = giactInquiryRequest.FederalTaxId.replaceAll('[^0-9]', '');
                 }
@@ -69,6 +71,7 @@ public with sharing class CreditWS_Giact {
                 Http http = new Http();
 
                 HTTPResponse httpResponse = http.send(httpRequest);
+                System.debug('GIACT raw response body:' + httpResponse.getBody());
 
                 if(CreditWS_Giact.isGIACTJSONValid(httpResponse.getBody())) {
 

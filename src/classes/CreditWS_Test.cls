@@ -468,29 +468,6 @@ public class CreditWS_Test {
 
     }
 
-    static testMethod void testGiactVerify() {
-
-        Test.startTest();
-
-        TestUtils.enable_isRunningTest = true;
-
-        Test.setMock(HttpCalloutMock.class, new GiactMockCallout());
-
-        CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
-
-        giactVerifyRequest.RoutingNumber = '12345678';
-        giactVerifyRequest.AccountNumber = '1234567890';
-        giactVerifyRequest.BusinessName = 'WEX Inc';
-        giactVerifyRequest.FederalTaxId = '123456789';
-
-        CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
-
-        System.debug('### GIACT RESPONSE: ' + giactVerifyResponse);
-
-        Test.stopTest();
-
-    }
-
     //EAPT-1562 retiring LN RDP / BIID / CVI but I don't trust they won't re-add it. Going to leave it just commented out for a while then delete.
 //    static testMethod void testLexisNexisConsumerInstantID() {
 //
