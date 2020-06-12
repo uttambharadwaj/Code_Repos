@@ -519,6 +519,30 @@ function validateAndSaveBOCA() {
     }
 }
 
+function validateFinancialsForm() {
+
+    var hasErrors = false;
+
+    console.log(hasErrors);
+
+    if(hasErrors) {
+        $j('[id$=errors]').html('Your form has errors. Please fill in all required fields.');
+        $j('[id$=errors]').css('display', 'block');
+
+        window.scrollTo(0,0);
+
+        levelSetErroredRows();
+    }
+    else {
+        $j('[id$=submitButton]').addClass('disabled-button');
+        $j('[id$=content]').find('.loader-gif').css('display', 'block');
+
+        console.log('submitting');
+
+        submitApplication();
+    }
+}
+
 function validateFleetForm() {
 
     $j('[id$=bocaForm]').find('.erroredInput').each(function() {

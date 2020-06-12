@@ -162,6 +162,49 @@ public class OTRBOCAController {
         }
     }
 
+    public Boolean isUpMarket {
+        get {
+            if (onlineApplication != null) {
+                if (isPaperApp && onlineApplication.Credit_Line_Requested__c >= 150000) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public List<SelectOption> countryOptions {
+        get {
+            List<SelectOption> myOptions = new List<SelectOption>();
+            Schema.DescribeFieldResult countries = Account.Legal_Entity_Country__c.getDescribe();
+            myOptions.add(new SelectOption('','-- Choose One --'));
+            for(Schema.PicklistEntry countryOption : countries.getPicklistValues()){
+                myOptions.add(new SelectOption(countryOption.getValue(), countryOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
+    public List<SelectOption> stateOptions {
+        get {
+            List<SelectOption> myOptions = new List<SelectOption>();
+            Set<String> provinces = new Set<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
+            Schema.DescribeFieldResult states = OnlineApplication__c.State__c.getDescribe();
+            myOptions.add(new SelectOption('','-- Choose One --'));
+            for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
+                if(selectedCountry == 'CA' && provinces.contains(stateOption.getValue()))
+                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
+                else if(selectedCountry == 'US' && !provinces.contains(stateOption.getValue()))
+                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
+    public String selectedCountry { get; set; }
+
+    public String selectedState { get; set; }
+
     public Boolean forcePg { get; set; }
 
     // Check is this is a Personal Guaruntor application
@@ -672,8 +715,10 @@ public class OTRBOCAController {
     public PageReference submitApplication() {
 
         try {
-
             Account account = new Account();
+            account.Legal_Entity_Country__c = selectedCountry;
+            account.Legal_Entity_State__c = selectedState;
+
             Opportunity opportunity = new Opportunity();
             Contact primaryContact = new Contact();
             Contact pgContact = new Contact();
@@ -1090,11 +1135,11 @@ public class OTRBOCAController {
 
                 redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
                 redirect.getParameters().put('customer', onlineApplication.Id);
+                redirect.getParameters().put('isUpmarket', String.valueOf(isUpMarket));
                 if (onlineApplication.Opportunity__r.Beneficial_Owner_Entity__c != null) {
                     redirect.getParameters().put('entityId', onlineApplication.Opportunity__r.Beneficial_Owner_Entity__c);
                     redirect.getParameters().put('formKey', applicationKey);
                 }
-
                 return redirect;
 
             } else {
@@ -1104,11 +1149,8 @@ public class OTRBOCAController {
                 redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
                 redirect.getParameters().put('customer', onlineApplication.Id);
                 redirect.getParameters().put('key', applicationKey);
-
                 return redirect;
-
             }
-
             return null;
 
         } catch (Exception e) {
