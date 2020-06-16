@@ -23,12 +23,48 @@ public without sharing class OTRBOCAFinancialsController {
     }
 
     public class DocumentType {
-        public String fieldName {get; set;}
-        public String attachmentName {get; set;}
-        public transient Blob attachmentBody {get; set;}
+        public String fieldName { get; set; }
+        public String attachmentName { get; set; }
+        public transient Blob attachmentBody { get; set; }
+        public Boolean isUploaded { get; set; }
     }
 
     public List<DocumentType> docTypeList { get; set;}
+
+    public Boolean areRequiredDocumentsUploaded {
+        get {
+            Integer requiredFileCount = docTypeList.size();
+            System.debug('requested documents: ' + requiredFileCount);
+            Integer uploadedFileCount = 0;
+
+            if (requiredFileCount > 0) {
+                for (DocumentType doc : docTypeList) {
+                    if (doc.isUploaded != null && doc.isUploaded) {
+                        uploadedFileCount++;
+                    }
+                }
+            }
+
+            System.debug ('uploaded file count: ' + uploadedFileCount);
+
+            if (uploadedFileCount >= requiredFileCount) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public Boolean requireFinancials {
+        get {
+            if (program != null) {
+                if (program.Require_Financial_Documents__c != null) {
+                    return program.Require_Financial_Documents__c;
+                }
+            }
+            return false;
+        }
+    }
 
     // Get Template
     public String currentPageName {
@@ -347,6 +383,7 @@ public without sharing class OTRBOCAFinancialsController {
                 applicationAttachment.ParentId = otrAppId;
 
                 creditApp.put(docType.fieldName, true);
+                docType.isUploaded = true;
 
                 try {
                     insert applicationAttachment;
