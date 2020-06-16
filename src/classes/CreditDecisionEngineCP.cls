@@ -505,7 +505,7 @@ global class CreditDecisionEngineCP {
 
                     CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                    if (giactVerifyResponse != null && giactVerifyResponse.AccountResponseCode.equals('12')) {
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage) && giactVerifyResponse.AccountResponseCode.equals('12')) {
                         // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
                         if (giactVerifyResponse.CustomerResponseCode.equals('1') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null && cpApplication.Guarantor_Social_Security_Number__c != null) {
                             //re-run using both PG name and SSN
