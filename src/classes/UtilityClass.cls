@@ -244,6 +244,43 @@ global class UtilityClass {
     /**************************END QUERY UTILITIES****************************/
 
     /******************************MISCELLANEOUS******************************/
+
+    // Return true/false if any fields in a list is changed
+    public static Boolean isChanged(SObject newRecord, SObject oldRecord, List<String> fields) {
+
+        Boolean isChanged = false;
+        for (String field : fields) {
+            try { // in case field isn't valid
+                if (oldRecord.get(field) != newRecord.get(field)) {
+                    isChanged = true;
+                    break;
+                }
+            } catch (Exception e) {}
+        }
+        return isChanged;
+    }
+
+    public static String updateMultiPicklist(String currentValues, String inputValue, Boolean removeValue) {
+        String updatedValues = '';
+        Set<String> currentValueSet = new Set<String>();
+        if (currentValues != null && currentValues != '') {
+
+            currentValueSet.addAll(currentValues.split(';'));
+            if (removeValue) {
+                currentValueSet.remove(inputValue);
+            } else {
+                currentValueSet.add(inputValue);
+            }
+
+            for (String currentValue : currentValueSet) {
+                updatedValues += currentValue;
+            }
+            updatedValues = currentValueSet.toString().replaceAll(', ', ';');
+        } else updatedValues = removeValue ? '' : inputValue;
+        updatedValues = updatedValues.replaceAll('[\\{}]','');
+        return updatedValues;
+    }
+
     //custom get method for use with inner classes/wrappers, bc they don't have standard get functionality
     public static Object get(String myVariable, Object myObject){
         String jsonThis = JSON.serialize(myObject);
