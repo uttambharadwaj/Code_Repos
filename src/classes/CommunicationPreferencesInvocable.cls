@@ -61,7 +61,7 @@ public class CommunicationPreferencesInvocable {
 
 		}
 
-		if (!preferences.isEmpty()) return; // missing all contact info
+		if (preferences.isEmpty()) return; // missing all contact info
 
 		// Enable Bulk Data Load
 		Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
