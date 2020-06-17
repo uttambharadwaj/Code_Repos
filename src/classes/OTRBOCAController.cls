@@ -188,7 +188,7 @@ public class OTRBOCAController {
     public List<SelectOption> stateOptions {
         get {
             List<SelectOption> myOptions = new List<SelectOption>();
-            Set<String> provinces = new Set<String>{'AB','BC','MB','NB','NL','NS','NT','NU','ON','PE','QC','SK','YT'};
+            List<String> provinces = UtilityClass.getProvinces('canada');
             Schema.DescribeFieldResult states = OnlineApplication__c.State__c.getDescribe();
             myOptions.add(new SelectOption('','-- Choose One --'));
             for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
