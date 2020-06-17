@@ -3,7 +3,7 @@
 //* Date: April 2020
 //* Author: Lev
 //*/
-//public class SweepsBatch implements Database.Batchable<sObject>, Database.stateful{
+public class SweepsBatch{
 //    public String changedObject;
 //    public String fields;
 //    public List<Internal_Application_Error__c> errors;
@@ -125,4 +125,4 @@
 //            insert errors;
 //        }
 //    }
-//}
+}

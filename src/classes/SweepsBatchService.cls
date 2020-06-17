@@ -3,7 +3,7 @@
 // * Date: April 2020
 // * Author: Lev
 // */
-//public class SweepsBatchService {
+public class SweepsBatchService {
 //    public static final String leadObj = 'Lead';
 //    public static final String contObj = 'Contact';
 //    public static final String contactFields = 'Email, Phone, MobilePhone, MailingStreet, MailingCity, MailingState, MailingPostalCode, PartnerID__c, DoNotCall, Outbound_Call_Opt_In__c , et4ae5__HasOptedOutOfMobile__c, ' +
@@ -200,4 +200,4 @@
 //        public String parentState;
 //        public String parentZip;
 //    }
-//}
+}

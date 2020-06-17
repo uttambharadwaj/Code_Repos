@@ -3,8 +3,8 @@
 // * Date: April 2020
 // * Author: Lev
 // */
-//@isTest
-//public class SweepsBathServiceTest {
+@isTest
+public class SweepsBathServiceTest {
 //
 //    //Create test data
 //    @testSetup
@@ -131,4 +131,4 @@
 //
 //        Test.stopTest();
 //    }
-//}
+}
