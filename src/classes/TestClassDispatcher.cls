@@ -173,7 +173,7 @@ public class TestClassDispatcher {
         WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
     }
 
-    @IsTest static void testOtRBOCAFinancials() {
+    @IsTest static void testOTRBOCAFinancials() {
         OTRBOCAFinancialsControllerTest.OTRBOCAFinancialsTest();
     }
 

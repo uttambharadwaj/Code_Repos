@@ -8,7 +8,7 @@ public with sharing class OTRBOCAFinancialsControllerTest {
     public static void OTRBOCAFinancialsTest() {
 
         Program__c program = [SELECT Id, Brand_Short_Name__c, BOCA_Requested_Financial_Documents__c FROM Program__c WHERE Brand_Short_Name__c = 'OTRUPMARKET' LIMIT 1];
-        OnlineApplication__c onlineApp = [SELECT Id, Direct_Debit_Form__c, Voided_Check__c, Copy_Of_Driver_s_License__c, Audited_Financials__c, Country_of_Contracting_Entity__c FROM OnlineApplication__c WHERE AO_Name__c = 'Sylvanas Windrunner' LIMIT 1];
+        OnlineApplication__c onlineApp = [SELECT Id, Direct_Debit_Form__c, Voided_Check__c, Copy_of_Driver_s_License__c, Audited_Financials__c, Country_of_Contracting_Entity__c, Account__c, Stock_Symbol__c FROM OnlineApplication__c WHERE AO_Name__c = 'Sylvanas Windrunner' LIMIT 1];
 
         User CreditUser = [SELECT Id FROM User WHERE Alias = 'sinte'];
 
@@ -39,6 +39,12 @@ public with sharing class OTRBOCAFinancialsControllerTest {
             financialsController.docTypeList[0].attachmentBody = Blob.valueOf('test');
             financialsController.uploadFile();
             financialsController.submitApplication();
+
+            System.debug('Account: ' + onlineApp.Account__c);
+            Account account = [SELECT Id, TickerSymbol from Account where Id =: onlineApp.Account__c ];
+            System.debug('Ticker Symbol on Account: ' + account.TickerSymbol);
+
+            System.assert(account.TickerSymbol.equalsIgnoreCase('NYC'));
 
             Test.stopTest();
         }
