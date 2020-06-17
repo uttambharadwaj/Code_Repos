@@ -2,7 +2,7 @@
  * Created by mfarrell on 3/20/20.
  */
 
-public with sharing class LeadAfterUpdateTriggerHandler extends TriggerHandlerBase {
+public class LeadAfterUpdateTriggerHandler extends TriggerHandlerBase {
 
     public override void mainEntry(TriggerParameters tp) {
 

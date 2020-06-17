@@ -90,6 +90,23 @@ function validateCanadianPostalCode(value) {
     return true;
 }
 
+function validatePassport(value) {
+
+    if(value !== "") {
+
+        var characterReg = /^\d*(0123|1234|2345|3456|4567|5678|6789)\d/;
+        if(characterReg.test(value)) {
+            return false;
+        }
+        var characterReg1 = /(\d)\1\1+/;
+        if(characterReg1.test(value)) {
+        return false;
+        }
+    }
+    return true;
+
+}
+
 function validateTaxpayerId(value) {
     if(value !== "") {
         var characterReg = /(^\d{9}$)/;
@@ -226,6 +243,14 @@ function validateForm() {
             hasErrors = true;
         }
     });
+
+    $j('[id$=boForm]').find('.passportNumber').each(function() {
+        if($j(this).val() != null && !validatePassport($j(this).val())) {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Invalid_Passport + '</div>');
+            $j(this).on('click', function() { $j(this).removeClass("erroredInput"); $j(this).next('.fieldErrorMessage').remove(); levelSetErroredRows(); });
+            hasErrors = true;
+        }
+    })
 
     $j('[id$=boForm]').find('.postal').each(function() {
         if($j(this).val() != null && !validatePostalCode($j(this).val())) {

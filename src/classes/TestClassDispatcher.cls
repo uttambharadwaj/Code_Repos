@@ -213,4 +213,12 @@ public class TestClassDispatcher {
         LWC_TasksControllerTest.testGetAllTasks();
     }
 
+    @IsTest static void testGIACTBusinessOnly() {
+        CreditWS_GiactTest.giactVerify();
+    }
+
+    @IsTest static void testCommunicationPreferencesTest() {
+        CommunicationPreferencesTest.test_CommunicationPreferencesSync();
+    }
+
 }

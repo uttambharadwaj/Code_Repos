@@ -489,23 +489,51 @@ global class CreditDecisionEngineCP {
             List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
             List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
 
-            // GIACT
+            // GIACT - only available for US applicants
             System.debug('Running GIACT...');
-            if(!String.isBlank(cpApplication.ABA_Routing_Number__c) && !String.isBlank(cpApplication.Checking_Account_Number__c)) {
+            if(!String.isBlank(cpApplication.ABA_Routing_Number__c) && !String.isBlank(cpApplication.Checking_Account_Number__c) && cpApplication.Physical_Country__c.equalsIgnoreCase('US')) {
 
                 CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
 
                 giactVerifyRequest.UniqueId = String.valueOf(cpApplication.Id);
                 giactVerifyRequest.RoutingNumber = cpApplication.ABA_Routing_Number__c;
                 giactVerifyRequest.AccountNumber = cpApplication.Checking_Account_Number__c;
-                giactVerifyRequest.BusinessName = cpApplication.Company_Legal_Name__c;
+                giactVerifyRequest.BusinessName = String.escapeSingleQuotes(cpApplication.Company_Legal_Name__c);//IADJUDICAT-1188 be gone, singlies
                 giactVerifyRequest.FederalTaxId = cpApplication.Taxpayer_ID__c;
 
                 if (!TestUtils.isRunningTest()) {
 
                     CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage)) {
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage) && giactVerifyResponse.AccountResponseCode.equals('12')) {
+                        // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
+                        if (giactVerifyResponse.CustomerResponseCode.equals('1') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null && cpApplication.Guarantor_Social_Security_Number__c != null) {
+                            //re-run using both PG name and SSN
+                            System.debug('Re-running GIACT using PG name and SSN...');
+                            giactVerifyRequest.BusinessName = null;
+                            giactVerifyRequest.FirstName = cpApplication.Guarantor_First_Name__c;
+                            giactVerifyRequest.LastName = cpApplication.Guarantor_Last_Name__c;
+                            giactVerifyRequest.FederalTaxId = cpApplication.Guarantor_Social_Security_Number__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                        else if (giactVerifyResponse.CustomerResponseCode.equals('3') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null) {
+                            //re-run using both PG name
+                            System.debug('Re-running GIACT using PG name...');
+                            giactVerifyRequest.BusinessName = null;
+                            giactVerifyRequest.FirstName = cpApplication.Guarantor_First_Name__c;
+                            giactVerifyRequest.LastName = cpApplication.Guarantor_Last_Name__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                        else if (giactVerifyResponse.CustomerResponseCode.equals('4') && cpApplication.Guarantor_Social_Security_Number__c != null) {
+                            //re-run using both PG SSN
+                            System.debug('Re-running GIACT using SSN...');
+                            giactVerifyRequest.FederalTaxId = cpApplication.Guarantor_Social_Security_Number__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                    }
+
+
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage))   {
 
                         cpApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
                         cpApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
@@ -525,11 +553,8 @@ global class CreditDecisionEngineCP {
                         if(giactVerifyResponse != null) {
                             cpApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
                         }
-
                     }
-
                 }
-
             }
 
             System.debug(cpApplication);
