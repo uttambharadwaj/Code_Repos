@@ -23,6 +23,7 @@ public class CommunicationPreferencesInvocable {
 	public static void preferencesUpdatedHandler(List<CommunicationPreferencesInput> inputs) {
 
 		// Enable Bulk Data Load
+
 		Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
 		bulkDataLoadSettings.Disable_Lead_Automation__c = true;
 		bulkDataLoadSettings.Disable_Contact_Automation__c = true;
@@ -99,6 +100,7 @@ public class CommunicationPreferencesInvocable {
 				CommunicationPreferencesInput pref = preferences.get(genericPhoneKey);
 				contact.DoNotCall = pref.genericEmailOptOut;
 				contact.Outbound_Call_Opt_In__c = pref.genericEmailOptIn;
+				contact.Opt_Status_Updated__c = UtilityClass.updateMultiPicklist(contact.Opt_Status_Updated__c,PREF_GENERIC_PHONE, true);
 				updateContact = true;
 			}
 
@@ -107,6 +109,7 @@ public class CommunicationPreferencesInvocable {
 				CommunicationPreferencesInput pref = preferences.get(mobilePhoneKey);
 				contact.HasOptedInOfMobile__c = pref.mobilePhoneOptIn;
 				contact.et4ae5__HasOptedOutOfMobile__c = pref.mobilePhoneOptOut;
+				contact.Opt_Status_Updated__c = UtilityClass.updateMultiPicklist(contact.Opt_Status_Updated__c,PREF_MOBILE_PHONE, true);
 				updateContact = true;
 			}
 
@@ -115,17 +118,19 @@ public class CommunicationPreferencesInvocable {
 				CommunicationPreferencesInput pref = preferences.get(snailMailKey);
 				contact.Direct_Mail_Opt_In__c = pref.snailMailOptIn;
 				contact.Mail_Opt_Out__c = pref.snailMailOptOut;
+				contact.Opt_Status_Updated__c = UtilityClass.updateMultiPicklist(contact.Opt_Status_Updated__c,PREF_SNAIL_MAIL, true);
 				updateContact = true;
 			}
 
 			// If updated add to list
 			if (updateContact) {
-				contact.opt_status_updated__c = null;
 				contactsToUpdate.add(contact);
 			}
 		}
 		if (!contactsToUpdate.isEmpty()) Database.update(contactsToUpdate, false);
 
+
+		// TODO Combine these two using sobject...
 		// ####################### Update Leads
 		for (Lead lead :  [
 				SELECT id,opt_status_updated__c,phone,email,PartnerID__c,Email_Opt_In__c,HasOptedOutOfEmail,Shipping_Zip_Code__c,Shipping_Street__c,MobilePhone,DoNotCall,Outbound_Call_Opt_In__c,HasOptedInOfMobile__c,et4ae5__HasOptedOutOfMobile__c,Mail_Opt_Out__c,Direct_Mail_Opt_In__c
@@ -156,6 +161,7 @@ public class CommunicationPreferencesInvocable {
 				CommunicationPreferencesInput pref = preferences.get(genericPhoneKey);
 				lead.DoNotCall = pref.genericEmailOptOut;
 				lead.Outbound_Call_Opt_In__c = pref.genericEmailOptIn;
+				lead.Opt_Status_Updated__c = UtilityClass.updateMultiPicklist(lead.Opt_Status_Updated__c,PREF_GENERIC_PHONE, true);
 				updateLead = true;
 			}
 
@@ -164,6 +170,7 @@ public class CommunicationPreferencesInvocable {
 				CommunicationPreferencesInput pref = preferences.get(mobilePhoneKey);
 				lead.HasOptedInOfMobile__c = pref.mobilePhoneOptIn;
 				lead.et4ae5__HasOptedOutOfMobile__c = pref.mobilePhoneOptOut;
+				lead.Opt_Status_Updated__c = UtilityClass.updateMultiPicklist(lead.Opt_Status_Updated__c,PREF_MOBILE_PHONE, true);
 				updateLead = true;
 			}
 
@@ -172,13 +179,13 @@ public class CommunicationPreferencesInvocable {
 				CommunicationPreferencesInput pref = preferences.get(snailMailKey);
 				lead.Direct_Mail_Opt_In__c = pref.snailMailOptIn;
 				lead.Mail_Opt_Out__c = pref.snailMailOptOut;
+				lead.Opt_Status_Updated__c = UtilityClass.updateMultiPicklist(lead.Opt_Status_Updated__c,PREF_SNAIL_MAIL, true);
 				updateLead = true;
 			}
 
 
 			// If updated add to list
 			if (updateLead) {
-				lead.opt_status_updated__c = null;
 				leadsToUpdate.add(lead);
 			}
 		}
