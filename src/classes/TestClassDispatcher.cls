@@ -217,4 +217,8 @@ public class TestClassDispatcher {
         CreditWS_GiactTest.giactVerify();
     }
 
+    @IsTest static void testCommunicationPreferencesTest() {
+        CommunicationPreferencesTest.test_CommunicationPreferencesSync();
+    }
+
 }
