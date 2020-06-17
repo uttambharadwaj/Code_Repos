@@ -344,7 +344,10 @@ global class CreditDecisionEngineCP {
                 System.debug('Running DNB BPAV...');
                 BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('CPCreditDecisioningBPAVMatch', new List<SObject>{cpApplication});
 
-                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+                Boolean pullCredit = pullCredit(breezeResults, cpApplication.DUNS_Number__c);
+                System.debug('Pull Commercial Credit: ' + pullCredit);
+
+                if (pullCredit) {
 
                     cpApplication.DUNS_Number__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
                     cpApplication.Automatically_Generated_Number__c = dnbDirectMatchResponse.matchCandidates[0].AGN;
@@ -624,5 +627,17 @@ global class CreditDecisionEngineCP {
         } catch (Exception e) {
             insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineCP.runFinalCreditDecision', true, '', cpAppRequest.id);
         }
+    }
+
+    public static Boolean pullCredit(BREeze.ProcessRules.ruleDataSet breezeResults, String DUNS) {
+
+        if (breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+            return true;
+        }
+        else if (DUNS != null) {
+            // if a credit analyst manually selected the business
+            return true;
+        }
+        return false;
     }
 }
