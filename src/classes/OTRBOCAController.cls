@@ -1142,6 +1142,14 @@ public class OTRBOCAController {
                 }
                 return redirect;
 
+            } else if (isUpMarket) {
+
+                PageReference redirect = Page.OTRBOCAFinancials;
+
+                redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
+                redirect.getParameters().put('customer', onlineApplication.Id);
+                redirect.getParameters().put('key', applicationKey);
+                return redirect;
             } else {
 
                 PageReference redirect = Page.OTRSetup;
