@@ -280,7 +280,7 @@ public class CommunicationPreferencesInvocable {
 		}
 	}
 
-	public static String getKey(String partnerId, String param) {
+	private static String getKey(String partnerId, String param) {
 		return partnerId != null && param != null ? partnerId + '$' + param.replaceAll('[- ()$]', '') : null;
 	}
 }
