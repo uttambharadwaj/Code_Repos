@@ -49,7 +49,7 @@ global class CreditDecisionEngineOTR {
                         Opportunity__r.SourceSystem__c, Account__r.Name, Trade_Name__c, Federal_Tax_ID__c, Card_Shipping_Address_Line_1__c, Card_Shipping_City__c, Card_Shipping_State__c,
                         Card_Shipping_Postal_Code__c, Email__c, Phone_Number__c, IP_Address__c, Credit_Line_Requested__c, Application_Signer_IP__c, DNB_Credit_Line_Recommendation__c,
                         DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DOT_Number__c, DNB_Resolved_DUNS__c, Country__c,
-                        Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c, Application_Type__c
+                        Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c, Application_Type__c, Credit_Analyst__c
                 FROM OnlineApplication__c
                 WHERE Id = :onlineApplicationId
         ];
@@ -543,7 +543,7 @@ global class CreditDecisionEngineOTR {
 
                 CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                if (giactVerifyResponse != null && giactVerifyResponse.AccountResponseCode.equals('12')) {
+                if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage) && giactVerifyResponse.AccountResponseCode.equals('12')) {
                     // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
                     if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null && onlineApplication.AO_Social_Security_Number__c != null) {
                         //re-run using both PG name and SSN
