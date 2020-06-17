@@ -94,14 +94,16 @@ function validatePassport(value) {
 
     if(value !== "") {
 
-        const characterReg = /^\d*(0123|1234|2345|3456|4567|5678|6789)\d/;
+        var characterReg = /^\d*(0123|1234|2345|3456|4567|5678|6789)\d/;
         if(characterReg.test(value)) {
             return false;
         }
-        const characterReg1 = /(\d)\1\1+/;
-        return !characterReg1.test(value);
-
-
+        var characterReg1 = /(\d)\1\1+/;
+        if(characterReg1.test(value)) {
+        return false;
+        }
+    }
+    return true;
 
 }
 
