@@ -22,13 +22,6 @@ public class CommunicationPreferencesInvocable {
 	)
 	public static void preferencesUpdatedHandler(List<CommunicationPreferencesInput> inputs) {
 
-		// Enable Bulk Data Load
-
-		Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
-		bulkDataLoadSettings.Disable_Lead_Automation__c = true;
-		bulkDataLoadSettings.Disable_Contact_Automation__c = true;
-		upsert bulkDataLoadSettings;
-
 		List<Id> partnerIds = new List<Id>();
 		List<String> emails = new List<String>();
 		List<String> phoneNumbers = new List<String>();
@@ -68,7 +61,13 @@ public class CommunicationPreferencesInvocable {
 
 		}
 
-		if (preferences.isEmpty()) return;	// missing all contact info
+		if (preferences.isEmpty()) return; // missing all contact info
+
+		// Enable Bulk Data Load
+		Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
+		bulkDataLoadSettings.Disable_Lead_Automation__c = true;
+		bulkDataLoadSettings.Disable_Contact_Automation__c = true;
+		upsert bulkDataLoadSettings;
 
 		// ####################### Update Contacts
 		for (Contact contact :  [
@@ -133,19 +132,19 @@ public class CommunicationPreferencesInvocable {
 		// TODO Combine these two using sobject...
 		// ####################### Update Leads
 		for (Lead lead :  [
-				SELECT id,opt_status_updated__c,phone,email,PartnerID__c,Email_Opt_In__c,HasOptedOutOfEmail,Shipping_Zip_Code__c,Shipping_Street__c,MobilePhone,DoNotCall,Outbound_Call_Opt_In__c,HasOptedInOfMobile__c,et4ae5__HasOptedOutOfMobile__c,Mail_Opt_Out__c,Direct_Mail_Opt_In__c
+				SELECT id,opt_status_updated__c,phone,email,PartnerID__c,Email_Opt_In__c,HasOptedOutOfEmail,PostalCode,Street,MobilePhone,DoNotCall,Outbound_Call_Opt_In__c,HasOptedInOfMobile__c,et4ae5__HasOptedOutOfMobile__c,Mail_Opt_Out__c,Direct_Mail_Opt_In__c
 				FROM Lead
 				WHERE PartnerID__c IN :partnerIds
 				AND (Email IN :emails
 				OR Phone IN :phoneNumbers
 				OR MobilePhone IN :mobilePhoneNumbers
-				OR Shipping_Street__c IN :mailingStreets)
+				OR Street IN :mailingStreets)
 		]) {
 			Boolean updateLead = false;
 			String emailKey = getKey(lead.PartnerID__c, lead.email);
 			String genericPhoneKey = getKey(lead.PartnerID__c, lead.phone);
 			String mobilePhoneKey = getKey(lead.PartnerID__c, lead.MobilePhone);
-			String snailMailKey = getKey(lead.PartnerID__c, lead.Shipping_Street__c + lead.Shipping_Zip_Code__c);
+			String snailMailKey = getKey(lead.PartnerID__c, lead.Street + lead.PostalCode);
 
 			// ##### Generic Email
 			if (emailKey != null && preferences.get(emailKey) != null) {

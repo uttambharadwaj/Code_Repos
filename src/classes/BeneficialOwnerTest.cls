@@ -489,7 +489,7 @@ public class BeneficialOwnerTest {
         ownerProng.State__c = 'QC';
         ownerProng.Postal_Code__c = 'A1A-1A1';
         ownerProng.Country__c = 'Canada';
-        ownerProng.Passport_Number_Other_Government_ID__c = '123456789';
+        ownerProng.Passport_Number_Other_Government_ID__c = '145246325';
         ownerProng.Country_Of_Issue__c = 'Canada';
 
 
@@ -508,7 +508,7 @@ public class BeneficialOwnerTest {
         controlProng.State__c = 'QC';
         controlProng.Postal_Code__c = 'A1A-1A1';
         controlProng.Country__c = 'Canada';
-        controlProng.Passport_Number_Other_Government_ID__c = '123456789';
+        controlProng.Passport_Number_Other_Government_ID__c = '145246325';
         controlProng.Country_Of_Issue__c = 'Canada';
 
         upsert controlProng;
@@ -558,7 +558,7 @@ public class BeneficialOwnerTest {
         ownerProng.State__c = 'QC';
         ownerProng.Postal_Code__c = 'A1A-1A1';
         ownerProng.Country__c = 'Canada';
-        ownerProng.Passport_Number_Other_Government_ID__c = '123456789';
+        ownerProng.Passport_Number_Other_Government_ID__c = '145246325';
         ownerProng.Country_Of_Issue__c = 'Canada';
 
 
@@ -577,7 +577,7 @@ public class BeneficialOwnerTest {
         controlProng.State__c = 'QC';
         controlProng.Postal_Code__c = 'A1A-1A1';
         controlProng.Country__c = 'Canada';
-        controlProng.Passport_Number_Other_Government_ID__c = '123456789';
+        controlProng.Passport_Number_Other_Government_ID__c = '145246325';
         controlProng.Country_Of_Issue__c = 'Canada';
 
         upsert controlProng;
@@ -627,7 +627,7 @@ public class BeneficialOwnerTest {
         ownerProng.State__c = 'QC';
         ownerProng.Postal_Code__c = 'A1A-1A1';
         ownerProng.Country__c = 'Canada';
-        ownerProng.Passport_Number_Other_Government_ID__c = '123456789';
+        ownerProng.Passport_Number_Other_Government_ID__c = '145246325';
         ownerProng.Country_Of_Issue__c = 'Canada';
 
 
@@ -646,7 +646,7 @@ public class BeneficialOwnerTest {
         controlProng.State__c = 'QC';
         controlProng.Postal_Code__c = 'A1A-1A1';
         controlProng.Country__c = 'Canada';
-        controlProng.Passport_Number_Other_Government_ID__c = '123456789';
+        controlProng.Passport_Number_Other_Government_ID__c = '145246325';
         controlProng.Country_Of_Issue__c = 'Canada';
 
         upsert controlProng;
