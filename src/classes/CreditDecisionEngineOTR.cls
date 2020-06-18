@@ -377,7 +377,10 @@ global class CreditDecisionEngineOTR {
                     onlineApplication
             });
 
-            if (breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+            Boolean pullCredit = pullCredit(breezeResults, onlineApplication.DUNS__c);
+            System.debug('Pull Commercial Credit: ' + pullCredit);
+
+            if (pullCredit) {
 
                 System.debug('Running DNB...');
                 onlineApplication.DUNS__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
@@ -668,5 +671,17 @@ global class CreditDecisionEngineOTR {
         } catch (Exception e) {
             insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineOTR.runFinalCreditDecision', true, '', onlineApplication.id);
         }
+    }
+
+    public static Boolean pullCredit(BREeze.ProcessRules.ruleDataSet breezeResults, String DUNS) {
+
+        if (breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+            return true;
+        }
+        else if (DUNS != null) {
+            // if a credit analyst manually selected the business
+            return true;
+        }
+        return false;
     }
 }
