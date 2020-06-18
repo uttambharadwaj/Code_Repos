@@ -173,6 +173,10 @@ public class TestClassDispatcher {
         WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
     }
 
+    @IsTest static void testOTRBOCAFinancials() {
+        OTRBOCAFinancialsControllerTest.OTRBOCAFinancialsTest();
+    }
+
     @isTest static void testWebDAMSyncGenerateFileName() {
         WebDAMSyncTest.test_generateFileName();
     }

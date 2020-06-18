@@ -519,6 +519,74 @@ function validateAndSaveBOCA() {
     }
 }
 
+function validateFinancialsForm() {
+
+    console.log('requireFinancials:' + requireFinancials);
+    console.log('areRequiredDocumentsUploaded:' + areRequiredDocumentsUploaded);
+
+    $j('[id$=creditForm]').find('.erroredInput').each(function() {
+        $j(this).removeClass('erroredInput');
+    });
+
+    $j('[id$=bocaForm]').find('.fieldErrorMessage').each(function() {
+        $j(this).remove();
+    });
+
+    $j('[id$=content]').find('.stepErrors').each(function() {
+        $j(this).css('display', 'none');
+    });
+
+    $j('[id$=creditForm]').find('.erroredSection').each(function() {
+        $j(this).removeClass('erroredSection');
+    });
+
+    $j('[id$=creditForm]').find('.errorFiller').each(function() {
+        $j(this).removeClass('errorFiller');
+    });
+
+
+    var hasErrors = false;
+
+    $j('[id$=creditForm]').find('.required').each(function() {
+        console.log($j(this).val());
+        if($j(this).val() === '' || $j(this).val() === null || $j(this).val() === '#' || $j(this).val() === '--Choose One--') {
+            $j(this).addClass('erroredInput').after('<div class="fieldErrorMessage">' + $Label.BOCA_Required + '</div>');
+
+            $j(this).on('click', function() {
+                $j(this).removeClass("erroredInput");
+                $j(this).removeClass("fieldErrorMessage");
+            });
+
+            hasErrors = true;
+        }
+    });
+
+
+    if (requireFinancials && !areRequiredDocumentsUploaded) {
+        console.log('Required documents are not attached to the application.');
+        hasErrors = true;
+    }
+
+    console.log('hasErrors: ' + hasErrors);
+
+    if(hasErrors) {
+        $j('[id$=errors]').html('Your form has errors. Please fill in all required fields and attach all requested documents.');
+        $j('[id$=errors]').css('display', 'block');
+
+        window.scrollTo(0,0);
+
+        levelSetErroredRows();
+    }
+    else {
+        $j('[id$=submitButton]').addClass('disabled-button');
+        $j('[id$=content]').find('.loader-gif').css('display', 'block');
+
+        console.log('submitting');
+
+        submitApplication();
+    }
+}
+
 function validateFleetForm() {
 
     $j('[id$=bocaForm]').find('.erroredInput').each(function() {
