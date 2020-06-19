@@ -312,6 +312,16 @@ public class CPBOCAController {
         }
     }
 
+    public Boolean isPrefund {
+        get {
+            if(program != null){
+            List<Program__c> PrefundProgram = [SELECT Id, Prefund_Available__c FROM Program__c WHERE id = :program.id];
+            return PrefundProgram[0].Prefund_Available__c;
+            }
+            return false;
+        }
+    }
+
     // Branding logo related to the program
     public Id brandingLogo { get; set; }
 
@@ -541,7 +551,7 @@ public class CPBOCAController {
                             ThreatMetrix_Session_ID__c, ThreatMetrix_Result__c, DNB_SBRI_Score__c, DNB_Lookup_Hits__c, Number_of_Existing_Applications__c,
                             Number_of_Existing_Accounts__c, Lexis_Nexis_Check__c, DNB_SBRI_Check__c, Existing_Exposure_Check__c, ThreatMetrix_Check__c, Legal_Structure__c,
                             Credit_Line_Recommendation__c, Credit_Decision_Recommendation__c, First_Name__c, Last_Name__c, Bank_Contact_Phone__c, Bank_Contact__c,
-                            Projected_Monthly_Spend__c, Billing_Cycle__c, Payment_Type__c
+                            Projected_Monthly_Spend__c, Billing_Cycle__c, Payment_Type__c, Account_Type__c, Prefunded__c
                     FROM CP_Application_Request__c WHERE Id =: partialCustomer AND Application_Stage__c = 'Application' AND Status__c = 'Sent to Prospect' LIMIT 1 ];
 
                     System.debug('Got the credit app: ' + creditApp.Id);
@@ -839,7 +849,12 @@ public class CPBOCAController {
             creditapp.Application_Signer_IP_Address__c = ApexPages.currentPage().getHeaders().get('X-Salesforce-SIP');
 
             // currently, the bank has no algorithm for setting the credit line requested. Credit Line requested is their projected monthly spend.
-            creditApp.Credit_Line_Requested__c = creditApp.Projected_Monthly_Spend__c;
+
+            if(creditApp.Account_Type__c != null && creditApp.Account_Type__c.equalsIgnoreCase('Prefund')){
+                creditApp.Credit_Line_Requested__c = 0;
+                creditApp.Prefunded__c = true;
+            }
+            else {creditApp.Credit_Line_Requested__c = creditApp.Projected_Monthly_Spend__c;}
 
             if(TestUtils.isRunningTest()) {
                 creditApp.Application_Stage__c = 'Application';

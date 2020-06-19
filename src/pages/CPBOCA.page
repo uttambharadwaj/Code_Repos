@@ -536,6 +536,18 @@
                                     </div>
                                     <div class="six columns clearfix">
                                         <div class="twelve columns clearfix form-field" data-row="2">
+                                            <apex:outputPanel rendered="{!isPrefund}">
+                                                <apex:actionRegion>
+                                                    <apex:outputLabel for="accountType" styleClass="styled-label" value="{!$ObjectType.CP_Application_Request__c.fields.Account_Type__c.label} ">
+                                                        <span class="styled-label-required">*</span>
+                                                    </apex:outputLabel>
+                                                    <apex:InputField id="accountType" styleClass="styled-input required" required="true" html-tabIndex="29" label="" value="{!creditApp.Account_Type__c}">
+                                                        <apex:actionSupport event="onchange" reRender="paymentType" oncomplete="pageLoadFunctions()"/>
+                                                    </apex:InputField>
+                                                </apex:actionRegion>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <div class="twelve columns clearfix form-field" data-row="3">
                                             <apex:actionRegion >
                                                 <apex:outputLabel for="paymentType" styleClass="styled-label" value=" {!$ObjectType.CP_Application_Request__c.fields.Payment_Type__c.label} ">
                                                     <span class="styled-label-required">*</span>
@@ -550,7 +562,7 @@
                                 </div>
                             </fieldset>
                             <apex:outputPanel id="bankInformation">
-                                <apex:outputPanel rendered="{!isBankInfoNeeded == true}">
+                                <apex:outputPanel rendered="{!isBankInfoNeeded}">
                                     <fieldset>
                                         <legend>
                                             <div class="twelve columns clearfix">
@@ -631,7 +643,7 @@
                                 </apex:outputPanel>
                             </apex:outputPanel>
                             <apex:outputPanel id="pgInformation">
-                                <apex:outputPanel rendered="{!isPGRequired == true}">
+                                <apex:outputPanel rendered="{!isPGRequired}">
                                     <fieldset>
                                         <legend>
                                             <div class="twelve columns clearfix">
