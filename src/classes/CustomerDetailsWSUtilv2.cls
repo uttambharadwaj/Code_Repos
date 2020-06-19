@@ -434,6 +434,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String lastNm {get; set;}
         @AuraEnabled public String middleNm {get; set;}
         @AuraEnabled public String phoneNbr {get; set;}
+        @AuraEnabled public String role {get; set;}
         @AuraEnabled public String rowId {get; set;}
         private String[] address_type_info = new String[]{'address','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] contactType_type_info = new String[]{'contactType','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -443,9 +444,10 @@ public class CustomerDetailsWSUtilv2 {
         private String[] lastNm_type_info = new String[]{'lastNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] middleNm_type_info = new String[]{'middleNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] phoneNbr_type_info = new String[]{'phoneNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] role_type_info = new String[]{'role','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] rowId_type_info = new String[]{'rowId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'address','contactType','emailAddr','faxNbr','firstNm','lastNm','middleNm','phoneNbr','rowId'};
+        private String[] field_order_type_info = new String[]{'address','contactType','emailAddr','faxNbr','firstNm','lastNm','middleNm','phoneNbr','role','rowId'};
     }
     public class getPaymentsResponse {
         @AuraEnabled public CustomerDetailsWSUtilv2.payments return_x;
@@ -818,12 +820,6 @@ public class CustomerDetailsWSUtilv2 {
         private String[] invoiceUrl_type_info = new String[]{'invoiceUrl','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'closingDt','invoiceUrl'};
-    }
-    public class abstractContact {
-        @AuraEnabled public String role {get; set;}
-        private String[] role_type_info = new String[]{'role','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
-        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'role'};
     }
     public class address {
         @AuraEnabled public String addr1 {get; set;}
