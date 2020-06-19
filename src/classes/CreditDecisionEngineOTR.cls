@@ -43,13 +43,13 @@ global class CreditDecisionEngineOTR {
         List<OnlineApplication__c> onlineApplications = [
                 SELECT Id, Automatically_Generated_Number__c, Name, Legal_Business_Name__c, Application_Stage__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Session_ID__c,
                         ThreatMetrix_Result__c, Sanctions_Business_Check__c, Sanctions_Individual_Check__c, ABA_Routing_Number__c, Checking_Account_Number__c,
-                        Business_Street_Address__c, City__c, State__c, Zip_Code__c, Sanctions_Individual_Result_ID__c, Contact_First_Name__c, Contact_Last_Name__c,
+                        Business_Street_Address__c, City__c, State__c, Zip_Code__c, Sanctions_Individual_Result_ID__c, Contact_First_Name__c, Contact_Last_Name__c, AO_First_Name__c, AO_Last_Name__c,
                         AO_Name__c, AO_Work_Email__c, AO_Address__c, AO_City__c, Contact_Name__c, AO_State__c, AO_Zip_Code__c, AO_Date_of_Birth__c, AO_Social_Security_Number__c, Running_Credit_Decisioning__c,
                         DUNS__c, PG_Required__c, Type_of_Business__c, AO_Home_Phone_Number__c, Program__c, CreatedBy.Alias, Fraud_Flag__c, Previous_Fraud__c, Opportunity__c,
                         Opportunity__r.SourceSystem__c, Account__r.Name, Trade_Name__c, Federal_Tax_ID__c, Card_Shipping_Address_Line_1__c, Card_Shipping_City__c, Card_Shipping_State__c,
                         Card_Shipping_Postal_Code__c, Email__c, Phone_Number__c, IP_Address__c, Credit_Line_Requested__c, Application_Signer_IP__c, DNB_Credit_Line_Recommendation__c,
                         DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DOT_Number__c, DNB_Resolved_DUNS__c, Country__c,
-                        Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c, Application_Type__c
+                        Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c, Application_Type__c, Credit_Analyst__c
                 FROM OnlineApplication__c
                 WHERE Id = :onlineApplicationId
         ];
@@ -377,7 +377,10 @@ global class CreditDecisionEngineOTR {
                     onlineApplication
             });
 
-            if (breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+            Boolean pullCredit = pullCredit(breezeResults, onlineApplication.DUNS__c);
+            System.debug('Pull Commercial Credit: ' + pullCredit);
+
+            if (pullCredit) {
 
                 System.debug('Running DNB...');
                 onlineApplication.DUNS__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
@@ -527,8 +530,9 @@ global class CreditDecisionEngineOTR {
             }
         }
 
-        // GIACT
-        if(!String.isBlank(onlineApplication.ABA_Routing_Number__c) && !String.isBlank(onlineApplication.Checking_Account_Number__c)) {
+        // GIACT - only available for US applicants
+        System.debug('Running GIACT...');
+        if(!String.isBlank(onlineApplication.ABA_Routing_Number__c) && !String.isBlank(onlineApplication.Checking_Account_Number__c) && onlineApplication.Country__c.equalsIgnoreCase('US')) {
 
             CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
 
@@ -542,7 +546,35 @@ global class CreditDecisionEngineOTR {
 
                 CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage)) {
+                if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage) && giactVerifyResponse.AccountResponseCode.equals('12')) {
+                    // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
+                    if (giactVerifyResponse.CustomerResponseCode.equals('1') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null && onlineApplication.AO_Social_Security_Number__c != null) {
+                        //re-run using both PG name and SSN
+                        System.debug('Re-running GIACT using PG name and SSN...');
+                        giactVerifyRequest.BusinessName = null;
+                        giactVerifyRequest.FirstName = onlineApplication.AO_First_Name__c;
+                        giactVerifyRequest.LastName = onlineApplication.AO_Last_Name__c;
+                        giactVerifyRequest.FederalTaxId = onlineApplication.AO_Social_Security_Number__c;
+                        giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                    }
+                    else if (giactVerifyResponse.CustomerResponseCode.equals('3') && onlineApplication.AO_First_Name__c != null && onlineApplication.AO_Last_Name__c != null) {
+                        //re-run using both PG name
+                        System.debug('Re-running GIACT using PG name...');
+                        giactVerifyRequest.BusinessName = null;
+                        giactVerifyRequest.FirstName = onlineApplication.AO_First_Name__c;
+                        giactVerifyRequest.LastName = onlineApplication.AO_Last_Name__c;
+                        giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                    }
+                    else if (giactVerifyResponse.CustomerResponseCode.equals('4') && onlineApplication.AO_Social_Security_Number__c != null) {
+                        //re-run using both PG SSN
+                        System.debug('Re-running GIACT using PG SSN...');
+                        giactVerifyRequest.FederalTaxId = onlineApplication.AO_Social_Security_Number__c;
+                        giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                    }
+                }
+
+
+                if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage))   {
 
                     onlineApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
                     onlineApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
@@ -562,11 +594,8 @@ global class CreditDecisionEngineOTR {
                     if(giactVerifyResponse != null) {
                         onlineApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
                     }
-
                 }
-
             }
-
         }
 
         // Upsert and execute BREeze
@@ -642,5 +671,17 @@ global class CreditDecisionEngineOTR {
         } catch (Exception e) {
             insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineOTR.runFinalCreditDecision', true, '', onlineApplication.id);
         }
+    }
+
+    public static Boolean pullCredit(BREeze.ProcessRules.ruleDataSet breezeResults, String DUNS) {
+
+        if (breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+            return true;
+        }
+        else if (DUNS != null) {
+            // if a credit analyst manually selected the business
+            return true;
+        }
+        return false;
     }
 }

@@ -59,6 +59,13 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     headers.put('Content-Type', 'application/json');
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensLinkDocToEntityGoodBody(),headers));
                 }
+                when 'giactVerify' {
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'GIACTVerify' LIMIT  1].Endpoint_URL__c;
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Authorization', 'Basic: ' + EncodingUtil.base64Encode(Blob.valueOf('Username:Password')));
+                    headers.put('Content-Type', 'application/json');
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getGIACTBody(),headers));
+                }
                 when 'WebDAMAuthLogin' {
                     String myEndpoint = 'https://apiv2.webdamdb.com/oauth2/token';
                     Map<String, String> headers = new Map<String, String>();
@@ -709,6 +716,11 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 '}';
 
         return json;
+    }
+
+    public static String getGIACTBody() {
+        String response = '{"ItemReferenceId":5014558121,"CreatedDate":"2020-06-05T14:42:44.5330179-05:00","ErrorMessage":null,"VerificationResponse":9,"AccountResponseCode":21,"BankName":"UNLISTED TEST BANK","AccountAddedDate":null,"AccountLastUpdatedDate":null,"AccountClosedDate":null,"BankAccountType":null,"VoidedCheckImage":null,"FundsConfirmationResult":null,"CustomerResponseCode":null,"MatchedPersonData":null,"ConsumerAlertMessages":null,"MatchedBusinessData":null,"OfacListPotentialMatches":null,"GIdentifyKbaResult":null,"EmailAddressInformationResult":null,"IpAddressInformationResult":null,"DomainRegistry":null,"MobileVerifyResult":null,"MobileIdentifyResult":null,"MobileLocationResult":null,"PhoneIntelligenceResult":null}';
+        return response;
     }
 
     public static String getWebDAMSuccessfulAuthBody() {

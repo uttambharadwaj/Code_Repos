@@ -173,6 +173,10 @@ public class TestClassDispatcher {
         WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
     }
 
+    @IsTest static void testOTRBOCAFinancials() {
+        OTRBOCAFinancialsControllerTest.OTRBOCAFinancialsTest();
+    }
+
     @isTest static void testWebDAMSyncGenerateFileName() {
         WebDAMSyncTest.test_generateFileName();
     }
@@ -211,6 +215,14 @@ public class TestClassDispatcher {
 
     @IsTest static void testLWCGetAllTasks() {
         LWC_TasksControllerTest.testGetAllTasks();
+    }
+
+    @IsTest static void testGIACTBusinessOnly() {
+        CreditWS_GiactTest.giactVerify();
+    }
+
+    @IsTest static void testCommunicationPreferencesTest() {
+        CommunicationPreferencesTest.test_CommunicationPreferencesSync();
     }
 
 }

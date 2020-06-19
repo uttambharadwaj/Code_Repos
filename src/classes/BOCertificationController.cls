@@ -14,6 +14,16 @@ public class BOCertificationController {
         }
     }
 
+    public Boolean isUpmarket {
+        get {
+            if(ApexPages.CurrentPage().getParameters().get('isUpmarket') != null) {
+                String isUpmarket = ApexPages.CurrentPage().getParameters().get('isUpmarket');
+                if (isUpmarket.equalsIgnoreCase('True')) return true;
+            }
+            return false;
+        }
+    }
+
     public Boolean useUpmarket {
         get {
             Id userId = ApexPages.CurrentPage().getParameters().get('uid');
@@ -948,11 +958,17 @@ public class BOCertificationController {
                 onlineApplication.Status__c = 'App-Incomplete';
                 upsert onlineApplication;
 
-                PageReference redirect = Page.OTRSetup;
+                PageReference redirect;
+                System.debug('Application is upmarket: ' + isUpmarket);
+                if (isUpmarket) {
+                    // Upmarket is only used via paper app form
+                    redirect = Page.OTRBOCAFinancials;
+                } else {
+                    redirect = Page.OTRSetup;
+                }
                 redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
                 redirect.getParameters().put('customer', onlineApplication.Id);
                 return redirect;
-
             }
             else if(onlineApplication != null) {
 
