@@ -267,7 +267,14 @@ public class CPBOCAController {
 
     public List<SelectOption> paymentMethodOptions {
         get {
-            List<SelectOption> paymentOptions = UtilityClass.multiSelectToBOCAPickList(program.Available_Payment_Methods__c);
+            List<SelectOption> paymentOptions = new List<SelectOption>();
+
+            if (creditApp.Account_Type__c != null && creditApp.Account_Type__c.equalsIgnoreCase('Prefund')){
+                paymentOptions = UtilityClass.multiSelectToBOCAPickList(program.Available_Prefund_Payment_Types__c);
+            }
+            else {
+                paymentOptions = UtilityClass.multiSelectToBOCAPickList(program.Available_Payment_Methods__c);
+            }
 
             // if our customer selects a physical country outside of the US or CA we need to remove ACH from the payment options
             if (creditApp.Physical_Country__c != null && !creditApp.Physical_Country__c.equalsIgnoreCase('US') && !creditApp.Physical_Country__c.equalsIgnoreCase('CA')) {
