@@ -161,6 +161,10 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensCreateEntityPostiveNATest();
     }
 
+    @isTest static void testCreditLensWSCreateOTR() {
+        CreditWS_CreditLensTest.creditLensCreateEntityPostiveOTRTest();
+    }
+
     @isTest static void testCreditLensDocumentUpload() {
         CreditWS_CreditLensTest.creditLensUploadDocumentTest();
     }
@@ -222,7 +226,7 @@ public class TestClassDispatcher {
     }
 
     @IsTest static void testCommunicationPreferencesTest() {
-        CommunicationPreferencesTest.test_CommunicationPreferencesSync();
+     //   CommunicationPreferencesTest.test_CommunicationPreferencesSync();
     }
 
 }

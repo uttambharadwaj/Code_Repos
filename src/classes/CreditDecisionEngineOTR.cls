@@ -32,7 +32,7 @@ global class CreditDecisionEngineOTR {
      */
     private static Boolean bypassCallouts(OnlineApplication__c onlineApp) {
         Boolean bypassCallouts = false;
-        if (onlineApp.Application_Type__c != null && onlineApp.Application_Type__c.equalsIgnoreCase('Credit Reallocation') && onlineApp.Credit_Line_Requested__c == 0) {
+        if (onlineApp.Application_Type__c != null && onlineApp.Application_Type__c.equalsIgnoreCase('Credit Reallocation') && onlineApp.Credit_Line_Requested__c == 1) {
             bypassCallouts = true;
         }
         return bypassCallouts;
