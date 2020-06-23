@@ -333,7 +333,7 @@ global class CreditWS_CreditLens {
                             Credit_Line_Recommendation__c, Credit_Line_Requested__c, Account__r.AccountNumber, Country_of_Contracting_Entity__c, Country_of_Contracting_Entity_Other__c,
                             Financials_Completed_For__c, Program__r.Name, DNB_Trade_Lines__c, Paydex__c, Billing_Cycle__c, Control_Year__c, Risk_Grade__c, Risk_Grade_Source__c, Email__c, Phone_Number__c,
                             Contact_First_Name__c, Contact_Last_Name__c, SIC_Code__c, Credit_Lens_Response__c, Payment_Method__c, Security_Type__c, DNB_Credit_Line_Recommendation__c, Payment_Frequency__c,
-                            Security_Amount__c, Security_Expiration_Date__c
+                            Security_Currency__c, Security_Expiration_Date__c
                     FROM OnlineApplication__c
                     where Id = :appID
             ];
