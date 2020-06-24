@@ -6,7 +6,10 @@
 * Initial Date: 3/26/2018
 * Revision History: 4/30/2019 IADJUDICAT-739 do the constructor thing.
 * 3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
-* 5/4/2020: Release 20.09: EAPT-1618: Added a check for Legal Structure vs Company Name */
+* 5/4/2020: Release 20.09: EAPT-1618: Added a check for Legal Structure vs Company Name
+* 5/28/2020: Release 20.11: EAPT-1754: Added ability to skip callouts on Application Request from Campaign
+*                           EAPT-1851: Added a callout skip for Natural Persons as the Legal Entity
+*/
 
 global class CreditDecisionEngineNA {
 
@@ -14,17 +17,36 @@ global class CreditDecisionEngineNA {
 
     @future(callout=true)
     public static void runNADecisioningProcessFuture(Id naApplicationId) {
-        runNADecisioningProcess(naApplicationId);
+        runHandler(naApplicationId);
     }
 
     // If called from a button
     webservice static void runNADecisioningProcessButton(Id naApplicationId) {
-        runNADecisioningProcess(naApplicationId);
+        runHandler(naApplicationId);
     }
 
-    public static void runNADecisioningProcess(Id naApplicationId) {
+    /**
+    * Allows the application to still run through the final decision business logic rules without doing
+    * any callouts or any other business logic. If there are other scenarios that need this in the future, add
+    * an additional if else.
+    * If you need to bypass the entire credit decision engine, including the final decision use the
+    * Run_Final_Decision_Only__c checkbox on the Campaign.
+    * Added another scenario with Legal Structure as Natural Person
+    **/
 
-        decisionEngineRunning = true;
+    private static Boolean bypassCallouts(Application_Request__c appReq) {
+        Boolean bypassCallouts = false;
+        if (appReq.Campaign_Program__c != null && appReq.Opportunity__r.Campaign.Run_Final_Decision_Only__c) {
+            bypassCallouts = true;
+        }
+        if (appReq.Legal_Structure__c != null && appReq.Legal_Structure__c.containsIgnoreCase('Natural Person')
+                && appReq.Physical_Country__c != null && appReq.Physical_Country__c == 'CA'){
+            bypassCallouts = true;
+        }
+        return bypassCallouts;
+    }
+
+    public static void runHandler(Id naApplicationId) {
 
         List<Application_Request__c> naApplications = [
                 SELECT Id, Automatically_Generated_Number__c, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, App_Signer_Last_Name_Text__c,
@@ -36,7 +58,8 @@ global class CreditDecisionEngineNA {
                         Personal_Guarantor_Mailing_Zip__c, Personal_Guarantor_SSN__c, PG_Required__c, Physical_City__c, Physical_State__c, Physical_Street__c, Requested_Credit_Limit__c,
                         Physical_Zip_Postal_Code__c, Program__c, Running_Credit_Decisioning__c, Sanctions_Business_Check__c, Sanctions_Business_Result_ID__c,
                         Sanctions_Individual_Check__c, Sanctions_Individual_Result_ID__c, Tax_Payer_ID_number__c, ThreatMetrix_Session_ID__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Result__c,
-                        Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c
+                        Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c, Campaign_Program__c,
+                        Opportunity__r.Campaign.Run_Final_Decision_Only__c, Only_Final_Decision_Has_Run__c
                 FROM Application_Request__c
                 WHERE Id = :naApplicationId
         ];
@@ -44,6 +67,24 @@ global class CreditDecisionEngineNA {
         if (naApplications.size() > 0) {
 
             Application_Request__c naApplication = naApplications[0];
+
+            if (!bypassCallouts(naApplication)) {
+                runNADecisioningProcess(naApplication);
+            }
+            else {
+                naApplication.Only_Final_Decision_Has_Run__c = true;
+                upsert naApplication;
+                runFinalCreditDecision(naApplication);
+            }
+
+        }
+    }
+
+    public static void runNADecisioningProcess(Application_Request__c naApplication) {
+
+        decisionEngineRunning = true;
+
+
 
             if(!Test.isRunningTest()) {
                 naApplication.Running_Credit_Decisioning__c = true;
@@ -523,7 +564,7 @@ global class CreditDecisionEngineNA {
             upsert naApplication;
 
             // Make a safe copy so we don't overwrite any fields
-            naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :naApplicationId];
+            List<Application_Request__c> naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :naApplication.Id];
 
             if (naApplications.size() > 0) {
 
@@ -535,7 +576,7 @@ global class CreditDecisionEngineNA {
 
 
             // Run counter-offer processes
-            naApplications = [SELECT Id, PG_Required__c, PG_Data__c, Personal_Guarantor__c, Personal_Guarantor_Mailing_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM Application_Request__c WHERE Id = :naApplicationId];
+            naApplications = [SELECT Id, PG_Required__c, PG_Data__c, Personal_Guarantor__c, Personal_Guarantor_Mailing_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM Application_Request__c WHERE Id = :naApplication.Id];
 
             if (naApplications.size() > 0) {
 
@@ -549,7 +590,7 @@ global class CreditDecisionEngineNA {
                         && !TestUtils.isRunningTest()) {
 
                     if(appRequest.Personal_Guarantor_Mailing_Country__c == null || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('US') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('United States')) {
-                        System.debug('Running Edxperian....');
+                        System.debug('Running Experian....');
                         CreditDecisionEngineQueueable.runExperianPGChecks(naApplications[0].Id);
                         sendToFinalDecision = false;
                     }
@@ -566,7 +607,7 @@ global class CreditDecisionEngineNA {
 
         }
 
-    }
+
     public static void runFinalCreditDecision(Application_Request__c appRequest) {
 
         String query = UtilityClass.selectStar('Application_Request__c');
