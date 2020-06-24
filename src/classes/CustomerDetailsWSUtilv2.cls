@@ -49,12 +49,12 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String contractIssuerName;
         @AuraEnabled public String contractNbr;
         @AuraEnabled public String contractNm;
-        @AuraEnabled public DateTime contractStartDt;
+        @AuraEnabled public Datetime contractStartDt;
         @AuraEnabled public String contractStatus;
         @AuraEnabled public Decimal creditLmt;
         @AuraEnabled public Integer currentBillingCycle;
-        @AuraEnabled public DateTime currentInvoiceClosingDt;
-        @AuraEnabled public DateTime currentInvoiceDueDt;
+        @AuraEnabled public Datetime currentInvoiceClosingDt;
+        @AuraEnabled public Datetime currentInvoiceDueDt;
         @AuraEnabled public Integer daysToPay;
         @AuraEnabled public String debitCycle;
         @AuraEnabled public Decimal depositAmt;
@@ -64,7 +64,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Decimal lastInvoiceBilledAmt;
         @AuraEnabled public Decimal lastPaymentAmount;
         @AuraEnabled public String lastPaymentComment;
-        @AuraEnabled public DateTime lastPaymentDt;
+        @AuraEnabled public Datetime lastPaymentDt;
         @AuraEnabled public String lastPaymentMethod;
         @AuraEnabled public String lastPaymentStatus;
         @AuraEnabled public Decimal moneyCodeLimit;
@@ -228,35 +228,35 @@ public class CustomerDetailsWSUtilv2 {
     public class agingHistory {
         @AuraEnabled public String accountId;
         @AuraEnabled public String accountNm;
-        @AuraEnabled public DateTime createDt;
-        @AuraEnabled public DateTime cycleAnchorDt;
+        @AuraEnabled public Datetime createDt;
+        @AuraEnabled public Datetime cycleAnchorDt;
         @AuraEnabled public Integer cycleCd;
-        @AuraEnabled public DateTime cycleCloseDt00;
-        @AuraEnabled public DateTime cycleCloseDt01;
-        @AuraEnabled public DateTime cycleCloseDt02;
-        @AuraEnabled public DateTime cycleCloseDt03;
-        @AuraEnabled public DateTime cycleCloseDt04;
-        @AuraEnabled public DateTime cycleCloseDt05;
-        @AuraEnabled public DateTime cycleCloseDt06;
-        @AuraEnabled public DateTime cycleCloseDt07;
-        @AuraEnabled public DateTime cycleCloseDt08;
-        @AuraEnabled public DateTime cycleCloseDt09;
-        @AuraEnabled public DateTime cycleCloseDt10;
-        @AuraEnabled public DateTime cycleCloseDt11;
-        @AuraEnabled public DateTime cycleCloseDt12;
-        @AuraEnabled public DateTime cycleCloseDt13;
-        @AuraEnabled public DateTime cycleCloseDt14;
-        @AuraEnabled public DateTime cycleCloseDt15;
-        @AuraEnabled public DateTime cycleCloseDt16;
-        @AuraEnabled public DateTime cycleCloseDt17;
-        @AuraEnabled public DateTime cycleCloseDt18;
-        @AuraEnabled public DateTime cycleCloseDt19;
-        @AuraEnabled public DateTime cycleCloseDt20;
-        @AuraEnabled public DateTime cycleCloseDt21;
-        @AuraEnabled public DateTime cycleCloseDt22;
-        @AuraEnabled public DateTime cycleCloseDt23;
-        @AuraEnabled public DateTime cycleCloseDt24;
-        @AuraEnabled public DateTime cycleCloseDt25;
+        @AuraEnabled public Datetime cycleCloseDt00;
+        @AuraEnabled public Datetime cycleCloseDt01;
+        @AuraEnabled public Datetime cycleCloseDt02;
+        @AuraEnabled public Datetime cycleCloseDt03;
+        @AuraEnabled public Datetime cycleCloseDt04;
+        @AuraEnabled public Datetime cycleCloseDt05;
+        @AuraEnabled public Datetime cycleCloseDt06;
+        @AuraEnabled public Datetime cycleCloseDt07;
+        @AuraEnabled public Datetime cycleCloseDt08;
+        @AuraEnabled public Datetime cycleCloseDt09;
+        @AuraEnabled public Datetime cycleCloseDt10;
+        @AuraEnabled public Datetime cycleCloseDt11;
+        @AuraEnabled public Datetime cycleCloseDt12;
+        @AuraEnabled public Datetime cycleCloseDt13;
+        @AuraEnabled public Datetime cycleCloseDt14;
+        @AuraEnabled public Datetime cycleCloseDt15;
+        @AuraEnabled public Datetime cycleCloseDt16;
+        @AuraEnabled public Datetime cycleCloseDt17;
+        @AuraEnabled public Datetime cycleCloseDt18;
+        @AuraEnabled public Datetime cycleCloseDt19;
+        @AuraEnabled public Datetime cycleCloseDt20;
+        @AuraEnabled public Datetime cycleCloseDt21;
+        @AuraEnabled public Datetime cycleCloseDt22;
+        @AuraEnabled public Datetime cycleCloseDt23;
+        @AuraEnabled public Datetime cycleCloseDt24;
+        @AuraEnabled public Datetime cycleCloseDt25;
         @AuraEnabled public String cyclePeriod;
         @AuraEnabled public Integer daysLatePastDueCnt;
         @AuraEnabled public Integer daysPastDueCnt00;
@@ -288,12 +288,12 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Integer dnbViabilityRate;
         @AuraEnabled public String errorMsg;
         @AuraEnabled public Decimal hrcFeeAmt;
-        @AuraEnabled public DateTime hrcFeeEffDt;
-        @AuraEnabled public DateTime hrcFeeExpnDt;
-        @AuraEnabled public DateTime hrcFeeWaiveEndDt;
+        @AuraEnabled public Datetime hrcFeeEffDt;
+        @AuraEnabled public Datetime hrcFeeExpnDt;
+        @AuraEnabled public Datetime hrcFeeWaiveEndDt;
         @AuraEnabled public String lastUpDtSessionNm;
-        @AuraEnabled public DateTime lastUpdtDt;
-        @AuraEnabled public DateTime lastWaiveDt;
+        @AuraEnabled public Datetime lastUpdtDt;
+        @AuraEnabled public Datetime lastWaiveDt;
         @AuraEnabled public Integer lateFeeCnt00;
         @AuraEnabled public Integer lateFeeCnt01;
         @AuraEnabled public Integer lateFeeCnt02;
@@ -462,13 +462,13 @@ public class CustomerDetailsWSUtilv2 {
         private String[] field_order_type_info = new String[]{'return_x'};
     }
     public class paymentDetailEntry {
-        @AuraEnabled public DateTime accountingDt;
+        @AuraEnabled public Datetime accountingDt;
         @AuraEnabled public String currencyCd;
         @AuraEnabled public String depositId;
         @AuraEnabled public String id;
         @AuraEnabled public Decimal paymentAmt;
         @AuraEnabled public String paymentId;
-        @AuraEnabled public DateTime postingDt;
+        @AuraEnabled public Datetime postingDt;
         private String[] accountingDt_type_info = new String[]{'accountingDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] currencyCd_type_info = new String[]{'currencyCd','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] depositId_type_info = new String[]{'depositId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -490,10 +490,10 @@ public class CustomerDetailsWSUtilv2 {
     public class customerDetails {
         @AuraEnabled public String accountNbrType {get; set;}
         @AuraEnabled public String accountNm {get; set;}
-        @AuraEnabled public DateTime accountSinceDt {get; set;}
+        @AuraEnabled public Datetime accountSinceDt {get; set;}
         @AuraEnabled public String accountStatusReason {get; set;}
         @AuraEnabled public String accountSts {get; set;}
-        @AuraEnabled public DateTime accountStsDt {get; set;}
+        @AuraEnabled public Datetime accountStsDt {get; set;}
         @AuraEnabled public Decimal accountingFee {get; set;}
         @AuraEnabled public String accountingFeeDescription {get; set;}
         @AuraEnabled public String acctRowId {get; set;}
@@ -510,30 +510,30 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Boolean cashEnabledIndicator {get; set;}
         @AuraEnabled public Decimal cashLimit {get; set;}
         @AuraEnabled public Boolean clearViewCustomer {get; set;}
-        @AuraEnabled public DateTime clearViewCustomerEndDt {get; set;}
-        @AuraEnabled public DateTime clearViewCustomerStartDt {get; set;}
+        @AuraEnabled public Datetime clearViewCustomerEndDt {get; set;}
+        @AuraEnabled public Datetime clearViewCustomerStartDt {get; set;}
         @AuraEnabled public Decimal codeExpiredFee {get; set;}
         @AuraEnabled public String codeExpiredFeeDescription {get; set;}
         @AuraEnabled public String collectionDescriptor {get; set;}
         @AuraEnabled public Integer collectionRiskScore {get; set;}
         @AuraEnabled public Boolean consumerIndicator {get; set;}
         @AuraEnabled public CustomerDetailsWSUtilv2.contacts contacts;
-        @AuraEnabled public DateTime contractEndDt {get; set;}
+        @AuraEnabled public Datetime contractEndDt {get; set;}
         @AuraEnabled public String contractName {get; set;}
         @AuraEnabled public String contractNbr {get; set;}
         @AuraEnabled public String contractNm {get; set;}
-        @AuraEnabled public DateTime contractStartDt {get; set;}
+        @AuraEnabled public Datetime contractStartDt {get; set;}
         @AuraEnabled public Boolean costPlusIndicator {get; set;}
         @AuraEnabled public Decimal creditLmt {get; set;}
         @AuraEnabled public Integer creditScore {get; set;}
         @AuraEnabled public Integer currentBillingCycle {get; set;}
-        @AuraEnabled public DateTime currentInvoiceClosingDt {get; set;}
-        @AuraEnabled public DateTime currentInvoiceDueDt {get; set;}
+        @AuraEnabled public Datetime currentInvoiceClosingDt {get; set;}
+        @AuraEnabled public Datetime currentInvoiceDueDt {get; set;}
         @AuraEnabled public String customerId {get; set;}
         @AuraEnabled public String customerIdentifier {get; set;}
         @AuraEnabled public String customerNm {get; set;}
         @AuraEnabled public String customerSegmentation {get; set;}
-        @AuraEnabled public DateTime customerSinceDt {get; set;}
+        @AuraEnabled public Datetime customerSinceDt {get; set;}
         @AuraEnabled public Integer daysToPay {get; set;}
         @AuraEnabled public String debitCycle {get; set;}
         @AuraEnabled public Decimal depositAmt {get; set;}
@@ -551,19 +551,19 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String flexCardPenaltyPricingIndicator {get; set;}
         @AuraEnabled public String funder {get; set;}
         @AuraEnabled public Boolean highCreditRiskFeeIndicator {get; set;}
-        @AuraEnabled public DateTime highRiskCureDt {get; set;}
+        @AuraEnabled public Datetime highRiskCureDt {get; set;}
         @AuraEnabled public Decimal highRiskPercentageRte {get; set;}
         @AuraEnabled public String iolCustomerNbr {get; set;}
         @AuraEnabled public String iolFleetNbr {get; set;}
         @AuraEnabled public Decimal lastInvoiceBilledAmt {get; set;}
         @AuraEnabled public Decimal lastPaymentAmount {get; set;}
-        @AuraEnabled public DateTime lastPaymentDt {get; set;}
+        @AuraEnabled public Datetime lastPaymentDt {get; set;}
         @AuraEnabled public String lastPaymentMethod {get; set;}
         @AuraEnabled public String latePaymentCounter {get; set;}
-        @AuraEnabled public DateTime latePaymentDate {get; set;}
+        @AuraEnabled public Datetime latePaymentDate {get; set;}
         @AuraEnabled public CustomerDetailsWSUtilv2.address mailingAddress;
         @AuraEnabled public Boolean masterCardCustomer {get; set;}
-        @AuraEnabled public DateTime memberSinceDt {get; set;}
+        @AuraEnabled public Datetime memberSinceDt {get; set;}
         @AuraEnabled public Decimal moneyCodeLimit {get; set;}
         @AuraEnabled public Decimal moneyIncrementalFee {get; set;}
         @AuraEnabled public String moneyIncrementalFeeDescription {get; set;}
@@ -611,8 +611,8 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String spnrAccountNbr {get; set;}
         @AuraEnabled public String srsCodeAndName {get; set;}
         @AuraEnabled public Boolean telematicsCustomer {get; set;}
-        @AuraEnabled public DateTime telematicsCustomerEndDt {get; set;}
-        @AuraEnabled public DateTime telematicsCustomerStartDt {get; set;}
+        @AuraEnabled public Datetime telematicsCustomerEndDt {get; set;}
+        @AuraEnabled public Datetime telematicsCustomerStartDt {get; set;}
         @AuraEnabled public String territoryCode {get; set;}
         @AuraEnabled public Decimal thirdPartyCheckFee {get; set;}
         @AuraEnabled public String thirdPartyCheckFeeDescription {get; set;}
@@ -633,8 +633,8 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Decimal wireFee {get; set;}
         @AuraEnabled public String wireFeeDescription {get; set;}
         @AuraEnabled public Boolean wrightRewardsCustomer {get; set;}
-        @AuraEnabled public DateTime wrightRewardsCustomerEndDt {get; set;}
-        @AuraEnabled public DateTime wrightRewardsCustomerStartDt {get; set;}
+        @AuraEnabled public Datetime wrightRewardsCustomerEndDt {get; set;}
+        @AuraEnabled public Datetime wrightRewardsCustomerStartDt {get; set;}
         @AuraEnabled public Decimal dIDLength {get; set;}
         private String[] accountNbrType_type_info = new String[]{'accountNbrType','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] accountNm_type_info = new String[]{'accountNm','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -801,7 +801,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String driverId;
         @AuraEnabled public CustomerDetailsWSUtilv2.address merchantAddress;
         @AuraEnabled public String merchantSite;
-        @AuraEnabled public DateTime txnDt;
+        @AuraEnabled public Datetime txnDt;
         private String[] actionCode_type_info = new String[]{'actionCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] actionCodeDescription_type_info = new String[]{'actionCodeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] authCode_type_info = new String[]{'authCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -814,7 +814,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] field_order_type_info = new String[]{'actionCode','actionCodeDescription','authCode','cardNumber','driverId','merchantAddress','merchantSite','txnDt'};
     }
     public class invoiceEntry {
-        @AuraEnabled public DateTime closingDt;
+        @AuraEnabled public Datetime closingDt;
         @AuraEnabled public String invoiceUrl;
         private String[] closingDt_type_info = new String[]{'closingDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] invoiceUrl_type_info = new String[]{'invoiceUrl','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -953,7 +953,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String custAssetNbr;
         @AuraEnabled public String gsaRegion;
         @AuraEnabled public Long odometer;
-        @AuraEnabled public DateTime odometerDate;
+        @AuraEnabled public Datetime odometerDate;
         @AuraEnabled public String pdRowId;
         @AuraEnabled public String pdStatus;
         @AuraEnabled public String pdStatusdate;
@@ -1059,8 +1059,8 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Decimal adjustmentAmt;
         @AuraEnabled public Decimal balanceAmt;
         @AuraEnabled public String cls;
-        @AuraEnabled public DateTime cycleEndDt;
-        @AuraEnabled public DateTime dueDt;
+        @AuraEnabled public Datetime cycleEndDt;
+        @AuraEnabled public Datetime dueDt;
         @AuraEnabled public Decimal epiBasisAmt;
         @AuraEnabled public String id;
         @AuraEnabled public Decimal lateFeeAmt;
@@ -1086,11 +1086,11 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String currency_x;
         @AuraEnabled public String holdStatus;
         @AuraEnabled public String payId;
-        @AuraEnabled public DateTime postingDate;
-        @AuraEnabled public DateTime scheduledDate;
+        @AuraEnabled public Datetime postingDate;
+        @AuraEnabled public Datetime scheduledDate;
         @AuraEnabled public String source;
         @AuraEnabled public String status;
-        @AuraEnabled public DateTime updateDate;
+        @AuraEnabled public Datetime updateDate;
         private String[] amount_type_info = new String[]{'amount','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] currency_x_type_info = new String[]{'currency','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] holdStatus_type_info = new String[]{'holdStatus','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -1153,13 +1153,13 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String approvalComment;
         @AuraEnabled public String approvalStatus;
         @AuraEnabled public String approver;
-        @AuraEnabled public DateTime decisionDt;
+        @AuraEnabled public Datetime decisionDt;
         @AuraEnabled public String department;
         @AuraEnabled public String description;
         @AuraEnabled public Long id;
         @AuraEnabled public String reasonComment;
         @AuraEnabled public String recordType;
-        @AuraEnabled public DateTime requestDt;
+        @AuraEnabled public Datetime requestDt;
         @AuraEnabled public String requestor;
         @AuraEnabled public String type_x;
         private String[] accountName_type_info = new String[]{'accountName','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
