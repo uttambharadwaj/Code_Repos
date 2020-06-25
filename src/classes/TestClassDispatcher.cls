@@ -225,4 +225,14 @@ public class TestClassDispatcher {
         CommunicationPreferencesTest.test_CommunicationPreferencesSync();
     }
 
+	@IsTest static void testCollectionsEmailSuccess() {
+		CollectionsEmailHandlerTest.test_CollectionsEmailSuccess();
+	}
+	@IsTest static void testCollectionsEmailFail() {
+		CollectionsEmailHandlerTest.test_CollectionsEmailFail();
+	}
+	@IsTest static void testCollectionsEmailPreviouslySent() {
+		CollectionsEmailHandlerTest.test_CollectionsEmailPreviouslySent();
+	}
+
 }

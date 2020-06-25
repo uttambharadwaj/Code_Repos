@@ -174,17 +174,19 @@ public class CollectionsEmailHandler {
 							ruleEval = false;
 							System.debug(e);
 						}
+
+						if (ruleEval == false) break; // currently all rules need to be true so no need to go through the rest....
 					}
 				}
 
 				// ========= Email Config Rules Ran =========
-				if (ruleEval) { // true if all rules were true
-					Id sObjId = (Id) sObj.get('id');
-					if (objToEmailConfigIds.get(sObjId) == null) {
-						objToEmailConfigIds.put(sObjId, new List<Id>());
-					}
-					objToEmailConfigIds.get(sObjId).add(configId);
-				}
+
+				Id sObjId = (Id) sObj.get('id');
+				if (objToEmailConfigIds.get(sObjId) == null) objToEmailConfigIds.put(sObjId, new List<Id>());
+
+				// true if all rules were true
+				if (ruleEval) objToEmailConfigIds.get(sObjId).add(configId);
+
 			}
 		}
 		return objToEmailConfigIds;
