@@ -1,7 +1,7 @@
 /**
  * Created by jharrell on 6/23/20.
  */
-// TODO add saveAsActivity to metadata
+
 public class CollectionsEmailHandler {
 
 	@InvocableMethod(label='Collections Email Handler' description='Associate template ids with case')
@@ -14,7 +14,7 @@ public class CollectionsEmailHandler {
 		for (InvocableSendEmailTemplate.EmailWrapper emailWrapper : emailWrappers) {
 
 			// Get all case ids
-			caseIds.add(emailWrapper.whatId); // TODO maybe a map instead with emailwrapper as value
+			caseIds.add(emailWrapper.whatId);
 		}
 
 
@@ -97,9 +97,9 @@ public class CollectionsEmailHandler {
 				// Individual rules for a config
 				for (Collection_Email_Rules__mdt rule : rules) {
 
-					// TODO prolly should try catch this section
-					Object value = UtilityClass.getSObjectField(sObj, rule.Field__c);
 					try {
+					Object value = UtilityClass.getSObjectField(sObj, rule.Field__c);
+
 						if (value == null) {
 							ruleEval = false;
 						} else if (rule.Operator__c == '>=') {
