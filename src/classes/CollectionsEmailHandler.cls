@@ -12,6 +12,7 @@ public class CollectionsEmailHandler {
 		List<InvocableSendEmailTemplate.EmailWrapper> updatedEmailWrappers = new List<InvocableSendEmailTemplate.EmailWrapper>();
 		Map<Id, Case> updatedCases = new Map<Id, Case>();
 
+
 		for (InvocableSendEmailTemplate.EmailWrapper emailWrapper : emailWrappers) {
 
 			// Get all case ids
@@ -141,8 +142,34 @@ public class CollectionsEmailHandler {
 								if (!valueList.contains(String.valueOf(value))) {
 									ruleEval = false;
 								}
-							}
+							} else if (rule.Operator__c == 'NOT IN') {
+								List<String> valueList = rule.Value__c.split(',');
+								if (valueList.contains(String.valueOf(value))) {
+									ruleEval = false;
+								}
+							} else if (rule.Operator__c == 'Contains') {
 
+								if (!rule.Value__c.contains(',')) rule.Value__c += ',';
+
+								Boolean contained = false;
+								for (String val : rule.Value__c.split(',')) {
+									if (String.valueOf(value).containsIgnoreCase(val)) {
+										contained = true;
+									}
+								}
+								ruleEval = contained;
+
+							} else if (rule.Operator__c == 'NOT Contains') {
+								if (!rule.Value__c.contains(',')) rule.Value__c += ',';
+
+								Boolean contained = false;
+								for (String val : rule.Value__c.split(',')) {
+									if (String.valueOf(value).containsIgnoreCase(val)) {
+										contained = true;
+									}
+								}
+								ruleEval = !contained;
+							}
 						} catch (Exception e) {
 							ruleEval = false;
 							System.debug(e);

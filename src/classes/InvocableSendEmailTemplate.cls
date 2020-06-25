@@ -81,6 +81,7 @@ public with sharing class InvocableSendEmailTemplate {
     @InvocableMethod(label='Send Template With Attachment' description='sends email template with an attachment')
     public static void sendEmailTemplate(List<EmailWrapper> emailWrappers) {
         List<Messaging.SingleEmailMessage> emailsToSend = new List<Messaging.SingleEmailMessage>();
+        Boolean isSandbox = [ SELECT IsSandbox FROM Organization LIMIT 1 ].IsSandbox;
 
         //get attachment based on provided info
         Map<Id, String> parentIdToAttchName = getAttachmentMap(emailWrappers);
@@ -109,6 +110,20 @@ public with sharing class InvocableSendEmailTemplate {
                 ccEmails.addAll(salesRepEmails);
             }
 
+            // if a sandbox remove any emails other than @wexinc
+            if (isSandbox && !Test.isRunningTest()) {
+                Integer size = toEmails.size() >= ccEmails.size() ? toEmails.size() : ccEmails.size();
+                for (Integer i = size -1; i >= 0; i--) {
+                    if (toEmails.size() > i && !toEmails.get(i).containsIgnoreCase('@wexinc')) {
+                        toEmails.remove(i);
+                    }
+                    if (ccEmails.size() > i && !ccEmails.get(i).containsIgnoreCase('@wexinc')) {
+                        toEmails.remove(i);
+                    }
+                }
+            }
+
+            if (toEmails.isEmpty()) return;
             email.setToAddresses(toEmails);
             email.setCcAddresses(ccEmails);
 
