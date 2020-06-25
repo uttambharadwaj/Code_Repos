@@ -35,7 +35,7 @@ public with sharing class InvocableSendEmailTemplate {
         @InvocableVariable(label='saveAsActivity')
         public Boolean saveAsActivity = false; //do we want to save this email as an activity on the record?
 
-        @InvocableVariable(label='templateId' required=true)
+        @InvocableVariable(label='templateId')
         public Id templateId; //id of desired email template
 
         @InvocableVariable(label='toRecipients' required=true)
