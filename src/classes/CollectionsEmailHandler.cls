@@ -66,8 +66,8 @@ public class CollectionsEmailHandler {
 			}
 			System.debug(updatedEmailWrappers);
 			if (!updatedEmailWrappers.isEmpty()) {
-				InvocableSendEmailTemplate.sendEmailTemplate(updatedEmailWrappers);
 				update updatedCases.values();
+				InvocableSendEmailTemplate.sendEmailTemplate(updatedEmailWrappers);
 			}
 		}
 	}
