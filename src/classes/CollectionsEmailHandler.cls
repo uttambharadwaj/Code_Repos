@@ -10,6 +10,7 @@ public class CollectionsEmailHandler {
 		List<Id> caseIds = new List<Id>();
 		Set<String> fields = new Set<String>();
 		List<InvocableSendEmailTemplate.EmailWrapper> updatedEmailWrappers = new List<InvocableSendEmailTemplate.EmailWrapper>();
+		Map<Id, Case> updatedCases = new Map<Id, Case>();
 
 		for (InvocableSendEmailTemplate.EmailWrapper emailWrapper : emailWrappers) {
 
@@ -24,17 +25,17 @@ public class CollectionsEmailHandler {
 		]) {
 			fields.add(emailRules.Field__c);
 		}
-		String query = 'SELECT ' + fields.toString().replaceAll('[{}]', '') + ' FROM Case WHERE Id IN :caseIds';
-		List<sObject> cases = Database.query(query);
+		String query = 'SELECT ' + fields.toString().replaceAll('[{}]', '') + ',Processed_Email_Configs__c FROM Case WHERE Id IN :caseIds';
+		Map<Id, sObject> cases = new Map<Id, sObject>(Database.query(query));
 
 		if (!cases.isEmpty()) {
 
 			Map<Id, Collections_Email_Configuration__mdt> emailConfigs = new Map<Id, Collections_Email_Configuration__mdt>([
-					SELECT Id, Email_Template_Id__c,Save_As_Activity__c,Contact_Types__c,Sales_Rep_Roles__c
+					SELECT Id, Email_Template_Id__c,Save_As_Activity__c,Contact_Types__c,Sales_Rep_Roles__c,Org_Wide_Email_Id__c
 					FROM Collections_Email_Configuration__mdt
 			]);
 
-			Map<Id, List<Id>> objToEmailConfigIds = runRuleEval(cases);
+			Map<Id, List<Id>> objToEmailConfigIds = runRuleEval(cases.values());
 
 			for (Integer i = 0; i < emailWrappers.size(); i++) {
 				InvocableSendEmailTemplate.EmailWrapper emailWrapper = emailWrappers.get(i);
@@ -47,13 +48,18 @@ public class CollectionsEmailHandler {
 						InvocableSendEmailTemplate.EmailWrapper emailWrapperClone = emailWrapper.clone(); // in the even that there's more than 1 email to be send for a record
 						Collections_Email_Configuration__mdt emailConfig = emailConfigs.get(matchedEmailConfigId);
 
-						// TODO do a check for if email has previously been sent
 						emailWrapperClone.templateId = emailConfig.Email_Template_Id__c;
 						emailWrapperClone.saveAsActivity = emailConfig.Save_As_Activity__c;
 						emailWrapperClone.contactTypes = emailConfig.Contact_Types__c;
 						emailWrapperClone.salesRepRoles = emailConfig.Sales_Rep_Roles__c;
+						emailWrapperClone.orgWideEmailId = emailConfig.Org_Wide_Email_Id__c;
 
 						updatedEmailWrappers.add(emailWrapperClone);
+
+						Id caseId = emailWrapperClone.whatId;
+						Case emailedCase = updatedCases.get(caseId) != null ? updatedCases.get(caseId) : (Case) cases.get(caseId); // in the event that more than one email is sent, get the already updated case
+						emailedCase.Processed_Email_Configs__c = UtilityClass.updateMultiPicklist(emailedCase.Processed_Email_Configs__c, emailConfig.Id, false);
+						updatedCases.put(emailedCase.Id, emailedCase);
 
 					}
 				}
@@ -61,6 +67,7 @@ public class CollectionsEmailHandler {
 			System.debug(updatedEmailWrappers);
 			if (!updatedEmailWrappers.isEmpty()) {
 				InvocableSendEmailTemplate.sendEmailTemplate(updatedEmailWrappers);
+				update updatedCases.values();
 			}
 		}
 	}
@@ -89,53 +96,57 @@ public class CollectionsEmailHandler {
 		// For each sObject
 		for (sObject sObj : sObjs) {
 			// All rules for a config
+			String processedEmailConfigs = (String) sObj.get('Processed_Email_Configs__c');
 			for (Id configId : configToEmailRules.keySet()) {
 
 				List<Collection_Email_Rules__mdt> rules = configToEmailRules.get(configId);
-				Boolean ruleEval = true;
+				Boolean ruleEval = processedEmailConfigs != null && processedEmailConfigs.contains(configId) ? false : true;
 
-				// Individual rules for a config
-				for (Collection_Email_Rules__mdt rule : rules) {
+				if (ruleEval) { // false when a config id has already been sent for specific Case.
 
-					try {
-					Object value = UtilityClass.getSObjectField(sObj, rule.Field__c);
+					// Individual rules for a config
+					for (Collection_Email_Rules__mdt rule : rules) {
 
-						if (value == null) {
+						try {
+							Object value = UtilityClass.getSObjectField(sObj, rule.Field__c);
+
+							if (value == null) {
+								ruleEval = false;
+							} else if (rule.Operator__c == '>=') {
+								if (Integer.valueOf(value) < Integer.valueOf(rule.Value__c)) {
+									ruleEval = false;
+								}
+							} else if (rule.Operator__c == '<=') {
+								if (Integer.valueOf(value) > Integer.valueOf(rule.Value__c)) {
+									ruleEval = false;
+								}
+							} else if (rule.Operator__c == '>') {
+								if (Integer.valueOf(value) <= Integer.valueOf(rule.Value__c)) {
+									ruleEval = false;
+								}
+							} else if (rule.Operator__c == '<') {
+								if (Integer.valueOf(value) >= Integer.valueOf(rule.Value__c)) {
+									ruleEval = false;
+								}
+							} else if (rule.Operator__c == '==') {
+								if (!String.valueOf(value).equalsIgnoreCase(rule.Value__c)) {
+									ruleEval = false;
+								}
+							} else if (rule.Operator__c == '!=') {
+								if (String.valueOf(value).equalsIgnoreCase(rule.Value__c)) {
+									ruleEval = false;
+								}
+							} else if (rule.Operator__c == 'IN') {
+								List<String> valueList = rule.Value__c.split(',');
+								if (!valueList.contains(String.valueOf(value))) {
+									ruleEval = false;
+								}
+							}
+
+						} catch (Exception e) {
 							ruleEval = false;
-						} else if (rule.Operator__c == '>=') {
-							if (Integer.valueOf(value) < Integer.valueOf(rule.Value__c)) {
-								ruleEval = false;
-							}
-						} else if (rule.Operator__c == '<=') {
-							if (Integer.valueOf(value) > Integer.valueOf(rule.Value__c)) {
-								ruleEval = false;
-							}
-						} else if (rule.Operator__c == '>') {
-							if (Integer.valueOf(value) <= Integer.valueOf(rule.Value__c)) {
-								ruleEval = false;
-							}
-						} else if (rule.Operator__c == '<') {
-							if (Integer.valueOf(value) >= Integer.valueOf(rule.Value__c)) {
-								ruleEval = false;
-							}
-						} else if (rule.Operator__c == '==') {
-							if (!String.valueOf(value).equalsIgnoreCase(rule.Value__c)) {
-								ruleEval = false;
-							}
-						} else if (rule.Operator__c == '!=') {
-							if (String.valueOf(value).equalsIgnoreCase(rule.Value__c)) {
-								ruleEval = false;
-							}
-						} else if (rule.Operator__c == 'IN') {
-							List<String> valueList = rule.Value__c.split(',');
-							if (!valueList.contains(String.valueOf(value))) {
-								ruleEval = false;
-							}
+							System.debug(e);
 						}
-
-					} catch (Exception e) {
-						ruleEval = false;
-						System.debug(e);
 					}
 				}
 
