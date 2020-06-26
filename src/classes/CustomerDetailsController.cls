@@ -196,6 +196,16 @@ public without sharing class CustomerDetailsController {
     public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString, Boolean isOtrAccount) {
         System.debug('Entering getCustomerDetails for '+accountNumber+','+accountRecordId+','+ pdRowIdString+','+isOtrAccount);
 
+        if(String.isEmpty(accountNumber) && !String.isEmpty(accountRecordId) && isSalesforceId(accountRecordId)) {
+            System.debug('here');
+            Schema.SObjectType sobjectType = (Id.valueOf(accountRecordId)).getSobjectType();
+            String sobjectName = sobjectType.getDescribe().getName();
+
+            if((sobjectName).equalsIgnoreCase('Case')) {
+                Case theCase = [SELECT Id, AccountId FROM Case WHERE Id =: accountRecordId];
+                accountRecordId = theCase.AccountId;
+            }
+        }
         try {
             CustomerDetailsWSUtilv2.customerDetails customerDetails;
             String platform;
