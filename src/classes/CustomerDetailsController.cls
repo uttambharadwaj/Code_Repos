@@ -305,7 +305,7 @@ public without sharing class CustomerDetailsController {
             customerDetails.sfdcAcctId = serviceOperationsAccount.Id;
 
             customerDetails.customerSegmentation = String.valueOf(serviceOperationsAccount.Customer_Segmentation__c);
-            if (serviceOperationsAccount.Status__c != null) {
+            if ((customerDetails.accountSts == null || customerDetails.accountSts.trim().equals('')) && serviceOperationsAccount.Status__c != null) {
                 if ('Active'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'A';
                 } else if ('Inactive'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
