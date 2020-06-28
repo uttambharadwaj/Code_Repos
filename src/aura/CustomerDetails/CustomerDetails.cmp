@@ -12,7 +12,7 @@
     <aura:attribute name="carrierId" type="String" />
     <aura:attribute name="searchRecordId" type="String" />
     <aura:attribute name="isOtrAccount" type="String" />
-
+	<aura:attribute name="contractObj" type="object" />
     <!-- Returns from controller -->
     <aura:attribute name="accountId" type="String" />
     <aura:attribute name="contactId" type="String" />
@@ -58,7 +58,14 @@
 
     <aura:attribute name="caseHistory" type="Map" />
     <aura:attribute name="caseHistoryColumnList" type="List" />
-
+	
+    <!-- Pallav Attributes -->
+    <aura:attribute name="otrContractObj" type="Map" />
+    <aura:attribute name="dummyotrContractList" type="List" />
+    <aura:attribute name="showOtrCOntractDetails" type="Boolean" default="false" />
+    
+    <!-- end -->
+    
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <ltng:require styles="{!$Resource.FontAwesome + '/font-awesome-4.7.0/css/font-awesome.min.css'}" />
     <ltng:require scripts="{!$Resource.ChartJS}" />
@@ -181,7 +188,7 @@
         </div>
     </aura:if>
     <lightning:tabset variant="scoped" class="tabset" selectedTabId="{!v.selectedTabId}">
-        <lightning:tab id="customerDetailsTab">
+        <lightning:tab id="customerDetailsTab" onactive="{!c.reloadContract}">
             <aura:set attribute="label">
                 <div class="refresh-button">
                     <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
@@ -1116,7 +1123,515 @@
                 </div>
             </div>
         </lightning:tab>
-        <lightning:tab>
+        
+        
+        
+        
+        <!-- New tab for OTR contract-->
+        <lightning:tab id="otr-contract-tab">
+            <aura:set attribute="label">
+                <div class="refresh-button">
+                    <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
+                </div>
+                OTR Contracts 
+            </aura:set>
+            
+            
+            <div style="display: flex; width: 60rem; height: 60rem;">
+                <div id="p" class="slds-split-view_container slds-is-open">
+              		<button id="left"  onclick="{!c.toogleSplitView}" class="slds-button slds-button_icon slds-button_icon slds-split-view__toggle-button slds-is-closed" aria-controls="split-view-id" aria-expanded="false" title="Close Split View">
+              			<span class="slds-assistive-text">Close Split View</span>
+            		</button>
+            		<article aria-hidden="false" id="split-view-id" class="slds-split-view slds-grid slds-grid_vertical slds-grow">
+						<div class="slds-grid slds-grid_vertical">
+                           <div class="slds-split-view__list-header slds-grid">
+                              <span>OTR Contracts</span>
+                              
+                           </div>
+                           <ul aria-multiselectable="false" class="slds-scrollable_y" role="listbox" aria-label="Select an item to open it in a new workspace tab.">
+                             <aura:iteration items="{!v.customerDetails.otrContracts.entry}" var="otrContract" indexVar="index">
+                                   <li class="slds-split-view__list-item" role="presentation" >
+                                     	<table>
+                                           <tbody>
+                                                <tr>
+                                                    <td onclick="{!c.showContract}" id="{!index}">AR Number: {!otrContract.value.arNumber} <br/>Contract Number: {!otrContract.value.contractNbr}</td>
+                                                </tr>
+                                           </tbody>
+                                       </table>
+                                       <!--
+                                       <div class="slds-grid slds-wrap" >
+                                         <span class="slds-truncate " title="AR Number" onclick="{!c.showContract}" id="{!index}">Ar Number</span>
+                                         <br> </br>
+                                         <span class="slds-truncate" title="Contract#" onclick="{!c.showContract}" id="{!index}">{!otrContract.ARNumber}</span>
+                                       </div>
+                                       <div class="slds-grid slds-wrap" >
+                                        	 <span class="slds-truncate " title="AR Number" onclick="{!c.showContract}" id="{!index}">Contract Number</span>
+                                       		<br> </br>
+                                        	<span class="slds-truncate" title="Contract#" onclick="{!c.showContract}" id="{!index}">{!otrContract.contractId}</span>
+                                       </div>
+                                    -->
+                                  </li>
+                               </aura:iteration>
+                           </ul>
+						</div>
+                    </article>
+
+               </div>
+                 <aura:if isTrue="{!v.showOtrCOntractDetails}">
+                <!-- Right side of split view-->
+                <div class="slds-grid slds-grid_vertical" style="padding-left:1.5%;">
+                     <div class="slds-page-header">
+                        <div class="slds-media">
+                           <div class="slds-media__figure">
+                              <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                                 <lightning:icon iconName="standard:pricebook" variant="error" size="small" />
+                              </span>
+                           </div>
+                           <div class="slds-media__body">
+                              <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Fees Information</h1>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                        <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Finance Charge Rate</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                           <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">{!v.otrContractObj.financeChargeRteType}</aura:if>
+                                           
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Out of Network Fee</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                           <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.outOfNetworkPerTxnFee}"/>
+                                           </aura:if>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Pay By Agent</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.payByAgentFee}"/>
+                                           </aura:if>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="slds-page-header">
+                        <div class="slds-media">
+                           <div class="slds-media__figure">
+                              <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                                 <lightning:icon iconName="standard:contract_line_item" variant="error" size="small" />
+                              </span>
+                           </div>
+                           <div class="slds-media__body">
+                              <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Invoice and Billing</h1>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                        <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Available Credit </div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.availableCreditLmt}"/>
+                                           </aura:if>
+                                       
+                                          </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Billing Account Number</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">{!v.otrContractObj.billingAcctNbr}</aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Billed Amount</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">TBD</aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Billing Cycle </div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">{!v.otrContractObj.billingCycleDesc}</aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Cash Enabled</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       		<aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <aura:if isTrue="{!v.otrContractObj.cashEnabledIndicator == false}">
+                                                   No
+                                               </aura:if>
+                                               <aura:if isTrue="{!v.otrContractObj.cashEnabledIndicator == true}">
+                                                   Yes
+                                               </aura:if>
+                                           	
+                                           </aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Cash Limit</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                           <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.cashLimit}"/>
+                                           </aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                     <div class="slds-text-heading--label">Collections Desriptor/Recourse Code</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">TBD</aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Credit Limit</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.creditLmt}"/>
+                                           </aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Deposit</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.depositAmt}"/>
+                                           </aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Last Payment Date</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <lightning:formattedDateTime value="{!v.otrContractObj.lastPaymentDt}"/>
+                                           </aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Last Payment Method</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">{!v.otrContractObj.lastPaymentMethod}</aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">MC Limit</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.moneyCodeLimit}"/>
+                                           </aura:if>
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">On-Line Pay "Allow" checkbox</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <aura:if isTrue="{!v.otrContractObj.onlinePayAllowed == false}">
+                                                   No
+                                               </aura:if>
+                                               <aura:if isTrue="{!v.otrContractObj.onlinePayAllowed == true}">
+                                                   Yes
+                                               </aura:if>
+                                           </aura:if>
+                                       			
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                     <div class="slds-text-heading--label">Past Due Amount</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.pastDueAmount}"/>
+                                           </aura:if>
+                                       
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Total Owed</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.totalOwed}"/>
+                                           </aura:if>
+                                       
+                                       
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Trans Limit</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                        <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.txnLimit}"/>
+                                           </aura:if>
+                                       
+                                       
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                     <div class="slds-text-heading--label">Unbilled Amount</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                        <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                               <ui:outputCurrency value="{!v.otrContractObj.unbilledAmt}"/>
+                                           </aura:if>
+                                       
+                                       
+                                      
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Velocity</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                           <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">{!v.otrContractObj.velocity}</aura:if>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="slds-page-header">
+                        <div class="slds-media">
+                           <div class="slds-media__figure">
+                              <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
+                                 <lightning:icon iconName="custom:custom41" size="small" />
+                              </span>
+                           </div>
+                           <div class="slds-media__body">
+                              <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Payment</h1>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
+                        <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+                           <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                              <div class="slds-media__body">
+                                 <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                    <div class="slds-text-heading--label">Status of hold</div>
+                                 </div>
+                                 <div class="slds-tile__detail">
+                                    <div class="slds-text-heading--small">
+                                       <span class="pricing-structure-indicator">
+                                        <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
+                                           <aura:if isTrue="{!v.otrContractObj != null}">TBD</aura:if>
+                                       </span>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div> 
+                </aura:if>
+      		</div>
+      </lightning:tab>
+        
+        <!-- Done -->
+        
+        
+        
+        <lightning:tab id="invoiceBillingTab" onactive="{!c.reloadContract}">
             <aura:set attribute="label">
                 <div class="refresh-button">
                     <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
@@ -1592,7 +2107,7 @@
                 </div>
             </div>
         </lightning:tab>
-        <lightning:tab >
+        <lightning:tab id="fees-tab" onactive="{!c.reloadContract}">
             <aura:set attribute="label">
                 <div class="refresh-button">
                     <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>
@@ -1998,7 +2513,7 @@
                 </div>
             </div>
         </lightning:tab>
-        <lightning:tab >
+        <lightning:tab id="contract-tab" onactive="{!c.reloadContract}">
             <aura:set attribute="label">
                 <div class="refresh-button">
                     <i class="fa fa-refresh" aria-hidden="true" onclick="{!c.refreshCustomerDetails}"></i>

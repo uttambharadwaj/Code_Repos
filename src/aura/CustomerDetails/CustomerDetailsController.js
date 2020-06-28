@@ -447,5 +447,78 @@
         component.find("pendingPaymentsTable").set("v.sortedDirection", sortDirection);
         helper.sortTxnData(component, fieldName, sortDirection);
 
-    }
+    },
+    
+    
+    
+    toogleSplitView: function (component, event, helper) {
+        console.log('toogleSplitView--------->',JSON.stringify(event.target.getAttribute('id')));
+        let expandSplitView = false;
+        if(event.target.getAttribute('id') == "left"){
+         event.target.setAttribute('aria-expanded','false');
+            event.target.parentNode.setAttribute('class','slds-split-view_container slds-is-closed');
+            event.target.setAttribute('class','slds-button slds-button_icon slds-button_icon slds-split-view__toggle-button slds-is-closed');    
+            event.target.setAttribute('id','right');
+            component.set('v.showOtrCOntractDetails',true);
+            
+        } else {
+            event.target.setAttribute('aria-expanded','true');
+            event.target.parentNode.setAttribute('class','slds-split-view_container slds-is-open');
+            event.target.setAttribute('class','slds-button slds-button_icon slds-button_icon slds-split-view__toggle-button slds-is-open');
+            event.target.setAttribute('id','left');
+            component.set('v.showOtrCOntractDetails',false);
+        }
+    },
+
+    refreshFocusedTab : function(component, event, helper) {
+        console.log("Entering refreshFocusedTab...");
+        var workspaceAPI = component.find("workspace");
+        workspaceAPI.getFocusedTabInfo().then(function(response) {
+            var focusedTabId = component.get("v.selectedTabId");
+            console.log("Refreshing tabId "+focusedTabId);
+            workspaceAPI.refreshTab({
+                tabId: focusedTabId,
+                includeAllSubtabs: true
+            });
+        })
+            .catch(function(error) {
+                console.log("Error in refreshFocusedTab...");
+                console.log(error);
+            });
+        console.log("Leaving refreshFocusedTab...");
+    },
+
+    reloadContract: function(component, event, helper) {
+        helper.reloadContract(component, event, helper);
+    },
+
+    showContract: function (component, event, helper) {
+        console.log('Show Contract--------->',event.target.getAttribute('id'));
+        let index = event.target.getAttribute('id');
+        let otrContractList = component.get('v.customerDetails.otrContracts.entry');
+        component.set('v.showOtrCOntractDetails',true);
+        component.set("v.otrContractObj",otrContractList[index].value);
+
+        helper.reloadContract(component, event, helper);
+        //helper.copyContractToComponent(component);
+
+        /*workspaceAPI.refreshTab({
+            tabId: "customerDetailsTab",
+            includeAllSubtabs: false
+        });
+
+        workspaceAPI.refreshTab({
+            tabId: "invoiceBillingTab",
+            includeAllSubtabs: false
+        });
+        workspaceAPI.refreshTab({
+            tabId: "fees-tab",
+            includeAllSubtabs: false
+        });
+
+        workspaceAPI.refreshTab({
+            tabId: "contract-tab",
+            includeAllSubtabs: false
+        });*/
+	}
 })
