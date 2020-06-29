@@ -70,6 +70,9 @@
             <apex:column headerValue="Credit Line">${!duplicate.creditLine}</apex:column>
             <apex:column headerValue="Status">{!duplicate.accountStatus}</apex:column>
             <apex:column headerValue="DUNS Number">{!duplicate.duns}</apex:column>
+            <apex:column headerValue="DUNS Number">{!duplicate.duns}</apex:column>
+            <apex:column headerValue="Charge Off Date">{!duplicate.chargeOffDate}</apex:column>
+            <apex:column headerValue="Charge Off Amount">{!duplicate.chargeOffAmount}</apex:column>
         </apex:pageBlockTable><br/>
         <apex:outputPanel id="accountErrorDisplay">
             <apex:outputPanel rendered="{!duplicateAccounts.size = 0}">
