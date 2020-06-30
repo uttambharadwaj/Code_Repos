@@ -460,7 +460,7 @@ public without sharing class CreditUtil_ExistingExposure {
         }
 
         String accountQuery = 'FIND { searchString } IN ALL FIELDS RETURNING FSC_Existing_Exposure__c( ' +
-                'Id,  Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c, DUNS_Number__c ' +
+                'Id,  Name, Business_Name__c, Address__c, City__c, State_Province__c , Postal_Code__c, Credit_Limit__c, National_Account_Number__c, Account_Status__c, DUNS_Number__c, Charge_Off_Amount__c, Charge_Off_Date__c ' +
                 'ORDER BY Id)';
 
         accountSearchVariables = UtilityClass.removeReservedChars(accountSearchVariables);
@@ -481,7 +481,8 @@ public without sharing class CreditUtil_ExistingExposure {
                     JaroWinklerDistance.getScore(request.city, existingAccount.City__c) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.state, existingAccount.State_Province__c ) >= 0.75 &&
                     JaroWinklerDistance.getScore(request.postalCode, existingAccount.Postal_Code__c) >= 0.75
-                    || (request.duns != null && (JaroWinklerDistance.getScore( onlyDigits(formattedDUNs), onlyDigits(existingAccount.DUNS_Number__c))) == 1.00)) {
+                    || (request.duns != null && (JaroWinklerDistance.getScore( onlyDigits(formattedDUNs), onlyDigits(existingAccount.DUNS_Number__c))) == 1.00)
+                    || existingAccount.Charge_Off_Amount__c > 0) {
 
                 ExistingExposureAccounts existingExposureAccountMatch = new ExistingExposureAccounts();
 
@@ -496,6 +497,8 @@ public without sharing class CreditUtil_ExistingExposure {
                 existingExposureAccountMatch.creditLine = String.valueOf(existingAccount.Credit_Limit__c);
                 existingExposureAccountMatch.accountStatus = existingAccount.Account_Status__c;
                 existingExposureAccountMatch.duns = existingAccount.DUNS_Number__c;
+                existingExposureAccountMatch.chargeOffAmount = existingAccount.Charge_Off_Amount__c;
+                existingExposureAccountMatch.chargeOffDate = existingAccount.Charge_Off_Date__c;
 
                 existingExposureAccountMatches.add(existingExposureAccountMatch);
 
@@ -560,6 +563,7 @@ public without sharing class CreditUtil_ExistingExposure {
         public String creditLine { get; set; }
         public String accountStatus { get; set; }
         public String duns { get; set; }
+        public Decimal chargeOffAmount { get; set; }
+        public Date chargeOffDate { get; set; }
     }
-
 }
