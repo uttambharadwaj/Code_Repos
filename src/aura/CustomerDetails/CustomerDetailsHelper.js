@@ -1524,7 +1524,7 @@
             component.set("v.customerDetails.thirdPartyCheckFeeDescription",currentContract.thirdPartyCheckFeeDescription);
             component.set("v.customerDetails.totalOwed",currentContract.totalOwed);
             component.set("v.customerDetails.onlinePayAllowed",currentContract.onlinePayAllowed);
-            component.set("v.customerDetails.onlinePayVelocity",currentContract.onlinePayVelocity);
+            component.set("v.customerDetails.onlinePayVelocity",currentContract.velocity);
             component.set("v.customerDetails.moneyCodeLimit",currentContract.moneyCodeLimit);
             component.set("v.customerDetails.transactionLimit",currentContract.txnLimit);
             component.set("v.customerDetails.recourceAmt",currentContract.recourseAmt);
