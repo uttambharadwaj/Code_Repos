@@ -105,6 +105,45 @@ public class CreditWS_CreditLensTest {
     }
 
 
+    /**
+   * Positive Entity creation for OTR
+   */
+    public static void creditLensCreateEntityPostiveOTRTest() {
+
+        OnlineApplication__c otrAppNoEntityId = [
+                SELECT  Id, Name, Legal_Business_Name__c, Trade_Name__c, Country__c, Business_Street_Address__c, Business_Address_Line_2__c, City__c, State__c, Zip_Code__c, SIC_Code__c,
+                        Type_of_Business__c, CurrencyIsoCode, Federal_Tax_ID__c, DNB_Resolved_DUNS__c, Stock_Symbol__c, Stock_Exchange__c, Credit_Lens_Entity_ID__c, Opportunity__r.OwnerId, Risk_Grade__c
+                FROM OnlineApplication__c
+                WHERE Stock_Symbol__c = 'NYC' AND Credit_Lens_Entity_ID__c = NULL
+                LIMIT 1];
+
+        //sanity checks before we start testing
+        System.assert(otrAppNoEntityId.Credit_Lens_Entity_ID__c == null, 'Expected Credit Lens Entity ID field to be null.');
+
+        Set<Id> myIds = new Set<Id>{
+                otrAppNoEntityId.Id};
+
+        //to the test mobile!
+        Test.startTest();
+        TestUtils.enable_isRunningTest = true;
+
+        Test.setMock(HttpCalloutMock.class, new MockCalloutGenerator(new Set<String>{'creditLensCreateGood','creditLensAuthLogin'}));
+        for (Id id : myIds) {
+            CreditWS_CreditLens.creditLensCreateEntityButton(id);
+        }
+
+        Test.stopTest();
+
+        OnlineApplication__c naAppNewEntId = [
+                SELECT  Id, Credit_Lens_Entity_ID__c
+                FROM OnlineApplication__c
+                WHERE Id =: otrAppNoEntityId.Id
+                LIMIT 1];
+
+        System.assert(naAppNewEntId.Credit_Lens_Entity_ID__c != null, 'Expected a credit lens entity ID, why don\'t we have one?');
+
+    }
+
     public static void creditLensUploadDocumentTest() {
 
         CP_Application_Request__c cpApp = [

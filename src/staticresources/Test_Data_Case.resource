@@ -1,2 +1,2 @@
-Id,RecordTypeId,ContactId,Subject
-5002F0000058rFvQAI,0120g000000N2ONAA0,0031800000YHoOZAA2,Test Case 1
+Id,RecordTypeId,ContactId,Subject,Collections_No_Connect_Tasks__c
+5002F0000058rFvQAI,0120g000000N2ONAA0,0031800000YHoOZAA2,Test Case 1,0

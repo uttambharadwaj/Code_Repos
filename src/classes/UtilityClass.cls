@@ -46,6 +46,18 @@ global class UtilityClass {
     }
     /***********************END ERROR LOG UTILITIES***************************/
 
+    /***********************SANDBOX UTILITY***********************************/
+    public Boolean runningInASandbox {
+        get {
+            if (runningInASandbox == null) {
+                runningInASandbox = [SELECT IsSandbox FROM Organization LIMIT 1].IsSandbox;
+            }
+            return runningInASandbox;
+        }
+        set;
+    }
+    /***********************END SANDBOX UTILITY*******************************/
+
     /***************************BOCA UTILITIES********************************/
     //generate application key
     public static String generateAppKey(){
