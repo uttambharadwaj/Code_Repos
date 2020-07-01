@@ -470,24 +470,6 @@
         }
     },
 
-    refreshFocusedTab : function(component, event, helper) {
-        console.log("Entering refreshFocusedTab...");
-        var workspaceAPI = component.find("workspace");
-        workspaceAPI.getFocusedTabInfo().then(function(response) {
-            var focusedTabId = component.get("v.selectedTabId");
-            console.log("Refreshing tabId "+focusedTabId);
-            workspaceAPI.refreshTab({
-                tabId: focusedTabId,
-                includeAllSubtabs: true
-            });
-        })
-            .catch(function(error) {
-                console.log("Error in refreshFocusedTab...");
-                console.log(error);
-            });
-        console.log("Leaving refreshFocusedTab...");
-    },
-
     reloadContract: function(component, event, helper) {
         helper.reloadContract(component, event, helper);
     },
@@ -500,25 +482,5 @@
         component.set("v.otrContractObj",otrContractList[index].value);
 
         helper.reloadContract(component, event, helper);
-        //helper.copyContractToComponent(component);
-
-        /*workspaceAPI.refreshTab({
-            tabId: "customerDetailsTab",
-            includeAllSubtabs: false
-        });
-
-        workspaceAPI.refreshTab({
-            tabId: "invoiceBillingTab",
-            includeAllSubtabs: false
-        });
-        workspaceAPI.refreshTab({
-            tabId: "fees-tab",
-            includeAllSubtabs: false
-        });
-
-        workspaceAPI.refreshTab({
-            tabId: "contract-tab",
-            includeAllSubtabs: false
-        });*/
 	}
 })
