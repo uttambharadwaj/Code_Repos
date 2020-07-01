@@ -700,12 +700,26 @@ public class UCase
     public static void associateContact(List<Case> records, Map<Id, Case> oldMap)
     {
         if (oldMap == null) {
+            Id serviceOpsRecordTypeId = UtilityClass.getRecTypeByDevName('Case', 'Service_Operations');
             Set<Id> contactIds = new Set<Id> ();
+            Set<Id> accountIds = new Set<Id>();
+            Map<Id, Id> accountToContact = new Map<Id, Id>();
             for (Case c : records) {
                 if (c.SuppliedEmail != null && c.ContactId != null) {
                     contactIds.add(c.ContactId);
                 }
+                if (c.AccountId != null) {
+                    accountIds.add(c.AccountId);
+                }
             }
+
+            // ============ Collections Primary Contact ============
+            for (Contact contact : [ SELECT Id,AccountId FROM Contact WHERE AccountId IN :accountIds AND Contact_Type__c = 'PRIMARY' ]) {
+                if (accountToContact.get(contact.AccountId) == null) {
+                    accountToContact.put(contact.AccountId, contact.Id);
+                }
+            }
+            // ============
 
             Map<Id, Contact> nonPilotCtMap = new Map<Id, Contact> ([SELECT Id FROM Contact WHERE Id IN :contactIds AND Pilot_Flag__c = false]);
 
@@ -724,15 +738,25 @@ public class UCase
             }
 
             for (Case c : records) {
-                if (c.SuppliedEmail != null && nonPilotCtMap.containsKey(c.ContactId)) {
-                    Contact foundContact = emailCtMap.get(c.SuppliedEmail);
-                    if (foundContact == null) {
-                        c.ContactId = null;
-                        c.AccountId = null;
+
+                // ============ Collections Primary Contact ============
+                Boolean isCollectionsCase = ((c.RecordTypeId == serviceOpsRecordTypeId) && UserInfo.getName() == 'Credit Monitoring');
+                if (isCollectionsCase) {
+                    if (c.AccountId != null && accountToContact.get(c.AccountId) != null) {
+                        c.ContactId = accountToContact.get(c.AccountId);
                     }
-                    else {
-                        c.ContactId = foundContact.Id;
-                        c.AccountId = foundContact.AccountId;
+                }
+                // ============
+                else {
+                    if (c.SuppliedEmail != null && nonPilotCtMap.containsKey(c.ContactId)) {
+                        Contact foundContact = emailCtMap.get(c.SuppliedEmail);
+                        if (foundContact == null) {
+                            c.ContactId = null;
+                            c.AccountId = null;
+                        } else {
+                            c.ContactId = foundContact.Id;
+                            c.AccountId = foundContact.AccountId;
+                        }
                     }
                 }
             }
