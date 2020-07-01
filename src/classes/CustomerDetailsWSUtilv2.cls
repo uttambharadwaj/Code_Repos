@@ -1193,6 +1193,70 @@ public class CustomerDetailsWSUtilv2 {
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'otrAcctNbr','sourceSys'};
     }
+    public class getOtrInvoiceList {
+        public String otrArNumber;
+        private String[] otrArNumber_type_info = new String[]{'otrArNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'otrArNumber'};
+    }
+
+    public class otrInvoiceEntry {
+        public Decimal amountDue;
+        public String arNumber;
+        public DateTime dueDate;
+        public String fileName;
+        public DateTime invoiceDate;
+        public String invoiceNumber;
+        public String pdfBytes;
+        private String[] amountDue_type_info = new String[]{'amountDue','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] arNumber_type_info = new String[]{'arNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] dueDate_type_info = new String[]{'dueDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] fileName_type_info = new String[]{'fileName','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] invoiceDate_type_info = new String[]{'invoiceDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] invoiceNumber_type_info = new String[]{'invoiceNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pdfBytes_type_info = new String[]{'pdfBytes','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'amountDue','arNumber','dueDate','fileName','invoiceDate','invoiceNumber','pdfBytes'};
+    }
+
+    public class otrInvoices {
+        public CustomerDetailsWSUtilv2.otrInvoiceEntry[] invoices;
+        private String[] invoices_type_info = new String[]{'invoices','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'invoices'};
+    }
+
+    public class getOtrInvoicePdfResponse {
+        public CustomerDetailsWSUtilv2.otrInvoiceResponse return_x;
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'return_x'};
+    }
+
+    public class getOtrInvoicePdf {
+        public String arNumber;
+        public String pdfFilename;
+        private String[] arNumber_type_info = new String[]{'arNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] pdfFilename_type_info = new String[]{'pdfFilename','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'arNumber','pdfFilename'};
+    }
+
+    public class otrInvoiceResponse {
+        public String errorMsg;
+        public CustomerDetailsWSUtilv2.otrInvoices invoices;
+        private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] invoices_type_info = new String[]{'invoices','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'errorMsg','invoices'};
+    }
+
+    public class getOtrInvoiceListResponse {
+        public CustomerDetailsWSUtilv2.otrInvoiceResponse return_x;
+        private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
+        private String[] field_order_type_info = new String[]{'return_x'};
+    }
     public class CustomerDetailsSOAPQSPort {
         @AuraEnabled public String endpoint_x = 'http://pwm-wex-1042:8080/SalesforceCustomerServices/ProxyServices/CustomerDetails';
         @AuraEnabled public Map<String,String> inputHttpHeaders_x;
@@ -1478,6 +1542,49 @@ public class CustomerDetailsWSUtilv2 {
                             'http://com.wex.enterpriseapps.customerinfo',
                             'getInvoicesResponse',
                             'CustomerDetailsWSUtilv2.getInvoicesResponse'}
+            );
+            response_x = response_map_x.get('response_x');
+            return response_x.return_x;
+        }
+        public CustomerDetailsWSUtilv2.otrInvoiceResponse getOtrInvoiceList(String otrArNumber) {
+            CustomerDetailsWSUtilv2.getOtrInvoiceList request_x = new CustomerDetailsWSUtilv2.getOtrInvoiceList();
+            request_x.otrArNumber = otrArNumber;
+            CustomerDetailsWSUtilv2.getOtrInvoiceListResponse response_x;
+            Map<String, CustomerDetailsWSUtilv2.getOtrInvoiceListResponse> response_map_x = new Map<String, CustomerDetailsWSUtilv2.getOtrInvoiceListResponse>();
+            response_map_x.put('response_x', response_x);
+            WebServiceCallout.invoke(
+                    this,
+                    request_x,
+                    response_map_x,
+                    new String[]{endpoint_x,
+                            '',
+                            'http://com.wex.enterpriseapps.customerinfo',
+                            'getOtrInvoiceList',
+                            'http://com.wex.enterpriseapps.customerinfo',
+                            'getOtrInvoiceListResponse',
+                            'CustomerDetailsWSUtilv2.getOtrInvoiceListResponse'}
+            );
+            response_x = response_map_x.get('response_x');
+            return response_x.return_x;
+        }
+        public CustomerDetailsWSUtilv2.otrInvoiceResponse getOtrInvoicePdf(String arNumber,String pdfFilename) {
+            CustomerDetailsWSUtilv2.getOtrInvoicePdf request_x = new CustomerDetailsWSUtilv2.getOtrInvoicePdf();
+            request_x.arNumber = arNumber;
+            request_x.pdfFilename = pdfFilename;
+            CustomerDetailsWSUtilv2.getOtrInvoicePdfResponse response_x;
+            Map<String, CustomerDetailsWSUtilv2.getOtrInvoicePdfResponse> response_map_x = new Map<String, CustomerDetailsWSUtilv2.getOtrInvoicePdfResponse>();
+            response_map_x.put('response_x', response_x);
+            WebServiceCallout.invoke(
+                    this,
+                    request_x,
+                    response_map_x,
+                    new String[]{endpoint_x,
+                            '',
+                            'http://com.wex.enterpriseapps.customerinfo',
+                            'getOtrInvoicePdf',
+                            'http://com.wex.enterpriseapps.customerinfo',
+                            'getOtrInvoicePdfResponse',
+                            'CustomerDetailsWSUtilv2.getOtrInvoicePdfResponse'}
             );
             response_x = response_map_x.get('response_x');
             return response_x.return_x;

@@ -183,12 +183,25 @@ public without sharing class CustomerDetailsController {
     @AuraEnabled
     public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString) {
         //Formula for isOtrAccount taken from older version of code
-        boolean isOtrAccount = false;
+        Boolean isOtrAccount = false;
         String newAccountRecordId = accountRecordId;
         if (String.isEmpty(accountNumber)  && !(isSalesforceId(newAccountRecordId))) {
             newAccountRecordId = getAccountIdFromAcctRowId(accountRecordId);
             isOtrAccount = true;
         }
+
+        System.debug(accountNumber + ', ' + accountRecordId);
+        if(String.isEmpty(accountNumber) && !String.isEmpty(accountRecordId) && isSalesforceId(accountRecordId)) {
+            System.debug('here');
+            Schema.SObjectType sobjectType = (Id.valueOf(accountRecordId)).getSobjectType();
+            String sobjectName = sobjectType.getDescribe().getName();
+
+            if((sobjectName).equalsIgnoreCase('Case')) {
+                Case theCase = [SELECT Id, AccountId FROM Case WHERE Id =: accountRecordId];
+                newAccountRecordId = theCase.AccountId;
+            }
+        }
+
         return getCustomerDetails(accountNumber, newAccountRecordId, pdRowIdString, isOtrAccount );
     }
 
@@ -280,7 +293,7 @@ public without sharing class CustomerDetailsController {
 
     private static CustomerDetailsWSUtilv2.customerDetails getOtrCustomerDetails(String accountId) {
         System.debug('Calling getOtrCustomerDetails with accountId '+accountId);
-        CustomerDetailsWSUtilv2.customerDetails customerDetails;
+        CustomerDetailsWSUtilv2.customerDetails customerDetails = new CustomerDetailsWSUtilv2.customerDetails();
 
         List<Account> serviceOperationsAccounts = [SELECT Id, Customer_Segmentation__c, CurrencyIsoCode, Status__c, Account_Status_Date__c, Account_Since__c, Program__c, Name, Phone, Fax, Wex_Account__c, Sponsor_Acct__c, PFS_REP__c, Priority_Level__c, Priority_Level_Update_Date__c, Funder__c, Online_Application_URL__c, Account_Instructions__c, BillingStreet, BillingCity, BillingState, BillingCountry, BillingPostalCode, ShippingStreet, ShippingCity, ShippingState, ShippingCountry, ShippingPostalCode, Carrier_ID__c, Platform__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c,  Acct_Row_Id__c, Primary_Contact_TXT__c FROM Account WHERE Id =: accountId];
 
@@ -292,7 +305,7 @@ public without sharing class CustomerDetailsController {
             customerDetails.sfdcAcctId = serviceOperationsAccount.Id;
 
             customerDetails.customerSegmentation = String.valueOf(serviceOperationsAccount.Customer_Segmentation__c);
-            if (serviceOperationsAccount.Status__c != null) {
+            if ((customerDetails.accountSts == null || customerDetails.accountSts.trim().equals('')) && serviceOperationsAccount.Status__c != null) {
                 if ('Active'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
                     customerDetails.accountSts = 'A';
                 } else if ('Inactive'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {

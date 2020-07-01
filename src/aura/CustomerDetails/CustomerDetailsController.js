@@ -468,11 +468,16 @@
     },
 
 
+    reloadContract: function(component, event, helper) {
+        helper.reloadContract(component, event, helper);
+    },
+
     showContract: function (component, event, helper) {
         console.log('Show Contract--------->',event.target.getAttribute('id'));
         let index = event.target.getAttribute('id');
         let otrContractList = component.get('v.customerDetails.otrContracts.entry');
         component.set('v.showOtrCOntractDetails',true);
         component.set("v.otrContractObj",otrContractList[index].value);
-    }
+		helper.reloadContract(component, event, helper);
+	}
 })
