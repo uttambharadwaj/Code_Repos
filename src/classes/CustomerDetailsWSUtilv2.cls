@@ -1195,9 +1195,11 @@ public class CustomerDetailsWSUtilv2 {
     }
     public class getOtrInvoiceList {
         public String otrArNumber;
+        public Integer limit_x;
         private String[] otrArNumber_type_info = new String[]{'otrArNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] limit_x_type_info = new String[]{'limit','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'otrArNumber'};
+        private String[] field_order_type_info = new String[]{'otrArNumber', 'limit_x'};
     }
 
     public class otrInvoiceEntry {
@@ -1546,9 +1548,10 @@ public class CustomerDetailsWSUtilv2 {
             response_x = response_map_x.get('response_x');
             return response_x.return_x;
         }
-        public CustomerDetailsWSUtilv2.otrInvoiceResponse getOtrInvoiceList(String otrArNumber) {
+        public CustomerDetailsWSUtilv2.otrInvoiceResponse getOtrInvoiceList(String otrArNumber,Integer limit_x) {
             CustomerDetailsWSUtilv2.getOtrInvoiceList request_x = new CustomerDetailsWSUtilv2.getOtrInvoiceList();
             request_x.otrArNumber = otrArNumber;
+            request_x.limit_x = limit_x;
             CustomerDetailsWSUtilv2.getOtrInvoiceListResponse response_x;
             Map<String, CustomerDetailsWSUtilv2.getOtrInvoiceListResponse> response_map_x = new Map<String, CustomerDetailsWSUtilv2.getOtrInvoiceListResponse>();
             response_map_x.put('response_x', response_x);
