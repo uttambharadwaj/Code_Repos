@@ -226,7 +226,19 @@ public class TestClassDispatcher {
     }
 
     @IsTest static void testCommunicationPreferencesTest() {
-     //   CommunicationPreferencesTest.test_CommunicationPreferencesSync();
+        CommunicationPreferencesTest.test_CommunicationPreferencesSync();
+    }
+
+    @IsTest static void testCreditLineCalculationOTR() {
+        CreditUtil_CalculateCreditLineTest.testOTRCreditLineCalculation();
+    }
+
+    @IsTest static void testCreditLineCalculationNA() {
+        CreditUtil_CalculateCreditLineTest.testNACreditLineCalculation();
+    }
+
+    @IsTest static void testCreditLineCalculationCP() {
+        CreditUtil_CalculateCreditLineTest.testCPCreditLineCalculation();
     }
 
 	@IsTest static void testCollectionsEmailSuccess() {
