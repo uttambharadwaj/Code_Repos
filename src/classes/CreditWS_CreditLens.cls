@@ -1091,6 +1091,9 @@ global class CreditWS_CreditLens {
             when 'DAILY' {
                 return 'Daily';
             }
+            when 'WEEKLY' {
+                return 'Weekly';
+            }
             when 'SEMI_WEEKLY' {
                 return '2xWeekly';
             }
