@@ -33,7 +33,7 @@ global class CreditDecisionEngineCP {
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
                         Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c,
                         Doing_Business_As__c, Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State_Province__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c,
-                        DNB_Resolved_DUNS__c, BPAV_Check__c
+                        DNB_Resolved_DUNS__c, BPAV_Check__c, Charged_Off_Account_Found__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
         ];
@@ -344,7 +344,10 @@ global class CreditDecisionEngineCP {
                 System.debug('Running DNB BPAV...');
                 BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('CPCreditDecisioningBPAVMatch', new List<SObject>{cpApplication});
 
-                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+                Boolean pullCredit = pullCredit(breezeResults, cpApplication.DUNS_Number__c);
+                System.debug('Pull Commercial Credit: ' + pullCredit);
+
+                if (pullCredit) {
 
                     cpApplication.DUNS_Number__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
                     cpApplication.Automatically_Generated_Number__c = dnbDirectMatchResponse.matchCandidates[0].AGN;
@@ -489,23 +492,51 @@ global class CreditDecisionEngineCP {
             List<CreditUtil_ExistingExposure.ExistingExposureApplications> existingExposureApplications = CreditUtil_ExistingExposure.getApplications(existingExposureRequest);
             List<CreditUtil_ExistingExposure.ExistingExposureAccounts> existingExposureAccounts = CreditUtil_ExistingExposure.getAccounts(existingExposureRequest);
 
-            // GIACT
+            // GIACT - only available for US applicants
             System.debug('Running GIACT...');
-            if(!String.isBlank(cpApplication.ABA_Routing_Number__c) && !String.isBlank(cpApplication.Checking_Account_Number__c)) {
+            if(!String.isBlank(cpApplication.ABA_Routing_Number__c) && !String.isBlank(cpApplication.Checking_Account_Number__c) && cpApplication.Physical_Country__c.equalsIgnoreCase('US')) {
 
                 CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
 
                 giactVerifyRequest.UniqueId = String.valueOf(cpApplication.Id);
                 giactVerifyRequest.RoutingNumber = cpApplication.ABA_Routing_Number__c;
                 giactVerifyRequest.AccountNumber = cpApplication.Checking_Account_Number__c;
-                giactVerifyRequest.BusinessName = cpApplication.Company_Legal_Name__c;
+                giactVerifyRequest.BusinessName = String.escapeSingleQuotes(cpApplication.Company_Legal_Name__c);//IADJUDICAT-1188 be gone, singlies
                 giactVerifyRequest.FederalTaxId = cpApplication.Taxpayer_ID__c;
 
                 if (!TestUtils.isRunningTest()) {
 
                     CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage)) {
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage) && giactVerifyResponse.AccountResponseCode.equals('12')) {
+                        // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
+                        if (giactVerifyResponse.CustomerResponseCode.equals('1') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null && cpApplication.Guarantor_Social_Security_Number__c != null) {
+                            //re-run using both PG name and SSN
+                            System.debug('Re-running GIACT using PG name and SSN...');
+                            giactVerifyRequest.BusinessName = null;
+                            giactVerifyRequest.FirstName = cpApplication.Guarantor_First_Name__c;
+                            giactVerifyRequest.LastName = cpApplication.Guarantor_Last_Name__c;
+                            giactVerifyRequest.FederalTaxId = cpApplication.Guarantor_Social_Security_Number__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                        else if (giactVerifyResponse.CustomerResponseCode.equals('3') && cpApplication.Guarantor_First_Name__c != null && cpApplication.Guarantor_Last_Name__c != null) {
+                            //re-run using both PG name
+                            System.debug('Re-running GIACT using PG name...');
+                            giactVerifyRequest.BusinessName = null;
+                            giactVerifyRequest.FirstName = cpApplication.Guarantor_First_Name__c;
+                            giactVerifyRequest.LastName = cpApplication.Guarantor_Last_Name__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                        else if (giactVerifyResponse.CustomerResponseCode.equals('4') && cpApplication.Guarantor_Social_Security_Number__c != null) {
+                            //re-run using both PG SSN
+                            System.debug('Re-running GIACT using SSN...');
+                            giactVerifyRequest.FederalTaxId = cpApplication.Guarantor_Social_Security_Number__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                    }
+
+
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage))   {
 
                         cpApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
                         cpApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
@@ -525,18 +556,20 @@ global class CreditDecisionEngineCP {
                         if(giactVerifyResponse != null) {
                             cpApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
                         }
-
                     }
-
                 }
-
             }
 
             System.debug(cpApplication);
 
-            // Upsert and execute BREeze
             cpApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
             cpApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
+            // iterate through the found existing Accounts to see if any have charge off balances
+            for (CreditUtil_ExistingExposure.ExistingExposureAccounts existingAccounts : existingExposureAccounts) {
+                if (existingAccounts.chargeOffAmount > 0) cpApplication.Charged_Off_Account_Found__c = true;
+            }
+
+            // Upsert and execute BREeze
             upsert cpApplication;
 
             // Make a safe copy so we don't overwrite any fields
@@ -599,5 +632,17 @@ global class CreditDecisionEngineCP {
         } catch (Exception e) {
             insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineCP.runFinalCreditDecision', true, '', cpAppRequest.id);
         }
+    }
+
+    public static Boolean pullCredit(BREeze.ProcessRules.ruleDataSet breezeResults, String DUNS) {
+
+        if (breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+            return true;
+        }
+        else if (DUNS != null) {
+            // if a credit analyst manually selected the business
+            return true;
+        }
+        return false;
     }
 }

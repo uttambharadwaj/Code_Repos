@@ -78,7 +78,7 @@ public class WexBrandingController {
 
             brandingUtilities = [SELECT Id FROM BOCA_res__c WHERE Program__c = :programId AND ISO_code__c = 'en_us'];
 
-            if (brandingUtilities.size() == 0) {
+            if (brandingUtilities.size() == 1) {
 
                 return brandingUtilities[0].Id;
 

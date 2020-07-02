@@ -185,7 +185,7 @@ global class CreditWS_CreditLens {
 
                 String country = CLCountry(naApp.Physical_Country__c);
 
-                creditLensRequest.EntityType = 'CORP'; //todo cpApp.Legal_Structure__c; - need to have naming convention solidified
+                creditLensRequest.EntityType = 'CORP'; // cpApp.Legal_Structure__c; - need to have naming convention solidified
 //                if (cpApp.CreditLens_EntityID__c != null) creditLensRequest.EntityId = cpApp.CreditLens_EntityID__c;
                 if (naApp.Account_Name__r.AccountNumber != null) creditLensRequest.WexAccountNumber = naApp.Account_Name__r.AccountNumber;
 //                if (naApp.National__c !=null) creditLensRequest.LegalEntity = naApp.National__c;
@@ -205,7 +205,7 @@ global class CreditWS_CreditLens {
                 creditLensRequest.Division = 'Fleet';
                 creditLensRequest.CreditPortfolio = 'WexBank';
                 creditLensRequest.WexCreditInformationOn = naApp.Financials_Completed_For__c;
-//                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //todo can't send until they figure out the dropdown values in CL
+//                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //cannot send because the picklist values don't match in Credit Lens
                 if (naApp.Requested_Credit_Limit__c != null) creditLensRequest.WexRequestCreditLineAmount = naApp.Requested_Credit_Limit__c;
                 if (naApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexRecommendedCreditLine = String.valueOf(naApp.Credit_Line_Recommendation__c);
                 if (naApp.DNB_Credit_Line_Recommendation__c != null) creditLensRequest.WexOriginationModelRecommendat = String.valueOf(naApp.DNB_Credit_Line_Recommendation__c);
@@ -215,7 +215,7 @@ global class CreditWS_CreditLens {
                 if (naApp.Paydex__c != null) creditLensRequest.WexPaydexScore = String.valueOf(naApp.Paydex__c);
                 if (naApp.Control_Year__c != null) creditLensRequest.WexYearControl = naApp.Control_Year__c;
                 if (naApp.Risk_Grade__c != null) creditLensRequest.WexPrimaryRiskGrade = naApp.Risk_Grade__c;
-//                if (cpApp.Risk_Grade_Source__c != null) creditLensRequest.WexPrimaryRiskGradeSource = cpApp.Risk_Grade_Source__c; //todo can't send until they figure out the dropdown values in CL
+//                if (cpApp.Risk_Grade_Source__c != null) creditLensRequest.WexPrimaryRiskGradeSource = cpApp.Risk_Grade_Source__c; //cannot send because the picklist values don't match in Credit Lens
                 if (naApp.Stock_Symbol__c != null) {
                     creditLensRequest.FirmType = 'PUB';
                     creditLensRequest.StockCode = naApp.Stock_Symbol__c;
@@ -326,9 +326,160 @@ global class CreditWS_CreditLens {
 
         else if (objectType.equalsIgnoreCase('OnlineApplication__c')) {
 
-            //todo stuff and things for OTR
-            // WExBusinessUntit = OTRf
+            System.debug('Online Application App ID: ' + appID);
+            List<OnlineApplication__c> appInfo = [
+                    SELECT Id, Name, Legal_Business_Name__c, Trade_Name__c, Country__c, Business_Street_Address__c, Business_Address_Line_2__c, City__c, State__c, Zip_Code__c,
+                            Type_of_Business__c, CurrencyIsoCode, Federal_Tax_ID__c, DNB_Resolved_DUNS__c, Stock_Symbol__c, Stock_Exchange__c, Credit_Lens_Entity_ID__c, Opportunity__r.OwnerId, Opportunity__r.Sales_Group__c,
+                            Credit_Line_Recommendation__c, Credit_Line_Requested__c, Account__r.AccountNumber, Country_of_Contracting_Entity__c, Country_of_Contracting_Entity_Other__c,
+                            Financials_Completed_For__c, Program__r.Name, DNB_Trade_Lines__c, Paydex__c, Billing_Cycle__c, Control_Year__c, Risk_Grade__c, Risk_Grade_Source__c, Email__c, Phone_Number__c,
+                            Contact_First_Name__c, Contact_Last_Name__c, SIC_Code__c, Credit_Lens_Response__c, Payment_Method__c, Security_Type__c, DNB_Credit_Line_Recommendation__c, Payment_Frequency__c,
+                            Security_Currency__c, Security_Expiration_Date__c
+                    FROM OnlineApplication__c
+                    where Id = :appID
+            ];
 
+            if (appInfo.size() == 1) {
+                OnlineApplication__c onlineApp = appInfo[0];
+
+                String country = CLCountry(onlineApp.Country__c);
+
+                creditLensRequest.EntityType = 'CORP';
+//                if (onlineApp.Credit_Lens_Entity_ID__c != null) creditLensRequest.EntityId = onlineApp.Credit_Lens_Entity_ID__c;
+                if (onlineApp.Account__r != null && onlineApp.Account__r.AccountNumber != null) creditLensRequest.WexAccountNumber = onlineApp.Account__r.AccountNumber;
+//                if (cpApp.National__c !=null) creditLensRequest.LegalEntity = cpApp.National__c;
+                if (onlineApp.Program__r !=null) creditLensRequest.WexProgramString = onlineApp.Program__r.Name;
+                creditLensRequest.LongName = onlineApp.Legal_Business_Name__c;
+                creditLensRequest.ShortName = onlineApp.Trade_Name__c;
+                creditLensRequest.PlaceOfIncorporation = country;
+                creditLensRequest.CountryOfInc = country;
+                if (onlineApp.State__c != null) {
+                    creditLensRequest.ProvinceStateOfIncorporation = onlineApp.Country__c + onlineApp.State__c;
+                }
+                creditLensRequest.BusinessPortfolio = country;
+                if (onlineApp.Country_of_Contracting_Entity__c != null) creditLensRequest.CountryOfRisk = CLCountry(onlineApp.Country_of_Contracting_Entity__c);
+                if (onlineApp.Country_of_Contracting_Entity_Other__c != null) creditLensRequest.CountryOfRisk = CLCountry(onlineApp.Country_of_Contracting_Entity_Other__c);
+                if (creditLensRequest.CountryOfRisk == null) creditLensRequest.CountryOfRisk = country; // set default because it's required
+                creditLensRequest.SystemId = onlineApp.Name;
+                creditLensRequest.Division = 'Fleet';
+                creditLensRequest.CreditPortfolio = 'WexBank';
+                creditLensRequest.WexCreditInformationOn = onlineApp.Financials_Completed_For__c;
+                if (onlineApp.Payment_Frequency__c != null) {
+                     String billingCycle = getBillingCycle(onlineApp.Payment_Frequency__c);
+                    if (billingCycle != null) creditLensRequest.BillingCycle = billingCycle;
+                }
+//                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  // can't send until they figure out the dropdown values in CL
+                if (onlineApp.Credit_Line_Requested__c != null) creditLensRequest.WexRequestCreditLineAmount = String.valueOf(onlineApp.Credit_Line_Requested__c);
+                if (onlineApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexRecommendedCreditLine = String.valueOf(onlineApp.Credit_Line_Recommendation__c);
+                if (onlineApp.DNB_Credit_Line_Recommendation__c != null) creditLensRequest.WexOriginationModelRecommendat = String.valueOf(onlineApp.DNB_Credit_Line_Recommendation__c);
+                if (onlineApp.Federal_Tax_ID__c != null) creditLensRequest.TaxId = onlineApp.Federal_Tax_ID__c;
+                if (onlineApp.DNB_Resolved_DUNS__c != null) creditLensRequest.WexDunsNumber = onlineApp.DNB_Resolved_DUNS__c;
+                if (onlineApp.DNB_Trade_Lines__c != null) creditLensRequest.WexNumberOfCreditExperiences = Integer.valueOf(onlineApp.DNB_Trade_Lines__c);
+                if (onlineApp.Paydex__c != null) creditLensRequest.WexPaydexScore = String.valueOf(onlineApp.Paydex__c);
+                if (onlineApp.Control_Year__c != null) creditLensRequest.WexYearControl = onlineApp.Control_Year__c;
+                if (onlineApp.Risk_Grade__c != null) creditLensRequest.WexPrimaryRiskGrade = onlineApp.Risk_Grade__c;
+//                if (cpApp.Risk_Grade_Source__c != null) creditLensRequest.WexPrimaryRiskGradeSource = cpApp.Risk_Grade_Source__c; // can't send until they figure out the dropdown values in CL
+                if (onlineApp.Stock_Symbol__c != null) {
+                    creditLensRequest.FirmType = 'PUB';
+                    creditLensRequest.StockCode = onlineApp.Stock_Symbol__c;
+                } else {
+                    creditLensRequest.FirmType = 'PRV'; // set default
+                }
+                if (onlineApp.Stock_Exchange__c != null) {
+                    Moodys_CreditLens_Mapping__mdt stockExchangeMapping = CLStockExchange(onlineApp.Stock_Exchange__c);
+                    if (stockExchangeMapping != null) {
+                        creditLensRequest.StockExchange = stockExchangeMapping.Key__c;
+                        creditLensRequest.CountryOfListing = country;
+                    }
+                }
+                if (onlineApp.CurrencyIsoCode != null) creditLensRequest.Currency_x = onlineApp.CurrencyIsoCode; else creditLensRequest.Currency_x = 'USD'; // set a default
+
+                if (onlineApp.Opportunity__r != null) {
+                    creditLensRequest.WexRelationshipManager = getUserName(onlineApp.Opportunity__r.OwnerId);
+                }
+                creditLensRequest.WexCreditAnalyst = UserInfo.getName();
+                creditLensRequest.WexBusinessUnit = 'OTR';
+                if (onlineApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = onlineApp.Security_Type__c;
+                if (onlineApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = onlineApp.Security_Currency__c;
+                if (onlineApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(onlineApp.Security_Expiration_Date__c);
+                creditLensRequest.OnList = '4'; //required for integration, so setting the default which maps to N/A in Credit Lens
+
+                if (onlineApp.SIC_Code__c != null) {
+
+                    creditLensRequest.IndClassification = 'SIC';
+
+                    CreditWS_CLCreateEntityRequest.IndustryCode industryCode = new CreditWS_CLCreateEntityRequest.IndustryCode();
+                    industryCode = mapSICCode(onlineApp.SIC_Code__c);
+
+                    if (industryCode != null) {
+                        List<CreditWS_CLCreateEntityRequest.IndustrySelection> industrySelections = new List<CreditWS_CLCreateEntityRequest.IndustrySelection>();
+                        CreditWS_CLCreateEntityRequest.IndustrySelection industrySelection = new CreditWS_CLCreateEntityRequest.IndustrySelection();
+                        industrySelection.x_new = true;
+                        industrySelection.Percentage = 1;
+                        industrySelection.OperationType = 'Create';
+                        industrySelection.IndustryId = -1;
+                        industrySelection.Classification = 'SIC';
+                        industrySelection.IsPrimary = true;
+                        industrySelection.x_initialRulesExecuted = true;
+                        industrySelection.IndustryCode = industryCode;
+
+                        industrySelections.add(industrySelection);
+                        creditLensRequest.IndustrySelection = industrySelections;
+                    }
+                }
+
+                //add Applicant as a Contact
+                List<CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit> contacts = new List<CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit>();
+                CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit contact = new CreditWS_CLCreateEntityRequest.EntityContactCreateAndEdit();
+
+                contact.x_new = true;
+                contact.OperationType = 'Create';
+                contact.x_initialRulesExecuted = true;
+                contact.Email = onlineApp.Email__c;
+                contact.Id = -1;
+                contact.Name = onlineApp.Contact_First_Name__c + ' ' + onlineApp.Contact_Last_Name__c;
+                contact.OfficeNo = onlineApp.Phone_Number__c;
+
+                contacts.add(contact);
+                creditLensRequest.EntityContactCreateAndEdit = contacts;
+
+                //add physical business address
+                List<CreditWS_CLCreateEntityRequest.EntityAddress> addresses = new List<CreditWS_CLCreateEntityRequest.EntityAddress>();
+                CreditWS_CLCreateEntityRequest.EntityAddress physicalAddress = new CreditWS_CLCreateEntityRequest.EntityAddress();
+
+                physicalAddress.x_new = true;
+                physicalAddress.OperationType = 'Create';
+                physicalAddress.AddressId = -1;
+                physicalAddress.x_initialRulesExecuted = true;
+                physicalAddress.AddressType = 'REGISTERED';
+                physicalAddress.Address1 = onlineApp.Business_Street_Address__c;
+                if (onlineApp.Business_Address_Line_2__c != null) physicalAddress.Address2 = onlineApp.Business_Address_Line_2__c;
+                physicalAddress.Country = country;
+                if (onlineApp.State__c != null) physicalAddress.State = onlineApp.Country__c + onlineApp.State__c;
+                physicalAddress.City = onlineApp.City__c;
+                physicalAddress.Zip = onlineApp.Zip_Code__c;
+                physicalAddress.t_x = 'Address';
+
+                addresses.add(physicalAddress);
+                creditLensRequest.EntityAddress = addresses;
+
+                Integer entityId = createEntity(creditLensRequest, token);
+
+                if (entityId != null) {
+                    onlineApp.Credit_Lens_Entity_ID__c = entityId;
+                    onlineApp.Credit_Lens_Response__c = 'Entity ' + entityId + ' successfully created in Credit Lens!';
+                    upsert onlineApp;
+                } else {
+                    String createStatus = createEntityUnable + '\n' + createEntityError;
+                    if (createStatus.length() > 2000) {
+                        onlineApp.Credit_Lens_Response__c = createStatus.substring(0,1995) + ' ...';
+                        upsert onlineApp;
+                    } else {
+                        onlineApp.Credit_Lens_Response__c = createStatus;
+                        upsert onlineApp;
+                    }
+
+                }
+            }
         }
 
         else if (objectType.equalsIgnoreCase('CP_Application_Request__c')) {
@@ -352,7 +503,7 @@ global class CreditWS_CreditLens {
 
                 String country = CLCountry(cpApp.Physical_Country__c);
 
-                creditLensRequest.EntityType = 'CORP'; //todo cpApp.Legal_Structure__c; - need to have naming convention solidified
+                creditLensRequest.EntityType = 'CORP'; // cpApp.Legal_Structure__c; - need to have naming convention solidified
 //                if (cpApp.CreditLens_EntityID__c != null) creditLensRequest.EntityId = cpApp.CreditLens_EntityID__c;
                 if (cpApp.Account__r != null && cpApp.Account__r.AccountNumber != null) creditLensRequest.WexAccountNumber = cpApp.Account__r.AccountNumber;
                 if (cpApp.National__c !=null) creditLensRequest.LegalEntity = cpApp.National__c;
@@ -373,7 +524,7 @@ global class CreditWS_CreditLens {
                 creditLensRequest.CreditPortfolio = 'WexBank';
                 creditLensRequest.WexCreditInformationOn = cpApp.Financials_Completed_For__c;
                 if (cpApp.Billing_Cycle__c != null) creditLensRequest.BillingCycle = cpApp.Billing_Cycle__c;
-//                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //todo can't send until they figure out the dropdown values in CL
+//                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //cannot send because the picklist values don't match in Credit Lens
                 if (cpApp.Credit_Line_Requested__c != null) creditLensRequest.WexRequestCreditLineAmount = String.valueOf(cpApp.Credit_Line_Requested__c);
                 if (cpApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexRecommendedCreditLine = String.valueOf(cpApp.Credit_Line_Recommendation__c);
                 if (cpApp.DNB_Credit_Line_Recommendation__c != null) creditLensRequest.WexOriginationModelRecommendat = String.valueOf(cpApp.DNB_Credit_Line_Recommendation__c);
@@ -383,7 +534,7 @@ global class CreditWS_CreditLens {
                 if (cpApp.Paydex__c != null) creditLensRequest.WexPaydexScore = String.valueOf(cpApp.Paydex__c);
                 if (cpApp.Control_Year__c != null) creditLensRequest.WexYearControl = cpApp.Control_Year__c;
                 if (cpApp.Risk_Grade__c != null) creditLensRequest.WexPrimaryRiskGrade = cpApp.Risk_Grade__c;
-//                if (cpApp.Risk_Grade_Source__c != null) creditLensRequest.WexPrimaryRiskGradeSource = cpApp.Risk_Grade_Source__c; //todo can't send until they figure out the dropdown values in CL
+//                if (cpApp.Risk_Grade_Source__c != null) creditLensRequest.WexPrimaryRiskGradeSource = cpApp.Risk_Grade_Source__c; //cannot send because the picklist values don't match in Credit Lens
                 if (cpApp.Stock_Symbol__c != null) {
                     creditLensRequest.FirmType = 'PUB';
                     creditLensRequest.StockCode = cpApp.Stock_Symbol__c;
@@ -818,7 +969,7 @@ global class CreditWS_CreditLens {
      */
     private static Integer getEntityId(Id appId, String sObjectType) {
 
-        System.debug('TEMP sObjectType: ' + sObjectType);
+        System.debug('sObjectType: ' + sObjectType);
 
         Decimal entityDecimal = null;
 
@@ -834,15 +985,15 @@ global class CreditWS_CreditLens {
             List<Application_Request__c> naApps = [SELECT Credit_Lens_Entity_ID__c FROM Application_Request__c WHERE Id = :appId];
             if (naApps.size() > 0) {
                 entityDecimal = naApps[0].Credit_Lens_Entity_ID__c;
-                System.debug('TEMP entityDecimal: ' + entityDecimal);
+                System.debug('entityDecimal: ' + entityDecimal);
             }
         }
         // OTR
         else if (sObjectType != null && (sObjectType).equalsIgnoreCase('OnlineApplication__c')) {
-//          List<OnlineApplication__c> otrApps = [SELECT CreditLens_EntityID__c FROM OnlineApplication__c WHERE Id = :appId];
-//            if (otrApps.size() > 0) {
-//                entityDecimal = otrApps[0].Credit_Lens_Entity_ID__c;
-//            }
+          List<OnlineApplication__c> otrApps = [SELECT Credit_Lens_Entity_ID__c FROM OnlineApplication__c WHERE Id = :appId];
+            if (otrApps.size() > 0) {
+                entityDecimal = otrApps[0].Credit_Lens_Entity_ID__c;
+            }
         }
 
         if (entityDecimal != null) {
@@ -926,5 +1077,32 @@ global class CreditWS_CreditLens {
             return null;
         }
         return industryCode;
+    }
+
+    /**
+     * Ghetto hack for mapping the frequency to a billing cycle that matches values in Credit Lens.
+     * OTR has billing cycles that call out specific days of the week, the easiest way to map the
+     * Billing Cycle to Credit Lens is to extrapolate the value from the payment frequency.
+     * @return
+     */
+    private static String getBillingCycle(String paymentFrequency) {
+
+        switch on paymentFrequency {
+            when 'DAILY' {
+                return 'Daily';
+            }
+            when 'WEEKLY' {
+                return 'Weekly';
+            }
+            when 'SEMI_WEEKLY' {
+                return '2xWeekly';
+            }
+            when 'TRIPLE_PLAY' {
+                return '3xWeekly';
+            }
+            when else {
+                return null;
+            }
+        }
     }
 }
