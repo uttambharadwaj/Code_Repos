@@ -1453,13 +1453,14 @@
                                         </div>
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
-                                       <span class="pricing-structure-indicator">
-                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
-                                           <aura:if isTrue="{!v.otrContractObj != null}">
-                                               <ui:outputCurrency value="{!v.otrContractObj.lastPaymentAmount}"/>
-                                           </aura:if>
-
-                                       </span>
+                                               <span class="pricing-structure-indicator">
+                                                    <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.lastPaymentAmount == null }">
+                                                        N/A
+                                                        <aura:set attribute="else">
+                                                           <ui:outputCurrency value="{!v.otrContractObj.lastPaymentAmount}"/>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
