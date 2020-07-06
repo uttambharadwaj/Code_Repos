@@ -45,6 +45,7 @@
             $Label.BOCA_Invalid_Email = '{!JSENCODE($Label.BOCA_Invalid_Email)}';
             $Label.BOCA_Invalid_Number = '{!JSENCODE($Label.BOCA_Invalid_Number)}';
             $Label.BOCA_Invalid_Phone = '{!JSENCODE($Label.BOCA_Invalid_Phone)}';
+            $Label.BOCA_Invalid_Passport = '{!JSENCODE($Label.BOCA_Invalid_Passport)}';
             $Label.BOCA_Invalid_Postal_Code = '{!JSENCODE($Label.BOCA_Invalid_Postal_Code)}';
             $Label.BOCA_Invalid_SSN = '{!JSENCODE($Label.BOCA_Invalid_SSN)}';
             $Label.BOCA_PO_Box_Warning = '{!JSENCODE($Label.BOCA_PO_Box_Warning)}';
@@ -376,7 +377,7 @@
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" style="display: {!IF(boOwner.countryOfResidence == 'United States', 'none', 'block')};" data-row="{!VALUE(index)}5">
                                                                         <label class="styled-label"><apex:outputText value="{!$Label.BOCDD_Passport_Other_Government_ID}" escape="false" /></label>
-                                                                        <apex:inputText styleClass="styled-input required" value="{!boOwner.passportNumber}" maxlength="50" />
+                                                                        <apex:inputText styleClass="styled-input required passportNumber" value="{!boOwner.passportNumber}" maxlength="50" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" style="display: {!IF(boOwner.countryOfResidence == 'United States', 'none', 'block')};" data-row="{!VALUE(index)}6">
                                                                         <label class="styled-label">{!$Label.BOCDD_Issuing_Country}</label>
@@ -489,7 +490,7 @@
                                             </div>
                                             <div class="twelve columns clearfix form-field" style="display: {!IF(boController.countryOfResidence == 'United States', 'none', 'block')};" data-row="95">
                                                 <label class="styled-label"><apex:outputText value="{!$Label.BOCDD_Passport_Other_Government_ID}" escape="false" /></label>
-                                                <apex:inputText styleClass="styled-input required" value="{!boController.passportNumber}" maxlength="50" />
+                                                <apex:inputText styleClass="styled-input required passportNumber" value="{!boController.passportNumber}" maxlength="50" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" style="display: {!IF(boController.countryOfResidence == 'United States', 'none', 'block')};" data-row="96">
                                                 <label class="styled-label">{!$Label.BOCDD_Issuing_Country}</label>

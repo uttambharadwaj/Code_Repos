@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Used to match a 4 digit SIC code to it&apos;s description</description>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>SIC Code description</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Description</label>
+        <length>100</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Letter_Group__c</fullName>
+        <description>In Credit Lens SIC codes are categorized in groups of letters that all relate to one another.</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Letter Group</label>
+        <length>1</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number__c</fullName>
+        <description>Number that matches to a description in Credit Lens</description>
+        <externalId>false</externalId>
+        <fieldManageability>DeveloperControlled</fieldManageability>
+        <label>Number</label>
+        <length>3</length>
+        <required>true</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>SIC Code Mapping</label>
+    <pluralLabel>SIC Code Mappings</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

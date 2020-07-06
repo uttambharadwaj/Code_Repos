@@ -3,6 +3,7 @@ Description:        Invocable class for adding attachments to email template
 Test Classes:       InvocableSendEmailTemplateTest
 Last Coverage:      100%
 Revision History:   3/29/2019 Jason Arbegast IADJUDICAT-746 created class with method for sending email templates from dreaded process builder
+                    20May2020   MFarrell    EAPT-1865   Added ability to look up contacts on an account and CC them on the final email
  */
 public with sharing class InvocableSendEmailTemplate {
 
@@ -34,7 +35,7 @@ public with sharing class InvocableSendEmailTemplate {
         @InvocableVariable(label='saveAsActivity')
         public Boolean saveAsActivity = false; //do we want to save this email as an activity on the record?
 
-        @InvocableVariable(label='templateId' required=true)
+        @InvocableVariable(label='templateId')
         public Id templateId; //id of desired email template
 
         @InvocableVariable(label='toRecipients' required=true)
@@ -42,6 +43,21 @@ public with sharing class InvocableSendEmailTemplate {
 
         @InvocableVariable(label='ccRecipients')
         public String ccRecipients;
+
+        @InvocableVariable(Label='contactTypes')
+        public String contactTypes;
+
+        @InvocableVariable(Label='AccountId')
+        public Id accountId;
+
+        @InvocableVariable(Label='TerritoryCode')
+        public String territoryCode;
+
+        @InvocableVariable(Label='SalesRepRoles')
+        public String salesRepRoles;
+
+        @InvocableVariable(Label='NationalAccount')
+        public Boolean nationalAccount;
 
         @InvocableVariable(label='whatId')
         public Id whatId; //id for merge field population
@@ -65,9 +81,14 @@ public with sharing class InvocableSendEmailTemplate {
     @InvocableMethod(label='Send Template With Attachment' description='sends email template with an attachment')
     public static void sendEmailTemplate(List<EmailWrapper> emailWrappers) {
         List<Messaging.SingleEmailMessage> emailsToSend = new List<Messaging.SingleEmailMessage>();
+        Boolean isSandbox = [ SELECT IsSandbox FROM Organization LIMIT 1 ].IsSandbox;
 
         //get attachment based on provided info
         Map<Id, String> parentIdToAttchName = getAttachmentMap(emailWrappers);
+        //get contact emails from the account by contact type
+        List<String> contactEmails = getContactEmailsByRole(emailWrappers);
+        //get sales rep emails by territory code
+        List<String> salesRepEmails = getSalesReps(emailWrappers);
 
         for(EmailWrapper ew : emailWrappers){
             Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
@@ -82,6 +103,27 @@ public with sharing class InvocableSendEmailTemplate {
             if(ew.ccRecipients!= null && ew.ccRecipients.length()>0)
                 ccEmails = ew.ccRecipients.split(',');
 
+            if (contactEmails.size() > 0) {
+                ccEmails.addAll(contactEmails);
+            }
+            if (salesRepEmails.size() > 0) {
+                ccEmails.addAll(salesRepEmails);
+            }
+
+            // if a sandbox remove any emails other than @wexinc
+            if (isSandbox && !Test.isRunningTest()) {
+                Integer size = toEmails.size() >= ccEmails.size() ? toEmails.size() : ccEmails.size();
+                for (Integer i = size -1; i >= 0; i--) {
+                    if (toEmails.size() > i && !toEmails.get(i).containsIgnoreCase('@wexinc')) {
+                        toEmails.remove(i);
+                    }
+                    if (ccEmails.size() > i && !ccEmails.get(i).containsIgnoreCase('@wexinc')) {
+                        toEmails.remove(i);
+                    }
+                }
+            }
+
+            if (toEmails.isEmpty()) return;
             email.setToAddresses(toEmails);
             email.setCcAddresses(ccEmails);
 
@@ -99,7 +141,7 @@ public with sharing class InvocableSendEmailTemplate {
             if(theAttachment != null)
                 email.setEntityAttachments(new List<Id>{theAttachment}); // ids of any attachments to include...currently limited to only one
 
-            email.setorgWideEmailAddressId(ew.orgWideEmailId);
+            email.setOrgWideEmailAddressId(ew.orgWideEmailId);
             email.setSaveAsActivity(ew.saveAsActivity);
             email.setTreatTargetObjectAsRecipient(ew.sendToTarget);
 
@@ -141,7 +183,7 @@ public with sharing class InvocableSendEmailTemplate {
                 Set<String> allFieldNames = new Set<String>(parentIdToFieldName.values());
                 String allTheFields = String.join(new List<String>(allFieldNames), ',');
                 String myQuery = 'SELECT Id, ' + allTheFields + ' FROM ' + objType + ' WHERE Id IN :theParentIds';
-                for(sObject so : Database.query(myQuery)){
+                for(SObject so : Database.query(myQuery)){
                     String thisAttachName = parentIdToFieldName.get(so.Id);
                     parentIdToAttchName.put(so.Id, (String)so.get(thisAttachName));
                 }
@@ -151,11 +193,68 @@ public with sharing class InvocableSendEmailTemplate {
         //get the ids for the attachments
         if(parentIdToAttchName.size()>0){
             Set<String> allAttachNames = new Set<String>(parentIdToAttchName.values());
-            for(Attachment a : [SELECT Id, ParentId FROM Attachment WHERE ParentId IN :parentIdToAttchName.keyset() AND Name IN :allAttachNames]){
+            for(Attachment a : [SELECT Id, ParentId FROM Attachment WHERE ParentId IN :parentIdToAttchName.keySet() AND Name IN :allAttachNames]){
                 parentIdToAttchName.put(a.ParentId, a.Id);
             }
         }
         return parentIdToAttchName;
+    }
+
+    public static List<String> getContactEmailsByRole(List<EmailWrapper> emailWrappers) {
+        List<String> contactEmails = new List<String>();
+        List<Contact> contacts = new List<Contact>();
+        Map<Id, List<String>> accountToContactRoleMap = new Map<Id, List<String>>();
+
+        for (EmailWrapper ew : emailWrappers) {
+            if (ew.contactTypes != null && ew.contactTypes != '' && ew.accountId != null) {
+                accountToContactRoleMap.put(ew.accountId, ew.contactTypes.split(','));
+            }
+
+        }
+
+        contacts = [SELECT Id, Email, AccountId, Contact_Type__c FROM Contact WHERE AccountId =: accountToContactRoleMap.keySet() AND Email != NULL AND Contact_Type__c != NULL];
+
+        if (contacts.size() > 0) {
+            for (Contact c : contacts) {
+                for (String type : accountToContactRoleMap.get(c.AccountId)) {
+                    if (c.Contact_Type__c == type) {
+                        contactEmails.add(c.Email);
+                    }
+                }
+            }
+        }
+
+        return contactEmails;
+    }
+
+    public static List<String> getSalesReps(List<EmailWrapper> emailWrappers) {
+        List<String> salesRepEmails = new List<String>();
+        List<User> salesReps = new List<User>();
+        Map<String, List<String>> territoryCodeToSalesRepRole = new Map<String, List<String>>();
+
+        for (EmailWrapper ew : emailWrappers) {
+            if(ew.nationalAccount != null && ew.nationalAccount == true) {
+                if (ew.territoryCode != null && ew.territoryCode != '' && ew.salesRepRoles != null && ew.salesRepRoles != '') {
+                     territoryCodeToSalesRepRole.put(ew.territoryCode, ew.salesRepRoles.split(','));
+                }
+            }
+        }
+
+        if (territoryCodeToSalesRepRole.size() > 0) {
+            salesReps = [SELECT Id, Email, Territory_Code__c, Role_Name__c FROM User WHERE Territory_Code__c =: territoryCodeToSalesRepRole.keySet() AND IsActive = TRUE];
+        }
+
+        if (salesReps.size() > 0) {
+            for (User u : salesReps) {
+                for (String role : territoryCodeToSalesRepRole.get(u.Territory_Code__c)) {
+                    if (u.Role_Name__c == role) {
+                        salesRepEmails.add(u.Email);
+                    }
+                }
+            }
+        }
+
+        return salesRepEmails;
     }
 
 }

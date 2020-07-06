@@ -161,6 +161,10 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensCreateEntityPostiveNATest();
     }
 
+    @isTest static void testCreditLensWSCreateOTR() {
+        CreditWS_CreditLensTest.creditLensCreateEntityPostiveOTRTest();
+    }
+
     @isTest static void testCreditLensDocumentUpload() {
         CreditWS_CreditLensTest.creditLensUploadDocumentTest();
     }
@@ -171,6 +175,10 @@ public class TestClassDispatcher {
 
     @IsTest static void testWexBOCAFinancials() {
         WexBOCAFinancialsControllerTest.WexBOCAFinancialsTest();
+    }
+
+    @IsTest static void testOTRBOCAFinancials() {
+        OTRBOCAFinancialsControllerTest.OTRBOCAFinancialsTest();
     }
 
     @isTest static void testWebDAMSyncGenerateFileName() {
@@ -212,5 +220,35 @@ public class TestClassDispatcher {
     @IsTest static void testLWCGetAllTasks() {
         LWC_TasksControllerTest.testGetAllTasks();
     }
+
+    @IsTest static void testGIACTBusinessOnly() {
+        CreditWS_GiactTest.giactVerify();
+    }
+
+    @IsTest static void testCommunicationPreferencesTest() {
+        CommunicationPreferencesTest.test_CommunicationPreferencesSync();
+    }
+
+    @IsTest static void testCreditLineCalculationOTR() {
+        CreditUtil_CalculateCreditLineTest.testOTRCreditLineCalculation();
+    }
+
+    @IsTest static void testCreditLineCalculationNA() {
+        CreditUtil_CalculateCreditLineTest.testNACreditLineCalculation();
+    }
+
+    @IsTest static void testCreditLineCalculationCP() {
+        CreditUtil_CalculateCreditLineTest.testCPCreditLineCalculation();
+    }
+
+	@IsTest static void testCollectionsEmailSuccess() {
+		CollectionsEmailHandlerTest.test_CollectionsEmailSuccess();
+	}
+	@IsTest static void testCollectionsEmailFail() {
+		CollectionsEmailHandlerTest.test_CollectionsEmailFail();
+	}
+	@IsTest static void testCollectionsEmailPreviouslySent() {
+		CollectionsEmailHandlerTest.test_CollectionsEmailPreviouslySent();
+	}
 
 }

@@ -262,7 +262,7 @@ h3 {
 
 .terms-container p { 
 	padding: 0; 
-	margin 0; 
+	margin: 0;
 }
 
 .terms-container blockquote,dl,figure,form,ol,p,pre,table,ul {

@@ -1,6 +1,13 @@
 public class QuoteTriggerHandler {
 
-    public static boolean isRunning = false;
+    private static final Id approvedPendingCustomerRecordTypeId = Schema.SObjectType.zqu__Quote__c.getRecordTypeInfosByName().get('Approved Pending Customer').getRecordTypeId();
+    private static final Id customerApprovedRecordTypeId = Schema.SObjectType.zqu__Quote__c.getRecordTypeInfosByName().get('Customer Approved').getRecordTypeId();
+    private static final Id outForSignatureRecordTypeId = Schema.SObjectType.zqu__Quote__c.getRecordTypeInfosByName().get('Out for Signature').getRecordTypeId();
+    private static final Id pendingApprovalPendingCustomerRecordTypeId = Schema.SObjectType.zqu__Quote__c.getRecordTypeInfosByName().get('Pending Approval Pending Customer').getRecordTypeId();
+    private static final Id customerApprovalOverrideRecordTypeId = Schema.SObjectType.zqu__Quote__c.getRecordTypeInfosByName().get('Customer Approval Override').getRecordTypeId();
+    private static final Id issuedOrderRecordTypeId = Schema.SObjectType.zqu__Quote__c.getRecordTypeInfosByName().get('Issued Order').getRecordTypeId();
+
+    public static Boolean isRunning = false;
 
     public QuoteTriggerHandler(){
         /**
@@ -33,10 +40,10 @@ public class QuoteTriggerHandler {
         
         for (zqu__Quote__c q : newQs) {
             if (q.CustomerApprovalOverride__c) {
-                q.RecordTypeId  = [select Id from RecordType where Name = 'Customer Approval Override' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+                q.RecordTypeId  = customerApprovalOverrideRecordTypeId;
             }
             if (q.isPending__c) {
-                q.RecordTypeId  = [select Id from RecordType where Name = 'Pending Approval Pending Customer' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+                q.RecordTypeId  = pendingApprovalPendingCustomerRecordTypeId;
             }
         }
             
@@ -59,39 +66,40 @@ public class QuoteTriggerHandler {
     public void updateStatus(zqu__Quote__c[] updatedQuotes, Map<Id, zqu__Quote__c> oldQuotes){
         for (zqu__Quote__c quote : updatedQuotes){
             if (quote.Approved__c == false && quote.CustomerApprovalOverride__c) {
-                quote.RecordTypeId  = [select Id from RecordType where Name = 'Customer Approval Override' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+                quote.RecordTypeId  = customerApprovalOverrideRecordTypeId;
             }
             if (quote.Approved__c == false && quote.isPending__c) {
-                quote.RecordTypeId  = [select Id from RecordType where Name = 'Pending Approval Pending Customer' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+                quote.RecordTypeId  = pendingApprovalPendingCustomerRecordTypeId;
             }
             if (oldQuotes.get(quote.Id).Approved__c == false && quote.Approved__c == true && 
                 quote.CustomerApproval__c == false) {
                 quote.zqu__Status__c = 'Out for Signature';
-                quote.RecordTypeId  = [select Id from RecordType where Name = 'Out for Signature' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+                quote.RecordTypeId  = outForSignatureRecordTypeId;
             }
-            if ((oldQuotes.get(quote.Id).Approved__c == false || oldQuotes.get(quote.Id).CustomerApproval__c == false) && quote.Approved__c == true && quote.CustomerApproval__c == true){
+            if ((oldQuotes.get(quote.Id).Approved__c == false || oldQuotes.get(quote.Id).CustomerApproval__c == false) && quote.Approved__c == true && quote.CustomerApproval__c == true && (!(issuedOrderRecordTypeId == oldQuotes.get(quote.Id).RecordTypeId ))){
                 if (!quote.CustomerApprovalOverride__c){
                     quote.zqu__Status__c = 'Customer Approved';
-                    quote.RecordTypeId  = [select Id from RecordType where Name = 'Customer Approved' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+                    quote.RecordTypeId  = customerApprovedRecordTypeId;
                 } 
                 else {
                     quote.zqu__Status__c = 'Customer Approved';
-                    quote.RecordTypeId  = [select Id from RecordType where Name = 'Customer Approved' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+                    quote.RecordTypeId  = customerApprovedRecordTypeId;
                 }
             }
-            if (oldQuotes.get(quote.Id).Approved__c == false && quote.Approved__c == true && (quote.Vendor__c != null && !(quote.Vendor__c).equalsIgnoreCase('Alertdriving')) && 
+            if (oldQuotes.get(quote.Id).Approved__c == false && quote.Approved__c == true && (quote.Vendor__c != null && !(quote.Vendor__c).equalsIgnoreCase('Alertdriving'))
+                    && (!(issuedOrderRecordTypeId == oldQuotes.get(quote.Id).RecordTypeId ))
+                    &&
                 (quote.CustomerApprovalOverride__c == true ||  
                 quote.Recurring_Charge_Count__c == 0 && 
                 quote.Quote_Count_Shipment_Charges__c > 0 &&
                 quote.Termination_Fee_Flag__c == false)) {
                 quote.zqu__Status__c = 'Customer Approved';
-                quote.RecordTypeId  = [select Id from RecordType where Name = 'Customer Approved' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+                quote.RecordTypeId  = customerApprovedRecordTypeId;
             }
             if (oldQuotes.get(quote.Id).Approved__c == false && quote.Approved__c == true && quote.isPending__c == true) {
                quote.zqu__Status__c = 'Approved Pending Customer';
-               quote.RecordTypeId  = [select Id from RecordType where Name = 'Approved Pending Customer' and SobjectType = 'zqu__Quote__c' limit 1].Id;
+               quote.RecordTypeId  = approvedPendingCustomerRecordTypeId;
             }
-            
         }
     }
     

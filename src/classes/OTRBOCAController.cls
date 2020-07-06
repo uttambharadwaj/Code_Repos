@@ -134,6 +134,77 @@ public class OTRBOCAController {
 
     public Campaign campaign { get; set; }
 
+    public Integer yearsInBusiness {
+        get {
+            Integer yearsInBusiness = 0;
+            if (onlineApplication.Year_Established__c != null && onlineApplication.Year_Established__c.isNumeric()) {
+                yearsInBusiness = System.today().year() - (Integer.valueOf(onlineApplication.Year_Established__c));
+            }
+            return yearsInBusiness >= 0 ? yearsInBusiness : 0;
+        }
+    }
+
+    public Boolean displayDaysOfPayment {
+        get {
+            Boolean display = true;
+            if (('Parent Funded').equalsIgnoreCase(onlineApplicationOffer.Funding__c) || ('Prepay').equalsIgnoreCase(onlineApplication.Account_Type__c) || ('Internet Pay').equalsIgnoreCase(onlineApplication.Payment_Method__c)) {
+                display = false;
+                onlineApplication.Days_Of_Payment__c = null;
+                // else if they selected ACH, are in business under 2 years, and isn't on the FTS or CoreCard platform - EAPT-1747
+            } else if (onlineApplication.Payment_Method__c != null && onlineApplication.Payment_Method__c.containsIgnoreCase('ACH')
+                    && yearsInBusiness != null && yearsInBusiness < 2
+                    && !('FTS').equalsIgnoreCase(program.WEX_Platform__c)
+                    && !('CoreCard').equalsIgnoreCase(program.WEX_Platform__c)) {
+                onlineApplication.Days_Of_Payment__c = 'Monday / Thursday';
+                display = false;
+            }
+            return display;
+        }
+    }
+
+    public Boolean isUpMarket {
+        get {
+            if (onlineApplication != null) {
+                if (isPaperApp && onlineApplication.Credit_Line_Requested__c >= 150000) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public List<SelectOption> countryOptions {
+        get {
+            List<SelectOption> myOptions = new List<SelectOption>();
+            Schema.DescribeFieldResult countries = Account.Legal_Entity_Country__c.getDescribe();
+            myOptions.add(new SelectOption('','-- Choose One --'));
+            for(Schema.PicklistEntry countryOption : countries.getPicklistValues()){
+                myOptions.add(new SelectOption(countryOption.getValue(), countryOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
+    public List<SelectOption> stateOptions {
+        get {
+            List<SelectOption> myOptions = new List<SelectOption>();
+            List<String> provinces = UtilityClass.getProvinces('canada');
+            Schema.DescribeFieldResult states = OnlineApplication__c.State__c.getDescribe();
+            myOptions.add(new SelectOption('','-- Choose One --'));
+            for(Schema.PicklistEntry stateOption : states.getPicklistValues()){
+                if(selectedCountry == 'CA' && provinces.contains(stateOption.getValue()))
+                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
+                else if(selectedCountry == 'US' && !provinces.contains(stateOption.getValue()))
+                    myOptions.add(new SelectOption(stateOption.getValue(), stateOption.getValue()));
+            }
+            return myOptions;
+        }
+    }
+
+    public String selectedCountry { get; set; }
+
+    public String selectedState { get; set; }
+
     public Boolean forcePg { get; set; }
 
     // Check is this is a Personal Guaruntor application
@@ -152,9 +223,7 @@ public class OTRBOCAController {
             } else if (pg != null && pg == 'a') {
                 return true;
             } else if (onlineApplication != null) {
-                Date rightNow = Date.today();
-
-                if (onlineApplication.Year_Established__c != null && ((rightNow.year()) - Integer.valueOf(onlineApplication.Year_Established__c)) <= 1) {
+                if (yearsInBusiness <= 1) {
                     return true;
 
                 } else if (!prepay && onlineApplication.Type_of_Business__c != null && ((onlineApplication.Type_of_Business__c).equalsIgnoreCase('Sole Proprietorship')
@@ -646,8 +715,10 @@ public class OTRBOCAController {
     public PageReference submitApplication() {
 
         try {
-
             Account account = new Account();
+            account.Legal_Entity_Country__c = selectedCountry;
+            account.Legal_Entity_State__c = selectedState;
+
             Opportunity opportunity = new Opportunity();
             Contact primaryContact = new Contact();
             Contact pgContact = new Contact();
@@ -1064,13 +1135,21 @@ public class OTRBOCAController {
 
                 redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
                 redirect.getParameters().put('customer', onlineApplication.Id);
+                redirect.getParameters().put('isUpmarket', String.valueOf(isUpMarket));
                 if (onlineApplication.Opportunity__r.Beneficial_Owner_Entity__c != null) {
                     redirect.getParameters().put('entityId', onlineApplication.Opportunity__r.Beneficial_Owner_Entity__c);
                     redirect.getParameters().put('formKey', applicationKey);
                 }
-
                 return redirect;
 
+            } else if (isUpMarket) {
+
+                PageReference redirect = Page.OTRBOCAFinancials;
+
+                redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
+                redirect.getParameters().put('customer', onlineApplication.Id);
+                redirect.getParameters().put('key', applicationKey);
+                return redirect;
             } else {
 
                 PageReference redirect = Page.OTRSetup;
@@ -1078,11 +1157,8 @@ public class OTRBOCAController {
                 redirect.getParameters().put('pgm', program.Brand_Short_Name__c);
                 redirect.getParameters().put('customer', onlineApplication.Id);
                 redirect.getParameters().put('key', applicationKey);
-
                 return redirect;
-
             }
-
             return null;
 
         } catch (Exception e) {

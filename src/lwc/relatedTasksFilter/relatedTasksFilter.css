@@ -1,0 +1,9 @@
+/**
+ * Created by mfarrell on 5/13/20.
+ */
+
+.slds-popover.slds-nubbin_top-right{
+    position: absolute;
+    right: -0.6rem;
+    top: 2rem;
+}

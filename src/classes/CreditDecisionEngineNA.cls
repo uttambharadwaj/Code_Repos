@@ -6,7 +6,10 @@
 * Initial Date: 3/26/2018
 * Revision History: 4/30/2019 IADJUDICAT-739 do the constructor thing.
 * 3/26/2020: Release 20.07: EAPT-1546: Added granularity to the incoming MatchGradeComponent to be split into its components - Uttam Bharadwaj
-* 5/4/2020: Release 20.09: EAPT-1618: Added a check for Legal Structure vs Company Name */
+* 5/4/2020: Release 20.09: EAPT-1618: Added a check for Legal Structure vs Company Name
+* 5/28/2020: Release 20.11: EAPT-1754: Added ability to skip callouts on Application Request from Campaign
+*                           EAPT-1851: Added a callout skip for Natural Persons as the Legal Entity
+*/
 
 global class CreditDecisionEngineNA {
 
@@ -14,20 +17,39 @@ global class CreditDecisionEngineNA {
 
     @future(callout=true)
     public static void runNADecisioningProcessFuture(Id naApplicationId) {
-        runNADecisioningProcess(naApplicationId);
+        runHandler(naApplicationId);
     }
 
     // If called from a button
     webservice static void runNADecisioningProcessButton(Id naApplicationId) {
-        runNADecisioningProcess(naApplicationId);
+        runHandler(naApplicationId);
     }
 
-    public static void runNADecisioningProcess(Id naApplicationId) {
+    /**
+    * Allows the application to still run through the final decision business logic rules without doing
+    * any callouts or any other business logic. If there are other scenarios that need this in the future, add
+    * an additional if else.
+    * If you need to bypass the entire credit decision engine, including the final decision use the
+    * Run_Final_Decision_Only__c checkbox on the Campaign.
+    * Added another scenario with Legal Structure as Natural Person
+    **/
 
-        decisionEngineRunning = true;
+    private static Boolean bypassCallouts(Application_Request__c appReq) {
+        Boolean bypassCallouts = false;
+        if (appReq.Campaign_Program__c != null && appReq.Opportunity__r.Campaign.Run_Final_Decision_Only__c) {
+            bypassCallouts = true;
+        }
+        if (appReq.Legal_Structure__c != null && appReq.Legal_Structure__c.containsIgnoreCase('Natural Person')
+                && appReq.Physical_Country__c != null && appReq.Physical_Country__c == 'CA'){
+            bypassCallouts = true;
+        }
+        return bypassCallouts;
+    }
+
+    public static void runHandler(Id naApplicationId) {
 
         List<Application_Request__c> naApplications = [
-                SELECT Id, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, App_Signer_Last_Name_Text__c,
+                SELECT Id, Automatically_Generated_Number__c, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, App_Signer_Last_Name_Text__c,
                         Billing_City__c, Billing_Contact_First_Name_Text__c, Billing_Contact_Last_Name_Text__c, Billing_Contact__r.Email, Billing_Contact__r.Phone,
                         Billing_State__c, Billing_Street__c, Billing_Zip_Postal_Code__c, Business_Phone_Number__c, Checking_Account_Number__c, CreatedBy.Alias,
                         Doing_Business_As__c, DUNS_Number__c, Legal_Structure__c, Name, Opportunity_Name_Text__c, Opportunity__r.SourceSystem__c,
@@ -36,7 +58,8 @@ global class CreditDecisionEngineNA {
                         Personal_Guarantor_Mailing_Zip__c, Personal_Guarantor_SSN__c, PG_Required__c, Physical_City__c, Physical_State__c, Physical_Street__c, Requested_Credit_Limit__c,
                         Physical_Zip_Postal_Code__c, Program__c, Running_Credit_Decisioning__c, Sanctions_Business_Check__c, Sanctions_Business_Result_ID__c,
                         Sanctions_Individual_Check__c, Sanctions_Individual_Result_ID__c, Tax_Payer_ID_number__c, ThreatMetrix_Session_ID__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Result__c,
-                        Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c
+                        Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c, Campaign_Program__c,
+                        Opportunity__r.Campaign.Run_Final_Decision_Only__c, Only_Final_Decision_Has_Run__c, Charged_Off_Account_Found__c
                 FROM Application_Request__c
                 WHERE Id = :naApplicationId
         ];
@@ -44,6 +67,24 @@ global class CreditDecisionEngineNA {
         if (naApplications.size() > 0) {
 
             Application_Request__c naApplication = naApplications[0];
+
+            if (!bypassCallouts(naApplication)) {
+                runNADecisioningProcess(naApplication);
+            }
+            else {
+                naApplication.Only_Final_Decision_Has_Run__c = true;
+                upsert naApplication;
+                runFinalCreditDecision(naApplication);
+            }
+
+        }
+    }
+
+    public static void runNADecisioningProcess(Application_Request__c naApplication) {
+
+        decisionEngineRunning = true;
+
+
 
             if(!Test.isRunningTest()) {
                 naApplication.Running_Credit_Decisioning__c = true;
@@ -338,98 +379,101 @@ global class CreditDecisionEngineNA {
                 System.debug('Running DNB BPAV....');
                 BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('NACreditDecisioningBPAVMatch', new List<SObject>{naApplication});
 
-                if(breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+                Boolean pullCredit = pullCredit(breezeResults, naApplication.DUNS_Number__c);
+                System.debug('Pull Commercial Credit: ' + pullCredit);
 
+                if (pullCredit) {
+
+                    naApplication.Automatically_Generated_Number__c = dnbDirectMatchResponse.matchCandidates[0].AGN;
                     naApplication.DUNS_Number__c = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
 
-                    if (naApplication.Physical_Country__c == null || (naApplication.Physical_Country__c).equalsIgnoreCase('US')) {
+                    if (dnbDirectMatchResponse.matchCandidates[0].DUNSNumber != null) {
+                        if (naApplication.Physical_Country__c == null || (naApplication.Physical_Country__c).equalsIgnoreCase('US')) {
 
-                        CreditWS_DNB.DNBNAFleetModelRequest dnbNAFleetModelRequest = new CreditWS_DNB.DNBNAFleetModelRequest();
+                            CreditWS_DNB.DNBNAFleetModelRequest dnbNAFleetModelRequest = new CreditWS_DNB.DNBNAFleetModelRequest();
 
-                        dnbNAFleetModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
-                        dnbNAFleetModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(naApplication.Requested_Credit_Limit__c));
+                            dnbNAFleetModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
+                            dnbNAFleetModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(naApplication.Requested_Credit_Limit__c));
 
-                        CreditWS_DNB.DNBNAFleetModelResponse dnbNAFleetModelResponse = CreditWS_DNB.getNAFleetScore(dnbNAFleetModelRequest);
+                            CreditWS_DNB.DNBNAFleetModelResponse dnbNAFleetModelResponse = CreditWS_DNB.getNAFleetScore(dnbNAFleetModelRequest);
 
-                        if (dnbNAFleetModelResponse != null) {
+                            if (dnbNAFleetModelResponse != null) {
 
-                            naApplication.DNB_Score__c = dnbNAFleetModelResponse.RawScore;
-                            naApplication.DNB_Credit_Line_Recommendation__c = dnbNAFleetModelResponse.RecommendedCreditLimitAmount;
-                            naApplication.DNB_Model__c = dnbNAFleetModelResponse.ModelUsed;
-                            naApplication.SIC_Code__c = dnbNAFleetModelResponse.PrimarySIC;
-                            naApplication.DNB_Resolved_DUNS__c = dnbNAFleetModelResponse.DunsNumber;
-                            naApplication.DUNS_Number__c = dnbNAFleetModelResponse.DunsNumber;
-                            naApplication.Global_Ultimate_DUNS__c = dnbNAFleetModelResponse.GlobalUltimateDUNS;
-                            naApplication.DNB_Resolved_Name__c = dnbNAFleetModelResponse.PrimaryName;
-                            naApplication.DNB_Resolved_Address__c = dnbNAFleetModelResponse.AddressLine;
-                            naApplication.DNB_Resolved_City__c = dnbNAFleetModelResponse.PostalTown;
-                            naApplication.DNB_Resolved_State__c = dnbNAFleetModelResponse.PrimaryGeographicArea;
-                            naApplication.DNB_Resolved_Postal_Code__c = dnbNAFleetModelResponse.PostalCode;
-                            naApplication.DNB_Resolved_Country__c = dnbNAFleetModelResponse.CountryCode;
-                            naApplication.DNB_SBFE_High_Credit__c = dnbNAFleetModelResponse.SBFEHighCredit;
-                            naApplication.DNB_CSAD_High_Credit__c = dnbNAFleetModelResponse.CSADHighCredit;
-                            naApplication.DNB_SBRI_Card_Score__c = dnbNAFleetModelResponse.SBRICardScore;
-                            naApplication.Bankruptcy_Date__c = dnbNAFleetModelResponse.BankruptcyDateOfFiling;
-                            naApplication.Bureau_Tax_ID__c = dnbNAFleetModelResponse.FeinTaxID;
-                            naApplication.Paydex__c = dnbNAFleetModelResponse.Paydex;
-                            naApplication.Control_Year__c = String.valueOf(dnbNAFleetModelResponse.ControlYear);
-                            naApplication.Year_Started__c = String.valueOf(dnbNAFleetModelResponse.YearStarted);
-                            naApplication.Number_of_Payments_Negative__c = dnbNAFleetModelResponse.NumberPaymentExperiencesNegative;
-                            naApplication.Number_of_Payments_Slow__c = dnbNAFleetModelResponse.NumberPaymentExperiencesSlow;
-                            naApplication.Satisfactory_Trades__c = dnbNAFleetModelResponse.NumberPaymentExperiencesSatisfactory;
-                            naApplication.DNB_Trade_Lines__c = dnbNAFleetModelResponse.NumberOfTrades;
-                            naApplication.DNB_Reason_Code__c = String.join(dnbNAFleetModelResponse.ReasonCodes, ', ');
+                                naApplication.DNB_Score__c = dnbNAFleetModelResponse.RawScore;
+                                naApplication.DNB_Credit_Line_Recommendation__c = dnbNAFleetModelResponse.RecommendedCreditLimitAmount;
+                                naApplication.DNB_Model__c = dnbNAFleetModelResponse.ModelUsed;
+                                naApplication.SIC_Code__c = dnbNAFleetModelResponse.PrimarySIC;
+                                naApplication.DNB_Resolved_DUNS__c = dnbNAFleetModelResponse.DunsNumber;
+                                naApplication.DUNS_Number__c = dnbNAFleetModelResponse.DunsNumber;
+                                naApplication.Global_Ultimate_DUNS__c = dnbNAFleetModelResponse.GlobalUltimateDUNS;
+                                naApplication.DNB_Resolved_Name__c = dnbNAFleetModelResponse.PrimaryName;
+                                naApplication.DNB_Resolved_Address__c = dnbNAFleetModelResponse.AddressLine;
+                                naApplication.DNB_Resolved_City__c = dnbNAFleetModelResponse.PostalTown;
+                                naApplication.DNB_Resolved_State__c = dnbNAFleetModelResponse.PrimaryGeographicArea;
+                                naApplication.DNB_Resolved_Postal_Code__c = dnbNAFleetModelResponse.PostalCode;
+                                naApplication.DNB_Resolved_Country__c = dnbNAFleetModelResponse.CountryCode;
+                                naApplication.DNB_SBFE_High_Credit__c = dnbNAFleetModelResponse.SBFEHighCredit;
+                                naApplication.DNB_CSAD_High_Credit__c = dnbNAFleetModelResponse.CSADHighCredit;
+                                naApplication.DNB_SBRI_Card_Score__c = dnbNAFleetModelResponse.SBRICardScore;
+                                naApplication.Bankruptcy_Date__c = dnbNAFleetModelResponse.BankruptcyDateOfFiling;
+                                naApplication.Bureau_Tax_ID__c = dnbNAFleetModelResponse.FeinTaxID;
+                                naApplication.Paydex__c = dnbNAFleetModelResponse.Paydex;
+                                naApplication.Control_Year__c = String.valueOf(dnbNAFleetModelResponse.ControlYear);
+                                naApplication.Year_Started__c = String.valueOf(dnbNAFleetModelResponse.YearStarted);
+                                naApplication.Number_of_Payments_Negative__c = dnbNAFleetModelResponse.NumberPaymentExperiencesNegative;
+                                naApplication.Number_of_Payments_Slow__c = dnbNAFleetModelResponse.NumberPaymentExperiencesSlow;
+                                naApplication.Satisfactory_Trades__c = dnbNAFleetModelResponse.NumberPaymentExperiencesSatisfactory;
+                                naApplication.DNB_Trade_Lines__c = dnbNAFleetModelResponse.NumberOfTrades;
+                                naApplication.DNB_Reason_Code__c = String.join(dnbNAFleetModelResponse.ReasonCodes, ', ');
+
+                            } else {
+                                naApplication.DNB_Score__c = 0;
+                            }
+
+                        } else if (naApplication.Physical_Country__c != null && (naApplication.Physical_Country__c).equalsIgnoreCase('CA')) {
+
+                            CreditWS_DNB.DNBCAModelRequest dnbCAModelRequest = new CreditWS_DNB.DNBCAModelRequest();
+
+                            dnbCAModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
+                            dnbCAModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(naApplication.Requested_Credit_Limit__c));
+                            dnbCAModelRequest.Platforms = 'FLEET';
+                            dnbCAModelRequest.BOCAType = 1;
+
+                            CreditWS_DNB.DNBCAModelResponse dnbCAModelResponse = CreditWS_DNB.getCAScore(dnbCAModelRequest);
+
+                            if (dnbCAModelResponse != null) {
+
+                                naApplication.DNB_Score__c = dnbCAModelResponse.RawScore;
+                                naApplication.DNB_Credit_Line_Recommendation__c = dnbCAModelResponse.RecommendedCreditLimitAmount;
+                                naApplication.SIC_Code__c = dnbCAModelResponse.PrimarySIC;
+                                naApplication.DNB_Resolved_DUNS__c = dnbCAModelResponse.DunsNumber;
+                                naApplication.DUNS_Number__c = dnbCAModelResponse.DunsNumber;
+                                naApplication.Global_Ultimate_DUNS__c = dnbCAModelResponse.GlobalUltimateDUNS;
+                                naApplication.DNB_Resolved_Name__c = dnbCAModelResponse.PrimaryName;
+                                naApplication.DNB_Resolved_Address__c = dnbCAModelResponse.AddressLine;
+                                naApplication.DNB_Resolved_City__c = dnbCAModelResponse.PostalTown;
+                                naApplication.DNB_Resolved_State__c = dnbCAModelResponse.PrimaryGeographicArea;
+                                naApplication.DNB_Resolved_Postal_Code__c = dnbCAModelResponse.PostalCode;
+                                naApplication.DNB_Resolved_Country__c = dnbCAModelResponse.CountryCode;
+                                naApplication.DNB_SBFE_High_Credit__c = dnbCAModelResponse.SBFEHighCredit;
+                                naApplication.DNB_CSAD_High_Credit__c = dnbCAModelResponse.CSADHighCredit;
+                                naApplication.DNB_SBRI_Card_Score__c = dnbCAModelResponse.SBRICardScore;
+                                naApplication.Bureau_Tax_ID__c = dnbCAModelResponse.FeinTaxID;
+                                naApplication.Paydex__c = dnbCAModelResponse.Paydex;
+                                naApplication.Control_Year__c = String.valueOf(dnbCAModelResponse.ControlYear);
+                                naApplication.Year_Started__c = String.valueOf(dnbCAModelResponse.YearStarted);
+                                naApplication.Number_of_Payments_Negative__c = dnbCAModelResponse.NumberPaymentExperiencesNegative;
+                                naApplication.Number_of_Payments_Slow__c = dnbCAModelResponse.NumberPaymentExperiencesSlow;
+                                naApplication.Satisfactory_Trades__c = dnbCAModelResponse.NumberPaymentExperiencesSatisfactory;
+                                naApplication.DNB_Trade_Lines__c = dnbCAModelResponse.NumberOfTrades;
+                                naApplication.DNB_Reason_Code__c = String.join(dnbCAModelResponse.ReasonCodes, ', ');
+
+                            } else {
+                                naApplication.DNB_Score__c = 0;
+                            }
 
                         }
-                        else {
-                            naApplication.DNB_Score__c = 0;
-                        }
-
-                    } else if (naApplication.Physical_Country__c != null && (naApplication.Physical_Country__c).equalsIgnoreCase('CA')) {
-
-                        CreditWS_DNB.DNBCAModelRequest dnbCAModelRequest = new CreditWS_DNB.DNBCAModelRequest();
-
-                        dnbCAModelRequest.DnB_DUNS_Number = dnbDirectMatchResponse.matchCandidates[0].DUNSNumber;
-                        dnbCAModelRequest.RequestedCreditLimit = String.valueOf(Integer.valueOf(naApplication.Requested_Credit_Limit__c));
-                        dnbCAModelRequest.Platforms = 'FLEET';
-                        dnbCAModelRequest.BOCAType = 1;
-
-                        CreditWS_DNB.DNBCAModelResponse dnbCAModelResponse = CreditWS_DNB.getCAScore(dnbCAModelRequest);
-
-                        if (dnbCAModelResponse != null) {
-
-                            naApplication.DNB_Score__c = dnbCAModelResponse.RawScore;
-                            naApplication.DNB_Credit_Line_Recommendation__c = dnbCAModelResponse.RecommendedCreditLimitAmount;
-                            naApplication.SIC_Code__c = dnbCAModelResponse.PrimarySIC;
-                            naApplication.DNB_Resolved_DUNS__c = dnbCAModelResponse.DunsNumber;
-                            naApplication.DUNS_Number__c = dnbCAModelResponse.DunsNumber;
-                            naApplication.Global_Ultimate_DUNS__c = dnbCAModelResponse.GlobalUltimateDUNS;
-                            naApplication.DNB_Resolved_Name__c = dnbCAModelResponse.PrimaryName;
-                            naApplication.DNB_Resolved_Address__c = dnbCAModelResponse.AddressLine;
-                            naApplication.DNB_Resolved_City__c = dnbCAModelResponse.PostalTown;
-                            naApplication.DNB_Resolved_State__c = dnbCAModelResponse.PrimaryGeographicArea;
-                            naApplication.DNB_Resolved_Postal_Code__c = dnbCAModelResponse.PostalCode;
-                            naApplication.DNB_Resolved_Country__c = dnbCAModelResponse.CountryCode;
-                            naApplication.DNB_SBFE_High_Credit__c = dnbCAModelResponse.SBFEHighCredit;
-                            naApplication.DNB_CSAD_High_Credit__c = dnbCAModelResponse.CSADHighCredit;
-                            naApplication.DNB_SBRI_Card_Score__c = dnbCAModelResponse.SBRICardScore;
-                            naApplication.Bureau_Tax_ID__c = dnbCAModelResponse.FeinTaxID;
-                            naApplication.Paydex__c = dnbCAModelResponse.Paydex;
-                            naApplication.Control_Year__c = String.valueOf(dnbCAModelResponse.ControlYear);
-                            naApplication.Year_Started__c = String.valueOf(dnbCAModelResponse.YearStarted);
-                            naApplication.Number_of_Payments_Negative__c = dnbCAModelResponse.NumberPaymentExperiencesNegative;
-                            naApplication.Number_of_Payments_Slow__c = dnbCAModelResponse.NumberPaymentExperiencesSlow;
-                            naApplication.Satisfactory_Trades__c = dnbCAModelResponse.NumberPaymentExperiencesSatisfactory;
-                            naApplication.DNB_Trade_Lines__c = dnbCAModelResponse.NumberOfTrades;
-                            naApplication.DNB_Reason_Code__c = String.join(dnbCAModelResponse.ReasonCodes, ', ');
-
-                        }
-                        else {
-                            naApplication.DNB_Score__c = 0;
-                        }
-
                     }
-
                 } else if(dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null){
                     dnbDirectMatchRequest.SingleResolution = false;
                     dnbDirectMatchResponse = CreditWS_DNB.dnbDirectClenseAndMatch(dnbDirectMatchRequest);
@@ -442,9 +486,9 @@ global class CreditDecisionEngineNA {
 
             }
 
-            // GIACT
+            // GIACT - only available for US applicants
             System.debug('Running GIACT....');
-            if(!String.isBlank(naApplication.Checking_Account_Number__c) && !String.isBlank(naApplication.ABA_Routing_Number__c)) {
+            if(!String.isBlank(naApplication.Checking_Account_Number__c) && !String.isBlank(naApplication.ABA_Routing_Number__c) && naApplication.Physical_Country__c.equalsIgnoreCase('US')) {
 
                 CreditWS_Giact.GiactVerifyRequest giactVerifyRequest = new CreditWS_Giact.GiactVerifyRequest();
 
@@ -458,7 +502,35 @@ global class CreditDecisionEngineNA {
 
                     CreditWS_Giact.GiactVerifyResponse giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
 
-                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage)) {
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage) && giactVerifyResponse.AccountResponseCode.equals('12')) {
+                        // if GIACT returned with a verified checking account but incorrect name and or tax id, re-run using PG information
+                        if (giactVerifyResponse.CustomerResponseCode.equals('1') && naApplication.Personal_Guarantor_First_Name__c != null && naApplication.Personal_Guarantor_Last_Name__c != null && naApplication.Personal_Guarantor_SSN__c != null) {
+                            //re-run using both PG name and SSN
+                            System.debug('Re-running GIACT using PG name and SSN...');
+                            giactVerifyRequest.BusinessName = null;
+                            giactVerifyRequest.FirstName = naApplication.Personal_Guarantor_First_Name__c;
+                            giactVerifyRequest.LastName = naApplication.Personal_Guarantor_Last_Name__c;
+                            giactVerifyRequest.FederalTaxId = naApplication.Personal_Guarantor_SSN__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                        else if (giactVerifyResponse.CustomerResponseCode.equals('3') && naApplication.Personal_Guarantor_First_Name__c != null && naApplication.Personal_Guarantor_Last_Name__c != null) {
+                            //re-run using both PG name
+                            System.debug('Re-running GIACT using PG name...');
+                            giactVerifyRequest.BusinessName = null;
+                            giactVerifyRequest.FirstName = naApplication.Personal_Guarantor_First_Name__c;
+                            giactVerifyRequest.LastName = naApplication.Personal_Guarantor_Last_Name__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                        else if (giactVerifyResponse.CustomerResponseCode.equals('4') && naApplication.Personal_Guarantor_SSN__c != null) {
+                            //re-run using both PG SSN
+                            System.debug('Re-running GIACT using PG SSN...');
+                            giactVerifyRequest.FederalTaxId = naApplication.Personal_Guarantor_SSN__c;
+                            giactVerifyResponse = CreditWS_Giact.giactVerify(giactVerifyRequest);
+                        }
+                    }
+
+
+                    if (giactVerifyResponse != null && String.isBlank(giactVerifyResponse.GiactErrorMessage))   {
 
                         naApplication.GIACT_Account_Response_Code__c = giactVerifyResponse.AccountResponseCode;
                         naApplication.GIACT_Account_Response_Message__c = giactVerifyResponse.AccountResponseMessage;
@@ -478,12 +550,10 @@ global class CreditDecisionEngineNA {
                         if(giactVerifyResponse != null) {
                             naApplication.GIACT_Response_Message__c = giactVerifyResponse.GiactErrorMessage;
                         }
-
                     }
-
                 }
-
             }
+
 
             // Existing Exposure - Application/Account Exposure
             System.debug('Running Existing Exposure....');
@@ -510,9 +580,12 @@ global class CreditDecisionEngineNA {
                 }
             }
 
-            // Upsert and execute BREeze
             naApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
             naApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
+            // iterate through the found existing Accounts to see if any have charge off balances
+            for (CreditUtil_ExistingExposure.ExistingExposureAccounts existingAccounts : existingExposureAccounts) {
+                if (existingAccounts.chargeOffAmount > 0) naApplication.Charged_Off_Account_Found__c = true;
+            }
 
             //IADJUDICAT-739 wait until the last moment to set dnb hits bc we live life on the edge
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null)
@@ -520,10 +593,11 @@ global class CreditDecisionEngineNA {
             else
                     naApplication.DNB_Lookup_Hits__c = 0;
 
+        // Upsert and execute BREeze
             upsert naApplication;
 
             // Make a safe copy so we don't overwrite any fields
-            naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :naApplicationId];
+            List<Application_Request__c> naApplications = [SELECT Id, Running_Credit_Decisioning__c FROM Application_Request__c WHERE Id = :naApplication.Id];
 
             if (naApplications.size() > 0) {
 
@@ -535,7 +609,7 @@ global class CreditDecisionEngineNA {
 
 
             // Run counter-offer processes
-            naApplications = [SELECT Id, PG_Required__c, PG_Data__c, Personal_Guarantor__c, Personal_Guarantor_Mailing_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM Application_Request__c WHERE Id = :naApplicationId];
+            naApplications = [SELECT Id, PG_Required__c, PG_Data__c, Personal_Guarantor__c, Personal_Guarantor_Mailing_Country__c, Opportunity__r.Pull_PG_Credit__c, PG_FICO_Score__c FROM Application_Request__c WHERE Id = :naApplication.Id];
 
             if (naApplications.size() > 0) {
 
@@ -549,7 +623,7 @@ global class CreditDecisionEngineNA {
                         && !TestUtils.isRunningTest()) {
 
                     if(appRequest.Personal_Guarantor_Mailing_Country__c == null || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('US') || (appRequest.Personal_Guarantor_Mailing_Country__c).equalsIgnoreCase('United States')) {
-                        System.debug('Running Edxperian....');
+                        System.debug('Running Experian....');
                         CreditDecisionEngineQueueable.runExperianPGChecks(naApplications[0].Id);
                         sendToFinalDecision = false;
                     }
@@ -566,7 +640,7 @@ global class CreditDecisionEngineNA {
 
         }
 
-    }
+
     public static void runFinalCreditDecision(Application_Request__c appRequest) {
 
         String query = UtilityClass.selectStar('Application_Request__c');
@@ -586,5 +660,17 @@ global class CreditDecisionEngineNA {
         } catch (Exception e) {
             insert UtilityClass.logInternalError(e, '', 'CreditDecisionEngineNA.runFinalCreditDecision', true, '', appRequest.id);
         }
+    }
+
+    public static Boolean pullCredit(BREeze.ProcessRules.ruleDataSet breezeResults, String DUNS) {
+
+        if (breezeResults.records != null && breezeResults.records[0].get('BPAV_Check__c') != null && (breezeResults.records[0].get('BPAV_Check__c').toString()).equalsIgnoreCase('Passed')) {
+            return true;
+        }
+        else if (DUNS != null) {
+            // if a credit analyst manually selected the business
+            return true;
+        }
+        return false;
     }
 }

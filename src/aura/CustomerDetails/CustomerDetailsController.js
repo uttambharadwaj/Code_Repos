@@ -37,6 +37,7 @@
         ]);
 
         component.set("v.paymentDetailsColumnList", [
+            {label: "Deposit ID", fieldName: "depositId", type: "text", sortable: false, initialWidth: 150 },
             {label: "Payment ID", fieldName: "paymentId", type: "text", sortable: false, initialWidth: 150 },
             {label: "Accounting Date", fieldName: "accountingDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 160},
             {label: "Posting Date", fieldName: "postingDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
@@ -65,6 +66,8 @@
             {label: "Posting Date", fieldName: "postingDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
             {label: "Payment Amt", fieldName: "amount", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 130, cellAttributes: { alignment: 'right' }},
             {label: "Updated Date", fieldName: "updateDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
+            {label: "Status of Hold", fieldName: "holdStatus", type: "text", sortable: false, initialWidth: 120 },
+            {label: "Currency Label", fieldName: "currency_x", type: "text", sortable: false, initialWidth: 120 },
         ]);
 
         component.set("v.past3InvoicesColumnList", [
@@ -444,5 +447,37 @@
         component.find("pendingPaymentsTable").set("v.sortedDirection", sortDirection);
         helper.sortTxnData(component, fieldName, sortDirection);
 
-    }
+    },
+    toogleSplitView: function (component, event, helper) {
+        console.log('toogleSplitView--------->',JSON.stringify(event.target.getAttribute('id')));
+        let expandSplitView = false;
+        if(event.target.getAttribute('id') == "left"){
+            event.target.setAttribute('aria-expanded','false');
+            event.target.parentNode.setAttribute('class','slds-split-view_container slds-is-closed');
+            event.target.setAttribute('class','slds-button slds-button_icon slds-button_icon slds-split-view__toggle-button slds-is-closed');
+            event.target.setAttribute('id','right');
+            component.set('v.showOtrCOntractDetails',true);
+
+        } else {
+            event.target.setAttribute('aria-expanded','true');
+            event.target.parentNode.setAttribute('class','slds-split-view_container slds-is-open');
+            event.target.setAttribute('class','slds-button slds-button_icon slds-button_icon slds-split-view__toggle-button slds-is-open');
+            event.target.setAttribute('id','left');
+            component.set('v.showOtrCOntractDetails',false);
+        }
+    },
+
+
+    reloadContract: function(component, event, helper) {
+        helper.reloadContract(component, event, helper);
+    },
+
+    showContract: function (component, event, helper) {
+        console.log('Show Contract--------->',event.target.getAttribute('id'));
+        let index = event.target.getAttribute('id');
+        let otrContractList = component.get('v.customerDetails.otrContracts.entry');
+        component.set('v.showOtrCOntractDetails',true);
+        component.set("v.otrContractObj",otrContractList[index].value);
+		helper.reloadContract(component, event, helper);
+	}
 })
