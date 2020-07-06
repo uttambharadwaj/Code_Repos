@@ -7,7 +7,15 @@
 */
 public class UCase
 {
+	private static final Map<String, String> contactTypePriorities = new Map<String, String>{
+			'PRIMARY' => 'A',
+			'SHIPPING' => 'B',
+			'ACCOUNTS PAYABLE' => 'C',
+			'BILLING' => 'D',
+			'CONTACT' => 'E',
 
+            'NONE' => 'Z'
+	};
     private static final String SHELL_SLA = 'Shell SLA';
     //private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
     private static Boolean hasRunOnceUpdate = false;
@@ -700,10 +708,12 @@ public class UCase
     public static void associateContact(List<Case> records, Map<Id, Case> oldMap)
     {
         if (oldMap == null) {
-            Id serviceOpsRecordTypeId = UtilityClass.getRecTypeByDevName('Case', 'Service_Operations');
-            Set<Id> contactIds = new Set<Id> ();
+			Set<Id> primaryContactEnabledRecordTypes = UtilityClass.getRecTypeByDevName('Case', new List<String>{'Service_Operations', 'Credit'});
+
+			Set<Id> contactIds = new Set<Id> ();
             Set<Id> accountIds = new Set<Id>();
-            Map<Id, Id> accountToContact = new Map<Id, Id>();
+            Map<Id, Map<String, Id>> accountToContacts = new Map<Id, Map<String,Id>>();
+
             for (Case c : records) {
                 if (c.SuppliedEmail != null && c.ContactId != null) {
                     contactIds.add(c.ContactId);
@@ -713,13 +723,18 @@ public class UCase
                 }
             }
 
-            // ============ Collections Primary Contact ============
-            for (Contact contact : [ SELECT Id,AccountId FROM Contact WHERE AccountId IN :accountIds AND Contact_Type__c = 'PRIMARY' ]) {
-                if (accountToContact.get(contact.AccountId) == null) {
-                    accountToContact.put(contact.AccountId, contact.Id);
-                }
-            }
-            // ============
+			// ============ Collections Primary Contact ============
+			for (Contact contact : [ SELECT Id,AccountId,Contact_Type__c FROM Contact WHERE AccountId IN :accountIds ]) {
+
+				String contactType = contact.Contact_Type__c != null && contactTypePriorities.get(contact.Contact_Type__c.toUpperCase()) != null ? contact.Contact_Type__c.toUpperCase() : 'NONE';
+				contactType = contactTypePriorities.get(contactType) + contactType;
+
+				if (accountToContacts.get(contact.AccountId) == null) accountToContacts.put(contact.AccountId, new Map<String,Id>());
+				accountToContacts.get(contact.AccountId).put(contactType, contact.Id);
+
+			}
+
+			// ============
 
             Map<Id, Contact> nonPilotCtMap = new Map<Id, Contact> ([SELECT Id FROM Contact WHERE Id IN :contactIds AND Pilot_Flag__c = false]);
 
@@ -739,11 +754,17 @@ public class UCase
 
             for (Case c : records) {
 
-                // ============ Collections Primary Contact ============
-                Boolean isCollectionsCase = ((c.RecordTypeId == serviceOpsRecordTypeId) && UserInfo.getName() == 'Credit Monitoring');
-                if (isCollectionsCase) {
-                    if (c.AccountId != null && accountToContact.get(c.AccountId) != null) {
-                        c.ContactId = accountToContact.get(c.AccountId);
+                // ============ Collections & Credit Primary Contact ============
+                Boolean isEnabledCase = (c.RecordTypeId != null && primaryContactEnabledRecordTypes.contains(c.RecordTypeId) && UserInfo.getName() == 'Credit Monitoring');
+                if (isEnabledCase) {
+                    if (c.AccountId != null && accountToContacts.get(c.AccountId) != null) {
+						Map<String, Id> relatedContacts = accountToContacts.get(c.AccountId);
+
+						// Primary needs to be selected using priority(If a PRIMARY contact, use it. If not use the SHIPPING... etc. See contactTypePriorities)
+						List<String> priortizedContacts = new List<String>(relatedContacts.keySet());
+						priortizedContacts.sort();
+
+						c.ContactId = relatedContacts.get(priortizedContacts[0]);
                     }
                 }
                 // ============
