@@ -1449,6 +1449,25 @@
                                 <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                                     <div class="slds-media__body">
                                         <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                            <div class="slds-text-heading--label">Last Payment Amount</div>
+                                        </div>
+                                        <div class="slds-tile__detail">
+                                            <div class="slds-text-heading--small">
+                                               <span class="pricing-structure-indicator">
+                                                    <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.lastPaymentAmount == null }">
+                                                        N/A
+                                                        <aura:set attribute="else">
+                                                           <ui:outputCurrency value="{!v.otrContractObj.lastPaymentAmount}"/>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
                                             <div class="slds-text-heading--label">MC Limit</div>
                                         </div>
                                         <div class="slds-tile__detail">
@@ -1790,8 +1809,10 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
-                                    <ui:outputCurrency value="{!v.customerDetails.onlinePayVelocity}"/>
                                     <aura:if isTrue="{!v.customerDetails.onlinePayVelocity == null || v.customerDetails.onlinePayVelocity == ' '}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.onlinePayVelocity != null}">
+                                        {!v.customerDetails.onlinePayVelocity}
+                                    </aura:if>
                                 </div>
                             </div>
                         </div>
