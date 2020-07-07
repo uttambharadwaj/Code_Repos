@@ -460,6 +460,9 @@
                         <div class="slds-truncate" title="Product Name">Product Name</div>
                     </th>
                     <th scope="col">
+                        <div class="slds-truncate" title="Enrolled">Enrolled</div>
+                    </th>
+                    <th scope="col">
                         <div class="slds-truncate" title="Effective Date">Effective Date</div>
                     </th>
                     <th scope="col">
@@ -471,6 +474,7 @@
                 <aura:if isTrue="{!v.customerDetails.wrightRewardsCustomer == true}">
                     <tr>
                         <td data-label="Product Name">Wright Rewards</td>
+                        <td data-label="Enrolled">Yes </td>
                         <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.wrightRewardsCustomerStartDt}" /></td>
                         <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.wrightRewardsCustomerEndDt}" /></td>
                     </tr>
@@ -478,6 +482,7 @@
                 <aura:if isTrue="{!v.customerDetails.telematicsCustomer == true}">
                     <tr>
                         <td data-label="Product Name">Telematics</td>
+                        <td data-label="Enrolled">Yes </td>
                         <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.telematicsCustomerStartDt}" /></td>
                         <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.telematicsCustomerEndDt}" /></td>
                     </tr>
@@ -485,10 +490,27 @@
                 <aura:if isTrue="{!v.customerDetails.clearViewCustomer == true}">
                     <tr>
                         <td data-label="Product Name">ClearView</td>
+                        <td data-label="Enrolled">Yes </td>
                         <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.clearViewCustomerStartDt}" /></td>
                         <td data-label="Expiration Date"><lightning:formattedDateTime value="{!v.customerDetails.clearViewCustomerEndDt}" /></td>
                     </tr>
                 </aura:if>
+
+                <tr>
+                    <td data-label="Product Name">Wex pay</td>
+                    <aura:if isTrue="{!v.customerDetails.wexPayEnrolled == true}">
+                        <td data-label="Enrolled">Yes </td>
+                        <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.accountSinceDt}" /></td>
+                    </aura:if>
+                    <aura:if isTrue="{!v.customerDetails.wexPayEnrolled != true}">
+                        <td data-label="Enrolled">No</td>
+                        <td data-label="Effective Date">N/A</td>
+                    </aura:if>
+
+                    <td data-label="Expiration Date">N/A</td>
+                </tr>
+                
+                <!--
                 <aura:if isTrue="{!v.customerDetails.wrightRewardsCustomer == false &amp;&amp; v.customerDetails.telematicsCustomer == false &amp;&amp; v.customerDetails.clearViewCustomer == false}">
                     <tr class="no-results">
                         <td colspan="3">
@@ -496,6 +518,7 @@
                         </td>
                     </tr>
                 </aura:if>
+                -->
                 </tbody>
             </table><br/>
             <div class="slds-page-header">
@@ -504,6 +527,9 @@
                         <span class="slds-icon_container slds-icon-standard-opportunity" title="Description of icon when needed">
                             <lightning:icon iconName="standard:account" variant="error" size="small" />
                         </span>
+
+
+
                     </div>
                     <div class="slds-media__body">
                         <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Address Information</h1>

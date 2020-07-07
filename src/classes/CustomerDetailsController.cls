@@ -245,6 +245,15 @@ public without sharing class CustomerDetailsController {
             if(String.isEmpty(customerDetails.accountNm)) {
                 throw new customerDetailsException('Unable to retrieve account information: '+accountNumber + ', '+accountRecordId + ', pdRowId' +  (String.isEmpty(pdRowidString) ? ' not' : '')+' provided');
             }
+            if (customerDetails.wexpayEnrolled == null) {
+                customerDetails.wexpayEnrolled=false;
+            }
+            if(accountRecordId != null){
+                Account[] accts = [SELECT Id , WexPay_Enrolled__c FROM Account WHERE Id =: accountRecordId];
+                if (accts.size() > 0) {
+                    customerDetails.wexpayEnrolled = accts[0].WexPay_Enrolled__c == null ?  false : accts[0].WexPay_Enrolled__c;
+                }
+            }
 
             return customerDetails;
 
