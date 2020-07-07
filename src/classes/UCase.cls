@@ -7,16 +7,16 @@
 */
 public class UCase
 {
-	private static final Map<String, String> contactTypePriorities = new Map<String, String>{
+    private static final Map<String, String> contactTypePriorities = new Map<String, String>{
             'COLLECTIONS' => 'A',
-			'PRIMARY' => 'B',
+            'PRIMARY' => 'B',
             'BILLING' => 'C',
-			'SHIPPING' => 'D',
-			'ACCOUNTS PAYABLE' => 'E',
-			'CONTACT' => 'F',
+            'SHIPPING' => 'D',
+            'ACCOUNTS PAYABLE' => 'E',
+            'CONTACT' => 'F',
 
             'NONE' => 'Z'
-	};
+    };
     private static final String SHELL_SLA = 'Shell SLA';
     //private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
     private static Boolean hasRunOnceUpdate = false;
