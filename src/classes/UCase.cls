@@ -8,11 +8,12 @@
 public class UCase
 {
 	private static final Map<String, String> contactTypePriorities = new Map<String, String>{
-			'PRIMARY' => 'A',
-			'SHIPPING' => 'B',
-			'ACCOUNTS PAYABLE' => 'C',
-			'BILLING' => 'D',
-			'CONTACT' => 'E',
+            'COLLECTIONS' => 'A',
+			'PRIMARY' => 'B',
+            'BILLING' => 'C',
+			'SHIPPING' => 'D',
+			'ACCOUNTS PAYABLE' => 'E',
+			'CONTACT' => 'F',
 
             'NONE' => 'Z'
 	};
