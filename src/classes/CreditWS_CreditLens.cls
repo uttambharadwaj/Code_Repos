@@ -523,7 +523,10 @@ global class CreditWS_CreditLens {
                 creditLensRequest.Division = 'Corporate';
                 creditLensRequest.CreditPortfolio = 'WexBank';
                 creditLensRequest.WexCreditInformationOn = cpApp.Financials_Completed_For__c;
-                if (cpApp.Billing_Cycle__c != null) creditLensRequest.BillingCycle = cpApp.Billing_Cycle__c;
+                if (cpApp.Billing_Cycle__c != null) {
+                    String billingCycle = getBillingCycle(cpApp.Billing_Cycle__c);
+                    if (billingCycle != null) creditLensRequest.BillingCycle = billingCycle;
+                }
 //                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //cannot send because the picklist values don't match in Credit Lens
                 if (cpApp.Credit_Line_Requested__c != null) creditLensRequest.WexRequestCreditLineAmount = String.valueOf(cpApp.Credit_Line_Requested__c);
                 if (cpApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexRecommendedCreditLine = String.valueOf(cpApp.Credit_Line_Recommendation__c);
@@ -1083,6 +1086,7 @@ global class CreditWS_CreditLens {
      * Ghetto hack for mapping the frequency to a billing cycle that matches values in Credit Lens.
      * OTR has billing cycles that call out specific days of the week, the easiest way to map the
      * Billing Cycle to Credit Lens is to extrapolate the value from the payment frequency.
+     * For CP most billing cycles match, aside from Bi-Weekly.
      * @return
      */
     private static String getBillingCycle(String paymentFrequency) {
@@ -1100,8 +1104,11 @@ global class CreditWS_CreditLens {
             when 'TRIPLE_PLAY' {
                 return '3xWeekly';
             }
+            when 'Bi-Weekly' {
+                return 'BiWeekly';
+            }
             when else {
-                return null;
+                return paymentFrequency;
             }
         }
     }
