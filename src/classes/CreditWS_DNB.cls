@@ -232,7 +232,7 @@ public class CreditWS_DNB {
 								}
 							}
                             if (result.telephone != null) matchCandidate.TelephoneNumber = result.telephone.telephoneNumber; // SBFE callout only
-                            if (result.telephones != null) matchCandidate.TelephoneNumber = result.telephones[0].telephoneNumber;  // CleanseMatch callout
+                            if (result.telephones != null && !result.telephones.isEmpty()) matchCandidate.TelephoneNumber = result.telephones[0].telephoneNumber;  // CleanseMatch callout
                             if (result.dunsControlStatus != null && result.dunsControlStatus.operatingStatus != null) matchCandidate.OperatingStatus = result.dunsControlStatus.operatingStatus.description;
 
                             // Match Grade String represents how close of a match each attribute the applicant supplied compared to what DNB found
