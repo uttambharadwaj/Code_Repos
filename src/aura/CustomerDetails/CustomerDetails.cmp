@@ -498,11 +498,11 @@
 
                 <tr>
                     <td data-label="Product Name">Wex pay</td>
-                    <aura:if isTrue="{!v.customerDetails.wexPayEnrolled == true}">
+                    <aura:if isTrue="{!v.customerDetails.wexpayEnrolled == true}">
                         <td data-label="Enrolled">Yes </td>
                         <td data-label="Effective Date"><lightning:formattedDateTime value="{!v.customerDetails.accountSinceDt}" /></td>
                     </aura:if>
-                    <aura:if isTrue="{!v.customerDetails.wexPayEnrolled != true}">
+                    <aura:if isTrue="{!v.customerDetails.wexpayEnrolled != true}">
                         <td data-label="Enrolled">No</td>
                         <td data-label="Effective Date">N/A</td>
                     </aura:if>
