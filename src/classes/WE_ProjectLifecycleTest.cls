@@ -8,7 +8,7 @@ public class WE_ProjectLifecycleTest {
 
     static testMethod void testNewProjectMonths(){
         
-        Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator - Wex Europe'];
+        Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
         
         // create User
         User[] userList = new User[]{};
