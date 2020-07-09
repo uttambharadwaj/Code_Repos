@@ -312,7 +312,7 @@ public with sharing class CreditUtil_CalculateCreditLineTest {
             System.assertEquals(11000, oa);
 
             /** TEST FOR REVOLVER CARD */
-            //todo need to create new App Request record in test data  that is using a Revolver Card Program. Query for that record here before running the following tests
+            //todo need to create new App Request record in test data  that is using a Revolver Card Program. Query for that record here before running the following tests, then remove revolver test from CreditDecisionEngineNATest
 //            // Revolver Card Table 1/2 matrix
 //            appRequest[0].Risk_Grade__c = '1';
 //            appRequest[0].PG_Required__c = false;
