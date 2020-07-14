@@ -8,9 +8,9 @@
         <div slot="title">
             <span class="slds-card__header-link">Related Tasks</span>
         </div>
-        <!-- commenting out tabs for create new as that will be future functionality
-            <lightning-tabset>
-            <lightning-tab label="Tasks" title="Tasks">-->
+            <!-- <lightning-tabset>
+            Removing "New Task" tab as Task isn't supported by the uiRecordApi, so this was a lost cause of hardcoding values.
+            <lightning-tab label="Tasks" title="Tasks"> -->
                 <c-related-tasks-filter
                     task-type-filter={taskTypeFilter}
                     onfilterapplied={handledFilterApplied}
@@ -38,14 +38,15 @@
                         pagesize={pagesize}>
                     </c-related-tasks-pagination>
                 </div>
-            <!--commenting out tabs for create new as that will be future functionality
-                </lightning-tab>
+            <!-- </lightning-tab>
             <lightning-tab label="New Task" title="New">
                 <c-related-task-create-new
                     record-id={recordId}
+                    default-subject={defaultSubject}
+                    new-task-record-type-id= {newTaskRecordTypeId}
                 >
                 </c-related-task-create-new>
             </lightning-tab>
-        </lightning-tabset>-->
+        </lightning-tabset> -->
     </lightning-card>
 </template>
