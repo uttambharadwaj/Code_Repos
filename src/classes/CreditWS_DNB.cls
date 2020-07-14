@@ -230,6 +230,7 @@ public class CreditWS_DNB {
 									matchCandidate.MatchGradeText = matchCandidateResponse.MatchQualityInformation.matchGrade;
 									if (matchCandidateResponse.MatchQualityInformation.matchGrade == 'AAAAAAAAAAA') dnbDirectMatchResponse.exactDUNSMatch = true;
 								}
+                                if (matchCandidateResponse.matchQualityInformation.nameMatchScore != null) matchCandidate.NameMatchScore = matchCandidateResponse.matchQualityInformation.nameMatchScore;
 							}
                             if (result.telephone != null) matchCandidate.TelephoneNumber = result.telephone.telephoneNumber; // SBFE callout only
                             if (result.telephones != null && !result.telephones.isEmpty()) matchCandidate.TelephoneNumber = result.telephones[0].telephoneNumber;  // CleanseMatch callout
@@ -1894,6 +1895,10 @@ public class CreditWS_DNB {
             set;
         }
         public String PostalCodeMatchDataProfile {
+            get;
+            set;
+        }
+        public Double NameMatchScore {
             get;
             set;
         }
