@@ -313,6 +313,139 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
 
                 response.put('response_x', responseElement);
 
+            } else if ((customerDetailsRequest.accountID).equalsIgnoreCase('123456') && (customerDetailsRequest.accountIdType.equalsIgnoreCase('EFSLLC'))) {
+
+                CustomerDetailsWSUtilv2.getCustomerDetailsResponse responseElement = new CustomerDetailsWSUtilv2.getCustomerDetailsResponse();
+
+                responseElement.return_x = new CustomerDetailsWSUtilv2.customerDetails();
+
+                responseElement.return_x.accountNbrType = 'EFSLLC';
+                responseElement.return_x.accountNm = 'Hub Cap Annie &amp; Wheel of Idaho Inc';
+                responseElement.return_x.accountSinceDt = (Datetime) JSON.deserialize('"2015-04-15T00:00:00-04:00"', Datetime.class);
+                responseElement.return_x.accountSts = 'A';
+                responseElement.return_x.accountStsDt = (Datetime) JSON.deserialize('"2015-04-15T00:00:00-04:00"', Datetime.class);
+                responseElement.return_x.accountingFee = 10.00;
+                responseElement.return_x.accountingFeeDescription = 'Accounting Fee';
+                responseElement.return_x.acctRowId = '2-ZZZZZ-011';
+                responseElement.return_x.arNumber = '9100000000000';
+                responseElement.return_x.availableCreditLmt = 7179.69;
+                responseElement.return_x.billingAccountId = '9100000000000';
+                responseElement.return_x.billtoAccountNm = 'Hub Cap Annie &amp; Wheel of Idaho Inc';
+                responseElement.return_x.cashEnabledIndicator = false;
+                responseElement.return_x.clearViewCustomer = true;
+                responseElement.return_x.contractEndDt = (Datetime) JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
+                responseElement.return_x.contractName = 'Dummy Customer Contract Name: 9100003325428';
+                responseElement.return_x.contractNm = 'Dummy Contract Name: 9100003325428';
+                responseElement.return_x.contractStartDt = (Datetime) JSON.deserialize('"1970-01-01T00:00:00-05:00"', Datetime.class);
+                responseElement.return_x.costPlusIndicator = true;
+                responseElement.return_x.creditScore = 85;
+                responseElement.return_x.currentBillingCycle = 2;
+                responseElement.return_x.currentInvoiceClosingDt = (Datetime) JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
+                responseElement.return_x.currentInvoiceDueDt = (Datetime) JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
+                responseElement.return_x.customerId = '4715696';
+                responseElement.return_x.customerIdentifier = '4715696';
+                responseElement.return_x.customerNm = 'Hub Cap Annie &amp; Wheel of Idaho Inc';
+                responseElement.return_x.customerSegmentation = '3';
+                responseElement.return_x.customerSinceDt = (Datetime) JSON.deserialize('"2015-04-15T00:00:00-04:00"', Datetime.class);
+                responseElement.return_x.daysToPay = 26;
+                responseElement.return_x.discountIndicator = true;
+                responseElement.return_x.evergreenIndicator = false;
+                responseElement.return_x.financeChargeRteType = 'Negotiated, Waived Finance Chg';
+                responseElement.return_x.fleetOneCustomer = false;
+                responseElement.return_x.flexCardCustomer = false;
+                responseElement.return_x.flexCardPenaltyPricingIndicator = 'N';
+                responseElement.return_x.funder = 'FSC';
+                responseElement.return_x.highCreditRiskFeeIndicator = false;
+                responseElement.return_x.highRiskCureDt = (Datetime) JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
+                responseElement.return_x.lastPaymentDt = (Datetime) JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
+                responseElement.return_x.masterCardCustomer = false;
+                responseElement.return_x.memberSinceDt = (Datetime) JSON.deserialize('"2000-12-31T00:00:00-05:00"', Datetime.class);
+                responseElement.return_x.monthlyCardFee = 4;
+                responseElement.return_x.outOfNetworkPerTxnFee = 1.0;
+                responseElement.return_x.outOfNetworkProgramOrAccountRte = '0.25';
+                responseElement.return_x.paperWithFeeWaived = 'N';
+                responseElement.return_x.paperless = 'Y';
+                responseElement.return_x.partnerFleetCustomer = false;
+                responseElement.return_x.partnerRebateIndicator = false;
+                responseElement.return_x.pendingTxns = 0.0;
+                responseElement.return_x.pfsRepNm = '000 - Tom';
+                responseElement.return_x.programId = '1-12N3P99';
+                responseElement.return_x.programMaintenanceCharge = '.02 Descriptor';
+                responseElement.return_x.programNm = 'WEX DIRECT UNIVERSAL';
+                responseElement.return_x.sourceSys = 'SIEBEL';
+                responseElement.return_x.spnrAccountNbr = '0496000000000';
+                responseElement.return_x.telematicsCustomer = true;
+                responseElement.return_x.truckStopFee = 0.0;
+                responseElement.return_x.WEXFleetCustomer = true;
+                responseElement.return_x.wexAccountNbr = '9100000000000';
+                responseElement.return_x.wexRebateIndicator = false;
+                responseElement.return_x.wrightRewardsCustomer = false;
+                responseElement.return_x.paperDeliveryFee = 10.00;
+                responseElement.return_x.creditLmt = 8000.00;
+                responseElement.return_x.lastInvoiceBilledAmt = 4000.00;
+                responseElement.return_x.unbilledAmt = 1000.00;
+                responseElement.return_x.contractNbr = 'WEX-000001';
+                responseElement.return_x.periodicFinanceChargeRte = 18.25;
+                responseElement.return_x.flexCardApplicableRte = 18.25;
+                responseElement.return_x.highRiskPercentageRte = 18.25;
+                responseElement.return_x.onlineApplication = 'WOL NP';
+                responseElement.return_x.description = 'Only accept calls from Mark!';
+                responseElement.return_x.monthlyCardFeeDescription = 'TFS';
+                responseElement.return_x.truckStopFeeDescription = 'Waived';
+                responseElement.return_x.servicingRules = 'Proceed with caution.';
+                responseElement.return_x.collectionRiskScore = 999;
+                responseElement.return_x.pastDueAmount = 1000.00;
+                responseElement.return_x.reactivationFee = 50.00;
+                responseElement.return_x.reactivationFeeDescription = 'Reactivation Fee';
+                responseElement.return_x.overLimitFee = 75.00;
+                responseElement.return_x.overLimitFeeDescription = 'OCL Fee';
+                responseElement.return_x.nsfFee = 50.00;
+                responseElement.return_x.nsfFeeDescription = 'NSF Fee';
+
+
+                CustomerDetailsWSUtilv2.address BillingAddress = new CustomerDetailsWSUtilv2.address();
+                BillingAddress.addr1 = '123 Darling Ave';
+                BillingAddress.addr2 = 'Filler';
+                BillingAddress.addr3 = 'Filler';
+                BillingAddress.addr4 = 'Filler';
+                BillingAddress.city = 'South Portland';
+                BillingAddress.state = 'ME';
+                BillingAddress.country = 'US';
+                BillingAddress.orgName = 'WEX';
+                BillingAddress.postalCode = '04106';
+
+                responseElement.return_x.billingAddress = BillingAddress;
+
+                CustomerDetailsWSUtilv2.address MailingAddress = new CustomerDetailsWSUtilv2.address();
+                MailingAddress.addr1 = '123 Darling Ave';
+                MailingAddress.addr2 = 'Filler';
+                MailingAddress.addr3 = 'Filler';
+                MailingAddress.addr4 = 'Filler';
+                MailingAddress.city = 'South Portland';
+                MailingAddress.state = 'ME';
+                MailingAddress.country = 'US';
+                MailingAddress.orgName = 'WEX';
+                MailingAddress.postalCode = '04106';
+
+                responseElement.return_x.mailingAddress = MailingAddress;
+
+                CustomerDetailsWSUtilv2.address ShippingAddress = new CustomerDetailsWSUtilv2.address();
+                ShippingAddress.addr1 = '123 Darling Ave';
+                ShippingAddress.addr2 = 'Filler';
+                ShippingAddress.addr3 = 'Filler';
+                ShippingAddress.addr4 = 'Filler';
+                ShippingAddress.city = 'South Portland';
+                ShippingAddress.state = 'ME';
+                ShippingAddress.country = 'US';
+                ShippingAddress.orgName = 'WEX';
+                ShippingAddress.postalCode = '04106';
+
+                responseElement.return_x.shippingAddress = ShippingAddress;
+
+                responseElement.return_x.contacts = generateContacts().return_x;
+
+                response.put('response_x', responseElement);
+
             } else {
 
                 CustomerDetailsWSUtilv2.getCustomerDetailsResponse responseElement = new CustomerDetailsWSUtilv2.getCustomerDetailsResponse();
@@ -718,6 +851,105 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 responseElement.return_x.errorMsg = 'Unable to retrieve specified data!';
 
                 response.put('response_x', responseElement);
+
+            }
+
+        } else if (request instanceof CustomerDetailsWSUtilv2.getOtrContracts || request instanceof CustomerDetailsWSUtilv2.getOtrContract) {
+            CustomerDetailsWSUtilv2.otrContractsResponse responseElement = new CustomerDetailsWSUtilv2.otrContractsResponse();
+
+            CustomerDetailsWSUtilv2.getOtrContracts contractReq = (CustomerDetailsWSUtilv2.getOtrContracts) request;
+            System.debug(contractReq);
+            if ((contractReq.otrAcctNbr).equalsIgnoreCase('9100000000000')) {
+
+                CustomerDetailsWSUtilv2.contracts_element result = new CustomerDetailsWSUtilv2.contracts_element();
+                Datetime startDate = Datetime.now();
+                Datetime decisionDate = startDate.addDays(-10);
+                String NA = 'N/A';
+
+                CustomerDetailsWSUtilv2.otrContract contract = new CustomerDetailsWSUtilv2.otrContract();
+                contract.arNumber = '9100000000000';
+                contract.availableCreditLmt = 1000.00;
+                contract.billingAcctNbr = '9100000000000';
+                contract.billingCycleDesc = 'DLY';
+                contract.canadianFee = 10.00;
+                contract.canadianFeeDescription = 'canadian fee description';
+                contract.cashEnabledIndicator = true;
+                contract.cashLimit = 1000.00;
+                contract.codeExpiredFee = 10.00;
+                contract.codeExpiredFeeDescription = 'code expired';
+                contract.contractCurrency = 'USD';
+                contract.contractIssuerId = '123456';
+                contract.contractIssuerName = 'Bank of Malta';
+                contract.contractNbr = '012345';
+                contract.contractNm = 'Contract Name';
+                contract.contractStartDt = Datetime.now();
+                contract.contractStatus = 'Active';
+                contract.creditLmt = 1000.00;
+                contract.currentBillingCycle = 1;
+                contract.currentInvoiceClosingDt = Datetime.now().addDays(-5);
+                contract.currentInvoiceDueDt = Datetime.now().addDays(10);
+                contract.daysToPay = 15;
+                contract.debitCycle = 'Debit Cycle';
+                contract.depositAmt = 1000.00;
+                contract.faxFee = 10.00;
+                contract.faxFeeDescription = 'fax fee';
+                contract.financeChargeRteType = 'Finance Chrg';
+                contract.lastInvoiceBilledAmt = 1000.00;
+                contract.lastPaymentAmount = 1000.00;
+                contract.lastPaymentComment = 'Last Pymt';
+                contract.lastPaymentDt = Datetime.now();
+                contract.lastPaymentMethod = 'Cash';
+                contract.lastPaymentStatus = 'APP';
+                contract.moneyCodeLimit = 1000.00;
+                contract.moneyIncrementalFee = 10.00;
+                contract.moneyIncrementalFeeDescription = 'Money Incremental Fee';
+                contract.monthlyCardFee = 10.00;
+                contract.monthlyCardFeeDescription = 'Card Fee';
+                contract.nsfFee = 10.00;
+                contract.nsfFeeDescription = 'NSF Fee';
+                contract.onlinePayAllowed = true;
+                contract.outOfNetworkPerTxnFee = 10.00;
+                contract.outOfNetworkProgramOrAccountRte = 'Out Of network';
+                contract.overLimitFee = 10.00;
+                contract.overLimitFeeDescription = 'OCL Fee';
+                contract.pastDueAmount = 1000.00;
+                contract.payByAgentFee = 10.00;
+                contract.payByAgentFeeDescription = 'PBA Fee';
+                contract.pendingTxns = 1000.00;
+                contract.periodicFinanceChargeRte = 1000.00;
+                contract.programMaintenanceCharge = 'PMC 8%';
+                contract.programMaintenanceChargeDescription = 'PMC Description';
+                contract.recourseAmt = 1000.00;
+                contract.recourseCode = 'Recourse';
+                contract.salesforceId = '00000000123sdfs4fd';
+                contract.thirdPartyCheckFee = 10.00;
+                contract.thirdPartyCheckFeeDescription = 'Third Party Check';
+                contract.totalOwed = 1000.00;
+                contract.txnLimit = 1000.00;
+                contract.unbilledAmt = 1000.00;
+                contract.usualMethodOfPayment = 'CHK';
+                contract.velocity = 1;
+                contract.westernUnionFee = 10.00;
+                contract.westernUnionFeeDescription = 'Telegraph Fee';
+                contract.wireFee = 10.00;
+                contract.wireFeeDescription = 'Wire Fee';
+
+                CustomerDetailsWSUtilv2.entry_element entryElement = new CustomerDetailsWSUtilv2.entry_element();
+                entryElement.key = '9100000000000';
+                entryElement.value = contract;
+
+                result.entry[0]=entryElement;
+
+                responseElement.contracts = result;
+                response.put('return_x', responseElement);
+            } else {
+
+                responseElement = new CustomerDetailsWSUtilv2.otrContractsResponse();
+
+                responseElement.contracts = new CustomerDetailsWSUtilv2.contracts_element();
+                responseElement.errorMsg = 'Unable to retrieve specified data!';
+
+                response.put('return_x', responseElement);
 
             }
 

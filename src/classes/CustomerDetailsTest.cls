@@ -190,8 +190,8 @@ public class CustomerDetailsTest {
         Contract__c otrContract = new Contract__c();
         otrContract.Account__c = otrAccountId;
         otrContract.Status__c = 'A';
-        otrContract.Name = '123456';
-        otrContract.AR_Number__c = '0001234567890';
+        otrContract.Name = 'Contract';
+        otrContract.AR_Number__c = '9100000000000';
 
         insert otrContract;
 
@@ -234,8 +234,6 @@ public class CustomerDetailsTest {
 
         System.debug('### parentOtrAccountId = '+parentOtrAccountId);
         System.debug('### otrAccountId = '+otrAccountId);
-
-
     }
 
     public static String getGenerateTimeStamp()
@@ -679,10 +677,44 @@ public class CustomerDetailsTest {
             );
             upsert xCase;
 
-
-
             Id contactId = CustomerDetailsController.attachToCase(xCase.Id, contactRowId, JSON.serialize(customerDetails), JSON.serialize(contacts));
             System.debug('### ContactID=' + contactId);
+
+            Test.stopTest();
+        }
+
+    }
+
+    static testMethod void testOTRContracts() {
+
+        User user = getTestUser();
+
+        System.runAs(user) {
+
+            String carrierIdToTest = '123456';
+
+            Test.setMock(WebServiceMock.class, new CustomerDetailsWSUtilv2_Mock());
+
+            Test.startTest();
+
+            TestUtils.enable_isRunningTest = true;
+
+            System.assert(CustomerDetailsController.genericProgram != null);
+
+            Id fleetAccountRecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+
+            Account otrAccount = [SELECT Id FROM Account WHERE Sponsor_Acct__c =: carrierIdToTest AND RecordTypeId =: fleetAccountRecordTypeId LIMIT 1];
+
+            Id serviceAccountId = otrAccount.Id;
+
+            CustomerDetailsWSUtilv2.customerDetails customerDetails = CustomerDetailsController.getCustomerDetails(null, serviceAccountId, null,true);
+            System.debug('### customerDetails=' + customerDetails);
+            String arNumber = customerDetails.arNumber;
+            System.assert('9100000000000'.equalsIgnoreCase(arNumber));
+            String sourceSys = customerDetails.sourceSys;
+            System.assert('EFSLLC'.equalsIgnoreCase(sourceSys));
+
+
 
             Test.stopTest();
         }
