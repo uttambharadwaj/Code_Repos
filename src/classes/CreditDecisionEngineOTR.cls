@@ -371,7 +371,9 @@ global class CreditDecisionEngineOTR {
             if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                 onlineApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
             }
-            onlineApplication.DNB_Name_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchScore;
+            if (dnbDirectMatchResponse.matchCandidates[0].NameMatchScore != null) {
+                onlineApplication.DNB_Name_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchScore;
+            }
 
             // Execute BREeze for pre-processing
             BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('OTRCreditDecisioningBPAVMatch', new List<SObject>{

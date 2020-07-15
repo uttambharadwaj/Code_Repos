@@ -374,7 +374,9 @@ global class CreditDecisionEngineNA {
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     naApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
                 }
-                naApplication.DNB_Name_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchScore;
+                if (dnbDirectMatchResponse.matchCandidates[0].NameMatchScore != null) {
+                    naApplication.DNB_Name_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchScore;
+                }
 
                 // Execute BREeze for pre-processing
                 System.debug('Running DNB BPAV....');
