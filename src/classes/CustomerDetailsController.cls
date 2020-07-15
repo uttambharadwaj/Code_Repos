@@ -640,16 +640,6 @@ public without sharing class CustomerDetailsController {
 
         CustomerDetailsWSUtilv2.payments result;
 
-        if (!isExternalPlatform(sourceSys)) {
-            System.debug('getPayments for external platform: '+sourceSys);
-            result = new CustomerDetailsWSUtilv2.payments();
-            result.paymentDetails = new CustomerDetailsWSUtilv2.paymentDetailEntry[]{};
-            result.paymentHistory = new CustomerDetailsWSUtilv2.paymentHistoryEntry[]{};
-            result.pendingPayments = new CustomerDetailsWSUtilv2.pendingPaymentEntry[]{};
-            return result;
-        }
-        //Everything from here on is effectively "else"
-
         try {
 
             CDS = Customer_Dashboard_Services__c.getOrgDefaults();
