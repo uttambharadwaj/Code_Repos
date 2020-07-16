@@ -2813,7 +2813,9 @@
                         </span>
                     </div>
                     <div class="slds-media__body">
-                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Payments</h1>
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Payments
+                            <aura:if isTrue="{!!v.isOtrAccount != null &amp;&amp; v.isOtrAccount == 'true'}"><span style="font-style:italic;"> - For AR Number <span class="slds-text-heading--priority_value">{!v.customerDetails.arNumber}</span></span></aura:if>
+                        </h1>
                     </div>
                 </div>
             </div>

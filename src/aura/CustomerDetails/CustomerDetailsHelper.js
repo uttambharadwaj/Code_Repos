@@ -797,9 +797,23 @@
 
         var action = component.get("c.getPayments");
 
+        var numberToUse;
+        var sourceSysToUse;
+
+        let isOtrAccount = component.get("v.isOtrAccount");
+        if (isOtrAccount === "false") {
+            numberToUse = component.get("v.accountNumber");
+            sourceSysToUse = component.get("v.customerDetails.sourceSys");
+        } else {
+            numberToUse = component.get("v.customerDetails.arNumber");
+            sourceSysToUse = component.get("v.customerDetails.sourceSys");
+            if (sourceSysToUse == null || sourceSysToUse === "")
+                sourceSysToUse = "EFS";
+        }
+
         action.setParams({
-            accountNumber : component.get("v.accountNumber"),
-            sourceSys     : component.get("v.customerDetails.sourceSys")
+            accountNumber : numberToUse,
+            sourceSys     : sourceSysToUse
         });
 
         action.setCallback(this, function(response) {
@@ -1477,6 +1491,8 @@
         if (component.get("v.otrContractObj")) {
             let currentContract = component.get("v.otrContractObj");
             console.log('Current Contract = '+currentContract.arNumber);
+
+            let oldArNumber = component.get("v.customerDetails.arNumber");
     
             component.set("v.customerDetails.arNumber",currentContract.arNumber);
             component.set("v.customerDetails.availableCreditLmt",currentContract.availableCreditLmt);
@@ -1536,6 +1552,10 @@
             component.set("v.customerDetails.westernUnionFeeDescription",currentContract.westernUnionFeeDescription);
             component.set("v.customerDetails.wireFee",currentContract.wireFee);
             component.set("v.customerDetails.wireFeeDescription",currentContract.wireFeeDescription);
+            //This forces the payments tolazy-reload properly when we switch contracts
+            if (currentContract.arNumber !== oldArNumber) {
+                component.set("v.paymentsBulk",null);
+            }
         }
     },
 
