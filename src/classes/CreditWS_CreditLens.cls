@@ -366,7 +366,7 @@ global class CreditWS_CreditLens {
                 if (onlineApp.Payment_Frequency__c != null) {
                      String billingCycle = getBillingCycle(onlineApp.Payment_Frequency__c);
                     if (billingCycle != null) creditLensRequest.BillingCycle = billingCycle;
-                }
+                } else if (onlineApp.Payment_Method__c != null && onlineApp.Payment_Method__c.equalsIgnoreCase('Auto Pay (ACH)')) { creditLensRequest.BillingCycle = 'Daily'; }
 //                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  // can't send until they figure out the dropdown values in CL
                 if (onlineApp.Credit_Line_Requested__c != null) creditLensRequest.WexRequestCreditLineAmount = String.valueOf(onlineApp.Credit_Line_Requested__c);
                 if (onlineApp.Credit_Line_Recommendation__c != null) creditLensRequest.WexRecommendedCreditLine = String.valueOf(onlineApp.Credit_Line_Recommendation__c);

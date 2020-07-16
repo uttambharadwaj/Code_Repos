@@ -59,7 +59,7 @@ global class CreditDecisionEngineNA {
                         Physical_Zip_Postal_Code__c, Program__c, Running_Credit_Decisioning__c, Sanctions_Business_Check__c, Sanctions_Business_Result_ID__c,
                         Sanctions_Individual_Check__c, Sanctions_Individual_Result_ID__c, Tax_Payer_ID_number__c, ThreatMetrix_Session_ID__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Result__c,
                         Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c, Campaign_Program__c,
-                        Opportunity__r.Campaign.Run_Final_Decision_Only__c, Only_Final_Decision_Has_Run__c, Charged_Off_Account_Found__c
+                        Opportunity__r.Campaign.Run_Final_Decision_Only__c, Only_Final_Decision_Has_Run__c, Charged_Off_Account_Found__c, DNB_Name_Match_Score__c
                 FROM Application_Request__c
                 WHERE Id = :naApplicationId
         ];
@@ -373,6 +373,9 @@ global class CreditDecisionEngineNA {
                 naApplication.DNB_Match_Grade__c = dnbDirectMatchResponse.matchCandidates[0].MatchGradeText;
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     naApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
+                }
+                if (dnbDirectMatchResponse.matchCandidates[0].NameMatchScore != null) {
+                    naApplication.DNB_Name_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchScore;
                 }
 
                 // Execute BREeze for pre-processing

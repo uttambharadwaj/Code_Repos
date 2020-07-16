@@ -208,7 +208,6 @@ public without sharing class CustomerDetailsController {
     @AuraEnabled
     public static CustomerDetailsWSUtilv2.customerDetails getCustomerDetails(String accountNumber, String accountRecordId, String pdRowIdString, Boolean isOtrAccount) {
         System.debug('Entering getCustomerDetails for '+accountNumber+','+accountRecordId+','+ pdRowIdString+','+isOtrAccount);
-
         if(String.isEmpty(accountNumber) && !String.isEmpty(accountRecordId) && isSalesforceId(accountRecordId)) {
             System.debug('here');
             Schema.SObjectType sobjectType = (Id.valueOf(accountRecordId)).getSobjectType();
@@ -245,6 +244,21 @@ public without sharing class CustomerDetailsController {
             if(String.isEmpty(customerDetails.accountNm)) {
                 throw new customerDetailsException('Unable to retrieve account information: '+accountNumber + ', '+accountRecordId + ', pdRowId' +  (String.isEmpty(pdRowidString) ? ' not' : '')+' provided');
             }
+            if (customerDetails.wexpayEnrolled == null) {
+                customerDetails.wexpayEnrolled=false;
+            }
+            if(String.isNotBlank(accountRecordId)){
+                Account[] accts = [SELECT Id , WexPay_Enrolled__c FROM Account WHERE Id =: accountRecordId];
+                if (accts.size() > 0) {
+                    customerDetails.wexpayEnrolled = accts[0].WexPay_Enrolled__c == null ?  false : accts[0].WexPay_Enrolled__c;
+                }
+            } else if(String.isNotBlank(customerDetails.acctRowId)){
+                Account[] accts = [SELECT Id , WexPay_Enrolled__c FROM Account WHERE Acct_Row_Id__c =: customerDetails.acctRowId];
+                if (accts.size() > 0) {
+                    customerDetails.wexpayEnrolled = accts[0].WexPay_Enrolled__c == null ?  false : accts[0].WexPay_Enrolled__c;
+                }
+            }
+
 
             return customerDetails;
 
