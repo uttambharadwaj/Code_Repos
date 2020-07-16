@@ -550,7 +550,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
 
             CustomerDetailsWSUtilv2.getPayments getPaymentsObject = (CustomerDetailsWSUtilv2.getPayments) request;
 
-            if (!(getPaymentsObject.wexAcctNbr).equalsIgnoreCase('9100000000000')) {
+            if ((getPaymentsObject.wexAcctNbr).equalsIgnoreCase('9100000000000')) {
 
                 CustomerDetailsWSUtilv2.getPaymentsResponse responseElement = new CustomerDetailsWSUtilv2.getPaymentsResponse();
 
@@ -856,12 +856,14 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
 
         } else if (request instanceof CustomerDetailsWSUtilv2.getOtrContracts || request instanceof CustomerDetailsWSUtilv2.getOtrContract) {
             CustomerDetailsWSUtilv2.otrContractsResponse responseElement = new CustomerDetailsWSUtilv2.otrContractsResponse();
+            CustomerDetailsWSUtilv2.getOtrContractsResponse finalResponse = new CustomerDetailsWSUtilv2.getOtrContractsResponse();
 
             CustomerDetailsWSUtilv2.getOtrContracts contractReq = (CustomerDetailsWSUtilv2.getOtrContracts) request;
             System.debug(contractReq);
             if ((contractReq.otrAcctNbr).equalsIgnoreCase('9100000000000')) {
 
                 CustomerDetailsWSUtilv2.contracts_element result = new CustomerDetailsWSUtilv2.contracts_element();
+                result.entry = new CustomerDetailsWSUtilv2.entry_element[1];
                 Datetime startDate = Datetime.now();
                 Datetime decisionDate = startDate.addDays(-10);
                 String NA = 'N/A';
@@ -941,7 +943,8 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 result.entry[0]=entryElement;
 
                 responseElement.contracts = result;
-                response.put('return_x', responseElement);
+                finalResponse.return_x = responseElement;
+                response.put('response_x',finalResponse);
             } else {
 
                 responseElement = new CustomerDetailsWSUtilv2.otrContractsResponse();
