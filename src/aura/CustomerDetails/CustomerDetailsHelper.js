@@ -894,26 +894,45 @@
     },
 
     loadInvoices : function(component, target) {
-
+        let accountNumber = component.get("v.accountNumber");
+        let sourceSys = component.get("v.customerDetails.sourceSys");
+        let action = component.get("c.getInvoices");
+        console.log('accountNumber--------->',accountNumber);
+        console.log('sourceSys--------->',sourceSys);
+        console.log('****ISOTR--------->',component.get("v.isOtrAccount"));
         if (component.get("v.isOtrAccount") && component.get("v.isOtrAccount").toUpperCase()==="TRUE") {
-            console.log("OTR account; returning no invoices");
-            return; }
 
-        var action = component.get("c.getInvoices");
+            if(sourceSys == null || sourceSys == undefined){
+                sourceSys = 'OTR';
+            }
+            accountNumber = component.get("v.customerDetails.arNumber");
+
+           // accountNumber = '0006219830042';//component.get("v.customerDetails.arNumber");
+            /* Just for  Testing a work around
+            let otrContracts = component.get('v.customerDetails.otrContracts.entry');
+            if(otrContracts && otrContracts.length > 0){
+                accountNumber = otrContracts[0].value.arNumber;//component.get("v.customerDetails.arNumber");
+            }
+            */
+
+            console.log("OTR account--accountNumber---->",accountNumber);
+            action = component.get("c.getOTRInvoices");
+
+           }
 
         action.setParams({
-            accountNumber : component.get("v.accountNumber"),
-            sourceSys     : component.get("v.customerDetails.sourceSys")
+            accountNumber : accountNumber,
+            sourceSys     : sourceSys
         });
 
         action.setCallback(this, function(response) {
-            console.log("### loadInvoices RESPONSE " +response);
+            console.log("### loadInvoices RESPONSE-----> " +response);
             var state = response.getState();
 
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.invoices", response.getReturnValue());
                 console.log("### got invoices");
-                console.log(response.getReturnValue());
+                console.log('loadInvoice.Response---->',response.getReturnValue());
                 console.log(component.get("v.invoices"));
 
 
