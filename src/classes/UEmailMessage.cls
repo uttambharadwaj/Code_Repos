@@ -32,4 +32,16 @@ public class UEmailMessage {
             email.Discard__c = true;
         }
     }
+
+    //find out if this is an email with a relationship to a collections object. if so, do not allow delete.
+    public static void DontDeleteCollectionsEmails(List<EmailMessage> records){
+        for(EmailMessage emailMessage : records){
+
+            Case parentCase = [Select Type From Case Where Id = :emailMessage.ParentId];
+
+            if(parentCase.Type == 'Collections'){
+                emailMessage.addError('Unable to delete Email for Collections Cases');
+            }
+        }
+    }
 }
