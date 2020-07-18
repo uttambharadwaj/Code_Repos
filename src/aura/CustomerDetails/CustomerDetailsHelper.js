@@ -907,7 +907,7 @@
             }
             accountNumber = component.get("v.customerDetails.arNumber");
 
-           // accountNumber = '0006219830042';//component.get("v.customerDetails.arNumber");
+           //  accountNumber = '0006219830042';//component.get("v.customerDetails.arNumber");
             /* Just for  Testing a work around
             let otrContracts = component.get('v.customerDetails.otrContracts.entry');
             if(otrContracts && otrContracts.length > 0){
@@ -917,13 +917,19 @@
 
             console.log("OTR account--accountNumber---->",accountNumber);
             action = component.get("c.getOTRInvoices");
+            action.setParams({
+                arNumber : accountNumber,
+                sourceSys     : sourceSys
+            });
 
-           }
+        } else {
+            action.setParams({
+                accountNumber : accountNumber,
+                sourceSys     : sourceSys
+            });
+        }
 
-        action.setParams({
-            accountNumber : accountNumber,
-            sourceSys     : sourceSys
-        });
+
 
         action.setCallback(this, function(response) {
             console.log("### loadInvoices RESPONSE-----> " +response);

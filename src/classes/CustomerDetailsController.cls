@@ -747,6 +747,7 @@ public without sharing class CustomerDetailsController {
             try {
 
                 CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+                Customer_Dashboard_Services__c CDS = Customer_Dashboard_Services__c.getOrgDefaults();
 
                 customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
 
