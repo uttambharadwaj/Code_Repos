@@ -896,18 +896,18 @@
     loadInvoices : function(component, target) {
         let accountNumber = component.get("v.accountNumber");
         let sourceSys = component.get("v.customerDetails.sourceSys");
-        let action = component.get("c.getInvoices");
+        let action;
         console.log('accountNumber--------->',accountNumber);
         console.log('sourceSys--------->',sourceSys);
         console.log('****ISOTR--------->',component.get("v.isOtrAccount"));
         if (component.get("v.isOtrAccount") && component.get("v.isOtrAccount").toUpperCase()==="TRUE") {
-
             if(sourceSys == null || sourceSys == undefined){
                 sourceSys = 'OTR';
             }
             accountNumber = component.get("v.customerDetails.arNumber");
 
-           //  accountNumber = '0006219830042';//component.get("v.customerDetails.arNumber");
+             accountNumber = '0006219830042';//using hardcoded for testing will remove after testing
+             //accountNumber = component.get("v.customerDetails.arNumber");
             /* Just for  Testing a work around
             let otrContracts = component.get('v.customerDetails.otrContracts.entry');
             if(otrContracts && otrContracts.length > 0){
@@ -923,6 +923,7 @@
             });
 
         } else {
+            action = component.get("c.getOTRInvoices");
             action.setParams({
                 accountNumber : accountNumber,
                 sourceSys     : sourceSys
@@ -930,14 +931,13 @@
         }
 
 
-
         action.setCallback(this, function(response) {
-            console.log("### loadInvoices RESPONSE-----> " +response);
+            var respVal = response.getReturnValue();
+            console.log("### loadInvoices RESPONSE-----> " +JSON.stringify(respVal));
             var state = response.getState();
 
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.invoices", response.getReturnValue());
-                console.log("### got invoices");
                 console.log('loadInvoice.Response---->',response.getReturnValue());
                 console.log(component.get("v.invoices"));
 

@@ -45,6 +45,14 @@
             {label: "Currency", fieldName: "currencyCd", type: "text", sortable: false, initialWidth: 120, cellAttributes: { alignment: 'center' }}
         ]);
 
+        component.set("v.otrInvoiceColumnList", [
+            {label: "Invoice Number", fieldName: "invoiceNumber", type: "text", sortable: true, initialWidth: 180 },
+            {label: "Invoice Date", fieldName: "invoiceDate", type: "date-local", sortable: true, initialWidth: 180 },
+            {label: "Due Date", fieldName: "dueDate", type: "date-local", sortable: false, initialWidth: 190},
+            {label: "Amount", fieldName: "amount", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: true, initialWidth: 160, cellAttributes: { alignment: 'right' }},
+            {label: "View Invoice", fieldName: "viewInvoice", type: "text", sortable: true, initialWidth: 150, cellAttributes: { alignment: 'center' }}
+        ]);
+
         component.set("v.paymentHistoryColumnList", [
             {label: "Cycle End", fieldName: "cycleEndDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 130},
             {label: "Due Date",  fieldName: "dueDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 100},
@@ -423,6 +431,16 @@
         // assign the latest attribute with the sorted column fieldName and sorted direction
         component.find("paymentDetailsTable").set("v.sortedBy", fieldName);
         component.find("paymentDetailsTable").set("v.sortedDirection", sortDirection);
+        helper.sortTxnData(component, fieldName, sortDirection);
+
+    },
+
+    handleOTRInvoiceSort: function (component, event, helper) {
+        var fieldName = event.getParam('fieldName');
+        var sortDirection = event.getParam('sortDirection');
+        // assign the latest attribute with the sorted column fieldName and sorted direction
+        component.find("otrInvoicesTable").set("v.sortedBy", fieldName);
+        component.find("otrInvoicesTable").set("v.sortedDirection", sortDirection);
         helper.sortTxnData(component, fieldName, sortDirection);
 
     },

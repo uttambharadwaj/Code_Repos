@@ -62,6 +62,8 @@
     <aura:attribute name="otrContractObj" type="Map" />
     <aura:attribute name="showOtrCOntractDetails" type="Boolean" default="false" />
 
+    <aura:attribute name="otrInvoiceColumnList" type="List" />
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <ltng:require styles="{!$Resource.FontAwesome + '/font-awesome-4.7.0/css/font-awesome.min.css'}" />
     <ltng:require scripts="{!$Resource.ChartJS}" />
@@ -1670,7 +1672,7 @@
                 </div>
                 Invoice &amp; Billing
             </aura:set>
-            <!-- <lightning:spinner aura:id="invoicesLoadingSpinner" alternativeText="Waiting for data..." /><br/> -->
+           <!-- <lightning:spinner aura:id="invoicesLoadingSpinner" alternativeText="Waiting for data..." /><br/>-->
             <div class="slds-page-header">
                 <div class="slds-media">
                     <div class="slds-media__figure">
@@ -2098,46 +2100,61 @@
                         </span>
                     </div>
                     <div class="slds-media__body">
-                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Last 3 Invoices</h1>
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Recent Invoices</h1>
                     </div>
                 </div>
             </div>
             <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
                 <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
-                    <table>
-                        <thead>
-                        <tr class="slds-text-title_caps">
-                            <th scope="col">
-                                <div class="slds-truncate" title="Period Ending">Period Ending</div>
-                            </th>
-                            <th scope="col">
-                                <div class="slds-truncate" title="View Invoice">View Invoice</div>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <aura:iteration items="{!v.invoices.invoices}" var="xinvoice">
-                            <tr class="contactRow">
-                                <td data-label="Billing Period">
-                                    <div class="slds-truncate">
-                                        <aura:if isTrue="{!xinvoice.closingDt == null}">N/A
-                                            <aura:set attribute="else">
-                                                <lightning:formattedDateTime value="{!xinvoice.closingDt}"/>
-                                            </aura:set>
-                                        </aura:if>
-                                    </div>
-                                </td>
-                                <td data-label="Url">
-                                    <div class="slds-truncate">
-                                        <aura:if isTrue="{!xinvoice.invoiceUrl == null}">N/A
-                                            <aura:set attribute="else"><lightning:formattedUrl value="{!xinvoice.invoiceUrl}" label="View Invoice"/></aura:set>
-                                        </aura:if>
-                                    </div>
-                                </td>
+                    <aura:if isTrue="{!!v.isOtrAccount == null || v.isOtrAccount == 'false'}">
+                        <table>
+                            <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Period Ending">Period Ending</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="View Invoice">View Invoice</div>
+                                </th>
                             </tr>
-                        </aura:iteration>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <aura:iteration items="{!v.invoices.invoices}" var="xinvoice">
+                                <tr class="contactRow">
+                                    <td data-label="Billing Period">
+                                        <div class="slds-truncate">
+                                            <aura:if isTrue="{!xinvoice.closingDt == null}">N/A
+                                                <aura:set attribute="else">
+                                                    <lightning:formattedDateTime value="{!xinvoice.closingDt}"/>
+                                                </aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </td>
+                                    <td data-label="Url">
+                                        <div class="slds-truncate">
+                                            <aura:if isTrue="{!xinvoice.invoiceUrl == null}">N/A
+                                                <aura:set attribute="else"><lightning:formattedUrl value="{!xinvoice.invoiceUrl}" label="View Invoice"/></aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                            </tbody>
+                        </table>
+                        <aura:set attribute="else">
+                            
+                            <lightning:datatable aura:id="otrInvoicesTable"
+                                                 data="{!v.invoices.invoices}"
+                                                 columns="{!v.otrInvoiceColumnList}"
+                                                 keyField="Id"
+                                                 hideCheckboxColumn="true"
+                                                 onsort="{!c.handleOTRInvoiceSort}"
+                                                 sortedBy="invoiceDate"
+                                                 sortedDirection="desc"
+                            />
+
+                        </aura:set>
+                    </aura:if>
                 </div>
             </div>
         </lightning:tab>

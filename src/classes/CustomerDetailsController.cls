@@ -742,8 +742,7 @@ public without sharing class CustomerDetailsController {
 
         CustomerDetailsWSUtilv2.otrInvoiceResponse result;
         System.debug('getOTRInvoices------->'+sourceSys);
-        System.debug('getOTRInvoices------->'+arNumber);
-        if (isExternalPlatform(sourceSys) ==  false) {
+        System.debug('getOTRInvoices------->'+arNumber);if (isExternalPlatform(sourceSys) ==  false) {
             try {
 
                 CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
@@ -755,8 +754,8 @@ public without sharing class CustomerDetailsController {
                 if (CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
                     customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
                 }
-                result = customerDetailsCallout.getOtrInvoiceList(arNumber, 15);
-                system.debug('getOTRInvoices---.result-------->' + result);
+                result = customerDetailsCallout.getOtrInvoiceList(arNumber,15) ;
+
 
             } catch (Exception e) {
                 String errorCode = logError(e);
@@ -765,6 +764,7 @@ public without sharing class CustomerDetailsController {
             }
 
         }
+
         return result;
     }
 
