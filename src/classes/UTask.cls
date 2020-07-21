@@ -66,9 +66,8 @@ public with sharing class UTask
 
         for(Task t : records){
 
-            Collections__c parentCase = [Select Id From Collections__c Where Id = :t.WhatId];
-
-            if(t.RecordTypeId == collRecordTypeId || t.RecordTypeId == armRecordTypeId || parentCase != null) {
+            if(t.RecordTypeId == collRecordTypeId || t.RecordTypeId == armRecordTypeId
+                    || t.whatId.getSobjectType() == Collections__c.getSObjectType()) {
                 t.addError('Unable to delete Collections tasks.');
             }
         }

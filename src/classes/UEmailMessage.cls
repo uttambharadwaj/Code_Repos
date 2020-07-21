@@ -33,7 +33,7 @@ public class UEmailMessage {
         }
     }
 
-    //find out if this is an email with a relationship to a collections object. if so, do not allow delete.
+    //find out if this is an email with a relationship to a collections case object. if so, do not allow delete.
     public static void DontDeleteCollectionsEmails(List<EmailMessage> records){
         for(EmailMessage emailMessage : records){
 
