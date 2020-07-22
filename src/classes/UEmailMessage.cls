@@ -51,7 +51,7 @@ public class UEmailMessage {
 
         // Continue on as before
         for (EmailMessage emailMessage : records) {
-            String caseType = parentCasesToType.get(emailMessage.ParentId) != null ? parentCasesToType.get(emailMessage.ParentId) : 'none'; // none is just an example, this would need to be however you want to handle there not being a case type
+            String caseType = parentCasesToType.get(emailMessage.ParentId) != null ? parentCasesToType.get(emailMessage.ParentId) : 'none';
             if (caseType == 'Collections') {
                 emailMessage.addError('Unable to delete Email for Collections Cases');
             }
