@@ -37,7 +37,7 @@ public with sharing class UTask
         for(Task t : records)
         {
             //add a check for collections or ar maintenance type. skip if true
-            if(t.RecordTypeId != collRecordTypeId && t.RecordTypeId != armRecordTypeId) {
+            if(t.RecordTypeId != null && (t.RecordTypeId != collRecordTypeId && t.RecordTypeId != armRecordTypeId)) {
                 if (
                         (isinsert && t.Type != null)
                                 ||
@@ -66,8 +66,8 @@ public with sharing class UTask
 
         for(Task t : records){
 
-            if(t.RecordTypeId == collRecordTypeId || t.RecordTypeId == armRecordTypeId
-                    || t.whatId.getSobjectType() == Collections__c.getSObjectType()) {
+            if(t.RecordTypeId != null && (t.RecordTypeId == collRecordTypeId || t.RecordTypeId == armRecordTypeId
+                    || t.whatId.getSobjectType() == Collections__c.getSObjectType())) {
                 t.addError('Unable to delete Collections tasks.');
             }
         }
