@@ -6,13 +6,14 @@ public class UEmailMessage {
         list<Email_Discarded_Terms__mdt>cmdts = [
                 SELECT Id, Term__c, Email_Field__c
                 FROM Email_Discarded_Terms__mdt
-                WHERE Status__c = 'Active'];
+                WHERE Status__c = 'Active'
+        ];
 
         for (EmailMessage em : emails) {
-            if (em.Incoming==true) { 
+            if (em.Incoming == true) {
                 for (Email_Discarded_Terms__mdt cmdt : cmdts) {
                     try {
-                        if (em.get(cmdt.Email_Field__c)!=null && String.valueOf(em.get(cmdt.Email_Field__c)).containsIgnoreCase(cmdt.Term__c)) {
+                        if (em.get(cmdt.Email_Field__c) != null && String.valueOf(em.get(cmdt.Email_Field__c)).containsIgnoreCase(cmdt.Term__c)) {
                             discards.add(em);
                             break;
                         }
@@ -34,12 +35,24 @@ public class UEmailMessage {
     }
 
     //find out if this is an email with a relationship to a collections case object. if so, do not allow delete.
-    public static void DontDeleteCollectionsEmails(List<EmailMessage> records){
-        for(EmailMessage emailMessage : records){
+    public static void DontDeleteCollectionsEmails(List<EmailMessage> records) {
+        Map<Id, String> parentCasesToType = new Map<Id, String>();
+        List<Id> parentIds = new List<Id>();
 
-            Case parentCase = [Select Type From Case Where Id = :emailMessage.ParentId];
+        // Get a list of parent ids to be used in the query
+        for (EmailMessage emailMessage : records) {
+            if (emailMessage.ParentId != null) parentIds.add(emailMessage.ParentId);
+        }
 
-            if(parentCase.Type == 'Collections'){
+        // Query for all the case types and put them in a map to be used later
+        for (Case singleCase : [SELECT Id, Type FROM Case WHERE Id IN :parentIds]) {
+            if (parentCasesToType.get(singleCase.id) == null) parentCasesToType.put(singleCase.Id, singleCase.Type);
+        }
+
+        // Continue on as before
+        for (EmailMessage emailMessage : records) {
+            String caseType = parentCasesToType.get(emailMessage.ParentId) != null ? parentCasesToType.get(emailMessage.ParentId) : 'none'; // none is just an example, this would need to be however you want to handle there not being a case type
+            if (caseType == 'Collections') {
                 emailMessage.addError('Unable to delete Email for Collections Cases');
             }
         }
