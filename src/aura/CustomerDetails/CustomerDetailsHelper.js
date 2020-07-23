@@ -222,6 +222,8 @@
                 component.set("v.dummyAltBillingContactId", response.getReturnValue().ContactAlternateBillingRecordID__c);
                 component.set("v.dummyOnlineUserContactId", response.getReturnValue().ContactOnlineUserRecordID__c);
                 component.set("v.dummySalesRepContactId", response.getReturnValue().ContactSalesRepRecordId__c);
+                component.set("v.dummyFinanancialInstitutionContactId", response.getReturnValue().ContactFinanancialInstitutionRecordId__c);
+                component.set("v.dummyWexInternalContactId", response.getReturnValue().ContactWexInternalRecordId__c);
             }
         });
 
