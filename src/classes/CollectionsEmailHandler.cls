@@ -26,7 +26,10 @@ public class CollectionsEmailHandler {
 		]) {
 			fields.add(emailRules.Field__c);
 		}
-		String query = 'SELECT ' + fields.toString().replaceAll('[{}]', '') + ',Processed_Email_Configs__c FROM Case WHERE Id IN :caseIds';
+		fields.add('Processed_Email_Configs__c');
+		fields.add('CreatedDate');
+
+		String query = 'SELECT ' + fields.toString().replaceAll('[{}]', '') + ' FROM Case WHERE Id IN :caseIds';
 		Map<Id, sObject> cases = new Map<Id, sObject>(Database.query(query));
 
 		if (!cases.isEmpty()) {
@@ -80,11 +83,10 @@ public class CollectionsEmailHandler {
 
 		Map<Id, List<Collection_Email_Rules__mdt>> configToEmailRules = new Map<Id, List<Collection_Email_Rules__mdt>>();
 
-
 		// could technically pass this information in via the soql in sendEmailTemplate
 		// but doing it this way will allow calling this method in anon apex for debugging purposes
 		for (Collection_Email_Rules__mdt emailRule : [
-				SELECT Id,Field__c,Collections_Email_Configuration__r.Email_Template_Id__c,Operator__c,Value__c
+				SELECT Id,Field__c,Collections_Email_Configuration__r.Email_Template_Id__c,Collections_Email_Configuration__r.Start_Date_Time__c,Operator__c,Value__c
 				FROM Collection_Email_Rules__mdt
 		]) {
 
@@ -112,6 +114,9 @@ public class CollectionsEmailHandler {
 							Object value = UtilityClass.getSObjectField(sObj, rule.Field__c);
 
 							if (value == null) {
+								ruleEval = false;
+							} else if (rule.Collections_Email_Configuration__r.Start_Date_Time__c != null &&
+									rule.Collections_Email_Configuration__r.Start_Date_Time__c > Datetime.valueOf(sObj.get('CreatedDate'))) {
 								ruleEval = false;
 							} else if (rule.Operator__c == '>=') {
 								if (Integer.valueOf(value) < Integer.valueOf(rule.Value__c)) {
