@@ -25,7 +25,9 @@
     <aura:attribute name="dummyOnlineUserContactId" type="String" />
     <aura:attribute name="dummySalesRepContactId" type="String" />
     <aura:attribute name="dummyFinanancialInstitutionContactId" type="String" />
-    <aura:attribute name="dummyWexInternalContactId" type="String" />
+    <aura:attribute name="dummyWexInternalContactId
+
+" type="String" />
 
     <aura:attribute name="priorityLevelServicingRule" type="String" />
 

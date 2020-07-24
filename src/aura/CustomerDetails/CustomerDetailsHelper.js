@@ -212,7 +212,7 @@
 
     },
 
-    loadGenericContacts : function(component, target) {
+    loadGenericContacts : function(component, target) { 
         var action = component.get("c.getSupportOperationsSettings");
         action.setCallback(this, function(response){
             if(component.isValid() && response != null && response.getState() == 'SUCCESS'){
