@@ -182,6 +182,17 @@ public class UCase
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
         Map<String,Id> orgWideEmailAddresses = new Map<String,Id>();
 
+        for (OrgWideEmailAddress owea : [SELECT Id FROM OrgWideEmailAddress]) {
+            orgWideEmailAddresses.put(owea.Address, owea.Id);
+        }
+
+        if (genericEmailAddressId == null) {
+            Id generic = orgWideEmailAddresses.get('surveys@fleetservicesonline.com');
+            if (generic != null) {    //This will always hit
+                genericEmailAddressId = generic;
+            }
+        }
+
 
         for (Case c : records) {
             if(c.ContactId != null && String.isNotBlank(c.ContactEmail)) {
@@ -202,27 +213,11 @@ public class UCase
                 ) //End IF parameters
                 {
                     Id programEmailId;
-                    if (c.Program_Email__c != null && !(c.Program_Email__c.equals(''))) {
-                        if (orgWideEmailAddresses.containsKey(c.Program_Email__c)) {
-                            programEmailId = orgWideEmailAddresses.get(c.Program_Email__c);
-                        } else {
-                            OrgWideEmailAddress[] owea = [SELECT Id FROM OrgWideEmailAddress WHERE Address = :c.Program_Email__c];
-                            if (owea.size() > 0) {
-                                programEmailId = (owea.get(0).Id);
-                                orgWideEmailAddresses.put(c.Program_Email__c, programEmailId);
-                            }
-                        }
-                    }
-                    if (programEmailId == null ){ //use generic
-                        if (genericEmailAddressId == null) {
-                            OrgWideEmailAddress[] generic = [SELECT Id FROM OrgWideEmailAddress WHERE Address = 'surveys@fleetservicesonline.com'];
-                            if (generic.size() > 0) {    //This will always hit
-                                genericEmailAddressId = generic.get(0).Id;
-                            }
-                        }
+                    if (c.Program_Email__c != null && c.Program_Email__c != '' && orgWideEmailAddresses.containsKey(c.Program_Email__c)) {
+                        programEmailId = orgWideEmailAddresses.get(c.Program_Email__c);
+                    } else if (programEmailId == null ) { //use generic
                         programEmailId = genericEmailAddressId;
                     }
-
 
                     Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
                     if (programEmailId != null) {
