@@ -52,14 +52,12 @@ public class UCase
         FROM Entitlement];
         System.debug(LoggingLevel.INFO, '#debug: auxEntitlementsList: ' + auxEntitlementsList);
         ID weekEntitlementID;
-        //ID weekendEntitlementID;
+
         for(Entitlement auxEntitlement : auxEntitlementsList){
             if(auxEntitlement.Name == SHELL_SLA){
                 weekEntitlementID = auxEntitlement.ID;
             }
-            //if(auxEntitlement.Name == SHELL_SLA_WEEKEND){
-            //  weekendEntitlementID = auxEntitlement.ID;
-            //}
+
         }
 
         List<Case> casesToUpdate = new List<Case>();
@@ -67,22 +65,15 @@ public class UCase
             Case auxCaseNew = new Case();
             auxCaseNew.ID = auxCase.ID;
             if(auxCase.Program_Email__c != null){
-                //String domain = auxCase.SuppliedEmail.split('@').get(1);
-                //System.debug(LoggingLevel.INFO, '#debug: auxCase.SuppliedName: ' + auxCase.SuppliedName);
-                //System.debug(LoggingLevel.INFO, '#debug: domain: ' + domain);
-                //if(domain.contains('shell')){
+
                 if((auxCase.Program_Email__c).equalsIgnoreCase('Shellfleethelp@wexinc.com')){
-                    // Evaluate the created date/time.
+
                     Datetime thisDT = auxCase.CreatedDate;
                     String myDate = thisDT.format('yyyy-MM-dd HH:mm:ss', 'EST');
                     Datetime convertedDate = Datetime.valueOf(myDate);
-                    //String correctSLA = getCorrectSLA(convertedDate);
-                    //if(correctSLA == SHELL_SLA_WEEK){
+
                     auxCaseNew.EntitlementId = weekEntitlementID;
-                    //}
-                    //else{
-                    //  auxCaseNew.EntitlementId = weekendEntitlementID;
-                    //}
+
                     casesToUpdate.add(auxCaseNew);
                 }
             }
@@ -90,39 +81,6 @@ public class UCase
         update casesToUpdate;
     }
 
-    //private static String getCorrectSLA(Datetime estCreatedDateTime){
-    // Find out if it is within Weekend SLA.
-    //String dayOfWeek = estCreatedDateTime.format('EEEE');
-    //Integer hourOfDay = estCreatedDateTime.hour();
-    //Integer minuteOfHour = estCreatedDateTime.minute();
-    //String slaName = '';
-    //switch on dayOfWeek{
-    //when 'Friday'{
-    //if((hourOfDay == 20 && minuteOfHour >= 1) || hourOfDay > 20){
-    //  slaName = SHELL_SLA_WEEKEND;
-    //}else{
-    //    slaName = SHELL_SLA_WEEK;
-    //  }
-    //}
-    //when 'Saturday'{
-    //  slaName = SHELL_SLA_WEEKEND;
-    //}
-    //when 'Sunday'{
-    //  slaName = SHELL_SLA_WEEKEND;
-    //}
-    //when 'Monday'{
-    //     if((hourOfDay == 7 && minuteOfHour <= 59) || hourOfDay < 7){
-    //       slaName = SHELL_SLA_WEEKEND;
-    //       }else{
-    //    slaName = SHELL_SLA_WEEK;
-    //  }
-    //}
-    //when else {
-    //    slaName = SHELL_SLA_WEEK;
-    //  }
-    //}
-    //  return slaName;
-    //}
 
     public static void setNotificationFromBatch(List<Case> records)
     {
@@ -143,83 +101,70 @@ public class UCase
     }
 
 
-    public static void EmailToCaseOwernshipAssignment(List<Case> records, Map<Id, Case> oldmap)
-    {
-        system.debug('-----');
-        system.debug('-----EmailToCaseOwernshipAssignment');
-        system.debug('-----');
+    public static void EmailToCaseOwernshipAssignment(List<Case> records, Map<Id, Case> oldmap) {
+        //method is dependant of global setting "virtual card queue id", this queue doesn't exist anymore that I can find.
 
-
-        boolean isinsert = (oldmap == null);
-        GlobalSettings__c gs = GlobalSettings__c.getorgdefaults(); //GlobalSettings__c.getinstance();
-
-        //system.debug('**gs: ' + gs + ' ' + gs.Virtual_Card_Queue_ID__c);
-
-        Set<Id> accountIds = new Set<Id> ();
-        for (Case scope : records)
-        {
-            system.debug('**gs: ' + gs + ' ' + gs.Virtual_Card_Queue_ID__c);
-            system.debug('**scope.ownerid: ' + scope.OwnerId);
-            system.debug('**scope.No_Account_Manager__c: ' + scope.No_Account_Manager__c);
-            if (scope.OwnerId == gs.Virtual_Card_Queue_ID__c && scope.No_Account_Manager__c == false)
-            {
-                accountIds.add(scope.AccountId);
-            }
-        }
-        system.debug('** accountids: ' + accountIds);
-
-        if (accountIds.isEmpty()) return;
-
-        Map<Id, Id> teamMemberByAccountId = new Map<Id, Id> ();
-
-        //pull by member role, sort by last created to use most recent, req change.
-        //changed back to account manager, keep sort.
-        for (AccountTeamMember atm :[Select Id, UserId, AccountId from AccountTeamMember
-        Where AccountId IN :accountIds
-        //AND TeamMemberRole = 'Account Team Member'
-        AND TeamMemberRole = 'Account Manager'
-        Order by CreatedDate ASC])
-        {
-            teamMemberByAccountId.put(atm.accountId, atm.userid);
-        }
-
-        system.debug('**atm: ' + teamMemberByAccountId);
-
-
-        List<Case> toupdate = new List<case> ();
-        Map<Id, Id> caseToOwnerMap = new Map<Id, Id> ();
-        for (Case c : records)
-        {
-            if (c.OwnerId == gs.Virtual_Card_Queue_ID__c && c.No_Account_Manager__c == false)
-            {
-                if (teamMemberByAccountId.containsKey(c.AccountId))
-                {
-                    caseToOwnerMap.put(c.Id, teamMemberByAccountId.get(c.AccountId));
-                }
-                else
-                {
-                    // case 20659
-                    Case updateC = new Case(id = c.Id);
-                    updateC.No_Account_Manager__c = true;
-
-                    toupdate.add(updateC);
-                }
-            }
-        }
-
-        system.debug('** toupdate: ' + toupdate);
-
-        if (!toupdate.isEmpty()) update(toupdate);
-
-        if (!caseToOwnerMap.isEmpty())
-        {
-            system.debug('** caseToOwnerMap: ' + caseToOwnerMap);
-            sendOwnerUpdateEmail(caseToOwnerMap);
-        }
+//        system.debug('-----');
+//        system.debug('-----EmailToCaseOwernshipAssignment');
+//        system.debug('-----');
+//
+//
+//        boolean isinsert = (oldmap == null);
+//        GlobalSettings__c gs = GlobalSettings__c.getorgdefaults();
+//
+//
+//        Set<Id> accountIds = new Set<Id> ();
+//        for (Case scope : records) {
+//            system.debug('**gs: ' + gs + ' ' + gs.Virtual_Card_Queue_ID__c);
+//            system.debug('**scope.ownerid: ' + scope.OwnerId);
+//            system.debug('**scope.No_Account_Manager__c: ' + scope.No_Account_Manager__c);
+//            if (scope.OwnerId == gs.Virtual_Card_Queue_ID__c && scope.No_Account_Manager__c == false) {
+//                accountIds.add(scope.AccountId);
+//            }
+//        }
+//        System.debug('** accountids: ' + accountIds);
+//
+//        if (accountIds.isEmpty()) return;
+//
+//        Map<Id, Id> teamMemberByAccountId = new Map<Id, Id> ();
+//
+//        //pull by member role, sort by last created to use most recent, req change.
+//        //changed back to account manager, keep sort.
+//        for (AccountTeamMember atm :[Select Id, UserId, AccountId from AccountTeamMember Where AccountId IN :accountIds AND TeamMemberRole = 'Account Manager' Order by CreatedDate ASC]) {
+//            teamMemberByAccountId.put(atm.accountId, atm.userid);
+//        }
+//
+//        System.debug('**atm: ' + teamMemberByAccountId);
+//
+//        List<Case> toupdate = new List<case> ();
+//        Map<Id, Id> caseToOwnerMap = new Map<Id, Id> ();
+//        for (Case c : records) {
+//            if (c.OwnerId == gs.Virtual_Card_Queue_ID__c && c.No_Account_Manager__c == false) {
+//                if (teamMemberByAccountId.containsKey(c.AccountId)) {
+//                    caseToOwnerMap.put(c.Id, teamMemberByAccountId.get(c.AccountId));
+//                } else {
+//                    // case 20659
+//                    Case updateC = new Case(id = c.Id);
+//                    updateC.No_Account_Manager__c = true;
+//
+//                    toupdate.add(updateC);
+//                }
+//            }
+//        }
+//
+//        System.debug('** toupdate: ' + toupdate);
+//
+//        if (!toupdate.isEmpty()) {
+//            update(toupdate);
+//        }
+//
+//        if (!caseToOwnerMap.isEmpty()) {
+//            System.debug('** caseToOwnerMap: ' + caseToOwnerMap);
+//            sendOwnerUpdateEmail(caseToOwnerMap);
+//        }
     }
 
-    public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap)
-    {
+    public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap) {
         //Enable switch
         EmailMessageSettings__c EMS = EmailMessageSettings__c.getOrgDefaults();
 
@@ -230,16 +175,15 @@ public class UCase
         Id recordTypeId = UtilityClass.getRecTypeByDevName('Case','Service_Operations');
         Id templateId = null;
 
-        for(EmailTemplate et :[SELECT Id FROM EmailTemplate WHERE DeveloperName = 'CS_Survey_Request'])
-        {
+        for(EmailTemplate et : [SELECT Id FROM EmailTemplate WHERE DeveloperName = 'CS_Survey_Request']) {
             templateId = et.Id;
         }
 
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
         Map<String,Id> orgWideEmailAddresses = new Map<String,Id>();
 
-        for (Case c : records)
-        {
+
+        for (Case c : records) {
             if(c.ContactId != null && String.isNotBlank(c.ContactEmail)) {
 
                 if(c.IsClosed && c.IsClosed != oldMap.get(c.Id).IsClosed     //Case newly closed
@@ -247,12 +191,13 @@ public class UCase
                         && String.isNotBlank(c.SurveyInclusionHTML__c)       //This field is blank for programs we don't send surveys to
                         && !(c.Service_Program_Survey_Sent__c)               //Don't send more than once on a single case even if it reopens
                         && checkForWexEmailAddress(c.ContactEmail)           // Don't send to contacts with a Wex email address
+                        // 26Jul2020 MFarrell - changed from || to && inside below !() block as OR statements would return true for anything that isn't corp payments on the first line and the rest are ignored.
                         && !(c.Department__c.toLowerCase().startsWith('corporate payments') //Don't send to Corporate Payments cases
-                            || c.Department__c.toLowerCase().startsWith('receivables') //Don't send to Receivables cases
-                            || c.Department__c.toLowerCase().startsWith('otr ')//Don't send to OTR / EFS cases - EAPT-1211 , EAPT-680 (Dept list)
-                            || c.Department__c.toLowerCase().startsWith('project resource')//OTR - EAPT-1211 , EAPT-680 (Dept list)
-                            || c.Department__c.toLowerCase().startsWith('quality assurance')//OTR  - EAPT-1211 , EAPT-680 (Dept list)
-                            || c.Department__c.toLowerCase().startsWith('training')//OTR - EAPT-1211 , EAPT-680 (Dept list)
+                            && c.Department__c.toLowerCase().startsWith('receivables') //Don't send to Receivables cases
+                            && c.Department__c.toLowerCase().startsWith('otr ')//Don't send to OTR / EFS cases - EAPT-1211 , EAPT-680 (Dept list)
+                            && c.Department__c.toLowerCase().startsWith('project resource')//OTR - EAPT-1211 , EAPT-680 (Dept list)
+                            && c.Department__c.toLowerCase().startsWith('quality assurance')//OTR  - EAPT-1211 , EAPT-680 (Dept list)
+                            && c.Department__c.toLowerCase().startsWith('training')//OTR - EAPT-1211 , EAPT-680 (Dept list)
                         )
                 ) //End IF parameters
                 {
@@ -301,21 +246,25 @@ public class UCase
             }
         }
 
-        try {
-            Messaging.reserveSingleEmailCapacity(emails.size());
-            List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails);
+        //26Jul2020 MFarrell moved email try/catch inside if statement as an empty list of emails still reserves email capacity and we were hitting limits.
+        if (!emails.isEmpty()) {
+            try {
+                Messaging.reserveSingleEmailCapacity(emails.size());
+                List<Messaging.SendEmailResult> results = Messaging.sendEmail(emails);
 
-            for (Messaging.SendEmailResult res : results)
-            {
-                for (Messaging.SendEmailError err : res.getErrors())
+                for (Messaging.SendEmailResult res : results)
                 {
-                    System.debug('UCase.sendCaseCloseSurveyEmail send mail error: ' + err.getMessage());
+                    for (Messaging.SendEmailError err : res.getErrors())
+                    {
+                        System.debug('UCase.sendCaseCloseSurveyEmail send mail error: ' + err.getMessage());
+                    }
                 }
             }
+            catch (Exception e) {
+                System.debug('Unable to send email');
+            }
         }
-        catch (Exception e) {
-            System.debug('Unable to send email');
-        }
+
     }
 
     /**
@@ -353,38 +302,31 @@ public class UCase
         Database.update(toUpdate, dlo);
     }
 
-    public static void updateBusinessHours(List<Case> records, Map<Id, Case> oldmap)
-
-    {
+    public static void updateBusinessHours(List<Case> records, Map<Id, Case> oldmap) {
         GlobalSettings__c gs = GlobalSettings__c.getOrgDefaults();
-        system.debug('___gs___ Virtual Card RecTypeID ' + gs.Virtual_Card_RecType_ID__c);
+        System.debug('___gs___ Virtual Card RecTypeID ' + gs.Virtual_Card_RecType_ID__c);
 
-        //BusinessHours bh = [select id from BusinessHours
-        //                    where Name = 'Virtual Payments' limit 1];
-        List<BusinessHours> bhours = [Select Id from BusinessHours Where Name = 'Virtual Payments' limit 1];
+        List<Case> casesToProcess = new List<Case>();
 
-        if (bhours.size() == 0) return;
-
-        BusinessHours bh = bhours[0];
-
-
-        map<id, case> caseMap = new map<id, case> ();
-
-        for (case c : records)
-        {
-            if (c.RecordTypeID == gs.Virtual_Card_RecType_ID__c)
-            {
-                c.businesshoursid = bh.id;
-                dateTime CreateDate = system.now();
-                dateTime updBusinessHours = BusinessHours.addGMT(bh.id, CreateDate, 1000 * 60 * 60 * 8);
-                c.SLA_Response_Due__c = updBusinessHours;
-                caseMap.put(c.id, c);
+        for (Case c : records) {
+            if (c.RecordTypeId == gs.Virtual_Card_RecType_ID__c) {
+                casesToProcess.add(c);
             }
         }
 
-        if (caseMap.size() == 0)
-        {
-            return;
+        if (!casesToProcess.isEmpty()) {
+            List<BusinessHours> bhours = [SELECT Id FROM BusinessHours WHERE Name = 'Virtual Payments' LIMIT 1];
+
+            if (bhours.size() == 0) return;
+
+            BusinessHours bh = bhours[0];
+
+            for (Case c : casesToProcess) {
+                c.BusinessHoursId = bh.Id;
+                Datetime CreateDate = System.now();
+                Datetime updBusinessHours = BusinessHours.addGmt(bh.Id, CreateDate, 1000 * 60 * 60 * 8);
+                c.SLA_Response_Due__c = updBusinessHours;
+            }
         }
 
     }
@@ -406,7 +348,7 @@ public class UCase
             Schema.DescribeSObjectResult accountSobject = Account.SObjectType.getDescribe();
             Map<String, Schema.RecordTypeInfo> accountRtMapByName = accountSobject.getRecordTypeInfosByName();
 
-            List<Contact> newContacts = new List<Contact> ();
+//            List<Contact> newContacts = new List<Contact> (); // not used?
             Set<String> caseRecordsToInclude = new Set<String> ();
             Set<Id> accountRecordsTypeMatch = new Set<Id> ();
             List<Contact> contactsToUpdate = new List<Contact> ();
@@ -517,32 +459,27 @@ public class UCase
 
     }
 
-    public static void sendCaseCloseEmailToOpportunityOwner(List<Case> records, Map<Id, Case> oldMap)
-    {
+    public static void sendCaseCloseEmailToOpportunityOwner(List<Case> records, Map<Id, Case> oldMap) {
         Boolean isUpdate = oldMap != null;
         Set<Id> toProcess = new Set<Id> ();
         Id templateId = null;
         Id recordTypeId = UtilityClass.getRecTypeByDevName('Case','Fleet_Implementation');
 
-        for (GlobalSettings__c setting :[SELECT CaseCloseEmailAlert__c FROM GlobalSettings__c LIMIT 1])
-        {
+        for (GlobalSettings__c setting :[SELECT CaseCloseEmailAlert__c FROM GlobalSettings__c LIMIT 1]) {
             templateId = setting.CaseCloseEmailAlert__c;
         }
 
-        if (templateId == null)
-        {
+        if (templateId == null) {
             System.debug('GlobalSettings__c.CaseCloseEmailAlert__c not specified; skipping UCase.sendCaseCloseEmailToOpportunityOwner()');
             return;
         }
 
-        if (recordTypeId == null)
-        {
+        if (recordTypeId == null) {
             System.debug('RecordType with Developer Name "Fleet_Implementation" cannot be found; skipping UCase.sendCaseCloseEmailToOpportunityOwner()');
             return;
         }
 
-        for (Case c : records)
-        {
+        for (Case c : records) {
             if (isUpdate
                     && c.RecordTypeId == recordTypeId
                     && c.Cards__c > 0
@@ -554,15 +491,13 @@ public class UCase
             }
         }
 
-        if (toProcess.isEmpty())
-        {
+        if (toProcess.isEmpty()) {
             return;
         }
 
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
 
-        for (Case c :[SELECT Id, Opportunity__c, Opportunity__r.OwnerId FROM Case WHERE Id in :toProcess])
-        {
+        for (Case c : [SELECT Id, Opportunity__c, Opportunity__r.OwnerId FROM Case WHERE Id IN :toProcess]) {
             Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
             email.setTargetObjectId(c.Opportunity__r.OwnerId);
             email.setTreatTargetObjectAsRecipient(false);
@@ -596,14 +531,8 @@ public class UCase
     }
 
     // Set default entitlement for Service Operations
-    public static void setDefaultEntitlement(List<Case> records, Map<Id, Case> oldMap)
-    {
-        Set<Id> queueBypassIds = new Set<Id>();
-
-        ///List<Service_Operations_Entitlement_Bypass__mdt> bypassEntries = [SELECT Id, Queue_Id__c FROM Service_Operations_Entitlement_Bypass__mdt];
-        //for(Service_Operations_Entitlement_Bypass__mdt bypassEntry : bypassEntries) {
-        //    queueBypassIds.add(bypassEntry.Queue_Id__c);
-        //}
+    public static void setDefaultEntitlement(List<Case> records, Map<Id, Case> oldMap) {
+//        Set<Id> queueBypassIds = new Set<Id>(); // this is never populated anywhere
 
         Boolean isUpdate = oldMap != null;
 
@@ -614,91 +543,71 @@ public class UCase
         Id serviceOperationsRecordType = null;
 
         // Add Record Type Check
-        if (Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Service Operations') != null) {
-            serviceOperationsRecordType = Schema.Sobjecttype.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
+        if (Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations') != null) {
+            serviceOperationsRecordType = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
         }
 
         Support_Operation_Settings__c sos = Support_Operation_Settings__c.getOrgDefaults();
 
-        for (Case c : records)
-        {
+        for (Case c : records) {
             // We only want this to run for Service Operations..
-            if((serviceOperationsRecordType != null && c.RecordTypeId != serviceOperationsRecordType) || queueBypassIds.contains(c.OwnerId)) {
+            if(serviceOperationsRecordType != null && c.RecordTypeId != serviceOperationsRecordType) {
                 continue;
             }
 
             // Added check to ensure Entitlement isn't already set.. DDG 3/18/2019
-            if ((!isUpdate || c.AccountId != oldMap.get(c.Id).AccountId))
-            {
-                if (c.AccountId == null)
-                {
+            if ((!isUpdate || c.AccountId != oldMap.get(c.Id).AccountId)) {
+                if (c.AccountId == null) {
                     c.EntitlementId = sos.DefaultEntitlementID__c;
                     toUpdate.add(c);
-                }
-                else
-                {
+                } else {
                     accountIds.add(c.AccountId);
                     toProcess.add(c);
                 }
             }
         }
 
-        if (toProcess.isEmpty() && toUpdate.isEmpty())
-        {
+        if (toProcess.isEmpty() && toUpdate.isEmpty()) {
             return;
         }
 
         Map<Id, Id> entitlementMap = new Map<Id, Id> ();
 
-        if (toProcess.size() > 0)
-        {
+        if (toProcess.size() > 0) {
             Set<Id> reprocessIds = new Set<Id> ();
-            for (Entitlement e :[SELECT Id, AccountId FROM Entitlement WHERE Active_Flag__c = TRUE AND AccountId in :accountIds])
-            {
-                if (entitlementMap.containsKey(e.AccountId))
-                {
+            for (Entitlement e :[SELECT Id, AccountId FROM Entitlement WHERE Active_Flag__c = TRUE AND AccountId in :accountIds]) {
+                if (entitlementMap.containsKey(e.AccountId)) {
                     reprocessIds.add(e.AccountId);
                     entitlementMap.put(e.AccountId, sos.DefaultEntitlementID__c);
-                }
-                else
-                {
+                } else {
                     entitlementMap.put(e.AccountId, e.Id);
                 }
             }
 
-            if (reprocessIds.size() > 0)
-            {
+            if (reprocessIds.size() > 0) {
                 Map<Id, Id> parentEntitlements = new Map<Id, Id> ();
                 Map<Id, Id> parentAccounts = new Map<Id, Id> ();
 
-                for (Account a :[SELECT Id, ParentId FROM Account WHERE Id in :reprocessIds AND ParentId != null])
-                {
+                for (Account a :[SELECT Id, ParentId FROM Account WHERE Id in :reprocessIds AND ParentId != null]) {
                     parentAccounts.put(a.ParentId, a.Id);
                 }
 
-                for (Entitlement e :[SELECT Id, AccountId FROM Entitlement WHERE AccountId in :parentAccounts.keySet()])
-                {
-                    if (parentEntitlements.containsKey(e.AccountId))
-                    {
+                for (Entitlement e :[SELECT Id, AccountId FROM Entitlement WHERE AccountId in :parentAccounts.keySet()]) {
+                    if (parentEntitlements.containsKey(e.AccountId)) {
                         parentEntitlements.put(e.AccountId, sos.DefaultEntitlementID__c);
-                    }
-                    else
-                    {
+                    } else {
                         parentEntitlements.put(e.AccountId, e.Id);
                     }
                 }
 
-                for (String parentId : parentAccounts.keySet())
-                {
+                for (String parentId : parentAccounts.keySet()) {
                     String childId = parentAccounts.get(parentId);
                     entitlementMap.put(childId, parentEntitlements.get(parentId));
                 }
             }
 
-            for (Case c : toProcess)
-            {
-                if (entitlementMap.containsKey(c.AccountId))
-                {
+            for (Case c : toProcess) {
+                if (entitlementMap.containsKey(c.AccountId)) {
                     c.EntitlementId = entitlementMap.get(c.AccountId);
                     toUpdate.add(c);
                 }
@@ -706,8 +615,7 @@ public class UCase
         }
     }
 
-    public static void associateContact(List<Case> records, Map<Id, Case> oldMap)
-    {
+    public static void associateContact(List<Case> records, Map<Id, Case> oldMap) {
         if (oldMap == null) {
 			Set<Id> primaryContactEnabledRecordTypes = UtilityClass.getRecTypeByDevName('Case', new List<String>{'Service_Operations', 'Credit'});
 
