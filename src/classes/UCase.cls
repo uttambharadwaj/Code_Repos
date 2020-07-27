@@ -187,9 +187,8 @@ public class UCase
         }
 
         if (genericEmailAddressId == null) {
-            Id generic = orgWideEmailAddresses.get('surveys@fleetservicesonline.com');
-            if (generic != null) {    //This will always hit
-                genericEmailAddressId = generic;
+            if (orgWideEmailAddresses.get('surveys@fleetservicesonline.com') != null) {    //This will always hit
+                genericEmailAddressId = orgWideEmailAddresses.get('surveys@fleetservicesonline.com');
             }
         }
 
