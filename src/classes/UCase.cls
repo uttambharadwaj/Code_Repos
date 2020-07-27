@@ -102,66 +102,64 @@ public class UCase
 
 
     public static void EmailToCaseOwernshipAssignment(List<Case> records, Map<Id, Case> oldmap) {
-        //method is dependant of global setting "virtual card queue id", this queue doesn't exist anymore that I can find.
+        system.debug('-----');
+        system.debug('-----EmailToCaseOwernshipAssignment');
+        system.debug('-----');
 
-//        system.debug('-----');
-//        system.debug('-----EmailToCaseOwernshipAssignment');
-//        system.debug('-----');
-//
-//
-//        boolean isinsert = (oldmap == null);
-//        GlobalSettings__c gs = GlobalSettings__c.getorgdefaults();
-//
-//
-//        Set<Id> accountIds = new Set<Id> ();
-//        for (Case scope : records) {
-//            system.debug('**gs: ' + gs + ' ' + gs.Virtual_Card_Queue_ID__c);
-//            system.debug('**scope.ownerid: ' + scope.OwnerId);
-//            system.debug('**scope.No_Account_Manager__c: ' + scope.No_Account_Manager__c);
-//            if (scope.OwnerId == gs.Virtual_Card_Queue_ID__c && scope.No_Account_Manager__c == false) {
-//                accountIds.add(scope.AccountId);
-//            }
-//        }
-//        System.debug('** accountids: ' + accountIds);
-//
-//        if (accountIds.isEmpty()) return;
-//
-//        Map<Id, Id> teamMemberByAccountId = new Map<Id, Id> ();
-//
-//        //pull by member role, sort by last created to use most recent, req change.
-//        //changed back to account manager, keep sort.
-//        for (AccountTeamMember atm :[Select Id, UserId, AccountId from AccountTeamMember Where AccountId IN :accountIds AND TeamMemberRole = 'Account Manager' Order by CreatedDate ASC]) {
-//            teamMemberByAccountId.put(atm.accountId, atm.userid);
-//        }
-//
-//        System.debug('**atm: ' + teamMemberByAccountId);
-//
-//        List<Case> toupdate = new List<case> ();
-//        Map<Id, Id> caseToOwnerMap = new Map<Id, Id> ();
-//        for (Case c : records) {
-//            if (c.OwnerId == gs.Virtual_Card_Queue_ID__c && c.No_Account_Manager__c == false) {
-//                if (teamMemberByAccountId.containsKey(c.AccountId)) {
-//                    caseToOwnerMap.put(c.Id, teamMemberByAccountId.get(c.AccountId));
-//                } else {
-//                    // case 20659
-//                    Case updateC = new Case(id = c.Id);
-//                    updateC.No_Account_Manager__c = true;
-//
-//                    toupdate.add(updateC);
-//                }
-//            }
-//        }
-//
-//        System.debug('** toupdate: ' + toupdate);
-//
-//        if (!toupdate.isEmpty()) {
-//            update(toupdate);
-//        }
-//
-//        if (!caseToOwnerMap.isEmpty()) {
-//            System.debug('** caseToOwnerMap: ' + caseToOwnerMap);
-//            sendOwnerUpdateEmail(caseToOwnerMap);
-//        }
+
+        boolean isinsert = (oldmap == null);
+        GlobalSettings__c gs = GlobalSettings__c.getorgdefaults();
+
+
+        Set<Id> accountIds = new Set<Id> ();
+        for (Case scope : records) {
+            system.debug('**gs: ' + gs + ' ' + gs.Virtual_Card_Queue_ID__c);
+            system.debug('**scope.ownerid: ' + scope.OwnerId);
+            system.debug('**scope.No_Account_Manager__c: ' + scope.No_Account_Manager__c);
+            if (scope.OwnerId == gs.Virtual_Card_Queue_ID__c && scope.No_Account_Manager__c == false) {
+                accountIds.add(scope.AccountId);
+            }
+        }
+        System.debug('** accountids: ' + accountIds);
+
+        if (accountIds.isEmpty()) return;
+
+        Map<Id, Id> teamMemberByAccountId = new Map<Id, Id> ();
+
+        //pull by member role, sort by last created to use most recent, req change.
+        //changed back to account manager, keep sort.
+        for (AccountTeamMember atm :[Select Id, UserId, AccountId from AccountTeamMember Where AccountId IN :accountIds AND TeamMemberRole = 'Account Manager' Order by CreatedDate ASC]) {
+            teamMemberByAccountId.put(atm.accountId, atm.userid);
+        }
+
+        System.debug('**atm: ' + teamMemberByAccountId);
+
+        List<Case> toupdate = new List<case> ();
+        Map<Id, Id> caseToOwnerMap = new Map<Id, Id> ();
+        for (Case c : records) {
+            if (c.OwnerId == gs.Virtual_Card_Queue_ID__c && c.No_Account_Manager__c == false) {
+                if (teamMemberByAccountId.containsKey(c.AccountId)) {
+                    caseToOwnerMap.put(c.Id, teamMemberByAccountId.get(c.AccountId));
+                } else {
+                    // case 20659
+                    Case updateC = new Case(id = c.Id);
+                    updateC.No_Account_Manager__c = true;
+
+                    toupdate.add(updateC);
+                }
+            }
+        }
+
+        System.debug('** toupdate: ' + toupdate);
+
+        if (!toupdate.isEmpty()) {
+            update(toupdate);
+        }
+
+        if (!caseToOwnerMap.isEmpty()) {
+            System.debug('** caseToOwnerMap: ' + caseToOwnerMap);
+            sendOwnerUpdateEmail(caseToOwnerMap);
+        }
     }
 
     public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap) {
