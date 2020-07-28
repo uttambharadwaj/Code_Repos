@@ -180,7 +180,7 @@ public class UCase
         List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage> ();
         Map<String,Id> orgWideEmailAddresses = new Map<String,Id>();
 
-        for (OrgWideEmailAddress owea : [SELECT Id FROM OrgWideEmailAddress]) {
+        for (OrgWideEmailAddress owea : [SELECT Id, Address FROM OrgWideEmailAddress]) {
             orgWideEmailAddresses.put(owea.Address, owea.Id);
         }
 
