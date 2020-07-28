@@ -1,48 +1,93 @@
-public with sharing class CaseHelper {
-//    static final Integer WEEKEND_DAYS = 2;
-//    static final Integer HIGH_PRIORITY_SLA= 1;
-//    static final Integer MEDIUM_PRIORITY_SLA= 5;
-//    static final Integer FRIDAY = 5;
-//
-//    public static RecordType getRecordType(Id recTypeId){
-//        RecordType recType = null;
-//        if (recTypeId != null){
-//            String recTypeStr = (((String)recTypeId).substring(0,15));
-//            recType = [select name from RecordType where id = :recTypeStr ];
-//        }
-//        return recType;
-//    }
-//
-//    public static void setCasePriority(Case currentCase){
-//        if (currentCase.Type == 'User Provisioning'){
-//            currentCase.Priority = 'High';
-//        } else {
-//            currentCase.Priority = 'Medium';
-//        }
-//    }
-//
-//    public static void setTargetCompletionDate(Case currentCase){
-//        Long dayOfWeek = WEXHelper.getDayOfWeek(Date.today());
-//        Date tempDate = Date.Today();
-//
-//        if (currentCase.Target_Completion_Date__c == null){
-//
-//            if (currentCase.Priority == 'High'){
-//                if (dayOfWeek + HIGH_PRIORITY_SLA > FRIDAY ){
-//                    tempDate = Date.Today() + WEEKEND_DAYS + HIGH_PRIORITY_SLA;
-//                } else {
-//                    tempdate = Date.Today() + HIGH_PRIORITY_SLA;
-//                }
-//            } else if (currentCase.Priority != 'High'){
-//                if (dayOfWeek + MEDIUM_PRIORITY_SLA > FRIDAY ){
-//                    tempDate = Date.Today() + WEEKEND_DAYS + MEDIUM_PRIORITY_SLA;
-//                }else {
-//                    tempdate = Date.Today() + MEDIUM_PRIORITY_SLA;
-//                }
-//            }
-//
-//            currentCase.Target_Completion_Date__c = tempDate + WEXHelper.skipToNextBusinessDay(tempDate);
-//        }
-//    }
-//
+public class CaseHelper {
+
+    public static void completeCaseMilestone(List<Case> records, Map<Id, Case> oldMap) {
+
+        // migrated from trigger completeCaseMilestone as part of trigger factory deployment to case object
+
+        // Code process is to check whether the Case which has been changed's Record Type Id is listed
+        // in the Custom Setting. Then it checks whether the Case Owner has been changed, from the
+        // Wex Europe Applications Queue, if that has happened, the code finds and completes the related CaseMilestone.
+
+        List<WEID__c> weids = WEID__c.getall().values();
+        Set<Id> validRecordTypeIds = new Set<Id>();
+
+        // add Case Record Type Ids from Custom Setting to list of valid Ids
+        for (WEID__c weid: weids) {
+            try {
+                validRecordTypeIds.add(weid.WECaseId__c);
+            } catch (System.StringException e) {
+                System.debug(
+                    System.LoggingLevel.ERROR,
+                    'Invalid Record Type Id ' + weid.WECaseId__c
+                );
+            }
+        }
+
+        if (!validRecordTypeIds.isEmpty()) {
+
+            // create a list of Cases with valid Record Types
+            List<Case> caseIds = new List<Case>();
+            for (Case c : records) {
+
+                if (validRecordTypeIds.contains(c.RecordTypeId)) {
+                    caseIds.add(c);
+                    System.debug('caseIds size is ' + caseIds.size());
+                }
+            }
+
+            if (caseIds.isEmpty() == true) {
+                System.debug('No Cases with a valid Wex Europe Record Type Id were found');
+                // exit trigger if no Cases with valid Record Type Ids are found
+                return;
+
+            } else {
+
+                // fetch Id of Queue
+                List <Group> wecsQueue = [SELECT Id FROM Group WHERE Name = 'Wex Europe Applications'];
+
+                List<Id> acceptedIds = new List <Id>();
+                for (Case c1 : caseIds) {
+
+                    // check whether Case owner has changed, from Queue
+                    Case oldCase1 = oldMap.get(c1.Id);
+                    if (oldCase1 != null && oldCase1.OwnerId == wecsQueue[0].Id && oldCase1.OwnerId != c1.OwnerId) {
+                        acceptedIds.add(c1.Id);
+                    }
+                }
+
+                if (acceptedIds.isEmpty()) {
+                    System.debug('No Milestones linked to the changed Case need to be updated');
+                    return;
+
+                } else {
+
+                    // create a map to hold the MilestoneType's Names & Ids
+                    Map<String, Id> milestones = new Map <String, Id>();
+
+                    // populate the map with the results of the SOQL query
+                    for (MilestoneType mT : [SELECT Name, Id FROM MilestoneType WHERE Name = 'Case Accepted']) {
+                        milestones.put(mT.Name, mT.Id);
+                    }
+
+                    // fetch the Id of the right Milestone
+                    Id acceptedM = milestones.get('Case Accepted');
+
+                    // find the correct CaseMilestone to update
+                    List<CaseMilestone> milestonesToUp1 = [SELECT Id FROM CaseMilestone WHERE CaseId = :acceptedIds AND MilestoneTypeId = :acceptedM];
+
+                    for (CaseMilestone cm : milestonesToUp1) {
+                        //mark the Milestone as complete
+                        cm.CompletionDate = System.now();
+                    }
+
+                    update milestonesToUp1;
+
+                }
+
+            }
+
+        }
+
+    }
+
 }
