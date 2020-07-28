@@ -1,6 +1,5 @@
 trigger CaseFetchUserRole on Case (before insert, before update) {
 //
-//    please tell me this can just be commented out and deleted...
 //
 //    Bulk_Data_Load_Settings__c bulkDataLoadSettings = Bulk_Data_Load_Settings__c.getInstance();
 //    if(bulkDataLoadSettings != null && bulkDataLoadSettings.Disable_Case_Automation__c) { return; }

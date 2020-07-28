@@ -102,64 +102,64 @@ public class UCase
 
 
     public static void EmailToCaseOwernshipAssignment(List<Case> records, Map<Id, Case> oldmap) {
-        system.debug('-----');
-        system.debug('-----EmailToCaseOwernshipAssignment');
-        system.debug('-----');
-
-
-        boolean isinsert = (oldmap == null);
-        GlobalSettings__c gs = GlobalSettings__c.getorgdefaults();
-
-
-        Set<Id> accountIds = new Set<Id> ();
-        for (Case scope : records) {
-            system.debug('**gs: ' + gs + ' ' + gs.Virtual_Card_Queue_ID__c);
-            system.debug('**scope.ownerid: ' + scope.OwnerId);
-            system.debug('**scope.No_Account_Manager__c: ' + scope.No_Account_Manager__c);
-            if (scope.OwnerId == gs.Virtual_Card_Queue_ID__c && scope.No_Account_Manager__c == false) {
-                accountIds.add(scope.AccountId);
-            }
-        }
-        System.debug('** accountids: ' + accountIds);
-
-        if (accountIds.isEmpty()) return;
-
-        Map<Id, Id> teamMemberByAccountId = new Map<Id, Id> ();
-
-        //pull by member role, sort by last created to use most recent, req change.
-        //changed back to account manager, keep sort.
-        for (AccountTeamMember atm :[Select Id, UserId, AccountId from AccountTeamMember Where AccountId IN :accountIds AND TeamMemberRole = 'Account Manager' Order by CreatedDate ASC]) {
-            teamMemberByAccountId.put(atm.accountId, atm.userid);
-        }
-
-        System.debug('**atm: ' + teamMemberByAccountId);
-
-        List<Case> toupdate = new List<case> ();
-        Map<Id, Id> caseToOwnerMap = new Map<Id, Id> ();
-        for (Case c : records) {
-            if (c.OwnerId == gs.Virtual_Card_Queue_ID__c && c.No_Account_Manager__c == false) {
-                if (teamMemberByAccountId.containsKey(c.AccountId)) {
-                    caseToOwnerMap.put(c.Id, teamMemberByAccountId.get(c.AccountId));
-                } else {
-                    // case 20659
-                    Case updateC = new Case(id = c.Id);
-                    updateC.No_Account_Manager__c = true;
-
-                    toupdate.add(updateC);
-                }
-            }
-        }
-
-        System.debug('** toupdate: ' + toupdate);
-
-        if (!toupdate.isEmpty()) {
-            update(toupdate);
-        }
-
-        if (!caseToOwnerMap.isEmpty()) {
-            System.debug('** caseToOwnerMap: ' + caseToOwnerMap);
-            sendOwnerUpdateEmail(caseToOwnerMap);
-        }
+//        system.debug('-----');
+//        system.debug('-----EmailToCaseOwernshipAssignment');
+//        system.debug('-----');
+//
+//
+//        boolean isinsert = (oldmap == null);
+//        GlobalSettings__c gs = GlobalSettings__c.getorgdefaults();
+//
+//
+//        Set<Id> accountIds = new Set<Id> ();
+//        for (Case scope : records) {
+//            system.debug('**gs: ' + gs + ' ' + gs.Virtual_Card_Queue_ID__c);
+//            system.debug('**scope.ownerid: ' + scope.OwnerId);
+//            system.debug('**scope.No_Account_Manager__c: ' + scope.No_Account_Manager__c);
+//            if (scope.OwnerId == gs.Virtual_Card_Queue_ID__c && scope.No_Account_Manager__c == false) {
+//                accountIds.add(scope.AccountId);
+//            }
+//        }
+//        System.debug('** accountids: ' + accountIds);
+//
+//        if (accountIds.isEmpty()) return;
+//
+//        Map<Id, Id> teamMemberByAccountId = new Map<Id, Id> ();
+//
+//        //pull by member role, sort by last created to use most recent, req change.
+//        //changed back to account manager, keep sort.
+//        for (AccountTeamMember atm :[Select Id, UserId, AccountId from AccountTeamMember Where AccountId IN :accountIds AND TeamMemberRole = 'Account Manager' Order by CreatedDate ASC]) {
+//            teamMemberByAccountId.put(atm.accountId, atm.userid);
+//        }
+//
+//        System.debug('**atm: ' + teamMemberByAccountId);
+//
+//        List<Case> toupdate = new List<case> ();
+//        Map<Id, Id> caseToOwnerMap = new Map<Id, Id> ();
+//        for (Case c : records) {
+//            if (c.OwnerId == gs.Virtual_Card_Queue_ID__c && c.No_Account_Manager__c == false) {
+//                if (teamMemberByAccountId.containsKey(c.AccountId)) {
+//                    caseToOwnerMap.put(c.Id, teamMemberByAccountId.get(c.AccountId));
+//                } else {
+//                    // case 20659
+//                    Case updateC = new Case(id = c.Id);
+//                    updateC.No_Account_Manager__c = true;
+//
+//                    toupdate.add(updateC);
+//                }
+//            }
+//        }
+//
+//        System.debug('** toupdate: ' + toupdate);
+//
+//        if (!toupdate.isEmpty()) {
+//            update(toupdate);
+//        }
+//
+//        if (!caseToOwnerMap.isEmpty()) {
+//            System.debug('** caseToOwnerMap: ' + caseToOwnerMap);
+//            sendOwnerUpdateEmail(caseToOwnerMap);
+//        }
     }
 
     public static void sendCaseCloseSurveyEmail(List<Case> records, Map<Id, Case> oldMap) {
@@ -200,12 +200,12 @@ public class UCase
                         && !(c.Service_Program_Survey_Sent__c)               //Don't send more than once on a single case even if it reopens
                         && checkForWexEmailAddress(c.ContactEmail)           // Don't send to contacts with a Wex email address
                         // 26Jul2020 MFarrell - changed from || to && inside below !() block as OR statements would return true for anything that isn't corp payments on the first line and the rest are ignored.
-                        && !(c.Department__c.toLowerCase().startsWith('corporate payments') //Don't send to Corporate Payments cases
-                            && c.Department__c.toLowerCase().startsWith('receivables') //Don't send to Receivables cases
-                            && c.Department__c.toLowerCase().startsWith('otr ')//Don't send to OTR / EFS cases - EAPT-1211 , EAPT-680 (Dept list)
-                            && c.Department__c.toLowerCase().startsWith('project resource')//OTR - EAPT-1211 , EAPT-680 (Dept list)
-                            && c.Department__c.toLowerCase().startsWith('quality assurance')//OTR  - EAPT-1211 , EAPT-680 (Dept list)
-                            && c.Department__c.toLowerCase().startsWith('training')//OTR - EAPT-1211 , EAPT-680 (Dept list)
+                        && (!c.Department__c.toLowerCase().startsWith('corporate payments') //Don't send to Corporate Payments cases
+                            && !c.Department__c.toLowerCase().startsWith('receivables') //Don't send to Receivables cases
+                            && !c.Department__c.toLowerCase().startsWith('otr ')//Don't send to OTR / EFS cases - EAPT-1211 , EAPT-680 (Dept list)
+                            && !c.Department__c.toLowerCase().startsWith('project resource')//OTR - EAPT-1211 , EAPT-680 (Dept list)
+                            && !c.Department__c.toLowerCase().startsWith('quality assurance')//OTR  - EAPT-1211 , EAPT-680 (Dept list)
+                            && !c.Department__c.toLowerCase().startsWith('training')//OTR - EAPT-1211 , EAPT-680 (Dept list)
                         )
                 ) //End IF parameters
                 {
@@ -324,130 +324,130 @@ public class UCase
     }
 
     public static void accountDomainMatch(List<Case> records, Map<Id, Case> oldMap) {
-
-        if (WE_ApexUtility.apxCntrlrTargetManagerStatusAssessed == false) {
-            WE_ApexUtility.checkApexControllerStatus('Domain Match');
-        }
-        if (!WE_ApexUtility.domainMatchDisabled.contains(true)) {
-
-            Schema.DescribeSObjectResult caseSobject = Case.SObjectType.getDescribe();
-            Map<String, Schema.RecordTypeInfo> caseRtMapByName = caseSobject.getRecordTypeInfosByName();
-
-            Schema.DescribeSObjectResult contactSobject = Contact.SObjectType.getDescribe();
-            Map<String, Schema.RecordTypeInfo> contactRtMapByName = contactSobject.getRecordTypeInfosByName();
-            Id cpId = contactRtMapByName.get('Corporate_Pay').getRecordTypeId();
-
-            Schema.DescribeSObjectResult accountSobject = Account.SObjectType.getDescribe();
-            Map<String, Schema.RecordTypeInfo> accountRtMapByName = accountSobject.getRecordTypeInfosByName();
-
-//            List<Contact> newContacts = new List<Contact> (); // not used?
-            Set<String> caseRecordsToInclude = new Set<String> ();
-            Set<Id> accountRecordsTypeMatch = new Set<Id> ();
-            List<Contact> contactsToUpdate = new List<Contact> ();
-            List<Contact> contactsToInsert = new List<Contact> ();
-
-            system.debug('the accout map-----' + accountRtMapByName);
-            system.debug('the case map-----' + caseRtMapByName);
-
-            for (VRTN__c vrt : VRTN__c.getAll().values()) {
-                system.debug('the types------' + vrt);
-
-                if (vrt.EUAccts__c != null) {
-                    accountRecordsTypeMatch.add(accountRtMapByName.get(vrt.EUAccts__c).getRecordTypeId());
-                }
-                if (vrt.EUServiceCases__c != null) {
-                    caseRecordsToInclude.add(caseRtMapByName.get(vrt.EUServiceCases__c).getRecordTypeId());
-                }
-            }
-
-            system.debug('the accountTypes-----' + accountRecordsTypeMatch);
-            system.debug('the caseTypes------' + caseRecordsToInclude);
-
-            Set<String> caseEmails = new Set<String> ();
-            for (Case c : records) {
-                if (c.SuppliedEmail != null) {
-                    caseEmails.add(c.SuppliedEmail);
-                }
-            }
-
-            List<Account> accountsToMatch = [SELECT Id, Name, Website, (SELECT Id, FirstName, LastName, LastModifiedDate FROM Contacts WHERE Email IN :caseEmails ORDER BY LastModifiedDate LIMIT 1) FROM Account WHERE RecordTypeID IN :accountRecordsTypeMatch];
-
-            for (Case c : records) {
-
-                if (caseRecordsToInclude.contains(c.RecordTypeID) &&
-                        c.Origin == 'Email') {
-
-                    String domain = null;
-
-                    if (c.SuppliedEmail != null) {
-                        domain = c.SuppliedEmail.subStringAfter('@');
-                    }
-
-                    Contact co = new Contact();
-
-                    for (Account a : accountsToMatch) {
-                        String accountWebsite;
-                        if (a.Website != null) {
-                            accountWebsite = a.Website.subStringAfter('www.');
-                        }
-                        system.debug('the Website----------' + a.Website);
-                        system.debug('the accountWebsite-----' + accountWebsite);
-                        system.debug('the domain-----------' + domain);
-                        system.debug('the SuppliedName---------' + c.SuppliedName);
-                        if (accountWebsite != null && domain == accountWebsite) {
-
-                            c.AccountId = a.Id;
-
-                            co.recordTypeId = cpId;
-                            co.Email = c.SuppliedEmail;
-                            Co.AccountId = a.Id;
-                            if (String.isNotBlank(c.SuppliedName))
-                            {
-                                if (c.SuppliedName.subStringAfter(' ') == '') {
-                                    co.LastName = c.SuppliedName.subStringBefore(' ');
-                                }
-                                else {
-                                    co.FirstName = c.SuppliedName.substringBefore(' ');
-                                    co.LastName = c.SuppliedName.subStringAfter(' ');
-                                }
-                            }
-                            if (a.Contacts.isEmpty()) {
-
-                                contactsToInsert.add(co);
-                            }
-                            else {
-                                co.Id = a.Contacts[0].Id;
-                                contactsToUpdate.add(co);
-                            }
-                        }
-                    }
-                    system.debug('the case after assignment-----' + c);
-                }
-            }
-
-            if (contactsToUpdate.size() != null || contactsToUpdate.size() > 1) {
-                update contactsToUpdate;
-                for (Contact co : contactsToUpdate) {
-                    for (Case c : records) {
-                        if (co.AccountId == c.AccountId) {
-                            c.ContactId = co.Id;
-                        }
-                    }
-                }
-            }
-
-            if (contactsToInsert.size() != null || contactsToInsert.size() > 1) {
-                insert contactsToInsert;
-                for (Contact co : contactsToInsert) {
-                    for (Case c : records) {
-                        if (co.AccountId == c.AccountId) {
-                            c.ContactId = co.Id;
-                        }
-                    }
-                }
-
-            }
-        }
+//
+//        if (WE_ApexUtility.apxCntrlrTargetManagerStatusAssessed == false) {
+//            WE_ApexUtility.checkApexControllerStatus('Domain Match');
+//        }
+//        if (!WE_ApexUtility.domainMatchDisabled.contains(true)) {
+//
+//            Schema.DescribeSObjectResult caseSobject = Case.SObjectType.getDescribe();
+//            Map<String, Schema.RecordTypeInfo> caseRtMapByName = caseSobject.getRecordTypeInfosByName();
+//
+//            Schema.DescribeSObjectResult contactSobject = Contact.SObjectType.getDescribe();
+//            Map<String, Schema.RecordTypeInfo> contactRtMapByName = contactSobject.getRecordTypeInfosByName();
+//            Id cpId = contactRtMapByName.get('Corporate_Pay').getRecordTypeId();
+//
+//            Schema.DescribeSObjectResult accountSobject = Account.SObjectType.getDescribe();
+//            Map<String, Schema.RecordTypeInfo> accountRtMapByName = accountSobject.getRecordTypeInfosByName();
+//
+////            List<Contact> newContacts = new List<Contact> (); // not used?
+//            Set<String> caseRecordsToInclude = new Set<String> ();
+//            Set<Id> accountRecordsTypeMatch = new Set<Id> ();
+//            List<Contact> contactsToUpdate = new List<Contact> ();
+//            List<Contact> contactsToInsert = new List<Contact> ();
+//
+//            system.debug('the accout map-----' + accountRtMapByName);
+//            system.debug('the case map-----' + caseRtMapByName);
+//
+//            for (VRTN__c vrt : VRTN__c.getAll().values()) {
+//                system.debug('the types------' + vrt);
+//
+//                if (vrt.EUAccts__c != null) {
+//                    accountRecordsTypeMatch.add(accountRtMapByName.get(vrt.EUAccts__c).getRecordTypeId());
+//                }
+//                if (vrt.EUServiceCases__c != null) {
+//                    caseRecordsToInclude.add(caseRtMapByName.get(vrt.EUServiceCases__c).getRecordTypeId());
+//                }
+//            }
+//
+//            system.debug('the accountTypes-----' + accountRecordsTypeMatch);
+//            system.debug('the caseTypes------' + caseRecordsToInclude);
+//
+//            Set<String> caseEmails = new Set<String> ();
+//            for (Case c : records) {
+//                if (c.SuppliedEmail != null) {
+//                    caseEmails.add(c.SuppliedEmail);
+//                }
+//            }
+//
+//            List<Account> accountsToMatch = [SELECT Id, Name, Website, (SELECT Id, FirstName, LastName, LastModifiedDate FROM Contacts WHERE Email IN :caseEmails ORDER BY LastModifiedDate LIMIT 1) FROM Account WHERE RecordTypeID IN :accountRecordsTypeMatch];
+//
+//            for (Case c : records) {
+//
+//                if (caseRecordsToInclude.contains(c.RecordTypeID) &&
+//                        c.Origin == 'Email') {
+//
+//                    String domain = null;
+//
+//                    if (c.SuppliedEmail != null) {
+//                        domain = c.SuppliedEmail.subStringAfter('@');
+//                    }
+//
+//                    Contact co = new Contact();
+//
+//                    for (Account a : accountsToMatch) {
+//                        String accountWebsite;
+//                        if (a.Website != null) {
+//                            accountWebsite = a.Website.subStringAfter('www.');
+//                        }
+//                        system.debug('the Website----------' + a.Website);
+//                        system.debug('the accountWebsite-----' + accountWebsite);
+//                        system.debug('the domain-----------' + domain);
+//                        system.debug('the SuppliedName---------' + c.SuppliedName);
+//                        if (accountWebsite != null && domain == accountWebsite) {
+//
+//                            c.AccountId = a.Id;
+//
+//                            co.recordTypeId = cpId;
+//                            co.Email = c.SuppliedEmail;
+//                            Co.AccountId = a.Id;
+//                            if (String.isNotBlank(c.SuppliedName))
+//                            {
+//                                if (c.SuppliedName.subStringAfter(' ') == '') {
+//                                    co.LastName = c.SuppliedName.subStringBefore(' ');
+//                                }
+//                                else {
+//                                    co.FirstName = c.SuppliedName.substringBefore(' ');
+//                                    co.LastName = c.SuppliedName.subStringAfter(' ');
+//                                }
+//                            }
+//                            if (a.Contacts.isEmpty()) {
+//
+//                                contactsToInsert.add(co);
+//                            }
+//                            else {
+//                                co.Id = a.Contacts[0].Id;
+//                                contactsToUpdate.add(co);
+//                            }
+//                        }
+//                    }
+//                    system.debug('the case after assignment-----' + c);
+//                }
+//            }
+//
+//            if (contactsToUpdate.size() != null || contactsToUpdate.size() > 1) {
+//                update contactsToUpdate;
+//                for (Contact co : contactsToUpdate) {
+//                    for (Case c : records) {
+//                        if (co.AccountId == c.AccountId) {
+//                            c.ContactId = co.Id;
+//                        }
+//                    }
+//                }
+//            }
+//
+//            if (contactsToInsert.size() != null || contactsToInsert.size() > 1) {
+//                insert contactsToInsert;
+//                for (Contact co : contactsToInsert) {
+//                    for (Case c : records) {
+//                        if (co.AccountId == c.AccountId) {
+//                            c.ContactId = co.Id;
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
 
     }
 
