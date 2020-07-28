@@ -2,6 +2,8 @@
 public class Calabrio_DataImportProcessorTest {
     
         @testSetup static void methodName() {
+            UtilityTestLoader.setAutomation(false);
+
                       List<User> testUsers = createUsers(1);
 
               Calabrio_Integration_Setting__c setting = new Calabrio_Integration_Setting__c(Name = 'Calabrio_TestEnvironment',

@@ -608,6 +608,8 @@ private class UCaseTest {
     }
     static void testSetup() {
 
+        UtilityTestLoader.setAutomation(false);
+
         final String caseWithSurveySummary = 'EmailMessageTriggerTest Test Case';
         final String caseWithoutSurveySummary = 'EmailMessageTriggerTest Test Case Without Survey';
 
