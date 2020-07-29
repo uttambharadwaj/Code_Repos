@@ -112,7 +112,7 @@ public class CollectionsEmailHandler {
 				List<Collection_Email_Rules__mdt> rules = configToEmailRules.get(configId);
 				String key = String.valueOf(UtilityClass.getSObjectField(sObj, 'Account.Processed_Email_Configs__c'));
 
-				Boolean ruleEval = processedEmailConfigs != null && processedEmailConfigs.contains(configId) ? false : true;
+				Boolean ruleEval = processedEmailConfigs != null && processedEmailConfigs.contains(getProcessedEmailKey(configId, key)) ? false : true;
 
 				if (ruleEval) { // false when a config id has already been sent for specific Case.
 
