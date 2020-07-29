@@ -67,8 +67,8 @@ public class CollectionsEmailHandler {
 
 						// check the email config record for an additional field value that we want to add to the value going into Processed_Email_Configs__c
 						String appendValue = emailConfig.Appended_Value_Field__c != null ? String.valueOf(UtilityClass.getSObjectField(emailedCase, emailConfig.Appended_Value_Field__c)) : null;
-						String processedEmailConfigValue = getProcessedEmailKey(emailConfig.Id, appendValue);
-
+						//String processedEmailConfigValue = getProcessedEmailKey(emailConfig.Id, appendValue);
+						String processedEmailConfigValue = '';
 						emailedCase.Processed_Email_Configs__c = UtilityClass.updateMultiPicklist(emailedCase.Processed_Email_Configs__c, processedEmailConfigValue, false);
 						updatedCases.put(emailedCase.Id, emailedCase);
 
@@ -106,13 +106,11 @@ public class CollectionsEmailHandler {
 		// For each sObject
 		for (sObject sObj : sObjs) {
 			// All rules for a config
-			String processedEmailConfigs = (String) sObj.get('Processed_Email_Configs__c');
+			List<String> previouslyProcessedEmails = sObj.get('Processed_Email_Configs__c') != null ? String.valueOf(sObj.get('Processed_Email_Configs__c')).split('\\,') : null;
 			for (Id configId : configToEmailRules.keySet()) {
 
 				List<Collection_Email_Rules__mdt> rules = configToEmailRules.get(configId);
-				String key = String.valueOf(UtilityClass.getSObjectField(sObj, 'Account.Processed_Email_Configs__c'));
-
-				Boolean ruleEval = processedEmailConfigs != null && processedEmailConfigs.contains(getProcessedEmailKey(configId, key)) ? false : true;
+				Boolean ruleEval = false;
 
 				if (ruleEval) { // false when a config id has already been sent for specific Case.
 
@@ -127,6 +125,11 @@ public class CollectionsEmailHandler {
 							} else if (rule.Collections_Email_Configuration__r.Start_Date_Time__c != null &&
 									rule.Collections_Email_Configuration__r.Start_Date_Time__c > Datetime.valueOf(sObj.get('CreatedDate'))) {
 								ruleEval = false;
+							} else if (rule.Collections_Email_Configuration__r.Appended_Value_Field__c != null) {
+								String appendValues = String.valueOf(UtilityClass.getSObjectField(sObj, rule.Collections_Email_Configuration__r.Appended_Value_Field__c));
+								List<String> keys = getEmailKeys(configId, appendValues);
+								ruleEval = !haveAllEmailsBeenProcessed(keys, previouslyProcessedEmails); // If email has already been sent set ruleEval the inverse.
+								// ============= Operator Rules =============
 							} else if (rule.Operator__c == '>=') {
 								if (Integer.valueOf(value) < Integer.valueOf(rule.Value__c)) {
 									ruleEval = false;
@@ -184,6 +187,7 @@ public class CollectionsEmailHandler {
 								}
 								ruleEval = !contained;
 							}
+							// ==============================================================================
 						} catch (Exception e) {
 							ruleEval = false;
 							System.debug(e);
@@ -206,13 +210,34 @@ public class CollectionsEmailHandler {
 		return objToEmailConfigIds;
 	}
 
-	private static String getProcessedEmailKey(String key1, String key2) {
-		String key = '';
-		if (key1 != null) {
-			key = key1;
-		} else if (key2 != null && key2 != '') {
-			key += '-' + key2;
+
+	/**
+		* Purpose: Create a key to be used in logic to determine what email configs have been sent previously. In the event that
+		* 			an email needs to be sent more than once configs allow for having a value appended to the key.
+		* Input: (String, String) Main Key, Comma seperated values. -- Main key is likely to be the record ID of the email config, values
+		* 			are specified in the config metadata. For example, comma separated list of Contract IDs where each contract should have
+		* 			the email config sent.
+		* Output: (List<String>) List of generated keys. If 0-1 values were passed in this list size will be 1. Otherwise increased per value.
+	*/
+	public static List<String> getEmailKeys(String key, String values) {
+
+		List<String> keys = new List<String>();
+
+		if (values != null && values != '') {
+			List<String> valueList = values.remove(' ').split('\\,');
+
+			for (String value : valueList) {
+				String createdKey = value != '' ? key + '$' + value : key;
+				keys.add(createdKey);
+			}
+
+		} else {
+			keys.add(key);
 		}
-		return key;
+		return keys;
+	}
+
+	private static Boolean haveAllEmailsBeenProcessed(List<String> keys, List<String> processedEmails) {
+
 	}
 }
