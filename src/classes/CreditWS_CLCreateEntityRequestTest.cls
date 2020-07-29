@@ -66,5 +66,7 @@ public class CreditWS_CLCreateEntityRequestTest {
 
         CreditWS_CLCreateEntityRequest obj = CreditWS_CLCreateEntityRequest.parse(json);
 		System.assert(obj != null);
+		System.assert(obj.LongName.equalsIgnoreCase('Stock Exchange Test'));
+		System.assert(obj.SystemId.equalsIgnoreCase('Application-2019120000'));
 	}
 }

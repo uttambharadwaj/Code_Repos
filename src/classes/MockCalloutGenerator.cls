@@ -6,6 +6,7 @@ public class MockCalloutGenerator implements HttpCalloutMock {
     private static final String CREDITLENS_REQUEST_CREATE = 'https://wexinc-cfg.creditlens.moodysanalytics.com/api/data/vm/EntityEdit';
     private static final String CREDITLENS_REQUEST_UPLOADDOC = 'creditlens_upload_document_returned';
     private static final String NO_ENDPOINT_FOUND_FAILURE = 'the_requested_endpoint_was_not_found_so_this_fails';
+    private static final String CREDIT_LENS_ENTITY_ID = '123';
 
     public Map<String, HttpCalloutMock> requests;
 
@@ -38,12 +39,34 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                     headers.put('Content-Type', 'application/json');
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensAuthGoodBody(),headers));
                 }
+                when 'creditLensGetEntity' {
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity' LIMIT  1].Endpoint_URL__c;
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Content-Type', 'application/json');
+                    headers.put('Authorization', 'Bearer 123456');
+                    // for this the request must have the entity id you're getting for attached to the endpoint
+                    this.requests.put(myEndpoint+'/'+CREDIT_LENS_ENTITY_ID, new MockRequest(200,'Success',getCreditLensGitGudBody(),headers));
+                }
+                when 'creditLensEditEntity' {
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Edit_Entity' LIMIT  1].Endpoint_URL__c;
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Content-Type', 'application/json');
+                    headers.put('Authorization', 'Bearer 123456');
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensEditGoodBody(),headers));
+                }
                 when 'creditLensCreateGood' {
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity' LIMIT  1].Endpoint_URL__c;
                     Map<String, String> headers = new Map<String, String>();
                     headers.put('Content-Type', 'application/json');
                     headers.put('Authorization', 'Bearer 123456');
                     this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensCreateGoodBody(),headers));
+                }
+                when 'creditLensCreateBad' {
+                    String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity' LIMIT  1].Endpoint_URL__c;
+                    Map<String, String> headers = new Map<String, String>();
+                    headers.put('Content-Type', 'application/json');
+                    headers.put('Authorization', 'Bearer 123456');
+                    this.requests.put(myEndpoint, new MockRequest(200,'Success',getCreditLensCreateBadBody(),headers));
                 }
                 when 'creditLensUploadDoc' {
                     String myEndpoint = [SELECT Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Doc_Upload' LIMIT 1].Endpoint_URL__c;
@@ -439,7 +462,199 @@ public class MockCalloutGenerator implements HttpCalloutMock {
         return json;
     }
 
-    // create entity record
+
+    // get Credit Lens entity record
+    public static String getCreditLensGitGudBody() {
+
+        return '{'+
+                '\"payLoad\": ['+
+                '    {'+
+                '        \"disableCreate\": {},'+
+                '        \"EntityType\": \"CORP\",'+
+                '        \"EntityId\": 123,'+
+                '        \"SystemId\": \"AR-123123\",'+
+                '        \"LongName\": \"Edit Entity Inc\",'+
+                '        \"ShortName\": \"X Silver Inc\",'+
+                '        \"WexCreditInformationOn\": \"Contracting Entity\",'+
+                '        \"TaxId\": \"897654321\",'+
+                '        \"LegalEntity\": null,'+
+                '        \"WexAccountNumber\": null,'+
+                '        \"WexDunsNumber\": \"098159054\",'+
+                '        \"CustomerSince\": null,'+
+                '        \"CountryOfInc\": \"USA\",'+
+                '        \"ProvinceStateOfIncorporation\": \"USME\",'+
+                '        \"RegistrationNumber\": null,'+
+                '        \"WexYearEst\": null,'+
+                '        \"WexYearIncorporated\": null,'+
+                '        \"OnList\": \"4\",'+
+                '        \"LockedDate\": null,'+
+                '        \"WexYearEstablished\": null,'+
+                '        \"LockedBy\": null,'+
+                '        \"WexYearControl\": \"2019\",'+
+                '        \"Descriptions\": null,'+
+                '        \"Gc23\": null,'+
+                '        \"Gc22\": null,'+
+                '        \"ExternalDataSources\": null,'+
+                '        \"EstablishmentDate\": null,'+
+                '        \"BusinessPortfolio\": \"USA\",'+
+                '        \"Division\": \"Fleet\",'+
+                '        \"CreditPortfolio\": \"WexBank\",'+
+                '        \"WexBusinessUnit\": \"Payables\",'+
+                '        \"WexProgram\": null,'+
+                '        \"WexProgramString\": null,'+
+                '        \"WexAccountType\": null,'+
+                '        \"WexRelationshipManager\": \"Carlos Escobar\",'+
+                '        \"PrimaryBankingOfficer\": null,'+
+                '        \"WexCreditAnalyst\": \"Leela Howland\",'+
+                '        \"PrimaryCreditOfficer\": null,'+
+                '        \"FirmType\": \"PUB\",'+
+                '        \"WexOwnershipType\": null,'+
+                '        \"CountryOfRisk\": \"USA\",'+
+                '        \"Currency\": \"USD\",'+
+                '        \"ListingDate\": null,'+
+                '        \"CountryOfListing\": \"USA\",'+
+                '        \"StockExchange\": \"NYSE\",'+
+                '        \"StockCode\": \"NYC\",'+
+                '        \"IndClassification\": \"SIC\",'+
+                '        \"LastReviewDate\": null,'+
+                '        \"WexReviewDate\": null,'+
+                '        \"WexRequestCurrency\": null,'+
+                '        \"WexReviewType\": null,'+
+                '        \"WexExistingCreditLineAmt\": null,'+
+                '        \"WexRequestCreditLineAmount\": 109356.00,'+
+                '        \"WexPrimaryRiskGrade\": \"6\",'+
+                '        \"WexPrimaryRiskGradeSource\": null,'+
+                '        \"WexSecondaryRiskGrade\": null,'+
+                '        \"WexSecondaryRiskGradeSource\": null,'+
+                '        \"WexCreditExtended\": null,'+
+                '        \"WexNumberOfCreditExperiences\": null,'+
+                '        \"WexOriginationModelRecommendat\": 0.00,'+
+                '        \"WexPaydexScore\": null,'+
+                '        \"WexProjectedMonthlySpend\": null,'+
+                '        \"WexHighCycleSpend\": null,'+
+                '        \"WexPaymentType\": null,'+
+                '        \"WexPaymentHistory\": null,'+
+                '        \"BillingCycle\": \"Monthly\",'+
+                '        \"DaysToPay\": null,'+
+                '        \"WexBillingCycle1\": null,'+
+                '        \"WexDaysToPay1\": null,'+
+                '        \"WexBillingCycle2\": null,'+
+                '        \"WexDaysToPay2\": null,'+
+                '        \"WexBillingCycle3\": null,'+
+                '        \"WexDaysToPay3\": null,'+
+                '        \"CollateralSecurity\": \"Deposit\",'+
+                '        \"WexCollateralAmt\": null,'+
+                '        \"CollateralSecuringEntity\": null,'+
+                '        \"WexExpirationSecurityDate\": null,'+
+                '        \"WexSecurityType1\": null,'+
+                '        \"WexSecurityAmount1\": null,'+
+                '        \"WexSecuringEntity1\": null,'+
+                '        \"WexExpirationDateSecurity1\": null,'+
+                '        \"WexSecurityType2\": null,'+
+                '        \"WexSecurityAmount2\": null,'+
+                '        \"WexSecuringEntity2\": null,'+
+                '        \"WexExpirationDateSecurity2\": null,'+
+                '        \"WexSecurityType3\": null,'+
+                '        \"WexSecurityAmount3\": null,'+
+                '        \"WexSecuringEntity3\": null,'+
+                '        \"WexExpirationDateSecurity3\": null,'+
+                '        \"WexRecommendedCreditLine\": 200002.00,'+
+                '        \"WexApprovedCreditLine\": null,'+
+                '        \"WexCreditLineCurrency\": null,'+
+                '        \"WexApprovedExceptions\": null,'+
+                '        \"WexEffectiveDateAppvdCl\": null,'+
+                '        \"WexComments\": null,'+
+                '        \"WexDateAdded\": null,'+
+                '        \"WexDateRemoved\": null,'+
+                '        \"NextReviewDate\": null,'+
+                '        \"WexFsAvlblDate\": null,'+
+                '        \"WexFinancialsRequestedDate\": null,'+
+                '        \"WexFinancialsRequestedDate2\": null,'+
+                '        \"WexFinancialsReceivedDate\": null,'+
+                '        \"WexCommentsMonitoring\": null,'+
+                '        \"RestrictedEntityUser\": [],'+
+                '        \"EntityOfficers\": [],'+
+                '        \"EntityAddress\": ['+
+                '            {'+
+                '                \"AddressId\": 205,'+
+                '                \"AddressType\": \"REGISTERED\",'+
+                '                \"Address1\": \"123 Postman Road\",'+
+                '                \"Address2\": null,'+
+                '                \"Country\": \"USA\",'+
+                '                \"State\": \"USME\",'+
+                '                \"City\": \"Westbrook\",'+
+                '                \"Zip\": \"04092\",'+
+                '                \"ExternalDataSource\": null'+
+                '            }'+
+                '        ],'+
+                '        \"EntityGroupGrid\": [],'+
+                '        \"DirectorAndCompanyOfficer\": [],'+
+                '        \"EntityHierarchy\": [],'+
+                '        \"EntityReOrgHistory\": [],'+
+                '        \"EntityDocumentLinkVm\": [],'+
+                '        \"UpdatedBy_\": null'+
+                '    }'+
+                '],'+
+                '\"status\": {}'+
+                '}';
+    }
+
+
+    // edit Credit Lens entity record
+    public static String getCreditLensEditGoodBody() {
+
+        String json = '{'+
+                '\"payLoad\": ['+
+                '           {'+
+                '           \"disableCreate\": {},'+
+                '           \"EntityType": "CORP",'+
+                '           \"EntityId": 123,'+
+                '           \"SystemId\": \"AR-123123\",'+
+                '           \"LongName\": \"Edit Entity Inc\",'+
+                '           \"ShortName\": \"X Silver Inc\",'+
+                '           \"WexCreditInformationOn\": \"Contracting Entity\",'+
+                '           \"TaxId\": \"897654321\",'+
+                '           \"WexDunsNumber\": \"098159054\",'+
+                '           \"CountryOfInc\": \"USA\",'+
+                '		 	\"ProvinceStateOfIncorporation\": \"USME\",'+
+                '           \"OnList\": \"4\",'+
+//                '           \"WexDateAdded\": \"???? \"'+
+                '           \"WexYearControl\": \"2019\",'+
+                '           \"BusinessPortfolio\": \"USA\",'+
+                '           \"Division\": \"Fleet\",'+
+                '           \"CreditPortfolio\": \"WexBank\",'+
+                '           \"WexBusinessUnit\": \"Payables\",'+
+                '           \"WexRelationshipManager\": \"Carlos Escobar\",'+
+                '           \"WexCreditAnalyst\": \"Leela Howland\",'+
+                '           \"FirmType\": \"PUB\",'+
+                '           \"CountryOfRisk\": \"USA\",'+
+                '           \"Currency\": \"USD\",'+
+                '           \"CountryOfListing\": \"USA\",'+
+                '           \"StockExchange\": \"NYSE\",'+
+                '           \"StockCode\": \"NYC\",'+
+                '           \"IndClassification\": \"SIC\",'+
+                '           \"WexRequestCreditLineAmount\": 109356.00,'+
+                '           \"WexPrimaryRiskGrade\": \"6\",'+
+                '           \"WexOriginationModelRecommendat\": 0.00,'+
+                '           \"BillingCycle\": \"Monthly\",'+
+                '           \"CollateralSecurity\": \"Deposit\",'+
+                '           \"WexRecommendedCreditLine\": 200005.00,'+
+                '           \"RestrictedEntityUser\": [],'+
+                '           \"EntityOfficers\": [],'+
+                '           \"DirectorAndCompanyOfficer\": [],'+
+                '           \"EntityHierarchy\": [],'+
+                '           \"EntityReOrgHistory\": [],'+
+                '          \"EntityDocumentLinkVm\": [],'+
+                '          \"UpdatedBy_\": null'+
+                '           }'+
+                '      ],'+
+                ' "status": {}'+
+                '}';
+
+        return json;
+    }
+
+    // create Credit Lens entity record
     public static String getCreditLensCreateGoodBody() {
 
         String json = '{'+
@@ -633,6 +848,30 @@ public class MockCalloutGenerator implements HttpCalloutMock {
                 '        }'+
                 '    ],'+
                 '    \"status\": {}'+
+                '}';
+
+        return json;
+    }
+
+    // missing a required field in payload
+    public static String getCreditLensCreateBadBody() {
+
+       String json= '{'+
+                '    \"payLoad\": {'+
+                '        \"_validationErrors\": ['+
+                '            {'+
+                '                \"Error_\": \"Entity.required.viewModel.EntityEdit.BillingCycle\",'+
+                '                \"ModelId_\": \"Entity\"'+
+                '            }'+
+                '        ]'+
+                '    },'+
+                '    \"status\": {'+
+                '        \"error\": ['+
+                '            {'+
+                '                \"ResourceId\": \"Core.message.validation.errors\"'+
+                '            }'+
+                '        ]'+
+                '    }'+
                 '}';
 
         return json;

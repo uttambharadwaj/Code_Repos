@@ -10,6 +10,7 @@ public class CreditWS_CLCreateEntityRequest {
     public Decimal EntityId;
     public String LongName;                      // Legal Business Name
     public String ShortName;                     // Doing Business As
+    public String OperationType;                 // Create, Delete, Update
     public String SystemId;                      // Salesforce Application Name such as Application-123456
     public String WexBusinessUnit;               // OTR, NAFleet, CP = Travel or Payables
     public String Division;                      // Corporate, Fleet, Health
@@ -49,7 +50,7 @@ public class CreditWS_CLCreateEntityRequest {
     public String WexCreditInformationOn;
     public String WexExpirationSecurityDate;
     public String WexRequestCurrency;            // USD, GBP, EUR, BRL
-    public String OnList;                        // N/A, Business Recourse, Watch List, Non-performing, High Exposure
+    public Integer OnList;                       // 1, 3, 4, 5
     public List<EntityOfficer> EntityOfficers;
     public List<EntityContactCreateAndEdit> EntityContactCreateAndEdit;
     public List<EntityAddress> EntityAddress;
