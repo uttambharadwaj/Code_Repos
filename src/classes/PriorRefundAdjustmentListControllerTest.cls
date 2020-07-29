@@ -9,6 +9,8 @@ private class PriorRefundAdjustmentListControllerTest {
     @testSetup
     static void setup() {
 
+        UtilityTestLoader.setAutomation(false);
+
         Id AccountRecordType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
 
         Id CaseRecordType = Schema.SObjectType.Case.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();

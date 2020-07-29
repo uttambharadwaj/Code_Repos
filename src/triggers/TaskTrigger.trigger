@@ -13,28 +13,27 @@
  * 
  * ************************************************************/
 
-trigger TaskTrigger on Task (before insert, before update) 
+trigger TaskTrigger on Task (before insert, before update, before delete)
 {
     List<Task> records = trigger.isDelete ? trigger.old : trigger.new;
 
-
-    
     if(trigger.isBefore)
     {
         if(trigger.isInsert) 
         {
             UTask.updateLastModifiedDate(records);
-            UTask.updateActivityType(records, trigger.oldmap);
+            UTask.updateActivityType(records, trigger.oldMap);
             UTask.TaskTypeFieldUpdate(records);
         }
         else if(trigger.isUpdate)
         {
-            Utask.updateLastModifiedDate(records);
-            UTask.updateActivityType(records, trigger.oldmap);
+            UTask.updateLastModifiedDate(records);
+            UTask.updateActivityType(records, trigger.oldMap);
         }
-        //else if(trigger.isDelete)
-        //{
-        //}
+        else if(trigger.isDelete)
+        {
+            UTask.DontDeleteCollectionsTasks(records);
+        }
     }     
     /*else 
     if(trigger.isAfter)

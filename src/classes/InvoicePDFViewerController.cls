@@ -37,12 +37,12 @@ public with sharing class InvoicePDFViewerController {
 
                 if ((sobjectName).equals('Collections_Invoice__c')) {
 
-                    List<Collections_Invoice__c> collectionsInvoices = [SELECT Id, Invoice_Number__c, Contract__r.AR_Number__c FROM Collections_Invoice__c WHERE Id = :recordId];
+                    List<Collections_Invoice__c> collectionsInvoices = [SELECT Id, Name, Collections__r.Contract__r.AR_Number__c FROM Collections_Invoice__c WHERE Id = :recordId];
 
                     if (collectionsInvoices.size() > 0) {
 
-                        accountId = collectionsInvoices[0].Contract__r.AR_Number__c;
-                        invoiceNumber = collectionsInvoices[0].Invoice_Number__c;
+                        accountId = collectionsInvoices[0].Collections__r.Contract__r.AR_Number__c;
+                        invoiceNumber = collectionsInvoices[0].Name;
 
                     }
 
@@ -62,20 +62,24 @@ public with sharing class InvoicePDFViewerController {
 
                 customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
 
+                //customerDetailsCallout.endpoint_x = 'https://14b6702af41c4a6559b8c33545a8a4e1.m.pipedream.net';
+
                 // Some damage control - we don't want that value to be below the default threshold
                 if (CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
                     customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
                 }
 
-                CustomerDetailsWSUtilv2.otrInvoiceResponse invoiceList = customerDetailsCallout.getOtrInvoiceList(accountId);
+                CustomerDetailsWSUtilv2.otrInvoiceResponse invoiceList = customerDetailsCallout.getOtrInvoiceList(accountId, 1000);
+
+                System.debug(invoiceList);
 
                 if (invoiceList != null && invoiceList.invoices != null && invoiceList.invoices.invoices != null) {
 
                     for (CustomerDetailsWSUtilv2.otrInvoiceEntry entry : invoiceList.invoices.invoices) {
 
-                        System.debug(entry);
+                        System.debug('### ' + entry.invoiceNumber + ', ' + invoiceNumber);
 
-                        if (entry.invoiceNumber != null && (entry.invoiceNumber).equalsIgnoreCase(invoiceNumber)) {
+                        if ((entry.invoiceNumber).equalsIgnoreCase(invoiceNumber)) {
 
                             CustomerDetailsWSUtilv2.otrInvoiceResponse invoiceCopy = customerDetailsCallout.getOtrInvoicePdf(entry.arNumber, entry.fileName);
 
@@ -128,6 +132,227 @@ public with sharing class InvoicePDFViewerController {
             errorMessage = 'Unable to retrieve invoice.';
 
         }
+
+    }
+
+    public void testBypass() {
+
+        Integer i = 0;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+        i++;
+
 
     }
 

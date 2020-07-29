@@ -30,17 +30,21 @@ public with sharing class UTask
 
     public static void updateActivityType(List<Task> records, Map<Id,Task> oldmap)
     {
+        Id collRecordTypeId = UtilityClass.getRecTypeByDevName('Task', 'Collections');
+        Id armRecordTypeId = UtilityClass.getRecTypeByDevName('Task', 'AR_Maintenance');
         boolean isinsert = (oldmap==null);
 
         for(Task t : records)
         {
-            if(
-                (isinsert && t.Type != null)
-                ||
-                (!isinsert && t.Type != oldmap.get(t.Id).Type)
-            )
-            {
-                t.Activity_Type__c = t.Type;
+            //add a check for collections or ar maintenance type. skip if true
+            if(t.RecordTypeId != null && (t.RecordTypeId != collRecordTypeId && t.RecordTypeId != armRecordTypeId)) {
+                if (
+                        (isinsert && t.Type != null)
+                                ||
+                                (!isinsert && t.Type != oldmap.get(t.Id).Type)
+                        ) {
+                    t.Activity_Type__c = t.Type;
+                }
             }
         }
     }
@@ -52,6 +56,19 @@ public with sharing class UTask
             if(t.Subject == 'Solicited Application')
             {
                 t.Type = 'Solicited'; 
+            }
+        }
+    }
+
+    public static void DontDeleteCollectionsTasks(List<Task> records){
+        Id collRecordTypeId = UtilityClass.getRecTypeByDevName('Task', 'Collections');
+        Id armRecordTypeId = UtilityClass.getRecTypeByDevName('Task', 'AR_Maintenance');
+
+        for(Task t : records){
+
+            if(t.RecordTypeId != null && (t.RecordTypeId == collRecordTypeId || t.RecordTypeId == armRecordTypeId
+                    || t.whatId.getSobjectType() == Collections__c.getSObjectType())) {
+                t.addError('Unable to delete Collections tasks.');
             }
         }
     }
