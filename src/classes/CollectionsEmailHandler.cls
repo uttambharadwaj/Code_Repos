@@ -66,10 +66,10 @@ public class CollectionsEmailHandler {
 						// value to be added to the Processed_Email_Configs__c field
 
 						// check the email config record for an additional field value that we want to add to the value going into Processed_Email_Configs__c
-						String appendValue = emailConfig.Appended_Value_Field__c != null ? String.valueOf(UtilityClass.getSObjectField(emailedCase, emailConfig.Appended_Value_Field__c)) : null;
-						//String processedEmailConfigValue = getProcessedEmailKey(emailConfig.Id, appendValue);
-						String processedEmailConfigValue = '';
-						emailedCase.Processed_Email_Configs__c = UtilityClass.updateMultiPicklist(emailedCase.Processed_Email_Configs__c, processedEmailConfigValue, false);
+						String appendValues = emailConfig.Appended_Value_Field__c != null ? String.valueOf(UtilityClass.getSObjectField(emailedCase, emailConfig.Appended_Value_Field__c)) : null;
+
+						List<String> processedEmailKeys = getEmailKeys(emailConfig.Id, appendValues);
+						emailedCase.Processed_Email_Configs__c = UtilityClass.updateMultiPicklist(emailedCase.Processed_Email_Configs__c, processedEmailKeys, false);
 						updatedCases.put(emailedCase.Id, emailedCase);
 
 					}
@@ -90,8 +90,6 @@ public class CollectionsEmailHandler {
 
 		Map<Id, List<Collection_Email_Rules__mdt>> configToEmailRules = new Map<Id, List<Collection_Email_Rules__mdt>>();
 
-		// could technically pass this information in via the soql in sendEmailTemplate
-		// but doing it this way will allow calling this method in anon apex for debugging purposes
 		for (Collection_Email_Rules__mdt emailRule : [
 				SELECT Id,Field__c,Collections_Email_Configuration__r.Email_Template_Id__c,Collections_Email_Configuration__r.Start_Date_Time__c,Operator__c,Value__c
 				FROM Collection_Email_Rules__mdt
@@ -126,9 +124,11 @@ public class CollectionsEmailHandler {
 									rule.Collections_Email_Configuration__r.Start_Date_Time__c > Datetime.valueOf(sObj.get('CreatedDate'))) {
 								ruleEval = false;
 							} else if (rule.Collections_Email_Configuration__r.Appended_Value_Field__c != null) {
+
 								String appendValues = String.valueOf(UtilityClass.getSObjectField(sObj, rule.Collections_Email_Configuration__r.Appended_Value_Field__c));
 								List<String> keys = getEmailKeys(configId, appendValues);
-								ruleEval = !haveAllEmailsBeenProcessed(keys, previouslyProcessedEmails); // If email has already been sent set ruleEval the inverse.
+								ruleEval = emailsNotYetSent(keys, previouslyProcessedEmails); // if email has already been sent don't send it again
+
 								// ============= Operator Rules =============
 							} else if (rule.Operator__c == '>=') {
 								if (Integer.valueOf(value) < Integer.valueOf(rule.Value__c)) {
@@ -237,7 +237,20 @@ public class CollectionsEmailHandler {
 		return keys;
 	}
 
-	private static Boolean haveAllEmailsBeenProcessed(List<String> keys, List<String> processedEmails) {
 
+	/**
+		* Purpose: Determine if there's any emails that have not yet been sent. This factors in both the email config id,
+	 	* 			and any values identified in the config to append(allowing for a config to be sent more than once).
+		* Input: (List<String>, List<String>) New keys, Old (processed) keys
+		* Output: (Boolean) false when all emails have already been sent
+	*/
+	private static Boolean emailsNotYetSent(List<String> keys, List<String> processedEmails) {
+		Boolean emailsNotYetSent = false;
+
+		for (String key : keys) {
+			if (!processedEmails.contains(key)) emailsNotYetSent = true;
+		}
+
+		return emailsNotYetSent;
 	}
 }

@@ -273,23 +273,30 @@ global class UtilityClass {
     }
 
     public static String updateMultiPicklist(String currentValues, String inputValue, Boolean removeValue) {
+        return updateMultiPicklist(currentValues, new List<String>{inputValue}, removeValue);
+    }
+
+    public static String updateMultiPicklist(String currentValues, List<String> inputValues, Boolean removeValue) {
         String updatedValues = '';
         Set<String> currentValueSet = new Set<String>();
-        if (currentValues != null && currentValues != '') {
 
-            currentValueSet.addAll(currentValues.split(';'));
+        if (currentValues != null && currentValues != '') currentValueSet.addAll(currentValues.split(';'));
+
+        for (String inputValue : inputValues) {
+
             if (removeValue) {
                 currentValueSet.remove(inputValue);
             } else {
                 currentValueSet.add(inputValue);
             }
+        }
 
-            for (String currentValue : currentValueSet) {
-                updatedValues += currentValue;
-            }
-            updatedValues = currentValueSet.toString().replaceAll(', ', ';');
-        } else updatedValues = removeValue ? '' : inputValue;
-        updatedValues = updatedValues.replaceAll('[\\{}]','');
+        for (String currentValue : currentValueSet) {
+            updatedValues += currentValue;
+        }
+
+        updatedValues = currentValueSet.toString().replaceAll(', ', ';');
+        updatedValues = updatedValues.replaceAll('[\\{}]', '');
         return updatedValues;
     }
 
