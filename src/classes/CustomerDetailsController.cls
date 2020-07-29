@@ -738,11 +738,10 @@ public without sharing class CustomerDetailsController {
 
 
     @AuraEnabled
-    public static CustomerDetailsWSUtilv2.otrInvoiceResponse getOTRInvoices(String arNumber, String sourceSys) {
+    public static  CustomerDetailsWSUtilv2.otrInvoices getOTRInvoices(String arNumber, String sourceSys){
 
         CustomerDetailsWSUtilv2.otrInvoiceResponse result;
-        System.debug('getOTRInvoices------->'+sourceSys);
-        System.debug('getOTRInvoices------->'+arNumber);if (isExternalPlatform(sourceSys) ==  false) {
+        if (isExternalPlatform(sourceSys) ==  false) {
             try {
 
                 CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
@@ -755,7 +754,11 @@ public without sharing class CustomerDetailsController {
                     customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
                 }
                 result = customerDetailsCallout.getOtrInvoiceList(arNumber,15) ;
-
+                CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
+                for (Integer i=0; i < result.invoices.invoices.size(); i++) {
+                    invoice = result.invoices.invoices[i];
+                    System.debug('Invoice='+invoice);
+                }
 
             } catch (Exception e) {
                 String errorCode = logError(e);
@@ -765,7 +768,7 @@ public without sharing class CustomerDetailsController {
 
         }
 
-        return result;
+        return result.invoices;
     }
 
 
