@@ -733,6 +733,46 @@ public without sharing class CustomerDetailsController {
 
     }
 
+
+
+
+
+    @AuraEnabled
+    public static  CustomerDetailsWSUtilv2.otrInvoices getOTRInvoices(String arNumber, String sourceSys){
+
+        CustomerDetailsWSUtilv2.otrInvoiceResponse result;
+        if (isExternalPlatform(sourceSys) ==  false) {
+            try {
+
+                CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+                Customer_Dashboard_Services__c CDS = Customer_Dashboard_Services__c.getOrgDefaults();
+
+                customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
+
+                // Some damage control - we don't want that value to be below the default threshold
+                if (CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+                    customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
+                }
+                result = customerDetailsCallout.getOtrInvoiceList(arNumber,15) ;
+                CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
+                for (Integer i=0; i < result.invoices.invoices.size(); i++) {
+                    invoice = result.invoices.invoices[i];
+                    System.debug('Invoice='+invoice);
+                }
+
+            } catch (Exception e) {
+                String errorCode = logError(e);
+                throw new AuraHandledException('Unable to retrieve recent OTR  invoices. (Error Tracking Code: ' + errorCode + ')');
+
+            }
+
+        }
+
+        return result.invoices;
+    }
+
+
+
     @AuraEnabled
     public static CustomerDetailsWSUtilv2.RefundAdjustmentDTO getRefunds(String accountNumber) {
 
