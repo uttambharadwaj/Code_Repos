@@ -64,13 +64,10 @@ public class CollectionsEmailHandler {
 						Case emailedCase = updatedCases.get(caseId) != null ? updatedCases.get(caseId) : (Case) cases.get(caseId); // in the event that more than one email is sent, get the already updated case
 
 						// value to be added to the Processed_Email_Configs__c field
-						String processedEmailConfigValue = null;
+
 						// check the email config record for an additional field value that we want to add to the value going into Processed_Email_Configs__c
-						if (emailConfig.Appended_Value_Field__c	!= null && emailedCase.get(emailConfig.Appended_Value_Field__c) != null) {
-							processedEmailConfigValue = emailConfig.Id + ' ' + emailedCase.get(emailConfig.Appended_Value_Field__c);
-						} else {
-							processedEmailConfigValue = emailConfig.Id;
-						}
+						String appendValue = emailConfig.Appended_Value_Field__c != null ? String.valueOf(UtilityClass.getSObjectField(emailedCase, emailConfig.Appended_Value_Field__c)) : null;
+						String processedEmailConfigValue = getProcessedEmailKey(emailConfig.Id, appendValue);
 
 						emailedCase.Processed_Email_Configs__c = UtilityClass.updateMultiPicklist(emailedCase.Processed_Email_Configs__c, processedEmailConfigValue, false);
 						updatedCases.put(emailedCase.Id, emailedCase);
@@ -113,6 +110,8 @@ public class CollectionsEmailHandler {
 			for (Id configId : configToEmailRules.keySet()) {
 
 				List<Collection_Email_Rules__mdt> rules = configToEmailRules.get(configId);
+				String key = String.valueOf(UtilityClass.getSObjectField(sObj, 'Account.Processed_Email_Configs__c'));
+
 				Boolean ruleEval = processedEmailConfigs != null && processedEmailConfigs.contains(configId) ? false : true;
 
 				if (ruleEval) { // false when a config id has already been sent for specific Case.
@@ -205,5 +204,15 @@ public class CollectionsEmailHandler {
 			}
 		}
 		return objToEmailConfigIds;
+	}
+
+	private static String getProcessedEmailKey(String key1, String key2) {
+		String key = '';
+		if (key1 != null) {
+			key = key1;
+		} else if (key2 != null && key2 != '') {
+			key += '-' + key2;
+		}
+		return key;
 	}
 }
