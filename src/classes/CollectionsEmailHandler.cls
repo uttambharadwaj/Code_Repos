@@ -91,7 +91,12 @@ public class CollectionsEmailHandler {
 		Map<Id, List<Collection_Email_Rules__mdt>> configToEmailRules = new Map<Id, List<Collection_Email_Rules__mdt>>();
 
 		for (Collection_Email_Rules__mdt emailRule : [
-				SELECT Id,Field__c,Collections_Email_Configuration__r.Email_Template_Id__c,Collections_Email_Configuration__r.Start_Date_Time__c,Operator__c,Value__c
+				SELECT  Id,
+						Field__c,
+						Collections_Email_Configuration__r.Email_Template_Id__c,
+						Collections_Email_Configuration__r.Start_Date_Time__c,
+						Collections_Email_Configuration__r.Appended_Value_Field__c,
+						Operator__c,Value__c
 				FROM Collection_Email_Rules__mdt
 		]) {
 
@@ -108,7 +113,7 @@ public class CollectionsEmailHandler {
 			for (Id configId : configToEmailRules.keySet()) {
 
 				List<Collection_Email_Rules__mdt> rules = configToEmailRules.get(configId);
-				Boolean ruleEval = false;
+				Boolean ruleEval = true;
 
 				if (ruleEval) { // false when a config id has already been sent for specific Case.
 
@@ -247,8 +252,12 @@ public class CollectionsEmailHandler {
 	private static Boolean emailsNotYetSent(List<String> keys, List<String> processedEmails) {
 		Boolean emailsNotYetSent = false;
 
-		for (String key : keys) {
-			if (!processedEmails.contains(key)) emailsNotYetSent = true;
+		if (processedEmails == null) {
+			emailsNotYetSent = true;
+		} else {
+			for (String key : keys) {
+				if (!processedEmails.contains(key)) emailsNotYetSent = true;
+			}
 		}
 
 		return emailsNotYetSent;
