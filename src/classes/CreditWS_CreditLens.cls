@@ -22,12 +22,12 @@ global class CreditWS_CreditLens {
         }
     }
 
-    public static Credit_Decision_Engine_Endpoints__mdt CLCreateEntitySettings {
+    public static Credit_Decision_Engine_Endpoints__mdt CLCreateOrGetEntitySettings {
         get {
             try {
-                Credit_Decision_Engine_Endpoints__mdt CLCreateEntitySettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity'];
+                Credit_Decision_Engine_Endpoints__mdt CLCreateOrGetEntitySettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Create_Entity'];
 
-                return CLCreateEntitySettings;
+                return CLCreateOrGetEntitySettings;
 
             } catch (Exception e) {
                 System.debug('### ERROR: Error getting Credit Lens Create Entity connection settings.');
@@ -35,6 +35,21 @@ global class CreditWS_CreditLens {
             }
         }
     }
+
+    public static Credit_Decision_Engine_Endpoints__mdt CLEditEntitySettings {
+        get {
+            try {
+                Credit_Decision_Engine_Endpoints__mdt CLEditEntitySettings = [SELECT Id, Username__c, Password__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'Credit_Lens_Edit_Entity'];
+
+                return CLEditEntitySettings;
+
+            } catch (Exception e) {
+                System.debug('### ERROR: Error getting Edit Lens Create Entity connection settings.');
+                return null;
+            }
+        }
+    }
+
 
     public static Credit_Decision_Engine_Endpoints__mdt CLUploadDocumentsSettings {
         get {
@@ -140,31 +155,31 @@ global class CreditWS_CreditLens {
     // Invocable method so we can call it from a flow
     @InvocableMethod(Label='CreditLens Create Entity' Description='Sends information to CreditLens to create an entity')
     webService static void creditLensCreateEntityAction (List<Id> appId) {
-        creditLensCreateEntity(appId[0]);
+        creditLensCreateOrUpdateEntity(appId[0]);
     }
 
     // If called from das button
     webservice static void creditLensCreateEntityButton(Id appId) {
-        creditLensCreateEntity(appId);
+        creditLensCreateOrUpdateEntity(appId);
     }
 
     /**
      * Dertermine the line of business and build the request to create an Entity record in Credit Lens
      *
-     * @param appId
+     * @param objectId
      */
-    public static void creditLensCreateEntity(Id appId) {
+    public static void creditLensCreateOrUpdateEntity(Id objectId) {
 
         String token = creditLensAuthentication();
-        System.debug('token = ' + token);
 
         CreditWS_CLCreateEntityRequest creditLensRequest = new CreditWS_CLCreateEntityRequest();
 
-        String objectType = appID.getSobjectType().getDescribe().getName();
+        String objectType = objectId.getSobjectType().getDescribe().getName();
 
+        // Currently, only designed to create a new Entity record from App Request
         if (objectType.equalsIgnoreCase('Application_Request__c')) {
 
-            System.debug('NA Fleet App ID: ' + appID);
+            System.debug('NA Fleet App ID: ' + objectId);
             List<Application_Request__c> naApplications = [
                     SELECT Id, ABA_Routing_Number__c, Application_Signer_FirstName_Text__c, Application_Stage__c, App_Signer_IP_Address__c, Tax_Payer_ID_number__c, Paydex__c, Risk_Grade__c,
                             Billing_City__c, Billing_Contact_First_Name_Text__c, Billing_Contact_Last_Name_Text__c, Billing_Contact__r.Email, Billing_Contact__r.Phone, DNB_Resolved_DUNS__c,
@@ -177,7 +192,7 @@ global class CreditWS_CreditLens {
                             Security_Type__c, Security_Currency__c, Security_Expiration_Date__c, Credit_Lens_Entity_ID__c, Credit_Lens_Response__c, App_Signer_Email__c, App_Signer_Name_Text__c, App_Signer_Last_Name_Text__c,
                             Opportunity__r.OwnerId, Opportunity__r.Sales_Group__c, Control_Year__c, SIC_Code__c
                     FROM Application_Request__c
-                    WHERE Id = :appID
+                    WHERE Id = :objectId
             ];
 
             if (naApplications.size() == 1) {
@@ -243,7 +258,6 @@ global class CreditWS_CreditLens {
                 if (naApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = naApp.Security_Type__c;
                 if (naApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = naApp.Security_Currency__c;
                 if (naApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(naApp.Security_Expiration_Date__c);
-                creditLensRequest.OnList = '4'; //required for integration, so setting the default which maps to N/A in Credit Lens
                 creditLensRequest.BillingCycle = 'Monthly'; // required for integration but NA Fleet does not set this field, this is the requested default
 
                 if (naApp.SIC_Code__c != null) {
@@ -323,10 +337,10 @@ global class CreditWS_CreditLens {
                 }
             }
         }
-
+        // Currently, only designed to create a new Entity record from Online App
         else if (objectType.equalsIgnoreCase('OnlineApplication__c')) {
 
-            System.debug('Online Application App ID: ' + appID);
+            System.debug('Online Application App ID: ' + objectId);
             List<OnlineApplication__c> appInfo = [
                     SELECT Id, Name, Legal_Business_Name__c, Trade_Name__c, Country__c, Business_Street_Address__c, Business_Address_Line_2__c, City__c, State__c, Zip_Code__c,
                             Type_of_Business__c, CurrencyIsoCode, Federal_Tax_ID__c, DNB_Resolved_DUNS__c, Stock_Symbol__c, Stock_Exchange__c, Credit_Lens_Entity_ID__c, Opportunity__r.OwnerId, Opportunity__r.Sales_Group__c,
@@ -335,7 +349,7 @@ global class CreditWS_CreditLens {
                             Contact_First_Name__c, Contact_Last_Name__c, SIC_Code__c, Credit_Lens_Response__c, Payment_Method__c, Security_Type__c, DNB_Credit_Line_Recommendation__c, Payment_Frequency__c,
                             Security_Currency__c, Security_Expiration_Date__c
                     FROM OnlineApplication__c
-                    where Id = :appID
+                    where Id = :objectId
             ];
 
             if (appInfo.size() == 1) {
@@ -364,7 +378,7 @@ global class CreditWS_CreditLens {
                 creditLensRequest.CreditPortfolio = 'WexBank';
                 creditLensRequest.WexCreditInformationOn = onlineApp.Financials_Completed_For__c;
                 if (onlineApp.Payment_Frequency__c != null) {
-                     String billingCycle = getBillingCycle(onlineApp.Payment_Frequency__c);
+                     String billingCycle = mapBillingCycle(onlineApp.Payment_Frequency__c);
                     if (billingCycle != null) creditLensRequest.BillingCycle = billingCycle;
                 } else if (onlineApp.Payment_Method__c != null && onlineApp.Payment_Method__c.equalsIgnoreCase('Auto Pay (ACH)')) { creditLensRequest.BillingCycle = 'Daily'; }
 //                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  // can't send until they figure out the dropdown values in CL
@@ -401,7 +415,6 @@ global class CreditWS_CreditLens {
                 if (onlineApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = onlineApp.Security_Type__c;
                 if (onlineApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = onlineApp.Security_Currency__c;
                 if (onlineApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(onlineApp.Security_Expiration_Date__c);
-                creditLensRequest.OnList = '4'; //required for integration, so setting the default which maps to N/A in Credit Lens
 
                 if (onlineApp.SIC_Code__c != null) {
 
@@ -481,12 +494,10 @@ global class CreditWS_CreditLens {
                 }
             }
         }
-
+    // Currently, only designed to create a new Entity record from CP App Request
         else if (objectType.equalsIgnoreCase('CP_Application_Request__c')) {
 
-            // todo refactor into a separate method that is called from here, same for all LOBs
-
-            System.debug('Corporate Payments App ID: ' + appID);
+            System.debug('Corporate Payments App ID: ' + objectId);
             List<CP_Application_Request__c> appInfo = [
                     SELECT Id, Name, Company_Legal_Name__c, Doing_Business_As__c, Physical_Country__c, Physical_Address_Line_1__c, Physical_Address_Line_2__c, Physical_City__c, Physical_State_Province__c, Physical_Postal_Code__c,
                             Legal_Structure__c, CurrencyIsoCode, Taxpayer_ID__c, DNB_Resolved_DUNS__c, Stock_Symbol__c, Stock_Exchange__c, CreditLens_EntityID__c, Opportunity__r.OwnerId, Opportunity__r.Sales_Group__c,
@@ -495,7 +506,7 @@ global class CreditWS_CreditLens {
                             DNB_Trade_Lines__c, Paydex__c, Billing_Cycle__c, Control_Year__c, Risk_Grade__c, Risk_Grade_Source__c, Email__c, Business_Phone__c, First_Name__c, Last_Name__c, SIC_Code__c, Credit_Lens_Response__c, Payment_Type__c,
                             Security_Type__c, Security_Currency__c, Security_Expiration_Date__c, DNB_Credit_Line_Recommendation__c
                     FROM CP_Application_Request__c
-                    where Id = :appID
+                    where Id = :objectId
             ];
 
             if (appInfo.size() == 1) {
@@ -524,7 +535,7 @@ global class CreditWS_CreditLens {
                 creditLensRequest.CreditPortfolio = 'WexBank';
                 creditLensRequest.WexCreditInformationOn = cpApp.Financials_Completed_For__c;
                 if (cpApp.Billing_Cycle__c != null) {
-                    String billingCycle = getBillingCycle(cpApp.Billing_Cycle__c);
+                    String billingCycle = mapBillingCycle(cpApp.Billing_Cycle__c);
                     if (billingCycle != null) creditLensRequest.BillingCycle = billingCycle;
                 }
 //                if (cpApp.Payment_Type__c != null) creditLensRequest.WexPaymentType = cpApp.Payment_Type__c;  //cannot send because the picklist values don't match in Credit Lens
@@ -565,7 +576,6 @@ global class CreditWS_CreditLens {
                 if (cpApp.Security_Type__c != null) creditLensRequest.CollateralSecurity = cpApp.Security_Type__c;
                 if (cpApp.Security_Currency__c != null) creditLensRequest.WexRequestCurrency = cpApp.Security_Currency__c;
                 if (cpApp.Security_Expiration_Date__c != null) creditLensRequest.WexExpirationSecurityDate = String.valueOf(cpApp.Security_Expiration_Date__c);
-                creditLensRequest.OnList = '4'; //required for integration, so setting the default which maps to N/A in Credit Lens
 
                 if (cpApp.SIC_Code__c != null) {
 
@@ -663,8 +673,181 @@ global class CreditWS_CreditLens {
                 }
             }
         }
+        // Only editing an existing Entity can be done from Case
+        else if (objectType.equalsIgnoreCase('Case')) {
 
+            System.debug('Case ID: ' + objectId);
+            List<Case> caseInfo = [
+                    SELECT Id, On_List__c, On_List_Date__c, Entity_ID__c, Credit_Lens_Response__c
+                    FROM Case
+                    where Id = :objectId
+            ];
+
+            if (caseInfo.size() == 1) {
+                Case upmarketCase = caseInfo[0];
+                // using the EntityID call Get Entity
+                if (upmarketCase.Entity_ID__c != null && upmarketCase.Entity_ID__c.isNumeric()) {
+                    Integer entityId = Integer.valueOf(upmarketCase.Entity_ID__c);
+                    CreditWS_CLGetEntityResponse.PayLoad getEntityPayload = getEntity(entityId, token);
+                    System.debug('getEntityPayload: ' + getEntityPayload);
+
+                    // even though we only need to update CL with updated Case values, the EditEntity API needs all required fields be sent.
+                    // so first get the existing Entity record from CL so we can gather the most up to date values for those required fields
+                    if (getEntityPayload != null) {
+                        CreditWS_CLEditEntityRequest editEntityRequest = new CreditWS_CLEditEntityRequest();
+                        CreditWS_CLEditEntityRequest.Context context = new CreditWS_CLEditEntityRequest.Context();
+                        context.taskId = '00000000-0000-0000-0000-000000000000';
+                        context.wfId = '00000000-0000-0000-0000-000000000000';
+                        editEntityRequest.context = context;
+                        CreditWS_CLEditEntityRequest.PayLoad editEntityPayLoad = new CreditWS_CLEditEntityRequest.PayLoad();
+                        editEntityPayLoad.OperationType = 'Update';
+                        editEntityPayLoad.EntityId = entityId;
+                        if (upmarketCase.On_List__c != null) editEntityPayLoad.OnList = Integer.valueOf(upmarketCase.On_List__c);
+                        if (upmarketCase.On_List_Date__c != null) editEntityPayload.WexDateAdded = String.valueOf(upmarketCase.On_List_Date__c);
+                        // add to the request all the required fields
+                        editEntityPayLoad.LongName = getEntityPayload.LongName;
+                        editEntityPayLoad.CountryOfInc = getEntityPayload.CountryOfInc;
+                        editEntityPayLoad.BusinessPortfolio = getEntityPayload.BusinessPortfolio;
+                        editEntityPayLoad.Division = getEntityPayload.Division;
+                        editEntityPayLoad.CreditPortfolio = getEntityPayload.CreditPortfolio;
+                        editEntityPayLoad.WexBusinessUnit = getEntityPayload.WexBusinessUnit;
+                        editEntityPayLoad.WexRelationshipManager = getEntityPayload.WexRelationshipManager;
+                        editEntityPayLoad.WexCreditAnalyst = getEntityPayload.WexCreditAnalyst;
+                        editEntityPayLoad.FirmType = getEntityPayload.FirmType;
+                        editEntityPayLoad.CountryOfRisk = getEntityPayload.CountryOfRisk;
+                        editEntityPayLoad.Currency_x = getEntityPayload.Currency_x;
+                        editEntityPayLoad.CountryOfListing = getEntityPayload.CountryOfListing;
+                        editEntityPayLoad.StockCode = getEntityPayload.StockCode;
+                        editEntityPayLoad.StockExchange = getEntityPayload.StockExchange;
+                        editEntityPayLoad.WexRequestCreditLineAmount = String.valueOf(getEntityPayload.WexRequestCreditLineAmount);
+                        editEntityPayLoad.WexPrimaryRiskGrade = getEntityPayload.WexPrimaryRiskGrade;
+                        editEntityPayLoad.BillingCycle = getEntityPayload.BillingCycle;
+                        editEntityPayLoad.WexRecommendedCreditLine = String.valueOf(getEntityPayload.WexRecommendedCreditLine);
+
+                        editEntityRequest.payLoad = editEntityPayLoad;
+
+                        // update the Entity in CL
+                        upmarketCase.Credit_Lens_Response__c = editEntity(editEntityRequest, token);
+                        upsert upmarketCase;
+                    }
+                } else {
+                    System.debug('Unable to update Credit Lens Entity because either Case EntityID is null or invalid, or required fields are missing on the existing Entity in Credit Lens.');
+                    upmarketCase.Credit_Lens_Response__c = 'Unable to update Credit Lens Entity because either Case EntityID is null or invalid, or required fields are missing on the existing Entity in Credit Lens.';
+                    upsert upmarketCase;
+                }
+            }
+        }
     }
+
+
+    /**
+     * Retrieve an existing Entity record from Credit Lens and all it's field values.
+     */
+    private static CreditWS_CLGetEntityResponse.Payload getEntity(Integer entityId, String token) {
+
+        System.debug('Attempting to get Entity : ' + entityId);
+        String responseBody = '';
+
+        try {
+
+            Credit_Decision_Engine_Endpoints__mdt CLGetEntitySettings = CLCreateOrGetEntitySettings;
+
+            if (CLCreateOrGetEntitySettings != null) {
+                HttpRequest request = new HttpRequest();
+
+                request.setMethod('GET');
+                request.setHeader('Content-Type', 'application/json');
+                request.setHeader('Authorization', 'Bearer ' + token);
+                request.setEndpoint(CLGetEntitySettings.Endpoint_URL__c + '/' + entityId); //Entity Id added right to the endpoint to get the given Entity record
+
+                Http http = new Http();
+                HttpResponse httpResponse = http.send(request);
+
+                if (httpResponse.getStatusCode() == 200) {
+                    responseBody = httpResponse.getBody();
+                    System.debug('Get Entity response before parse: ' + responseBody);
+
+                    String jsonResponseWithSpecialChars = replaceSpecialCharsJSON(responseBody, true);
+                    CreditWS_CLGetEntityResponse response = CreditWS_CLGetEntityResponse.parse(jsonResponseWithSpecialChars);
+
+                    if (response != null) {
+                        List<CreditWS_CLGetEntityResponse.PayLoad> payloads = new List<CreditWS_CLGetEntityResponse.PayLoad>();
+                        payloads = response.payLoad;
+
+                        if (!payloads.isEmpty()) {
+                            System.debug('Entity found in Credit Lens. Entity ID:  ' + payloads[0].EntityId);
+                            return payloads[0];
+                        }
+                    }
+                } else {
+                    // good payload but not a Status of 200 - so what happened?
+                    System.debug('Unable to get entity in Credit Lens: ' + httpResponse.getBody());
+                }
+            }
+
+        } catch (Exception e) {
+            System.debug('### Error getting entity in Credit Lens - line number: ' + e.getLineNumber() + ' - ' + e.getMessage());
+        }
+        return null;
+    }
+
+    /**
+     * Method attempts to edit and save the given Entity record.
+     * Returns either a success message with the Entity ID of the record it updated or the http response body of the failure message.
+     */
+    private static String editEntity(CreditWS_CLEditEntityRequest editEntityRequest, String token) {
+
+        System.debug('Attempting to edit Entity...');
+        String jsonRequest = replaceSpecialCharsJSON(JSON.serializePretty(editEntityRequest, true), false);
+        String responseBody = '';
+
+        try {
+
+            Credit_Decision_Engine_Endpoints__mdt CLEditEntitySettings = CLEditEntitySettings;
+
+            if (CLEditEntitySettings != null) {
+
+                HttpRequest request = new HttpRequest();
+
+                request.setMethod('POST');
+                request.setHeader('Content-Type', 'application/json');
+                request.setHeader('Authorization', 'Bearer ' + token);
+                request.setEndpoint(CLEditEntitySettings.Endpoint_URL__c);
+                request.setBody(jsonRequest);
+
+                Http http = new Http();
+                HttpResponse httpResponse = http.send(request);
+
+                if (httpResponse.getStatusCode() == 200) {
+
+                    responseBody = httpResponse.getBody();
+                    System.debug('Edit Entity response before parse: ' + responseBody);
+
+                    CreditWS_CLEditEntityResponse response = CreditWS_CLEditEntityResponse.parse(responseBody);
+
+                    if (response != null) {
+
+                        List<CreditWS_CLEditEntityResponse.PayLoad> payloads = new List<CreditWS_CLEditEntityResponse.PayLoad>();
+                        payloads = response.payLoad;
+
+                        if (!payloads.isEmpty()) {
+                            System.debug('Entity ' + payloads[0].EntityId + ' updated in Credit Lens!');
+                            return 'Entity ' + payloads[0].EntityId + ' updated in Credit Lens!';
+                        }
+                    }
+                } else {
+                    // good payload but not a Status of 200 - so what happened?
+                    System.debug('Unable to edit entity in Credit Lens: ' + httpResponse.getBody());
+                    return httpResponse.getBody();
+                }
+            }
+
+        }  catch (Exception e) {
+            System.debug('### Error editing entity in Credit Lens - line number: ' + e.getLineNumber() + ' - ' + e.getMessage());
+        }
+        return null;
+    }
+
 
     /**
      * LOB agnostic callout to Credit Lens to create the Entity record
@@ -678,13 +861,13 @@ global class CreditWS_CreditLens {
 
         if (creditLensRequest != null) {
 
-            String jsonRequest = replaceSpecialCharsJSON(JSON.serializePretty(creditLensRequest, true));
+            String jsonRequest = replaceSpecialCharsJSON(JSON.serializePretty(creditLensRequest, true), false);
 
             String responseBody = '';
 
             try {
 
-                Credit_Decision_Engine_Endpoints__mdt CLCreateEntitySettings = CLCreateEntitySettings;
+                Credit_Decision_Engine_Endpoints__mdt CLCreateEntitySettings = CLCreateOrGetEntitySettings;
 
                 if (CLCreateEntitySettings != null) {
 
@@ -702,7 +885,7 @@ global class CreditWS_CreditLens {
                     if (httpResponse.getStatusCode() == 200) {
 
                         responseBody = httpResponse.getBody();
-                        System.debug('Response before parse: ' + responseBody);
+                        System.debug('Create Entity response before parse: ' + responseBody);
 
                         CreditWS_CLCreateEntityResponse response = CreditWS_CLCreateEntityResponse.parse(responseBody);
 
@@ -721,7 +904,6 @@ global class CreditWS_CreditLens {
                         System.debug('Unable to create entity in Credit Lens: ' + httpResponse.getBody());
                         String unable = 'Unable to create entity in Credit Lens: ' + httpResponse.getBody();
                         createEntityUnable = unable;
-
                     }
 
                 }
@@ -911,7 +1093,7 @@ global class CreditWS_CreditLens {
 
                 docToEntityRequest.payLoad = payLoadY;
 
-                String jsonRequest = replaceSpecialCharsJSON(JSON.serializePretty(docToEntityRequest, true));
+                String jsonRequest = replaceSpecialCharsJSON(JSON.serializePretty(docToEntityRequest, true), false);
 
                 HttpRequest httpRequest = new HttpRequest();
 
@@ -1013,7 +1195,7 @@ global class CreditWS_CreditLens {
      *
      * @return
      */
-    public static String replaceSpecialCharsJSON(String jsonBody) {
+    public static String replaceSpecialCharsJSON(String jsonBody, Boolean reverse) {
 
         String regexFormat = '(?m)^\\s*"{0}"\\s*:';
 
@@ -1030,6 +1212,19 @@ global class CreditWS_CreditLens {
                 'Payload_Y' => 'Payload',
                 'Payload_Z' => 'Payload'
         };
+
+        //for taking response and changing them to non-reserved words
+        if (reverse) {
+
+            Map<String, String> newMap = new Map<String, String>();
+
+            for (String key : replacements.keySet()) {
+                newMap.put(replacements.get(key), key);
+            }
+
+            replacements = newMap;
+
+        }
 
         String formattedJSON = JSON.serializePretty(JSON.deserializeUntyped(jsonBody));
 
@@ -1089,7 +1284,7 @@ global class CreditWS_CreditLens {
      * For CP most billing cycles match, aside from Bi-Weekly.
      * @return
      */
-    private static String getBillingCycle(String paymentFrequency) {
+    private static String mapBillingCycle(String paymentFrequency) {
 
         switch on paymentFrequency {
             when 'DAILY' {
