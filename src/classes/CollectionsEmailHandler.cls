@@ -29,7 +29,7 @@ public class CollectionsEmailHandler {
 		fields.add('Processed_Email_Configs__c');
 		fields.add('CreatedDate');
 
-		String query = 'SELECT ' + fields.toString().replaceAll('[{}]', '') + ' FROM Case WHERE Id IN :caseIds';
+		String query = 'SELECT ' + String.join(new List<String>(fields), ',') + ' FROM Case WHERE Id IN :caseIds';
 		Map<Id, sObject> cases = new Map<Id, sObject>(Database.query(query));
 
 		if (!cases.isEmpty()) {
