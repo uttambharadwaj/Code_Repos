@@ -118,7 +118,7 @@ public with sharing class InvocableSendEmailTemplate {
                         toEmails.remove(i);
                     }
                     if (ccEmails.size() > i && !ccEmails.get(i).containsIgnoreCase('@wexinc')) {
-                        toEmails.remove(i);
+                        ccEmails.remove(i);
                     }
                 }
             }
