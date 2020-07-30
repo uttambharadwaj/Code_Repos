@@ -109,7 +109,7 @@ public class CollectionsEmailHandler {
 		// For each sObject
 		for (sObject sObj : sObjs) {
 			// All rules for a config
-			List<String> previouslyProcessedEmails = sObj.get('Processed_Email_Configs__c') != null ? String.valueOf(sObj.get('Processed_Email_Configs__c')).split('\\,') : null;
+			List<String> previouslyProcessedEmails = sObj.get('Processed_Email_Configs__c') != null ? String.valueOf(sObj.get('Processed_Email_Configs__c')).split('\\;') : null;
 			for (Id configId : configToEmailRules.keySet()) {
 
 				List<Collection_Email_Rules__mdt> rules = configToEmailRules.get(configId);
@@ -123,16 +123,18 @@ public class CollectionsEmailHandler {
 						try {
 							Object value = UtilityClass.getSObjectField(sObj, rule.Field__c);
 
-							if (value == null) {
+							String appendValues = null;
+							if (rule.Collections_Email_Configuration__r.Appended_Value_Field__c != null) {
+								appendValues = String.valueOf(UtilityClass.getSObjectField(sObj, rule.Collections_Email_Configuration__r.Appended_Value_Field__c));
+							}
+							List<String> keys = getEmailKeys(configId, appendValues);
+							ruleEval = emailsNotYetSent(keys, previouslyProcessedEmails); // if email has already been sent don't send it again
+
+							if (value == null || ruleEval == false) {
 								ruleEval = false;
 							} else if (rule.Collections_Email_Configuration__r.Start_Date_Time__c != null &&
 									rule.Collections_Email_Configuration__r.Start_Date_Time__c > Datetime.valueOf(sObj.get('CreatedDate'))) {
 								ruleEval = false;
-							} else if (rule.Collections_Email_Configuration__r.Appended_Value_Field__c != null) {
-
-								String appendValues = String.valueOf(UtilityClass.getSObjectField(sObj, rule.Collections_Email_Configuration__r.Appended_Value_Field__c));
-								List<String> keys = getEmailKeys(configId, appendValues);
-								ruleEval = emailsNotYetSent(keys, previouslyProcessedEmails); // if email has already been sent don't send it again
 
 								// ============= Operator Rules =============
 							} else if (rule.Operator__c == '>=') {
@@ -249,7 +251,7 @@ public class CollectionsEmailHandler {
 		* Input: (List<String>, List<String>) New keys, Old (processed) keys
 		* Output: (Boolean) false when all emails have already been sent
 	*/
-	private static Boolean emailsNotYetSent(List<String> keys, List<String> processedEmails) {
+	public static Boolean emailsNotYetSent(List<String> keys, List<String> processedEmails) {
 		Boolean emailsNotYetSent = false;
 
 		if (processedEmails == null) {
