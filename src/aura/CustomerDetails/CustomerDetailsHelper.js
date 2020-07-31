@@ -905,7 +905,6 @@
                 sourceSys = 'OTR';
             }
             accountNumber = component.get("v.customerDetails.arNumber");
-            accountNumber = component.get("v.customerDetails.arNumber");
             console.log("OTR account--accountNumber---->",accountNumber);
             action = component.get("c.getOTRInvoices");
             action.setParams({

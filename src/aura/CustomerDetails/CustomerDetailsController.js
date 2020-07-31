@@ -49,8 +49,8 @@
             {label: "Invoice Number", fieldName: "invoiceNumber", type: "text", sortable: true, initialWidth: 180 },
             {label: "Invoice Date", fieldName: "invoiceDate", type: "date-local", sortable: true, initialWidth: 180 },
             {label: "Due Date", fieldName: "dueDate", type: "date-local", sortable: false, initialWidth: 190},
-            {label: "Amount", fieldName: "amount", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: true, initialWidth: 160, cellAttributes: { alignment: 'right' }},
-            {label: "View Invoice", fieldName: "viewInvoice", type: "text", sortable: true, initialWidth: 150, cellAttributes: { alignment: 'center' }}
+            {label: "Amount", fieldName: "amountDue", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: true, initialWidth: 160, cellAttributes: { alignment: 'right' }},
+            {label: "View Invoice", fieldName: "fileName", type: "url",typeAttributes: {label: "View Invoice", target: { fieldName: 'fileName' }}, sortable: false}
         ]);
 
         component.set("v.paymentHistoryColumnList", [
@@ -496,6 +496,6 @@
         let otrContractList = component.get('v.customerDetails.otrContracts.entry');
         component.set('v.showOtrCOntractDetails',true);
         component.set("v.otrContractObj",otrContractList[index].value);
-		helper.reloadContract(component, event, helper);
-	}
+        helper.reloadContract(component, event, helper);
+    }
 })

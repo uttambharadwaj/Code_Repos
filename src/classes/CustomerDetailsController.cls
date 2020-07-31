@@ -757,6 +757,8 @@ public without sharing class CustomerDetailsController {
                 CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
                 for (Integer i=0; i < result.invoices.invoices.size(); i++) {
                     invoice = result.invoices.invoices[i];
+                    String pageUrl =  Url.getSalesforceBaseUrl().toExternalForm()+'/apex/InvoicePDFViewer?arNumber='+invoice.arNumber+'&fileName='+EncodingUtil.urlEncode(invoice.fileName,'UTF-8');
+                    result.invoices.invoices[i].fileName = pageUrl;
                     System.debug('Invoice='+invoice);
                 }
 
