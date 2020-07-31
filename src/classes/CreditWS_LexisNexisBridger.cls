@@ -14,9 +14,13 @@ public with sharing class CreditWS_LexisNexisBridger {
         get {
             
             try {
-                
-                Credit_Decision_Engine_Endpoints__mdt lexisNexisBridgerSettings = [SELECT Id, Username__c, Password__c, Client_ID__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'LexisNexis_Bridger'];
-                
+                UtilityClass Utility = new UtilityClass();
+                if (Utility.runningInASandbox == true){
+                    Credit_Decision_Engine_Endpoints__mdt lexisNexisBridgerSettings = [SELECT Id, Username__c, Password__c, Client_ID__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'LexisNexis_Bridger_Sandbox'];
+                }
+                else {
+                    Credit_Decision_Engine_Endpoints__mdt lexisNexisBridgerSettings = [SELECT Id, Username__c, Password__c, Client_ID__c, Endpoint_URL__c FROM Credit_Decision_Engine_Endpoints__mdt WHERE DeveloperName = 'LexisNexis_Bridger'];
+                }
                 return lexisNexisBridgerSettings;
                 
             }

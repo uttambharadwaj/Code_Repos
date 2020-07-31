@@ -13,6 +13,7 @@ public class OTRBOCAConfirmationController {
     public BOCA_res__c brandingUtility { get; set; }
     
     public String applicationNumber { get; set; }
+    public String applicationOpportunity { get; set; }
 
     public OnlineApplicationOffer__c offer { get; set; }
 
@@ -93,7 +94,7 @@ public class OTRBOCAConfirmationController {
                     return bocaAttachment;
                 }
 
-                List<OnlineApplication__c> onlineApplications = [SELECT Id, Name, Offer__c, Program__c, Number_of_Trucks__c, Opportunity__r.Campaign_Program__c FROM OnlineApplication__c WHERE Id =: customerParameter];
+                List<OnlineApplication__c> onlineApplications = [SELECT Id, Name, Offer__c, Program__c, Number_of_Trucks__c,Opportunity__c, Opportunity__r.Campaign_Program__c FROM OnlineApplication__c WHERE Id =: customerParameter];
 
                 if(onlineApplications.size() > 0) {
 
@@ -116,6 +117,7 @@ public class OTRBOCAConfirmationController {
                     }
 
                     applicationNumber = onlineApplication.Name;
+                    applicationOpportunity = onlineApplication.Opportunity__c;
 
                 }
                 else {

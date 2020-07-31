@@ -59,7 +59,7 @@ global class CreditDecisionEngineNA {
                         Physical_Zip_Postal_Code__c, Program__c, Running_Credit_Decisioning__c, Sanctions_Business_Check__c, Sanctions_Business_Result_ID__c,
                         Sanctions_Individual_Check__c, Sanctions_Individual_Result_ID__c, Tax_Payer_ID_number__c, ThreatMetrix_Session_ID__c, ThreatMetrix_Request_ID__c, ThreatMetrix_Result__c,
                         Physical_Country__c, Fraud_Flag__c, DNB_Credit_Line_Recommendation__c, DNB_Confidence_Code__c, Personal_Guarantor__c, BPAV_Check__c, Campaign_Program__c,
-                        Opportunity__r.Campaign.Run_Final_Decision_Only__c, Only_Final_Decision_Has_Run__c
+                        Opportunity__r.Campaign.Run_Final_Decision_Only__c, Only_Final_Decision_Has_Run__c, Charged_Off_Account_Found__c, DNB_Name_Match_Score__c
                 FROM Application_Request__c
                 WHERE Id = :naApplicationId
         ];
@@ -374,6 +374,9 @@ global class CreditDecisionEngineNA {
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     naApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
                 }
+                if (dnbDirectMatchResponse.matchCandidates[0].NameMatchScore != null) {
+                    naApplication.DNB_Name_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchScore;
+                }
 
                 // Execute BREeze for pre-processing
                 System.debug('Running DNB BPAV....');
@@ -580,9 +583,12 @@ global class CreditDecisionEngineNA {
                 }
             }
 
-            // Upsert and execute BREeze
             naApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
             naApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
+            // iterate through the found existing Accounts to see if any have charge off balances
+            for (CreditUtil_ExistingExposure.ExistingExposureAccounts existingAccounts : existingExposureAccounts) {
+                if (existingAccounts.chargeOffAmount > 0) naApplication.Charged_Off_Account_Found__c = true;
+            }
 
             //IADJUDICAT-739 wait until the last moment to set dnb hits bc we live life on the edge
             if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null)
@@ -590,6 +596,7 @@ global class CreditDecisionEngineNA {
             else
                     naApplication.DNB_Lookup_Hits__c = 0;
 
+        // Upsert and execute BREeze
             upsert naApplication;
 
             // Make a safe copy so we don't overwrite any fields

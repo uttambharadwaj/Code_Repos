@@ -12,7 +12,7 @@
     <aura:attribute name="carrierId" type="String" />
     <aura:attribute name="searchRecordId" type="String" />
     <aura:attribute name="isOtrAccount" type="String" />
-    <aura:attribute name="contractObj" type="object" />
+	<aura:attribute name="contractObj" type="object" />
     <!-- Returns from controller -->
     <aura:attribute name="accountId" type="String" />
     <aura:attribute name="contactId" type="String" />
@@ -24,8 +24,6 @@
     <aura:attribute name="dummyAltBillingContactId" type="String" />
     <aura:attribute name="dummyOnlineUserContactId" type="String" />
     <aura:attribute name="dummySalesRepContactId" type="String" />
-    <aura:attribute name="dummyFinanancialInstitutionContactId" type="String" />
-    <aura:attribute name="dummyWexInternalContactId" type="String" /> 
 
     <aura:attribute name="priorityLevelServicingRule" type="String" />
 
@@ -60,9 +58,11 @@
 
     <aura:attribute name="caseHistory" type="Map" />
     <aura:attribute name="caseHistoryColumnList" type="List" />
-
+	
     <aura:attribute name="otrContractObj" type="Map" />
     <aura:attribute name="showOtrCOntractDetails" type="Boolean" default="false" />
+
+    <aura:attribute name="otrInvoiceColumnList" type="List" />
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <ltng:require styles="{!$Resource.FontAwesome + '/font-awesome-4.7.0/css/font-awesome.min.css'}" />
@@ -511,7 +511,7 @@
 
                     <td data-label="Expiration Date">N/A</td>
                 </tr>
-
+                
                 <!--
                 <aura:if isTrue="{!v.customerDetails.wrightRewardsCustomer == false &amp;&amp; v.customerDetails.telematicsCustomer == false &amp;&amp; v.customerDetails.clearViewCustomer == false}">
                     <tr class="no-results">
@@ -816,52 +816,6 @@
                         </td>
                     </aura:if>
                 </tr>
-
-
-                <!-- Financial Institution -->
-                <tr class="contactRow">
-                    <td scope="row" data-label="Contact Name">
-                        <div class="slds-truncate">
-                            Financial Institution
-                        </div>
-                    </td>
-                    <td scope="row" data-label="NewCaseAction">
-                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyFinanancialInstitutionContactId}" onclick="{!c.popToCase}">New Case</button>
-                        </aura:if>
-                    </td>
-                    <td data-label="Address">
-                    </td>
-                    <td data-label="Phone">
-                    </td>
-                    <td data-label="Fax">
-                    </td>
-                    <td data-label="Email">
-                    </td>
-                    <td data-label="Contact Type">
-                        <div class="slds-truncate">
-                            CONTACT
-                        </div>
-                    </td>
-                    <aura:if isTrue="{!v.appMode != 'subtab'}">
-                        <td data-label="Actions">
-                            <div class="slds-truncate">
-                                <div class="slds-button-group" role="group">
-                                    <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
-                                        <!-- This is the update for a specific case that is passed in -->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyFinanancialInstitutionContactId}" onclick="{!c.popToCase}">Update Case</button>
-                                    </aura:if>
-                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                        <!-- This will open the modal-->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyFinanancialInstitutionContactId}" onclick="{!c.openCaseModal}">Update Case</button>
-                                    </aura:if>
-                                </div>
-                            </div>
-                        </td>
-                    </aura:if>
-                </tr>
-
-
                 <!-- Merchant -->
                 <tr class="contactRow">
                     <td scope="row" data-label="Contact Name">
@@ -1030,51 +984,6 @@
                         </td>
                     </aura:if>
                 </tr>
-
-                <!-- Wex Internal -->
-                <tr class="contactRow">
-                    <td scope="row" data-label="Contact Name">
-                        <div class="slds-truncate">
-                            Wex Internal
-                        </div>
-                    </td>
-                    <td scope="row" data-label="NewCaseAction">
-                        <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                            <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyWexInternalContactId}" onclick="{!c.popToCase}">New Case</button>
-                        </aura:if>
-                    </td>
-                    <td data-label="Address">
-                    </td>
-                    <td data-label="Phone">
-                    </td>
-                    <td data-label="Fax">
-                    </td>
-                    <td data-label="Email">
-                    </td>
-                    <td data-label="Contact Type">
-                        <div class="slds-truncate">
-                            CONTACT
-                        </div>
-                    </td>
-                    <aura:if isTrue="{!v.appMode != 'subtab'}">
-                        <td data-label="Actions">
-                            <div class="slds-truncate">
-                                <div class="slds-button-group" role="group">
-                                    <aura:if isTrue="{!and(v.caseId != null, v.caseId != 'undefined', v.recordId == null)}">
-                                        <!-- This is the update for a specific case that is passed in -->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyWexInternalContactId}" onclick="{!c.popToCase}">Update Case</button>
-                                    </aura:if>
-                                    <aura:if isTrue="{!and(or(v.caseId == null, v.caseId == 'undefined'), v.recordId == null)}">
-                                        <!-- This will open the modal-->
-                                        <button class="slds-button slds-button_neutral" data-isDummyContact="true" data-contactRowId="{!v.dummyWexInternalContactId}" onclick="{!c.openCaseModal}">Update Case</button>
-                                    </aura:if>
-                                </div>
-                            </div>
-                        </td>
-                    </aura:if>
-                </tr>
-
-
                 <aura:iteration items="{!v.filteredCustomerContacts}" var="contact">
                     <tr class="contactRow">
                         <td scope="row" data-label="Contact Name">
@@ -1763,7 +1672,7 @@
                 </div>
                 Invoice &amp; Billing
             </aura:set>
-            <!-- <lightning:spinner aura:id="invoicesLoadingSpinner" alternativeText="Waiting for data..." /><br/> -->
+           <!-- <lightning:spinner aura:id="invoicesLoadingSpinner" alternativeText="Waiting for data..." /><br/>-->
             <div class="slds-page-header">
                 <div class="slds-media">
                     <div class="slds-media__figure">
@@ -2191,46 +2100,61 @@
                         </span>
                     </div>
                     <div class="slds-media__body">
-                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Last 3 Invoices</h1>
+                        <h1 class="slds-page-header__title slds-truncate slds-align-bottom" style="line-height: 26px;">Recent Invoices</h1>
                     </div>
                 </div>
             </div>
             <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
                 <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
-                    <table>
-                        <thead>
-                        <tr class="slds-text-title_caps">
-                            <th scope="col">
-                                <div class="slds-truncate" title="Period Ending">Period Ending</div>
-                            </th>
-                            <th scope="col">
-                                <div class="slds-truncate" title="View Invoice">View Invoice</div>
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <aura:iteration items="{!v.invoices.invoices}" var="xinvoice">
-                            <tr class="contactRow">
-                                <td data-label="Billing Period">
-                                    <div class="slds-truncate">
-                                        <aura:if isTrue="{!xinvoice.closingDt == null}">N/A
-                                            <aura:set attribute="else">
-                                                <lightning:formattedDateTime value="{!xinvoice.closingDt}"/>
-                                            </aura:set>
-                                        </aura:if>
-                                    </div>
-                                </td>
-                                <td data-label="Url">
-                                    <div class="slds-truncate">
-                                        <aura:if isTrue="{!xinvoice.invoiceUrl == null}">N/A
-                                            <aura:set attribute="else"><lightning:formattedUrl value="{!xinvoice.invoiceUrl}" label="View Invoice"/></aura:set>
-                                        </aura:if>
-                                    </div>
-                                </td>
+                    <aura:if isTrue="{!!v.isOtrAccount == null || v.isOtrAccount == 'false'}">
+                        <table>
+                            <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Period Ending">Period Ending</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="View Invoice">View Invoice</div>
+                                </th>
                             </tr>
-                        </aura:iteration>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            <aura:iteration items="{!v.invoices.invoices}" var="xinvoice">
+                                <tr class="contactRow">
+                                    <td data-label="Billing Period">
+                                        <div class="slds-truncate">
+                                            <aura:if isTrue="{!xinvoice.closingDt == null}">N/A
+                                                <aura:set attribute="else">
+                                                    <lightning:formattedDateTime value="{!xinvoice.closingDt}"/>
+                                                </aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </td>
+                                    <td data-label="Url">
+                                        <div class="slds-truncate">
+                                            <aura:if isTrue="{!xinvoice.invoiceUrl == null}">N/A
+                                                <aura:set attribute="else"><lightning:formattedUrl value="{!xinvoice.invoiceUrl}" label="View Invoice"/></aura:set>
+                                            </aura:if>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                            </tbody>
+                        </table>
+                        <aura:set attribute="else">
+                            
+                            <lightning:datatable aura:id="otrInvoicesTable"
+                                                 data="{!v.invoices}"
+                                                 columns="{!v.otrInvoiceColumnList}"
+                                                 keyField="Id"
+                                                 hideCheckboxColumn="true"
+                                                 onsort="{!c.handleOTRInvoiceSort}"
+                                                 sortedBy="invoiceDate"
+                                                 sortedDirection="desc"
+                            />
+
+                        </aura:set>
+                    </aura:if>
                 </div>
             </div>
         </lightning:tab>

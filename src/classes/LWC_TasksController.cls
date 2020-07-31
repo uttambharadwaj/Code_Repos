@@ -11,14 +11,13 @@ public inherited sharing class LWC_TasksController {
         Boolean futureTasks = (taskFutureDateFilter != null && taskFutureDateFilter) ? true : false;
         // default to showing historical tasks
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
-        System.debug('Historical: ' + historicalTasks + ' Future: ' + futureTasks);
 
-        String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, OwnerId, Owner.Name, WhatId, ActivityDate, LastModifiedDate, Status FROM Task';
+        String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, OwnerId, Owner.Name, WhatId, ActivityDate, LastModifiedDate, Status, Activity_Type__c FROM Task';
         if (recordId != null && recordId != '') {
             taskQuery += ' WHERE WhatId =: recordId';
             // are we filtering by task type?
             if (taskTypeFilter != null && taskTypeFilter != '') {
-                taskQuery += ' AND Type IN :typeFilter';
+                taskQuery += ' AND (Type IN :typeFilter OR Activity_Type__c IN :typeFilter)';
             }
             // are we filtering by task date range?
             if (historicalTasks && !futureTasks) {
@@ -39,14 +38,13 @@ public inherited sharing class LWC_TasksController {
         List<String> typeFilter = taskTypeFilter.split(',');
         Boolean futureTasks = (taskFutureDateFilter != null && taskFutureDateFilter) ? true : false;
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
-        System.debug('Historical: ' + historicalTasks + ' Future: ' + futureTasks);
 
         String countQuery = 'SELECT count() FROM Task ';
         if (recordId != null && recordId != '') {
             countQuery += ' WHERE WhatId =: recordId';
             // are we filtering by task type?
             if (taskTypeFilter != null && taskTypeFilter != '') {
-                countQuery += ' AND Type IN :typeFilter';
+                countQuery += ' AND Type IN :typeFilter OR Activity_Type__c IN :typeFilter';
             }
             // are we filtering by task date range?
             if (historicalTasks && !futureTasks) {

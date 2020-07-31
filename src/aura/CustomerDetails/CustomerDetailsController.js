@@ -291,7 +291,7 @@
 
     filterContacts : function(component, event, helper) {
 
-        helper.filterContacts(component); 
+        helper.filterContacts(component);
 
     },
 
@@ -441,7 +441,7 @@
         // assign the latest attribute with the sorted column fieldName and sorted direction
         component.find("otrInvoicesTable").set("v.sortedBy", fieldName);
         component.find("otrInvoicesTable").set("v.sortedDirection", sortDirection);
-        helper.sortTxnData(component, fieldName, sortDirection);
+        helper.sortOTRInvoicesData(component, fieldName, sortDirection);
 
     },
 

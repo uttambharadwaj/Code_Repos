@@ -31,16 +31,10 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                     cp.Credit_Line_Recommendation__c = 0;
 
                     // Check if calculating based on DNB info
-                    // if DNB credit line recommendation is not covered by their high credit, attempt to approve requested credit line
                     if (!cp.PG_Required__c && cp.DNB_Credit_Line_Recommendation__c > 0) {
 
-                        cp.Credit_Line_Recommendation__c = cp.DNB_Credit_Line_Recommendation__c;
-
-                        // if DNB recommends a higher credit line than the customer requested, cap the recommended at the requested credit line
-                        if (cp.Credit_Line_Recommendation__c > creditLineRequested) {
-                            cp.Credit_Line_Recommendation__c = creditLineRequested;
-                        }
-                        highCreditAmount = getHighestCreditAmount(cp.DNB_SBFE_High_Credit__c, cp.DNB_CSAD_High_Credit__c);
+                        highCreditAmount = getHighestCreditAmount(cp.DNB_SBFE_High_Credit__c, cp.DNB_CSAD_High_Credit__c, cp.DNB_Credit_Line_Recommendation__c);
+                        System.debug('Highest high credit amount: ' + highCreditAmount);
                     }
 
                     if (riskGrade.equals('1') || riskGrade.equals('2')) {
@@ -121,7 +115,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
                     } else {
                         // calculate recommended credit line based on commercial DNB information
-                        oa.Credit_Line_Recommendation__c = calculateOTRCreditLimitPerDNB(oa, highCreditAmount, creditLineRequested);
+                        oa.Credit_Line_Recommendation__c = calculateCreditLimitPerDNB(oa.Risk_Grade__c, oa.DNB_SBFE_High_Credit__c, oa.DNB_CSAD_High_Credit__c, oa.DNB_Credit_Line_Recommendation__c, creditLineRequested);
                     }
 
                     // For any given credit line recommendation, a minimum credit line of 2500 is required (Slip Seat minimum is 3500)
@@ -142,7 +136,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                 System.debug(so.Id);
 
                 List<Application_Request__c> applicationRequests = [
-                        SELECT Id,Credit_Line_Recommendation__c,DNB_Credit_Line_Recommendation__c,Requested_Credit_Limit_Currency__c,PG_Required__c,PG_High_Credit_Amount__c,PG_FICO_Score__c, Risk_Grade__c,
+                        SELECT Id,Credit_Line_Recommendation__c,DNB_Credit_Line_Recommendation__c,Requested_Credit_Limit_Currency__c,Requested_Credit_Limit__c,PG_Required__c,PG_High_Credit_Amount__c,PG_FICO_Score__c, Risk_Grade__c,
                                 DNB_CSAD_High_Credit__c, DNB_SBFE_High_Credit__c, DNB_Trade_Lines__c, BOCA_Type__c, Legal_Structure__c, Annual_Gross_Revenue__c, Years_In_Business__c, Auto_Decision_Comments__c
                         FROM Application_Request__c
                         WHERE Id = :so.Id
@@ -153,6 +147,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
                     Decimal creditLineRequested = ar.Requested_Credit_Limit_Currency__c;
                     String riskGrade = ar.Risk_Grade__c;
                     Decimal highCreditAmount = ar.PG_High_Credit_Amount__c;
+                    System.debug('Credit Line Requested: ' + creditLineRequested);
 
                     if (ar.BOCA_Type__c != null && ar.BOCA_Type__c.equalsIgnoreCase('Revolver Card')) {
                         if (creditLineRequested <= 25000) {
@@ -166,8 +161,7 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
 
                     // If DNB match was successful, and PG was not required, calculate credit based on DNB info
                     if (!ar.PG_Required__c && ar.DNB_Credit_Line_Recommendation__c > 0) {
-                        ar.Credit_Line_Recommendation__c = calculateNACreditLimitPerDNB(ar, creditLineRequested, riskGrade, highCreditAmount);
-
+                        ar.Credit_Line_Recommendation__c = calculateCreditLimitPerDNB(riskGrade, ar.DNB_SBFE_High_Credit__c, ar.DNB_CSAD_High_Credit__c, ar.DNB_Credit_Line_Recommendation__c, creditLineRequested);
                     }
                     // If PG pulled, calculate the recommended credit line based on PG info
                     else {
@@ -190,36 +184,60 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
     }
 
     /**
-    * Determines between SBFE and CSAD, which is the higher credit amount. Returns the higher of the two, or 0 if both null.
+    * Determines between SBFE, CSAD, and DNB Credit Line Recommendation, which is the higher credit amount. Returns the higher of the three, or 0 if all are null.
+    * As of June 2020 (EAPT-1946) the bank stated DNB Credit Line Recommendation is considered a form of high credit.
      */
-    private static Decimal getHighestCreditAmount(Decimal DNBSBFEHighCredit, Decimal DNBCSADHighCredit) {
+    private static Decimal getHighestCreditAmount(Decimal DNBSBFEHighCredit, Decimal DNBCSADHighCredit, Decimal DNBCreditRecommendation) {
 
         Decimal highCreditAmount = 0;
 
-        //Added EAPT-1561 - to handle 99999999999.00 coming from DNB for some other codes.
+        //EAPT-1561 - to handle 99999999999.00 coming from DNB for some other codes.
         if (DNBSBFEHighCredit == 99999999999.00){
             DNBSBFEHighCredit = 0;
         }
 
-        if (null != DNBSBFEHighCredit && null != DNBCSADHighCredit) {
-            if (DNBCSADHighCredit > DNBSBFEHighCredit) {
-                highCreditAmount = DNBCSADHighCredit;
-            } else {
-                highCreditAmount = DNBSBFEHighCredit;
+        return Math.max(extractValue(DNBSBFEHighCredit), Math.max(extractValue(DNBCSADHighCredit), extractValue(DNBCreditRecommendation)));
+    }
+
+    private static Decimal calculateCreditLimitPerDNB(String riskGrade, Decimal SBFEHighCredit, Decimal CSADHighCredit, Decimal DNBCreditRecommendation, Decimal creditLineRequested) {
+
+        System.debug('Calculating credit line recommendation based on DNB info...');
+
+        // determine which high credit amount is highest
+        Decimal highCreditAmount = getHighestCreditAmount(SBFEHighCredit, CSADHighCredit, DNBCreditRecommendation);
+        System.debug('Highest high credit amount: ' + highCreditAmount);
+
+        if (riskGrade.equals('1') || riskGrade.equals('2')) {
+            if (creditLineRequested <= 25000) {
+                return creditLineRequested;
+            }
+            else {
+                if (creditLineRequested <= highCreditAmount) {
+                    return creditLineRequested;
+                }
+                else {
+                    return highCreditAmount;
+                }
             }
         }
-        else if (null != DNBCSADHighCredit) {
-            highCreditAmount = DNBCSADHighCredit;
+        if (riskGrade.equals('3') || riskGrade.equals('4')) {
+            if (creditLineRequested <= 10000) {
+                return creditLineRequested;
+            }
+            else {
+                if (creditLineRequested <= highCreditAmount) {
+                    return creditLineRequested;
+                }
+                else {
+                    return highCreditAmount;
+                }
+            }
         }
-        else if (null != DNBSBFEHighCredit) {
-            highCreditAmount = DNBSBFEHighCredit;
-        }
-
-        return highCreditAmount;
+        return 0;
     }
 
     /**
-     * Calculate the OTR credit line recommndation based on Personal Guarentar information
+     * Calculate the OTR credit line recommendation based on Personal Guarentor information
      **/
     private static Decimal calculateOTRCreditLimitPerPG(OnlineApplication__c oa, Decimal highCreditAmount, Decimal creditLineRequested) {
 
@@ -281,113 +299,9 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
         return oa.Credit_Line_Recommendation__c;
     }
 
-    private static Decimal calculateOTRCreditLimitPerDNB(OnlineApplication__c oa, Decimal highCreditAmount, Decimal creditLineRequested) {
-
-        String riskGrade = oa.Risk_Grade__c;
-        oa.Credit_Line_Recommendation__c = oa.DNB_Credit_Line_Recommendation__c;
-
-
-        // if DNB recommends a higher credit line than the customer requested, cap the recommended at the requested credit line
-        if (oa.Credit_Line_Recommendation__c > creditLineRequested) {
-            oa.Credit_Line_Recommendation__c = creditLineRequested;
-        }
-
-        // determine which high credit amount is highest
-        highCreditAmount = getHighestCreditAmount(oa.DNB_SBFE_High_Credit__c, oa.DNB_CSAD_High_Credit__c);
-
-        if (riskGrade.equals('1') || riskGrade.equals('2')) {
-            if (oa.Credit_Line_Recommendation__c <= 25000) {
-                return oa.Credit_Line_Recommendation__c;
-            }
-            else {
-                if (oa.Credit_Line_Recommendation__c <= highCreditAmount) {
-                    return oa.Credit_Line_Recommendation__c;
-                }
-                else {
-                    return oa.Credit_Line_Recommendation__c = highCreditAmount;
-                }
-            }
-        }
-        if (riskGrade.equals('3') || riskGrade.equals('4')) {
-            if (oa.Credit_Line_Recommendation__c <= 10000) {
-                return oa.Credit_Line_Recommendation__c;
-            }
-            else {
-                if (oa.Credit_Line_Recommendation__c <= highCreditAmount) {
-                    return oa.Credit_Line_Recommendation__c;
-                }
-                else {
-                    return oa.Credit_Line_Recommendation__c = highCreditAmount;
-                }
-            }
-        }
-        return 0;
-    }
-
 
     /**
-     * Calculate the NA Fleet credit line recommndation based on DNB information
-     * If DNB credit line recommendation is not covered by their high credit, attempt to approve requested credit line
-     **/
-    private static Decimal calculateNACreditLimitPerDNB(Application_Request__c ar, Decimal creditLineRequested, String riskGrade, Decimal highCreditAmount) {
-
-        System.debug('Calculating credit line recommendation based on DNB info...');
-        ar.Credit_Line_Recommendation__c = ar.DNB_Credit_Line_Recommendation__c;
-
-        // if DNB recommends a higher credit line than the customer requested, cap the recommended at the requested credit line
-        if (ar.Credit_Line_Recommendation__c > creditLineRequested) {
-            ar.Credit_Line_Recommendation__c = creditLineRequested;
-        }
-
-        // determine which high credit amount is highest
-        highCreditAmount = getHighestCreditAmount(ar.DNB_SBFE_High_Credit__c, ar.DNB_CSAD_High_Credit__c);
-
-        if (riskGrade.equals('1') || riskGrade.equals('2')) {
-            // don't increase requested to the 25k min if the applicant requested less
-            if (creditLineRequested <= 25000) {
-                ar.Credit_Line_Recommendation__c = creditLineRequested;
-                return ar.Credit_Line_Recommendation__c;
-            }
-            if (ar.Credit_Line_Recommendation__c > 25000) {
-                if (ar.Credit_Line_Recommendation__c <= highCreditAmount) {
-                    return ar.Credit_Line_Recommendation__c;
-                }
-                else {
-                    ar.Credit_Line_Recommendation__c = highCreditAmount;
-                }
-            }
-            // set a minimum credit line recommendation of 25k for this RG range unless applicant requested less
-            if (ar.Credit_Line_Recommendation__c < 25000 && creditLineRequested > 25000) {
-                ar.Credit_Line_Recommendation__c = 25000;
-            }
-            return ar.Credit_Line_Recommendation__c;
-        }
-
-        if (riskGrade.equals('3') || riskGrade.equals('4') || (riskGrade.equals('5') && ar.Years_In_Business__c > 3)) {
-            // don't increase requested to the 10k min if the applicant requested less
-            if (creditLineRequested <= 10000) {
-                ar.Credit_Line_Recommendation__c = creditLineRequested;
-                return ar.Credit_Line_Recommendation__c;
-            }
-            if (ar.Credit_Line_Recommendation__c > 10000) {
-                if (ar.Credit_Line_Recommendation__c <= highCreditAmount) {
-                    return ar.Credit_Line_Recommendation__c;
-                }
-                else {
-                    ar.Credit_Line_Recommendation__c = highCreditAmount;
-                }
-            }
-            // set a minimum credit line recommendation of 10k for this RG range unless applicant requested less
-            if (ar.Credit_Line_Recommendation__c < 10000 && creditLineRequested > 10000) {
-                ar.Credit_Line_Recommendation__c = 10000;
-            }
-            return ar.Credit_Line_Recommendation__c;
-        }
-        return 0;
-    }
-
-    /**
-     * Calculate the NA Fleet credit line recommndation based on Personal Guarentar information
+     * Calculate the NA Fleet credit line recommendation based on Personal Guarentar information
      **/
     private static Decimal calculateNACreditLimitPerPG(Application_Request__c ar, Decimal creditLineRequested, String riskGrade, Decimal highCreditAmount) {
 
@@ -605,6 +519,15 @@ global class CreditUtil_CalculateCreditLine implements BREeze.FunctionCheckerPre
         creditLimitTableOneTwo.put('2', RG2RevenueRanges);
 
         return creditLimitTableOneTwo;
+    }
+
+
+    private static Decimal extractValue(Decimal dec) {
+
+        if (dec == null) {
+            return 0;
+        }
+        return dec;
     }
 
 

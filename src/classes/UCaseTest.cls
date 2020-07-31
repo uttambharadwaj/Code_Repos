@@ -586,7 +586,29 @@ private class UCaseTest {
         System.assert(resultCase.Service_Program_Survey_Sent__c == false, 'Survey was marked as sent');
 
     }
+    @IsTest
+    static void testCollectionsAssociateContact() {
+
+        testSetup();
+        System.debug([ SELECT Id,AccountId,Contact_Type__c FROM Contact ]);
+        Contact contact = [ SELECT Id,AccountId FROM Contact WHERE Contact_Type__c = 'PRIMARY' AND AccountId != NULL LIMIT 1 ];
+        User creditMonitoringUser = [SELECT Id FROM User WHERE Name = 'Credit Monitoring' LIMIT 1];
+
+        Test.startTest();
+        Case collectionsCase = new Case();
+        collectionsCase.RecordTypeId = UtilityClass.getRecTypeByDevName('Case','Service_Operations');
+        collectionsCase.AccountId = contact.AccountId;
+        System.runAs(creditMonitoringUser) {
+            insert collectionsCase;
+        }
+        Test.stopTest();
+
+        collectionsCase = [ SELECT ID, ContactId FROM Case WHERE Id = :collectionsCase.Id ];
+        System.assertEquals(contact.Id, collectionsCase.ContactId);
+    }
     static void testSetup() {
+
+        UtilityTestLoader.setAutomation(false);
 
         final String caseWithSurveySummary = 'EmailMessageTriggerTest Test Case';
         final String caseWithoutSurveySummary = 'EmailMessageTriggerTest Test Case Without Survey';
@@ -624,8 +646,9 @@ private class UCaseTest {
         contact.FirstName = 'Mark';
         contact.LastName = 'Bickford';
         contact.Email = 'mark.bickford@domain.com';
-        contact.Account = wexAccount;
+        contact.AccountId = wexAccount.Id;
         contact.Status__c = 'Active';
+        contact.Contact_Type__c = 'PRIMARY';
 
         insert contact;
 

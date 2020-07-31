@@ -6,7 +6,7 @@ public class WE_TeamTargetCalculationTest {
         
         UtilityTestLoader.setAutomation(false);
     
-        Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator - Wex Europe'];
+        Profile p1 = [SELECT Id FROM Profile WHERE Name = 'System Administrator'];
         
         // create User
         User[] userList = new User[]{};

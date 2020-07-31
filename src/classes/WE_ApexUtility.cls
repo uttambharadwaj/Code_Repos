@@ -2,6 +2,9 @@
 // previous revisions https://gist.github.com/aplssf/cfeda65c514b8fc28ab4
 public class WE_ApexUtility {
 
+
+    //TODO remove references to this class and comment it out for removal.
+
   /**
   * WIP - removed commented out lines & reference to non-existent record type metadata
   **/
@@ -419,7 +422,7 @@ public class WE_ApexUtility {
     recursiveCdUpdate = b;
     update cds.deepClone(true);
   }
-    
+
         // adapted from http://www.sfdc99.com/2014/03/01/sending-emails-using-apex/ and
     // https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_forcecom_email_outbound.htm
     public class PrepareEmails {

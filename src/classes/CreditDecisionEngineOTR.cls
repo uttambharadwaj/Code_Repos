@@ -32,7 +32,7 @@ global class CreditDecisionEngineOTR {
      */
     private static Boolean bypassCallouts(OnlineApplication__c onlineApp) {
         Boolean bypassCallouts = false;
-        if (onlineApp.Application_Type__c != null && onlineApp.Application_Type__c.equalsIgnoreCase('Credit Reallocation') && onlineApp.Credit_Line_Requested__c == 0) {
+        if (onlineApp.Application_Type__c != null && onlineApp.Application_Type__c.equalsIgnoreCase('Credit Reallocation') && onlineApp.Credit_Line_Requested__c == 1) {
             bypassCallouts = true;
         }
         return bypassCallouts;
@@ -49,7 +49,7 @@ global class CreditDecisionEngineOTR {
                         Opportunity__r.SourceSystem__c, Account__r.Name, Trade_Name__c, Federal_Tax_ID__c, Card_Shipping_Address_Line_1__c, Card_Shipping_City__c, Card_Shipping_State__c,
                         Card_Shipping_Postal_Code__c, Email__c, Phone_Number__c, IP_Address__c, Credit_Line_Requested__c, Application_Signer_IP__c, DNB_Credit_Line_Recommendation__c,
                         DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DOT_Number__c, DNB_Resolved_DUNS__c, Country__c,
-                        Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c, Application_Type__c, Credit_Analyst__c
+                        Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c, Application_Type__c, Credit_Analyst__c, Charged_Off_Account_Found__c, DNB_Name_Match_Score__c
                 FROM OnlineApplication__c
                 WHERE Id = :onlineApplicationId
         ];
@@ -371,6 +371,9 @@ global class CreditDecisionEngineOTR {
             if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                 onlineApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
             }
+            if (dnbDirectMatchResponse.matchCandidates[0].NameMatchScore != null) {
+                onlineApplication.DNB_Name_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchScore;
+            }
 
             // Execute BREeze for pre-processing
             BREeze.ProcessRules.ruleDataSet breezeResults = BREeze.ProcessRules.processRuleLogic('OTRCreditDecisioningBPAVMatch', new List<SObject>{
@@ -598,15 +601,21 @@ global class CreditDecisionEngineOTR {
             }
         }
 
-        // Upsert and execute BREeze
+
         onlineApplication.Application_Exposure_Hits__c = existingExposureApplications.size();
         onlineApplication.Existing_Account_Exposure_Hits__c = existingExposureAccounts.size();
+        // iterate through the found existing Accounts to see if any have charge off balances
+        for (CreditUtil_ExistingExposure.ExistingExposureAccounts existingAccounts : existingExposureAccounts) {
+            if (existingAccounts.chargeOffAmount > 0) onlineApplication.Charged_Off_Account_Found__c = true;
+        }
+
         //IADJUDICAT-739 wait until the last moment to set dnb hits bc we live life on the edge
         if (dnbDirectMatchResponse != null && dnbDirectMatchResponse.matchCandidates != null)
             onlineApplication.DNB_Lookup_Hits__c = dnbDirectMatchResponse.matchCandidates.size();
         else
             onlineApplication.DNB_Lookup_Hits__c = 0;
 
+        // Upsert and execute BREeze
         upsert onlineApplication;
 
         // Make a safe copy so we don't overwrite any fields

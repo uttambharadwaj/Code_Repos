@@ -212,7 +212,7 @@
 
     },
 
-    loadGenericContacts : function(component, target) { 
+    loadGenericContacts : function(component, target) {
         var action = component.get("c.getSupportOperationsSettings");
         action.setCallback(this, function(response){
             if(component.isValid() && response != null && response.getState() == 'SUCCESS'){
@@ -898,27 +898,46 @@
     },
 
     loadInvoices : function(component, target) {
-
+        let accountNumber = component.get("v.accountNumber");
+        let sourceSys = component.get("v.customerDetails.sourceSys");
+        var action;
+        console.log('accountNumber--------->',accountNumber);
+        console.log('sourceSys--------->',sourceSys);
+        console.log('****ISOTR--------->',component.get("v.isOtrAccount"));
         if (component.get("v.isOtrAccount") && component.get("v.isOtrAccount").toUpperCase()==="TRUE") {
-            console.log("OTR account; returning no invoices");
-            return; }
+            if(sourceSys == null || sourceSys == undefined){
+                sourceSys = 'OTR';
+            }
+            accountNumber = component.get("v.customerDetails.arNumber");
+            accountNumber = component.get("v.customerDetails.arNumber");
+            console.log("OTR account--accountNumber---->",accountNumber);
+            action = component.get("c.getOTRInvoices");
+            action.setParams({
+                arNumber : accountNumber,
+                sourceSys     : sourceSys
+            });
 
-        var action = component.get("c.getInvoices");
-
-        action.setParams({
-            accountNumber : component.get("v.accountNumber"),
-            sourceSys     : component.get("v.customerDetails.sourceSys")
-        });
+        } else {
+            action = component.get("c.getInvoices");
+            action.setParams({
+                accountNumber : accountNumber,
+                sourceSys     : sourceSys
+            });
+        }
 
         action.setCallback(this, function(response) {
-            console.log("### loadInvoices RESPONSE " +response);
             var state = response.getState();
 
             if(component.isValid() && state === "SUCCESS") {
-                component.set("v.invoices", response.getReturnValue());
-                console.log("### got invoices");
-                console.log(response.getReturnValue());
-                console.log(component.get("v.invoices"));
+                let respVal = response.getReturnValue();
+                console.log("### loadInvoices RESPONSE-----> " +response.getReturnValue());
+
+
+                //for (let[key, value] of respVal) {
+                //    console.log('Invoice response: '+key + ' = ' + value);
+                //}
+                component.set("v.invoices", respVal.invoices);
+                console.dir(component.get("v.invoices"));
 
 
                 if(target != null) {
@@ -1398,6 +1417,14 @@
         component.find("declinedTransactionsTable").set("v.data", data);
     },
 
+    sortOTRInvoicesData: function (component, fieldName, sortDirection) {
+        var data = component.find("otrInvoicesTable").get("v.data");
+        var reverse = sortDirection !== 'asc';
+        //sorts the rows based on the column header that's clicked
+        data.sort(this.sortBy(fieldName, reverse))
+        component.find("otrInvoicesTable").set("v.data", data);
+    },
+
     sortBy: function (field, reverse, primer) {
         var key = primer ?
             function(x) {return primer(x[field])} :
@@ -1497,7 +1524,7 @@
             console.log('Current Contract = '+currentContract.arNumber);
 
             let oldArNumber = component.get("v.customerDetails.arNumber");
-    
+
             component.set("v.customerDetails.arNumber",currentContract.arNumber);
             component.set("v.customerDetails.availableCreditLmt",currentContract.availableCreditLmt);
             component.set("v.customerDetails.billingCycleDesc",currentContract.billingCycleDesc);
@@ -1559,6 +1586,8 @@
             //This forces the payments tolazy-reload properly when we switch contracts
             if (currentContract.arNumber !== oldArNumber) {
                 component.set("v.paymentsBulk",null);
+                component.set("v.invoices",null);
+                this.loadInvoices(component, event.target);
             }
         }
     },

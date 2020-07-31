@@ -1,10 +1,15 @@
-// This is the main test class for the WexBOCA Application.
-// 
-// This test class covers the following classes:
-// - WexBOCAController
-// - WexBOCAErrorController
-// - WexBOCAConfirmationController
-// - WexBOCALanguageExtension
+/*
+This is the main test class for the WexBOCA Application.
+
+This test class covers the following classes:
+- WexBOCAController
+- WexBOCAErrorController
+- WexBOCAConfirmationController
+- WexBOCALanguageExtension
+
+    Revision History:       20Jul2020       MFarrell        replaced creditUser with sinte instead of guest user as summer '20 changed guest user permissions
+                                                            brace yourself... BOCA redesign is coming
+*/
 
 @isTest
 public class WexBOCATest {
@@ -136,7 +141,7 @@ public class WexBOCATest {
     
     static testMethod void BOCATest() {
 
-        User CreditUser = [SELECT Id FROM User WHERE Name = 'CreditApplication Site Guest User'];
+        User CreditUser = [SELECT Id FROM User WHERE Alias = 'sinte'];
         
         System.debug('Found Credit User: ' + CreditUser.Id);
         
@@ -324,7 +329,7 @@ public class WexBOCATest {
 
     static testMethod void IndividualBOCATest() {
 
-        User CreditUser = [SELECT Id FROM User WHERE Name = 'CreditApplication Site Guest User'];
+        User CreditUser = [SELECT Id FROM User WHERE Alias = 'sinte'];
 
         System.debug('Found Credit User: ' + CreditUser.Id);
 
@@ -474,7 +479,7 @@ public class WexBOCATest {
 
 	static testMethod void RevolverBOCATest() {
 
-        User CreditUser = [SELECT Id FROM User WHERE Name = 'CreditApplication Site Guest User'];
+        User CreditUser = [SELECT Id FROM User WHERE Alias = 'sinte'];
         
         System.debug('Found Credit User: ' + CreditUser.Id);
         

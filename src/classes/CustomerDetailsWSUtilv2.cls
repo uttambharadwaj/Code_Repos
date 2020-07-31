@@ -155,7 +155,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] programMaintenanceChargeDescription_type_info = new String[]{'programMaintenanceChargeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] recourseAmt_type_info = new String[]{'recourseAmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] recourseCode_type_info = new String[]{'recourseCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
-        private String[] returnedPaymentFee_type_info = new String[]{'returnedPaymentFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};            
+        private String[] returnedPaymentFee_type_info = new String[]{'returnedPaymentFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] salesforceId_type_info = new String[]{'salesforceId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] thirdPartyCheckFee_type_info = new String[]{'thirdPartyCheckFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] thirdPartyCheckFeeDescription_type_info = new String[]{'thirdPartyCheckFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -1196,8 +1196,8 @@ public class CustomerDetailsWSUtilv2 {
         private String[] field_order_type_info = new String[]{'otrAcctNbr','sourceSys'};
     }
     public class getOtrInvoiceList {
-        public String otrArNumber;
-        public Integer limit_x;
+        @AuraEnabled public String otrArNumber;
+        @AuraEnabled public Integer limit_x;
         private String[] otrArNumber_type_info = new String[]{'otrArNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] limit_x_type_info = new String[]{'limit','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
@@ -1205,13 +1205,13 @@ public class CustomerDetailsWSUtilv2 {
     }
 
     public class otrInvoiceEntry {
-        public Decimal amountDue;
-        public String arNumber;
-        public DateTime dueDate;
-        public String fileName;
-        public DateTime invoiceDate;
-        public String invoiceNumber;
-        public String pdfBytes;
+        @AuraEnabled public Decimal amountDue;
+        @AuraEnabled public String arNumber;
+        @AuraEnabled public DateTime dueDate;
+        @AuraEnabled public String fileName;
+        @AuraEnabled public DateTime invoiceDate;
+        @AuraEnabled public String invoiceNumber;
+        @AuraEnabled public String pdfBytes;
         private String[] amountDue_type_info = new String[]{'amountDue','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] arNumber_type_info = new String[]{'arNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] dueDate_type_info = new String[]{'dueDate','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -1224,22 +1224,22 @@ public class CustomerDetailsWSUtilv2 {
     }
 
     public class otrInvoices {
-        public CustomerDetailsWSUtilv2.otrInvoiceEntry[] invoices;
+        @AuraEnabled public CustomerDetailsWSUtilv2.otrInvoiceEntry[] invoices;
         private String[] invoices_type_info = new String[]{'invoices','http://com.wex.enterpriseapps.customerinfo',null,'0','-1','true'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'invoices'};
     }
 
     public class getOtrInvoicePdfResponse {
-        public CustomerDetailsWSUtilv2.otrInvoiceResponse return_x;
+        @AuraEnabled public CustomerDetailsWSUtilv2.otrInvoiceResponse return_x;
         private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};
     }
 
     public class getOtrInvoicePdf {
-        public String arNumber;
-        public String pdfFilename;
+        @AuraEnabled public String arNumber;
+        @AuraEnabled public String pdfFilename;
         private String[] arNumber_type_info = new String[]{'arNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] pdfFilename_type_info = new String[]{'pdfFilename','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
@@ -1247,8 +1247,8 @@ public class CustomerDetailsWSUtilv2 {
     }
 
     public class otrInvoiceResponse {
-        public String errorMsg;
-        public CustomerDetailsWSUtilv2.otrInvoices invoices;
+        @AuraEnabled public String errorMsg;
+        @AuraEnabled public CustomerDetailsWSUtilv2.otrInvoices invoices;
         private String[] errorMsg_type_info = new String[]{'errorMsg','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] invoices_type_info = new String[]{'invoices','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
@@ -1256,7 +1256,7 @@ public class CustomerDetailsWSUtilv2 {
     }
 
     public class getOtrInvoiceListResponse {
-        public CustomerDetailsWSUtilv2.otrInvoiceResponse return_x;
+        @AuraEnabled public CustomerDetailsWSUtilv2.otrInvoiceResponse return_x;
         private String[] return_x_type_info = new String[]{'return','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
         private String[] field_order_type_info = new String[]{'return_x'};

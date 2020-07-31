@@ -33,6 +33,8 @@
             var card_program = "{!program.Brand_Short_Name__c}";
 
             var page_name = "App-Completed";
+
+            var opportunity_number = "{!applicationOpportunity}";
         </script>
 
         <!-- This will move to be the base BOCA CSS -->

@@ -33,7 +33,7 @@ global class CreditDecisionEngineCP {
                         Running_Credit_Decisioning__c, DUNS_Number__c, Legal_Structure__c, Business_Phone__c,Program__c, CreatedBy.Alias,
                         Checking_Account_Number__c, ABA_Routing_Number__c, Fraud_Flag__c, DNB_Reason_Code__c, DNB_Confidence_Code__c, Credit_Line_Requested__c,
                         Doing_Business_As__c, Account__r.Name, Mailing_Address_Line_1__c, Mailing_City__c, Mailing_State_Province__c, Mailing_Postal_Code__c, Email__c, Application_Signer_IP_Address__c,
-                        DNB_Resolved_DUNS__c, BPAV_Check__c
+                        DNB_Resolved_DUNS__c, BPAV_Check__c, Charged_Off_Account_Found__c, DNB_Name_Match_Score__c
                 FROM CP_Application_Request__c
                 WHERE Id = :cpApplicationId
         ];
@@ -339,6 +339,10 @@ global class CreditDecisionEngineCP {
                 if (dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue != null) {
                     cpApplication.DNB_Confidence_Code__c = String.valueOf(dnbDirectMatchResponse.matchCandidates[0].ConfidenceCodeValue);
                 }
+                if (dnbDirectMatchResponse.matchCandidates[0].NameMatchScore != null) {
+                    cpApplication.DNB_Name_Match_Score__c = dnbDirectMatchResponse.matchCandidates[0].NameMatchScore;
+                }
+
 
                 // Execute BREeze for pre-processing
                 System.debug('Running DNB BPAV...');
@@ -562,9 +566,14 @@ global class CreditDecisionEngineCP {
 
             System.debug(cpApplication);
 
-            // Upsert and execute BREeze
             cpApplication.Number_of_Existing_Applications__c = existingExposureApplications.size();
             cpApplication.Number_of_Existing_Accounts__c = existingExposureAccounts.size();
+            // iterate through the found existing Accounts to see if any have charge off balances
+            for (CreditUtil_ExistingExposure.ExistingExposureAccounts existingAccounts : existingExposureAccounts) {
+                if (existingAccounts.chargeOffAmount > 0) cpApplication.Charged_Off_Account_Found__c = true;
+            }
+
+            // Upsert and execute BREeze
             upsert cpApplication;
 
             // Make a safe copy so we don't overwrite any fields

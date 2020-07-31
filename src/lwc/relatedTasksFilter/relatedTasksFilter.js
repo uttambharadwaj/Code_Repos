@@ -15,6 +15,9 @@ export default class RelatedTasksFilter extends LightningElement {
     typeOptions = [
         { label: 'Call', value: 'Call' },
         { label: 'Email', value: 'Email' },
+        { label: 'Skip Tracing', value: 'Skip Tracing' },
+        { label: 'Returned Payment', value: 'Returned Payment' },
+        { label: 'Account Maintenance', value: 'Account Maintenance' },
     ];
     dateValue = ['Historical'];
     dateOptions = [
@@ -24,7 +27,6 @@ export default class RelatedTasksFilter extends LightningElement {
 
     handleTypeChange(event) {
         this.typeValue = event.detail.value;
-
     }
     handleDateChange(event) {
         this.dateValue = event.detail.value;
