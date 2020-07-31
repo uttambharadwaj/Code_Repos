@@ -45,6 +45,14 @@
             {label: "Currency", fieldName: "currencyCd", type: "text", sortable: false, initialWidth: 120, cellAttributes: { alignment: 'center' }}
         ]);
 
+        component.set("v.otrInvoiceColumnList", [
+            {label: "Invoice Number", fieldName: "invoiceNumber", type: "text", sortable: true, initialWidth: 180 },
+            {label: "Invoice Date", fieldName: "invoiceDate", type: "date-local", sortable: true, initialWidth: 180 },
+            {label: "Due Date", fieldName: "dueDate", type: "date-local", sortable: false, initialWidth: 190},
+            {label: "Amount", fieldName: "amount", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: true, initialWidth: 160, cellAttributes: { alignment: 'right' }},
+            {label: "View Invoice", fieldName: "viewInvoice", type: "text", sortable: true, initialWidth: 150, cellAttributes: { alignment: 'center' }}
+        ]);
+
         component.set("v.paymentHistoryColumnList", [
             {label: "Cycle End", fieldName: "cycleEndDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 130},
             {label: "Due Date",  fieldName: "dueDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 100},
@@ -66,6 +74,8 @@
             {label: "Posting Date", fieldName: "postingDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
             {label: "Payment Amt", fieldName: "amount", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 130, cellAttributes: { alignment: 'right' }},
             {label: "Updated Date", fieldName: "updateDate", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 150},
+            {label: "Status of Hold", fieldName: "holdStatus", type: "text", sortable: false, initialWidth: 120 },
+            {label: "Currency Label", fieldName: "currency_x", type: "text", sortable: false, initialWidth: 120 },
         ]);
 
         component.set("v.past3InvoicesColumnList", [
@@ -281,7 +291,7 @@
 
     filterContacts : function(component, event, helper) {
 
-        helper.filterContacts(component);
+        helper.filterContacts(component); 
 
     },
 
@@ -425,6 +435,16 @@
 
     },
 
+    handleOTRInvoiceSort: function (component, event, helper) {
+        var fieldName = event.getParam('fieldName');
+        var sortDirection = event.getParam('sortDirection');
+        // assign the latest attribute with the sorted column fieldName and sorted direction
+        component.find("otrInvoicesTable").set("v.sortedBy", fieldName);
+        component.find("otrInvoicesTable").set("v.sortedDirection", sortDirection);
+        helper.sortTxnData(component, fieldName, sortDirection);
+
+    },
+
     // Client-side controller called by the Payment History onsort event handler
     handlePaymentHistorySort: function (component, event, helper) {
         var fieldName = event.getParam('fieldName');
@@ -445,5 +465,37 @@
         component.find("pendingPaymentsTable").set("v.sortedDirection", sortDirection);
         helper.sortTxnData(component, fieldName, sortDirection);
 
-    }
+    },
+    toogleSplitView: function (component, event, helper) {
+        console.log('toogleSplitView--------->',JSON.stringify(event.target.getAttribute('id')));
+        let expandSplitView = false;
+        if(event.target.getAttribute('id') == "left"){
+            event.target.setAttribute('aria-expanded','false');
+            event.target.parentNode.setAttribute('class','slds-split-view_container slds-is-closed');
+            event.target.setAttribute('class','slds-button slds-button_icon slds-button_icon slds-split-view__toggle-button slds-is-closed');
+            event.target.setAttribute('id','right');
+            component.set('v.showOtrCOntractDetails',true);
+
+        } else {
+            event.target.setAttribute('aria-expanded','true');
+            event.target.parentNode.setAttribute('class','slds-split-view_container slds-is-open');
+            event.target.setAttribute('class','slds-button slds-button_icon slds-button_icon slds-split-view__toggle-button slds-is-open');
+            event.target.setAttribute('id','left');
+            component.set('v.showOtrCOntractDetails',false);
+        }
+    },
+
+
+    reloadContract: function(component, event, helper) {
+        helper.reloadContract(component, event, helper);
+    },
+
+    showContract: function (component, event, helper) {
+        console.log('Show Contract--------->',event.target.getAttribute('id'));
+        let index = event.target.getAttribute('id');
+        let otrContractList = component.get('v.customerDetails.otrContracts.entry');
+        component.set('v.showOtrCOntractDetails',true);
+        component.set("v.otrContractObj",otrContractList[index].value);
+		helper.reloadContract(component, event, helper);
+	}
 })

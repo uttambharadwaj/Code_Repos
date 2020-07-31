@@ -111,6 +111,7 @@
 
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.customerDetails", response.getReturnValue());
+
                 // if (component.get("v.isOtrAccount") === true && component.get("v.customerDetails.sfdcAcctId") !== 'null') {
                 //     //component.set("v.acctRecordId", component.get("v.customerDetails.sfdcAcctId")); // todo: causes an error in the browser. is a valid component variable.
                 // }
@@ -211,7 +212,7 @@
 
     },
 
-    loadGenericContacts : function(component, target) {
+    loadGenericContacts : function(component, target) { 
         var action = component.get("c.getSupportOperationsSettings");
         action.setCallback(this, function(response){
             if(component.isValid() && response != null && response.getState() == 'SUCCESS'){
@@ -221,6 +222,10 @@
                 component.set("v.dummyAltBillingContactId", response.getReturnValue().ContactAlternateBillingRecordID__c);
                 component.set("v.dummyOnlineUserContactId", response.getReturnValue().ContactOnlineUserRecordID__c);
                 component.set("v.dummySalesRepContactId", response.getReturnValue().ContactSalesRepRecordId__c);
+                component.set("v.dummyFinanancialInstitutionContactId", response.getReturnValue().Financial_Institution_Record_Id__c);
+                component.set("v.dummyWexInternalContactId", response.getReturnValue().Wex_Internal_Record_Id__c);
+                console.log("### FinancialInstitutionID = "+component.get("v.dummyFinanancialInstitutionContactId"));
+                console.log("### WEX Internal ID = "+component.get("v.dummyWexInternalContactId"));
             }
         });
 
@@ -796,9 +801,23 @@
 
         var action = component.get("c.getPayments");
 
+        var numberToUse;
+        var sourceSysToUse;
+
+        let isOtrAccount = component.get("v.isOtrAccount");
+        if (isOtrAccount === "false") {
+            numberToUse = component.get("v.accountNumber");
+            sourceSysToUse = component.get("v.customerDetails.sourceSys");
+        } else {
+            numberToUse = component.get("v.customerDetails.arNumber");
+            sourceSysToUse = component.get("v.customerDetails.sourceSys");
+            if (sourceSysToUse == null || sourceSysToUse === "")
+                sourceSysToUse = "EFS";
+        }
+
         action.setParams({
-            accountNumber : component.get("v.accountNumber"),
-            sourceSys     : component.get("v.customerDetails.sourceSys")
+            accountNumber : numberToUse,
+            sourceSys     : sourceSysToUse
         });
 
         action.setCallback(this, function(response) {
@@ -1471,6 +1490,77 @@
         console.log('isSalesforceId returns '+result);
         return result;
 
+    },
+    reloadContract: function (component, event, helper) {
+        if (component.get("v.otrContractObj")) {
+            let currentContract = component.get("v.otrContractObj");
+            console.log('Current Contract = '+currentContract.arNumber);
+
+            let oldArNumber = component.get("v.customerDetails.arNumber");
+    
+            component.set("v.customerDetails.arNumber",currentContract.arNumber);
+            component.set("v.customerDetails.availableCreditLmt",currentContract.availableCreditLmt);
+            component.set("v.customerDetails.billingCycleDesc",currentContract.billingCycleDesc);
+            component.set("v.customerDetails.billingAccountId",currentContract.billingAcctNbr);
+            component.set("v.customerDetails.canadianFee",currentContract.canadianFee);
+            component.set("v.customerDetails.canadianFeeDescription",currentContract.canadianFeeDescription);
+            component.set("v.customerDetails.cashEnabledIndicator",currentContract.cashEnabledIndicator);
+            component.set("v.customerDetails.codeExpiredFee",currentContract.codeExpiredFee);
+            component.set("v.customerDetails.codeExpiredFeeDescription",currentContract.codeExpiredFeeDescription);
+            component.set("v.customerDetails.contractNbr",currentContract.contractNbr);
+            component.set("v.customerDetails.contractNm",currentContract.contractNm);
+            component.set("v.customerDetails.contractStartDt",currentContract.contractStartDt);
+            component.set("v.customerDetails.creditLmt",currentContract.creditLmt);
+            component.set("v.customerDetails.currentBillingCycle",currentContract.currentBillingCycle);
+            component.set("v.customerDetails.currentInvoiceClosingDt",currentContract.currentInvoiceClosingDt);
+            component.set("v.customerDetails.currentInvoiceDueDt",currentContract.currentInvoiceDueDt);
+            component.set("v.customerDetails.daysToPay",currentContract.daysToPay);
+            component.set("v.customerDetails.debitCycle",currentContract.debitCycle);
+            component.set("v.customerDetails.faxFee",currentContract.faxFee);
+            component.set("v.customerDetails.faxFeeDescription",currentContract.faxFeeDescription);
+            component.set("v.customerDetails.financeChargeRteType",currentContract.financeChargeRteType);
+            component.set("v.customerDetails.lastInvoiceBilledAmt",currentContract.lastInvoiceBilledAmt);
+            component.set("v.customerDetails.lastPaymentAmount",currentContract.lastPaymentAmount);
+            component.set("v.customerDetails.lastPaymentDt",currentContract.lastPaymentDt);
+            component.set("v.customerDetails.lastPaymentMethod",currentContract.lastPaymentMethod);
+            component.set("v.customerDetails.moneyIncrementalFee",currentContract.moneyIncrementalFee);
+            component.set("v.customerDetails.moneyIncrementalFeeDescription",currentContract.moneyIncrementalFeeDescription);
+            component.set("v.customerDetails.monthlyCardFee",currentContract.monthlyCardFee);
+            component.set("v.customerDetails.monthlyCardFeeDescription",currentContract.monthlyCardFeeDescription);
+            component.set("v.customerDetails.nsfFee",currentContract.nsfFee);
+            component.set("v.customerDetails.nsfFeeDescription",currentContract.nsfFeeDescription);
+            component.set("v.customerDetails.outOfNetworkPerTxnFee",currentContract.outOfNetworkPerTxnFee);
+            component.set("v.customerDetails.outOfNetworkProgramOrAccountRte",currentContract.outOfNetworkProgramOrAccountRte);
+            component.set("v.customerDetails.overLimitFee",currentContract.overLimitFee);
+            component.set("v.customerDetails.overLimitFeeDescription",currentContract.overLimitFeeDescription);
+            component.set("v.customerDetails.pastDueAmount",currentContract.pastDueAmount);
+            component.set("v.customerDetails.payByAgentFee",currentContract.payByAgentFee);
+            component.set("v.customerDetails.payByAgentFeeDescription",currentContract.payByAgentFeeDescription);
+            component.set("v.customerDetails.pendingTxns",currentContract.pendingTxns);
+            component.set("v.customerDetails.periodicFinanceChargeRte",currentContract.periodicFinanceChargeRte);
+            component.set("v.customerDetails.programMaintenanceCharge",currentContract.programMaintenanceCharge);
+            component.set("v.customerDetails.programMaintenanceChargeDescription",currentContract.programMaintenanceChargeDescription);
+            component.set("v.customerDetails.thirdPartyCheckFee",currentContract.thirdPartyCheckFee);
+            component.set("v.customerDetails.thirdPartyCheckFeeDescription",currentContract.thirdPartyCheckFeeDescription);
+            component.set("v.customerDetails.totalOwed",currentContract.totalOwed);
+            component.set("v.customerDetails.onlinePayAllowed",currentContract.onlinePayAllowed);
+            component.set("v.customerDetails.onlinePayVelocity",currentContract.velocity);
+            component.set("v.customerDetails.moneyCodeLimit",currentContract.moneyCodeLimit);
+            component.set("v.customerDetails.transactionLimit",currentContract.txnLimit);
+            component.set("v.customerDetails.recourceAmt",currentContract.recourseAmt);
+            component.set("v.customerDetails.cashLimit",currentContract.cashLimit);
+            component.set("v.customerDetails.depositAmt",currentContract.depositAmt);
+            component.set("v.customerDetails.unbilledAmt",currentContract.unbilledAmt);
+            component.set("v.customerDetails.usualMethodOfPayment",currentContract.usualMethodOfPayment);
+            component.set("v.customerDetails.westernUnionFee",currentContract.westernUnionFee);
+            component.set("v.customerDetails.westernUnionFeeDescription",currentContract.westernUnionFeeDescription);
+            component.set("v.customerDetails.wireFee",currentContract.wireFee);
+            component.set("v.customerDetails.wireFeeDescription",currentContract.wireFeeDescription);
+            //This forces the payments tolazy-reload properly when we switch contracts
+            if (currentContract.arNumber !== oldArNumber) {
+                component.set("v.paymentsBulk",null);
+            }
+        }
     },
 
     handleErrors : function(component, response){
