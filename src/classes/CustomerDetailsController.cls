@@ -221,7 +221,8 @@ public without sharing class CustomerDetailsController {
         try {
             CustomerDetailsWSUtilv2.customerDetails customerDetails;
             String platform;
-            if ((isOtrAccount == null || isOtrAccount == false) && accountNumber == null && accountRecordId != null && isSalesforceId(accountRecordId)) { //Must be a subtab
+
+            if ((isOtrAccount == null || isOtrAccount == false) && (accountNumber == null || accountNumber == '') && accountRecordId != null && isSalesforceId(accountRecordId)) { //Must be a subtab
                 Account[] accts = [SELECT Id, Acct_Row_Id__c,Wex_Account__c, Platform__c FROM Account WHERE Id =: accountRecordId];
                 if (accts.size() > 0) {
                     accountNumber = accts[0].Wex_Account__c;
@@ -802,7 +803,7 @@ public without sharing class CustomerDetailsController {
 
             String errorCode = logError(e);
 
-            throw new AuraHandledException('Unable to retrieve recent payments. (Error Tracking Code: ' + errorCode + ')');
+            throw new AuraHandledException('Unable to retrieve recent refunds. (Error Tracking Code: ' + errorCode + ')');
 
         }
 
@@ -873,7 +874,7 @@ public without sharing class CustomerDetailsController {
 
             String errorCode = logError(e);
 
-            throw new AuraHandledException('Unable to retrieve recent payments. (Error Tracking Code: ' + errorCode + ')');
+            throw new AuraHandledException('Unable to retrieve recent adjustments. (Error Tracking Code: ' + errorCode + ')');
 
         }
 
@@ -1225,7 +1226,7 @@ public without sharing class CustomerDetailsController {
      * @return boolean
      */
     private static Boolean isExternalPlatform(String platform) {
-        return ('SIEBEL'.equalsIgnoreCase(platform) || 'TANDEM'.equalsIgnoreCase(platform));
+        return ('SIEBEL'.equalsIgnoreCase(platform) || 'TANDEM'.equalsIgnoreCase(platform)  || 'CLASSIC'.equalsIgnoreCase(platform));
     }
 
     public static String getContactRowId(String inStr) {
@@ -1384,6 +1385,10 @@ public without sharing class CustomerDetailsController {
         dummyContactList.add(sos.ContactAlternateBillingRecordID__c);
         dummyContactList.add(sos.ContactOnlineUserRecordID__c);
         dummyContactList.add(sos.ContactSalesRepRecordId__c);
+        dummyContactList.add(sos.Financial_Institution_Record_Id__c);
+        dummyContactList.add(sos.Wex_Internal_Record_Id__c);
+        System.debug('FI Contact='+sos.Financial_Institution_Record_Id__c);
+        System.debug('WEX Internal Contact='+sos.Wex_Internal_Record_Id__c);
 
         List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_Id__c = :contactRowId AND WEX_Contact_Id__c in :dummyContactList AND RecordType.Name = 'Service Operations'];
         if (focusedContact.size() > 0) {
