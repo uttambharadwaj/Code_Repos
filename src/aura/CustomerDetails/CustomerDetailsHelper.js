@@ -224,8 +224,6 @@
                 component.set("v.dummySalesRepContactId", response.getReturnValue().ContactSalesRepRecordId__c);
                 component.set("v.dummyFinanancialInstitutionContactId", response.getReturnValue().Financial_Institution_Record_Id__c);
                 component.set("v.dummyWexInternalContactId", response.getReturnValue().Wex_Internal_Record_Id__c);
-                console.log("### FinancialInstitutionID = "+component.get("v.dummyFinanancialInstitutionContactId"));
-                console.log("### WEX Internal ID = "+component.get("v.dummyWexInternalContactId"));
             }
         });
 

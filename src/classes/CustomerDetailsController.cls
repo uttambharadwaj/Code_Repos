@@ -1386,8 +1386,6 @@ public without sharing class CustomerDetailsController {
         dummyContactList.add(sos.ContactSalesRepRecordId__c);
         dummyContactList.add(sos.Financial_Institution_Record_Id__c);
         dummyContactList.add(sos.Wex_Internal_Record_Id__c);
-        System.debug('FI Contact='+sos.Financial_Institution_Record_Id__c);
-        System.debug('WEX Internal Contact='+sos.Wex_Internal_Record_Id__c);
 
         List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_Id__c = :contactRowId AND WEX_Contact_Id__c in :dummyContactList AND RecordType.Name = 'Service Operations'];
         if (focusedContact.size() > 0) {
