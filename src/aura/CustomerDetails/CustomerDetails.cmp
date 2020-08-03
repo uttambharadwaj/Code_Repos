@@ -25,7 +25,9 @@
     <aura:attribute name="dummyOnlineUserContactId" type="String" />
     <aura:attribute name="dummySalesRepContactId" type="String" />
     <aura:attribute name="dummyFinanancialInstitutionContactId" type="String" />
-    <aura:attribute name="dummyWexInternalContactId" type="String" />
+    <aura:attribute name="dummyWexInternalContactId
+
+" type="String" />
 
     <aura:attribute name="priorityLevelServicingRule" type="String" />
 
@@ -1765,7 +1767,7 @@
                 </div>
                 Invoice &amp; Billing
             </aura:set>
-            <!-- <lightning:spinner aura:id="invoicesLoadingSpinner" alternativeText="Waiting for data..." /><br/> -->
+           <!-- <lightning:spinner aura:id="invoicesLoadingSpinner" alternativeText="Waiting for data..." /><br/>-->
             <div class="slds-page-header">
                 <div class="slds-media">
                     <div class="slds-media__figure">
