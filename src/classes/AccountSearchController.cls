@@ -439,7 +439,7 @@ public with sharing class AccountSearchController {
 				dto1.addrCity = acct.BillingCity;
 				dto1.addrStateProvCd = acct.BillingState;
 				for (Contact contact : acct.Contacts) {
-					if ('PRIMARY'.equals(contact.Contact_Type__c)) {
+					if (contact.Contact_Type__c != null && 'PRIMARY'.equals(contact.Contact_Type__c.toUpperCase())) {
 						dto1.primaryContactNm = contact.Name;
 						dto1.primaryContactPhoneNbr = contact.Phone;
 					}

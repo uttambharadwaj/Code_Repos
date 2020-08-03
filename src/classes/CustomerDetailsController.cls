@@ -485,7 +485,7 @@ public without sharing class CustomerDetailsController {
                 newContact.address = address;
                 //newContact.role = 'CONTACT';
                 System.debug('*** Contact record ID='+rawContact.Id);
-                String rawContactType = (rawContact.Contact_Type__c != null ? rawContact.Contact_Type__c : 'CONTACT');
+                String rawContactType = (rawContact.Contact_Type__c != null ? rawContact.Contact_Type__c.toUpperCase() : 'CONTACT');
                 String rawContactRowId = (rawContact.Contact_Row_Id__c != null ? rawContact.Contact_Row_Id__c : '');
 
                 if ((!(String.isEmpty(primaryContactId)) && rawContactRowId.equals(primaryContactId)) ||( rawContactType.equals('PRIMARY'))) {
