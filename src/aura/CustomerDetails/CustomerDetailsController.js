@@ -496,6 +496,6 @@
         let otrContractList = component.get('v.customerDetails.otrContracts.entry');
         component.set('v.showOtrCOntractDetails',true);
         component.set("v.otrContractObj",otrContractList[index].value);
-		helper.reloadContract(component, event, helper);
-	}
+        helper.reloadContract(component, event, helper);
+    }
 })
