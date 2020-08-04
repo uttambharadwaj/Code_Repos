@@ -65,6 +65,7 @@
 
         var pdRowId = component.get("v.pdRowId");
         var acctNbr = component.get("v.accountNumber");
+        var isOtrAccount = component.get("v.isOtrAccount");
 
 
         console.log("loadCustomerDetails acctNbr="+acctNbr);
@@ -72,9 +73,15 @@
         // if (searchRecordId === 'null')
         //     searchRecordId = component.get("v.acctRecordId");
 
-        if(pdRowId === undefined){
+        if(pdRowId === undefined || pdRowId == null){
             pdRowId = 'null';
         }
+
+        if(isOtrAccount === undefined){
+            isOtrAccount = 'false';
+        }
+
+        console.log('isOtrAccount='+isOtrAccount);
 
         let checkSalesforce = this.getIdToUse(component, target);
 
@@ -82,7 +89,8 @@
         let idToUse = checkSalesforce.idToUse;
         let useSalesforce = checkSalesforce.useSalesforce;
 
-        if (pdRowId !== 'null') {  //Right now, always not Salesforce
+        if (!(pdRowId === 'null')) {  //Right now, always not Salesforce
+            console.log('Assuming NA Fleet based on pdRowId being provided');
             action.setParams({
                 accountNumber : acctNbr,
                 accountRecordId : idToUse,
@@ -95,14 +103,14 @@
                 accountNumber : '',
                 accountRecordId : idToUse,
                 pdRowIdString : pdRowId,
-                isOtrAccount : true
+                isOtrAccount : isOtrAccount
             });
         } else {
             action.setParams({
                 accountNumber : acctNbr,
                 accountRecordId : idToUse,
                 pdRowIdString : '',
-                isOtrAccount : false
+                isOtrAccount : isOtrAccount
             });
         }
 
@@ -111,6 +119,14 @@
 
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.customerDetails", response.getReturnValue());
+
+                let platform = component.get("v.customerDetails.sourceSys");
+                platform = platform.toUpperCase();
+                console.log("platform="+platform);
+                let newIsOtrAccount = !('SIEBEL' === platform || 'TANDEM' === platform || 'CLASSIC' === platform);
+                component.set("v.isOtrAccount", newIsOtrAccount.toString());
+                console.log("setting component isOtrAccount to "+newIsOtrAccount);
+
 
                 // if (component.get("v.isOtrAccount") === true && component.get("v.customerDetails.sfdcAcctId") !== 'null') {
                 //     //component.set("v.acctRecordId", component.get("v.customerDetails.sfdcAcctId")); // todo: causes an error in the browser. is a valid component variable.
@@ -198,6 +214,7 @@
                 if(contactRowId != null && contactRowId !== "undefined") {
                     //component.set("v.selectedTabId", "customerContactsTab");
                 }
+
                 this.getPriorityLevelServicingRule(component,target);
                 this.loadInvoices(component,target);
             }
@@ -222,6 +239,8 @@
                 component.set("v.dummyAltBillingContactId", response.getReturnValue().ContactAlternateBillingRecordID__c);
                 component.set("v.dummyOnlineUserContactId", response.getReturnValue().ContactOnlineUserRecordID__c);
                 component.set("v.dummySalesRepContactId", response.getReturnValue().ContactSalesRepRecordId__c);
+                component.set("v.dummyFinanancialInstitutionContactId", response.getReturnValue().Financial_Institution_Record_Id__c);
+                component.set("v.dummyWexInternalContactId", response.getReturnValue().Wex_Internal_Record_Id__c);
             }
         });
 
@@ -914,13 +933,14 @@
 
         } else {
             action = component.get("c.getInvoices");
-            action.setParams({
+        action.setParams({
                 accountNumber : accountNumber,
                 sourceSys     : sourceSys
-            });
+        });
         }
 
         action.setCallback(this, function(response) {
+            console.log("### loadInvoices RESPONSE " +response);
             var state = response.getState();
 
             if(component.isValid() && state === "SUCCESS") {
