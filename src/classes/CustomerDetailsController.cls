@@ -320,24 +320,27 @@ public without sharing class CustomerDetailsController {
             customerDetails.sfdcAcctId = serviceOperationsAccount.Id;
 
             customerDetails.customerSegmentation = String.valueOf(serviceOperationsAccount.Customer_Segmentation__c);
-            if ((customerDetails.accountSts == null || customerDetails.accountSts.trim().equals('')) && serviceOperationsAccount.Status__c != null) {
-                if ('Active'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'A';
-                } else if ('Inactive'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'I';
-                } else if ('Suspended'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'S';
-                } else if ('Terminated'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'T';
-                } else if ('Hold'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'H';
-                } else if ('C'.equalsIgnoreCase(serviceOperationsAccount.Status__c) || 'X'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'T';
-                }
-                else {
-                    customerDetails.accountSts = serviceOperationsAccount.Status__c;
-                }
+            String tempStatus = customerDetails.accountSts.trim();
+            if (tempStatus == null || tempStatus.equals('') && serviceOperationsAccount.Status__c != null)
+                tempStatus = serviceOperationsAccount.Status__c.trim();
+
+            if ('Active'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'A';
+            } else if ('Inactive'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'I';
+            } else if ('Suspended'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'S';
+            } else if ('Terminated'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'T';
+            } else if ('Hold'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'H';
+            } else if ('C'.equalsIgnoreCase(tempStatus) || 'X'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'T';
             }
+            else {
+                customerDetails.accountSts = tempStatus;
+            }
+
             customerDetails.accountStsDt = serviceOperationsAccount.Account_Status_Date__c;
             customerDetails.accountSinceDt = serviceOperationsAccount.Account_Since__c;
             customerDetails.programId = serviceOperationsAccount.Program__c;
