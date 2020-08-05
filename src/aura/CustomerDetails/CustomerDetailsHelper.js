@@ -1599,7 +1599,10 @@
             component.set("v.customerDetails.wireFee",currentContract.wireFee);
             component.set("v.customerDetails.wireFeeDescription",currentContract.wireFeeDescription);
             //This forces the payments tolazy-reload properly when we switch contracts
+            let currecnyCode = component.get("v.otrContractObj.contractCurrency");
+            //component.set("v.contractCurrency",currecnyCode);
             if (currentContract.arNumber !== oldArNumber) {
+                component.set("v.contractCurrency",currecnyCode);
                 component.set("v.paymentsBulk",null);
                 component.set("v.invoices",null);
                 this.loadInvoices(component, event.target);

@@ -13,6 +13,7 @@
     <aura:attribute name="searchRecordId" type="String" />
     <aura:attribute name="isOtrAccount" type="String" />
     <aura:attribute name="contractObj" type="object" />
+    <aura:attribute name="contractCurrency" type="String" default="USD"/>
     <!-- Returns from controller -->
     <aura:attribute name="accountId" type="String" />
     <aura:attribute name="contactId" type="String" />
@@ -2232,7 +2233,7 @@
                                 </td>
                             </tr>
                         </aura:iteration>
-                        </tbody>
+                        </tbody> 
                     </table>
                         <aura:set attribute="else">
 

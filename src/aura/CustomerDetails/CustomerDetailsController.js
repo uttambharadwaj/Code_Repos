@@ -44,14 +44,14 @@
             {label: "Payment Amt", fieldName: "paymentAmt", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: false, initialWidth: 130, cellAttributes: { alignment: 'right' }},
             {label: "Currency", fieldName: "currencyCd", type: "text", sortable: false, initialWidth: 120, cellAttributes: { alignment: 'center' }}
         ]);
-
         component.set("v.otrInvoiceColumnList", [
             {label: "Invoice Number", fieldName: "invoiceNumber", type: "text", sortable: true, initialWidth: 180 },
             {label: "Invoice Date", fieldName: "invoiceDate", type: "date-local", sortable: true, initialWidth: 180 },
-            {label: "Due Date", fieldName: "dueDate", type: "date-local", sortable: false, initialWidth: 190},
+            {label: "Due Date", fieldName: "dueDate", type: "date-local", sortable: false, initialWidth: 190}, 
             {label: "Amount", fieldName: "amountDue", type: 'currency', typeAttributes: { currencyCode: 'USD'}, sortable: true, initialWidth: 160, cellAttributes: { alignment: 'right' }},
             {label: "View Invoice", fieldName: "fileName", type: "url",typeAttributes: {label: "View Invoice", target: { fieldName: 'fileName' }}, sortable: false}
         ]);
+
 
         component.set("v.paymentHistoryColumnList", [
             {label: "Cycle End", fieldName: "cycleEndDt", type: "date-local",typeAttributes: {year: "numeric", month: "short", day: "2-digit"}, sortable: false, initialWidth: 130},
@@ -487,7 +487,18 @@
 
 
     reloadContract: function(component, event, helper) {
+
         helper.reloadContract(component, event, helper);
+        let code = component.get("v.contractCurrency");
+
+        console.log('code---->',code);
+        component.set("v.otrInvoiceColumnList", [
+            {label: "Invoice Number", fieldName: "invoiceNumber", type: "text", sortable: true, initialWidth: 180 },
+            {label: "Invoice Date", fieldName: "invoiceDate", type: "date-local", sortable: true, initialWidth: 180 },
+            {label: "Due Date", fieldName: "dueDate", type: "date-local", sortable: false, initialWidth: 190},
+            {label: "Amount", fieldName: "amountDue", type: 'currency', typeAttributes: { currencyCode: code}, sortable: true, initialWidth: 160, cellAttributes: { alignment: 'right' }},
+            {label: "View Invoice", fieldName: "fileName", type: "url",typeAttributes: {label: "View Invoice", target: { fieldName: 'fileName' }}, sortable: false}
+        ]);
     },
 
     showContract: function (component, event, helper) {
