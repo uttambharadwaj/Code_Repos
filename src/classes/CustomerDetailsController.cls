@@ -320,7 +320,12 @@ public without sharing class CustomerDetailsController {
             customerDetails.sfdcAcctId = serviceOperationsAccount.Id;
 
             customerDetails.customerSegmentation = String.valueOf(serviceOperationsAccount.Customer_Segmentation__c);
-            String tempStatus = customerDetails.accountSts.trim();
+            String tempStatus;
+            if (customerDetails.accountSts != null) {
+                tempStatus = customerDetails.accountSts.trim();
+            } else {
+                tempStatus = '';
+            }
             if (tempStatus == null || tempStatus.equals('') && serviceOperationsAccount.Status__c != null)
                 tempStatus = serviceOperationsAccount.Status__c.trim();
 
@@ -758,11 +763,11 @@ public without sharing class CustomerDetailsController {
                     customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
                 }
                 result = customerDetailsCallout.getOtrInvoiceList(arNumber,15) ;
-                CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
-                for (Integer i=0; i < result.invoices.invoices.size(); i++) {
-                    invoice = result.invoices.invoices[i];
-                    System.debug('Invoice='+invoice);
-                }
+                //CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
+                //for (Integer i=0; i < result.invoices.invoices.size(); i++) {
+                //    invoice = result.invoices.invoices[i];
+                //    System.debug('Invoice='+invoice);
+                //}
 
             } catch (Exception e) {
                 String errorCode = logError(e);
@@ -771,8 +776,10 @@ public without sharing class CustomerDetailsController {
             }
 
         }
-
-        return result.invoices;
+        if (result != null)
+            return result.invoices;
+        else
+            return new CustomerDetailsWSUtilv2.otrInvoices();
     }
 
 
