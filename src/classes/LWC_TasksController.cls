@@ -11,10 +11,14 @@ public inherited sharing class LWC_TasksController {
         Boolean futureTasks = (taskFutureDateFilter != null && taskFutureDateFilter) ? true : false;
         // default to showing historical tasks
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
-
+        List<Collections__c> relatedCollections = new List<Collections__c>();
         String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, OwnerId, Owner.Name, WhatId, ActivityDate, LastModifiedDate, Status, Activity_Type__c FROM Task';
         if (recordId != null && recordId != '') {
-            taskQuery += ' WHERE WhatId =: recordId';
+
+            if (UtilityClass.getObjName(recordId) == 'Account') relatedCollections = [ SELECT Id FROM Collections__c WHERE Account__c = :recordId];
+
+            taskQuery += relatedCollections.isEmpty() ? ' WHERE WhatId =: recordId' : ' WHERE (WhatId =: recordId OR WhatId IN :relatedCollections)';
+
             // are we filtering by task type?
             if (taskTypeFilter != null && taskTypeFilter != '') {
                 taskQuery += ' AND (Type IN :typeFilter OR Activity_Type__c IN :typeFilter)';
@@ -38,10 +42,15 @@ public inherited sharing class LWC_TasksController {
         List<String> typeFilter = taskTypeFilter.split(',');
         Boolean futureTasks = (taskFutureDateFilter != null && taskFutureDateFilter) ? true : false;
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
+        List<Collections__c> relatedCollections = new List<Collections__c>();
 
         String countQuery = 'SELECT count() FROM Task ';
         if (recordId != null && recordId != '') {
-            countQuery += ' WHERE WhatId =: recordId';
+
+            if (UtilityClass.getObjName(recordId) == 'Account') relatedCollections = [ SELECT Id FROM Collections__c WHERE Account__c = :recordId];
+
+            countQuery += relatedCollections.isEmpty() ? ' WHERE WhatId =: recordId' : ' WHERE (WhatId =: recordId OR WhatId IN :relatedCollections)';
+
             // are we filtering by task type?
             if (taskTypeFilter != null && taskTypeFilter != '') {
                 countQuery += ' AND Type IN :typeFilter OR Activity_Type__c IN :typeFilter';
