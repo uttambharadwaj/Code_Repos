@@ -10,6 +10,7 @@ public class CollectionsEmailHandlerTest {
 
 		Case cases = [ SELECT Id,Contact.Email,ContactId,AccountId,Account.Territory_Code__c,Account.National_Account_OTR__c
 		FROM Case LIMIT 1 ];
+		update cases;
 
 		InvocableSendEmailTemplate.EmailWrapper emailWrapper = new InvocableSendEmailTemplate.EmailWrapper();
 		emailWrapper.whatId = cases.Id;

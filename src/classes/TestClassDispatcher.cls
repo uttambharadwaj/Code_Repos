@@ -153,16 +153,24 @@ public class TestClassDispatcher {
         CreditWS_CreditLensTest.creditLensAuthenticationPositiveTest();
     }
 
+    @isTest static void testCreditLensWSEditEntity() {
+        CreditWS_CreditLensTest.creditLensEditEntityTest();
+    }
+
     @isTest static void testCreditLensWSCreateCP() {
-        CreditWS_CreditLensTest.creditLensCreateEntityPostiveCPTest();
+        CreditWS_CreditLensTest.creditLensCreateEntityPositiveCPTest();
+    }
+
+    @isTest static void testCreditLensWSCreateBadCP() {
+        CreditWS_CreditLensTest.createLensCreateEntityNegativeTest();
     }
 
     @isTest static void testCreditLensWSCreateNA() {
-        CreditWS_CreditLensTest.creditLensCreateEntityPostiveNATest();
+        CreditWS_CreditLensTest.creditLensCreateEntityPositiveNATest();
     }
 
     @isTest static void testCreditLensWSCreateOTR() {
-        CreditWS_CreditLensTest.creditLensCreateEntityPostiveOTRTest();
+        CreditWS_CreditLensTest.creditLensCreateEntityPositiveOTRTest();
     }
 
     @isTest static void testCreditLensDocumentUpload() {
