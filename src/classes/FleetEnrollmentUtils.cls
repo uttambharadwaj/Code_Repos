@@ -52,7 +52,6 @@ public class FleetEnrollmentUtils {
         Map<Id, List<FleetEnrollment_Contact__c>> fleetEnrollmentContacts = new Map<Id, List<FleetEnrollment_Contact__c>>();
         Map<Id, List<FleetEnrollment_Driver__c>> fleetEnrollmentDrivers = new Map<Id, List<FleetEnrollment_Driver__c>>();
         Map<Id, List<FleetEnrollment_Vehicle__c>> fleetEnrollmentVehicles = new Map<Id, List<FleetEnrollment_Vehicle__c>>();
-        Map<Id, List<ContentDocumentLink>> fleetEnrollmentFiles = new Map<Id, List<ContentDocumentLink>>();
         Map<Id, FleetEnrollment__c> fleetEnrollments = new Map<Id, FleetEnrollment__c>([SELECT Id, Association__c FROM FleetEnrollment__c WHERE Id IN :fleetEnrollmentIds AND Association__c = NULL]);
         Map<Id, List<Attachment>> fleetEnrollmentAttachments = listToFleetIdMap([
                 SELECT Id,ParentId
@@ -63,14 +62,12 @@ public class FleetEnrollmentUtils {
                 AND Name LIKE '%Fleet%Data%'
         ]);
 
-        if (fleetEnrollmentAttachments.isEmpty()) { // if no attachments check to see if there's any Files instead
-            fleetEnrollmentFiles = listToFleetIdMap([
-                    SELECT id,LinkedEntityId
-                    FROM ContentDocumentLink
-                    WHERE LinkedEntityId IN :fleetEnrollmentIds
-                    AND ContentDocument.Title LIKE '%Fleet%Data%'
-            ]);
-        }
+        Map<Id, List<ContentDocumentLink>> fleetEnrollmentFiles = listToFleetIdMap([
+                SELECT id,LinkedEntityId
+                FROM ContentDocumentLink
+                WHERE LinkedEntityId IN :fleetEnrollmentIds
+                AND ContentDocument.Title LIKE '%Fleet%Data%'
+        ]);
 
         // Determine if additional data is needed for any of the fleetEnrollmentIds
         Set<Id> fleetEnrollmentsNoAttachments = fleetEnrollmentIds.clone();
