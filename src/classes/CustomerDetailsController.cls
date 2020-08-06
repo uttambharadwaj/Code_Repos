@@ -763,11 +763,14 @@ public without sharing class CustomerDetailsController {
                     customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
                 }
                 result = customerDetailsCallout.getOtrInvoiceList(arNumber,15) ;
-                //CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
-                //for (Integer i=0; i < result.invoices.invoices.size(); i++) {
-                //    invoice = result.invoices.invoices[i];
-                //    System.debug('Invoice='+invoice);
-                //}
+
+                CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
+                for (Integer i=0; i < result.invoices.invoices.size(); i++) {
+                    invoice = result.invoices.invoices[i];
+                    String pageUrl =  Url.getSalesforceBaseUrl().toExternalForm()+'/apex/InvoicePDFViewer?arNumber='+invoice.arNumber+'&fileName='+EncodingUtil.urlEncode(invoice.fileName,'UTF-8');
+                    result.invoices.invoices[i].fileName = pageUrl;
+                    System.debug('Invoice='+invoice);
+                }
 
             } catch (Exception e) {
                 String errorCode = logError(e);

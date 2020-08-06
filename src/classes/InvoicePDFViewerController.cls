@@ -21,6 +21,24 @@ public with sharing class InvoicePDFViewerController {
         }
     }
 
+    public String arNumber {
+        get {
+            if (ApexPages.CurrentPage().getParameters().get('arNumber') != null) {
+                return ApexPages.CurrentPage().getParameters().get('arNumber');
+            }
+            return null;
+        }
+    }
+
+    public String fileName {
+        get {
+            if (ApexPages.CurrentPage().getParameters().get('fileName') != null) {
+                return ApexPages.CurrentPage().getParameters().get('fileName');
+            }
+            return null;
+        }
+    }
+
     public String errorMessage { get; set; }
 
     public String getInvoice() {
@@ -37,12 +55,12 @@ public with sharing class InvoicePDFViewerController {
 
                 if ((sobjectName).equals('Collections_Invoice__c')) {
 
-                    List<Collections_Invoice__c> collectionsInvoices = [SELECT Id, Name, Collections__r.Contract__r.AR_Number__c FROM Collections_Invoice__c WHERE Id = :recordId];
+                    List<Collections_Invoice__c> collectionsInvoices = [SELECT Id, Name, Collections__r.Contract__r.AR_Number__c FROM Collections_Invoice__c WHERE Id = :recordId]//;
 
                     if (collectionsInvoices.size() > 0) {
 
-                        accountId = collectionsInvoices[0].Collections__r.Contract__r.AR_Number__c;
-                        invoiceNumber = collectionsInvoices[0].Name;
+                         accountId = collectionsInvoices[0].Collections__r.Contract__r.AR_Number__c;
+                         invoiceNumber = collectionsInvoices[0].Name;
 
                     }
 
@@ -116,6 +134,42 @@ public with sharing class InvoicePDFViewerController {
 
     }
 
+    public String getInvoiceDirectly() {
+        try {
+            Customer_Dashboard_Services__c CDS = Customer_Dashboard_Services__c.getOrgDefaults();
+
+            CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort customerDetailsCallout = new CustomerDetailsWSUtilv2.CustomerDetailsSOAPQSPort();
+
+            customerDetailsCallout.endpoint_x = CDS.Customer_Details_EndPoint__c;
+
+            //customerDetailsCallout.endpoint_x = 'https://14b6702af41c4a6559b8c33545a8a4e1.m.pipedream.net';
+
+            // Some damage control - we don't want that value to be below the default threshold
+            if (CDS.API_Timeout_ms__c != null && Integer.valueOf(CDS.API_Timeout_ms__c) > 10000) {
+                customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
+            }
+
+            System.debug('### getInvoiceDirectly: ' +arNumber + ', ' + fileName);
+            CustomerDetailsWSUtilv2.otrInvoiceResponse invoiceCopy = customerDetailsCallout.getOtrInvoicePdf(arNumber, fileName);
+            if(invoiceCopy != null && invoiceCopy.invoices != null && invoiceCopy.invoices.invoices != null && !String.isEmpty(invoiceCopy.invoices.invoices[0].pdfBytes)) {
+                System.debug('### Returning PDF bytes: '+invoiceCopy.invoices.invoices[0].pdfBytes);
+                return invoiceCopy.invoices.invoices[0].pdfBytes;
+
+            }
+            else {
+                throw new invoiceViewerException('Unexpected PDF response!');
+            }
+        } catch (Exception e) {
+
+            System.debug('### Cannot Find Invoice: [' + e.getLineNumber() + '] ' + e.getMessage());
+
+            errorMessage = 'Unable to retrieve invoice.';
+
+        }
+
+        return null;
+    }
+
     public InvoicePDFViewerController() {
 
     }
@@ -126,6 +180,9 @@ public with sharing class InvoicePDFViewerController {
 
             pdfContent = getInvoice();
 
+        }
+        else if (!(String.isEmpty(arNumber) || String.isEmpty(fileName))) {
+            pdfContent = getInvoiceDirectly();
         }
         else {
 
