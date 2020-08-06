@@ -128,19 +128,19 @@
                             </aura:if>
 
                             <p class="slds-text-body--regular slds-truncate" style="float: left; line-height: 29px; margin-left: 12px;">
-                                <aura:if isTrue="{!v.customerDetails.accountSts == 'A'}">
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'A' || v.customerDetails.accountSts == 'Active' }">
                                     <span class="account-status-active">Active</span>
                                 </aura:if>
-                                <aura:if isTrue="{!v.customerDetails.accountSts == 'T'}">
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'T' || v.customerDetails.accountSts == 'Terminated'}">
                                     <span class="account-status-terminated">Terminated</span>
                                 </aura:if>
-                                <aura:if isTrue="{!v.customerDetails.accountSts == 'S'}">
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'S' || v.customerDetails.accountSts == 'Suspended'}">
                                     <span class="account-status-suspended">Suspended</span>
                                 </aura:if>
-                                <aura:if isTrue="{!v.customerDetails.accountSts == 'I'}">
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'I' || v.customerDetails.accountSts == 'Inactive'}">
                                     <span class="account-status-suspended">Inactive</span>
                                 </aura:if>
-                                <aura:if isTrue="{!v.customerDetails.accountSts == 'H'}">
+                                <aura:if isTrue="{!v.customerDetails.accountSts == 'H' || v.customerDetails.accountSts == 'Hold'}">
                                     <span class="account-status-suspended">Hold</span>
                                 </aura:if>
                             </p>
@@ -1427,7 +1427,7 @@
                                 <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                                     <div class="slds-media__body">
                                         <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
-                                            <div class="slds-text-heading--label">Billing Cycle </div>
+                                            <div class="slds-text-heading--label">Terms</div>
                                         </div>
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
@@ -1797,7 +1797,7 @@
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                         <div class="slds-media__body">
                             <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
-                                <div class="slds-text-heading--label">Billing Cycle</div>
+                                <div class="slds-text-heading--label">Billing Cycle / Terms</div>
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">

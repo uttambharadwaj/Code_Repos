@@ -243,7 +243,7 @@ public without sharing class CustomerDetailsController {
             }
 
             if(String.isEmpty(customerDetails.accountNm)) {
-                throw new customerDetailsException('Unable to retrieve account information: '+accountNumber + ', '+accountRecordId + ', pdRowId' +  (String.isEmpty(pdRowidString) ? ' not' : '')+' provided');
+                throw new customerDetailsException('Unable to retrieve account information: '+accountNumber + ', '+accountRecordId + ', pdRowId' +  (String.isEmpty(pdRowIdString) ? ' not' : '')+' provided');
             }
             if (customerDetails.wexpayEnrolled == null) {
                 customerDetails.wexpayEnrolled=false;
@@ -320,24 +320,32 @@ public without sharing class CustomerDetailsController {
             customerDetails.sfdcAcctId = serviceOperationsAccount.Id;
 
             customerDetails.customerSegmentation = String.valueOf(serviceOperationsAccount.Customer_Segmentation__c);
-            if ((customerDetails.accountSts == null || customerDetails.accountSts.trim().equals('')) && serviceOperationsAccount.Status__c != null) {
-                if ('Active'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'A';
-                } else if ('Inactive'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'I';
-                } else if ('Suspended'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'S';
-                } else if ('Terminated'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'T';
-                } else if ('Hold'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'H';
-                } else if ('C'.equalsIgnoreCase(serviceOperationsAccount.Status__c) || 'X'.equalsIgnoreCase(serviceOperationsAccount.Status__c)) {
-                    customerDetails.accountSts = 'T';
-                }
-                else {
-                    customerDetails.accountSts = serviceOperationsAccount.Status__c;
-                }
+            String tempStatus;
+            if (customerDetails.accountSts != null) {
+                tempStatus = customerDetails.accountSts.trim();
+            } else {
+                tempStatus = '';
             }
+            if (tempStatus == null || tempStatus.equals('') && serviceOperationsAccount.Status__c != null)
+                tempStatus = serviceOperationsAccount.Status__c.trim();
+
+            if ('Active'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'A';
+            } else if ('Inactive'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'I';
+            } else if ('Suspended'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'S';
+            } else if ('Terminated'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'T';
+            } else if ('Hold'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'H';
+            } else if ('C'.equalsIgnoreCase(tempStatus) || 'X'.equalsIgnoreCase(tempStatus)) {
+                customerDetails.accountSts = 'T';
+            }
+            else {
+                customerDetails.accountSts = tempStatus;
+            }
+
             customerDetails.accountStsDt = serviceOperationsAccount.Account_Status_Date__c;
             customerDetails.accountSinceDt = serviceOperationsAccount.Account_Since__c;
             customerDetails.programId = serviceOperationsAccount.Program__c;
@@ -485,7 +493,7 @@ public without sharing class CustomerDetailsController {
                 newContact.address = address;
                 //newContact.role = 'CONTACT';
                 System.debug('*** Contact record ID='+rawContact.Id);
-                String rawContactType = (rawContact.Contact_Type__c != null ? rawContact.Contact_Type__c : 'CONTACT');
+                String rawContactType = (rawContact.Contact_Type__c != null ? rawContact.Contact_Type__c.toUpperCase() : 'CONTACT');
                 String rawContactRowId = (rawContact.Contact_Row_Id__c != null ? rawContact.Contact_Row_Id__c : '');
 
                 if ((!(String.isEmpty(primaryContactId)) && rawContactRowId.equals(primaryContactId)) ||( rawContactType.equals('PRIMARY'))) {
@@ -755,6 +763,7 @@ public without sharing class CustomerDetailsController {
                     customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
                 }
                 result = customerDetailsCallout.getOtrInvoiceList(arNumber,15) ;
+
                 CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
                 for (Integer i=0; i < result.invoices.invoices.size(); i++) {
                     invoice = result.invoices.invoices[i];
@@ -770,14 +779,16 @@ public without sharing class CustomerDetailsController {
             }
 
         }
-
-        return result.invoices;
+        if (result != null)
+            return result.invoices;
+        else
+            return new CustomerDetailsWSUtilv2.otrInvoices();
     }
 
 
 
     @AuraEnabled
-    public static CustomerDetailsWSUtilv2.RefundAdjustmentDTO getRefunds(String accountNumber) {
+    public static CustomerDetailsWSUtilv2.refundAdjustmentDTO getRefunds(String accountNumber) {
 
         try {
 
@@ -794,7 +805,7 @@ public without sharing class CustomerDetailsController {
                 customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
             }
 
-            CustomerDetailsWSUtilv2.RefundAdjustmentDTO refundDTO = customerDetailsCallout.getRefunds(accountNumber);
+            CustomerDetailsWSUtilv2.refundAdjustmentDTO refundDTO = customerDetailsCallout.getRefunds(accountNumber);
 
             System.debug('### ' + refundDTO);
 
@@ -811,7 +822,7 @@ public without sharing class CustomerDetailsController {
 
     }
 
-    public static CustomerDetailsWSUtilv2.RefundAdjustmentAggregateDTO getRefAdjTotals(String accountNumber, String recordType) {
+    public static CustomerDetailsWSUtilv2.refundAdjustmentAggregateDTO getRefAdjTotals(String accountNumber, String recordType) {
 
         try {
 
@@ -828,7 +839,7 @@ public without sharing class CustomerDetailsController {
                 customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
             }
 
-            CustomerDetailsWSUtilv2.RefundAdjustmentAggregateDTO refundDTO = customerDetailsCallout.getRefundAdjustmentTotals(recordType, accountNumber);
+            CustomerDetailsWSUtilv2.refundAdjustmentAggregateDTO refundDTO = customerDetailsCallout.getRefundAdjustmentTotals(recordType, accountNumber);
 
             System.debug('### ' + refundDTO);
 
@@ -839,7 +850,7 @@ public without sharing class CustomerDetailsController {
 
             String errorCode = logError(e);
 
-            CustomerDetailsWSUtilv2.RefundAdjustmentAggregateDTO refundDTO = new CustomerDetailsWSUtilv2.RefundAdjustmentAggregateDTO();
+            CustomerDetailsWSUtilv2.refundAdjustmentAggregateDTO refundDTO = new CustomerDetailsWSUtilv2.refundAdjustmentAggregateDTO();
             refundDTO.errorMsg = e.getMessage();
             return refundDTO;
 
@@ -848,7 +859,7 @@ public without sharing class CustomerDetailsController {
     }
 
     @AuraEnabled
-    public static CustomerDetailsWSUtilv2.RefundAdjustmentDTO getAdjustments(String accountNumber) {
+    public static CustomerDetailsWSUtilv2.refundAdjustmentDTO getAdjustments(String accountNumber) {
 
         try {
 
@@ -865,7 +876,7 @@ public without sharing class CustomerDetailsController {
                 customerDetailsCallout.timeout_x = Integer.valueOf(CDS.API_Timeout_ms__c);
             }
 
-            CustomerDetailsWSUtilv2.RefundAdjustmentDTO adjustmentDTO = customerDetailsCallout.getAdjustments(accountNumber);
+            CustomerDetailsWSUtilv2.refundAdjustmentDTO adjustmentDTO = customerDetailsCallout.getAdjustments(accountNumber);
 
             System.debug('### ' + adjustmentDTO);
 
@@ -1223,7 +1234,7 @@ public without sharing class CustomerDetailsController {
     /**
      * Returns true for SIEBEL or TANDEM, False otherwise.
      *
-     * @param platform
+     * @param platform Platform
      *
      * @return boolean
      */
@@ -1280,44 +1291,44 @@ public without sharing class CustomerDetailsController {
 
         try {
 
-            List<CustomerDetailsWSUtilv2.Contact> customerContacts = (List<CustomerDetailsWSUtilv2.Contact>)JSON.deserialize(customerContactsJSON, List<CustomerDetailsWSUtilv2.Contact>.class);
+            List<CustomerDetailsWSUtilv2.contact> customerContacts = (List<CustomerDetailsWSUtilv2.contact>)JSON.deserialize(customerContactsJSON, List<CustomerDetailsWSUtilv2.contact>.class);
 
             // Get the record type for our desired contact type
             Id serviceOperationsContactRecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByName().get('Service Operations').getRecordTypeId();
 
             // Convert the list of contacts to a map for cleaner matching
             Map<String, Id> existingServiceOperationsContacts = new Map<String, Id>();
-            for(Contact contact : [SELECT Id, WEX_Contact_Id__c FROM Contact WHERE AccountId =: accountId AND RecordTypeId =: serviceOperationsContactRecordTypeId]) {
-                existingServiceOperationsContacts.put(contact.WEX_Contact_Id__c, contact.Id);
+            for(Contact contact : [SELECT Id, WEX_Contact_ID__c FROM Contact WHERE AccountId =: accountId AND RecordTypeId =: serviceOperationsContactRecordTypeId]) {
+                existingServiceOperationsContacts.put(contact.WEX_Contact_ID__c, contact.Id);
             }
 
             // New list collection for the contacts we're going to upsert
             List<Contact> updatedServiceOperationsContacts = new List<Contact>();
 
             // Iterate through our contacts list - then upsert
-            for(CustomerDetailsWSUtilv2.Contact customerContact : customerContacts) {
+            for(CustomerDetailsWSUtilv2.contact customerContact : customerContacts) {
 
                 Contact contact = new Contact();
 
-                if(existingServiceOperationsContacts != null && existingServiceOperationsContacts.containsKey(customerContact.RowId)) {
-                    contact.Id = existingServiceOperationsContacts.get(customerContact.RowId);
+                if(existingServiceOperationsContacts != null && existingServiceOperationsContacts.containsKey(customerContact.rowId)) {
+                    contact.Id = existingServiceOperationsContacts.get(customerContact.rowId);
                 }
 
-                contact.FirstName = customerContact.FirstNm;
-                contact.LastName = customerContact.LastNm;
+                contact.FirstName = customerContact.firstNm;
+                contact.LastName = customerContact.lastNm;
 
-                if(checkEmailFormat(customerContact.EmailAddr)) {
+                if(checkEmailFormat(customerContact.emailAddr)) {
                     System.debug('### Email is valid');
-                    contact.Email = customerContact.EmailAddr;
+                    contact.Email = customerContact.emailAddr;
                 }
-                contact.Fax = customerContact.FaxNbr;
-                contact.Phone = customerContact.PhoneNbr;
-                contact.WEX_Contact_ID__c = customerContact.RowId;
+                contact.Fax = customerContact.faxNbr;
+                contact.Phone = customerContact.phoneNbr;
+                contact.WEX_Contact_ID__c = customerContact.rowId;
                 contact.AccountId = accountId;
                 contact.RecordTypeId = serviceOperationsContactRecordTypeId;
-                contact.Contact_Type__c = customerContact.ContactType;
+                contact.Contact_Type__c = customerContact.contactType;
 
-                System.debug('### ' + contact.WEX_Contact_Id__c);
+                System.debug('### ' + contact.WEX_Contact_ID__c);
 
                 if(customerContact.address != null) {
 
@@ -1358,7 +1369,7 @@ public without sharing class CustomerDetailsController {
                 upsert updatedServiceOperationsContacts;
             }
 
-            List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_Id__c =: contactRowId AND Account.Id =: accountId AND RecordType.Name = 'Service Operations'];
+            List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_ID__c =: contactRowId AND Account.Id =: accountId AND RecordType.Name = 'Service Operations'];
 
             if(focusedContact.size() > 0) {
 
@@ -1390,7 +1401,7 @@ public without sharing class CustomerDetailsController {
         dummyContactList.add(sos.Financial_Institution_Record_Id__c);
         dummyContactList.add(sos.Wex_Internal_Record_Id__c);
 
-        List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_Id__c = :contactRowId AND WEX_Contact_Id__c in :dummyContactList AND RecordType.Name = 'Service Operations'];
+        List<Contact> focusedContact = [SELECT Id FROM Contact WHERE WEX_Contact_ID__c = :contactRowId AND WEX_Contact_ID__c IN :dummyContactList AND RecordType.Name = 'Service Operations'];
         if (focusedContact.size() > 0) {
             System.debug('getDummyContactId returns '+focusedContact[0].Id);
             return focusedContact[0].Id;
@@ -1511,13 +1522,13 @@ public without sharing class CustomerDetailsController {
         serviceOperationsCase.Status = 'Open';
 
         if (!String.isEmpty(caseId) && !caseId.equalsIgnoreCase('undefined')) {
-            serviceOperationsCase.Id = (ID) caseId;
+            serviceOperationsCase.Id = (Id) caseId;
         }
 
         //todo: casts to (Id) below here are probably unnecessary since the parameters are declared as Id
         if (!String.isEmpty(accountId)) {
             List<Account> priorityLevels = [SELECT Id, Priority_Level__c FROM Account WHERE Id = :accountId];
-            serviceOperationsCase.AccountId = (ID) accountId;
+            serviceOperationsCase.AccountId = (Id) accountId;
             if (priorityLevels.size() > 0) {
                 serviceOperationsCase.Priority_Level__c = priorityLevels[0].Priority_Level__c;
             }
