@@ -259,4 +259,8 @@ public class TestClassDispatcher {
 		CollectionsEmailHandlerTest.test_CollectionsEmailPreviouslySent();
 	}
 
+    @IsTest static void testGeneratePaymentPlan() {
+        CollectionsPaymentPlanTest.test_generatePaymentPlan();
+    }
+
 }
