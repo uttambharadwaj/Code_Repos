@@ -924,7 +924,6 @@
                 sourceSys = 'OTR';
             }
             accountNumber = component.get("v.customerDetails.arNumber");
-            accountNumber = component.get("v.customerDetails.arNumber");
             console.log("OTR account--accountNumber---->",accountNumber);
             action = component.get("c.getOTRInvoices");
             action.setParams({
@@ -1600,7 +1599,9 @@
             component.set("v.customerDetails.wireFee",currentContract.wireFee);
             component.set("v.customerDetails.wireFeeDescription",currentContract.wireFeeDescription);
             //This forces the payments tolazy-reload properly when we switch contracts
+            let currencyCode = currentContract.currencyCode != null ? currentContract.currencyCode : 'USD';
             if (currentContract.arNumber !== oldArNumber) {
+                component.set("v.contractCurrency",currencyCode);
                 component.set("v.paymentsBulk",null);
                 component.set("v.invoices",null);
                 this.loadInvoices(component, event.target);
