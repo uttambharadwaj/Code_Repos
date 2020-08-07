@@ -12,12 +12,16 @@ public inherited sharing class LWC_TasksController {
         // default to showing historical tasks
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
         List<Collections__c> relatedCollections = new List<Collections__c>();
+        List<Case> relatedCases = new List<Case>();
         String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, OwnerId, Owner.Name, WhatId, ActivityDate, LastModifiedDate, Status, Activity_Type__c FROM Task';
         if (recordId != null && recordId != '') {
 
-            if (UtilityClass.getObjName(recordId) == 'Account') relatedCollections = [ SELECT Id FROM Collections__c WHERE Account__c = :recordId];
+            if (UtilityClass.getObjName(recordId) == 'Account') {
+                relatedCollections = [ SELECT Id FROM Collections__c WHERE Account__c = :recordId];
+                relatedCases = [ SELECT Id FROM Case WHERE Accountid = :recordId];
+            }
 
-            taskQuery += relatedCollections.isEmpty() ? ' WHERE WhatId =: recordId' : ' WHERE (WhatId =: recordId OR WhatId IN :relatedCollections)';
+            taskQuery += relatedCollections.isEmpty() && relatedCases.isEmpty() ? ' WHERE WhatId =: recordId' : ' WHERE (WhatId =: recordId OR WhatId IN :relatedCollections OR WhatId IN :relatedCases)';
 
             // are we filtering by task type?
             if (taskTypeFilter != null && taskTypeFilter != '') {
