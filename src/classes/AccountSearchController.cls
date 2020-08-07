@@ -125,10 +125,27 @@ public with sharing class AccountSearchController {
 
 			} else {
 				response = getNaFleetSOAPResponse(request);
+
+				if (response.accountList != null && !response.accountList.isEmpty() && request.searchField.equals('EMBOSSEDPDNBR')) {
+					List<AccountSearchTypes.accountSearchDTO> newResponse = new List<AccountSearchTypes.accountSearchDTO>();
+					for (AccountSearchTypes.accountSearchDTO dto : response.accountList) {
+						if (dto.dwSourceSys.toUpperCase().equals('TANDEM') ||dto.dwSourceSys.toUpperCase().equals('SIEBEL') || dto.acctNm != null) {
+							newResponse.add(dto);
+						} else if (dto.acctRowId != null && !dto.acctRowId.trim().equals('')) {
+							newResponse.addAll(searchOTR('Acct_Row_Id',dto.acctRowId).accountList);
+						} else if (dto.spnrAcctNbr != null && !dto.spnrAcctNbr.trim().equals('')) {
+							newResponse.addAll(searchOTR('Carrier_ID',dto.spnrAcctNbr).accountList);
+						} else
+								newResponse.add(dto);
+					}
+					response.accountList = newResponse;
+				}
 			}
 			if (String.isNotEmpty(response.errorMsg)) {
 				srWrapper.errorMessage = response.errorMsg;
 			}
+
+
 
 			if (response.accountList != null) {
 
@@ -330,7 +347,16 @@ public with sharing class AccountSearchController {
 				return response;
 			}
 
-		}else if('Money_Code'.equals(searchType)){
+		} else if('Acct_Row_Id'.equals(searchType)){  //Only happens in this class, not via console
+			try {
+				accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_ID__c, Acct_Row_Id__c, (SELECT Name, Phone, Contact_Type__c, RecordType.Name FROM Contacts WHERE Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' AND Acct_Row_Id__c  = :searchKeyword];
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		} else if('Money_Code'.equals(searchType)){
 			response.errorMsg = 'Money Code search is not yet implemented';
 			return response;
 
