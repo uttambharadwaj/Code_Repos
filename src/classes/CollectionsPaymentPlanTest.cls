@@ -1,7 +1,4 @@
-/**
- * Created by jharrell on 6/29/20.
- */
-
+@IsTest
 public class CollectionsPaymentPlanTest {
 
 	public static void test_generatePaymentPlan() {
@@ -33,6 +30,7 @@ public class CollectionsPaymentPlanTest {
 			payments.put(paymentPlan.Collections__c, payments.get(paymentPlan.Collections__c) + paymentPlan.Payment_Amount__c);
 		}
 
+		System.assertEquals(false, payments.keySet().isEmpty());
 		for (Id collectionId : payments.keySet()) {
 			// Assert that the payments add up to the total amount due
 			System.assertEquals(collectionsAmountPastDue.get(collectionId), payments.get(collectionId));
