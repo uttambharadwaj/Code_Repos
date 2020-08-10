@@ -2,8 +2,9 @@
 Description:        OTRBOCA VF Page (Page 1 of Online Application for OTRBOCA)
 Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for later
                     5/9/2019                        PSOBACKLOG-76 ADA Compliance-Images
-                    5/28/2019       MFarrell    -   PSOBACKLOG-55 Updated rendered and redendered statements.
-                    30/OCT/2019     MFarrell    -   Existing Carrier ID field and parent/secondary rendering
+                    5/28/2019      MFarrell    -   PSOBACKLOG-55 Updated rendered and redendered statements.
+                    10/30/2019     MFarrell    -   Existing Carrier ID field and parent/secondary rendering
+                    08/04/2020     LHowland    -   BI-2420 Disabling Credit Line Requested from OTR BOCA
 -->
 <apex:page showHeader="false" sidebar="false" standardStylesheets="false" docType="html-5.0" controller="OTRBOCAController" action="{!init}" language="{!languageCode}">
     <html lang="{!languageCode}">
@@ -536,11 +537,11 @@ Revision History:   3/27/2019 Jason Arbegast IADJUDICAT-929 add pdf on save for 
                                         <apex:outputPanel id="creditLine">
                                             <apex:outputPanel rendered="{!IF(AND(onlineApplicationOffer.Funding__c != 'Parent Funded', onlineApplication.Account_Type__c != 'Prepay'), true, false)}">
                                                 <div class="twelve columns clearfix form-field" data-row="13">
-                                                    <apex:outputLabel for="creditLineRequested" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Credit Line Requested', $ObjectType.OnlineApplication__c.fields.Credit_Line_Requested__c.label)} ">
+                                                    <apex:outputLabel for="creditLineRequested" styleClass="styled-label" value="{!IF(languageCode == 'en_us', 'Projected Spend', $ObjectType.OnlineApplication__c.fields.Credit_Line_Requested__c.label)} ">
                                                         <span class="styled-label-required">*</span>
                                                     </apex:outputLabel>
                                                     <apex:actionRegion >
-                                                        <apex:InputField styleClass="styled-input required money" required="true" html-tabindex="33" id="creditLineRequested" value="{!onlineApplication.Credit_Line_Requested__c}"  html-maxlength="9">
+                                                        <apex:InputField html-disabled="true" styleClass="styled-input required money" required="true" html-tabindex="33" id="creditLineRequested" value="{!onlineApplication.Credit_Line_Requested__c}"  html-maxlength="9">
                                                             <apex:actionSupport event="onchange" rerender="legalEntityFields" />
                                                         </apex:InputField>
                                                     </apex:actionRegion>
