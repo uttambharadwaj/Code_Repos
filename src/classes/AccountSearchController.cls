@@ -37,8 +37,6 @@ public with sharing class AccountSearchController {
 		Boolean otrSearch = isOTRSearch(searchType);
 		srWrapper.otrSearch = otrSearch;
 
-		System.debug('Search param: ' + searchType + ' otrSearch:' + otrSearch);
-
 		List<SearchResultsColumn> searchColumns = new List<SearchResultsColumn> ();
 		SearchResultsColumn action = new SearchResultsColumn();
 		action.Label = 'Action';
@@ -87,7 +85,12 @@ public with sharing class AccountSearchController {
 					addColumn = true;
 				}else if(c.DeveloperName.equalsIgnoreCase('Platform')){
 					addColumn = true;
-				}else if (c.DeveloperName.equalsIgnoreCase('SpnrAcctNbr') && 'Account_Number_OTR'.equals(searchType)){
+				}else if (c.DeveloperName.equalsIgnoreCase('SpnrAcctNbr') &&
+						('Account_Number_OTR'.equals(searchType) ||
+						'CARDNUMBEROTR'.equals(searchType) ||
+						'Acct_Row_Id'.equals(searchType)
+						)
+				){
 					addColumn = true;
 				}if(c.DeveloperName.equalsIgnoreCase('CarrierId') && ('Carrier_ID'.equals(searchType) ||
 						'Account_Name_OTR'.equals(searchType) ||
@@ -119,12 +122,27 @@ public with sharing class AccountSearchController {
 		AccountSearchTypes.accountSearchResult response = new AccountSearchTypes.accountSearchResult();
 
 		try {
-			if (otrSearch) {
+			if (otrSearch && !('CARDNUMBEROTR'.equalsIgnoreCase(request.searchField) && request.searchData.length() == 16)) {
 				// TODO pass back the response with any errors
 				response = searchOTR(searchType, searchKeyword);
 
 			} else {
 				response = getNaFleetSOAPResponse(request);
+
+				if (request.searchField.equals('CARDNUMBEROTR') && response.accountList != null && !response.accountList.isEmpty()) {
+					List<AccountSearchTypes.accountSearchDTO> newResponse = new List<AccountSearchTypes.accountSearchDTO>();
+					for (AccountSearchTypes.accountSearchDTO dto : response.accountList) {
+						if ('TANDEM'.equalsIgnoreCase(dto.dwSourceSys) ||'SIEBEL'.equalsIgnoreCase(dto.dwSourceSys) || dto.acctNm != null) {
+							newResponse.add(dto);
+						} else if (dto.acctRowId != null && !dto.acctRowId.trim().equals('')) {
+							newResponse.addAll(searchOTR('Acct_Row_Id',dto.acctRowId).accountList);
+						} else if (dto.spnrAcctNbr != null && !dto.spnrAcctNbr.trim().equals('')) {
+							newResponse.addAll(searchOTR('Carrier_ID',dto.spnrAcctNbr).accountList);
+						} else
+								newResponse.add(dto);
+					}
+					response.accountList = newResponse;
+				}
 			}
 			if (String.isNotEmpty(response.errorMsg)) {
 				srWrapper.errorMessage = response.errorMsg;
@@ -242,7 +260,7 @@ public with sharing class AccountSearchController {
 				searchType.equalsIgnoreCase('AR_Number') ||
 				searchType.equalsIgnoreCase('Account_Phone_OTR') ||
 				searchType.equalsIgnoreCase('Member_ID') ||
-				searchType.equalsIgnoreCase('Card_Number_OTR') ||
+				searchType.equalsIgnoreCase('CARDNUMBEROTR') ||
 				searchType.equalsIgnoreCase('Account_Name_OTR') ||
 				searchType.equalsIgnoreCase('Carrier_ID')) {
 			return true;
@@ -261,8 +279,6 @@ public with sharing class AccountSearchController {
 		List<AccountSearchTypes.accountSearchDTO> dtoList = new List<AccountSearchTypes.accountSearchDTO> ();
 		List<Account> accountListService = new List<Account>();
 		List<Contract__c> contractIds = new List<Contract__c>();
-
-		System.debug('searchOTR with searchType:  ' + searchType + ' searchKeyword: ' + searchKeyword);
 
 		// We need to filter and RecordType.Name = 'Fleet Account' accounts otherwise we will get dups in the result list
 		if ('Carrier_ID'.equals(searchType) || 'Member_ID'.equals(searchType)) {
@@ -330,7 +346,16 @@ public with sharing class AccountSearchController {
 				return response;
 			}
 
-		}else if('Money_Code'.equals(searchType)){
+		} else if('Acct_Row_Id'.equals(searchType)){  //Only happens in this class, not via console
+			try {
+				accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_ID__c, Acct_Row_Id__c, (SELECT Name, Phone, Contact_Type__c, RecordType.Name FROM Contacts WHERE Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' AND Acct_Row_Id__c  = :searchKeyword];
+			} catch (Exception e) {
+				System.debug('Error - ' + e.getMessage());
+				response.errorMsg = e.getMessage();
+				return response;
+			}
+
+		} else if('Money_Code'.equals(searchType)){
 			response.errorMsg = 'Money Code search is not yet implemented';
 			return response;
 
@@ -376,7 +401,7 @@ public with sharing class AccountSearchController {
 			response.errorMsg = 'Check Number search is not yet implemented';
 			return response;
 
-		} else if ('Card_Number_OTR'.equals(searchType)) {
+		} else if ('CARDNUMBEROTR'.equals(searchType)) {
 			String prelimSearchKeyword = searchKeyword;
 			String newSearchKeyword = searchKeyword;
 			//Check for TChek BIN
@@ -394,7 +419,6 @@ public with sharing class AccountSearchController {
 				//NEW: But, we have to account for leading zeroes getting stripped off along the way.
 				String prelimAccountNumber = newSearchKeyword.left(5);
 				String accountNumber = String.valueOf(Integer.valueOf(prelimAccountNumber)).trim();
-				System.debug('Searching for accountNumber "'+accountNumber + '" based on '+prelimAccountNumber);
 				try
 				{
 					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_ID__c, Acct_Row_Id__c, (SELECT Name, Phone, Contact_Type__c, RecordType.Name FROM Contacts WHERE Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' AND Platform__c IN ('TCHEK','TCHEK_MC','PINNACLE') AND Sponsor_Acct__c = :accountNumber];

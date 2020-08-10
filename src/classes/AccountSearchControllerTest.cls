@@ -31,7 +31,7 @@ public class AccountSearchControllerTest {
 		parentOtrAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
 
 		parentOtrAccount.Sponsor_Acct__c = '123457';
-		parentOtrAccount.Acct_Row_Id__c = 'EFSLLC-123457';
+		parentOtrAccount.Acct_Row_Id__c = 'EFSLLC-123457-CO';
 
 		insert parentOtrAccount;
 		Id parentOtrAccountId = parentOtrAccount.Id;
@@ -54,7 +54,7 @@ public class AccountSearchControllerTest {
 		otrAccount.Platform__c = 'EFSLLC';
 		otrAccount.RecordTypeId = serviceOpsAccountRecordTypeId;
 		otrAccount.ParentId = parentOtrAccountId;
-		otrAccount.Acct_Row_Id__c = 'EFSLLC-123456';
+		otrAccount.Acct_Row_Id__c = 'EFSLLC-123456-CO';
 
 		otrAccount.Sponsor_Acct__c = '123456';
 
@@ -252,11 +252,28 @@ public class AccountSearchControllerTest {
 		Test.setMock(WebServiceMock.class, new MockResponseGenerator());
 
 		Test.startTest();
-		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('Card_Number_OTR', '123456789012');
+		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('CARDNUMBEROTR', '600296123456789012');
 
 		Test.stopTest();
-
 		System.assertEquals(1, resultsWrapper2.results.size());
+		List<AccountSearchController.SearchResultsRow> resultsList =  resultsWrapper2.results;
+		for (AccountSearchController.SearchResultsRow dto : resultsList) {
+			System.debug(dto);
+		}
+
+	}
+
+	@IsTest
+	static void testCardNumberSearchForTchekMC() {
+		Test.setMock(WebServiceMock.class, new MockResponseGenerator());
+
+		Test.startTest();
+		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('CARDNUMBEROTR', '1234567812345678');
+
+		Test.stopTest();
+		System.assertEquals(1, resultsWrapper2.results.size());
+		for (String key : resultsWrapper2.results.get(0).resultColumns.keySet())
+			System.debug('Result: k='+key+', value='+resultsWrapper2.results.get(0).resultColumns.get(key));
 	}
 
 	@IsTest
@@ -289,6 +306,8 @@ public class AccountSearchControllerTest {
 		                     String responseNS,
 		                     String responseName,
 		                     String responseType) {
+			AccountSearchTypes.accountSearch search = (AccountSearchTypes.accountSearch)request;
+			AccountSearchTypes.accountSearchRequest newRequest = search.arg0;
 			AccountSearchTypes.accountSearchResponse res = new AccountSearchTypes.accountSearchResponse();
 			AccountSearchTypes.accountSearchResult result = new AccountSearchTypes.accountSearchResult();
 			AccountSearchTypes.AccountSearchDTO dto1 = new AccountSearchTypes.AccountSearchDTO();
@@ -296,11 +315,18 @@ public class AccountSearchControllerTest {
 			AccountSearchTypes.AccountSearchDTO dto2 = new AccountSearchTypes.AccountSearchDTO();
 			dto2.AcctNm = 'test acct2';
 			AccountSearchTypes.AccountSearchDTO dto3 = new AccountSearchTypes.AccountSearchDTO();
-			dto3.AcctNm = 'test acct3';
-			dto3.spnrAcctNbr = '123';
+			dto3.spnrAcctNbr = '123456';
+			dto3.acctRowId = 'EFSLLC-123456-CO';
+
 			List<AccountSearchTypes.AccountSearchDTO> dtoList = new List<AccountSearchTypes.AccountSearchDTO> ();
-			dtoList.add(dto1);
-			dtoList.add(dto2);
+			if (!(newRequest.searchField.equalsIgnoreCase('CARDNUMBEROTR') && newRequest.searchData.length() == 16)) {
+				dtoList.add(dto1);
+				dtoList.add(dto2);
+				dto3.AcctNm = 'test acct3';
+			} else {
+				dto3.dwSourceSys = 'EFSLLC';
+			}
+
 			dtoList.add(dto3);
 			result.AccountList = dtoList;
 			res.return_x = result;
