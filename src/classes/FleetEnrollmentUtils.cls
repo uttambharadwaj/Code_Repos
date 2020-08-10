@@ -3,7 +3,7 @@ public class FleetEnrollmentUtils {
 
     /**
     * Purpose: Convert a list of fleet enrollment data into a map where the key is the id of the fleet enrollment record
-    * Input: Accepts any object with the field FleetEnrollment__c or Parentid that is SObjectType FleetEnrollment__c
+    * Input: Accepts any object with the field FleetEnrollment__c, LinkedEntityId, or Parentid that is SObjectType FleetEnrollment__c
     * Output: Map<Id, List<SObject>> where Id is the FleetEnrollment__c and List<SObject> are the records from the input
     */
     public static Map<Id, List<SObject>> listToFleetIdMap(List<SObject> fleetDataRecords) {
