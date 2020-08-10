@@ -259,4 +259,14 @@ public class TestClassDispatcher {
 		CollectionsEmailHandlerTest.test_CollectionsEmailPreviouslySent();
 	}
 
+    @IsTest static void testFleetEnrollmentHasFile() {
+        FleetEnrollmentDataTest.test_fleetEnrollmentHasFile();
+    }
+    @IsTest static void testFleetEnrollmentHasData() {
+        FleetEnrollmentDataTest.test_fleetEnrollmentHasData();
+    }
+    @IsTest static void testFleetEnrollmentMissingData() {
+        FleetEnrollmentDataTest.test_fleetEnrollmentMissingData();
+    }
+
 }
