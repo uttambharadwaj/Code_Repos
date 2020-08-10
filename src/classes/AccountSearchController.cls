@@ -87,7 +87,12 @@ public with sharing class AccountSearchController {
 					addColumn = true;
 				}else if(c.DeveloperName.equalsIgnoreCase('Platform')){
 					addColumn = true;
-				}else if (c.DeveloperName.equalsIgnoreCase('SpnrAcctNbr') && 'Account_Number_OTR'.equals(searchType)){
+				}else if (c.DeveloperName.equalsIgnoreCase('SpnrAcctNbr') &&
+						('Account_Number_OTR'.equals(searchType) ||
+						'CARDNUMBEROTR'.equals(searchType) ||
+						'Acct_Row_Id'.equals(searchType)
+						)
+				){
 					addColumn = true;
 				}if(c.DeveloperName.equalsIgnoreCase('CarrierId') && ('Carrier_ID'.equals(searchType) ||
 						'Account_Name_OTR'.equals(searchType) ||
@@ -119,17 +124,17 @@ public with sharing class AccountSearchController {
 		AccountSearchTypes.accountSearchResult response = new AccountSearchTypes.accountSearchResult();
 
 		try {
-			if (otrSearch) {
+			if (otrSearch && !('CARDNUMBEROTR'.equalsIgnoreCase(request.searchField) && request.searchData.length() == 16)) {
 				// TODO pass back the response with any errors
 				response = searchOTR(searchType, searchKeyword);
 
 			} else {
 				response = getNaFleetSOAPResponse(request);
 
-				if (response.accountList != null && !response.accountList.isEmpty() && request.searchField.equals('EMBOSSEDPDNBR')) {
+				if (request.searchField.equals('CARDNUMBEROTR') && response.accountList != null && !response.accountList.isEmpty()) {
 					List<AccountSearchTypes.accountSearchDTO> newResponse = new List<AccountSearchTypes.accountSearchDTO>();
 					for (AccountSearchTypes.accountSearchDTO dto : response.accountList) {
-						if (dto.dwSourceSys.toUpperCase().equals('TANDEM') ||dto.dwSourceSys.toUpperCase().equals('SIEBEL') || dto.acctNm != null) {
+						if ('TANDEM'.equalsIgnoreCase(dto.dwSourceSys) ||'SIEBEL'.equalsIgnoreCase(dto.dwSourceSys) || dto.acctNm != null) {
 							newResponse.add(dto);
 						} else if (dto.acctRowId != null && !dto.acctRowId.trim().equals('')) {
 							newResponse.addAll(searchOTR('Acct_Row_Id',dto.acctRowId).accountList);
@@ -144,8 +149,6 @@ public with sharing class AccountSearchController {
 			if (String.isNotEmpty(response.errorMsg)) {
 				srWrapper.errorMessage = response.errorMsg;
 			}
-
-
 
 			if (response.accountList != null) {
 
@@ -259,7 +262,7 @@ public with sharing class AccountSearchController {
 				searchType.equalsIgnoreCase('AR_Number') ||
 				searchType.equalsIgnoreCase('Account_Phone_OTR') ||
 				searchType.equalsIgnoreCase('Member_ID') ||
-				searchType.equalsIgnoreCase('Card_Number_OTR') ||
+				searchType.equalsIgnoreCase('CARDNUMBEROTR') ||
 				searchType.equalsIgnoreCase('Account_Name_OTR') ||
 				searchType.equalsIgnoreCase('Carrier_ID')) {
 			return true;
@@ -402,7 +405,7 @@ public with sharing class AccountSearchController {
 			response.errorMsg = 'Check Number search is not yet implemented';
 			return response;
 
-		} else if ('Card_Number_OTR'.equals(searchType)) {
+		} else if ('CARDNUMBEROTR'.equals(searchType)) {
 			String prelimSearchKeyword = searchKeyword;
 			String newSearchKeyword = searchKeyword;
 			//Check for TChek BIN
