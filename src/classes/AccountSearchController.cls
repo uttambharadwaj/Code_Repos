@@ -37,8 +37,6 @@ public with sharing class AccountSearchController {
 		Boolean otrSearch = isOTRSearch(searchType);
 		srWrapper.otrSearch = otrSearch;
 
-		System.debug('Search param: ' + searchType + ' otrSearch:' + otrSearch);
-
 		List<SearchResultsColumn> searchColumns = new List<SearchResultsColumn> ();
 		SearchResultsColumn action = new SearchResultsColumn();
 		action.Label = 'Action';
@@ -282,8 +280,6 @@ public with sharing class AccountSearchController {
 		List<Account> accountListService = new List<Account>();
 		List<Contract__c> contractIds = new List<Contract__c>();
 
-		System.debug('searchOTR with searchType:  ' + searchType + ' searchKeyword: ' + searchKeyword);
-
 		// We need to filter and RecordType.Name = 'Fleet Account' accounts otherwise we will get dups in the result list
 		if ('Carrier_ID'.equals(searchType) || 'Member_ID'.equals(searchType)) {
 			try {
@@ -423,7 +419,6 @@ public with sharing class AccountSearchController {
 				//NEW: But, we have to account for leading zeroes getting stripped off along the way.
 				String prelimAccountNumber = newSearchKeyword.left(5);
 				String accountNumber = String.valueOf(Integer.valueOf(prelimAccountNumber)).trim();
-				System.debug('Searching for accountNumber "'+accountNumber + '" based on '+prelimAccountNumber);
 				try
 				{
 					accountListService = [SELECT Member_ID__c, Id, Name,Sponsor_Acct__c, Account_Status__c, Status__c,  Primary_Contact__c, Account_Number__c, Phone, BillingCity, BillingState, Wex_Account__c, Carrier_ID__c, Acct_Row_Id__c, (SELECT Name, Phone, Contact_Type__c, RecordType.Name FROM Contacts WHERE Contact_Type__c = 'PRIMARY'), Platform__c, Program__c, Program__r.Service_Program_Name__c, Program__r.Service_Program_Website__c, Program__r.WEX_Platform__c FROM Account WHERE RecordType.Name = 'Service Operations' AND Platform__c IN ('TCHEK','TCHEK_MC','PINNACLE') AND Sponsor_Acct__c = :accountNumber];
