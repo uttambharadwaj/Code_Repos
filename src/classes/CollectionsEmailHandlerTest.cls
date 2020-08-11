@@ -9,7 +9,8 @@ public class CollectionsEmailHandlerTest {
 		Collections_Email_Configuration__mdt emailConfig = [ SELECT Id FROM Collections_Email_Configuration__mdt WHERE DeveloperName = 'Test_Class_Config'];
 
 		Case cases = [ SELECT Id,Contact.Email,ContactId,AccountId,Account.Territory_Code__c,Account.National_Account_OTR__c
-		FROM Case LIMIT 1 ];
+		FROM Case WHERE Subject = 'Test Case 1' LIMIT 1 ];
+		update cases;
 
 		InvocableSendEmailTemplate.EmailWrapper emailWrapper = new InvocableSendEmailTemplate.EmailWrapper();
 		emailWrapper.whatId = cases.Id;
@@ -22,7 +23,7 @@ public class CollectionsEmailHandlerTest {
 		CollectionsEmailHandler.sendEmailTemplate(new List<InvocableSendEmailTemplate.EmailWrapper>{emailWrapper});
 		Test.stopTest();
 
-		cases = [ SELECT Id,ContactId,Collections_No_Connect_Tasks__c,Processed_Email_Configs__c FROM Case LIMIT 1 ];
+		cases = [ SELECT Id,ContactId,Collections_No_Connect_Tasks__c,Processed_Email_Configs__c FROM Case WHERE Subject = 'Test Case 1' LIMIT 1 ];
 		System.debug(cases.Collections_No_Connect_Tasks__c);
 
 		System.assertEquals(true, cases.Processed_Email_Configs__c.contains(emailConfig.Id));
@@ -35,7 +36,7 @@ public class CollectionsEmailHandlerTest {
 
 		Collections_Email_Configuration__mdt emailConfig = [ SELECT Id FROM Collections_Email_Configuration__mdt WHERE DeveloperName = 'Test_Class_Config'];
 
-		Case cases = [ SELECT Id,ContactId,Collections_No_Connect_Tasks__c,Processed_Email_Configs__c FROM Case LIMIT 1 ];
+		Case cases = [ SELECT Id,ContactId,Collections_No_Connect_Tasks__c,Processed_Email_Configs__c FROM Case WHERE Subject = 'Test Case 1' LIMIT 1 ];
 		cases.Collections_No_Connect_Tasks__c = 1; // make the rules not pass
 		update cases;
 
@@ -51,7 +52,7 @@ public class CollectionsEmailHandlerTest {
 		Test.stopTest();
 
 		cases = [ SELECT Id,ContactId,Collections_No_Connect_Tasks__c,Processed_Email_Configs__c
-		FROM Case LIMIT 1 ];
+		FROM Case WHERE Subject = 'Test Case 1' LIMIT 1 ];
 
 		if (cases.Processed_Email_Configs__c == null) cases.Processed_Email_Configs__c = '';
 		System.assertEquals(false, cases.Processed_Email_Configs__c.contains(emailConfig.Id));
@@ -62,7 +63,7 @@ public class CollectionsEmailHandlerTest {
 
 		Collections_Email_Configuration__mdt emailConfig = [ SELECT Id FROM Collections_Email_Configuration__mdt WHERE DeveloperName = 'Test_Class_Config'];
 
-		Case cases = [ SELECT Id,ContactId,Collections_No_Connect_Tasks__c,Processed_Email_Configs__c FROM Case LIMIT 1 ];
+		Case cases = [ SELECT Id,ContactId,Collections_No_Connect_Tasks__c,Processed_Email_Configs__c FROM Case WHERE Subject = 'Test Case 1' LIMIT 1 ];
 		cases.Processed_Email_Configs__c = emailConfig.Id;
 		update cases;
 

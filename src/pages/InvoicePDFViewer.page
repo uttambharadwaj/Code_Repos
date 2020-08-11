@@ -2,7 +2,7 @@
  - Created by dgilbert on 06/25/2020.
  -->
 
-<apex:page id="InvoicePDFViewer" title="Invoice" controller="InvoicePDFViewerController" action="{!init}" showHeader="false" standardStylesheets="false" sideBar="false">
+<apex:page id="InvoicePDFViewer" title="Invoice" controller="InvoicePDFViewerController" action="{!init}" showHeader="false" standardStylesheets="false" sideBar="false" renderAs="pdf">
     <style>
         * {
             margin: 0 !important;

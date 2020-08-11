@@ -326,7 +326,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 responseElement.return_x.accountStsDt = (Datetime) JSON.deserialize('"2015-04-15T00:00:00-04:00"', Datetime.class);
                 responseElement.return_x.accountingFee = 10.00;
                 responseElement.return_x.accountingFeeDescription = 'Accounting Fee';
-                responseElement.return_x.acctRowId = '2-ZZZZZ-011';
+                responseElement.return_x.acctRowId = 'EFSLLC-123456-CO';
                 responseElement.return_x.arNumber = '9100000000000';
                 responseElement.return_x.availableCreditLmt = 7179.69;
                 responseElement.return_x.billingAccountId = '9100000000000';
@@ -674,24 +674,29 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
 
             }
 
-        } else if (request instanceOf CustomerDetailsWSUtilv2.accountSearch) {
-
-            System.debug('We is here..');
+        } else if (request instanceof CustomerDetailsWSUtilv2.accountSearch) {
+            CustomerDetailsWSUtilv2.accountSearchRequest newRequest =(CustomerDetailsWSUtilv2.accountSearchRequest) request;
+            CustomerDetailsWSUtilv2.accountSearchResponse accountSearchResponse = new CustomerDetailsWSUtilv2.accountSearchResponse();
 
             List<CustomerDetailsWSUtilv2.accountSearchDTO> testAccounts = new List<CustomerDetailsWSUtilv2.accountSearchDTO>();
 
             CustomerDetailsWSUtilv2.accountSearchDTO testAccount = new CustomerDetailsWSUtilv2.accountSearchDTO();
 
-            testAccount.acctNm = 'Test';
-            testAccount.wexAcctNbr = '9100000000000';
-            testAccount.spnrAcctNbr = '9100000000000';
-            testAccount.acctSts = 'Active';
-            testAccount.acctRowId = '1-ZZZZZZ';
-            testAccount.dwSourceSys = 'SIEBEL';
+            if (newRequest.searchField.equals('CARDNUMBEROTR')) {
+                testAccount.spnrAcctNbr = '123456';
+                testAccount.acctRowId  = 'EFSLLC-123456-CO';
 
-            testAccounts.add(testAccount);
+                testAccounts.add(testAccount);
+            }   else {
+                testAccount.acctNm = 'Test';
+                testAccount.wexAcctNbr = '9100000000000';
+                testAccount.spnrAcctNbr = '9100000000000';
+                testAccount.acctSts = 'Active';
+                testAccount.acctRowId = '1-ZZZZZZ';
+                testAccount.dwSourceSys = 'SIEBEL';
 
-            CustomerDetailsWSUtilv2.accountSearchResponse accountSearchResponse = new CustomerDetailsWSUtilv2.accountSearchResponse();
+                testAccounts.add(testAccount);
+            }
 
             accountSearchResponse.return_x = new CustomerDetailsWSUtilv2.accountSearchResult();
 

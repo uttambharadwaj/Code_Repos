@@ -1,4 +1,7 @@
-ID,SALES_STAGE__C,OPPORTUNITY__C,SIEBEL_OPPTY__C,APPLICATION_STAGE__C,STATUS__C,COMPLIANCE_DECISION__C,PG_Required__c,Legal_Structure__c,PERSONAL_GUARANTOR__C
-a0V180000016mO4EAI,04 - Application Received,0066C000005chKeQAI,,Adjudication,Pending Decision,Declined,FALSE,,0031800000YHoOZAA2
-a0V180000016mPKEAY,04 - Application Received,00618000009d3nFAAQ,,Adjudication,Pending Decision,Declined,TRUE,Proprietorship,0031800000YHoOZAA3
-a0V5C000000gZdpUAE,04 - Application Received,0065C000004jwHkQAI,Test,Adjudication,Pending Decision,Declined,TRUE,,0031800000YHoOZAA4
+ID,SALES_STAGE__C,OPPORTUNITY__C,SIEBEL_OPPTY__C,APPLICATION_STAGE__C,STATUS__C,COMPLIANCE_DECISION__C,PG_Required__c,Legal_Structure__c,PERSONAL_GUARANTOR__C,PHYSICAL_STREET__C,PHYSICAL_STREET_LINE_2__C,PHYSICAL_CITY__C,PHYSICAL_STATE__C,PHYSICAL_ZIP_POSTAL_CODE__C,SIC_CODE__c,CURRENCYISOCODE,DNB_RESOLVED_DUNS__C,STOCK_SYMBOL__C,STOCK_EXCHANGE__C,RISK_GRADE__C,DNB_Credit_Line_Recommendation__c,Requested_Credit_Limit__c,DNB_CSAD_High_Credit__c,PG_High_Credit_Amount__c,PG_FICO_Score__c
+a0V180000016mO4EAI,04 - Application Received,0066C000005chKeQAI,,Adjudication,Pending Decision,Declined,FALSE,,0031800000YHoOZAA2,123 Main Street,Apt 2,South Portland,ME,4061,4221,USD,123456789,NYC,New York Stock Exchange,2,9000,9000,15000,9000,900
+a0V180000016mPKEAY,04 - Application Received,00618000009d3nFAAQ,,Adjudication,Pending Decision,Declined,TRUE,Proprietorship,0031800000YHoOZAA3,,,,,,,,,,,,,,,,
+a0V5C000000gZdpUAE,04 - Application Received,0065C000004jwHkQAI,Test,Adjudication,Pending Decision,Declined,TRUE,,0031800000YHoOZAA4,,,,,,,,,,,,,,,,
+
+
+

@@ -11,10 +11,18 @@ public inherited sharing class LWC_TasksController {
         Boolean futureTasks = (taskFutureDateFilter != null && taskFutureDateFilter) ? true : false;
         // default to showing historical tasks
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
-
+        List<Collections__c> relatedCollections = new List<Collections__c>();
+        List<Case> relatedCases = new List<Case>();
         String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, OwnerId, Owner.Name, WhatId, ActivityDate, LastModifiedDate, Status, Activity_Type__c FROM Task';
         if (recordId != null && recordId != '') {
-            taskQuery += ' WHERE WhatId =: recordId';
+
+            if (UtilityClass.getObjName(recordId) == 'Account') {
+                relatedCollections = [ SELECT Id FROM Collections__c WHERE Account__c = :recordId];
+                relatedCases = [ SELECT Id FROM Case WHERE Accountid = :recordId];
+            }
+
+            taskQuery += relatedCollections.isEmpty() && relatedCases.isEmpty() ? ' WHERE WhatId =: recordId' : ' WHERE (WhatId =: recordId OR WhatId IN :relatedCollections OR WhatId IN :relatedCases)';
+
             // are we filtering by task type?
             if (taskTypeFilter != null && taskTypeFilter != '') {
                 taskQuery += ' AND (Type IN :typeFilter OR Activity_Type__c IN :typeFilter)';
@@ -38,13 +46,22 @@ public inherited sharing class LWC_TasksController {
         List<String> typeFilter = taskTypeFilter.split(',');
         Boolean futureTasks = (taskFutureDateFilter != null && taskFutureDateFilter) ? true : false;
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
+        List<Collections__c> relatedCollections = new List<Collections__c>();
+        List<Case> relatedCases = new List<Case>();
 
-        String countQuery = 'SELECT count() FROM Task ';
+        String countQuery = 'SELECT count() FROM Task';
         if (recordId != null && recordId != '') {
-            countQuery += ' WHERE WhatId =: recordId';
+
+            if (UtilityClass.getObjName(recordId) == 'Account') {
+                relatedCollections = [ SELECT Id FROM Collections__c WHERE Account__c = :recordId];
+                relatedCases = [ SELECT Id FROM Case WHERE Accountid = :recordId];
+            }
+            // TODO update getAllTasks and getTaskCount to pull query from common method.
+            countQuery += relatedCollections.isEmpty() && relatedCases.isEmpty() ? ' WHERE WhatId =: recordId' : ' WHERE (WhatId =: recordId OR WhatId IN :relatedCollections OR WhatId IN :relatedCases)';
+
             // are we filtering by task type?
             if (taskTypeFilter != null && taskTypeFilter != '') {
-                countQuery += ' AND Type IN :typeFilter OR Activity_Type__c IN :typeFilter';
+                countQuery += ' AND (Type IN :typeFilter OR Activity_Type__c IN :typeFilter)';
             }
             // are we filtering by task date range?
             if (historicalTasks && !futureTasks) {
