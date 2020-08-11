@@ -54,16 +54,13 @@ public with sharing class InvoicePDFViewerController {
                 String sobjectName = sobjectType.getDescribe().getName();
 
                 if ((sobjectName).equals('Collections_Invoice__c')) {
-
-                    List<Collections_Invoice__c> collectionsInvoices = [SELECT Id, Name, Collections__r.Contract__r.AR_Number__c FROM Collections_Invoice__c WHERE Id = :recordId]//;
+                    List<Collections_Invoice__c> collectionsInvoices = [SELECT Id, Name, Collections__r.Contract__r.AR_Number__c FROM Collections_Invoice__c WHERE Id = :recordId];
 
                     if (collectionsInvoices.size() > 0) {
 
-                         accountId = collectionsInvoices[0].Collections__r.Contract__r.AR_Number__c;
-                         invoiceNumber = collectionsInvoices[0].Name;
-
+                        accountId = collectionsInvoices[0].Collections__r.Contract__r.AR_Number__c;
+                        invoiceNumber = collectionsInvoices[0].Name;
                     }
-
                 }
 
             }
