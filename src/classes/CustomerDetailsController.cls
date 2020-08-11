@@ -765,11 +765,13 @@ public without sharing class CustomerDetailsController {
                 result = customerDetailsCallout.getOtrInvoiceList(arNumber,15) ;
 
                 CustomerDetailsWSUtilv2.otrInvoiceEntry invoice;
-                for (Integer i=0; i < result.invoices.invoices.size(); i++) {
-                    invoice = result.invoices.invoices[i];
-                    String pageUrl =  Url.getSalesforceBaseUrl().toExternalForm()+'/apex/InvoicePDFViewer?arNumber='+invoice.arNumber+'&fileName='+EncodingUtil.urlEncode(invoice.fileName,'UTF-8');
-                    result.invoices.invoices[i].fileName = pageUrl;
-                    System.debug('Invoice='+invoice);
+                if (result != null && result.invoices != null && result.invoices.invoices != null) {
+                    for (Integer i=0; i < result.invoices.invoices.size(); i++) {
+                        invoice = result.invoices.invoices[i];
+                        String pageUrl =  Url.getSalesforceBaseUrl().toExternalForm()+'/apex/InvoicePDFViewer?arNumber='+invoice.arNumber+'&fileName='+EncodingUtil.urlEncode(invoice.fileName,'UTF-8');
+                        result.invoices.invoices[i].fileName = pageUrl;
+                        System.debug('Invoice='+invoice);
+                    }
                 }
 
             } catch (Exception e) {
