@@ -249,6 +249,9 @@ public with sharing class AccountSearchController {
 		}
 
 		srWrapper.results = results;
+		if (String.isEmpty(srWrapper.errorMessage) && (results == null || results.isEmpty())) {
+			srWrapper.errorMessage = 'No results found.';
+		}
 		return srWrapper;
 	}
 
