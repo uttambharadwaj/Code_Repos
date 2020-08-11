@@ -727,8 +727,15 @@ global class CreditWS_CreditLens {
                         editEntityRequest.payLoad = editEntityPayLoad;
 
                         // update the Entity in CL
-                        upmarketCase.Credit_Lens_Response__c = editEntity(editEntityRequest, token);
-                        upsert upmarketCase;
+                        String responsePayload = editEntity(editEntityRequest, token);
+
+                        if (responsePayload.length() > 255) {
+                            upmarketCase.Credit_Lens_Response__c = responsePayload.substring(0,250) + ' ...';
+                            upsert upmarketCase;
+                        } else {
+                            upmarketCase.Credit_Lens_Response__c = responsePayload;
+                            upsert upmarketCase;
+                        }
                     }
                 } else {
                     System.debug('Unable to update Credit Lens Entity because either Case EntityID is null or invalid, or required fields are missing on the existing Entity in Credit Lens.');
@@ -838,12 +845,13 @@ global class CreditWS_CreditLens {
                 } else {
                     // good payload but not a Status of 200 - so what happened?
                     System.debug('Unable to edit entity in Credit Lens: ' + httpResponse.getBody());
-                    return httpResponse.getBody();
+                    return responseBody;
                 }
             }
 
         }  catch (Exception e) {
             System.debug('### Error editing entity in Credit Lens - line number: ' + e.getLineNumber() + ' - ' + e.getMessage());
+            return responseBody;
         }
         return null;
     }
