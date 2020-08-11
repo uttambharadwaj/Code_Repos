@@ -47,17 +47,21 @@ public inherited sharing class LWC_TasksController {
         Boolean futureTasks = (taskFutureDateFilter != null && taskFutureDateFilter) ? true : false;
         Boolean historicalTasks = (taskHistoricalDateFilter == null || taskHistoricalDateFilter) ? true : false;
         List<Collections__c> relatedCollections = new List<Collections__c>();
+        List<Case> relatedCases = new List<Case>();
 
-        String countQuery = 'SELECT count() FROM Task ';
+        String countQuery = 'SELECT count() FROM Task';
         if (recordId != null && recordId != '') {
 
-            if (UtilityClass.getObjName(recordId) == 'Account') relatedCollections = [ SELECT Id FROM Collections__c WHERE Account__c = :recordId];
-
-            countQuery += relatedCollections.isEmpty() ? ' WHERE WhatId =: recordId' : ' WHERE (WhatId =: recordId OR WhatId IN :relatedCollections)';
+            if (UtilityClass.getObjName(recordId) == 'Account') {
+                relatedCollections = [ SELECT Id FROM Collections__c WHERE Account__c = :recordId];
+                relatedCases = [ SELECT Id FROM Case WHERE Accountid = :recordId];
+            }
+            // TODO update getAllTasks and getTaskCount to pull query from common method.
+            countQuery += relatedCollections.isEmpty() && relatedCases.isEmpty() ? ' WHERE WhatId =: recordId' : ' WHERE (WhatId =: recordId OR WhatId IN :relatedCollections OR WhatId IN :relatedCases)';
 
             // are we filtering by task type?
             if (taskTypeFilter != null && taskTypeFilter != '') {
-                countQuery += ' AND Type IN :typeFilter OR Activity_Type__c IN :typeFilter';
+                countQuery += ' AND (Type IN :typeFilter OR Activity_Type__c IN :typeFilter)';
             }
             // are we filtering by task date range?
             if (historicalTasks && !futureTasks) {
