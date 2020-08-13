@@ -19,7 +19,7 @@ export default class RelatedTasksFilter extends LightningElement {
         { label: 'Returned Payment', value: 'Returned Payment' },
         { label: 'Account Maintenance', value: 'Account Maintenance' },
     ];
-    dateValue = ['Historical'];
+    dateValue = [];
     dateOptions = [
         { label: 'Future', value: 'Future' },
         { label: 'Historical', value: 'Historical' },
