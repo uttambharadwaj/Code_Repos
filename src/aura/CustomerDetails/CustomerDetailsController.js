@@ -150,14 +150,14 @@
                 $A.util.removeClass(spinner, "slds-hide");
 
                 // Grab the customer details
-                helper.loadCustomerDetails(component);
+                helper.loadCustomerDetails(component, event.target);
 
                 //Get the open cases
                 console.log("### Fetching existing cases");
                 helper.fetchExistingOpenCases(component);
 
                 // Grab the number of cases today
-                helper.fetchNumberOfCasesToday(component);
+                helper.fetchNumberOfCasesToday(component, event.target);
 
                 //component.set("v.selectedTabId","customerContactsTab");
 
@@ -171,7 +171,7 @@
         $A.util.addClass(event.target, 'fa-spin fa-1x fa-fw');
 
         helper.loadCustomerDetails(component, event.target);
-        helper.fetchNumberOfCasesToday(component);
+        helper.fetchNumberOfCasesToday(component, event.target);
         helper.fetchExistingOpenCases(component);
     },
 
