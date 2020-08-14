@@ -1045,7 +1045,7 @@
         }
     },
 
-    fetchNumberOfCasesToday : function(component, name) {
+    fetchNumberOfCasesToday : function(component, target) {
         console.log("### Enter fetchNumberOfCasesToday");
 
         var acctNbr = component.get("v.accountNumber");
