@@ -2238,7 +2238,7 @@
                         <aura:set attribute="else">
 
                             <lightning:datatable aura:id="otrInvoicesTable"
-                                                 data="{!v.invoices}"
+                                                 data="{!v.invoices.invoices}"
                                                  columns="{!v.otrInvoiceColumnList}"
                                                  keyField="Id"
                                                  hideCheckboxColumn="true"
