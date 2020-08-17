@@ -15,7 +15,7 @@ export default class RelatedTasksFilter extends LightningElement {
     typeOptions = [
         { label: 'Call', value: 'Call' },
         { label: 'Email', value: 'Email' },
-        { label: 'Skip Tracing', value: 'Skip Tracing' },
+        //{ label: 'Skip Tracing', value: 'Skip Tracing' },
         { label: 'Returned Payment', value: 'Returned Payment' },
         { label: 'Account Maintenance', value: 'Account Maintenance' },
     ];

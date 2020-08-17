@@ -11,7 +11,10 @@ public inherited sharing class LWC_TasksController {
         if (recordId != null && recordId != '') {
             String taskQuery = 'SELECT Id, Subject, Description, Type, CreatedById, OwnerId, Owner.Name, WhatId, ActivityDate, LastModifiedDate, Status, Activity_Type__c FROM Task';
 
-            List<Id> whatIds = getAllPotentialWhatIds(recordId); // used in WHERE
+            // used in WHERE
+            List<Id> whatIds = getAllPotentialWhatIds(recordId);
+            List<String> typeFilter = taskTypeFilter.split(',');
+
             taskQuery += getTaskWhereClause(recordId, taskTypeFilter, taskHistoricalDateFilter, taskFutureDateFilter);
 
             taskQuery += ' ORDER BY ActivityDate DESC';
@@ -29,7 +32,11 @@ public inherited sharing class LWC_TasksController {
         if (recordId != null && recordId != '') {
 
             String countQuery = 'SELECT count() FROM Task';
-            List<Id> whatIds = getAllPotentialWhatIds(recordId); // used in WHERE
+
+            // used in WHERE
+            List<Id> whatIds = getAllPotentialWhatIds(recordId);
+            List<String> typeFilter = taskTypeFilter.split(',');
+
             countQuery += getTaskWhereClause(recordId, taskTypeFilter, taskHistoricalDateFilter, taskFutureDateFilter);
 
             System.debug('Count: ' + countQuery);
@@ -47,7 +54,6 @@ public inherited sharing class LWC_TasksController {
     public static String getTaskWhereClause(String recordId, String taskTypeFilter, Boolean taskHistoricalDateFilter, Boolean taskFutureDateFilter) {
 
         String whereClause = ' WHERE WhatId != NULL';
-        List<String> typeFilter = taskTypeFilter.split(',');
         Boolean futureTasks = (taskFutureDateFilter != null && taskFutureDateFilter) ? true : false;
         Boolean historicalTasks = (taskHistoricalDateFilter != null && taskHistoricalDateFilter) ? true : false;
 
