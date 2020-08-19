@@ -34,6 +34,8 @@ public class CustomerDetailsWSUtilv2 {
         private String[] field_order_type_info = new String[]{'entry'};
     }
     public class otrContract {
+        @AuraEnabled public String accountDescriptor;
+        @AuraEnabled public String accountManager;
         @AuraEnabled public String arNumber;
         @AuraEnabled public Decimal availableCreditLmt;
         @AuraEnabled public String billingAcctNbr;
@@ -67,6 +69,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public Datetime lastPaymentDt;
         @AuraEnabled public String lastPaymentMethod;
         @AuraEnabled public String lastPaymentStatus;
+        @AuraEnabled public String mgrCode;
         @AuraEnabled public Decimal moneyCodeLimit;
         @AuraEnabled public Decimal moneyIncrementalFee;
         @AuraEnabled public String moneyIncrementalFeeDescription;
@@ -90,6 +93,8 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String recourseCode;
         @AuraEnabled public String returnedPaymentFee;
         @AuraEnabled public String salesforceId;
+        @AuraEnabled public String salesRep;
+        @AuraEnabled public String salesTerritory;
         @AuraEnabled public Decimal thirdPartyCheckFee;
         @AuraEnabled public String thirdPartyCheckFeeDescription;
         @AuraEnabled public Decimal totalOwed;
@@ -101,6 +106,8 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String westernUnionFeeDescription;
         @AuraEnabled public Decimal wireFee;
         @AuraEnabled public String wireFeeDescription;
+        private String[] accountDescriptor_type_info = new String[]{'accountDescriptor','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] accountManager_type_info = new String[]{'accountManager','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] arNumber_type_info = new String[]{'arNumber','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] availableCreditLmt_type_info = new String[]{'availableCreditLmt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] billingAcctNbr_type_info = new String[]{'billingAcctNbr','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -134,6 +141,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] lastPaymentDt_type_info = new String[]{'lastPaymentDt','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] lastPaymentMethod_type_info = new String[]{'lastPaymentMethod','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] lastPaymentStatus_type_info = new String[]{'lastPaymentStatus','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] mgrCode_type_info = new String[]{'mgrCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] moneyCodeLimit_type_info = new String[]{'moneyCodeLimit','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] moneyIncrementalFee_type_info = new String[]{'moneyIncrementalFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] moneyIncrementalFeeDescription_type_info = new String[]{'moneyIncrementalFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -157,6 +165,8 @@ public class CustomerDetailsWSUtilv2 {
         private String[] recourseCode_type_info = new String[]{'recourseCode','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] returnedPaymentFee_type_info = new String[]{'returnedPaymentFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] salesforceId_type_info = new String[]{'salesforceId','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] salesRep_type_info = new String[]{'salesRep','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
+        private String[] salesTerritory_type_info = new String[]{'salesTerritory','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] thirdPartyCheckFee_type_info = new String[]{'thirdPartyCheckFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] thirdPartyCheckFeeDescription_type_info = new String[]{'thirdPartyCheckFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] totalOwed_type_info = new String[]{'totalOwed','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
@@ -169,7 +179,7 @@ public class CustomerDetailsWSUtilv2 {
         private String[] wireFee_type_info = new String[]{'wireFee','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] wireFeeDescription_type_info = new String[]{'wireFeeDescription','http://com.wex.enterpriseapps.customerinfo',null,'0','1','false'};
         private String[] apex_schema_type_info = new String[]{'http://com.wex.enterpriseapps.customerinfo','false','false'};
-        private String[] field_order_type_info = new String[]{'arNumber','availableCreditLmt','billingAcctNbr','billingCycleDesc','canadianFee','canadianFeeDescription','cashEnabledIndicator','cashLimit','codeExpiredFee','codeExpiredFeeDescription','contractCurrency','contractIssuerId','contractIssuerName','contractNbr','contractNm','contractStartDt','contractStatus','creditLmt','currentBillingCycle','currentInvoiceClosingDt','currentInvoiceDueDt','daysToPay','debitCycle','depositAmt','faxFee','faxFeeDescription','financeChargeRteType','lastInvoiceBilledAmt','lastPaymentAmount','lastPaymentComment','lastPaymentDt','lastPaymentMethod','lastPaymentStatus','moneyCodeLimit','moneyIncrementalFee','moneyIncrementalFeeDescription','monthlyCardFee','monthlyCardFeeDescription','nsfFee','nsfFeeDescription','onlinePayAllowed','outOfNetworkPerTxnFee','outOfNetworkProgramOrAccountRte','overLimitFee','overLimitFeeDescription','pastDueAmount','payByAgentFee','payByAgentFeeDescription','pendingTxns','periodicFinanceChargeRte','programMaintenanceCharge','programMaintenanceChargeDescription','recourseAmt','recourseCode','returnedPaymentFee','salesforceId','thirdPartyCheckFee','thirdPartyCheckFeeDescription','totalOwed','txnLimit','unbilledAmt','usualMethodOfPayment','velocity','westernUnionFee','westernUnionFeeDescription','wireFee','wireFeeDescription'};
+        private String[] field_order_type_info = new String[]{'accountDescriptor','accountManager','arNumber','availableCreditLmt','billingAcctNbr','billingCycleDesc','canadianFee','canadianFeeDescription','cashEnabledIndicator','cashLimit','codeExpiredFee','codeExpiredFeeDescription','contractCurrency','contractIssuerId','contractIssuerName','contractNbr','contractNm','contractStartDt','contractStatus','creditLmt','currentBillingCycle','currentInvoiceClosingDt','currentInvoiceDueDt','daysToPay','debitCycle','depositAmt','faxFee','faxFeeDescription','financeChargeRteType','lastInvoiceBilledAmt','lastPaymentAmount','lastPaymentComment','lastPaymentDt','lastPaymentMethod','lastPaymentStatus','mgrCode','moneyCodeLimit','moneyIncrementalFee','moneyIncrementalFeeDescription','monthlyCardFee','monthlyCardFeeDescription','nsfFee','nsfFeeDescription','onlinePayAllowed','outOfNetworkPerTxnFee','outOfNetworkProgramOrAccountRte','overLimitFee','overLimitFeeDescription','pastDueAmount','payByAgentFee','payByAgentFeeDescription','pendingTxns','periodicFinanceChargeRte','programMaintenanceCharge','programMaintenanceChargeDescription','recourseAmt','recourseCode','returnedPaymentFee','salesforceId','salesRep','salesTerritory','thirdPartyCheckFee','thirdPartyCheckFeeDescription','totalOwed','txnLimit','unbilledAmt','usualMethodOfPayment','velocity','westernUnionFee','westernUnionFeeDescription','wireFee','wireFeeDescription'};
     }
     public class getOtrContracts {
         @AuraEnabled public String otrAcctNbr {get; set;}
