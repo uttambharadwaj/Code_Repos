@@ -538,7 +538,7 @@ public class WexBOCAController {
                             First_Name__c, Fiscal_Year_Starts__c, Fleet_Size__c, Guarantor_Annual_Income__c,
                             How_did_you_hear_about_this_offer__c, Id, IsDeleted, Is_business_exempt_from_Motor_Fuels_Tax__c,
                             Last_Name__c, Legal_Structure__c, Location_Code__c, Mobile_Phone__c, Name, Non_Std_Neg_Fee__c, Online_Application_Status__c, Opportunity__c,
-                            OwnerId, PG_Residential_City__c, PG_Residential_Phone__c, PG_Residential_State__c, PG_Residential_Street_Address__c,
+                            Opportunity__r.Average_Monthly_Fueling__c, OwnerId, PG_Residential_City__c, PG_Residential_Phone__c, PG_Residential_State__c, PG_Residential_Street_Address__c,
                             PG_Residential_Zip__c, Paperless_Flag__c, Payment_Method__c, Program_Id__c, Program__c, Promotional_Code__c,
                             RecordTypeId, Sales_Id__c, Sales_Rep_Email__c, Sales_Rep_Phone__c, Same_as_Business_Address__c,
                             Signer_s_Email__c, Signer_s_First_Name__c, Signer_s_Last_Name__c, Signer_s_Phone__c, State__c,
@@ -556,7 +556,7 @@ public class WexBOCAController {
                         creditApp.Address_Line_2__c = '';
 
                         if(creditApp.Avg_Monthly_Fuel_Service_Expenses__c == null) {
-                            creditApp.Avg_Monthly_Fuel_Service_Expenses__c = creditApp.Avg_Monthly_Fuel_Service_Expenses__c;
+                            creditApp.Avg_Monthly_Fuel_Service_Expenses__c = creditApp.Opportunity__r.Average_Monthly_Fueling__c;
                         }
 
                         if(creditApp.Years_in_Business__c == '0.5' || creditApp.Years_in_Business__c == '0') {
