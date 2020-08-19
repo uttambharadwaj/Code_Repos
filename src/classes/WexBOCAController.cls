@@ -555,7 +555,7 @@ public class WexBOCAController {
                         creditApp.Business_Phone__c = creditApp.Signer_s_Phone__c;
                         creditApp.Address_Line_2__c = '';
 
-                        if(creditApp.Avg_Monthly_Fuel_Service_Expenses__c == null) {
+                        if(creditApp.Avg_Monthly_Fuel_Service_Expenses__c == null && creditApp.Opportunity__r != null) {
                             creditApp.Avg_Monthly_Fuel_Service_Expenses__c = creditApp.Opportunity__r.Average_Monthly_Fueling__c;
                         }
 
