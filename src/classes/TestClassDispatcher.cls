@@ -81,6 +81,10 @@ public class TestClassDispatcher {
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
 
+    @isTest static void testSetCardsCreatedAfterUpdate() {
+        CaseTriggerTest.testSetCardsCreatedAfterUpdate();
+    }
+
     @isTest static void testCreateCampaignCode() {
         CampaignCodeGeneratorTest.test_createCampaignCode();
     }
