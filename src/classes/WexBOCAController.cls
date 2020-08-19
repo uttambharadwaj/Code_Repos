@@ -788,6 +788,7 @@ public class WexBOCAController {
                 partialLeadRecord.Company = creditApp.Company_Name__c;
                 partialLeadRecord.Fleet_Size__c = creditApp.Fleet_Size__c;
                 partialLeadRecord.Campaign_Response_Methods__c = 'Online App';
+                partialLeadRecord.Language__c = languageCode != null && languageCode.equalsIgnoreCase('fr_ca') ? 'French' : 'English';
                 if(creditApp.Doing_Business_As__c != null && creditApp.Doing_Business_As__c != '') {
                     backgroundNotes = 'Doing Business As: ' + creditApp.Doing_Business_As__c;
                 }
