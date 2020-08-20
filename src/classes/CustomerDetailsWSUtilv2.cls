@@ -536,7 +536,7 @@ public class CustomerDetailsWSUtilv2 {
         @AuraEnabled public String contractNm {get; set;}
         @AuraEnabled public Datetime contractStartDt {get; set;}
         @AuraEnabled public Boolean costPlusIndicator {get; set;}
-        @AuraEnabled public Boolean currencyCd {get; set;}
+        @AuraEnabled public String currencyCd {get; set;}
         @AuraEnabled public Decimal creditLmt {get; set;}
         @AuraEnabled public Integer creditScore {get; set;}
         @AuraEnabled public Integer currentBillingCycle {get; set;}
