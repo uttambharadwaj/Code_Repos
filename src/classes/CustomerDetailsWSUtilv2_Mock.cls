@@ -871,7 +871,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
 
                 CustomerDetailsWSUtilv2.otrContract contract = new CustomerDetailsWSUtilv2.otrContract();
                 contract.accountDescriptor = 'Account Descriptor';
-                contract.accountManager = 'Acct Manager'
+                contract.accountManager = 'Acct Manager';
                 contract.arNumber = '9100000000000';
                 contract.availableCreditLmt = 1000.00;
                 contract.billingAcctNbr = '9100000000000';
