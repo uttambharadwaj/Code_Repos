@@ -951,7 +951,7 @@
                 //for (let[key, value] of respVal) {
                 //    console.log('Invoice response: '+key + ' = ' + value);
                 //}
-                component.set("v.invoices", respVal.invoices);
+                component.set("v.invoices", respVal);
                 console.dir(component.get("v.invoices"));
 
 
@@ -1045,7 +1045,7 @@
         }
     },
 
-    fetchNumberOfCasesToday : function(component, name) {
+    fetchNumberOfCasesToday : function(component, target) {
         console.log("### Enter fetchNumberOfCasesToday");
 
         var acctNbr = component.get("v.accountNumber");

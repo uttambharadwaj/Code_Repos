@@ -675,28 +675,23 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
             }
 
         } else if (request instanceof CustomerDetailsWSUtilv2.accountSearch) {
-            CustomerDetailsWSUtilv2.accountSearchRequest newRequest =(CustomerDetailsWSUtilv2.accountSearchRequest) request;
-            CustomerDetailsWSUtilv2.accountSearchResponse accountSearchResponse = new CustomerDetailsWSUtilv2.accountSearchResponse();
+
+            System.debug('We is here..');
 
             List<CustomerDetailsWSUtilv2.accountSearchDTO> testAccounts = new List<CustomerDetailsWSUtilv2.accountSearchDTO>();
 
             CustomerDetailsWSUtilv2.accountSearchDTO testAccount = new CustomerDetailsWSUtilv2.accountSearchDTO();
 
-            if (newRequest.searchField.equals('CARDNUMBEROTR')) {
-                testAccount.spnrAcctNbr = '123456';
-                testAccount.acctRowId  = 'EFSLLC-123456-CO';
+            testAccount.acctNm = 'Test';
+            testAccount.wexAcctNbr = '9100000000000';
+            testAccount.spnrAcctNbr = '9100000000000';
+            testAccount.acctSts = 'Active';
+            testAccount.acctRowId = '1-ZZZZZZ';
+            testAccount.dwSourceSys = 'SIEBEL';
 
-                testAccounts.add(testAccount);
-            }   else {
-                testAccount.acctNm = 'Test';
-                testAccount.wexAcctNbr = '9100000000000';
-                testAccount.spnrAcctNbr = '9100000000000';
-                testAccount.acctSts = 'Active';
-                testAccount.acctRowId = '1-ZZZZZZ';
-                testAccount.dwSourceSys = 'SIEBEL';
+            testAccounts.add(testAccount);
 
-                testAccounts.add(testAccount);
-            }
+            CustomerDetailsWSUtilv2.accountSearchResponse accountSearchResponse = new CustomerDetailsWSUtilv2.accountSearchResponse();
 
             accountSearchResponse.return_x = new CustomerDetailsWSUtilv2.accountSearchResult();
 
