@@ -10,6 +10,7 @@
 *                   11/Nov/2019 MFarrell    NAFONBOARD-124  Added default program template account variable.
 *                                                           Updated logic that searches for program template accounts when form is used.
 *                   18/Mar/20202 MFarrell   EAPT-1459       Added isMillennium Boolean so program template account changes from NAFONBOARD-124 only apply to Millennium Programs.
+*                   21/Aug/2020 TMenon      EAPT-2570       Salesforce Production: the attachments in the Fleet Enrollment are broken
 *
 */
 
@@ -720,7 +721,7 @@ public with sharing class FleetEnrollmentInternalController {
                     else {
                         directDebitCheckData.Name = opportunity.Opportunity_Number__c + '_DirectDebitCheck_' + fleetEnrollmentInformation.directDebitCheckFileName.replaceAll('[^a-zA-Z0-9_\\-\\.]', '');
                     }
-                    directDebitCheckData.Body = fleetEnrollmentInformation.directDebitFileBody;
+                    directDebitCheckData.Body = fleetEnrollmentInformation.directDebitCheckFileBody;
                     directDebitCheckData.ParentId = fleetEnrollment.Id;
                     insert directDebitCheckData;
                 }
