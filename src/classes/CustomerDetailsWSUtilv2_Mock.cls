@@ -148,6 +148,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 responseElement.return_x.accountStsDt = (Datetime) JSON.deserialize('"2015-04-15T00:00:00-04:00"', Datetime.class);
                 responseElement.return_x.accountingFee = 10.00;
                 responseElement.return_x.accountingFeeDescription = 'Accounting Fee';
+                responseElement.return_x.accountManager = 'Acct Manager';
                 responseElement.return_x.acctRowId = '2-ZZZZZ-011';
                 responseElement.return_x.availableCreditLmt = 7179.69;
                 responseElement.return_x.billingAccountId = '9100000000000';
@@ -871,7 +872,6 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
 
                 CustomerDetailsWSUtilv2.otrContract contract = new CustomerDetailsWSUtilv2.otrContract();
                 contract.accountDescriptor = 'Account Descriptor';
-                contract.accountManager = 'Acct Manager';
                 contract.arNumber = '9100000000000';
                 contract.availableCreditLmt = 1000.00;
                 contract.billingAcctNbr = '9100000000000';
