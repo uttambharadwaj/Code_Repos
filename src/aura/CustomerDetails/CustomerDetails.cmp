@@ -201,6 +201,20 @@
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                         <div class="slds-media__body">
                             <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Account Manager</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.accountManager}
+                                    <aura:if isTrue="{!v.customerDetails.accountManager == null}">N/A</aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
                                 <div class="slds-text-heading--label">Account Setup Date</div>
                             </div>
                             <div class="slds-tile__detail">
@@ -1374,6 +1388,28 @@
                         </div>
                         <div class="slds-card__body" style="background: #fefefe !important; padding: 10px 0;">
                             <div class="slds-card__body--inner slds-grid slds-wrap slds-grid--pull-padded">
+
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                            <div class="slds-text-heading--label">Account Descriptor</div>
+                                        </div>
+                                        <div class="slds-tile__detail">
+                                            <div class="slds-text-heading--small">
+                                               <span class="pricing-structure-indicator">
+                                                    <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.accountDesc == null }">
+                                                        N/A
+                                                        <aura:set attribute="else">
+                                                            {!v.otrContractObj.accountDesc}
+                                                        </aura:set>
+                                                    </aura:if>
+                                               </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                                     <div class="slds-media__body">
                                         <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
@@ -1485,7 +1521,7 @@
                                 <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                                     <div class="slds-media__body">
                                         <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
-                                            <div class="slds-text-heading--label">Collections Descriptor/Recourse Code</div>
+                                            <div class="slds-text-heading--label">Collection Descriptor</div>
                                         </div>
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
@@ -1605,6 +1641,27 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                                    <div class="slds-media__body">
+                                        <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                            <div class="slds-text-heading--label">MGR</div>
+                                        </div>
+                                        <div class="slds-tile__detail">
+                                            <div class="slds-text-heading--small">
+                                               <span class="pricing-structure-indicator">
+                                                    <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.mgrCode == null }">
+                                                        N/A
+                                                        <aura:set attribute="else">
+                                                            {!v.otrContractObj.mgrCode}
+                                                        </aura:set>
+                                                    </aura:if>
+                                               </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                                     <div class="slds-media__body">
                                         <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
@@ -1846,6 +1903,21 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Currency Indicator</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.currencyCd}
+                                    <aura:if isTrue="{!v.customerDetails.currencyCd == null || v.customerDetails.currencyCd == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                         <div class="slds-media__body">
                             <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
@@ -2125,25 +2197,12 @@
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                         <div class="slds-media__body">
                             <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
-                                <div class="slds-text-heading--label">Collections Descriptor / Recourse Code</div>
+                                <div class="slds-text-heading--label">Collections Descriptor</div>
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
                                     {!v.customerDetails.collectionDescriptor}
                                     <aura:if isTrue="{!v.customerDetails.collectionDescriptor == null || v.customerDetails.collectionDescriptor == ' '}">N/A</aura:if>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
-                        <div class="slds-media__body">
-                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
-                                <div class="slds-text-heading--label">Recourse Amount </div>
-                            </div>
-                            <div class="slds-tile__detail">
-                                <div class="slds-text-heading--small">
-                                    <ui:outputCurrency value="{!v.customerDetails.recourceAmt}"/>
-                                    <aura:if isTrue="{!v.customerDetails.recourceAmt == null || v.customerDetails.recourceAmt == ' '}">N/A</aura:if>
                                 </div>
                             </div>
                         </div>
