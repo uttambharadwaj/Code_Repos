@@ -154,8 +154,11 @@ public class OTRBOCAController {
             } else if (onlineApplication.Payment_Method__c != null && onlineApplication.Payment_Method__c.containsIgnoreCase('ACH')
                     && yearsInBusiness != null && yearsInBusiness < 2
                     && !('FTS').equalsIgnoreCase(program.WEX_Platform__c)
-                    && !('CoreCard').equalsIgnoreCase(program.WEX_Platform__c)) {
+                    && !('CoreCard').equalsIgnoreCase(program.WEX_Platform__c)
+                    && !('OTR Extended Billing Cycle').equalsIgnoreCase(onlineApplicationOffer.Product_Type__c)) {
                 onlineApplication.Days_Of_Payment__c = 'Monday / Thursday';
+                display = false;
+            } if (onlineApplicationOffer.Product_Type__c != null && onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('OTR Extended Billing Cycle')) {
                 display = false;
             }
             return display;

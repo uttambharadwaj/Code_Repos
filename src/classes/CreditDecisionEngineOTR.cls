@@ -48,7 +48,7 @@ global class CreditDecisionEngineOTR {
                         DUNS__c, PG_Required__c, Type_of_Business__c, AO_Home_Phone_Number__c, Program__c, CreatedBy.Alias, Fraud_Flag__c, Previous_Fraud__c, Opportunity__c,
                         Opportunity__r.SourceSystem__c, Account__r.Name, Trade_Name__c, Federal_Tax_ID__c, Card_Shipping_Address_Line_1__c, Card_Shipping_City__c, Card_Shipping_State__c,
                         Card_Shipping_Postal_Code__c, Email__c, Phone_Number__c, IP_Address__c, Credit_Line_Requested__c, Application_Signer_IP__c, DNB_Credit_Line_Recommendation__c,
-                        DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DOT_Number__c, DNB_Resolved_DUNS__c, Country__c,
+                        DNB_Reason_Code__c,Team_Drivers_Slip_Seat__c, Number_of_Trucks__c, DNB_Confidence_Code__c, DOT_Number__c, DNB_Resolved_DUNS__c, Country__c, Billing_Cycle__c, Product_Type__c, Offer__r.Product_Type__c, Offer__r.Billing_Cycle__c,
                         Business_Address_Line_2__c, Bureau_Tax_ID__c, Offer__r.Funding__c, BPAV_Check__c, Application_Type__c, Credit_Analyst__c, Charged_Off_Account_Found__c, DNB_Name_Match_Score__c
                 FROM OnlineApplication__c
                 WHERE Id = :onlineApplicationId
@@ -79,6 +79,15 @@ global class CreditDecisionEngineOTR {
             System.debug('Checking for Legal Structure Issues...');
 
             onlineApplication.Legal_Name_Matches_Company_Name__c = CreditWS_Utils.checkLegalStructure(onlineApplication.Legal_Business_Name__c, onlineApplication.Type_of_Business__c);
+        }
+
+        //Moving Billing Cycles from Offer to Application to hang a Breeze Rule to set the correct Billing Cycle, Terms ID, Cycle ID, Payment Terms and Payment Frequency off
+        //in case of OTR Extended Billing Cycles being the selected Product Type in Offer.
+        //EAPT - 2350
+
+        if (onlineApplication.Offer__r.Product_Type__c != null && onlineApplication.Offer__r.Product_Type__c.equalsIgnoreCase('OTR Extended Billing Cycle')){
+            onlineApplication.Billing_Cycle__c = onlineApplication.Offer__r.Billing_Cycle__c;
+            onlineApplication.Product_Type__c = onlineApplication.Offer__r.Product_Type__c;
         }
 
         // ThreatMetrix
