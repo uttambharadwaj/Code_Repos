@@ -8,12 +8,11 @@
 public class UCase
 {
     private static final Map<String, String> contactTypePriorities = new Map<String, String>{
-            'COLLECTIONS' => 'A',
-            'PRIMARY' => 'B',
-            'BILLING' => 'C',
-            'SHIPPING' => 'D',
-            'ACCOUNTS PAYABLE' => 'E',
-            'CONTACT' => 'F',
+            'BILLING CONTACT' => 'A',
+            'PRIMARY CONTACT' => 'B',
+            'FLEET CONTACT' => 'C',
+            'MAILING CONTACT' => 'D',
+            'SHIPPING CONTACT' => 'E',
 
             'NONE' => 'Z'
     };
@@ -625,14 +624,19 @@ public class UCase
             }
 
 			// ============ Collections Primary Contact ============
-			for (Contact contact : [ SELECT Id,AccountId,Contact_Type__c FROM Contact WHERE AccountId IN :accountIds ]) {
+			for (AccountContactRelation accountContactRelation : [ SELECT Id,AccountId,ContactId,Roles FROM AccountContactRelation WHERE AccountId IN :accountIds ]) {
+                Set<String> contactTypes = new Set<String>();
+				String contactTypeString = accountContactRelation.Roles != null && contactTypePriorities.get(accountContactRelation.Roles) != null ? accountContactRelation.Roles : 'NONE';
 
-				String contactType = contact.Contact_Type__c != null && contactTypePriorities.get(contact.Contact_Type__c.toUpperCase()) != null ? contact.Contact_Type__c.toUpperCase() : 'NONE';
-				contactType = contactTypePriorities.get(contactType) + contactType;
+                contactTypes.addAll(contactTypeString.split(';'));
 
-				if (accountToContacts.get(contact.AccountId) == null) accountToContacts.put(contact.AccountId, new Map<String,Id>());
-				accountToContacts.get(contact.AccountId).put(contactType, contact.Id);
+                for (String contactType : contactTypes) {
 
+                    contactType = contactTypePriorities.get(contactType) + contactType;
+
+                    if (accountToContacts.get(accountContactRelation.AccountId) == null) accountToContacts.put(accountContactRelation.AccountId, new Map<String, Id>());
+                    accountToContacts.get(accountContactRelation.AccountId).put(contactType, accountContactRelation.ContactId);
+                }
 			}
 
 			// ============
