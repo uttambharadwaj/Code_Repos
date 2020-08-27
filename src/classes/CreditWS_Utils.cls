@@ -31,6 +31,10 @@ public with sharing class CreditWS_Utils {
 
         System.debug('####' + companyName + '  ###' + legalStructure);
 
+        if ( legalStructure.equalsIgnoreCase('Internal Conversion')){
+            return true;
+        }
+
         if (
                 ((companyName.endsWithIgnoreCase(' LLC')) || (companyName.endsWithIgnoreCase(' L.L.C.'))
                         || (companyName.endsWithIgnoreCase(' L.L.C')))

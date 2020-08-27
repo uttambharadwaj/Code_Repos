@@ -105,10 +105,11 @@
             }
         </style>
 
-        <apex:outputText value="{!program.Analytics_Body_Block__c}" id="headBlock" escape="false"/>
+        <apex:outputText value="{!program.Analytics_Head_Block__c}" id="headBlock" escape="false"/>
     </head>
     <body style="{!IF(eappId != null, 'background: #fff;', '')}">
     <div class="page-wrap clearfix">
+        <apex:outputText value="{!program.Analytics_Body_Block__c}" id="bodyBlock" escape="false"/>
         <apex:outputPanel rendered="{!eappId == null}">
             <div id="header" class="clearfix">
                 <div class="container">
@@ -503,11 +504,11 @@
                                         <div class="six columns clearfix">
                                             <div class="twelve columns clearfix form-field" data-row="91">
                                                 <label class="styled-label">{!$Label.BOCDD_Address_Line_1}</label>
-                                                <apex:inputText styleClass="styled-input required" value="{!boController.addressLine1}" maxlength="100" />
+                                                <apex:inputText styleClass="styled-input required address" value="{!boController.addressLine1}" maxlength="100" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="92">
                                                 <label class="styled-label">{!$Label.BOCDD_Address_Line_2}</label>
-                                                <apex:inputText styleClass="styled-input" value="{!boController.addressLine2}" maxlength="100" />
+                                                <apex:inputText styleClass="styled-input address" value="{!boController.addressLine2}" maxlength="100" />
                                             </div>
                                             <div class="twelve columns clearfix form-field" data-row="93">
                                                 <label class="styled-label">{!$Label.BOCDD_City}</label>

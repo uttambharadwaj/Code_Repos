@@ -148,6 +148,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 responseElement.return_x.accountStsDt = (Datetime) JSON.deserialize('"2015-04-15T00:00:00-04:00"', Datetime.class);
                 responseElement.return_x.accountingFee = 10.00;
                 responseElement.return_x.accountingFeeDescription = 'Accounting Fee';
+                responseElement.return_x.accountManager = 'Acct Manager';
                 responseElement.return_x.acctRowId = '2-ZZZZZ-011';
                 responseElement.return_x.availableCreditLmt = 7179.69;
                 responseElement.return_x.billingAccountId = '9100000000000';
@@ -159,6 +160,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 responseElement.return_x.contractNm = 'Dummy Contract Name: 9100003325428';
                 responseElement.return_x.contractStartDt = (Datetime) JSON.deserialize('"1970-01-01T00:00:00-05:00"', Datetime.class);
                 responseElement.return_x.costPlusIndicator = true;
+                responseElement.return_x.currencyCd = 'USD';
                 responseElement.return_x.creditScore = 85;
                 responseElement.return_x.currentBillingCycle = 2;
                 responseElement.return_x.currentInvoiceClosingDt = (Datetime) JSON.deserialize('"9999-12-31T00:00:00-05:00"', Datetime.class);
@@ -869,6 +871,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 String NA = 'N/A';
 
                 CustomerDetailsWSUtilv2.otrContract contract = new CustomerDetailsWSUtilv2.otrContract();
+                contract.accountDescriptor = 'Account Descriptor';
                 contract.arNumber = '9100000000000';
                 contract.availableCreditLmt = 1000.00;
                 contract.billingAcctNbr = '9100000000000';
@@ -902,6 +905,7 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 contract.lastPaymentDt = Datetime.now();
                 contract.lastPaymentMethod = 'Cash';
                 contract.lastPaymentStatus = 'APP';
+                contract.mgrCode = 'MGR1';
                 contract.moneyCodeLimit = 1000.00;
                 contract.moneyIncrementalFee = 10.00;
                 contract.moneyIncrementalFeeDescription = 'Money Incremental Fee';
@@ -924,6 +928,8 @@ global class CustomerDetailsWSUtilv2_Mock implements WebServiceMock {
                 contract.recourseAmt = 1000.00;
                 contract.recourseCode = 'Recourse';
                 contract.salesforceId = '00000000123sdfs4fd';
+                contract.salesRep = 'Sales Folk';
+                contract.salesTerritory = 'GP - Great Plains';
                 contract.thirdPartyCheckFee = 10.00;
                 contract.thirdPartyCheckFeeDescription = 'Third Party Check';
                 contract.totalOwed = 1000.00;
