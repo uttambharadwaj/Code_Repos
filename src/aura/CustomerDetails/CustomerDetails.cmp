@@ -322,7 +322,7 @@
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
                                     {!v.customerDetails.territoryCode}
-                                    <aura:if isTrue="{!v.customerDetails.territoryCode == null}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.currentcontract.territoryCode == null}">N/A</aura:if>
                                 </div>
                             </div>
                         </div>
