@@ -83,7 +83,7 @@ public class CaseHelper {
         for (AccountContactRelation accountContactRelation : [SELECT Id,AccountId,ContactId,Roles FROM AccountContactRelation WHERE AccountId IN :accountIds]) {
 
             Set<String> contactTypes = new Set<String>();
-            String contactTypeString = accountContactRelation.Roles != null ? accountContactRelation.Roles : 'NONE';
+            String contactTypeString = accountContactRelation.Roles != null ? accountContactRelation.Roles.toUpperCase() : 'NONE';
             contactTypes.addAll(contactTypeString.split(';'));
 
             for (String contactType : contactTypes) {
