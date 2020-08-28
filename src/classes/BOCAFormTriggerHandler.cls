@@ -467,6 +467,7 @@ public class BOCAFormTriggerHandler {
             if(program.Disable_Instant_Decisioning__c != true && opportunity.Disable_Instant_Decisioning__c != true) {
             	applicationRequest.Application_Stage__c = 'Adjudication';
             	applicationRequest.Status__c = 'Pending Decision';
+                applicationRequest.Submitted_to_Credit_Count__c = 1;
             }
             else {
                 applicationRequest.Application_Stage__c = 'Application';
