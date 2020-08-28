@@ -28,7 +28,7 @@
     <aura:attribute name="dummyFinanancialInstitutionContactId" type="String" />
     <aura:attribute name="dummyWexInternalContactId" type="String" />
 
-    <aura:attribute name="priorityLevelServicingRule" type="String" />
+    <aura:attribute name="priorityLevelServicingRule" type="String" /> 
 
     <aura:attribute name="customerDetails" type="Map" />
     <aura:attribute name="customerContacts" type="Map" />
@@ -321,7 +321,7 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
-                                    {!v.otrContractObj.salesTerritory} 
+                                    {!v.otrContractObj.salesTerritory}
                                     <aura:if isTrue="{!v.otrContractObj.salesTerritory == null}">N/A</aura:if>
                                 </div>
                             </div>
