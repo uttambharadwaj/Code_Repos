@@ -21,13 +21,14 @@ trigger AccountTrigger on Account (after delete, before delete,after insert, aft
         if(trigger.isInsert)
         {
             UAccount.truckersGenerateMemIdAndPassword(records, trigger.oldmap);
-			UAccount.executeBREeze(records, trigger.oldMap);                        
+			UAccount.executeBREeze(records, trigger.oldMap);
+            UAccount.associateOTRPrograms(records, trigger.oldMap);
         }
         else if(trigger.isUpdate)
         {
             UAccount.truckersGenerateMemIdAndPassword(records, trigger.oldmap);
-            UAccount.parentSalesAccounts(records, trigger.oldmap);            
-			UAccount.executeBREeze(records, trigger.oldMap);                        
+            UAccount.parentSalesAccounts(records, trigger.oldmap);
+			UAccount.executeBREeze(records, trigger.oldMap);
         }
         else if(trigger.isDelete)
         {

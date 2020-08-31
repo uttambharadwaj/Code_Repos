@@ -250,5 +250,8 @@ public class TestClassDispatcher {
 	@IsTest static void testCollectionsEmailPreviouslySent() {
 		CollectionsEmailHandlerTest.test_CollectionsEmailPreviouslySent();
 	}
+    @IsTest static void testOTRAccountInsert(){
+        AccountTest.test_OTR_AccountInsert();
+    }
 
 }

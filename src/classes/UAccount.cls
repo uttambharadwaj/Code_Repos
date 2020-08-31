@@ -77,6 +77,54 @@ public class UAccount {
 
     }
 
+    public static void associateOTRPrograms(List<Account> accounts, Map<ID, Account> oldMap){
+        List<Account> toProcess = new List<Account>();
+        Id acctRecordTypeId = UtilityClass.getRecTypeByDevName('Account','Service_Operations');
+
+        for(Account a : accounts)
+        {
+            //check to see if it's a service ops record and the Platform LOB is OTR
+            if(a.RecordTypeId == acctRecordTypeId && a.Platform_LOB__c == 'OTR')
+            {
+                toProcess.add(a);
+            }
+        }
+
+        if(toProcess.isEmpty()){
+            return;
+        }
+
+        Id programRecordTypeId = UtilityClass.getRecTypeByDevName('Program__c','Service_Operations');
+
+        //do we have a more efficient way of looking this up?
+        List<Program__c> programs = [SELECT Id, Name
+                                    FROM Program__c
+                                    WHERE RecordTypeId = :programRecordTypeId AND
+                                    Name IN ('EFSLLC', 'TCHEK', 'TCHEK_MC', 'IRVING', 'EFSTS', 'Shell', 'IMPERIAL OIL', 'PINNACLE', 'FLEETONE')];
+
+        Map<String, String> programsMap = new Map<String, String>();
+
+        for(Program__c p : programs){
+            programsMap.put(p.Name, p.Id);
+        }
+
+        for(Account a : toProcess) {
+            switch on a.Platform__c {
+                when 'EFSLLC', 'TCHEK', 'TCHEK_MC', 'IRVING', 'EFSTS', 'IMPERIAL', 'PINNACLE', 'Fleetone' {
+                    System.debug('***** Account Platform: ' + a.Platform__c);
+                    a.Program__c = programsMap.get(a.Platform__c);
+                }
+                when 'SHELL_NAV', 'SFJ_SHELL' {
+                    System.debug('***** Account Platform: SHELL_NAV or SFJ_SHELL');
+                    a.Program__c = programsMap.get('Shell');
+                }
+                when else {
+                    System.debug('***** Match not found for Account Platform: ' + a.Platform__c);
+                }
+            }
+        }
+    }
+
     public static void truckersGenerateMemIdAndPassword( List<Account> accounts, Map<ID, Account> oldMap )
     {
         List<Account> toProcess = new List<Account>();
@@ -100,7 +148,7 @@ public class UAccount {
             if(NextMemberID==NUll)
                 NextMemberID=0;
 
-            system.debug('NextMemberID : ' + NextMemberID);
+            System.debug('***** NextMemberID : ' + NextMemberID);
             for(Account a: toProcess)
             {
                 if (a.Member_ID__c == NULL)
