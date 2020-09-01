@@ -108,17 +108,22 @@ public class UAccount {
         }
 
         for(Account a : toProcess) {
+            System.debug('***** Account Platform: ' + a.Platform__c);
             switch on a.Platform__c {
-                when 'EFSLLC', 'TCHEK', 'TCHEK_MC', 'IRVING', 'EFSTS', 'IMPERIAL', 'PINNACLE', 'Fleetone' {
-                    System.debug('***** Account Platform: ' + a.Platform__c);
-                    a.Program__c = programsMap.get(a.Platform__c);
+                when 'EFSLLC', 'EFS LLC' {
+                    a.Program__c = programsMap.get('EFSLLC');
+                }
+                when 'IMPERIAL' {
+                    a.Program__c = programsMap.get('IMPERIAL OIL');
                 }
                 when 'SHELL_NAV', 'SFJ_SHELL' {
-                    System.debug('***** Account Platform: SHELL_NAV or SFJ_SHELL');
                     a.Program__c = programsMap.get('Shell');
                 }
+                when 'TChek', 'TCHEK_MC', 'IRVING', 'EFSTS', 'PINNACLE', 'FLEETONE' {
+                    a.Program__c = programsMap.get(a.Platform__c);
+                }
                 when else {
-                    System.debug('***** Match not found for Account Platform: ' + a.Platform__c);
+                    System.debug('***** Program match not found for Account Platform: ' + a.Platform__c);
                 }
             }
         }
