@@ -645,9 +645,17 @@ public class OTRBOCAController {
         try {
 
             // Set this initial status so we don't trigger workflows
+            //EAPT - 2350 - Moving Billing Cycles from Offer to Application to hang a Breeze Rule to set the correct Billing Cycle, Terms ID, Cycle ID, Payment Terms and Payment Frequency off
+            //in case of OTR Extended Billing Cycles being the selected Product Type in Offer.
+
             onlineApplication.Program__c = program.Id;
             onlineApplication.Offer__c = onlineApplicationOffer.Id;
-            onlineApplication.Product_Type__c = 'OTR';
+            System.debug('#### Online Application Offer ID: ' + onlineApplicationOffer.Id + ' Product Type: ' + onlineApplicationOffer.Product_Type__c);
+            if(onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('OTR Extended Billing Cycle') && onlineApplicationOffer.Product_Type__c != null){
+                onlineApplication.Billing_Cycle__c = onlineApplicationOffer.Billing_Cycle__c;
+                onlineApplication.Product_Type__c = onlineApplicationOffer.Product_Type__c;
+            }
+            else {onlineApplication.Product_Type__c = 'OTR';}
             onlineApplication.Application_Title__c = onlineApplicationOffer.Name;
 
             Database.upsertResult result = Database.upsert(onlineApplication, false);
@@ -1015,7 +1023,12 @@ public class OTRBOCAController {
 
             onlineApplication.Program__c = program.Id;
             onlineApplication.Offer__c = onlineApplicationOffer.Id;
-            onlineApplication.Product_Type__c = 'OTR';
+            System.debug('#### Online Application Offer ID: ' + onlineApplicationOffer.Id + ' Product Type: ' + onlineApplicationOffer.Product_Type__c);
+            if(onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('OTR Extended Billing Cycle') && onlineApplicationOffer.Product_Type__c != null){
+                onlineApplication.Billing_Cycle__c = onlineApplicationOffer.Billing_Cycle__c;
+                onlineApplication.Product_Type__c = onlineApplicationOffer.Product_Type__c;
+            }
+            else {onlineApplication.Product_Type__c = 'OTR';}
             onlineApplication.Application_Title__c = onlineApplicationOffer.Name;
 
             // eApps come in using the Name field with the first and last name put together

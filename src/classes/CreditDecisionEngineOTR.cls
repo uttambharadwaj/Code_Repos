@@ -81,15 +81,6 @@ global class CreditDecisionEngineOTR {
             onlineApplication.Legal_Name_Matches_Company_Name__c = CreditWS_Utils.checkLegalStructure(onlineApplication.Legal_Business_Name__c, onlineApplication.Type_of_Business__c);
         }
 
-        //Moving Billing Cycles from Offer to Application to hang a Breeze Rule to set the correct Billing Cycle, Terms ID, Cycle ID, Payment Terms and Payment Frequency off
-        //in case of OTR Extended Billing Cycles being the selected Product Type in Offer.
-        //EAPT - 2350
-
-        if (onlineApplication.Offer__r.Product_Type__c != null && onlineApplication.Offer__r.Product_Type__c.equalsIgnoreCase('OTR Extended Billing Cycle')){
-            onlineApplication.Billing_Cycle__c = onlineApplication.Offer__r.Billing_Cycle__c;
-            onlineApplication.Product_Type__c = onlineApplication.Offer__r.Product_Type__c;
-        }
-
         // ThreatMetrix
         if (null != onlineApplication.Opportunity__c && null != onlineApplication.Opportunity__r.SourceSystem__c && (onlineApplication.Opportunity__r.SourceSystem__c).equalsIgnoreCase('BOCA')) {
 
