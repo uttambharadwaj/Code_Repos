@@ -202,6 +202,19 @@
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                         <div class="slds-media__body">
                             <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Account Manager</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.accountManager}
+                                    <aura:if isTrue="{!v.customerDetails.accountManager == null}">N/A</aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
                                 <div class="slds-text-heading--label">Account Setup Date</div>
                             </div>
                             <div class="slds-tile__detail">
@@ -1861,6 +1874,21 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
+                        <div class="slds-media__body">
+                            <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
+                                <div class="slds-text-heading--label">Currency Indicator</div>
+                            </div>
+                            <div class="slds-tile__detail">
+                                <div class="slds-text-heading--small">
+                                    {!v.customerDetails.currencyCd}
+                                    <aura:if isTrue="{!v.customerDetails.currencyCd == null || v.customerDetails.currencyCd == ' '}">N/A</aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
                         <div class="slds-media__body">
                             <div class="slds-grid slds-grid--align-spread slds-has-flexi-truncate">
