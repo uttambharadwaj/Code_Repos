@@ -625,16 +625,16 @@ public class i2iSearchController {
         
         public void createLead() {
             GlobalSettings__c setting = GlobalSettings__c.getOrgDefaults();
-            
+
             Lead newLead = new Lead();
-            if(nomatchi2irecord != null) {
-                
+            if (nomatchi2irecord != null) {
+
                 //Format Phone to be User friendly
                 String phone = nomatchi2irecord.phone;
-                if(phone.length() == 10) {
-                    phone = phone.substring(0,3) + '-' + phone.substring(3,6) + '-' + phone.substring(6,10);
+                if (phone.length() == 10) {
+                    phone = phone.substring(0, 3) + '-' + phone.substring(3, 6) + '-' + phone.substring(6, 10);
                 }
-                
+
                 newLead.FirstName = nomatchi2irecord.firstname;
                 newLead.LastName = nomatchi2irecord.lastname;
                 newLead.Company = nomatchi2irecord.company;
@@ -651,47 +651,55 @@ public class i2iSearchController {
                 newLead.Country = nomatchi2irecord.country;
                 newLead.i2i_Contact_ID__c = nomatchi2irecord.i2icontactid;
                 newLead.Email = nomatchi2irecord.Email;
-            }
-            System.debug('new Lead ' + newLead);
-            try {
-                if (newLead.i2i_id__c != null && String.isNotEmpty(newLead.i2i_id__c)) {
-                    upsert newlead i2i_id__c;
-                } else {
-                    Boolean isSuccessful = false;
 
-                    if (nomatchi2irecord != null && nomatchi2irecord.leadNumber != null && String.isNotEmpty(nomatchi2irecord.leadNumber)) {
+                System.debug('new Lead ' + newLead);
+                try {
+                    if (newLead.i2i_id__c != null && String.isNotEmpty(newLead.i2i_id__c)) {
+                        upsert newlead i2i_id__c;
+                    } else {
+                        Boolean isSuccessful = false;
 
-                       List<Lead> parentLead = [ SELECT Id FROM Lead WHERE rr_lead_number__c = :nomatchi2irecord.leadNumber ];
-                        if (!parentLead.isEmpty()) {
-                            newLead.Id = parentLead[0].Id;
-                            update newLead;
-                            isSuccessful = true;
+                        if (nomatchi2irecord != null && nomatchi2irecord.leadNumber != null && String.isNotEmpty(nomatchi2irecord.leadNumber)) {
+
+                            List<Lead> parentLead = [SELECT Id FROM Lead WHERE rr_lead_number__c = :nomatchi2irecord.leadNumber];
+                            if (!parentLead.isEmpty()) {
+                                newLead.Id = parentLead[0].Id;
+                                update newLead;
+                                isSuccessful = true;
+                            }
+
                         }
-
+                        if (!isSuccessful) {
+                            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Could not find parent lead number: ' + nomatchi2irecord.leadNumber));
+                            createError = true;
+                            return;
+                        }
                     }
-                    if (!isSuccessful) {
-                        ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,'Could not find parent lead number: ' + nomatchi2irecord.leadNumber));
-                        createError = true;
-                        return;
-                    }
+                } catch (Exception e) {
+                    System.debug('ERROR: ' + e.getMessage());
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage() + ' ' + e.getStackTraceString()));
+                    createError = true;
+                    return;
                 }
-            }catch (Exception e) {
-                System.debug('ERROR: ' + e.getMessage());
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,e.getMessage() + ' ' + e.getStackTraceString()));
-                createError=true;
+
+                childLead = new List<Lead>();
+                System.debug('newlead.Id ' + newlead.Id);
+                childLead = [
+                        Select Id, IsConverted, ConvertedOpportunityId, Related_Account__c, Related_Contact__c,
+                                Parent_Lead__c, Parent_Lead__r.Related_Account__c, Parent_Lead__r.Related_Contact__c, Parent_Lead__r.i2i_Id__c
+                        from Lead
+                        Where Parent_Lead__c = :newlead.Id
+                        //AND RecordTypeId != :setting.Parent_Lead_Record_Type_Id__c
+                        AND Id IN (Select LeadId from CampaignMember where Campaign.Coupon_Code__c = :nomatchi2irecord.couponcode)
+                        Order by CreatedDate DESC
+                        LIMIT 1
+                ];
+
+            } else {
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Could not retrieve data from source system.'));
+                createError = true;
                 return;
             }
-
-            childLead = new List<Lead>();
-            System.debug('newlead.Id ' + newlead.Id);
-            childLead = [Select Id, IsConverted, ConvertedOpportunityId, Related_Account__c, Related_Contact__c,
-                        Parent_Lead__c, Parent_Lead__r.Related_Account__c, Parent_Lead__r.Related_Contact__c, Parent_Lead__r.i2i_Id__c
-                        from Lead 
-                        Where Parent_Lead__c = :newlead.Id 
-                        //AND RecordTypeId != :setting.Parent_Lead_Record_Type_Id__c
-                        AND Id IN (Select LeadId from CampaignMember where Campaign.Coupon_Code__c = :nomatchi2irecord.couponcode) 
-                        Order by CreatedDate DESC LIMIT 1];
-                        
         }
         
          /* Updated by Trekbin to split the DML and Callout into different transactions, as per case requirement : 00022611 
