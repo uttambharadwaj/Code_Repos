@@ -464,16 +464,31 @@ public class BOCAFormTriggerHandler {
             if (f.Financial_Institution__c != null) applicationRequest.Financial_Institution__c = f.Financial_Institution__c;
 
             System.debug('Disable Instant from opty: ' + opportunity.Disable_Instant_Decisioning__c);
+            Boolean createHistoryRecord = false;
             if(program.Disable_Instant_Decisioning__c != true && opportunity.Disable_Instant_Decisioning__c != true) {
-            	applicationRequest.Application_Stage__c = 'Adjudication';
-            	applicationRequest.Status__c = 'Pending Decision';
+                applicationRequest.Application_Stage__c = 'Adjudication';
+                applicationRequest.Status__c = 'Pending Decision';
+                applicationRequest.Submitted_to_Credit_Count__c = 1;
+                createHistoryRecord = true;
             }
             else {
                 applicationRequest.Application_Stage__c = 'Application';
-            	applicationRequest.Status__c = 'Application Complete';
+                applicationRequest.Status__c = 'Application Complete';
             }
-                
+
             insert applicationRequest;
+
+            if (createHistoryRecord) {
+                Application_History__c appHistory = new Application_History__c(
+                        NA_Fleet_App__c = applicationRequest.Id,
+                        In_Credit__c = true,
+                        App_Last_Modified_By__c = recordOwner.Id,
+                        Status__c = applicationRequest.Status__c,
+                        Credit_Decision__c = applicationRequest.Credit_Decision__c,
+                        Credit_Info_Status__c = applicationRequest.Credit_Info_Status__c);
+
+                insert appHistory;
+            }
             System.debug('Here is oppty in App:' + applicationRequest.Opportunity__c);
 
             f.Application_Request__c = applicationRequest.Id;

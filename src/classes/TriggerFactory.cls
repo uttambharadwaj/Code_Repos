@@ -16,7 +16,8 @@ public class TriggerFactory{
     'Application_Request__c'=>'AppRequest',
     'FleetEnrollment__c'=>'FleetEnroll',
     'OnlineApplication__c'=>'OnlineApp',
-    'CP_Application_Request__c'=>'CPAppRequest'};
+    'CP_Application_Request__c'=>'CPAppRequest',
+    'Application_History__c'=>'AppHistory'};
 
     /*
     * description Creates the appropriate dispatcher and dispatches the trigger event to the dispatcher's event handler method.
@@ -40,12 +41,11 @@ public class TriggerFactory{
     check for all triggers turned off (for dataloading) or just this object
     */
     public static Boolean disabledTriggers(Schema.sObjectType soType){
-        
+
         Automation_Settings__c setting = Automation_Settings__c.getInstance();
         if(setting.Disable_Apex_Triggers__c) return True;
 
         String fieldName = 'Disable_' + getObjTypeName(soType) + '_Trigger__c';
-
         return ((Boolean)setting.get(fieldName)) ? True : False;
     }
 
