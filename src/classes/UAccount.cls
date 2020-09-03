@@ -76,13 +76,16 @@ public class UAccount {
         }
 
     }
+
+    /**
+     * Automatically adds the OTR Program to Service Operations OTR Accounts.
+     */
     public static void associateOTRPrograms(List<Account> accounts, Map<ID, Account> oldMap){
         List<Account> toProcess = new List<Account>();
         Id acctRecordTypeId = UtilityClass.getRecTypeByDevName('Account','Service_Operations');
 
         for(Account a : accounts)
         {
-            //check to see if it's a service ops record and the Platform LOB is OTR
             if(a.RecordTypeId == acctRecordTypeId && a.Platform_LOB__c == 'OTR')
             {
                 toProcess.add(a);
@@ -99,7 +102,7 @@ public class UAccount {
         List<Program__c> programs = [SELECT Id, Name
         FROM Program__c
         WHERE RecordTypeId = :programRecordTypeId AND
-        Name IN ('EFSLLC', 'TCHEK', 'TCHEK_MC', 'IRVING', 'EFSTS', 'Shell', 'IMPERIAL OIL', 'PINNACLE', 'FLEETONE')];
+        Name IN ('EFSLLC', 'TChek', 'TCHEK_MC', 'IRVING', 'EFSTS', 'Shell', 'IMPERIAL OIL', 'PINNACLE', 'FLEETONE')];
 
         Map<String, String> programsMap = new Map<String, String>();
 
@@ -108,22 +111,23 @@ public class UAccount {
         }
 
         for(Account a : toProcess) {
-            System.debug('***** Account Platform: ' + a.Platform__c);
-            switch on a.Platform__c {
-                when 'EFSLLC', 'EFS LLC' {
-                    a.Program__c = programsMap.get('EFSLLC');
-                }
-                when 'IMPERIAL' {
-                    a.Program__c = programsMap.get('IMPERIAL OIL');
-                }
-                when 'SHELL_NAV', 'SFJ_SHELL' {
-                    a.Program__c = programsMap.get('Shell');
-                }
-                when 'TChek', 'TCHEK_MC', 'IRVING', 'EFSTS', 'PINNACLE', 'FLEETONE' {
-                    a.Program__c = programsMap.get(a.Platform__c);
-                }
-                when else {
-                    System.debug('***** Program match not found for Account Platform: ' + a.Platform__c);
+            if(a.Platform__c != null) {
+                switch on a.Platform__c {
+                    when 'EFSLLC', 'EFS LLC' {
+                        a.Program__c = programsMap.get('EFSLLC');
+                    }
+                    when 'IMPERIAL' {
+                        a.Program__c = programsMap.get('IMPERIAL OIL');
+                    }
+                    when 'SHELL_NAV', 'SFJ_SHELL' {
+                        a.Program__c = programsMap.get('Shell');
+                    }
+                    when 'TChek', 'TCHEK_MC', 'IRVING', 'EFSTS', 'PINNACLE', 'FLEETONE' {
+                        a.Program__c = programsMap.get(a.Platform__c);
+                    }
+                    when else {
+                        System.debug('***** Program match not found for Account Platform: ' + a.Platform__c);
+                    }
                 }
             }
         }
