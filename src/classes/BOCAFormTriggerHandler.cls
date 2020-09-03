@@ -34,7 +34,7 @@ public class BOCAFormTriggerHandler {
 
     public static void triageWexBOCA(WeFormObject__c f) {
 
-        Program__c program = [SELECT Id, Name, Reduced_Credit_Line__c, BOCA_Type__c, Form_Template__c, Auto_Send_BOCA_to_Siebel__c, Disable_Instant_Decisioning__c FROM Program__c WHERE Id = : f.Program__c];
+        Program__c program = [SELECT Id, BOCA_Type__c, Form_Template__c, Auto_Send_BOCA_to_Siebel__c, Disable_Instant_Decisioning__c FROM Program__c WHERE Id = : f.Program__c];
 
         User recordOwner = [SELECT Id, Username FROM User WHERE Alias = 'sinte'];
 
@@ -418,15 +418,7 @@ public class BOCAFormTriggerHandler {
 
             applicationRequest.Expected_Monthly_Vehicle_Expense__c = (f.Estimated_Monthly_Vehicle_Expenses__c != null) ? Decimal.valueOf(String.valueOf(f.Estimated_Monthly_Vehicle_Expenses__c)) : Decimal.valueOf(String.valueOf(f.Avg_Monthly_Fuel_Service_Expenses__c));
 
-            applicationRequest.Years_In_Business__c = opportunity.Years_In_Business__c;
-
-            System.debug('###' + program.Name + '### YIB' + applicationRequest.Years_In_Business__c);
-
-            if (opportunity.Years_In_Business__c < 2 && program.Reduced_Credit_Line__c == true) {
-                applicationRequest.Requested_Credit_Limit__c = String.valueOf(Math.round(applicationRequest.Expected_Monthly_Vehicle_Expense__c / 2));
-            } else {
-                applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c * 2);
-            }
+            applicationRequest.Requested_Credit_Limit__c = String.valueOf(applicationRequest.Expected_Monthly_Vehicle_Expense__c * 2);
 
             if(program.Auto_Send_BOCA_to_Siebel__c == true){
                 applicationRequest.Forward_Application_to_Credit__c = 'Yes';
@@ -449,7 +441,7 @@ public class BOCAFormTriggerHandler {
 
             }
 
-
+            applicationRequest.Years_In_Business__c = opportunity.Years_In_Business__c;
 
             if(beneficialOwnerSettings.Enable_Upfront_Collection__c == true) {
                 applicationRequest.Beneficial_Owner_Information__c = boEntity.Id;
