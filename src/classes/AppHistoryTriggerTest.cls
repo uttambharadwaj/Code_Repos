@@ -9,7 +9,6 @@ public with sharing class AppHistoryTriggerTest {
 
         Opportunity oppty = [SELECT Id FROM Opportunity WHERE Name='Test Oppty 10' LIMIT 1];
         Application_Request__c appRequest = [SELECT Id, Name FROM Application_Request__c WHERE Opportunity__c = :oppty.Id];
-        System.debug('TEMP app request: ' + appRequest.Name);
 
         Test.startTest();
         appRequest.Credit_Info_Status__c = 'Info Needed';
@@ -22,7 +21,6 @@ public with sharing class AppHistoryTriggerTest {
         upsert appRequest;
 
         List<Application_History__c> appHistories = [SELECT Id, End_Date__c FROM Application_History__c WHERE NA_Fleet_App__c = :appRequest.Id];
-        System.debug('TEMP app histories: ' + appHistories);
         System.assert(appHistories.size() == 2, 'Expected 2 Application History records.');
         for (Application_History__c history : appHistories) {
             // find the record with the end date set. This should be the most recently created record.
