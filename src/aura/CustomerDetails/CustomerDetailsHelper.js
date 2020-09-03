@@ -1089,6 +1089,32 @@
 
     },
 
+
+
+    getLanguageIndicator : function(component, target) {
+        console.log("### Enter getLanguageIndicator");
+        var action = component.get("c.getLanguageIndicator");
+
+        action.setParams({
+            accountId : component.get("v.recordId")
+        });
+
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+
+            if(component.isValid() && state === "SUCCESS") {
+                component.set("v.languageIndicator", response.getReturnValue());
+            }
+            else {
+                this.handleErrors(component, response);
+            }
+
+        });
+
+        $A.enqueueAction(action);
+
+    },
+
     fetchExistingCases : function(component, name) {
 
         var acctNbr = component.get("v.accountNumber");
