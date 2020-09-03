@@ -208,7 +208,8 @@ public class i2iSearchController {
                         
                         // Get records from MC
                         if (makeMcCall) {
-                            mcRecords = i2iGetMC.sendTokenMC(promocode, couponcode, leadNumber, programSelected, phonepass, company, zipcode, email); 
+
+                            mcRecords = i2iGetMC.sendTokenMC(promocode, couponcode, leadNumber, programSelected, phonepass, company, zipcode, email);
                         } 
                         System.debug(mcRecords);
                     }
@@ -231,7 +232,8 @@ public class i2iSearchController {
             } else {
                 //Single ids to pull campaign members...then scroll through return checking to see if match in campaign member match
                 //then loop through data if hit in map, check prefix to see if its lead or campaign, add the wrappers
-                
+
+
                 Set<String> i2iIds = new Set<String>();
                 Set<String> couponCodesReturned = new Set<String>();
                 Set<String> leadNumbers = new Set<String>();
@@ -262,13 +264,13 @@ public class i2iSearchController {
                                                  ]) {
                                                      string unqkey = (string)ocr.contactid + ocr.Opportunity.Campaign.Coupon_code__c; 
                                                      opportunityContacts.put(unqkey,ocr);     
-                                                     opportunityContactsContactIds.add(ocr.contactid);   
+                                                     opportunityContactsContactIds.add(ocr.contactid);
                                                  }
                 
                 Map<String, CampaignMember> campaignMembersMapLead = new Map<String, CampaignMember>();
                 Map<String, CampaignMember> campaignMembersMapContact = new Map<String, CampaignMember>();
                 List<CampaignMember> campaignMembersLead = new List<CampaignMember>();
-                
+
                 for(CampaignMember cm : [Select leadid, contactid, lead.Status, lead.Product_Interest__c, lead.owner.name, contact.i2i_ID__c, lead.IsConverted,
                                          contact.owner.name, campaignid, campaign.Coupon_Code__c, campaign.Name, campaign.Marketing_Offer__c, lead.coupon_code_2__c,
                                          lead.parent_lead__c, lead.parent_lead__r.i2i_id__c, lead.createddate, campaign.default_program__r.name, Contact.Lead_Number__c, 
@@ -281,17 +283,17 @@ public class i2iSearchController {
                                             OR Contact.Lead_Number__c IN :leadNumbers
                                             OR lead.parent_lead__r.i2i_id__c IN :i2iIds 
                                             OR Contact.i2i_id__c IN :i2iIDs) 
-                                          AND ( lead.INVOCA_FOR_SF__TextPhone__c  in :phones
-                                            OR Contact.INVOCA_FOR_SF__TextPhone__c  in :phones ) 
-                                         Order By CreatedDate ASC]) {
-                                             
+                                         AND ( lead.INVOCA_FOR_SF__TextPhone__c  in :phones
+										   OR Contact.INVOCA_FOR_SF__TextPhone__c  in :phones )
+                                         Order By CreatedDate ASC] ) {
+
 
                                              if(cm.ContactId != null) {
                                                 String mcKey = cm.Contact.Lead_Number__c + '-' + cm.Campaign.Coupon_Code__c;
                                                 String qpKey = cm.Contact.i2i_ID__c + '-' + cm.Campaign.Coupon_Code__c;
                                                 campaignMembersMapContact.put(mcKey, cm);
                                                 campaignMembersMapContact.put(qpKey, cm);
-                                                 whoIds.add(cm.contactid);   
+                                                whoIds.add(cm.contactid);
                                              }
                                              
                                              if(cm.leadId != null)  {
@@ -302,6 +304,7 @@ public class i2iSearchController {
                                              programnamesbycouponcode.put(cm.campaign.coupon_code__c,cm.campaign.default_program__r.name);
                                              system.debug('-- cm: ' + cm);
                                          }
+
 
                 //get the rest of the program names for non matches displaying
                 for(Campaign c : [Select Id, Coupon_code__c, Default_Program__r.Name
@@ -627,12 +630,12 @@ public class i2iSearchController {
             GlobalSettings__c setting = GlobalSettings__c.getOrgDefaults();
 
             Lead newLead = new Lead();
-            if (nomatchi2irecord != null) {
+            if(nomatchi2irecord != null) {
 
                 //Format Phone to be User friendly
                 String phone = nomatchi2irecord.phone;
-                if (phone.length() == 10) {
-                    phone = phone.substring(0, 3) + '-' + phone.substring(3, 6) + '-' + phone.substring(6, 10);
+                if(phone.length() == 10) {
+                    phone = phone.substring(0,3) + '-' + phone.substring(3,6) + '-' + phone.substring(6,10);
                 }
 
                 newLead.FirstName = nomatchi2irecord.firstname;
