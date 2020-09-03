@@ -7,16 +7,7 @@
 */
 public class UCase
 {
-    private static final Map<String, String> contactTypePriorities = new Map<String, String>{
-            'COLLECTIONS' => 'A',
-            'PRIMARY' => 'B',
-            'BILLING' => 'C',
-            'SHIPPING' => 'D',
-            'ACCOUNTS PAYABLE' => 'E',
-            'CONTACT' => 'F',
 
-            'NONE' => 'Z'
-    };
     private static final String SHELL_SLA = 'Shell SLA';
     //private static final String SHELL_SLA_WEEKEND = 'Shell SLA Weekend';
     private static Boolean hasRunOnceUpdate = false;
@@ -607,35 +598,15 @@ public class UCase
         }
     }
 
-    public static void associateContact(List<Case> records, Map<Id, Case> oldMap) {
+    public static void associateContact(List<Case> records, Map<Id, Case> oldMap)
+    {
         if (oldMap == null) {
-			Set<Id> primaryContactEnabledRecordTypes = UtilityClass.getRecTypeByDevName('Case', new List<String>{'Service_Operations', 'Credit'});
-
-			Set<Id> contactIds = new Set<Id> ();
-            Set<Id> accountIds = new Set<Id>();
-            Map<Id, Map<String, Id>> accountToContacts = new Map<Id, Map<String,Id>>();
-
+            Set<Id> contactIds = new Set<Id> ();
             for (Case c : records) {
                 if (c.SuppliedEmail != null && c.ContactId != null) {
                     contactIds.add(c.ContactId);
                 }
-                if (c.AccountId != null) {
-                    accountIds.add(c.AccountId);
-                }
             }
-
-			// ============ Collections Primary Contact ============
-			for (Contact contact : [ SELECT Id,AccountId,Contact_Type__c FROM Contact WHERE AccountId IN :accountIds ]) {
-
-				String contactType = contact.Contact_Type__c != null && contactTypePriorities.get(contact.Contact_Type__c.toUpperCase()) != null ? contact.Contact_Type__c.toUpperCase() : 'NONE';
-				contactType = contactTypePriorities.get(contactType) + contactType;
-
-				if (accountToContacts.get(contact.AccountId) == null) accountToContacts.put(contact.AccountId, new Map<String,Id>());
-				accountToContacts.get(contact.AccountId).put(contactType, contact.Id);
-
-			}
-
-			// ============
 
             Map<Id, Contact> nonPilotCtMap = new Map<Id, Contact> ([SELECT Id FROM Contact WHERE Id IN :contactIds AND Pilot_Flag__c = false]);
 
@@ -654,31 +625,15 @@ public class UCase
             }
 
             for (Case c : records) {
-
-                // ============ Collections & Credit Primary Contact ============
-                Boolean isEnabledCase = (c.RecordTypeId != null && primaryContactEnabledRecordTypes.contains(c.RecordTypeId) && UserInfo.getName() == 'Credit Monitoring');
-                if (isEnabledCase) {
-                    if (c.AccountId != null && accountToContacts.get(c.AccountId) != null) {
-						Map<String, Id> relatedContacts = accountToContacts.get(c.AccountId);
-
-						// Primary needs to be selected using priority(If a PRIMARY contact, use it. If not use the SHIPPING... etc. See contactTypePriorities)
-						List<String> priortizedContacts = new List<String>(relatedContacts.keySet());
-						priortizedContacts.sort();
-
-						c.ContactId = relatedContacts.get(priortizedContacts[0]);
+                if (c.SuppliedEmail != null && nonPilotCtMap.containsKey(c.ContactId)) {
+                    Contact foundContact = emailCtMap.get(c.SuppliedEmail);
+                    if (foundContact == null) {
+                        c.ContactId = null;
+                        c.AccountId = null;
                     }
-                }
-                // ============
-                else {
-                    if (c.SuppliedEmail != null && nonPilotCtMap.containsKey(c.ContactId)) {
-                        Contact foundContact = emailCtMap.get(c.SuppliedEmail);
-                        if (foundContact == null) {
-                            c.ContactId = null;
-                            c.AccountId = null;
-                        } else {
-                            c.ContactId = foundContact.Id;
-                            c.AccountId = foundContact.AccountId;
-                        }
+                    else {
+                        c.ContactId = foundContact.Id;
+                        c.AccountId = foundContact.AccountId;
                     }
                 }
             }
