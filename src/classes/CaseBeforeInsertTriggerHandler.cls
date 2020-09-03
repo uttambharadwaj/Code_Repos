@@ -12,6 +12,7 @@ public class CaseBeforeInsertTriggerHandler extends TriggerHandlerBase {
         UCase.setDefaultEntitlement(tp.newList, (Map<Id, Case>) tp.oldMap);
         UCase.associateContact(tp.newList, (Map<Id, Case>) tp.oldMap);
 
+        CaseHelper.associatePrimaryContact(tp.newList);
     }
 
 }
