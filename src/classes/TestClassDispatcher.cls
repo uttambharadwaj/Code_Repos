@@ -69,6 +69,10 @@ public class TestClassDispatcher {
         AppRequestTriggerTest.testUpdate();
     }
 
+    @IsTest static void testAppHistoryTriggerBeforeInsert() {
+        AppHistoryTriggerTest.test_updateEndDate();
+    }
+
     @isTest static void testZuoraQuoteInserts(){
         ZQUQuoteTriggerTest.testZQUQuoteOnInsert();
     }
