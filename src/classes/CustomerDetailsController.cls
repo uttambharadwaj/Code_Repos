@@ -1658,4 +1658,27 @@ public without sharing class CustomerDetailsController {
 
         }
     }
+
+
+    @AuraEnabled
+    public static String getLanguageIndicator(String accountId) {
+        System.debug('getLanguageIndicator-------->'+accountId);
+
+        try {
+            List<Account> accountRecord = [SELECT Preferred_Language__c FROM Account WHERE Id =: accountId];
+            if(accountRecord.isEmpty() ==  false){
+                return accountRecord[0].Preferred_Language__c;
+            } else {
+                return null;
+            }
+        }
+        catch(Exception e) {
+
+            String errorCode = logError(e);
+
+            throw new AuraHandledException('Unable to retrieve Preferred_Language__c for account. (Error Tracking Code: ' + errorCode + ')');
+
+        }
+
+    }
 }
