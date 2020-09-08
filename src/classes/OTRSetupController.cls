@@ -459,10 +459,10 @@ public without sharing class OTRSetupController {
             if (TestUtils.isRunningTest() || userSessionId != null) {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-PaperApp';
-            } else if (program.Disable_Instant_Decisioning__c == true) {
+            } else if (program.Disable_Instant_Decisioning__c == true  || onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract') {
                 onlineApplication.Application_Stage__c = 'Application';
                 onlineApplication.Status__c = 'Saved-Complete';
-            } else if(onlineApplicationOffer.Funding__c == 'Parent Funded' || onlineApplicationOffer.Funding__c == 'Parent Funded & Secondary Contract') {
+            } else if(onlineApplicationOffer.Funding__c == 'Parent Funded') {
                 onlineApplication.Application_Stage__c = 'Implementation';
                 onlineApplication.Status__c = 'Pending Setup';
             } else {
