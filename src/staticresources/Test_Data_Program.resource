@@ -1,8 +1,17 @@
-ID,NAME,PREFERRED_LANGUAGE_INDICATOR__C,T_C__C,FORM_TEMPLATE__C,BRAND_SHORT_NAME__C,CUSTOM_EMAIL_HEADER_URL__C,BRAND_HEADING__C,BRAND_LONG_NAME__C,UPLOAD_PRICING_DATA_FLAG__C,AUTO_SEND_BOCA_TO_SIEBEL__C,ANALYTICS_BODY_BLOCK__C,ANALYTICS_HEAD_BLOCK__C,BRAND_COLOR_1__C,BRAND_COLOR_2__C,BOCA_TYPE__C,FLEET_DEFAULT_BILLING_CYCLE__C,PARTNER__C,PUBLISH_BOCA__C,BOCA_Requested_Financial_Documents__c
-a0Z6C000000b6OSUAY,Test,ENG,BOCA_TNC,,,,,,,,,,,,,Cycle 1,,,
-a0Z0g00000GvTi5EAF,Test 2,ENU,WEX_BOCA_TNC,OTRBOCA,OTRTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,FALSE,FALSE,,,#ccc,#fff,OTR,,a050g00000IeabsAAB,TRUE,
-a0ZV00000024XsTMAU,Test 3,ENU,WEX_BOCA_TNC,OTRBOCA,SOMETEST,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,FALSE,FALSE,,,#ccc,#fff,OTR,Cycle 2,,TRUE,
-a0Z0g00000GvTi5EAG,Test 4,ENU,WEX_BOCA_TNC,CPBOCA,CPTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,CP Test BOCA,FALSE,FALSE,,,#ccc,#fff,CPBOCA,,a050g00000IeabsAAB,TRUE,
-a0Z0g00000GvTi5EAH,Test 5,ENU,WEX_BOCA_TNC,WexBOCA,NATESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,NAF Test BOCA,FALSE,FALSE,,,#ccc,#fff,Fuel Card,,a050g00000IeabsAAB,TRUE,Direct_Debit_Form__c
-a0Z0g00000GvTi5EAJ,Test 6,ENU,WEX_BOCA_TNC,WexBOCA,NAOTHERTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,NAF Test BOCA,FALSE,FALSE,,,#ccc,#fff,Fuel Card,,a050g00000IeabsAAB,TRUE,
-a0Z0g00000GvTi5EAZ,Test 7,ENU,WEX_BOCA_TNC,OTRBOCA,OTRUPMARKET,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,FALSE,FALSE,,,#ccc,#fff,OTR,,a050g00000IeabsAAB,TRUE,Voided_Check__c
+ID,NAME,PREFERRED_LANGUAGE_INDICATOR__C,T_C__C,FORM_TEMPLATE__C,BRAND_SHORT_NAME__C,CUSTOM_EMAIL_HEADER_URL__C,BRAND_HEADING__C,BRAND_LONG_NAME__C,UPLOAD_PRICING_DATA_FLAG__C,AUTO_SEND_BOCA_TO_SIEBEL__C,ANALYTICS_BODY_BLOCK__C,ANALYTICS_HEAD_BLOCK__C,BRAND_COLOR_1__C,BRAND_COLOR_2__C,BOCA_TYPE__C,FLEET_DEFAULT_BILLING_CYCLE__C,PARTNER__C,PUBLISH_BOCA__C,BOCA_Requested_Financial_Documents__c,RECORDTYPEID
+a0Z6C000000b6OSUAY,Test,ENG,BOCA_TNC,,,,,,,,,,,,,Cycle 1,,,,
+a0Z0g00000GvTi5EAF,Test 2,ENU,WEX_BOCA_TNC,OTRBOCA,OTRTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,FALSE,FALSE,,,#ccc,#fff,OTR,,a050g00000IeabsAAB,TRUE,,
+a0ZV00000024XsTMAU,Test 3,ENU,WEX_BOCA_TNC,OTRBOCA,SOMETEST,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,FALSE,FALSE,,,#ccc,#fff,OTR,Cycle 2,,TRUE,,
+a0Z0g00000GvTi5EAG,Test 4,ENU,WEX_BOCA_TNC,CPBOCA,CPTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,CP Test BOCA,FALSE,FALSE,,,#ccc,#fff,CPBOCA,,a050g00000IeabsAAB,TRUE,,
+a0Z0g00000GvTi5EAH,Test 5,ENU,WEX_BOCA_TNC,WexBOCA,NATESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,NAF Test BOCA,FALSE,FALSE,,,#ccc,#fff,Fuel Card,,a050g00000IeabsAAB,TRUE,Direct_Debit_Form__c,
+a0Z0g00000GvTi5EAJ,Test 6,ENU,WEX_BOCA_TNC,WexBOCA,NAOTHERTESTX,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,NAF Test BOCA,FALSE,FALSE,,,#ccc,#fff,Fuel Card,,a050g00000IeabsAAB,TRUE,,
+a0Z0g00000GvTi5EAZ,Test 7,ENU,WEX_BOCA_TNC,OTRBOCA,OTRUPMARKET,http://www.wexhosted.com/email/revolver/header_wexRevolver.jpg,Time is money. Use WEX and save both.,OTR Test BOCA,FALSE,FALSE,,,#ccc,#fff,OTR,,a050g00000IeabsAAB,TRUE,Voided_Check__c,
+a0Z2f000000Bh25EAC,EFSLLC,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA
+a0Z2f000000Bh26EAC,TChek,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA
+a0Z2f000000Bh27EAC,TCHEK_MC,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA
+a0Z2f000000Bh28EAC,IRVING,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA
+a0Z2f000000Bh29EAC,EFSTS,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA
+a0Z2f000000Bh2AEAS,Shell,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA
+a0Z2f000000Bh2BEAS,IMPERIAL OIL,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA
+a0Z2f000000Bh2CEAS,PINNACLE,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA
+a0Z2f000000Bh2DEAS,FLEETONE,,,,,,,,,,,,,,,,,,,0120g0000009uviAAA

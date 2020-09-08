@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Salesforce Bi-Weekly Production Release 9/12/19</fullName>
     <description>https://docs.google.com/document/d/1v_nlxKmDrm8kLSjKesPjjt7qnpB9AEFUKirkq16qZd8/edit</description>
     <types>
         <members>DataLoaderBatch</members>
         <members>OpportunityTriggerTest</members>
         <members>TestClassDispatcher</members>
         <members>CreditUtil_NullField</members>
+        <members>AccountTest</members>
         <name>ApexClass</name>
     </types>
     <types>

@@ -77,6 +77,62 @@ public class UAccount {
 
     }
 
+    /**
+     * Automatically adds the OTR Program to Service Operations OTR Accounts.
+     */
+    public static void associateOTRPrograms(List<Account> accounts, Map<ID, Account> oldMap){
+        List<Account> toProcess = new List<Account>();
+        Id acctRecordTypeId = UtilityClass.getRecTypeByDevName('Account','Service_Operations');
+
+        for(Account a : accounts)
+        {
+            if(a.RecordTypeId == acctRecordTypeId && a.Platform_LOB__c == 'OTR')
+            {
+                toProcess.add(a);
+            }
+        }
+
+        if(toProcess.isEmpty()){
+            return;
+        }
+
+        Id programRecordTypeId = UtilityClass.getRecTypeByDevName('Program__c','Service_Operations');
+
+        //do we have a more efficient way of looking this up?
+        List<Program__c> programs = [SELECT Id, Name
+        FROM Program__c
+        WHERE RecordTypeId = :programRecordTypeId AND
+        Name IN ('EFSLLC', 'TChek', 'TCHEK_MC', 'IRVING', 'EFSTS', 'Shell', 'IMPERIAL OIL', 'PINNACLE', 'FLEETONE')];
+
+        Map<String, String> programsMap = new Map<String, String>();
+
+        for(Program__c p : programs){
+            programsMap.put(p.Name, p.Id);
+        }
+
+        for(Account a : toProcess) {
+            if(a.Platform__c != null) {
+                switch on a.Platform__c {
+                    when 'EFSLLC', 'EFS LLC' {
+                        a.Program__c = programsMap.get('EFSLLC');
+                    }
+                    when 'IMPERIAL' {
+                        a.Program__c = programsMap.get('IMPERIAL OIL');
+                    }
+                    when 'SHELL_NAV', 'SFJ_SHELL' {
+                        a.Program__c = programsMap.get('Shell');
+                    }
+                    when 'TChek', 'TCHEK_MC', 'IRVING', 'EFSTS', 'PINNACLE', 'FLEETONE' {
+                        a.Program__c = programsMap.get(a.Platform__c);
+                    }
+                    when else {
+                        System.debug('***** Program match not found for Account Platform: ' + a.Platform__c);
+                    }
+                }
+            }
+        }
+    }
+
     public static void truckersGenerateMemIdAndPassword( List<Account> accounts, Map<ID, Account> oldMap )
     {
         List<Account> toProcess = new List<Account>();
@@ -95,12 +151,18 @@ public class UAccount {
 
         if(!toProcess.isEmpty())
         {
-            AggregateResult[] ar = [SELECT MAX(a.Member_ID__c)MaxMemberID FROM Account a WHERE a.recordTypeId= :setting.Truckers_Account_Record_Type__c and a.Member_ID__c LIKE '700%'];
-            Integer NextMemberID = Integer.valueof(ar[0].get('MaxMemberID'));
+            // AggregateResult[] ar = [SELECT MAX(a.Member_ID__c)MaxMemberID FROM Account a WHERE a.recordTypeId= :setting.Truckers_Account_Record_Type__c and a.Member_ID__c LIKE '700%'];
+            // Integer NextMemberID = Integer.valueof(ar[0].get('MaxMemberID'));
+            Integer NextMemberID;
+            List<Account> acctList = [SELECT Member_ID__c FROM Account WHERE RecordTypeId= :setting.Truckers_Account_Record_Type__c AND Member_ID__c LIKE '700%' ORDER BY Member_ID__c DESC LIMIT 1];
+            if (!acctList.isEmpty()) {
+                NextMemberID = Integer.valueof(acctList[0].Member_ID__c);
+            }
+
             if(NextMemberID==NUll)
                 NextMemberID=0;
 
-            system.debug('NextMemberID : ' + NextMemberID);
+            System.debug('NextMemberID : ' + NextMemberID);
             for(Account a: toProcess)
             {
                 if (a.Member_ID__c == NULL)
@@ -172,4 +234,139 @@ public class UAccount {
         return key.substring(0, 8);
     }
 
+    public static void parentSalesAccounts(List<Account> records, Map<Id, Account> oldMap) {
+        Id cpsRecTypeId = SObjectType.Account.getRecordTypeInfosByDeveloperName().get('CPS_Accounts').getRecordTypeId();
+        List<Account> qualifiedRecords = new List<Account>();
+        for (Account rec: records) {
+            if(rec.RecordTypeId == cpsRecTypeId
+                    && rec.Program__c!=null) {
+                qualifiedRecords.add(rec);
+            }
+        }
+
+        if (!qualifiedRecords.isEmpty()) {
+            Set<String> dunsNumbers = new Set<String>();
+            Set<String> acctNames = new Set<String>();
+            Set<String> phoneNumbers = new Set<String>();
+
+            for (Account rec: qualifiedRecords) {
+                if (rec.DUNS__c!=null) {
+                    dunsNumbers.add(rec.DUNS__c);
+                }
+                if (rec.Name!=null) {
+                    acctNames.add(rec.Name);
+                }
+                if (rec.phone!=null) {
+                    phoneNumbers.add(rec.phone);
+                }
+            }
+
+            Set<Id> parentAccIds = new Set<Id>();
+            Set<Id> programIds = new Set<Id>();
+            Map<String, Id> parentAcctMap = new Map<String, Id>();
+            for (Account acc : [SELECT Id, ParentId, DUNS__c FROM Account WHERE RecordTypeId =:cpsRecTypeId
+            AND Is_Program_Account__c = false
+            AND DUNS__c IN : dunsNumbers
+            AND Id NOT IN : qualifiedRecords
+            ORDER BY LastModifiedDate DESC]) {
+                if (acc.ParentId==null && parentAcctMap.get(acc.DUNS__c)==null) {
+                    parentAcctMap.put(acc.DUNS__c,acc.Id);
+                }
+            }
+
+            for (Account rec: qualifiedRecords) {
+                if (rec.ParentId == null && parentAcctMap.get(rec.DUNS__c)!=null) {
+                    rec.ParentId = parentAcctMap.get(rec.DUNS__c);
+                    parentAccIds.add(rec.ParentId);
+                    programIds.add(rec.Program__c);
+                }
+            }
+
+            Boolean secondPass = false;
+            for (Account rec: qualifiedRecords) {
+                if (rec.ParentId==null) {
+                    secondPass = true;
+                    break;
+                }
+            }
+
+            if (secondPass==true) {
+                for (Account acc : [SELECT Id, ParentId, Name, Phone FROM Account WHERE RecordTypeId =:cpsRecTypeId
+                AND Is_Program_Account__c = false
+                AND Name IN : acctNames
+                AND Phone IN : phoneNumbers
+                AND Id NOT IN : qualifiedRecords
+                ORDER BY LastModifiedDate DESC]) {
+                    if (acc.ParentId==null) {
+                        for (Account rec: qualifiedRecords) {
+                            if (rec.ParentId == null) {
+                                if (rec.Name == acc.Name && rec.Phone == acc.Phone) {
+                                    rec.ParentId = acc.Id;
+                                    parentAccIds.add(acc.Id);
+                                    programIds.add(rec.Program__c);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            //look for existing accounts with the same parent and program - report an error if one exists
+            if (!parentAccIds.isEmpty() && !programIds.isEmpty()) {
+                Map<String, Account> existingProgramAcctMap = new Map<String, Account>();
+                for (Account acc : [SELECT Id, Name, ParentId, Program__c FROM Account WHERE ParentId IN : parentAccIds AND Program__c IN : programIds]) {
+                    existingProgramAcctMap.put(acc.ParentId + '_' + acc.Program__c, acc);
+                }
+                for (Account rec: qualifiedRecords) {
+                    if (rec.ParentId!=null) {
+                        String key = rec.ParentId + '_' + rec.Program__c;
+                        if (existingProgramAcctMap.get(key)!=null) {
+                            rec.addError('An Account already exists for that Program - <a href="' + URL.getSalesforceBaseUrl().toExternalForm() + '/' + existingProgramAcctMap.get(key).Id
+                                    + '">' + existingProgramAcctMap.get(key).Name + '</a>', false);
+                        }
+                    }
+                }
+            }
+
+            List<User> parentAccOwners = [SELECT Id FROM User WHERE Name = 'Data Lake Integration' AND Profile.Name = 'System Administrator' LIMIT 1];
+            Map<String, Account> newParentAcctMap = new Map<String, Account>();
+            List<Account> parentAccList = new List<Account>();
+            for (Account rec: qualifiedRecords) {
+                if(rec.ParentId==null && newParentAcctMap.get(rec.Name)==null) {
+                    programIds.add(rec.Program__c);
+                    Account parentAcc = new Account();
+                    parentAcc.Name = rec.Name;
+                    parentAcc.RecordTypeId = cpsRecTypeId;
+                    parentAcc.Is_Program_Account__c = false;
+                    if (!parentAccOwners.isEmpty()) {
+                        parentAcc.OwnerId = parentAccOwners[0].Id;
+                    }
+                    newParentAcctMap.put(rec.Name, parentAcc);
+                }
+            }
+
+            insert newParentAcctMap.values();
+
+            if (!programIds.isEmpty()) {
+                Map<Id, Program__c> pgmMap = new Map<Id, Program__c>([SELECT Partner__c FROM Program__c WHERE Id IN : programIds]);
+                for (Account rec: qualifiedRecords) {
+                    rec.Partner_Name__c = pgmMap.get(rec.Program__c).Partner__c;
+                    rec.Is_Program_Account__c = true;
+                }
+            }
+
+            for (Account rec: qualifiedRecords) {
+                if(rec.ParentId==null) {
+                    rec.ParentId = newParentAcctMap.get(rec.Name).Id;
+                }
+            }
+        }
+    }
+
+    public static void executeBREeze(List<Account> records, Map<Id, Account> oldMap) {
+        BREeze.processRules.ruleDataSet rds = new BREeze.processRules.ruleDataSet();
+        rds.records = records;
+        rds.oldMap = oldMap;
+        BREeze.ProcessRules.processRuleLogic('MC_Accounts_Sync_to_Marketing_Cloud', false, rds);
+    }
 }

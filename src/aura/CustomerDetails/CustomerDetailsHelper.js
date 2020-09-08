@@ -951,7 +951,7 @@
                 //for (let[key, value] of respVal) {
                 //    console.log('Invoice response: '+key + ' = ' + value);
                 //}
-                component.set("v.invoices", respVal.invoices);
+                component.set("v.invoices", respVal);
                 console.dir(component.get("v.invoices"));
 
 
@@ -1078,6 +1078,32 @@
 
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.numberOfCasesToday", response.getReturnValue());
+            }
+            else {
+                this.handleErrors(component, response);
+            }
+
+        });
+
+        $A.enqueueAction(action);
+
+    },
+
+
+
+    getLanguageIndicator : function(component, target) {
+        console.log("### Enter getLanguageIndicator");
+        var action = component.get("c.getLanguageIndicator");
+
+        action.setParams({
+            accountId : component.get("v.recordId")
+        });
+
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+
+            if(component.isValid() && state === "SUCCESS") {
+                component.set("v.languageIndicator", response.getReturnValue());
             }
             else {
                 this.handleErrors(component, response);

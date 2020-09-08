@@ -13,6 +13,10 @@ public class TestClassDispatcher {
         UtilityTestLoader.loadTestData();
     }
 
+    @IsTest static void testOTRAccountInsert(){
+        AccountTest.test_OTR_AccountInsert();
+    }
+
     @isTest static void testPartnerBOCAToProspectControllerSend(){
         PartnerBOCAToProspectControllerTest.testPBPSend();
     }
@@ -67,6 +71,10 @@ public class TestClassDispatcher {
 
     @isTest static void testAppRequestTriggerUpdates(){
         AppRequestTriggerTest.testUpdate();
+    }
+
+    @IsTest static void testAppHistoryTriggerBeforeInsert() {
+        AppHistoryTriggerTest.test_updateEndDate();
     }
 
     @isTest static void testZuoraQuoteInserts(){
@@ -262,7 +270,6 @@ public class TestClassDispatcher {
 	@IsTest static void testCollectionsEmailPreviouslySent() {
 		CollectionsEmailHandlerTest.test_CollectionsEmailPreviouslySent();
 	}
-
     @IsTest static void testGeneratePaymentPlan() {
         CollectionsPaymentPlanTest.test_generatePaymentPlan();
     }
