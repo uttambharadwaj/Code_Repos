@@ -299,7 +299,7 @@
                                     {!v.customerDetails.dIDLength}
                                     <aura:if isTrue="{!v.customerDetails.dIDLength == null}">N/A</aura:if>
                                 </div>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                     <div class="slds-tile slds-media slds-card__tile slds-p-horizontal--small slds-size--1-of-1 slds-medium-size--1-of-4 slds-hint-parent">
@@ -2290,7 +2290,7 @@
                                 </td>
                             </tr>
                         </aura:iteration>
-                        </tbody> 
+                        </tbody>
                     </table>
                         <aura:set attribute="else">
 
