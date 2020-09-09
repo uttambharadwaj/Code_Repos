@@ -6,13 +6,7 @@
         <members>DataLoaderBatch</members>
         <members>OpportunityTriggerTest</members>
         <members>TestClassDispatcher</members>
-        <members>CreditWS_GiactTest</members>
-        <members>CollectionsEmailHandler</members>
-        <members>CollectionsEmailHandlerTest</members>
-        <members>CreditUtil_CalculateCreditLineTest</members>
-        <members>InvoicePDFViewerController</members>
-        <members>InvoicePDFViewerTest</members>
-        <members>Batch_RunAppDecisioning</members>
+        <members>CreditUtil_NullField</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -24,34 +18,6 @@
         <members>Test_Data_Configuration.Test_Data_Campaign_2</members>
         <members>Test_Data_Configuration.Test_Data_Default_Campaigns</members>
         <members>Test_Data_Configuration.Test_Data_Global_Settings</members>
-        <members>BR_Case_CollectAssignments.Bankruptcy</members>
-        <members>BR_Case_CollectAssignments.Default</members>
-        <members>BR_Case_CollectAssignments.NAF_Canada_Fr_HVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Canada_Fr_LVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Canada_Fr_MVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Canada_HVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Canada_LVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Canada_MVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Flex_HVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Flex_LVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Flex_MVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_HVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_LVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Late_Stage</members>
-        <members>BR_Case_CollectAssignments.NAF_MVAR</members>
-        <members>BR_Case_CollectAssignments.NAF_Outsourced</members>
-        <members>BR_Case_CollectAssignments.NAF_Self_cure</members>
-        <members>BR_Case_CollectAssignments.NAF_Sold_Accounts</members>
-        <members>BR_Case_CollectAssignments.NAF_Strategic_Accounts</members>
-        <members>BR_Case_CollectAssignments.OTR_Follow_Up</members>
-        <members>BR_Case_CollectAssignments.OTR_HVAR</members>
-        <members>BR_Case_CollectAssignments.OTR_LVAR</members>
-        <members>BR_Case_CollectAssignments.OTR_Late_Stage</members>
-        <members>BR_Case_CollectAssignments.OTR_MVAR</members>
-        <members>BR_Case_CollectAssignments.OTR_Outsourced</members>
-        <members>BR_Case_CollectAssignments.OTR_Self_cure</members>
-        <members>BR_Case_CollectAssignments.OTR_Sold_Accounts</members>
-        <members>BR_Case_CollectAssignments.OTR_Strategic_Accounts</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -65,15 +31,6 @@
         <members>Test_Data_Opportunity</members>
         <members>Test_Data_Program</members>
         <name>StaticResource</name>
-    </types>
-    <types>
-        <members>InvoicePDFViewer</members>
-        <members>UploadDocToCreditLensOTR</members>
-        <name>ApexPage</name>
-    </types>
-    <types>
-        <members>Case_Collections_Queue_Assignment</members>
-        <name>Flow</name>
     </types>
     <version>45.0</version>
 </Package>
