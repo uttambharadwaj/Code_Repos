@@ -1560,6 +1560,10 @@
 
     },
     reloadContract: function (component, event, helper) {
+        let otrContractList = component.get('v.customerDetails.otrContracts.entry');
+        if(otrContractList != undefined && otrContractList.length > 0){
+            component.set("v.otrContractObj",otrContractList[0].value);
+        }
         if (component.get("v.otrContractObj")) {
             let currentContract = component.get("v.otrContractObj");
             console.log('Current Contract = '+currentContract.arNumber);
