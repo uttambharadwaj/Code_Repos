@@ -447,8 +447,6 @@ public without sharing class OTRSetupController {
     // Re-factor with upserts of set, with all or nothing
     public PageReference submitForm() {
 
-        System.debug('TEMP got inside submit form, current status: ' + onlineApplication.Status__c);
-
         try {
 
             if (program.WEX_Platform__c != null && (program.WEX_Platform__c).equalsIgnoreCase('CoreCard')) {
