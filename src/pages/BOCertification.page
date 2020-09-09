@@ -391,11 +391,11 @@
                                                                 <div class="six columns clearfix">
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}1">
                                                                         <label class="styled-label">{!$Label.BOCDD_Address_Line_1}</label>
-                                                                        <apex:inputText styleClass="styled-input required country-controlled" value="{!boOwner.addressLine1}" maxlength="100" />
+                                                                        <apex:inputText styleClass="styled-input required country-controlled" html-class="address" value="{!boOwner.addressLine1}" maxlength="100" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}2">
                                                                         <label class="styled-label">{!$Label.BOCDD_Address_Line_2}</label>
-                                                                        <apex:inputText styleClass="styled-input country-controlled" value="{!boOwner.addressLine2}" maxlength="100" />
+                                                                        <apex:inputText styleClass="styled-input country-controlled" html-class="address" value="{!boOwner.addressLine2}" maxlength="100" />
                                                                     </div>
                                                                     <div class="twelve columns clearfix form-field" data-row="{!VALUE(index)}3">
                                                                         <label class="styled-label">{!$Label.BOCDD_City}</label>
