@@ -1661,11 +1661,16 @@ public without sharing class CustomerDetailsController {
 
 
     @AuraEnabled
-    public static String getLanguageIndicator(String accountId) {
+    public static String getLanguageIndicator(String accountId, String accountNumber) {
         System.debug('getLanguageIndicator-------->'+accountId);
 
         try {
-            List<Account> accountRecord = [SELECT Preferred_Language__c FROM Account WHERE Id =: accountId];
+            List<Account> accountRecord;
+            if(String.isNotBlank(accountNumber)){
+                accountRecord = [SELECT Preferred_Language__c FROM Account WHERE Wex_Account__c =: accountNumber AND RecordType.Name = 'Service Operations' LIMIT 1];
+            } else {
+                accountRecord = [SELECT Preferred_Language__c FROM Account WHERE Id =: accountId];
+            }
             if(accountRecord.isEmpty() ==  false){
                 return accountRecord[0].Preferred_Language__c;
             } else {
