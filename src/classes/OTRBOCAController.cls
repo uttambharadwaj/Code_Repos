@@ -652,7 +652,6 @@ public class OTRBOCAController {
             onlineApplication.Offer__c = onlineApplicationOffer.Id;
             System.debug('#### Online Application Offer ID: ' + onlineApplicationOffer.Id + ' Product Type: ' + onlineApplicationOffer.Product_Type__c);
             if(onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('OTR Extended Billing Cycle') && onlineApplicationOffer.Product_Type__c != null){
-                onlineApplication.Billing_Cycle__c = onlineApplicationOffer.Billing_Cycle__c;
                 onlineApplication.Product_Type__c = onlineApplicationOffer.Product_Type__c;
             }
             else {onlineApplication.Product_Type__c = 'OTR';}
@@ -1025,7 +1024,6 @@ public class OTRBOCAController {
             onlineApplication.Offer__c = onlineApplicationOffer.Id;
             System.debug('#### Online Application Offer ID: ' + onlineApplicationOffer.Id + ' Product Type: ' + onlineApplicationOffer.Product_Type__c);
             if(onlineApplicationOffer.Product_Type__c.equalsIgnoreCase('OTR Extended Billing Cycle') && onlineApplicationOffer.Product_Type__c != null){
-                onlineApplication.Billing_Cycle__c = onlineApplicationOffer.Billing_Cycle__c;
                 onlineApplication.Product_Type__c = onlineApplicationOffer.Product_Type__c;
             }
             else {onlineApplication.Product_Type__c = 'OTR';}
