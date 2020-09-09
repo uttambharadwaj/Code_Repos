@@ -1094,14 +1094,14 @@
     getLanguageIndicator : function(component, target) {
         console.log("### Enter getLanguageIndicator");
         var action = component.get("c.getLanguageIndicator");
-
         action.setParams({
-            accountId : component.get("v.recordId")
+            accountId : component.get("v.recordId"),
+            accountNumber : component.get("v.accountNumber")
         });
 
         action.setCallback(this, function(response) {
             var state = response.getState();
-
+            console.log('getLanguageIndicator.response----->'+response.getReturnValue());
             if(component.isValid() && state === "SUCCESS") {
                 component.set("v.languageIndicator", response.getReturnValue());
             }
