@@ -188,7 +188,7 @@ public class i2iSearchController {
 
                 for(String dataSource : sources.keySet()) {
                     if(dataSource == Label.Quick_Pivot && sources.get(dataSource)) {
-                        records = i2iGet.executeCall(promocode, programSelected, phonepass, company, zipcode, email);                        
+                        records = i2iGet.executeCall(promocode, programSelected, phonepass, company, zipcode, email);
                     } else if (sources.get(dataSource) && dataSource == Label.Marketing_Cloud && (searchvars.size() > 0 || String.isNotBlank(promocode))) {
                         // For MC, split promo code into coupon code and lead number
                         String leadNumber;
@@ -208,8 +208,8 @@ public class i2iSearchController {
                         
                         // Get records from MC
                         if (makeMcCall) {
-                                                        
-                            mcRecords = i2iGetMC.sendTokenMC(promocode, couponcode, leadNumber, programSelected, phonepass, company, zipcode, email); 
+
+                            mcRecords = i2iGetMC.sendTokenMC(promocode, couponcode, leadNumber, programSelected, phonepass, company, zipcode, email);
                         } 
                         System.debug(mcRecords);
                     }
@@ -232,8 +232,8 @@ public class i2iSearchController {
             } else {
                 //Single ids to pull campaign members...then scroll through return checking to see if match in campaign member match
                 //then loop through data if hit in map, check prefix to see if its lead or campaign, add the wrappers
-               
-                
+
+
                 Set<String> i2iIds = new Set<String>();
                 Set<String> couponCodesReturned = new Set<String>();
                 Set<String> leadNumbers = new Set<String>();
@@ -241,9 +241,9 @@ public class i2iSearchController {
                 Set<String> emails = new Set<String>();
 
                 for(i2iGet.returnData rd: records) {
-                    if (rd.i2iId!=null && !String.isEmpty(rd.i2iId) ) i2iIds.add(rd.i2iId);                    
-                    if (rd.couponcode!=null && !String.isEmpty(rd.couponcode) ) couponCodesReturned.add(rd.CouponCode);                    
-                    if (rd.leadNumber != null && !String.isEmpty(rd.leadNumber) ) leadNumbers.add(rd.leadNumber);                    
+                    if (rd.i2iId!=null && !String.isEmpty(rd.i2iId) ) i2iIds.add(rd.i2iId);
+                    if (rd.couponcode!=null && !String.isEmpty(rd.couponcode) ) couponCodesReturned.add(rd.CouponCode);
+                    if (rd.leadNumber != null && !String.isEmpty(rd.leadNumber) ) leadNumbers.add(rd.leadNumber);
                     if (rd.phone != null && !String.isEmpty(rd.phone) ) phones.add(rd.phone);
                     if (rd.email != null && !String.isEmpty(rd.email) ) emails.add(rd.email);
                 }
@@ -264,13 +264,13 @@ public class i2iSearchController {
                                                  ]) {
                                                      string unqkey = (string)ocr.contactid + ocr.Opportunity.Campaign.Coupon_code__c; 
                                                      opportunityContacts.put(unqkey,ocr);     
-                                                     opportunityContactsContactIds.add(ocr.contactid);                                                        
+                                                     opportunityContactsContactIds.add(ocr.contactid);
                                                  }
                 
                 Map<String, CampaignMember> campaignMembersMapLead = new Map<String, CampaignMember>();
                 Map<String, CampaignMember> campaignMembersMapContact = new Map<String, CampaignMember>();
-                List<CampaignMember> campaignMembersLead = new List<CampaignMember>();               
-                                
+                List<CampaignMember> campaignMembersLead = new List<CampaignMember>();
+
                 for(CampaignMember cm : [Select leadid, contactid, lead.Status, lead.Product_Interest__c, lead.owner.name, contact.i2i_ID__c, lead.IsConverted,
                                          contact.owner.name, campaignid, campaign.Coupon_Code__c, campaign.Name, campaign.Marketing_Offer__c, lead.coupon_code_2__c,
                                          lead.parent_lead__c, lead.parent_lead__r.i2i_id__c, lead.createddate, campaign.default_program__r.name, Contact.Lead_Number__c, 
@@ -284,16 +284,16 @@ public class i2iSearchController {
                                             OR lead.parent_lead__r.i2i_id__c IN :i2iIds 
                                             OR Contact.i2i_id__c IN :i2iIDs) 
                                          AND ( lead.INVOCA_FOR_SF__TextPhone__c  in :phones
-										   OR Contact.INVOCA_FOR_SF__TextPhone__c  in :phones ) 
-                                         Order By CreatedDate ASC] ) { 
+										   OR Contact.INVOCA_FOR_SF__TextPhone__c  in :phones )
+                                         Order By CreatedDate ASC] ) {
 
-                    
+
                                              if(cm.ContactId != null) {
                                                 String mcKey = cm.Contact.Lead_Number__c + '-' + cm.Campaign.Coupon_Code__c;
                                                 String qpKey = cm.Contact.i2i_ID__c + '-' + cm.Campaign.Coupon_Code__c;
                                                 campaignMembersMapContact.put(mcKey, cm);
                                                 campaignMembersMapContact.put(qpKey, cm);
-                                                whoIds.add(cm.contactid);   
+                                                whoIds.add(cm.contactid);
                                              }
                                              
                                              if(cm.leadId != null)  {
@@ -304,7 +304,7 @@ public class i2iSearchController {
                                              programnamesbycouponcode.put(cm.campaign.coupon_code__c,cm.campaign.default_program__r.name);
                                              system.debug('-- cm: ' + cm);
                                          }
-                
+
 
                 //get the rest of the program names for non matches displaying
                 for(Campaign c : [Select Id, Coupon_code__c, Default_Program__r.Name
@@ -628,16 +628,16 @@ public class i2iSearchController {
         
         public void createLead() {
             GlobalSettings__c setting = GlobalSettings__c.getOrgDefaults();
-            
+
             Lead newLead = new Lead();
             if(nomatchi2irecord != null) {
-                
+
                 //Format Phone to be User friendly
                 String phone = nomatchi2irecord.phone;
                 if(phone.length() == 10) {
                     phone = phone.substring(0,3) + '-' + phone.substring(3,6) + '-' + phone.substring(6,10);
                 }
-                
+
                 newLead.FirstName = nomatchi2irecord.firstname;
                 newLead.LastName = nomatchi2irecord.lastname;
                 newLead.Company = nomatchi2irecord.company;
@@ -653,28 +653,56 @@ public class i2iSearchController {
                 newLead.Phone = phone;
                 newLead.Country = nomatchi2irecord.country;
                 newLead.i2i_Contact_ID__c = nomatchi2irecord.i2icontactid;
-                newLead.Email = nomatchi2irecord.Email;                
-            }
-            System.debug('new Lead ' + newLead);
-            try {
-                upsert newlead i2i_id__c;
-            }catch (Exception e) {
-                System.debug('ERROR: ' + e.getMessage());
-                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR,e.getMessage() + ' ' + e.getStackTraceString()));
-                createError=true;
+                newLead.Email = nomatchi2irecord.Email;
+
+                System.debug('new Lead ' + newLead);
+                try {
+                    if (newLead.i2i_id__c != null && String.isNotEmpty(newLead.i2i_id__c)) {
+                        upsert newlead i2i_id__c;
+                    } else {
+                        Boolean isSuccessful = false;
+
+                        if (nomatchi2irecord != null && nomatchi2irecord.leadNumber != null && String.isNotEmpty(nomatchi2irecord.leadNumber)) {
+
+                            List<Lead> parentLead = [SELECT Id FROM Lead WHERE rr_lead_number__c = :nomatchi2irecord.leadNumber];
+                            if (!parentLead.isEmpty()) {
+                                newLead.Id = parentLead[0].Id;
+                                update newLead;
+                                isSuccessful = true;
+                            }
+
+                        }
+                        if (!isSuccessful) {
+                            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Could not find parent lead number: ' + nomatchi2irecord.leadNumber));
+                            createError = true;
+                            return;
+                        }
+                    }
+                } catch (Exception e) {
+                    System.debug('ERROR: ' + e.getMessage());
+                    ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, e.getMessage() + ' ' + e.getStackTraceString()));
+                    createError = true;
+                    return;
+                }
+
+                childLead = new List<Lead>();
+                System.debug('newlead.Id ' + newlead.Id);
+                childLead = [
+                        Select Id, IsConverted, ConvertedOpportunityId, Related_Account__c, Related_Contact__c,
+                                Parent_Lead__c, Parent_Lead__r.Related_Account__c, Parent_Lead__r.Related_Contact__c, Parent_Lead__r.i2i_Id__c
+                        from Lead
+                        Where Parent_Lead__c = :newlead.Id
+                        //AND RecordTypeId != :setting.Parent_Lead_Record_Type_Id__c
+                        AND Id IN (Select LeadId from CampaignMember where Campaign.Coupon_Code__c = :nomatchi2irecord.couponcode)
+                        Order by CreatedDate DESC
+                        LIMIT 1
+                ];
+
+            } else {
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Could not retrieve data from source system.'));
+                createError = true;
                 return;
             }
-
-            childLead = new List<Lead>();
-            System.debug('newlead.Id ' + newlead.Id);
-            childLead = [Select Id, IsConverted, ConvertedOpportunityId, Related_Account__c, Related_Contact__c,
-                        Parent_Lead__c, Parent_Lead__r.Related_Account__c, Parent_Lead__r.Related_Contact__c, Parent_Lead__r.i2i_Id__c
-                        from Lead 
-                        Where Parent_Lead__c = :newlead.Id 
-                        //AND RecordTypeId != :setting.Parent_Lead_Record_Type_Id__c
-                        AND Id IN (Select LeadId from CampaignMember where Campaign.Coupon_Code__c = :nomatchi2irecord.couponcode) 
-                        Order by CreatedDate DESC LIMIT 1];
-                        
         }
         
          /* Updated by Trekbin to split the DML and Callout into different transactions, as per case requirement : 00022611 

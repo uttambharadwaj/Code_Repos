@@ -154,10 +154,12 @@
 
                 //Get the open cases
                 console.log("### Fetching existing cases");
+                helper.getLanguageIndicator(component, event.target);
                 helper.fetchExistingOpenCases(component);
 
                 // Grab the number of cases today
                 helper.fetchNumberOfCasesToday(component, event.target);
+
 
                 //component.set("v.selectedTabId","customerContactsTab");
 
@@ -172,6 +174,7 @@
 
         helper.loadCustomerDetails(component, event.target);
         helper.fetchNumberOfCasesToday(component, event.target);
+        helper.getLanguageIndicator(component, event.target);
         helper.fetchExistingOpenCases(component);
     },
 

@@ -1089,6 +1089,32 @@
 
     },
 
+
+
+    getLanguageIndicator : function(component, target) {
+        console.log("### Enter getLanguageIndicator");
+        var action = component.get("c.getLanguageIndicator");
+        action.setParams({
+            accountId : component.get("v.recordId"),
+            accountNumber : component.get("v.accountNumber")
+        });
+
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            console.log('getLanguageIndicator.response----->'+response.getReturnValue());
+            if(component.isValid() && state === "SUCCESS") {
+                component.set("v.languageIndicator", response.getReturnValue());
+            }
+            else {
+                this.handleErrors(component, response);
+            }
+
+        });
+
+        $A.enqueueAction(action);
+
+    },
+
     fetchExistingCases : function(component, name) {
 
         var acctNbr = component.get("v.accountNumber");
@@ -1534,6 +1560,10 @@
 
     },
     reloadContract: function (component, event, helper) {
+        let otrContractList = component.get('v.customerDetails.otrContracts.entry');
+        if(otrContractList != undefined && otrContractList.length > 0){
+            component.set("v.otrContractObj",otrContractList[0].value);
+        }
         if (component.get("v.otrContractObj")) {
             let currentContract = component.get("v.otrContractObj");
             console.log('Current Contract = '+currentContract.arNumber);
