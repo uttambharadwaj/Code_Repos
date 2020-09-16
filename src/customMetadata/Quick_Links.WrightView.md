@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Platform__c</field>
-        <value xsi:type="xsd:string">ALL</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Query_Parameter__c</field>
