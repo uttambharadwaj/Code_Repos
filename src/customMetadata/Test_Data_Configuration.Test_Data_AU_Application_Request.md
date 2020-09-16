@@ -12,7 +12,7 @@
     </values>
     <values>
         <field>Order__c</field>
-        <value xsi:type="xsd:double">11000.0</value>
+        <value xsi:type="xsd:double">15000.0</value>
     </values>
     <values>
         <field>Required_Fields_Only__c</field>

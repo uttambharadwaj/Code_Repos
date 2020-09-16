@@ -3,6 +3,10 @@
     <label>Default</label>
     <protected>false</protected>
     <values>
+        <field>Auto_Pay_Self_Cure_DPD__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>Balance_Past_Due_2__c</field>
         <value xsi:nil="true"/>
     </values>
@@ -35,12 +39,24 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>Follow_Up_Date_Increment__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>LOB__c</field>
         <value xsi:type="xsd:string">All</value>
     </values>
     <values>
         <field>Queue_Id__c</field>
-        <value xsi:type="xsd:string">00GL00000039wUNMAY</value>
+        <value xsi:type="xsd:string">00G4u000004Pjp9EAC</value>
+    </values>
+    <values>
+        <field>Self_cure_Score__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Small_Balance_Dialer_Bypass__c</field>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>VaR_Bad_Rate_2__c</field>
@@ -48,6 +64,10 @@
     </values>
     <values>
         <field>VaR_Bad_Rate__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>VaR_Prediction__c</field>
         <value xsi:nil="true"/>
     </values>
     <values>

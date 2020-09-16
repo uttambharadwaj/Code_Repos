@@ -501,6 +501,15 @@
         </value>
     </choices>
     <choices>
+        <description>High Risk Credit Fee</description>
+        <name>HRFEA_Choice</name>
+        <choiceText>HRFEA - HIGH RISK CREDIT FEE ADJUSTMENT</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>HRFEA</stringValue>
+        </value>
+    </choices>
+    <choices>
         <name>IMFRD_choice</name>
         <choiceText>IMFRD - REV- Min int fee wo due to fraud</choiceText>
         <dataType>String</dataType>
@@ -1107,7 +1116,7 @@
             <label>Request is Pending or Held</label>
         </rules>
     </decisions>
-    <description>EAPT-703; Update workflow to exit if no Account is attached to Case.</description>
+    <description>EAPT-804: Add HRFEA Adjustment Code</description>
     <dynamicChoiceSets>
         <name>Adjustment_codes</name>
         <dataType>Picklist</dataType>
@@ -1194,11 +1203,14 @@
         <description>Create the initial Refund or Adjustment record</description>
         <name>Create_Refund_or_Adjustment_Record</name>
         <label>Create Refund or Adjustment Record</label>
-        <locationX>53</locationX>
-        <locationY>453</locationY>
+        <locationX>58</locationX>
+        <locationY>459</locationY>
         <connector>
             <targetReference>Get_Record_Name</targetReference>
         </connector>
+        <faultConnector>
+            <targetReference>Flow_Error_Message</targetReference>
+        </faultConnector>
         <inputReference>RefundAdjustment</inputReference>
     </recordCreates>
     <recordLookups>
@@ -1444,6 +1456,7 @@
             <name>Your_Department</name>
             <choiceReferences>CS_Choice</choiceReferences>
             <choiceReferences>SRS_choice</choiceReferences>
+            <choiceReferences>RSLPO_choice</choiceReferences>
             <dataType>String</dataType>
             <defaultSelectedChoiceReference>CS_Choice</defaultSelectedChoiceReference>
             <fieldText>Your Department?</fieldText>
@@ -1615,6 +1628,22 @@ Attn: {!CaseContact.FirstName} {!CaseContact.LastName}
         <showHeader>true</showHeader>
     </screens>
     <screens>
+        <name>Flow_Error_Message</name>
+        <label>Flow Error Message</label>
+        <locationX>188</locationX>
+        <locationY>720</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorMessageBox</name>
+            <fieldText>&lt;p&gt;&lt;b style=&quot;color: rgb(254, 1, 1);&quot;&gt;{!$Flow.FaultMessage}&lt;/b&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>Prior_Refunds_and_Adjustments_screen</name>
         <label>Prior Refunds and Adjustments</label>
         <locationX>1317</locationX>
@@ -1752,6 +1781,7 @@ Account Status: {!ParentAccount.Status__c}  Status Date: {!ParentAccount.Account
             <choiceReferences>IMOPR_choice</choiceReferences>
             <choiceReferences>IMTRM_choice</choiceReferences>
             <choiceReferences>IMIN_choice</choiceReferences>
+            <choiceReferences>HRFEA_Choice</choiceReferences>
             <dataType>String</dataType>
             <fieldText>Adjustment code</fieldText>
             <fieldType>DropdownBox</fieldType>
