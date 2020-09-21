@@ -122,7 +122,7 @@ public with sharing class AccountSearchController {
 		AccountSearchTypes.accountSearchResult response = new AccountSearchTypes.accountSearchResult();
 
 		try { //12 digits, 18 with BIN, is the Tchek card number pattern
-			if (otrSearch && !('CARDNUMBEROTR'.equalsIgnoreCase(request.searchField) && (request.searchData.length() != 12 || request.searchData.length() != 18))) {
+			if (otrSearch && !('CARDNUMBEROTR'.equalsIgnoreCase(request.searchField) && request.searchData.length() != 12 && request.searchData.length() != 18)) {
 				// TODO pass back the response with any errors
 				response = searchOTR(searchType, searchKeyword);
 
