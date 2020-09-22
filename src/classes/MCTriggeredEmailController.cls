@@ -25,6 +25,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     public List<SelectOption> mcTriggeredEmailKeys { get; set; }
     private List<sObject> triggeredEmailKeyObj { get; set; }
     private MC_Triggered_Email__mdt triggeredEmailConfig;
+    private List<MC_Triggered_Email_Key_Validations__mdt> emailKeyValidations { get; set; }
     private sObject selectedEmailKeyObj;
     public Map<String, Object> subscriberAttributes;
 
@@ -138,6 +139,19 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 }
             }
         }
+
+        // Get any email key specific validations
+        emailKeyValidations = [
+                SELECT Field__c, Operator__c, Value__c
+                FROM MC_Triggered_Email_Key_Validations__mdt
+                WHERE MC_Triggered_Email_Key__c IN :emailKeyLabelToObject.values()
+                AND Field__c != NULL
+                AND Operator__c != NULL
+        ];
+        for (MC_Triggered_Email_Key_Validations__mdt emailKeyValidation : emailKeyValidations) {
+            pageObjFields.add(emailKeyValidation.Field__c);
+        }
+
         Id objId = (Id) pageObj.get('Id');
 
         try {
@@ -247,7 +261,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
         //  ---------------------------------------------------------------------------------
 
-        // Validate that required fields from metadata have values
+        // Validate that required fields from metadata have values -- SFMC emails have certain attributes that must have values for an email to be sent
         for (String field : requiredMCFields) {
 
             if (subscriberAttributes.get(field) == null) {
@@ -257,6 +271,16 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             }
         }
         // ======
+
+        // =========== GET ALL METADATA VALIDATIONS ===========
+
+        for (MC_Triggered_Email_Key_Validations__mdt rule : emailKeyValidations) {
+            if (!validationSuccessful) break; // If validation fails break loop so we don't overwrite the failure
+            validationSuccessful = UtilityClass.logicalEval(UtilityClass.getSObjectField(pageObj, rule.Field__c), Rule.Operator__c, rule.Value__c);
+        }
+
+
+        // ====================================================
 
         return validationSuccessful;
     }

@@ -383,6 +383,90 @@ global class UtilityClass {
         return phoneNumber != null && phoneNumber.length() == 10;
     }
 
+    public static Boolean logicalEval(Object fieldValue, String operator, Object comparisonValue) {
+
+        Boolean eval = false;
+        if (fieldValue == null) fieldValue = '';
+        if (comparisonValue == null) comparisonValue = '';
+
+        try {
+
+            operator = operator.toUpperCase();
+            switch on operator {
+
+                when '>=' {
+                    if (Integer.valueOf(fieldValue) >= Integer.valueOf(comparisonValue)) {
+                        eval = true;
+                    }
+                }
+                when '<=' {
+                    if (Integer.valueOf(fieldValue) <= Integer.valueOf(comparisonValue)) {
+                        eval = true;
+                    }
+                }
+                when '>' {
+                    if (Integer.valueOf(fieldValue) > Integer.valueOf(comparisonValue)) {
+                        eval = true;
+                    }
+                }
+                when '<' {
+                    if (Integer.valueOf(fieldValue) < Integer.valueOf(comparisonValue)) {
+                        eval = true;
+                    }
+                }
+                when '==' {
+                    if (String.valueOf(fieldValue).equalsIgnoreCase(String.valueOf(comparisonValue))) {
+                        eval = true;
+                    }
+                }
+                when '!=' {
+                    if (!String.valueOf(fieldValue).equalsIgnoreCase(String.valueOf(comparisonValue))) {
+                        eval = true;
+                    }
+                }
+                when 'IN' {
+                    List<String> valueList = String.valueOf(comparisonValue).toUpperCase().split(',');
+                    if (valueList.contains(String.valueOf(fieldValue).toUpperCase())) {
+                        eval = true;
+                    }
+                }
+                when 'NOT IN' {
+                    List<String> valueList = String.valueOf(comparisonValue).toUpperCase().split(',');
+                    if (!valueList.contains(String.valueOf(fieldValue).toUpperCase())) {
+                        eval = true;
+                    }
+                }
+                when 'CONTAINS' {
+                    String value = String.valueOf(comparisonValue);
+                    Boolean contained = false;
+                    for (String val : value.split(',')) {
+                        if (String.isNotBlank(val) && String.valueOf(fieldValue).containsIgnoreCase(val)) {
+                            contained = true;
+                        }
+                    }
+                    eval = contained;
+                }
+                when 'NOT CONTAINS' {
+                    String value = String.valueOf(comparisonValue);
+                    Boolean contained = false;
+                    for (String val : value.split(',')) {
+                        if (String.isNotBlank(val) && String.valueOf(fieldValue).containsIgnoreCase(val)) {
+                            contained = true;
+                        }
+                    }
+                    eval = !contained;
+                }
+                when else {
+                    System.debug('*** Error: No such operator: ' + operator);
+                }
+            }
+        } catch (Exception e) {
+            eval = false;
+        }
+
+        return eval;
+    }
+
     /**************************END MISCELLANEOUS******************************/
 
     public static void testHelper(){

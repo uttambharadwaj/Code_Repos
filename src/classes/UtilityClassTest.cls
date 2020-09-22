@@ -89,4 +89,91 @@ public class UtilityClassTest {
         UtilityClass.testHelper5();
         UtilityClass.testHelper6();
     }
+
+    @isTest static void testlogicalEval() {
+
+        System.assertEquals(false, UtilityClass.logicalEval(4, 'test', 5)); // Invalid Operator
+
+        // Operator: >
+        System.assertEquals(true, UtilityClass.logicalEval(6, '>', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(5, '>', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(4, '>', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(4, '>', null)); // null comparison value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '>', 5)); // null field value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '>', null)); // Both null
+
+        // Operator: <
+        System.assertEquals(true, UtilityClass.logicalEval(1, '<', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(5, '<', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(6, '<', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(4, '<', null)); // null comparison value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '<', 5)); // null field value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '<', null)); // Both null
+
+        // Operator: >=
+        System.assertEquals(true, UtilityClass.logicalEval(6, '>=', 5));
+        System.assertEquals(true, UtilityClass.logicalEval(5, '>=', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(4, '>=', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(4, '>=', null)); // null comparison value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '>=', 5)); // null field value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '>=', null)); // Both null
+
+        // Operator: <=
+        System.assertEquals(true, UtilityClass.logicalEval(4, '<=', 5));
+        System.assertEquals(true, UtilityClass.logicalEval(5, '<=', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(6, '<=', 5));
+        System.assertEquals(false, UtilityClass.logicalEval(4, '<=', null)); // null comparison value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '<=', 5)); // null field value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '<=', null)); // Both null
+
+        // Operator: IN
+        System.assertEquals(true, UtilityClass.logicalEval('Test', 'IN', 'test'));
+        System.assertEquals(true, UtilityClass.logicalEval('Test', 'IN', 'this,is,test'));
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'IN', 'Testing'));
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'IN', '')); // Empty string
+        System.assertEquals(false, UtilityClass.logicalEval('', 'IN', 'Test')); // Empty string
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'IN', null)); // null comparison value
+        System.assertEquals(false, UtilityClass.logicalEval(null, 'IN', 'Test')); // null field value
+
+        // Operator: NOT IN
+        System.assertEquals(true, UtilityClass.logicalEval('Test', 'NOT IN', 'testing'));
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'NOT IN', 'this,is,test'));
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'NOT IN', 'Test'));
+        System.assertEquals(true, UtilityClass.logicalEval('Test', 'NOT IN', '')); // Empty string
+        System.assertEquals(true, UtilityClass.logicalEval('', 'NOT IN', 'Test')); // Empty string
+        System.assertEquals(true, UtilityClass.logicalEval('Test', 'NOT IN', null)); // null comparison value
+        System.assertEquals(true, UtilityClass.logicalEval(null, 'NOT IN', 'Test')); // null field value
+
+        // Operator: Contains
+        System.assertEquals(true, UtilityClass.logicalEval('testing', 'CONTAINS', 'Test'));
+        System.assertEquals(true, UtilityClass.logicalEval('this,is,testing', 'CONTAINS', 'Test'));
+        System.assertEquals(true, UtilityClass.logicalEval('Test', 'CONTAINS', 'Test'));
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'CONTAINS', '')); // Empty string
+        System.assertEquals(false, UtilityClass.logicalEval('', 'CONTAINS', 'Test')); // Empty string
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'CONTAINS', null)); // null comparison value
+        System.assertEquals(false, UtilityClass.logicalEval(null, 'CONTAINS', 'Test')); // null field value
+
+        // Operator: NOT Contains
+        System.assertEquals(true, UtilityClass.logicalEval('testing', 'CONTAINS', 'Test'));
+        System.assertEquals(true, UtilityClass.logicalEval('this,is,testing', 'CONTAINS', 'Test'));
+        System.assertEquals(true, UtilityClass.logicalEval('Test', 'CONTAINS', 'Test'));
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'CONTAINS', '')); // Empty string
+        System.assertEquals(false, UtilityClass.logicalEval('', 'CONTAINS', 'Test')); // Empty string
+        System.assertEquals(false, UtilityClass.logicalEval('Test', 'CONTAINS', null)); // null comparison value
+        System.assertEquals(false, UtilityClass.logicalEval(null, 'CONTAINS', 'Test')); // null field value
+
+        // Operator: ==
+        System.assertEquals(false, UtilityClass.logicalEval('test', '==', 'testing'));
+        System.assertEquals(true, UtilityClass.logicalEval('test', '==', 'Test'));
+        System.assertEquals(false, UtilityClass.logicalEval('test', '==', null)); // null comparison value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '==', 'test')); // null field value
+        System.assertEquals(true, UtilityClass.logicalEval(null, '==', null)); // Both null
+
+        // Operator: !=
+        System.assertEquals(true, UtilityClass.logicalEval('test', '!=', 'testing'));
+        System.assertEquals(false, UtilityClass.logicalEval('test', '!=', 'Test'));
+        System.assertEquals(true, UtilityClass.logicalEval('test', '!=', null)); // null comparison value
+        System.assertEquals(true, UtilityClass.logicalEval(null, '!=', 'test')); // null field value
+        System.assertEquals(false, UtilityClass.logicalEval(null, '!=', null)); // Both null
+    }
 }
