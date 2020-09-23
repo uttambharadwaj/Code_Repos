@@ -87,12 +87,12 @@ public with sharing class AccountSearchController {
 					addColumn = true;
 				}else if (c.DeveloperName.equalsIgnoreCase('SpnrAcctNbr') &&
 						('Account_Number_OTR'.equals(searchType) ||
-						'CARDNUMBEROTR'.equals(searchType) ||
 						'Acct_Row_Id'.equals(searchType)
 						)
 				){
 					addColumn = true;
 				}if(c.DeveloperName.equalsIgnoreCase('CarrierId') && ('Carrier_ID'.equals(searchType) ||
+						'CARDNUMBEROTR'.equals(searchType) ||
 						'Account_Name_OTR'.equals(searchType) ||
 						'Account_Phone_OTR'.equals(searchType) ||
 						'Member_ID'.equals(searchType) ||
