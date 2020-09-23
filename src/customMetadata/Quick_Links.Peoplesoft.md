@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Link_URL__c</field>
-        <value xsi:type="xsd:string">https://ps.wrightexpress.com/psp/PRFIN/?cmd=login</value>
+        <value xsi:type="xsd:string">https://ps.wrightexpress.com/psp/PRDFIN/?cmd=login&amp;languageCd=ENG&amp;</value>
     </values>
     <values>
         <field>Open_in__c</field>

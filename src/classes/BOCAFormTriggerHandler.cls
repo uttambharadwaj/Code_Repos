@@ -225,6 +225,7 @@ public class BOCAFormTriggerHandler {
         opportunity.SourceSystem__c = 'BOCA';
         opportunity.Expected_Monthly_Vehicle_Expense__c = (f.Estimated_Monthly_Vehicle_Expenses__c != null) ? Decimal.valueOf(String.valueOf(f.Estimated_Monthly_Vehicle_Expenses__c)) : Decimal.valueOf(String.valueOf(f.Avg_Monthly_Fuel_Service_Expenses__c));
         opportunity.Average_Monthly_Expenses__c =  (f.Estimated_Monthly_Vehicle_Expenses__c != null) ? Decimal.valueOf(String.valueOf(f.Estimated_Monthly_Vehicle_Expenses__c)) : Decimal.valueOf(String.valueOf(f.Avg_Monthly_Fuel_Service_Expenses__c));
+        opportunity.Average_Monthly_Fueling__c = f.Avg_Monthly_Fuel_Service_Expenses__c;
         opportunity.Billing_City__c = f.Billing_City__c;
         opportunity.Billing_State__c = f.Billing_State__c;
         opportunity.Billing_Street__c = f.Billing_Street_Address__c;

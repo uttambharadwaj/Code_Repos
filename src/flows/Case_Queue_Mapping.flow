@@ -3,14 +3,26 @@
     <decisions>
         <name>Mapping_found</name>
         <label>Mapping found?</label>
-        <locationX>366</locationX>
-        <locationY>254</locationY>
+        <locationX>355</locationX>
+        <locationY>331</locationY>
         <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Department_Receivables_Do_Nothing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varDept</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Receivables</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Department = Receivables (Do Nothing)</label>
+        </rules>
         <rules>
             <name>Yes</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>varDept</leftValueReference>
+                <leftValueReference>QueueId</leftValueReference>
                 <operator>IsNull</operator>
                 <rightValue>
                     <booleanValue>false</booleanValue>
@@ -24,6 +36,12 @@
     </decisions>
     <interviewLabel>Case Queue Mapping {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Case Queue Mapping</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
     <recordLookups>
         <name>Lookup_the_Custom_MetaData_type</name>
@@ -50,8 +68,8 @@
     <recordUpdates>
         <name>Update_Case_s_Department</name>
         <label>Update Case&apos;s Department</label>
-        <locationX>361</locationX>
-        <locationY>376</locationY>
+        <locationX>577</locationX>
+        <locationY>424</locationY>
         <filters>
             <field>Id</field>
             <operator>EqualTo</operator>
@@ -67,7 +85,13 @@
         </inputAssignments>
         <object>Case</object>
     </recordUpdates>
-    <startElementReference>Lookup_the_Custom_MetaData_type</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Lookup_the_Custom_MetaData_type</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <variables>
         <name>loopVarDept</name>

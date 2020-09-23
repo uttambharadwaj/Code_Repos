@@ -3,6 +3,10 @@
     <label>OTR - Self-cure</label>
     <protected>false</protected>
     <values>
+        <field>Auto_Pay_Self_Cure_DPD__c</field>
+        <value xsi:type="xsd:double">2.0</value>
+    </values>
+    <values>
         <field>Balance_Past_Due_2__c</field>
         <value xsi:type="xsd:double">2000.0</value>
     </values>
@@ -32,15 +36,27 @@
     </values>
     <values>
         <field>Days_Past_Due__c</field>
-        <value xsi:type="xsd:double">25.0</value>
+        <value xsi:type="xsd:double">15.0</value>
     </values>
     <values>
-        <field>LOB__c</field>
+        <field>Follow_Up_Date_Increment__c</field>
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>LOB__c</field>
+        <value xsi:type="xsd:string">OTR</value>
+    </values>
+    <values>
         <field>Queue_Id__c</field>
-        <value xsi:type="xsd:string">00GL0000003A7lQMAS</value>
+        <value xsi:type="xsd:string">00G4u000004PjpYEAS</value>
+    </values>
+    <values>
+        <field>Self_cure_Score__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Small_Balance_Dialer_Bypass__c</field>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>VaR_Bad_Rate_2__c</field>
@@ -48,7 +64,11 @@
     </values>
     <values>
         <field>VaR_Bad_Rate__c</field>
-        <value xsi:type="xsd:double">0.095</value>
+        <value xsi:type="xsd:double">0.121</value>
+    </values>
+    <values>
+        <field>VaR_Prediction__c</field>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>VaR_Score__c</field>
