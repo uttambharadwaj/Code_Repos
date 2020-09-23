@@ -749,7 +749,8 @@ public class UOpportunity {
 
         for(Campaign c: [Select Id, Coupon_code__c, Default_Campaign_Program__c
         from Campaign
-        Where Coupon_Code__c IN :couponcodesbyprofileid.values()]) //:couponcodes])
+        Where Coupon_Code__c IN :couponcodesbyprofileid.values()
+        OR Coupon_Code__c IN :couponcodesbyuserid.values()]) //:couponcodes])
         {
             //campaignsbycouponcode.put(c.coupon_code__c,c.Id);
             campaignsbycouponcode.put(c.coupon_code__c,c);
