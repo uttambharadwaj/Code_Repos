@@ -5,7 +5,7 @@
 public with sharing class CreditLineBeforeInsertHandler extends TriggerHandlerBase{
     public override void mainEntry(TriggerParameters tp) {
 
-        CreditLineHelper.SetCreditLineDataFields(tp.newList);
+        CreditLineHelper.setCreditLineDataFields(tp.newList);
 
     }
 }

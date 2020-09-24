@@ -4,7 +4,7 @@
 
 public with sharing class CreditLineHelper {
 
-    public static void SetCreditLineDataFields(List<Credit_Line_Adjustment__c> CreditLineList){
+    public static void setCreditLineDataFields(List<Credit_Line_Adjustment__c> CreditLineList){
         {
             List<AR_User_Cross_Reference__c> queryResults = new List<AR_User_Cross_Reference__c>();
             List<Credit_Line_Adjustment__c> ListToUpdate = new List<Credit_Line_Adjustment__c>();
