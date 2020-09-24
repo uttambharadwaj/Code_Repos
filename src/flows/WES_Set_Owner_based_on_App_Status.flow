@@ -22,7 +22,7 @@
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>isChangedDecision7_myRule_6_Application_Status_c</targetReference>
+            <targetReference>isChangedDecision5_myRule_4_Application_Status_c</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -43,14 +43,46 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>isChangedDecision7_myRule_6_Application_Status_c</targetReference>
+                <targetReference>isChangedDecision5_myRule_4_Application_Status_c</targetReference>
             </connector>
             <label>isChangedRule_2_myRule_1_OwnerId</label>
         </rules>
     </decisions>
     <decisions>
-        <name>isChangedDecision7_myRule_6_Application_Status_c</name>
-        <label>isChangedDecision7_myRule_6_Application_Status_c</label>
+        <name>isChangedDecision5_myRule_4_Application_Status_c</name>
+        <label>isChangedDecision5_myRule_4_Application_Status_c</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>isChangedDecision8_myRule_7_Application_Status_c</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>isChangedRule_5_myRule_4_Application_Status_c</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>myVariable_old</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>myVariable_old.Application_Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>myVariable_current.Application_Status__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>isChangedDecision8_myRule_7_Application_Status_c</targetReference>
+            </connector>
+            <label>isChangedRule_5_myRule_4_Application_Status_c</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>isChangedDecision8_myRule_7_Application_Status_c</name>
+        <label>isChangedDecision8_myRule_7_Application_Status_c</label>
         <locationX>0</locationX>
         <locationY>0</locationY>
         <defaultConnector>
@@ -58,7 +90,7 @@
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>isChangedRule_7_myRule_6_Application_Status_c</name>
+            <name>isChangedRule_8_myRule_7_Application_Status_c</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <leftValueReference>myVariable_old</leftValueReference>
@@ -77,7 +109,7 @@
             <connector>
                 <targetReference>myDecision</targetReference>
             </connector>
-            <label>isChangedRule_7_myRule_6_Application_Status_c</label>
+            <label>isChangedRule_8_myRule_7_Application_Status_c</label>
         </rules>
     </decisions>
     <decisions>
@@ -252,12 +284,12 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision5</targetReference>
+            <targetReference>myDecision6</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_4</name>
-            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5)</conditionLogic>
+            <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
@@ -364,13 +396,13 @@
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>Picklist</stringValue>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
                     <name>leftHandSideType</name>
                     <value>
-                        <stringValue>Picklist</stringValue>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -382,20 +414,20 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>Picklist</stringValue>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.Application_Status__c</leftValueReference>
+                <leftValueReference>myVariable_current.Application_Status_Team__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Draft</stringValue>
+                    <stringValue>Sales</stringValue>
                 </rightValue>
             </conditions>
             <conditions>
                 <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
-                        <stringValue>Picklist</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
@@ -413,13 +445,13 @@
                 <processMetadataValues>
                     <name>rightHandSideType</name>
                     <value>
-                        <stringValue>Picklist</stringValue>
+                        <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>myVariable_current.Application_Status__c</leftValueReference>
+                <leftValueReference>isChangedRule_5_myRule_4_Application_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Awaiting Security Check</stringValue>
+                    <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -435,13 +467,13 @@
                 <numberValue>2.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision5</name>
-        <label>myDecision5</label>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_6</name>
+            <name>myRule_7</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
@@ -601,20 +633,20 @@
                         <stringValue>Boolean</stringValue>
                     </value>
                 </processMetadataValues>
-                <leftValueReference>isChangedRule_7_myRule_6_Application_Status_c</leftValueReference>
+                <leftValueReference>isChangedRule_8_myRule_7_Application_Status_c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_6_A1</targetReference>
+                <targetReference>myRule_7_A1</targetReference>
             </connector>
             <label>Change Owner to Credit Agent</label>
         </rules>
     </decisions>
     <description>The Application owner is determined by the application status which is relevant to either the assigned Sales or Marketing Agent</description>
-    <interviewLabel>WES_Set_Owner_based_on_App_Status-16_InterviewLabel</interviewLabel>
+    <interviewLabel>WES_Set_Owner_based_on_App_Status-17_InterviewLabel</interviewLabel>
     <label>WES - Set Owner based on App Status</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -862,9 +894,9 @@
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_6_A1</name>
+        <name>myRule_7_A1</name>
         <label>Assign Owner to Credit Agent</label>
-        <locationX>600</locationX>
+        <locationX>700</locationX>
         <locationY>200</locationY>
         <filters>
             <processMetadataValues>

@@ -3,6 +3,10 @@
     <label>NAF Flex - LVAR</label>
     <protected>false</protected>
     <values>
+        <field>Auto_Pay_Self_Cure_DPD__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>Balance_Past_Due_2__c</field>
         <value xsi:nil="true"/>
     </values>
@@ -12,11 +16,11 @@
     </values>
     <values>
         <field>Balance_Past_Due__c</field>
-        <value xsi:type="xsd:double">100.0</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>Customer_Age__c</field>
-        <value xsi:type="xsd:double">3.0</value>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>DPD_Bucket_2__c</field>
@@ -35,12 +39,24 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>Follow_Up_Date_Increment__c</field>
+        <value xsi:type="xsd:double">12.0</value>
+    </values>
+    <values>
         <field>LOB__c</field>
         <value xsi:type="xsd:string">NAF</value>
     </values>
     <values>
         <field>Queue_Id__c</field>
-        <value xsi:type="xsd:string">00GL0000003AB3YMAW</value>
+        <value xsi:type="xsd:string">00G4u000004PjpIEAS</value>
+    </values>
+    <values>
+        <field>Self_cure_Score__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>Small_Balance_Dialer_Bypass__c</field>
+        <value xsi:nil="true"/>
     </values>
     <values>
         <field>VaR_Bad_Rate_2__c</field>
@@ -51,7 +67,11 @@
         <value xsi:nil="true"/>
     </values>
     <values>
+        <field>VaR_Prediction__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
         <field>VaR_Score__c</field>
-        <value xsi:type="xsd:double">150.0</value>
+        <value xsi:nil="true"/>
     </values>
 </CustomMetadata>

@@ -16,7 +16,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>The Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-6 invocable process failed to start because no records in your org match the record Id specified. In the entities that invoke Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-6, such as other processes, check the value for this input: SObjectId.</stringValue>
+                <stringValue>The Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-2 invocable process failed to start because no records in your org match the record Id specified. In the entities that invoke Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-2, such as other processes, check the value for this input: SObjectId.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -42,7 +42,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>The Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-6 invocable process failed to start because a valid value wasn&apos;t found. This can happen when entities that invoke Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-6, such as other processes, don&apos;t have values for either the SObject or SObjectId. For example: 
+                <stringValue>The Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-2 invocable process failed to start because a valid value wasn&apos;t found. This can happen when entities that invoke Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-2, such as other processes, don&apos;t have values for either the SObject or SObjectId. For example: 
 -An SObject or SObject ID wasn&apos;t specified.
 -A value might have been included, but it was null at runtime. </stringValue>
             </value>
@@ -203,7 +203,7 @@
         </rules>
     </decisions>
     <description>Invocable processes for when an NA Fleet opportunity stage changes</description>
-    <interviewLabel>Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-6_InterviewLabel</interviewLabel>
+    <interviewLabel>Opportunity_Invocable_NA_Fleet_Stage_Change_Processes-2_InterviewLabel</interviewLabel>
     <label>Opportunity - Invocable - NA Fleet Stage Change Processes</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -263,6 +263,19 @@
         <label>Close Open Tasks</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>WhatId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>SObject.Id</elementReference>
+            </value>
+        </filters>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -361,19 +374,42 @@
                 <stringValue>Completed</stringValue>
             </value>
         </filters>
-        <filters>
+        <inputAssignments>
             <processMetadataValues>
-                <name>implicit</name>
+                <name>dataType</name>
                 <value>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>Picklist</stringValue>
                 </value>
             </processMetadataValues>
-            <field>WhatId</field>
-            <operator>EqualTo</operator>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Activity Sub Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Activity_Sub_Type__c</field>
             <value>
-                <elementReference>SObject.Id</elementReference>
+                <stringValue>Phone Attempt</stringValue>
             </value>
-        </filters>
+        </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>

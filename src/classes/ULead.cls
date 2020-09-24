@@ -84,19 +84,11 @@ public class ULead {
     	GlobalSettings__c setting = GlobalSettings__c.getOrgDefaults();
     	
         List <CampaignMember> CampaignMemberstoInsert = new List <CampaignMember> ();
-
-        // Get any existing campaign members
-        Map<Id, CampaignMember> leadToExistingCampaignMember = new Map<Id, CampaignMember>();
-        for (CampaignMember campaignMember : [ SELECT Id, LeadId FROM CampaignMember WHERE LeadId IN :leads ]) {
-            if (campaignMember.LeadId != null && leadToExistingCampaignMember.get(campaignMember.LeadId) == null) {
-                leadToExistingCampaignMember.put(campaignMember.LeadId, campaignMember);
-            }
-        }
-
+        
         for(Lead l : leads)
         {
             if(l.Primary_Campaign__c !=null && l.sfcampaign_id__c == null
-            && l.recordtypeid != setting.Parent_Lead_Record_Type_Id__c && leadToExistingCampaignMember.get(l.Id) == null)
+            && l.recordtypeid != setting.Parent_Lead_Record_Type_Id__c && l.parent_lead__c == null)
             {
                 CampaignMember cm = new CampaignMember();
                 cm.LeadId = l.Id;

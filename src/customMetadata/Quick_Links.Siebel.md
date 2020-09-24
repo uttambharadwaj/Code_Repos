@@ -4,7 +4,7 @@
     <protected>false</protected>
     <values>
         <field>Link_URL__c</field>
-        <value xsi:type="xsd:string">http://siebel.wrightexpress.com/callcenter_enu/start.swe</value>
+        <value xsi:type="xsd:string">http://siebel.wexinc.com:7777/callcenter_enu/start.swe</value>
     </values>
     <values>
         <field>Open_in__c</field>

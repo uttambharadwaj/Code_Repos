@@ -1,67 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <actionCalls>
-        <processMetadataValues>
-            <name>emailAlertSelection</name>
-            <value>
-                <stringValue>Trigger_an_email_from_SF_upon_receipt_of_web_to_lead_form_from_MVF</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_1_A2</name>
-        <label>Sent An Email</label>
-        <locationX>100</locationX>
-        <locationY>300</locationY>
-        <actionName>Lead.Trigger_an_email_from_SF_upon_receipt_of_web_to_lead_form_from_MVF</actionName>
-        <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>myDecision4</targetReference>
-        </connector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <actionCalls>
-        <processMetadataValues>
-            <name>emailAlertSelection</name>
-            <value>
-                <stringValue>Trigger_an_email_from_SF_upon_receipt_of_web_to_lead_form_from_WQM</stringValue>
-            </value>
-        </processMetadataValues>
-        <name>myRule_5_A2</name>
-        <label>Send an Email</label>
-        <locationX>500</locationX>
-        <locationY>300</locationY>
-        <actionName>Lead.Trigger_an_email_from_SF_upon_receipt_of_web_to_lead_form_from_WQM</actionName>
-        <actionType>emailAlert</actionType>
-        <connector>
-            <targetReference>myDecision8</targetReference>
-        </connector>
-        <inputParameters>
-            <name>SObjectRowId</name>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
-    <assignments>
-        <name>myVariable_waitStartTimeAssignment</name>
-        <label>myVariable_waitStartTimeAssignment</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>myVariable_waitStartTimeVariable</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Flow.CurrentDateTime</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>myDecision</targetReference>
-        </connector>
-    </assignments>
     <decisions>
         <processMetadataValues>
             <name>index</name>
@@ -403,23 +341,54 @@
                 <numberValue>3.0</numberValue>
             </value>
         </processMetadataValues>
-        <name>myDecision10</name>
-        <label>myDecision10</label>
+        <name>myDecision13</name>
+        <label>myDecision13</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision15</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
-            <name>myRule_11</name>
+            <name>myRule_14</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>formula_myRule_11</leftValueReference>
+                <leftValueReference>formula_myRule_14</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
                     <booleanValue>true</booleanValue>
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>myRule_11_A1</targetReference>
+                <targetReference>myRule_14_A1</targetReference>
+            </connector>
+            <label>Check for State and Fueling Method</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>4.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision15</name>
+        <label>myDecision15</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_16</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_16</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_16_A1</targetReference>
             </connector>
             <label>Akkroo Lead Capture Set Campaign</label>
         </rules>
@@ -708,7 +677,7 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <defaultConnector>
-            <targetReference>myDecision10</targetReference>
+            <targetReference>myDecision13</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
@@ -724,7 +693,7 @@
             <connector>
                 <targetReference>myRule_9_A1</targetReference>
             </connector>
-            <label>Check for State and Fueling Method</label>
+            <label>New Lead Begin Cycle</label>
         </rules>
     </decisions>
     <description>Implements the one Process per object design pattern</description>
@@ -732,8 +701,47 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
+                <stringValue>TODAY()</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_10_myRule_9_A2_0395946903</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>$User.Id </stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_11_myRule_9_A2_8282214556</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Id}</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>TODAY()</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_12_myRule_9_A1_4872524005</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
                 <stringValue>IF(
-  AND(BEGINS([Lead].OwnerId, &quot;00G&quot;), [Lead].Owner:Queue.DeveloperName = &quot;Pardot_Queue&quot;), &quot;0120g000000HrgJAAS&quot;, /*If Owner = Queue, set to NA as these are assigned to Pardot Queue*/
+  AND(BEGINS([Lead].OwnerId, &quot;00G&quot;), [Lead].Owner:Queue.DeveloperName = &quot;Pardot_Queue&quot;), &quot;0120g000000HrgJAAS&quot;, /*If Owner Type = Queue and Owner = Pardot Queue, set to NA*/
+IF(
+  AND([Lead].qRouting__c = &quot;CPTRAVELEMEA&quot;, BEGINS([Lead].OwnerId, &quot;00G&quot;), [Lead].Owner:Queue.DeveloperName = &quot;MastercardWebQueue&quot;), &quot;0120g000000HrgIAAS&quot;, /*If qRouting = Travel EMEA and Owner Type = Queue and Owner = Mastercard Queue, set to EU*/
+IF(
+  AND([Lead].qRouting__c = &quot;CPTRAVELNA&quot;, BEGINS([Lead].OwnerId, &quot;00G&quot;), [Lead].Owner:Queue.DeveloperName = &quot;MastercardWebQueue&quot;), &quot;0120g000000HrgJAAS&quot;, /*If qRouting = Travel NA and Owner Type = Queue and Owner = Mastercard Queue, set to NA*/
+IF(
+  AND([Lead].qRouting__c = &quot;CPPAYABLESNA&quot;, BEGINS([Lead].OwnerId, &quot;00G&quot;), [Lead].Owner:Queue.DeveloperName = &quot;WEX_Payables_Lead_Queue&quot;), &quot;0120g000000HrgKAAS&quot;, /*If qRouting = Payables NA and Owner Type = Queue and Owner = Payables Queue, set to Payables*/
 IF(
   AND(BEGINS([Lead].OwnerId, &quot;005&quot;), CONTAINS([Lead].Owner:User.UserRole.DeveloperName, &quot;EFS_&quot;)), &quot;0120g000000HrgKAAS&quot;,
 IF(
@@ -743,14 +751,20 @@ IF(
 IF(
   AND(BEGINS([Lead].OwnerId, &quot;005&quot;), CONTAINS([Lead].Owner:User.UserRole.DeveloperName, &quot;_EU&quot;)), &quot;0120g000000HrgIAAS&quot;,
 IF(
-  AND(BEGINS([Lead].OwnerId, &quot;005&quot;), CONTAINS([Lead].Owner:User.UserRole.DeveloperName, &quot;_NA&quot;)), &quot;0120g000000HrgJAAS&quot;, &quot;0120g000000HrgIAAS&quot; /*Default remaining to EU as these are assigned to Clare Murphy*/
-))))))</stringValue>
+  AND(BEGINS([Lead].OwnerId, &quot;005&quot;), CONTAINS([Lead].Owner:User.UserRole.DeveloperName, &quot;_NA&quot;)), &quot;0120g000000HrgJAAS&quot;, &quot;0120g000000HrgIAAS&quot; /*Default remaining to EU as these are probably assigned to Clare Murphy*/
+)))))))))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_12_myRule_11_A1_7121224139</name>
+        <name>formula_17_myRule_16_A1_1768554157</name>
         <dataType>String</dataType>
         <expression>IF(
-  AND(BEGINS({!myVariable_current.OwnerId}, &quot;00G&quot;), {!myVariable_current.Owner:Queue.DeveloperName} = &quot;Pardot_Queue&quot;), &quot;0120g000000HrgJAAS&quot;, /*If Owner = Queue, set to NA as these are assigned to Pardot Queue*/
+  AND(BEGINS({!myVariable_current.OwnerId}, &quot;00G&quot;), {!myVariable_current.Owner:Queue.DeveloperName} = &quot;Pardot_Queue&quot;), &quot;0120g000000HrgJAAS&quot;, /*If Owner Type = Queue and Owner = Pardot Queue, set to NA*/
+IF(
+  AND({!myVariable_current.qRouting__c} = &quot;CPTRAVELEMEA&quot;, BEGINS({!myVariable_current.OwnerId}, &quot;00G&quot;), {!myVariable_current.Owner:Queue.DeveloperName} = &quot;MastercardWebQueue&quot;), &quot;0120g000000HrgIAAS&quot;, /*If qRouting = Travel EMEA and Owner Type = Queue and Owner = Mastercard Queue, set to EU*/
+IF(
+  AND({!myVariable_current.qRouting__c} = &quot;CPTRAVELNA&quot;, BEGINS({!myVariable_current.OwnerId}, &quot;00G&quot;), {!myVariable_current.Owner:Queue.DeveloperName} = &quot;MastercardWebQueue&quot;), &quot;0120g000000HrgJAAS&quot;, /*If qRouting = Travel NA and Owner Type = Queue and Owner = Mastercard Queue, set to NA*/
+IF(
+  AND({!myVariable_current.qRouting__c} = &quot;CPPAYABLESNA&quot;, BEGINS({!myVariable_current.OwnerId}, &quot;00G&quot;), {!myVariable_current.Owner:Queue.DeveloperName} = &quot;WEX_Payables_Lead_Queue&quot;), &quot;0120g000000HrgKAAS&quot;, /*If qRouting = Payables NA and Owner Type = Queue and Owner = Payables Queue, set to Payables*/
 IF(
   AND(BEGINS({!myVariable_current.OwnerId}, &quot;005&quot;), CONTAINS({!myVariable_current.Owner:User.UserRole.DeveloperName}, &quot;EFS_&quot;)), &quot;0120g000000HrgKAAS&quot;,
 IF(
@@ -760,8 +774,8 @@ IF(
 IF(
   AND(BEGINS({!myVariable_current.OwnerId}, &quot;005&quot;), CONTAINS({!myVariable_current.Owner:User.UserRole.DeveloperName}, &quot;_EU&quot;)), &quot;0120g000000HrgIAAS&quot;,
 IF(
-  AND(BEGINS({!myVariable_current.OwnerId}, &quot;005&quot;), CONTAINS({!myVariable_current.Owner:User.UserRole.DeveloperName}, &quot;_NA&quot;)), &quot;0120g000000HrgJAAS&quot;, &quot;0120g000000HrgIAAS&quot; /*Default remaining to EU as these are assigned to Clare Murphy*/
-))))))</expression>
+  AND(BEGINS({!myVariable_current.OwnerId}, &quot;005&quot;), CONTAINS({!myVariable_current.Owner:User.UserRole.DeveloperName}, &quot;_NA&quot;)), &quot;0120g000000HrgJAAS&quot;, &quot;0120g000000HrgIAAS&quot; /*Default remaining to EU as these are probably assigned to Clare Murphy*/
+)))))))))</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -770,7 +784,7 @@ IF(
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_2688488489</name>
+        <name>formula_2_myRule_1_A1_1525024044</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -781,7 +795,7 @@ IF(
                 <stringValue>&apos;Automated Email has been sent to prospect&apos;</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_3_myRule_1_A1_5224126385</name>
+        <name>formula_3_myRule_1_A1_6380049916</name>
         <dataType>String</dataType>
         <expression>&apos;Automated Email has been sent to prospect&apos;</expression>
     </formulas>
@@ -792,7 +806,7 @@ IF(
                 <stringValue>TODAY()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_6_myRule_5_A1_4276374763</name>
+        <name>formula_6_myRule_5_A1_0870971640</name>
         <dataType>Date</dataType>
         <expression>TODAY()</expression>
     </formulas>
@@ -803,9 +817,20 @@ IF(
                 <stringValue>&apos;Automated WQM Email has been sent to prospect&apos;</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_7_myRule_5_A1_6726227168</name>
+        <name>formula_7_myRule_5_A1_2549185681</name>
         <dataType>String</dataType>
         <expression>&apos;Automated WQM Email has been sent to prospect&apos;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>[Lead].i2i_Coupon_Code_Pass__c = &apos;LB1&apos; || [Lead].i2i_Coupon_Code_Pass__c =&apos;LB2&apos; || [Lead].i2i_Coupon_Code_Pass__c =&apos;LB3&apos; || [Lead].i2i_Coupon_Code_Pass__c = &apos;LB4&apos; ||[Lead].i2i_Coupon_Code_Pass__c = &apos;LB5&apos; || [Lead].i2i_Coupon_Code_Pass__c = &apos;LB6&apos; ||[Lead].i2i_Coupon_Code_Pass__c =&apos;LB7&apos; ||  [Lead].i2i_Coupon_Code_Pass__c =&apos;LB8&apos; ||[Lead].i2i_Coupon_Code_Pass__c =&apos;LB9&apos;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_14</name>
+        <dataType>Boolean</dataType>
+        <expression>{!myVariable_current.i2i_Coupon_Code_Pass__c} = &apos;LB1&apos; || {!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB2&apos; || {!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB3&apos; || {!myVariable_current.i2i_Coupon_Code_Pass__c} = &apos;LB4&apos; ||{!myVariable_current.i2i_Coupon_Code_Pass__c} = &apos;LB5&apos; || {!myVariable_current.i2i_Coupon_Code_Pass__c} = &apos;LB6&apos; ||{!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB7&apos; ||  {!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB8&apos; ||{!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB9&apos;</expression>
     </formulas>
     <formulas>
         <processMetadataValues>
@@ -816,7 +841,7 @@ IF(
   ISPICKVAL([Lead].Lead_Source_Subtype__c, &quot;Akkroo Lead Capture&quot;))</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_myRule_11</name>
+        <name>formula_myRule_16</name>
         <dataType>Boolean</dataType>
         <expression>AND(
   ISPICKVAL({!myVariable_current.LeadSource}, &quot;Event - Marketing&quot;),
@@ -826,14 +851,46 @@ IF(
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>[Lead].i2i_Coupon_Code_Pass__c = &apos;LB1&apos; || [Lead].i2i_Coupon_Code_Pass__c =&apos;LB2&apos; || [Lead].i2i_Coupon_Code_Pass__c =&apos;LB3&apos; || [Lead].i2i_Coupon_Code_Pass__c = &apos;LB4&apos; ||[Lead].i2i_Coupon_Code_Pass__c = &apos;LB5&apos; || [Lead].i2i_Coupon_Code_Pass__c = &apos;LB6&apos; ||[Lead].i2i_Coupon_Code_Pass__c =&apos;LB7&apos; ||  [Lead].i2i_Coupon_Code_Pass__c =&apos;LB8&apos; ||[Lead].i2i_Coupon_Code_Pass__c =&apos;LB9&apos;</stringValue>
+                <stringValue>OR(
+  AND(
+    NOT(ISBLANK([Lead].RecordTypeId)), /*For BOCA Leads*/
+    NOT(CONTAINS(&quot;1st Call:Legacy:Import&quot;, TEXT([Lead].Call_Stage__c))),
+    CONTAINS(&quot;Fleet Lead:Asia Corporate Payments Lead:AU Corporate Payments Lead:EU Corporate Payments Lead:NA Corporate Payments Lead:WEX Payables&quot;, [Lead].RecordType.Name),
+    LEN([Lead].Lead_Owner_Profile__c) &gt; 0, /*ONLY FIRE IF USER - NOT QUEUE*/
+    NOT(ISPICKVAL([Lead].Product_Service_Type__c, &quot;Permits&quot;)),
+    NOT(ISPICKVAL([Lead].LeadSource, &quot;Existing SFDC Record&quot;)),
+    [Lead].Lead_Owner_Profile__c &lt;&gt; &quot;RTS Partners - F1&quot;
+    ),
+  AND(
+    NOT(ISBLANK([Lead].RecordTypeId)), /*For BOCA Leads*/
+    CONTAINS(&quot;1st Call&quot;, TEXT([Lead].Call_Stage__c)),
+    CONTAINS(&quot;Fleet Lead:Asia Corporate Payments Lead:AU Corporate Payments Lead:EU Corporate Payments Lead:NA Corporate Payments Lead:WEX Payables&quot;, [Lead].RecordType.Name),
+    LEN([Lead].Lead_Owner_Profile__c) &gt; 0 /*ONLY FIRE IF USER - NOT QUEUE*/
+    )
+  )</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_9</name>
         <dataType>Boolean</dataType>
-        <expression>{!myVariable_current.i2i_Coupon_Code_Pass__c} = &apos;LB1&apos; || {!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB2&apos; || {!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB3&apos; || {!myVariable_current.i2i_Coupon_Code_Pass__c} = &apos;LB4&apos; ||{!myVariable_current.i2i_Coupon_Code_Pass__c} = &apos;LB5&apos; || {!myVariable_current.i2i_Coupon_Code_Pass__c} = &apos;LB6&apos; ||{!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB7&apos; ||  {!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB8&apos; ||{!myVariable_current.i2i_Coupon_Code_Pass__c} =&apos;LB9&apos;</expression>
+        <expression>OR(
+  AND(
+    NOT(ISBLANK({!myVariable_current.RecordTypeId})), /*For BOCA Leads*/
+    NOT(CONTAINS(&quot;1st Call:Legacy:Import&quot;, TEXT({!myVariable_current.Call_Stage__c}))),
+    CONTAINS(&quot;Fleet Lead:Asia Corporate Payments Lead:AU Corporate Payments Lead:EU Corporate Payments Lead:NA Corporate Payments Lead:WEX Payables&quot;, {!myVariable_current.RecordType.Name}),
+    LEN({!myVariable_current.Lead_Owner_Profile__c}) &gt; 0, /*ONLY FIRE IF USER - NOT QUEUE*/
+    NOT(ISPICKVAL({!myVariable_current.Product_Service_Type__c}, &quot;Permits&quot;)),
+    NOT(ISPICKVAL({!myVariable_current.LeadSource}, &quot;Existing SFDC Record&quot;)),
+    {!myVariable_current.Lead_Owner_Profile__c} &lt;&gt; &quot;RTS Partners - F1&quot;
+    ),
+  AND(
+    NOT(ISBLANK({!myVariable_current.RecordTypeId})), /*For BOCA Leads*/
+    CONTAINS(&quot;1st Call&quot;, TEXT({!myVariable_current.Call_Stage__c})),
+    CONTAINS(&quot;Fleet Lead:Asia Corporate Payments Lead:AU Corporate Payments Lead:EU Corporate Payments Lead:NA Corporate Payments Lead:WEX Payables&quot;, {!myVariable_current.RecordType.Name}),
+    LEN({!myVariable_current.Lead_Owner_Profile__c}) &gt; 0 /*ONLY FIRE IF USER - NOT QUEUE*/
+    )
+  )</expression>
     </formulas>
-    <interviewLabel>Leads-10_InterviewLabel</interviewLabel>
+    <interviewLabel>Leads-4_InterviewLabel</interviewLabel>
     <label>Leads</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -862,11 +919,11 @@ IF(
     <processType>Workflow</processType>
     <recordCreates>
         <name>myRule_1_A1</name>
-        <label>Log in Task</label>
+        <label>Log a Task</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_1_A2</targetReference>
+            <targetReference>myDecision4</targetReference>
         </connector>
         <inputAssignments>
             <processMetadataValues>
@@ -895,7 +952,7 @@ IF(
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_2688488489</elementReference>
+                <elementReference>formula_2_myRule_1_A1_1525024044</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -925,7 +982,7 @@ IF(
             </processMetadataValues>
             <field>Comments__c</field>
             <value>
-                <elementReference>formula_3_myRule_1_A1_5224126385</elementReference>
+                <elementReference>formula_3_myRule_1_A1_6380049916</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1146,7 +1203,7 @@ IF(
         <locationX>500</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_5_A2</targetReference>
+            <targetReference>myDecision8</targetReference>
         </connector>
         <inputAssignments>
             <processMetadataValues>
@@ -1175,7 +1232,7 @@ IF(
             </processMetadataValues>
             <field>ActivityDate</field>
             <value>
-                <elementReference>formula_6_myRule_5_A1_4276374763</elementReference>
+                <elementReference>formula_6_myRule_5_A1_0870971640</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1205,7 +1262,7 @@ IF(
             </processMetadataValues>
             <field>Comments__c</field>
             <value>
-                <elementReference>formula_7_myRule_5_A1_6726227168</elementReference>
+                <elementReference>formula_7_myRule_5_A1_2549185681</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -1420,48 +1477,80 @@ IF(
         </inputAssignments>
         <object>Task</object>
     </recordCreates>
-    <recordUpdates>
-        <processMetadataValues>
-            <name>evaluationType</name>
-            <value>
-                <stringValue>always</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>extraTypeInfo</name>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>isChildRelationship</name>
-            <value>
-                <booleanValue>false</booleanValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>reference</name>
-            <value>
-                <stringValue>[Lead]</stringValue>
-            </value>
-        </processMetadataValues>
-        <processMetadataValues>
-            <name>referenceTargetField</name>
-        </processMetadataValues>
-        <name>myRule_11_A1</name>
-        <label>Set Record Type to Owner Region</label>
-        <locationX>1100</locationX>
-        <locationY>200</locationY>
-        <filters>
+    <recordCreates>
+        <name>myRule_9_A2</name>
+        <label>Create 1st Call Task</label>
+        <locationX>900</locationX>
+        <locationY>300</locationY>
+        <connector>
+            <targetReference>myDecision13</targetReference>
+        </connector>
+        <inputAssignments>
             <processMetadataValues>
-                <name>implicit</name>
+                <name>dataType</name>
                 <value>
-                    <booleanValue>true</booleanValue>
+                    <stringValue>Date</stringValue>
                 </value>
             </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Due Date Only</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>ActivityDate</field>
             <value>
-                <elementReference>myVariable_current.Id</elementReference>
+                <elementReference>formula_10_myRule_9_A2_0395946903</elementReference>
             </value>
-        </filters>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Currency ISO Code</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>CurrencyIsoCode</field>
+            <value>
+                <stringValue>USD</stringValue>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -1478,13 +1567,7 @@ IF(
             <processMetadataValues>
                 <name>leftHandSideLabel</name>
                 <value>
-                    <stringValue>Record Type ID</stringValue>
-                </value>
-            </processMetadataValues>
-            <processMetadataValues>
-                <name>leftHandSideReferenceTo</name>
-                <value>
-                    <stringValue>RecordType</stringValue>
+                    <stringValue>Assigned To ID</stringValue>
                 </value>
             </processMetadataValues>
             <processMetadataValues>
@@ -1493,13 +1576,181 @@ IF(
                     <stringValue>Formula</stringValue>
                 </value>
             </processMetadataValues>
-            <field>RecordTypeId</field>
+            <field>OwnerId</field>
             <value>
-                <elementReference>formula_12_myRule_11_A1_7121224139</elementReference>
+                <elementReference>formula_11_myRule_9_A2_8282214556</elementReference>
             </value>
         </inputAssignments>
-        <object>Lead</object>
-    </recordUpdates>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Priority</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Priority</field>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status</field>
+            <value>
+                <stringValue>Not Started</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Subject</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Subject</field>
+            <value>
+                <stringValue>Place 1st Call</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Type</field>
+            <value>
+                <stringValue>Call</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Name ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Contact;Lead</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>WhoId</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+    </recordCreates>
     <recordUpdates>
         <processMetadataValues>
             <name>evaluationType</name>
@@ -1525,12 +1776,12 @@ IF(
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_9_A1</name>
+        <name>myRule_14_A1</name>
         <label>Disqualify the lead</label>
-        <locationX>900</locationX>
+        <locationX>1400</locationX>
         <locationY>200</locationY>
         <connector>
-            <targetReference>myRule_9_A2</targetReference>
+            <targetReference>myRule_14_A2</targetReference>
         </connector>
         <filters>
             <processMetadataValues>
@@ -1693,13 +1944,26 @@ IF(
         <processMetadataValues>
             <name>referenceTargetField</name>
         </processMetadataValues>
-        <name>myRule_9_A2</name>
+        <name>myRule_14_A2</name>
         <label>Disqualify as Current Customer</label>
-        <locationX>900</locationX>
+        <locationX>1400</locationX>
         <locationY>300</locationY>
         <connector>
-            <targetReference>myDecision10</targetReference>
+            <targetReference>myDecision15</targetReference>
         </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
         <filters>
             <processMetadataValues>
                 <name>implicit</name>
@@ -1747,19 +2011,6 @@ IF(
             <operator>EqualTo</operator>
             <value>
                 <stringValue>WEX</stringValue>
-            </value>
-        </filters>
-        <filters>
-            <processMetadataValues>
-                <name>implicit</name>
-                <value>
-                    <booleanValue>true</booleanValue>
-                </value>
-            </processMetadataValues>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>myVariable_current.Id</elementReference>
             </value>
         </filters>
         <inputAssignments>
@@ -1836,7 +2087,206 @@ IF(
         </inputAssignments>
         <object>Lead</object>
     </recordUpdates>
-    <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Lead]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_16_A1</name>
+        <label>Set Record Type to Owner Region</label>
+        <locationX>1600</locationX>
+        <locationY>200</locationY>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Record Type ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>RecordType</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>RecordTypeId</field>
+            <value>
+                <elementReference>formula_17_myRule_16_A1_1768554157</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Lead</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Lead]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_9_A1</name>
+        <label>Change Call Stage and Next Contact</label>
+        <locationX>900</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myRule_9_A2</targetReference>
+        </connector>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Call Stage</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Call_Stage__c</field>
+            <value>
+                <stringValue>1st Call</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Next Contact</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Next_Contact__c</field>
+            <value>
+                <elementReference>formula_12_myRule_9_A1_4872524005</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Lead</object>
+    </recordUpdates>
+    <startElementReference>myDecision</startElementReference>
     <status>Active</status>
     <variables>
         <name>myVariable_current</name>
@@ -1853,15 +2303,5 @@ IF(
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Lead</objectType>
-    </variables>
-    <variables>
-        <name>myVariable_waitStartTimeVariable</name>
-        <dataType>DateTime</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <elementReference>$Flow.CurrentDateTime</elementReference>
-        </value>
     </variables>
 </Flow>
