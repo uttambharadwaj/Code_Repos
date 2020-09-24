@@ -2,5 +2,5 @@
 <!--Displaying the button on a page requires use of the standard controller for that specific object.
         Page is in a component so that a vf page can be created quickly and just wrap the component, allowing the same logic
         to serve multiple objects.   -->
-    <c:MCTriggeredEmailComponent pageObj2="{!Application_Request__c}"/>
+    <c:MCTriggeredEmailComponent pageObjId="{!pageObjId}"/>
 </apex:page>

@@ -17,8 +17,8 @@ public class MCTriggeredEmailControllerTest {
 
         MCTriggeredEmailController mcTriggerEmailTest = new MCTriggeredEmailController(sc);
         mcTriggerEmailTest.selectedMCTriggeredEmailKey = MCConnectorTest.TRIGGERED_EMAIL_KEY;
-        mcTriggerEmailTest.pageObj = testCase;
-        mcTriggerEmailTest.init();
+        mcTriggerEmailTest.pageObjId = testCase.Id;
+        mcTriggerEmailTest.componentInit();
         mcTriggerEmailTest.sendMCTriggeredEmail();
 
         Test.stopTest();
