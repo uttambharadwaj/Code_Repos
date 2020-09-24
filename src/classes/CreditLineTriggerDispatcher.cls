@@ -8,8 +8,8 @@
 */
 
 public class CreditLineTriggerDispatcher extends TriggerDispatcherBase {
-    private static Boolean isAfterInsertProcessing = false;
-    private static Boolean isAfterUpdateProcessing = false;
+    private static Boolean isBeforeInsertProcessing = false;
+    private static Boolean isBeforeUpdateProcessing = false;
 
     /**
     * @description Called by the trigger framework to carry out the actions after the record(s) are created. If there is an
@@ -17,11 +17,11 @@ public class CreditLineTriggerDispatcher extends TriggerDispatcherBase {
     *               in the original call.
     * @param TriggerParameters Contains the trigger parameters which includes the record(s) that got created.
     */
-    public virtual override void afterInsert(TriggerParameters tp) {
-        if (isAfterInsertProcessing) execute(null, tp, TriggerParameters.TriggerEvent.afterInsert); else {
-            isAfterInsertProcessing = true;
-            execute(new CreditLineAfterInsertHandler(), tp, TriggerParameters.TriggerEvent.afterInsert);
-            isAfterInsertProcessing = false;
+    public virtual override void beforeInsert(TriggerParameters tp) {
+        if (isBeforeInsertProcessing) execute(null, tp, TriggerParameters.TriggerEvent.beforeInsert); else {
+            isBeforeInsertProcessing = true;
+            execute(new CreditLineBeforeInsertHandler(), tp, TriggerParameters.TriggerEvent.beforeInsert);
+            isBeforeInsertProcessing = false;
         }
     }
 
@@ -31,11 +31,11 @@ public class CreditLineTriggerDispatcher extends TriggerDispatcherBase {
     *               in the original call.
     * @param TriggerParameters Contains the trigger parameters which includes the record(s) that got updated.
     */
-    public virtual override void afterUpdate(TriggerParameters tp) {
-        if (isAfterUpdateProcessing) execute(null, tp, TriggerParameters.TriggerEvent.afterUpdate); else {
-            isAfterUpdateProcessing = true;
-            execute(new CreditLineAfterUpdateHandler(), tp, TriggerParameters.TriggerEvent.afterUpdate);
-            isAfterUpdateProcessing = false;
+    public virtual override void beforeUpdate(TriggerParameters tp) {
+        if (isBeforeUpdateProcessing) execute(null, tp, TriggerParameters.TriggerEvent.beforeUpdate); else {
+            isBeforeUpdateProcessing = true;
+            execute(new CreditLineBeforeUpdateHandler(), tp, TriggerParameters.TriggerEvent.beforeUpdate);
+            isBeforeUpdateProcessing = false;
         }
     }
 
