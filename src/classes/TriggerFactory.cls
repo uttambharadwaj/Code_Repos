@@ -17,14 +17,15 @@ public class TriggerFactory{
     'FleetEnrollment__c'=>'FleetEnroll',
     'OnlineApplication__c'=>'OnlineApp',
     'CP_Application_Request__c'=>'CPAppRequest',
-    'Application_History__c'=>'AppHistory'};
+    'Application_History__c'=>'AppHistory',
+    'Credit_Line_Adjustment__c'=>'CreditLine'};
 
     /*
     * description Creates the appropriate dispatcher and dispatches the trigger event to the dispatcher's event handler method.
     *               This is the method called by every trigger.
     * param Schema.sObjectType Object type to process (SObject.sObjectType)
     */
-    public static void createTriggerDispatcher(Schema.sObjectType soType){
+    public static void createTriggerDispatcher(Schema.SObjectType soType){
 
         if(disabledTriggers(soType))
             return;
