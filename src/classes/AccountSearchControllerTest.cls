@@ -255,11 +255,12 @@ public class AccountSearchControllerTest {
 		AccountSearchController.SearchResultsWrapper resultsWrapper2 = AccountSearchController.searchServ('CARDNUMBEROTR', '600296123456789012');
 
 		Test.stopTest();
-		System.assertEquals(1, resultsWrapper2.results.size());
 		List<AccountSearchController.SearchResultsRow> resultsList =  resultsWrapper2.results;
 		for (AccountSearchController.SearchResultsRow dto : resultsList) {
 			System.debug(dto);
 		}
+		System.assertEquals(1, resultsWrapper2.results.size());
+
 
 	}
 

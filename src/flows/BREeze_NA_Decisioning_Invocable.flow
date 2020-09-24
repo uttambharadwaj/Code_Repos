@@ -16,13 +16,13 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>The BREeze_NA_Decisioning_Invocable-9 invocable process failed to start because no records in your org match the record Id specified. In the entities that invoke BREeze_NA_Decisioning_Invocable-9, such as other processes, check the value for this input: SObjectId.</stringValue>
+                <stringValue>The BREeze_NA_Decisioning_Invocable-10 invocable process failed to start because no records in your org match the record Id specified. In the entities that invoke BREeze_NA_Decisioning_Invocable-10, such as other processes, check the value for this input: SObjectId.</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
             <name>emailAddresses</name>
             <value>
-                <stringValue>james.harrell@wexinc.com</stringValue>
+                <stringValue>leela.howland@wexinc.com</stringValue>
             </value>
         </inputParameters>
     </actionCalls>
@@ -42,7 +42,7 @@
         <inputParameters>
             <name>emailBody</name>
             <value>
-                <stringValue>The BREeze_NA_Decisioning_Invocable-9 invocable process failed to start because a valid value wasn&apos;t found. This can happen when entities that invoke BREeze_NA_Decisioning_Invocable-9, such as other processes, don&apos;t have values for either the SObject or SObjectId. For example: 
+                <stringValue>The BREeze_NA_Decisioning_Invocable-10 invocable process failed to start because a valid value wasn&apos;t found. This can happen when entities that invoke BREeze_NA_Decisioning_Invocable-10, such as other processes, don&apos;t have values for either the SObject or SObjectId. For example: 
 -An SObject or SObject ID wasn&apos;t specified.
 -A value might have been included, but it was null at runtime. </stringValue>
             </value>
@@ -50,7 +50,7 @@
         <inputParameters>
             <name>emailAddresses</name>
             <value>
-                <stringValue>james.harrell@wexinc.com</stringValue>
+                <stringValue>leela.howland@wexinc.com</stringValue>
             </value>
         </inputParameters>
     </actionCalls>
@@ -2185,9 +2185,7 @@ ISPICKVAL({!SObject.Fraud_Decision__c},&apos;&apos;),
                 <stringValue>AND($User.Id !=&apos;00570000001tweu&apos;,
 ISPICKVAL([Application_Request__c].Application_Stage__c,&apos;Adjudication&apos;),
 ISPICKVAL([Application_Request__c].Status__c,&apos;Pending Decision&apos;),
-[Application_Request__c].Running_Credit_Decisioning__c,
-[Application_Request__c].ABA_Routing_Number__c &lt;&gt; null,
-[Application_Request__c].Checking_Account_Number__c &lt;&gt; null
+[Application_Request__c].Running_Credit_Decisioning__c
 )</stringValue>
             </value>
         </processMetadataValues>
@@ -2196,9 +2194,7 @@ ISPICKVAL([Application_Request__c].Status__c,&apos;Pending Decision&apos;),
         <expression>AND({!$User.Id} !=&apos;00570000001tweu&apos;,
 ISPICKVAL({!SObject.Application_Stage__c},&apos;Adjudication&apos;),
 ISPICKVAL({!SObject.Status__c},&apos;Pending Decision&apos;),
-{!SObject.Running_Credit_Decisioning__c},
-{!SObject.ABA_Routing_Number__c} &lt;&gt; null,
-{!SObject.Checking_Account_Number__c} &lt;&gt; null
+{!SObject.Running_Credit_Decisioning__c}
 )</expression>
     </formulas>
     <formulas>
@@ -2239,7 +2235,7 @@ ISPICKVAL({!SObject.Status__c},&apos;Pending Decision&apos;),
 {!SObject.Running_Credit_Decisioning__c}
 )</expression>
     </formulas>
-    <interviewLabel>BREeze_NA_Decisioning_Invocable-9_InterviewLabel</interviewLabel>
+    <interviewLabel>BREeze_NA_Decisioning_Invocable-10_InterviewLabel</interviewLabel>
     <label>BREeze NA Decisioning - Invocable</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -2267,9 +2263,7 @@ ISPICKVAL({!SObject.Status__c},&apos;Pending Decision&apos;),
         <object>Application_Request__c</object>
         <outputReference>SObject</outputReference>
         <queriedFields>Application_Stage__c</queriedFields>
-        <queriedFields>ABA_Routing_Number__c</queriedFields>
         <queriedFields>Running_Credit_Decisioning__c</queriedFields>
-        <queriedFields>Checking_Account_Number__c</queriedFields>
         <queriedFields>Id</queriedFields>
         <queriedFields>Fraud_Decision__c</queriedFields>
         <queriedFields>App_Signer_Check__c</queriedFields>
