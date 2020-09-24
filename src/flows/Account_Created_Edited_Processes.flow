@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <assignments>
-        <name>myVariable_waitStartTimeAssignment</name>
-        <label>myVariable_waitStartTimeAssignment</label>
-        <locationX>0</locationX>
-        <locationY>0</locationY>
-        <assignmentItems>
-            <assignToReference>myVariable_waitStartTimeVariable</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>$Flow.CurrentDateTime</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>myDecision</targetReference>
-        </connector>
-    </assignments>
     <decisions>
         <processMetadataValues>
             <name>index</name>
@@ -27,6 +11,9 @@
         <label>myDecision</label>
         <locationX>50</locationX>
         <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision3</targetReference>
+        </defaultConnector>
         <defaultConnectorLabel>default</defaultConnectorLabel>
         <rules>
             <name>myRule_1</name>
@@ -44,6 +31,34 @@
             <label>EFS DW Added Carrier ID?</label>
         </rules>
     </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision3</name>
+        <label>myDecision3</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_4</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_4</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_4_A1</targetReference>
+            </connector>
+            <label>Create Credit National ID</label>
+        </rules>
+    </decisions>
     <description>Account Object Processes when record is created or edited</description>
     <formulas>
         <processMetadataValues>
@@ -52,7 +67,7 @@
                 <stringValue>NOW()</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_7053985258</name>
+        <name>formula_2_myRule_1_A1_4244122167</name>
         <dataType>DateTime</dataType>
         <expression>NOW()</expression>
     </formulas>
@@ -60,24 +75,35 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>AND(
+                <stringValue>AND($User.Id !=&apos;00570000001tweu&apos;,AND(
 $User.Alias == &quot;edw&quot;,
 ISCHANGED( [Account].Carrier_ID__c ),
 ISBLANK(PRIORVALUE( [Account].Carrier_ID__c )),
 NOT(ISBLANK( [Account].Carrier_ID__c ))
-)</stringValue>
+))</stringValue>
             </value>
         </processMetadataValues>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
-        <expression>AND(
+        <expression>AND({!$User.Id} !=&apos;00570000001tweu&apos;,AND(
 {!$User.Alias} == &quot;edw&quot;,
 ISCHANGED( {!myVariable_current.Carrier_ID__c} ),
 ISBLANK(PRIORVALUE( {!myVariable_current.Carrier_ID__c} )),
 NOT(ISBLANK( {!myVariable_current.Carrier_ID__c} ))
-)</expression>
+))</expression>
     </formulas>
-    <interviewLabel>Account_Created_Edited_Processes-1_InterviewLabel</interviewLabel>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>ISNEW() &amp;&amp; ([Account].RecordType.DeveloperName  = &apos;Credit_National_Account&apos;)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_4</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW() &amp;&amp; ({!myVariable_current.RecordType.DeveloperName}  = &apos;Credit_National_Account&apos;)</expression>
+    </formulas>
+    <interviewLabel>Account_Created_Edited_Processes-6_InterviewLabel</interviewLabel>
     <label>Account - Created &amp; Edited Processes</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -104,12 +130,58 @@ NOT(ISBLANK( {!myVariable_current.Carrier_ID__c} ))
         </value>
     </processMetadataValues>
     <processType>Workflow</processType>
+    <recordCreates>
+        <name>myRule_4_A1</name>
+        <label>Create Credit National ID</label>
+        <locationX>400</locationX>
+        <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Account ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Account</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Account_ID__c</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Credit_National_ID__c</object>
+    </recordCreates>
     <recordUpdates>
         <processMetadataValues>
             <name>evaluationType</name>
             <value>
                 <stringValue>always</stringValue>
             </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
         </processMetadataValues>
         <processMetadataValues>
             <name>isChildRelationship</name>
@@ -122,6 +194,9 @@ NOT(ISBLANK( {!myVariable_current.Carrier_ID__c} ))
             <value>
                 <stringValue>[Account].Online_Applications__r</stringValue>
             </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
         </processMetadataValues>
         <name>myRule_1_A1</name>
         <label>Online App - Timestamp Carrier ID Added</label>
@@ -173,12 +248,12 @@ NOT(ISBLANK( {!myVariable_current.Carrier_ID__c} ))
             </processMetadataValues>
             <field>Carrier_ID_Added_PB__c</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_7053985258</elementReference>
+                <elementReference>formula_2_myRule_1_A1_4244122167</elementReference>
             </value>
         </inputAssignments>
         <object>OnlineApplication__c</object>
     </recordUpdates>
-    <startElementReference>myVariable_waitStartTimeAssignment</startElementReference>
+    <startElementReference>myDecision</startElementReference>
     <status>Active</status>
     <variables>
         <name>myVariable_current</name>
@@ -195,15 +270,5 @@ NOT(ISBLANK( {!myVariable_current.Carrier_ID__c} ))
         <isInput>true</isInput>
         <isOutput>false</isOutput>
         <objectType>Account</objectType>
-    </variables>
-    <variables>
-        <name>myVariable_waitStartTimeVariable</name>
-        <dataType>DateTime</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-        <value>
-            <elementReference>$Flow.CurrentDateTime</elementReference>
-        </value>
     </variables>
 </Flow>

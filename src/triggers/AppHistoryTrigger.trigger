@@ -3,5 +3,5 @@
  */
 
 trigger AppHistoryTrigger on Application_History__c (before insert) {
-TriggerFactory.createTriggerDispatcher(Application_History__c.sObjectType);
+TriggerFactory.createTriggerDispatcher(Application_History__c.SObjectType);
 }
