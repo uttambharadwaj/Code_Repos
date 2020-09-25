@@ -6,7 +6,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     public String ogEmailValue { get; set; }
     public Boolean emailSent { get; set; }
     public Boolean showForm { get; set; }
-    private String recordTypeId { get; set; }
+    private Id recordTypeId { get; set; }
     private String subscriberKey;
     public String firstName { get; set; }
     public Integer currentPage { get; set; }
@@ -81,7 +81,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         this.validPageObjFields = globalDescribe.get(objectName).getDescribe().fields.getMap();
 
         try {
-            this.recordTypeId = (String) Database.query('SELECT RecordTypeId FROM ' + objectName + ' WHERE Id = :componentObjId')[0].get('RecordTypeId');
+            this.recordTypeId = (Id) Database.query('SELECT RecordTypeId FROM ' + objectName + ' WHERE Id = :componentObjId')[0].get('RecordTypeId');
             triggeredEmailConfig = [SELECT Id, Default_Email__c, Subscriber_Key__c FROM MC_Triggered_Email__mdt WHERE RecordTypeId__c = :recordTypeId];
         } catch (Exception e) {
             System.debug(e);
