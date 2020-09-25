@@ -1560,7 +1560,7 @@
 
     },
     reloadContract: function (component, event, helper) {
-        let otrContractList = component.get('v.customerDetails.otrContracts.entry');
+        //let otrContractList = component.get('v.customerDetails.otrContracts.entry');
         //if(otrContractList != undefined && otrContractList.length > 0){
         //    component.set("v.otrContractObj",otrContractList[0].value);
         //}
@@ -1628,6 +1628,7 @@
             component.set("v.customerDetails.westernUnionFeeDescription",currentContract.westernUnionFeeDescription);
             component.set("v.customerDetails.wireFee",currentContract.wireFee);
             component.set("v.customerDetails.wireFeeDescription",currentContract.wireFeeDescription);
+            component.set("v.customerDetails.territoryCode",currentContract.salesTerritory);
             //This forces the payments tolazy-reload properly when we switch contracts
             let currencyCode = currentContract.currencyCode != null ? currentContract.currencyCode : 'USD';
             if (currentContract.arNumber !== oldArNumber) {
