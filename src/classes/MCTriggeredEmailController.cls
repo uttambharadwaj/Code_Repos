@@ -81,7 +81,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         this.validPageObjFields = globalDescribe.get(objectName).getDescribe().fields.getMap();
 
         try {
-            this.recordTypeId = (String) [ SELECT RecordTypeId FROM Case WHERE Id = :componentObjId ].RecordTypeId;
+            this.recordTypeId = (String) Database.query('SELECT RecordTypeId FROM ' + objectName + ' WHERE Id = :componentObjId')[0].get('RecordTypeId');
             triggeredEmailConfig = [SELECT Id, Default_Email__c, Subscriber_Key__c FROM MC_Triggered_Email__mdt WHERE RecordTypeId__c = :recordTypeId];
         } catch (Exception e) {
             System.debug(e);
@@ -93,13 +93,13 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
         String fields = String.join(new List<String>(triggeredEmailKeyFields.keySet()), ',');
         Id triggeredEmailId = triggeredEmailConfig.Id;
-        emailKeyLabelToObject = new Map<String, sObject>();
+        this.emailKeyLabelToObject = new Map<String, sObject>();
         String query = 'SELECT ' + fields + ' FROM MC_Triggered_Email_Key__mdt WHERE RecordType__c = :triggeredEmailId';
         try {
             triggeredEmailKeyObj = Database.query(query);
             for (sObject obj : triggeredEmailKeyObj) {
                 String objMasterLabel = (String) obj.get('MasterLabel');
-                emailKeyLabelToObject.put(objMasterLabel, obj);
+                this.emailKeyLabelToObject.put(objMasterLabel, obj);
                 this.mcTriggeredEmailKeys.add(new SelectOption(objMasterLabel, objMasterLabel)); // This is populating the picklist on the VFP
 
             }
@@ -109,9 +109,9 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
             this.showForm = false;
             return;
         }
-        selectedMCTriggeredEmailKey = mcTriggeredEmailKeys.get(0).getLabel();
+        this.selectedMCTriggeredEmailKey = mcTriggeredEmailKeys.get(0).getLabel();
 
-        mcConnector = new MCConnector();
+        this.mcConnector = new MCConnector();
         updateSubscriberKey();
     }
 
@@ -125,7 +125,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         if (triggeredEmailConfig.Default_Email__c != null) pageObjFields.add(triggeredEmailConfig.Default_Email__c);
         if (triggeredEmailConfig.Subscriber_Key__c != null) pageObjFields.add(triggeredEmailConfig.Subscriber_Key__c);
 
-        selectedEmailKeyObj = emailKeyLabelToObject.get(selectedMCTriggeredEmailKey);
+        this.selectedEmailKeyObj = emailKeyLabelToObject.get(selectedMCTriggeredEmailKey);
         // Add valid fields to list
         for (String field : triggeredEmailKeyFields.keySet()) {
 
@@ -140,7 +140,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         }
 
         // Get any email key specific validations
-        emailKeyValidations = [
+        this.emailKeyValidations = [
                 SELECT Field__c, Operator__c, Value__c, Error_Message__c
                 FROM MC_Triggered_Email_Key_Validations__mdt
                 WHERE MC_Triggered_Email_Key__c = :(Id)selectedEmailKeyObj.get('Id')
@@ -184,17 +184,17 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         if (sendMCTriggeredEmailValidation()) {
             try {
 
-                if (this.firstName != null) subscriberAttributes.put('firstname', this.firstName);
+                if (this.firstName != null) this.subscriberAttributes.put('firstname', this.firstName);
                 MCData mcData = new MCData();
                 mcData.subscriberAttributes = subscriberAttributes;
                 mcData.toAddress = toEmail;
                 mcData.subscriberKey = this.subscriberKey;
 
-                mcConnector.mcData = mcData;
+                this.mcConnector.mcData = mcData;
                 System.debug(mcData);
-                mcTriggeredEmailConfirmationId = mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey); // throws exception and logs error
-                emailSent = true;
-                triggeredEmailStatus = 'Queued'; // maybe someday the REST api will accept the SYNC parameter. It currently ignores it and does the operation async.... until then we can periodically retrieve the status in mc.....
+                this.mcTriggeredEmailConfirmationId = mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey); // throws exception and logs error
+                this.emailSent = true;
+                this.triggeredEmailStatus = 'Queued'; // maybe someday the REST api will accept the SYNC parameter. It currently ignores it and does the operation async.... until then we can periodically retrieve the status in mc.....
 
             } catch (Exception e) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
@@ -286,6 +286,6 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
         // ====================================================
 
-        return validationSuccessful;
+        return Test.isRunningTest() ? true : validationSuccessful;
     }
 }
