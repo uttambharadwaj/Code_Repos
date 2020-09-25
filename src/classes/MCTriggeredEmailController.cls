@@ -153,7 +153,6 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         }
 
         try {
-            // We don't know what all fields we need until after we have the custom metadata records but we do need the record type before getting the custom metadata.
             this.pageObj = Database.query('SELECT ' + String.join(new List<String>(pageObjFields), ',') + ' FROM ' + objectName + ' WHERE Id = :componentObjId');
         } catch (Exception e) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
