@@ -1584,9 +1584,10 @@
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
                                        <span class="pricing-structure-indicator">
-                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
-                                           <aura:if isTrue="{!v.otrContractObj != null}">
+                                       <aura:if isTrue="{!v.otrContractObj == null ||v.otrContractObj.lastPaymentDt == null }">N/A
+                                           <aura:set attribute="else">
                                                <lightning:formattedDateTime value="{!v.otrContractObj.lastPaymentDt}"/>
+                                           </aura:set>
                                            </aura:if>
 
                                        </span>
@@ -1882,8 +1883,11 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
-                                    <lightning:formattedDateTime value="{!v.customerDetails.currentInvoiceClosingDt}" />
-                                    <aura:if isTrue="{!v.customerDetails.currentInvoiceClosingDt == null || v.customerDetails.currentInvoiceClosingDt == ' '}">N/A</aura:if>
+                                  <aura:if isTrue="{!v.customerDetails.currentInvoiceClosingDt == null || v.customerDetails.currentInvoiceClosingDt == ' '}">N/A
+                                    <aura:set attribute="else">
+                                    	<lightning:formattedDateTime value="{!v.customerDetails.currentInvoiceClosingDt}" />
+                                      </aura:set>
+                                  </aura:if>
                                 </div>
                             </div>
                         </div>
@@ -1923,8 +1927,12 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
-                                    <lightning:formattedDateTime value="{!v.customerDetails.currentInvoiceDueDt}" />
-                                    <aura:if isTrue="{!v.customerDetails.currentInvoiceDueDt == null || v.customerDetails.currentInvoiceDueDt == ' '}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.currentInvoiceDueDt == null || v.customerDetails.currentInvoiceDueDt == ' '}">N/A
+                                        <aura:set attribute="else">
+                                    		<lightning:formattedDateTime value="{!v.customerDetails.currentInvoiceDueDt}" />
+                                        </aura:set>
+                                    </aura:if>
+
                                 </div>
                             </div>
                         </div>
@@ -1936,8 +1944,11 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
-                                    <lightning:formattedDateTime value="{!v.customerDetails.latePaymentDate}" />
-                                    <aura:if isTrue="{!v.customerDetails.latePaymentDate == null || v.customerDetails.latePaymentDate == ' '}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.latePaymentDate == null || v.customerDetails.latePaymentDate == ' '}">N/A
+                                        <aura:set attribute="else">
+                                    		<lightning:formattedDateTime value="{!v.customerDetails.latePaymentDate}" />
+                                        </aura:set>
+                                    </aura:if>
                                 </div>
                             </div>
                         </div>
@@ -1949,8 +1960,11 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
-                                    <lightning:formattedDateTime value="{!v.customerDetails.lastPaymentDt}" />
-                                    <aura:if isTrue="{!v.customerDetails.lastPaymentDt == null || v.customerDetails.lastPaymentDt == ' '}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.lastPaymentDt == null || v.customerDetails.lastPaymentDt == ' '}">N/A
+                                    <aura:set attribute="else">
+                                    	<lightning:formattedDateTime value="{!v.customerDetails.lastPaymentDt}" />
+                                    </aura:set>
+                                    </aura:if>
                                 </div>
                             </div>
                         </div>
@@ -2769,8 +2783,11 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
-                                    <lightning:formattedDateTime value="{!v.customerDetails.contractStartDt}" />
-                                    <aura:if isTrue="{!v.customerDetails.contractStartDt == null || v.customerDetails.contractStartDt == ' '}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.contractStartDt == null || v.customerDetails.contractStartDt == ' '}">N/A
+                                    <aura:set attribute="else">
+                                    	<lightning:formattedDateTime value="{!v.customerDetails.contractStartDt}" />
+                                    </aura:set>
+                                </aura:if>
                                 </div>
                             </div>
                         </div>
@@ -2782,8 +2799,11 @@
                             </div>
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
+                                    <aura:if isTrue="{!v.customerDetails.contractEndDt == null || v.customerDetails.contractEndDt == ' '}">N/A
+                                        <aura:set attribute="else">
                                     <lightning:formattedDateTime value="{!v.customerDetails.contractEndDt}" />
-                                    <aura:if isTrue="{!v.customerDetails.contractEndDt == null || v.customerDetails.contractEndDt == ' '}">N/A</aura:if>
+                                        </aura:set>
+                                        </aura:if>
                                 </div>
                             </div>
                         </div>
