@@ -270,7 +270,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         }
         // ======
 
-        // =========== GET ALL METADATA VALIDATIONS ===========
+        // =========== Metadata Validations ===========
         if (validationSuccessful) {
             for (MC_Triggered_Email_Key_Validations__mdt rule : emailKeyValidations) {
 
