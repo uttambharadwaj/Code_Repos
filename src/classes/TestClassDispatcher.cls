@@ -13,6 +13,10 @@ public class TestClassDispatcher {
         UtilityTestLoader.loadTestData();
     }
 
+    @IsTest static void testOTRAccountInsert(){
+        AccountTest.test_OTR_AccountInsert();
+    }
+
     @isTest static void testPartnerBOCAToProspectControllerSend(){
         PartnerBOCAToProspectControllerTest.testPBPSend();
     }
@@ -68,7 +72,7 @@ public class TestClassDispatcher {
     @isTest static void testAppRequestTriggerUpdates(){
         AppRequestTriggerTest.testUpdate();
     }
-    
+
     @IsTest static void testAppHistoryTriggerBeforeInsert() {
         AppHistoryTriggerTest.test_updateEndDate();
     }
@@ -84,7 +88,7 @@ public class TestClassDispatcher {
     @isTest static void testBOProngTriggerValidations(){
         BOProngTriggerTest.testValidateNumberOfRecords();
     }
-    
+
     @isTest static void testSetCardsCreatedAfterUpdate() {
         CaseTriggerTest.testSetCardsCreatedAfterUpdate();
     }
@@ -258,17 +262,16 @@ public class TestClassDispatcher {
     }
 
 	@IsTest static void testCollectionsEmailSuccess() {
-//		CollectionsEmailHandlerTest.test_CollectionsEmailSuccess();
+		CollectionsEmailHandlerTest.test_CollectionsEmailSuccess();
 	}
 	@IsTest static void testCollectionsEmailFail() {
-//		CollectionsEmailHandlerTest.test_CollectionsEmailFail();
+		CollectionsEmailHandlerTest.test_CollectionsEmailFail();
 	}
 	@IsTest static void testCollectionsEmailPreviouslySent() {
-//		CollectionsEmailHandlerTest.test_CollectionsEmailPreviouslySent();
+		CollectionsEmailHandlerTest.test_CollectionsEmailPreviouslySent();
 	}
-
     @IsTest static void testGeneratePaymentPlan() {
-//        CollectionsPaymentPlanTest.test_generatePaymentPlan();
+        CollectionsPaymentPlanTest.test_generatePaymentPlan();
     }
 
     @IsTest static void testFleetEnrollmentHasFile() {
