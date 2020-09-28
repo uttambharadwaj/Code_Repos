@@ -1,6 +1,6 @@
 <apex:component id="MCTriggeredEmailComponent" controller="MCTriggeredEmailController" allowDML="true">
-    <apex:attribute name="pageObj2" description="sObject record that the button in activated on" type="sObject"
-                    assignTo="{!pageObj}"/>
+    <apex:attribute name="pageObjId" description="sObject record that the button in activated on" type="Id"
+                    assignTo="{!componentObjId}"/>
     <html>
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css"
@@ -37,7 +37,7 @@
             <apex:form styleClass="row mb-5">
                 <div id="requiredFields">
                     <apex:outputPanel rendered="{!currentPage == 1}">
-
+                        {!selectedMCTriggeredEmailKey}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Available MC Triggered Emails</label>

@@ -137,6 +137,7 @@ public class CollectionsEmailHandler {
 								ruleEval = false;
 
 								// ============= Operator Rules =============
+			               // TODO Swap these rules for UtilityClass.logicalEval(value, rule.Operator__c, rule.Value__c)
 							} else if (rule.Operator__c == '>=') {
 								if (Integer.valueOf(value) < Integer.valueOf(rule.Value__c)) {
 									ruleEval = false;
