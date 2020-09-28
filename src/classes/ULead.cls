@@ -1226,7 +1226,11 @@ public class ULead {
         child.Jigsaw = null;
         child.Response_Summary__c = null;
         //child.Product_Interest__c = null;
-        //child.description = null;
+
+        if (child.Description != null && child.Description.contains('BIZUNITE LEAD')) {
+            child.Description = null;
+            child.Lead_Background_Notes_to_Opportunity__c = null;
+        }
 
         return child;
     }
