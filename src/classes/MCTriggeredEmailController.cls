@@ -194,7 +194,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
                 this.mcTriggeredEmailConfirmationId = mcConnector.sendTriggeredEmail(selectedMCTriggeredEmailKey); // throws exception and logs error
                 this.emailSent = true;
                 this.triggeredEmailStatus = 'Queued'; // maybe someday the REST api will accept the SYNC parameter. It currently ignores it and does the operation async.... until then we can periodically retrieve the status in mc.....
-
+                logSentEmail();
             } catch (Exception e) {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
             }
@@ -286,5 +286,19 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         // ====================================================
 
         return Test.isRunningTest() ? true : validationSuccessful;
+    }
+
+    private void logSentEmail() {
+
+        if (emailSent) {
+            Task task = new Task();
+            task.WhatId = componentObjId;
+            task.Type = 'Email';
+            task.Subject = selectedEmailKeyObj.get('Label') + ' email sent to ' + this.toEmail;
+            task.Description = 'At ' + System.now() + ' the email ' + selectedEmailKeyObj.get('Label') + ' was queued to be sent to ' +
+                    this.toEmail + ' by the user ' + UserInfo.getName();
+            task.Status = 'Completed';
+            insert task;
+        }
     }
 }
