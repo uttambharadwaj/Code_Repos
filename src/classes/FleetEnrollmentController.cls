@@ -424,7 +424,7 @@ public virtual class FleetEnrollmentController {
                 }
 
                 List<FleetEnrollment__c> fleetEnrollments = [
-                        SELECT Id, Has_Fleet_Enrollment_Data__c
+                        SELECT Id, Has_Fleet_Enrollment_Data__c, Program_Template_Account__c, Program_Template_Account__r.Billing_Cycle__c, Billing_Cycle__c
                         FROM FleetEnrollment__c
                         WHERE Application_Request__c = :applicationRequestParameter];
 
@@ -451,7 +451,8 @@ public virtual class FleetEnrollmentController {
                     if (feWithoutFleetData.size() > 0) {
 
                         fleetEnrollment.Id = feWithoutFleetData[0].Id;
-
+                        fleetEnrollment.Billing_Cycle__c = feWithoutFleetData[0].Billing_Cycle__c;
+                        fleetEnrollment.Program_Template_Account__c = feWithoutFleetData[0].Program_Template_Account__c;
                     }
                 }
             }
@@ -462,7 +463,7 @@ public virtual class FleetEnrollmentController {
 
 
                 List<FleetEnrollment__c> fleetEnrollments = [
-                        SELECT Id, Has_Fleet_Enrollment_Data__c, Opportunity__r.Billing_Country__c
+                        SELECT Id, Has_Fleet_Enrollment_Data__c, Opportunity__r.Billing_Country__c, Billing_Cycle__c, Program_Template_Account__c, Program_Template_Account__r.Billing_Cycle__c
                         FROM FleetEnrollment__c
                         WHERE Opportunity_Number__c = :opportunityParameter OR Opportunity__c = :opportunityParameter];
 
@@ -489,6 +490,8 @@ public virtual class FleetEnrollmentController {
                     if (feWithoutFleetData.size() > 0) {
 
                         fleetEnrollment.Id = feWithoutFleetData[0].Id;
+                        fleetEnrollment.Billing_Cycle__c = feWithoutFleetData[0].Billing_Cycle__c;
+                        fleetEnrollment.Program_Template_Account__c = feWithoutFleetData[0].Program_Template_Account__c;
                         if (feWithoutFleetData[0].Opportunity__c != null && feWithoutFleetData[0].Opportunity__r.Billing_Country__c != null) {
                             billingCountry = feWithoutFleetData[0].Opportunity__r.Billing_Country__c.toLowerCase();
                         }
@@ -719,6 +722,7 @@ public virtual class FleetEnrollmentController {
             fleetEnrollment.Status__c = 'New';
 
             if (programTemplateAccount != null && fleetEnrollment.Program_Template_Account__c == null) {
+                System.debug('Using default Program Template Account');
                 fleetEnrollment.Program_Template_Account__c = programTemplateAccount.Id;
                 fleetEnrollment.Billing_Cycle__c = programTemplateAccount.Billing_Cycle__c;
             }
