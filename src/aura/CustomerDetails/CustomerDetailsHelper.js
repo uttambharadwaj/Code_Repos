@@ -1115,7 +1115,7 @@
 
     },
 
-    fetchExistingCases : function(component, name) {
+    fetchExistingCases : function(component, target) {
 
         var acctNbr = component.get("v.accountNumber");
 
