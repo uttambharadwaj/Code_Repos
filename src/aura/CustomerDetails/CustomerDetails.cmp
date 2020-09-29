@@ -1475,8 +1475,8 @@
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
                                        
-                                       <aura:if isTrue="{!v.otrContractObj == null}">N/A</aura:if>
-                                           <aura:if isTrue="{!v.otrContractObj != null}">{!v.otrContractObj.billingCycleDesc}</aura:if>
+                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.billingCycleDesc == null}">N/A
+                                           <aura:set attribute="else">{!v.otrContractObj.billingCycleDesc}</aura:set></aura:if>
                                             </div>
                                         </div>
                                     </div>
@@ -1627,7 +1627,7 @@
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
                                        
-                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.moneyCodeLimit}">N/A
+                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.moneyCodeLimit == null}">N/A
                                            <aura:set attribute="else">
                                                <ui:outputCurrency value="{!v.otrContractObj.moneyCodeLimit}"/>
                                            </aura:set>
@@ -1666,7 +1666,7 @@
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
                                        
-                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.pastDueAmount}">N/A
+                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.pastDueAmount == null}">N/A
                                            <aura:set attribute="else">
                                                <ui:outputCurrency value="{!v.otrContractObj.pastDueAmount}"/>
                                            </aura:set>
