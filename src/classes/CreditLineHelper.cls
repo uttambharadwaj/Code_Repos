@@ -44,7 +44,7 @@ public with sharing class CreditLineHelper {
 
                                     } catch (System.QueryException e) {
                                         System.debug('Error when querying for AR User Cross Reference For Credit Line Authorization Update: ' + e);
-                                        UtilityClass.logInternalError(e, null, 'CreditLineBeforeInsertHandler=>CreditLineAdjustmentAfterInsert', false, null, null);
+                                        UtilityClass.logInternalError(e, null, 'CreditLineHelper=>setCreditLineDataFields', false, null, null);
                                     }
                                 }
                             }
