@@ -1,4 +1,4 @@
-ID,CURRENCYISOCODE,Platform__c,User_Operator_ID__c,User_Authority_Limit__c,Non_User_Email_Address__c,Non_User_Full_Name__c,Non_User_Manager__c,Non_User_Manager_Email_ID__c
+ID,CURRENCYISOCODE,Platform__c,User_Operator_ID__c,User_Authority_Limit__c,Non_User_Email_Address__c,Non_User_Full_Name__c,Non_User_Manager__c,Non_User_Manager_Email__c
 aBd0g0000008OA1CAM,USD,EFSTS,pclemens@efsllc,15000,baim_ron@yahoo.com,Annalisa Girardi,Marilee Wishon,manager_baim_ron@yahoo.com
 aBd0g0000008OA2CAM,USD,EFSTS,dsmith@efsllc,50000,yuanito.kurniawan@sea.ccamatil.com,Sona Cauthen,Margene Stehle,manager_yuanito.kurniawan@sea.ccamatil.com
 aBd0g0000008OA3CAM,USD,EFSTS,aschneid@efsllc,15000,cianjur@indo.net.id,Clarissa Danker,Nathalie Branner,manager_cianjur@indo.net.id

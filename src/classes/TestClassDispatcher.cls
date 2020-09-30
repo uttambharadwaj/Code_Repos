@@ -283,13 +283,10 @@ public class TestClassDispatcher {
     @IsTest static void testFleetEnrollmentMissingData() {
         FleetEnrollmentDataTest.test_fleetEnrollmentMissingData();
     }
-/*    @IsTest static void testCreditLineAdjustmentBeforeUpdate() {
+    @IsTest static void testCreditLineAdjustmentBeforeUpdate() {
         CreditLineTriggerTest.test_beforeUpdate();
     }
     @IsTest static void testCreditLineAdjustmentBeforeInsert() {
         CreditLineTriggerTest.test_beforeInsert();
-    }*/
-
-
-
+    }
 }
