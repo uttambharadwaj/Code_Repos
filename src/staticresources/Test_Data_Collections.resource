@@ -1,2 +1,2 @@
-Id,Case__c,Total_Owed__c
-aC403000000000GCAQ,5002F0000058rFvQAI,5000
+Id,Case__c,Total_Owed__c,Past_Due_Amount__c,Promise_To_Pay__c
+aCF4u0000004EHxGAM,5002F0000058rFvQAI,5000,1500,true
