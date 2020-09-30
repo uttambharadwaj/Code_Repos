@@ -11,6 +11,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     public String firstName { get; set; }
     public Integer currentPage { get; set; }
     public sObject pageObj { get; set; }
+    private String pageObjQuery;
     public Id componentObjId {
         get;
         set {
@@ -27,6 +28,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     private MC_Triggered_Email__mdt triggeredEmailConfig;
     private List<MC_Triggered_Email_Key_Validations__mdt> emailKeyValidations { get; set; }
     private sObject selectedEmailKeyObj;
+
     public Map<String, Object> subscriberAttributes;
 
     private Map<String, Schema.SObjectField> triggeredEmailKeyFields { get; set; }
@@ -82,7 +84,7 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
 
         try {
             this.recordTypeId = (Id) Database.query('SELECT RecordTypeId FROM ' + objectName + ' WHERE Id = :componentObjId')[0].get('RecordTypeId');
-            triggeredEmailConfig = [SELECT Id, Default_Email__c, Subscriber_Key__c FROM MC_Triggered_Email__mdt WHERE RecordTypeId__c = :recordTypeId];
+            triggeredEmailConfig = [SELECT Id, Default_Email__c, Subscriber_Key__c, Log_As_Task__c FROM MC_Triggered_Email__mdt WHERE RecordTypeId__c = :recordTypeId];
         } catch (Exception e) {
             System.debug(e);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, 'This record type has not been configured to use this function.'));
@@ -153,7 +155,8 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         }
 
         try {
-            this.pageObj = Database.query('SELECT ' + String.join(new List<String>(pageObjFields), ',') + ' FROM ' + objectName + ' WHERE Id = :componentObjId');
+            this.pageObjQuery = 'SELECT ' + String.join(new List<String>(pageObjFields), ',') + ' FROM ' + objectName + ' WHERE Id = :componentObjId';
+            this.pageObj = Database.query(this.pageObjQuery);
         } catch (Exception e) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, e.getMessage()));
             this.showForm = false;
@@ -270,15 +273,12 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
         // ======
 
         // =========== Metadata Validations ===========
-        if (validationSuccessful) {
-            for (MC_Triggered_Email_Key_Validations__mdt rule : emailKeyValidations) {
-
-                validationSuccessful = UtilityClass.logicalEval(UtilityClass.getSObjectField(pageObj, rule.Field__c), Rule.Operator__c, rule.Value__c);
-                if (!validationSuccessful) {
-                    ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, rule.Error_Message__c));
-                    this.showForm = false;
-                    break;
-                }
+        if (validationSuccessful && selectedEmailKeyObj.get('Conditions__c') != null) {
+            // Check that all defined custom conditions are met for the record.
+            String query = this.pageObjQuery + ' AND ' + (String)selectedEmailKeyObj.get('Conditions__c');
+            validationSuccessful = Database.query(query).size() > 0 ? true : false;
+            if (!validationSuccessful) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR, (String)selectedEmailKeyObj.get('Error_Message__c')));
             }
         }
 
@@ -289,8 +289,8 @@ public class MCTriggeredEmailController { // extension for MarketingTriggeredEma
     }
 
     private void logSentEmail() {
-
-        if (emailSent) {
+        Boolean logAsTask = triggeredEmailConfig.Log_As_Task__c != null ? triggeredEmailConfig.Log_As_Task__c : false;
+        if (emailSent && logAsTask) {
             Task task = new Task();
             task.WhatId = componentObjId;
             task.Type = 'Email';
