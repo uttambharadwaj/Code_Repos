@@ -1442,7 +1442,7 @@
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
                                        
-                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.billingAcctNbr == null}">N/A
+                                       <aura:if isTrue="{!v.otrContractObj == null || empty(v.otrContractObj.billingAcctNbr)}">N/A
                                            <aura:set attribute="else">
                                            {!v.otrContractObj.billingAcctNbr}</aura:set>
                                        </aura:if>
@@ -1475,7 +1475,7 @@
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
                                        
-                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.billingCycleDesc == null}">N/A
+                                       <aura:if isTrue="{!v.otrContractObj == null || empty(v.otrContractObj.billingCycleDesc)}">N/A
                                            <aura:set attribute="else">{!v.otrContractObj.billingCycleDesc}</aura:set></aura:if>
                                             </div>
                                         </div>
@@ -1528,7 +1528,7 @@
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
                                        
-                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.recourseCode == null }">N/A
+                                       <aura:if isTrue="{!v.otrContractObj == null || empty(v.otrContractObj.recourseCode) }">N/A
                                               <aura:set attribute="else">{!v.otrContractObj.recourseCode}</aura:set>
                                        </aura:if>
                                             </div>
@@ -1594,7 +1594,7 @@
                                         <div class="slds-tile__detail">
                                             <div class="slds-text-heading--small">
                                        
-                                       <aura:if isTrue="{!v.otrContractObj == null || v.otrContractObj.lastPaymentMethod == null}">N/A
+                                       <aura:if isTrue="{!v.otrContractObj == null || empty(v.otrContractObj.lastPaymentMethod)}">N/A
                                            <aura:set attribute="else">{!v.otrContractObj.lastPaymentMethod}</aura:set>
                                        </aura:if>
                                             </div>
@@ -1822,7 +1822,7 @@
                             <div class="slds-tile__detail">
                                 <div class="slds-text-heading--small">
                                     {!v.customerDetails.billingCycleDesc}
-                                    <aura:if isTrue="{!v.customerDetails.billingCycleDesc == null || v.customerDetails.billingCycleDesc == ' '}">N/A</aura:if>
+                                    <aura:if isTrue="{!v.customerDetails.billingCycleDesc == null || empty(v.customerDetails.billingCycleDesc)}">N/A</aura:if>
                                 </div>
                             </div>
                         </div>
