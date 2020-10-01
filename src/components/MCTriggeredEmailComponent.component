@@ -37,7 +37,6 @@
             <apex:form styleClass="row mb-5">
                 <div id="requiredFields">
                     <apex:outputPanel rendered="{!currentPage == 1}">
-                        {!selectedMCTriggeredEmailKey}
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Available MC Triggered Emails</label>
