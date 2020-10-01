@@ -1,0 +1,2 @@
+ID,Authorized_Change__c,Change_User_Operator_ID__c,Platform__c,Customer_ID__c,Set_ID__c,DNB_Highest_Credit__c,CL_Change_Date__c,Previous_CL__c,Updated_CL__c,CL_Maximum__c,DNB_Custom_PM_Model_RG__c
+aBe0g0000009AGQCA2,FALSE,aschneid@efsllc,EFSTS,464006283311,EFS,0,2020-09-09,8000,34000,0,2
