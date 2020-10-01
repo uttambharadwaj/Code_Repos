@@ -7,18 +7,10 @@
         <members>TestClassDispatcher</members>
         <members>CreditUtil_NullField</members>
         <members>AccountTest</members>
-        <members>AppHistoryBeforeInsertTriggerHandler</members>
-        <members>AppHistoryTriggerDispatcher</members>
-        <members>AppHistoryTriggerTest</members>
-        <members>CaseTriggerTest</members>
-        <members>CreditLineAfterUpdateHandler</members>
-        <members>CreditLineAfterInsertHandler</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>UOpportunity</members>
-        <members>AppHistoryTrigger</members>
-        <members>CreditLineAdjustmentTrigger</members>
         <name>ApexTrigger</name>
     </types>
     <types>

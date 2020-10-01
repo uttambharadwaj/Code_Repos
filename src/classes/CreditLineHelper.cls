@@ -2,7 +2,7 @@
  * Created by W501611 on 9/24/2020.
  */
 
-public with sharing class CreditLineHelper {
+public class CreditLineHelper {
 
     public static void setCreditLineDataFields(List<Credit_Line_Adjustment__c> CreditLineList){
         {
