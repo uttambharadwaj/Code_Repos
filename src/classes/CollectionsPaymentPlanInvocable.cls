@@ -59,9 +59,11 @@ public with sharing class CollectionsPaymentPlanInvocable {
                     collectionsPaymentPlans.add(collectionsPaymentPlan);
 
                     leftoverBalance = (leftoverBalance - collectionsPromise.Payment_Amount__c);
-
                     if((collectionsPromise.Payment_Frequency__c).equalsIgnoreCase('Weekly')) {
                         currentPaymentDate = (currentPaymentDate.addDays(7));
+                    }
+                    else if((collectionsPromise.Payment_Frequency__c).equalsIgnoreCase('Bi-weekly')) {
+                        currentPaymentDate = (currentPaymentDate.addDays(14));
                     }
                     else if((collectionsPromise.Payment_Frequency__c).equalsIgnoreCase('Monthly')) {
                         currentPaymentDate = (currentPaymentDate.addMonths(1));
