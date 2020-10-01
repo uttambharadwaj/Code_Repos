@@ -273,6 +273,9 @@ public class TestClassDispatcher {
     @IsTest static void testGeneratePaymentPlan() {
         CollectionsPaymentPlanTest.test_generatePaymentPlan();
     }
+    @IsTest static void testPaymentPlanUpdates() {
+        CollectionsTest.test_paymentPlanUpdate();
+    }
 
     @IsTest static void testFleetEnrollmentHasFile() {
         FleetEnrollmentDataTest.test_fleetEnrollmentHasFile();

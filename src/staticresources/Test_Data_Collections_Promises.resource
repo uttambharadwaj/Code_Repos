@@ -1,2 +1,2 @@
 id,Collections__c,Payment_Type__c,Payment_Frequency__c,First_Payment_Date__c,Payment_Amount__c
-aC303000000CaR7CAK,aC403000000000GCAQ,Installment,Weekly,2030-06-24,100.00
+aCE4u0000004DHPGA2,aCF4u0000004EHxGAM,Installment,Weekly,TODAY,100.00
