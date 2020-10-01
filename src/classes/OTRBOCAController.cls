@@ -568,6 +568,7 @@ public class OTRBOCAController {
                     onlineApplication.Monthly_Transactions__c = onlineApplicationOffer.of_Monthly_Transactions__c;
                     onlineApplication.Weekly_Amount_Requested__c = onlineApplicationOffer.Weekly_Amount__c;
                     onlineApplication.Weekly_Transactions__c = onlineApplicationOffer.of_Weekly_Transactions__c;
+                    setCreditLineRequested();
 
                     // don't generate a ThreatMetrix SessionID for Conversion Apps
                     // use the passed in SessionID for Paper Apps
